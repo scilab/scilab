@@ -11,444 +11,444 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="karmarkar" xml:lang="en">
-  <refnamediv>
-    <refname>karmarkar</refname>
-    <refpurpose>Solves a linear optimization problem.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      xopt=karmarkar(Aeq,beq,c)
-      xopt=karmarkar(Aeq,beq,c,x0)
-      xopt=karmarkar(Aeq,beq,c,x0,rtolf)
-      xopt=karmarkar(Aeq,beq,c,x0,rtolf,gam)
-      xopt=karmarkar(Aeq,beq,c,x0,rtolf,gam,maxiter)
-      xopt=karmarkar(Aeq,beq,c,x0,rtolf,gam,maxiter,outfun)
-      xopt=karmarkar(Aeq,beq,c,x0,rtolf,gam,maxiter,outfun,A,b)
-      xopt=karmarkar(Aeq,beq,c,x0,rtolf,gam,maxiter,outfun,A,b,lb)
-      xopt=karmarkar(Aeq,beq,c,x0,rtolf,gam,maxiter,outfun,A,b,lb,ub)
-      [xopt,fopt] = karmarkar(...)
-      [xopt,fopt,exitflag] = karmarkar(...)
-      [xopt,fopt,exitflag,iter] = karmarkar(...)
-      [xopt,fopt,exitflag,iter,yopt] = karmarkar(...)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>Aeq</term>
-        <listitem>
-          <para>
-            a n-by-p matrix of doubles, where <literal>n</literal> is the number
-            of linear equality constraints
-            and <literal>p</literal> is the number of unknowns,
-            the matrix in the linear equality constraints.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>beq</term>
-        <listitem>
-          <para>
-            a n-by-1 matrix of doubles,
-            the right hand side of the linear equality constraint.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>c</term>
-        <listitem>
-          <para>
-            a p-by-1 matrix of doubles,
-            the linear part of the objective function.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>x0</term>
-        <listitem>
-          <para>
-            a p-by-1 matrix of doubles, the initial guess (default <literal>x0=[]</literal>).
-            If <literal>x0==[]</literal>, the karmarkar function automatically computes a feasible initial
-            guess.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>rtolf</term>
-        <listitem>
-          <para>
-            a 1-by-1 matrix of doubles,
-            a relative tolerance on <literal>f(x)=c'*x</literal> (default <literal>rtolf=1.d-5</literal>).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>gam</term>
-        <listitem>
-          <para>
-            a 1-by-1 matrix of doubles, the scaling factor (default <literal>gam=0.5</literal>).
-            The scaling factor must satisfy <literal>0&lt;gam&lt;1</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>maxiter</term>
-        <listitem>
-          <para>
-            a 1-by-1 matrix of floating point integers, the maximum number of iterations (default <literal>maxiter=200</literal>).
-            The maximum number of iterations must be greater than 1.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>outfun</term>
-        <listitem>
-          <para>
-            a function or a list, the output function. See below for details.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>A</term>
-        <listitem>
-          <para>
-            a ni-by-p matrix of doubles, the matrix of linear inequality constraints.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>b</term>
-        <listitem>
-          <para>
-            a ni-by-1 matrix of doubles, the right-hand side of linear inequality constraints.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>lb</term>
-        <listitem>
-          <para>
-            a p-by-1 matrix of doubles, the lower bounds.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>ub</term>
-        <listitem>
-          <para>
-            a p-by-1 matrix of doubles, the upper bounds.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>xopt</term>
-        <listitem>
-          <para>a p-by-1 matrix of doubles, the solution.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fopt</term>
-        <listitem>
-          <para>
-            a 1-by-1 matrix of doubles, the objective function
-            value at optimum, i.e. <literal>fopt=c'*xopt</literal>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>exitflag</term>
-        <listitem>
-          <para>
-            a 1-by-1 matrix of floating point integers, the status of execution.
-            See below for details.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>iter</term>
-        <listitem>
-          <para>
-            a 1-by-1 matrix of floating point integers, the number of iterations.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>yopt</term>
-        <listitem>
-          <para>
-            a <literal>struct</literal> containing the dual solution.
-            The structure yopt has four fields : ineqlin, eqlin, upper, lower.
-            The field <literal>yopt.ineqlin</literal> is the Lagrange multiplier for the inequality constraints.
-            The field <literal>yopt.eqlin</literal> is the Lagrange multiplier for the equality constraints.
-            The field <literal>yopt.upper</literal> is the Lagrange multiplier for the upper bounds.
-            The field <literal>yopt.lower</literal> is the Lagrange multiplier for the lower bounds.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Computes the solution of linear programming problems.
-    </para>
-    <para>
-      This function has the two following modes.
-    </para>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="karmarkar" xml:lang="en">
+    <refnamediv>
+        <refname>karmarkar</refname>
+        <refpurpose>Solves a linear optimization problem.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            xopt=karmarkar(Aeq,beq,c)
+            xopt=karmarkar(Aeq,beq,c,x0)
+            xopt=karmarkar(Aeq,beq,c,x0,rtolf)
+            xopt=karmarkar(Aeq,beq,c,x0,rtolf,gam)
+            xopt=karmarkar(Aeq,beq,c,x0,rtolf,gam,maxiter)
+            xopt=karmarkar(Aeq,beq,c,x0,rtolf,gam,maxiter,outfun)
+            xopt=karmarkar(Aeq,beq,c,x0,rtolf,gam,maxiter,outfun,A,b)
+            xopt=karmarkar(Aeq,beq,c,x0,rtolf,gam,maxiter,outfun,A,b,lb)
+            xopt=karmarkar(Aeq,beq,c,x0,rtolf,gam,maxiter,outfun,A,b,lb,ub)
+            [xopt,fopt] = karmarkar(...)
+            [xopt,fopt,exitflag] = karmarkar(...)
+            [xopt,fopt,exitflag,iter] = karmarkar(...)
+            [xopt,fopt,exitflag,iter,yopt] = karmarkar(...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Aeq</term>
+                <listitem>
+                    <para>
+                        a n-by-p matrix of doubles, where <literal>n</literal> is the number
+                        of linear equality constraints
+                        and <literal>p</literal> is the number of unknowns,
+                        the matrix in the linear equality constraints.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>beq</term>
+                <listitem>
+                    <para>
+                        a n-by-1 matrix of doubles,
+                        the right hand side of the linear equality constraint.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>
+                        a p-by-1 matrix of doubles,
+                        the linear part of the objective function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0</term>
+                <listitem>
+                    <para>
+                        a p-by-1 matrix of doubles, the initial guess (default <literal>x0=[]</literal>).
+                        If <literal>x0==[]</literal>, the karmarkar function automatically computes a feasible initial
+                        guess.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rtolf</term>
+                <listitem>
+                    <para>
+                        a 1-by-1 matrix of doubles,
+                        a relative tolerance on <literal>f(x)=c'*x</literal> (default <literal>rtolf=1.d-5</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gam</term>
+                <listitem>
+                    <para>
+                        a 1-by-1 matrix of doubles, the scaling factor (default <literal>gam=0.5</literal>).
+                        The scaling factor must satisfy <literal>0&lt;gam&lt;1</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>maxiter</term>
+                <listitem>
+                    <para>
+                        a 1-by-1 matrix of floating point integers, the maximum number of iterations (default <literal>maxiter=200</literal>).
+                        The maximum number of iterations must be greater than 1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>outfun</term>
+                <listitem>
+                    <para>
+                        a function or a list, the output function. See below for details.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        a ni-by-p matrix of doubles, the matrix of linear inequality constraints.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>
+                        a ni-by-1 matrix of doubles, the right-hand side of linear inequality constraints.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lb</term>
+                <listitem>
+                    <para>
+                        a p-by-1 matrix of doubles, the lower bounds.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ub</term>
+                <listitem>
+                    <para>
+                        a p-by-1 matrix of doubles, the upper bounds.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xopt</term>
+                <listitem>
+                    <para>a p-by-1 matrix of doubles, the solution.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fopt</term>
+                <listitem>
+                    <para>
+                        a 1-by-1 matrix of doubles, the objective function
+                        value at optimum, i.e. <literal>fopt=c'*xopt</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>exitflag</term>
+                <listitem>
+                    <para>
+                        a 1-by-1 matrix of floating point integers, the status of execution.
+                        See below for details.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iter</term>
+                <listitem>
+                    <para>
+                        a 1-by-1 matrix of floating point integers, the number of iterations.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>yopt</term>
+                <listitem>
+                    <para>
+                        a <literal>struct</literal> containing the dual solution.
+                        The structure yopt has four fields : ineqlin, eqlin, upper, lower.
+                        The field <literal>yopt.ineqlin</literal> is the Lagrange multiplier for the inequality constraints.
+                        The field <literal>yopt.eqlin</literal> is the Lagrange multiplier for the equality constraints.
+                        The field <literal>yopt.upper</literal> is the Lagrange multiplier for the upper bounds.
+                        The field <literal>yopt.lower</literal> is the Lagrange multiplier for the lower bounds.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
         <para>
-          If no inequality constraints and no bound is given
-          (i.e. if <literal>(A==[] &amp; lb==[] &amp; ub==[])</literal>),
-          the function ensures that the variable is nonnegative.
+            Computes the solution of linear programming problems.
         </para>
-      </listitem>
-      <listitem>
         <para>
-          If any inequality constraints or any bound is given
-          (i.e. if <literal>(A&lt;&gt;[] or lb&lt;&gt;[] or ub&lt;&gt;[])</literal>),
-          the function takes into account for this inequality or bound
-          (and does not ensure that the variable is nonnegative).
+            This function has the two following modes.
         </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      If no inequality constraints and no bound is given
-      (i.e. if <literal>(A==[] &amp; lb==[] &amp; ub==[])</literal>),
-      solves the linear optimization problem:
-    </para>
-    <para>
-      <latex>
-        \begin{eqnarray}
-        \begin{array}{l}
-        \textrm{minimize } c^T \cdot x\\
-        A_{eq} x = b_{eq}\\
-        x \geq 0
-        \end{array}
-        \end{eqnarray}
-      </latex>
-    </para>
-    <para>
-      If any inequality constraints or any bound is given
-      (i.e. if <literal>(A&lt;&gt;[] | lb&lt;&gt;[] | ub&lt;&gt;[])</literal>),
-      solves the linear optimization problem:
-    </para>
-    <para>
-      <latex>
-        \begin{eqnarray}
-        \begin{array}{l}
-        \textrm{minimize } c^T \cdot x\\
-        A_{eq} x = b_{eq}\\
-        A x \leq b\\
-        \ell_b \leq x \leq u_b
-        \end{array}
-        \end{eqnarray}
-      </latex>
-    </para>
-    <para>
-      Any optional parameter equal to the empty matrix <literal>[]</literal> is replaced by
-      its default value.
-    </para>
-    <para>
-      The <literal>exitflag</literal> parameter allows to know why the algorithm
-      terminated.
-    </para>
-    <itemizedlist>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    If no inequality constraints and no bound is given
+                    (i.e. if <literal>(A==[] &amp; lb==[] &amp; ub==[])</literal>),
+                    the function ensures that the variable is nonnegative.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If any inequality constraints or any bound is given
+                    (i.e. if <literal>(A&lt;&gt;[] or lb&lt;&gt;[] or ub&lt;&gt;[])</literal>),
+                    the function takes into account for this inequality or bound
+                    (and does not ensure that the variable is nonnegative).
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          <literal>exitflag = 1</literal> if algorithm converged.
+            If no inequality constraints and no bound is given
+            (i.e. if <literal>(A==[] &amp; lb==[] &amp; ub==[])</literal>),
+            solves the linear optimization problem:
         </para>
-      </listitem>
-      <listitem>
         <para>
-          <literal>exitflag = 0</literal> if maximum number of iterations was reached.
+            <latex>
+                \begin{eqnarray}
+                \begin{array}{l}
+                \textrm{minimize } c^T \cdot x\\
+                A_{eq} x = b_{eq}\\
+                x \geq 0
+                \end{array}
+                \end{eqnarray}
+            </latex>
         </para>
-      </listitem>
-      <listitem>
         <para>
-          <literal>exitflag = -1</literal> if no feasible point was found
+            If any inequality constraints or any bound is given
+            (i.e. if <literal>(A&lt;&gt;[] | lb&lt;&gt;[] | ub&lt;&gt;[])</literal>),
+            solves the linear optimization problem:
         </para>
-      </listitem>
-      <listitem>
         <para>
-          <literal>exitflag = -2</literal> if problem is unbounded.
+            <latex>
+                \begin{eqnarray}
+                \begin{array}{l}
+                \textrm{minimize } c^T \cdot x\\
+                A_{eq} x = b_{eq}\\
+                A x \leq b\\
+                \ell_b \leq x \leq u_b
+                \end{array}
+                \end{eqnarray}
+            </latex>
         </para>
-      </listitem>
-      <listitem>
         <para>
-          <literal>exitflag = -3</literal> if search direction became zero.
+            Any optional parameter equal to the empty matrix <literal>[]</literal> is replaced by
+            its default value.
         </para>
-      </listitem>
-      <listitem>
         <para>
-          <literal>exitflag = -4</literal> if algorithm stopped on user's request.
+            The <literal>exitflag</literal> parameter allows to know why the algorithm
+            terminated.
         </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      The output function <literal>outfun</literal> must have header
-    </para>
-    <programlisting role="example"><![CDATA[ 
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>exitflag = 1</literal> if algorithm converged.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>exitflag = 0</literal> if maximum number of iterations was reached.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>exitflag = -1</literal> if no feasible point was found
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>exitflag = -2</literal> if problem is unbounded.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>exitflag = -3</literal> if search direction became zero.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>exitflag = -4</literal> if algorithm stopped on user's request.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The output function <literal>outfun</literal> must have header
+        </para>
+        <programlisting role="example"><![CDATA[ 
 stop = outfun ( xopt , optimValues , state )
 ]]></programlisting>
-    <para>
-      where
-      <literal>xopt</literal> is a p-by-1 matrix of double representing
-      the current point,
-      <literal>optimValues</literal> is a <literal>struct</literal>,
-      <literal>state</literal> is a 1-by-1 matrix of strings.
-      Here, <literal>stop</literal> is a 1-by-1 matrix of booleans,
-      which is <literal>%t</literal> if the algorithm must stop.
-    </para>
-    <para>
-      <literal>optimValues</literal> has the following fields:
-    </para>
-    <itemizedlist>
-      <listitem>
         <para>
-          <literal>optimValues.funccount</literal>: a 1-by-1 matrix of floating point integers,
-          the number of function evaluations
+            where
+            <literal>xopt</literal> is a p-by-1 matrix of double representing
+            the current point,
+            <literal>optimValues</literal> is a <literal>struct</literal>,
+            <literal>state</literal> is a 1-by-1 matrix of strings.
+            Here, <literal>stop</literal> is a 1-by-1 matrix of booleans,
+            which is <literal>%t</literal> if the algorithm must stop.
         </para>
-      </listitem>
-      <listitem>
         <para>
-          <literal>optimValues.fval</literal>: a 1-by-1 matrix of doubles, the best function value
+            <literal>optimValues</literal> has the following fields:
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>optimValues.funccount</literal>: a 1-by-1 matrix of floating point integers,
+                    the number of function evaluations
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>optimValues.fval</literal>: a 1-by-1 matrix of doubles, the best function value
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>optimValues.iteration</literal>: a 1-by-1 matrix of floating point integers,
+                    the current iteration number
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>optimValues.procedure</literal>: a 1-by-1 matrix of strings, the type of step performed.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>optimValues.dualgap</literal>: a 1-by-1 matrix of doubles, the duality gap, i.e.
+                    <literal>abs(yopt'*beq - fopt)</literal>.
+                    At optimum, the duality gap is zero.
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          <literal>optimValues.iteration</literal>: a 1-by-1 matrix of floating point integers,
-          the current iteration number
+            The <literal>optimValues.procedure</literal> field can have the following values.
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    If <literal>optimValues.procedure="x0"</literal>, then the algorithm is computing the initial
+                    feasible guess <literal>x0</literal> (phase 1).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>optimValues.procedure="x*"</literal>, then the algorithm is computing the solution
+                    of the linear program (phase 2).
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-          <literal>optimValues.procedure</literal>: a 1-by-1 matrix of strings, the type of step performed.
+            It might happen that the output function requires additionnal arguments to be evaluated.
+            In this case, we can use the following feature.
+            The function <literal>outfun</literal> can also be the list <literal>(outf,a1,a2,...)</literal>.
+            In this case <literal>outf</literal>, the first element in the list, must have the header:
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          <literal>optimValues.dualgap</literal>: a 1-by-1 matrix of doubles, the duality gap, i.e.
-          <literal>abs(yopt'*beq - fopt)</literal>.
-          At optimum, the duality gap is zero.
-        </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      The <literal>optimValues.procedure</literal> field can have the following values.
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-          If <literal>optimValues.procedure="x0"</literal>, then the algorithm is computing the initial
-          feasible guess <literal>x0</literal> (phase 1).
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          If <literal>optimValues.procedure="x*"</literal>, then the algorithm is computing the solution
-          of the linear program (phase 2).
-        </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-      It might happen that the output function requires additionnal arguments to be evaluated.
-      In this case, we can use the following feature.
-      The function <literal>outfun</literal> can also be the list <literal>(outf,a1,a2,...)</literal>.
-      In this case <literal>outf</literal>, the first element in the list, must have the header:
-    </para>
-    <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[ 
        stop = outf ( xopt , optimValues , state , a1 , a2 , ... )
 ]]></programlisting>
-    <para>
-      where the input arguments <literal>a1, a2, ...</literal>
-      will be automatically be appended at the end of the calling sequence.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Stopping rule</title>
-    <para>
-      The stopping rule is based on the number of iterations,
-      the relative tolerance on the function value, the duality gap and 
-      the user's output function.
-    </para>
-    <para>
-      In both the phase 1 and phase 2 of the algorithm, we check the
-      duality gap and the boolean:
-    </para>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            where the input arguments <literal>a1, a2, ...</literal>
+            will be automatically be appended at the end of the calling sequence.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Stopping rule</title>
+        <para>
+            The stopping rule is based on the number of iterations,
+            the relative tolerance on the function value, the duality gap and 
+            the user's output function.
+        </para>
+        <para>
+            In both the phase 1 and phase 2 of the algorithm, we check the
+            duality gap and the boolean:
+        </para>
+        <programlisting role="example"><![CDATA[ 
 dualgap > 1.e5 * dualgapmin
 ]]></programlisting>
-    <para>
-      where <literal>dualgap</literal> is the absolute value of the duality gap, and 
-      <literal>dualgapmin</literal> is the minimum absolute duality gap measured during 
-      this step of the algorithm.
-      The duality gap is computed from 
-    </para>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            where <literal>dualgap</literal> is the absolute value of the duality gap, and 
+            <literal>dualgapmin</literal> is the minimum absolute duality gap measured during 
+            this step of the algorithm.
+            The duality gap is computed from 
+        </para>
+        <programlisting role="example"><![CDATA[ 
 dualgap = abs(yopt'*beq - fopt)
 ]]></programlisting>
-    <para>
-      where <literal>yopt</literal> is the Lagrange multiplier, <literal>beq</literal>
-      is the right hand side of the inequality constraints and <literal>fopt</literal>
-      is the minimum function value attained in the current phase.
-    </para>
-    <para>
-      During the second phase of the algorithm (i.e. once <literal>x0</literal> is
-      determined), the termination condition for the function value is based on the boolean:
-    </para>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            where <literal>yopt</literal> is the Lagrange multiplier, <literal>beq</literal>
+            is the right hand side of the inequality constraints and <literal>fopt</literal>
+            is the minimum function value attained in the current phase.
+        </para>
+        <para>
+            During the second phase of the algorithm (i.e. once <literal>x0</literal> is
+            determined), the termination condition for the function value is based on the boolean:
+        </para>
+        <programlisting role="example"><![CDATA[ 
     abs(fprev-fopt)<=rtolf*abs(fprev)
 ]]></programlisting>
-    <para>
-      where <literal>fprev</literal> is the previous function value,
-      <literal>fopt</literal> is the current function value and
-      <literal>rtolf</literal> is the relative tolerance on the function value.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Implementation notes</title>
-    <para>
-      The implementation is based on the primal affine scaling algorithm, as
-      discovered by Dikin in 1967, and then re-discovered by Barnes and Vanderbei et al in 1986.
-    </para>
-    <para>
-      If the scaling factor <literal>gam</literal> is closer to 1 (say <literal>gam=0.99</literal>,
-      for example), then the number of iterations may be lower.
-      Tsuchiya and Muramatsu proved that if an optimal solution exists, then, for any
-      <literal>gam</literal> lower than 2/3, the sequence converges to a point in the interior point of the optimal face.
-      Dikin proved convergence with <literal>gam=1/2</literal>.
-      Mascarenhas found two examples where the parameter <literal>gam=0.999</literal> lets the
-      algorithm converge to a vertex which is not optimal, if the initial guess is chosen
-      appropriately.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Example #1</title>
-    <para>
-      In the following example, we solve a linear optimization problem with 2 linear
-      equality constraints and 3 unknowns.
-      The linear optimization problem is
-    </para>
-    <para>
-      <latex>
-        \begin{eqnarray}
-        \begin{array}{l}
-        \textrm{minimize } -x_1 -x_2\\
-        x_1 - x_2 = 0\\
-        x_1 + x_2 + x_3 = 2\\
-        x \geq 0
-        \end{array}
-        \end{eqnarray}
-      </latex>
-    </para>
-    <para>
-      The following script solves the problem.
-    </para>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            where <literal>fprev</literal> is the previous function value,
+            <literal>fopt</literal> is the current function value and
+            <literal>rtolf</literal> is the relative tolerance on the function value.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Implementation notes</title>
+        <para>
+            The implementation is based on the primal affine scaling algorithm, as
+            discovered by Dikin in 1967, and then re-discovered by Barnes and Vanderbei et al in 1986.
+        </para>
+        <para>
+            If the scaling factor <literal>gam</literal> is closer to 1 (say <literal>gam=0.99</literal>,
+            for example), then the number of iterations may be lower.
+            Tsuchiya and Muramatsu proved that if an optimal solution exists, then, for any
+            <literal>gam</literal> lower than 2/3, the sequence converges to a point in the interior point of the optimal face.
+            Dikin proved convergence with <literal>gam=1/2</literal>.
+            Mascarenhas found two examples where the parameter <literal>gam=0.999</literal> lets the
+            algorithm converge to a vertex which is not optimal, if the initial guess is chosen
+            appropriately.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example #1</title>
+        <para>
+            In the following example, we solve a linear optimization problem with 2 linear
+            equality constraints and 3 unknowns.
+            The linear optimization problem is
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                \begin{array}{l}
+                \textrm{minimize } -x_1 -x_2\\
+                x_1 - x_2 = 0\\
+                x_1 + x_2 + x_3 = 2\\
+                x \geq 0
+                \end{array}
+                \end{eqnarray}
+            </latex>
+        </para>
+        <para>
+            The following script solves the problem.
+        </para>
+        <programlisting role="example"><![CDATA[ 
     Aeq = [
     1 -1 0
     1  1 1
@@ -459,10 +459,10 @@ dualgap = abs(yopt'*beq - fopt)
     [xopt,fopt,exitflag,iter,yopt]=karmarkar(Aeq,beq,c)
     xstar=[1 1 0]'
 ]]></programlisting>
-    <para>
-      The previous script produces the following output.
-    </para>
-    <screen><![CDATA[ 
+        <para>
+            The previous script produces the following output.
+        </para>
+        <screen><![CDATA[ 
 -->[xopt,fopt,exitflag,iter,yopt]=karmarkar(Aeq,beq,c)
  yopt  =
    ineqlin: [0x0 constant]
@@ -480,11 +480,11 @@ dualgap = abs(yopt'*beq - fopt)
     0.9999949  
     0.0000102  
 ]]></screen>
-    <para>
-      We can explore the Lagrange multipliers by detailing
-      each field of the yopt structure.
-    </para>
-    <screen><![CDATA[ 
+        <para>
+            We can explore the Lagrange multipliers by detailing
+            each field of the yopt structure.
+        </para>
+        <screen><![CDATA[ 
 -->yopt.ineqlin
  ans  =
      []
@@ -503,10 +503,10 @@ dualgap = abs(yopt'*beq - fopt)
     0.  
     0.  
 ]]></screen>
-    <para>
-      We can as well give the initial guess x0, as in the following script.
-    </para>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            We can as well give the initial guess x0, as in the following script.
+        </para>
+        <programlisting role="example"><![CDATA[ 
     Aeq = [
     1 -1 0
     1  1 1
@@ -516,12 +516,12 @@ dualgap = abs(yopt'*beq - fopt)
     x0 = [0.1;0.1;1.8];
     [xopt,fopt,exitflag,iter,yopt]=karmarkar(Aeq,beq,c,x0)
 ]]></programlisting>
-    <para>
-      In the case where we need more precision, we can reduce the
-      relative tolerance on the function value.
-      In general, reducing the tolerance increases the number of iterations.
-    </para>
-    <screen><![CDATA[ 
+        <para>
+            In the case where we need more precision, we can reduce the
+            relative tolerance on the function value.
+            In general, reducing the tolerance increases the number of iterations.
+        </para>
+        <screen><![CDATA[ 
 -->[xopt,fopt,exitflag,iter]=karmarkar(Aeq,beq,c,[],1.e-5);
 -->disp([fopt iter])
   - 1.9999898    68.  
@@ -532,15 +532,15 @@ dualgap = abs(yopt'*beq - fopt)
 -->disp([fopt iter])
   - 2.    78.  
 ]]></screen>
-  </refsection>
-  <refsection>
-    <title>Example #2</title>
-    <para>
-      In the following example, we solve a linear optimization problem with 10 random linear
-      equality constraints and 20 unknowns.
-      The initial guess is chosen at random in the [0,1]^p range.
-    </para>
-    <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Example #2</title>
+        <para>
+            In the following example, we solve a linear optimization problem with 10 random linear
+            equality constraints and 20 unknowns.
+            The initial guess is chosen at random in the [0,1]^p range.
+        </para>
+        <programlisting role="example"><![CDATA[ 
 n=10;
 p=20;
 Aeq=rand(n,p);
@@ -551,24 +551,24 @@ xopt=karmarkar(Aeq,beq,c,x0);
 // Check constraints
 norm(Aeq*xopt-beq)
 ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Inequality constraints</title>
-    <para>
-      Consider the following linear program with inequality constraints.
-    </para>
-    <para>
-      <latex>
-        \begin{eqnarray}
-        \begin{array}{l}
-        \textrm{minimize } - 20 x_1 - 24 x_2\\
-        3 x_1 + 6 x_2 \leq 60 \\
-        4 x_1 + 2 x_2 \leq 32 \\
-        \end{array}
-        \end{eqnarray}
-      </latex>
-    </para>
-    <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Inequality constraints</title>
+        <para>
+            Consider the following linear program with inequality constraints.
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                \begin{array}{l}
+                \textrm{minimize } - 20 x_1 - 24 x_2\\
+                3 x_1 + 6 x_2 \leq 60 \\
+                4 x_1 + 2 x_2 \leq 32 \\
+                \end{array}
+                \end{eqnarray}
+            </latex>
+        </para>
+        <programlisting role="example"><![CDATA[ 
 c = [-20 -24]';
 A = [
 3 6
@@ -577,42 +577,42 @@ A = [
 b = [60 32]';
 xopt=karmarkar([],[],c,[],[],[],[],[],A,b)
 ]]></programlisting>
-    <para>
-      The previous script produces the following output.
-    </para>
-    <screen><![CDATA[ 
+        <para>
+            The previous script produces the following output.
+        </para>
+        <screen><![CDATA[ 
 -->xopt=karmarkar([],[],c,[],[],[],[],[],A,b)
  xopt  =
     3.9999125  
     7.9999912  
 ]]></screen>
-  </refsection>
-  <refsection>
-    <title>With bounds</title>
-    <para>
-      Consider the following linear optimization problem.
-      The problem is used in the Scilab port of the Lipsol 
-      toolbox by Rubio Scola (example0.sce).
-      The original Lipsol toolbox was created by Yin Zhang.
-    </para>
-    <para>
-      <latex>
-        \begin{eqnarray}
-        \begin{array}{l}
-        \textrm{minimize } 2 x_1 + 5 x_2 - 2.5 x_3\\
-        x_1 +   S4 x_3 \leq 5 \\
-        E2 x1 - x2 - x3 \leq 0 \\
-        -2 \leq x_1 \leq 2 \\
-        1 \leq x_2 \\
-        0 \leq x_3 \leq 3 \\
-        \end{array}
-        \end{eqnarray}
-      </latex>
-    </para>
-    <para>
-      where <literal>S4 = sin(pi/4)/4</literal> and <literal>E2 = exp(2)</literal>.
-    </para>
-    <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>With bounds</title>
+        <para>
+            Consider the following linear optimization problem.
+            The problem is used in the Scilab port of the Lipsol 
+            toolbox by Rubio Scola (example0.sce).
+            The original Lipsol toolbox was created by Yin Zhang.
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                \begin{array}{l}
+                \textrm{minimize } 2 x_1 + 5 x_2 - 2.5 x_3\\
+                x_1 +   S4 x_3 \leq 5 \\
+                E2 x1 - x2 - x3 \leq 0 \\
+                -2 \leq x_1 \leq 2 \\
+                1 \leq x_2 \\
+                0 \leq x_3 \leq 3 \\
+                \end{array}
+                \end{eqnarray}
+            </latex>
+        </para>
+        <para>
+            where <literal>S4 = sin(pi/4)/4</literal> and <literal>E2 = exp(2)</literal>.
+        </para>
+        <programlisting role="example"><![CDATA[ 
 c = [ 2; 5; -2.5];
 S4 = sin(%pi/4)/4;
 E2 = exp(2);
@@ -626,10 +626,10 @@ ub = [  2; %inf; 3 ];
 xstar = [-2;1;3];
 [xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],c,[],[],[],[],[],A,b,lb,ub)
 ]]></programlisting>
-    <para>
-      The previous script produces the following output.
-    </para>
-    <screen><![CDATA[ 
+        <para>
+            The previous script produces the following output.
+        </para>
+        <screen><![CDATA[ 
 -->[xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],c,[],[],[],[],[],A,b,lb,ub)
     yopt  =
     ineqlin: [2x1 constant]
@@ -647,33 +647,33 @@ xstar = [-2;1;3];
     1.0000035
     2.9999931
 ]]></screen>
-  </refsection>
-  <refsection>
-    <title>Configuring an output function</title>
-    <para>
-      It may be useful to configure a callback, so that we can customize the
-      printed messages or create a plot.
-      Consider the following linear optimization problem, which is
-      presented on Wikipedia 
-      in <ulink url="http://en.wikipedia.org/wiki/Karmarkar's_algorithm">Karmarkar's algorithm</ulink>.
-    </para>
-    <para>
-      <latex>
-        \begin{eqnarray}
-        \begin{array}{l}
-        \textrm{minimize } - x_1 - x_2\\
-        2 w x_1 + x_2 \leq 1+w^2, \quad w=0.0, 0.1, 0.2, ..., 1.0\\
-        x_1,x_2 \geq 0
-        \end{array}
-        \end{eqnarray}
-      </latex>
-    </para>
-    <para>
-      The following output function plots the current point
-      and prints the iteration number, the value of the objective
-      function.
-    </para>
-    <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Configuring an output function</title>
+        <para>
+            It may be useful to configure a callback, so that we can customize the
+            printed messages or create a plot.
+            Consider the following linear optimization problem, which is
+            presented on Wikipedia 
+            in <ulink url="http://en.wikipedia.org/wiki/Karmarkar's_algorithm">Karmarkar's algorithm</ulink>.
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                \begin{array}{l}
+                \textrm{minimize } - x_1 - x_2\\
+                2 w x_1 + x_2 \leq 1+w^2, \quad w=0.0, 0.1, 0.2, ..., 1.0\\
+                x_1,x_2 \geq 0
+                \end{array}
+                \end{eqnarray}
+            </latex>
+        </para>
+        <para>
+            The following output function plots the current point
+            and prints the iteration number, the value of the objective
+            function.
+        </para>
+        <programlisting role="example"><![CDATA[ 
 function stop = myoutputfunction ( xopt , optimValues , state )
     localmsg = gettext("Iter#%3.0f: %s (%s), "+..
         "f=%10.3e, x=[%s], gap=%10.3e\n")
@@ -684,11 +684,11 @@ function stop = myoutputfunction ( xopt , optimValues , state )
     stop = %f
 endfunction
 ]]></programlisting>
-    <para>
-      The following script defines the optimization problem and
-      runs the optimization.
-    </para>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            The following script defines the optimization problem and
+            runs the optimization.
+        </para>
+        <programlisting role="example"><![CDATA[ 
   n=11;
   A = [2*linspace(0,1,n)',ones(n,1)];
   b = 1 + linspace(0,1,n)'.^2;
@@ -702,11 +702,28 @@ endfunction
   xopt=karmarkar([],[],c,[],[],[],[],myoutputfunction,A,b);
   // Plot the starting and ending points
   plot(xopt(1),xopt(2),"k*")
-]]></programlisting>
-    <para>
-      The previous script produces the following output and creates a graphics.
-    </para>
-    <screen><![CDATA[ 
+  ]]></programlisting>
+        <scilab:image>
+            function stop = myoutputfunction ( xopt , optimValues , state )
+            plot(xopt(1),xopt(2),"bo")
+            stop = %f
+            endfunction
+            
+            n=11;
+            A = [2*linspace(0,1,n)',ones(n,1)];
+            b = 1 + linspace(0,1,n)'.^2;
+            c=[-1;-1];
+            for i = 1 : n
+            plot(linspace(0,1,100),b(i)-A(i,1)*linspace(0,1,100),"b-")
+            end
+            xopt=karmarkar([],[],c,[],[],[],[],myoutputfunction,A,b);
+            plot(xopt(1),xopt(2),"k*")
+        </scilab:image>
+        
+        <para>
+            The previous script produces the following output and creates a graphics.
+        </para>
+        <screen><![CDATA[ 
 -->xopt=karmarkar([],[],c,[],[],[],[],myoutputfunction,A,b);
 Iter#  0: init (x0), f=1.000e+000, x=[0.000e+000 0.000e+000], gap=Inf
 Iter#  0: init (x0), f=1.000e+000, x=[0.000e+000 0.000e+000], gap=Inf
@@ -732,15 +749,77 @@ Iter# 69: done (x*), f=-1.250e+000, x=[5.005e-001 7.495e-001], gap=7.035e-006
     0.5005127  
     0.7494803  
 ]]></screen>
-  </refsection>
-  <refsection>
-    <title>Infeasible problem</title>
-    <para>
-      Consider the following linear optimization problem.
-      It is extracted from "Linear Programming in Matlab"
-      Ferris, Mangasarian, Wright, 2008, Chapter 3, "The Simplex Method", Exercise 3-4-2 1.
-    </para>
-    <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Configuring the scaling factor</title>
+        <para>
+            In some cases, the default value of the scaling factor <literal>gam</literal>
+            does not make the algorithm convergent. To make it converge, we may reduce the
+            value of <literal>gam</literal>. The next script shows two results: First with
+            <literal>gam=0.5</literal> and second with <literal>gam=0.3</literal>.
+        </para>
+        <programlisting role="example"><![CDATA[
+    A = [-0.1548,-0.0909,-0.0014,-0.0001;0.0989,-0.0884,0.0004,0];
+    B = [0.1966354;0.2167484];
+    C = [0.2056;0.0908;0.0012;0];
+    lb = [0;0;0;0];
+    //Test with default value (gam=0.5)
+    [xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],C,[],[],[],[],[],A,B,lb)
+    //Test reducing gam (gam=0.3)
+    gam=0.3;
+    [xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],C,[],[],gam,[],[],A,B,lb)
+]]></programlisting>
+        <para>
+            The previous script produces the following output.
+        </para>
+        <screen><![CDATA[
+-->[xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],C,[],[],[],[],[],A,B,lb)
+    yopt  =
+
+    ineqlin: [2x1 constant]
+    eqlin: [0x0 constant]
+    lower: [4x1 constant]
+    upper: [4x1 constant]
+    iter  =
+    94.
+    exitflag  =
+    - 2.
+    fopt  =
+    - 0.0003129
+    xopt  =
+    - 0.0010041
+    - 0.0011719
+    0.0000007
+    0.7218612
+
+-->[xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],C,[],[],gam,[],[],A,B,lb)
+    yopt  =
+
+    ineqlin: [2x1 constant]
+    eqlin: [0x0 constant]
+    lower: [4x1 constant]
+    upper: [4x1 constant]
+    iter  =
+    172.
+    exitflag  =
+    1.
+    fopt  =
+    0.0000005
+    xopt  =
+    0.0000016
+    0.0000015
+    2.811D-08
+    0.7349402
+]]></screen>
+    </refsection>
+    <refsection>
+        <title>Infeasible problem</title>
+        <para>
+            Consider the following linear optimization problem.
+            It is extracted from "Linear Programming in Matlab"
+            Ferris, Mangasarian, Wright, 2008, Chapter 3, "The Simplex Method", Exercise 3-4-2 1.
+        </para>
+        <programlisting role="example"><![CDATA[ 
     // An infeasible problem.
     // Minimize -3 x1 + x2
     //  - x1 -   x2 >= -2
@@ -757,10 +836,10 @@ Iter# 69: done (x*), f=-1.250e+000, x=[5.005e-001 7.495e-001], gap=7.035e-006
     lb=[0;0];
     [xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],c,[],[],[],[],[],A,b,lb)
 ]]></programlisting>
-    <para>
-      The previous script produces the following output.
-    </para>
-    <screen><![CDATA[ 
+        <para>
+            The previous script produces the following output.
+        </para>
+        <screen><![CDATA[ 
 -->[xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],c,[],[],[],[],[],A,b,lb)
     yopt  =
 
@@ -777,15 +856,15 @@ Iter# 69: done (x*), f=-1.250e+000, x=[5.005e-001 7.495e-001], gap=7.035e-006
     xopt  =
     []
 ]]></screen>
-  </refsection>
-  <refsection>
-    <title>Unbounded problem</title>
-    <para>
-      Consider the following linear optimization problem.
-      It is extracted from "Linear and Nonlinear Optimization"
-      Griva, Nash, Sofer, 2009, Chapter 5, "The Simplex Method", Example 5.3.
-    </para>
-    <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Unbounded problem</title>
+        <para>
+            Consider the following linear optimization problem.
+            It is extracted from "Linear and Nonlinear Optimization"
+            Griva, Nash, Sofer, 2009, Chapter 5, "The Simplex Method", Example 5.3.
+        </para>
+        <programlisting role="example"><![CDATA[ 
   // An unbounded problem.
   // Minimize -x1 - 2 x2
   //  -1 x1 +   x2 <= 2
@@ -800,14 +879,14 @@ Iter# 69: done (x*), f=-1.250e+000, x=[5.005e-001 7.495e-001], gap=7.035e-006
   lb=[0;0];
   [xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],c,[],[],[],[],[],A,b,lb)
 ]]></programlisting>
-    <para>
-      The previous script produces the following output. 
-      Notice that the function produces <literal>exitflag=-2</literal>, 
-      which indicates that the algorithm detects that the duality gap has increased much
-      more than expected. 
-      This is the sign for a failure of the algorithm to find an optimal point.
-    </para>
-    <screen><![CDATA[ 
+        <para>
+            The previous script produces the following output. 
+            Notice that the function produces <literal>exitflag=-2</literal>, 
+            which indicates that the algorithm detects that the duality gap has increased much
+            more than expected. 
+            This is the sign for a failure of the algorithm to find an optimal point.
+        </para>
+        <screen><![CDATA[ 
 -->[xopt,fopt,exitflag,iter,yopt]=karmarkar([],[],c,[],[],[],[],[],A,b,lb)
     yopt  =
     ineqlin: [2x1 constant]
@@ -824,51 +903,51 @@ Iter# 69: done (x*), f=-1.250e+000, x=[5.005e-001 7.495e-001], gap=7.035e-006
     15124883.
     15124885.
 ]]></screen>
-  </refsection>
-  <refsection>
-    <title>References</title>
-    <para>
-      "Iterative solution of problems of linear and quadratic programming",
-      Dikin,
-      Doklady Akademii Nausk SSSR, Vol. 174, pp. 747-748, 1967
-    </para>
-    <para>
-      "A New Polynomial Time Algorithm for Linear Programming",
-      Narendra Karmarkar, Combinatorica, Vol 4, nr. 4, p. 373–395, 1984.
-    </para>
-    <para>
-      "A variation on Karmarkar’s algorithm for solving linear programming problems,
-      Earl R. Barnes, Mathematical Programming, Volume 36, Number 2, 174-182, 1986.
-    </para>
-    <para>
-      "A modification of karmarkar's linear programming algorithm",
-      Robert J. Vanderbei, Marc S. Meketon and Barry A. Freedman,
-      Algorithmica, Volume 1, Numbers 1-4, 395-407, 1986.
-    </para>
-    <para>
-      "Practical Optimization: Algorithms and Engineering Applications",
-      Andreas Antoniou, Wu-Sheng Lu, Springer, 2007,
-      Chapter 12, "Linear Programming Part II: Interior Point Methods".
-    </para>
-    <para>
-      "Global Convergence of a Long-Step Affine Scaling Algorithm for Degenerate Linear Programming Problems",
-      Takashi Tsuchiya and Masakazu Muramatsu,
-      SIAM J. Optim. Volume 5, Issue 3, pp. 525-551 (August 1995)
-    </para>
-    <para>
-      "The convergence of dual variables",
-      Dikin,
-      Tech. report, Siberian Energy Institute, Russia, 1991
-    </para>
-    <para>
-      "The Affine Scaling Algorithm Fails for Stepsize 0.999",
-      Walter F. Mascarenhas, SIAM J. Optim. Volume 7, Issue 1, pp. 34-46 (1997)
-    </para>
-    <para>
-      "A Primal-Dual Exterior Point Algorithm For Linear Programming Problems"
-      Nikolaos Samaras, Angelo Sifaleras, Charalampos Triantafyllidis
-      Yugoslav Journal of Operations Research
-      Vol 19 (2009), Number 1, 123-132
-    </para>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>References</title>
+        <para>
+            "Iterative solution of problems of linear and quadratic programming",
+            Dikin,
+            Doklady Akademii Nausk SSSR, Vol. 174, pp. 747-748, 1967
+        </para>
+        <para>
+            "A New Polynomial Time Algorithm for Linear Programming",
+            Narendra Karmarkar, Combinatorica, Vol 4, nr. 4, p. 373–395, 1984.
+        </para>
+        <para>
+            "A variation on Karmarkar’s algorithm for solving linear programming problems,
+            Earl R. Barnes, Mathematical Programming, Volume 36, Number 2, 174-182, 1986.
+        </para>
+        <para>
+            "A modification of karmarkar's linear programming algorithm",
+            Robert J. Vanderbei, Marc S. Meketon and Barry A. Freedman,
+            Algorithmica, Volume 1, Numbers 1-4, 395-407, 1986.
+        </para>
+        <para>
+            "Practical Optimization: Algorithms and Engineering Applications",
+            Andreas Antoniou, Wu-Sheng Lu, Springer, 2007,
+            Chapter 12, "Linear Programming Part II: Interior Point Methods".
+        </para>
+        <para>
+            "Global Convergence of a Long-Step Affine Scaling Algorithm for Degenerate Linear Programming Problems",
+            Takashi Tsuchiya and Masakazu Muramatsu,
+            SIAM J. Optim. Volume 5, Issue 3, pp. 525-551 (August 1995)
+        </para>
+        <para>
+            "The convergence of dual variables",
+            Dikin,
+            Tech. report, Siberian Energy Institute, Russia, 1991
+        </para>
+        <para>
+            "The Affine Scaling Algorithm Fails for Stepsize 0.999",
+            Walter F. Mascarenhas, SIAM J. Optim. Volume 7, Issue 1, pp. 34-46 (1997)
+        </para>
+        <para>
+            "A Primal-Dual Exterior Point Algorithm For Linear Programming Problems"
+            Nikolaos Samaras, Angelo Sifaleras, Charalampos Triantafyllidis
+            Yugoslav Journal of Operations Research
+            Vol 19 (2009), Number 1, 123-132
+        </para>
+    </refsection>
 </refentry>

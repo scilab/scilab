@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 7985 -->
 //
@@ -13,7 +13,7 @@
 //
 // <-- Short Description -->
 // dmmul.c define an unoptimized dgemm version
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_7985.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_7985.zcos"));
 xcos_simulate(scs_m, 4);
 assert_checktrue(isdef("sim_in"));
 assert_checktrue(isdef("sim_out"));

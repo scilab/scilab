@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="semicolon">
+    <refnamediv>
+        <refname>semicolon (;)</refname>
+        <refpurpose>式の末尾および行セパレータ</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            セミコロンは行列定義で行を(角括弧の中で)分割するために使用されます.
+        </para>
+        <para>
+            セミコロンは(ファイルまたはScilabコンソールの中で)命令の終端としても
+            使用できます.
+            この場合, 結果は表示されません. 逆にカンマ(,)を使用した場合,
+            結果が表示されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+a=[1,2,3;4,5,6];
+a=1;b=1,c=2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="comma">comma</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

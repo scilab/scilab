@@ -58,7 +58,6 @@ import org.scilab.modules.history_manager.HistoryManagement;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.commons.xml.XConfiguration;
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
-import org.scilab.modules.localization.Messages;
 
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
 import com.artenum.rosetta.util.StringConstants;
@@ -67,6 +66,7 @@ import com.artenum.rosetta.util.StringConstants;
  * Swing implementation for Scilab Console in GUIs
  * @author Vincent COUVERT
  */
+@SuppressWarnings(value = { "serial" })
 public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
     private static final long serialVersionUID = 1L;
@@ -232,8 +232,10 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
                 // Show the input command view and its hidden components
                 inputCmdView.setEditable(true);
-                ((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getForeground());
-                ((JTextPane) inputCmdView).getCaret().setVisible(true);
+                JTextPane tp = (JTextPane) inputCmdView;
+                if (tp.isFocusOwner()) {
+                    tp.getCaret().setVisible(true);
+                }
                 setToHome();
             }
         });

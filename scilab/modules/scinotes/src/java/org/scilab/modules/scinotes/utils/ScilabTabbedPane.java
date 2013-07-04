@@ -73,6 +73,7 @@ import org.scilab.modules.scinotes.actions.SaveAction;
  * Class for a tabbedpane with close-button
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener,
     DragSourceListener,
     DropTargetListener,
@@ -480,7 +481,7 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                 setRolloverEnabled(true);
                 setRolloverIcon(CLOSEONICON);
                 setBorderPainted(false);
-                setContentAreaFilled(false);
+                setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         closeTab();

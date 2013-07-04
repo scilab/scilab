@@ -23,6 +23,7 @@ import java.awt.event.ComponentEvent;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.Semaphore;
@@ -38,6 +39,7 @@ import javax.swing.JViewport;
 import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
+import javax.swing.text.JTextComponent;
 import javax.swing.KeyStroke;
 import javax.xml.parsers.ParserConfigurationException;
 import org.scilab.modules.localization.Messages;
@@ -120,6 +122,8 @@ public abstract class SciConsole extends JPanel {
 
     private boolean isToHome;
 
+    private Object searchField;
+
     /**
      * Constructor
      * @param configFilePath the configuration file to use
@@ -141,6 +145,13 @@ public abstract class SciConsole extends JPanel {
         }
 
         sciConsole = ConsoleBuilder.buildConsole(config, this);
+
+        try {
+            Class hsf = Class.forName("org.scilab.modules.gui.utils.HelpSearchField");
+            Constructor constructor = hsf.getConstructor(JPanel.class, JTextComponent.class);
+            searchField = constructor.newInstance(this, (SciOutputView) config.getOutputView());
+        } catch (Exception e) { }
+
         XConfiguration.addXConfigurationListener(new org.scilab.modules.console.ConsoleConfiguration(this));
         sciConsole.setForeground(ConsoleOptions.getConsoleColor().foreground);
         sciConsole.setBackground(ConsoleOptions.getConsoleColor().background);
@@ -257,11 +268,16 @@ public abstract class SciConsole extends JPanel {
     private void setKeyStrokeAction() {
         Map<KeyStroke, String> map = getActionKeys();
         ClassLoader loader = ClassLoader.getSystemClassLoader();
-        Iterator<KeyStroke> iter = map.keySet().iterator();
 
-        while (iter.hasNext()) {
-            KeyStroke key = iter.next();
-            String actionName = map.get(key);
+        for (Map.Entry<KeyStroke, String> entry : map.entrySet()) {
+            KeyStroke key = entry.getKey();
+            String actionName = entry.getValue();
+            if (actionName.equals("console-search-field") && searchField != null) {
+                try {
+                    Method sks = searchField.getClass().getMethod("setKeyStroke", KeyStroke.class);
+                    sks.invoke(searchField, key);
+                } catch (Exception e) { }
+            }
             String action = actionToName.get(actionName);
             if (action != null) {
                 try {

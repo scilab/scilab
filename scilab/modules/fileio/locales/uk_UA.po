@@ -2,19 +2,19 @@
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the scilab package.
 #
-# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-01-23 17:24+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-18 11:02+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: uk\n"
 
 #, c-format
@@ -166,6 +166,16 @@ msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: «%s» не є коректним записом "
 "шляху.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати рядок з одного "
+"символу.\n"
+
+#, c-format
+msgid "%s: Could not create the output argument.\n"
+msgstr "%s: не вдалося створити вихідний параметр.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string.\n"
@@ -374,6 +384,65 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано рядок "
 "(не довший за 3 символи).\n"
 
+msgid "Could not parse the URL.\n"
+msgstr "Не вдалося обробити адресу.\n"
+
+#, c-format
+msgid "Failed to read the scicurl_config file '%s'.\n"
+msgstr "Не вдалося прочитати дані з файла scicurl_config «%s».\n"
+
+#, c-format
+msgid "Improper syntax of scicurl_config file ('%s'), '=' not found %d:%s\n"
+msgstr ""
+"Помилкова синтаксична конструкція у файлі scicurl_config («%s»), не виявлено "
+"«=», %d:%s\n"
+
+#, c-format
+msgid "Improper syntax of scicurl_config file ('%s'), after an '='\n"
+msgstr ""
+"Помилкова синтаксична конструкція у файлі scicurl_config («%s») після «=»\n"
+
+#, c-format
+msgid ""
+"Improper syntax of scicurl_config file ('%s'), space before and after '=' "
+"expected\n"
+msgstr ""
+"Помилкова синтаксична конструкція у файлі scicurl_config («%s»), перед і "
+"після «=» мають бути пробіли\n"
+
+#, c-format
+msgid "Failed opening '%s' for writing.\n"
+msgstr "Не вдалося відкрити «%s» для запису даних.\n"
+
+#, c-format
+msgid "Failed to set URL [%s]\n"
+msgstr "Не вдалося встановити адресу [%s]\n"
+
+#, c-format
+msgid "Failed to set user:pwd [%s]\n"
+msgstr "Не вдалося встановити значення користувач:пароль [%s]\n"
+
+#, c-format
+msgid "Failed to set proxy host [%s]\n"
+msgstr "Не вдалося встановити вузол проксі-сервера [%s]\n"
+
+#, c-format
+msgid "Failed to set proxy port [%s]\n"
+msgstr "Не вдалося встановити порт проксі-сервера [%s]\n"
+
+#, c-format
+msgid "Failed to set proxy user:password [%s]\n"
+msgstr ""
+"Не вдалося встановити значення користувач:пароль для проксі-сервера [%s]\n"
+
+#, c-format
+msgid "Failed to set write data [%s]\n"
+msgstr "Не вдалося встановити дані для запису [%s]\n"
+
+#, c-format
+msgid "Transfer did not complete successfully: %s\n"
+msgstr "Спроба передавання даних завершилася помилкою: %s\n"
+
 msgid "unclosed [ directive."
 msgstr "незавершена вказівка [."
 
@@ -439,23 +508,12 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: формат не розпізнано.\n"
 
 #, c-format
-msgid "%s: format is of 0 length.\n"
-msgstr "%s: довжина запису формату дорівнює 0.\n"
+msgid "%s: No input file.\n"
+msgstr "%s: не виявлено вхідного файла.\n"
 
 #, c-format
 msgid "%s: %s format not recognized.\n"
 msgstr "%s: формат %s не розпізнано.\n"
-
-msgid "No input file\n"
-msgstr "Не вказано файла вхідних даних.\n"
-
-#, c-format
-msgid "%s: unknown format %s.\n"
-msgstr "%s: невідомий формат %s.\n"
-
-#, c-format
-msgid "%s: No input file.\n"
-msgstr "%s: не виявлено вхідного файла.\n"
 
 #, c-format
 msgid "Warning: file '%s' already opened in Scilab.\n"
@@ -635,6 +693,15 @@ msgstr "Файл з такою назвою вже зберігається у "
 msgid "%s: Wrong value for input argument #%d: Must be '%s'.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
+
+msgid "Error: The directory is not empty."
+msgstr "Помилка: каталог не є порожнім."
+
+msgid "Undefined"
+msgstr "Не визначено"
+
+msgid "The system cannot find the file specified."
+msgstr "Системі не вдалося знайти вказаний файл."
 
 #, c-format
 msgid "%s: Incorrect format.\n"

@@ -58,7 +58,7 @@ public class HTMLWithStyleScilabCodeHandler extends AbstractScilabCodeHandler {
      * @param primitives the set containing the scilab primitives
      * @param macros the set containing the scilab macros
      **/
-    public HTMLWithStyleScilabCodeHandler(Set primitives, Set macros) {
+    public HTMLWithStyleScilabCodeHandler(Set<String> primitives, Set<String> macros) {
         this.lexer = new ScilabLexer(primitives, macros);
     }
 

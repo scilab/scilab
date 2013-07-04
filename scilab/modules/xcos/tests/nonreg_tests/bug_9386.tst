@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 // <-- INTERACTIVE TEST -->
 //
 // <-- Non-regression test for bug 9386 -->
@@ -16,6 +16,6 @@
 // <-- Short Description -->
 // Diagram root cell might be invalid on hierarchical diagrams.
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_9386.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_9386.zcos");
 // Open the superblock
 

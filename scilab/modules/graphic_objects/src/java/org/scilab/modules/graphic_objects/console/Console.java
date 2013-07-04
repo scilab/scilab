@@ -56,7 +56,7 @@ public final class Console extends GraphicObject {
         }
 
         return me;
-        
+
     }
 
     /**
@@ -64,7 +64,7 @@ public final class Console extends GraphicObject {
      * @return "Console"
      * @see org.scilab.modules.graphic_objects.graphicObject.GraphicObject#getType()
      */
-    public String getType() {
+    public Integer getType() {
         return __GO_CONSOLE__;
     }
 
@@ -108,14 +108,14 @@ public final class Console extends GraphicObject {
     public void accept(Visitor visitor) {
 
     }
-    
+
     /**
      * Returns the enum associated to a property name
      * @param propertyName the property name
      * @return the property enum
      */
-    public Object getPropertyFromName(String propertyName) {
-        if (propertyName.equals(__GO_SHOWHIDDENHANDLES__)) {
+    public Object getPropertyFromName(int propertyName) {
+        if (propertyName == __GO_SHOWHIDDENHANDLES__) {
             return ConsoleProperty.SHOWHIDDENHANDLES;
         } else {
             return super.getPropertyFromName(propertyName);

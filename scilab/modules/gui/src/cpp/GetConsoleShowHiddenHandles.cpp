@@ -28,7 +28,7 @@ int GetConsoleShowHiddenHandles(void* _pvCtx, char *pObjUID)
     int iShowHiddenHandles = 0;
     int *piShowHiddenHandles = &iShowHiddenHandles;
 
-    getGraphicObjectProperty(pObjUID, const_cast < char *>(__GO_SHOWHIDDENHANDLES__), jni_bool, (void **)&piShowHiddenHandles);
+    getGraphicObjectProperty(pObjUID, __GO_SHOWHIDDENHANDLES__, jni_bool, (void **)&piShowHiddenHandles);
 
     if (piShowHiddenHandles == NULL)
     {

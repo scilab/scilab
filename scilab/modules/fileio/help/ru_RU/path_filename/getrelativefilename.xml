@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="getrelativefilename">
+    <refnamediv>
+        <refname>getrelativefilename</refname>
+        <refpurpose>
+            для указанного имени полного пути к директории и абсолютного имени файла данная функция возвращает относительное имя файла
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>rel_file = getrelativefilename(abs_dir, abs_file)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>abs_dir</term>
+                <listitem>
+                    <para>символьная строка: абсолютный путь к директории.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>abs_file</term>
+                <listitem>
+                    <para>символьная строка: абсолютное имя файла.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rel_file</term>
+                <listitem>
+                    <para>символьная строка: относительное имя файла.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Для указанных абсолютного пути к директории <varname>abs_dir</varname> и абсолютного имени файла <varname>abs_file</varname>, функция <function>getrelativefilename</function> возвращает относительное имя файла <varname>rel_file</varname>.
+        </para>
+        <para>
+            Например, если текущая директория
+            <literal>C:\scilab\bin</literal>, а имя файла
+            <literal>C:\scilab\modules\helptools\readme.txt</literal>, то <function>getrelativefilename</function> возвратит
+            <literal>..\modules\helptools\readme.txt</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+getrelativefilename(pwd(), SCI+'/COPYING')
+getrelativefilename(TMPDIR, SCI+'/COPYING')
+getrelativefilename(SCI+'/bin', SCI+'/COPYING')
+getrelativefilename(pwd(), SCI+'/ACKNOLEDGMENTS')
+getrelativefilename(TMPDIR, SCI+'/ACKNOLEDGMENTS')
+getrelativefilename(SCI+'/bin', SCI+'/ACKNOLEDGMENTS')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getshortpathname">getshortpathname</link>
+            </member>
+            <member>
+                <link linkend="getlongpathname">getlongpathname</link>
+            </member>
+            <member>
+                <link linkend="pwd">pwd</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

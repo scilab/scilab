@@ -229,7 +229,7 @@ char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
     return strLines;
 }
 /*--------------------------------------------------------------------------*/
-char *removeEOL(char *_inString)
+static char *removeEOL(char *_inString)
 {
     if (_inString)
     {
@@ -251,7 +251,7 @@ char *removeEOL(char *_inString)
 /*
 * convert ansi to Utf
 */
-char *convertAnsiToUtf(char *_inString)
+static char *convertAnsiToUtf(char *_inString)
 {
     char *outString = NULL;
     if (_inString)
@@ -302,7 +302,10 @@ char *convertAnsiToUtf(char *_inString)
             int i = 0;
 
             outString = (char*)MALLOC(((len * 3) + 1) * sizeof(char));
-            if (outString == NULL) return NULL;
+            if (outString == NULL)
+            {
+                return NULL;
+            }
             strcpy(outString, EMPTYSTR);
 
             for (i = 0; i < len; i++)
@@ -310,8 +313,14 @@ char *convertAnsiToUtf(char *_inString)
                 unsigned char *outUtfChar = NULL;
                 unsigned char inAnsiChar = 0;
 
-                if (_inString[i] < 0) inAnsiChar = 256 + _inString[i];
-                else inAnsiChar = _inString[i];
+                if (_inString[i] < 0)
+                {
+                    inAnsiChar = 256 + _inString[i];
+                }
+                else
+                {
+                    inAnsiChar = _inString[i];
+                }
 
                 if (inAnsiChar < 128)
                 {
@@ -346,7 +355,7 @@ char *convertAnsiToUtf(char *_inString)
     return outString;
 }
 /*--------------------------------------------------------------------------*/
-char *getNextLine(FILE *stream)
+static char *getNextLine(FILE *stream)
 {
     char *bufferLine = NULL;
     if (stream != NULL)

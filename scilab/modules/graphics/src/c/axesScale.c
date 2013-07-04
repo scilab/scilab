@@ -91,7 +91,7 @@ int sciZoom3D(char * subwinUID, const double zoomBox[6])
 
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "zoom_box");
         return SET_PROPERTY_ERROR;
     }
 
@@ -110,13 +110,14 @@ int sciZoom3D(char * subwinUID, const double zoomBox[6])
 /*------------------------------------------------------------------------------*/
 int sciZoomRect(char* objUID, const double zoomRect[4])
 {
-    char *pstType = NULL;
-    getGraphicObjectProperty(objUID, __GO_TYPE__, jni_string, (void **) &pstType);
-    if (strcmp(pstType, __GO_FIGURE__) == 0)
+    int iType = -1;
+    int *piType = &iType;
+    getGraphicObjectProperty(objUID, __GO_TYPE__, jni_int, (void **) &piType);
+    if (iType == __GO_FIGURE__)
     {
         return sciFigureZoom2D(objUID, zoomRect);
     }
-    else if (strcmp(pstType, __GO_AXES__) == 0)
+    else if (iType == __GO_AXES__)
     {
         return sciZoom2D(objUID, zoomRect);
     }
@@ -134,14 +135,14 @@ int sciFigureZoom2D(char* figureUID, const double zoomRect[4])
 
     char** children = NULL;
 
-    getGraphicObjectProperty(figureUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &pChildrenCount); 
+    getGraphicObjectProperty(figureUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &pChildrenCount);
 
     if ((pChildrenCount != NULL) && (childrenCount > 0))
     {
         getGraphicObjectProperty(figureUID, __GO_CHILDREN__, jni_string_vector, (void **) &children);
         for (i = 0; i < childrenCount; i++)
         {
-          sciZoomRect(children[i], zoomRect);
+            sciZoomRect(children[i], zoomRect);
         }
     }
 
@@ -168,9 +169,9 @@ BOOL checkDataBounds(char * subwinUID, double xMin, double xMax,
 
     /* check if there is not an inf within the values */
     /* since this has not any meaning */
-    if (    !finite(xMin) || !finite(xMax)
-         || !finite(yMin) || !finite(yMax)
-         || !finite(zMin) || !finite(zMax) )
+    if (   !finite(xMin) || !finite(xMax)
+            || !finite(yMin) || !finite(yMax)
+            || !finite(zMin) || !finite(zMax))
     {
         Scierror(999, "Error : data bounds values must be finite.");
         return FALSE;
@@ -178,18 +179,18 @@ BOOL checkDataBounds(char * subwinUID, double xMin, double xMax,
 
     /* check if the bounds are correct */
     /* allows equality with bounds since it is working */
-    if ( xMin > xMax || yMin > yMax || zMin > zMax )
+    if (xMin > xMax || yMin > yMax || zMin > zMax)
     {
         Scierror(999, "Error : Min and Max values for one axis do not verify Min <= Max.\n");
         return FALSE;
     }
 
     /* check for logflags that values are greater than 0 */
-    if (   ( logFlags[0] == 'l' && xMin <= 0.0 )
-        || ( logFlags[1] == 'l' && yMin <= 0.0 )
-        || ( logFlags[2] == 'l' && zMin <= 0.0 ) )
+    if (  (logFlags[0] == 'l' && xMin <= 0.0)
+            || (logFlags[1] == 'l' && yMin <= 0.0)
+            || (logFlags[2] == 'l' && zMin <= 0.0))
     {
-        Scierror(999, "Error: Bounds on axis must be strictly positive to use logarithmic mode.\n" );
+        Scierror(999, "Error: Bounds on axis must be strictly positive to use logarithmic mode.\n");
         return FALSE;
     }
 
@@ -206,7 +207,7 @@ void sciUnzoomSubwin(char* subwinUID)
 
     getGraphicObjectProperty(subwinUID, __GO_PARENT_FIGURE__, jni_string, (void **) &parentFigure);
 
-    if( subwinUID == NULL || parentFigure == NULL )
+    if (subwinUID == NULL || parentFigure == NULL)
     {
         return;
     }
@@ -219,27 +220,30 @@ void sciUnzoomSubwin(char* subwinUID)
  */
 void sciUnzoomFigure(char* figureUID)
 {
-  char* pstType = NULL;
-  char** pstChildrenUID = NULL;
+    int iType = -1;
+    int *piType = &iType;
+    char** pstChildrenUID = NULL;
 
-  int i = 0;
-  int zoomEnabled = 0;
-  int childrenCount = 0;
-  int* piChildrenCount = &childrenCount;
+    int i = 0;
+    int zoomEnabled = 0;
+    int childrenCount = 0;
+    int* piChildrenCount = &childrenCount;
 
-  getGraphicObjectProperty(figureUID, __GO_CHILDREN__, jni_string_vector, (void **) &pstChildrenUID);
-  getGraphicObjectProperty(figureUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);
+    getGraphicObjectProperty(figureUID, __GO_CHILDREN__, jni_string_vector, (void **) &pstChildrenUID);
+    getGraphicObjectProperty(figureUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);
 
-  if (piChildrenCount != NULL)
-  {
-
-    for (i = 0; i < childrenCount; i++)
+    if (piChildrenCount != NULL)
     {
-      getGraphicObjectProperty(pstChildrenUID[i], __GO_TYPE__, jni_string, (void **) &pstType);
-      if (strcmp(pstType, __GO_AXES__) == 0)
-        setGraphicObjectProperty(pstChildrenUID[i], __GO_ZOOM_ENABLED__, (void **) &zoomEnabled, jni_bool, 1);
-      }
-  }
+
+        for (i = 0; i < childrenCount; i++)
+        {
+            getGraphicObjectProperty(pstChildrenUID[i], __GO_TYPE__, jni_int, (void **) &piType);
+            if (iType == __GO_AXES__)
+            {
+                setGraphicObjectProperty(pstChildrenUID[i], __GO_ZOOM_ENABLED__, (void **) &zoomEnabled, jni_bool, 1);
+            }
+        }
+    }
 }
 /*------------------------------------------------------------------------------*/
 /**
@@ -249,24 +253,25 @@ void sciUnzoomFigure(char* figureUID)
  */
 void sciUnzoomArray(char* objectsUID[], int nbObjects)
 {
-  /* object type */
-  char* pstType = NULL;
-  int i = 0;
-  for (i = 0; i < nbObjects; i++)
-  {
-    getGraphicObjectProperty(objectsUID[i], __GO_TYPE__, jni_string, (void **) &pstType);
-    if (strcmp(pstType, __GO_FIGURE__) == 0)
+    /* object type */
+    int iType = -1;
+    int *piType = &iType;
+    int i = 0;
+    for (i = 0; i < nbObjects; i++)
     {
-      /* Unzoom all subwindows of the figure */
-      sciUnzoomFigure(objectsUID[i]);
-    }
-    else if (strcmp(pstType, __GO_AXES__) == 0)
-    {
-      /* Unzoom the axes */
-      sciUnzoomSubwin(objectsUID[i]);
-    }
+        getGraphicObjectProperty(objectsUID[i], __GO_TYPE__, jni_int, (void **) &piType);
+        if (iType == __GO_FIGURE__)
+        {
+            /* Unzoom all subwindows of the figure */
+            sciUnzoomFigure(objectsUID[i]);
+        }
+        else if (iType == __GO_AXES__)
+        {
+            /* Unzoom the axes */
+            sciUnzoomSubwin(objectsUID[i]);
+        }
 
-  }
+    }
 }
 /*--------------------------------------------------------------------------------*/
 void updateSubwinScale(char * pSubwinUID)

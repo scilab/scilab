@@ -24,8 +24,8 @@ c
 c     Copyright INRIA
 
 c     Scicos block simulator
-c     rpar(1:n)  =  u coordinate discretisation must be strictly increasing
-c     rpar(n+1:2*n)  =  y coordinate discretisation
+c     rpar(1:n)  =  u coordinate discretization must be strictly increasing
+c     rpar(n+1:2*n)  =  y coordinate discretization
 c
       double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
       integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)

@@ -18,6 +18,7 @@ import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
  * Action to load the file in Scilab
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class LoadFileInScilabAction extends ExecuteCommandAction {
 
     private static final String LOAD = "load('%s')";

@@ -22,224 +22,234 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="OUTIMPL_f" xml:lang="en_US">
-  <refnamediv>
-    <refname>OUTIMPL_f</refname>
-    <refpurpose>Output implicit port</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../../images/palettes/OUTIMPL_f.png" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Contents_OUTIMPL_f">
-    <title>Contents</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="OUTIMPL_f" xml:lang="en_US">
+    <refnamediv>
+        <refname>OUTIMPL_f</refname>
+        <refpurpose>Output implicit port</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="OUTIMPL_f">Output implicit port</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/OUTIMPL_f.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Contents_OUTIMPL_f">
+        <title>Contents</title>
         <itemizedlist>
-          <listitem>
-            <para>
-              <xref linkend="Palette_OUTIMPL_f">Palette</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Description_OUTIMPL_f">Description</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Dialogbox_OUTIMPL_f">Dialog box</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Defaultproperties_OUTIMPL_f">Default properties</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Example_OUTIMPL_f">Example</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Interfacingfunction_OUTIMPL_f">Interfacing function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Seealso_OUTIMPL_f">See also</xref>
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    <link linkend="OUTIMPL_f">Output implicit port</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_OUTIMPL_f">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_OUTIMPL_f">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_OUTIMPL_f">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_OUTIMPL_f">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_OUTIMPL_f">Example</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_OUTIMPL_f">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Seealso_OUTIMPL_f">See also</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Palette_OUTIMPL_f">
-    <title>Palettes</title>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Palette_OUTIMPL_f">
+        <title>Palettes</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Portaction_pal">Port &amp; Subsystem palette</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="Sinks_pal">Sinks palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_OUTIMPL_f">
+        <title>Description</title>
         <para>
-          <link linkend="Portaction_pal">Port &amp; Subsystem palette</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="Sinks_pal">Sinks palette</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_OUTIMPL_f">
-    <title>Description</title>
-    <para>
-      This block represents a regular implicit port. It must only be used inside a Xcos Super Block and be connected to an implicit output of an internal implicit output in the sub-system.
-    </para>
-    <para>
-      This block is a signal link from outside of a system into a sub-system. In a Super Block, the implicit's output ports must be numbered from 1 to the total number of implicit's output ports. You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
-    </para>
-  </refsection>
-  <refsection id="Dialogbox_OUTIMPL_f">
-    <title>Dialog box</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../gui/portaction_pal/en_US/OUTIMPL_f_gui.png" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para>
-      
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">Port number</emphasis>
-        </para>
-        <para> An integer defining the port number.</para>
-        <para> Properties : Type 'vec' of size 1.</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Defaultproperties_OUTIMPL_f">
-    <title>Default properties</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">always active:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">direct-feedthrough:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">zero-crossing:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">mode:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular inputs:</emphasis>
+            This block represents a regular implicit port. It must only be used inside a Xcos Super Block and be connected to an implicit output of an internal implicit output in the sub-system.
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
+            This block is a signal link from outside of a system into a sub-system. In a Super Block, the implicit's output ports must be numbered from 1 to the total number of implicit's output ports. You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Dialogbox_OUTIMPL_f">
+        <title>Dialog box</title>
         <para>
-          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../gui/portaction_pal/en_US/OUTIMPL_f_gui.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
         <para>
-          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+            
         </para>
-      </listitem>
-      <listitem>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Port number</emphasis>
+                </para>
+                <para> An integer defining the port number.</para>
+                <para> Properties : Type 'vec' of size 1.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_OUTIMPL_f">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">outimpl</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_OUTIMPL_f">
+        <title>Example</title>
         <para>
-          <emphasis role="bold">continuous-time state:</emphasis> no
+            In the following example the Super block is a basic transistor switch. 
         </para>
-      </listitem>
-      <listitem>
+        <para><link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/en_US/OUTIMPL_f_en_US.zcos">
+                Open this example in Xcos
+            </link>
+        </para>
+        <para/>
         <para>
-          <emphasis role="bold">discrete-time state:</emphasis> no
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/OUTIMPL_f_en_US.zcos"/>
+                </imageobject>
+            </mediaobject>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/OUTIMPL_f_internal_en_US.zcos"/>
+                </imageobject>
+            </mediaobject>
         </para>
-      </listitem>
-      <listitem>
         <para>
-          <emphasis role="bold">object discrete-time state:</emphasis> no
+            The following figure shows the output of the bloc :
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">outimpl</emphasis>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Example_OUTIMPL_f">
-    <title>Example</title>
-    <para>
-      In the following example the Super block is a basic transistor switch. 
-      <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/OUTIMPL_f_en_US.xcos">
-        Open this example in Xcos
-      </link>
-      .
-    </para>
-    <para/>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/portaction_pal/en_US/outimpl_f_superbloc_en_US.png"/>
-      </imageobject>
-    </mediaobject>
-    <para>
-      The following figure shows the use of the Super block and the resulting output when its input is toggled between the potentials GND and Vcc. You can also see on the output the effect of the saturation voltage (minimal output = 0.4 Volt).
-    </para>
-    <para/>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/portaction_pal/en_US/outimpl_f_diagram_en_US.png"/>
-      </imageobject>
-    </mediaobject>
-  </refsection>
-  <refsection id="Interfacingfunction_OUTIMPL_f">
-    <title>Interfacing function</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/OUTIMPL_f.sci">SCI/modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection role="see also" id="Seealso_OUTIMPL_f">
-    <title>See also</title>
-    <itemizedlist>
-      <listitem>
-        <link linkend="INIMPL_f">INIMPL_f</link>
-      </listitem>
-      <listitem>
-        <link linkend="SUPER_f">SUPER_f</link>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+        <scilab:image><![CDATA[
+// overload messagebox to avoid the "modelica compiler" message
+function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+	btn=1;
+endfunction
+
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/OUTIMPL_f_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+    </refsection>
+    <refsection id="Interfacingfunction_OUTIMPL_f">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/OUTIMPL_f.sci">SCI/modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection role="see also" id="Seealso_OUTIMPL_f">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <link linkend="INIMPL_f">INIMPL_f</link>
+            </listitem>
+            <listitem>
+                <link linkend="SUPER_f">SUPER_f</link>
+            </listitem>
+        </itemizedlist>
+    </refsection>
 </refentry>

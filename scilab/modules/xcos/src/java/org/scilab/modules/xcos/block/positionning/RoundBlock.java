@@ -23,13 +23,14 @@ import com.mxgraph.model.mxICell;
 /**
  * Implement a round block with inputs spread around the block.
  */
+@SuppressWarnings(value = { "serial" })
 public class RoundBlock extends BasicBlock {
     /**
      * Default constructor
      */
     public RoundBlock() {
         /*
-         * Default value of the round block, for more informations refers to
+         * Default value of the round block, for more information refers to
          * BlockFactory instantiation order.
          */
         this("CLKSOMV_f");
@@ -37,7 +38,7 @@ public class RoundBlock extends BasicBlock {
 
     /**
      * Set default values
-     * 
+     *
      * @param interFunction
      *            the interfunction (label) string
      */
@@ -48,7 +49,7 @@ public class RoundBlock extends BasicBlock {
 
     /**
      * Reinstall the property change listener when the interfunction change.
-     * 
+     *
      * @param interfaceFunctionName
      *            the new name
      * @see org.scilab.modules.xcos.block.BasicBlock#setInterfaceFunctionName(java.lang.String)
@@ -56,9 +57,9 @@ public class RoundBlock extends BasicBlock {
     @Override
     public void setInterfaceFunctionName(String interfaceFunctionName) {
         getParametersPCS().removePropertyChangeListener(
-                SumPortLabelingListener.getInstance());
+            SumPortLabelingListener.getInstance());
         getParametersPCS().removePropertyChangeListener(
-                ProdPortLabelingListener.getInstance());
+            ProdPortLabelingListener.getInstance());
 
         super.setInterfaceFunctionName(interfaceFunctionName);
 
@@ -73,7 +74,7 @@ public class RoundBlock extends BasicBlock {
 
     /**
      * Insert a port into this block.
-     * 
+     *
      * @param child
      *            the port to add
      * @param index
@@ -96,7 +97,7 @@ public class RoundBlock extends BasicBlock {
 
     /**
      * Get the Orientation from the order
-     * 
+     *
      * @param order
      *            the port ordering
      * @return the selected orientation
@@ -106,21 +107,21 @@ public class RoundBlock extends BasicBlock {
         final Orientation ret;
 
         switch (order) {
-        case 1:
-            ret = Orientation.SOUTH;
-            break;
+            case 1:
+                ret = Orientation.SOUTH;
+                break;
 
-        case 2:
-            ret = Orientation.WEST;
-            break;
+            case 2:
+                ret = Orientation.WEST;
+                break;
 
-        case 3:
-            ret = Orientation.NORTH;
-            break;
+            case 3:
+                ret = Orientation.NORTH;
+                break;
 
-        default:
-            ret = Orientation.WEST;
-            break;
+            default:
+                ret = Orientation.WEST;
+                break;
         }
         return ret;
     }

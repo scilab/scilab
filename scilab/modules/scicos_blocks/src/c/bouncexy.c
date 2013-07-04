@@ -220,11 +220,15 @@ static sco_data *getScoData(scicos_block * block)
 
         sco = (sco_data *) MALLOC(sizeof(sco_data));
         if (sco == NULL)
+        {
             goto error_handler_sco;
+        }
 
         sco->internal.ballsSize = (double *)CALLOC(block->insz[0], sizeof(double));
         if (sco->internal.ballsSize == NULL)
+        {
             goto error_handler_ballsSize;
+        }
         for (i = 0; i < block->insz[0]; i++)
         {
             sco->internal.ballsSize[i] = block->z[6 * i + 2];
@@ -232,13 +236,17 @@ static sco_data *getScoData(scicos_block * block)
 
         sco->internal.data = (double **)CALLOC(block->insz[0], sizeof(double *));
         if (sco->internal.data == NULL)
+        {
             goto error_handler_data;
+        }
 
         for (i = 0; i < block->insz[0]; i++)
         {
             sco->internal.data[i] = (double *)CALLOC(3, sizeof(double));
             if (sco->internal.data[i] == NULL)
+            {
                 goto error_handler_data_i;
+            }
         }
 
         sco->scope.cachedFigureUID = NULL;
@@ -338,7 +346,9 @@ static BOOL pushData(scicos_block * block, int row)
 
     sco = getScoData(block);
     if (sco == NULL)
+    {
         return FALSE;
+    }
 
     upperLeftPoint = sco->internal.data[row];
     return setGraphicObjectProperty(pArcUID, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);

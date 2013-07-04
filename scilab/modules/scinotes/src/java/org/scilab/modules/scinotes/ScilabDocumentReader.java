@@ -24,7 +24,7 @@ import javax.swing.text.Segment;
  * @author Calixte DENIZET
  */
 public class ScilabDocumentReader extends Reader {
-    
+
     private static final String BADLOCATION = "Bad Location in document";
 
     private int end;
@@ -32,7 +32,7 @@ public class ScilabDocumentReader extends Reader {
     private boolean fromEnd;
     private ScilabDocument doc;
     private Segment segment;
-    
+
     /**
      * Constructor for a reader from left to right
      * @param doc the doc to read
@@ -40,29 +40,29 @@ public class ScilabDocumentReader extends Reader {
      * @param end the end in the doc
      */
     public ScilabDocumentReader(ScilabDocument doc, int start, int end) {
-	this(doc, false, start, end);
+        this(doc, false, start, end);
     }
 
     /**
      * Constructor for a reader from left to right (fromEnd == false) or from right to left (fromEnd == true).
      * @param doc the doc to read
-     * @param fromEnd LR or RL 
+     * @param fromEnd LR or RL
      * @param start the start in the doc
      * @param end the end in the doc
      */
     public ScilabDocumentReader(ScilabDocument doc, boolean fromEnd, int start, int end) {
-	this.doc = doc;
-	this.segment = new Segment();
-	if (fromEnd) {
-	    this.pos = Math.min(start, doc.getLength());
-	    this.end = end;
-	} else {
-	    this.pos = start;
-	    this.end = Math.min(end, doc.getLength());
-	}
-	this.fromEnd = fromEnd;
+        this.doc = doc;
+        this.segment = new Segment();
+        if (fromEnd) {
+            this.pos = Math.min(start, doc.getLength());
+            this.end = end;
+        } else {
+            this.pos = start;
+            this.end = Math.min(end, doc.getLength());
+        }
+        this.fromEnd = fromEnd;
     }
-    
+
     /**
      * The read method for a Reader.
      * @param cbuf the buffer where to put the chars
@@ -72,51 +72,51 @@ public class ScilabDocumentReader extends Reader {
      * @throws IOException if a problem is encountered
      */
     public int read(char[] cbuf, int pos, int len) throws IOException {
-	if (doc == null) {
-	    throw new IOException("Reader closed");
-	}
-	int length = len;
-	
-	if (!fromEnd) {
-	    if (this.pos < end) {
-		if (length > end - this.pos) {
-		    length = end - this.pos;
-		}
-		try {
-		    doc.getText(this.pos, length, segment);
-		    System.arraycopy(segment.array, segment.offset, cbuf, pos, length);
-		    this.pos += length;
-		    return length;
-		} catch (BadLocationException e) {
-		    throw new IOException(BADLOCATION);
-		}
-	    }
-	} else {
-	    if (this.pos > end) {
-		if (length > this.pos - end + 1) {
-		    length = this.pos - end + 1;
-		}
-		try {
-		    doc.getText(this.pos - length + 1, length, segment);
-		    int ppos = segment.offset + segment.count - 1;
-		    for (int i = 0; i < length; i++) {
-			cbuf[pos + i] = segment.array[ppos - i];
-		    }
-		    this.pos -= length;
-		    return length;
-		} catch (BadLocationException e) {
-		    throw new IOException(BADLOCATION);
-		}
-	    }
-	} 
-	return -1;
+        if (doc == null) {
+            throw new IOException("Reader closed");
+        }
+        int length = len;
+
+        if (!fromEnd) {
+            if (this.pos < end) {
+                if (length > end - this.pos) {
+                    length = end - this.pos;
+                }
+                try {
+                    doc.getText(this.pos, length, segment);
+                    System.arraycopy(segment.array, segment.offset, cbuf, pos, length);
+                    this.pos += length;
+                    return length;
+                } catch (BadLocationException e) {
+                    throw new IOException(BADLOCATION);
+                }
+            }
+        } else {
+            if (this.pos > end) {
+                if (length > this.pos - end + 1) {
+                    length = this.pos - end + 1;
+                }
+                try {
+                    doc.getText(this.pos - length + 1, length, segment);
+                    int ppos = segment.offset + segment.count - 1;
+                    for (int i = 0; i < length; i++) {
+                        cbuf[pos + i] = segment.array[ppos - i];
+                    }
+                    this.pos -= length;
+                    return length;
+                } catch (BadLocationException e) {
+                    throw new IOException(BADLOCATION);
+                }
+            }
+        }
+        return -1;
     }
-    
+
     /**
      * The close method of a Reader
      * @throws IOException if a problem is encountered
      */
     public void close() throws IOException {
-	doc = null;
+        doc = null;
     }
 }

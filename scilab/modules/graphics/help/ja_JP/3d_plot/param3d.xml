@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="param3d" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="param3d" xml:lang="ja">
     <refnamediv>
         <refname>param3d</refname>
         <refpurpose>パラメータ表現の曲線の3次元プロット</refpurpose>
@@ -226,7 +226,17 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>param3d();</scilab:image>
+        <scilab:image>
+            t=0:0.1:5*%pi;
+            param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
+            
+            e=gce() //the handle on the 3D polyline
+            
+            e.foreground=color('red');
+            
+            a=gca(); //the handle on the axes
+            a.rotation_angles=[10 70];
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

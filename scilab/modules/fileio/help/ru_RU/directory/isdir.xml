@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="isdir">
+    <refnamediv>
+        <refname>isdir</refname>
+        <refpurpose>проверяет является ли аргумент путём до директории</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>r=isdir(path)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>символьная строка или матрица строк: имя пути до директории</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        логическое значение: <constant>%t</constant>, если <varname>path</varname> является путём до директории.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>r = isdir(path)</code> проверяет является ли путь <varname>path</varname> путём до директории.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Сcылка</title>
+        <para>
+            Эта функция основана на C-функции <function>stat</function>. Можно 
+            использовать краткие обозначения <literal>SCI</literal> и 
+            <literal>~</literal> для директории Scilab'а и домашней директории.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+isdir(TMPDIR)
+isdir SCI/etc/scilab.start
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="isfile">isfile</link>
+            </member>
+            <member>
+                <link linkend="fileinfo">fileinfo</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

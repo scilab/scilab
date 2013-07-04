@@ -29,9 +29,11 @@ public class TemplateHandler {
 
     private String[] array;
     private TemplateFiller filler;
+    private String language;
 
-    public TemplateHandler(TemplateFiller filler, File f) {
+    public TemplateHandler(TemplateFiller filler, File f, String language) {
         this.filler = filler;
+        this.language = language;
         parseFile(f);
     }
 
@@ -68,6 +70,9 @@ public class TemplateHandler {
                         str = filler.makeVersion(id);;
                     } else if (array[i + 1].equals("start")) {
                         str = filler.makeStart(id);
+                    } else if (array[i + 1].startsWith("translate=")) {
+                        String toTranslate = array[i + 1].substring("translate=".length());
+                        str = TemplateLocalization.getLocalized(language, toTranslate);
                     }
                     writer.append(str);
                 }

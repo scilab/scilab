@@ -14,7 +14,7 @@
 
 #include "SetUicontrolFontWeight.hxx"
 
-int SetUicontrolFontWeight(void* _pvCtx, char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontWeight(void* _pvCtx, char *sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Font weight can be light, normal, demi or bold */
 
@@ -22,28 +22,30 @@ int SetUicontrolFontWeight(void* _pvCtx, char *sciObjUID, size_t stackPointer, i
     BOOL status = FALSE;
 
     // Font Name must be only one character string
-    if (valueType != sci_strings) {
+    if (valueType != sci_strings)
+    {
         Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "FontWeight");
         return SET_PROPERTY_ERROR;
     }
-    if (nbCol != 1 || nbRow == 0) {
+    if (nbCol != 1 || nbRow == 0)
+    {
         Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "FontWeight");
         return SET_PROPERTY_ERROR;
     }
 
-    fontWeight = getStringFromStack(stackPointer);
+    fontWeight = (char*)_pvData;
 
     if (stricmp(fontWeight, "light") != 0
-        && stricmp(fontWeight, "normal") != 0
-        && stricmp(fontWeight, "demi") != 0
-        && stricmp(fontWeight, "bold") != 0)
+            && stricmp(fontWeight, "normal") != 0
+            && stricmp(fontWeight, "demi") != 0
+            && stricmp(fontWeight, "bold") != 0)
     {
         /* Wrong string format */
         Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n")), "FontWeight", "light", "normal", "demi", "bold");
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTWEIGHT__), fontWeight, jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTWEIGHT__, fontWeight, jni_string, 1);
 
     if (status == TRUE)
     {

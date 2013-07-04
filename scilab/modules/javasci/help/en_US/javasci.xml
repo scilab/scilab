@@ -11,25 +11,25 @@
  *
  -->
 <!-- This document was created with Syntext Serna Free. -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="javasci" xml:lang="en">
-  <refnamediv>
-    <refname>javasci</refname>
-    <refpurpose>Call Scilab engine from a Java application</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>Scilab offers the possibility to be called from a Java application.</para>
-    <para>This help describes the features of the javasci API.</para>
-    <para>
-      Since Scilab version 5.3.0, a new version of Javasci called Javasci v2 has been introduced. This version fixes most of the <link linkend="javasci_v1_limitations">limitations of Javasci v1</link>.
-    </para>
-    <para>
-      Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).
-    </para>
-  </refsection>
-  <refsection>
-    <title>Example of Javasci v2</title>
-    <programlisting role="java"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="javasci" xml:lang="en">
+    <refnamediv>
+        <refname>javasci</refname>
+        <refpurpose>Call Scilab engine from a Java application</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>Scilab offers the possibility to be called from a Java application.</para>
+        <para>This help describes the features of the javasci API.</para>
+        <para>
+            Since Scilab version 5.3.0, a new version of Javasci called Javasci v2 has been introduced. This version fixes most of the <link linkend="javasci_v1_limitations">limitations of Javasci v1</link>.
+        </para>
+        <para>
+            Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example of Javasci v2</title>
+        <programlisting role="java"><![CDATA[
 // A simple Java example with javasci v2
 // Filename: DisplayPI.java
 
@@ -62,57 +62,57 @@ class Example1 {
 }
 
 ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).
-      </member>
-      <member>
-        <link linkend="compile_and_run_javasci_v2">Compile and run with Javasci v2</link>
-      </member>
-      <member>
-        <link linkend="javasci_faq_v2">Javasci v2 FAQ</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revdescription>
-          Javasci v1 is removed.
-        </revdescription>
-      </revision>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revdescription>New methods added:
-          <itemizedlist>
-            <listitem>Scilab.execException(String)
-              <para>Same as Scilab.exec(String) but returns an exception when a Scilab error occurs</para>
-            </listitem>
-            <listitem>Scilab.execException(String[])
-              <para>Same as Scilab.exec(String[]) but returns an exception when a Scilab error occurs</para>
-            </listitem>
-            <listitem>Scilab.execException(File)
-              <para>Same as Scilab.exec(File) but returns an exception when a Scilab error occurs</para>
-            </listitem>
-          </itemizedlist>
-        </revdescription>
-      </revision>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revdescription>
-          <itemizedlist>
-            <listitem>Javasci supports sparse and boolean sparse datatypes.</listitem>
-            <listitem>Javasci supports tlists, mlists and lists datatypes.</listitem>
-            <listitem>Javasci supports polynomial datatypes.</listitem>
-            <listitem>Javasci supports struct datatypes under the form of an mList.</listitem>
-          </itemizedlist>
-        </revdescription>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).
+            </member>
+            <member>
+                <link linkend="compile_and_run_javasci_v2">Compile and run with Javasci v2</link>
+            </member>
+            <member>
+                <link linkend="javasci_faq_v2">Javasci v2 FAQ</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>
+                    Javasci v1 is removed.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>New methods added:
+                    <itemizedlist>
+                        <listitem>Scilab.execException(String)
+                            <para>Same as Scilab.exec(String) but returns an exception when a Scilab error occurs</para>
+                        </listitem>
+                        <listitem>Scilab.execException(String[])
+                            <para>Same as Scilab.exec(String[]) but returns an exception when a Scilab error occurs</para>
+                        </listitem>
+                        <listitem>Scilab.execException(File)
+                            <para>Same as Scilab.exec(File) but returns an exception when a Scilab error occurs</para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>Javasci supports sparse and boolean sparse datatypes.</listitem>
+                        <listitem>Javasci supports tlists, mlists and lists datatypes.</listitem>
+                        <listitem>Javasci supports polynomial datatypes.</listitem>
+                        <listitem>Javasci supports struct datatypes under the form of an mList.</listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

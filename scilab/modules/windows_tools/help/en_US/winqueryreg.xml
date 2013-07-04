@@ -10,66 +10,85 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="winqueryreg">
-  <refnamediv>
-    <refname>winqueryreg</refname>
-    <refpurpose>Get item from Microsoft Windows
-      registry (Windows only)
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>value = winqueryreg('name', 'rootkey','subkey')
-      value = winqueryreg('rootkey', 'subkey','valname')
-      value = winqueryreg('rootkey','subkey')
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>value = winqueryreg('name', 'rootkey', 'subkey') returns the key names
-      in <literal>rootkey\subkey</literal> in a matrix of strings. The first argument
-      is the literal quoted string, 'name'.
-    </para>
-    <para>If the value retrieved from the registry is a string, winqueryreg
-      returns a string. If the value is a 32-bit integer, winqueryreg returns
-      the value as an integer (int32).
-    </para>
-    <para>value = winqueryreg('rootkey', 'subkey', 'valname') returns the value
-      for key valname in <literal>rootkey\subkey</literal>.
-    </para>
-    <para>value = winqueryreg('rootkey', 'subkey') returns a value in
-      <literal>rootkey\subkey</literal> that has no value name property.
-    </para>
-    <para>
-      <literal>Note</literal>The literal name argument and the rootkey argument
-      are case-sensitive. The subkey and valname arguments are not.
-    </para>
-    <para>supported root keys are: 'HKEY_CLASSES_ROOT', 'HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE', 'HKEY_USERS', 'HKEY_DYN_DATA' and 'HKEY_CURRENT_CONFIG'.</para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="winqueryreg">
+    <refnamediv>
+        <refname>winqueryreg</refname>
+        <refpurpose>Get item from Microsoft Windows
+            registry (Windows only)
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            value = winqueryreg('name', 'rootkey','subkey')
+            value = winqueryreg('key', 'rootkey','subkey')
+            value = winqueryreg('rootkey', 'subkey','valname')
+            value = winqueryreg('rootkey','subkey')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            value = winqueryreg('name', 'rootkey', 'subkey') returns the values names
+            in <literal>rootkey\subkey</literal> in a matrix of strings. The first argument
+            is the literal quoted string, 'name'.
+        </para>
+        <para>If the data retrieved from the registry is a string, winqueryreg
+            returns a string. If the data is a 32-bit integer, winqueryreg returns
+            the data as an integer (int32).
+        </para>
+        <para>
+            value = winqueryreg('key', 'rootkey', 'subkey') returns the keys names
+            in <literal>rootkey\subkey</literal> in a matrix of strings. The first argument
+            is the literal quoted string, 'key'.
+        </para>
+        <para>value = winqueryreg('rootkey', 'subkey', 'valname') returns the data
+            for value valname in <literal>rootkey\subkey</literal>.
+        </para>
+        <para>value = winqueryreg('rootkey', 'subkey') returns a data in
+            <literal>rootkey\subkey</literal> that has no value name property.
+        </para>
+        <para>
+            <literal>Note</literal>The literal name argument, key argument and the rootkey argument
+            are case-sensitive. The subkey and valname arguments are not.
+        </para>
+        <para>supported root keys are: 'HKEY_CLASSES_ROOT', 'HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE', 'HKEY_USERS', 'HKEY_DYN_DATA' and 'HKEY_CURRENT_CONFIG'.</para>
+        <para>and shortcut names: 'HKCR', 'HKCU', 'HKLM', 'HKU', 'HKDD' and 'HKCC'.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            <![CDATA[ 
 if getos() == 'Windows' then
-  winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
-  mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
-  len=size(mousechar);
-  for k=1:len(1)
-     setting = winqueryreg('HKEY_CURRENT_USER','control panel\mouse', mousechar(k));
-     if (mousechar(k)=='') then mousechar(k)='default';,end
-     str = msprintf('%s = %s', mousechar(k), string(setting));
-     disp(str);
-  end
-  winqueryreg('HKEY_CURRENT_CONFIG', 'Software\Fonts\','LogPixels')
+    winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
+    
+    mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
+    len=size(mousechar);
+    for k=1:len(1)
+        setting = winqueryreg('HKEY_CURRENT_USER','control panel\mouse', mousechar(k));
+        if (mousechar(k)=='') then mousechar(k)='default';,end
+        str = msprintf('%s = %s', mousechar(k), string(setting));
+        disp(str);
+    end
+    
+    winqueryreg('HKEY_CURRENT_CONFIG', 'Software\Fonts\','LogPixels')
+    winqueryreg('key' ,'HKLM', 'Software\Microsoft\.NETFramework')
 end
- ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>This function also manages 'HKEY_CURRENT_CONFIG' key.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>This function also manages 'HKEY_CURRENT_CONFIG' key.</revremark>
+            </revision>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>Manage shorcut root names.</revremark>
+                <revremark>Can retrieve key list names.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

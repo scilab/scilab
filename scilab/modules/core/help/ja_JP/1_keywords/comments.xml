@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="comments">
+    <refnamediv>
+        <refname>comments</refname>
+        <refpurpose>コメント</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>文字列以外でスラッシュを2回続けたものは
+            コメントの開始を意味します.
+            この連続したスラッシュおよびその行のこれ以降の改行までの文字は
+            解釈されません.
+        </para>
+        <para>関数の内部で,最初の命令または空行までの最初のコメント行
+            は関数ヘルプのデフォルトの内容を指定するために使用することができます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+g=9.81// the gravity
+
+text='a//b'
+
+function y=myfunction(x)
+  // myfunction は y=x^2+1 を計算します
+  // x はベクトルまたは行列である必要があります
+  y=x^2+1
+endfunction
+
+help myfunction
+ ]]></programlisting>
+    </refsection>
+</refentry>

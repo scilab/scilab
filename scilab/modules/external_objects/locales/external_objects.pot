@@ -8,21 +8,57 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-06 10:22+0100\n"
+"Revision-Date: 2013-06-25 16:31+0100\n"
 
-# File: includes/ScilabAbstractEnvironmentException.hxx, line: 96
+# File: includes/ScilabAbstractEnvironmentException.hxx, line: 108
 msgid "Exception thrown in file"
 msgstr ""
 
 #
-# File: includes/ScilabAbstractEnvironmentException.hxx, line: 96
+# File: includes/ScilabAbstractEnvironmentException.hxx, line: 108
 msgid "at line"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_doubleExclam_invoke_.cpp, line: 30
+# File: sci_gateway/cpp/sci_invoke_lu.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EClass_e.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_0.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_1_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_2_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_3_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_4_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_5.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_a_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_d_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_disp.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_e.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_g_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_h_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_j_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_k_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_l_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_m_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_n_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_o_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_p.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_p_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_q_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_r_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_s_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_t.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_x_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_y_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_EObj_z_foo.cpp, line: 30
+# File: sci_gateway/cpp/sci_percent_foo_i_EObj.cpp, line: 30
+#, c-format
+msgid "%s: An error occurred: %s"
 msgstr ""
 
 #
@@ -37,48 +73,54 @@ msgid "Invalid environment"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 69
-# File: src/cpp/ScilabObjects.cpp, line: 75
-# File: src/cpp/ScilabObjects.cpp, line: 81
-# File: src/cpp/ScilabObjects.cpp, line: 87
-# File: src/cpp/ScilabObjects.cpp, line: 123
-# File: src/cpp/ScilabObjects.cpp, line: 129
-# File: src/cpp/ScilabObjects.cpp, line: 135
-# File: src/cpp/ScilabObjects.cpp, line: 141
+# File: src/cpp/ScilabObjects.cpp, line: 71
+#, c-format
+msgid "Invalid variable name: %s"
+msgstr ""
+
+#
+# File: src/cpp/ScilabObjects.cpp, line: 74
+# File: src/cpp/ScilabObjects.cpp, line: 80
+# File: src/cpp/ScilabObjects.cpp, line: 86
+# File: src/cpp/ScilabObjects.cpp, line: 92
+# File: src/cpp/ScilabObjects.cpp, line: 128
+# File: src/cpp/ScilabObjects.cpp, line: 134
+# File: src/cpp/ScilabObjects.cpp, line: 140
+# File: src/cpp/ScilabObjects.cpp, line: 146
 msgid "Cannot allocate memory"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 202
-# File: src/cpp/ScilabObjects.cpp, line: 210
-# File: src/cpp/ScilabObjects.cpp, line: 223
-# File: src/cpp/ScilabObjects.cpp, line: 237
-# File: src/cpp/ScilabObjects.cpp, line: 246
-# File: src/cpp/ScilabObjects.cpp, line: 418
-# File: src/cpp/ScilabObjects.cpp, line: 433
-# File: src/cpp/ScilabObjects.cpp, line: 449
-# File: src/cpp/ScilabObjects.cpp, line: 471
-# File: src/cpp/ScilabObjects.cpp, line: 482
-# File: src/cpp/ScilabObjects.cpp, line: 501
-# File: src/cpp/ScilabObjects.cpp, line: 511
-# File: src/cpp/ScilabObjects.cpp, line: 522
-# File: src/cpp/ScilabObjects.cpp, line: 533
-# File: src/cpp/ScilabObjects.cpp, line: 544
-# File: src/cpp/ScilabObjects.cpp, line: 555
-# File: src/cpp/ScilabObjects.cpp, line: 566
-# File: src/cpp/ScilabObjects.cpp, line: 579
-# File: src/cpp/ScilabObjects.cpp, line: 590
-# File: src/cpp/ScilabObjects.cpp, line: 605
-# File: src/cpp/ScilabObjects.cpp, line: 622
-# File: src/cpp/ScilabObjects.cpp, line: 650
-# File: src/cpp/ScilabObjects.cpp, line: 667
+# File: src/cpp/ScilabObjects.cpp, line: 207
+# File: src/cpp/ScilabObjects.cpp, line: 215
+# File: src/cpp/ScilabObjects.cpp, line: 228
+# File: src/cpp/ScilabObjects.cpp, line: 242
+# File: src/cpp/ScilabObjects.cpp, line: 251
+# File: src/cpp/ScilabObjects.cpp, line: 423
+# File: src/cpp/ScilabObjects.cpp, line: 438
+# File: src/cpp/ScilabObjects.cpp, line: 454
+# File: src/cpp/ScilabObjects.cpp, line: 476
+# File: src/cpp/ScilabObjects.cpp, line: 487
+# File: src/cpp/ScilabObjects.cpp, line: 506
+# File: src/cpp/ScilabObjects.cpp, line: 516
+# File: src/cpp/ScilabObjects.cpp, line: 527
+# File: src/cpp/ScilabObjects.cpp, line: 538
+# File: src/cpp/ScilabObjects.cpp, line: 549
+# File: src/cpp/ScilabObjects.cpp, line: 560
+# File: src/cpp/ScilabObjects.cpp, line: 571
+# File: src/cpp/ScilabObjects.cpp, line: 584
+# File: src/cpp/ScilabObjects.cpp, line: 595
+# File: src/cpp/ScilabObjects.cpp, line: 610
+# File: src/cpp/ScilabObjects.cpp, line: 627
+# File: src/cpp/ScilabObjects.cpp, line: 655
+# File: src/cpp/ScilabObjects.cpp, line: 672
 # File: src/cpp/addNamedVariable.cpp, line: 41
 # File: src/cpp/addToClasspath.cpp, line: 46
 # File: src/cpp/addToClasspath.cpp, line: 56
-# File: src/cpp/array.cpp, line: 49
-# File: src/cpp/cast.cpp, line: 42
-# File: src/cpp/cast.cpp, line: 50
-# File: src/cpp/cast.cpp, line: 63
+# File: src/cpp/array.cpp, line: 48
+# File: src/cpp/cast.cpp, line: 40
+# File: src/cpp/cast.cpp, line: 48
+# File: src/cpp/cast.cpp, line: 61
 # File: src/cpp/classExtract.cpp, line: 35
 # File: src/cpp/compile.cpp, line: 42
 # File: src/cpp/compile.cpp, line: 49
@@ -90,8 +132,8 @@ msgstr ""
 # File: src/cpp/deff.cpp, line: 86
 # File: src/cpp/display.cpp, line: 37
 # File: src/cpp/display.cpp, line: 54
-# File: src/cpp/doubleExclam_invoke.cpp, line: 68
-# File: src/cpp/doubleExclam_invoke.cpp, line: 89
+# File: src/cpp/doubleExclam_invoke.cpp, line: 66
+# File: src/cpp/doubleExclam_invoke.cpp, line: 87
 # File: src/cpp/evalString.cpp, line: 39
 # File: src/cpp/evalString.cpp, line: 50
 # File: src/cpp/evalString.cpp, line: 60
@@ -99,14 +141,14 @@ msgstr ""
 # File: src/cpp/exists.cpp, line: 39
 # File: src/cpp/exists.cpp, line: 51
 # File: src/cpp/getClassName.cpp, line: 47
-# File: src/cpp/getEnvironmentName.cpp, line: 33
+# File: src/cpp/getEnvironmentName.cpp, line: 31
 # File: src/cpp/getField.cpp, line: 40
 # File: src/cpp/getField.cpp, line: 62
 # File: src/cpp/getField.cpp, line: 69
-# File: src/cpp/getFields.cpp, line: 38
-# File: src/cpp/getMethods.cpp, line: 37
-# File: src/cpp/getRepresentation.cpp, line: 37
-# File: src/cpp/getsetOptions.cpp, line: 47
+# File: src/cpp/getFields.cpp, line: 37
+# File: src/cpp/getMethods.cpp, line: 36
+# File: src/cpp/getRepresentation.cpp, line: 36
+# File: src/cpp/getsetOptions.cpp, line: 46
 # File: src/cpp/import.cpp, line: 47
 # File: src/cpp/import.cpp, line: 55
 # File: src/cpp/import.cpp, line: 64
@@ -159,46 +201,46 @@ msgid "Invalid variable: cannot retrieve the data"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 265
-# File: src/cpp/ScilabObjects.cpp, line: 283
+# File: src/cpp/ScilabObjects.cpp, line: 270
+# File: src/cpp/ScilabObjects.cpp, line: 288
 msgid "Invalid variable: cannot create data"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 455
-# File: src/cpp/ScilabObjects.cpp, line: 657
+# File: src/cpp/ScilabObjects.cpp, line: 460
+# File: src/cpp/ScilabObjects.cpp, line: 662
 msgid "External Class expected"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 639
-# File: src/cpp/cast.cpp, line: 57
+# File: src/cpp/ScilabObjects.cpp, line: 644
+# File: src/cpp/cast.cpp, line: 55
 msgid "Incompatible External Objects"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 674
+# File: src/cpp/ScilabObjects.cpp, line: 683
 msgid "External object expected"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 682
+# File: src/cpp/ScilabObjects.cpp, line: 691
 msgid "Unable to wrap. Unmanaged datatype ?"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 786
-# File: src/cpp/ScilabObjects.cpp, line: 801
+# File: src/cpp/ScilabObjects.cpp, line: 795
+# File: src/cpp/ScilabObjects.cpp, line: 810
 msgid "Invalid String"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 791
+# File: src/cpp/ScilabObjects.cpp, line: 800
 msgid "A single string expected"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 796
+# File: src/cpp/ScilabObjects.cpp, line: 805
 msgid "A single String expected"
 msgstr ""
 
@@ -216,13 +258,13 @@ msgid "Cannot open the given file %s."
 msgstr ""
 
 #
-# File: src/cpp/array.cpp, line: 31
+# File: src/cpp/array.cpp, line: 30
 #, c-format
 msgid "Wrong number of arguments : more than %d expected."
 msgstr ""
 
 #
-# File: src/cpp/array.cpp, line: 58
+# File: src/cpp/array.cpp, line: 57
 #, c-format
 msgid "A strictly positive integer is expected at position %d."
 msgstr ""
@@ -292,24 +334,24 @@ msgstr ""
 
 #
 # File: src/cpp/evalString.cpp, line: 75
-# File: src/cpp/getsetOptions.cpp, line: 52
+# File: src/cpp/getsetOptions.cpp, line: 51
 #, c-format
 msgid "Wrong type for input argument #%d: A boolean expected."
 msgstr ""
 
 #
 # File: src/cpp/evalString.cpp, line: 80
-# File: src/cpp/getsetOptions.cpp, line: 57
+# File: src/cpp/getsetOptions.cpp, line: 56
 #, c-format
 msgid "Wrong type for input argument #%d: A single boolean expected."
 msgstr ""
 
 #
 # File: src/cpp/exists.cpp, line: 44
-# File: src/cpp/getEnvironmentName.cpp, line: 38
-# File: src/cpp/getFields.cpp, line: 43
-# File: src/cpp/getMethods.cpp, line: 42
-# File: src/cpp/getRepresentation.cpp, line: 42
+# File: src/cpp/getEnvironmentName.cpp, line: 36
+# File: src/cpp/getFields.cpp, line: 42
+# File: src/cpp/getMethods.cpp, line: 41
+# File: src/cpp/getRepresentation.cpp, line: 41
 # File: src/cpp/unwrap.cpp, line: 48
 # File: src/cpp/unwrapremove.cpp, line: 48
 #, c-format
@@ -317,7 +359,7 @@ msgid "Wrong type for input argument #%d: An External Object expected."
 msgstr ""
 
 #
-# File: src/cpp/getEnvId.cpp, line: 36
+# File: src/cpp/getEnvId.cpp, line: 34
 msgid "Cannot create the identifier"
 msgstr ""
 
@@ -393,5 +435,5 @@ msgstr ""
 
 #
 # File: src/cpp/wrapAsRef.cpp, line: 56
-msgid "Can only wrap as a reference a named variable"
+msgid "Can only wrap as a reference to a named variable"
 msgstr ""

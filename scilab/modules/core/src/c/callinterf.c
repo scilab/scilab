@@ -98,7 +98,7 @@ static OpTab Interfaces[INTERFACES_MAX] =
     /* 59  */ {gw_dynamic_matio},
     /* 60  */ {gw_dynamic_helptools},
     /* 61  */ {gw_call_scilab},
-    /* 62  */ {gw_dynamic_hdf5},
+    /* 62  */ {gw_hdf5},
     /* 63  */ {gw_dynamic_scinotes},
     /* 64  */ {gw_dynamic_xcos},
     /* 65  */ {gw_dynamic_action_binding},
@@ -137,7 +137,7 @@ int C2F(callinterf) (int *k)
     {
         if ( (*k > INTERFACES_MAX) || (*k < 1) )
         {
-            Scierror(999, _("Error: Not a valid gateway ID %d.\n"), *k);
+            Scierror(999, _("Error: Not a valid gateway ID %d. Should be between %d and %d.\n"), *k, 1, INTERFACES_MAX);
             count = 0;
             return 0;
         }

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="group">
+    <refnamediv>
+        <refname>group</refname>
+        <refpurpose>デジタルフィルタの群遅延</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[tg,fr]=group(npts,a1i,a2i,b1i,b2i)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>npts</term>
+                <listitem>
+                    <para>整数 : 群遅延の計算を行う点の数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a1i</term>
+                <listitem>
+                    <para>
+                        この変数はフィルタの伝達関数で,係数, 多項式, 有理多項式, またはカスケード
+                        多項式形式で指定します(下記参照).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a2i</term>
+                <listitem>
+                    <para>多項式係数形式の場合,これは係数のベクトルです</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b1i</term>
+                <listitem>
+                    <para>多項式係数形式の場合,これは係数のベクトルです</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b2i</term>
+                <listitem>
+                    <para>多項式係数形式の場合,これは係数のベクトルです</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tg</term>
+                <listitem>
+                    <para>グリッドfrで評価された群遅延の値</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fr</term>
+                <listitem>
+                    <para>群遅延が評価される周波数の値のグリッド</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            伝達関数h(z)のデジタルフィルタの群遅延を計算します.
+        </para>
+        <para>
+            フィルタの仕様は,係数形式,多項式形式,有理多項式形式,
+            カスケード多項式形式,または多項式係数形式とすることが
+            できます.
+        </para>
+        <para>
+            多項式係数形式の場合,伝達関数は以下の式で定式化されます.
+        </para>
+        <para>
+            <literal>h(z)=prod(a1i+a2i*z+z**2)/prod(b1i+b2i*z+z^2)</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+z=poly(0,'z');
+h=z/(z-.5);
+[tg,fr]=group(100,h);
+plot(fr,tg)
+ ]]></programlisting>
+    </refsection>
+</refentry>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
+    *
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="asciimat">
+    <refnamediv>
+        <refname>asciimat</refname>
+        <refpurpose>преобразование матрицы строк в ASCII-коды и обратно</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            a = asciimat(txt)
+            txt = asciimat(a)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>
+                        символьная строка или матрица строк.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>
+                        вектор или матрица целочисленных ASCII-кодов.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта функция преобразует Scilab-строку в ASCII-код или
+            матрицу ASCII-кодов в Scilab-строку. Аргумент на выходе
+            является матрицей, у которой то же количество строк, что и у
+            матрицы на входе, что является отличием от функции
+            <function>ascii</function>.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ascii">ascii</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

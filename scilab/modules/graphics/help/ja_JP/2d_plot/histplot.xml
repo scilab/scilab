@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="histplot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="histplot">
     <refnamediv>
         <refname>histplot</refname>
         <refpurpose>ヒストグラムをプロットする</refpurpose>
@@ -101,7 +101,10 @@ x(1)
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>histplot();</scilab:image>
+        <scilab:image>
+            d=rand(1,10000,'normal');
+            clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]);
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

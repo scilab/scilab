@@ -36,7 +36,7 @@ function this = optimbase_checkcostfun ( this )
         optimbase_checkstatus ( "[f,index]=costf(x0,2)" , ierr )
         this = optimbase_checkshape ( this , "f" , f , index , 1 , 1 );
         this = optimbase_checkshape ( this , "index" , index , 2 , 1 , 1 );
-    end    
+    end
     //
     // If there are nonlinear constraints and no derivatives, check that the index is correctly managed.
     //
@@ -69,7 +69,7 @@ function this = optimbase_checkcostfun ( this )
         this = optimbase_checkshape ( this , "f" , f , index , 1 , 1 );
         this = optimbase_checkshape ( this , "c" , c , index , 1 , this.nbineqconst );
         this = optimbase_checkshape ( this , "index" , index , 6 , 1 , 1 );
-    end    
+    end
     //
     // If there are no nonlinear constraints and derivatives, check that the index is correctly managed.
     //
@@ -102,12 +102,12 @@ function this = optimbase_checkcostfun ( this )
         this = optimbase_checkshape ( this , "f" , f , index , 1 , 1 );
         this = optimbase_checkshape ( this , "g" , g , index , 1 , this.numberofvariables );
         this = optimbase_checkshape ( this , "index" , index , 4 , 1 , 1 );
-    end    
+    end
 endfunction
 
 //
 // optimbase_checkstatus --
-//   Generates an error if ierr is nonzero, that is, 
+//   Generates an error if ierr is nonzero, that is,
 //   if the cost function could not be evaluated.
 //
 function optimbase_checkstatus ( cmdstr , ierr )

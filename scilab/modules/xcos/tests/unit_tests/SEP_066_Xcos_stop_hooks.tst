@@ -3,12 +3,11 @@
 //
 // This file is distributed under the same license as the Scilab package.
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // Check the API of the Xcos hooks, see SEP_066_Xcos_hooks.odt
 
-loadXcosLibs();
 global status;
 status = [];
 
@@ -31,7 +30,7 @@ function post_xcos_simulate(%cpr, scs_m, needcompile)
         status = [status 'post_called'];
 endfunction
 
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/Simple_Demo.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/Simple_Demo.zcos"));
 xcos_simulate(scs_m, 4);
 
 assert_checkequal(status, ["pre_called"]);

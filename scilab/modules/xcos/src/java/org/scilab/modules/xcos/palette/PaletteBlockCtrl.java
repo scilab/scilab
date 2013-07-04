@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.palette;
 
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.synchronousScilabExec;
 
@@ -22,6 +23,8 @@ import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragSource;
 import java.awt.dnd.InvalidDnDOperationException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.lang.ref.WeakReference;
 import java.util.logging.Level;
@@ -160,7 +163,7 @@ public final class PaletteBlockCtrl {
      * @throws ScicosFormatException
      *             on error
      */
-    protected BasicBlock loadBlock() throws ScicosFormatException {
+    private BasicBlock loadBlock() throws ScicosFormatException {
         BasicBlock block;
         if (model.getName().compareTo("TEXT_f") != 0) {
 
@@ -192,6 +195,57 @@ public final class PaletteBlockCtrl {
             block = BlockFactory.createBlock(BlockInterFunction.TEXT_f);
         }
         return block;
+    }
+
+    /**
+     * @param callback
+     *            called after the block loading
+     */
+    protected void loadBlock(final ActionListener callback) {
+        if (model.getName().compareTo("TEXT_f") != 0) {
+
+            // Load the block with a reference instance
+            final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+            if (handler == null) {
+                return;
+            }
+
+            final ActionListener internalCallback = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        final BasicBlock block = handler.readBlock();
+
+                        // invalid block case
+                        if (block == null) {
+                            return;
+                        }
+
+                        // update style
+                        if (block.getStyle().compareTo("") == 0) {
+                            block.setStyle(block.getInterfaceFunctionName());
+                        }
+
+                        callback.actionPerformed(new ActionEvent(block, 0, "loaded"));
+                    } catch (ScicosFormatException e1) {
+                        e1.printStackTrace();
+                    } finally {
+                        handler.release();
+                    }
+                }
+            };
+
+            try {
+                asynchronousScilabExec(internalCallback, ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
+            } catch (InterpreterException e1) {
+                LOG.severe(e1.toString());
+            } finally {
+                handler.release();
+            }
+        } else {
+            final BasicBlock block = BlockFactory.createBlock(BlockInterFunction.TEXT_f);
+            callback.actionPerformed(new ActionEvent(block, 0, "loaded"));
+        }
     }
 
     /**

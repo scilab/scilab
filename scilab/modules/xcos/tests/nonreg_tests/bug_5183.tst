@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 5183 -->
 //
@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // On a superblock diagram, start a simulation is not applicable.
 
-// start xcos(SCI + '/modules/xcos/demos/Discrete-KalmanFilter.xcos')
+// start xcos(SCI + '/modules/xcos/demos/Discrete-KalmanFilter.zcos')
 
 // Open a superblock
 

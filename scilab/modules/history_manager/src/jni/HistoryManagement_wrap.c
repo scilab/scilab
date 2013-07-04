@@ -177,12 +177,16 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
     const SWIG_JavaExceptions_t *except_ptr = java_exceptions;
 
     while (except_ptr->code != code && except_ptr->code)
+    {
         except_ptr++;
+    }
 
     (*jenv)->ExceptionClear(jenv);
     excep = (*jenv)->FindClass(jenv, except_ptr->java_exception);
     if (excep)
+    {
         (*jenv)->ThrowNew(jenv, excep, msg);
+    }
 }
 
 
@@ -213,14 +217,26 @@ extern "C" {
         if (jarg1)
         {
             arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-            if (!arg1) return 0;
+            if (!arg1)
+            {
+                return 0;
+            }
         }
         result = appendLineToScilabHistory(arg1);
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
-        if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        if (arg1)
+        {
+            (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        }
         return jresult;
     }
 
@@ -254,8 +270,14 @@ extern "C" {
         arg2 = (int)jarg2;
         result = appendLinesToScilabHistory(arg1, arg2);
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
         {
             int i;
@@ -291,14 +313,26 @@ extern "C" {
         if (jarg1)
         {
             arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-            if (!arg1) return 0;
+            if (!arg1)
+            {
+                return 0;
+            }
         }
         result = writeScilabHistoryToFile(arg1);
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
-        if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        if (arg1)
+        {
+            (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        }
         return jresult;
     }
 
@@ -315,14 +349,26 @@ extern "C" {
         if (jarg1)
         {
             arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-            if (!arg1) return 0;
+            if (!arg1)
+            {
+                return 0;
+            }
         }
         result = loadScilabHistoryFromFile(arg1);
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
-        if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        if (arg1)
+        {
+            (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        }
         return jresult;
     }
 
@@ -339,14 +385,26 @@ extern "C" {
         if (jarg1)
         {
             arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-            if (!arg1) return 0;
+            if (!arg1)
+            {
+                return 0;
+            }
         }
         result = setFilenameScilabHistory(arg1);
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
-        if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        if (arg1)
+        {
+            (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        }
         return jresult;
     }
 
@@ -380,8 +438,14 @@ extern "C" {
         (void)jcls;
         result = setDefaultFilenameScilabHistory();
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
         return jresult;
     }
@@ -411,7 +475,10 @@ extern "C" {
                 jstring temp_string;
                 const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
 
-                while (result[len]) len++;
+                while (result[len])
+                {
+                    len++;
+                }
                 jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
                 /* exception checking omitted */
 
@@ -456,14 +523,26 @@ extern "C" {
         if (jarg1)
         {
             arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-            if (!arg1) return 0;
+            if (!arg1)
+            {
+                return 0;
+            }
         }
         result = setSearchedTokenInScilabHistory(arg1);
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
-        if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        if (arg1)
+        {
+            (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        }
         return jresult;
     }
 
@@ -477,8 +556,14 @@ extern "C" {
         (void)jcls;
         result = resetSearchedTokenInScilabHistory();
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
         return jresult;
     }
@@ -564,8 +649,14 @@ extern "C" {
         (void)jenv;
         (void)jcls;
         {
-            if (jarg1 == JNI_TRUE) arg1 = TRUE;
-            else arg1 = FALSE;
+            if (jarg1 == JNI_TRUE)
+            {
+                arg1 = TRUE;
+            }
+            else
+            {
+                arg1 = FALSE;
+            }
         }
         setSaveConsecutiveDuplicateLinesInScilabHistory(arg1);
     }
@@ -580,8 +671,14 @@ extern "C" {
         (void)jcls;
         result = getSaveConsecutiveDuplicateLinesInScilabHistory();
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
         return jresult;
     }
@@ -644,8 +741,14 @@ extern "C" {
         arg1 = (int)jarg1;
         result = deleteNthLineScilabHistory(arg1);
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
         return jresult;
     }
@@ -673,8 +776,14 @@ extern "C" {
         (void)jcls;
         result = historyIsEnabled();
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
         return jresult;
     }
@@ -691,8 +800,14 @@ extern "C" {
         arg1 = (int)jarg1;
         result = setSizeMaxScilabHistory(arg1);
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
         return jresult;
     }
@@ -707,8 +822,14 @@ extern "C" {
         (void)jcls;
         result = InitializeHistoryManager();
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
         return jresult;
     }
@@ -723,8 +844,14 @@ extern "C" {
         (void)jcls;
         result = TerminateHistoryManager();
         {
-            if (result) jresult = JNI_TRUE   ;
-            else  jresult = JNI_FALSE   ;
+            if (result)
+            {
+                jresult = JNI_TRUE   ;
+            }
+            else
+            {
+                jresult = JNI_FALSE   ;
+            }
         }
         return jresult;
     }

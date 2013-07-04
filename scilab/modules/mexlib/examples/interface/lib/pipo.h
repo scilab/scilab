@@ -11,6 +11,6 @@
  *
  */
 
-extern int foo(int x) ; 
-extern int bar(int x) ; 
+extern int foo(int x) ;
+extern int bar(int x) ;
 

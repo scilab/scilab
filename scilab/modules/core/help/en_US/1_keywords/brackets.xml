@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="brackets">
+    <refnamediv>
+        <refname>brackets</refname>
+        <refpurpose>([,]) left and right brackets</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[a11,a12,...;a21,a22,...;...]
+            [s1,s2,...]=func(...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>a11,a12,...  </term>
+                <listitem>
+                    <para>
+                        any matrix (real, polynomial, rational, <literal>syslin</literal> list ...) with appropriate dimensions
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s1,s2,...  </term>
+                <listitem>
+                    <para>any possible variable name</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Left and right brackets are used to note vector and matrix concatenation.
+            These symbols are also used to denote a multiple left-hand-side for a function 
+            call.
+        </para>
+        <para>
+            Inside concatenation brackets, blank or comma characters mean 
+            "column concatenation", semicolon and carriage-return mean 
+            "row concatenation".
+        </para>
+        <para>
+            Note : to avoid confusions it is safer to use commas instead of blank to
+            separate columns.
+        </para>
+        <para>
+            Within multiple lhs brackets variable names must be separated by comma.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+[6.9,9.64; sqrt(-1) 0]
+[1 +%i  2 -%i  3]
+[]
+['this is';'a string';'vector']
+s=poly(0,'s');[1/s,2/s]
+[tf2ss(1/s),tf2ss(2/s)]
+
+[u,s]=schur(rand(3,3))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="parents">parents</link>
+            </member>
+            <member>
+                <link linkend="comma">comma</link>
+            </member>
+            <member>
+                <link linkend="semicolon">semicolon</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

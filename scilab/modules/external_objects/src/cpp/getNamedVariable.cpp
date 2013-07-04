@@ -17,8 +17,6 @@ namespace org_modules_external_objects
 
 int ScilabGateway::getNamedVariable(char * fname, const int envId, void * pvApiCtx)
 {
-    SciErr err;
-    int * addr = 0;
     char * varName = 0;
     int idObj;
 
@@ -27,7 +25,7 @@ int ScilabGateway::getNamedVariable(char * fname, const int envId, void * pvApiC
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
     ScilabGatewayOptions & options = env.getGatewayOptions();
-    OptionsHelper::setCopyOccured(false);
+    OptionsHelper::setCopyOccurred(false);
     ScilabObjects::initialization(env, pvApiCtx);
     options.setIsNew(false);
 

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lcm" xml:lang="en">
+    <refnamediv>
+        <refname>lcm</refname>
+        <refpurpose>mínimo múltiplo comum</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title> Seqüência de Chamamento </title>
+        <synopsis>[pp,fact]=lcm(p)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>vetor de polinômios </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fact</term>
+                <listitem>
+                    <para>vetor de polinômios ou inteiros (tipo igual a 8)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pp</term>
+                <listitem>
+                    <para>polinômio ou inteiro</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>pp=lcm(p)</literal> computa o MMC <literal>pp</literal> do
+            vetor de polinômios <literal>p</literal>.
+        </para>
+        <para>
+            <literal>[pp,fact]=lcm(p)</literal> computa, ainda, o vetor
+            <literal>fact</literal> tal que:
+        </para>
+        <para>
+            <literal>p.*fact=pp*ones(p)</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
+//caso polinomial
+s=poly(0,'s');
+p=[s,s*(s+1)^2,s^2*(s+2)];
+[pp,fact]=lcm(p);
+p.*fact, pp
+
+//caso inteiro
+V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+lcm(V)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gcd">gcd</link>
+            </member>
+            <member>
+                <link linkend="bezout">bezout</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

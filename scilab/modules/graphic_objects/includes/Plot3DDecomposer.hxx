@@ -70,7 +70,7 @@ protected :
      * @param[out] the triangles' vertex indices (6-element array: two consecutive triplets).
      */
     virtual void getFacetTriangles(double* x, double* y, double* z, int numX, int numY, int i, int j,
-        int* facetVertexIndices, int* triangleVertexIndices);
+                                   int* facetVertexIndices, int* triangleVertexIndices);
 
 public :
 

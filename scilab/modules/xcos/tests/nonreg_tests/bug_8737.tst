@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 8737 -->
 //
@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // Hidden links should not be ordered when exported
 
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8737.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8737.zcos");
 if ~status then pause, end
 
 // compile and simulate

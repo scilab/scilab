@@ -27,6 +27,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * File opening management
  */
+@SuppressWarnings(value = { "serial" })
 public final class OpenInSciAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.OPEN_IN;

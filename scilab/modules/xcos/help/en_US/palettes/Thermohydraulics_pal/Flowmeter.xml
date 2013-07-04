@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Flowmeter">
+    <refnamediv>
+        <refname>Flowmeter</refname>
+        <refpurpose>Thermal-hydraulic Flow sensor</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/Flowmeter.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_Flowmeter">
+        <title>Contents</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Flowmeter">Thermal-hydraulic Flow sensor</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_Flowmeter">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_Flowmeter">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_Flowmeter">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_Flowmeter">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <link linkend="Flowmeter">Modelica model</link>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_Flowmeter">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="ThermoHydraulics_pal">Thermal-Hydraulics palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_Flowmeter">
+        <title>Description</title>
+        <para>
+            This component is used to measure the volumetric flow rate.
+        </para>
+    </refsection>
+    <refsection id="Defaultproperties_Flowmeter">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Inputs :</emphasis>
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">Modelica variable name :</emphasis> 'C1'
+                        </para>
+                        <para>
+                            Implicit <emphasis role="bold">variable.</emphasis>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Outputs :</emphasis>
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">Modelica variable name :</emphasis> 'C2'
+                        </para>
+                        <para>
+                            Implicit <emphasis role="bold">variable.</emphasis>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">Modelica variable name :</emphasis> 'Mesure'
+                        </para>
+                        <para>
+                            Explicit <emphasis role="bold">variable.</emphasis>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">File name of the model :</emphasis> Flowmeter
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Interfacingfunction_Flowmeter">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/Hydraulics/Flowmeter.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Modelicamodel_Flowmeter">
+        <title>Modelica model</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/Hydraulics/Hydraulics.mo</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

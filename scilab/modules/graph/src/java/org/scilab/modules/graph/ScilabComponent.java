@@ -15,7 +15,9 @@ package org.scilab.modules.graph;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.GraphicsEnvironment;
+
+import javax.swing.JScrollBar;
 
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
@@ -30,6 +32,7 @@ import com.mxgraph.view.mxGraphView;
 /**
  * Implement the default component for the {@link ScilabGraph}.
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabComponent extends mxGraphComponent {
     /**
      * Color use to mask the graph when the graph is locked
@@ -69,58 +72,57 @@ public class ScilabComponent extends mxGraphComponent {
 
     /**
      * Zoom the whole graph and center the view on it.
-     */
-    public void zoomAndCenterToCells() {
-
-    }
-
-    /**
-     * Zoom the whole graph and center the view on it.
      *
      * @param cells
      *            the cells to center on
      */
     public void zoomAndCenterToCells(final Object[] cells) {
-        final mxGraphView view = graph.getView();
+        final mxRectangle preference = zoomBounds(cells);
+        final Dimension actual = getViewport().getSize();
 
-        final Rectangle preference;
+        final double newScale;
+        final double heightScale = actual.getHeight() / preference.getHeight();
+        final double widthScale = actual.getWidth() / preference.getWidth();
+
+        if (heightScale > 1.0) {
+            if (widthScale > 1.0) {
+                // We need to zoom in (the max applicable zoom is the lowest)
+                newScale = Math.min(heightScale, widthScale);
+            } else {
+                // we need to zoom out (only widthScale is < 1.0)
+                newScale = widthScale;
+            }
+        } else {
+            if (widthScale > 1.0) {
+                // we need to zoom out (only heightScale is < 1.0)
+                newScale = heightScale;
+            } else {
+                // We need to zoom out (the max applicable zoom is the lowest)
+                newScale = Math.min(heightScale, widthScale);
+            }
+        }
+
+        // do not apply small zoom values
+        if (Math.abs(1.0 - newScale) < 0.2) {
+            getGraphControl().scrollRectToVisible(zoomBounds(cells).getRectangle(), true);
+            return;
+        }
+
+        zoom(newScale / SCALE_MULTIPLIER);
+        getGraphControl().scrollRectToVisible(zoomBounds(cells).getRectangle(), true);
+    }
+
+    private final mxRectangle zoomBounds(final Object[] cells) {
+        final mxRectangle preference;
         final Object[] c;
         if (cells == null || cells.length == 0) {
             c = graph.getChildCells(graph.getDefaultParent());
         } else {
             c = cells;
         }
-        preference = getChildrenBounds(c).getRectangle();
+        preference = getChildrenBounds(c);
 
-        Dimension actual = getViewport().getSize();
-
-        double newScale;
-        double heightScale = actual.getHeight() / preference.getHeight();
-        double widthScale = actual.getWidth() / preference.getWidth();
-
-        if (heightScale > 1.0) {
-            if (widthScale > 1.0) {
-                // We need to zoom in (the max applicable zoom is the lowest)
-                newScale = Math.min(heightScale, widthScale) * (1.0 - (SCALE_MULTIPLIER - 1.0));
-            } else {
-                // we need to zoom out (only widthScale is < 1.0)
-                newScale = widthScale * SCALE_MULTIPLIER;
-            }
-        } else {
-            if (widthScale > 1.0) {
-                // we need to zoom out (only heightScale is < 1.0)
-                newScale = heightScale * SCALE_MULTIPLIER;
-            } else {
-                // We need to zoom out (the max applicable zoom is the lowest)
-                newScale = Math.min(heightScale, widthScale) * SCALE_MULTIPLIER;
-            }
-        }
-
-        zoom(newScale);
-
-        view.revalidate();
-        Rectangle orig = getChildrenBounds(graph.getChildCells(graph.getDefaultParent())).getRectangle();
-        getGraphControl().scrollRectToVisible(orig);
+        return preference;
     }
 
     /**
@@ -185,6 +187,7 @@ public class ScilabComponent extends mxGraphComponent {
      * Implement a graph control which paint a foreground on top of the view
      * when the graph is locked.
      */
+    @SuppressWarnings(value = { "serial" })
     public class ScilabGraphControl extends mxGraphControl {
 
         /**
@@ -195,18 +198,32 @@ public class ScilabComponent extends mxGraphComponent {
 
             // Paint the foreground color after the real paint
             addListener(mxEvent.AFTER_PAINT, new mxEventSource.mxIEventListener() {
+                @Override
                 public void invoke(Object sender, mxEventObject evt) {
 
                     Graphics g = (Graphics) evt.getProperty("g");
                     if (getGraph().isCellsLocked()) {
                         g.setColor(MASK_COLOR);
 
-                        Rectangle b = getBounds();
+                        Dimension b = getGraphControl().getSize();
 
-                        g.fillRect(b.x, b.y, b.width, b.height);
+                        g.fillRect(0, 0, b.width, b.height);
                     }
                 }
             });
         }
+    }
+
+    /*
+     * Disable some handlers in case of an headless env.
+     */
+
+    @Override
+    protected void createHandlers() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+
+        super.createHandlers();
     }
 }

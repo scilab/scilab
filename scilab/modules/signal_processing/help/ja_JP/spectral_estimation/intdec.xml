@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="intdec">
+    <refnamediv>
+        <refname>intdec</refname>
+        <refpurpose>信号のサンプリングレートを変更</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[y]=intdec(x,lom)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>入力標本信号</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lom</term>
+                <listitem>
+                    <para>1次元信号の場合, 変更するレートを指定するスカラー値です.
+                        2次元信号の場合,
+                        変更する
+                        サンプリングレートのベクトル(要素数:2)
+                        <literal>lom</literal>=(列方向の変更レート,行方向の変更レート) です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>出力標本信号</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            1次元または2次元信号のサンプリングレートをlomで指定された	
+            レートに変更します.
+        </para>
+    </refsection>
+</refentry>

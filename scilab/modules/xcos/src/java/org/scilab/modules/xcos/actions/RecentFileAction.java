@@ -38,6 +38,7 @@ import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
  *
  * This class doesn't follow standard action implementation.
  */
+@SuppressWarnings(value = { "serial" })
 public final class RecentFileAction extends DefaultAction implements PropertyChangeListener {
     /** Name of the action */
     public static final String NAME = "";

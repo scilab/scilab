@@ -69,10 +69,15 @@ clear %modalWarning;
 PWD = pwd();
 
 // Startup message  ===================================================
-if (sciargs()<>"-nb") & ~fromjava() & ~fromc() then
-  banner();
-  write(%io(2),[" ";" ";gettext("Startup execution:")]);
+if (sciargs() <> "-nb") & ~fromjava() & ~fromc() & getscilabmode() == "STD" then
+  write(%io(2),[" ";gettext("Startup execution:")]);
   write(%io(2),gettext("  loading initial environment"));
+end
+
+if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & ~fromjava() & ~fromc() & sciargs()<>"-nb")
+   [v, opts] = getversion()
+   write(%io(2), strsubst(v, "scilab-", "Scilab ") + " (" + opts($-1) + ", " + opts($) + ")");
+   clear v opts;
 end
 
 // loads modules ======================================================
@@ -84,9 +89,15 @@ load = %_load;
 warning("on");
 
 for i=1:size(modules,"*")
-  exec("SCI/modules/" + modules(i) + "/etc/" + modules(i) + ".start", -1);
+  startFile = "SCI/modules/" + modules(i) + "/etc/" + modules(i) + ".start";
+  ierr=exec(startFile, 'errcatch', -1);
+  if ierr <> 0 then
+     disp(msprintf(gettext("Failed to exec %s:"),startFile));
+     disp(lasterror());
+     exit(2);
+   end
 end
-clear modules i load;
+clear modules i load ierr startFile;
 
 // Create some configuration variables ================================
 home = getenv("HOME", SCI);

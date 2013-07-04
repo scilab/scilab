@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="then">
+    <refnamediv>
+        <refname>then</refname>
+        <refpurpose>keyword in control flows 'if' and 'select'</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Used in control flows <literal>if</literal> and <literal>select</literal>.
+            Each <literal>then</literal> keyword must be on the same
+            line as its corresponding <literal>if</literal>, <literal>elseif</literal> or <literal>case</literal> keyword.
+        </para>
+        <para>
+            The keyword <literal>then</literal> can be replaced by a carriage return or a comma.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+if 2*2 == 4 then
+   disp("It works")
+end
+
+n=round(10*rand(1,1))
+select n
+    case 0 then
+        disp(0)
+    case 1 then
+        disp(1)
+    else
+      disp(n);
+end
+        ]]></programlisting>
+    </refsection>
+    
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="elseif">elseif</link>
+            </member>
+            <member>
+                <link linkend="select">select</link>
+            </member>
+            <member>
+                <link linkend="case">case</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

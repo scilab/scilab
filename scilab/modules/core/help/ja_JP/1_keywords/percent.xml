@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="percent">
+    <refnamediv>
+        <refname>percent</refname>
+        <refpurpose>(%) 特殊文字</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            (<literal>sqrt(-1)</literal>を意味する)<literal>%i</literal>,
+            (<literal>Infinity</literal>を意味する)<literal>%inf</literal>,
+            (<literal>3.14...</literal>を意味する)<literal>%pi</literal>,
+            (論理値の <literal>"true"</literal>を意味する)<literal>%T</literal>,...
+            のような<literal>%</literal>で始まる定義済みの変数.
+        </para>
+        <para>
+            加えて, <literal>%</literal>で始まる名前を有する関数は特殊な関数です :
+            これらはプリミティブおよび演算子オーバーローディングで
+            使用されます(<literal>overloading</literal>参照).
+        </para>
+        <para>
+            例えば,関数 <literal>%rmr</literal> は乗算(<literal>m</literal>)
+            処理<literal>x*y</literal>を有理行列(<literal>r</literal>)
+            <literal>x</literal> および <literal>y</literal> に関して実行します.
+            コード記法はディレクトリ<literal>SCIDIR/macros/percent</literal>の
+            readmeファイルにより指定されています.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+x1=tlist('x',1,2);
+x2=tlist('x',2,3);
+deff('x=%xmx(x1,x2)','x=list(''x'',x1(2)*x2(2),x2(3)*x2(3))');
+x1*x2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="overloading">overloading</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

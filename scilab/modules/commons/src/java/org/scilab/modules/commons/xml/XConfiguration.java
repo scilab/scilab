@@ -72,7 +72,6 @@ import org.scilab.modules.localization.Messages;
 public class XConfiguration {
 
     // User configuration file
-    private static final String USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/XConfiguration.xml";
     private static final String SCI = System.getenv("SCI");
     private static final String SCILAB_CONFIG_FILE = SCI + "/modules/preferences/etc/XConfiguration.xml";
 
@@ -89,8 +88,17 @@ public class XConfiguration {
 
     private static Document doc;
     private static boolean hasBeenRead;
+    private static boolean mustSave = true;;
+    private static String USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/XConfiguration.xml";
 
     static {
+        if (ScilabConstants.SCIHOME != null && ScilabConstants.SCIHOME.canRead() && ScilabConstants.SCIHOME.canWrite()) {
+            USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/XConfiguration.xml";
+        } else {
+            USER_CONFIG_FILE = SCILAB_CONFIG_FILE;
+            mustSave = false;
+        }
+
         addXConfigurationListener(ScilabGeneralPrefs.getInstance());
 
         try {
@@ -112,49 +120,53 @@ public class XConfiguration {
         if (doc == null) {
             boolean error = false;
             File xml = new File(USER_CONFIG_FILE);
-            if (!xml.exists()) {
+            if (!xml.exists() && mustSave) {
                 ScilabXMLUtilities.writeDocument(createDocument(), USER_CONFIG_FILE);
             }
 
             DocumentBuilder docBuilder = null;
 
-            try {
-                DocumentBuilderFactory factory = ScilabDocumentBuilderFactory.newInstance();
-                docBuilder = factory.newDocumentBuilder();
-                doc = docBuilder.parse(xml);
-                float version = getDocumentVersion(doc);
-                float defaultVersion = getDocumentVersion(getDefaultDocument());
-                if (defaultVersion != version) {
-                    xml.delete();
+            if (mustSave) {
+                try {
+                    DocumentBuilderFactory factory = ScilabDocumentBuilderFactory.newInstance();
+                    docBuilder = factory.newDocumentBuilder();
+                    doc = docBuilder.parse(xml);
+                    float version = getDocumentVersion(doc);
+                    float defaultVersion = getDocumentVersion(getDefaultDocument());
+                    if (defaultVersion != version) {
+                        xml.delete();
+                        doc = null;
+                        return getXConfigurationDocument();
+                    } else {
+                        return doc;
+                    }
+                } catch (ParserConfigurationException pce) {
+                    error = true;
+                } catch (SAXException se) {
+                    error = true;
+                } catch (IOException ioe) {
+                    error = true;
+                }
+
+                if (error) {
+                    if (hasBeenRead) {
+                        System.err.println(SEVERE_ERROR);
+                        doc = null;
+                        xml.delete();
+                        return docBuilder.newDocument();
+                    }
+
+                    hasBeenRead = true;
                     doc = null;
+                    xml.delete();
+                    System.err.println(PARSING_ERROR);
                     return getXConfigurationDocument();
-                } else {
-                    return doc;
-                }
-            } catch (ParserConfigurationException pce) {
-                error = true;
-            } catch (SAXException se) {
-                error = true;
-            } catch (IOException ioe) {
-                error = true;
-            }
-
-            if (error) {
-                if (hasBeenRead) {
-                    System.err.println(SEVERE_ERROR);
-                    doc = null;
-                    xml.delete();
-                    return docBuilder.newDocument();
                 }
 
-                hasBeenRead = true;
-                doc = null;
-                xml.delete();
-                System.err.println(PARSING_ERROR);
-                return getXConfigurationDocument();
+                return docBuilder.newDocument();
+            } else {
+                doc = createDocument();
             }
-
-            return docBuilder.newDocument();
         }
 
         return doc;
@@ -164,30 +176,32 @@ public class XConfiguration {
      * Save the modifications
      */
     public static void writeDocument(String filename, Node written) {
-        Transformer transformer = null;
-        try {
-            transformer = ScilabTransformerFactory.newInstance().newTransformer();
-        } catch (TransformerConfigurationException e1) {
-            System.err.println(ERROR_WRITE + filename);
-            return;
-        } catch (TransformerFactoryConfigurationError e1) {
-            System.err.println(ERROR_WRITE + filename);
-            return;
-        }
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        if (mustSave) {
+            Transformer transformer = null;
+            try {
+                transformer = ScilabTransformerFactory.newInstance().newTransformer();
+            } catch (TransformerConfigurationException e1) {
+                System.err.println(ERROR_WRITE + filename);
+                return;
+            } catch (TransformerFactoryConfigurationError e1) {
+                System.err.println(ERROR_WRITE + filename);
+                return;
+            }
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
-        StreamResult result = new StreamResult(new File(filename));
-        DOMSource source = new DOMSource(written);
-        try {
-            transformer.transform(source, result);
-        } catch (TransformerException e) {
-            System.err.println(ERROR_WRITE + filename);
-            return;
-        }
+            StreamResult result = new StreamResult(new File(filename));
+            DOMSource source = new DOMSource(written);
+            try {
+                transformer.transform(source, result);
+            } catch (TransformerException e) {
+                System.err.println(ERROR_WRITE + filename);
+                return;
+            }
 
-        // Invalidate the current document
-        if (filename.equals(USER_CONFIG_FILE)) {
-            doc = null;
+            // Invalidate the current document
+            if (filename.equals(USER_CONFIG_FILE)) {
+                doc = null;
+            }
         }
     }
 
@@ -333,7 +347,7 @@ public class XConfiguration {
     }
 
     /**
-     * Get a the list of the etc dirs in modules dirs
+     * Get the list of the etc dirs in modules dirs
      * @return the lit of etc dirs
      */
     public static List<File> getEtcDir() {

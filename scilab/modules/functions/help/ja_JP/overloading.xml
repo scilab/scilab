@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="ja">
+    <refnamediv>
+        <refname>overloading</refname>
+        <refpurpose>表示,関数および演算子オーバーロード機能</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>Scilabにおいては, 変数表示, 関数および演算子は 関数(Scilabコードまたはプリミティブ)により新規オブジェクト用に
+            定義することができます.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>表示</term>
+                <listitem>
+                    <para>
+                        <literal>tlist</literal>により定義される 新規オブジェクトの表示は,
+                        オーバーロードすることができます (デフォルトの表示は<literal>list</literal>の出力に似ています).
+                        オーバーロード関数は入力引数を1つとし,出力引数を持たない必要があります.
+                        その関数の名前は,<literal>%&lt;tlist_type&gt;_p</literal>のように 作成します. ただし,
+                        <literal>%&lt;tlist_type&gt;</literal> は,
+                        <literal>tlist</literal>型の要素の最初のエントリを 最初の9文字に丸めたものを意味します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>演算子</term>
+                <listitem>
+                    <para>指定したオペランド型について定義されていない各演算子を 定義することができます.
+                        オーバーロード関数は入力引数を1つ,オペランドの数に基づき 1個または2個の入力を有する必要があります.
+                        関数名は以下のように作成されます:
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>2項演算子の場合:
+            <literal>%&lt;first_operand_type&gt;_&lt;op_code&gt;_&lt;second_operand_type&gt;</literal>
+        </para>
+        <para>単項演算子の場合:
+            <literal>%&lt;operand_type&gt;_&lt;op_code&gt;</literal>
+        </para>
+        <para>n項演算子の展開および挿入は以下のように記述されます.</para>
+        <para>
+            <literal>typename</literal>関数に登録された型のみが
+            オーバーロードマクロの中で使用できることに注意してください.
+        </para>
+        <para>
+            <literal>&lt;operand_type&gt;</literal>,
+            <literal>&lt;first_operand_type&gt;</literal>,
+            <literal>&lt;second_operand_type&gt;</literal> は, 以下のテーブルに記述された各データ型に関連する
+            文字の並びです:
+        </para>
+        <informaltable border="1">
+            <tr>
+                <td>データ型</td>
+                <td>文字コード</td>
+                <td>typeof</td>
+                <td>コメント</td>
+            </tr>
+            <tr>
+                <td>double行列</td>
+                <td>
+                    <literal>s</literal>
+                </td>
+                <td>
+                    <literal>定数</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>多項式行列</td>
+                <td>
+                    <literal>p</literal>
+                </td>
+                <td>
+                    <literal>多項式</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>論理値行列</td>
+                <td>
+                    <literal>b</literal>
+                </td>
+                <td>
+                    <literal>論理値</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>疎行列</td>
+                <td>
+                    <literal>sp</literal>
+                </td>
+                <td>
+                    <literal>疎行列</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>論理値疎行列</td>
+                <td>
+                    <literal>spb</literal>
+                </td>
+                <td>
+                    <literal>論理値疎行列</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>Matlab 疎行列</td>
+                <td>
+                    <literal>msp</literal>
+                </td>
+                <td>
+                    <literal>Matlab疎行列</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>整数行列</td>
+                <td>
+                    <literal>i</literal>
+                </td>
+                <td>
+                    <literal>int8, int16,int32, uint8, uint16, uint32</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>文字列行列</td>
+                <td>
+                    <literal>c</literal>
+                </td>
+                <td>
+                    <literal>文字列</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>ハンドル</td>
+                <td>
+                    <literal>h</literal>
+                </td>
+                <td>
+                    <literal>ハンドル</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>コンパイルされた関数</td>
+                <td>
+                    <literal>fptr</literal>
+                </td>
+                <td>
+                    <literal>fptr</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>スクリプト関数</td>
+                <td>
+                    <literal>mc</literal>
+                </td>
+                <td>
+                    <literal>関数</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>ライブラリ</td>
+                <td>
+                    <literal>l</literal>
+                </td>
+                <td>
+                    <literal>ライブラリ</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>リスト</td>
+                <td>
+                    <literal>l</literal>
+                </td>
+                <td>
+                    <literal>リスト</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>tlist</td>
+                <td>
+                    <literal>tlist型</literal>
+                </td>
+                <td>
+                    <literal>tlist型</literal>
+                </td>
+                <td>最初のtlistエントリの最初の文字列</td>
+            </tr>
+            <tr>
+                <td>mlist</td>
+                <td>
+                    <literal>mlist型</literal>
+                </td>
+                <td>
+                    <literal>mlist型</literal>
+                </td>
+                <td>最初のmlistエントリの最初の文字列</td>
+            </tr>
+            <tr>
+                <td>ハイパー行列</td>
+                <td>
+                    <literal>hm</literal>
+                </td>
+                <td>
+                    <literal>hypermat</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>ポインタ</td>
+                <td>
+                    <literal>ptr</literal>
+                </td>
+                <td>
+                    <literal>ポインタ</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>セル</td>
+                <td>
+                    <literal>ce</literal>
+                </td>
+                <td>
+                    <literal>ce</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>structure</td>
+                <td>
+                    <literal>st</literal>
+                </td>
+                <td>
+                    <literal>st</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>有理数</td>
+                <td>
+                    <literal>r</literal>
+                </td>
+                <td>
+                    <literal>有理数</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>線形状態空間</td>
+                <td>
+                    <literal>lss</literal>
+                </td>
+                <td>
+                    <literal>状態空間</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>暗黙の多項式</td>
+                <td>
+                    <literal>ip</literal>
+                </td>
+                <td>
+                    <literal>size implicit</literal>
+                </td>
+                <td>1:1:$</td>
+            </tr>
+        </informaltable>
+        <para>
+            <literal>&lt;op_code&gt;</literal> は, 以下のテーブルに記述された
+            各演算子に関連する文字です:
+        </para>
+        <informaltable border="1">
+            <tr>
+                <td>
+                    <literal>op</literal>
+                </td>
+                <td>char code</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>'</literal>
+                </td>
+                <td>t</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>+</literal>
+                </td>
+                <td>a</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>-</literal>
+                </td>
+                <td>s</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>*</literal>
+                </td>
+                <td>m</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>/</literal>
+                </td>
+                <td>r</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>\</literal>
+                </td>
+                <td>l</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>^</literal>
+                </td>
+                <td>p</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>.*</literal>
+                </td>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>./</literal>
+                </td>
+                <td>d</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>.\</literal>
+                </td>
+                <td>q</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>.*.</literal>
+                </td>
+                <td>k</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>./.</literal>
+                </td>
+                <td>y</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>.\.</literal>
+                </td>
+                <td>z</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>:</literal>
+                </td>
+                <td>b</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>*.</literal>
+                </td>
+                <td>u</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>/.</literal>
+                </td>
+                <td>v</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>\.</literal>
+                </td>
+                <td>w</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>[a,b]</literal>
+                </td>
+                <td>c</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>[a;b]</literal>
+                </td>
+                <td>f</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>() extraction</literal>
+                </td>
+                <td>e</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>() insertion</literal>
+                </td>
+                <td>i</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>==</literal>
+                </td>
+                <td>o</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>&lt;&gt;</literal>
+                </td>
+                <td>n</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>|</literal>
+                </td>
+                <td>g</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>&amp;</literal>
+                </td>
+                <td>h</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>.^</literal>
+                </td>
+                <td>j</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>.'</literal>
+                </td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>&lt;</literal>
+                </td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>&gt;</literal>
+                </td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>&lt;=</literal>
+                </td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>&gt;=</literal>
+                </td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>~</literal>
+                </td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>iext</literal>
+                </td>
+                <td>6</td>
+            </tr>
+        </informaltable>
+        <para>
+            展開構文<literal>b=a(i1,...,in)</literal>の オーバーロード関数は,
+            以下のような呼び出し手順となります:
+            <literal>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal>
+        </para>
+        <para>
+            そして,構文 <literal>[x1,..,xm]=a(i1,...,in)</literal> は
+            以下のような呼び出し手順となります:
+            <literal>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal>
+        </para>
+        <para>
+            挿入構文に関するオーバーロード関数 <literal>a(i1,...,in)=b</literal>
+            は以下のような呼び出し手順となります:
+            <literal>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</literal>.
+        </para>
+        <para>
+            文字コード<literal>6</literal> を
+            <literal>x.b(2)=33</literal>のような複雑な挿入アルゴリズム で使用することができます.
+            ただし,<literal>b</literal>フィールドは構造体<literal>x</literal>で 定義されません.
+            挿入は自動的に<literal>temp=x.b;</literal> <literal>temp(2)=33;</literal>
+            <literal>x.b=temp</literal>に分解されます. 文字コード<literal>6</literal>
+            がこのアルゴリズムの最初の手順で 使用されます.オーバーロード関数<literal>6</literal> は,
+            <literal>e</literal>のものに非常によく似ています.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>関数 :</term>
+                <listitem>
+                    <para>いくつかの基本プリミティブ関数</para>
+                    <para>新規データ型に関してオーバーロードができます. 特定のデータ型に関してこのような関数が未定義の場合,
+                        関数<literal>%&lt;type_of_an_argument&gt;_&lt;function_name&gt;</literal>
+                        がコールされます. ユーザはこのコールされた関数に入力データ型に関する 定義を追加することができます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+    </refsection>
+    <refsection>
+        <programlisting role="example">//表示
+            function [] = %tab_p(l)
+            disp([[' '; l(3)] [l(2); string(l(4))]])
+            endfunction
+            
+            tlist('tab', ['a', 'b'], ['x'; 'y'], rand(2, 2))
+        </programlisting>
+    </refsection>
+    <refsection>
+        <programlisting role="example">//演算子
+            function x = %c_a_s(a, b)
+            x = a + string(b);
+            endfunction
+            
+            's' + 1
+        </programlisting>
+    </refsection>
+    <refsection>
+        <programlisting role="example">//関数
+            function x = %c_sin(a)
+            x = 'sin(' + a + ')'
+            endfunction
+            
+            sin('2 * x')
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="disp">disp</link>
+            </member>
+            <member>
+                <link linkend="symbols">symbols</link>
+            </member>
+            <member>
+                <link linkend="typeof">typeof</link>
+            </member>
+            <member>
+                <link linkend="type">type</link>
+            </member>
+            <member>
+                <link linkend="typename">type</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="Matplot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="Matplot">
     <refnamediv>
         <refname>Matplot</refname>
         <refpurpose>行列のカラー二次元プロット</refpurpose>
@@ -290,7 +290,9 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>Matplot();</scilab:image>
+        <scilab:image>
+            Matplot([1 2 3;4 5 6])
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

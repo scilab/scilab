@@ -7,21 +7,21 @@
 
 function demo_wheel1()
 
-  thispath = get_absolute_file_path("wheel1.dem.sce");
+    thispath = get_absolute_file_path("wheel1.dem.sce");
 
-  my_handle = scf(100001);
-  clf(my_handle,"reset");
+    my_handle = scf(100001);
+    clf(my_handle,"reset");
 
-  // A precomputed value for
-  // x0=[0;%pi/2+0.1;0;5.0;0.0;4.0;0;0];
+    // A precomputed value for
+    // x0=[0;%pi/2+0.1;0;5.0;0.0;4.0;0;0];
 
-  exec(thispath+"wheel_show.sci");
-  x = read(thispath+"x.wrt",8,301);
+    exec(thispath+"wheel_show.sci");
+    x = read(thispath+"x.wrt",8,301);
 
-  wheelg = wheelgs;
-  wheel_show(x);
+    wheelg = wheelgs;
+    wheel_show(x);
 
-endfunction 
+endfunction
 
 demo_wheel1();
 clear demo_wheel1;

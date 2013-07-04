@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -22,76 +22,12 @@
     <Filter Include="Libraries Dependencies\Imports">
       <UniqueIdentifier>{797cad15-667e-45f1-93a8-a1d93f52adbc}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\c\ripole\bt-int.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\ripole\bytedecoders.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\DllmainSpreadsheet.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_spreadsheet.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\ripole\logger.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\ripole\ole.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\ripole\olestream-unwrap.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\ripole\pldstr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\ripole\ripole.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_xls_open.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_xls_read.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\xls.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\c\ripole\bt-int.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\ripole\bytedecoders.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\dynlib_spreadsheet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\gw_spreadsheet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\ripole\logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\ripole\ole.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\ripole\olestream-unwrap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\ripole\pldstr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\ripole\ripole.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\xls.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <Filter Include="Header Files\ripole">
+      <UniqueIdentifier>{a9229e67-395b-400e-b702-4a6b69e2440b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ripole">
+      <UniqueIdentifier>{2af5f1e8-4cbe-4e42-a17d-4810d04ee086}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\spreadsheet.rc">
@@ -108,5 +44,165 @@
     <None Include="locales\spreadsheet.pot">
       <Filter>localization</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\dynlib_spreadsheet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\gw_spreadsheet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sci_gateway\c\gw_csv_helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\checkCsvWriteFormat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\csv_complex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\csv_strsubst.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\csvDefault.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\csvIsnum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\csvRead.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\csvWrite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\getRange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\splitLine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\stringToComplex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\utftolatin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\xls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\ripole\bt-int.h">
+      <Filter>Header Files\ripole</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\ripole\bytedecoders.h">
+      <Filter>Header Files\ripole</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\ripole\logger.h">
+      <Filter>Header Files\ripole</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\ripole\ole.h">
+      <Filter>Header Files\ripole</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\ripole\olestream-unwrap.h">
+      <Filter>Header Files\ripole</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\ripole\pldstr.h">
+      <Filter>Header Files\ripole</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\ripole\ripole.h">
+      <Filter>Header Files\ripole</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sci_gateway\c\gw_csv_helpers.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\gw_spreadsheet.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_csvDefault.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_csvIsnum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_csvRead.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_csvStringToDouble.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_csvTextScan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_csvWrite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xls_open.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xls_read.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\checkCsvWriteFormat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\csv_complex.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\csv_strsubst.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\csvDefault.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\csvIsnum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\csvRead.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\csvWrite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\DllmainSpreadsheet.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getRange.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\splitLine.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\stringToComplex.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\utftolatin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\xls.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\ripole\bt-int.c">
+      <Filter>Source Files\ripole</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\ripole\bytedecoders.c">
+      <Filter>Source Files\ripole</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\ripole\logger.c">
+      <Filter>Source Files\ripole</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\ripole\ole.c">
+      <Filter>Source Files\ripole</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\ripole\olestream-unwrap.c">
+      <Filter>Source Files\ripole</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\ripole\pldstr.c">
+      <Filter>Source Files\ripole</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\ripole\ripole.c">
+      <Filter>Source Files\ripole</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

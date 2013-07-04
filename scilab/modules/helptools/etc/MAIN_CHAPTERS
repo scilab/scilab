@@ -16,8 +16,8 @@ umfpack
 optimization
 genetic_algorithms
 simulated_annealing
-symbolic
 xml
+hdf5
 fileio
 io
 graphics

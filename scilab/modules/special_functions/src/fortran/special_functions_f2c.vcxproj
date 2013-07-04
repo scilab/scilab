@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -252,10 +252,6 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_calerf.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dlgamma.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_gamma.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lgamma.c" />
     <ClCompile Include="dbesig.c" />
     <ClCompile Include="dbesjg.c" />
     <ClCompile Include="dbeskg.c" />
@@ -266,10 +262,6 @@ cd ..
     <ClCompile Include="zbesyg.c" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_calerf.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dlgamma.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_gamma.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lgamma.f" />
     <f2c_rule Include="dbesig.f" />
     <f2c_rule Include="dbesjg.f" />
     <f2c_rule Include="dbeskg.f" />

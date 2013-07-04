@@ -29,6 +29,7 @@ import org.scilab.modules.localization.Messages;
  * Class ScilabVariableEditor
  * Implements a ScilabWindow containing Variable Editor (JTable)
  */
+@SuppressWarnings(value = { "serial" })
 public final class ScilabVariableEditor extends SwingScilabWindow implements VariableEditor {
 
     private static Map<String, Component> map = new HashMap();
@@ -70,6 +71,15 @@ public final class ScilabVariableEditor extends SwingScilabWindow implements Var
 
     /**
      * Close the edition of the variable
+     */
+    public static void closeEditVar() {
+        if (instance != null) {
+            instance.close();
+        }
+    }
+
+    /**
+     * Close the edition of the variable
      * @param name the variable
      */
     public static void close(String name) {
@@ -99,7 +109,7 @@ public final class ScilabVariableEditor extends SwingScilabWindow implements Var
      */
     public void updateData(String name, String type, Object[][] data, double[] rowsIndex, double[] colsIndex) {
         if (map.containsKey(name)) {
-            ((SwingScilabVariableEditor) editorTab).updateData(map.get(name), name, type, data, rowsIndex, colsIndex);
+            editorTab.updateData(map.get(name), name, type, data, rowsIndex, colsIndex);
         }
     }
 
@@ -120,15 +130,23 @@ public final class ScilabVariableEditor extends SwingScilabWindow implements Var
      */
     public static ScilabVariableEditor getVariableEditor(final String type, final Object[][] data, final String variableName) {
         if (instance == null) {
-            instance = new ScilabVariableEditor(type, data, variableName);
-            instance.setVisible(true);
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    public void run() {
+                        instance = new ScilabVariableEditor(type, data, variableName);
+                        instance.setVisible(true);
+                    }
+                });
+            } catch (Exception e) {
+                System.err.println(e);
+            }
         } else {
-            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, editorTab);
-            window.setVisible(true);
-            window.toFront();
-            final JTable table = ((SwingScilabVariableEditor) editorTab).getCurrentTable();
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
+                    SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, editorTab);
+                    window.setVisible(true);
+                    window.toFront();
+                    final JTable table = editorTab.getCurrentTable();
                     int r = -1;
                     int c = -1;
 
@@ -193,8 +211,9 @@ public final class ScilabVariableEditor extends SwingScilabWindow implements Var
      * OS X "Quit Scilab" menu is called. It is the only case where this method
      * should be used
      */
-    public void macosxQuit() {
+    public boolean macosxQuit() {
         InterpreterManagement.requestScilabExec("exit()");
+        return false;
     }
 
     /**

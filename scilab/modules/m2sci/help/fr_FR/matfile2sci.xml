@@ -10,72 +10,72 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="matfile2sci">
-  <refnamediv>
-    <refname>matfile2sci</refname>
-    <refpurpose> convertit un fichier  Matlab .mat  en un fichier binaire Scilab</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>matfile2sci(mat_file_path,sci_file_path)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Paramètres</title>
-    <variablelist>
-      <varlistentry>
-        <term>mat_file_path</term>
-        <listitem>
-          <para>Chaîne de caractères contenant le chemin du fichier d'entrée 
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>sci_file_path </term>
-        <listitem>
-          <para> Chaîne de caractères contenant le chemin du fichier résultant
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      convertit un fichier  Matlab .mat en un fichier SOD compatible
-      avec la fonction <literal>load</literal> (Voir <link linkend="save">save</link> pour plus d'information). Les types de données Matlab
-      sont convertis en leur équivalent Scilab.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="loadmatfile">loadmatfile</link>
-      </member>
-      <member>
-        <link linkend="load">load</link>
-      </member>
-      <member>
-        <link linkend="save">save</link>
-      </member>
-      <member>
-        <link linkend="mfile2sci">mfile2sci</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Bibliographie</title>
-    <para>Cette fonction a été développée en suivant le document "MAT-File Format" :
-      <ulink url="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"> matfile_format.pdf</ulink>
-    </para>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>Le ficher de sortie Scilab est un fichier SOD (Scilab Open Data).</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="matfile2sci">
+    <refnamediv>
+        <refname>matfile2sci</refname>
+        <refpurpose>convertit un fichier  Matlab .mat  en un fichier binaire Scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>matfile2sci(mat_file_path,sci_file_path)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>mat_file_path</term>
+                <listitem>
+                    <para>Chaîne de caractères contenant le chemin du fichier d'entrée 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sci_file_path </term>
+                <listitem>
+                    <para> Chaîne de caractères contenant le chemin du fichier résultant
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            convertit un fichier  Matlab .mat en un fichier SOD compatible
+            avec la fonction <literal>load</literal> (Voir <link linkend="save">save</link> pour plus d'information). Les types de données Matlab
+            sont convertis en leur équivalent Scilab.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="loadmatfile">loadmatfile</link>
+            </member>
+            <member>
+                <link linkend="load">load</link>
+            </member>
+            <member>
+                <link linkend="save">save</link>
+            </member>
+            <member>
+                <link linkend="mfile2sci">mfile2sci</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliographie</title>
+        <para>Cette fonction a été développée en suivant le document "MAT-File Format" :
+            <ulink url="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"> matfile_format.pdf</ulink>
+        </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Le ficher de sortie Scilab est un fichier SOD (Scilab Open Data).</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

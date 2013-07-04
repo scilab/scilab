@@ -66,7 +66,7 @@ public class LegendDrawer {
     /**
      * Set of properties that affect the legend sprite
      */
-    private static final Set<String> SPRITE_PROPERTIES = new HashSet<String>(Arrays.asList(
+    private static final Set<Integer> SPRITE_PROPERTIES = new HashSet<Integer>(Arrays.asList(
                 GraphicObjectProperties.__GO_FONT_SIZE__,
                 GraphicObjectProperties.__GO_FONT_COLOR__,
                 GraphicObjectProperties.__GO_FONT_STYLE__,
@@ -540,16 +540,17 @@ public class LegendDrawer {
                  * To do: adjust arrow size to correct this.
                  */
                 visitor.getArrowDrawer().drawArrows(polyline.getParentAxes(), barVertices, rectangleOutlineIndices,
-                                                    polyline.getArrowSizeFactor(), lineThickness, lineColor);
+                                                    polyline.getArrowSizeFactor(), lineThickness, lineColor, false);
             } else {
                 visitor.getArrowDrawer().drawArrows(polyline.getParentAxes(), lineVertices, lineIndices,
-                                                    polyline.getArrowSizeFactor(), lineThickness, lineColor);
+                                                    polyline.getArrowSizeFactor(), lineThickness, lineColor, false);
             }
         }
 
         if (polyline.getMarkMode()) {
-            Texture markTexture = markManager.getMarkSprite(polyline, colorMap);
-
+            Appearance lineAppearance = new Appearance();
+            lineAppearance.setLineWidth((float) lineThickness);
+            Texture markTexture = markManager.getMarkSprite(polyline, colorMap, lineAppearance);
             if (barDrawn) {
                 drawingTools.draw(markTexture, AnchorPosition.CENTER, barVertices);
             } else {
@@ -564,7 +565,7 @@ public class LegendDrawer {
      * @param id the legend id.
      * @param property the property to update.
      */
-    public void update(String id, String property) {
+    public void update(String id, int property) {
         if (textureMap.containsKey(id)) {
             if (SPRITE_PROPERTIES.contains(property)) {
                 dispose(id);

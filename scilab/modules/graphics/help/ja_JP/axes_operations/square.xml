@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="square">
+    <refnamediv>
+        <refname>square</refname>
+        <refpurpose>等軸プロットのスケールを設定 (ウインドウの大きさを変更)  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>square(xmin,ymin,xmax,ymax)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>xmin,xmax,ymin,ymax</term>
+                <listitem>
+                    <para>実数値</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>square</literal>は, xおよびy軸に等軸スケールを適用する際に
+            使用されます.
+            指定された値 <literal>xmin, xmax, ymin, ymax</literal> は
+            グラフィックフレームの境界で, <literal>square</literal> は
+            等軸プロットとなるようにグラフィックウインドウの次元を変更します.
+            <literal>square</literal> はカレントのグラフィックスケールを設定し,
+            カレントのグラフィックスケールを指定する
+            グラフィックルーチン
+            (例えば, <literal>plot2d</literal>の<literal>fstrf="x0z"</literal>)
+            と組み合わせて使用することができます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+t=[0:0.1:2*%pi]';
+plot2d(sin(t),cos(t))
+clf()
+square(-1,-1,1,1)
+plot2d(sin(t),cos(t))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="isoview">isoview</link>
+            </member>
+            <member>
+                <link linkend="xsetech">xsetech</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -7,7 +7,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 5444 -->
 //
@@ -17,7 +17,7 @@
 // <-- Short Description -->
 // Error report on superblock diagram is not supported.
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5444.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5444.zcos");
 
 // start simulation
 // After the first error message, check that superblock is highlighted and in the new window, MUX and DEMUX blocks are highlighted too.

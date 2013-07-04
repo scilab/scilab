@@ -24,7 +24,7 @@ import org.scilab.modules.scinotes.utils.SearchFile;
 
 /**
  * Class to create SciNotes instances
- * 
+ *
  * @author Calixte DENIZET
  */
 public class SearchInFilesTab {
@@ -45,41 +45,41 @@ public class SearchInFilesTab {
         }
 
         ClosingOperationsManager.registerClosingOperation((SwingScilabTab) sf,
-                new ClosingOperationsManager.ClosingOperation() {
+        new ClosingOperationsManager.ClosingOperation() {
 
-                    @Override
-                    public int canClose() {
-                        return 1;
-                    }
+            @Override
+            public int canClose() {
+                return 1;
+            }
 
-                    @Override
-                    public void destroy() {
-                        sf.closeSearchInFiles();
-                    }
+            @Override
+            public void destroy() {
+                sf.closeSearchInFiles();
+            }
 
-                    @Override
-                    public String askForClosing(final List<SwingScilabTab> list) {
-                        return null;
-                    }
+            @Override
+            public String askForClosing(final List<SwingScilabTab> list) {
+                return null;
+            }
 
-                    @Override
-                    public void updateDependencies(List<SwingScilabTab> list,
-                            ListIterator<SwingScilabTab> it) {
-                    }
-                });
+            @Override
+            public void updateDependencies(List<SwingScilabTab> list,
+            ListIterator<SwingScilabTab> it) {
+            }
+        });
 
         WindowsConfigurationManager.registerEndedRestoration(
-                (SwingScilabTab) sf,
-                new WindowsConfigurationManager.EndedRestoration() {
+            (SwingScilabTab) sf,
+        new WindowsConfigurationManager.EndedRestoration() {
 
-                    @Override
-                    public void finish() {
-                        sf.changeToolBar();
-                    }
-                });
+            @Override
+            public void finish() {
+                sf.changeToolBar();
+            }
+        });
 
         ClosingOperationsManager.addDependency((SwingScilabTab) editor,
-                (SwingScilabTab) sf);
+                                               (SwingScilabTab) sf);
 
         return sf;
     }

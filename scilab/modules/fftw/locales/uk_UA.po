@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-27 05:02+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-18 04:42+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: uk\n"
 
 #, c-format
@@ -29,16 +29,20 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
-"«%s».\n"
+msgid "%s: Cannot allocate more memory.\n"
+msgstr "%s: не вдалося виділити більше пам’яті.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати %d або "
 "%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"з набору {%s}.\n"
 
 #, c-format
 msgid ""
@@ -48,38 +52,8 @@ msgstr ""
 "рухомою комою.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"дійсне число.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d: An integer or a floating point number "
-"expected.\n"
-msgstr ""
-"%s: помилковий тип параметра №%d: мало бути використано ціле число або число "
-"з рухомою комою.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
-
-#, c-format
-msgid "%s: Cannot allocate more memory.\n"
-msgstr "%s: не вдалося виділити більше пам’яті.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d: An array of floating point or integer "
-"numbers expected.\n"
-msgstr ""
-"%s: помилковий тип параметра №%d: мало бути використано масив з чисел з "
-"рухомою комою або цілих чисел.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
@@ -144,8 +118,27 @@ msgid "%s: Incompatible input arguments #%d and #%d.\n"
 msgstr "%s: вхідні параметри №%d і №%d несумісні.\n"
 
 #, c-format
+msgid "%s: Creation of requested fftw plan failed.\n"
+msgstr "%s: спроба створення потрібного плану fftw зазнала невдачі.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int32 expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано тип int32.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
@@ -169,6 +162,32 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати коректне "
 "значення wisdom.\n"
 
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"дійсне число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: An integer or a floating point number "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: мало бути використано ціле число або число "
+"з рухомою комою.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: An array of floating point or integer "
+"numbers expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: мало бути використано масив з чисел з "
+"рухомою комою або цілих чисел.\n"
+
 msgid "Scilab FFTW module not installed.\n"
 msgstr "Модуль FFTW Scilab не встановлено.\n"
 
@@ -184,6 +203,6 @@ msgstr ""
 "Scilab типово використовуватиме стандартну функцію швидкого перетворення "
 "Фур’є, доки не буде встановлено цю бібліотеку."
 
-msgid "See help fftw for more informations."
+msgid "See help fftw for more information."
 msgstr ""
 "Докладнішу інформацію можна отримати за допомогою команди «help fftw»."

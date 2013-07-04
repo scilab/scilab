@@ -18,55 +18,76 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void gainblk_i16s(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void gainblk_i16s(scicos_block *block, int flag)
 {
- if ((flag==1)|(flag==6)){
-  int i = 0,j = 0,l = 0,ji = 0,jl = 0,il = 0;
-  short *u = NULL,*y = NULL;
-  int mu = 0,ny = 0,my = 0,mo = 0,no = 0;
-  short *opar = NULL;
-  double k = 0.,D = 0.,C = 0.;
+    if ((flag == 1) | (flag == 6))
+    {
+        int i = 0, j = 0, l = 0, ji = 0, jl = 0, il = 0;
+        short *u = NULL, *y = NULL;
+        int mu = 0, ny = 0, my = 0, mo = 0, no = 0;
+        short *opar = NULL;
+        double k = 0., D = 0., C = 0.;
 
-  mo=GetOparSize(block,1,1);
-  no=GetOparSize(block,1,2);
-  mu=GetInPortRows(block,1);
-  my=GetOutPortRows(block,1);
-  ny=GetOutPortCols(block,1);
-  u=Getint16InPortPtrs(block,1);
-  y=Getint16OutPortPtrs(block,1);
-  opar=Getint16OparPtrs(block,1);
+        mo = GetOparSize(block, 1, 1);
+        no = GetOparSize(block, 1, 2);
+        mu = GetInPortRows(block, 1);
+        my = GetOutPortRows(block, 1);
+        ny = GetOutPortCols(block, 1);
+        u = Getint16InPortPtrs(block, 1);
+        y = Getint16OutPortPtrs(block, 1);
+        opar = Getint16OparPtrs(block, 1);
 
-  k=pow(2,16)/2;
-  if (mo*no==1){
-    for (i=0;i<ny*mu;++i){
-     D=(double)(opar[0])*(double)(u[i]);
-     if (D>=k)  D=k-1;
-     else if (D<-k) D=-k;
-     y[i]=(short)D;
+        k = pow(2, 16) / 2;
+        if (mo*no == 1)
+        {
+            for (i = 0; i < ny * mu; ++i)
+            {
+                D = (double)(opar[0]) * (double)(u[i]);
+                if (D >= k)
+                {
+                    D = k - 1;
+                }
+                else if (D < -k)
+                {
+                    D = -k;
+                }
+                y[i] = (short)D;
+            }
+        }
+        else
+        {
+            for (l = 0; l < ny; l++)
+            {
+                for (j = 0; j < my; j++)
+                {
+                    D = 0;
+                    jl = j + l * my;
+                    for (i = 0; i < mu; i++)
+                    {
+                        ji = j + i * my;
+
+                        il = i + l * mu;
+                        C = (double)(opar[ji]) * (double)(u[il]);
+                        D = D + C;
+                    }
+                    if (D >= k)
+                    {
+                        D = k - 1;
+                    }
+                    else if (D < -k)
+                    {
+                        D = -k;
+                    }
+                    y[jl] = (short)D;
+                }
+            }
+        }
     }
-  }else{
-     for (l=0;l<ny;l++)
-	 {for (j=0;j<my;j++)
-	      {D=0;
-	       jl=j+l*my;
-	       for (i=0;i<mu;i++)
-		   {ji=j+i*my;
-		    
-		    il=i+l*mu;
-		    C=(double)(opar[ji])*(double)(u[il]);
-		    D=D + C;}
-		    if (D>=k)  D=k-1;
-		    else if (D<-k) D=-k;
-		    y[jl]=(short)D;
-		  }
-	     }
-  }
- }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

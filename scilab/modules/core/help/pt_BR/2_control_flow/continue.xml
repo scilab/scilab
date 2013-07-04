@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="continue" xml:lang="en">
+    <refnamediv>
+        <refname>continue</refname>
+        <refpurpose>Palavra-chave para passar o controle para a próxima iteração
+            de um laço ("loop") (significa "continuar")
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Dentro de um laço <literal>for</literal> ou
+            <literal>while</literal>, o comando <literal>continue</literal> passa o
+            contole para a próxima iteração do laço no qual aparece, pulando quaisquer
+            sentenças restantes entre esta instrução e a instrução
+            <literal>end</literal> do laço.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
+for k=1:10,K=k;if k&gt;2&amp;k&lt;=8 then continue,disp('hello'),end,k,end
+
+for j=1:2
+  x=[];
+  for k=1:10,if k&gt;j+1&amp;k&lt;=8 then continue,end,x=[x,k];end
+  x
+end
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title> Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="while">while</link>
+            </member>
+            <member>
+                <link linkend="for">for</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="return">return</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Autor </title>
+        <para>Serge Steer, INRIA</para>
+    </refsection>
+</refentry>

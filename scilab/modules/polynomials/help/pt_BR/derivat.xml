@@ -10,37 +10,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="derivat" xml:lang="en">
-  <refnamediv>
-    <refname>derivat</refname>
-    <refpurpose>derivada de matriz de razões de polinômios</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title> Seqüência de Chamamento </title>
-    <synopsis>pd=derivat(p)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>p</term>
-        <listitem>
-          <para>matriz de polinômios ou de razões de polinômios</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>Computa a derivada da matriz de polinômios ou de funções racionais
-      em relação à variável livre.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="derivat" xml:lang="en">
+    <refnamediv>
+        <refname>derivat</refname>
+        <refpurpose>derivada de matriz de razões de polinômios</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title> Seqüência de Chamamento </title>
+        <synopsis>pd=derivat(p)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>matriz de polinômios ou de razões de polinômios</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Computa a derivada da matriz de polinômios ou de funções racionais
+            em relação à variável livre.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 derivat(1/s)  // -1/s^2;
  ]]></programlisting>
-  </refsection>
+        <programlisting role="example"><![CDATA[
+p1 = poly([1 -2 1], 'x', 'coeff')
+derivat(p1)
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+p2 = poly([1 -4 2], 'y', 'coeff')
+derivat(p2)
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+p3 = poly(ones(1, 10), 'z', 'coeff')
+derivat(p3)
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+p4 = poly([-1 1], 't', 'roots')
+derivat(p4)
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+s = %s; p5 = s^{-1} + 2 + 3*s
+derivat(p5)
+ ]]></programlisting>
+    </refsection>
 </refentry>

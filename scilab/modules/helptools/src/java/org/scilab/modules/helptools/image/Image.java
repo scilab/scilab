@@ -17,20 +17,20 @@ import javax.swing.Icon;
 public class Image {
 
     public Icon icon;
-    
+
     public int width;
-    
+
     public int height;
-    
+
     public int ascent;
 
     public int descent;
 
     public Image(Icon icon, int width, int height, int ascent, int descent) {
-	this.icon = icon;
-	this.width = width;
-	this.height = height;
-	this.ascent = ascent;
-	this.descent = descent;
+        this.icon = icon;
+        this.width = width;
+        this.height = height;
+        this.ascent = ascent;
+        this.descent = descent;
     }
 }

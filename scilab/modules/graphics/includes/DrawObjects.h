@@ -26,12 +26,12 @@
 
 #include "dynlib_graphics.h"
 
-GRAPHICS_IMPEXP void sciGetDisplayedBounds( char * pSubWinUID,
-                                   double      * xmin   ,
-                                   double      * xmax   ,
-                                   double      * ymin   ,
-                                   double      * ymax   ,
-                                   double      * zmin   ,
-                                   double      * zmax    ) ;
+GRAPHICS_IMPEXP void sciGetDisplayedBounds(char * pSubWinUID,
+        double      * xmin   ,
+        double      * xmax   ,
+        double      * ymin   ,
+        double      * ymax   ,
+        double      * zmin   ,
+        double      * zmax);
 
 #endif /* __SCI_DRAWINGS__ */

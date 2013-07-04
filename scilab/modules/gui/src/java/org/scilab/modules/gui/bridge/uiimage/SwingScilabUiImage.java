@@ -254,7 +254,7 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
     }
 
     /**
-     * Updathe the image with new values
+     * Update the image with new values
      */
     private void updateImage() {
         if (img != null && img.getHeight(this) >= 0 && img.getWidth(this) >= 0) {
@@ -291,7 +291,7 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
      * @param property property name
      * @param value property value
      */
-    public void update(String property, Object value) {
+    public void update(int property, Object value) {
         SwingViewWidget.update(this, property, value);
     }
 }

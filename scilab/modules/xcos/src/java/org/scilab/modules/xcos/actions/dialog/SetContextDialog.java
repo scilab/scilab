@@ -39,6 +39,8 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -52,11 +54,13 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
 // CSOFF: MagicNumber
+@SuppressWarnings(value = { "serial" })
 public class SetContextDialog extends JDialog {
     private static final Dimension PREFERRED_SIZE = new Dimension(480, 320);
     private static final String SHARED_NEW_LINE = "\n";
 
     private final ScicosParameters parameters;
+    private final XcosDiagram rootGraph;
 
     private JTextArea contextArea;
 
@@ -68,7 +72,7 @@ public class SetContextDialog extends JDialog {
      * @param parameters
      *            the Scicos parameters
      */
-    public SetContextDialog(Component parent, ScicosParameters parameters) {
+    public SetContextDialog(Component parent, XcosDiagram graph, ScicosParameters parameters) {
         this.parameters = parameters;
 
         ImageIcon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
@@ -78,7 +82,9 @@ public class SetContextDialog extends JDialog {
         setTitle(XcosMessages.SET_CONTEXT);
         setModal(true);
         setLocationRelativeTo(parent);
+        rootGraph = graph;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        ScilabSwingUtilities.closeOnEscape(this);
 
         initComponents();
     }
@@ -192,6 +198,14 @@ public class SetContextDialog extends JDialog {
                     dispose();
                 } catch (PropertyVetoException e2) {
                     Logger.getLogger(SetContextAction.class.getName()).severe(e2.toString());
+                }
+
+                /*
+                 * if superblock is concerned, then regenerate child diagram.
+                 */
+                if (rootGraph instanceof SuperBlockDiagram) {
+                    SuperBlockDiagram superBlockDiagram = (SuperBlockDiagram) rootGraph;
+                    superBlockDiagram.getContainer().invalidateRpar();
                 }
             }
         });

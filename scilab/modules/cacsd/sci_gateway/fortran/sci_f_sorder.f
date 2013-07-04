@@ -428,9 +428,9 @@ C
          IP =IP +1
       END IF 
 C
-C Determine the lenghts of working arrays.
+C Determine the lengths of working arrays.
 C The quasi-optimal value for LDWORK (assumed block-size 64) is possibly
-C modified, so that the sum of the lenghts of DWORK and other needed
+C modified, so that the sum of the lengths of DWORK and other needed
 C arrays does not exceed the cache size. Specifically, the default value
 C for LDWORK is computed using the formulas
 C           nr = 2*( m + l )*s

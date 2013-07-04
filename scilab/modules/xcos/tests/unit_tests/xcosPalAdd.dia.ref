@@ -2,11 +2,10 @@
 // Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
 //
 // This file is distributed under the same license as the Scilab package.
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // White-box test for the xcosPalAdd macro.
-loadXcosLibs();
 prot = funcprot();
 funcprot(0);
 // stub methods (white box)
@@ -27,13 +26,7 @@ pal = xcosPal();
 pal = xcosPalAddBlock(pal, "SUM_f");
 pal = xcosPalAddBlock(pal, "BIGSOM_f");
 if ~xcosPalAdd(pal) then bugmes();quit;end
- 
- export to TMPDIR/palette.sod   
 if ~xcosPalAdd(pal, "my Summation blocks") then bugmes();quit;end
- 
- export to TMPDIR/palette.sod   
 if ~xcosPalAdd(pal, ["Customs" "my Summation blocks"]) then bugmes();quit;end
- 
- export to TMPDIR/palette.sod   
 export_to_hdf5(TMPDIR + "/palette.sod", "pal");
 if ~xcosPalAdd(TMPDIR + "/palette.sod") then bugmes();quit;end

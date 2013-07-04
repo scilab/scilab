@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="comma">
+    <refnamediv>
+        <refname>comma</refname>
+        <refpurpose>(,) virgule, séparateur d'instructions ou d'arguments  </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Les virgules sont utilisées pour séparer les paramètres dans les appels de fonctions, pour séparer les termes des vecteurs/matrices lignes ou pour spécifier une concaténation de colonnes.
+        </para>
+        <para>
+            Pour les vecteurs lignes et pour la concaténation de colonnes les espaces peuvent remplacer les virgules, mais il est préférable d'utiliser des virgules.
+        </para>
+        <para>
+            Les virgules peuvent aussi être utilisées pour séparer des instructions Scilab.
+            (on utilise  <literal>;</literal> pour que le résultat des expressions ne soit pas affiché).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+a=[1,2,3;4,5,6];
+b=1,c=1;d=2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="semicolon">semicolon</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

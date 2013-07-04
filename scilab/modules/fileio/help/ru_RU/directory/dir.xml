@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="dir">
+    <refnamediv>
+        <refname>dir</refname>
+        <refpurpose>получает список файлов</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>dir path
+            S=dir([path])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>
+                        строковая матрица, указывающая путь до директории (обычно
+                        заканчивающаяся маской <literal>*</literal>). Значение по
+                        умолчанию <literal>.</literal> (точка).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>
+                        типизированный список <literal>tlist</literal> типа
+                        <literal>dir</literal> с полями:
+                        <literal>name</literal>, <literal>date</literal>, <literal>bytes</literal> и <literal>isdir</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <function>dir</function> может использоваться для получения
+            файлов, которые соответствуют шаблонам, указанным аргументом 
+            <varname>path</varname>. Шаблоны указываются для команды Unix
+            <command>ls</command> либо для команды Windows
+            <command>dir</command> для того, чтобы получить информацию о
+            файлах. Таким образом, чтобы написать переносимый Scilab-сценарий,
+            требуется указать шаблоны для обеих ОС. Заметьте, что
+            выполняется преобразование имени пути, например,
+            <literal>SCI/modules/core/macros/*.sci</literal> является
+            корректным шаблоном как для Unix, так и для Windows.
+        </para>
+        <para>
+            Поле <literal>name</literal> возвращаемой переменной является
+            вектор-столбцом имён файлов.
+        </para>
+        <para>
+            Поле <literal>date</literal> возвращаемой переменной является вектор-столбцом
+            целых чисел, содержащих дату последней модификации, кодированную
+            в секундах от 1 Янв 1970.
+        </para>
+        <para>
+            Поле <literal>bytes</literal> возвращаемой переменной является вектор-столбцом
+            целых чисел, содержащих размер файлов в байтах.
+        </para>
+        <para>
+            Поле <literal>isdir</literal> возвращаемой переменной является вектор-столбцом
+            логического значения ИСТИНА, если соответствующее имя расположено в директории.
+        </para>
+        <para>
+            Возвращаемая структура по умолчанию отображается в виде списка файлов,
+            форматированного в виде столбца. Это можно изменить,
+            переопределив функцию <function>%dir_p</function>.
+        </para>
+        <para>
+            Начиная с Scilab 5.3.1, завершение "/" или "\" (см. <link
+      linkend="filesep">filesep</link>) отображается для каждой директории.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+dir
+dir SCI/modules/core/macros/*.bin
+x=dir('SCI/modules/core/macros/*.bin')
+dt=getdate(x.date);
+mprintf("%s: %04d-%02d-%02d %02d:%02d:%02d\n",x.name,dt(:,[1 2 6 7:9]))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="listfiles">listfiles</link>
+            </member>
+            <member>
+                <link linkend="findfiles">findfiles</link>
+            </member>
+            <member>
+                <link linkend="ls">ls</link>
+            </member>
+            <member>
+                <link linkend="fileinfo">fileinfo</link>
+            </member>
+            <member>
+                <link linkend="date">date</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

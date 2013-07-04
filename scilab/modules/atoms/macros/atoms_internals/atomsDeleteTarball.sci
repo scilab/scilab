@@ -61,7 +61,7 @@ function remList = atomsDeleteTarball(package,section,version)
         if size(version(1,:),"*") > 1 then
             error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDeleteTarball",3));
         end
-    // If no 3rd argument is provided, 2nd argument is the version, section by default set to "all"
+        // If no 3rd argument is provided, 2nd argument is the version, section by default set to "all"
     else
         version = section;
         section = "all";
@@ -72,13 +72,13 @@ function remList = atomsDeleteTarball(package,section,version)
 
     //Getting the list of archives kept
     if section=="user" then
-        path = [atomsPath("install","user")+'archives/'];
+        path = [atomsPath("install","user")+"archives/"];
         tarballs = ls(path);
     elseif section=="allusers"
-        path = [atomsPath("install","allusers")+'archives/'];
+        path = [atomsPath("install","allusers")+"archives/"];
         tarballs = ls(path);
     else
-        path = [atomsPath("install","user")+'archives/',atomsPath("install","allusers")+'archives/'];
+        path = [atomsPath("install","user")+"archives/",atomsPath("install","allusers")+"archives/"];
         tarballs=[ls(path(1));ls(path(2))];
     end
 
@@ -88,7 +88,7 @@ function remList = atomsDeleteTarball(package,section,version)
 
     //Deleting archives matching name and version of the module
     for i=1:nc
-        ok = grep(tarballs(selected_package(i)),'_'+version+'.');
+        ok = grep(tarballs(selected_package(i)),"_"+version+".");
         if ok==1 then
             if section=="user" | section=="allusers" then
                 if isfile(path+tarballs(selected_package(i))) then

@@ -10,67 +10,69 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pencan">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="pencan">
     <refnamediv>
         <refname>pencan</refname>
-        <refpurpose> canonical form of matrix pencil</refpurpose>
+        <refpurpose>行列ペンシルの正準形</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[Q,M,i1]=pencan(Fs)
             [Q,M,i1]=pencan(E,A)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>Fs</term>
                 <listitem>
                     <para>
-                        a regular pencil <literal>s*E-A</literal>
+                        標準ペンシル <literal>s*E-A</literal>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>E,A</term>
                 <listitem>
-                    <para>two real square matrices</para>
+                    <para>実数正方行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Q,M</term>
                 <listitem>
-                    <para>two non-singular real matrices</para>
+                    <para>正則実数行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>i1</term>
                 <listitem>
-                    <para>integer</para>
+                    <para>整数</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            Given the regular pencil <literal>Fs=s*E-A</literal>, <literal>pencan</literal> returns matrices <literal>Q</literal> 
-            and <literal>M</literal>
-            such than <literal>M*(s*E-A)*Q</literal> is in "canonical" form.
+            標準ペンシル <literal>Fs=s*E-A</literal>を指定すると, 
+            <literal>pencan</literal> は,
+            <literal>M*(s*E-A)*Q</literal>が"正準"形となるような
+            行列<literal>Q</literal> および<literal>M</literal>を返します.
         </para>
         <para>
-            <literal>M*E*Q</literal> is a block matrix
+            <literal>M*E*Q</literal> はブロック行列です.
         </para>
         <programlisting role=""><![CDATA[ 
 [I,0;
  0,N]
  ]]></programlisting>
         <para>
-            with <literal>N</literal> nilpotent and <literal>i1</literal> = size of the <literal>I</literal> matrix above.
+            ただし,冪零行列<literal>N</literal>および
+            <literal>i1</literal> = 行列<literal>I</literal>の大きさ.
         </para>
         <para>
-            <literal>M*A*Q</literal> is a block matrix:
+            <literal>M*A*Q</literal> はブロック行列です:
         </para>
         <programlisting role=""><![CDATA[ 
 [Ar,0;
@@ -78,7 +80,7 @@
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 F=randpencil([],[1,2],[1,2,3],[]);
 F=rand(6,6)*F*rand(6,6);
@@ -89,7 +91,7 @@ det(W($-2:$,$-2:$))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="glever">glever</link>

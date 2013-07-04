@@ -12,11 +12,10 @@
 package org.scilab.modules.gui.events;
 
 import java.awt.AWTEvent;
-import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.utils.SciTranslator;
 
 
@@ -58,6 +57,12 @@ public final class Jxclick {
                 mouseActionFilter(mouseEvent, axesUID, scilabMouseAction, isControlDown);
             }
         });
+
+        /*
+         *  Force xclick not to catch/disable callback execution.
+         */
+        GlobalEventWatcher.enableCatchingCallback();
+
         synchronized (ClickInfos.getInstance()) {
             try {
                 ClickInfos.getInstance().init();
@@ -119,7 +124,8 @@ public final class Jxclick {
                 }
             }
         } else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {
-            if (keyEvent.getSource().getClass().getCanonicalName().contains("javax.media.opengl")) {
+            if (keyEvent.getSource() != null
+                    && keyEvent.getSource() instanceof SwingScilabCanvas) {
                 if (GlobalEventWatcher.isActivated()) {
                     GlobalEventFilter.filterKey(keyChar, GlobalEventWatcher.getAxesUID(), keyEvent.isControlDown());
                 }

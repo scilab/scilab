@@ -12,18 +12,18 @@
 // neldermead_costf --
 //   Call the cost function and return the value.
 // Note
-//   This function is given to the simplex class as 
+//   This function is given to the simplex class as
 //   a callback.
-//   Input/Output arguments are swapped w.r.t. 
+//   Input/Output arguments are swapped w.r.t.
 //   optimbase_function, so that it matches
 //   the requirements of simplex methods.
 //
 function [ f , this ] = neldermead_costf ( x , this )
-  [ this.optbase , hascons ] = optimbase_hasnlcons ( this.optbase );
-  if ( hascons ) then
-    [ this.optbase , f , c , index ] = optimbase_function ( this.optbase , x , 2 );
-  else
-    [ this.optbase , f , index ] = optimbase_function ( this.optbase , x , 2 );
-  end
+    [ this.optbase , hascons ] = optimbase_hasnlcons ( this.optbase );
+    if ( hascons ) then
+        [ this.optbase , f , c , index ] = optimbase_function ( this.optbase , x , 2 );
+    else
+        [ this.optbase , f , index ] = optimbase_function ( this.optbase , x , 2 );
+    end
 endfunction
 

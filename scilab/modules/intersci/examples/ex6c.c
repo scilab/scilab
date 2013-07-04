@@ -22,26 +22,26 @@
  * function. The  Fortran type is Cstringv
  *************************************************************/
 
-C2F(ccalc6b)(a,m,n,err)
-     char ***a;
-     int *m,*n,*err;
+C2F(ccalc6b)(a, m, n, err)
+char ***a;
+int *m, *n, *err;
 {
-  int i,nstring;
-  *m=3;
-  *n=2;
-  nstring= (*m)*(*n);
-  *a =(char **) malloc((unsigned) (nstring * sizeof(char *)));
-  if ( *a ==0)
+    int i, nstring;
+    *m = 3;
+    *n = 2;
+    nstring = (*m) * (*n);
+    *a = (char **) malloc((unsigned) (nstring * sizeof(char *)));
+    if ( *a == 0)
     {
-      sciprint("No more space\n");
-      *err=1;
-      return;
+        sciprint("No more space\n");
+        *err = 1;
+        return;
     }
-  for ( i=0  ; i< nstring ; i++)
+    for ( i = 0  ; i < nstring ; i++)
     {
-      (*a)[i] = (char *) malloc ((8)*sizeof(char));
-      sprintf((*a)[i],"char %d",i);
-      *err=0;
+        (*a)[i] = (char *) malloc ((8) * sizeof(char));
+        sprintf((*a)[i], "char %d", i);
+        *err = 0;
     }
 }
 
@@ -54,16 +54,19 @@ C2F(ccalc6b)(a,m,n,err)
  * a is allocated in the interface
  *************************************************************/
 
-C2F(ccalc6a)(a,m,n)
-     char ***a;
-     int *m,*n;
+C2F(ccalc6a)(a, m, n)
+char ***a;
+int *m, *n;
 {
-  int i,j;
-  for ( i = 0 ; i < *m*(*n) ; i++)
+    int i, j;
+    for ( i = 0 ; i < *m * (*n) ; i++)
     {
-      char *loc = (*a)[i];
-      for ( j = 0 ; j < strlen(loc); j++)
-	if ( loc[j] =='a' ) loc[j] ='o';
+        char *loc = (*a)[i];
+        for ( j = 0 ; j < strlen(loc); j++)
+            if ( loc[j] == 'a' )
+            {
+                loc[j] = 'o';
+            }
     }
 }
 

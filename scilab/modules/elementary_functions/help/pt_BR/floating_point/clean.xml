@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="clean" xml:lang="en">
+    <refnamediv>
+        <refname>clean</refname>
+        <refpurpose>limpa matrizes (arredonda para zero entradas pequenas)
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title> Seqüência de Chamamento</title>
+        <synopsis>B=clean(A [,epsa [,epsr]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>uma matriz numérica (de escalares, de polinômios, esparsa...)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>epsa,epsr</term>
+                <listitem>
+                    <para>números reais (valores padrões respectivos: 1.d-10 e
+                        1.d-10)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Esta função elimina (i.e. ajusta para zero) todos os coeficientes
+            com valores absolutos&lt; <literal>epsa</literal> e valores relativos&lt;
+            <literal>epsr</literal> (relativo siginifica "em relação à norma-1 de
+            coeficientes") em um polinômio (possivelmente uma matriz de polinômios ou
+            matriz de razões de polinômios).
+        </para>
+        <para>
+            Os valores padrões são <literal>epsa=1.d-10</literal> e
+            <literal>epsr=1.d-10;</literal>
+        </para>
+        <para>
+            Para uma matriz de constantes <literal>clean(A,epsa)</literal>
+            ajusta para zero todas as entradas menores que
+            <literal>epsa</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
+x=poly(0,'x');
+w=[x,1,2+x;3+x,2-x,x^2;1,2,3+x]/3;
+w*inv(w)
+clean(w*inv(w))
+ ]]></programlisting>
+    </refsection>
+</refentry>

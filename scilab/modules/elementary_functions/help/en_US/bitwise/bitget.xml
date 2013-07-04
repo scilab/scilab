@@ -11,67 +11,66 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  * 
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bitget" xml:lang="en">
-  <refnamediv>
-    <refname>bitget</refname>
-    <refpurpose>bit at specified position</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      y = bitget(x,pos)
-      
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parameters</title>
-    <variablelist>
-      <varlistentry>
-        <term>x :</term>
-        <listitem>
-          <para>
-            a m-by-n matrix of doubles
-            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-            or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
-            Must contain positive integer values.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>pos :</term>
-        <listitem>
-          <para>
-            a m-by-n matrix of doubles
-            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-            or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
-            The input <literal>pos</literal> must be in the range 1,2,...,bitmax
-            where bitmax is the maximum number of bits in x.
-            Must contain positive integer values.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y :</term>
-        <listitem>
-          <para>
-            a m-by-n matrix of doubles
-            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-            or a m-by-n matrix of unsigned integers.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Given an unsigned integer <literal>x</literal>, this function returns an unsigned integer
-      (0 or 1) which is the bit number <literal>pos</literal> from the representation binary of <literal>x</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitget" xml:lang="en">
+    <refnamediv>
+        <refname>bitget</refname>
+        <refpurpose>bit at specified position</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            y = bitget(x, pos)            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>x :</term>
+                <listitem>
+                    <para>
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
+                        Must contain positive integer values.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pos :</term>
+                <listitem>
+                    <para>
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
+                        The input <varname>pos</varname> must be in the range 1, 2, ..., <literal>bitmax</literal>
+                        where <literal>bitmax</literal> is the maximum number of bits in <varname>x</varname>.
+                        Must contain positive integer values.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y :</term>
+                <listitem>
+                    <para>
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given an unsigned integer <varname>x</varname>, this function returns an unsigned integer <varname>y</varname>
+            (<literal>0</literal> or <literal>1</literal>) which is the bit number <varname>pos</varname> from the representation binary of <varname>x</varname>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 // 19 is (10011)_2
 // The 2nd bit is 1 (starting from the end).
 x=uint8(19);
@@ -86,5 +85,5 @@ bitget(uint8(13),4:-1:1)
 // The input x can be a positive double
 bitget(13,4:-1:1)
    ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

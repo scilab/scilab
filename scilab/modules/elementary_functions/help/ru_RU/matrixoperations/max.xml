@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="max" xml:lang="ru">
+    <refnamediv>
+        <refname>max</refname>
+        <refpurpose>максимум</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[m [,k]]=max(A)
+            [m [,k]]=max(A,'c')
+            [m [,k]]=max(A,'r')
+            [m [,k]]=max(A,'m')
+            [m [,k]]=max(A1,A2,...,An)
+            [m [,k]]=max(list(A1,A2,...,An))
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>вещественный вектор или матрица</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A1,...,An</term>
+                <listitem>
+                    <para>
+                        набор скаляров или вещественных векторов или матриц одного размера
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Для <literal>A</literal>, вещественного вектора или матрицы, 
+            <literal>max(A)</literal> возвращает элементом  <literal>A</literal> 
+            с наибольшим значением. <literal>[m,k]=max(A)</literal> выдаёт дополнительно 
+            индекс максимального элемента. Может использоваться второй аргумент: 
+            <literal>'r'</literal> или <literal>'c'</literal>. <literal>'r'</literal> 
+            используется для получения вектора-строки <literal>m</literal> такого, 
+            что <literal>m(j)</literal> содержит максимум <literal>j</literal>-того столбца 
+            <literal>A</literal> (<literal>A(:,j)</literal>), <literal>k(j)</literal> 
+            даёт индекс строки, которая содержит максимум для столбца <literal>j</literal>.
+            <literal>'c'</literal> используется для аналогичной операции по строкам 
+            <literal>A</literal>. <literal>'m'</literal> используется для совместимости
+            с Matlab.
+        </para>
+        <para>
+            <literal>m=max(A1,A2,...,An)</literal>, где все <literal>Aj</literal> 
+            являются матрицами одинакового размера, возвращает вектор или матрицу 
+            <literal>m</literal> размером <literal>size(m)=size(A1)</literal>
+            такую, что <literal>m(i)= max(Aj(i)), j=1,...,n</literal>.
+            <literal>[m,k]=max(A1,A2,...,An)</literal> даёт дополнительно вектор или матрицу 
+            <literal>k</literal>. Для фиксированного <literal>i</literal>,
+            <literal>k(i)</literal> является номером первого
+            <literal>Aj(i)</literal>, достигнувшего максимума.
+        </para>
+        <para>
+            <literal>[m,k]=max(list(A1,...,An))</literal> является эквивалентным 
+            синтаксисом для <literal>[m,k]=max(A1,A2,...,An)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+[m,n]=max([1,3,1])
+[m,n]=max([3,1,1],[1,3,1],[1,1,3])
+[m,n]=max([3,-2,1],1)
+[m,n]=max(list([3,1,1],[1,3,1],[1,1,3]))
+[m,n]=max(list(1,3,1))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gsort">gsort</link>
+            </member>
+            <member>
+                <link linkend="find">find</link>
+            </member>
+            <member>
+                <link linkend="min">min</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -35,77 +35,77 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
  * @author Manuel JULIACHS
  */
 public class TitlePositioner extends LabelPositioner {
-        /**
-         * The offset in window coordinates from the top of the Axes box
-         * to the Title label's anchor point. Relevant only to
-         * automatic positioning.
-         */
-        private static final double TITLEOFFSET = 8.0;
+    /**
+     * The offset in window coordinates from the top of the Axes box
+     * to the Title label's anchor point. Relevant only to
+     * automatic positioning.
+     */
+    private static final double TITLEOFFSET = 8.0;
 
-        /**
-         * The minimum z value in window coordinates.
-         * In accordance with how window coordinates are usually defined, this should be 0,
-         * however Scirenderer uses respectively -1 and +1 as the minimum and maximum z values
-         * instead of 0 and 1. To be modified if deemed necessary.
-         */
-        private static final double ZNEAR = -1.0;
+    /**
+     * The minimum z value in window coordinates.
+     * In accordance with how window coordinates are usually defined, this should be 0,
+     * however Scirenderer uses respectively -1 and +1 as the minimum and maximum z values
+     * instead of 0 and 1. To be modified if deemed necessary.
+     */
+    private static final double ZNEAR = -1.0;
 
-        /**
-         * Constructor.
-         */
-        public TitlePositioner() {
-                super();
-                /* Title labels are drawn in window coordinates to avoid jittering. */
-                useWindowCoordinates = true;
+    /**
+     * Constructor.
+     */
+    public TitlePositioner() {
+        super();
+        /* Title labels are drawn in window coordinates to avoid jittering. */
+        useWindowCoordinates = true;
+    }
+
+    /**
+     * Computes and returns the position of the label's anchor point,
+     * obtained by adding the displacement vector to its position.
+     * It additionally sets the displacement vector and label position members.
+     * @return the position of the label's anchor point.
+     */
+    protected Vector3d computeDisplacedPosition() {
+        Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
+
+        Double [] axesBounds = {0.0, 0.0, 0.0, 0.0};
+        Double [] margins = {0.0, 0.0, 0.0, 0.0};
+        if (parentAxes != null) {
+            axesBounds = parentAxes.getAxesBounds();
+            margins = parentAxes.getMargins();
         }
 
-        /**
-         * Computes and returns the position of the label's anchor point,
-         * obtained by adding the displacement vector to its position.
-         * It additionally sets the displacement vector and label position members.
-         * @return the position of the label's anchor point.
-         */
-        protected Vector3d computeDisplacedPosition() {
-                Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
+        /* Compute the anchor point's position in window coordinates */
+        double xmid = (axesBounds[0] + axesBounds[2] * margins[0] + 0.5 * axesBounds[2] * (1.0 - margins[0] - margins[1]));
+        double ymid = (1.0 - axesBounds[1] + (margins[3] - 1.0) * axesBounds[3] + axesBounds[3] * (1.0 - margins[2] - margins[3]));
 
-                Double [] axesBounds = {0.0, 0.0, 0.0, 0.0};
-                Double [] margins = {0.0, 0.0, 0.0, 0.0};
-                if (parentAxes != null) {
-                    axesBounds = parentAxes.getAxesBounds();
-                    margins = parentAxes.getMargins();
-                }
+        Vector3d projAnchorPoint = new Vector3d(Math.floor((xmid) * (double) drawingTools.getCanvas().getWidth()),
+                                                Math.floor((ymid) * (double) drawingTools.getCanvas().getHeight()),
+                                                ZNEAR);
 
-                /* Compute the anchor point's position in window coordinates */
-                double xmid = (axesBounds[0] + axesBounds[2] * margins[0] + 0.5*axesBounds[2]*(1.0-margins[0]-margins[1]));
-                double ymid = (1.0 - axesBounds[1] + (margins[3]-1.0)*axesBounds[3] + axesBounds[3]*(1.0-margins[2]-margins[3]));
+        Vector3d unprojAnchorPoint = new Vector3d(projAnchorPoint);
+        unprojAnchorPoint = canvasProjection.unproject(unprojAnchorPoint);
 
-                Vector3d projAnchorPoint = new Vector3d(Math.floor((xmid) * (double) drawingTools.getCanvas().getWidth()),
-                                                        Math.floor((ymid) * (double) drawingTools.getCanvas().getHeight()),
-                                                        ZNEAR);
+        /* The anchor point is displaced along the y-axis by TITLEOFFSET pixels. */
+        projAnchorPoint = projAnchorPoint.setY(projAnchorPoint.getY() + TITLEOFFSET);
 
-                Vector3d unprojAnchorPoint = new Vector3d(projAnchorPoint);
-                unprojAnchorPoint = canvasProjection.unproject(unprojAnchorPoint);
+        Vector3d unprojDispAnchorPoint = canvasProjection.unproject(projAnchorPoint);
+        Vector3d position = new Vector3d(unprojDispAnchorPoint);
 
-                /* The anchor point is displaced along the y-axis by TITLEOFFSET pixels. */
-                projAnchorPoint = projAnchorPoint.setY(projAnchorPoint.getY() + TITLEOFFSET);
+        /* Compute and set the LabelPositioner-inherited members */
+        labelPosition = new Vector3d(unprojAnchorPoint);
+        labelDisplacement = unprojDispAnchorPoint.minus(unprojAnchorPoint);
 
-                Vector3d unprojDispAnchorPoint = canvasProjection.unproject(projAnchorPoint);
-                Vector3d position = new Vector3d(unprojDispAnchorPoint);
+        return position;
+    }
 
-                /* Compute and set the LabelPositioner-inherited members */
-                labelPosition = new Vector3d(unprojAnchorPoint);
-                labelDisplacement = unprojDispAnchorPoint.minus(unprojAnchorPoint);
-
-                return position;
-        }
-
-        /**
-         * Returns the automatically computed sprite anchor position.
-         * @return the sprite anchor position.
-         */
-        protected AnchorPosition getAutoAnchorPosition() {
-                return AnchorPosition.DOWN;
-        }
+    /**
+     * Returns the automatically computed sprite anchor position.
+     * @return the sprite anchor position.
+     */
+    protected AnchorPosition getAutoAnchorPosition() {
+        return AnchorPosition.DOWN;
+    }
 
 }
 

@@ -28,29 +28,21 @@ using namespace org_scilab_modules_xcos_palette;
 
 int sci_xcosPalGenerateIcon(char *fname, unsigned long fname_len)
 {
-    CheckRhs(2, 2);
+    CheckRhs(1, 1);
     CheckLhs(0, 1);
 
-    char *blockName = NULL;
     char *iconPath = NULL;
 
-    /* blockName setup */
-    if (readSingleString(pvApiCtx, 1, &blockName, fname))
-    {
-        return 0;
-    }
-
     /* iconPath setup */
-    if (readSingleString(pvApiCtx, 2, &iconPath, fname))
+    if (readSingleString(pvApiCtx, 1, &iconPath, fname))
     {
-        FREE(blockName);
         return 0;
     }
 
     /* Call the java implementation */
     try
     {
-        Palette::generatePaletteIcon(getScilabJavaVM(), blockName, iconPath);
+        Palette::generatePaletteIcon(getScilabJavaVM(), iconPath);
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
@@ -61,10 +53,9 @@ int sci_xcosPalGenerateIcon(char *fname, unsigned long fname_len)
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
     }
 
-
-    FREE(blockName);
     FREE(iconPath);
 
+    LhsVar(1) = 0;
     PutLhsVar();
     return 0;
 }

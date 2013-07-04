@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 6386 -->
 //
@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // The quit operation make xcos hangs when selected on a SuperBlockDiagram window.
 
-// xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_6386.xcos");
+// xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_6386.zcos");
 // Open all the SuperBlocks (Window: #1, #2, #3, #4)
 // Close #3
 // On #4, click on File->Exit

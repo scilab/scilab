@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="return">
+    <refnamediv>
+        <refname>return</refname>
+        <refpurpose>return or resume execution and copy some local variables</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>return
+            [x1,..,xn]=return(a1,..,an)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x1,..,xn</term>
+                <listitem>
+                    <para>variables in calling environment</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a1,..,an</term>
+                <listitem>
+                    <para>local variables</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            In a function <code>return</code> stops the execution of the function,
+            <literal>[x1,..,xn]=return(a1,..,an)</literal> stops the execution of the function and put 
+            the local variables <varname>ai</varname> in calling environment under names
+            <varname>xi</varname>.
+        </para>
+        <para>
+            In <code>pause</code> mode, it allows to return to upper level.
+            <literal>[x1,..,xn]=return(a1,..,an)</literal> returns to upper level and put the local 
+            variables <varname>ai</varname> in calling environment under names <varname>xi</varname>.
+        </para>
+        <para>
+            In an <code>execstr</code> called by a function
+            <literal>[x1,..,xn]=return(a1,..,an)</literal> stops the execution of the function and put 
+            the local variables <varname>ai</varname> in calling environment under names
+            <varname>xi</varname>.
+        </para>
+        <para>
+            The statement <code>resume</code> is equivalent to <code>return</code>.
+        </para>
+        <para>
+            <note>
+                Note: the usage of this feature can complexify the code. Instead, the syntax <code>function b = foo()</code> is recommended.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+function foo(a)
+         a=a+1
+         b=resume(a)
+         c=52
+endfunction
+
+foo(42);
+assert_checkequal(b,43)
+// c does not exist
+
+ ]]></programlisting>
+    </refsection>
+    
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="abort">abort</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="resume">resume</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

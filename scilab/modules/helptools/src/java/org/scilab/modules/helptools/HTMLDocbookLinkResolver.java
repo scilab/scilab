@@ -40,12 +40,13 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
 
     private static boolean isCaseInsensitiveOS = System.getProperty("os.name").toLowerCase().contains("windows");
 
-    private Map<String, String> mapId = new LinkedHashMap();
-    private List<String> listIdIgnoreCase = new ArrayList();
-    private Map<String, String> toc = new LinkedHashMap();
-    private Map<String, String> mapIdPurpose = new LinkedHashMap();
-    private Map<String, TreeId> mapTreeId = new HashMap();
-    private Map<String, String> mapIdDeclaringFile = new HashMap();
+    private Map<String, String> mapId = new LinkedHashMap<String, String>();
+    private List<String> listIdIgnoreCase = new ArrayList<String>();
+    private Map<String, String> toc = new LinkedHashMap<String, String>();
+    private Map<String, String> mapIdPurpose = new LinkedHashMap<String, String>();
+    private Map<String, String> mapIdRefname = new LinkedHashMap<String, String>();
+    private Map<String, TreeId> mapTreeId = new HashMap<String, TreeId>();
+    private Map<String, String> mapIdDeclaringFile = new HashMap<String, String>();
     private TreeId tree = new TreeId(null, "root");
 
     private TreeId currentLeaf = tree;
@@ -85,6 +86,13 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
      */
     public Map<String, String> getMapIdPurpose() {
         return mapIdPurpose;
+    }
+
+    /**
+     * @return the map id-&gt;title
+     */
+    public Map<String, String> getMapIdRefname() {
+        return mapIdRefname;
     }
 
     /**
@@ -181,7 +189,7 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
             currentLeaf.add(leaf);
             currentLeaf = leaf;
         } else if (id != null && current != null) {
-            mapId.put(id, current + "#" +id);
+            mapId.put(id, current + "#" + id);
         }
     }
 
@@ -210,6 +218,7 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
                 getContents = false;
             } else if (localName.equals("title") || localName.equals("refname")) {
                 toc.put(lastId, buffer.toString().trim());
+                mapIdRefname.put(lastId, buffer.toString().trim());
                 getContents = false;
                 waitForRefname = false;
                 waitForTitle = false;
@@ -236,33 +245,33 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
             int save = start;
             for (int i = start; i < end; i++) {
                 switch (ch[i]) {
-                case '\'' :
-                    buffer.append(ch, save, i - save);
-                    buffer.append("&#0039;");
-                    save = i + 1;
-                    break;
-                case '\"' :
-                    buffer.append(ch, save, i - save);
-                    buffer.append("&#0034;");
-                    save = i + 1;
-                    break;
-                case '<' :
-                    buffer.append(ch, save, i - save);
-                    buffer.append("&lt;");
-                    save = i + 1;
-                    break;
-                case '>' :
-                    buffer.append(ch, save, i - save);
-                    buffer.append("&gt;");
-                    save = i + 1;
-                    break;
-                case '&' :
-                    buffer.append(ch, save, i - save);
-                    buffer.append("&amp;");
-                    save = i + 1;
-                    break;
-                default :
-                    break;
+                    case '\'' :
+                        buffer.append(ch, save, i - save);
+                        buffer.append("&#0039;");
+                        save = i + 1;
+                        break;
+                    case '\"' :
+                        buffer.append(ch, save, i - save);
+                        buffer.append("&quot;");
+                        save = i + 1;
+                        break;
+                    case '<' :
+                        buffer.append(ch, save, i - save);
+                        buffer.append("&lt;");
+                        save = i + 1;
+                        break;
+                    case '>' :
+                        buffer.append(ch, save, i - save);
+                        buffer.append("&gt;");
+                        save = i + 1;
+                        break;
+                    case '&' :
+                        buffer.append(ch, save, i - save);
+                        buffer.append("&amp;");
+                        save = i + 1;
+                        break;
+                    default :
+                        break;
                 }
             }
 
@@ -327,7 +336,7 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
 
         void add(TreeId child) {
             if (children == null) {
-                children = new ArrayList();
+                children = new ArrayList<TreeId>();
             }
             child.pos = children.size();
             children.add(child);

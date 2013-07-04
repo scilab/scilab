@@ -24,6 +24,7 @@ import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
  * Class to make undoable edits in EditVar
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class CellsUndoableEdit extends AbstractUndoableEdit {
 
     private Object oldValue;

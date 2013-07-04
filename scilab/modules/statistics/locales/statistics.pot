@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-06 10:22+0100\n"
+"Revision-Date: 2013-06-25 16:31+0100\n"
 
 # File: sci_gateway/c/sci_cdfbet.c, line: 45
 msgid "X,Y,A and B"
@@ -38,8 +38,8 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_cdfbet.c, line: 68
 # File: sci_gateway/c/sci_cdfbin.c, line: 68
-# File: sci_gateway/c/sci_cdfchn.c, line: 63
-# File: sci_gateway/c/sci_cdff.c, line: 65
+# File: sci_gateway/c/sci_cdfchn.c, line: 86
+# File: sci_gateway/c/sci_cdff.c, line: 109
 # File: sci_gateway/c/sci_cdfgam.c, line: 67
 # File: sci_gateway/c/sci_cdfnbn.c, line: 68
 # File: sci_gateway/c/sci_cdfnor.c, line: 66
@@ -69,101 +69,129 @@ msgid "P,Q,S  and Xn"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 44
+# File: sci_gateway/c/sci_cdfchi.c, line: 51
+# File: sci_gateway/c/sci_cdfchi.c, line: 64
+# File: sci_gateway/c/sci_cdfchn.c, line: 47
+# File: sci_gateway/c/sci_cdfchn.c, line: 60
+# File: sci_gateway/c/sci_cdfchn.c, line: 79
+# File: sci_gateway/c/sci_cdff.c, line: 49
+# File: sci_gateway/c/sci_cdff.c, line: 56
+# File: sci_gateway/c/sci_cdff.c, line: 69
+# File: sci_gateway/c/sci_cdff.c, line: 76
+# File: sci_gateway/c/sci_cdff.c, line: 89
+# File: sci_gateway/c/sci_cdff.c, line: 102
+# File: sci_gateway/c/sci_cdffnc.c, line: 49
+# File: sci_gateway/c/sci_cdffnc.c, line: 56
+# File: sci_gateway/c/sci_cdffnc.c, line: 69
+# File: sci_gateway/c/sci_cdffnc.c, line: 76
+# File: sci_gateway/c/sci_cdffnc.c, line: 89
+# File: sci_gateway/c/sci_cdffnc.c, line: 102
+# File: sci_gateway/c/sci_cdffnc.c, line: 115
+# File: sci_gateway/c/sci_cdffnc.c, line: 122
+# File: sci_gateway/c/sci_cdft.c, line: 48
+# File: sci_gateway/c/sci_cdft.c, line: 61
+#, c-format
+msgid ""
+"%s: Warning: using non integer values for argument #%d may lead to incorrect "
+"results.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_cdfchi.c, line: 53
 msgid "X and Df"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 50
-# File: sci_gateway/c/sci_cdft.c, line: 47
+# File: sci_gateway/c/sci_cdfchi.c, line: 66
+# File: sci_gateway/c/sci_cdft.c, line: 63
 msgid "Df, P and Q"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 56
+# File: sci_gateway/c/sci_cdfchi.c, line: 72
 msgid "P,Q and X"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 61
-# File: sci_gateway/c/sci_cdfpoi.c, line: 59
-# File: sci_gateway/c/sci_cdft.c, line: 58
+# File: sci_gateway/c/sci_cdfchi.c, line: 77
+# File: sci_gateway/c/sci_cdfpoi.c, line: 79
+# File: sci_gateway/c/sci_cdft.c, line: 74
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 88
+# File: sci_gateway/c/sci_cdfchi.c, line: 104
 msgid "cdfchi: Error in cumgam\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 40
+# File: sci_gateway/c/sci_cdfchn.c, line: 49
 msgid "X,Df and Pnonc"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 46
+# File: sci_gateway/c/sci_cdfchn.c, line: 62
 msgid "Df,Pnonc,P and Q"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 52
+# File: sci_gateway/c/sci_cdfchn.c, line: 68
 msgid "Pnonc,P,Q and X"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 58
+# File: sci_gateway/c/sci_cdfchn.c, line: 81
 msgid "P,Q,X and Df"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdff.c, line: 42
+# File: sci_gateway/c/sci_cdff.c, line: 58
 msgid "F,Dfn and Dfd"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdff.c, line: 48
+# File: sci_gateway/c/sci_cdff.c, line: 78
 msgid "Dfn,Dfd,P and Q"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdff.c, line: 54
+# File: sci_gateway/c/sci_cdff.c, line: 91
 msgid "Dfd,P,Q and F"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdff.c, line: 60
+# File: sci_gateway/c/sci_cdff.c, line: 104
 msgid "P,Q,F and Dfn"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdffnc.c, line: 42
+# File: sci_gateway/c/sci_cdffnc.c, line: 58
 msgid "F,Dfn,Dfd and Pnonc"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdffnc.c, line: 48
+# File: sci_gateway/c/sci_cdffnc.c, line: 78
 msgid "Dfn,Dfd,Pnonc,P and Q"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdffnc.c, line: 54
+# File: sci_gateway/c/sci_cdffnc.c, line: 91
 msgid "Dfd,Pnonc,P,Q and F"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdffnc.c, line: 60
+# File: sci_gateway/c/sci_cdffnc.c, line: 104
 msgid "Pnonc,P,Q,F and Dfn"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdffnc.c, line: 66
+# File: sci_gateway/c/sci_cdffnc.c, line: 124
 msgid "P,Q,F,Dfn and Dfd"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdffnc.c, line: 71
+# File: sci_gateway/c/sci_cdffnc.c, line: 129
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
@@ -236,27 +264,35 @@ msgid " Std must not be zero\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfpoi.c, line: 42
+# File: sci_gateway/c/sci_cdfpoi.c, line: 50
+# File: sci_gateway/c/sci_cdfpoi.c, line: 71
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A matrix of integer value expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_cdfpoi.c, line: 53
 msgid "S and Xlam"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfpoi.c, line: 48
+# File: sci_gateway/c/sci_cdfpoi.c, line: 59
 msgid "Xlam,P and Q"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfpoi.c, line: 54
+# File: sci_gateway/c/sci_cdfpoi.c, line: 74
 msgid "P,Q and S"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdft.c, line: 41
+# File: sci_gateway/c/sci_cdft.c, line: 50
 msgid "T and Df"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdft.c, line: 53
+# File: sci_gateway/c/sci_cdft.c, line: 69
 msgid "P,Q and T"
 msgstr ""
 
@@ -274,24 +310,67 @@ msgid "%s and %s must have same size.\n"
 msgstr ""
 
 #
-# File: src/c/CdfBase.c, line: 122
-# File: src/c/CdfBase.c, line: 126
+# File: src/c/CdfBase.c, line: 125
+# File: src/c/CdfBase.c, line: 129
 #, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
 msgstr ""
 
 #
-# File: src/c/CdfBase.c, line: 134
+# File: src/c/CdfBase.c, line: 137
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %s\n"
 msgstr ""
 
 #
-# File: src/c/CdfBase.c, line: 138
+# File: src/c/CdfBase.c, line: 141
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr ""
 
+# File: macros/binomial.sci, line: 29
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#
+# File: macros/binomial.sci, line: 33
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+
+#
+# File: macros/binomial.sci, line: 37
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+
+#
+# File: macros/binomial.sci, line: 41
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr ""
+
+#
+# File: macros/binomial.sci, line: 45
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+
+#
+# File: macros/binomial.sci, line: 49
+# File: macros/perctl.sci, line: 35
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+
+#
+# File: macros/binomial.sci, line: 53
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr ""
+
+#
 # File: macros/center.sci, line: 35
 # File: macros/cmoment.sci, line: 37
 # File: macros/cmoment.sci, line: 55
@@ -308,7 +387,7 @@ msgstr ""
 # File: macros/strange.sci, line: 24
 # File: macros/tabul.sci, line: 58
 # File: macros/trimmean.sci, line: 74
-# File: macros/variance.sci, line: 35
+# File: macros/variance.sci, line: 34
 # File: macros/variancef.sci, line: 37
 # File: macros/wcenter.sci, line: 40
 #, c-format
@@ -363,7 +442,53 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/iqr.sci, line: 34
+# File: macros/cov.sci, line: 103
+# File: macros/cov.sci, line: 115
+# File: macros/cov.sci, line: 152
+# File: macros/cov.sci, line: 155
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a real matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 118
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: an integer or a real matrix "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 125
+# File: macros/cov.sci, line: 175
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 136
+# File: macros/cov.sci, line: 139
+# File: macros/cov.sci, line: 164
+# File: macros/cov.sci, line: 167
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 158
+# File: macros/cov.sci, line: 170
+#, c-format
+msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 184
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+msgstr ""
+
+#
+# File: macros/iqr.sci, line: 35
 # File: macros/msd.sci, line: 33
 # File: macros/quart.sci, line: 40
 #, c-format
@@ -371,9 +496,32 @@ msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
 
 #
+# File: macros/iqr.sci, line: 50
+#, c-format
+msgid ""
+"%s: Wrong dimensions for input argument #%d: A column vector or matrix "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/iqr.sci, line: 55
+#, c-format
+msgid ""
+"%s: Wrong dimensions for input argument #%d: A row vector or matrix "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/iqr.sci, line: 59
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', %d, '%s' or %d expected.\n"
+msgstr ""
+
+#
 # File: macros/mad.sci, line: 35
 # File: macros/mean.sci, line: 26
-# File: macros/meanf.sci, line: 38
+# File: macros/meanf.sci, line: 39
 # File: macros/moment.sci, line: 46
 # File: macros/nanmedian.sci, line: 29
 # File: macros/nanstdev.sci, line: 34
@@ -384,7 +532,6 @@ msgstr ""
 
 #
 # File: macros/mad.sci, line: 49
-# File: macros/meanf.sci, line: 51
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s','%s', %d or %d.\n"
 msgstr ""
@@ -409,6 +556,29 @@ msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
 msgstr ""
 
 #
+# File: macros/meanf.sci, line: 44
+# File: macros/meanf.sci, line: 49
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A full or sparse matrix, or an "
+"integer matrix, or an hypermat expected.\n"
+msgstr ""
+
+#
+# File: macros/meanf.sci, line: 53
+# File: macros/stdevf.sci, line: 41
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+
+#
+# File: macros/meanf.sci, line: 71
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s', %d or %d.\n"
+msgstr ""
+
+#
 # File: macros/median.sci, line: 34
 #, c-format
 msgid ""
@@ -418,7 +588,7 @@ msgstr ""
 
 #
 # File: macros/mvcorrel.sci, line: 29
-# File: macros/mvvacov.sci, line: 31
+# File: macros/mvvacov.sci, line: 32
 # File: macros/samwr.sci, line: 19
 # File: macros/thrownan.sci, line: 27
 #, c-format
@@ -442,12 +612,6 @@ msgstr ""
 # File: macros/nanmedian.sci, line: 30
 #, c-format
 msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
-msgstr ""
-
-#
-# File: macros/perctl.sci, line: 35
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 
 #
@@ -533,13 +697,6 @@ msgid "Eigenvalues"
 msgstr ""
 
 #
-# File: macros/stdevf.sci, line: 41
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr ""
-
-#
 # File: macros/stdevf.sci, line: 54
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -617,17 +774,15 @@ msgid "Unexpected value of orien : %s\n"
 msgstr ""
 
 #
-# File: macros/variance.sci, line: 47
-# File: macros/variance.sci, line: 59
-# File: macros/variance.sci, line: 72
+# File: macros/variance.sci, line: 55
 #, c-format
-msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
+msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 
 #
-# File: macros/variance.sci, line: 76
+# File: macros/variance.sci, line: 62
 #, c-format
-msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value of w : %s; %d or %d expected.\n"
 msgstr ""
 
 #

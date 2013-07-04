@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 // <-- ENGLISH IMPOSED -->
 // <-- NO CHECK REF -->
 //
@@ -24,10 +24,9 @@ function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
     btn=1;
 endfunction
 
-loadXcosLibs();
 ilib_verbose(0);
 // import a diagram of a Modelica demo in Scilab
-result= importXcosDiagram(SCI+"/modules/xcos/demos/ModelicaBlocks/RLC_Modelica.xcos");
+result= importXcosDiagram(SCI+"/modules/xcos/demos/ModelicaBlocks/RLC_Modelica.zcos");
 if ~result then pause,end
 
 // compile the diagram

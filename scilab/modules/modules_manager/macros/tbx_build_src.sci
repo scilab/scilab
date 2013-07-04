@@ -11,17 +11,17 @@
 // Simple wrapper around ilib_for_link
 
 function tbx_build_src(names,       ..
-                       files,       ..
-                       flag,        ..
-                       src_path,    ..
-                       libs,        ..
-                       ldflags,     ..
-                       cflags,      ..
-                       fflags,      ..
-                       cc,          ..
-                       libname,     ..
-                       loadername,  ..
-                       makename)
+    files,       ..
+    flag,        ..
+    src_path,    ..
+    libs,        ..
+    ldflags,     ..
+    cflags,      ..
+    fflags,      ..
+    cc,          ..
+    libname,     ..
+    loadername,  ..
+    makename)
 
     oldpath = pwd();
 
@@ -39,16 +39,16 @@ function tbx_build_src(names,       ..
     if ~exists("makename", "local")   then makename   = ""; end
 
     ilib_for_link(names,      ..
-                  files,      ..
-                  libs,       ..
-                  flag,       ..
-                  makename,   ..
-                  loadername, ..
-                  libname,    ..
-                  ldflags,    ..
-                  cflags,     ..
-                  fflags,     ..
-                  cc);
+    files,      ..
+    libs,       ..
+    flag,       ..
+    makename,   ..
+    loadername, ..
+    libname,    ..
+    ldflags,    ..
+    cflags,     ..
+    fflags,     ..
+    cc);
 
     chdir(oldpath);
 

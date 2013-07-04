@@ -30,18 +30,18 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_font_size_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_font_size_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     double fontSize = 0.;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "font_size");
         return SET_PROPERTY_ERROR;
     }
 
-    fontSize = getDoubleFromStack(stackPointer);
+    fontSize = ((double*)_pvData)[0];
 
     status = setGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
 
@@ -51,7 +51,7 @@ int set_font_size_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"font_size");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_size");
         return SET_PROPERTY_ERROR;
     }
 }

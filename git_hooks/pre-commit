@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 #
-# Hook used to indent all xcos files before commiting
+# Hook used to indent files before commiting
 #
 
 
@@ -11,7 +11,7 @@ if test -d ".git/rebase-merge"          || \
    test -d ".git/rebase-apply"          || \
    test -f ".git/MERGE_HEAD"            || \
    test -f ".git/CHERRY_PICK_HEAD"      || \
-   test -f ".git/BISECT_LOG"            
+   test -f ".git/BISECT_LOG"
 then
     exit 0
 fi
@@ -76,7 +76,8 @@ then
     echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/IndentScanner.java' "
     echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/MatchingBlockScanner.java' "
     echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/ScilabLexer.java' "
-
+    echo "  git config --add astyle.ignored 'scilab/modules/scicos/src/scicos_sundials/*' "
+    
     echo
     
     ASTYLE_IGNORED=""
@@ -110,6 +111,9 @@ indent() {
         .java)
             __indent_java;
         ;;
+        .sce|.sci)
+            __indent_scilab;
+        ;;
         esac
     done
 
@@ -140,7 +144,7 @@ __indent_xml() {
     fi
 
     echo "Formatting" $file
-    "$XMLINDENT" -i 4 -o "$file" "$file" || return 4;
+    "$XMLINDENT" -w -i 4 "$file" || return 4;
     git add "$file" || return 5;
 }
 
@@ -175,12 +179,12 @@ __post_indent() {
     git add "$file"
 }
 
-COMMON_ASTYLE_ARGS="--pad-header -n --pad-oper --indent-col1-comments --indent-switches"
+COMMON_ASTYLE_ARGS="--pad-header --suffix=none --pad-oper --indent-col1-comments --indent-switches --indent=spaces=4 --add-brackets --formatted"
 
 # Indent the file with `astyle' if this is a C/CPP file
 __indent_C() {
     __pre_indent || return 1
-    $ASTYLE $COMMON_ASTYLE_ARGS --style=linux --indent=spaces=4 -A1 "$file" || return 2
+    $ASTYLE $COMMON_ASTYLE_ARGS --style=bsd "$file" || return 2
     __post_indent || return 3
     return 0
 }
@@ -188,7 +192,25 @@ __indent_C() {
 # Indent the file with `astyle' if this is a Java file
 __indent_java() {
     __pre_indent || return 1
-    $ASTYLE $COMMON_ASTYLE_ARGS --style=java --indent=spaces=4 "$file" || return 2
+    $ASTYLE $COMMON_ASTYLE_ARGS --style=java "$file" || return 2
+    __post_indent || return 3
+    return 0
+}
+
+# Indent the file with `scinotes' if this is a Scilab file
+__indent_scilab() {
+    __pre_indent || return 1
+    if test -f scilab/scilab-bin; then
+        scilab/bin/scinotes -indent "$file" || return 2
+    else
+        if test -f scilab/bin/WScilex.exe; then
+            scilab/bin/scilex.exe -e "scinotes('$file', ['indent','trailing','quote'])" || return 2
+        else
+            echo "Scilab has not been built."
+            return 4
+        fi
+    fi
+
     __post_indent || return 3
     return 0
 }

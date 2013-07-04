@@ -27,6 +27,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * New Diagram creation
  */
+@SuppressWarnings(value = { "serial" })
 public final class NewDiagramAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.NEW_DIAGRAM;

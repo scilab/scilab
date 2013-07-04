@@ -211,7 +211,9 @@ static sco_data *getScoData(scicos_block * block)
 
         sco = (sco_data *) MALLOC(sizeof(sco_data));
         if (sco == NULL)
+        {
             goto error_handler_sco;
+        }
 
         sco->scope.cachedFigureUID = NULL;
         sco->scope.cachedAxeUID = NULL;

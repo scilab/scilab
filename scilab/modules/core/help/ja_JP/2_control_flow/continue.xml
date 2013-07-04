@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="continue">
+    <refnamediv>
+        <refname>continue</refname>
+        <refpurpose>ループの次の反復に制御を移すキーワード</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>for</literal> または <literal>while</literal> ループの中で,
+            コマンド
+            <literal>continue</literal> はループの次の反復に制御を移します.
+            この際,この命令とループの<literal>end</literal>命令の間に
+            残る命令を全てスキップします.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+for k=1:10,K=k;if k>2&k<=8 then continue,disp('hello'),end,k,end
+
+for j=1:2
+  x=[];
+  for k=1:10,if k>j+1&k<=8 then continue,end,x=[x,k];end
+  x
+end
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="while">while</link>
+            </member>
+            <member>
+                <link linkend="for">for</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="return">return</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

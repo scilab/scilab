@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="max" xml:lang="fr">
+    <refnamediv>
+        <refname>max</refname>
+        <refpurpose>maximum</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>[m [,k]]=max(A)
+            [m [,k]]=max(A,'c')
+            [m [,k]]=max(A,'r')
+            [m [,k]]=max(A,'m')
+            [m [,k]]=max(A1,A2,...,An)
+            [m [,k]]=max(list(A1,A2,...,An))
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>vecteur ou matrice réelle.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A1,...,An</term>
+                <listitem>
+                    <para>un ensemble de vecteurs ou de matrices toutes de même
+                        taille.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Pour <literal>A</literal>, un vecteur ou une matrice réelle,
+            <literal>max(A)</literal> est son plus grand élément.
+            <literal>[m,k]=max(A)</literal> donne la position du maximum dans
+            <literal>A</literal>. Le deuxième argument peut être la chaîne de
+            caractère <literal>'r'</literal> ou <literal>'c'</literal> :
+            <literal>'r'</literal> permet d'obtenir un vecteur ligne
+            <literal>m</literal> tel que <literal>m(j)</literal> contient le maximum
+            de la<literal>j</literal>-ième colonne de A (<literal>A(:,j)</literal>),
+            <literal>k(j)</literal> donne le numéro de la ligne qui contient le
+            maximum pour la colonne <literal>j</literal>. <literal>'c'</literal> est
+            utilisé pour l'opération duale sur les lignes de <literal>A</literal>.
+            <literal>'m'</literal> est utilisé pour la compatibilité avec
+            Mtalab.
+        </para>
+        <para>
+            <literal>m=max(A1,A2,...,An)</literal>, où tous les
+            <literal>Aj</literal> sont des matrices de même taille, renvoie un vecteur
+            ou une matrice <literal>m</literal> de taille
+            <literal>size(m)=size(A1)</literal> telle que <literal>m(i)= max( Aj(i)),
+                j=1,...,n
+            </literal>
+            .<literal>[m,k]=max(A1,A2,...,An)</literal> donne de
+            plus le vecteur ou la matrice <literal>k</literal>. Pour un
+            <literal>i</literal> donné, <literal>k(i)</literal> est le numéro de la
+            première <literal>Aj(i)</literal> réalisant le maximum.
+        </para>
+        <para>
+            <literal>[m,k]=max(list(A1,...,An))</literal> est une syntaxe
+            équivalente de <literal>[m,k]=max(A1,A2,...,An)</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Remarque</title>
+        <para>
+            <note>
+                La fonction ignore les termes de <varname>A</varname> qui sont des NANs.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+[m,n]=max([1,3,1])
+[m,n]=max([3,1,1],[1,3,1],[1,1,3])
+[m,n]=max([3,-2,1],1)
+[m,n]=max(list([3,1,1],[1,3,1],[1,1,3]))
+[m,n]=max(list(1,3,1))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gsort">gsort</link>
+            </member>
+            <member>
+                <link linkend="find">find</link>
+            </member>
+            <member>
+                <link linkend="max">max</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

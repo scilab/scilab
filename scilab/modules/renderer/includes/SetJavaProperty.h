@@ -25,15 +25,15 @@ extern "C" {
 
 #include "dynlib_renderer.h"
 
-/**
- * Update subwin size and scale
- */
-RENDERER_IMPEXP void sciJavaUpdateSubwinScale(char * pSubwinUID);
+    /**
+     * Update subwin size and scale
+     */
+    RENDERER_IMPEXP void sciJavaUpdateSubwinScale(char * pSubwinUID);
 
-/**
- * Update bounding box of a text object if needed
- */
-RENDERER_IMPEXP void sciJavaUpdateTextBoundingBox(char * pTextUID);
+    /**
+     * Update bounding box of a text object if needed
+     */
+    RENDERER_IMPEXP void sciJavaUpdateTextBoundingBox(char * pTextUID);
 
 #ifdef __cplusplus
 }

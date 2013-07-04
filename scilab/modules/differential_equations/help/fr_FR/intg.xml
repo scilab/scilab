@@ -1,105 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="intg" xml:lang="fr">
-  <refnamediv>
-    <refname>intg</refname>
-    <refpurpose>intégration numérique adaptative</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>[v,err]=intg(a,b,f [,ea [,er])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Paramètres</title>
-    <variablelist>
-      <varlistentry>
-        <term>a, b</term>
-        <listitem>
-          <para>nombres réels.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>f</term>
-        <listitem>
-          <para>fonction externe (fonction Scilab ou chaîne de caractères ou
-            liste).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>ea, er</term>
-        <listitem>
-          <para>nombres réels.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>ea</term>
-        <listitem>
-          <para>erreur absolue désirée (1.d-14 par défaut).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>er</term>
-        <listitem>
-          <para>erreur relative (1.d-8 par défaut).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>err</term>
-        <listitem>
-          <para>estimation de l'erreur absolue sur le résultat.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>intg(a,b,f)</literal> approche l'intégrale de
-      <literal>a</literal> à <literal>b</literal> de <literal>f(t)dt</literal>.
-      La fonction <literal>f</literal> doit être continue.
-    </para>
-    <para>
-      L'évaluation satisfait si possible <literal>abs(I-v)&lt;=
-        max(ea,er*abs(I))
-      </literal>
-      où <literal>I</literal> représente la valeur exacte de
-      l'intégrale.
-    </para>
-    <para>
-      <literal>f</literal> est une fonction externe :
-    </para>
-    <para>
-      Si <literal>f</literal> est une fonction Scilab elle doit avoir la
-      liste d'appel : <literal>y = f(t)</literal>
-    </para>
-    <para>
-      Si <literal>f</literal> est une liste, cette liste doit avoir la
-      structure suivante : <literal> list(f,x1,x2,...)</literal> où
-      <literal>f</literal> est une fonction Scilab avec la liste d'appel :
-      <literal>f(t,x1,x2,...)</literal>.
-    </para>
-    <para>
-      Si <literal>f</literal> est une chaîne de caractères, ce paramètre
-      désigne le nom d'un fonction Fortran ou d'une procédure C ayant une liste
-      d'appel fixée:
-    </para>
-    <para>
-      Dans le cas Fortran la liste d'appel doit être: <literal>double
-        precision function f(x)
-      </literal>
-      où <literal>x</literal> est aussi un
-      nombre double precision.
-    </para>
-    <para>
-      Dans la cas C la liste d'appel doit être: <literal>double f(double
-        *x)
-      </literal>
-      .
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="intg" xml:lang="fr">
+    <refnamediv>
+        <refname>intg</refname>
+        <refpurpose>intégration numérique adaptative</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>[v,err [,ierr]]=intg(a,b,f [,ea [,er])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>a, b</term>
+                <listitem>
+                    <para>nombres réels.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>fonction externe (fonction Scilab ou chaîne de caractères ou
+                        liste).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ea, er</term>
+                <listitem>
+                    <para>nombres réels.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ea</term>
+                <listitem>
+                    <para>erreur absolue désirée (1.d-14 par défaut).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>er</term>
+                <listitem>
+                    <para>erreur relative (1.d-8 par défaut).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>estimation de l'erreur absolue sur le résultat.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ierr</term>
+                <listitem>
+                    <para>numéro d'erreur (= 0 si absence d'erreur).</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>intg(a,b,f)</literal> approche l'intégrale de
+            <literal>a</literal> à <literal>b</literal> de <literal>f(t)dt</literal>.
+            La fonction <literal>f</literal> doit être continue.
+        </para>
+        <para>
+            L'évaluation satisfait si possible <literal>abs(I-v)&lt;=
+                max(ea,er*abs(I))
+            </literal>
+            où <literal>I</literal> représente la valeur exacte de
+            l'intégrale.
+        </para>
+        <para>
+            <literal>f</literal> est une fonction externe :
+        </para>
+        <para>
+            Si <literal>f</literal> est une fonction Scilab elle doit avoir la
+            liste d'appel : <literal>y = f(t)</literal>
+        </para>
+        <para>
+            Si <literal>f</literal> est une liste, cette liste doit avoir la
+            structure suivante : <literal> list(f,x1,x2,...)</literal> où
+            <literal>f</literal> est une fonction Scilab avec la liste d'appel :
+            <literal>f(t,x1,x2,...)</literal>.
+        </para>
+        <para>
+            Si <literal>f</literal> est une chaîne de caractères, ce paramètre
+            désigne le nom d'un fonction Fortran ou d'une procédure C ayant une liste
+            d'appel fixée:
+        </para>
+        <para>
+            Dans le cas Fortran la liste d'appel doit être: <literal>double
+                precision function f(x)
+            </literal>
+            où <literal>x</literal> est aussi un
+            nombre double precision.
+        </para>
+        <para>
+            Dans la cas C la liste d'appel doit être: <literal>double f(double
+                *x)
+            </literal>
+            .
+        </para>
+    </refsection>
+    <refsection>
+        <title>Limitation connue</title>
+        <para>
+            Comme tous les intégrateurs, <literal>intg</literal> est susceptible de manquer des pics.
+        </para>
+        <para>
+            Une fonction plate contenant un pic sera considérée totalement plate si le pic est suffisamment raide.
+        </para>
+        <para>
+            Cela ne peut pas être évité, on comprend facilement pourquoi dès que l'on comprend comment l'intégrateur opère.
+            En effet, <literal>intg</literal> utilise la méthode des 21 points de Gauss-Kronrod,
+            donc s'il y a un pic entre deux points d'intégration consécutifs,
+            il ne sera pas détecté, la fonction sera considérée lisse.
+        </para>
+        <para>
+            Cependant, un warning s'affichera si la fonction est considérée très lisse,
+            qui suggèrera à l'utilisateur de réduire l'intervalle d'intégration,
+            s'il pense que des pics ont été manqués.
+        </para>
+        <para>
+            Les graphes suivants illustrent ce phénomène.
+        </para>
+        <scilab:image localized="true">
+            x = 0:.1:22;
+            y = zeros(1,221); y(1) = 3; y(96) = 1;
+            plot(x, y);
+            xtitle("Pic manqué");
+        </scilab:image>
+        <para>
+            Se situant entre les 9è and 10è points d'intégration, le pic n'est pas détecté et
+            <literal>intg</literal> considère la fonction comme plate.
+            Dans l'image suivante, le pic est suffisamment large pour être détecté.
+        </para>
+        <scilab:image localized="true">
+            x = 0:21;
+            y = zeros(1,22); y(1) = 3; y(10) = 1;
+            plot(x, y);
+            xtitle("Pic détecté");
+        </scilab:image>
+        <para>
+            Si l'utilisateur veut afficher la solution même si le solveur a rencontré une erreur,
+            il doit ajouter le troisième argument de sortie <literal>ierr</literal>, ce qui transformera
+            les erreurs en warnings. Ceci est surtout utilisé dans les cas d'erreurs d'arrondi.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 //External écrit en Scilab
 function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 exact=-2.5432596188;
@@ -154,31 +205,31 @@ link(l,'cfun','c')
 I=intg(0,2*%pi,'cfun')
 abs(exact-I)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="intc">intc</link>
-      </member>
-      <member>
-        <link linkend="intl">intl</link>
-      </member>
-      <member>
-        <link linkend="inttrap">inttrap</link>
-      </member>
-      <member>
-        <link linkend="intsplin">intsplin</link>
-      </member>
-      <member>
-        <link linkend="ode">ode</link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Fonctions Utilisées</title>
-    <para>Les programmes correspondants (dqag0.f et dqags.f de quadpack) se
-      trouvent dabs le repertoire SCI/modules/differential_equations/src/fortran.
-    </para>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="intc">intc</link>
+            </member>
+            <member>
+                <link linkend="intl">intl</link>
+            </member>
+            <member>
+                <link linkend="inttrap">inttrap</link>
+            </member>
+            <member>
+                <link linkend="intsplin">intsplin</link>
+            </member>
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Fonctions Utilisées</title>
+        <para>Les programmes correspondants (dqags.f et dqagse.f de quadpack) se
+            trouvent dans le répertoire SCI/modules/differential_equations/src/fortran/.
+        </para>
+    </refsection>
 </refentry>

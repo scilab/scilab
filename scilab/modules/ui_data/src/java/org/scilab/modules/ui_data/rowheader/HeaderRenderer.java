@@ -32,6 +32,7 @@ import javax.swing.table.TableCellRenderer;
 /**
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class HeaderRenderer extends JLabel implements TableCellRenderer {
 
     private static final Insets INSETS = new Insets(1, 1, 1, 0);
@@ -72,20 +73,20 @@ public class HeaderRenderer extends JLabel implements TableCellRenderer {
         setFont(unselectedFont);
         if (!rowModel) {
             setBorder(new AbstractBorder() {
-                    public Insets getBorderInsets(Component c) {
-                        return INSETS;
-                    }
+                public Insets getBorderInsets(Component c) {
+                    return INSETS;
+                }
 
-                    public Insets getBorderInsets(Component c, Insets insets) {
-                        return INSETS;
-                    }
+                public Insets getBorderInsets(Component c, Insets insets) {
+                    return INSETS;
+                }
 
-                    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-                        g.setColor(HeaderRenderer.this.table.getGridColor().darker());
-                        g.drawLine(x, y, x + width, y);
-                        g.drawLine(x, y, x, y + height);
-                    }
-                });
+                public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                    g.setColor(HeaderRenderer.this.table.getGridColor().darker());
+                    g.drawLine(x, y, x + width, y);
+                    g.drawLine(x, y, x, y + height);
+                }
+            });
         }
     }
 

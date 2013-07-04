@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -21,18 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_calerf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dlgamma.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_gamma.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lgamma.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dbesig.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -59,18 +47,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_calerf.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dlgamma.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_gamma.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lgamma.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="dbesig.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>

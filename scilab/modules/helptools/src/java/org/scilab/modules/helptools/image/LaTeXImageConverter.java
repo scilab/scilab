@@ -35,10 +35,10 @@ import org.scilab.modules.helptools.HTMLDocbookTagConverter;
 public class LaTeXImageConverter implements ExternalImageConverter {
 
     private static LaTeXImageConverter instance;
-    private final HTMLDocbookTagConverter.GenerationType type;
+    private final HTMLDocbookTagConverter conv;
 
-    private LaTeXImageConverter(HTMLDocbookTagConverter.GenerationType type) {
-        this.type = type;
+    private LaTeXImageConverter(HTMLDocbookTagConverter conv) {
+        this.conv = conv;
     }
 
     /**
@@ -59,9 +59,9 @@ public class LaTeXImageConverter implements ExternalImageConverter {
      * Since it is a singleton class...
      * @return this
      */
-    public static ExternalImageConverter getInstance(HTMLDocbookTagConverter.GenerationType type) {
+    public static ExternalImageConverter getInstance(HTMLDocbookTagConverter conv) {
         if (instance == null) {
-            instance = new LaTeXImageConverter(type);
+            instance = new LaTeXImageConverter(conv);
         }
         return instance;
     }
@@ -78,18 +78,25 @@ public class LaTeXImageConverter implements ExternalImageConverter {
             if (display != null && display.equals("text")) {
                 style = TeXConstants.STYLE_TEXT;
             }
+            String fs = attributes.get("fontsize");
+            int ifs = 16;
+            if (fs != null) {
+                try {
+                    ifs = Integer.parseInt(fs);
+                } catch (Exception e) { }
+            }
 
-            icon = formula.createTeXIcon(style, Integer.parseInt(attributes.get("fontsize")));
+            icon = formula.createTeXIcon(style, ifs);
 
             Image img = new Image(icon, icon.getIconWidth(), icon.getIconHeight(), icon.getIconHeight() - icon.getIconDepth(), icon.getIconDepth());
             if (img != null && ImageConverter.convertIconToPNG(img.icon, imageFile)) {
-                return ImageConverter.generateCode(img, imageName, attributes);
+                return ImageConverter.generateCode(img, conv.getBaseImagePath() + imageName, attributes);
             }
 
             return null;
 
         } catch (ParseException e) {
-            System.err.println(e);
+            System.err.println("LaTeX code in\n" + currentFile + "\nhas generated an error: " + e.getMessage());
         }
 
         return null;

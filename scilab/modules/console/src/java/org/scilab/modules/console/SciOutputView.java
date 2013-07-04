@@ -58,6 +58,7 @@ import com.artenum.rosetta.util.StringConstants;
  *
  * @author Vincent COUVERT
  */
+@SuppressWarnings(value = { "serial" })
 public class SciOutputView extends JEditorPane implements OutputView, ViewFactory {
     private static final long serialVersionUID = 1L;
 
@@ -98,10 +99,10 @@ public class SciOutputView extends JEditorPane implements OutputView, ViewFactor
         super();
 
         setEditorKit(new DefaultEditorKit() {
-                public ViewFactory getViewFactory() {
-                    return SciOutputView.this;
-                }
-            });
+            public ViewFactory getViewFactory() {
+                return SciOutputView.this;
+            }
+        });
 
         /* A PlainDocument contains only "box" for lines not for all characters (as in a StyledDocument)
            so there are less boxes to explore in a PlainDocument... */
@@ -179,10 +180,10 @@ public class SciOutputView extends JEditorPane implements OutputView, ViewFactor
         getCaret().setSelectionVisible(true);
 
         addFocusListener(new FocusAdapter() {
-                public void focusGained(FocusEvent e) {
-                    ((JTextPane) getConsole().getConfiguration().getInputCommandView()).requestFocus();
-                }
-            });
+            public void focusGained(FocusEvent e) {
+                ((JTextPane) getConsole().getConfiguration().getInputCommandView()).requestFocus();
+            }
+        });
     }
 
     /**
@@ -276,9 +277,9 @@ public class SciOutputView extends JEditorPane implements OutputView, ViewFactor
             }
         }
 
-	if (console != null) {
-	    console.updateScrollPosition();
-	}
+        if (console != null) {
+            console.updateScrollPosition();
+        }
     }
 
     /**

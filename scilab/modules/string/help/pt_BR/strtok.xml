@@ -10,50 +10,50 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="strtok" xml:lang="en">
-  <refnamediv>
-    <refname>strtok</refname>
-    <refpurpose>divide um string em fichas (tokens)</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>res = strtok(str,delimiters)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>str</term>
-        <listitem>
-          <para>string</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>delimiters</term>
-        <listitem>
-          <para>string</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>res</term>
-        <listitem>
-          <para>string</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      <literal>res = strtok(str,delimiters)</literal> divide str em
-      fichas, que são seqüências de caracteres contíguos separados por qualquer
-      um dos caracteres que fazem parte do string delimiters (delimiters =
-      delimitadores).
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strtok" xml:lang="en">
+    <refnamediv>
+        <refname>strtok</refname>
+        <refpurpose>divide um string em fichas (tokens)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>res = strtok(str,delimiters)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>delimiters</term>
+                <listitem>
+                    <para>string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>string</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>res = strtok(str,delimiters)</literal> divide str em
+            fichas, que são seqüências de caracteres contíguos separados por qualquer
+            um dos caracteres que fazem parte do string delimiters (delimiters =
+            delimitadores).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 TOKENS = [];
 token = strtok("Um string de ,,fichas e algumas fichas mais"," ,");
 TOKENS = [TOKENS,token];
@@ -63,16 +63,16 @@ while( token <> '' )
 end
 disp(TOKENS);
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="strrchr">strrchr</link>
-      </member>
-      <member>
-        <link linkend="strchr">strchr</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="strrchr">strrchr</link>
+            </member>
+            <member>
+                <link linkend="strchr">strchr</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

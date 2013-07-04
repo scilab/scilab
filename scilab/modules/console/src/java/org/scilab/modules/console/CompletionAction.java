@@ -50,39 +50,46 @@ public class CompletionAction extends AbstractConsoleAction {
             return;
         }
 
-        Point location = configuration.getInputParsingManager().getWindowCompletionLocation();
         List<CompletionItem> completionItems = configuration.getCompletionManager().getCompletionItems();
-        AbstractSciCompletionWindow win = (AbstractSciCompletionWindow) configuration.getCompletionWindow();
 
-        if (completionItems != null && completionItems.size() == 1) {
-            /* Only one item returned, autoselected and appended to command line */
-            configuration.getCompletionWindow().show(completionItems, location);
-            win.addCompletedWord(caretPosition);
+        if ((completionItems != null) && (completionItems.size() > 0)) {
+            AbstractSciCompletionWindow win = (AbstractSciCompletionWindow) configuration.getCompletionWindow();
 
-            ((AbstractSciCompletionWindow) configuration.getCompletionWindow()).setVisible(false);
-        } else if (completionItems != null && completionItems.size() != 0) {
-            String [] completionArray = new String [completionItems.size()];
+            if (completionItems.size() == 1) {
+                Point location = configuration.getInputParsingManager().getWindowCompletionLocation();
+                /* Only one item returned, autoselected and appended to command line */
+                configuration.getCompletionWindow().show(completionItems, location);
+                win.addCompletedWord(caretPosition);
 
-            int i = 0;
-            Iterator < CompletionItem >  it = completionItems.iterator();
-            while  (it.hasNext()) {
-                CompletionItem currentItem = it.next();
-                completionArray[i] = currentItem.getReturnValue();
-                i++;
-            }
+                ((AbstractSciCompletionWindow) configuration.getCompletionWindow()).setVisible(false);
+            } else {
+                String [] completionArray = new String [completionItems.size()];
 
-            java.util.Arrays.sort(completionArray);
-            String commonPartOfWord = Completion.getCommonPart(completionArray, completionItems.size());
-
-            caretPosition = configuration.getInputParsingManager().getCaretPosition();
-            String currentLine = configuration.getInputParsingManager().getCommandLine();
-
-            if ((commonPartOfWord.length() != 0) && (caretPosition == currentLine.length())) {
-                if (configuration.getInputParsingManager().getPartLevel(0).length() != 0) {
-                    win.addCompletedWord(commonPartOfWord, caretPosition);
+                int i = 0;
+                Iterator < CompletionItem >  it = completionItems.iterator();
+                while  (it.hasNext()) {
+                    CompletionItem currentItem = it.next();
+                    completionArray[i] = currentItem.getReturnValue();
+                    i++;
                 }
+
+                // First autocmplete by the common prefix of suggested words, if exist
+                java.util.Arrays.sort(completionArray);
+                String commonPartOfWord = Completion.getCommonPart(completionArray, completionItems.size());
+
+                caretPosition = configuration.getInputParsingManager().getCaretPosition();
+                String currentLine = configuration.getInputParsingManager().getCommandLine();
+
+                if ((commonPartOfWord.length() != 0) && (caretPosition == currentLine.length())) {
+                    if (configuration.getInputParsingManager().getPartLevel(0).length() != 0) {
+                        win.addCompletedWord(commonPartOfWord, caretPosition);
+                    }
+                }
+
+                // Display suggested word window at caret position
+                Point location = configuration.getInputParsingManager().getWindowCompletionLocation();
+                configuration.getCompletionWindow().show(completionItems, location);
             }
-            configuration.getCompletionWindow().show(completionItems, location);
         }
     }
 }

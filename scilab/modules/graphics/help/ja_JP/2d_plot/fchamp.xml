@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="fchamp">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="fchamp">
     <refnamediv>
         <refname>fchamp</refname>
         <refpurpose>2次元1階常微分方程式(ODE)のフィールド方向</refpurpose>
@@ -105,7 +105,15 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>fchamp();</scilab:image>
+        <scilab:image>
+            deff("[xdot] = derpol(t,x)",..
+            ["xd1 = x(2)";..
+            "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
+            "xdot = [ xd1 ; xd2 ]"])
+            xf= -1:0.1:1;
+            yf= -1:0.1:1;
+            fchamp(derpol,0,xf,yf)
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

@@ -11,38 +11,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="percenthelps">
-  <refnamediv>
-    <refname>%helps</refname>
-    <refpurpose> Variable defining the path of help directories</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>BEWARE: This variable must NOT be modified by users.</para>
-    <para>
-      The global variable <literal>%helps</literal> is an N x 2 matrix of strings. 
-      The kth row of <literal>%helps</literal>, <literal>%helps(k,:)</literal> represents
-      the kth chapter of the manual and is made of two strings:
-    </para>
-    <para>
-      <literal>%helps(k,1)</literal> is the absolute pathname for a help directory.
-    </para>
-    <para>
-      <literal>%helps(k,2)</literal> is a title for this help directory.
-    </para>
-    <para>
-      To add a new help directory, the user should use <literal>add_help_chapter</literal>.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="add_help_chapter">add_help_chapter</link>
-      </member>
-      <member>
-        <link linkend="help">help</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="percenthelps">
+    <refnamediv>
+        <refname>%helps</refname>
+        <refpurpose>Variable defining the path of help directories</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>BEWARE: This variable must NOT be modified by users.</para>
+        <para>
+            The global variable <literal>%helps</literal> is an N x 2 matrix of strings. 
+            The kth row of <literal>%helps</literal>, <literal>%helps(k,:)</literal> represents
+            the kth chapter of the manual and is made of two strings:
+        </para>
+        <para>
+            <literal>%helps(k,1)</literal> is the absolute pathname for a help directory.
+        </para>
+        <para>
+            <literal>%helps(k,2)</literal> is a title for this help directory.
+        </para>
+        <para>
+            To add a new help directory, the user should use <literal>add_help_chapter</literal>.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="add_help_chapter">add_help_chapter</link>
+            </member>
+            <member>
+                <link linkend="help">help</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

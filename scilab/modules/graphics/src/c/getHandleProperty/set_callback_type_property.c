@@ -30,23 +30,30 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_callback_type_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_callback_type_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    double callbackType = 0.0;
+    int callbackType = 0;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: A Real scalar expected.\n"), "callback_type");
         return SET_PROPERTY_ERROR;
     }
-    if (nbRow*nbCol != 1)
+    if (nbRow * nbCol != 1)
     {
         Scierror(999, _("Wrong size for '%s' property: A Real scalar expected.\n"), "callback_type");
         return SET_PROPERTY_ERROR;
     }
 
-    callbackType = getDoubleFromStack(stackPointer);
+    callbackType = (int)((double*)_pvData)[0];
+
+    /* Check the value */
+    if (callbackType < -1 || callbackType > 2)
+    {
+        Scierror(999, _("Wrong value for '%s' property: %d, %d, %d or %d expected.\n"), "callback_type", -1, 0, 1, 2);
+        return SET_PROPERTY_ERROR;
+    }
 
     status = setGraphicObjectProperty(pobjUID, __GO_CALLBACKTYPE__, &callbackType, jni_int, 1);
 
@@ -56,7 +63,7 @@ int set_callback_type_property(void* _pvCtx, char* pobjUID, size_t stackPointer,
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"callback_type");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "callback_type");
         return SET_PROPERTY_ERROR;
     }
 }

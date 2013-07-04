@@ -10,40 +10,40 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="m2sci_atan2">
-  <refnamediv>
-    <refname>atan2 (Matlab function)</refname>
-    <refpurpose>Four-quadrant inverse tangent</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Matlab/Scilab equivalent</title>
-    <informaltable border="1" width="100%">
-      <tr>
-        <td align="center">
-          <emphasis role="bold">Matlab</emphasis>
-        </td>
-        <td align="center">
-          <emphasis role="bold">Scilab</emphasis>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <programlisting role="example"><![CDATA[
-atan2
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_atan2">
+    <refnamediv>
+        <refname>atan2 (Matlab function)</refname>
+        <refpurpose>Four-quadrant inverse tangent</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Matlab/Scilab equivalent</title>
+        <informaltable border="1" width="100%">
+            <tr>
+                <td align="center">
+                    <emphasis role="bold">Matlab</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis role="bold">Scilab</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <programlisting role="example"><![CDATA[
+atan2(y,x)
 ]]></programlisting>
-        </td>
-        <td>
-          <programlisting role="example"><![CDATA[
-atan2
+                </td>
+                <td>
+                    <programlisting role="example"><![CDATA[
+atan(y,x)
 ]]></programlisting>
-        </td>
-      </tr>
-    </informaltable>
-  </refsection>
-  <refsection>
-    <title>Particular cases</title>
-    <para>
-Matlab <emphasis role="bold">atan2</emphasis> function can work with complexes (in this case, complex part is ignored), what Scilab <emphasis role="bold">atan</emphasis> can not.
-</para>
-  </refsection>
+                </td>
+            </tr>
+        </informaltable>
+    </refsection>
+    <refsection>
+        <title>Particular cases</title>
+        <para>
+            Matlab <emphasis role="bold">atan2</emphasis> function can work with complexes (in this case, complex part is ignored), what Scilab <emphasis role="bold">atan</emphasis> can not.
+        </para>
+    </refsection>
 </refentry>

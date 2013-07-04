@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="funptr">
+    <refnamediv>
+        <refname>funptr</refname>
+        <refpurpose>кодирование примитивов (для экспертов)  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[numptr] = funptr(name)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>строка, имя примитива</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>numptr</term>
+                <listitem>
+                    <para>число внутренней подпрограммы примитива</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Специальная функция (только для экспертов) для получения числа внутренней подпрограммы 
+            <literal>numptr</literal> примитива с именем <literal>'name'</literal>. 
+            <literal>numptr</literal> формируется из числа интерфейса <literal>fun</literal> 
+            и числа подпрограммы <literal>fin</literal> примитива в его интерфейсе как
+            <literal>numptr = 1000*fun + fin</literal> (fin &lt; 1000). Из  <literal>numptr</literal> 
+            можно получить число интерфейса <literal>fun = floor(numptr/1000)</literal>, которое может 
+            быть полезным для связи динамического интерфейса с аргументами, переданными по ссылке 
+            (см. раздел "Примеры").
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+// Предположим, что вы хотите загрузить некоторые коды через
+// предлагаемые средства динамической загрузки с помощью addinter.
+// По умолчанию аргументы передаются по значению, но вы можете захотеть
+// передавать их по ссылки, для чего нужно сделать следующее 
+// (name - это scilab-имя одной из подпрограмм в интерфейсе):
+//
+// addinter(files,spnames,fcts)  // аргументы передаются по значению
+// num_interface = floor(funptr(name)/1000)
+// intppty(num_interface)  // теперь аргументы передаются по ссылке
+//
+// Заметьте, что, если вы введете следующее
+//
+// intppty()                
+//
+// то вы увидите все интерфейсы, работающие по ссылке
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="clearfun">clearfun</link>
+            </member>
+            <member>
+                <link linkend="newfun">newfun</link>
+            </member>
+            <member>
+                <link linkend="intppty">intppty</link>
+            </member>
+            <member>
+                <link linkend="addinter">addinter</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

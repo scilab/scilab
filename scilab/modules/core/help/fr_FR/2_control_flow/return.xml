@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="return">
+    <refnamediv>
+        <refname>return</refname>
+        <refpurpose>sortie d'une fonction ou reprise d'exécution, avec récupération de variables locales  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>return
+            [x1,..,xn]=return(a1,..,an)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x1,..,xn</term>
+                <listitem>
+                    <para>variables de l'environnement appelant</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a1,..,an</term>
+                <listitem>
+                    <para>variables locales</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Dans une fonction <literal>return</literal> termine son exécution et
+            <literal>[..]=return(..)</literal> renvoie les variables locales
+            <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
+        </para>
+        <para>
+        </para>
+        <para>
+            En mode de <literal>pause</literal>, cela permet de reprendre l'exécution et
+            <literal>[..]=return(..)</literal> renvoie les variables locales
+            <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
+        </para>
+        <para>
+            Utilisé dans l'argument de <literal>execstr</literal> appelé dans une fonction, <literal>[..]=return(..)</literal> termine l'exécution de la fonction et renvoie les variables locales <literal>ai</literal> dans l'environnement appelant sous les noms <literal>xi</literal>.
+        </para>
+        <para>
+            L'instruction <literal>return</literal> est équivalent à <literal>resume</literal>.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="abort">abort</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="resume">resume</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

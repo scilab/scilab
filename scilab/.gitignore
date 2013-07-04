@@ -90,7 +90,7 @@ modules/*/sci_gateway/fortran/*.c
 
 #
 # VS 2010 files
-# 
+#
 *.opensdf
 *.sdf
 *.old
@@ -113,6 +113,7 @@ workspace/
 # scilab/ specific files
 #
 /thirdparty
+/include
 Makefile.OBJ
 Makefile.incl
 Makemex
@@ -120,7 +121,7 @@ Path.incl
 config.log
 config.status
 libtool
-history.scilab
+history
 lib
 tcllib
 _tmp_project.h
@@ -132,10 +133,10 @@ tclminor
 mainsci.o
 *.log
 /java
+/reports
 .metadata
 autom4te.cache
 .deps
-/locale
 scilab.properties
 scilab-lib.properties
 scilab-lib-doc.properties
@@ -152,7 +153,9 @@ scilab.pc
 # atoms generated files
 .atoms
 contrib/archives
-
+contrib/*/
+!contrib/toolbox_skeleton/
+!contrib/xcos_toolbox_skeleton/
 
 # SWIG generated files which are not used
 modules/types/src/java/org/scilab/modules/types/types.java
@@ -167,4 +170,8 @@ modules/types/src/jni/sci_types_wrap.c
 # clang / scan-build generated temporary files
 modules/*/*.plist
 
+# optional modules
 modules/pvm/
+
+# call_scilab examples
+call_scilab_*

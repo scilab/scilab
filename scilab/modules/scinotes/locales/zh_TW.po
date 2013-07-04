@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-05-23 01:34+0000\n"
 "Last-Translator: MouetteYang <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: \n"
 
 #, c-format
@@ -117,7 +117,7 @@ msgstr ""
 msgid "Close All But This"
 msgstr ""
 
-msgid "Exit"
+msgid "Exit Scinotes"
 msgstr ""
 
 msgid "Edit"
@@ -243,6 +243,18 @@ msgstr ""
 msgid "Line Endings"
 msgstr ""
 
+msgid "Preferences"
+msgstr ""
+
+msgid "Set font"
+msgstr ""
+
+msgid "Set colors"
+msgstr ""
+
+msgid "Scinotes General settings"
+msgstr ""
+
 msgid "Auto-completion on"
 msgstr ""
 
@@ -300,7 +312,7 @@ msgstr ""
 msgid "?"
 msgstr ""
 
-msgid "SciNotes help"
+msgid "Scinotes help"
 msgstr ""
 
 msgid "Help on ;Help on selection"
@@ -327,7 +339,7 @@ msgstr ""
 msgid "Editor"
 msgstr ""
 
-msgid "Use SciNotes"
+msgid "Use Scinotes"
 msgstr ""
 
 msgid "External editor: "
@@ -337,9 +349,6 @@ msgid "(Don't forget to quote path containing white spaces)"
 msgstr ""
 
 msgid "Scilab command: "
-msgstr ""
-
-msgid "SciNotes General settings"
 msgstr ""
 
 msgid "Restore previous session on start-up"
@@ -373,6 +382,12 @@ msgid "Normal"
 msgstr ""
 
 msgid "Wrap lines"
+msgstr ""
+
+msgid "Background color: "
+msgstr ""
+
+msgid "Cursor color: "
 msgstr ""
 
 msgid "Keywords"
@@ -492,6 +507,18 @@ msgstr ""
 msgid "Error while reading the String"
 msgstr ""
 
+#, c-format
+msgid "File not found: %s"
+msgstr ""
+
+#, c-format
+msgid "I/O error: %s"
+msgstr ""
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr ""
+
 msgid "Source of '"
 msgstr ""
 
@@ -514,6 +541,9 @@ msgid "An error occurred when exporting the code using FOP"
 msgstr ""
 
 msgid "An error occurred when printing"
+msgstr ""
+
+msgid "Exit"
 msgstr ""
 
 msgid "Tools"
@@ -612,6 +642,9 @@ msgstr ""
 msgid "Execute File Into Scilab"
 msgstr ""
 
+msgid "SciNotes help"
+msgstr ""
+
 msgid "Help on the current keyword"
 msgstr ""
 
@@ -675,6 +708,7 @@ msgstr ""
 msgid "Replace All"
 msgstr ""
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr ""
 
@@ -690,12 +724,12 @@ msgstr ""
 msgid "You have reached the beginning of the document"
 msgstr ""
 
+#, c-format
 msgid "String %s not found"
 msgstr ""
 
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
+#, c-format
+msgid "The file %s does not exist. Do you want to create it?"
 msgstr ""
 
 msgid "close this tab"
@@ -704,16 +738,12 @@ msgstr ""
 msgid "This file"
 msgstr ""
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
 msgstr ""
-" 儲存後又再修正\n"
-"儲存"
 
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
+#, c-format
+msgid "The file %s has been modified by another program ! Overwrite it ?"
 msgstr ""
 
 msgid "Warning: the file has been modified by another program !"
@@ -791,12 +821,14 @@ msgstr ""
 msgid "Show the definition of the macro "
 msgstr ""
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr ""
 
 msgid "Unknown function"
 msgstr ""
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr ""
 
@@ -812,6 +844,7 @@ msgstr ""
 msgid "The file could not be converted."
 msgstr ""
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%目錄"
 
@@ -836,6 +869,7 @@ msgstr ""
 msgid "No text to execute."
 msgstr ""
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -846,12 +880,14 @@ msgstr ""
 msgid "Cannot guess the file encoding."
 msgstr ""
 
+#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
 
 msgid "Backup finished..."
 msgstr ""
 
+#, c-format
 msgid "%s occurences found."
 msgstr ""
 
@@ -969,12 +1005,15 @@ msgstr ""
 msgid "Search in Files..."
 msgstr ""
 
+#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
+#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr ""
 
+#, c-format
 msgid "Elapsed time: %s sec."
 msgstr ""
 
@@ -1031,4 +1070,22 @@ msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
+msgstr ""
+
+msgid "the last error did not occur inside a library function."
+msgstr ""
+
+msgid " on line "
+msgstr ""
+
+msgid "opening file "
+msgstr ""
+
+msgid " of the source file of the function "
+msgstr ""
+
+msgid "the source file of the function "
+msgstr ""
+
+msgid " was not found in any library path"
 msgstr ""

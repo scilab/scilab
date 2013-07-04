@@ -9,8 +9,8 @@
 
 // Create a default figure
 function closeRequestFcn()
-    btn = messagebox("Do you want to close the figure?", "Close?", "question", ["Yes", "No"])
-    if btn=="Yes" then
+    btn = messagebox("Do you want to close the figure?", "Close?", "question",  ["Yes", "No"], "modal")
+    if btn then
         delete(gcf());
     else
         disp("Figure is still opened.");
@@ -25,7 +25,7 @@ assert_checkequal(f.closerequestfcn, "closeRequestFcn()");
 // Try with wrong values
 refMsg = msprintf(_("Wrong type for ''%s'' property: String expected.\n"), "closerequestfcn");
 assert_checkerror("f = gcf();f.closerequestfcn = 10;", refMsg);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), "set", 3);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A single string expected.\n"), "set", 3);
 assert_checkerror("f = gcf();f.closerequestfcn = [""resizeMe()"" ""resizeMe()""];", refMsg);
 
 // Test for other handles

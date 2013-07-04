@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5rm" xml:lang="en">
+    <refnamediv>
+        <refname>h5rm</refname>
+        <refpurpose>Remove elements from an HDF5 file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            h5rm(obj [, names])
+            h5rm(filename, names)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>obj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>names</term>
+                <listitem>
+                    <para>a matrix of strings giving the locations to remove</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>a string giving an the path of a HDF5 file</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Remove one or more objects from the file.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a = h5open(TMPDIR + "/test.h5", "a");
+
+// We can create several groups under root
+names = "Group_" + string(1:10);
+h5group(a, names)
+
+// we display them
+h5ls(a)
+
+// ... or
+a.root.groups
+
+// we can remove a part of them
+names = "Group_" + string(1:2:10);
+h5rm(a, names);
+
+// we check that all is ok
+a.root.groups
+
+// We have finished so we free all the resources
+h5close(a);
+
+// We can remove attributes too
+x = %pi;
+save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
+
+// Open the created file
+a = h5open(TMPDIR + "/x.sod");
+
+// we look for attributes
+h5ls(a)
+
+// ... or
+a.root.attributes
+
+// We remove 'SCILAB_sod_version'
+h5rm(a, "SCILAB_sod_version"), h5ls(a)
+
+// Free the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5group">h5group</link>
+            </member>
+            <member>
+                <link linkend="h5dataset">h5dataset</link>
+            </member>
+            <member>
+                <link linkend="h5attr">h5attr</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HDF5 module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -71,7 +71,9 @@ int sci_scanf(char *fname, unsigned long fname_len)
     {
         rowcount++;
         if ((maxrow >= 0) && (rowcount >= maxrow))
+        {
             break;
+        }
 
         /* get a line */
         C2F(xscion) (&iflag);
@@ -88,7 +90,6 @@ int sci_scanf(char *fname, unsigned long fname_len)
         {
             FREE(String);
             String = strdup(" ");
-            lline = (int)strlen(String);
         }
 
         /** use the scaned line as input **/

@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 9810 -->
 //
@@ -16,7 +16,7 @@
 // Matrix inversion error message update
 
 exec(SCI + "/modules/xcos/tests/nonreg_tests/bug_9810.sce");
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_9810.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_9810.zcos");
 if ~status then pause, end
 
 // compile and simulate

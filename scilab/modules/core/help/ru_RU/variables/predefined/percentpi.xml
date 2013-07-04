@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - DIGITEO - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percentpi" xml:lang="ru">
+    <refnamediv>
+        <refname>%pi</refname>
+        <refpurpose>отношение длины окружности к диаметру окружности</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>%pi</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>%pi</literal> возвращает число с плавающей запятой, ближайшее к значению <latex>\pi</latex>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Пример</title>
+        <programlisting role="example"><![CDATA[sin(%pi)]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sin">sin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

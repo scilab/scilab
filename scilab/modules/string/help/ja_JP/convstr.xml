@@ -10,59 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="convstr">
-  <refnamediv>
-    <refname>convstr</refname>
-    <refpurpose>大文字小文字変換</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>[y]=convstr(str, [flag])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>str, y</term>
-        <listitem>
-          <para>文字列の行列</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>flag</term>
-        <listitem>
-          <para>文字オプションで指定可能な値は以下のとおり</para>
-          <variablelist>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="convstr">
+    <refnamediv>
+        <refname>convstr</refname>
+        <refpurpose>大文字小文字変換</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[y]=convstr(str, [flag])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
             <varlistentry>
-              <term>'u'</term>
-              <listitem>
-                <para>大文字に変換</para>
-              </listitem>
+                <term>str, y</term>
+                <listitem>
+                    <para>文字列の行列</para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>'l'</term>
-              <listitem>
-                <para>小文字に変換</para>
-              </listitem>
+                <term>flag</term>
+                <listitem>
+                    <para>文字オプションで指定可能な値は以下のとおり</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>'u'</term>
+                            <listitem>
+                                <para>大文字に変換</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>'l'</term>
+                            <listitem>
+                                <para>小文字に変換</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
             </varlistentry>
-          </variablelist>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      文字列の行列<literal>str-matrix</literal>を
-      小文字に変換(<literal>"l"</literal>の場合;デフォルト値)または
-      大文字(<literal>"u"</literal>の場合).
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            文字列の行列<literal>str-matrix</literal>を
+            小文字に変換(<literal>"l"</literal>の場合;デフォルト値)または
+            大文字(<literal>"u"</literal>の場合).
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 A=['this','is';'my','matrix'];
 convstr(A,'u')
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

@@ -37,28 +37,29 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_color_flag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_color_flag_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    char* type = NULL;
-    int flagcolor = (int) getDoubleFromStack( stackPointer );
+    int type = -1;
+    int *piType = &type;
+    int flagcolor = (int) ((double*)_pvData)[0];
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "color_flag");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbRow * nbCol != 1 )
+    if (nbRow * nbCol != 1)
     {
         Scierror(999, _("Wrong size for '%s' property: Scalar expected.\n"), "color_flag");
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_PLOT3D__) == 0)
+    if (type == __GO_PLOT3D__)
     {
-        if ( flagcolor < 0 || flagcolor > 1 )
+        if (flagcolor < 0 || flagcolor > 1)
         {
             Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "color_flag", "0", "1");
             return SET_PROPERTY_ERROR;
@@ -68,9 +69,9 @@ int set_color_flag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
 
         return SET_PROPERTY_SUCCEED;
     }
-    else if (strcmp(type, __GO_FAC3D__) == 0)
+    else if (type == __GO_FAC3D__)
     {
-        if ( flagcolor < 0 || flagcolor > 4 )
+        if (flagcolor < 0 || flagcolor > 4)
         {
             Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "color_flag", "0, 1, 2, 3, 4");
             return SET_PROPERTY_ERROR;
@@ -82,7 +83,7 @@ int set_color_flag_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_flag");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "color_flag");
         return SET_PROPERTY_ERROR;
     }
 

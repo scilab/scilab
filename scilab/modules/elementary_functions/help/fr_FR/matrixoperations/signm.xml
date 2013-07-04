@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="signm" xml:lang="fr">
+    <refnamediv>
+        <refname>signm</refname>
+        <refpurpose>fonction signe matriciel</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>Pour les matrices symétriques et hermitiennes
+            <literal>X=signm(A)</literal> calcule la fonction signe matriciel.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+A=rand(4,4);B=A+A';X=signm(B);spec(B),spec(X)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sign">sign</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

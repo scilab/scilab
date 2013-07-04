@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-07-20 14:26+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-15 14:20+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: fr\n"
 
 #, c-format
@@ -258,7 +258,7 @@ msgid "Wrong type for first argument: Square matrix expected.\n"
 msgstr "Type erroné du premier argument : Une matrice carrée attendue.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Square matrix expected.\n"
+msgid "Wrong type for argument #%d: Square matrix expected.\n"
 msgstr "Type erroné de l'argument %d : Une matrice carrée attendue.\n"
 
 msgid "Invalid index.\n"
@@ -313,8 +313,8 @@ msgid "Wrong first argument.\n"
 msgstr "Premier argument erroné.\n"
 
 #, c-format
-msgid "Wrong input argument %d.\n"
-msgstr "Argument d'entrée %d erroné.\n"
+msgid "Wrong input argument #%d.\n"
+msgstr "Argument d'entrée n°%d erroné.\n"
 
 #, c-format
 msgid "Incorrect function at line %d.\n"
@@ -342,8 +342,8 @@ msgid "Not implemented in scilab...\n"
 msgstr "Non implémenté dans Scilab...\n"
 
 #, c-format
-msgid "Wrong argument %d.\n"
-msgstr "Argument %d erroné.\n"
+msgid "Wrong argument #%d.\n"
+msgstr "Argument n°%d erroné.\n"
 
 #, c-format
 msgid "null matrix (argument # %d).\n"
@@ -368,25 +368,25 @@ msgid "subroutine not found: %s\n"
 msgstr "Impossible de trouver le sous-programme : %s\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Real matrix expected.\n"
+msgid "Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "Type erroné de l'argument %d : Une matrice réelle attendue.\n"
 
 #, c-format
-msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
+msgid "Wrong type for input argument #%d: Real or complex matrix expected.\n"
 msgstr ""
-"Type erroné de l'argument d'entrée %d : Une matrice de réels ou de complexes "
+"Type erroné de l'argument d'entrée n°%d : Une matrice réelle ou complexe "
 "attendue.\n"
 
 #, c-format
-msgid "Wrong type for input argument %d: Polynomial expected.\n"
-msgstr "Type erroné de l'argument d'entrée %d : Un polynôme attendu.\n"
+msgid "Wrong type for input argument #%d: Polynomial expected.\n"
+msgstr "Type erroné de l'argument d'entrée n°%d : Un polynôme attendu.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: String expected.\n"
+msgid "Wrong type for argument #%d: String expected.\n"
 msgstr "Type erroné de l'argument %d : Une chaîne de caractères attendue.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: List expected.\n"
+msgid "Wrong type for argument #%d: List expected.\n"
 msgstr "Type erroné de l'argument %d : Une liste attendue.\n"
 
 msgid "Problem with comparison symbol...\n"
@@ -490,21 +490,21 @@ msgid "Incorrect function (argument n: %d).\n"
 msgstr "Fonction erronée (argument n : %d).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument %d : Une matrice réelle ou complexe "
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Une matrice réelle attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Un vecteur réel attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Un scalaire attendu.\n"
 
 msgid "Host does not answer...\n"
@@ -521,41 +521,41 @@ msgid "%s: singular or asymmetric problem.\n"
 msgstr "%s : Problème singulier ou asymétrique.\n"
 
 #, c-format
-msgid "Wrong size for argument %d.\n"
+msgid "Wrong size for argument #%d.\n"
 msgstr "Dimension erronée de l'argument %d.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Transfer matrix expected.\n"
+msgid "Wrong type for argument #%d: Transfer matrix expected.\n"
 msgstr "Type erroné de l'argument %d : Une matrice de transfert attendue.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In state space form expected.\n"
+msgid "Wrong type for argument #%d: In state space form expected.\n"
 msgstr ""
 "Type erroné de l'argument %d : Attendu sous la forme d'espace d'état.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Rational matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational matrix expected.\n"
 msgstr "Type erroné de l'argument %d : Une matrice rationnelle attendue.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In continuous time expected.\n"
+msgid "Wrong type for argument #%d: In continuous time expected.\n"
 msgstr "Type erroné de l'argument %d : Attendu en temps continu.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In discrete time expected.\n"
+msgid "Wrong type for argument #%d: In discrete time expected.\n"
 msgstr "Type erroné de l'argument %d : Attendu en temps discret.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "Type erroné de l'argument %d : SISO attendu.\n"
 
 #, c-format
-msgid "time domain of argument %d is not defined.\n"
-msgstr "Le domaine temporel de l'argument %d n'est pas défini.\n"
+msgid "time domain of argument #%d is not defined.\n"
+msgstr "Le domaine temporel de l'argument n°%d n'est pas défini.\n"
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: A system in state space or transfer matrix form "
+"Wrong type for argument #%d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr ""
 "Type erroné de l'argument %d : Un système sous la forme d'espace d'état ou "
@@ -657,7 +657,7 @@ msgstr ""
 "Veuillez rapporter ce bug :\n"
 
 #, c-format
-msgid "Wrong value for argument %d.\n"
+msgid "Wrong value for argument #%d.\n"
 msgstr "Valeur erronée de l'argument %d.\n"
 
 #, c-format
@@ -666,7 +666,7 @@ msgstr "L'élément %d de la liste n'est pas défini.\n"
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: Named variable not an expression expected.\n"
+"Wrong type for argument #%d: Named variable not an expression expected.\n"
 msgstr ""
 "Type erroné de l'argument %d : Une variable nommée n'est pas l'expression "
 "attendue.\n"
@@ -756,59 +756,59 @@ msgid "%s: df0 must be positive !\n"
 msgstr "%s : df0 doit être positif !\n"
 
 msgid "Undefined operation for the given operands.\n"
-msgstr "Opération non définie pour les opérandes données.\n"
+msgstr "Opération non définie pour les opérandes donnés.\n"
 
 #, c-format
 msgid "check or define function %s for overloading.\n"
 msgstr "Vérifier ou définir la fonction %s pour la surcharge.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s : Dimension erronée de l'argument %d : (%d,%d) attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s : Dimension erronée de l'argument %d : %d attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument %d : Une matrice de chaîne de caractères "
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument %d : Une matrice booléenne attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Une matrice attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
+msgid "%s: Wrong type for argument #%d: List expected.\n"
 msgstr "%s : Type erroné du paramètre %d : Une liste attendue.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
+"%s: Wrong type for argument #%d: Function or string (external function) "
 "expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument %d : Une fonction ou chaîne de caractères "
 "(fonction externe) attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Un polynôme attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une matrice de travail d'entiers "
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Vector expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Un vecteur attendu.\n"
 
 #, c-format
@@ -819,25 +819,25 @@ msgid "Argument type must be boolean.\n"
 msgstr "Le type d'argument doit être un booléen.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
+msgid "Wrong type for argument #%d: Boolean or scalar expected.\n"
 msgstr "Type erroné de l'argument %d : Un booléen ou scalaire attendu.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
+msgid "Wrong type for argument #%d: Sparse matrix of scalars expected.\n"
 msgstr ""
 "Type erroné de l'argument %d : Une matrice creuse de scalaires attendu.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
+msgid "Wrong type for argument #%d: Handle to sparse lu factors expected.\n"
 msgstr ""
 "Type erroné de l'argument %d : Un handle vers des facteurs lu creux "
 "attendu.\n"
 
 #, c-format
-msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
+msgid "Wrong type argument #%d: Sparse or full scalar matrix expected.\n"
 msgstr ""
-"Type erroné de l'argument %d : Une matrice de scalaire creuse ou pleine "
-"attendue.\n"
+"Type erroné de l'argument n°%d : Une matrice creuse ou une matrice de "
+"scalaires pleine attendue.\n"
 
 msgid "Null variable cannot be used here.\n"
 msgstr "Une variable nulle ne peut pas être utilisée ici.\n"
@@ -947,16 +947,16 @@ msgid "Function not defined for given argument type(s),\n"
 msgstr "Fonction non définie pour le type d'argument donné.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr "Valeur erronée de l'argument %d : Le handle lu n'est plus valide.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Valid variable name expected.\n"
+msgid "Wrong value for argument #%d: Valid variable name expected.\n"
 msgstr ""
 "Valeur erronée de l'argument %d : Un nom de variable valide attendu.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Empty string expected.\n"
+msgid "Wrong value for argument #%d: Empty string expected.\n"
 msgstr ""
 "Valeur erronée de l'argument %d : Une chaîne de caractères vide attendue.\n"
 
@@ -1011,7 +1011,7 @@ msgstr ""
 "Erreur à l'écriture dans le fichier : disque plein ou fichier supprimé.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgid "Wrong value for argument #%d: Must not contain NaN or Inf.\n"
 msgstr ""
 "Valeur erronée de l'argument %d : Ne doit pas contenir de NaN ou Inf.\n"
 
@@ -1033,14 +1033,14 @@ msgstr "Valeur de retour invalide pour la fonction passée en argument %d.\n"
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+"Wrong value for argument #%d: eigenvalues must have negative real parts.\n"
 msgstr ""
 "Valeur erronée de  l'argument %d : Les valeurs propres doivent avoir une "
 "partie réelle négative.\n"
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+"Wrong value for argument #%d: eigenvalues modulus must be less than one.\n"
 msgstr ""
 "Valeur erronée de l'argument %d : Le module des valeurs propres doit être "
 "inférieur à un.\n"
@@ -1458,26 +1458,34 @@ msgstr ""
 "est au plus %s en valeur absolue.\n"
 
 #, c-format
-msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
-msgstr "%s : Le nombre d'appels à %s a atteint ou dépassé %s.\n"
-
-#, c-format
-msgid ""
-"%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
 msgstr ""
-"%s : %s est trop petit. Une réduction supplémentaire du critère est "
-"impossible.\n"
+
+msgid "Warning"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s: %s is too small. %s is orthogonal to the columns of the jacobian to "
 "machine precision.\n"
 msgstr ""
-"%s : %s est trop petit. %s est orthogonal aux colonnes du Jacobien à la "
-"précision machine près.\n"
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly: le nom de variable doit faire moins de 5 caractères de long.\n"
+
+msgid ""
+"Warning: Syntax \"vector ^ scalar\" is obsolete. It will be removed in "
+"Scilab 6.0.\n"
+"  Use \"vector .^ scalar\" instead.\n"
+msgstr ""
+"Attention : La syntaxe \"vector ^ scalar\" est obsolète. Elle sera supprimée "
+"dans Scilab 6.0.\n"
+"  Veuillez utiliser \"vector .^ scalar\" à la place.\n"
 
 #, c-format
 msgid "  (cont'd) %s\n"

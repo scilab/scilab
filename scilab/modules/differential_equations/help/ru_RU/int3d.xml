@@ -1,171 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="int3d" xml:lang="ru">
-  <refnamediv>
-    <refname>int3d</refname>
-    <refpurpose>определённый трёхмерный интеграл методом квадратуры и кубатуры
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>[result,err]=int3d(X,Y,Z,f [,nf[,params]])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>X</term>
-        <listitem>
-          <para>
-            массив 4 на <literal>NUMTET</literal>, содержащий абсциссы вершин <literal>NUMTET</literal>
-            тетраэдров.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Y</term>
-        <listitem>
-          <para>
-            массив 4 на <literal>NUMTET</literal>, содержащий ординаты
-            вершин <literal>NUMTET</literal> тетраэдров.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>Z</term>
-        <listitem>
-          <para>
-            массив 4 на <literal>NUMTET</literal>, содержащий третьи координаты вершин
-            <literal>NUMTET</literal> тетраэдров.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>f</term>
-        <listitem>
-          <para>
-            внешняя (функция, список или строка), определяющая подынтегральную функцию
-            <literal>f(xyz,nf)</literal>, где <literal>xyz</literal> -- вектор координат точек, а
-            <literal>nf</literal> -- число функций.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>nf</term>
-        <listitem>
-          <para>число интегрируемых функций (по умолчанию 1).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>params</term>
-        <listitem>
-          <para>
-            вещественный вектор <literal>[minpts, maxpts, epsabs, epsrel]</literal>.
-            Значение по умолчанию <literal>[0, 1000, 0.0, 1.d-5]</literal>.
-          </para>
-          <variablelist>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="int3d" xml:lang="ru">
+    <refnamediv>
+        <refname>int3d</refname>
+        <refpurpose>определённый трёхмерный интеграл методом квадратуры и кубатуры
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[result,err]=int3d(X,Y,Z,f [,nf[,params]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
             <varlistentry>
-              <term>epsabs</term>
-              <listitem>
-                <para>Желаемые пределы абсолютной ошибки.</para>
-              </listitem>
+                <term>X</term>
+                <listitem>
+                    <para>
+                        массив 4 на <literal>NUMTET</literal>, содержащий абсциссы вершин <literal>NUMTET</literal>
+                        тетраэдров.
+                    </para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>epsrel</term>
-              <listitem>
-                <para>Желаемые пределы относительной ошибки.</para>
-              </listitem>
+                <term>Y</term>
+                <listitem>
+                    <para>
+                        массив 4 на <literal>NUMTET</literal>, содержащий ординаты
+                        вершин <literal>NUMTET</literal> тетраэдров.
+                    </para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>minpts</term>
-              <listitem>
-                <para>Минимально число вычислений функции.</para>
-              </listitem>
+                <term>Z</term>
+                <listitem>
+                    <para>
+                        массив 4 на <literal>NUMTET</literal>, содержащий третьи координаты вершин
+                        <literal>NUMTET</literal> тетраэдров.
+                    </para>
+                </listitem>
             </varlistentry>
             <varlistentry>
-              <term>maxpts</term>
-              <listitem>
-                <para>
-                  максимальное число вычислений функции. Число вычислений функции по каждому малому участку равно 43.
-                </para>
-              </listitem>
+                <term>f</term>
+                <listitem>
+                    <para>
+                        внешняя (функция, список или строка), определяющая подынтегральную функцию
+                        <literal>f(xyz,nf)</literal>, где <literal>xyz</literal> -- вектор координат точек, а
+                        <literal>nf</literal> -- число функций.
+                    </para>
+                </listitem>
             </varlistentry>
-          </variablelist>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>result</term>
-        <listitem>
-          <para>целочисленное значение или вектор целочисленных значений.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>err</term>
-        <listitem>
-          <para>оценки абсолютных ошибок.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Данная функция вычисляет аппроксимацию данного вектора определённых интегралов
-    </para>
-    <programlisting role="no-scilab-exec"><![CDATA[ 
+            <varlistentry>
+                <term>nf</term>
+                <listitem>
+                    <para>число интегрируемых функций (по умолчанию 1).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>params</term>
+                <listitem>
+                    <para>
+                        вещественный вектор <literal>[minpts, maxpts, epsabs, epsrel]</literal>.
+                        Значение по умолчанию <literal>[0, 1000, 0.0, 1.d-5]</literal>.
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>epsabs</term>
+                            <listitem>
+                                <para>Желаемые пределы абсолютной ошибки.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>epsrel</term>
+                            <listitem>
+                                <para>Желаемые пределы относительной ошибки.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>minpts</term>
+                            <listitem>
+                                <para>Минимально число вычислений функции.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>maxpts</term>
+                            <listitem>
+                                <para>
+                                    максимальное число вычислений функции. Число вычислений функции по каждому малому участку равно 43.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>result</term>
+                <listitem>
+                    <para>целочисленное значение или вектор целочисленных значений.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>оценки абсолютных ошибок.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Данная функция вычисляет аппроксимацию данного вектора определённых интегралов
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[ 
 I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
           1  2      numfun
  ]]></programlisting>
-    <para>
-      где область интегрирования является набором из  <literal>NUMTET</literal>
-      тетраэдров и где
-    </para>
-    <programlisting role="no-scilab-exec"><![CDATA[ 
+        <para>
+            где область интегрирования является набором из  <literal>NUMTET</literal>
+            тетраэдров и где
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[ 
 F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
  J   J
  ]]></programlisting>
-    <para>
-      Для того, чтобы вычислить аппроксимации <literal>result(k)</literal>, удовлетворяющие 
-      для каждого элемента  <literal>I</literal> условию точности:
-      <literal>abs(I(k)-result(k))&lt;=max(epsabs,epsrel*abs(I(k)))</literal>, применяется глобально адаптивная стратегия.
-    </para>
-    <para>
-      Функция <literal>int3d</literal> циклично делит тетраэдры с наибольшими ошибками 
-      изделия и оценивает интегралы и ошибки по новым меньшим тетраэдрам до тех пор, 
-      пока запрошенная ошибка не будет достигнута, либо не будет использовано 
-      <literal>maxpts</literal> вычислений функций. 
-    </para>
-    <para>
-      Применяется правило интегрирования по 43 точкам со всеми точками вычисления внутри тетраэдра.  
-      Правило имеет степень полинома 8.
-    </para>
-    <para>
-      Если значения входных параметров <literal>epsabs</literal> или
-      <literal>epsrel</literal> выбираются достаточно большими, то правило интегрирования 
-      применяется к каждому тетраэдру и результаты прибавляются к заданным аппроксимациям 
-      <literal>result(k)</literal>. Никаких дальнейших делений тетраэдров не будет.
-    </para>
-    <para>
-      Когда <literal>int3d</literal> вычисляет оценки для вектора интегралов, то все элементы вектора 
-      обрабатываются одинаково. То есть, <literal>I(Fj)</literal> и <literal>I(Fk)</literal> для 
-      <literal>j</literal> неравном <literal>k</literal> оцениваются с тем же самым делением области интегрирования. 
-      Для  интегралов с достаточной схожестью мы може сберечь время, применяя  <literal>int3d</literal> ко всем
-      подынтегральным функциям за один вызов. Для интегралов, которые
-      меняются постоянно как функции некоторого параметра, оценки, полученные <literal>int3d</literal>, 
-      будут меняться непрерывно при применении одного и того же деления ко всем элементам. 
-      Это в общем случае не то же самое, когда различные элементы обрабатываются по-своему.
-    </para>
-    <para>
-      С другой стороны, эту возможность следует использовать осторожно, когда различные элементы интегралов
-      требуют явно разных делений.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Сcылки</title>
-    <para>Fortran routine dcutet.f</para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            Для того, чтобы вычислить аппроксимации <literal>result(k)</literal>, удовлетворяющие 
+            для каждого элемента  <literal>I</literal> условию точности:
+            <literal>abs(I(k)-result(k))&lt;=max(epsabs,epsrel*abs(I(k)))</literal>, применяется глобально адаптивная стратегия.
+        </para>
+        <para>
+            Функция <literal>int3d</literal> циклично делит тетраэдры с наибольшими ошибками 
+            изделия и оценивает интегралы и ошибки по новым меньшим тетраэдрам до тех пор, 
+            пока запрошенная ошибка не будет достигнута, либо не будет использовано 
+            <literal>maxpts</literal> вычислений функций. 
+        </para>
+        <para>
+            Применяется правило интегрирования по 43 точкам со всеми точками вычисления внутри тетраэдра.  
+            Правило имеет степень полинома 8.
+        </para>
+        <para>
+            Если значения входных параметров <literal>epsabs</literal> или
+            <literal>epsrel</literal> выбираются достаточно большими, то правило интегрирования 
+            применяется к каждому тетраэдру и результаты прибавляются к заданным аппроксимациям 
+            <literal>result(k)</literal>. Никаких дальнейших делений тетраэдров не будет.
+        </para>
+        <para>
+            Когда <literal>int3d</literal> вычисляет оценки для вектора интегралов, то все элементы вектора 
+            обрабатываются одинаково. То есть, <literal>I(Fj)</literal> и <literal>I(Fk)</literal> для 
+            <literal>j</literal> неравном <literal>k</literal> оцениваются с тем же самым делением области интегрирования. 
+            Для  интегралов с достаточной схожестью мы може сберечь время, применяя  <literal>int3d</literal> ко всем
+            подынтегральным функциям за один вызов. Для интегралов, которые
+            меняются постоянно как функции некоторого параметра, оценки, полученные <literal>int3d</literal>, 
+            будут меняться непрерывно при применении одного и того же деления ко всем элементам. 
+            Это в общем случае не то же самое, когда различные элементы обрабатываются по-своему.
+        </para>
+        <para>
+            С другой стороны, эту возможность следует использовать осторожно, когда различные элементы интегралов
+            требуют явно разных делений.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Сcылки</title>
+        <para>Fortran routine dcutet.f</para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 X=[0;1;0;0];
 Y=[0;0;1;0];
 Z=[0;0;0;1];
@@ -195,19 +195,19 @@ function v=f(xyz,numfun),v=exp(xyz'*xyz),endfunction
 function v=f(xyz,numfun),v=1,endfunction
 [result,err]=int3d(X,Y,Z,f,1,[0,100000,1.d-5,1.d-7])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="intc">intc</link>
-      </member>
-      <member>
-        <link linkend="intl">intl</link>
-      </member>
-      <member>
-        <link linkend="int2d">int2d</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="intc">intc</link>
+            </member>
+            <member>
+                <link linkend="intl">intl</link>
+            </member>
+            <member>
+                <link linkend="int2d">int2d</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

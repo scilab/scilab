@@ -14,7 +14,7 @@
 
 #include "SetUicontrolRelief.hxx"
 
-int SetUicontrolRelief(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolRelief(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Relief can be flat, groove, raised, ridge, solid or sunken */
 
@@ -28,28 +28,28 @@ int SetUicontrolRelief(void* _pvCtx, char* sciObjUID, size_t stackPointer, int v
         return SET_PROPERTY_ERROR;
     }
 
-    if(nbCol != 1 || nbRow == 0)
+    if (nbCol != 1 || nbRow == 0)
     {
         /* Wrong string size */
         Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
         return SET_PROPERTY_ERROR;
     }
 
-      relief = getStringFromStack(stackPointer);
+    relief = (char*)_pvData;
 
-      if (stricmp(relief, "flat") != 0
-          && stricmp(relief, "groove") != 0
-          && stricmp(relief, "raised") != 0
-          && stricmp(relief, "ridge") != 0
-          && stricmp(relief, "solid") != 0
-          && stricmp(relief, "sunken") != 0)
-      {
-          /* Wrong string format */
-          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
-          return SET_PROPERTY_ERROR;
-      }
+    if (stricmp(relief, "flat") != 0
+            && stricmp(relief, "groove") != 0
+            && stricmp(relief, "raised") != 0
+            && stricmp(relief, "ridge") != 0
+            && stricmp(relief, "solid") != 0
+            && stricmp(relief, "sunken") != 0)
+    {
+        /* Wrong string format */
+        Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
+        return SET_PROPERTY_ERROR;
+    }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_RELIEF__), relief, jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_RELIEF__, relief, jni_string, 1);
 
     if (status == TRUE)
     {

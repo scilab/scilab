@@ -12,7 +12,7 @@
 
 function demo_nmplot_1()
 
-    filename = 'nmplot_han1.sce';
+    filename = "nmplot_han1.sce";
     dname = get_absolute_file_path(filename);
 
     mprintf(_("Illustrates the 1st counter example given by Han et al.\n"));
@@ -21,7 +21,7 @@ function demo_nmplot_1()
     // han1 --
     //   Compute the cost function from the Han Phd Thesis
     //   which exhibits a failure of the NM method.
-    // Reference 
+    // Reference
     //   Algorithms in Unconstrained Optimization
     //   Han, Lixing
     //   2000
@@ -39,9 +39,9 @@ function demo_nmplot_1()
 
     mprintf(_("Defining initial simplex coordinates...\n"));
     coords0 = [
-    0.  -1.  
-    0.   1.  
-    1.   0.  
+    0.  -1.
+    0.   1.
+    1.   0.
     ];
 
 
@@ -80,11 +80,11 @@ function demo_nmplot_1()
     // Plot the history of the simplex
     //
     mprintf(_("Plotting contour (please wait)...\n"));
-    xmin = -0.2 ; 
-    xmax = 1.2 ; 
-    ymin = -2.0 ; 
-    ymax = 2.0 ; 
-    nx = 50 ; 
+    xmin = -0.2 ;
+    xmax = 1.2 ;
+    ymin = -2.0 ;
+    ymax = 2.0 ;
+    nx = 50 ;
     ny = 50;
     xdata=linspace(xmin,xmax,nx);
     ydata=linspace(ymin,ymax,ny);
@@ -109,4 +109,5 @@ clear demo_nmplot_1;
 
 
 
-
+
+

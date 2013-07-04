@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 8711 -->
 //
@@ -18,6 +18,6 @@
 // The creation of a link lead to a translated target point when the origin is
 // not (0,0)
 
-xcos(SCI + "/modules/xcos/demos/Cont.Disc-Observer.xcos");
+xcos(SCI + "/modules/xcos/demos/Cont.Disc-Observer.zcos");
 // Delete the link from "Random Generator" to "DEMUX" block.
 // Try to recreate it from the "Random Generator" block.

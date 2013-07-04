@@ -11,31 +11,31 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="browsevar">
-  <refnamediv>
-    <refname>browsevar</refname>
-    <refpurpose> Scilab変数ブラウザ</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>browsevar()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>browsevar</literal> は標準のScilab変数ブラウザです.
-    </para>
-    <para>
-      <literal>browsevar</literal> は全ての変数を表示できます.
-      <literal>browsevar</literal> は全ての変数または特定の型の変数を表示するようカスタマイズすることが
-      できます.
-      除外する変数名を指定することも可能です.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="browsevar">
+    <refnamediv>
+        <refname>browsevar</refname>
+        <refpurpose>Scilab変数ブラウザ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>browsevar()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>browsevar</literal> は標準のScilab変数ブラウザです.
+        </para>
+        <para>
+            <literal>browsevar</literal> は全ての変数を表示できます.
+            <literal>browsevar</literal> は全ての変数または特定の型の変数を表示するようカスタマイズすることが
+            できます.
+            除外する変数名を指定することも可能です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 browsevar();
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

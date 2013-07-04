@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isdef" xml:lang="en">
+    <refnamediv>
+        <refname>isdef</refname>
+        <refpurpose>verifica existência de variáveis</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>isdef(name [,where])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>um string </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>where</term>
+                <listitem>
+                    <para>um string opcional com valor padrão 'all' (todos os locais)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>isdef(name)</literal> retorna <literal>%T</literal> se a
+            variável <literal>name</literal> existe e <literal>%F</literal> em caso
+            contrário.
+        </para>
+        <para>
+            Aviso: uma função que utiliza <literal>isdef</literal> pode retornar
+            um resultado que depende do ambiente!
+        </para>
+        <para>
+            <literal>isdef(name,'local')</literal> retorna <literal>%T</literal>
+            se a variável <literal>name</literal> existe no ambiente local da função
+            corrente e <literal>%F</literal> em caso contrário.
+        </para>
+        <para>
+            <literal>isdef(name,'nolocal')</literal> retorna
+            <literal>%T</literal> se a variável <literal>name</literal> existe no
+            ambiente de chamada completo (incluindo o nível global) da função corrente
+            e <literal>%F</literal> em caso contrário.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
+A=1;
+isdef('A')
+clear A
+isdef('A')
+
+function level1()
+  function level2()
+    disp(isdef("a","all"));
+    disp(isdef("a","local"));
+    disp(isdef("a","nolocal"));
+  endfunction
+  level2()
+endfunction
+function go()
+  a=1;
+  level1()
+endfunction
+go()
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="exists">exists</link>
+                <link linkend="isglobal">isglobal</link>
+            </member>
+            <member>
+                <link linkend="whereis">whereis</link>
+            </member>
+            <member>
+                <link linkend="type">type</link>
+            </member>
+            <member>
+                <link linkend="typeof">typeof</link>
+            </member>
+            <member>
+                <link linkend="clear">clear</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

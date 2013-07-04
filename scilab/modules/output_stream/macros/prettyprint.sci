@@ -73,22 +73,22 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
     case 0 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."),"prettyprint",1,4));
     case 1 then
-        exportFormat='latex';
-        delimiter = '(';
+        exportFormat="latex";
+        delimiter = "(";
         processByElement = %F;
         isWrapped = %T;
     case 2 then
         if type(exportFormat) <> 10 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"prettyprint",2));
         end
-        delimiter = '(';
+        delimiter = "(";
         processByElement = %F;
         isWrapped = %T;
     case 3 then
         if type(exportFormat) <> 10 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"prettyprint",2));
         end
-        if type(delimiter) <> 10 | (delimiter <> '(' &  delimiter <> '[' & delimiter <> '|' & delimiter <> '||' & delimiter <> '{' & delimiter <> '') then
+        if type(delimiter) <> 10 | (delimiter <> "(" &  delimiter <> "[" & delimiter <> "|" & delimiter <> "||" & delimiter <> "{" & delimiter <> "") then
             error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"prettyprint",3,"(","[","|","||","{",""));
         end
         processByElement = %F;
@@ -97,7 +97,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
         if type(exportFormat) <> 10 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"prettyprint",2));
         end
-        if type(delimiter) <> 10 | (delimiter <> '(' &  delimiter <> '[' & delimiter <> '|' & delimiter <> '||' & delimiter <> '{' & delimiter <> '') then
+        if type(delimiter) <> 10 | (delimiter <> "(" &  delimiter <> "[" & delimiter <> "|" & delimiter <> "||" & delimiter <> "{" & delimiter <> "") then
             error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"prettyprint",3,"(","[","|","||","{",""));
         end
         if type(processByElement) <> 4 then
@@ -108,7 +108,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
         if type(exportFormat) <> 10 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"prettyprint",2));
         end
-        if type(delimiter) <> 10 | (delimiter <> '(' &  delimiter <> '[' & delimiter <> '|' & delimiter <> '||' & delimiter <> '{' & delimiter <> '') then
+        if type(delimiter) <> 10 | (delimiter <> "(" &  delimiter <> "[" & delimiter <> "|" & delimiter <> "||" & delimiter <> "{" & delimiter <> "") then
             error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"prettyprint",3,"(","[","|","||","{",""));
         end
         if type(processByElement) <> 4 then
@@ -121,7 +121,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected"),"prettyprint",1,4));
     end
     try
-        execstr('[plus,minus,img,op,cp,ow,cw,d2s]=' + exportFormat + 'conf()');
+        execstr("[plus,minus,img,op,cp,ow,cw,d2s]=" + exportFormat + "conf()");
     catch
         error(msprintf(gettext("%s: Wrong export format: %s"),"prettyprint",exportFormat));
     end
@@ -144,7 +144,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
         maxd = max(degree(a));
         str = emptystr(a);
         for i = 0:maxd do
-            execstr('expo=' + exportFormat + 'exp(x,i)');
+            execstr("expo=" + exportFormat + "exp(x,i)");
             A = C(1:m,(1 + i * n):((i + 1) * n));
             if or(isinf(a) | isnan(a)) | norm(imag(A)) > %eps * norm(real(A)) then
                 str = str + comp2coef(A,expo,plus,minus,img,op,cp,d2s);
@@ -161,12 +161,12 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
             end
         end
         //The null polynomial is represented by '' so we must replace it by '0'
-        str(str == '') = d2s(0);
+        str(str == "") = d2s(0);
         //Boolean type
     case 4 then
-        str = 'F' + emptystr(a);
-        str(a) = 'T';
-        execstr('str=' + exportFormat + 'exp(str,1)');
+        str = "F" + emptystr(a);
+        str(a) = "T";
+        execstr("str=" + exportFormat + "exp(str,1)");
         //Int type
     case 8 then
         str = d2s(a);
@@ -178,13 +178,13 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
         t = a(1);
         select t(1)
             //Rationnal type
-        case 'r' then
-            num = prettyprint(a('num'),exportFormat,'(',%T,%F);
-            den = prettyprint(a('den'),exportFormat,'(',%T,%F);
-            execstr('str=rational2' + exportFormat + '(num,den)');
+        case "r" then
+            num = prettyprint(a("num"),exportFormat,"(",%T,%F);
+            den = prettyprint(a("den"),exportFormat,"(",%T,%F);
+            execstr("str=rational2" + exportFormat + "(num,den)");
             //Linear state space type
-        case 'lss' then
-            execstr('str=lss2' + exportFormat + '(a)');
+        case "lss" then
+            execstr("str=lss2" + exportFormat + "(a)");
         else
             str = unknown_type(t(1),a,exportFormat);
             return;
@@ -193,11 +193,11 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
         a1=getfield(1,a);
         select a1(1)
             //Cell type
-        case 'ce' then
+        case "ce" then
             dim = double(a.dims);
             L = length(dim);
             if L >= 3 then
-                str = unknown_type('ce',a,exportFormat);
+                str = unknown_type("ce",a,exportFormat);
                 return;
             end
             str = emptystr(dim(1),dim(2));
@@ -217,7 +217,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
 
     [m,n] = size(a);
     if m*n <> 1 & ~processByElement then
-        execstr('str=' + exportFormat + 'matrix(str,''' + delimiter + ''')');
+        execstr("str=" + exportFormat + "matrix(str,''" + delimiter + "'')");
     end
 
     if isWrapped then
@@ -231,30 +231,30 @@ endfunction
 //opening and closing delimiters used to wrap the expression to be displayed
 //with xstring or xtitle, d2s is the function used to convert double into mathml.
 function [plus,minus,img,op,cp,ow,cw,d2s] = mathmlconf()
-    plus = '<mo>+</mo>';
-    minus = '<mo>-</mo>';
-    img = '<mi>i</mi>';
-    op = '<mfenced separator=""""><mrow>';
-    cp = '</mrow></mfenced>';
-    ow = '';
-    cw = '';
+    plus = "<mo>+</mo>";
+    minus = "<mo>-</mo>";
+    img = "<mi>i</mi>";
+    op = "<mfenced separator=""""><mrow>";
+    cp = "</mrow></mfenced>";
+    ow = "";
+    cw = "";
     d2s = mathmldbl2str;
 endfunction
 
 //This function generates var^n (useful for polynomials)
 function str = mathmlexp(var,n)
     if n >= 2 then
-        str = '<msup><mi>' + var + '</mi><mn>' + string(n) + '</mn></msup>';
+        str = "<msup><mi>" + var + "</mi><mn>" + string(n) + "</mn></msup>";
     elseif n == 1 then
-        str = '<mi>' + var + '</mi>';
+        str = "<mi>" + var + "</mi>";
     else
-        str = '';
+        str = "";
     end
 endfunction
 
 //This function creates a fraction with the given numerator and denominator
 function str = rational2mathml(num,den)
-    str = '<mfrac><mrow>' + num + '</mrow><mrow>' + den + '</mrow></mfrac>';
+    str = "<mfrac><mrow>" + num + "</mrow><mrow>" + den + "</mrow></mfrac>";
 endfunction
 
 //This function converts a double into a mathml string
@@ -267,18 +267,18 @@ function str = mathmldbl2str(x)
     elseif isnan(x) then
         str = "<mi>NaN</mi>";
     else
-        str= strsubst(string(x),'-','<mo>-</mo><mn>');
-        if strindex(str,'D') <> [] then
-            str = strsubst(str,'+','<mo>+</mo><mn>');
-            str = strsubst(str,'D','</mn><mo>&#x00D7;</mo><msup><mn>10</mn><mrow>');
+        str= strsubst(string(x),"-","<mo>-</mo><mn>");
+        if strindex(str,"D") <> [] then
+            str = strsubst(str,"+","<mo>+</mo><mn>");
+            str = strsubst(str,"D","</mn><mo>&#x00D7;</mo><msup><mn>10</mn><mrow>");
             if x > 0 then
-                str = '<mn>' + str;
+                str = "<mn>" + str;
             end
-            str = str + '</mn></mrow></msup>';
+            str = str + "</mn></mrow></msup>";
         elseif x >= 0 then
-            str = '<mn>' + str + '</mn>';
+            str = "<mn>" + str + "</mn>";
         else
-            str = str + '</mn>';
+            str = str + "</mn>";
         end
     end
 endfunction
@@ -286,75 +286,75 @@ endfunction
 //This function generates a matrix with the given delimiter
 function str = mathmlmatrix(mat,delimiter)
     if argn(2) == 1 then
-        delimiter = '(';
+        delimiter = "(";
     end
     select delimiter
-    case '[' then
-        com = '<mfenced open=""["" close=""]"">';
-    case '(' then
-        com = '<mfenced open=""("" close="")"">';
-    case '|' then
-        com = '<mfenced open=""&#x2223;"" close=""&#x2223;"">';
-    case '' then
-        com = '<mfenced>';
-    case '{' then
-        com = '<mfenced open=""{"" close=""}"">';
-    case '||' then
-        com = '<mfenced open=""&#x2225;"" close=""&#x2225;"">';
+    case "[" then
+        com = "<mfenced open=""["" close=""]"">";
+    case "(" then
+        com = "<mfenced open=""("" close="")"">";
+    case "|" then
+        com = "<mfenced open=""&#x2223;"" close=""&#x2223;"">";
+    case "" then
+        com = "<mfenced>";
+    case "{" then
+        com = "<mfenced open=""{"" close=""}"">";
+    case "||" then
+        com = "<mfenced open=""&#x2225;"" close=""&#x2225;"">";
     else
-        com = '<mfenced open=""("" close="")"">';
+        com = "<mfenced open=""("" close="")"">";
     end
     [m,n] = size(mat);
-    str = com + '<mtable>';
+    str = com + "<mtable>";
     for i=1:m do
-        str = str + '<mtr><mtd>' + strcat(mat(i,:),'</mtd><mtd>') + '</mtd></mtr>';
+        str = str + "<mtr><mtd>" + strcat(mat(i,:),"</mtd><mtd>") + "</mtd></mtr>";
     end
-    str = str + '</mtable></mfenced>';
+    str = str + "</mtable></mfenced>";
 endfunction
 
 //This function handles the syslin
 function str = lss2mathml(sys)
-    ptp = '<mo>(</mo><mi>t</mi><mo>)</mo>';
-    if sys(7) == 'c' then
-        der = '<mrow><mover><mi>X</mi><mo>.</mo></mover>' + ptp + '</mrow>';
+    ptp = "<mo>(</mo><mi>t</mi><mo>)</mo>";
+    if sys(7) == "c" then
+        der = "<mrow><mover><mi>X</mi><mo>.</mo></mover>" + ptp + "</mrow>";
     else
-        der = '<mrow><mover><mi>X</mi><mo>+</mo></mover>' + ptp + '</mrow>'
+        der = "<mrow><mover><mi>X</mi><mo>+</mo></mover>" + ptp + "</mrow>"
     end
-    str = '<mfenced close="""" open=""{""><mtable columnalign=""right center left""><mtr><mtd>' + der + '</mtd><mtd><mo>=</mo></mtd><mtd>' + prettyprint(sys(2),'mathml','(',%F,%F) + '<mrow><mi>X</mi>' + ptp + '</mrow><mo>+</mo>' + prettyprint(sys(3),'mathml','(',%F,%F) + '<mrow><mi>U</mi>' + ptp + '</mrow></mtd></mtr><mtr><mtd><mrow><mi>Y</mi>' + ptp + '</mrow></mtd><mtd><mo>=</mo></mtd><mtd>' + prettyprint(sys(4),'mathml','(',%F,%F) + '<mrow><mi>X</mi>' + ptp + '</mrow>';
+    str = "<mfenced close="""" open=""{""><mtable columnalign=""right center left""><mtr><mtd>" + der + "</mtd><mtd><mo>=</mo></mtd><mtd>" + prettyprint(sys(2),"mathml","(",%F,%F) + "<mrow><mi>X</mi>" + ptp + "</mrow><mo>+</mo>" + prettyprint(sys(3),"mathml","(",%F,%F) + "<mrow><mi>U</mi>" + ptp + "</mrow></mtd></mtr><mtr><mtd><mrow><mi>Y</mi>" + ptp + "</mrow></mtd><mtd><mo>=</mo></mtd><mtd>" + prettyprint(sys(4),"mathml","(",%F,%F) + "<mrow><mi>X</mi>" + ptp + "</mrow>";
     try
         if norm(sys(5),1) == 0 then
-            str = str + '</mtd></mtr></mtable></mfenced>';
+            str = str + "</mtd></mtr></mtable></mfenced>";
         else
-            str = str + '<mo>+</mo>' + prettyprint(sys(5),'mathml','(',%F,%F) + '<mrow><mi>U</mi>' + ptp + '</mrow></mtd></mtr></mtable></mfenced>';
+            str = str + "<mo>+</mo>" + prettyprint(sys(5),"mathml","(",%F,%F) + "<mrow><mi>U</mi>" + ptp + "</mrow></mtd></mtr></mtable></mfenced>";
         end
     catch
-        str = str + '<mo>+</mo>' + prettyprint(sys(5),'mathml','(',%F,%F) + '<mrow><mi>U</mi>' + ptp + '</mrow></mtd></mtr></mtable></mfenced>';
+        str = str + "<mo>+</mo>" + prettyprint(sys(5),"mathml","(",%F,%F) + "<mrow><mi>U</mi>" + ptp + "</mrow></mtd></mtr></mtable></mfenced>";
     end
 endfunction
 
 function [plus,minus,img,op,cp,ow,cw,d2s] = latexconf()
-    plus = '+';
-    minus = '-';
-    img = 'i';
-    op = '(';
-    cp = ')';
-    ow = '$';
-    cw = '$';
+    plus = "+";
+    minus = "-";
+    img = "i";
+    op = "(";
+    cp = ")";
+    ow = "$";
+    cw = "$";
     d2s = latexdbl2str;
 endfunction
 
 function str = latexexp(var,n)
     if n >= 2 then
-        str = var + '^{' + string(n) + '}';
+        str = var + "^{" + string(n) + "}";
     elseif n == 1 then
         str = var;
     else
-        str = '';
+        str = "";
     end
 endfunction
 
 function str = rational2latex(num,den)
-    str = '{\frac{' + num + '}{' + den + '}}'
+    str = "{\frac{" + num + "}{" + den + "}}"
 endfunction
 
 function str = latexdbl2str(x)
@@ -366,61 +366,61 @@ function str = latexdbl2str(x)
         str = "{\mathrm{NaN}}";
     else
         str = string(x);
-        if strindex(str,'D') <> [] then
-            str = strsubst(str,'D','\times10^{');
-            str = str + '}';
+        if strindex(str,"D") <> [] then
+            str = strsubst(str,"D","\times10^{");
+            str = str + "}";
         end
     end
 endfunction
 
 function str = lss2latex(sys)
-    if sys(7) == 'c' then
-        der = '\dot{X}(t)';
+    if sys(7) == "c" then
+        der = "\dot{X}(t)";
     else
-        der = '\stackrel{+}{X}(t)'
+        der = "\stackrel{+}{X}(t)"
     end
-    str = '{\left\{\begin{array}{rcl}' + der + '&=&' + prettyprint(sys(2),'latex','(',%F,%F) + ' X(t)+' + prettyprint(sys(3),'latex','(',%F,%F) + 'U(t)\cr Y(t) &=& ' + prettyprint(sys(4),'latex','(',%F,%F) + ' X(t) ';
+    str = "{\left\{\begin{array}{rcl}" + der + "&=&" + prettyprint(sys(2),"latex","(",%F,%F) + " X(t)+" + prettyprint(sys(3),"latex","(",%F,%F) + "U(t)\cr Y(t) &=& " + prettyprint(sys(4),"latex","(",%F,%F) + " X(t) ";
     try
         if norm(sys(5),1) == 0 then
-            str = str + '\end{array}\right.}';
+            str = str + "\end{array}\right.}";
         else
-            str = str + ' + ' + prettyprint(sys(5),'latex','(',%F,%F) + ' U(t)\end{array}\right.}';
+            str = str + " + " + prettyprint(sys(5),"latex","(",%F,%F) + " U(t)\end{array}\right.}";
         end
     catch
-        str = str + ' + ' + prettyprint(sys(5),'latex','(',%F,%F) + ' U(t)\end{array}\right.}';
+        str = str + " + " + prettyprint(sys(5),"latex","(",%F,%F) + " U(t)\end{array}\right.}";
     end
 endfunction
 
 function str = latexmatrix(mat,delimiter)
     if argn(2) == 1 then
-        delimiter = '(';
+        delimiter = "(";
     end
     select delimiter
-    case '[' then
-        com = 'bmatrix';
-    case '(' then
-        com = 'pmatrix';
-    case '|' then
-        com = 'vmatrix';
-    case '' then
-        com = 'matrix';
-    case '{' then
-        com = 'Bmatrix';
-    case '||' then
-        com = 'Vmatrix';
+    case "[" then
+        com = "bmatrix";
+    case "(" then
+        com = "pmatrix";
+    case "|" then
+        com = "vmatrix";
+    case "" then
+        com = "matrix";
+    case "{" then
+        com = "Bmatrix";
+    case "||" then
+        com = "Vmatrix";
     else
-        com = 'pmatrix';
+        com = "pmatrix";
     end
     [m,n] = size(mat);
-    str = '{\begin{' + com + '}';
+    str = "{\begin{" + com + "}";
     if m*n == 0 then
-        str = str + '\ ';
+        str = str + "\ ";
     else
         for i=1:m do
-            str = str + strcat(mat(i,:),'&') + '\cr ';
+            str = str + strcat(mat(i,:),"&") + "\cr ";
         end
     end
-    str = str + '\end{' + com + '}}';
+    str = str + "\end{" + com + "}}";
 endfunction
 
 function [plus,minus,img,op,cp,ow,cw,d2s] = texconf()
@@ -432,7 +432,7 @@ function str = texexp(var,n)
 endfunction
 
 function str = rational2tex(num,den)
-    str = '{{' + num + '}\over{' + den + '}}'
+    str = "{{" + num + "}\over{" + den + "}}"
 endfunction
 
 function str = texdbl2str(x)
@@ -444,61 +444,61 @@ function str = texdbl2str(x)
         str = "{\rm{NaN}}";
     else
         str = string(x);
-        if strindex(str,'D') <> [] then
-            str = strsubst(str,'D','\times10^{');
-            str = str + '}';
+        if strindex(str,"D") <> [] then
+            str = strsubst(str,"D","\times10^{");
+            str = str + "}";
         end
     end
 endfunction
 
 function str = lss2tex(sys)
-    if sys(7) == 'c' then
-        der = '\dot{X}(t)';
+    if sys(7) == "c" then
+        der = "\dot{X}(t)";
     else
-        der = '{\buildrel + \over X(t)}'
+        der = "{\buildrel + \over X(t)}"
     end
-    str = '{\left\{\eqalign{' + der + ' &= ' + prettyprint(sys(2),'tex','(',%F,%F) + ' X(t)+' + prettyprint(sys(3),'tex','(',%F,%F) + 'U(t)\cr Y(t) &= ' + prettyprint(sys(4),'tex','(',%F,%F) + ' X(t) ';
+    str = "{\left\{\eqalign{" + der + " &= " + prettyprint(sys(2),"tex","(",%F,%F) + " X(t)+" + prettyprint(sys(3),"tex","(",%F,%F) + "U(t)\cr Y(t) &= " + prettyprint(sys(4),"tex","(",%F,%F) + " X(t) ";
     try
         if norm(sys(5),1) == 0 then
-            str = str + '}\right.}';
+            str = str + "}\right.}";
         else
-            str = str + ' + ' + prettyprint(sys(5),'tex','(',%F,%F) + ' U(t)}\right.}';
+            str = str + " + " + prettyprint(sys(5),"tex","(",%F,%F) + " U(t)}\right.}";
         end
     catch
-        str = str + ' + ' + prettyprint(sys(5),'tex','(',%F,%F) + ' U(t)}\right.}';
+        str = str + " + " + prettyprint(sys(5),"tex","(",%F,%F) + " U(t)}\right.}";
     end
 endfunction
 
 function str = texmatrix(mat,delimiter)
     if argn(2) == 1 then
-        delimiter = '(';
+        delimiter = "(";
     end
     select delimiter
-    case '[' then
-        com = 'bmatrix';
-    case '(' then
-        com = 'pmatrix';
-    case '|' then
-        com = 'vmatrix';
-    case '' then
-        com = 'matrix';
-    case '{' then
-        com = 'Bmatrix';
-    case '||' then
-        com = 'Vmatrix';
+    case "[" then
+        com = "bmatrix";
+    case "(" then
+        com = "pmatrix";
+    case "|" then
+        com = "vmatrix";
+    case "" then
+        com = "matrix";
+    case "{" then
+        com = "Bmatrix";
+    case "||" then
+        com = "Vmatrix";
     else
-        com = 'pmatrix';
+        com = "pmatrix";
     end
     [m,n] = size(mat);
-    str = '{\' + com + '{';
+    str = "{\" + com + "{";
     if m*n == 0 then
-        str = str + '\ ';
+        str = str + "\ ";
     else
         for i=1:m do
-            str = str + strcat(mat(i,:),'&') + '\cr ';
+            str = str + strcat(mat(i,:),"&") + "\cr ";
         end
     end
-    str = str + '}}';
+    str = str + "}}";
 endfunction
 
 //This function converts a complex (or a double) into a string in using the
@@ -564,11 +564,11 @@ function str = comp2coef(z,var,plus,minus,img,op,cp,d2s)
     end
     re = real(z);
     im = imag(z);
-    if var <> '' then
+    if var <> "" then
         if re <> 0 & im <> 0 then
             str = plus + op + comp2str(z,plus,minus,img,d2s) + cp + var;
         elseif re == 0 & im == 0 then
-            str = '';
+            str = "";
         elseif re == 1 & im == 0 then
             str = plus + var;
         elseif re == -1 & im == 0 then
@@ -580,7 +580,7 @@ function str = comp2coef(z,var,plus,minus,img,op,cp,d2s)
         end
     else
         if re == 0 & im == 0 then
-            str = '';
+            str = "";
         else
             str = comp2str(z,plus,minus,img,d2s);
         end
@@ -589,7 +589,7 @@ endfunction
 
 function str = unknown_type(typ,a,exportFormat)
     try
-        execstr('str=' + typ + '2' + exportFormat + '(a)');
+        execstr("str=" + typ + "2" + exportFormat + "(a)");
     catch
         error(msprintf(gettext("%s: Type %s is not handled : Define the function %s2%s."),"prettyprint",typ,typ,exportFormat))
     end

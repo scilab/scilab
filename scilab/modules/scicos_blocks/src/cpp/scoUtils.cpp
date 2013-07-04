@@ -31,7 +31,7 @@ extern "C"
 #define LOG(...)
 }
 
-char *findChildWithKindAt(char const* parent, char const* type, const int position)
+char *findChildWithKindAt(char const* parent, int type, const int position)
 {
     char *child = NULL;
 
@@ -39,7 +39,8 @@ char *findChildWithKindAt(char const* parent, char const* type, const int positi
     char **children;
 
     int i;
-    char *childType;
+    int iChildType = -1;
+    int *piChildType = &iChildType;
     int typeCount;
 
     int *pChildrenCount = &childrenCount;
@@ -48,14 +49,12 @@ char *findChildWithKindAt(char const* parent, char const* type, const int positi
 
     for (typeCount = 0, i = childrenCount - 1; i >= 0; i--)
     {
-        getGraphicObjectProperty(children[i], __GO_TYPE__, jni_string, (void **)&childType);
+        getGraphicObjectProperty(children[i], __GO_TYPE__, jni_int, (void **)&piChildType);
 
-        if (strcmp(childType, type) == 0)
+        if (iChildType == type)
         {
             typeCount++;
         }
-
-        releaseGraphicObjectProperty(__GO_TYPE__, childType, jni_string, 1);
 
         if (typeCount == (position + 1))
         {
@@ -72,19 +71,17 @@ char *findChildWithKindAt(char const* parent, char const* type, const int positi
     }
 
     releaseGraphicObjectProperty(__GO_CHILDREN__, children, jni_string_vector, childrenCount);
-    releaseGraphicObjectProperty(__GO_CHILDREN_COUNT__, &childrenCount, jni_int, 1);
-
     return child;
 };
 
-BOOL setLabel(char const* pAxeUID, char const* _pstName, char const* label)
+BOOL setLabel(char const* pAxeUID, int _iName, char const* label)
 {
     char *pLabelUID;
     int dimensions[2];
 
     BOOL result = TRUE;
 
-    getGraphicObjectProperty(pAxeUID, _pstName, jni_string, (void **)&pLabelUID);
+    getGraphicObjectProperty(pAxeUID, _iName, jni_string, (void **)&pLabelUID);
 
     if (pLabelUID != NULL && strcmp(pLabelUID, "") != 0)
     {
@@ -99,7 +96,7 @@ BOOL setLabel(char const* pAxeUID, char const* _pstName, char const* label)
         result = setGraphicObjectProperty(pLabelUID, __GO_TEXT_STRINGS__, &label, jni_string_vector, 1);
     }
 
-    releaseGraphicObjectProperty(_pstName, pLabelUID, jni_string, 1);
+    releaseGraphicObjectProperty(_iName, pLabelUID, jni_string, 1);
 
     return (BOOL) (result && pLabelUID != NULL);
 }

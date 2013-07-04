@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="external">
+    <refnamediv>
+        <refname>external</refname>
+        <refpurpose>объект Scilab'а, внешняя функция или подпрограмма</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Внешняя функция или подпрограмма для использования со специальными командами.
+        </para>
+        <para>
+            "external" -- это функция или подпрограмма, которая используется в качестве 
+            аргумента некоторых примитивов высокого уровня (таких как <literal>ode</literal>, 
+            <literal>optim</literal>, <literal>schur</literal>...).
+        </para>
+        <para>
+            Последовательность вызова внешней функции или подпрограммы предписывается 
+            примитивом высокого уровня, который устанавливает аргументы данной внешней
+            функции или подпрограммы.
+        </para>
+        <para>
+            Например, внешняя функция <literal>costfunc</literal> является аргументом примитива 
+            <literal>optim</literal> (примитив оптимизации высокого уровня). Её последовательность 
+            вызова должна быть: 
+            <literal>[f,g,ind]=costfunc(x,ind)</literal> и 
+            <literal>optim</literal> вызывается следующим образом:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[ 
+optim(costfunc,...)
+ ]]></programlisting>
+        <para>
+            Здесь <literal>costfunc</literal> (функция цены должна быть минимизирована примитивом 
+            <literal>optim</literal>) вычисляет <literal>f=f(x)</literal> и <literal>g</literal> --
+            градиент <literal>f</literal> в <literal>x</literal> (<literal>ind</literal> -- целое 
+            число. Его использование уточняется в справке по  <literal>optim</literal>).
+        </para>
+        <para>
+            Если необходимы другие значения для внешней функции, то эти переменные могут быть 
+            определены в её окружении. Также они могут быть вложены в список. Например, 
+            внешняя функция:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[ 
+[f,g,ind]=costfunc(x,ind,a,b,c) 
+ ]]></programlisting>
+        <para>
+            является корректной для <literal>optim</literal>, если внешняя функция является списком 
+            <literal>list(costfunc,a,b,c)</literal> и тогда вызов <literal>optim</literal>:      
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[ 
+optim(list(costfunc,a1,b1,c1),....
+ ]]></programlisting>
+        <para>
+            Внешняя подпрограмма может быть процедурой Fortran или C: это удобно для быстрых вычислений.
+        </para>
+        <para>
+            Имя подпрограммы указывается примитиву высокого уровня в виде символьной строки. 
+            Последовательность подпрограммы также предписывается.
+        </para>
+        <para>
+            Внешние процедуры Fortran или C могут быть также динамически связаны (см. 
+            <literal>link</literal>).
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="optim">optim</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+            <member>
+                <link linkend="dassl">dassl</link>
+            </member>
+            <member>
+                <link linkend="intg">intg</link>
+            </member>
+            <member>
+                <link linkend="schur">schur</link>
+            </member>
+            <member>
+                <link linkend="gschur">gschur</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

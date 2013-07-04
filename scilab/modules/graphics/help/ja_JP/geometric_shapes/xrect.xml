@@ -10,19 +10,19 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xrect">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="xrect">
     <refnamediv>
         <refname>xrect</refname>
         <refpurpose>矩形を描画する</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>C呼び出し手順</title>
+        <title>呼び出し手順</title>
         <synopsis>xrect(x,y,w,h)
             xrect(rect) // rect =[x,y,w,h]
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>x,y,w,h</term>
@@ -39,6 +39,14 @@
             (左上の点, 幅, 高さ)により定義される矩形を描画します.
         </para>
         <para>警告: 高さは下向きが正であることに注意してください.</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <scilab:image>
+            plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+            xset("color",5)
+            xrect(-1,1,2,2)
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

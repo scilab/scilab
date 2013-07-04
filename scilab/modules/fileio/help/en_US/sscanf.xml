@@ -10,16 +10,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sscanf">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="sscanf">
     <refnamediv>
         <refname>sscanf</refname>
         <refpurpose>
-            converts formatted input given by a string (<emphasis role="bold">this function is obsolete)</emphasis>
+            converts formatted input given by a string. <emphasis role="bold">This function is obsolete</emphasis>.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[v_1, ..., v_n]=sscanf(string, format)</synopsis>
+        <synopsis>[v_1, ..., v_n] = sscanf(string, format)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -47,12 +47,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            <warning>
-                This function is obsolete, use preferably the 
-                <function>msscanf</function> function which is more efficient and 
+            <caution>
+                This function is obsolete and will be removed in Scilab 5.5.0, use preferably the 
+                <link linkend="msscanf">msscanf</link> function which is more efficient and 
                 is more compatible with the C <function>sscanf</function> 
                 procedure.
-            </warning>
+            </caution>
         </para>
         <para>
             The <function>sscanf</function> function interprets character string  
@@ -86,6 +86,16 @@
             </listitem>
         </itemizedlist>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>Function tagged as obsolete. Will be removed in 5.5.0.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

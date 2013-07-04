@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-09-02 08:20+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: ca\n"
 
 #, c-format
@@ -67,6 +67,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Computed is complex, but expected is real."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"
 msgstr ""
 
 #, c-format
@@ -168,6 +173,54 @@ msgstr "error : Les mides de l'argument d'entrada no són vàlides"
 msgid "The test %s is not available from the %s module"
 msgstr "El test %s no està disponible al mòdul %s"
 
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab module name expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid language expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A '%s' module function name "
+"expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
 msgstr ""
@@ -193,6 +246,10 @@ msgid "%s: Wrong size for input argument."
 msgstr "%s: L'argument d'entrada té una mida incorrecta."
 
 #, c-format
+msgid "%s: Wrong number of input arguments."
+msgstr ""
+
+#, c-format
 msgid "%s is not an installed module or toolbox"
 msgstr "%s no és un mòdul o una barra d'eines instal·lada"
 
@@ -203,7 +260,7 @@ msgstr "El fitxer de referència (%s) no existeix"
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
-"'testsuites"
+"'testsuites'.\n"
 msgstr ""
 
 #, c-format

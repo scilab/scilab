@@ -18,7 +18,7 @@
 #include "freeArrayOfString.h"
 #include "BOOL.h"
 #include "api_scilab.h"
-#include "strsplitfunction.h"
+#include "strsplit.h"
 /*----------------------------------------------------------------------------*/
 static BOOL isValidRegExp(wchar_t *pStr);
 /*----------------------------------------------------------------------------*/
@@ -168,7 +168,7 @@ int sci_strsplit(char *fname, unsigned long fname_len)
                 {
                     int m_out = 0, n_out = 0;
                     strsplit_error ierr = STRSPLIT_NO_ERROR;
-                    wchar_t **results = strsplitfunction(pStVarOne, pdVarTwo, m2 * n2, &ierr);
+                    wchar_t **results = strsplit(pStVarOne, pdVarTwo, m2 * n2, &ierr);
 
                     if (pStVarOne)
                     {

@@ -27,6 +27,6 @@
  * contains the right properties.
  * @return the newly created list or NULL if an error occurred.
  */
-AssignedList * createTlistForTicks( void ) ;
+AssignedList * createTlistForTicks(void* _pvCtx);
 
 #endif /* _CHECK_TICKS_PROPERTY_C_ */

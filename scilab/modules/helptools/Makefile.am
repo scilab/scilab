@@ -40,7 +40,6 @@ pkglib_LTLIBRARIES = libscihelptools.la
 libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/src/jni/ \
 				-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/localization/includes/ \
 				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/commons/src/jni \
@@ -120,6 +119,7 @@ schema/extendedStyle.xsl
 libscihelptools_la_data_pagesdir = $(mydatadir)/data/pages
 libscihelptools_la_data_pages_DATA = data/pages/error.html \
 data/pages/homepage-en_US.html \
+data/pages/homepage-ru_RU.html \
 data/pages/homepage-fr_FR.html \
 data/pages/ban-en_US.png \
 data/pages/ban-fr_FR.png

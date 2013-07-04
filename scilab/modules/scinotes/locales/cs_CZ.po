@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-28 20:58+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-15 20:50+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -119,8 +119,8 @@ msgstr "Zavřít Vše"
 msgid "Close All But This"
 msgstr "Zavřít Vše Kromě Tohoto"
 
-msgid "Exit"
-msgstr "Ukončit"
+msgid "Exit Scinotes"
+msgstr "Ukončit Scinotes"
 
 msgid "Edit"
 msgstr "Upravit"
@@ -245,6 +245,18 @@ msgstr "Kódování současného souboru"
 msgid "Line Endings"
 msgstr "Konce řádků"
 
+msgid "Preferences"
+msgstr "Nastavení"
+
+msgid "Set font"
+msgstr "Nastavit písmo"
+
+msgid "Set colors"
+msgstr "Nastavit barvy"
+
+msgid "Scinotes General settings"
+msgstr "Obecná nastavení Scinotes"
+
 msgid "Auto-completion on"
 msgstr "Autodokončení zapnuto"
 
@@ -302,8 +314,8 @@ msgstr "Uložit a spustit všechny soubory"
 msgid "?"
 msgstr "?"
 
-msgid "SciNotes help"
-msgstr "Nápověda SciNotes"
+msgid "Scinotes help"
+msgstr "Nápověda Scinotes"
 
 msgid "Help on ;Help on selection"
 msgstr "Nápověda na ;Nápověda pro výběr"
@@ -329,8 +341,8 @@ msgstr "Automatické ukládání"
 msgid "Editor"
 msgstr "Editor"
 
-msgid "Use SciNotes"
-msgstr "Použít SciNotes"
+msgid "Use Scinotes"
+msgstr "Použít Scinotes"
 
 msgid "External editor: "
 msgstr "Externí editor: "
@@ -340,9 +352,6 @@ msgstr "(Nezapomeňte použít uvozovky u cest obsahující mezery)"
 
 msgid "Scilab command: "
 msgstr "Příkaz Scilab: "
-
-msgid "SciNotes General settings"
-msgstr "Obecná nastavení SciNotes"
 
 msgid "Restore previous session on start-up"
 msgstr "Obnovit předchozí relaci při startu"
@@ -376,6 +385,12 @@ msgstr "Normální"
 
 msgid "Wrap lines"
 msgstr "Zalamovat řádky"
+
+msgid "Background color: "
+msgstr "Barva pozadí: "
+
+msgid "Cursor color: "
+msgstr "Barva kurzoru: "
 
 msgid "Keywords"
 msgstr "Klíčová slova"
@@ -494,6 +509,18 @@ msgstr "SciNotes"
 msgid "Error while reading the String"
 msgstr "Chyba při čtení Řetězce"
 
+#, c-format
+msgid "File not found: %s"
+msgstr "Soubor nenalezen: %s"
+
+#, c-format
+msgid "I/O error: %s"
+msgstr "Chyba I/O: %s"
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr "Soubor %s byl změněn jiným programem. Chcete ho znovu načíst ?"
+
 msgid "Source of '"
 msgstr "Zdroj '"
 
@@ -517,6 +544,9 @@ msgstr "Při exportu kódu pomocí FOP nastala chyba"
 
 msgid "An error occurred when printing"
 msgstr "Při tisku nastala chyba"
+
+msgid "Exit"
+msgstr "Ukončit"
 
 msgid "Tools"
 msgstr "Nástroje"
@@ -614,6 +644,9 @@ msgstr "Vyhodnotit od začátku..."
 msgid "Execute File Into Scilab"
 msgstr "Spustit Soubor Ve Scilab"
 
+msgid "SciNotes help"
+msgstr "Nápověda SciNotes"
+
 msgid "Help on the current keyword"
 msgstr "Nápověda pro současné klíčové slovo"
 
@@ -677,6 +710,7 @@ msgstr "Nahradit"
 msgid "Replace All"
 msgstr "Nahradit vše"
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Neplatný regulární výraz : %s"
 
@@ -692,15 +726,13 @@ msgstr "Dosáhli jste konce dokumentu"
 msgid "You have reached the beginning of the document"
 msgstr "Dosáhli jste začátku dokumentu"
 
+#, c-format
 msgid "String %s not found"
 msgstr "Řetězec %s nenalezen"
 
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"Soubor %s neexistuje\n"
-"Chcete ho vytvořit?"
+#, c-format
+msgid "The file %s does not exist. Do you want to create it?"
+msgstr "Soubor %s neexistuje. Chcete ho vytvořit?"
 
 msgid "close this tab"
 msgstr "zavřít tuto kartu"
@@ -708,19 +740,13 @@ msgstr "zavřít tuto kartu"
 msgid "This file"
 msgstr "Tento soubor"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
-msgstr ""
-" bylo od posledního uložení změněno\n"
-"uložit?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
+msgstr "%s byl od posledního uložení změněn. Chcete ho uložit?"
 
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
-msgstr ""
-"Soubor %s byl změněn jiným programem !\n"
-" Přepsat ho ?"
+#, c-format
+msgid "The file %s has been modified by another program ! Overwrite it ?"
+msgstr "Soubor %s byl změněn jiným programem. Chcete ho přepsat ?"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "Varování: soubor byl změněn jiným programem !"
@@ -801,12 +827,14 @@ msgstr "Otevřít zdroj makra: "
 msgid "Show the definition of the macro "
 msgstr "Zobrazit určení makra "
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Řádek %s, Sloupec %s. Funkce '%s' na Řádku %s."
 
 msgid "Unknown function"
 msgstr "Neznámá funkce"
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr "Řádek %s, Sloupec %s."
 
@@ -822,6 +850,7 @@ msgstr "Soubor nemohl být uložen."
 msgid "The file could not be converted."
 msgstr "Soubor nelze převést."
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s je adresář."
 
@@ -846,6 +875,7 @@ msgstr "Žádný text nevybrán."
 msgid "No text to execute."
 msgstr "Žádný text ke spuštění."
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -857,12 +887,14 @@ msgstr "Problémy s kódováním"
 msgid "Cannot guess the file encoding."
 msgstr "Nelze odhadnout kódování souboru."
 
+#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr "Nelze uložit soubor %s... zastavte proces zálohování"
 
 msgid "Backup finished..."
 msgstr "Zálohování dokončeno..."
 
+#, c-format
 msgid "%s occurences found."
 msgstr "nalezeno %s výskytů."
 
@@ -980,12 +1012,15 @@ msgstr "Hledat Soubory..."
 msgid "Search in Files..."
 msgstr "Hledat v Souborech..."
 
+#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr "<html>%s <i>(%s schod)</i></html>"
 
+#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr "<html>%s <i>(%s schoda)</i></html>"
 
+#, c-format
 msgid "Elapsed time: %s sec."
 msgstr "Uplynulý čas: %s vte."
 
@@ -1043,3 +1078,21 @@ msgstr "Zvolte základní adresář hledání"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Modul Scilabu '%s' není nainstalován.\n"
+
+msgid "the last error did not occur inside a library function."
+msgstr "poslední chyba se neudála uvnitř knihovní funkce."
+
+msgid " on line "
+msgstr " online "
+
+msgid "opening file "
+msgstr "otevírání souboru "
+
+msgid " of the source file of the function "
+msgstr " ze zdrojového souboru funkce "
+
+msgid "the source file of the function "
+msgstr "zdrojový soubor funkce "
+
+msgid " was not found in any library path"
+msgstr " nebylo nalezeno v žádné cestě knihovny"

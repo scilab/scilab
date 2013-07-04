@@ -7,7 +7,7 @@
 //
 // <-- INTERACTIVE TEST -->
 //
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 7845 -->
 //
@@ -17,7 +17,7 @@
 // <-- Short Description -->
 // Code generation was broken
 
-xcos(SCI + '/modules/xcos/demos/CodeGen/controller.xcos');
+xcos(SCI + '/modules/xcos/demos/CodeGen/controller.zcos');
 
 // right click on super block
 // start Code Generation

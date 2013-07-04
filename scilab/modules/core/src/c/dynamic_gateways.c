@@ -15,6 +15,7 @@
 #include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"
 #include "dynamic_parallel.h"
+#include "scilabmode.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 /* special_functions module */
@@ -131,6 +132,7 @@ int gw_dynamic_sound(void)
 /*--------------------------------------------------------------------------*/
 /* scicos module */
 #define SCICOS_MODULE_NAME "scicos"
+#define SCICOS_CLI_MODULE_NAME "scicos-cli"
 static DynLibHandle hScicosLib = NULL;
 static PROC_GATEWAY ptr_gw_scicos = NULL;
 static char* dynlibname_scicos = NULL;
@@ -138,6 +140,15 @@ static char* gatewayname_scicos = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_scicos(void)
 {
+    if (dynlibname_scicos == NULL)
+    {
+        /* Select the cli library if started without gui (at runtime)  */
+        if (getScilabMode() == SCILAB_NWNI)
+        {
+            dynlibname_scicos = buildModuleDynLibraryName(SCICOS_CLI_MODULE_NAME, DYNLIB_NAME_FORMAT_AUTO);
+        }
+    }
+
     return gw_dynamic_generic(SCICOS_MODULE_NAME,
                               &dynlibname_scicos,
                               &gatewayname_scicos,
@@ -293,29 +304,6 @@ int gw_dynamic_scinotes(void)
                               &gatewayname_scinotes,
                               &hSciNotesLib,
                               &ptr_gw_scinotes);
-}
-/*--------------------------------------------------------------------------*/
-/* hdf5 module */
-#define HDF5_MODULE_NAME "hdf5"
-static DynLibHandle hHdf5Lib = NULL;
-static PROC_GATEWAY ptr_gw_hdf5 = NULL;
-static char* dynlibname_hdf5 = NULL;
-static char* gatewayname_hdf5 = NULL;
-/*--------------------------------------------------------------------------*/
-int gw_dynamic_hdf5(void)
-{
-    int r = gw_dynamic_generic(HDF5_MODULE_NAME,
-                               &dynlibname_hdf5,
-                               &gatewayname_hdf5,
-                               &hHdf5Lib,
-                               &ptr_gw_hdf5);
-
-    freeDynamicGateway(&dynlibname_hdf5,
-                       &gatewayname_hdf5,
-                       &hHdf5Lib,
-                       &ptr_gw_hdf5);
-
-    return r;
 }
 /*--------------------------------------------------------------------------*/
 /* graphic_exports module */
@@ -557,11 +545,6 @@ void freeAllDynamicGateways(void)
                        &gatewayname_scinotes,
                        &hSciNotesLib,
                        &ptr_gw_scinotes);
-
-    freeDynamicGateway(&dynlibname_hdf5,
-                       &gatewayname_hdf5,
-                       &hHdf5Lib,
-                       &ptr_gw_hdf5);
 
     freeDynamicGateway(&dynlibname_graphic_export,
                        &gatewayname_graphic_export,

@@ -21,17 +21,17 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_resizefcn_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_figure_resizefcn_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "resizefcn");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_RESIZEFCN__, getStringFromStack(stackPointer), jni_string, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_RESIZEFCN__, (char*)_pvData, jni_string, 1);
 
     if (status == TRUE)
     {

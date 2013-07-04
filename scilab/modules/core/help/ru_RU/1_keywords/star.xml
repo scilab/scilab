@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="star">
+    <refnamediv>
+        <refname>звёздочка</refname>
+        <refpurpose>(*) оператор умножения</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Умножение в обычном смысле. Корректно для констант, матриц логических, полиномиальных, рациональных значений и для списков <literal>syslin</literal> (со значением последовательного соединения).
+        </para>
+        <para>
+            Поэлементное умножение обозначается как <literal>x.*y</literal>. Если 
+            <literal>x</literal> или <literal>y</literal> являются скаляром, то <literal> .* </literal>
+            то же самое, что и <literal>*</literal>.
+        </para>
+        <para>
+            Произведение Кронекера обозначается как <literal>x.*.y</literal>.
+        </para>
+        <para>
+            <literal>A*.B</literal>  оператор без предопределённого значения. Можно использовать для определения нового оператора (см. <link linkend="overloading">перегрузку</link>) с тем же самым приоритетом, что и у <literal>*</literal> или <literal>/</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+// Основные операции с числами
+2 * 2 // 4
+2 * [%pi, %eps] // 6.2831853    4.441D-16
+rand(2,2) * rand(2)
+[1, 2; 3, 4] * [%pi,%eps; %e, %pi]
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Операции с полиномами
+s=poly(0,"s");
+p=1+s+2*s^2;
+q=1+s+2*s^3;
+p * q
+//               2    3    4    5
+//    1 + 2s + 3s + 4s + 2s + 4s
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Рациональные значения
+s=poly(0,'s');
+W=[1/s,1/(s+1)];
+W' * W
+//    1           1
+//    -         -----
+//     2             2
+//    s         s + s
+//
+//      1           1
+//    -----     ---------
+//         2              2
+//    s + s     1 + 2s + s
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dot">точка</link>
+            </member>
+            <member>
+                <link linkend="slash">слэш</link>
+            </member>
+            <member>
+                <link linkend="backslash">обратный слэш</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="overloading">перегрузка</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

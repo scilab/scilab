@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Palette Tab visibility management
  */
+@SuppressWarnings(value = { "serial" })
 public final class ViewPaletteBrowserAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.PALETTE_BROWSER;
@@ -38,7 +39,7 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab Graph
      */
@@ -48,23 +49,23 @@ public final class ViewPaletteBrowserAction extends DefaultAction {
 
     /**
      * Create checkbox menu for the graph menu bar
-     * 
+     *
      * @param scilabGraph
      *            associated Scilab Graph
      * @return the menu
      */
     public static CheckBoxMenuItem createCheckBoxMenu(ScilabGraph scilabGraph) {
         final CheckBoxMenuItem menu = createCheckBoxMenu(scilabGraph,
-                ViewPaletteBrowserAction.class);
+                                      ViewPaletteBrowserAction.class);
         PaletteManager.getInstance().addPropertyChangeListener(
-                new PropertyChangeListener() {
-                    @Override
-                    public void propertyChange(PropertyChangeEvent evt) {
-                        if ("visible".equals(evt.getPropertyName())) {
-                            menu.setChecked((Boolean) evt.getNewValue());
-                        }
-                    }
-                });
+        new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if ("visible".equals(evt.getPropertyName())) {
+                    menu.setChecked((Boolean) evt.getNewValue());
+                }
+            }
+        });
 
         menu.setChecked(PaletteManager.isVisible());
         return menu;

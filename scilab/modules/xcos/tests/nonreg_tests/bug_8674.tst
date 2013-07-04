@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 // <-- ENGLISH IMPOSED -->
 //
 // <-- Non-regression test for bug 8674 -->
@@ -17,7 +17,7 @@
 // Check that an erroneous "From workspace" block does not produce an error.
 // 
 
-result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8674.xcos");
+result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8674.zcos");
 if (result <> %T) then pause,end
 
 // overwrtie dialogs

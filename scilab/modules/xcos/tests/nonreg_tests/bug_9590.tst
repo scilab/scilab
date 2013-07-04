@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 9590 -->
 //
@@ -15,4 +15,4 @@
 // xcos examples were not embeded in binary version on Windows.
 
 assert_checkequal(isdir("SCI/modules/xcos/examples"), %t);
-assert_checkequal(isfile("SCI/modules/xcos/examples/integer_pal/en_US/JKFLIPFLOP_en_US.xcos"), %t);
+assert_checkequal(isfile("SCI/modules/xcos/examples/integer_pal/en_US/JKFLIPFLOP_en_US.zcos"), %t);

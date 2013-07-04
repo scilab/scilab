@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getshortpathname" xml:lang="en">
+    <refnamediv>
+        <refname>getshortpathname</refname>
+        <refpurpose>gets short path name</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            shortpath = getshortgpathname(longpath)
+            [shortpath, bOK] = getshortpathname(longpath)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>longpath</term>
+                <listitem>
+                    <para>a character string or matrix of strings: the long path.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>shortpath</term>
+                <listitem>
+                    <para>
+                        a character string or a matrix of strings: the short path.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bOK</term>
+                <listitem>
+                    <para>
+                        a boolean or a matrix of boolean: <constant>%T</constant> if
+                        path has been converted else <constant>%F</constant>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <function>getshortpathname</function> primitive converts the
+            specified path <varname>longpath</varname> to its short form.
+        </para>
+        <para>
+            <note>
+                Note: If the path cannot be converted (<varname>bOK</varname> is <constant>%F</constant>) and in particular if the
+                operating system is not Windows, the returned short path is identical to the
+                input long path.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            <![CDATA[ 
+[shortpath,bOK]=getshortpathname(SCI) 
+[shortpaths,bOKs]=getshortpathname([SCI;SCI]) 
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getlongpathname">getlongpathname</link>
+            </member>
+            <member>
+                <link linkend="getrelativefilename">getrelativefilehname</link>
+            </member>
+            <member>
+                <link linkend="pwd">pwd</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

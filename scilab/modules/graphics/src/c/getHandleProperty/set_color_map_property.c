@@ -31,17 +31,23 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_color_map_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_color_map_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "color_map");
+        return SET_PROPERTY_ERROR;
+    }
+
+    if (nbCol != 3)
+    {
+        Scierror(999, _("Wrong dimension for '%s' property: The number of columns must be 3.\n"), "color_map");
         return SET_PROPERTY_ERROR ;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_COLORMAP__, getDoubleMatrixFromStack(stackPointer), jni_double_vector, nbRow*nbCol);
+    status = setGraphicObjectProperty(pobjUID, __GO_COLORMAP__, _pvData, jni_double_vector, nbRow * nbCol);
 
     if (status == TRUE)
     {
@@ -49,7 +55,7 @@ int set_color_map_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_map");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "color_map");
         return SET_PROPERTY_ERROR;
     }
 }

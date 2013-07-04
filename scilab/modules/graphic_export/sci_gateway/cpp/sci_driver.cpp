@@ -12,19 +12,21 @@
 
 #include <string.h>
 
+#include "ScilabView.hxx"
+#include "SwingView.hxx"
+#include "Driver.hxx"
+
 extern "C"
 {
 #include "getScilabJavaVM.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
+#include "deleteGraphicObject.h"
 
 #include "gw_graphic_export.h"
 }
 
-#include "ScilabView.hxx"
-#include "SwingView.hxx"
-#include "Driver.hxx"
 
 #if _MSC_VER
 #define strcasecmp _stricmp
@@ -83,11 +85,16 @@ int sci_driver(char * fname, unsigned long fname_len )
         else if (org_scilab_modules_gui::SwingView::isHeadless(getScilabJavaVM()))
         {
             org_scilab_modules_gui::SwingView::setHeadless(getScilabJavaVM(), false);
-            char const* uid = ScilabView::getCurrentFigure();
-
-            if (uid)
+            const char* pstCurrentFigureReference = ScilabView::getCurrentFigure();
+            if (pstCurrentFigureReference != NULL)
             {
-                ScilabView::deleteObject(uid);
+                char* uid = strdup(pstCurrentFigureReference);
+
+                if (uid)
+                {
+                    deleteGraphicObject(uid);
+                }
+                free(uid);
             }
         }
 

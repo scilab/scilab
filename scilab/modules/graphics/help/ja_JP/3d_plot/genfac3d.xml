@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="genfac3d">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="genfac3d">
     <refnamediv>
         <refname>genfac3d</refname>
         <refpurpose>3次元曲面の小平面を計算</refpurpose>
@@ -74,7 +74,12 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>genfac3d();</scilab:image>
+        <scilab:image>
+            t=[0:0.3:2*%pi]'; 
+            z=sin(t)*cos(t');
+            [xx,yy,zz]=genfac3d(t,t,z);
+            plot3d(xx,yy,zz)
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

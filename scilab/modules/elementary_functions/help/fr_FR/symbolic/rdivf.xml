@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="rdivf">
+    <refnamediv>
+        <refname>rdivf</refname>
+        <refpurpose>division symbolique à droite  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>["r"]=ldivf("d","c")</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>"d","c","r"  </term>
+                <listitem>
+                    <para>strings
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Renvoie la chaîne de caractères <literal>"c/d"</literal>
+            Des simplifications triviales du type <literal>"c/1" = "c"</literal> sont effectuées.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+ldivf('c','d')
+ldivf('1','2')
+ldivf('a','0')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ldivf">ldivf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

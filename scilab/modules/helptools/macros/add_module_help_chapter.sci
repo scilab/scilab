@@ -8,19 +8,19 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function add_module_help_chapter(modulename)
-	
-	if and(getscilabmode() <> ["NW";"STD"]) then
-		return;
-	end
-	
-	path_addchapter = SCI+"/modules/"+modulename+"/help/"+getlanguage()+"/addchapter.sce";
-	
-	if ~isfile(path_addchapter) then
-		path_addchapter = SCI+"/modules/"+modulename+"/help/"+getdefaultlanguage()+"/addchapter.sce";
-	end
-	
-	if isfile(path_addchapter) then
-	  exec(path_addchapter);
-	end
-	
+
+    if and(getscilabmode() <> ["NW";"STD"]) then
+        return;
+    end
+
+    path_addchapter = SCI+"/modules/"+modulename+"/help/"+getlanguage()+"/addchapter.sce";
+
+    if ~isfile(path_addchapter) then
+        path_addchapter = SCI+"/modules/"+modulename+"/help/"+getdefaultlanguage()+"/addchapter.sce";
+    end
+
+    if isfile(path_addchapter) then
+        exec(path_addchapter);
+    end
+
 endfunction

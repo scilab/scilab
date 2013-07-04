@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 9346 -->
 //
@@ -15,9 +15,8 @@
 // <-- Short Description -->
 // FROMWS block does not works
 
-loadXcosLibs;
 
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_9346.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_9346.zcos");
 if ~status then pause, end;
 
 V.time = (1:10)';

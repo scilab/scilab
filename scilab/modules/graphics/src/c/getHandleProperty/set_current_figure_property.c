@@ -30,6 +30,7 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "HandleManagement.h"
+#include "sci_types.h"
 
 #include "BuildObjects.h"
 #include "CurrentFigure.h"
@@ -41,36 +42,36 @@
 
 
 /*------------------------------------------------------------------------*/
-int set_current_figure_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_current_figure_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    int figNum = -1 ;
-    int res = -1 ;
+    int figNum = -1;
+    int res = -1;
     char* pFigureUID = NULL;
     char* curFigUID = NULL;
     char* pstrAxesUID = NULL;
 
-	if (pobjUID != NULL)
-	{
-		/* This property should not be called on an handle */
-		Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_figure");
-		return SET_PROPERTY_ERROR;
-	}
+    if (pobjUID != NULL)
+    {
+        /* This property should not be called on an handle */
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_figure");
+        return SET_PROPERTY_ERROR;
+    }
 
     if (nbRow * nbCol != 1)
     {
         Scierror(999, _("Wrong size for '%s' property: A scalar expected.\n"), "current_figure");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    if ( isParameterHandle( valueType ) )
+    if ((valueType == sci_handles))
     {
 
-        curFigUID = (char*)getObjectFromHandle( getHandleFromStack( stackPointer ) ) ;
+        curFigUID = (char*)getObjectFromHandle((long)((long long*)_pvData)[0]);
 
-        if ( curFigUID == NULL )
+        if (curFigUID == NULL)
         {
-            Scierror(999, _("'%s' handle does not or no longer exists.\n"),"Figure");
-            return SET_PROPERTY_ERROR ;
+            Scierror(999, _("'%s' handle does not or no longer exists.\n"), "Figure");
+            return SET_PROPERTY_ERROR;
         }
         setCurrentFigure(curFigUID);
         getGraphicObjectProperty(curFigUID, __GO_SELECTED_CHILD__, jni_string,  &pstrAxesUID);
@@ -78,14 +79,14 @@ int set_current_figure_property(void* _pvCtx, char* pobjUID, size_t stackPointer
 
         return 0;
     }
-    else if ( isParameterDoubleMatrix( valueType ) )
+    else if ((valueType == sci_matrix))
     {
-        figNum = (int) getDoubleFromStack( stackPointer ) ;
+        figNum = (int) ((double*)_pvData)[0];
     }
     else
     {
-        Scierror(999, _("Wrong type for '%s' property: Real or '%s' handle expected.\n"), "current_figure","Figure") ;
-        return SET_PROPERTY_ERROR ;
+        Scierror(999, _("Wrong type for '%s' property: Real or '%s' handle expected.\n"), "current_figure", "Figure");
+        return SET_PROPERTY_ERROR;
     }
 
     /* Retrieve figure with figNum */

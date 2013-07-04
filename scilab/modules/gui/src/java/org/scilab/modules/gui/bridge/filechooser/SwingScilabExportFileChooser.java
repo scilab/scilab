@@ -38,6 +38,7 @@ import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
  * @author Sylvestre Koumar
  *
  */
+@SuppressWarnings(value = { "serial" })
 public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 
     private static final int NB_FILE_MASKS = 12;
@@ -184,7 +185,9 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
             } else {
                 bitmapExport(extensionCombo);
             }
-        } else ; // no file chosen
+        } else {
+            ;    // no file chosen
+        }
     }
 
     /**

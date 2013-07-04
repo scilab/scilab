@@ -11,150 +11,150 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mfscanf" xml:lang="en">
-  <refnamediv>
-    <refname>mfscanf</refname>
-    <refpurpose>
-      reads input from the stream pointer stream (interface to the C
-      fscanf function)
-    </refpurpose>
-  </refnamediv>
-  <refnamediv xml:id="mscanf">
-    <refname>mscanf</refname>
-    <refpurpose>
-      reads input from the standard input (interface to the C scanf
-      function)
-    </refpurpose>
-  </refnamediv>
-  <refnamediv xml:id="msscanf">
-    <refname>msscanf</refname>
-    <refpurpose>reads its input from the character string (interface to the C
-      sscanf function)
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      [n, v_1,..., v_m] = mfscanf([niter,]fd, format)
-      L = mfscanf([niter,] fd,format)
-      
-      [n, v_1,..., v_m] = mscanf([niter,] format)
-      L = mscanf([niter,]format)
-      
-      [n, v_1,..., v_m] = msscanf([niter,]str, format)
-      L = msscanf([niter,] str, format)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>format</term>
-        <listitem>
-          <para>
-            a Scilab string describing the format to use to write the
-            remaining operands. The <varname>format</varname> operand 
-            follows, as close as possible, the C <function>printf</function> 
-            format operand syntax as described in
-            <link linkend="scanf_conversion">scanf_conversion</link>.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fd</term>
-        <listitem>
-          <para>
-            a positive integer: a file descriptor returned by the function
-            <function>mopen</function>. The value -1 refers to the last 
-            opened file.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>str</term>
-        <listitem>
-          <para>a Scilab string or string vector.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>niter</term>
-        <listitem>
-          <para>
-            an integer: the number of times the 
-            <varname>format</varname>
-            to be used.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>n</term>
-        <listitem>
-          <para>an integer: the number of data read or -1 if EOL has been
-            encountered before any datum has been read.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>v_i</term>
-        <listitem>
-          <para>
-            Each function reads characters, interprets them according to a
-            <varname>format</varname>, and stores the results in its output 
-            arguments. If more than <varname>n</varname> output arguments are 
-            provided, the last ones <varname>v_n+1, ..., v_m</varname> are 
-            set to empty matrices.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>L</term>
-        <listitem>
-          <para>
-            if all data are homogeneous they are stored in a unique vector
-            which is returned, otherwise subsequences of same data type are
-            stored in matrices and a <literal>mlist</literal> (with type
-            <literal>cblock</literal>) containing all the built matrices is
-            returned.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      The <function>mfscanf</function> function reads characters from the
-      stream <varname>fd</varname>.
-    </para>
-    <para>
-      The <function>mscanf</function> function reads characters from Scilab
-      window.
-    </para>
-    <para>
-      The <function>msscanf</function> function reads characters from the
-      Scilab string <varname>str</varname>.
-    </para>
-    <para>
-      The <varname>niter</varname> optional argument specifies how many
-      time the format has to used. One iteration produces one line in the output
-      matrix. If <code>niter==-1</code> the function iterates up to the
-      end of file. The <varname>niter</varname> default value is 1.
-    </para>
-    <para>Comments about precision:</para>
-    <para>
-      <function>mfscanf</function> is based on C function 
-      <function>fscanf</function>. If you use <literal>'%f'</literal>, 
-      <literal>'%g'</literal>, <literal>'%e'</literal> as format your data 
-      will be cast to float and returned in a Scilab variable. 
-    </para>
-    <para>
-      If this Scilab variable is a double then you can have some precision
-      errors. In this case, it is better to use <literal>'%lg'</literal> format.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mfscanf" xml:lang="en">
+    <refnamediv>
+        <refname>mfscanf</refname>
+        <refpurpose>
+            reads input from the stream pointer stream (interface to the C
+            fscanf function)
+        </refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="mscanf">
+        <refname>mscanf</refname>
+        <refpurpose>
+            reads input from the standard input (interface to the C scanf
+            function)
+        </refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="msscanf">
+        <refname>msscanf</refname>
+        <refpurpose>reads its input from the character string (interface to the C
+            sscanf function)
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            [n, v_1,..., v_m] = mfscanf([niter,]fd, format)
+            L = mfscanf([niter,] fd,format)
+            
+            [n, v_1,..., v_m] = mscanf([niter,] format)
+            L = mscanf([niter,]format)
+            
+            [n, v_1,..., v_m] = msscanf([niter,]str, format)
+            L = msscanf([niter,] str, format)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>format</term>
+                <listitem>
+                    <para>
+                        a Scilab string describing the format to use to write the
+                        remaining operands. The <varname>format</varname> operand 
+                        follows, as close as possible, the C <function>printf</function> 
+                        format operand syntax as described in
+                        <link linkend="scanf_conversion">scanf_conversion</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fd</term>
+                <listitem>
+                    <para>
+                        a positive integer: a file descriptor returned by the function
+                        <function>mopen</function>. The value -1 refers to the last 
+                        opened file.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>a Scilab string or string vector.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>niter</term>
+                <listitem>
+                    <para>
+                        an integer: the number of times the 
+                        <varname>format</varname>
+                        to be used.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>an integer: the number of data read or -1 if EOL has been
+                        encountered before any datum has been read.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v_i</term>
+                <listitem>
+                    <para>
+                        Each function reads characters, interprets them according to a
+                        <varname>format</varname>, and stores the results in its output 
+                        arguments. If more than <varname>n</varname> output arguments are 
+                        provided, the last ones <varname>v_n+1, ..., v_m</varname> are 
+                        set to empty matrices.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>L</term>
+                <listitem>
+                    <para>
+                        if all data are homogeneous they are stored in a unique vector
+                        which is returned, otherwise subsequences of same data type are
+                        stored in matrices and a <literal>mlist</literal> (with type
+                        <literal>cblock</literal>) containing all the built matrices is
+                        returned.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <function>mfscanf</function> function reads characters from the
+            stream <varname>fd</varname>.
+        </para>
+        <para>
+            The <function>mscanf</function> function reads characters from Scilab
+            window.
+        </para>
+        <para>
+            The <function>msscanf</function> function reads characters from the
+            Scilab string <varname>str</varname>.
+        </para>
+        <para>
+            The <varname>niter</varname> optional argument specifies how many
+            time the format has to used. One iteration produces one line in the output
+            matrix. If <code>niter==-1</code> the function iterates up to the
+            end of file. The <varname>niter</varname> default value is 1.
+        </para>
+        <para>Comments about precision:</para>
+        <para>
+            <function>mfscanf</function> is based on C function 
+            <function>fscanf</function>. If you use <literal>'%f'</literal>, 
+            <literal>'%g'</literal>, <literal>'%e'</literal> as format your data 
+            will be cast to float and returned in a Scilab variable. 
+        </para>
+        <para>
+            If this Scilab variable is a double then you can have some precision
+            errors. In this case, it is better to use <literal>'%lg'</literal> format.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 //----------------------------------------------------------
 //--    Simple use                                        --
 //----------------------------------------------------------
@@ -206,55 +206,55 @@ typeof(D)
 Names=D(:,1) //strings
 Age=D(:,2)   //numerical values    
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="mclose">mclose</link>
-      </member>
-      <member>
-        <link linkend="meof">meof</link>
-      </member>
-      <member>
-        <link linkend="mfprintf">mfprintf</link>
-      </member>
-      <member>
-        <link linkend="fprintfMat">fprintfMat</link>
-      </member>
-      <member>
-        <link linkend="fscanfMat">fscanfMat</link>
-      </member>
-      <member>
-        <link linkend="mget">mget</link>
-      </member>
-      <member>
-        <link linkend="mgetstr">mgetstr</link>
-      </member>
-      <member>
-        <link linkend="mopen">mopen</link>
-      </member>
-      <member>
-        <link linkend="mprintf">mprintf</link>
-      </member>
-      <member>
-        <link linkend="mput">mput</link>
-      </member>
-      <member>
-        <link linkend="mputstr">mputstr</link>
-      </member>
-      <member>
-        <link linkend="mseek">mseek</link>
-      </member>
-      <member>
-        <link linkend="mtell">mtell</link>
-      </member>
-      <member>
-        <link linkend="mdelete">mdelete</link>
-      </member>
-      <member>
-        <link linkend="scanf_conversion">scanf_conversion</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mclose">mclose</link>
+            </member>
+            <member>
+                <link linkend="meof">meof</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+            <member>
+                <link linkend="fprintfMat">fprintfMat</link>
+            </member>
+            <member>
+                <link linkend="fscanfMat">fscanfMat</link>
+            </member>
+            <member>
+                <link linkend="mget">mget</link>
+            </member>
+            <member>
+                <link linkend="mgetstr">mgetstr</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+            <member>
+                <link linkend="mputstr">mputstr</link>
+            </member>
+            <member>
+                <link linkend="mseek">mseek</link>
+            </member>
+            <member>
+                <link linkend="mtell">mtell</link>
+            </member>
+            <member>
+                <link linkend="mdelete">mdelete</link>
+            </member>
+            <member>
+                <link linkend="scanf_conversion">scanf_conversion</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -38,7 +38,7 @@ int get_hidden_axis_color_property(void* _pvCtx, char* pobjUID)
 
     if (piHiddenAxisColor == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"hidden_axis_color");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "hidden_axis_color");
         return -1;
     }
 

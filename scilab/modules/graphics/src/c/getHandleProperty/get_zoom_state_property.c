@@ -37,10 +37,10 @@ int get_zoom_state_property(void* _pvCtx, char* pobjUID)
 
     getGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&piZoomState);
 
-    if ( piZoomState == NULL )
+    if (piZoomState == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_state") ;
-        return -1 ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "zoom_state");
+        return -1;
     }
 
     if (iZoomState)

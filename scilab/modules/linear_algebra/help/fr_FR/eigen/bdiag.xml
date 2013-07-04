@@ -10,46 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bdiag">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="bdiag">
     <refnamediv>
         <refname>bdiag</refname>
-        <refpurpose> block diagonalization, generalized eigenvectors</refpurpose>
+        <refpurpose>bloc-diagonalisation, vecteurs propres généralisés  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Séquence d'appel</title>
         <synopsis>[Ab [,X [,bs]]]=bdiag(A [,rmax])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>A</term>
+                <term>A  </term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>matrice carrée réelle ou complexe
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>rmax</term>
+                <term>rmax  </term>
                 <listitem>
-                    <para>real number</para>
+                    <para>nombre réel
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Ab</term>
+                <term>Ab  </term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>matrice carrée réelle ou complexe
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>X</term>
+                <term>X  </term>
                 <listitem>
-                    <para>real or complex non-singular matrix</para>
+                    <para>matrice régulière, réelle ou complexe
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>bs</term>
+                <term>bs  </term>
                 <listitem>
-                    <para>vector of integers</para>
+                    <para>vecteur d'entiers
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -60,34 +65,37 @@
 [Ab [,X [,bs]]]=bdiag(A [,rmax]) 
  ]]></programlisting>
         <para>
-            performs the block-diagonalization of matrix <literal>A</literal>.  bs
-            gives the structure of the blocks (respective sizes of the
-            blocks).  <literal>X</literal> is the change of basis i.e 
-            <literal>Ab = inv(X)*A*X</literal>is block diagonal.
+            <literal>[Ab [,X [,bs]]]=bdiag(A [,rmax])</literal> calcule la forme
+            bloc-diagonale de <literal>A</literal>.  bs précise la structure des
+            blocs (tailles respectives des blocs).  <literal>X</literal> est la
+            matrice de changement de base, c'est à dire que <literal>Ab =
+                inv(X)*A*X 
+            </literal>
+            est bloc-diagonale.
         </para>
         <para>
-            <literal>rmax</literal> controls the conditioning of <literal>X</literal>; the
-            default value is the l1 norm of <literal>A</literal>.
+            <literal>rmax</literal> contrôle le conditionnement de <literal>X</literal>;
+            la valeur par défaut est la norme l1 de <literal>A</literal>.
         </para>
         <para>
-            To get a diagonal form (if it exists) choose a large value for
-            <literal>rmax</literal> (<literal>rmax=1/%eps</literal> for example).
-            Generically (for real random A) the blocks are (1x1) and (2x2) and
-            <literal>X</literal> is the matrix of eigenvectors.
+            Pour obtenir une forme diagonale (si celle-ci existe) choisissez
+            une valeur élevée de <literal>rmax</literal> (<literal>rmax=1/%eps</literal>
+            par exemple).  Pour une matrice réelle quelconque, les blocs sont
+            de taille (1x1) ou (2x2) et <literal>X</literal> est la matrice des
+            vecteurs propres.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 
-//Real case: 1x1 and 2x2 blocks
+// Cas réel: blocs 1x1 et 2x2
 a=rand(5,5);[ab,x,bs]=bdiag(a);ab
-
-//Complex case: complex 1x1 blocks
+// Cas complexe : blocs complexes 1x1
 [ab,x,bs]=bdiag(a+%i*0);ab
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="schur">schur</link>

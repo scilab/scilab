@@ -10,14 +10,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sylv">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="sylv">
     <refnamediv>
         <refname>sylv</refname>
-        <refpurpose> Sylvester equation.  </refpurpose>
+        <refpurpose>Sylvester equation.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>sylv(A,B,C,flag)</synopsis>
+        <synopsis>sylv(A, B, C, flag)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -41,27 +41,27 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>X= sylv(A,B,C,'c')</literal> computes <literal>X</literal>, solution
+            <literal>X= sylv(A, B, C, 'c')</literal> computes <literal>X</literal>, solution
             of the "continuous time" Sylvester equation
         </para>
-        <programlisting role=""><![CDATA[ 
-A*X+X*B=C 
+        <programlisting role=""><![CDATA[
+A*X+X*B = C
  ]]></programlisting>
         <para>
-            <literal>X=sylv(A,B,C,'d')</literal> computes <literal>X</literal>, solution
+            <literal>X=sylv(A, B, C, 'd')</literal> computes <literal>X</literal>, solution
             of the "discrete time" Sylvester equation
         </para>
-        <programlisting role=""><![CDATA[ 
-A*X*B-X=C
+        <programlisting role=""><![CDATA[
+A*X*B+X = C
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-A=rand(4,4);C=rand(4,3);B=rand(3,3);
-X = sylv(A,B,C,'c');
+        <programlisting role="example"><![CDATA[
+A = rand(4, 4); C = rand(4, 3); B = rand(3, 3);
+X = sylv(A, B, C, 'c');
 norm(A*X+X*B-C)
-X=sylv(A,B,C,'d') 
+X = sylv(A, B, C, 'd');
 norm(A*X*B-X-C)
  ]]></programlisting>
     </refsection>

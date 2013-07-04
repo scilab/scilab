@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_getall" xml:lang="en">
+    <refnamediv>
+        <refname>optimsimplex_getall</refname>
+        <refpurpose>Returns all the data contained in the simplex object.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            simplex = optimsimplex_getall(opt)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Argument</title>
+        <variablelist>
+            <varlistentry>
+                <term>opt </term>
+                <listitem>
+                    <para>The current simplex object of TSIMPLEX type (tlist).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>simplex </term>
+                <listitem>
+                    <para>The simplex data.</para>
+                    <para>
+                        The simplex matrix has size <literal>nbve</literal>-by-<literal>n+1</literal>, 
+                        and is organized by row by row as follows: 
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                simplex(k,1) is the function value of the vertex #k,
+                                with k = 1 to nbve
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                simplex(k,2:n+1) is the coordinates of the vertex
+                                #k, with k = 1 to nbve
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>optimsimplex_getall</literal> function returns all the coordinates of all 
+            the vertices and the function values in the same matrix.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[ 
+    simplex = [
+        3.  0.  0.
+        4. 1.  0.
+        5. 0.  2.
+     ];
+    s1 = optimsimplex_new ();
+    s1 = optimsimplex_setall ( s1 , simplex );
+    res = optimsimplex_getall(s1);
+    disp(res)
+    
+    s1 = optimsimplex_destroy(s1);
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optimsimplex_setall">optimsimplex_setall</link>
+            </member>
+            <member>
+                <link linkend="optimsimplex_getallfv">optimsimplex_getallfv</link>
+            </member>
+            <member>
+                <link linkend="optimsimplex_getallx">optimsimplex_getallx</link>
+            </member>
+            <member>
+                <link linkend="optimsimplex_setallfv">optimsimplex_setallfv</link>
+            </member>
+            <member>
+                <link linkend="optimsimplex_setallx">optimsimplex_setallx</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

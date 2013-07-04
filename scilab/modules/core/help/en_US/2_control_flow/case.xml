@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="case">
+    <refnamediv>
+        <refname>case</refname>
+        <refpurpose>keyword used in statement "select"</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Keyword used in statement <literal>select ... case ... end</literal>
+        </para>
+        <para>
+            Keyword <literal>case</literal> points out one variant of a variable value (it is the
+            variable value which is selected from a range of values).
+        </para>
+        <para>
+            Use it in the following way:
+            <programlisting role="no-scilab-exec"><![CDATA[ 
+select expr0
+    case expr1 then
+        instructions 1
+    case expr2 then
+        instructions 2
+	  ...  
+    case exprn then
+        instructions n
+    [else instructions]
+end
+     ]]></programlisting>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+OS=getos()
+select OS
+case "Windows" then
+  disp("Scilab on Windows")
+case "Linux" then
+  disp("Scilab on Linux")
+case "Darwin" then
+  disp("Scilab on MacOs")
+else
+  error("Scilab on Unknown platform")
+end
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="select">select</link>
+            </member>
+            <member>
+                <link linkend="while">while</link>
+            </member>
+            <member>
+                <link linkend="end">end</link>
+            </member>
+            <member>
+                <link linkend="for">for</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

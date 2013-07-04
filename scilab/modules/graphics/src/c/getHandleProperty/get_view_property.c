@@ -38,17 +38,17 @@ int get_view_property(void* _pvCtx, char* pobjUID)
 
     if (piView == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"view");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
         return -1;
     }
 
     if (iView == 0)
     {
-        return sciReturnString(_pvCtx, "2d" );
+        return sciReturnString(_pvCtx, "2d");
     }
     else if (iView == 1)
     {
-        return sciReturnString(_pvCtx, "3d" );
+        return sciReturnString(_pvCtx, "3d");
     }
 
     return -1;

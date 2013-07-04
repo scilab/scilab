@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="isalphanum">
+    <refnamediv>
+        <refname>isalphanum</refname>
+        <refpurpose>
+            проверка того, что символы строки являются буквенно-цифровыми
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>res = isalphanum(str)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>символьная строка.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>матрица логических значений.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>res = isalphanum(str)</code> возвращает массив того же
+            размера, что и <varname>str</varname>, содержащий логические
+            значения <constant>%t</constant> (истина) там, где элементы
+            <varname>str</varname> являются буквенно-цифровыми, и логические
+            значения <constant>%f</constant> (ложь) там, где они не являются.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+s = 'A1,B2,C3';
+isalphanum(s)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="isletter">isletter</link>
+            </member>
+            <member>
+                <link linkend="isdigit">isdigit</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

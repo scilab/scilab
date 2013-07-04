@@ -158,7 +158,7 @@ p1=[1+1.5*s;s**2];
 if norm(coeff(p1'-[p1(1),p1(2)]))>10*%eps then bugmes();quit;end
 if norm(coeff((-p1)+p1))>10*%eps then bugmes();quit;end
 if norm(coeff((-p1')+p1'))>10*%eps then bugmes();quit;end
-//
+// 
 x=[1+s**3; 4];
 p3=p1(1)*x(1)+p1(2)*x(2);
 if norm(coeff(p1'*x-p3))>10*%eps then bugmes();quit;end
@@ -675,7 +675,7 @@ if norm(coeff(p3([2 4],[2 1])-[conj(p2([2 4])') p1([2 4])]))>10*%eps
 if norm(coeff(p3(:,1)- p1 ))>10*%eps then bugmes();quit;end
 if norm(coeff(p3(:,2)- conj(p2') ))>10*%eps then bugmes();quit;end
 if norm(coeff(p3(1,:)- [p1(1) p2(1)] ))>10*%eps then bugmes();quit;end
-if norm(coeff(p3([1 4],:)- [p1([1 4]) conj(p2([1 4])')] ))>10*%eps
+if norm(coeff(p3([1 4],:)- [p1([1 4]) conj(p2([1 4])')] ))>10*%eps 
   then bugmes();quit;end
 if norm(coeff(p3(:,:)- p3 ))>10*%eps then bugmes();quit;end
 //hidden empty index in insertion
@@ -687,3 +687,10 @@ a([%f %f],1)=[];
 if or(a<>a_ref) then bugmes();quit;end
 a([%f %f],[%f %f])=[];
 if or(a<>a_ref) then bugmes();quit;end
+a = [%s, 2*%s];
+a(2) = 1;
+assert_checkequal(a, [%s,1]);
+-%s;
+a=1+%s-%s^2;
+b=-a;
+assert_checkequal(b,-1-%s+%s^2);

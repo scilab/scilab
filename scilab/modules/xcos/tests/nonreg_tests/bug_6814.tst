@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 6814 -->
 //
@@ -16,7 +16,7 @@
 // The exported links points (link.xx and link.yy) must be column vectors.
 //
 
-result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_6814.xcos");
+result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_6814.zcos");
 if result <> %t then pause,end
 
 // checking the link

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="list">
+    <refnamediv>
+        <refname>list</refname>
+        <refpurpose>объект Scilab'а и функция определения списка</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>list(a1, ..., an)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Создаёт список <literal>list</literal> с элементами
+            <varname>ai</varname>, которые являются произвольными объектами Scilab'а (<literal>matrix</literal>,
+            <literal>list</literal>,...). Тип объекта  <literal>list</literal> равен 15. <code>list()</code>
+            создаёт пустой список (0 элементов).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Операции со списками</title>
+        <variablelist>
+            <varlistentry>
+                <term>выделение</term>
+                <listitem>
+                    <para>
+                        <literal>[x,y,z,...]=L(v)</literal>, где <literal>v</literal> - вектор индексов;
+                        <literal>[x,y,z,...]=L(:)</literal> выделяет все элементы.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>вставка на место индекса i</term>
+                <listitem>
+                    <para>
+                        <code>L(i)=a</code> (заметьте, что это не ошибка использовать <code>L(i)=a</code> с
+                        <code><![CDATA[i > 1 + size(L)]]></code>, но
+                        некоторые элементы списка тогда не определены, и их
+                        выделение вызовет ошибку).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>добавление элемента в хвост</term>
+                <listitem>
+                    <para>
+                        <code>L($+1)=e</code>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>добавление элемента в начало</term>
+                <listitem>
+                    <para>
+                        <code>L(0)=e</code>.
+                        <note>
+                            После этой операции <literal>e</literal> имеет индекс 1, исходные элементы будут сдвинуты вправо.
+                        </note>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>удаление</term>
+                <listitem>
+                    <para>
+                        <code>L(i)=null()</code> удаляет <literal>i</literal>-тый элемент списка <literal>L</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>конкатенация двух списков</term>
+                <listitem>
+                    <para>
+                        <code>L3 = lstcat(L1,L2)</code>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>число элементов списка</term>
+                <listitem>
+                    <para>
+                        вы можете использовать либо <code>nb_elm = size(L)</code>, либо <code>nb_elm = length(L)</code>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>итерации со списками</term>
+                <listitem>
+                    <para>
+                        можно использовать список <literal>L</literal> в цикле <link linkend="for">for</link>:
+                        <literal>for e=L,...,end</literal> - цикл с числом
+                        итераций <literal>length(L)</literal>, переменная
+                        цикла <literal>e</literal> будет равна <literal>L(i)</literal>
+                        на <literal>i</literal>-той итерации.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примечания</title>
+        <para>
+            Scilab предлагает также другие виды списков, тип <link linkend="tlist">tlist</link> (типизированный список)
+            и тип <link linkend="mlist">mlist</link>
+            (матричноориентированный список), которые полезны для
+            определения нового типа данных с механизмом
+            <link linkend="overloading">перегрузки</link> операторов
+            (<link linkend="hypermatrices">гиперматрицы</link>, которые
+            являются многомерными массивами, в Scilab'е на самом деле
+            имеют тип <emphasis>mlist</emphasis>).
+        </para>
+        <para>
+            Также доступны структуры <emphasis>struct</emphasis> Matlab'а.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+l = list(1,["a" "b"]) // объявление основного списка с элементом типа
+                      // double и вектором двух строковых значений
+size(l) // размер равен 2
+// l(0) - Не существует!
+l(1) // доступ к значению типа double
+l(2) // доступ к вектору строковых значений
+size(l(2)) // размер равен 1,2
+
+l(0) = "foo" // вставка в начало списка
+// l(0) - по-прежнему не существует
+l(1) // равно "foo"
+
+l($+1) = "hello" // вставка в конец списка
+l(2) = "toto" // перезапись моего значения типа double
+l(3) = rand(1,2) // перезапись моего вектора строковых значений
+
+l(3) = null() // удаление третьего элемента
+
+lbis = list("gewurtz", "caipirina" ,"debug") // объявление нового списка
+lter = lstcat(l,lbis) // слияние двух списков
+size(lter) - size(lbis) - size(l)  // должен быть ноль
+
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="null">null</link>
+            </member>
+            <member>
+                <link linkend="lstcat">lstcat</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="mlist">mlist</link>
+            </member>
+            <member>
+                <link linkend="insertion">вставка</link>
+            </member>
+            <member>
+                <link linkend="extraction">выделение</link>
+            </member>
+            <member>
+                <link linkend="size">size</link>
+            </member>
+            <member>
+                <link linkend="length">length</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

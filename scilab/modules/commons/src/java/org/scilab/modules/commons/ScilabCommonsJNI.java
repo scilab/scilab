@@ -53,4 +53,9 @@ public class ScilabCommonsJNI {
     public final static native void setformat(String jarg1, int jarg2);
     public final static native String getformat();
     public final static native int getformatwidth();
+    public final static native int getScilabVersionMajor();
+    public final static native int getScilabVersionMinor();
+    public final static native int getScilabVersionMaintenance();
+    public final static native int getScilabVersionTimestamp();
+    public final static native String getScilabVersionAsString();
 }

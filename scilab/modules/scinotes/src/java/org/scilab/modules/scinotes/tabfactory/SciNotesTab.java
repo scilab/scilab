@@ -24,7 +24,7 @@ import org.scilab.modules.scinotes.SciNotesGUI;
 
 /**
  * Class to create SciNotes instances
- * 
+ *
  * @author Calixte DENIZET
  */
 public class SciNotesTab {
@@ -46,42 +46,42 @@ public class SciNotesTab {
 
         final SciNotes ed = editorInstance;
         ClosingOperationsManager.registerClosingOperation(
-                (SwingScilabTab) editorInstance,
-                new ClosingOperationsManager.ClosingOperation() {
+            (SwingScilabTab) editorInstance,
+        new ClosingOperationsManager.ClosingOperation() {
 
-                    @Override
-                    public int canClose() {
-                        return ed.canClose() ? 1 : 0;
-                    }
+            @Override
+            public int canClose() {
+                return ed.canClose() ? 1 : 0;
+            }
 
-                    @Override
-                    public void destroy() {
-                        ed.closeSciNotes();
-                    }
+            @Override
+            public void destroy() {
+                ed.closeSciNotes();
+            }
 
-                    @Override
-                    public String askForClosing(final List<SwingScilabTab> list) {
-                        return ed.askForClosing();
-                    }
+            @Override
+            public String askForClosing(final List<SwingScilabTab> list) {
+                return ed.askForClosing();
+            }
 
-                    @Override
-                    public void updateDependencies(List<SwingScilabTab> list,
-                            ListIterator<SwingScilabTab> it) {
-                    }
-                });
+            @Override
+            public void updateDependencies(List<SwingScilabTab> list,
+            ListIterator<SwingScilabTab> it) {
+            }
+        });
 
         WindowsConfigurationManager.registerEndedRestoration(
-                (SwingScilabTab) editorInstance,
-                new WindowsConfigurationManager.EndedRestoration() {
+            (SwingScilabTab) editorInstance,
+        new WindowsConfigurationManager.EndedRestoration() {
 
-                    @Override
-                    public void finish() {
-                        ed.endedRestoration();
-                    }
-                });
+            @Override
+            public void finish() {
+                ed.endedRestoration();
+            }
+        });
 
         ClosingOperationsManager
-                .addDependencyWithRoot((SwingScilabTab) editorInstance);
+        .addDependencyWithRoot((SwingScilabTab) editorInstance);
 
         return editorInstance;
     }

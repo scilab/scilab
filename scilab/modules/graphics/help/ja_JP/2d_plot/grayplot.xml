@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="grayplot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="grayplot">
     <refnamediv>
         <refname>grayplot</refname>
         <refpurpose>曲面の2次元カラープロット</refpurpose>
@@ -79,7 +79,12 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>grayplot();</scilab:image>
+        <scilab:image>
+            x=-10:10;
+            y=-10:10;
+            m=rand(21,21);
+            grayplot(x,y,m,rect=[-20,-20,20,20])
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

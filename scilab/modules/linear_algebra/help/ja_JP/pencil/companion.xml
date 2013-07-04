@@ -10,48 +10,54 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="companion">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="companion">
     <refnamediv>
         <refname>companion</refname>
-        <refpurpose> companion matrix</refpurpose>
+        <refpurpose>コンパニオン行列 </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>A=companion(p)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>polynomial or vector of polynomials</para>
+                    <para>多項式または多項式のベクトル</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>square matrix</para>
+                    <para>正方行列</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            Returns a matrix <literal>A</literal> with characteristic polynomial equal
-            to <literal>p</literal> if <literal>p</literal> is monic. If <literal>p</literal> is not monic
-            the characteristic polynomial of <literal>A</literal> is equal to
-            <literal>p/c</literal> where <literal>c</literal> is the coefficient of largest degree
-            in <literal>p</literal>.
+            特性多項式を有する
+            行列<literal>A</literal>を返します.
+            <literal>p</literal>がモニックな場合,特性多項式は
+            <literal>p</literal>に等しくなります.
+            <literal>p</literal>がモニックでない場合,
+            <literal>A</literal>の特性方程式は
+            <literal>p/c</literal>に等しくなります.
+            ただし,<literal>c</literal>は<literal>p</literal>
+            の最大次数の係数です.
         </para>
         <para>
-            If <literal>p</literal> is a vector of monic polynomials, <literal>A</literal> is block diagonal,
-            and the characteristic polynomial of the ith block is <literal>p(i)</literal>.
+            <literal>p</literal> がモニックな多項式のベクトルの場合,
+            <literal>A</literal> はブロック対角となり,
+            i番目の特性多項式は
+            <literal>p(i)</literal>となります.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 p=poly([1,2,3,4,1],'s','c')
@@ -61,7 +67,7 @@ spec(companion(p))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="spec">spec</link>

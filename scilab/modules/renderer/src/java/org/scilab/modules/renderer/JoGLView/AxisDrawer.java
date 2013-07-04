@@ -330,6 +330,8 @@ public class AxisDrawer {
 
                 FormattedTextSpriteDrawer textureDrawer = new FormattedTextSpriteDrawer(drawerVisitor.getColorMap(), formattedText);
                 Texture texture = spriteManager.createTexture();
+                texture.setMagnificationFilter(Texture.Filter.LINEAR);
+                texture.setMinifyingFilter(Texture.Filter.LINEAR);
                 texture.setDrawer(textureDrawer);
 
                 return texture;
@@ -347,7 +349,7 @@ public class AxisDrawer {
             // 0 <= value <= 1
             // Should find right index through given labels.
             String[] ticksLabel = axis.getTicksLabels();
-            int index = (int) (value * (ticksLabel.length - 1));
+            int index = (int) Math.round(value * (ticksLabel.length - 1));
             if ((index < 0) || (index > ticksLabel.length)) {
                 return null;
             } else {

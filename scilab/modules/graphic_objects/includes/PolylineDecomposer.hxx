@@ -56,7 +56,7 @@ private :
      * @param[in] the polyline z-shift array.
      */
     static void fillSegmentsDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
-        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
+            int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
      * Writes the coordinates of a polyline vertex to a buffer.
@@ -76,7 +76,7 @@ private :
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      */
     static void getAndWriteVertexToBuffer(float* buffer, int offset, double* coordinates, int* vertexIndices, int nPoints, int elementsSize,
-        double* xshift, double* yshift, double* zshift, int coordinateMask, double* scale, double* translation, int logMask);
+                                          double* xshift, double* yshift, double* zshift, int coordinateMask, double* scale, double* translation, int logMask);
 
     /**
      * Fills a buffer with vertex data from a polyline using a staircase decomposition.
@@ -95,7 +95,7 @@ private :
      * @param[in] the polyline z-shift array.
      */
     static void fillStairDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
-        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
+            int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
      * Fills a buffer with vertex data from a polyline decomposed into a series of vertical lines.
@@ -114,7 +114,7 @@ private :
      * @param[in] the polyline z-shift array.
      */
     static void fillVerticalLinesDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
-        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
+            int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
      * Writes one component of the coordinates of a bar's four vertices into a buffer.
@@ -147,7 +147,7 @@ private :
      * @param[in] the polyline z-shift array.
      */
     static void fillVerticalBarsDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
-        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
+            int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
      * Fills a buffer with vertex data from a polyline decomposed into a series of horizontal bars and consecutive segments.
@@ -168,7 +168,7 @@ private :
      * @param[in] the polyline z-shift array.
      */
     static void fillHorizontalBarsDecompositionVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation,
-        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
+            int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
      * Returns the number of triangle indices of a polyline decomposed into consecutive segments with arrow heads.
@@ -203,7 +203,7 @@ private :
      * @return the number of indices actually written.
      */
     static int fillTriangleIndices(char* id, int* buffer, int bufferLength,
-        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int fillMode, int polylineStyle);
+                                   int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int fillMode, int polylineStyle);
 
     /**
      * Fills a buffer with the triangle indices of the arrow heads of a polyline's segments.
@@ -220,7 +220,7 @@ private :
      * @return the number of indices actually written.
      */
     static int fillArrowTriangleIndices(char* id, int* buffer, int bufferLength,
-        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
+                                        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
      * Fills a buffer with the triangle indices of a polyline decomposed into a series of bars and consecutive segments.
@@ -236,7 +236,7 @@ private :
      * @return the number of indices actually written.
      */
     static int fillBarsDecompositionTriangleIndices(char* id, int* buffer, int bufferLength,
-        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
+            int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift);
 
     /**
      * Returns the number of segment indices of a polyline decomposed into consecutive segments.
@@ -288,7 +288,7 @@ private :
      * @return the number of indices actually written.
      */
     static int fillSegmentsDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
-        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed);
+            int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed);
 
     /**
      * Fills a buffer with the segment indices of a polyline decomposed into a series of steps.
@@ -306,7 +306,7 @@ private :
      * @return the number of indices actually written.
      */
     static int fillStairDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
-        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed);
+            int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode, int closed);
 
     /**
      * Fills a buffer with the segment indices of a polyline decomposed into a series of vertical lines and consecutive segments.
@@ -323,7 +323,7 @@ private :
      * @return the number of indices actually written.
      */
     static int fillVerticalLinesDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
-        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode);
+            int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode);
 
     /**
      * Fills a buffer with the segment indices of a polyline decomposed into a series of bars and consecutive segments.
@@ -340,7 +340,7 @@ private :
      * @return the number of indices actually written.
      */
     static int fillBarsDecompositionSegmentIndices(char* id, int* buffer, int bufferLength,
-        int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode);
+            int logMask, double* coordinates, int nPoints, double* xshift, double* yshift, double* zshift, int lineMode);
 
     /**
      * Returns the coordinates of a polyline point, modified by their corresponding shift values.
@@ -355,7 +355,7 @@ private :
      * @param[out] the returned z coordinate.
      */
     static void getShiftedPolylinePoint(double* coordinates, double* xshift, double* yshift, double* zshift, int nPoints, int index,
-        double* x, double* y, double* z);
+                                        double* x, double* y, double* z);
 
 
 public :

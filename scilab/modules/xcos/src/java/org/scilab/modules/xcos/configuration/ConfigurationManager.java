@@ -50,6 +50,7 @@ import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.XcosFileType;
+import org.scilab.modules.xcos.preferences.XcosOptions;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -222,6 +223,15 @@ public final class ConfigurationManager {
         List<DocumentType> files = getSettings().getRecent();
 
         /*
+         * Update recently opened file list so as it match the Xcos preferences
+         */
+        final int numberOfRecentlyOpen = XcosOptions.getPreferences().getNumberOfRecentlyOpen();
+        final int diffRecentlyOpen = files.size() - numberOfRecentlyOpen;
+        for (int i = 0; i < diffRecentlyOpen; i++) {
+            files.remove(files.size() - 1);
+        }
+
+        /*
          * Create the url
          */
         String url;
@@ -269,8 +279,8 @@ public final class ConfigurationManager {
         } else {
             // Element not found, remove the last element if
             // there is no more place.
-            if (files.size() == ConfigurationConstants.MAX_RECENT_FILES) {
-                oldElement = files.remove(ConfigurationConstants.MAX_RECENT_FILES - 1);
+            if ((files.size() == numberOfRecentlyOpen) && (files.size() > 0)) {
+                oldElement = files.remove(files.size() - 1);
             }
         }
 
@@ -380,7 +390,10 @@ public final class ConfigurationManager {
      * @return the loaded diagram or null on error
      */
     public XcosDiagram loadDiagram(DocumentType doc) {
-        final File f = getFile(doc);
+        File f = getFile(doc);
+        if (f != null && !f.exists()) {
+            f = null;
+        }
 
         XcosDiagram graph;
         try {

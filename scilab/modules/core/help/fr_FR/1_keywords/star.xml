@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="star" xml:lang="fr">
+    <refnamediv>
+        <refname>star (*)</refname>
+        <refpurpose>opérateur de multiplication</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>Multiplication. Signification habituelle. Valide pour les matrices
+            réelles, complexes, polynomiales, rationnelles et pour les listes de type
+            <literal>syslin</literal> (dans ce dernier cas "*" désigne une connection
+            en série).
+        </para>
+        <para>La multiplication élément par élément est notée
+            <literal>x.*y</literal>. Si <literal>x</literal> ou <literal>y</literal>
+            est un scalaire (matrice 1x1) <literal> .* </literal> est équivalent à 
+            <literal>*</literal>.
+        </para>
+        <para>
+            Le produit de Kronecker se note <literal>x.*.y</literal>
+        </para>
+        <para>
+            <literal>A*.B</literal> est un opérateur dont la signification n'est
+            pas prédéfinie peut être utilisé pour définir de nouveaux opérateurs (voir
+            <link linkend="overloading">overloading</link>) avec la même priorité que <literal>*</literal> ou <literal>/</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+// Operations classiques
+2 * 2 // 4
+2 * [%pi, %eps] // 6.2831853    4.441D-16
+rand(2,2) * rand(2)
+[1, 2; 3, 4] * [%pi,%eps; %e, %pi]
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Opérations sur les polynomes
+s=poly(0,"s");
+p=1+s+2*s^2;
+q=1+s+2*s^3;
+p * q
+//               2    3    4    5
+//    1 + 2s + 3s + 4s + 2s + 4s
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Fraction rationnelle
+s=poly(0,'s');
+W=[1/s,1/(s+1)];
+W' * W
+//    1           1          
+//    -         -----        
+//     2             2       
+//    s         s + s        
+//                           
+//      1           1        
+//    -----     ---------    
+//         2              2  
+//    s + s     1 + 2s + s   
+ ]]></programlisting>
+    </refsection>
+    
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dot">dot</link>
+            </member>
+            <member>
+                <link linkend="slash">slash</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="overloading">overloading</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -10,11 +10,14 @@
 
 function %_sodload(%__filename__, varargin)
 
-function [varValues] = %__convertHandles__(varValues)
+    function [varValues] = %__convertVariable__(varValues, varNames)
         for i = 1:size(varValues)
             if typeof(varValues(i)) == "ScilabMatrixHandle" then
-                //convert handle to tlist
+                //convert tlist to handle
                 varValues(i) = createMatrixHandle(varValues(i));
+            elseif typeof(varValues(i)) == "ScilabMacro" then
+                //convert tlist to macro
+                varValues(i) = createMacro(varValues(i), varNames(i));
             elseif isList(varValues(i)) then
                 //list container
                 varValues(i) = parseList(varValues(i));
@@ -38,6 +41,9 @@ function [varValues] = %__convertHandles__(varValues)
             for i = definedfields(varValue)
                 if typeof(varValue(i)) == "ScilabMatrixHandle" then
                     varValue(i) = createMatrixHandle(varValue(i));
+                elseif typeof(varValue(i)) == "ScilabMacro" then
+                    //convert tlist to macro
+                    varValue(i) = createMacro(varValue(i), "function");
                 elseif isList(varValue(i)) then
                     varValue(i) = parseList(varValue(i));
                 else
@@ -50,6 +56,9 @@ function [varValues] = %__convertHandles__(varValues)
                 fieldValue = getfield(kField, varValue);
                 if typeof(fieldValue) == "ScilabMatrixHandle" then
                     fieldValue = createMatrixHandle(fieldValue);
+                elseif typeof(fieldValue) == "ScilabMacro" then
+                    //convert tlist to macro
+                    fieldValue = createMacro(fieldValue, "function");
                 elseif isList(fieldValue) then
                     fieldValue = parseList(fieldValue);
                 end
@@ -65,7 +74,13 @@ function [varValues] = %__convertHandles__(varValues)
         end
 
         for i = prod(matrixHandle.dims):-1:1
-            h($+1) = createSingleHandle(matrixHandle.values(i));
+
+            newItem = createSingleHandle(matrixHandle.values(i));
+            if newItem == [] then
+                continue;
+            end
+
+            h($+1) = newItem;
             if or(fieldnames(matrixHandle.values(i))=="user_data") then // TODO Remove after graphic branch merge
                 if isList(matrixHandle.values(i).user_data) then
                     set(h($), "user_data", parseList(matrixHandle.values(i).user_data));
@@ -74,7 +89,6 @@ function [varValues] = %__convertHandles__(varValues)
                 end
             end
         end
-        h = matrix(h, matrixHandle.dims);
     endfunction
 
     function h = createSingleHandle(item)
@@ -131,6 +145,11 @@ function [varValues] = %__convertHandles__(varValues)
         fields(1) = [];
 
         h = gcf();
+        isVisible = h.visible;
+        resizefcn = "";
+        event_handler = "";
+        h.visible = "off";
+
         fields(fields=="figure_id") = [];
 
         h.figure_position=figureProperties.figure_position;
@@ -146,11 +165,27 @@ function [varValues] = %__convertHandles__(varValues)
 
         for i = 1:size(fields, "*")
             if fields(i) == "children" then
-                createMatrixHandle(figureProperties(fields(i)));
+                c = figureProperties(fields(i));
+                s = prod(c.dims);
+                createSingleHandle(c.values(s));
+                for  i = s-1:-1:1
+                    xsetech(wrect=[0 0 .1 .1])
+                    createSingleHandle(c.values(i));
+                end
+            elseif fields(i) == "event_handler" then
+                event_handler = figureProperties(fields(i));
+            elseif fields(i) == "resizefcn" then
+                resizefcn = figureProperties(fields(i));
+            elseif fields(i) == "visible" then
+                isVisible = figureProperties(fields(i));// do not set visible = "true" before the end of load.
             else
                 set(h, fields(i), figureProperties(fields(i)));
             end
         end
+
+        h.visible = isVisible;
+        h.resizefcn = resizefcn;
+        h.event_handler = event_handler;
     endfunction
 
     //
@@ -168,7 +203,7 @@ function [varValues] = %__convertHandles__(varValues)
     // TICKS
     //
     function h = createTicks(ticksProperties)
-        h = tlist(['ticks','locations','labels'], [], []);
+        h = tlist(["ticks","locations","labels"], [], []);
         fields = fieldnames(ticksProperties);
         for i = 1:size(fields, "*")
             h(fields(i)) = ticksProperties(fields(i));
@@ -181,10 +216,11 @@ function [varValues] = %__convertHandles__(varValues)
     function h = createAxes(axesProperties)
         // Hack to determine whether %h_load has been called by the %h_copy macro
         // in which case a new Axes object is created
+
         [lnums, fnames] = where();
-        ind = grep(fnames, '%h_copy');
+        ind = grep(fnames, "%h_copy");
         if ~isempty(ind) then
-          newaxes();
+            newaxes();
         end;
 
         h = gca();
@@ -207,7 +243,7 @@ function [varValues] = %__convertHandles__(varValues)
             if or(fields(i) == ["title","x_label","y_label","z_label"]) then
                 createLabel(axesProperties(fields(i)), h(fields(i)));
             elseif or(fields(i) == ["x_ticks", "y_ticks", "z_ticks"]) then
-                h(fields(i)) = createTicks(axesProperties(fields(i)));
+                set(h, fields(i), createTicks(axesProperties(fields(i))));
             elseif fields(i) == "children" then
                 createMatrixHandle(axesProperties(fields(i)));
             elseif fields(i) == "clip_state" then
@@ -242,7 +278,7 @@ function [varValues] = %__convertHandles__(varValues)
                 L.font_size       = %LEG.font_size
                 L.font_color      = %LEG.font_color
                 L.fractional_font = %LEG.fractional_font
-                L.mark_mode       = 'off';
+                L.mark_mode       = "off";
                 L.legend_location = %LEG.legend_location
                 L.position        = %LEG.position
                 L.line_mode       = %LEG.line_mode
@@ -260,6 +296,7 @@ function [varValues] = %__convertHandles__(varValues)
             end
         end
         clearglobal %LEG
+
     endfunction
 
     //
@@ -597,16 +634,17 @@ function [varValues] = %__convertHandles__(varValues)
     function h = createLegend(legendProperties)
         global %LEG
         %LEG = legendProperties;
-        endfunction
+        h = [];
+    endfunction
 
-        //
-        // TEXT
-        //
-        function h = createText(textProperties)
+    //
+    // TEXT
+    //
+    function h = createText(textProperties)
         fields = fieldnames(textProperties);
         fields(1) = [];
 
-        if textProperties.text_box_mode == 'off' then
+        if textProperties.text_box_mode == "off" then
             xstring(textProperties.data(1), textProperties.data(2), textProperties.text)
         else
             xstringb(textProperties.data(1), textProperties.data(2), textProperties.text, textProperties.text_box(1), textProperties.text_box(2))
@@ -634,17 +672,17 @@ function [varValues] = %__convertHandles__(varValues)
         fields(1) = [];
 
         if axisProperties.tics_direction == "bottom" then
-            axisdir='d';
+            axisdir="d";
         elseif axisProperties.tics_direction == "top" then
-            axisdir='u';
+            axisdir="u";
         elseif axisProperties.tics_direction == "left" then
-            axisdir='l';
+            axisdir="l";
         elseif axisProperties.tics_direction == "right" then
-            axisdir='r';
+            axisdir="r";
         elseif size(axisProperties.xtics_coord, "*") > 1 then
-            axisdir='u';
+            axisdir="u";
         else
-            axisdir='l';
+            axisdir="l";
         end
         fields(fields=="tics_direction") = [];
 
@@ -740,8 +778,8 @@ function [varValues] = %__convertHandles__(varValues)
         for p=paths
             e=ax;
             p(1)=p(1)-1// the caption does not exists yet
-            for kp=1:size(p,'*'),
-                if or(e.type==['Axes','Compound'])&p(kp)<=size(e.children,'*') then
+            for kp=1:size(p,"*"),
+                if or(e.type==["Axes","Compound"])&p(kp)<=size(e.children,"*") then
                     e=e.children(p(kp)),
                 else
                     ok=%f
@@ -758,6 +796,22 @@ function [varValues] = %__convertHandles__(varValues)
         end
     endfunction
 
+    function macro = createMacro(macroStr, macroName)
+
+        macroSt = macroStr(3);
+        if macroStr(2) == %t then
+            flag = "c";
+        else
+            flag = "n";
+        end
+        header = strsubst(macroSt(1), "function ", "");
+        body = macroSt(2:$-1);
+        if body == [] then
+            body = "";
+        end
+        deff(header, body, flag);
+        execstr("macro = " + macroName);
+    endfunction
 
     [%__lhs__, %__rhs__] = argn();
     %__resumeList__ = list();
@@ -780,7 +834,6 @@ function [varValues] = %__convertHandles__(varValues)
 
     //multiple output variables to prevent listinfile prints
     [%__variableList__, %__varB__, %__varC__, %__varD__] = listvarinfile(%__filename__);
-
     //
     if size(varargin) <> 0 then
         for i = 1:size(varargin)
@@ -793,6 +846,7 @@ function [varValues] = %__convertHandles__(varValues)
                 %__loadFunction__(%__filename__, %__variableName__);
                 %__resumeList__($+1) = evstr(%__variableName__);
                 %__resumeVarlist__($+1) = %__variableName__;
+                clear(%__variableName__);
             else
                 error(999, msprintf(gettext("%s: variable ''%s'' does not exist in ''%s''.\n"), "load", %__variableName__, %__filename__));
             end
@@ -803,11 +857,12 @@ function [varValues] = %__convertHandles__(varValues)
             %__loadFunction__(%__filename__, %__variableName__);
             %__resumeList__($+1) = evstr(%__variableName__);
             %__resumeVarlist__($+1) = %__variableName__;
+            clear(%__variableName__);
         end
     end
 
     if isfile(%__filename__) & is_hdf5_file(%__filename__) then
-        %__resumeList__ = %__convertHandles__(%__resumeList__);
+        %__resumeList__ = %__convertVariable__(%__resumeList__, %__resumeVarlist__);
     end
 
     execstr("[" + strcat(%__resumeVarlist__, ",") + "] = resume(%__resumeList__(:))");

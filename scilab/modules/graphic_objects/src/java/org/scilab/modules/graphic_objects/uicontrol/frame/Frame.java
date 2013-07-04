@@ -13,7 +13,6 @@
 package org.scilab.modules.graphic_objects.uicontrol.frame;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RIDGE_RELIEF__;
 
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
@@ -23,12 +22,12 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 public class Frame extends Uicontrol {
 
     /**
-	 * Constructor
-	 */
-	public Frame() {
-		super();
-		setStyle(__GO_UI_FRAME__);
-        setRelief(__GO_UI_RIDGE_RELIEF__);
-	}
+     * Constructor
+     */
+    public Frame() {
+        super();
+        setStyle(__GO_UI_FRAME__);
+        setRelief(RIDGE_RELIEF);
+    }
 
 }

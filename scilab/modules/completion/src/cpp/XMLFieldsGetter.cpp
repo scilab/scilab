@@ -31,49 +31,49 @@ using namespace org_modules_xml;
 namespace org_modules_completion
 {
 
-    const char ** XMLFieldsGetter::getFieldsName(const std::string & typeName, int * mlist) const
+const char ** XMLFieldsGetter::getFieldsName(const std::string & typeName, int * mlist) const
+{
+    if (typeName == std::string("XMLDoc"))
     {
-        if (typeName == std::string("XMLDoc"))
-        {
-            const char * fieldsName[3] = {"root", "url", 0};
-            return copy("XMLDoc", fieldsName);
-        }
-
-        if (typeName == std::string("XMLElem"))
-        {
-            const char * fieldsName[8] = {"name", "namespace", "content", "type", "parent", "attributes", "children"};
-            return copy("XMLElem", fieldsName);
-        }
-
-        if (typeName == std::string("XMLNs"))
-        {
-            const char * fieldsName[3] = {"href", "prefix", 0};
-            return copy("XMLNs", fieldsName);
-        }
-
-        if (typeName == std::string("XMLAttr"))
-        {
-            int id = getXMLObjectId(mlist, pvApiCtx);
-            XMLAttr * attr = XMLObject::getFromId<XMLAttr>(id);
-            const char ** fieldsName = attr->getNames();
-            const char ** cpy = copy("XMLAttr", fieldsName);
-            delete [] fieldsName;
-
-            return cpy;
-        }
-
-        if (typeName == std::string("XMLList"))
-        {
-            const char * fieldsName[2] = {"size", 0};
-            return copy("XMLList", fieldsName);
-        }
-
-        if (typeName == std::string("XMLSet"))
-        {
-            const char * fieldsName[2] = {"size", 0};
-            return copy("XMLList", fieldsName);
-        }
-
-        return 0;
+        const char * fieldsName[3] = {"root", "url", 0};
+        return copy("XMLDoc", fieldsName);
     }
+
+    if (typeName == std::string("XMLElem"))
+    {
+        const char * fieldsName[8] = {"name", "namespace", "content", "type", "parent", "attributes", "children"};
+        return copy("XMLElem", fieldsName);
+    }
+
+    if (typeName == std::string("XMLNs"))
+    {
+        const char * fieldsName[3] = {"href", "prefix", 0};
+        return copy("XMLNs", fieldsName);
+    }
+
+    if (typeName == std::string("XMLAttr"))
+    {
+        int id = getXMLObjectId(mlist, pvApiCtx);
+        XMLAttr * attr = XMLObject::getFromId<XMLAttr>(id);
+        const char ** fieldsName = attr->getNames();
+        const char ** cpy = copy("XMLAttr", fieldsName);
+        delete [] fieldsName;
+
+        return cpy;
+    }
+
+    if (typeName == std::string("XMLList"))
+    {
+        const char * fieldsName[2] = {"size", 0};
+        return copy("XMLList", fieldsName);
+    }
+
+    if (typeName == std::string("XMLSet"))
+    {
+        const char * fieldsName[2] = {"size", 0};
+        return copy("XMLList", fieldsName);
+    }
+
+    return 0;
+}
 }

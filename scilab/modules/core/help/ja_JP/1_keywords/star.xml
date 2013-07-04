@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="star">
+    <refnamediv>
+        <refname>star</refname>
+        <refpurpose>(*) 乗算演算子</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            乗算. 一般的な意味. 定数,論理値,多項式,有理関数 および
+            <literal>syslin</literal> リスト(直列結合を意味します)で有効です.
+        </para>
+        <para>
+            要素毎の乗算の場合は,  <literal>x.*y</literal> のようにします. 
+            <literal>x</literal> または <literal>y</literal> がスカラー(1x1 行列)の場合,  <literal> .* </literal>
+            は <literal>*</literal>と同じになります.
+        </para>
+        <para>
+            クロネッカー積は,  <literal>x.*.y</literal> です.
+        </para>
+        <para>
+            <literal>A*.B</literal> は
+            定義済みの意味がない演算子で, * または /. と同様に
+            新しい演算子を定義する際に使用可能です(オーバーロード参照).
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="slash">slash</link>
+            </member>
+            <member>
+                <link linkend="backslash">backslash</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

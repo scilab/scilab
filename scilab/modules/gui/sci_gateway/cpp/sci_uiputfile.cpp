@@ -23,7 +23,7 @@ extern "C"
 #include <stdio.h>
 #include "gw_gui.h"
 #include "PATH_MAX.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -40,7 +40,9 @@ using namespace org_scilab_modules_gui_filechooser;
 
 int sci_uiputfile(char *fname, unsigned long fname_len)
 {
-    int nbRow = 0, nbCol = 0;
+    SciErr sciErr;
+
+    int nbRow  = 0, nbCol  = 0;
     int nbRow2 = 0, nbCol2 = 0;
     int nbRow3 = 0, nbCol3 = 0;
 
@@ -48,10 +50,13 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
     int nbRowOutFilterIndex = 1, nbColOutFilterIndex = 1;
     int nbRowOutPath = 1, nbColOutPath = 1;
 
-    char **mask = NULL;
-    char **description = NULL;
-    char **titleBox = NULL, *selectionPathName = NULL;
-    char **initialDirectory = NULL;
+    char** mask = NULL;
+    char** description = NULL;
+
+    char* titleBox = NULL;
+    char* selectionPathName = NULL;
+    char* initialDirectory = NULL;
+
     int multipleSelection = 0;
 
     char **selection = NULL;
@@ -61,20 +66,35 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
 
     char *menuCallback = NULL;
 
-    CheckRhs(0, 3);
-    CheckLhs(1, 3);
+    int* piAddr1 = NULL;
+    int* piAddr2 = NULL;
+    int* piAddr3 = NULL;
+
+    CheckInputArgument(pvApiCtx, 0, 3);
+    CheckOutputArgument(pvApiCtx, 1, 3);
 
     //inputs checking
     /* call uiputfile with 1 arg */
-    if (Rhs >= 1)
+    if (nbInputArgument(pvApiCtx) >= 1)
     {
-        if (VarType(1) != sci_strings)
+        if (checkInputArgumentType(pvApiCtx, 1, sci_strings) == FALSE)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string matrix expected.\n"), fname, 1);
-            return 0;
+            return 1;
         }
 
-        GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &mask);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddr1, &nbRow, &nbCol, &mask))
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
 
         if (nbCol == 1)
         {
@@ -94,57 +114,82 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
         }
         else
         {
+            freeAllocatedMatrixOfString(nbRow, nbCol, mask);
             Scierror(999, _("%s: Wrong size for input argument #%d: A string matrix expected.\n"), fname, 1);
-            return 0;
+            return 1;
         }
     }
 
     /* call uiputfile with 2 arg */
-    if (Rhs >= 2)
+    if (nbInputArgument(pvApiCtx) >= 2)
     {
         char *path = NULL;
-
-        if (VarType(2) != sci_strings)
+        if (checkInputArgumentType(pvApiCtx, 2, sci_strings) == FALSE)
         {
+            freeArrayOfString(description, nbRow);
+            freeAllocatedMatrixOfString(nbRow, nbCol, mask);
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-            return 0;
+            return 1;
         }
 
-        GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow2, &nbCol2, &initialDirectory);
-
-        if (nbCol2 != 1 || nbRow2 != 1)
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+        if (sciErr.iErr)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string  expected.\n"), fname, 2);
-            return 0;
+            freeArrayOfString(description, nbRow);
+            freeAllocatedMatrixOfString(nbRow, nbCol, mask);
+            printError(&sciErr, 0);
+            return 1;
         }
 
-        path = expandPathVariable(initialDirectory[0]);
-        FREE(initialDirectory[0]);
-        initialDirectory[0] = path;
+        if (getAllocatedSingleString(pvApiCtx, piAddr2, &initialDirectory))
+        {
+            freeArrayOfString(description, nbRow);
+            freeAllocatedMatrixOfString(nbRow, nbCol, mask);
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        path = expandPathVariable(initialDirectory);
+        freeAllocatedSingleString(initialDirectory);
+        initialDirectory = path;
     }
 
     /* call uiputfile with 3 arg */
     if (Rhs >= 3)
     {
-        if (VarType(3) != sci_strings)
+        if (checkInputArgumentType(pvApiCtx, 3, sci_strings) == FALSE)
         {
+            freeArrayOfString(description, nbRow);
+            freeAllocatedMatrixOfString(nbRow, nbCol, mask);
+            freeAllocatedSingleString(initialDirectory);
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
-            return 0;
+            return 1;
         }
 
-        GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &nbRow3, &nbCol3, &titleBox);
-
-        if (nbCol3 != 1 || nbRow3 != 1)
+        sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+        if (sciErr.iErr)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string  expected.\n"), fname, 3);
-            return 0;
+            freeArrayOfString(description, nbRow);
+            freeAllocatedMatrixOfString(nbRow, nbCol, mask);
+            freeAllocatedSingleString(initialDirectory);
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        if (getAllocatedSingleString(pvApiCtx, piAddr3, &titleBox))
+        {
+            freeArrayOfString(description, nbRow);
+            freeAllocatedMatrixOfString(nbRow, nbCol, mask);
+            freeAllocatedSingleString(initialDirectory);
+            printError(&sciErr, 0);
+            return 1;
         }
     }
 
     try
     {
         /* Call Java */
-        switch (Rhs)
+        switch (nbInputArgument(pvApiCtx))
         {
             case 0:
                 CallJuiputfileWithoutInput();
@@ -155,11 +200,11 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
                 break;
 
             case 2:
-                CallJuiputfileWithMaskAndInitialdirectory(mask, description, nbRow, initialDirectory[0]);
+                CallJuiputfileWithMaskAndInitialdirectory(mask, description, nbRow, initialDirectory);
                 break;
 
             case 3:
-                CallJuiputfileWithoutMultipleSelection(mask, description, nbRow, initialDirectory[0], titleBox[0]);
+                CallJuiputfileWithoutMultipleSelection(mask, description, nbRow, initialDirectory, titleBox);
                 break;
 
             default:
@@ -169,23 +214,25 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
 
         // free pointer
         freeArrayOfString(description, nbRow);
-        freeArrayOfString(mask, nbRow * nbCol);
-        freeArrayOfString(initialDirectory, nbRow2 * nbCol2);
-        freeArrayOfString(titleBox, nbRow3 * nbCol3);
+        freeAllocatedMatrixOfString(nbRow, nbCol, mask);
+        freeAllocatedSingleString(initialDirectory);
+        freeAllocatedSingleString(titleBox);
 
         // Get return values
         selection = getJuigetfileSelection();
         selectionPathName = getJuigetfileSelectionPathName();
         selectionFileNames = getJuigetfileSelectionFileNames();
         selectionSize = getJuigetfileSelectionSize();
-        multipleSelection = getJuigetfileMultipleSelection();
         filterIndex = getJuigetfileFilterIndex();
-        menuCallback = getJuigetfileMenuCallback();
     }
     catch (const GiwsException::JniException & e)
     {
+        freeArrayOfString(description, nbRow);
+        freeAllocatedMatrixOfString(nbRow, nbCol, mask);
+        freeAllocatedSingleString(initialDirectory);
+        freeAllocatedSingleString(titleBox);
         Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
-        return 0;
+        return 1;
     }
 
     // nbColOutSelection
@@ -194,75 +241,97 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
     //if cancel is selected on the filechooser
     if (strcmp(selection[0], "") == 0)
     {
-        nbRowOutSelection = 1;
-        nbColOutSelection = 1;
-
         // "" is returned as filename
-        CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
-        LhsVar(1) = Rhs + 1;
+        sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 1, selection);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
 
-        if (Lhs > 1)
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+
+        if (nbOutputArgument(pvApiCtx) > 1)
         {
             // "" is returned as pathname
-            CreateVarFromPtr(Rhs + 2, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
-            LhsVar(2) = Rhs + 2;
+            sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 2, 1, 1, selection);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
+
+            AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
         }
 
-        if (Lhs > 2)
+        if (nbOutputArgument(pvApiCtx) > 2)
         {
             // 0 is returned as pathname
-            double *tmp = (double *)MALLOC(sizeof(double));
-
-            if (tmp == NULL)
+            double tmp = 0;
+            sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 3, 1, 1, &tmp);
+            if (sciErr.iErr)
             {
-                Scierror(999, _("%s: No more memory.\n"), fname);
-                return 0;
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
             }
-            tmp[0] = 0;
-            CreateVarFromPtr(Rhs + 3, MATRIX_OF_DOUBLE_DATATYPE, &nbRowOutSelection, &nbColOutSelection, &tmp);
-            FREE(tmp);
-            tmp = NULL;
-            LhsVar(3) = Rhs + 3;
+
+            AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
         }
-        PutLhsVar();
+
+        returnArguments(pvApiCtx);
         return 0;
     }
 
     // Only one output then it contains path+filenames
-    if (Lhs == 1)
+    if (nbOutputArgument(pvApiCtx) == 1)
     {
-        CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selection);
-        LhsVar(1) = Rhs + 1;
-        PutLhsVar();
+        sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRowOutSelection, nbColOutSelection, selection);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
+
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+        returnArguments(pvApiCtx);
         return 0;
     }
 
     // More than one output
-    CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbRowOutSelection, &nbColOutSelection, selectionFileNames);
-
-    nbColOutPath = (int)strlen(selectionPathName);
-    CreateVarFromPtr(Rhs + 2, STRING_DATATYPE, &nbColOutPath, &nbRowOutPath, &selectionPathName);
-
-    LhsVar(1) = Rhs + 1;
-    LhsVar(2) = Rhs + 2;
-    if (Lhs > 2)
+    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRowOutSelection, nbColOutSelection, selectionFileNames);
+    if (sciErr.iErr)
     {
-        double *tmp = (double *)MALLOC(sizeof(double));
-
-        if (tmp == NULL)
-        {
-            Scierror(999, _("%s: No more memory.\n"), fname);
-            return 0;
-        }
-        tmp[0] = filterIndex;
-        CreateVarFromPtr(Rhs + 3, MATRIX_OF_DOUBLE_DATATYPE, &nbRowOutFilterIndex, &nbColOutFilterIndex, &tmp);
-        FREE(tmp);
-        tmp = NULL;
-        LhsVar(3) = Rhs + 3;
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
     }
 
-    PutLhsVar();
+    if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 2, selectionPathName))
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
+
+    if (nbOutputArgument(pvApiCtx) > 2)
+    {
+        if (createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 3, filterIndex))
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+        AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
+    }
+
+    returnArguments(pvApiCtx);
     return 0;
+
 }
 
 /*--------------------------------------------------------------------------*/

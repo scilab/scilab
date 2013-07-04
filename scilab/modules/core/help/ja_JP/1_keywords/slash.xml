@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="slash">
+    <refnamediv>
+        <refname>slash</refname>
+        <refpurpose>(/) 右除算およびフィードバック</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            右除算.  <literal>x=A / b</literal> は, <literal>x*b=A</literal> の解です.
+        </para>
+        <para>
+            <literal>b/a = (a' \ b')'</literal> .
+        </para>
+        <para>
+            <literal>a./  b</literal> は,
+            エントリ <literal>a(i,j)/ b(i,j)</literal> を有する行列です.
+            <literal>b</literal> がスカラー(1x1 行列)の場合,
+            この処理は <literal> a./b*ones(a)</literal> と同じになります.
+            (<literal>a</literal> がスカラーの場合も同様).
+        </para>
+        <para>
+            <literal>123./b</literal> は, <literal>(123.)/b</literal> と
+            解釈されることに注意してください.
+            この場合, ドット(.) は演算子ではなく数値の一部となります.
+        </para>
+        <para>
+            バックスラッシュは左除算を意味します.
+        </para>
+        <para>
+            システムフィードバック.  <literal>S=G/.K</literal> は <literal>S=G*(eye()+K*G)^(-1)</literal>
+            と評価されます.
+            この演算子はシンプルな記述が容易に可能となります.
+        </para>
+        <para>
+            <literal>G/.5</literal> は <literal>G/(.5)</literal>と解釈されることに注意してください. 
+            この場合, ドット(.) は演算子ではなく数値の一部となります.
+        </para>
+        <para>
+            コメント <literal>//</literal> は, 特定の行をコメントにします.
+            すなわち, <literal>//</literal> で始まる行はインタプリタから無視されます.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
+            <member>
+                <link linkend="percent">percent</link>
+            </member>
+            <member>
+                <link linkend="backslash">backslash</link>
+            </member>
+            <member>
+                <link linkend="ieee">ieee</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

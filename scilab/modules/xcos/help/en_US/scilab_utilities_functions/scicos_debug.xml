@@ -21,76 +21,77 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_debug">
-  <refnamediv>
-    <refname>scicos_debug</refname>
-    <refpurpose>Set the level of the Scicos debugging</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>scicos_debug(level)
-      level = scicos_debug()
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection id="Module_scicos_debug">
-    <title>Module</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scicos_debug">
+    <refnamediv>
+        <refname>scicos_debug</refname>
+        <refpurpose>Set the level of the Scicos debugging</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>scicos_debug(level)
+            level = scicos_debug()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection id="Module_scicos_debug">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_scicos_debug">
+        <title>Description</title>
         <para>
-          <link linkend="xcos">xcos</link>
+            This Scilab function is used to set the debug level of a Scicos simulation.  
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_scicos_debug">
-    <title>Description</title>
-    <para>
-      This Scilab function is used to set the debug level of a Scicos simulation.  
-    </para>
-    <para>
-      One can used it in the "Calc" mode of the Scicos editor or as an instruction in a Scilab block or in an interfacing function.  
-    </para>
-    <para>
-    </para>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+            One can used it in the "Calc" mode of the Scicos editor or as an instruction in a Scilab block or in an interfacing function.  
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 scicos_debug(level)
 level=scicos_debug()
  ]]></programlisting>
-  </refsection>
-  <refsection id="Parameters_scicos_debug">
-    <title>Arguments</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">level :</emphasis> set/get the current level of the Scicos simulation debugging.
-        </para>
+    </refsection>
+    <refsection id="Parameters_scicos_debug">
+        <title>Arguments</title>
         <itemizedlist>
-          <listitem>
-            <para>
-              <emphasis role="bold">0:</emphasis>
-              no debugging.
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <emphasis role="bold">1:</emphasis>
-              light debugging information printout.
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <emphasis role="bold">2:</emphasis>
-              more information printout and execution of Debug Block if any in diagram.
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <emphasis role="bold">3:</emphasis>
-              silent debugging mode (no information printout) and execution of Debug Block if any in diagram.
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">level :</emphasis> set/get the current level of the Scicos simulation debugging.
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">0:</emphasis>
+                            no debugging.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">1:</emphasis>
+                            light debugging information printout.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">2:</emphasis>
+                            more information printout and execution of Debug Block if any in diagram.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">3:</emphasis>
+                            silent debugging mode (no information printout) and execution of Debug Block if any in diagram.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+    </refsection>
 </refentry>

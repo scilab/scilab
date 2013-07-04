@@ -32,7 +32,7 @@ void ScilabObjects::initialization(ScilabAbstractEnvironment & env, void * pvApi
     if (!isInit)
     {
         isInit = true;
-        //createNamedEnvironmentObject(EXTERNAL_OBJECT, "enull", 0, 0, pvApiCtx);
+        //createNamedEnvironmentObject(EXTERNAL_VOID, "evoid", 0, 0, pvApiCtx);
     }
 }
 
@@ -66,6 +66,11 @@ int ScilabObjects::createNamedEnvironmentObject(int type, const char * name, int
     err = createNamedMList(pvApiCtx, name, FIELDS_LENGTH, &mlistaddr);
     if (err.iErr)
     {
+        if (err.iErr == API_ERROR_INVALID_NAME)
+        {
+            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable name: %s"), name);
+        }
+
         throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Cannot allocate memory"));
     }
 
@@ -173,7 +178,7 @@ void ScilabObjects::copyInvocationMacroToStack(int pos, ScilabAbstractEnvironmen
 
     Top = tops;
 
-    OptionsHelper::setCopyOccured(true);
+    OptionsHelper::setCopyOccurred(true);
 }
 
 void ScilabObjects::removeTemporaryVars(const int envId, int * tmpvar)
@@ -668,6 +673,10 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
                 }
                 return *id;
             }
+            else if (type == EXTERNAL_VOID)
+            {
+                return -1;
+            }
             else
             {
                 removeTemporaryVars(envId, tmpvars);
@@ -750,7 +759,7 @@ int ScilabObjects::getMListType(int * mlist, void * pvApiCtx)
 bool ScilabObjects::isValidExternal(int * mlist, void * pvApiCtx)
 {
     int type = getMListType(mlist, pvApiCtx);
-    return type == EXTERNAL_OBJECT || type == EXTERNAL_CLASS || type == EXTERNAL_VOID;
+    return type == EXTERNAL_OBJECT || type == EXTERNAL_CLASS;
 }
 
 bool ScilabObjects::isExternalObj(int * mlist, void * pvApiCtx)
@@ -808,7 +817,6 @@ int ScilabObjects::isPositiveIntegerAtAddress(int * addr, void * pvApiCtx)
 {
     SciErr err;
     int typ = 0, row, col, prec;
-    int * id = 0;
 
     err = getVarDimension(pvApiCtx, addr, &row, &col);
     if (err.iErr)

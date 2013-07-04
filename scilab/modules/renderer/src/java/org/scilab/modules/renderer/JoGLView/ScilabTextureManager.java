@@ -24,13 +24,14 @@ import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 import java.awt.Dimension;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Pierre Lando
  */
 public class ScilabTextureManager {
 
-    private final HashMap<String, Texture> hashMap = new HashMap<String, Texture>();
+    private final Map<String, Texture> hashMap = new HashMap<String, Texture>();
     private final DrawerVisitor drawerVisitor;
     private final Canvas canvas;
 
@@ -57,6 +58,24 @@ public class ScilabTextureManager {
         return texture;
     }
 
+    public void dispose(String identifier) {
+        Texture texture = hashMap.get(identifier);
+        if (texture != null) {
+            hashMap.remove(identifier);
+            canvas.getTextureManager().dispose(texture);
+        }
+    }
+
+    public void disposeAll() {
+        for (Map.Entry<String, Texture> entry : hashMap.entrySet()) {
+            Texture t = entry.getValue();
+            if (t != null) {
+                canvas.getTextureManager().dispose(t);
+            }
+        }
+
+        hashMap.clear();
+    }
 
     private class ScilabTextureDataProvider extends AbstractTextureDataProvider implements GraphicView {
         private final String identifier;
@@ -125,7 +144,7 @@ public class ScilabTextureManager {
         }
 
         @Override
-        public void updateObject(String id, String property) {
+        public void updateObject(String id, int property) {
             if (isValid() && identifier.equals(id)) {
                 // TODO check Property.
                 updateData();

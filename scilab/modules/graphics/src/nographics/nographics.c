@@ -63,11 +63,17 @@ int gw_graphics(void)
         int lw = 1 + Top - Rhs;
 
         if (Fin == DELETE_INDEX)
+        {
             C2F(overload) (&lw, "delete", 6);
+        }
         if (Fin == GET_INDEX)
+        {
             C2F(overload) (&lw, "get", 3);
+        }
         if (Fin == SET_INDEX)
+        {
             C2F(overload) (&lw, "set", 3);
+        }
     }
     else
     {
@@ -119,7 +125,7 @@ unsigned long getHandleFromStack(size_t stackPointer)
 }
 
 /*--------------------------------------------------------------------------*/
-int callSetProperty(void* _pvCtx, char *pObj, size_t stackPointer, int valueType, int nbRow, int nbCol, char *propertyName)
+int callSetProperty(void* _pvCtx, char *pObjUID, void* _pvData, int valueType, int nbRow, int nbCol, char * propertyName)
 {
     return -1;
 }
@@ -169,7 +175,7 @@ char *allocateText(char *pparentsubwinUID,
                    double y,
                    BOOL autoSize,
                    double userSize[2],
-                   BOOL centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align)
+                   int centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align)
 {
     return NULL;
 }
@@ -393,3 +399,15 @@ BOOL sciIsExistingFigure(int figNum)
 {
     return FALSE;
 }
+
+/*--------------------------------------------------------------------------*/
+void cloneAxesModel(char const* pstFigureUID)
+{
+}
+
+/*--------------------------------------------------------------------------*/
+char * createNewFigureWithAxes(void)
+{
+    return NULL;
+}
+

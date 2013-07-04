@@ -33,7 +33,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_z_shift_property(void* _pvCtx, char * pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_z_shift_property(void* _pvCtx, char * pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL result = FALSE;
     double* shiftCoordinates = NULL;
@@ -41,13 +41,13 @@ int set_z_shift_property(void* _pvCtx, char * pobjUID, size_t stackPointer, int 
     int iNumElements = 0;
     int* piNumElements = &iNumElements;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "z_shift");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbRow > 1 && nbCol > 1 )
+    if (nbRow > 1 && nbCol > 1)
     {
         Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "z_shift", "0x0, 1xn, nx1");
         return SET_PROPERTY_ERROR;
@@ -57,26 +57,26 @@ int set_z_shift_property(void* _pvCtx, char * pobjUID, size_t stackPointer, int 
 
     if (piNumElements == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"z_shift");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_shift");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbElement != 0 && nbElement != iNumElements) /* we can specify [] (null vector) to reset to default */
+    if (nbElement != 0 && nbElement != iNumElements) /* we can specify [] (null vector) to reset to default */
     {
         Scierror(999, _("Wrong size for '%s' property: %d or %d elements expected.\n"), "z_shift", 0, iNumElements);
         return SET_PROPERTY_ERROR;
     }
 
-    if( nbElement != 0 )
+    if (nbElement != 0)
     {
-        shiftCoordinates = (double*) getDoubleMatrixFromStack(stackPointer);
+        shiftCoordinates = (double*)_pvData;
 
         result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, shiftCoordinates, jni_double_vector, iNumElements);
 
         /* The FALSE value is used for now to identify a failed memory allocation */
         if (result == FALSE)
         {
-            Scierror(999, _("%s: No more memory.\n"),"set_z_shift_property");
+            Scierror(999, _("%s: No more memory.\n"), "set_z_shift_property");
             return SET_PROPERTY_ERROR;
         }
     }

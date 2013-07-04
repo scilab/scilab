@@ -53,7 +53,7 @@ extern "C" {
 #include "api_scilab.h"
     /* generics functions */
 
-/*Rhs*/
+    /*Rhs*/
     int* getNbInputArgument(void* _pvCtx);
 #define nbInputArgument(PVCTX) (*getNbInputArgument(PVCTX))
 
@@ -62,7 +62,7 @@ extern "C" {
 #endif
 #define Rhs (*getNbInputArgument(pvApiCtx))
 
-/*Top*/
+    /*Top*/
     int* getNbArgumentOnStack(void* _pvCtx);
 #define nbArgumentOnStack(PVCTX) (*getNbArgumentOnStack(PVCTX))
 
@@ -71,7 +71,7 @@ extern "C" {
 #endif
 #define Top (*getNbArgumentOnStack(pvApiCtx))
 
-/*Lhs*/
+    /*Lhs*/
     int* getNbOutputArgument(void* _pvCtx);
 #define nbOutputArgument(PVCTX) (*getNbOutputArgument(PVCTX))
 #ifdef Lhs
@@ -79,7 +79,7 @@ extern "C" {
 #endif
 #define Lhs (*getNbOutputArgument(pvApiCtx))
 
-/*PutLhs*/
+    /*PutLhs*/
     int* assignOutputVariable(void* _pvCtx, int _iVal);
 #define AssignOutputVariable(PVCTX, x) (*assignOutputVariable(PVCTX, x))
 #ifdef LhsVar
@@ -87,7 +87,7 @@ extern "C" {
 #endif
 #define LhsVar(x) (*assignOutputVariable(pvApiCtx, x))
 
-/*PutLhsVar*/
+    /*PutLhsVar*/
     int returnArguments(void* _pvCtx);
 #define ReturnArguments(PVCTX) if (! returnArguments(PVCTX)) { return 0; }
 #ifdef PutLhsVar
@@ -351,6 +351,21 @@ extern "C" {
      * @return 1 for true and 0 for false
      */
     int checkVarDimension(void* _pvCtx, int* _piAddress, int _iRows, int _iCols);
+
+    /**
+     * Check if type of variable
+     * @param[in] _iVar variable position
+     * @return 1 for true and 0 for false
+     */
+    int getInputArgumentType(void* _pvCtx, int _iVar);
+
+    /**
+     * Check if type of variable
+     * @param[in] _iVar variable position
+     * @param[in] _iType variable type to check
+     * @return 1 for true and 0 for false
+     */
+    int checkInputArgumentType(void* _pvCtx, int _iVar, int _iType);
 
     /**
      * Check if a matrix is empty

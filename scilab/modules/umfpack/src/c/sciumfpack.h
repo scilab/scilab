@@ -1,7 +1,7 @@
 /*
- *   Copyright Bruno Pinçon, ESIAL-IECN, Inria CORIDA project 
+ *   Copyright Bruno Pinçon, ESIAL-IECN, Inria CORIDA project
  *   <bruno.pincon@iecn.u-nancy.fr>
- *   contributor:  Antonio Manoel Ferreria Frasson, Universidade Federal do 
+ *   contributor:  Antonio Manoel Ferreria Frasson, Universidade Federal do
  *                 Espírito Santo, Brazil. <frasson@ele.ufes.br>.
  *
  * PURPOSE: Scilab interfaces routines onto the UMFPACK sparse solver
@@ -47,29 +47,28 @@ enum {NOT_ENOUGH_PLACE_IN_STK, MAT_IS_NOT_SPD, A_PRIORI_OK};   /* flags for spd_
 typedef void * Adr;
 
 typedef struct _CellAdr CellAdr ;
-struct _CellAdr {
-	Adr adr;
-	int it;   // added to see if the LU factors comes from a real or complex matrix
-	CellAdr *next;
+struct _CellAdr
+{
+    Adr adr;
+    int it;   // added to see if the LU factors comes from a real or complex matrix
+    CellAdr *next;
 };
 
-typedef struct  /* a type to handle a choleski factorisation */
+typedef struct  /* a type to handle a choleski factorization */
 {
-	int * p;      /* for the permutation    */
-	void * C;     /* for the factor (lower) */
-	int n;        /* to stay the order (in place to read a member of C) */
+    int * p;      /* for the permutation    */
+    void * C;     /* for the factor (lower) */
+    int n;        /* to stay the order (in place to read a member of C) */
 } taucs_handle_factors;
 
-typedef struct {
-	int m;          /* number of rows */
-	int n;          /* number of columns */
-	int nel;        /* number of non nuls elements */
-	int it;         /* flag type : it=-1 (boolean) it=0 (real) it=1 (complex) */
-	int *p;         /* n+1 array : ptr_col[n] must be equal to nel */
-	int *irow;   
-	double *R;
-	double *I;
+typedef struct
+{
+    int m;          /* number of rows */
+    int n;          /* number of columns */
+    int nel;        /* number of non nuls elements */
+    int it;         /* flag type : it=-1 (boolean) it=0 (real) it=1 (complex) */
+    int *p;         /* n+1 array : ptr_col[n] must be equal to nel */
+    int *irow;
+    double *R;
+    double *I;
 } CcsSparse;
-
-#define SciSparseToCcsSparse(num, A, B) if (! sci_sparse_to_ccs_sparse(num, A, B)) { return 0;}
-

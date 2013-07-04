@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="mese">
+    <refnamediv>
+        <refname>mese</refname>
+        <refpurpose>スペクトル推定の最大エントロピ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[sm,fr]=mese(x [,npts]);</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>入力標本化データ系列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>npts</term>
+                <listitem>
+                    <para>
+                        <literal>fr</literal> および <literal>sm</literal>の点の数
+                        (デフォルトは256)を指定するオプションパラメータ
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sm</term>
+                <listitem>
+                    <para>
+                        周波数グリッド<literal>fr</literal>における
+                        スペクトル推定の標本
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fr</term>
+                <listitem>
+                    <para>
+                        <literal>[0,.5)</literal>の範囲のnpts個の等間隔周波数の標本
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>x</literal>の最大エントロピスペクトル推定値を計算します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <scilab:image>
+            rand("seed",12345),
+            y = (0:10);
+            x1 = sin(2*%pi*y/20);
+            x2 = sin(3.5*%pi*y/20);
+            w = .4*(rand(y)-.5*ones(y));
+            x = x1+2*x2+w;
+            [sm,fr1] = mese(x,10)
+            function [xm,fr] = bt(x)
+            xsize = max(size(x))
+            [xf,fr] = frmag(x,256)
+            xm = xf.*conj(xf)/xsize
+            endfunction
+            [xm,fr] = bt(x);
+            scf();
+            subplot(3,1,1);
+            plot(x);
+            subplot(3,1,2);
+            plot(fr1,sm)
+            subplot(3,1,3);
+            plot(fr,xm)
+        </scilab:image>
+    </refsection>
+    
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+rand("seed",12345),
+y = (0:10);
+x1 = sin(2*%pi*y/20);
+x2 = sin(3.5*%pi*y/20);
+w = .4*(rand(y)-.5*ones(y));
+x = x1+2*x2+w;
+[sm,fr1] = mese(x,10)
+// Blackman-Tukey ペリオドグラムを計算するマクロを定義
+function [xm,fr] = bt(x)
+  xsize = max(size(x))
+  [xf,fr] = frmag(x,256)
+  xm = xf.*conj(xf)/xsize
+endfunction
+[xm,fr] = bt(x);
+scf();
+subplot(3,1,1);
+plot(x);
+subplot(3,1,2);
+plot(fr1,sm)
+subplot(3,1,3);
+plot(fr,xm)
+ ]]></programlisting>
+    </refsection>
+</refentry>

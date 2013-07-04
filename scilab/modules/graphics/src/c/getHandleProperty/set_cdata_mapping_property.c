@@ -20,6 +20,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include "stricmp.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -34,22 +35,21 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_cdata_mapping_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_cdata_mapping_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    BOOL status = FALSE;
     int cdataMapping = 0;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "cdata_mapping");
         return SET_PROPERTY_ERROR;
     }
 
-    if (isStringParamEqual( stackPointer, "scaled" ))
+    if (stricmp((char*)_pvData, "scaled") == 0)
     {
         cdataMapping = 0;
     }
-    else if (isStringParamEqual( stackPointer, "direct" ))
+    else if (stricmp((char*)_pvData, "direct") == 0)
     {
         cdataMapping = 1;
     }
@@ -59,11 +59,9 @@ int set_cdata_mapping_property(void* _pvCtx, char* pobjUID, size_t stackPointer,
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_DATA_MAPPING__, &cdataMapping, jni_int, 1);
-
-    if (status == FALSE)
+    if (setGraphicObjectProperty(pobjUID, __GO_DATA_MAPPING__, &cdataMapping, jni_int, 1) == FALSE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"cdata_mapping");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "cdata_mapping");
         return SET_PROPERTY_ERROR;
     }
 

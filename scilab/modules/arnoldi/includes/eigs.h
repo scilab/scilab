@@ -14,6 +14,7 @@
 #define __EIGS_H__
 #include "doublecomplex.h"
 
+
 /**
  * @TODO add comment
  *
@@ -39,15 +40,17 @@
  * @param INFO_EUPD
  * @param eigenvalue
  * @param eigenvector
+ * @param eigenvalueC
+ * @param eigenvectorC
+ * @param RVEC
  * @return <ReturnValue>
  */
 int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym,
          double* B,  doublecomplex* BC, int Bcomplex, int matB, int nev,
-         doublecomplex* SIGMA, char* which, double* maxiter, double* tol,
+         doublecomplex SIGMA, char* which, double* maxiter, double* tol,
          double* NCV, double* RESID, doublecomplex* RESIDC, int* INFO,
-         double* cholB, int INFO_EUPD, doublecomplex* eigenvalue,
-         doublecomplex* eigenvector);
+         double* cholB, int INFO_EUPD, double* eigenvalue, double* eigenvector,
+         doublecomplex* eigenvalueC, doublecomplex* eigenvectorC, int RVEC);
 
 #endif /* __EIGS_H__ */
 /*--------------------------------------------------------------------------*/
-

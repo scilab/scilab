@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 8867 -->
 //
@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // Exception are produced when deleting non-connected links.
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8867.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8867.zcos");
 
 // Delete all the links
 

@@ -15,51 +15,50 @@
 <!-- =================== -->
 
 <librarypaths>
-<!-- Scilab binary -->
-<path value="$SCILAB/bin"/>
-
-<!-- Developpement environment -->
-<path value="$SCILAB/modules/action_binding/.libs"/>
-<path value="$SCILAB/modules/console/.libs"/>
-<path value="$SCILAB/modules/history_manager/.libs"/>
-<path value="$SCILAB/modules/completion/.libs"/>
-<path value="$SCILAB/modules/localization/.libs"/>
-<path value="$SCILAB/modules/renderer/.libs"/>
-<path value="$SCILAB/modules/graphic_export/.libs"/>
-<path value="$SCILAB/modules/graphic_objects/.libs"/>
-<path value="$SCILAB/modules/scinotes/.libs"/>
-<path value="$SCILAB/modules/commons/.libs"/>
-<path value="$SCILAB/modules/gui/.libs"/>
-<path value="$SCILAB/modules/ui_data/.libs"/>
-<path value="$SCILAB/modules/javasci/.libs"/>
-<path value="$SCILAB/modules/.libs"/>
-<path value="$SCILAB/.libs"/>
-
-<!-- Default path to the JNI classes under some Linux (JoGL under Debian for example) -->
-<path value="/usr/lib/jni/"/>
-
-<!-- Standard path for %{_jnidir} rpm macro (jpackage) -->
-<path value="/usr/lib/java/"/>
-<path value="/usr/lib64/java/"/>
-
-<!-- RedHat put JNI on /usr/%{libdir}/%{name} instead of /usr/lib/jni -->
-<path value="/usr/lib/jogl/"/>
-<path value="/usr/lib64/jogl/"/>
-<path value="/usr/lib/gluegen/"/>
-<path value="/usr/lib64/gluegen/"/>
-<path value="/usr/lib/jhdf5/"/>
-<path value="/usr/lib64/jhdf5/"/>
-
-<!-- Some distributions (like openSUSE) put gluegen-rt in /usr/lib instead pf /usr/lib/jni -->
-<path value="/usr/lib" />
-
-<!-- Make install with prefix -->
-<path value="$SCILAB/../../lib/scilab/"/>
-
-<!-- Standard path -->
-<path value="/usr/lib/scilab/"/>
-
-<!-- Standard path for 64 bits -->
-<path value="/usr/lib64/scilab/"/>
-
+    <!-- Scilab binary -->
+    <path value="$SCILAB/bin"/>
+    <path value="$SCILAB/lib/thirdparty/"/>
+    
+    <!-- Developpement environment -->
+    <path value="$SCILAB/modules/action_binding/.libs"/>
+    <path value="$SCILAB/modules/console/.libs"/>
+    <path value="$SCILAB/modules/history_manager/.libs"/>
+    <path value="$SCILAB/modules/completion/.libs"/>
+    <path value="$SCILAB/modules/localization/.libs"/>
+    <path value="$SCILAB/modules/renderer/.libs"/>
+    <path value="$SCILAB/modules/graphic_export/.libs"/>
+    <path value="$SCILAB/modules/graphic_objects/.libs"/>
+    <path value="$SCILAB/modules/scinotes/.libs"/>
+    <path value="$SCILAB/modules/commons/.libs"/>
+    <path value="$SCILAB/modules/gui/.libs"/>
+    <path value="$SCILAB/modules/ui_data/.libs"/>
+    <path value="$SCILAB/modules/javasci/.libs"/>
+    <path value="$SCILAB/modules/.libs"/>
+    <path value="$SCILAB/.libs"/>
+    
+    <!-- Default path to the JNI classes under some Linux (JoGL under Debian for example) -->
+    <path value="/usr/lib/jni/"/>
+    
+    <!-- Standard path for %{_jnidir} rpm macro (jpackage) -->
+    <path value="/usr/lib/java/"/>
+    <path value="/usr/lib64/java/"/>
+    
+    <!-- RedHat put JNI on /usr/%{libdir}/%{name} instead of /usr/lib/jni -->
+    <path value="/usr/lib/jogl2/"/>
+    <path value="/usr/lib64/jogl2/"/>
+    <path value="/usr/lib/gluegen2/"/>
+    <path value="/usr/lib64/gluegen2/"/>
+    
+    <!-- Some distributions (like openSUSE) put gluegen-rt in /usr/lib instead pf /usr/lib/jni -->
+    <path value="/usr/lib" />
+    
+    <!-- Make install with prefix -->
+    <path value="$SCILAB/../../lib/scilab/"/>
+    
+    <!-- Standard path -->
+    <path value="/usr/lib/scilab/"/>
+    
+    <!-- Standard path for 64 bits -->
+    <path value="/usr/lib64/scilab/"/>
+    
 </librarypaths>

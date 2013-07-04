@@ -30,40 +30,40 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_screen_position_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_screen_position_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-  double * values = NULL;
-  BOOL status = FALSE;
-  int intValues[2];
+    double* values = NULL;
+    BOOL status = FALSE;
+    int intValues[2];
 
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "screen_position");
-    return SET_PROPERTY_ERROR ;
-  }
+    if (valueType != sci_matrix)
+    {
+        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "screen_position");
+        return SET_PROPERTY_ERROR;
+    }
 
-  values = getDoubleMatrixFromStack( stackPointer ) ;
+    values = (double*)_pvData;
 
-  if ( nbRow * nbCol != 2 )
-  {
-    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "screen_position", 2);
-    return SET_PROPERTY_ERROR ;
-  }
+    if (nbRow * nbCol != 2)
+    {
+        Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "screen_position", 2);
+        return SET_PROPERTY_ERROR;
+    }
 
-  intValues[0] = (int)values[0];
-  intValues[1] = (int)values[1];
+    intValues[0] = (int)values[0];
+    intValues[1] = (int)values[1];
 
-  status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, intValues, jni_int_vector, 2);
+    status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, intValues, jni_int_vector, 2);
 
-  if(status == TRUE)
-  {
-    return SET_PROPERTY_SUCCEED;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"screen_position");
-    return SET_PROPERTY_ERROR;
-  }
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "screen_position");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

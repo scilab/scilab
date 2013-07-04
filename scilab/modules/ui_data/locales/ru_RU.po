@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-02-21 14:28+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-17 17:08+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: ru\n"
 
 #, c-format
@@ -79,8 +79,8 @@ msgstr "&О Scilab"
 msgid "Name"
 msgstr "Имя"
 
-msgid "Dimension"
-msgstr "Размер"
+msgid "Value"
+msgstr "Значение"
 
 msgid "Type"
 msgstr "Тип"
@@ -105,6 +105,12 @@ msgstr "Файл"
 
 msgid "Close"
 msgstr "Закрыть"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Modify"
+msgstr "Изменить"
 
 msgid "Filter"
 msgstr "Фильтр"
@@ -180,6 +186,9 @@ msgstr "Редакция"
 
 msgid "Refresh the variable "
 msgstr "Обновить список переменных "
+
+msgid "Scilab Help"
+msgstr "Справка Scilab"
 
 msgid "Copy"
 msgstr "Копировать"
@@ -259,6 +268,12 @@ msgstr "Создать новую переменню"
 msgid "Duplicate the variable"
 msgstr "Копировать переменную"
 
+msgid "Export to CSV"
+msgstr "Экспортировать в CSV"
+
+msgid "Export the selection to CSV"
+msgstr "Экспортировать выделенное в CSV"
+
 msgid "Rows number"
 msgstr "Число строк"
 
@@ -331,11 +346,20 @@ msgstr "Редактировать с помощью приложения по �
 msgid "Open with default application"
 msgstr "Открыть с помощью приложения по умолчанию"
 
+msgid "Previous directory"
+msgstr "Предыдущая директория"
+
+msgid "Next directory"
+msgstr "Следующая директория"
+
 msgid "Scilab type:"
 msgstr "Тип Scilab:"
 
 msgid "Bytes:"
 msgstr "Байты:"
+
+msgid "Type not supported for this operation"
+msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

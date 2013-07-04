@@ -7,11 +7,11 @@
 // ============================================================================
 //
 // <-- ENGLISH IMPOSED -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // Check that the simulation function should exists.
 
-loadXcosLibs(); loadScicos();
 
 defaultlibs = ["Branching",
                "Linear",
@@ -34,7 +34,7 @@ notTested = ["SUPER_f", "DSUPER", ..              // Specific blocks
              "SIGNUM", "MAXMIN", "ABS_VALUE", ..    // buggy blocks
              "PENDULUM_ANIM", "BPLATFORM", "MBLOCK", ..
              "TKSCALE", "BARXY", ..
-             "SLIDER_f", ..                       // Deprecated blocks
+             "SLIDER_f", "WFILE_f", ..            // Deprecated blocks
              "MPBLOCK", "fortran_block", ..       // blocks with code generation
              "CBLOCK", "scifunc_block", "scifunc_block_m"];
 

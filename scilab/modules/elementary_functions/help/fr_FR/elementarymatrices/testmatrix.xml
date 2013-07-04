@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="testmatrix">
+    <refnamediv>
+        <refname>testmatrix</refname>
+        <refpurpose>génération de matrices remarquables  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>[y]=testmatrix(name,n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>name  </term>
+                <listitem>
+                    <para>chaîne de caractères
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n  </term>
+                <listitem>
+                    <para>entier
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y  </term>
+                <listitem>
+                    <para>
+                        matrice <literal>n</literal> x <literal>n</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Génère certaines matrices carrées particulières.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>testmatrix('magi',n)</term>
+                <listitem>
+                    <para>
+                        renvoie un carré magique de taille <literal>n</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>testmatrix('frk',n)</term>
+                <listitem>
+                    <para>renvoie la matrice de Franck.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>testmatrix('hilb',n)</term>
+                <listitem>
+                    <para>
+                        renvoie l'inverse de la matrice de Hilbert de taille <literal>n</literal> x <literal>n</literal>   <literal>(Hij= 1/(i+j-1))</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+</refentry>

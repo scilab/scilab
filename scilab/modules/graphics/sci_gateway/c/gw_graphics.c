@@ -25,7 +25,8 @@
 static BOOL loadedDep = FALSE;
 
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] = {
+static gw_generic_table Tab[] =
+{
     {sci_champ, "champ"},
     {sci_champ1, "champ1"},
     {sci_fec, "fec"},
@@ -50,7 +51,7 @@ static gw_generic_table Tab[] = {
     {sci_xarrows, "xarrows"},
     {sci_drawaxis, "drawaxis"},
     {sci_xchange, "xchange"},
-    {sci_show_pixmap, "show_pixmap"},
+    {NULL, ""}, // show_pixmap: removed
     {sci_xclick, "xclick"},
     {sci_xdel, "xdel"},
     {sci_xarc, "xfarc"},
@@ -75,7 +76,7 @@ static gw_generic_table Tab[] = {
     {sci_xtitle, "xtitle"},
     {sci_xgraduate, "xgraduate"},
     {sci_xname, "xname"},
-    {sci_clear_pixmap, "clear_pixmap"},
+    {NULL, ""}, //clear_pixmap
     {sci_zoom_rect, "zoom_rect"},
     {sci_unzoom, "unzoom"},
     {sci_stringbox, "stringbox"},
@@ -84,7 +85,7 @@ static gw_generic_table Tab[] = {
     {sci_unglue, "unglue"},
     {sci_drawnow, "drawnow"},
     {sci_drawlater, "drawlater"},
-    {sci_draw, "draw"},
+    {NULL, ""}, // draw
     {NULL, ""}, // was addcb, unusable.
     {sci_copy, "copy"},
     {sci_delete, "delete"},
@@ -103,15 +104,15 @@ static gw_generic_table Tab[] = {
 /* interface for the previous function Table */
 int gw_graphics(void)
 {
-    Rhs = Max(0, Rhs);
+    nbInputArgument(pvApiCtx) = Max(0, nbInputArgument(pvApiCtx));
 
-    if(pvApiCtx == NULL)
+    if (pvApiCtx == NULL)
     {
         pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
     }
 
-    pvApiCtx->pstName = (char*)Tab[Fin-1].name;
-    if ( getScilabMode() != SCILAB_NWNI )
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
+    if (getScilabMode() != SCILAB_NWNI)
     {
         if (!loadedDep)
         {
@@ -122,17 +123,17 @@ int gw_graphics(void)
     }
     else
     {
-        if ( (strcmp(Tab[Fin-1].name, "set")==0 ||
-              strcmp(Tab[Fin-1].name, "delete")==0 ||
-              strcmp(Tab[Fin-1].name, "get")==0) &&
-             (VarType(1)==sci_tlist || VarType(1)==sci_mlist))
+        if ((strcmp(Tab[Fin - 1].name, "set") == 0 ||
+                strcmp(Tab[Fin - 1].name, "delete") == 0 ||
+                strcmp(Tab[Fin - 1].name, "get") == 0) &&
+                (getInputArgumentType(pvApiCtx, 1) == sci_tlist || getInputArgumentType(pvApiCtx, 1) == sci_mlist))
         {
             callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
             return 0;
         }
         else
         {
-            Scierror(999,_("Scilab graphic module disabled -nogui or -nwni mode.\n"));
+            Scierror(999, _("Scilab graphic module disabled -nogui or -nwni mode.\n"));
         }
     }
 

@@ -5,15 +5,14 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 
-loadXcosLibs();
 
 //
 // Test Diagram with fromws after end behavior
 // Input random values
 //
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/fromws_tows_c.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/fromws_tows_c.zcos"));
 
 // V_in size feat simulation final time and asked values
 V_in = struct('time', (0:0.5:5000)', 'values', rand(10001, 1));

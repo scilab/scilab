@@ -11,10 +11,10 @@
  *
  -->
 <project name="types" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.types.name}"/>
-  <property name="library.title" value="Java compatible types"/>
-  <description>
-			Build the Scilab types module
-  </description>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.types.name}"/>
+    <property name="library.title" value="Java compatible types"/>
+    <description>
+        Build the Scilab types module
+    </description>
 </project>

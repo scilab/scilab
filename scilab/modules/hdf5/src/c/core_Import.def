@@ -5,7 +5,10 @@ EXPORTS
 ;--------------------------
 ; core
 ;--------------------------
-getScilabMode
 callFunctionFromGateway
 com_
 freeArrayOfString
+oGetDoubleComplexFromPointer
+vGetPointerFromDoubleComplex
+MyHeapAlloc
+MyHeapFree

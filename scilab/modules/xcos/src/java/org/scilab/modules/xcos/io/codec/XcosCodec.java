@@ -37,10 +37,10 @@ public class XcosCodec extends mxCodec {
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.graph");
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
         mxCodecRegistry
-            .addPackage("org.scilab.modules.xcos.block.positionning");
+        .addPackage("org.scilab.modules.xcos.block.positionning");
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.link");
         mxCodecRegistry
-            .addPackage("org.scilab.modules.xcos.link.commandcontrol");
+        .addPackage("org.scilab.modules.xcos.link.commandcontrol");
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.explicit");
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.link.implicit");
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.port");
@@ -94,10 +94,10 @@ public class XcosCodec extends mxCodec {
     }
 
     public static Object enableBinarySerialization(ScilabList dictionary) {
-	return ScilabObjectCodec.enableBinarySerialization(dictionary);
+        return ScilabObjectCodec.enableBinarySerialization(dictionary);
     }
 
     public static ScilabList disableBinarySerialization() {
-	return ScilabObjectCodec.disableBinarySerialization();
+        return ScilabObjectCodec.disableBinarySerialization();
     }
 }

@@ -11,74 +11,76 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="msprintf" xml:lang="en">
-  <refnamediv>
-    <refname>msprintf</refname>
-    <refpurpose>converts, formats, and writes data in a string</refpurpose>
-  </refnamediv>
-  <refnamediv xml:id="sprintf">
-    <refname>sprintf</refname>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>str=msprintf(format,a1,...,an);</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>format</term>
-        <listitem>
-          <para>a Scilab string describing the format to use to write the
-            remaining operands.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>str</term>
-        <listitem>
-          <para>a character string.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>a1,...,an</term>
-        <listitem>
-          <para>Specifies the data to be converted and printed according to
-            the format parameter.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      The <literal>msprintf</literal> writes formatted operands in its
-      returned value (a Scilab string). The argument operands are formatted
-      under control of the format operand.
-    </para>
-    <para>
-      Note that, in this case, the escape sequences (<literal>"\n"</literal>) (in format)
-      split string to a matrix of string (see example)
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="msprintf" xml:lang="en">
+    <refnamediv>
+        <refname>msprintf</refname>
+        <refpurpose>converts, formats, and writes data in a string</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="sprintf">
+        <refname>sprintf</refname>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>str=msprintf(format,a1,...,an);</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>format</term>
+                <listitem>
+                    <para>a Scilab string describing the format to use to write the
+                        remaining operands.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>a character string.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a1,...,an</term>
+                <listitem>
+                    <para>Specifies the data to be converted and printed according to
+                        the format parameter.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>msprintf</literal> writes formatted operands in its
+            returned value (a Scilab string). The argument operands are formatted
+            under control of the format operand.
+        </para>
+        <para>
+            Note that, in this case, the escape sequences (<literal>"\n"</literal>) (in format)
+            split string to a matrix of string (see example)
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 msprintf('%5.3f %5.3f',123,0.732)
 msprintf('%5.3f\n%5.3f',123,0.732)
 msprintf('--%s-\n-%d--',"hello",3)
+msprintf('%e ', [1;2;3])
+msprintf('%d %d\n', [1, 2; 3, 4])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="mprintf">mprintf</link>
-      </member>
-      <member>
-        <link linkend="printf_conversion">printf_conversion</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="printf_conversion">printf_conversion</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

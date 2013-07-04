@@ -60,6 +60,7 @@ import com.mxgraph.util.mxUtils;
 /**
  * Diagram export management
  */
+@SuppressWarnings(value = { "serial" })
 public final class ExportAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.EXPORT;

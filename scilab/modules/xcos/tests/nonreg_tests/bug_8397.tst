@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 8397 -->
 //
@@ -17,7 +17,6 @@
 // printed on the scilab console but must not deactivate xcos simulation.
 //
 
-loadXcosLibs();
 
 src_file = TMPDIR + "/sample_imf.mo";
 function_file = TMPDIR + "/sample_imf_functions.mo";

@@ -11,10 +11,10 @@
  *
  -->
 <project name="localization" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.localization.name}"/>
-  <property name="library.title" value="Localization support"/>
-  <description>
-			Build the Scilab Localization module
-  </description>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.localization.name}"/>
+    <property name="library.title" value="Localization support"/>
+    <description>
+        Build the Scilab Localization module
+    </description>
 </project>

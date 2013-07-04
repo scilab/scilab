@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-30 08:26+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-08 06:53+0000\n"
+"Last-Translator: Hélion du Mas des Bourboux <helion331990@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: fr\n"
 
 #, c-format
@@ -147,7 +147,7 @@ msgid "%s: Unable to get argument data"
 msgstr "%s : Impossible d'obtenir la donnée de l'argument"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s : Dimension erronée de l'argument %d : (%d,%d) attendu.\n"
 
 #, c-format
@@ -163,7 +163,7 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Une matrice réelle attendue.\n"
 
 #, c-format
@@ -184,10 +184,6 @@ msgstr "%s : Impossible d'obtenir la dimension de la variable \"%s\""
 
 msgid "double matrix"
 msgstr "Matrice de double"
-
-#, c-format
-msgid "%s: Bad call to get a non complex matrix"
-msgstr "%s : Appel erroné pour récupérer une matrice non complexe"
 
 #, c-format
 msgid "stack size exceeded!\n"
@@ -215,6 +211,9 @@ msgstr "Erreur de l'API :\n"
 #, c-format
 msgid "\tin %s\n"
 msgstr "\tdans %s\n"
+
+msgid "handle matrix"
+msgstr "Matrice de handles graphiques"
 
 msgid "int matrix"
 msgstr "Matrice d'entiers"
@@ -258,11 +257,33 @@ msgstr "%s : Les éléments doivent être insérés dans l'ordre"
 msgid "API_ERROR_GET_POLY_IN_LIST"
 msgstr "API_ERROR_GET_POLY_IN_LIST"
 
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr "%s : Le paramètre optionnel name=val doit être à la fin.\n"
+
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr "%s : Le paramètre optionnel %s n'est pas reconnu.\n"
+
+msgid "Optional argument list is empty.\n"
+msgstr "La liste d'arguments optionnels est vide.\n"
+
+msgid "Optional arguments list: \n"
+msgstr "Liste d'arguments optionnels : \n"
+
+#, c-format
+msgid "and %s.\n"
+msgstr "et %s.\n"
+
 msgid "pointer"
 msgstr "Pointeur"
 
 msgid "polynomial matrix"
 msgstr "Polynôme de matrice"
+
+#, c-format
+msgid "%s: Bad call to get a non complex matrix"
+msgstr "%s : Appel erroné pour récupérer une matrice non complexe"
 
 #, c-format
 msgid "%s: Formal variable name of polynomial can't exceed 4 characters"
@@ -281,14 +302,20 @@ msgstr "Matrice de chaîne de caractères"
 msgid "matrix of string"
 msgstr "Matrice de chaînes de caractères"
 
+#, c-format
+msgid "%s: Unable to convert to wide string #%d"
+msgstr ""
+"%s : Impossible de convertir l'argument d'entrée n°%d en chaîne de "
+"caractères étendue."
+
 msgid "matrix of wide string"
 msgstr "Matrice de chaîne de caractères étendue"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractère "
-"attendue.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : Une seule chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument \"%s\": A single string expected.\n"
@@ -307,3 +334,7 @@ msgstr "%s : Plus de mémoire disponible.\n"
 #, c-format
 msgid "%s: Invalid variable name.\n"
 msgstr "%s : Nom de variable invalide.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An integer expected.\n"
+msgstr "%s : Mauvais type d'argument %d : Un entier été attendu.\n"

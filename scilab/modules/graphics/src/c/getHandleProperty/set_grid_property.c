@@ -32,34 +32,34 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_grid_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_grid_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status[3];
     int i = 0;
     int iGridColor = 0;
     int* piGridColor = &iGridColor;
     int gridStyles[3];
-    char* gridColorPropertiesNames[3] = {__GO_X_AXIS_GRID_COLOR__, __GO_Y_AXIS_GRID_COLOR__, __GO_Z_AXIS_GRID_COLOR__};
+    int const gridColorPropertiesNames[3] = {__GO_X_AXIS_GRID_COLOR__, __GO_Y_AXIS_GRID_COLOR__, __GO_Z_AXIS_GRID_COLOR__};
 
-    double * values = getDoubleMatrixFromStack( stackPointer );
+    double* values = (double*)_pvData;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "grid");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbRow != 1 || nbCol > 3 )
+    if (nbRow != 1 || nbCol > 3)
     {
         Scierror(999, _("Wrong size for '%s' property: Must be in the set {%s}.\n"), "grid", "1x2, 1x3");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
     getGraphicObjectProperty(pobjUID, gridColorPropertiesNames[0], jni_int, (void**)&piGridColor);
 
     if (piGridColor == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"grid");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
         return SET_PROPERTY_ERROR;
     }
 
@@ -71,15 +71,15 @@ int set_grid_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valu
     getGraphicObjectProperty(pobjUID, gridColorPropertiesNames[2], jni_int, (void**)&piGridColor);
     gridStyles[2] = iGridColor;
 
-    for (  i = 0 ; i < nbCol ; i++ )
+    for ( i = 0 ; i < nbCol ; i++)
     {
         int curValue = (int) values[i];
-        if ( values[i] < -1 || !sciCheckColorIndex(pobjUID, curValue) )
+        if (values[i] < -1 || !sciCheckColorIndex(pobjUID, curValue))
         {
             Scierror(999, _("Wrong value for '%s' property: Must be -1 or a valid color index.\n"), "grid");
-            return SET_PROPERTY_ERROR ;
+            return SET_PROPERTY_ERROR;
         }
-        gridStyles[i] = curValue ;
+        gridStyles[i] = curValue;
     }
 
     status[0] = setGraphicObjectProperty(pobjUID, gridColorPropertiesNames[0], &gridStyles[0], jni_int, 1);
@@ -92,7 +92,7 @@ int set_grid_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valu
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"grid");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
         return SET_PROPERTY_ERROR;
     }
 

@@ -12,7 +12,7 @@
 
 ##########
 ### Makefile included stuff
-### Target, variable, suffixes which are supposed to be usefull in every makefile.am
+### Target, variable, suffixes which are supposed to be useful in every makefile.am
 ##########
 
 # Where all the Scilab stuff is installed (macros, help, ...)

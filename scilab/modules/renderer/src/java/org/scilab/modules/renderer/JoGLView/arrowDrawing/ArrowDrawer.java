@@ -54,10 +54,10 @@ public class ArrowDrawer {
     private static final double APEX_ANGLE = 40.0;
 
     /** The cosine of the apex's half-angle. */
-    private static final double COS_HALF_ANGLE = Math.cos(Math.toRadians(0.5*APEX_ANGLE));
+    private static final double COS_HALF_ANGLE = Math.cos(Math.toRadians(0.5 * APEX_ANGLE));
 
     /** The sine of the apex's half-angle. */
-    private static final double SIN_HALF_ANGLE = Math.sin(Math.toRadians(0.5*APEX_ANGLE));
+    private static final double SIN_HALF_ANGLE = Math.sin(Math.toRadians(0.5 * APEX_ANGLE));
 
     /** The reduction ratio: the size of an arrow relative to the Axes size. */
     private static final double REDUCTION_RATIO = 0.02;
@@ -94,7 +94,7 @@ public class ArrowDrawer {
      * @return the arrow size in pixels.
      */
     private double computeArrowPixelSize(Axes parentAxes, ElementsBuffer vertices, IndicesBuffer segmentIndices, int numSegments, double arrowSize,
-        double thickness, boolean isSegs) {
+                                         double thickness, boolean isSegs) {
 
         double averageNorm = 0.0;
         double pixelArrowSize = 0.0;
@@ -110,8 +110,8 @@ public class ArrowDrawer {
         double[] axesDims = new double[2];
 
         /* To do: add a function to AxesDrawer to compute the Axes box's window coordinate dimensions */
-        axesDims[0] = axesBounds[2]*(1.0-margins[0]-margins[1]);
-        axesDims[1] = axesBounds[3]*(1.0-margins[2]-margins[3]);
+        axesDims[0] = axesBounds[2] * (1.0 - margins[0] - margins[1]);
+        axesDims[1] = axesBounds[3] * (1.0 - margins[2] - margins[3]);
 
         axesDims[0] *= (double) canvasWidth;
         axesDims[1] *= (double) canvasHeight;
@@ -141,10 +141,10 @@ public class ArrowDrawer {
      * @param isColored specifies whether the object is drawn with per-arrow colors.
      * @param lineColor the line color used for all the arrows (used if isColored is equal to false).
      * @throws org.scilab.forge.scirenderer.SciRendererException if drawing fails.
-     * @throws ObjectRemovedException 
+     * @throws ObjectRemovedException
      */
     public void drawArrows(String parentAxesId, String identifier, double arrowSize, double lineThickness, boolean isSegs,
-        boolean isColored, int lineColor) throws SciRendererException, ObjectRemovedException, OutOfMemoryException {
+                           boolean isColored, int lineColor, boolean isStripped) throws SciRendererException, ObjectRemovedException, OutOfMemoryException {
 
         DataManager dataManager = visitor.getDataManager();
         ColorMap colorMap = visitor.getColorMap();
@@ -153,7 +153,7 @@ public class ArrowDrawer {
         IndicesBuffer segmentIndices = dataManager.getWireIndexBuffer(identifier);
         IndicesBuffer triangleIndices = dataManager.getIndexBuffer(identifier);
 
-        drawArrows(parentAxesId, vertices, dataManager.getColorBuffer(identifier), segmentIndices, triangleIndices, arrowSize, lineThickness, isSegs, isColored, lineColor);
+        drawArrows(parentAxesId, vertices, dataManager.getColorBuffer(identifier), segmentIndices, triangleIndices, arrowSize, lineThickness, isSegs, isColored, lineColor, isStripped);
     }
 
     /**
@@ -169,14 +169,14 @@ public class ArrowDrawer {
      * @throws org.scilab.forge.scirenderer.SciRendererException if drawing fails.
      */
     public void drawArrows(String parentAxesId, ElementsBuffer vertices, IndicesBuffer segmentIndices,
-        double arrowSize, double lineThickness, int lineColor) throws SciRendererException {
+                           double arrowSize, double lineThickness, int lineColor, boolean isStripped) throws SciRendererException {
 
         /*
          * No colors are specified as a unique color is used for all the segments.
          * As arrow tip vertices are written to the drawer's vertex buffer, triangle indices
          * are also set to null.
          */
-        drawArrows(parentAxesId, vertices, null, segmentIndices, null, arrowSize, lineThickness, false, false, lineColor);
+        drawArrows(parentAxesId, vertices, null, segmentIndices, null, arrowSize, lineThickness, false, false, lineColor, isStripped);
     }
 
     /**
@@ -197,11 +197,16 @@ public class ArrowDrawer {
      * @throws org.scilab.forge.scirenderer.SciRendererException if drawing fails.
      */
     private void drawArrows(String parentAxesId, ElementsBuffer vertices, ElementsBuffer colors, IndicesBuffer segmentIndices, IndicesBuffer triangleIndices,
-        double arrowSize, double lineThickness, boolean isSegs, boolean isColored, int lineColor) throws SciRendererException {
+                            double arrowSize, double lineThickness, boolean isSegs, boolean isColored, int lineColor, boolean isStripped) throws SciRendererException {
 
         int offset = vertices.getElementsSize();
 
-        int numSegments = segmentIndices.getData().capacity() / 2;
+        int numSegments;
+        if (isStripped) {
+            numSegments = segmentIndices.getData().capacity() - 1;
+        } else {
+            numSegments = segmentIndices.getData().capacity() / 2;
+        }
 
         /* Do not draw if there are no segments */
         if (numSegments == 0) {
@@ -223,13 +228,13 @@ public class ArrowDrawer {
          */
         if (triangleIndices != null) {
             fillArrowVertexData(projection, vertices, segmentIndices,
-                numSegments, triangleIndices, arrowSize);
+                                numSegments, triangleIndices, arrowSize, isStripped);
 
             /* Forces update */
             vertices.setData(vertices.getData(), offset);
         } else {
             fillArrowVertexData(projection, vertices, segmentIndices,
-                numSegments, drawerArrowVertices, arrowSize);
+                                numSegments, drawerArrowVertices, arrowSize, isStripped);
         }
 
         DefaultGeometry arrowTips = new DefaultGeometry();
@@ -273,7 +278,7 @@ public class ArrowDrawer {
      * @param arrowSize the arrow size (in pixels).
      */
     private void fillArrowVertexData(Transformation projection, ElementsBuffer vertices, IndicesBuffer segmentIndices,
-        int numSegments, IndicesBuffer triangleIndices, double arrowSize) {
+                                     int numSegments, IndicesBuffer triangleIndices, double arrowSize, final boolean isStripped) {
         int[] segmentVertexOffsets = new int[2];
         int[] triVertexOffsets  = new int[3];
         int offset = vertices.getElementsSize();
@@ -282,12 +287,17 @@ public class ArrowDrawer {
         FloatBuffer vertexData = vertices.getData();
 
         for (int i = 0; i < numSegments; i++) {
-            segmentVertexOffsets[0] = offset*segmentIndexData.get(2*i);
-            segmentVertexOffsets[1] = offset*segmentIndexData.get(2*i+1);
+            if (isStripped) {
+                segmentVertexOffsets[0] = offset * segmentIndexData.get(i);
+                segmentVertexOffsets[1] = offset * segmentIndexData.get(i + 1);
+            } else {
+                segmentVertexOffsets[0] = offset * segmentIndexData.get(2 * i);
+                segmentVertexOffsets[1] = offset * segmentIndexData.get(2 * i + 1);
+            }
 
-            triVertexOffsets[0] = offset*triangleIndexData.get(3*i);
-            triVertexOffsets[1] = offset*triangleIndexData.get(3*i+1);
-            triVertexOffsets[2] = offset*triangleIndexData.get(3*i+2);
+            triVertexOffsets[0] = offset * triangleIndexData.get(3 * i);
+            triVertexOffsets[1] = offset * triangleIndexData.get(3 * i + 1);
+            triVertexOffsets[2] = offset * triangleIndexData.get(3 * i + 2);
 
             /* Vertex data is specified as both the input and output vertex buffer as it contains both the segment and arrow tip vertices. */
             computeAndWriteSingleArrowVertexData(projection, vertexData, vertexData, segmentVertexOffsets, triVertexOffsets, offset, arrowSize);
@@ -305,7 +315,7 @@ public class ArrowDrawer {
      * @param arrowSize the arrow size (in pixels).
      */
     private void fillArrowVertexData(Transformation projection, ElementsBuffer vertices, IndicesBuffer segmentIndices,
-        int numSegments, ElementsBuffer arrowVertices, double arrowSize) {
+                                     int numSegments, ElementsBuffer arrowVertices, double arrowSize, final boolean isStripped) {
         int[] segmentVertexOffsets = new int[2];
         int[] triVertexOffsets = new int[3];
         int offset = vertices.getElementsSize();
@@ -319,23 +329,28 @@ public class ArrowDrawer {
         /* Check whether resizing is required and accordingly get vertex data */
         if (isResizeRequired(arrowVertices, numSegments)) {
             arrowOffset = 4;
-            arrowVertexData = FloatBuffer.allocate(arrowOffset*3*numSegments);
+            arrowVertexData = FloatBuffer.allocate(arrowOffset * 3 * numSegments);
         } else {
             arrowOffset = arrowVertices.getElementsSize();
             arrowVertexData = arrowVertices.getData();
         }
 
         for (int i = 0; i < numSegments; i++) {
-            segmentVertexOffsets[0] = segmentIndexData.get(2*i)*offset;
-            segmentVertexOffsets[1] = segmentIndexData.get(2*i+1)*offset;
+            if (isStripped) {
+                segmentVertexOffsets[0] = offset * segmentIndexData.get(i);
+                segmentVertexOffsets[1] = offset * segmentIndexData.get(i + 1);
+            } else {
+                segmentVertexOffsets[0] = offset * segmentIndexData.get(2 * i);
+                segmentVertexOffsets[1] = offset * segmentIndexData.get(2 * i + 1);
+            }
 
             triVertexOffsets[0] = bufferOffset;
-            triVertexOffsets[1] = bufferOffset+arrowOffset;
-            triVertexOffsets[2] = bufferOffset+2*arrowOffset;
+            triVertexOffsets[1] = bufferOffset + arrowOffset;
+            triVertexOffsets[2] = bufferOffset + 2 * arrowOffset;
 
             computeAndWriteSingleArrowVertexData(projection, vertexData, arrowVertexData, segmentVertexOffsets, triVertexOffsets, arrowOffset, arrowSize);
 
-            bufferOffset += 3*arrowOffset;
+            bufferOffset += 3 * arrowOffset;
         }
 
         arrowVertices.setData(arrowVertexData, arrowOffset);
@@ -356,7 +371,7 @@ public class ArrowDrawer {
         } else {
             int numPreviousVertices = arrowVertices.getData().capacity() / arrowVertices.getElementsSize();
 
-            if (3*numSegments != numPreviousVertices) {
+            if (3 * numSegments != numPreviousVertices) {
                 resize = true;
             }
         }
@@ -377,11 +392,11 @@ public class ArrowDrawer {
      * @param arrowSize the arrow size in pixels.
      */
     private void computeAndWriteSingleArrowVertexData(Transformation projection, FloatBuffer vertexData, FloatBuffer arrowVertexData,
-        int[] segmentVertexOffsets, int[] arrowVertexOffsets, int offset, double arrowSize) {
+            int[] segmentVertexOffsets, int[] arrowVertexOffsets, int offset, double arrowSize) {
 
         /* Compute the arrow tip vertices in window coordinates from the object coordinate segment vertices */
-        Vector3d v0 = new Vector3d(vertexData.get(segmentVertexOffsets[0]), vertexData.get(segmentVertexOffsets[0]+1), vertexData.get(segmentVertexOffsets[0]+2));
-        Vector3d v1 = new Vector3d(vertexData.get(segmentVertexOffsets[1]), vertexData.get(segmentVertexOffsets[1]+1), vertexData.get(segmentVertexOffsets[1]+2));
+        Vector3d v0 = new Vector3d(vertexData.get(segmentVertexOffsets[0]), vertexData.get(segmentVertexOffsets[0] + 1), vertexData.get(segmentVertexOffsets[0] + 2));
+        Vector3d v1 = new Vector3d(vertexData.get(segmentVertexOffsets[1]), vertexData.get(segmentVertexOffsets[1] + 1), vertexData.get(segmentVertexOffsets[1] + 2));
 
         v0 = projection.project(v0);
         v1 = projection.project(v1);
@@ -391,21 +406,21 @@ public class ArrowDrawer {
         Vector3d[] singleArrowVertices = computeArrowVertices(v1, direction, arrowSize);
 
         arrowVertexData.put(arrowVertexOffsets[0], (float) singleArrowVertices[0].getX());
-        arrowVertexData.put(arrowVertexOffsets[0]+1, (float) singleArrowVertices[0].getY());
-        arrowVertexData.put(arrowVertexOffsets[0]+2, (float) singleArrowVertices[0].getZ());
+        arrowVertexData.put(arrowVertexOffsets[0] + 1, (float) singleArrowVertices[0].getY());
+        arrowVertexData.put(arrowVertexOffsets[0] + 2, (float) singleArrowVertices[0].getZ());
 
         arrowVertexData.put(arrowVertexOffsets[1], (float) singleArrowVertices[1].getX());
-        arrowVertexData.put(arrowVertexOffsets[1]+1, (float) singleArrowVertices[1].getY());
-        arrowVertexData.put(arrowVertexOffsets[1]+2, (float) singleArrowVertices[1].getZ());
+        arrowVertexData.put(arrowVertexOffsets[1] + 1, (float) singleArrowVertices[1].getY());
+        arrowVertexData.put(arrowVertexOffsets[1] + 2, (float) singleArrowVertices[1].getZ());
 
         arrowVertexData.put(arrowVertexOffsets[2], (float) singleArrowVertices[2].getX());
-        arrowVertexData.put(arrowVertexOffsets[2]+1, (float) singleArrowVertices[2].getY());
-        arrowVertexData.put(arrowVertexOffsets[2]+2, (float) singleArrowVertices[2].getZ());
+        arrowVertexData.put(arrowVertexOffsets[2] + 1, (float) singleArrowVertices[2].getY());
+        arrowVertexData.put(arrowVertexOffsets[2] + 2, (float) singleArrowVertices[2].getZ());
 
         if (offset == 4) {
-            arrowVertexData.put(arrowVertexOffsets[0]+3, 1.0f);
-            arrowVertexData.put(arrowVertexOffsets[1]+3, 1.0f);
-            arrowVertexData.put(arrowVertexOffsets[2]+3, 1.0f);
+            arrowVertexData.put(arrowVertexOffsets[0] + 3, 1.0f);
+            arrowVertexData.put(arrowVertexOffsets[1] + 3, 1.0f);
+            arrowVertexData.put(arrowVertexOffsets[2] + 3, 1.0f);
         }
     }
 
@@ -424,11 +439,11 @@ public class ArrowDrawer {
         for (int i = 0; i < numSegments; i++) {
             int i0;
             int i1;
-            i0 = indexData.get(2*i);
-            i1 = indexData.get(2*i+1);
+            i0 = indexData.get(2 * i);
+            i1 = indexData.get(2 * i + 1);
 
-            Vector3d v0 = new Vector3d(vertexData.get(i0*offset), vertexData.get(i0*offset+1), vertexData.get(i0*offset+2));
-            Vector3d v1 = new Vector3d(vertexData.get(i1*offset), vertexData.get(i1*offset+1), vertexData.get(i1*offset+2));
+            Vector3d v0 = new Vector3d(vertexData.get(i0 * offset), vertexData.get(i0 * offset + 1), vertexData.get(i0 * offset + 2));
+            Vector3d v1 = new Vector3d(vertexData.get(i1 * offset), vertexData.get(i1 * offset + 1), vertexData.get(i1 * offset + 2));
 
             v0 = projection.project(v0);
             v1 = projection.project(v1);
@@ -459,7 +474,7 @@ public class ArrowDrawer {
      * @return the arrow size in pixels.
      */
     private double computeArrowPixelSize(double averageNorm, double[] axesDims, double xRange, double yRange, boolean isSegs,
-        double thickness, double arrowSize) {
+                                         double thickness, double arrowSize) {
 
         if (arrowSize < 0.0) {
             /* If the size is negative, the arrow size depends on the average length of the segments */

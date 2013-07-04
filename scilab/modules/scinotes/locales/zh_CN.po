@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-16 15:46+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-03-03 09:06+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: \n"
 
 #, c-format
@@ -117,8 +117,8 @@ msgstr "关闭所有文档"
 msgid "Close All But This"
 msgstr "关闭其他文档"
 
-msgid "Exit"
-msgstr "退出"
+msgid "Exit Scinotes"
+msgstr "退出Scinotes"
 
 msgid "Edit"
 msgstr "编辑"
@@ -243,14 +243,26 @@ msgstr "当前文件编码"
 msgid "Line Endings"
 msgstr "行结束符"
 
+msgid "Preferences"
+msgstr "首选项"
+
+msgid "Set font"
+msgstr "设置字体"
+
+msgid "Set colors"
+msgstr "设置颜色"
+
+msgid "Scinotes General settings"
+msgstr "Scinotes一般设置"
+
 msgid "Auto-completion on"
-msgstr ""
+msgstr "自动补全开"
 
 msgid "(, [, ..."
-msgstr ""
+msgstr "(, [, ..."
 
 msgid "if, function, ..."
-msgstr ""
+msgstr "if, function, ..."
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
 msgstr "行号；关；普通；Whereami兼容"
@@ -300,8 +312,8 @@ msgstr "保存并执行所有文件"
 msgid "?"
 msgstr "？"
 
-msgid "SciNotes help"
-msgstr "SciNotes帮助"
+msgid "Scinotes help"
+msgstr "Scinotes帮助"
 
 msgid "Help on ;Help on selection"
 msgstr "帮助关于；所选内容帮助"
@@ -316,106 +328,109 @@ msgid "Complete"
 msgstr "补全"
 
 msgid "Display"
-msgstr ""
+msgstr "显示"
 
 msgid "Header"
-msgstr ""
+msgstr "头部"
 
 msgid "Autosave"
-msgstr ""
+msgstr "自动保存"
 
 msgid "Editor"
-msgstr ""
+msgstr "编辑器"
 
-msgid "Use SciNotes"
-msgstr ""
+msgid "Use Scinotes"
+msgstr "使用Scinotes"
 
 msgid "External editor: "
-msgstr ""
+msgstr "外部编辑器: "
 
 msgid "(Don't forget to quote path containing white spaces)"
-msgstr ""
+msgstr "(不要忘记含空格的路径要加双引号)"
 
 msgid "Scilab command: "
-msgstr ""
-
-msgid "SciNotes General settings"
-msgstr ""
+msgstr "Scilab命令: "
 
 msgid "Restore previous session on start-up"
-msgstr ""
+msgstr "启动时恢复前一次会话"
 
 msgid "Add carriage return at the end of the file."
-msgstr ""
+msgstr "文件末尾添加回车."
 
 msgid "Number of recently opened files to display: "
-msgstr ""
+msgstr "显示最近打开文件数目: "
 
 msgid "Default file encoding: "
-msgstr ""
+msgstr "默认文件编码: "
 
 msgid "Default End-Of-Line: "
-msgstr ""
+msgstr "默认行结束符 "
 
 msgid "General display options"
-msgstr ""
+msgstr "一般显示选项"
 
 msgid "Highlight current line: "
-msgstr ""
+msgstr "高亮当前行: "
 
 msgid "Show line numbers: "
-msgstr ""
+msgstr "显示行号: "
 
 msgid "Whereami compatible"
-msgstr ""
+msgstr "兼容Whereami"
 
 msgid "Normal"
-msgstr ""
+msgstr "普通"
 
 msgid "Wrap lines"
+msgstr "自动换行"
+
+msgid "Background color: "
+msgstr ""
+
+msgid "Cursor color: "
 msgstr ""
 
 msgid "Keywords"
-msgstr ""
+msgstr "关键词"
 
 msgid "Enable keywords colorization"
-msgstr ""
+msgstr "关键词彩色显示"
 
 msgid "Set syntax Colors"
 msgstr ""
 
 msgid "Highlight corresponding brackets"
-msgstr ""
+msgstr "高亮匹配括号"
 
 msgid "Color: "
-msgstr ""
+msgstr "颜色: "
 
 msgid "Highlight on mouse over"
-msgstr ""
+msgstr "鼠标悬停时高亮"
 
 msgid "Style: "
-msgstr ""
+msgstr "样式: "
 
 msgid "Filled"
-msgstr ""
+msgstr "填充"
 
 msgid "Framed"
-msgstr ""
+msgstr "边框"
 
 msgid "Underlined"
-msgstr ""
+msgstr "下划线"
 
 msgid "Highlight corresponding keywords (e.g. if ... end)"
-msgstr ""
+msgstr "高亮匹配关键词 (e.g. if ... end)"
 
 msgid "Tabulation and Indentation"
-msgstr ""
+msgstr "制表与缩进"
 
 msgid "Tabulation size: "
-msgstr ""
+msgstr "制表符大小: "
 
 msgid "Use space"
-msgstr ""
+msgstr "使用空格Use space"
 
 msgid "Representation: "
 msgstr ""
@@ -430,52 +445,52 @@ msgid "Vertical rule"
 msgstr "垂直线"
 
 msgid "Enable auto indentation"
-msgstr ""
+msgstr "启用自动缩进"
 
 msgid "Indent size: "
-msgstr ""
+msgstr "缩进大小: "
 
 msgid "Enable autosave in Scinotes"
-msgstr ""
+msgstr "Scinotes启用自动保存"
 
 msgid "Save options"
-msgstr ""
+msgstr "保存选项"
 
 msgid "Save every "
-msgstr ""
+msgstr "保存每个 "
 
 msgid " minutes "
-msgstr ""
+msgstr " 分钟 "
 
 msgid "Close options"
-msgstr ""
+msgstr "关闭选项"
 
 msgid "Delete automatically saved files"
-msgstr ""
+msgstr "删除自动保存的文件"
 
 msgid "Filename"
-msgstr ""
+msgstr "文件名"
 
 msgid "Append filename with: "
-msgstr ""
+msgstr "文件名附加上: "
 
 msgid "Replace extension with: "
-msgstr ""
+msgstr "扩展名替换为: "
 
 msgid "Location"
-msgstr ""
+msgstr "位置"
 
 msgid "Source file directory"
-msgstr ""
+msgstr "源文件目录"
 
 msgid "Single directory"
 msgstr ""
 
 msgid "Choose an autosave directory"
-msgstr ""
+msgstr "选择自动保存目录"
 
 msgid "Default header"
-msgstr ""
+msgstr "默认头部内容"
 
 msgid "Add a default header to new file"
 msgstr ""
@@ -491,6 +506,18 @@ msgstr "SciNotes"
 
 msgid "Error while reading the String"
 msgstr "读取字符串时出错"
+
+#, c-format
+msgid "File not found: %s"
+msgstr ""
+
+#, c-format
+msgid "I/O error: %s"
+msgstr ""
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr ""
 
 msgid "Source of '"
 msgstr "来源之‘"
@@ -515,6 +542,9 @@ msgstr "使用FOP导出代码时发生错误"
 
 msgid "An error occurred when printing"
 msgstr "打印出错"
+
+msgid "Exit"
+msgstr "退出"
 
 msgid "Tools"
 msgstr "工具"
@@ -612,6 +642,9 @@ msgstr "从头开始运行..."
 msgid "Execute File Into Scilab"
 msgstr "载入Scilab执行"
 
+msgid "SciNotes help"
+msgstr "SciNotes帮助"
+
 msgid "Help on the current keyword"
 msgstr "当前关键字帮助"
 
@@ -622,7 +655,7 @@ msgid "Help on selected text or keyword"
 msgstr "所选文本或关键字帮助"
 
 msgid "Help about '"
-msgstr "帮助之‘"
+msgstr "帮助'"
 
 msgid "Find:"
 msgstr "查找:"
@@ -675,6 +708,7 @@ msgstr "替换"
 msgid "Replace All"
 msgstr "全部替换"
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "不正确的正则表达式：%s"
 
@@ -690,15 +724,13 @@ msgstr "已经到达文档尾部"
 msgid "You have reached the beginning of the document"
 msgstr "已到文档开头"
 
+#, c-format
 msgid "String %s not found"
 msgstr "没有发现字符串 %s"
 
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
+#, c-format
+msgid "The file %s does not exist. Do you want to create it?"
 msgstr ""
-"文件%s不存在\n"
-"您想创建它吗？"
 
 msgid "close this tab"
 msgstr "关闭这个标签页"
@@ -706,17 +738,13 @@ msgstr "关闭这个标签页"
 msgid "This file"
 msgstr "文件"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
-msgstr " 自上次保存已经被修改，保存改动么？"
-
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
 msgstr ""
-"文件 %s 已经被另一个程序修改！\n"
-" 覆盖？"
+
+#, c-format
+msgid "The file %s has been modified by another program ! Overwrite it ?"
+msgstr ""
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "警告：此文件已被其他程序修改"
@@ -795,12 +823,14 @@ msgstr "打开宏代码 "
 msgid "Show the definition of the macro "
 msgstr "显示宏定义 "
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "行%s，列%s。行%s处函数‘%s’。"
 
 msgid "Unknown function"
 msgstr "未知函数"
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr "行%s，列%s。"
 
@@ -816,6 +846,7 @@ msgstr "不能保存此文件"
 msgid "The file could not be converted."
 msgstr "不能转换此文件"
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s 是目录。"
 
@@ -840,6 +871,7 @@ msgstr "没有选择文本"
 msgid "No text to execute."
 msgstr "没有文本要执行"
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr "文件编码实际是%s，并会已%s编码保存。继续？"
@@ -850,12 +882,14 @@ msgstr "编码问题"
 msgid "Cannot guess the file encoding."
 msgstr "不能猜出文件编码"
 
+#, c-format
 msgid "Cannot save the file %s... stop the backup process"
-msgstr ""
+msgstr "不能保存文件%s... 停止备份"
 
 msgid "Backup finished..."
-msgstr ""
+msgstr "备份结束..."
 
+#, c-format
 msgid "%s occurences found."
 msgstr ""
 
@@ -973,12 +1007,15 @@ msgstr "搜索文件..."
 msgid "Search in Files..."
 msgstr "文件中搜索..."
 
+#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr "<html>%s <i>(%s匹配)</i></html>"
 
+#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr "<html>%s <i>(%s匹配)</i></html>"
 
+#, c-format
 msgid "Elapsed time: %s sec."
 msgstr "运行时间：%s秒"
 
@@ -1036,3 +1073,21 @@ msgstr "选择搜索基目录"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab模块'%s'尚未安装。\n"
+
+msgid "the last error did not occur inside a library function."
+msgstr ""
+
+msgid " on line "
+msgstr ""
+
+msgid "opening file "
+msgstr ""
+
+msgid " of the source file of the function "
+msgstr ""
+
+msgid "the source file of the function "
+msgstr ""
+
+msgid " was not found in any library path"
+msgstr ""

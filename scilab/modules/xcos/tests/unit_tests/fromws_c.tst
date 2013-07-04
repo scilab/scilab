@@ -5,11 +5,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 
-loadXcosLibs();
 
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/fromws_c.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/fromws_c.zcos"));
 
 V = struct('time', (1:100)', 'values', sin((0:0.1:9.9)'));
 scicos_simulate(scs_m, list());

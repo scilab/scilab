@@ -12,7 +12,7 @@
 
 function demo_nmplot_qvariable()
 
-    filename = 'nmplot_quadratic.variable.sce';
+    filename = "nmplot_quadratic.variable.sce";
     dname = get_absolute_file_path(filename);
 
     mprintf(_("Illustrates that the variable-shape Nelder-Mead algorithm performs well on a quadratic test case.\n"));
@@ -55,11 +55,11 @@ function demo_nmplot_qvariable()
     // Plot the contours of the cost function and the simplex history
     mprintf(_("Plotting contour (please wait) ...\n"));
     nm = nmplot_configure(nm, "-verbose", 0);
-    xmin = -2.0 ; 
-    xmax = 4.0 ; 
-    ymin = -2.0 ; 
-    ymax = 4.0 ; 
-    nx = 50 ; 
+    xmin = -2.0 ;
+    xmax = 4.0 ;
+    ymin = -2.0 ;
+    ymax = 4.0 ;
+    nx = 50 ;
     ny = 50;
     xdata=linspace(xmin,xmax,nx);
     ydata=linspace(ymin,ymax,ny);
@@ -80,4 +80,5 @@ demo_nmplot_qvariable();
 clear demo_nmplot_qvariable;
 
 
-
+
+

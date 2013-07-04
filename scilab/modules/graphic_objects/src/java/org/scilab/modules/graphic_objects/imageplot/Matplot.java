@@ -13,6 +13,7 @@
 package org.scilab.modules.graphic_objects.imageplot;
 
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 /**
@@ -20,12 +21,12 @@ import org.scilab.modules.graphic_objects.graphicObject.Visitor;
  * @author Manuel JULIACHS
  */
 public class Matplot extends Imageplot {
-	//	 Methods: to be done
-	
-	/** Constructor */
-	public Matplot() {
-		super();
-	}
+    //	 Methods: to be done
+
+    /** Constructor */
+    public Matplot() {
+        super();
+    }
 
     @Override
     public void accept(Visitor visitor) throws ObjectRemovedException {
@@ -33,10 +34,10 @@ public class Matplot extends Imageplot {
     }
 
     /**
-	 * @return Type as String
-	 */
-	public String getType() {
-		return "Matplot";
-	}
+     * @return Type as String
+     */
+    public Integer getType() {
+        return GraphicObjectProperties.__GO_MATPLOT__;
+    }
 
 }

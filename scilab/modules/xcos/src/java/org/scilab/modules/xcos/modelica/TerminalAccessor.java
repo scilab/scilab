@@ -25,7 +25,7 @@ import org.scilab.modules.xcos.modelica.model.Terminal;
 
 /**
  * Class used to access fields of {@link Terminal}.
- * 
+ *
  * To get the typed data, use {@link #getData(TerminalAccessor, Terminal)}.
  */
 public enum TerminalAccessor {
@@ -295,6 +295,7 @@ public enum TerminalAccessor {
     /**
      * Event on model change
      */
+    @SuppressWarnings(value = { "serial" })
     public static class ChangeEvent extends EventObject {
         private final Terminal terminal;
         private final Object oldData;
@@ -302,7 +303,7 @@ public enum TerminalAccessor {
 
         /**
          * Default constructor.
-         * 
+         *
          * @param source
          *            the source
          * @param terminal
@@ -313,7 +314,7 @@ public enum TerminalAccessor {
          *            the new data
          */
         public ChangeEvent(TerminalAccessor source, Terminal terminal,
-                Object oldData, Object newData) {
+        Object oldData, Object newData) {
             super(source);
 
             this.terminal = terminal;
@@ -349,7 +350,7 @@ public enum TerminalAccessor {
     public static interface ChangeListener extends EventListener {
         /**
          * Called on change.
-         * 
+         *
          * @param event
          *            the event
          */
@@ -371,14 +372,14 @@ public enum TerminalAccessor {
 
         /**
          * Add a listener for a defined accessor
-         * 
+         *
          * @param field
          *            the accessor
          * @param listener
          *            the listener to add
          */
         public void addChangeListener(TerminalAccessor field,
-                ChangeListener listener) {
+        ChangeListener listener) {
             if (!listeners.containsKey(field)) {
                 listeners.put(field, new ArrayList<ChangeListener>());
             }
@@ -389,14 +390,14 @@ public enum TerminalAccessor {
 
         /**
          * Remove the listener from the listener list
-         * 
+         *
          * @param field
          *            the accessor
          * @param listener
          *            the listener
          */
         public void removeChangeListener(TerminalAccessor field,
-                ChangeListener listener) {
+                                         ChangeListener listener) {
             final List<ChangeListener> listenerList = listeners.get(field);
             if (listenerList != null) {
                 listenerList.remove(listener);
@@ -405,7 +406,7 @@ public enum TerminalAccessor {
 
         /**
          * Fire a change
-         * 
+         *
          * @param field
          *            the field
          * @param event
@@ -468,7 +469,7 @@ public enum TerminalAccessor {
 
     /**
      * Default constructor
-     * 
+     *
      * @param name
      *            the name
      * @param klass
@@ -484,7 +485,7 @@ public enum TerminalAccessor {
 
     /**
      * Get the typed data
-     * 
+     *
      * @param <T>
      *            the type
      * @param identifier
@@ -521,7 +522,7 @@ public enum TerminalAccessor {
 
     /**
      * Get the data for the current identifier.
-     * 
+     *
      * @param terminal
      *            the terminal data
      * @return the identifier data
@@ -530,7 +531,7 @@ public enum TerminalAccessor {
 
     /**
      * Set the data for the current identifier
-     * 
+     *
      * @param aValue
      *            the identifier new value
      * @param terminal
@@ -545,11 +546,11 @@ public enum TerminalAccessor {
     /**
      * Report a bound property update to any registered listeners. No event is
      * fired if old and new are equal and non-null.
-     * 
+     *
      * <p>
      * This is merely a convenience wrapper around the more general fireChange
      * method that takes {@code ChangeEvent} value.
-     * 
+     *
      * @param propertyName
      *            The programmatic name of the property that was changed.
      * @param oldValue
@@ -558,12 +559,12 @@ public enum TerminalAccessor {
      *            The new value of the property.
      */
     protected void firePropertyChange(Terminal propertyName, Object oldValue,
-            Object newValue) {
+                                      Object newValue) {
         if (oldValue != null && newValue != null && oldValue.equals(newValue)) {
             return;
         }
         pcs.fireChangeEvent(this, new ChangeEvent(this, propertyName, oldValue,
-                newValue));
+                            newValue));
     }
 
     /**
@@ -571,7 +572,7 @@ public enum TerminalAccessor {
      * be added more than once, and will be called as many times as it is added.
      * If <code>listener</code> is null, no exception is thrown and no action is
      * taken.
-     * 
+     *
      * @param listener
      *            The PropertyChangeListener to be added
      */

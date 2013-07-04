@@ -19,6 +19,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include "stricmp.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -32,14 +33,14 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_tics_direction_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tics_direction_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int ticksDirection = 0;
     int yNumberTicks = 0;
     int *piYNumberTicks = &yNumberTicks;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "tics_direction");
         return SET_PROPERTY_ERROR;
@@ -49,17 +50,17 @@ int set_tics_direction_property(void* _pvCtx, char* pobjUID, size_t stackPointer
 
     if (piYNumberTicks == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_direction");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_direction");
         return SET_PROPERTY_ERROR;
     }
 
     if (yNumberTicks == 1)
     {
-        if( isStringParamEqual( stackPointer, "top" ) )
+        if (stricmp((char*)_pvData, "top") == 0)
         {
             ticksDirection = 0;
         }
-        else if ( isStringParamEqual( stackPointer, "bottom" ) )
+        else if (stricmp((char*)_pvData, "bottom") == 0)
         {
             ticksDirection = 1;
         }
@@ -71,11 +72,11 @@ int set_tics_direction_property(void* _pvCtx, char* pobjUID, size_t stackPointer
     }
     else
     {
-        if( isStringParamEqual( stackPointer, "left" ) )
+        if (stricmp((char*)_pvData, "left") == 0)
         {
             ticksDirection = 2;
         }
-        else if ( isStringParamEqual( stackPointer, "right" ) )
+        else if (stricmp((char*)_pvData, "right") == 0)
         {
             ticksDirection = 3;
         }
@@ -94,7 +95,7 @@ int set_tics_direction_property(void* _pvCtx, char* pobjUID, size_t stackPointer
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_direction");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_direction");
         return SET_PROPERTY_ERROR;
     }
 }

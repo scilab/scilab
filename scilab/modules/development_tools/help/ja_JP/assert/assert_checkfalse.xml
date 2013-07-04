@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkfalse" xml:lang="ja">
+    <refnamediv>
+        <refname>assert_checkfalse</refname>
+        <refpurpose>条件が false であることを確認する.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            flag = assert_checkfalse ( condition )
+            flag = assert_checkfalse ( condition )
+            [flag,errmsg] = assert_checkfalse ( condition )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>condition:</term>
+                <listitem>
+                    <para> 論理値の行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag :</term>
+                <listitem>
+                    <para> 
+                        1行1列の論理値行列, 条件が falseの場合に %t,
+                        そうでない場合に %f
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>errmsg :</term>
+                <listitem>
+                    <para>
+                        1行1列の文字列行列,エラーメッセージ.
+                        flag==%t の場合, errmsg="".
+                        flag==%f の場合, errmsgにはエラーメッセージが代入されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>condition</literal> の全エントリがfalseの場合に
+            そのまま実行されます.
+        </para>
+        <para>
+            <literal>condition</literal>のエントリのどれかがtrueの場合に
+            エラーが発生します.
+            <literal>condition</literal>が論理値でない場合にエラーが発生します.
+        </para>
+        <para>
+            conditionのエントリのどれかがtrueの場合,
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        出力変数errmsgが使用されない場合,エラーが出力され,
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        出力変数errmsgが使用される場合,エラーは出力されません.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// テストはパスする
+assert_checkfalse ( %f );
+flag = assert_checkfalse ( %f )
+[flag,errmsg] = assert_checkfalse ( %f )
+[flag,errmsg] = assert_checkfalse ( [%f %f] );
+
+// テストは失敗する
+assert_checkfalse ( [%t %f] );
+flag = assert_checkfalse ( [%t %f] )
+// エラーは生成されない
+[flag,errmsg] = assert_checkfalse ( [%t %f] )
+
+// 誤ったコール
+assert_checkfalse ( "a" )
+
+   ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>関数が導入されました
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

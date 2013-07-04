@@ -1,0 +1,25 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012-2012 - SE - Sylvestre Ledru
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+
+
+m=spzeros(2,2);
+assert_checkequal(size(m),[2,2]);
+
+m=spzeros(2,3);
+assert_checkequal(size(m),[2,3]);
+
+a=rand(10,12);
+m=spzeros(a);
+assert_checkequal(size(m),[10,12]);
+assert_checkequal(sum(m),0);
+
+m=spzeros(3);
+assert_checkequal(size(m),[1,1]);
+
+
+assert_checkequal(sum(spzeros(1000,1000)),0);

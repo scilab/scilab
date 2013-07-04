@@ -10,12 +10,12 @@
 
 // Making object files
 // Interface file
-ifile='zallfi.o';
-ufiles=['/tmp/ex1c.o','/tmp/ex2f.o','/tmp/ex4f.o','/tmp/ex5f.o','/tmp/ex6c.o','/tmp/ex7f.o','/tmp/ex8c.o','/tmp/ex9f.o','/tmp/ex10f.o','/tmp/ex11c.o','/tmp/ex12c.o','/tmp/ex13c.o','/tmp/ex14c.o','/tmp/ex15c.o','/tmp/ex16c.o'];
-files=G_make([ifile,ufiles],'zallfi.dll');
+ifile="zallfi.o";
+ufiles=["/tmp/ex1c.o","/tmp/ex2f.o","/tmp/ex4f.o","/tmp/ex5f.o","/tmp/ex6c.o","/tmp/ex7f.o","/tmp/ex8c.o","/tmp/ex9f.o","/tmp/ex10f.o","/tmp/ex11c.o","/tmp/ex12c.o","/tmp/ex13c.o","/tmp/ex14c.o","/tmp/ex15c.o","/tmp/ex16c.o"];
+files=G_make([ifile,ufiles],"zallfi.dll");
 //2-Link object files .o with addinter
 //addinter(files,'intex1',intex1_funs);
-exec('zallfi.sce');
+exec("zallfi.sce");
 //Run Scilab functions:
 a=[1,2,3];b=[4,5,6];
 c=ext1c(a,b);
@@ -37,29 +37,29 @@ y(1:incy:n*incy)=y(1:incy:n*incy)+a*x(1:incx:n*incx);
 if norm(ynew-y) > %eps then pause,end
 
 //Run Scilab functions:
-sys=ssrand(2,2,3,list('co',1));
+sys=ssrand(2,2,3,list("co",1));
 n=contrb(sys,0.01)
 if n <> 1 then pause,end
 
 //Run Scilab functions:
 a=1:5;b=-a;c=ones(3,3);
-[a,b,c,d]=foobar('mul',a,b,c)
-[a,b,c,d]=foobar('add',a,b,c)
+[a,b,c,d]=foobar("mul",a,b,c)
+[a,b,c,d]=foobar("add",a,b,c)
 
 
-w=['this' 'is'; 'naw' 'gaad']
+w=["this" "is"; "naw" "gaad"]
 rep=calc6a(w);
-if rep<>['this' 'is'; 'now' 'good'] then pause,end;
+if rep<>["this" "is"; "now" "good"] then pause,end;
 
 //calc5: creation of a character string matrix.
 a=calc6b();
-a1='char '; a1=matrix(a1(ones(1,6))+string(0:5),3,2);
+a1="char "; a1=matrix(a1(ones(1,6))+string(0:5),3,2);
 if a<>a1 then pause,end
 
 //Run Scilab functions:
-if calc('one')<>1 then pause,end
-if calc('two')<>2 then pause,end
-if calc('other')<>-1 then pause,end
+if calc("one")<>1 then pause,end
+if calc("two")<>2 then pause,end
+if calc("other")<>-1 then pause,end
 
 
 //calc8: matrix of integer type created by C function (malloc and free).
@@ -69,7 +69,7 @@ if norm(a - matrix(0:14,3,5)) > %eps then pause,end
 //calc7: function with two optional values, a string and a scilab variable.
 bb=33;  //scilab optional variable
 [a,b,c,d]=calc9(10);
-if c<>'toto' then pause,end
+if c<>"toto" then pause,end
 if norm(d-[2,4,6,8])> %eps then pause,end
 if b<>bb then pause,end
 

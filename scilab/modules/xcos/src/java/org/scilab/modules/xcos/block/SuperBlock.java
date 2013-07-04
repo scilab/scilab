@@ -69,6 +69,7 @@ import com.mxgraph.util.mxEventObject;
  */
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
+@SuppressWarnings(value = { "serial" })
 public final class SuperBlock extends BasicBlock {
     /**
      * The interfunction name (linked to Xcos-core)

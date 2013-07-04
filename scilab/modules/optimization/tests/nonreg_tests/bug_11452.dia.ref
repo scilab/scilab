@@ -25,6 +25,4 @@ endfunction
 stp=[1.d-10,1.d-10,1.d-5,100,0,100];
 Diag=[1;1];
 [xsol,v]=lsqrsolve([100;100],f1,4,stp,Diag);
-lsqrsolve : Le cosinus de l'angle entre fvec et n'importe quelle colonne du Jacobien est au plus gtol en valeur absolue.
-
 assert_checkalmostequal(xsol,a\b);

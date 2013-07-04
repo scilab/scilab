@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="select">
+    <refnamediv>
+        <refname>select</refname>
+        <refpurpose>Mot-clé utilisé dans une structure select-case-else  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>
+            select variable
+            case valeur1 then 
+            instructions 1
+            case valeur2 then 
+            instructions 2
+            ...  
+            case valeurn then 
+            instructions n
+            [else instructions]
+            end
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>variable</term>
+                <listitem>
+                    <para>
+                        variable dont la valeur doit être comparée.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>valeur1, ..., valeurn</term>
+                <listitem>
+                    <para>
+                        Valeurs de <literal>variable</literal>pour lesquelles il existe un bloc d'instruction associé <literal>instructions 1, ..., instructions n</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>instructions</term>
+                <listitem>
+                    <para>
+                        Bloc d'instructions valides.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Mot-clé utilisé dans une structure <literal>select ... case</literal>, à utiliser de la façon suivante :
+        </para>
+        <para>
+            Notes :
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    La seule contrainte est que chaque mot-clé <literal>then</literal> soit sur la même ligne que le <literal>case</literal> correspondant.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Le mot-clé <literal>then</literal> peut être remplacé par un passage à la ligne ou une virgule.
+                    Les <literal>instructions1</literal> sont exécutées si <literal>expr1=expr</literal>, etc. 
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            En accord avec les conventions de codage pour le langage de porgrammation Scilab, il est recommandé de :
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Commencer chaque instruction sur une nouvelle ligne.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Ne pas écrire plus d'une instruction simple par ligne.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Séparer les instructions composées sur plusieurs lignes.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Par exemple, utiliser :
+        </para>
+        <programlisting role=""><![CDATA[
+A = 2
+select A
+case 1 then
+    disp(1)
+case 2 then
+    disp(2)
+else
+    disp(3)
+end
+]]></programlisting>
+        <para>
+            plutôt que
+        </para>
+        <programlisting role=""><![CDATA[
+A = 2;select A case 1 then disp(1); case 2 then disp(2); else  disp(3); end
+]]></programlisting>
+        <para>
+            Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k..
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+while %t do
+  n=round(10*rand(1,1))
+  select n
+  case 0 then 
+    disp(0)
+  case 1 then
+    disp(1)
+  else
+    break
+  end
+end
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="while">while</link>
+            </member>
+            <member>
+                <link linkend="for">for</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

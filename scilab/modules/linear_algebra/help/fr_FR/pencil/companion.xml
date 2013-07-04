@@ -10,28 +10,30 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="companion">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="companion">
     <refnamediv>
         <refname>companion</refname>
-        <refpurpose> companion matrix</refpurpose>
+        <refpurpose>matrice compagnon  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Séquence d'appel</title>
         <synopsis>A=companion(p)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>p</term>
+                <term>p  </term>
                 <listitem>
-                    <para>polynomial or vector of polynomials</para>
+                    <para>polynôme ou vecteur de polynômes
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>A</term>
+                <term>A  </term>
                 <listitem>
-                    <para>square matrix</para>
+                    <para>matrice carrée
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,19 +41,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            Returns a matrix <literal>A</literal> with characteristic polynomial equal
-            to <literal>p</literal> if <literal>p</literal> is monic. If <literal>p</literal> is not monic
-            the characteristic polynomial of <literal>A</literal> is equal to
-            <literal>p/c</literal> where <literal>c</literal> is the coefficient of largest degree
-            in <literal>p</literal>.
+            Renvoie une matrice <literal>A</literal> dont le polynôme caractéristique est
+            <literal>p</literal> si <literal>p</literal> est unitaire (le coefficient de plus haut degré est égal à un). Si <literal>p</literal> n'est pas unitaire
+            le polynôme caractéristique de <literal>A</literal> est égal à
+            <literal>p/c</literal> où <literal>c</literal> est le coefficient de plus haut degré de <literal>p</literal>.
         </para>
         <para>
-            If <literal>p</literal> is a vector of monic polynomials, <literal>A</literal> is block diagonal,
-            and the characteristic polynomial of the ith block is <literal>p(i)</literal>.
+            Si <literal>p</literal> est un vecteur de polynômes unitaires, <literal>A</literal> est bloc-diagonale,
+            et le polynôme caractéristique du i-ème bloc est égal à <literal>p(i)</literal>.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 p=poly([1,2,3,4,1],'s','c')
@@ -61,7 +62,7 @@ spec(companion(p))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="spec">spec</link>

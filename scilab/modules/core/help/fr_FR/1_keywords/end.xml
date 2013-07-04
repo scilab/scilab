@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="end">
+    <refnamediv>
+        <refname>end</refname>
+        <refpurpose>mot-clé end  </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Utilisé à la fin des boucles ou des structures conditionnelles. Les structures
+            <literal>for, while, if, select</literal> doivent être terminées par <literal>end</literal> .
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="for">for</link>
+            </member>
+            <member>
+                <link linkend="while">while</link>
+            </member>
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="select">select</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

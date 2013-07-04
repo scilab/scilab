@@ -16,51 +16,69 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "HandleManagement.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "getPropertyAssignedValue.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_is_handle_valid(char *fname,unsigned long fname_len)
+int sci_is_handle_valid(char *fname, unsigned long fname_len)
 {
+    SciErr sciErr;
 
-  /* Call isValid = is_handle_valid(h) with h a matrix of handle */
-  /* and isValid a matrix of boolean */
+    int* piAddrhandleStackPointer = NULL;
+    long long* handleStackPointer = NULL;
+    int* resultStackPointer       = NULL;
 
-  int nbCol = 0;
-  int nbRow = 0;
-  int nbHandle = 0;
-  int handleStackPointer = 0;
-  int resultStackPointer = 0;
-  int i = 0;
+    /* Call isValid = is_handle_valid(h) with h a matrix of handle */
+    /* and isValid a matrix of boolean */
 
-  CheckRhs(1,1);
-  CheckLhs(0,1);
+    int nbCol = 0;
+    int nbRow = 0;
+    int nbHandle = 0;
+    int i = 0;
 
-  /* Get handles matrix */
-  if (VarType(1) != sci_handles)
-  {
-    Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of handle expected.\n"), fname,1);
-    return  -1;
-  }
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-  GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &handleStackPointer);
-  nbHandle = nbRow * nbCol;
+    /* Get handles matrix */
+    if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)))
+    {
+        Scierror(200, _("%s: Wrong type for input argument #%d: Matrix of handle expected.\n"), fname, 1);
+        return  -1;
+    }
 
-  /* create output matrix */
-  CreateVar(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &nbRow, &nbCol, &resultStackPointer)
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrhandleStackPointer);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-  /* Check each handle */
-  for (i = 0; i < nbHandle; i++)
-  {
-      *istk(resultStackPointer + i) =  (getObjectFromHandle(getHandleFromStack(handleStackPointer + i)) != NULL ? TRUE : FALSE);
-  }
+    // Retrieve a matrix of handle at position 1.
+    sciErr = getMatrixOfHandle(pvApiCtx, piAddrhandleStackPointer, &nbRow, &nbCol, &handleStackPointer);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(200, _("%s: Wrong type for input argument #%d: Matrix of handle expected.\n"), fname, 1);
+        return 1;
+    }
 
-  LhsVar(1) = Rhs + 1;
-  PutLhsVar();
+    nbHandle = nbRow * nbCol;
 
-  return 0;
+    /* create output matrix */
+    allocMatrixOfBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, &resultStackPointer);
+
+    /* Check each handle */
+    for (i = 0; i < nbHandle; i++)
+    {
+        resultStackPointer[i] =  (getObjectFromHandle((long int)handleStackPointer[i]) != NULL ? TRUE : FALSE);
+    }
+
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
+
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

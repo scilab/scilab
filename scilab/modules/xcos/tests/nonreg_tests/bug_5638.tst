@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 5638 -->
 //
@@ -16,6 +16,6 @@
 // <-- Short Description -->
 // This test validate that the freq_div block can be simulated
 
-// xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5638.xcos");
+// xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5638.zcos");
 // Simulate
 

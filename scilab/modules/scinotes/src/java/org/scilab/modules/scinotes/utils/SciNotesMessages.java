@@ -30,6 +30,10 @@ public class SciNotesMessages {
     public static final String SCILAB_EDITOR = Messages.gettext("SciNotes");
     public static final String ERROR_WITH_STRING = Messages.gettext("Error while reading the String");
 
+    public static final String INVALID_FILE = Messages.gettext("File not found: %s");
+    public static final String IO_EXCEPTION = Messages.gettext("I/O error: %s");
+    public static final String ASK_TO_RELOAD = Messages.gettext("The file %s has been modified by an other program. Reload it ?");
+
     /** FILE MENU */
     public static final String FILE = Messages.gettext("File");
     public static final String NEW = Messages.gettext("New") + DOTS;
@@ -164,11 +168,11 @@ public class SciNotesMessages {
     public static final String BEGIN_OF_DOCUMENT = Messages.gettext("You have reached the beginning of the document");
     public static final String STRING_NOT_FOUND = Messages.gettext("String %s not found");
 
-    public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s does not exist\nDo you want to create it?");
+    public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s does not exist. Do you want to create it?");
     public static final String CLOSE_TAB_TIP = Messages.gettext("close this tab");
     public static final String THIS_FILE = Messages.gettext("This file");
-    public static final String MODIFIED = Messages.gettext(" has been modified since last save\nsave it?");
-    public static final String EXTERNAL_MODIFICATION = Messages.gettext("The file %s has been modified by another program !\n Overwrite it ?");
+    public static final String MODIFIED = Messages.gettext("%s has been modified since last save. Save it?");
+    public static final String EXTERNAL_MODIFICATION = Messages.gettext("The file %s has been modified by another program ! Overwrite it ?");
     public static final String EXTERNAL_MODIFICATION_INFO = Messages.gettext("Warning: the file has been modified by another program !");
     public static final String RELOAD = Messages.gettext("Reload");
     public static final String OVERWRITE = Messages.gettext("Overwrite");

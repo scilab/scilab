@@ -1,0 +1,823 @@
+# German translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2012-11-29 17:29+0000\n"
+"Last-Translator: peter <peterslopp@googlemail.com>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 16681)\n"
+
+msgid "overflow error"
+msgstr ""
+
+msgid "Trigger block must have discrete time input."
+msgstr ""
+
+#, c-format
+msgid "The '%s' variable does not exist.\n"
+msgstr ""
+
+msgid "Invalid variable type.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Data dimensions are inconsistent:\n"
+" Variable size=[%d,%d] \n"
+"Block output size=[%d,%d].\n"
+msgstr ""
+
+msgid "Output should be of Real type.\n"
+msgstr ""
+
+msgid "Output should be of complex type.\n"
+msgstr ""
+
+msgid "Output should be of int8 type.\n"
+msgstr ""
+
+msgid "Output should be of int16 type.\n"
+msgstr ""
+
+msgid "Output should be of int32 type.\n"
+msgstr ""
+
+msgid "Output should be of uint8 type.\n"
+msgstr ""
+
+msgid "Output should be of uint16 type.\n"
+msgstr ""
+
+msgid "Output should be of uint32 type.\n"
+msgstr "Output sollte vom Typ uint32 sein\n"
+
+#, c-format
+msgid ""
+"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
+msgstr ""
+
+msgid "The Time vector type is not double.\n"
+msgstr ""
+
+msgid "The time vector should be an increasing vector.\n"
+msgstr ""
+
+msgid "Allocation problem in spline.\n"
+msgstr ""
+
+msgid "Invalid variable type : error in hypermat scilab coding.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"The LU factorization has been completed, but the factor U is exactly "
+"singular : U(%d,%d) is exactly zero."
+msgstr ""
+
+msgid "Read error!\n"
+msgstr ""
+
+msgid "Could not open the file!\n"
+msgstr ""
+
+msgid "Read error\n"
+msgstr "Fehler beim einlesen\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr ""
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr ""
+
+#, c-format
+msgid "Error when opening file '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "Write error in file '%s'.\n"
+msgstr "Fehler beim Schreiben der File  '%s'\n"
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr ""
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr ""
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr ""
+
+msgid "Could not open /dev/audio!\n"
+msgstr ""
+
+msgid "Clear a bit"
+msgstr ""
+
+#, c-format
+msgid "Set %s block parameters"
+msgstr ""
+
+#, c-format
+msgid "Data Type %s"
+msgstr ""
+
+msgid "Index of Bit (0 is least significant)"
+msgstr ""
+
+msgid "Index of Bit"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for '%s' parameter: %5.1f."
+msgstr ""
+
+msgid "Must be integer."
+msgstr ""
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %d."
+msgstr ""
+
+#, c-format
+msgid "Must be in the interval %s."
+msgstr ""
+
+msgid "Data Type"
+msgstr ""
+
+msgid "Set a bit"
+msgstr ""
+
+msgid "Type conversion"
+msgstr ""
+
+msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+msgstr ""
+
+msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+msgstr ""
+
+msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
+msgstr ""
+
+msgid "Do on Overflow"
+msgstr ""
+
+msgid "Input Type"
+msgstr ""
+
+msgid "Output Type"
+msgstr ""
+
+msgid "Bits Extraction"
+msgstr ""
+
+msgid "&nbsp;- Bits to Extract:"
+msgstr ""
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"
+msgstr ""
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"
+msgstr ""
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"
+msgstr ""
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"
+msgstr ""
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"
+msgstr ""
+
+msgid "&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"
+msgstr ""
+
+msgid ""
+"&nbsp;&nbsp;&nbsp;&nbsp;If 'Bits to Extract' is set to 'Range of bits': "
+"[Start, End]"
+msgstr ""
+
+msgid "Bits to extract"
+msgstr ""
+
+msgid "Number of Bits or Index of Bit"
+msgstr ""
+
+msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
+msgstr ""
+
+msgid "Bits to Extract"
+msgstr ""
+
+msgid "Treat Bit Field as an Integer"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' parameter: %s."
+msgstr ""
+
+msgid "Must be a single value."
+msgstr ""
+
+msgid "Must have this form: [Start, End]."
+msgstr ""
+
+#, c-format
+msgid "Wrong values for '%s' parameter: %s."
+msgstr ""
+
+msgid "'Start' must be less than 'End'."
+msgstr ""
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %s."
+msgstr ""
+
+#, c-format
+msgid "Indexes must be in the interval %s."
+msgstr ""
+
+msgid "Integer matrix multiplication"
+msgstr ""
+
+msgid "JK flip-flop"
+msgstr ""
+
+msgid "The 'Initial Value' must be 0 or 1 of type int8"
+msgstr ""
+
+msgid "&nbsp;- Negative values are considered as int8(0)"
+msgstr ""
+
+msgid "&nbsp;- Positive values are considered as int8(1)"
+msgstr ""
+
+msgid "Initial Value"
+msgstr ""
+
+msgid "Combinatorial logic"
+msgstr ""
+
+msgid "&nbsp; Number of rows must be a power of two."
+msgstr ""
+
+msgid "&nbsp; Rows of the matrix are the output values"
+msgstr ""
+
+msgid "&nbsp; Number of columns gives the number of outputs."
+msgstr ""
+
+msgid "Accepts Inherited Events (0:No, 1:Yes)"
+msgstr ""
+
+msgid "Truth Table (matrix of outputs)"
+msgstr ""
+
+msgid "Truth Table"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' parameter: %d."
+msgstr ""
+
+msgid "Number of rows must be a power of two."
+msgstr ""
+
+#, c-format
+msgid "Wrong value for '%s' parameter."
+msgstr ""
+
+#, c-format
+msgid "Elements must be in the interval %s."
+msgstr ""
+
+msgid "Accepts Inherited Events"
+msgstr ""
+
+msgid "Shift/Rotates bits"
+msgstr ""
+
+msgid "Number of Bits to Shift Left (Negative number to shift right)"
+msgstr ""
+
+msgid "Shift Type (0:Arithmetic, 1:Circular)"
+msgstr ""
+
+msgid "Shift Type"
+msgstr ""
+
+msgid "SR flip-flop"
+msgstr ""
+
+msgid "Invalid masked block."
+msgstr ""
+
+msgid "Finite differences"
+msgstr ""
+
+msgid "Finite elements"
+msgstr ""
+
+msgid "negative"
+msgstr ""
+
+msgid "null"
+msgstr ""
+
+msgid "positive"
+msgstr ""
+
+msgid "PDE block"
+msgstr ""
+
+msgid "Domain"
+msgstr ""
+
+msgid "PDE Specification"
+msgstr ""
+
+msgid "PDE Expression:"
+msgstr ""
+
+msgid "Display"
+msgstr ""
+
+msgid "Discriminant type:"
+msgstr ""
+
+msgid "Constant discriminant"
+msgstr ""
+
+msgid "Variable discriminant:"
+msgstr ""
+
+msgid "Spatial discretization method"
+msgstr ""
+
+msgid "Choice:"
+msgstr ""
+
+msgid "Automatic"
+msgstr ""
+
+msgid "Manual"
+msgstr ""
+
+msgid "Type:"
+msgstr ""
+
+msgid "Ordering:"
+msgstr ""
+
+msgid "degree:"
+msgstr ""
+
+msgid "Number of nodes:"
+msgstr ""
+
+msgid "Display step value"
+msgstr ""
+
+msgid "Initial conditions"
+msgstr ""
+
+msgid "Boundary condition on a"
+msgstr ""
+
+msgid "Boundary condition on b"
+msgstr ""
+
+msgid "Expression ="
+msgstr ""
+
+msgid "Measurement points"
+msgstr ""
+
+msgid "The measurement points"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Validate"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Please give the discretization domain values"
+msgstr ""
+
+#, c-format
+msgid "Please give the %s operator coefficients"
+msgstr ""
+
+msgid "Please give the sign for the variable discriminant"
+msgstr ""
+
+msgid "Please give the discretization method type"
+msgstr ""
+
+msgid "Please give the discretization method degree"
+msgstr ""
+
+msgid "Please give the number of discretization points"
+msgstr ""
+
+#, c-format
+msgid "Please give the initial condition %s"
+msgstr ""
+
+msgid "Please give the boundary conditions"
+msgstr ""
+
+#, c-format
+msgid "The finite element discrtization takes %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The finite differences discrtization takes %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The finite volume discrtization takes %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The code generation, the compilation and link takes %.2f seconds"
+msgstr ""
+
+msgid "Event output port"
+msgstr ""
+
+msgid "Port number"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for 'Port Number' parameter: %d."
+msgstr ""
+
+msgid "Strictly positive integer expected."
+msgstr ""
+
+msgid "Implicit output port"
+msgstr ""
+
+msgid "Regular output port"
+msgstr ""
+
+#, c-format
+msgid "Feature %s is obsolete."
+msgstr ""
+
+#, c-format
+msgid "Please use %s instead."
+msgstr ""
+
+msgid "Write to output file"
+msgstr ""
+
+msgid "&nbsp; - A binary file if no format given"
+msgstr ""
+
+msgid "Write is done on:"
+msgstr ""
+
+msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
+msgstr ""
+
+msgid "Input Size"
+msgstr ""
+
+msgid "Output File Name"
+msgstr ""
+
+msgid "Buffer Size"
+msgstr ""
+
+msgid "Output Format"
+msgstr ""
+
+msgid "End current simulation first."
+msgstr ""
+
+msgid ""
+"Simulation running !!! You cannot switch<br />between formatted and "
+"unformatted when running"
+msgstr ""
+
+msgid "You cannot modify 'Output File Name' when running."
+msgstr ""
+
+msgid "Wrong value for 'Output File Name' parameter"
+msgstr ""
+
+msgid "You must provide a filename."
+msgstr ""
+
+#, c-format
+msgid "Directory '%s' does not exist"
+msgstr ""
+
+msgid "Input Format"
+msgstr ""
+
+msgid "You must enclose the format's string between parentheses."
+msgstr ""
+
+msgid "Must be greater than 1."
+msgstr ""
+
+msgid "Swap Mode (0:No, 1:Yes)"
+msgstr ""
+
+msgid "Write '.au' sound file on audio device"
+msgstr ""
+
+#, c-format
+msgid "You cannot modify '%s' when running."
+msgstr ""
+
+msgid "End current simulation first"
+msgstr ""
+
+msgid "Swap Mode"
+msgstr ""
+
+msgid "Write to C binary file"
+msgstr ""
+
+msgid "Valid formats are: "
+msgstr ""
+
+#, c-format
+msgid "You cannot modify '%s' when running"
+msgstr ""
+
+msgid "You cannot modify 'Buffer Size' when running."
+msgstr ""
+
+msgid "Event input port"
+msgstr ""
+
+#, c-format
+msgid "Wrong values for 'Port Number' parameter: %d."
+msgstr ""
+
+msgid "Event clock generator"
+msgstr ""
+
+msgid "&nbsp; Do not start if 'Initialisation Time' is negative"
+msgstr ""
+
+msgid "Initialisation Time"
+msgstr ""
+
+msgid "Period"
+msgstr ""
+
+msgid "Strictly positive number expected."
+msgstr ""
+
+#, c-format
+msgid "Wrong values for '%s' parameter: %5.1e."
+msgstr ""
+
+msgid "Constant Value"
+msgstr ""
+
+msgid "Constant value generator"
+msgstr ""
+
+msgid "Constant value must have at least one element."
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' parameter"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for '%s' parameter"
+msgstr ""
+
+msgid "Value type must be a numeric type (double, complex, int, int8, ...)."
+msgstr ""
+
+msgid "Integer counter generator"
+msgstr ""
+
+msgid "Maximum"
+msgstr ""
+
+msgid "Minimum"
+msgstr ""
+
+msgid "Rule (1:Increment, 2:Decrement)"
+msgstr ""
+
+#, c-format
+msgid "Wrong values for 'Maximum' and 'Minimum' parameters: %d &lt; %d"
+msgstr ""
+
+msgid "'Minimum' must be less than 'Maximum'."
+msgstr ""
+
+#, c-format
+msgid "Wrong value for 'Rule' parameter: %d"
+msgstr ""
+
+msgid "Sine wave generator"
+msgstr ""
+
+msgid "Frequency (rad/s)"
+msgstr ""
+
+msgid "Magnitude"
+msgstr ""
+
+msgid "Phase (rad)"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for 'Frequency' parameter: %e."
+msgstr ""
+
+msgid "Implicit input port"
+msgstr ""
+
+msgid "Regular input port"
+msgstr ""
+
+msgid "Modulo counter (0 to N counter)"
+msgstr ""
+
+msgid "Initial State (zero or positive number)"
+msgstr ""
+
+msgid "Upper Limit (positive number)"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for 'Initial State' parameter: %d."
+msgstr ""
+
+msgid "Null or positive integer expected."
+msgstr ""
+
+#, c-format
+msgid "Wrong values for 'Upper Limit' parameter: %d."
+msgstr ""
+
+msgid "Ramp function"
+msgstr ""
+
+msgid "Slope"
+msgstr ""
+
+msgid "Start Time"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for 'Start Time' parameter: %e."
+msgstr ""
+
+msgid "(Read Audio File)"
+msgstr ""
+
+msgid "Read is done on a binary '.au' file"
+msgstr ""
+
+msgid "Buffer size"
+msgstr ""
+
+msgid "Input File Name"
+msgstr ""
+
+msgid "Simulation running !!! You cannot modify Input file name"
+msgstr ""
+
+#, c-format
+msgid "Must be greater than %d."
+msgstr ""
+
+msgid "Outputs Record Selection"
+msgstr ""
+
+msgid "Read from C binary file"
+msgstr ""
+
+msgid "Time Record Selection"
+msgstr ""
+
+msgid "Record Size"
+msgstr ""
+
+msgid "Initial Record Index"
+msgstr ""
+
+msgid "Must be a scalar or an empty matrix."
+msgstr ""
+
+msgid "You must provide a file name."
+msgstr ""
+
+#, c-format
+msgid "Wrong value for  '%s' parameter: %d."
+msgstr ""
+
+msgid "[1, Record Size = "
+msgstr ""
+
+#, c-format
+msgid "Wrong value for indexes in '%s' parameter: %s."
+msgstr ""
+
+msgid "Read from an input file"
+msgstr ""
+
+msgid "Read is done on:"
+msgstr ""
+
+msgid "&nbsp; - A formatted text file if a  format (fortran type) is given"
+msgstr ""
+
+msgid "Empty matrix or scalar expected."
+msgstr ""
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %d"
+msgstr ""
+
+msgid ""
+"Simulation running !!! You cannot switch <br />between formatted and "
+"unformatted"
+msgstr ""
+
+msgid "Simulation running !!! You cannot modify 'Input File Name"
+msgstr ""
+
+msgid "Simulation running !!! You cannot modify 'Time Record Selection"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %s"
+msgstr ""
+
+#, c-format
+msgid "Wrong format for '%s' parameter: %s."
+msgstr ""
+
+msgid "Buffer size must be at least 2."
+msgstr ""
+
+msgid "You must read at least one field in record."
+msgstr ""
+
+msgid "Strictly positive indexes expected."
+msgstr ""
+
+msgid "Step Function"
+msgstr ""
+
+msgid "Final Value"
+msgstr ""
+
+msgid "Step Time"
+msgstr ""
+
+#, c-format
+msgid "'Initial Value' and 'Final Value': incompatible sizes: %d and %d."
+msgstr ""
+
+msgid "Same sizes expected."
+msgstr ""
+
+msgid "&File"
+msgstr "&Datei"
+
+msgid "&Tools"
+msgstr ""
+
+msgid "&Edit"
+msgstr "&Bearbeiten"
+
+msgid "&?"
+msgstr "&?"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr ""

@@ -31,26 +31,26 @@
 #include "AxesModel.h"
 
 /*------------------------------------------------------------------------*/
-int set_default_values_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_default_values_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "default_values");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    if ( getDoubleFromStack( stackPointer ) != 1 )
+    if (((double*)_pvData)[0] != 1)
     {
         Scierror(999, _("Wrong value for '%s' property: Must be '%s'.\n"), "default_values", "1");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
-    if ( (pobjUID != NULL) && isFigureModel(pobjUID) )
+    if ((pobjUID != NULL) && isFigureModel(pobjUID))
     {
         InitFigureModel(pobjUID);
         return SET_PROPERTY_SUCCEED;
     }
-    else if ( (pobjUID != NULL) && isAxesModel(pobjUID) )
+    else if ((pobjUID != NULL) && isAxesModel(pobjUID))
     {
         return InitAxesModel();
     }
@@ -61,6 +61,6 @@ int set_default_values_property(void* _pvCtx, char* pobjUID, size_t stackPointer
     }
 
     Scierror(999, _("'%s' property does not exist for this handle.\n"), "default_values");
-    return SET_PROPERTY_ERROR ;
+    return SET_PROPERTY_ERROR;
 }
 /*------------------------------------------------------------------------*/

@@ -18,30 +18,34 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void cumsum_r(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void cumsum_r(scicos_block *block, int flag)
 {
-  double *u = NULL;
-  double *y = NULL;
-  int nu = 0,mu = 0,i = 0,j = 0,ij = 0;
+    double *u = NULL;
+    double *y = NULL;
+    int nu = 0, mu = 0, i = 0, j = 0, ij = 0;
 
-  mu=GetInPortRows(block,1);
-  nu=GetInPortCols(block,1);
+    mu = GetInPortRows(block, 1);
+    nu = GetInPortCols(block, 1);
 
-  u=GetRealInPortPtrs(block,1);
-  y=GetRealOutPortPtrs(block,1);
+    u = GetRealInPortPtrs(block, 1);
+    y = GetRealOutPortPtrs(block, 1);
 
-  for(j=0;j<nu;j++)
-       {i=0;
-	ij=i+j*mu;
-	y[ij]=u[ij];
-	for (i=1;i<mu;i++)
-	   {ij=i+j*mu;
-	    y[ij]=u[ij]+y[ij-1];}}
+    for (j = 0; j < nu; j++)
+    {
+        i = 0;
+        ij = i + j * mu;
+        y[ij] = u[ij];
+        for (i = 1; i < mu; i++)
+        {
+            ij = i + j * mu;
+            y[ij] = u[ij] + y[ij - 1];
+        }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 

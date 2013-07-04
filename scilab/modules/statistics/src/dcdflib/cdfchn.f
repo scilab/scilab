@@ -78,9 +78,9 @@ C     Formula  26.4.25   of   Abramowitz   and   Stegun,  Handbook  of
 C     Mathematical  Functions (1966) is used to compute the cumulative
 C     distribution function.
 C
-C     Computation of other parameters involve a seach for a value that
+C     Computation of other parameters involve a search for a value that
 C     produces  the desired  value  of P.   The search relies  on  the
-C     monotinicity of P with the other parameter.
+C     monotonicity of P with the other parameter.
 C
 C
 C                            WARNING
@@ -109,6 +109,9 @@ C     .. Local Scalars ..
       DOUBLE PRECISION fx,cum,ccum
       LOGICAL qhi,qleft
 C     ..
+C     .. External Functions ..
+      INTEGER vfinite
+C     ..
 C     .. External Subroutines ..
       EXTERNAL dinvr,dstinv,cumchn
 C     ..
@@ -129,7 +132,12 @@ C
 C
 C     P
 C
-
+      IF (ISANAN(p).EQ.1) THEN
+         CALL RETURNANANFORTRAN(df)
+         CALL RETURNANANFORTRAN(pnonc)
+         CALL RETURNANANFORTRAN(x)
+         RETURN
+      ENDIF
       IF (.NOT. ((p.LT.0.0D0).OR. (p.GT.one))) GO TO 60
       IF (.NOT. (p.LT.0.0D0)) GO TO 40
       bound = 0.0D0
@@ -144,6 +152,24 @@ C
 C
 C     X
 C
+      IF (ISANAN(x).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(df)
+         CALL RETURNANANFORTRAN(pnonc)
+         RETURN
+      ENDIF
+      IF (vfinite(1,x).EQ.0) then
+         IF (which.EQ.1) then
+            IF (x.GT.0) then
+               p = 1
+               q = 0
+               RETURN
+            ENDIF
+         ELSE
+            x = SIGN(1D300,x)
+         ENDIF
+      ENDIF
       IF (.NOT. (x.LT.0.0D0)) GO TO 80
       bound = 0.0D0
       status = -4
@@ -154,6 +180,14 @@ C
 C
 C     DF
 C
+      IF (ISANAN(df).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(x)
+         CALL RETURNANANFORTRAN(pnonc)
+         RETURN
+      ENDIF
+      IF (vfinite(1,df).EQ.0) df = SIGN(inf,df)
       IF (.NOT. (df.LE.0.0D0)) GO TO 100
       bound = 0.0D0
       status = -5
@@ -164,6 +198,14 @@ C
 C
 C     PNONC
 C
+      IF (ISANAN(pnonc).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(x)
+         CALL RETURNANANFORTRAN(df)
+         RETURN
+      ENDIF
+      IF (vfinite(1,pnonc).EQ.0) pnonc = SIGN(inf,pnonc)
       IF (.NOT. (pnonc.LT.0.0D0)) GO TO 120
       bound = 0.0D0
       status = -6

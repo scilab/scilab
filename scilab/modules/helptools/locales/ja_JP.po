@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-29 14:47+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-20 07:55+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -167,11 +167,11 @@ msgid "%s: Reading from directory %s\n"
 msgstr "%s: ディレクトリ　%s からの読み込み\n"
 
 #, c-format
-msgid "%s: Processing file: %s to %s\n"
+msgid "%s: Processing of file: %s to %s\n"
 msgstr "%1$s: 加工ファイル: %3$s への %2$s\n"
 
 #, c-format
-msgid "%s: Processing file: %s\n"
+msgid "%s: Processing of file: %s\n"
 msgstr "%s: 加工ファイル: %s\n"
 
 #, c-format
@@ -194,23 +194,77 @@ msgstr "%s: ファイル %s はスキップされました 。"
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
 
-#, c-format
-msgid "%02d-%02d-%04d"
-msgstr "%02d-%02d-%04d"
+msgid " * Add some comments about XML file"
+msgstr " * XMLファイルに関するコメントを追加してください"
+
+msgid "Add short description here."
+msgstr "短い説明をここに追加してください."
+
+msgid "Calling Sequence"
+msgstr "呼び出し手順"
+
+msgid "Arguments"
+msgstr "引数"
+
+msgid "            Add here the input/output argument description."
+msgstr "            ここに入出力引数の説明を追加してください."
+
+msgid "          Add here a paragraph of the function description."
+msgstr "          ここに関数説明のパラグラフを追加してください."
+
+msgid "          Other paragraph can be added"
+msgstr "          他のパラグラフを追加できます"
+
+msgid "More information"
+msgstr "詳細情報"
+
+msgid "Examples"
+msgstr "例"
+
+msgid "        Add here scilab instructions and comments"
+msgstr "        ここにscilab命令とコメントを追加してください."
+
+msgid "        Add here scilab instructions to generate a graphic"
+msgstr "        グラフィックを生成するには, ここにscilab命令を追加してください"
+
+msgid "See Also"
+msgstr "参考"
+
+msgid "add a reference"
+msgstr "リファレンスを追加"
+
+msgid "add a reference name"
+msgstr "照会名を追加"
+
+msgid "Authors"
+msgstr "作者"
+
+msgid "add the author name and author reference"
+msgstr "作者名と作者の照会先を追加"
+
+msgid "add another author name and his/her reference"
+msgstr "他の作者名および問い合わせ先を追加"
+
+msgid "Bibliography"
+msgstr "参考文献"
+
+msgid "         Add here the function bibliography"
+msgstr "         ここに関数の参考文献を追加してください"
+
+msgid "History"
+msgstr "履歴"
+
+msgid "Used Functions"
+msgstr "使用した関数"
+
+msgid "         Add here the Scilab, C,... used code references"
+msgstr "         ここにコード参照されている Scilab, C, ... を追加してください."
 
 #
 # File: macros/manedit.sci, line: 16
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: 入力引数で不正な値: %d を想定します。\n"
-
-#, c-format
-msgid "\tProcessing file %s.xml\n"
-msgstr "\tファイル %s.xml を処理中\n"
-
-#, c-format
-msgid "Warning %s does not follow the dtd"
-msgstr "警告 %s は dtd に基づいていません"
 
 #
 # File: macros/xmltochm.sci, line: 13
@@ -291,22 +345,6 @@ msgstr "\t%s\n"
 msgid "Building the scilab manual file ["
 msgstr "scilabマニュアル・ファイルの構築 ["
 
-#
-# File: macros/xmltoformat.sci, line: 491
-# File: macros/xmltoformat.sci, line: 572
-# File: macros/xmltoformat.sci, line: 667
-#, c-format
-msgid "%s: %s has not been generated."
-msgstr "%s: %s は構築できませんでした。"
-
-#
-# File: macros/xmltoformat.sci, line: 499
-# File: macros/xmltoformat.sci, line: 580
-# File: macros/xmltoformat.sci, line: 675
-#, c-format
-msgid "%s: %s file hasn't been moved in the %s directory."
-msgstr "%s: %sファイルは、%sディレクトリーで動かせませんでした。"
-
 #, c-format
 msgid ""
 "\n"
@@ -322,6 +360,22 @@ msgid ""
 msgstr ""
 "\n"
 "マニュアルファイル　[%s] を構築中.\n"
+
+#
+# File: macros/xmltoformat.sci, line: 491
+# File: macros/xmltoformat.sci, line: 572
+# File: macros/xmltoformat.sci, line: 667
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr "%s: %s は構築できませんでした。"
+
+#
+# File: macros/xmltoformat.sci, line: 499
+# File: macros/xmltoformat.sci, line: 580
+# File: macros/xmltoformat.sci, line: 675
+#, c-format
+msgid "%s: %s file hasn't been moved in the %s directory."
+msgstr "%s: %sファイルは、%sディレクトリーで動かせませんでした。"
 
 #, c-format
 msgid "%s: Please check %s, number of modules is invalid.\n"

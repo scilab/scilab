@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="external">
+    <refnamediv>
+        <refname>external</refname>
+        <refpurpose>Scilabオブジェクト, 外部関数またはルーチン</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            特定のコマンド要の外部関数またはルーチン.
+        </para>
+        <para>
+            "external" は,
+            (<literal>ode</literal>, <literal>optim</literal>, <literal>schur</literal>...
+            のような)
+            いくつかの高レベルプリミティブの引数として使用される
+            関数またはルーチンです.
+        </para>
+        <para>
+            external (関数またはルーチン)の呼び出し手順は,
+            external の引数を設定する高レベルプリミティブにより
+            規定されています.
+        </para>
+        <para>
+            例えば, 外部関数 <literal>costfunc</literal> は,
+            <literal>optim</literal> プリミティブの引数です.
+            その呼出し手順は次のようになります: <literal>[f,g,ind]=costfunc(x,ind)</literal>
+            そして <literal>optim</literal> (高レベル最適化プリミティブ)は
+            以下のようにコールされます
+        </para>
+        <programlisting role=""><![CDATA[ 
+optim(costfunc,...)
+ ]]></programlisting>
+        <para>
+            ここで, <literal>costfunc</literal> (評価関数はプリミティブ
+            <literal>optim</literal>により最小化されます)は,
+            <literal>f=f(x)</literal> および<literal>x</literal>における
+            <literal>f</literal>の傾き<literal>g</literal>を評価します
+            (<literal>ind</literal> は整数です. その使用法は
+            <literal>optim</literal>ヘルプに詳述されています).
+        </para>
+        <para>
+            その他の値が外部関数により必要とされる場合,
+            これらの変数をその環境において定義することができます.
+            また, 外部関数をリスト内に置くことができます.
+            例えば,外部関数
+        </para>
+        <programlisting role=""><![CDATA[ 
+[f,g,ind]=costfunc(x,ind,a,b,c) 
+ ]]></programlisting>
+        <para>
+            は, external が
+            <literal>list(costfunc,a,b,c)</literal>の場合,
+            <literal>optim</literal>に適用できます.
+            そして, <literal>optim</literal>へのコールは
+            以下のようになります:
+        </para>
+        <programlisting role=""><![CDATA[ 
+optim(list(costfunc,a1,b1,c1),....
+ ]]></programlisting>
+        <para>
+            externalはFortranまたはCルーチンとすることもできます: 
+            これは計算を高速化するために有用です.
+        </para>
+        <para>
+            ルーチンの名前は文字列として高レベルプリミティブに
+            指定することができます.
+            このルーチンの呼び出し手順も規定されています.
+        </para>
+        <para>
+            外部FortranまたはCルーチンも動的にリンクできます
+            (<literal>link</literal>参照).
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="optim">optim</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+            <member>
+                <link linkend="dassl">dassl</link>
+            </member>
+            <member>
+                <link linkend="intg">intg</link>
+            </member>
+            <member>
+                <link linkend="schur">schur</link>
+            </member>
+            <member>
+                <link linkend="gschur">gschur</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

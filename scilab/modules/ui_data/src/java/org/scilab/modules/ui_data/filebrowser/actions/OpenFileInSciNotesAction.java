@@ -22,6 +22,7 @@ import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
  * Action to open the file in SciNotes
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class OpenFileInSciNotesAction extends CommonCallBack {
 
     private SwingScilabTreeTable table;
@@ -63,8 +64,10 @@ public class OpenFileInSciNotesAction extends CommonCallBack {
                     Thread t = new Thread(new Runnable() {
                         public void run() {
                             try {
-                                scin.invoke(null, new Object[]{path});
-                            } catch (Exception e) { e.printStackTrace(); }
+                                scin.invoke(null, new Object[] {path});
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                     });
                     try {

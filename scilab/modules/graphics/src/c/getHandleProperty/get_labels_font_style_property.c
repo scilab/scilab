@@ -44,7 +44,7 @@ int get_labels_font_style_property(void* _pvCtx, char* pobjUID)
 
     if (piFontStyle == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"labels_font_style");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "labels_font_style");
         return -1;
     }
 

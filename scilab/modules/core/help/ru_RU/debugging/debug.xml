@@ -1,33 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="debug">
-  <refnamediv>
-    <refname>debug</refname>
-    <refpurpose>уровень отладки</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>
-      debug(level-int)
-      level-int=debug()
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>level-int</term>
-        <listitem>
-          <para>целое число (от -1 до 4)</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Для значений <literal>level-int</literal> 0, 1, 2, 3, 4  <literal>debug</literal> 
-      определяет различные уровни отладки. Это предназначено для анализатора синтаксиса, не для 
-      файлов-сценариев Scilab, и только для экспертов Scilab.
-    </para>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="debug">
+    <refnamediv>
+        <refname>debug</refname>
+        <refpurpose>уровень отладки</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            debug(level_int)
+            level_int = debug()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>level_int</term>
+                <listitem>
+                    <para>целое число (от -1 до 4)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Для значений <varname>level_int</varname> 0, 1, 2, 3, 4  <code>debug</code>
+            определяет различные уровни отладки. Это предназначено для анализатора синтаксиса, не для 
+            файлов-сценариев Scilab'а, и только для экспертов Scilab'а.
+        </para>
+        <para>
+            <note>
+                Выходное значение этой функции будет изменено в Scilab 6.0.0.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+debug(3);
+2+2
+//  0.200E+01
+//+
+//  0.200E+01
+// eol
+ ]]></programlisting>
+    </refsection>
+    
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    Предыдущее значение возвращается в качестве выходного аргумента при установке нового значения.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

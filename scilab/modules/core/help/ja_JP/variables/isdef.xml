@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isdef" xml:lang="ja">
+    <refnamediv>
+        <refname>isdef</refname>
+        <refpurpose>変数の存在を確認</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>isdef(name [,where])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>文字列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>where</term>
+                <listitem>
+                    <para>オプションのパラメータ文字列,
+                        デフォルト値は <literal>'all'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>isdef(name)</literal>は,
+            <literal>name</literal>という名前の変数が存在する場合に
+            <literal>%T</literal>, それ以外の場合に <literal>%F</literal> を返します.
+        </para>
+        <para>
+            注意: <literal>isdef</literal> を使用する関数
+            は環境に依存した結果を返す可能性があります!
+        </para>
+        <para>
+            <literal>isdef(name,'local')</literal> は,
+            <literal>name</literal>という名前の変数がカレントの関数のローカル環境に
+            存在する場合に	<literal>%T</literal>, それ以外の場合に <literal>%F</literal> を返します.
+        </para>
+        <para>
+            <literal>isdef(name,'nolocal')</literal> は,
+            <literal>name</literal>という名前の変数が(グローバルレベルを含む)呼び出した側の環境に
+            存在する場合に	<literal>%T</literal>, 
+            それ以外の場合に <literal>%F</literal> を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+A=1;
+isdef('A')
+clear A
+isdef('A')
+
+function level1()
+  function level2()
+    disp(isdef("a","all"));
+    disp(isdef("a","local"));
+    disp(isdef("a","nolocal"));
+  endfunction
+  level2()
+endfunction
+function go()
+  a=1;
+  level1()
+endfunction
+go()
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="exists">exists</link>
+                <link linkend="isglobal">isglobal</link>
+            </member>
+            <member>
+                <link linkend="whereis">whereis</link>
+            </member>
+            <member>
+                <link linkend="type">type</link>
+            </member>
+            <member>
+                <link linkend="typeof">typeof</link>
+            </member>
+            <member>
+                <link linkend="clear">clear</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

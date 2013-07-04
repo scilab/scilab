@@ -23,6 +23,7 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
+import org.scilab.modules.ui_data.actions.HelpAction;
 import org.scilab.modules.ui_data.filebrowser.actions.CloseAction;
 import org.scilab.modules.ui_data.filebrowser.actions.GoToHomeAction;
 import org.scilab.modules.ui_data.filebrowser.actions.GoToSCIAction;
@@ -33,6 +34,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * uses JTable
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class SwingScilabFileBrowser extends SwingScilabTab {
 
     public static final String FILEBROWSERUUID = "3b649047-6a71-4998-bd8e-00d367a4793d";
@@ -41,7 +43,6 @@ public final class SwingScilabFileBrowser extends SwingScilabTab {
 
     /**
      * Create a JTable with data Model.
-     * @param columnsName : Titles of JTable columns.
      */
     public SwingScilabFileBrowser() {
         super(UiDataMessages.FILE_BROWSER, FILEBROWSERUUID);
@@ -55,6 +56,8 @@ public final class SwingScilabFileBrowser extends SwingScilabTab {
         toolBar.addSeparator();
         toolBar.add(GoToHomeAction.createButton());
         toolBar.add(GoToSCIAction.createButton());
+        toolBar.addSeparator();
+        toolBar.add(HelpAction.createButton(UiDataMessages.HELP));
 
         addToolBar(toolBar);
         setContentPane(filebrowser);
@@ -117,6 +120,12 @@ public final class SwingScilabFileBrowser extends SwingScilabTab {
         fileMenu.add(CloseAction.createMenu());
 
         menuBar.add(fileMenu);
+
+        Menu helpMenu = ScilabMenu.createMenu();
+        helpMenu.setText("?");
+        helpMenu.setMnemonic('?');
+        helpMenu.add(HelpAction.createMenuItem(UiDataMessages.HELP));
+        menuBar.add(helpMenu);
 
         return menuBar;
     }

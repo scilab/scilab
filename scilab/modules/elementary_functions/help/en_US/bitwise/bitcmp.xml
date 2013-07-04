@@ -11,76 +11,80 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  * 
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bitcmp" xml:lang="en">
-  <refnamediv>
-    <refname>bitcmp</refname>
-    <refpurpose>bitwise complement</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      y = bitcmp(x,n)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parameters</title>
-    <variablelist>
-      <varlistentry>
-        <term>x :</term>
-        <listitem>
-          <para>
-            a m-by-n matrix of doubles
-            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-            or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
-            Must contain positive integer values.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>n :</term>
-        <listitem>
-          <para>
-            a m-by-n matrix of doubles
-            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
-            or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
-            The input <literal>n</literal> must be in the range 1,2,...,bitmax
-            where bitmax is the maximum number of bits in x.
-            Must contain positive integer values.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y :</term>
-        <listitem>
-          <para>
-            a m-by-n matrix of doubles
-            or a m1-by-m2-by-...-by-mm hypermatrix of  doubles
-            or a m-by-n matrix of unsigned integers.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Given an unsigned integer <literal>x</literal>, this function returns the unsigned integer
-      which is the integer corresponding to the complementary of the binary
-      form of <literal>x</literal>.
-    </para>
-    <para>
-      The integer <literal>n</literal> sets the maximum number of bits.
-    </para>
-    <para>
-      If the bits number of the <literal>x</literal> binary representation is less than the
-      bitmax number (8,16 or 32) then the bits '1' are added to the
-      complementary in order to have bitmax number (8, 16 or 32) for the
-      complementary.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitcmp" xml:lang="en">
+    <refnamediv>
+        <refname>bitcmp</refname>
+        <refpurpose>bitwise complement</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            y = bitcmp(x)
+            y = bitcmp(x, bitnum)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>x :</term>
+                <listitem>
+                    <para>
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
+                        Must contain positive integer values.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bitnum :</term>
+                <listitem>
+                    <para>
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
+                        The input <literal>n</literal> must be in the range 1, 2, ..., <literal>bitmax</literal>
+                        where <literal>bitmax</literal> is the maximum number of bits in <varname>x</varname>.
+                        <varname>bitnum</varname> must contain positive integer values. The default value for <varname>bitnum</varname> is <literal>bitmax</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y :</term>
+                <listitem>
+                    <para>
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of  doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given an unsigned integer <varname>x</varname>, this function returns the unsigned integer <varname>y</varname>
+            which is the integer corresponding to the complementary of the binary
+            form of <varname>x</varname>.
+        </para>
+        <para>
+            The integer <varname>bitnum</varname> sets the maximum number of bits.
+        </para>
+        <para>
+            If the bits number of the <varname>x</varname> binary representation is less than the
+            <literal>bitmax</literal> number (8,16 or 32) then the bits <literal>'1'</literal> are added to the
+            complementary in order to have <literal>bitmax</literal> number (8, 16 or 32) for the
+            complementary.
+        </para>
+        <para>
+            If only one input argument is given, <varname>x</varname> must be a matrix of unsigned integers.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 // 13 is (1101)_2
 // We insert zeros in the beginning to get a 8-bit number:
 // (00001101)_2
@@ -93,5 +97,5 @@ expected = 242
 bitcmp(uint8(99),8)
 expected = 156
    ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009-2010 - DIGITEO - Scilab Consortium Operational Team
+ * Copyright (C) 2009-2010 - DIGITEO
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -53,7 +53,7 @@ int read_integer(char *fname, unsigned long fname_len)
     unsigned short* pusDataOut	= NULL;
     unsigned int* puiDataOut	= NULL;
 
-    //check input/ouput arguments count
+    //check input/output arguments count
     CheckInputArgument(pvApiCtx, 6, 6);
     CheckOutputArgument(pvApiCtx, 6, 6);
 

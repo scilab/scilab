@@ -435,7 +435,7 @@ int sci_editvar(char * fname, unsigned long fname_len)
 
         case sci_strings :
 
-            //fisrt call to retrieve dimensions
+            //first call to retrieve dimensions
             sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
             if (sciErr.iErr)
             {

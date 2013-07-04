@@ -46,6 +46,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * A panel with file filter and the combo to set the cwd.
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabFileSelectorFilter extends JPanel {
 
     private static boolean isWindows = (OS.get() == OS.WINDOWS);
@@ -80,11 +81,11 @@ public class ScilabFileSelectorFilter extends JPanel {
         setFocusTraversalPolicy(new ContainerOrderFocusTraversalPolicy());
 
         validate = new JButton(new CommonCallBack(null) {
-                @Override
-                public void callBack() {
-                    stt.setFilter(getPattern());
-                }
-            });
+            @Override
+            public void callBack() {
+                stt.setFilter(getPattern());
+            }
+        });
         validate.setIcon(VALIDATE);
 
         caseSensitive = new JCheckBox(UiDataMessages.CASESENSITIVE, !isWindows);
@@ -97,27 +98,30 @@ public class ScilabFileSelectorFilter extends JPanel {
         gbc.gridwidth = 2;
         gbc.gridheight = 1;
         gbc.weightx = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.anchor = gbc.LINE_START;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.LINE_START;
         add(textfield, gbc);
 
         gbc.gridx = 2;
         gbc.gridwidth = gbc.gridheight = 1;
         gbc.weightx = 0;
-        gbc.anchor = gbc.LINE_START;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.anchor = GridBagConstraints.LINE_START;
         add(validate, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = gbc.gridheight = 1;
         gbc.weightx = 0;
-        gbc.anchor = gbc.LINE_START;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.LINE_START;
         add(caseSensitive, gbc);
 
         gbc.gridx = 1;
         gbc.gridwidth = gbc.gridheight = 1;
         gbc.weightx = 0;
-        gbc.anchor = gbc.LINE_START;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.LINE_START;
         add(regexp, gbc);
     }
 
@@ -181,11 +185,11 @@ public class ScilabFileSelectorFilter extends JPanel {
             addFocusListener(this);
             getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "ENTER");
             getActionMap().put("ENTER", new CommonCallBack(null) {
-                    @Override
-                    public void callBack() {
-                        stt.setFilter(getPattern());
-                    }
-                });
+                @Override
+                public void callBack() {
+                    stt.setFilter(getPattern());
+                }
+            });
             toggleContents();
         }
 

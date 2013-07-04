@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="getrelativefilename">
+    <refnamediv>
+        <refname>getrelativefilename</refname>
+        <refpurpose>given absolute directories and absolute filenames, returns relative file names</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>rel_file = getrelativefilename(abs_dir, abs_file)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>abs_dir</term>
+                <listitem>
+                    <para>a character string or matrix of character strings: absolute directories.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>abs_file</term>
+                <listitem>
+                    <para>a character string or matrix of character strings: absolute filenames.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rel_file</term>
+                <listitem>
+                    <para>a character string or a matrix of character strings: relative filenames.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given absolute directories <varname>abs_dir</varname> and absolute filenames <varname>abs_file</varname>,  <function>getrelativefilename</function> returns relative file names <varname>rel_file</varname>. That is, if the input arguments are some string matrices (m x n), for indexes (i, j), <function>getrelativefilename</function> returns <literal>rel_file(i,j)</literal> associated with <literal>abs_dir(i,j)</literal> and <literal>abs_file(i,j)</literal>.
+This implies that <varname>abs_dir</varname> and <varname>abs_file</varname> must have the same dimensions.
+        </para>
+        <para>
+            For example, if the current directory is
+            <literal>C:\scilab\bin</literal> and the filename
+            <literal>C:\scilab\modules\helptools\readme.txt</literal> is
+            given, <function>getrelativefilename</function> will return
+            <literal>..\modules\helptools\readme.txt</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+getrelativefilename(pwd(), SCI+'/COPYING')
+getrelativefilename(TMPDIR, SCI+'/COPYING')
+getrelativefilename(SCI+'/bin', SCI+'/COPYING')
+getrelativefilename(pwd(), SCI+'/ACKNOWLEDGMENTS')
+getrelativefilename(TMPDIR, SCI+'/ACKNOWLEDGMENTS')
+getrelativefilename(SCI+'/bin', SCI+'/ACKNOWLEDGMENTS')
+getrelativefilename([SCI+'/bin',SCI+'/bin'], [SCI+'/ACKNOWLEDGMENTS',SCI+'/ACKNOWLEDGMENTS'])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getshortpathname">getshortpathname</link>
+            </member>
+            <member>
+                <link linkend="getlongpathname">getlongpathname</link>
+            </member>
+            <member>
+                <link linkend="pwd">pwd</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

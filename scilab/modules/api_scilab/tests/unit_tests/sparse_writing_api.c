@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009-2010 - DIGITEO - Scilab Consortium Operational Team
+ * Copyright (C) 2009-2010 - DIGITEO
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,13 +25,13 @@ int write_sparse(char *fname, unsigned long fname_len)
     double pdblSImg[]	= {4, 3, 2, 1};
     int iNbItem			= 4;
 
-    sciErr = createComplexSparseMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + + 1, 3, 10, iNbItem, piNbItemRow, piColPos, pdblSReal, pdblSImg);
+    sciErr = createComplexSparseMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 3, 10, iNbItem, piNbItemRow, piColPos, pdblSReal, pdblSImg);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;
 }

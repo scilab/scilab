@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="strcmpi">
+    <refnamediv>
+        <refname>strcmpi</refname>
+        <refpurpose>
+            сравнение символьных строк (без учёта регистра)
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>res = strcmpi(string_one, string_two)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>string_one</term>
+                <listitem>
+                    <para>
+                        символьная строка или матрица символьных строк.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>string_two</term>
+                <listitem>
+                    <para>
+                        символьная строка или матрица символьных строк.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>матрица целочисленных значений.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>res = strcmpi(string_one, string_two)</code> возвращает
+            интегральное значение, указывающее отношение между строками.
+        </para>
+        <para>
+            Значение равно <literal>0</literal>, если
+            <varname>string_one</varname> равна <varname>string_two</varname>
+            (независимо от регистра), а <literal>1</literal> указывает обратное.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+TXT1 = ['scilab','SciLab';'Strcmp','STRcmp'];
+TXT2 = ['ScIlAb','sciLab';'sTrCmP','StrCMP'];
+strcmpi(TXT1,TXT2)
+strcmpi(TXT1,'scilab')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="strcat">strcat</link>
+            </member>
+            <member>
+                <link linkend="strcmp">strcmp</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

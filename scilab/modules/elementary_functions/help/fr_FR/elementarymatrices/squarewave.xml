@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="squarewave" xml:lang="fr">
+    <refnamediv>
+        <refname>squarewave</refname>
+        <refpurpose>génère un signal carré de période 2*%pi</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>x=squarewave(t [,percent)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>vecteur réel, valeurs des instants</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>vecteur réel, valeurs du signal dans l'intervalle
+                        [-1,1]
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>percent</term>
+                <listitem>
+                    <para>scalaire positif réel, pourcentage de la période pendant
+                        lequel le signal est positif (50 par défaut)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>squarewave(t)</literal> génère le vecteur des valeurs d'un
+            signal carré de période 2*%pi à chaque instant donné dans le vecteur
+            <literal>t</literal>.
+        </para>
+        <para>
+            <literal>squarewave(t,percent)</literal> génère un signal carré où
+            <literal>percent</literal> est le pourcentage de la période pendant lequel
+            le signal est positif.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+t=(0:0.1:5*%pi)';
+plot2d1('onn',t,[2*sin(t),1.5*squarewave(t),squarewave(t,10)])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sin">sin</link>
+            </member>
+            <member>
+                <link linkend="cos">cos</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

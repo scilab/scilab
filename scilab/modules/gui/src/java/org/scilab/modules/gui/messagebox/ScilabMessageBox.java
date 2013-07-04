@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -26,239 +26,239 @@ import org.scilab.modules.gui.utils.UIElementMapper;
  */
 public class ScilabMessageBox extends ScilabUIElement implements MessageBox {
 
-	private SimpleMessageBox component;
-	
-	//private int chosenButton;
-	
-	/**
-	 * Constructor
-	 */
-	protected ScilabMessageBox() {
-		component = ScilabBridge.createMessageBox();
-		component.setElementId(UIElementMapper.add(this));
-	}
+    private SimpleMessageBox component;
 
-	/**
-	 * Creates a Scilab MessageBox
-	 * @return the created MessageBox
-	 */
-	public static MessageBox createMessageBox() {
-		return new ScilabMessageBox();
-	}
+    //private int chosenButton;
 
-	/**
-	 * Gets this Bridge component object
-	 * @return this Bridge component object
-	 */
-	public SimpleMessageBox getAsSimpleMessageBox() {
-		return component;
-	}
+    /**
+     * Constructor
+     */
+    protected ScilabMessageBox() {
+        component = ScilabBridge.createMessageBox();
+        component.setElementId(UIElementMapper.add(this));
+    }
 
-	/**
-	 * Set the title of the file chooser
-	 * @param title the title to set
-	 */
-	public void setTitle(String title) {
-		ScilabBridge.setTitle(this, title);
-	}
+    /**
+     * Creates a Scilab MessageBox
+     * @return the created MessageBox
+     */
+    public static MessageBox createMessageBox() {
+        return new ScilabMessageBox();
+    }
 
-	/**
-	 * Set the message of the MessageBox
-	 * @param message the message to set
-	 */
-	public void setMessage(String message) {
-		ScilabBridge.setMessage(this, message);
-	}
+    /**
+     * Gets this Bridge component object
+     * @return this Bridge component object
+     */
+    public SimpleMessageBox getAsSimpleMessageBox() {
+        return component;
+    }
 
-	/**
-	 * Set the message of the MessageBox (multi-line)
-	 * @param message the message to set
-	 */
-	public void setMessage(String[] message) {
-		ScilabBridge.setMessage(this, message);
-	}
+    /**
+     * Set the title of the file chooser
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        ScilabBridge.setTitle(this, title);
+    }
 
-	/**
-	 * Get the index of the button clicked
-	 * @return the index of the button clicked
-	 */
-	public int getSelectedButton() {
-		return ScilabBridge.getSelectedButton(this);
-		
-	}
+    /**
+     * Set the message of the MessageBox
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        ScilabBridge.setMessage(this, message);
+    }
 
-	/**
-	 * Set the indices of the default selected buttons (x_choices)
-	 * @param indices the indices of the default selected buttons
-	 */
-	public void setDefaultSelectedButtons(int[] indices) {
-		ScilabBridge.setDefaultSelectedButtons(this, indices);
-	}
+    /**
+     * Set the message of the MessageBox (multi-line)
+     * @param message the message to set
+     */
+    public void setMessage(String[] message) {
+        ScilabBridge.setMessage(this, message);
+    }
 
-	/**
-	 * Get the indices of the user selected buttons (x_choices)
-	 * @return the indices of the user selected buttons
-	 */
-	public int[] getUserSelectedButtons() {
-		return ScilabBridge.getUserSelectedButtons(this);
-	}
+    /**
+     * Get the index of the button clicked
+     * @return the index of the button clicked
+     */
+    public int getSelectedButton() {
+        return ScilabBridge.getSelectedButton(this);
 
-	/**
-	 * Set the labels of the buttons in the MessageBox
-	 * @param labels the labels of the buttons
-	 */
-	public void setButtonsLabels(String[] labels) {
-		ScilabBridge.setButtonsLabels(this, labels);
-	}
-	
-	/**
-	 * Display this MessageBox and wait for user selection 
-	 */
-	public void displayAndWait() {
-		ScilabBridge.displayAndWait(this);
-	}
-	
-	/**
-	 * Set the initial values of the editable zone in the MessageBox
-	 * @param value the initial values
-	 */
-	public void setInitialValue(String[] value) {
-		ScilabBridge.setInitialValue(this, value);
-	}
+    }
 
-	/**
-	 * Get the value of the editable zone in the MessageBox
-	 * @return the value
-	 */
-	public String[] getValue() {
-		return ScilabBridge.getValue(this);
-	}
+    /**
+     * Set the indices of the default selected buttons (x_choices)
+     * @param indices the indices of the default selected buttons
+     */
+    public void setDefaultSelectedButtons(int[] indices) {
+        ScilabBridge.setDefaultSelectedButtons(this, indices);
+    }
 
-	/**
-	 * Get the size of the value of the editable zone in the MessageBox
-	 * @return the value size
-	 */
-	public int getValueSize() {
-		return ScilabBridge.getValueSize(this);
-	}
+    /**
+     * Get the indices of the user selected buttons (x_choices)
+     * @return the indices of the user selected buttons
+     */
+    public int[] getUserSelectedButtons() {
+        return ScilabBridge.getUserSelectedButtons(this);
+    }
 
-	/**
-	 * Set the items of the listbox in the MessageBox
-	 * @param items the items to set
-	 */
-	public void setListBoxItems(String[] items) {
-		ScilabBridge.setListBoxItems(this, items);
-	}
+    /**
+     * Set the labels of the buttons in the MessageBox
+     * @param labels the labels of the buttons
+     */
+    public void setButtonsLabels(String[] labels) {
+        ScilabBridge.setButtonsLabels(this, labels);
+    }
 
-	/**
-	 * Get the index of the selected item in the listbox in the MessageBox
-	 * @return the index
-	 */
-	public int getSelectedItem() {
-		return ScilabBridge.getSelectedItem(this);
-	}
+    /**
+     * Display this MessageBox and wait for user selection
+     */
+    public void displayAndWait() {
+        ScilabBridge.displayAndWait(this);
+    }
 
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 */
-	public void draw() {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Set the initial values of the editable zone in the MessageBox
+     * @param value the initial values
+     */
+    public void setInitialValue(String[] value) {
+        ScilabBridge.setInitialValue(this, value);
+    }
 
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#getDims()
-	 * @return nothing
-	 */
-	public Size getDims() {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Get the value of the editable zone in the MessageBox
+     * @return the value
+     */
+    public String[] getValue() {
+        return ScilabBridge.getValue(this);
+    }
 
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @return nothing
-	 */
-	public Position getPosition() {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Get the size of the value of the editable zone in the MessageBox
+     * @return the value size
+     */
+    public int getValueSize() {
+        return ScilabBridge.getValueSize(this);
+    }
 
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @return nothing
-	 */
-	public boolean isVisible() {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Set the items of the listbox in the MessageBox
+     * @param items the items to set
+     */
+    public void setListBoxItems(String[] items) {
+        ScilabBridge.setListBoxItems(this, items);
+    }
 
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @param newSize is never used
-	 */
-	public void setDims(Size newSize) {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Get the index of the selected item in the listbox in the MessageBox
+     * @return the index
+     */
+    public int getSelectedItem() {
+        return ScilabBridge.getSelectedItem(this);
+    }
 
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @param newPosition is never used
-	 */
-	public void setPosition(Position newPosition) {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+     */
+    public void draw() {
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @param newVisibleState is never used
-	 */
-	public void setVisible(boolean newVisibleState) {
-		throw new UnsupportedOperationException();
-	}
-	
-	/**
-	 * Set the name of the lines labels in the editable zone in the MessageBox
-	 * @param labels the labels
-	 */
-	public void setLineLabels(String[] labels) {
-		ScilabBridge.setLineLabels(this, labels);
-	}
-	
-	/**
-	 * Set the name of the columns labels in the editable zone in the MessageBox
-	 * @param labels the labels
-	 */
-	public void setColumnLabels(String[] labels) {
-		ScilabBridge.setColumnLabels(this, labels);
-	}
-	
-	/**
-	 * Set the default values of a multi-value editable zone in the MessageBox
-	 * @param values the values
-	 */
-	public void setDefaultInput(String[] values) {
-		ScilabBridge.setDefaultInput(this, values);
-	}
-	
-	/**
-	 * Set a MessageBox modal or not
-	 * @param status true to set the MessageBox modal and false else
-	 */
-	public void setModal(boolean status) {
-		ScilabBridge.setModal(this, status);
-	}
-	
-	/**
-	 * Set the MessageBox icon
-	 * @param name the name of the icon
-	 */
-	public void setIcon(String name) {
-		ScilabBridge.setIcon(this, name);
-	}
-	
-	/**
-	 * Set the component used to set the location of the MessageBox (default is Scilab Console)
-	 * @param parent the tab to be set as parent
-	 */
-	public void setParentForLocation(SimpleTab parent) {
-		ScilabBridge.setParentForLocation(this, parent);
-	}
+    /**
+     * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#getDims()
+     * @return nothing
+     */
+    public Size getDims() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+     * @return nothing
+     */
+    public Position getPosition() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+     * @return nothing
+     */
+    public boolean isVisible() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+     * @param newSize is never used
+     */
+    public void setDims(Size newSize) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+     * @param newPosition is never used
+     */
+    public void setPosition(Position newPosition) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+     * @param newVisibleState is never used
+     */
+    public void setVisible(boolean newVisibleState) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Set the name of the lines labels in the editable zone in the MessageBox
+     * @param labels the labels
+     */
+    public void setLineLabels(String[] labels) {
+        ScilabBridge.setLineLabels(this, labels);
+    }
+
+    /**
+     * Set the name of the columns labels in the editable zone in the MessageBox
+     * @param labels the labels
+     */
+    public void setColumnLabels(String[] labels) {
+        ScilabBridge.setColumnLabels(this, labels);
+    }
+
+    /**
+     * Set the default values of a multi-value editable zone in the MessageBox
+     * @param values the values
+     */
+    public void setDefaultInput(String[] values) {
+        ScilabBridge.setDefaultInput(this, values);
+    }
+
+    /**
+     * Set a MessageBox modal or not
+     * @param status true to set the MessageBox modal and false else
+     */
+    public void setModal(boolean status) {
+        ScilabBridge.setModal(this, status);
+    }
+
+    /**
+     * Set the MessageBox icon
+     * @param name the name of the icon
+     */
+    public void setIcon(String name) {
+        ScilabBridge.setIcon(this, name);
+    }
+
+    /**
+     * Set the component used to set the location of the MessageBox (default is Scilab Console)
+     * @param parent the tab to be set as parent
+     */
+    public void setParentForLocation(SimpleTab parent) {
+        ScilabBridge.setParentForLocation(this, parent);
+    }
 
 }

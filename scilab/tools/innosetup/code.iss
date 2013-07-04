@@ -21,6 +21,8 @@ external 'GetModuleHandleA@kernel32.dll stdcall';
 
 var
     AboutModulesButton: TButton;
+    OriginalOnTypesComboChange: TNotifyEvent;
+
 //------------------------------------------------------------------------------
 function isCLIType(): Boolean;
   begin
@@ -84,25 +86,18 @@ function DoTasksJustAfterInstall: Boolean;
   end;
 //------------------------------------------------------------------------------
 function GetJREVersion(): String;
-  begin
+begin
     Result := '';
-    if Is64BitInstallMode() then
-      begin
-        RegQueryStringValue( HKLM, 'SOFTWARE\JavaSoft\Java Runtime Environment', 'CurrentVersion', Result );
-      end;
 
-// 2 cas :
-  if IsWin64() then
+    if Is64BitInstallMode() or not IsWin64() then
     begin
-      // Scilab 32 bits sur Windows 64 bits
-      RegQueryStringValue( HKLM, 'SOFTWARE\Wow6432Node\JavaSoft\Java Runtime Environment', 'CurrentVersion', Result );
+        //64 bits installation or 32 bits OS -> same registry path
+        RegQueryStringValue( HKLM, 'SOFTWARE\JavaSoft\Java Runtime Environment', 'CurrentVersion', Result );
+    end else begin
+        // Scilab 32 bits sur Windows 64 bits
+        RegQueryStringValue( HKLM, 'SOFTWARE\Wow6432Node\JavaSoft\Java Runtime Environment', 'CurrentVersion', Result );
     end
-  else
-    begin
-      // Scilab 32 bits sur Windows 32 bits
-      RegQueryStringValue( HKLM, 'SOFTWARE\JavaSoft\Java Runtime Environment', 'CurrentVersion', Result );
-    end;
-  end;
+end;
 //------------------------------------------------------------------------------
  function CheckJREVersion(): Boolean;
   var
@@ -271,6 +266,26 @@ function NextButtonClick(CurPageID: Integer): Boolean;
       end;
   end;
 //------------------------------------------------------------------------------
+procedure DeinitializeUninstall;
+var
+    Names: TArrayOfString;
+    iLen: Integer;
+begin
+    //read registry to find others scilab installation in the same arch
+    if RegGetSubkeyNames(HKLM, 'Software\Scilab', Names) then
+    begin
+        iLen := length(Names);
+        if iLen > 0 then
+        begin
+            RegWriteStringValue(HKLM, 'Software\Scilab', 'LASTINSTALL', Names[iLen - 1]);
+        end else begin
+            //no other install in the same arch
+            //remove LASTINSTALL key and Scilab registry folder ( auto )
+            RegDeleteValue(HKLM, 'Software\Scilab', 'LASTINSTALL');
+        end;
+    end;
+end;
+//------------------------------------------------------------------------------
 function InitializeSetup: Boolean;
   Var
     Version: TWindowsVersion;
@@ -305,12 +320,33 @@ function InitializeSetup: Boolean;
 #endif
   end;
 //------------------------------------------------------------------------------
+procedure OnTypesComboChange(Sender: TObject);
+var
+  ItemIndex: Integer;
+  Res: Boolean;
+begin
+  OriginalOnTypesComboChange(Sender);
+
+  // Prevent CHM to be checked by switching to Full installation in Offline mode
+  if OfflineInstallCheckBox.Checked then
+  begin
+    ItemIndex := (Sender as TNewComboBox).ItemIndex;
+    if ItemIndex = 0 then
+    begin
+      Res := SetComponentState('DescriptionCHM', False, False);
+      if not Res then
+      begin
+        Log('OnTypesComboChange: ' +
+          'Error while changing components intallation.');
+      end;
+    end;
+  end;
+end;
+//------------------------------------------------------------------------------
 procedure CreateTheWizardPages;
 var
   CancelButton: TButton;
-
 begin
-
   CancelButton := WizardForm.CancelButton;
 
   AboutModulesButton := TButton.Create(WizardForm);
@@ -325,11 +361,40 @@ begin
   AboutModulesButton.OnClick := @ButtonAboutModulesOnClick;
   AboutModulesButton.Parent := CancelButton.Parent;
   AboutModulesButton.Visible := false;
+
+  CreateOfflineInstallationCheckBox;
+
+  OriginalOnTypesComboChange := WizardForm.TypesCombo.OnChange;
+  WizardForm.TypesCombo.OnChange := @OnTypesComboChange;
 end;
 //------------------------------------------------------------------------------
 procedure InitializeWizard();
-
 begin
   CreateTheWizardPages;
 end;
 //------------------------------------------------------------------------------
+//convert Boolean expresion in string ( debug function )
+function BoolToStr(Value : Boolean) : String;
+begin
+  if Value then
+    result := 'true'
+  else
+    result := 'false';
+end;
+//------------------------------------------------------------------------------
+//check user rights
+function IsAdminUser(): Boolean;
+begin
+  Result := (IsAdminLoggedOn or IsPowerUserLoggedOn);
+end;
+//------------------------------------------------------------------------------
+//returns default install path ( take care of user rights )
+function DefDirRoot(Param: String): String;
+begin
+  if IsAdminUser then
+    //program files path
+    Result := ExpandConstant('{pf}')
+  else
+    //local app data path
+    Result := ExpandConstant('{localappdata}')
+end;

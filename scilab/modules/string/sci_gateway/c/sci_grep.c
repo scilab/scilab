@@ -1,7 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET , Cong WU
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
@@ -80,7 +80,9 @@ int sci_grep(char *fname, unsigned long fname_len)
 
             GetRhsVar(3, STRING_DATATYPE, &m3, &n3, &l3);
             if (m3 * n3 != 0)
+            {
                 typ = cstk(l3)[0];
+            }
 
             if (typ == 'r')
             {
@@ -144,7 +146,7 @@ static int GREP_NEW(GREPRESULTS * results, char **Inputs_param_one, int mn_one, 
             int Output_End = 0;
 
             save = strdup(Inputs_param_two[x]);
-            answer = pcre_private(Inputs_param_one[y], save, &Output_Start, &Output_End);
+            answer = pcre_private(Inputs_param_one[y], save, &Output_Start, &Output_End, NULL, NULL);
 
             if (answer == PCRE_FINISHED_OK)
             {
@@ -168,7 +170,9 @@ static int GREP_NEW(GREPRESULTS * results, char **Inputs_param_one, int mn_one, 
     }
 
     if (results->currentLength > results->sizeArraysMax)
+    {
         results->currentLength = results->sizeArraysMax;
+    }
 
     return GREP_OK;
 }
@@ -264,7 +268,7 @@ static int sci_grep_common(char *fname, BOOL new_grep)
 
     switch (code_error_grep)
     {
-    case GREP_OK:
+        case GREP_OK:
         {
             int x = 0;
             int numRow = 1;
@@ -303,7 +307,7 @@ static int sci_grep_common(char *fname, BOOL new_grep)
         }
         break;
 
-    case MEMORY_ALLOC_ERROR:
+        case MEMORY_ALLOC_ERROR:
         {
             if (grepresults.values)
             {

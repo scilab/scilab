@@ -10,36 +10,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="householder">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="householder">
     <refnamediv>
         <refname>householder</refname>
-        <refpurpose> Householder orthogonal reflexion matrix</refpurpose>
+        <refpurpose>Matrice de Householder  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Séquence d'appel</title>
         <synopsis>u=householder(v [,w])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>v</term>
+                <term>v  </term>
                 <listitem>
-                    <para>real or complex column vector</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>w</term>
-                <listitem>
-                    <para>
-                        real or complex column vector with same size as <literal>v</literal>. Default value is <literal>eye(v)</literal>
+                    <para>vecteur colonne réel ou complexe
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>u</term>
+                <term>w  </term>
                 <listitem>
-                    <para>real or complex column vector</para>
+                    <para>
+                        vecteur colonne réel ou complexe de même taille que <literal>v</literal> (la valeur par défaut est <literal>eye(v)</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u  </term>
+                <listitem>
+                    <para>vecteur colonne réel ou complexe
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -47,17 +49,16 @@
     <refsection>
         <title>Description</title>
         <para>
-            given 2 column vectors <literal>v</literal>, <literal> w</literal> of same size, <literal>householder(v,w)</literal> returns a unitary 
-            column vector <literal>u</literal>, such that <literal> (eye()-2*u*u')*v</literal> is proportional to <literal>w</literal>.
-            <literal>(eye()-2*u*u')</literal> is the orthogonal Householder reflexion matrix .
+            Etant donnés deux vecteurs colonnes <literal>v</literal> et <literal>w</literal> de même taille, <literal>householder(v,w)</literal> renvoie un vecteur normé <literal>u</literal>, tel que 
+            <literal>(eye()-2*u*u')*v</literal> est colinéaire à <literal>w</literal>.
+            <literal>(eye()-2*u*u')</literal> est la matrice de la transformation de Householder correspondante.
         </para>
         <para>
-            <literal>w</literal> default value is <literal> eye(v)</literal>. In this case vector <literal> (eye()-2*u*u')*v</literal> is the 
-            vector  <literal> eye(v)*norm(v)</literal>.
+            La valeur par défaut de <literal>w</literal> est <literal> eye(v)</literal>. Dans ce cas le vecteur <literal> (eye()-2*u*u')*v</literal> est égal à <literal> eye(v)*norm(v)</literal>.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="qr">qr</link>

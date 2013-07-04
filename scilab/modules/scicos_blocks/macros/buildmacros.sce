@@ -19,34 +19,38 @@
 // See the file ../license.txt
 //
 
+// Load dynamic_link Internal lib if it's not already loaded
+if ~ exists("dynamic_linkutilslib") then
+    load("SCI/modules/dynamic_link/macros/utils/lib");
+end
+
 lines(0);
 
-if getos() == 'Windows' then
-  // Add SCI/bin to current PATH env
-  // not defined by default used to find modelicac
-  PATH_env = getenv('PATH');
-  setenv('PATH',strsubst(getshortpathname(SCI+'/bin'),'/','\') + pathsep() + PATH_env);
+if getos() == "Windows" then
+    // Add SCI/bin to current PATH env
+    // not defined by default used to find modelica
+    addPathToEnv("PATH", SCI + "/bin");
 end
 
 CurrentDirScicosBlocks=pwd();
- SubDirsScicosBlocks=["Branching",
-		    "Events",
-		    "Linear",
-		    "Misc",
-		    "NonLinear",
-		    "Sinks",
-		    "Sources",
-		    "MatrixOp",
-		    "Threshold",
-		    "Hydraulics",
-		    "Electrical",
-		    "PDE",
-		    "IntegerOp"];
- 
+SubDirsScicosBlocks=["Branching",
+"Events",
+"Linear",
+"Misc",
+"NonLinear",
+"Sinks",
+"Sources",
+"MatrixOp",
+"Threshold",
+"Hydraulics",
+"Electrical",
+"PDE",
+"IntegerOp"];
+
 Dim=size(SubDirsScicosBlocks);
-for i=1:Dim(1) do 
-  chdir(SubDirsScicosBlocks(i));
-  exec('buildmacros.sce');
-  chdir(CurrentDirScicosBlocks);
+for i=1:Dim(1) do
+    chdir(SubDirsScicosBlocks(i));
+    exec("buildmacros.sce");
+    chdir(CurrentDirScicosBlocks);
 end
-clear Dim CurrentDirScicosBlocks SubDirsScicosBlocks
+clear Dim CurrentDirScicosBlocks SubDirsScicosBlocks addPathToEnv

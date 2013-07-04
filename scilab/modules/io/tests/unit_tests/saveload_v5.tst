@@ -151,3 +151,4 @@ deff('d()','x=n+1','n');
 if ~Check(a,b) then pause,end
 if ~Check(a,b,c) then pause,end
 if ~Check(a,b,c,d) then pause,end
+

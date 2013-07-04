@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  * CellRenderer for string type
  * @author Allan SIMON
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabStringRenderer extends DefaultTableCellRenderer {
 
     /**

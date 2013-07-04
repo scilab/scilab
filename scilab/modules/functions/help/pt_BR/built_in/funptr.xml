@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="funptr" xml:lang="en">
+    <refnamediv>
+        <refname>funptr</refname>
+        <refpurpose>codificação de primitivas </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>[numptr] = funptr(name)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>string, nome de uma primitiva </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>numptr</term>
+                <listitem>
+                    <para>o número de rotina interno da primitiva</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Fução utilitária (para usuários mais experientes apenas) para
+            retornar o número de rotina interno <literal>numptr</literal> da primitiva
+            <literal>'name'</literal>. <literal>numptr</literal> é formado a partir do
+            número de interface <literal>fun</literal> e do número de rotina
+            <literal>fin</literal> da primitiva em sua interface por <literal>numptr =
+                100*fun + fin
+            </literal>
+            (fin &lt; 100). De <literal>numptr</literal>
+            pode-se obter o número de interface <literal>fun = floor(numptr/100)
+            </literal>
+            que pode ser útil para ligar uma interface dinâmica com seus
+            argumentos passados por referência (ver seção de exemplos).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
+// Suponha que você queira carregar alguns códigos através
+// das facilidades de carregamento dinâmico oferecidas por addinter. Por padrão
+// os argumentos são passados por valores, mas se você quiser
+// passá-los por referência, você pode fazer o seguinte
+// (nome sendo o nome scilab de uma das rotinas com
+// interface) :
+//
+// addinter(files,spnames,fcts)  // argumentos passados por valores
+// num_interface = floor(funptr(nome)/100)
+// intppty(num_interface)  // argumentos agora passados por referência
+//
+// Note que se você digitar o seguinte
+//
+// intppty()                
+//
+// você verá todas as interfaces funcionando por referência
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="clearfun">clearfun</link>
+            </member>
+            <member>
+                <link linkend="newfun">newfun</link>
+            </member>
+            <member>
+                <link linkend="intppty">intppty</link>
+            </member>
+            <member>
+                <link linkend="addinter">addinter</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -12,10 +12,13 @@
 
 package org.scilab.modules.commons.gui;
 
-import java.awt.event.KeyEvent;
+import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
+
+import org.scilab.modules.commons.OS;
 
 /**
  * Class to handle the keystroke and the default menu shortcut key.
@@ -26,7 +29,19 @@ public final class ScilabKeyStroke {
 
     static {
         String key = "";
-        int mask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+        int mask;
+        if (!GraphicsEnvironment.isHeadless()) {
+            mask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+        } else {
+            switch (OS.get()) {
+                case MAC:
+                    mask = KeyEvent.META_MASK;
+                    break;
+                default:
+                    mask = KeyEvent.CTRL_MASK;
+            }
+        }
+
         if ((mask & KeyEvent.CTRL_MASK) != 0) {
             key += " Ctrl";
         }

@@ -17,9 +17,10 @@ import org.scilab.modules.xcos.block.listener.SumPortLabelingListener;
 
 /**
  * Implement the BIGSOM_f function.
- * 
+ *
  * This class just install a {@link SumPortLabelingListener} on each instance.
  */
+@SuppressWarnings(value = { "serial" })
 public class BigSom extends BasicBlock {
     /**
      * Default constructor

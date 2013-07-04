@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="percent">
+    <refnamediv>
+        <refname>процент</refname>
+        <refpurpose>(%) специальный символ</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Некоторые предопределённые имена переменных начинаются с <literal>%</literal>, 
+            такие как <literal>%i</literal> (для <literal>sqrt(-1)</literal>), 
+            <literal>%inf</literal> (для <literal>бесконечности</literal>), 
+            <literal>%pi</literal> (для <literal>3.14...</literal>),
+            <literal>%T</literal> (для логической константы <literal>"true"</literal>), и др.
+        </para>
+        <para>
+            Кроме того, функции, чьи имена начинаются с <literal>%</literal>, являются специальными: 
+            они используются для перегрузки примитивов и операторов (см. <link linkend="overloading">перегрузку</link>).
+        </para>
+        <para>
+            Например, функция <literal>%rmr</literal> выполняет операцию умножения (<literal>m</literal>)
+            <literal>x*y</literal> для рациональных (<literal>r</literal>) матриц 
+            <literal>x</literal> и <literal>y</literal>.
+            Соглашения по написанию кода даны в файле readme в директории <literal>SCI/modules/overloading/macros</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+x1=tlist('x',1,2);
+x2=tlist('x',2,3);
+deff('x=%xmx(x1,x2)','x=list(''x'',x1(2)*x2(2),x2(3)*x2(3))');
+x1*x2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="overloading">перегрузка</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="clean">
+    <refnamediv>
+        <refname>clean</refname>
+        <refpurpose>cleans matrices (round to zero small entries)    </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>B=clean(A [,epsa [,epsr]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>a numerical matrix (scalar, polynomial, sparse, ...).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>epsa, epsr</term>
+                <listitem>
+                    <para>
+                        real numbers. Cleaning tolerances (default values resp. <literal>1.d-10</literal> and <literal>1.d-10</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function eliminates (i.e. set to zero) all the coefficients
+            with absolute value &lt; <varname>epsa</varname> or relative value &lt; <varname>epsr</varname>
+            (relative means relative w.r.t. <literal>1-norm</literal> of coefficients)
+            in a polynomial (possibly matrix polynomial or rational
+            matrix).
+        </para>
+        <para>
+            Default  values are <varname>epsa</varname><literal>=1.d-10</literal> and <varname>epsr</varname><literal>=1.d-10;</literal>
+        </para>
+        <para>
+            For a constant (non-polynomial) matrix <code>clean(A,epsa)</code> sets to zero all
+            entries of <literal>A</literal> smaller than <varname>epsa</varname>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+x=poly(0,'x');
+w=[x,1,2+x;3+x,2-x,x^2;1,2,3+x]/3;
+w*inv(w)
+clean(w*inv(w))
+ ]]></programlisting>
+    </refsection>
+</refentry>

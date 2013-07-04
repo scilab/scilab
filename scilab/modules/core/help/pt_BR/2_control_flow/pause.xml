@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="pause" xml:lang="en">
+    <refnamediv>
+        <refname>pause</refname>
+        <refpurpose>modo de pausa, invoca teclado</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Alterna para o modo <literal>pause</literal> ; inserido no código de
+            uma função, <literal>pause</literal> interrompe a execução da mesma:
+            recebe-se um símbolo de prompt para indicar o nível de
+            <literal>pause</literal> (exemplo: <literal>-1-&gt;</literal>). O usuário
+            está agora num novo espaço de trabalho em que todas as variáveis de nível
+            infeiror (em particular todas as variáveis da função) estão disponíveis.
+            Para retornar ao espaço de trabalho de chamamento, entre
+            <literal>"return"</literal>
+        </para>
+        <para>
+            Neste modo, <literal>[...]=return(...) </literal> retorna as
+            variáveis dos argumentos <literal>(...)</literal> ao espaço de trabalho de
+            chamamento com nomes na saída<literal> [...]</literal>. Em caso contrário,
+            as variáveis de nível infeiror são protegidas e não podem ser
+            modificadas.
+        </para>
+        <para>
+            <literal>pause</literal> é extremamente útil para propósitos de
+            depuramento.
+        </para>
+        <para>Este modo pode ser cancelado pelo comando
+            <literal>"abort"</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="halt">halt</link>
+            </member>
+            <member>
+                <link linkend="return">return</link>
+            </member>
+            <member>
+                <link linkend="abort">abort</link>
+            </member>
+            <member>
+                <link linkend="quit">quit</link>
+            </member>
+            <member>
+                <link linkend="whereami">whereami</link>
+            </member>
+            <member>
+                <link linkend="where">where</link>
+            </member>
+            <member>
+                <link linkend="sleep">sleep</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

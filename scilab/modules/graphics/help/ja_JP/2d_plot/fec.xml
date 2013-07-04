@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="fec">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="fec">
     <refnamediv>
         <refname>fec</refname>
         <refpurpose>三角メッシュ上に定義された関数の擬似カラープロット</refpurpose>
@@ -179,7 +179,24 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>fec();</scilab:image>
+        <scilab:image>
+            x = [0 1 0 -1];
+            y = [0 0 1  1];
+            T = [1 1 2 3 1;
+            2 3 4 1 1];
+            z = [0 1 0 -1];  // values of the func at each vertices
+            clf()
+            xset("colormap",jetcolormap(64))
+            subplot(1,2,1)
+            colorbar(-1,1)
+            fec(x,y,T,z,strf="040",mesh=%t)
+            xtitle("fec example (with the mesh)")
+            subplot(1,2,2)
+            colorbar(-1,1)
+            fec(x,y,T,z,strf="040")  // rmq: mesh=%f by default
+            xtitle("fec example (without the mesh)")
+            show_window()
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

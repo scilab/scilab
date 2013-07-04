@@ -8,29 +8,29 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function curve_handles=datatipGetEntities(ax)
-//Collects all entities supporting datatips in a given axes
-  curve_handles=[];
-  if argn(2)<1 then
-    ax=gca(),
-  else
-    if type(ax)<>9|size(ax,'*')<>1|and(ax.type<>["Axes" "Compound"]) then
-      error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),"datatipGetEntities",1,"Axes"))
-    end
-  end
-  for k=1:size(ax.children,'*')
-    ck=ax.children(k);
-    select ck.type
-    case 'Compound' then
-      curve_handles=[curve_handles datatipGetEntities(ck)]
-    case 'Polyline' then
-      if size(ck.data,1)>2 then
-        curve_handles=[curve_handles ck];
-      end
-    case 'Plot3d' then
-      //TBD
-      //the surface are ignored
+    //Collects all entities supporting datatips in a given axes
+    curve_handles=[];
+    if argn(2)<1 then
+        ax=gca(),
     else
-      //the other type of entities are ignored
+        if type(ax)<>9|size(ax,"*")<>1|and(ax.type<>["Axes" "Compound"]) then
+            error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),"datatipGetEntities",1,"Axes"))
+        end
     end
-  end
+    for k=1:size(ax.children,"*")
+        ck=ax.children(k);
+        select ck.type
+        case "Compound" then
+            curve_handles=[curve_handles datatipGetEntities(ck)]
+        case "Polyline" then
+            if size(ck.data,1)>2 then
+                curve_handles=[curve_handles ck];
+            end
+        case "Plot3d" then
+            //TBD
+            //the surface are ignored
+        else
+            //the other type of entities are ignored
+        end
+    end
 endfunction

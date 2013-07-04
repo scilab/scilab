@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="for">
+    <refnamediv>
+        <refname>for</refname>
+        <refpurpose>ключевое слово для циклов</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            for variable=expression 
+            instruction;
+            instruction;
+            ...
+            instruction;
+            end
+            
+            
+            for variable=expression do
+            instruction;
+            instruction;
+            ...
+            instruction;
+            end
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>variable</term>
+                <listitem>
+                    <para>
+                        переменная, по которой ведётся цикл;
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>expression</term>
+                <listitem>
+                    <para>
+                        выражение, описывающее закон изменения переменной <literal>variable</literal> 
+                        в заданных пределах; может быть вектором, матрицей, списком;
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>instruction</term>
+                <listitem>
+                    <para>
+                        любые корректные инструкции Scilab.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>do</term>
+                <listitem>
+                    <para>
+                        ключевое слово, отделяющее блок определения переменной цикла <literal>variable</literal>
+                        от блока инструкций <literal>instruction</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Используется для организации циклов по заданной переменной <literal>variable</literal>. 
+            Изменение переменной цикла <literal>variable</literal> описывается выражением <literal>expression</literal>,
+            однако, в качестве <literal>expression</literal> может выступать вектор или матрица. В этом случае переменная 
+            <literal>variable</literal> последовательно от итерации к итерации принимает значения элементов 
+            вектора/матрицы от первого до последнего, столбец за столбцом.
+        </para>
+        <para>
+            Оператор двоеточие <link linkend="colon">colon</link> используется для создания вектор-столбцов с регулярным 
+            шагом между элементами и похож на традиционные циклы <literal>for</literal>:
+            <programlisting>
+                for variable=n1:step:n2
+                instruction;
+                ...
+                instruction;
+                end
+            </programlisting>
+        </para>
+        <para>
+            Если <literal>expression</literal> является списком, то <literal>variable</literal> 
+            принимает значения списка одно за другим.
+        </para>
+        <para>
+            В соответствии с договорённостями по написанию кода  в Scilab рекомендуется:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    начинать новую инструкцию на новой строке;
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    писать не более одной простой инструкции на одной строке;
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    разбивать составные инструкции на множество строк.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Например, используйте:
+        </para>
+        <programlisting role=""><![CDATA[
+      for i = 1:5 
+	disp(i);
+      end
+]]></programlisting>
+        <para>
+            а не:
+        </para>
+        <programlisting role=""><![CDATA[
+      for i = 1:5 disp(i); end
+]]></programlisting>
+        <para>
+            Предупреждение: число символов, используемых для определения тела любой инструкции условия
+            (<literal>if while for</literal> или <literal>select/case</literal>) должно быть ограничено
+            16К.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+// "традиционный" для циклов
+n=5;
+for i = 1:n
+    for j = 1:n
+        a(i,j) = 1/(i+j-1);
+    end;
+end
+for j = 2:n-1
+    a(j,j) = j; 
+end; 
+a
+// циклы с уменьшающейся переменной цикла
+for j= 4:-1:1
+    disp(j);
+end
+ 
+//цикл по столбцам матрицы
+for  e=eye(3,3)
+    e
+end  
+for v=a
+  write(6,v)
+end
+for j=1:n
+  v=a(:,j)
+  write(6,v)
+end 
+ 
+//цикл по элементам списка
+for l=list(1,2,'example')
+   l
+end 
+ 
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="while">while</link>
+            </member>
+            <member>
+                <link linkend="end">end</link>
+            </member>
+            <member>
+                <link linkend="do">do</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

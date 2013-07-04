@@ -38,12 +38,12 @@ function demo_nelder_rosen()
     //
     // Load this script into the editor
     //
-    m = messagebox(_("View Code?"), "Question", "question", _(["Yes" "No"]), "modal")
+    m = messagebox(_("View Code?"), "Question", "question", [_("Yes") _("No")], "modal")
     if(m == 1)
-        filename = 'neldermead_rosenbrock.sce';
+        filename = "neldermead_rosenbrock.sce";
         dname = get_absolute_file_path(filename);
         editor ( dname + filename, "readonly" );
-    end 
+    end
 endfunction
 
 demo_nelder_rosen();
@@ -53,4 +53,5 @@ clear demo_nelder_rosen;
 
 
 
-
+
+

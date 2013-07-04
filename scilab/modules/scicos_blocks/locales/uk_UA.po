@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2011.
-# Yuri Chornoivan <yurchor@ukr.net>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-02-28 19:53+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-13 13:44+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 msgid "overflow error"
@@ -433,6 +433,48 @@ msgstr "Підтвердити"
 msgid "Cancel"
 msgstr "Скасувати"
 
+msgid "Please give the discretization domain values"
+msgstr "Будь ласка, вкажіть значення області дискретизації"
+
+#, c-format
+msgid "Please give the %s operator coefficients"
+msgstr "Будь ласка, вкажіть коефіцієнти оператора %s"
+
+msgid "Please give the sign for the variable discriminant"
+msgstr "Будь ласка, вкажіть знак дискримінанта змінної"
+
+msgid "Please give the discretization method type"
+msgstr "Будь ласка, вкажіть тип методу дискретизації"
+
+msgid "Please give the discretization method degree"
+msgstr "Будь ласка, вкажіть порядок методу дискретизації"
+
+msgid "Please give the number of discretization points"
+msgstr "Будь ласка, вкажіть кількість точок дискретизації"
+
+#, c-format
+msgid "Please give the initial condition %s"
+msgstr "Будь ласка, вкажіть початкову умову %s"
+
+msgid "Please give the boundary conditions"
+msgstr "Будь ласка, вкажіть граничні умови"
+
+#, c-format
+msgid "The finite element discrtization takes %.2f seconds"
+msgstr "Поділ на скінченні елементи тривав %.2f секунд"
+
+#, c-format
+msgid "The finite differences discrtization takes %.2f seconds"
+msgstr "Поділ на скінченні різниці тривав %.2f секунд"
+
+#, c-format
+msgid "The finite volume discrtization takes %.2f seconds"
+msgstr "Поділ на скінченні області тривав %.2f секунд"
+
+#, c-format
+msgid "The code generation, the compilation and link takes %.2f seconds"
+msgstr "Створення коду, його збирання і компонування тривало %.2f секунд"
+
 msgid "Event output port"
 msgstr "Порт виведення даних подій"
 
@@ -451,6 +493,14 @@ msgstr "Неявний порт виведення даних"
 
 msgid "Regular output port"
 msgstr "Порт звичайного виведення даних"
+
+#, c-format
+msgid "Feature %s is obsolete."
+msgstr "Функція %s вважається застарілою."
+
+#, c-format
+msgid "Please use %s instead."
+msgstr "Будь ласка, використовуйте %s."
 
 msgid "Write to output file"
 msgstr "Записати до файла вихідних даних"
@@ -715,6 +765,54 @@ msgstr "[1, розмір запису = "
 msgid "Wrong value for indexes in '%s' parameter: %s."
 msgstr "Помилкове значення номерів у параметрі «%s»: %s."
 
+msgid "Read from an input file"
+msgstr "Читати з файла вхідних даних"
+
+msgid "Read is done on:"
+msgstr "Читання виконано:"
+
+msgid "&nbsp; - A formatted text file if a  format (fortran type) is given"
+msgstr ""
+"&nbsp; - Форматований текстовий файл, якщо вказано формат у запису fortran"
+
+msgid "Empty matrix or scalar expected."
+msgstr "Мало бути вказано порожню матрицю або число."
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %d"
+msgstr "Помилкове значення параметра «%s»: %d"
+
+msgid ""
+"Simulation running !!! You cannot switch <br />between formatted and "
+"unformatted"
+msgstr ""
+"Виконується імітація!!! Не можна перемикатися <br />форматованим і "
+"неформатованим"
+
+msgid "Simulation running !!! You cannot modify 'Input File Name"
+msgstr ""
+"Виконується імітація!!! Ви не можете змінювати «Назву файла вхідних даних»"
+
+msgid "Simulation running !!! You cannot modify 'Time Record Selection"
+msgstr "Виконується імітація!!! Не можна змінювати «Вибір запису часу»"
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %s"
+msgstr "Помилкове значення параметра «%s»: %s"
+
+#, c-format
+msgid "Wrong format for '%s' parameter: %s."
+msgstr "Помилкове форматування параметра «%s»: %s."
+
+msgid "Buffer size must be at least 2."
+msgstr "Буфер за розміром не повине перевищувати 2."
+
+msgid "You must read at least one field in record."
+msgstr "Читати слід принаймні одне поле у записі."
+
+msgid "Strictly positive indexes expected."
+msgstr "Мало бути вказано строго додатні індекси."
+
 msgid "Step Function"
 msgstr "Східчаста функція"
 
@@ -744,3 +842,9 @@ msgstr "З&міни"
 
 msgid "&?"
 msgstr "&Довідка"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
+"%d.\n"

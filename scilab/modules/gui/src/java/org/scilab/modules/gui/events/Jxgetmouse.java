@@ -16,7 +16,7 @@ import java.awt.AWTEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
+import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.utils.SciTranslator;
 
 
@@ -77,6 +77,12 @@ public final class Jxgetmouse {
                 mouseActionFilter(mouseEvent, axesUID, scilabMouseAction, isControlDown);
             }
         });
+
+        /*
+         *  Force xgetmouse not to catch/disable callback execution.
+         */
+        GlobalEventWatcher.disableableCatchingCallback();
+
         synchronized (ClickInfos.getInstance()) {
             try {
                 ClickInfos.getInstance().init();
@@ -138,7 +144,8 @@ public final class Jxgetmouse {
                 }
             }
             isControlDown = keyEvent.isControlDown();
-        } else if (keyEvent.getSource() instanceof SwingScilabAxes) {
+        } else if (keyEvent.getSource() != null
+                   && keyEvent.getSource() instanceof SwingScilabCanvas) {
             /* Now we have have to be sure we are in a Canvas. */
             /*
              * If a RELEASED is seen use -keyChar

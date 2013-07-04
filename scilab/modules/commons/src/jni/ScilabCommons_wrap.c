@@ -177,12 +177,16 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
     const SWIG_JavaExceptions_t *except_ptr = java_exceptions;
 
     while (except_ptr->code != code && except_ptr->code)
+    {
         except_ptr++;
+    }
 
     (*jenv)->ExceptionClear(jenv);
     excep = (*jenv)->FindClass(jenv, except_ptr->java_exception);
     if (excep)
+    {
         (*jenv)->ThrowNew(jenv, excep, msg);
+    }
 }
 
 
@@ -195,6 +199,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "../../../core/includes/tmpdir.h"
 #include "../../../fileio/includes/createtempfilename.h"
 #include "../../../localization/includes/setgetlanguage.h"
+#include "../../../core/includes/getversion.h"
 #include "../../../core/includes/setieee.h"
 #include "../../../core/includes/setformat.h"
 
@@ -211,7 +216,10 @@ extern "C" {
         (void)jenv;
         (void)jcls;
         result = (char *)getSCIHOME();
-        if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+        if (result)
+        {
+            jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+        }
         return jresult;
     }
 
@@ -224,7 +232,10 @@ extern "C" {
         (void)jenv;
         (void)jcls;
         result = (char *)getTMPDIR();
-        if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+        if (result)
+        {
+            jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+        }
         return jresult;
     }
 
@@ -237,7 +248,10 @@ extern "C" {
         (void)jenv;
         (void)jcls;
         result = (char *)getlanguage();
-        if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+        if (result)
+        {
+            jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+        }
         return jresult;
     }
 
@@ -255,12 +269,21 @@ extern "C" {
         if (jarg1)
         {
             arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-            if (!arg1) return 0;
+            if (!arg1)
+            {
+                return 0;
+            }
         }
         arg2 = (int)jarg2;
         result = (char *)createtempfilename((char const *)arg1, arg2);
-        if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
-        if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        if (result)
+        {
+            jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+        }
+        if (arg1)
+        {
+            (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        }
         return jresult;
     }
 
@@ -300,11 +323,17 @@ extern "C" {
         if (jarg1)
         {
             arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-            if (!arg1) return ;
+            if (!arg1)
+            {
+                return ;
+            }
         }
         arg2 = (int)jarg2;
         setformat((char const *)arg1, arg2);
-        if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        if (arg1)
+        {
+            (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        }
     }
 
 
@@ -316,7 +345,10 @@ extern "C" {
         (void)jenv;
         (void)jcls;
         result = (char *)getformat();
-        if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+        if (result)
+        {
+            jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+        }
         return jresult;
     }
 
@@ -330,6 +362,74 @@ extern "C" {
         (void)jcls;
         result = (int)getformatwidth();
         jresult = (jint)result;
+        return jresult;
+    }
+
+
+    SWIGEXPORT jint JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getScilabVersionMajor(JNIEnv *jenv, jclass jcls)
+    {
+        jint jresult = 0 ;
+        int result;
+
+        (void)jenv;
+        (void)jcls;
+        result = (int)getScilabVersionMajor();
+        jresult = (jint)result;
+        return jresult;
+    }
+
+
+    SWIGEXPORT jint JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getScilabVersionMinor(JNIEnv *jenv, jclass jcls)
+    {
+        jint jresult = 0 ;
+        int result;
+
+        (void)jenv;
+        (void)jcls;
+        result = (int)getScilabVersionMinor();
+        jresult = (jint)result;
+        return jresult;
+    }
+
+
+    SWIGEXPORT jint JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getScilabVersionMaintenance(JNIEnv *jenv, jclass jcls)
+    {
+        jint jresult = 0 ;
+        int result;
+
+        (void)jenv;
+        (void)jcls;
+        result = (int)getScilabVersionMaintenance();
+        jresult = (jint)result;
+        return jresult;
+    }
+
+
+    SWIGEXPORT jint JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getScilabVersionTimestamp(JNIEnv *jenv, jclass jcls)
+    {
+        jint jresult = 0 ;
+        int result;
+
+        (void)jenv;
+        (void)jcls;
+        result = (int)getScilabVersionTimestamp();
+        jresult = (jint)result;
+        return jresult;
+    }
+
+
+    SWIGEXPORT jstring JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getScilabVersionAsString(JNIEnv *jenv, jclass jcls)
+    {
+        jstring jresult = 0 ;
+        char *result = 0 ;
+
+        (void)jenv;
+        (void)jcls;
+        result = (char *)getScilabVersionAsString();
+        if (result)
+        {
+            jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+        }
         return jresult;
     }
 

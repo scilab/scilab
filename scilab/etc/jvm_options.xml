@@ -23,6 +23,12 @@ $SCILAB : scilab path (SCI in Scilab)
     <option value="-Djava.compiler=JIT"/>
     <!-- Set Java Heap space to 256mb -->
     <option value="-Xmx256m"/>
+    
+    <!-- Set Java space for direct buffer allocation -->
+    <!--
+   <option value="-XX:MaxDirectMemorySize=1024M"/>
+-->
+    
     <option value="-Dawt.useSystemAAFontSettings=on" os="linux"/>
     <option value="-Dapple.laf.useScreenMenuBar=true" os="macosx"/>
     

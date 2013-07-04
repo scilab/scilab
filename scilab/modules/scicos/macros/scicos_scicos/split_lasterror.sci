@@ -21,12 +21,12 @@
 //
 
 function str_out=split_lasterror(str_in)
-//** Fix the unreadable error messages
-//** returned by the simulator.
-//** Alan, 11/10/07 : Initial rev
+    //** Fix the unreadable error messages
+    //** returned by the simulator.
+    //** Alan, 11/10/07 : Initial rev
     str_out = [];
-    for nLine = 1:size(str_in, 'r')
-        ind_bl=strindex(str_in(nLine),' ');
+    for nLine = 1:size(str_in, "r")
+        ind_bl=strindex(str_in(nLine)," ");
 
         // Find some room in a line with more than 50 characters.
         if find(ind_bl > 50) <> [] then

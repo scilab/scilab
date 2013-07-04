@@ -64,19 +64,16 @@ TriangleMeshFecData::~TriangleMeshFecData(void)
     numberTriangles = 0;
 }
 
-int TriangleMeshFecData::getPropertyFromName(char const* propertyName)
+int TriangleMeshFecData::getPropertyFromName(int propertyName)
 {
-    if (strcmp(propertyName, __GO_DATA_MODEL_NUM_INDICES__) == 0)
+    switch (propertyName)
     {
-        return NUM_INDICES;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_FEC_TRIANGLES__) == 0)
-    {
-        return FEC_TRIANGLES;
-    }
-    else
-    {
-        return TriangleMeshData::getPropertyFromName(propertyName);
+        case __GO_DATA_MODEL_NUM_INDICES__ :
+            return NUM_INDICES;
+        case __GO_DATA_MODEL_FEC_TRIANGLES__ :
+            return FEC_TRIANGLES;
+        default :
+            return TriangleMeshData::getPropertyFromName(propertyName);
     }
 }
 

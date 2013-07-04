@@ -65,7 +65,7 @@
  *     if style is strictly negative --> a dashed line is used
  *        (dash id = abs(style[i])
  *     if there's only one curve, style can be of type style[0]=style,
- *     style[1]=pos ( pos in [1,6])
+ *     style[1]=pos (pos in [1,6])
  *     pos give the legend position (1 to 6) (this can be iteresting
  *     if you want to superpose curves with different legends by
  *     calling plot2d more than one time.
@@ -90,7 +90,7 @@
  *     if  strflag[2] == '2' -> no axis, only a box around the curves
  *     else no box and no axis
 
- * lstr* : unused ( but used by Fortran )
+ * lstr* : unused (but used by Fortran)
  *--------------------------------------------------------------------------*/
 
 int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, int *style, char *strflag, char *legend, double *brect, int *aaint,
@@ -179,9 +179,13 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
             case '9':
                 /* Force data bounds to the x and y bounds */
                 if ((int)strlen(logflags) < 1)
+                {
                     dataflag = 'g';
+                }
                 else
+                {
                     dataflag = logflags[0];
+                }
 
                 getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LOG_FLAG__, jni_bool, (void **)&piTmp);
                 logFlags[0] = iTmp;
@@ -473,6 +477,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
             setGraphicObjectRelationship(psubwinUID, compoundUID);
             getGraphicObjectProperty(psubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piParentVisible);
             setGraphicObjectProperty(compoundUID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
+            releaseGraphicObjectProperty(__GO_PARENT__, compoundUID, jni_string, 1);
         }
         FREE(hdltab);
 
@@ -515,8 +520,9 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
     {
         if (logflags[0] != 'l')
         {
-            drect[0] = Mini(x1, size_x);
-            drect[1] = Maxi(x1, size_x);
+            MiniMaxi(x1, size_x, drect, drect + 1);
+            //drect[0] = Mini(x1, size_x);
+            //drect[1] = Maxi(x1, size_x);
         }
         else
         {
@@ -546,8 +552,9 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
     {
         if (logflags[1] != 'l')
         {
-            drect[2] = Mini(y, size_y);
-            drect[3] = Maxi(y, size_y);
+            MiniMaxi(y, size_y, drect + 2, drect + 3);
+            //drect[2] = Mini(y, size_y);
+            //drect[3] = Maxi(y, size_y);
         }
         else
         {
@@ -555,7 +562,6 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
             drect[2] = sciFindStPosMin(y, size_y);
             drect[3] = Maxi(y, size_y);
         }
-
     }
     else
     {
@@ -571,18 +577,35 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
             drect[3] = 10.0;
         }
     }
+
     /* back to default values for  x=[] and y = [] */
-    if (drect[2] == LARGEST_REAL)
+    if (drect[2] == LARGEST_REAL || drect[3] == -LARGEST_REAL)
     {
-        drect[2] = 0.0;
+        if (logflags[1] != 'l')
+        {
+            drect[2] = 0.0;
+        }
+        else
+        {
+            drect[2] = 1.0;
+        }
+
         drect[3] = 10.0;
     }
-    if (drect[0] == LARGEST_REAL)
+
+    if (drect[0] == LARGEST_REAL || drect[1] == -LARGEST_REAL)
     {
-        drect[0] = 0.0;
+        if (logflags[0] != 'l')
+        {
+            drect[0] = 0.0;
+        }
+        else
+        {
+            drect[0] = 1.0;
+        }
+
         drect[1] = 10.0;
     }
-
 }
 
 BOOL update_specification_bounds(char *psubwinUID, double rect[6], int flag)

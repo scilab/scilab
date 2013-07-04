@@ -17,7 +17,7 @@
 
 singleValue = %pi/100;
 origValues = [%pi/100, %pi/10];
-defaultValues = [%pi/100, 1/10];
+defaultValues = [%pi/100, %pi/10];
 u=uicontrol("style","slider","position",[10 10 200,30],"max",%pi);
 u.sliderStep = origValues;
 assert_checkequal(u.sliderStep, origValues);

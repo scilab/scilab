@@ -2,88 +2,152 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - 2011 - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:id="xlabel" xml:lang="en">
-  <refnamediv>
-    <refname>xlabel</refname>
-    <refpurpose>label x-axis</refpurpose>
-  </refnamediv>
-  <refnamediv xml:id="ylabel">
-    <refname>ylabel</refname>
-    <refpurpose>label y-axis</refpurpose>
-  </refnamediv>
-  <refnamediv xml:id="zlabel">
-    <refname>zlabel</refname>
-    <refpurpose>label z-axis</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>xlabel("string label")</synopsis>
-    <synopsis>xlabel("string label", "PropertyName", PropertyValue)</synopsis>
-    <synopsis>ylabel("string label")</synopsis>
-    <synopsis>ylabel("string label", "PropertyName", PropertyValue)</synopsis>
-    <synopsis>zlabel("string label")</synopsis>
-    <synopsis>zlabel("string label", "PropertyName", PropertyValue)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>"string label"</term>
-        <listitem>
-          <para>a string: labels the axis of the current axes</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"PropertyName"</term>
-        <listitem>
-          <para>a string: a property name</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>PropertyValue</term>
-        <listitem>
-          <para>a property value</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>Each axes graphics object can have one label for the x-, y-, and
-      z-axis.
-    </para>
-    <para>The label appears beneath its respective axis in a two-dimensional
-      plot and to the side or beneath the axis in a three-dimensional
-      plot.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Sample</title>
-    <scilab:image>
-      xlabel(["first line";"second line"])
-      ylabel("A label on y axis", "fontsize", 6)
-    </scilab:image>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example">xlabel(["first line";"second line"])
-      ylabel("A label on y axis", "fontsize", 6)
-    </programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="title">title</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="xlabel" xml:lang="en">
+    <refnamediv>
+        <refname>xlabel</refname>
+        <refpurpose>sets the x-axis label</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="ylabel">
+        <refname>ylabel</refname>
+        <refpurpose>sets the y-axis label</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="zlabel">
+        <refname>zlabel</refname>
+        <refpurpose>sets the z-axis label</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>xlabel([axis_handle], label, [property_name, property_value,...])</synopsis>
+        <synopsis>ylabel([axis_handle], label, [property_name, property_value,...])</synopsis>
+        <synopsis>zlabel([axis_handle], label, [property_name, property_value,...])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>label</term>
+                <listitem>
+                    <para>a string, containing the label value.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>axis_handle</term>
+                <listitem>
+                    <para>an optional handle, to specify the axes for which the label is set.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>[property_name, property_value,...]</term>
+                <listitem>
+                    <para>an optional sequence of name-value pairs, to specify the text properties of the label
+                        (related to the text properties described <link linkend="text_properties">here</link>).
+                    </para>
+                    <para>The available properties for x-y-zlabel are:
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <literal>"visible"</literal>: <literal>"on"</literal> or <literal>"off"</literal>
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"fontsize"</literal>: size of font (constant)
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"fontname"</literal>: ten font names are available 
+                                    (case unsensitive string or related id number):
+                                    "courrier" | 0, "symbol" | 1, "times" | 2, "times italic" | 3, 
+                                    "times bold" | 4, "times bold italic" | 5, "helvetica" | 6, 
+                                    "helvetica italic" | 7, "helvetica bold" | 8, "helvetica bold italic" | 9.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"rotation"</literal>: angle in degrees (constant)
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"position"</literal>: position of label (2d vector)
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"color"</literal>: the color of font (a string value chosen among <literal>["red","green","blue","cyan","magenta","yellow","black","white"]</literal>, or a RGB matrix value)
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"edgecolor"</literal>: the color of line around the text (a string value chosen among <literal>["red","green","blue","cyan","magenta","yellow","black","white"]</literal>, or a RGB matrix value)
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"background"</literal>: the color of background around the text (a string value chosen among <literal>["red","green","blue","cyan","magenta","yellow","black","white"]</literal>, or a RGB matrix value)
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>xlabel, ylabel, zlabel are used to label the x-, y-, and z-axis, respectively.
+        </para>
+        <para>Each label appears beneath its respective axis in a two-dimensional
+            plot and to the side or beneath the axis in a three-dimensional plot.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            t = linspace(-2*%pi, 2*%pi, 30);
+            
+            subplot(2,1,1);
+            plot(t, sin(t), "r");
+            xlabel("t", "fontsize", 2);
+            ylabel("sin(t)");
+            axis1_handle = gca();
+            
+            subplot(2,1,2);
+            plot(t, cos(t), "b");
+            xlabel("t", "fontsize", 2);
+            ylabel("cos(t)", "fontsize", 6, "color", "blue");
+            
+            ylabel(axis1_handle, "sin(t)", "fontsize", 6, "color", "red");
+        </programlisting>
+        <scilab:image>
+            t = linspace(-2*%pi, 2*%pi, 50);
+            subplot(2,1,1);
+            plot(t, sin(t), "r");
+            xlabel("t", "fontsize", 2);
+            ylabel("sin(t)");
+            axis1_handle = gca();
+            subplot(2,1,2);
+            plot(t, cos(t), "b");
+            xlabel("t", "fontsize", 2);
+            ylabel("cos(t)", "fontsize", 6, "color", "blue");
+            ylabel(axis1_handle, "sin(t)", "fontsize", 6, "color", "red");
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="title">title</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

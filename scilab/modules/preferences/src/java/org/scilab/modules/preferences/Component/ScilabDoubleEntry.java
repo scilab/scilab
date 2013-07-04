@@ -27,6 +27,7 @@ import org.w3c.dom.Node;
 /**
  * {@link Entry} component which only allow a Scilab single double data text.
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabDoubleEntry extends JFormattedTextField implements XComponent, XChooser {
 
     /*
@@ -89,8 +90,8 @@ public class ScilabDoubleEntry extends JFormattedTextField implements XComponent
      * Actuators
      */
 
-    public final BigDecimal value() {
-        return (BigDecimal) getValue();
+    public final String value() {
+        return ((BigDecimal) getValue()).toPlainString();
     }
 
     public final void value(final String text) {

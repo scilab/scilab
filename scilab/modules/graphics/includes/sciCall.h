@@ -23,167 +23,32 @@
 #include "BOOL.h"
 #include "BuildObjects.h"
 
-GRAPHICS_IMPEXP void Objrect ( double * x         ,
-               double * y         ,
-               double * width     ,
-               double * height    ,
-               int    * foreground,
-               int    * background,
-               BOOL     isfilled  ,
-               BOOL     isline    ,
-               long   * hdl       ) ;
+GRAPHICS_IMPEXP void Objrect(double* x, double* y, double* width, double* height, int* foreground, int* background, BOOL isfilled, BOOL isline, long* hdl);
 
-GRAPHICS_IMPEXP void Objarc( double * angle1    ,
-             double * angle2    ,
-             double * x         ,
-             double * y         ,
-             double * width     ,
-             double * height    ,
-             int    * foreground,
-             int    * background,
-             BOOL     isfilled  ,
-             BOOL     isline    ,
-             long   * hdl        ) ;
+GRAPHICS_IMPEXP void Objarc(double* angle1, double* angle2, double* x, double* y, double* width, double* height, int* foreground, int* background, BOOL isfilled, BOOL isline, long* hdl);
 
-GRAPHICS_IMPEXP void Objpoly ( double  * x     ,
-               double  * y     ,
-               int   n     ,
-               int   closed,
-               int       mark  ,
-               long    * hdl    ) ;
+GRAPHICS_IMPEXP void Objpoly(double* x, double* y, int n, int closed, int mark, long* hdl);
 
-GRAPHICS_IMPEXP void Objfpoly ( double  * x    ,
-                double  * y    ,
-                int   n    ,
-                int * style,
-                long    * hdl  ,
-                int   shading ) ;
+GRAPHICS_IMPEXP void Objfpoly(double* x, double* y, int n, int* style, long* hdl, int shading);
 
-GRAPHICS_IMPEXP void Objsegs ( int * style,
-               int   flag ,
-               int   n1   ,
-               double  * x    ,
-               double  * y    ,
-               double  * z    ,
-               double    arsize ) ;
+GRAPHICS_IMPEXP void Objsegs(int* style, int flag , int n1, double* x, double* y, double* z, double arsize);
 
-GRAPHICS_IMPEXP void Objstring( char            ** fname      ,
-                int                nbRow      ,
-                int                nbCol      ,
-                double             x          ,
-                double             y          ,
-                double           * angle      ,
-                double             box[4]     ,
-                BOOL               autoSize   ,
-                double             userSize[2],
-                long             * hdl        ,
-                BOOL               centerPos  ,
-                int              * foreground ,
-                int              * background ,
-                BOOL               isboxed    ,
-                BOOL               isline     ,
-                BOOL               isfilled   ,
-                sciTextAlignment   alignment   ) ;
+GRAPHICS_IMPEXP void Objstring(char** fname, int nbRow, int nbCol, double  x, double  y, double* angle, double  box[4], BOOL autoSize, double userSize[2], long* hdl, int centerPos, int* foreground, int* background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment alignment);
 
+GRAPHICS_IMPEXP void Objplot2d(int ptype, char logflags[], double x[], double y[], int* n1, int* n2, int style[], char strflag[], char legend[], double brect[], int aaint[], BOOL flagNax);
 
-GRAPHICS_IMPEXP void Objplot2d ( int       ptype     ,
-                 char      logflags[],
-                 double    x[]       ,
-                 double    y[]       ,
-                 int * n1        ,
-                 int * n2        ,
-                 int   style[]   ,
-                 char      strflag[] ,
-                 char      legend[]  ,
-                 double    brect[]   ,
-                 int   aaint[]   ,
-                 BOOL      flagNax    ) ;
+GRAPHICS_IMPEXP void Objgrayplot(double x[], double y[], double z[], int* n1, int* n2, char strflag[], double brect[], int aaint[], BOOL flagNax);
 
-GRAPHICS_IMPEXP void Objgrayplot ( double    x[]      ,
-                   double    y[]      ,
-                   double    z[]      ,
-                   int * n1       ,
-                   int * n2       ,
-                   char      strflag[],
-                   double    brect[]  ,
-                   int   aaint[]  ,
-                   BOOL      flagNax   ) ;
+GRAPHICS_IMPEXP void Objmatplot(double z[], int* n1, int* n2, char strflag[], double brect[], int aaint[], BOOL flagNax);
 
-GRAPHICS_IMPEXP void Objmatplot (double    z[]      ,
-                 int * n1       ,
-                 int * n2       ,
-                 char      strflag[],
-                 double    brect[]  ,
-                 int   aaint[]  ,
-                 BOOL      flagNax   ) ;
+GRAPHICS_IMPEXP void Objmatplot1(double z[], int* n1, int* n2, double xrect[]);
 
-GRAPHICS_IMPEXP void Objmatplot1 ( double    z[],
-                   int * n1 ,
-                   int * n2 ,
-                   double    xrect[] ) ;
+GRAPHICS_IMPEXP void Objplot3d(char* fname, int* isfac, int* izcol, double x[], double y[], double z[], double* zcol, int* m, int* n, double* theta, double* alpha, char* legend, int* iflag, double* ebox, int* m1, int* n1, int* m2, int* n2, int* m3, int* n3, int* m3n, int* n3n);
 
-GRAPHICS_IMPEXP void Objplot3d ( char    * fname ,
-                 int * isfac ,
-                 int * izcol ,
-                 double    x[]   ,
-                 double    y[]   ,
-                 double    z[]   ,
-                 double  * zcol  ,
-                 int * m     ,
-                 int * n     ,
-                 double  * theta ,
-                 double  * alpha ,
-                 char    * legend,
-                 int * iflag ,
-                 double  * ebox  ,
-                 int * m1    , /*Adding F.Leray 12.03.04 and 19.03.04*/
-                 int * n1    ,
-                 int * m2    ,
-                 int * n2    ,
-                 int * m3    ,
-                 int * n3    ,
-                 int * m3n   ,
-                 int * n3n    ) ;
+GRAPHICS_IMPEXP void Objdrawaxis(char dir, char tics, double* x, int* nx, double* y, int* ny, char* val[], int subint, char* format, int font, int textcol, int ticscol, char flag, int seg, int nb_tics_labels);
 
-GRAPHICS_IMPEXP void Objdrawaxis ( char     dir    ,
-                   char     tics   ,
-                   double * x      ,
-                   int    * nx     ,
-                   double * y      ,
-                   int    * ny     ,
-                   char   * val[]  ,
-                   int      subint ,
-                   char   * format ,
-                   int      font   ,
-                   int      textcol,
-                   int      ticscol,
-                   char     flag   ,
-                   int      seg    ,
-                   int      nb_tics_labels ) ;
+GRAPHICS_IMPEXP void Objnumb(char* fname, unsigned long fname_len, int n, int flag, double x, double y, double* angle, double* box);
 
-GRAPHICS_IMPEXP void Objnumb( char          * fname    ,
-              unsigned long   fname_len,
-              int         n        ,
-              int         flag     ,
-              double          x        ,
-              double          y        ,
-              double        * angle    ,
-              double        * box       ) ;
-
-GRAPHICS_IMPEXP void Objfec ( double    x[]        ,
-              double    y[]        ,
-              double    noeud[]    ,
-              double  * fun        ,
-              int * n          ,
-              int * m          ,
-              char      strflag[]  ,
-              char      legend[]   ,
-              double    brect[]    ,
-              int   aaint[]    ,
-              double    Zminmax[]  ,
-              int   Colminmax[],
-              int   ColOut[]   ,
-              BOOL      WithMesh   ,
-              BOOL      flagNax     ) ;
+GRAPHICS_IMPEXP void Objfec(double x[], double y[], double noeud[], double* fun, int* n, int* m, char strflag[], char legend[], double brect[], int aaint[], double Zminmax[], int Colminmax[], int ColOut[], BOOL WithMesh, BOOL flagNax);
 
 #endif /* _SCI_CALL_H_ */

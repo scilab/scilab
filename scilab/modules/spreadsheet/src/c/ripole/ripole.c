@@ -30,10 +30,10 @@ static char help[] = "ripOLE -i <OLE2 file> [ -d <directory> ] [--save-unknown-s
   Function Name	: set_defaults
   Returns Type	: int
   ----Parameter List
-  1. struct ripOLE_object *role , 
+  1. struct ripOLE_object *role ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
 Comments:
 
@@ -56,10 +56,10 @@ int ROLE_set_defaults(struct ripOLE_object *role)
   Function Name	: ripOLE_report_filename_decoded
   Returns Type	: int
   ----Parameter List
-  1. char *filename, 
+  1. char *filename,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
 Comments:
 
@@ -78,10 +78,10 @@ int ROLE_report_filename_decoded(char *filename)
   Function Name	: ROLE_init
   Returns Type	: int
   ----Parameter List
-  1. struct ripOLE_object *role, 
+  1. struct ripOLE_object *role,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
 Comments:
 
@@ -105,10 +105,10 @@ int ROLE_init(struct ripOLE_object *role)
   Function Name	: ROLE_done
   Returns Type	: int
   ----Parameter List
-  1. struct ripOLE_object *role, 
+  1. struct ripOLE_object *role,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
 Comments:
 
@@ -119,9 +119,13 @@ Changes:
 int ROLE_done(struct ripOLE_object *role)
 {
     if (role->inputfile != NULL)
+    {
         FREE(role->inputfile);
+    }
     if (role->outputdir != NULL)
+    {
         FREE(role->outputdir);
+    }
 
     return 0;
 }
@@ -130,10 +134,10 @@ int ROLE_done(struct ripOLE_object *role)
   Function Name	: ROLE_validate
   Returns Type	: int
   ----Parameter List
-  1. struct ripOLE_object *role , 
+  1. struct ripOLE_object *role ,
   ------------------
-  Exit Codes	: 
-  Side Effects	: 
+  Exit Codes	:
+  Side Effects	:
   --------------------------------------------------------------------
 Comments:
 
@@ -171,9 +175,13 @@ int ripole(char *inputfile, char *outputdir, int debug, int verbose)
 
     OLE_init(&ole);
     if (debug == 1)
+    {
         OLE_set_debug(&ole, OLE_DEBUG_NORMAL);
+    }
     if (verbose == 1)
+    {
         OLE_set_verbose(&ole, OLE_VERBOSE_NORMAL);
+    }
     /*ole->save_unknown_streams==2 added for Scilab to extract onlyspreadsheet streams
      * see  OLE_decode_stream in ole.c file */
     OLE_set_save_unknown_streams(&ole, 2);  /* get only spreadsheet streams */
@@ -184,7 +192,9 @@ int ripole(char *inputfile, char *outputdir, int debug, int verbose)
     OLE_decode_file_done(&ole);
 
     if ((result != 0) && (verbose == 1))
+    {
         LOGGER_log(_("ripOLE: decoding of %s resulted in error %d.\n"), inputfile, result);
+    }
 
     /*if (ole != NULL) FREE(ole); */
     return result;

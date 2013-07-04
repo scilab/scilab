@@ -31,29 +31,29 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_background_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_background_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-  int value = 0;
-  BOOL status = FALSE;
+    int value = 0;
+    BOOL status = FALSE;
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "background");
-    return SET_PROPERTY_ERROR ;
-  }
+    if (valueType != sci_matrix)
+    {
+        Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "background");
+        return SET_PROPERTY_ERROR;
+    }
 
-  value = (int)getDoubleFromStack(stackPointer);
+    value = (int)((double*)_pvData)[0];
 
-  status = setGraphicObjectProperty(pobjUID, __GO_BACKGROUND__, &value, jni_int, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_BACKGROUND__, &value, jni_int, 1);
 
-  if (status == TRUE)
-  {
-    return SET_PROPERTY_SUCCEED;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"background");
-    return SET_PROPERTY_ERROR;
-  }
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "background");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

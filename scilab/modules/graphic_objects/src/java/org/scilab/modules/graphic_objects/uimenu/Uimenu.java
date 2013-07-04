@@ -67,7 +67,7 @@ public class Uimenu extends GraphicObject {
      * @return uicontrol
      * @see org.scilab.modules.graphic_objects.graphicObject.GraphicObject#getType()
      */
-    public String getType() {
+    public Integer getType() {
         return __GO_UIMENU__;
     }
 
@@ -76,28 +76,27 @@ public class Uimenu extends GraphicObject {
      * @param propertyName the property name
      * @return the property enum
      */
-    public Object getPropertyFromName(String propertyName) {
-        Object property = null;
-        if (propertyName.equals(__GO_UI_ACCELERATOR__)) {
-            property = UimenuProperty.ACCELERATOR;
-        } else if (propertyName.equals(__GO_UI_CHECKED__)) {
-            property = UimenuProperty.CHECKED;
-        } else if (propertyName.equals(__GO_UI_ENABLE__)) {
-            property = UimenuProperty.ENABLE;
-        } else if (propertyName.equals(__GO_UI_FOREGROUNDCOLOR__)) {
-            property = UimenuProperty.FOREGROUNDCOLOR;
-        } else if (propertyName.equals(__GO_UI_ICON__)) {
-            property = UimenuProperty.ICON;
-        } else if (propertyName.equals(__GO_UI_LABEL__)) {
-            property = UimenuProperty.LABEL;
-        } else if (propertyName.equals(__GO_UI_MNEMONIC__)) {
-            property = UimenuProperty.MNEMONIC;
-        } else if (propertyName.equals(__GO_UI_SEPARATOR__)) {
-            property = UimenuProperty.SEPARATOR;
-        } else {
-            property = super.getPropertyFromName(propertyName);
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+            case __GO_UI_ACCELERATOR__ :
+                return UimenuProperty.ACCELERATOR;
+            case __GO_UI_CHECKED__ :
+                return UimenuProperty.CHECKED;
+            case __GO_UI_ENABLE__ :
+                return UimenuProperty.ENABLE;
+            case __GO_UI_FOREGROUNDCOLOR__ :
+                return UimenuProperty.FOREGROUNDCOLOR;
+            case __GO_UI_ICON__ :
+                return UimenuProperty.ICON;
+            case __GO_UI_LABEL__ :
+                return UimenuProperty.LABEL;
+            case __GO_UI_MNEMONIC__ :
+                return UimenuProperty.MNEMONIC;
+            case __GO_UI_SEPARATOR__ :
+                return UimenuProperty.SEPARATOR;
+            default :
+                return super.getPropertyFromName(propertyName);
         }
-        return property;
     }
 
     /**

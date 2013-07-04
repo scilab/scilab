@@ -177,12 +177,16 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
     const SWIG_JavaExceptions_t *except_ptr = java_exceptions;
 
     while (except_ptr->code != code && except_ptr->code)
+    {
         except_ptr++;
+    }
 
     (*jenv)->ExceptionClear(jenv);
     excep = (*jenv)->FindClass(jenv, except_ptr->java_exception);
     if (excep)
+    {
         (*jenv)->ThrowNew(jenv, excep, msg);
+    }
 }
 
 

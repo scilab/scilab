@@ -26,6 +26,7 @@ import org.scilab.modules.scinotes.utils.CodeExporter;
  * @author Sylvestre Koumar
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class PrintAction extends DefaultAction {
 
     private boolean codeConverterLoaded;
@@ -48,7 +49,7 @@ public class PrintAction extends DefaultAction {
             LoadClassPath.loadOnUse("pdf_ps_eps_graphic_export");
             codeConverterLoaded = true;
         }
-        ScilabEditorPane pane = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane pane = getEditor().getTextPane();
         CodeExporter.convert(pane, null, CodeExporter.PRINT, PageSetupAction.getPageFormat());
     }
 

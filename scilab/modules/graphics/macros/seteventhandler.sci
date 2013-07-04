@@ -8,17 +8,17 @@
 
 function seteventhandler(name)
 
-  [lhs,rhs] = argn(0) ;
+    [lhs,rhs] = argn(0) ;
 
-  if ( rhs <> 1 ) then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "seteventhandler", 1));
-    return ;
-  end
+    if ( rhs <> 1 ) then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "seteventhandler", 1));
+        return ;
+    end
 
-  fig = get("current_figure") ;
-  fig.event_handler_enable = "off" ;
-  fig.event_handler = name ;
-  if ( name <> "" ) then
-    fig.event_handler_enable = "on" ;
-  end
+    fig = get("current_figure") ;
+    fig.event_handler_enable = "off" ;
+    fig.event_handler = name ;
+    if ( name <> "" ) then
+        fig.event_handler_enable = "on" ;
+    end
 endfunction

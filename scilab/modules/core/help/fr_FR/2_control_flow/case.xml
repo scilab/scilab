@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="case">
+    <refnamediv>
+        <refname>case</refname>
+        <refpurpose>mot-clé utilisé dans une structure "select" </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Mot-clé utilisé dans une structure <literal>select ... case ... end</literal>
+        </para>
+        <para>
+            A utiliser de la façon suivante :
+        </para>
+        <programlisting><![CDATA[ 
+    select expr0,
+    case expr1 then
+        instructions 1
+    case expr2 then
+        instructions 2
+    ...
+    case exprn then
+        instructions n
+    [else instructions]
+    end
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting><![CDATA[
+OS=getos()
+select OS
+case "Windows" then
+  disp("Scilab sur Windows")
+case "Linux" then
+  disp("Scilab sur Linux")
+case "Darwin" then
+  disp("Scilab sur Mac OS")
+else
+  error("Scilab sur plateforme inconnue")
+end
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="select">select</link>
+            </member>
+            <member>
+                <link linkend="while">while</link>
+            </member>
+            <member>
+                <link linkend="end">end</link>
+            </member>
+            <member>
+                <link linkend="for">for</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

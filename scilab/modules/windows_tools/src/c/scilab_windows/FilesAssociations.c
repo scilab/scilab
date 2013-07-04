@@ -22,7 +22,7 @@
 #include <shlwapi.h>
 #include "version.h"
 #include "FilesAssociations.h"
-#include "win_mem_alloc.h" /* MALLOC */
+#include "MALLOC.h"
 #include "FindScilab.h"
 #include "wmcopydata.h"
 #include "strdup_windows.h"
@@ -44,6 +44,7 @@ static BOOL IsASciNotesFileTST(char *chainefichier);
 /*--------------------------------------------------------------------------*/
 #define MSG_SCIMSG1 "%s -e load(getlongpathname('%s'));disp(getlongpathname('%s')+ascii(32)+'loaded');"
 #define MSG_SCIMSG2_XCOS "%s -e xcos(getlongpathname('%s'));"
+#define MSG_SCIMSG3_XCOS "execstr('xcos(getlongpathname(''%s''));','errcatch');"
 #define MSG_SCIMSG4 "%s -e exec(getlongpathname('%s'));"
 #define MSG_SCIMSG5_EDITOR "%s -e editor(getlongpathname('%s'));"
 /* we try to launch scilab editor */
@@ -54,7 +55,8 @@ static BOOL IsASciNotesFileTST(char *chainefichier);
 /* retourne TRUE si c'est le cas sinon FALSE */
 BOOL IsABinOrSavFile(char *chainefichier)
 {
-    if ( isGoodExtension(chainefichier, ".BIN") || isGoodExtension(chainefichier, ".SAV") )
+    if (isGoodExtension(chainefichier, ".BIN") || isGoodExtension(chainefichier, ".SAV")
+            || isGoodExtension(chainefichier, ".SOD"))
     {
         return TRUE;
     }
@@ -63,10 +65,13 @@ BOOL IsABinOrSavFile(char *chainefichier)
 /*--------------------------------------------------------------------------*/
 BOOL IsAScicosFile(char *chainefichier)
 {
-    if ( IsAScicosFileCOS(chainefichier) ||
+    if (IsAScicosFileCOS(chainefichier) ||
             IsAScicosFileCOSF(chainefichier) ||
             IsAScicosFileXCOS(chainefichier) ||
-            IsAScicosFileZCOS(chainefichier) ) return TRUE;
+            IsAScicosFileZCOS(chainefichier))
+    {
+        return TRUE;
+    }
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
@@ -92,9 +97,12 @@ BOOL IsAScicosFileZCOS(char *chainefichier)
 /*--------------------------------------------------------------------------*/
 BOOL IsASciNotesFile(char *chainefichier)
 {
-    if ( IsASciNotesFileSCE(chainefichier) ||
+    if (IsASciNotesFileSCE(chainefichier) ||
             IsASciNotesFileSCI(chainefichier) ||
-            IsASciNotesFileTST(chainefichier) ) return TRUE;
+            IsASciNotesFileTST(chainefichier))
+    {
+        return TRUE;
+    }
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
@@ -142,7 +150,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
             case 0:
             default: /* -O Open file with editor */
             {
-                if ( (!HaveAnotherWindowScilab()) || (haveMutexClosingScilab()) )
+                if (!HaveAnotherWindowScilab() || haveMutexClosingScilab())
                 {
                     if (with_module("scinotes"))
                     {
@@ -193,24 +201,61 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
 
             case 1: /* -X eXecute file */
             {
-                if ( IsABinOrSavFile(FinalFileName) == TRUE )
+                if (IsABinOrSavFile(FinalFileName) == TRUE)
                 {
                     /* C'est un fichier .BIN ou .SAV d'ou load */
                     wsprintf(Cmd, MSG_SCIMSG1, PathWScilex, FinalFileName, FinalFileName);
                 }
                 else
                 {
-                    if  ( IsAScicosFile(fichier) == TRUE )
+                    if (IsAScicosFile(fichier) == TRUE)
                     {
                         ExtensionFileIntoLowerCase(FinalFileName);
-                        if (with_module("xcos"))
+                        if (!HaveAnotherWindowScilab() || haveMutexClosingScilab())
                         {
-                            wsprintf(Cmd, MSG_SCIMSG2_XCOS, PathWScilex, FinalFileName);
+                            if (with_module("xcos"))
+                            {
+                                wsprintf(Cmd, MSG_SCIMSG2_XCOS, PathWScilex, FinalFileName);
+                            }
+                            else
+                            {
+                                MessageBox(NULL, "Please install xcos module.", "Error", MB_ICONSTOP);
+                                exit(0);
+                            }
                         }
                         else
                         {
-                            MessageBox(NULL, "Please install xcos module.", "Error", MB_ICONSTOP);
-                            exit(0);
+                            char *ScilabDestination = NULL;
+
+                            if (with_module("xcos"))
+                            {
+                                wsprintf(Cmd, MSG_SCIMSG3_XCOS, FinalFileName);
+                            }
+                            else
+                            {
+                                MessageBox(NULL, "Please install xcos module.", "Error", MB_ICONSTOP);
+                                exit(0);
+                            }
+
+                            ScilabDestination = getLastScilabFound();
+                            if (ScilabDestination)
+                            {
+                                SendCommandToAnotherScilab(MSG_SCIMSG7, ScilabDestination, Cmd);
+                                FREE(ScilabDestination);
+                                exit(0);
+                            }
+                            else
+                            {
+                                if (with_module("xcos"))
+                                {
+                                    wsprintf(Cmd, MSG_SCIMSG2_XCOS, PathWScilex, FinalFileName);
+                                }
+                                else
+                                {
+                                    MessageBox(NULL, "Please install xcos module.", "Error", MB_ICONSTOP);
+                                    exit(0);
+                                }
+                            }
                         }
                     }
                     else
@@ -242,7 +287,7 @@ static void ExtensionFileIntoLowerCase(char *fichier)
 
     tmpfile = strdup(fichier);
     buffer = strtok(tmpfile, ".");
-    while ( buffer = strtok(NULL, "."))
+    while (buffer = strtok(NULL, "."))
     {
         lastdot = buffer;
     }
@@ -257,10 +302,16 @@ static void ExtensionFileIntoLowerCase(char *fichier)
 static void ReplaceSlash(char *pathout, char *pathin)
 {
     int i = 0;
-    for ( i = 0; i < (int)strlen(pathin); i++)
+    for (i = 0; i < (int)strlen(pathin); i++)
     {
-        if ( pathin[i] == '\\' ) pathout[i] = '/';
-        else pathout[i] = pathin[i];
+        if (pathin[i] == '\\')
+        {
+            pathout[i] = '/';
+        }
+        else
+        {
+            pathout[i] = pathin[i];
+        }
     }
     pathout[i] = '\0';
 }
@@ -270,7 +321,10 @@ static BOOL isGoodExtension(char *chainefichier, char *ext)
     char *ExtensionFilename = PathFindExtension(chainefichier);
     if (ExtensionFilename)
     {
-        if ( _stricmp(ExtensionFilename, ext) == 0 ) return TRUE;
+        if (_stricmp(ExtensionFilename, ext) == 0)
+        {
+            return TRUE;
+        }
     }
     return FALSE;
 }

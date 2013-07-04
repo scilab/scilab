@@ -21,6 +21,7 @@ import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 
 import javax.swing.JScrollBar;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -48,7 +49,7 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
     private static final int MIN_KNOB_SIZE = 40;
 
     private static final int MINIMUM_VALUE = 0;
-    private static final int MAXIMUM_VALUE = 1000;
+    private static final int MAXIMUM_VALUE = 10000;
 
     private String uid;
 
@@ -63,6 +64,7 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
         super();
         // needed to have slider working with GLCanvas
         setOpaque(true);
+        setFocusable(true); /* Enable to manage the slider using keyboard (See bug #10840) */
         setMinimum(MINIMUM_VALUE);
         setMaximum(MAXIMUM_VALUE + getVisibleAmount());
         adjustmentListener = new AdjustmentListener() {
@@ -207,7 +209,7 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
      * @param value the minimum value
      */
     public void setMinimumValue(double value) {
-        updateModel();
+        updateModel(); /* Update the model according to the knob position */
     }
 
     /**
@@ -215,7 +217,7 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
      * @param value the maximum value
      */
     public void setMaximumValue(double value) {
-        updateModel();
+        updateModel(); /* Update the model according to the knob position */
     }
 
     /**
@@ -234,9 +236,11 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
         /* Remove the listener to avoid the callback to be executed */
         removeAdjustmentListener(adjustmentListener);
 
-        setBlockIncrement((int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE)));
+        double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+        double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+        setBlockIncrement((int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
         int oldMax = getMaximum() - getVisibleAmount();
-        setVisibleAmount(Math.max((int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE)), MIN_KNOB_SIZE));
+        setVisibleAmount(Math.max((int) ((MAXIMUM_VALUE - MINIMUM_VALUE) / space), MIN_KNOB_SIZE));
         setMaximum(oldMax + getVisibleAmount());
 
         /* Put back the listener */
@@ -251,7 +255,9 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
         /* Remove the listener to avoid the callback to be executed */
         removeAdjustmentListener(adjustmentListener);
 
-        setUnitIncrement((int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE)));
+        double userMin = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MIN__);
+        double userMax = (Double) GraphicController.getController().getProperty(uid, __GO_UI_MAX__);
+        setUnitIncrement((int) (space * (MAXIMUM_VALUE - MINIMUM_VALUE) / (userMax - userMin)));
 
         /* Put back the listener */
         addAdjustmentListener(adjustmentListener);
@@ -333,7 +339,7 @@ public class SwingScilabSlider extends JScrollBar implements SwingViewObject, Si
      * @param property property name
      * @param value property value
      */
-    public void update(String property, Object value) {
+    public void update(int property, Object value) {
         SwingViewWidget.update(this, property, value);
     }
 

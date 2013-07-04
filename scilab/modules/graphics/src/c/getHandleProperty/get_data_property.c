@@ -39,7 +39,7 @@
 /* the grayplot data is now given as a tlist (like for surface and champ objects) */
 int getgrayplotdata(char *pobjUID)
 {
-    char * variable_tlist[] = {"grayplotdata","x","y","z"};
+    char * variable_tlist[] = {"grayplotdata", "x", "y", "z"};
     int numX = 0;
     int *piNumX = &numX;
     int numY = 0;
@@ -49,9 +49,9 @@ int getgrayplotdata(char *pobjUID)
     double* dataZ = NULL;
 
     /* Add 'variable' tlist items to stack */
-    returnedList * tList = createReturnedList( 3, variable_tlist );
+    returnedList * tList = createReturnedList(3, variable_tlist);
 
-    if ( tList == NULL )
+    if (tList == NULL)
     {
         return -1;
     }
@@ -67,7 +67,7 @@ int getgrayplotdata(char *pobjUID)
     addColVectorToReturnedList(tList, dataY, numY);
     addMatrixToReturnedList(tList, dataZ, numX, numY);
 
-    destroyReturnedList( tList );
+    destroyReturnedList(tList);
 
     return 0;
 }
@@ -76,7 +76,7 @@ int getgrayplotdata(char *pobjUID)
 /* the champ data is now given as a tlist (like for surface objects) */
 int getchampdata(char *pobjUID)
 {
-    char * variable_tlist[] = {"champdata","x","y","fx","fy"};
+    char * variable_tlist[] = {"champdata", "x", "y", "fx", "fy"};
     int* dimensions = NULL;
     double* arrowBasesX = NULL;
     double* arrowBasesY = NULL;
@@ -85,9 +85,9 @@ int getchampdata(char *pobjUID)
 
     /* Add 'variable' tlist items to stack */
 
-    returnedList * tList = createReturnedList( 4, variable_tlist );
+    returnedList * tList = createReturnedList(4, variable_tlist);
 
-    if ( tList == NULL )
+    if (tList == NULL)
     {
         return -1;
     }
@@ -104,16 +104,17 @@ int getchampdata(char *pobjUID)
     addMatrixToReturnedList(tList, arrowDirectionsX, dimensions[0], dimensions[1]);
     addMatrixToReturnedList(tList, arrowDirectionsY, dimensions[0], dimensions[1]);
 
-    destroyReturnedList( tList );
+    destroyReturnedList(tList);
 
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 int get3ddata(char *pobjUID)
 {
-    char *variable_tlist_color[] = {"3d","x","y","z","color"};
-    char *variable_tlist[] = {"3d","x","y","z"};
-    char* type = NULL;
+    char *variable_tlist_color[] = {"3d", "x", "y", "z", "color"};
+    char *variable_tlist[] = {"3d", "x", "y", "z"};
+    int type = -1;
+    int *piType = &type;
     double* colors = NULL;
     double* dataX = NULL;
     double* dataY = NULL;
@@ -125,7 +126,7 @@ int get3ddata(char *pobjUID)
 
     returnedList * tList = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, jni_double_vector, (void **)&dataX);
     getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, jni_double_vector, (void **)&dataY);
@@ -136,9 +137,9 @@ int get3ddata(char *pobjUID)
     if (colors != NULL)
     {
         /* Add 'variable' tlist items to stack */
-        tList = createReturnedList( 4, variable_tlist_color );
+        tList = createReturnedList(4, variable_tlist_color);
 
-        if (strcmp(type, __GO_FAC3D__) == 0)
+        if (type == __GO_FAC3D__)
         {
             int numColors = 0;
             int *piNumColors = &numColors;
@@ -166,14 +167,14 @@ int get3ddata(char *pobjUID)
             }
 
         }
-        destroyReturnedList( tList );
+        destroyReturnedList(tList);
     }
     else /* no color provided in input*/
     {
         /* Add 'variable' tlist items to stack */
-        tList = createReturnedList( 3, variable_tlist );
+        tList = createReturnedList(3, variable_tlist);
 
-        if (strcmp(type, __GO_FAC3D__) == 0)
+        if (type == __GO_FAC3D__)
         {
             getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void **)&piNbRow);
             getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void **)&piNbCol);
@@ -182,7 +183,7 @@ int get3ddata(char *pobjUID)
             addMatrixToReturnedList(tList, dataY, nbRow, nbCol);
             addMatrixToReturnedList(tList, dataZ, nbRow, nbCol);
         }
-        else if (strcmp(type, __GO_PLOT3D__) == 0)
+        else if (type == __GO_PLOT3D__)
         {
             int* xDimensions;
             int* yDimensions;
@@ -193,12 +194,12 @@ int get3ddata(char *pobjUID)
             getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X_DIMENSIONS__, jni_int_vector, (void **)&xDimensions);
             getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y_DIMENSIONS__, jni_int_vector, (void **)&yDimensions);
 
-            addMatrixToReturnedList( tList, dataX, xDimensions[0], xDimensions[1]);
-            addMatrixToReturnedList( tList, dataY, yDimensions[0], yDimensions[1]);
-            addMatrixToReturnedList( tList, dataZ, nbRow, nbCol);
+            addMatrixToReturnedList(tList, dataX, xDimensions[0], xDimensions[1]);
+            addMatrixToReturnedList(tList, dataY, yDimensions[0], yDimensions[1]);
+            addMatrixToReturnedList(tList, dataZ, nbRow, nbCol);
         }
 
-        destroyReturnedList( tList );
+        destroyReturnedList(tList);
     }
 
     return 0;
@@ -206,55 +207,54 @@ int get3ddata(char *pobjUID)
 /*------------------------------------------------------------------------*/
 int get_data_property(void* _pvCtx, char* pobjUID)
 {
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
+    switch (type)
     {
-        return get3ddata(pobjUID);
-    }
-    else if (strcmp(type, __GO_CHAMP__) == 0)
-    {
-        return getchampdata(pobjUID);
-    }
-    else if (strcmp(type, __GO_GRAYPLOT__) == 0)
-    {
-        return getgrayplotdata(pobjUID);
-    }
-    else /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
-    {
-        int nbRow  =  0;
-        int nbCol  =  0;
-        int status = SET_PROPERTY_ERROR;
-        /* Warning the following function allocates data */
-        double * data = sciGetPoint( pobjUID, &nbRow, &nbCol );
+        case __GO_FAC3D__ :
+        case __GO_PLOT3D__ :
+            return get3ddata(pobjUID);
+        case __GO_CHAMP__ :
+            return getchampdata(pobjUID);
+        case __GO_GRAYPLOT__ :
+            return getgrayplotdata(pobjUID);
+        default :
+            /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
+        {
+            int nbRow  =  0;
+            int nbCol  =  0;
+            int status = SET_PROPERTY_ERROR;
+            /* Warning the following function allocates data */
+            double* data = sciGetPoint(pobjUID, &nbRow, &nbCol);
 
-        if (data == NULL && nbRow == 0 && nbCol == 0)
-        {
-            /* Empty data */
-            sciReturnEmptyMatrix(_pvCtx);
-            status = SET_PROPERTY_SUCCEED;
-        }
-        else if (data == NULL && nbRow == -1 && nbCol == -1)
-        {
-            /* data allocation failed */
-            Scierror(999, _("%s: No more memory."), "get_data_property");
-            status = SET_PROPERTY_ERROR;
-        }
-        else if (data == NULL)
-        {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"data");
-            return -1;
-        }
-        else
-        {
-            status = sciReturnMatrix(_pvCtx, data, nbRow, nbCol);
-            FREE( data );
-        }
+            if (data == NULL && nbRow == 0 && nbCol == 0)
+            {
+                /* Empty data */
+                sciReturnEmptyMatrix(_pvCtx);
+                status = SET_PROPERTY_SUCCEED;
+            }
+            else if (data == NULL && nbRow == -1 && nbCol == -1)
+            {
+                /* data allocation failed */
+                Scierror(999, _("%s: No more memory."), "get_data_property");
+                status = SET_PROPERTY_ERROR;
+            }
+            else if (data == NULL)
+            {
+                Scierror(999, _("'%s' property does not exist for this handle.\n"), "data");
+                return -1;
+            }
+            else
+            {
+                status = sciReturnMatrix(_pvCtx, data, nbRow, nbCol);
+                FREE(data);
+            }
 
-        return status;
+            return status;
+        }
     }
-
 }
 /*------------------------------------------------------------------------*/

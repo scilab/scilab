@@ -8,8 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-exec(SCI+'/modules/mexlib/examples/cppmex/builder.sce');
-exec(SCI+'/modules/mexlib/examples/cppmex/loader.sce');
+exec(SCI+"/modules/mexlib/examples/cppmex/builder.sce");
+exec(SCI+"/modules/mexlib/examples/cppmex/loader.sce");
 
 x=56;
 y = square(x);

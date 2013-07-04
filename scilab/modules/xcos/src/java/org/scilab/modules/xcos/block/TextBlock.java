@@ -26,11 +26,15 @@ import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
+import static org.scilab.modules.xcos.io.scicos.AbstractElement.getIndexes;
+import static org.scilab.modules.xcos.io.scicos.AbstractElement.canGet;
+
 import com.mxgraph.util.mxConstants;
 
 /**
  * A textblock is used to annotate diagrams.
  */
+@SuppressWarnings(value = { "serial" })
 public final class TextBlock extends BasicBlock {
     private static final String INTERFUNCTION_NAME = "TEXT_f";
 
@@ -57,7 +61,16 @@ public final class TextBlock extends BasicBlock {
      * @return the fontNumber
      */
     private Font getFont() {
-        int number = Integer.parseInt(getLocalExprs().getData()[1][0]);
+        final ScilabString exprs = getLocalExprs();
+        int number;
+
+        final boolean isColumnDominant = exprs.getHeight() >= exprs.getWidth();
+        final int[] indexes = getIndexes(1, isColumnDominant);
+        if (canGet(exprs, indexes)) {
+            number = Integer.parseInt(exprs.getData()[indexes[0]][indexes[1]]);
+        } else {
+            number = 0;
+        }
         return Font.getFont(number);
     }
 
@@ -65,7 +78,17 @@ public final class TextBlock extends BasicBlock {
      * @return the fontSize
      */
     private int getFontSize() {
-        return Font.getSize(getLocalExprs().getData()[2][0]);
+        final ScilabString exprs = getLocalExprs();
+        int number;
+
+        final boolean isColumnDominant = exprs.getHeight() >= exprs.getWidth();
+        final int[] indexes = getIndexes(2, isColumnDominant);
+        if (canGet(exprs, indexes)) {
+            number = Integer.parseInt(exprs.getData()[indexes[0]][indexes[1]]);
+        } else {
+            number = 0;
+        }
+        return Font.getSize(number);
     }
 
     /**

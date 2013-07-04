@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="semicolon">
+    <refnamediv>
+        <refname>semicolon</refname>
+        <refpurpose>(;) ending expression and row separator</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Semicolons are used to separate rows in a matrix definition (within brackets).
+        </para>
+        <para>
+            Semicolons may also be used at the end of an instruction (in a file or in Scilab console). In this
+            case it means that the result(s) is(are) not displayed. Conversely use
+            comma (,) to get the display.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+a=[1,2,3;4,5,6];
+a=1;b=1,c=2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="comma">comma</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -10,86 +10,85 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pbig">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="pbig">
     <refnamediv>
         <refname>pbig</refname>
-        <refpurpose> eigen-projection</refpurpose>
+        <refpurpose>固有投影</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[Q,M]=pbig(A,thres,flag)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parameters</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>real square matrix</para>
+                    <para>実数正方行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>thres</term>
                 <listitem>
-                    <para>real number</para>
+                    <para>実数</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flag</term>
                 <listitem>
                     <para>
-                        character string (<literal>'c'</literal> or <literal>'d'</literal>)
+                        文字列 (<literal>'c'</literal> または <literal>'d'</literal>)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Q,M</term>
                 <listitem>
-                    <para>real matrices</para>
+                    <para>実数行列</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            Projection on eigen-subspace associated with eigenvalues with real
-            part &gt;= <literal>thres</literal> (<literal>flag='c'</literal>) or
-            with magnitude &gt;= <literal>thres</literal>
-            (<literal>flag='d'</literal>).
+            実部&gt;= <literal>thres</literal> (<literal>flag='c'</literal>)
+            または
+            大きさ&gt;= <literal>thres</literal>(<literal>flag='d'</literal>)
+            の固有値を有する固有値-部分空間への投影.
         </para>
         <para>
-            The projection is defined by <literal>Q*M</literal>, <literal>Q</literal> is
-            full column rank, <literal>M</literal> is full row rank and
+            投影は<literal>Q*M</literal>により定義され,<literal>Q</literal>
+            は列フルランク, <literal>M</literal>は行フルランクおよび
             <literal>M*Q=eye</literal>.
         </para>
         <para>
-            If <literal>flag='c'</literal>, the eigenvalues of
-            <literal>M*A*Q</literal> = eigenvalues of <literal>A</literal> with real part
-            &gt;= <literal>thres</literal>.
+            <literal>flag='c'</literal>の場合, 
+            <literal>M*A*Q</literal>の固有値 = 実部&gt;= <literal>thres</literal>
+            の<literal>A</literal>の固有値となります.
         </para>
         <para>
-            If <literal>flag='d'</literal>, the eigenvalues of
-            <literal>M*A*Q</literal> = eigenvalues of <literal>A</literal> with magnitude
-            &gt;= <literal>thres</literal>.
+            <literal>flag='d'</literal>の場合, 
+            <literal>M*A*Q</literal>の固有値 = 大きさ&gt;= <literal>thres</literal>の
+            <literal>A</literal>の固有値となります.
         </para>
         <para>
-            If <literal>flag='c'</literal> and if <literal>[Q1,M1]</literal> =
-            full rank factorization (<literal>fullrf</literal>) of
-            <literal>eye()-Q*M</literal> then eigenvalues of <literal>M1*A*Q1</literal> =
-            eigenvalues of <literal>A</literal> with real part &lt;
-            <literal>thres</literal>.
+            <literal>flag='c'</literal> の場合,そして
+            <literal>[Q1,M1]</literal> = <literal>eye()-Q*M</literal>の
+            フルランク分解 (<literal>fullrf</literal>)の場合,
+            <literal>M1*A*Q1</literal>の固有値 =
+            実部 &lt; <literal>thres</literal>の<literal>A</literal>の固有値となります.
         </para>
         <para>
-            If <literal>flag='d'</literal> and if <literal>[Q1,M1]</literal> =
-            full rank factorization (<literal>fullrf</literal>) of
-            <literal>eye()-Q*M</literal> then eigenvalues of <literal>M1*A*Q1</literal> =
-            eigenvalues of <literal>A</literal> with magnitude &lt;
-            <literal>thres</literal>.
+            <literal>flag='d'</literal>の場合,そして <literal>[Q1,M1]</literal> =
+            <literal>eye()-Q*M</literal>のフルランク分解 (<literal>fullrf</literal>)の場合,
+            <literal>M1*A*Q1</literal>の固有値 =大きさ &lt;<literal>thres</literal>の
+            <literal>A</literal>の固有値となります.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
 [Q,M]=pbig(A,1.5,'d');
@@ -99,7 +98,7 @@ spec(M1*A*Q1)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="psmall">psmall</link>
@@ -116,10 +115,11 @@ spec(M1*A*Q1)
         </simplelist>
     </refsection>
     <refsection>
-        <title>Used Functions</title>
+        <title>使用される関数</title>
         <para>
-            <literal>pbig</literal> is based on the ordered schur form (scilab
-            function <literal>schur</literal>).
+            <literal>pbig</literal> は
+            ソートされた Schur 形式に基づいています
+            (Scilab関数 <literal>schur</literal>).
         </para>
     </refsection>
 </refentry>

@@ -5,8 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
-//
 // <-- Non-regression test for bug 6541 -->
 //
 // <-- Bugzilla URL -->
@@ -22,12 +20,12 @@ function result = isScicosLibLoaded()
 	result = isdef('haltscicos');
 endfunction
 
-// Check that the simulation librairies are not loaded at startup
+// Check that the simulation libraries are not loaded at startup
 if isScicosLibLoaded() <> %f then pause,end
 
-result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_6797.xcos");
+result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_6797.zcos");
 if result <> %t then pause,end
 
-// Check that the simulation librairies are not loaded after the call
+// Check that the simulation libraries are not loaded after the call
 if isScicosLibLoaded() <> %f then pause,end
 

@@ -47,6 +47,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  *
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabFileSelectorComboBox extends JComboBox implements DocumentListener {
 
     private static final FileFilter DIRFILTER = new FileFilter() {
@@ -101,7 +102,7 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
                 int code = e.getKeyCode();
                 if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_KP_DOWN || code == KeyEvent.VK_PAGE_DOWN
                         || code == KeyEvent.VK_UP || code == KeyEvent.VK_KP_UP || code == KeyEvent.VK_PAGE_UP
-                        || code == KeyEvent.VK_END || code == KeyEvent.VK_BEGIN) {
+                || code == KeyEvent.VK_END || code == KeyEvent.VK_BEGIN) {
                     disableUpdateCombo = true;
                 } else {
                     disableUpdateCombo = false;
@@ -381,11 +382,15 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
                 if (isWindows) {
                     char c = Character.toLowerCase(strs[0][i]);
                     j = 1;
-                    for (;j < strs.length && Character.toLowerCase(strs[j][i]) == c; j++);
+                    for (; j < strs.length && Character.toLowerCase(strs[j][i]) == c; j++) {
+                        ;
+                    }
                 } else {
                     char c = strs[0][i];
                     j = 1;
-                    for (;j < strs.length && strs[j][i] == c; j++);
+                    for (; j < strs.length && strs[j][i] == c; j++) {
+                        ;
+                    }
                 }
             }
 
@@ -393,7 +398,9 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
             if (isWindows) {
                 int k = i - 1;
                 for (j = 1; j < strs.length && k == i - 1; j++) {
-                    for (k = 0; k < i - 1 && strs[j][k] == strs[0][k]; k++);
+                    for (k = 0; k < i - 1 && strs[j][k] == strs[0][k]; k++) {
+                        ;
+                    }
                 }
 
                 if (j != strs.length) {
@@ -491,7 +498,7 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
                 int len = trueName.length();
                 if (len != 0) {
                     if (len == 1) {
-                        bound = new String(new char[]{(char) (trueName.charAt(0) + 1)});
+                        bound = new String(new char[] {(char) (trueName.charAt(0) + 1)});
                     } else {
                         bound = trueName.substring(0, len - 1);
                         bound += (char) (trueName.charAt(len - 1) + 1);

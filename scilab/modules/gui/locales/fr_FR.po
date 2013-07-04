@@ -7,19 +7,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-24 07:59+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-24 13:12+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: fr\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument n°%d : Une chaîne de caractères attendue.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -40,8 +49,18 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument n°%d : Une matrice de chaînes de caractères "
+"attendue.\n"
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s : Type erroné de l'argument n°%d : Un réel est attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -68,15 +87,15 @@ msgid "%s: Figure number must be given when not in '%s' mode.\n"
 msgstr "%s : Le numéro de figure doit être donné hors du mode '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de handles "
+"graphiques attendue.\n"
 
 #, c-format
 msgid ""
@@ -95,16 +114,21 @@ msgstr ""
 "de type 'Figure' attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice de chaîne "
-"de caractères attendue.\n"
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
 "caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument n°%d : Une matrice booléenne attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -278,6 +302,10 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un handle graphique attendu.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Handle expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un handle attendu.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
 msgstr ""
@@ -362,6 +390,49 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: At least 2 elements expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : 2 éléments au minimum "
+"attendus.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: First element must be a string.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Le premier élément doit être "
+"une chaîne de caractères.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Tree expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un objet de type arbre "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Second element must be a mlist.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Le deuxième élément doit être "
+"une mlist.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Label: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Icon: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: callback: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error in the tree parsing.\n"
+msgstr "%s : Erreur à l'interprétation de l'arbre.\n"
+
+#, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s : Une erreur s'est produite : %s.\n"
 
@@ -383,10 +454,6 @@ msgstr ""
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s : Le fichier %s n'existe pas.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
@@ -445,18 +512,6 @@ msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice de chaîne "
 "de caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice de booléens "
-"attendue.\n"
 
 msgid "&File"
 msgstr "&Fichier"
@@ -538,9 +593,6 @@ msgstr "&Édition"
 
 msgid "&Select as current figure"
 msgstr "&Sélectionner comme figure courante"
-
-msgid "&Redraw figure"
-msgstr "&Redessiner la figure"
 
 msgid "&Clear figure"
 msgstr "&Effacer la figure"
@@ -746,6 +798,9 @@ msgstr "Copier"
 msgid "Paste"
 msgstr "Coller"
 
+msgid "Clear Console"
+msgstr "Effacer la console"
+
 msgid "Print..."
 msgstr "Imprimer..."
 
@@ -835,6 +890,29 @@ msgstr "Police de caractères du bureau"
 
 msgid "Custom:"
 msgstr "Personnalisé :"
+
+msgid "Web"
+msgstr "Internet"
+
+msgid "Web browser and mailer"
+msgstr "Navigateur Internet et messagerie"
+
+msgid "Use default web browser"
+msgstr "Utiliser le navigateur Internet par défaut"
+
+msgid "Command for web browser: "
+msgstr "Commande pour le navigateur Internet : "
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr ""
+"(N'oubliez pas de mettre des guillemets autour du chemin s'il contient des "
+"espaces blancs)"
+
+msgid "Use default mailer"
+msgstr "Utiliser la messagerie par défaut"
+
+msgid "Command for mailer: "
+msgstr "Commande pour la messagerie : "
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -1085,6 +1163,7 @@ msgstr "Arrière-plan de la console..."
 msgid "No print service found."
 msgstr "Aucun service d'impression trouvé."
 
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1094,6 +1173,7 @@ msgstr ""
 "sous un mode dans lequel mixer des uicontrols et des graphiques n''est pas "
 "possible. Taper %s pour plus d''informations."
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "Dans certains cas, %s corrige le problème."
 
@@ -1114,9 +1194,6 @@ msgstr ""
 "disp(\"ATTENTION : Malgré de précédents avertissements, vous choisissez "
 "d'utiliser Scilab avec des capacités graphiques avancées. Tapez \"\"help "
 "usecanvas\"\" pour plus d'informations.\"\")"
-
-msgid "Clear Console"
-msgstr "Effacer la console"
 
 msgid "Are you sure you want to clear the console ?"
 msgstr "Êtes-vous sûr de vouloir effacer la console ?"
@@ -1275,6 +1352,7 @@ msgstr "Enregistrer et exécuter"
 msgid "Empty tab"
 msgstr "Onglet vide"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1283,9 +1361,11 @@ msgstr ""
 "Veuillez signaler un bug avec le message précédent et en joignant le fichier "
 "%s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Êtes-vous sûr de vouloir fermer %s ?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Êtes-vous sûr de vouloir fermer %s et %s ?"
 
@@ -1340,6 +1420,7 @@ msgstr "Tous les fichiers PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Tous les fichiers RTF (Rich Text Format)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Tous les fichiers %s"
 
@@ -1557,9 +1638,6 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un handle graphique ou un "
 "réel attendu.\n"
-
-msgid "createPopupItems: found an empty cascading menu."
-msgstr "createPopupItems : un menu déroulant vide a été trouvé."
 
 #, c-format
 msgid ""

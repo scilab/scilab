@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="backslash">
+    <refnamediv>
+        <refname>backslash</refname>
+        <refpurpose>(\) division matricielle à gauche</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>x=A\b</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            L'anti-slash représente la division matricielle à gauche.
+            <literal>x=A\b</literal> est une solution de <literal>A*x=b</literal>.
+        </para>
+        <para>
+            Si <literal>A</literal> est carrée et régulière <literal>x=A\b</literal> (unique) est équivalent mathématiquement à <literal>x=inv(A)*b</literal> (dont le calcul est par contre beaucoup plus coûteux).
+        </para>
+        <para>
+            Si <literal>A</literal> n'est pas carrée, <literal>x</literal> est une solution au sens des moindres carrés, c'est à dire que <literal>norm(A*x-b)</literal> est minimale (norme euclidienne). Si <literal>A</literal> est de rang maximal (colonnes linéairement indépendantes), la solution au sens des moindres carrés, <literal>x=A\b</literal>, est unique (le vecteur <literal>x</literal> minimisant <literal>norm(A*x-b)</literal> est unique).
+            Si <literal>A</literal> n'est pas de rang maximal, cette solution n'est pas unique, et <literal>x=A\b</literal>, en général, n'est pas la solution de norme minimale (la solution de norme minimale est <literal>x=pinv(A)*b</literal>).
+        </para>
+        <para>
+            <literal>A.\B</literal>  est la matrice dont le terme <literal>(i,j)</literal> est égal à   <literal>A(i,j)\B(i,j)</literal>.
+            Si <literal>A</literal> (ou <literal>B</literal>) est un scalaire <literal>A.\B</literal> est équivalent à  <literal>A*ones(B).\B</literal> (or <literal>A.\(B*ones(A))</literal>.
+        </para>
+        <para>
+            <literal>A\.B</literal>  est un opérateur dont la signification n'est pas prédéfinie. il peut être utilisé pour définir de nouveaux opérateurs (voir <link linkend="overloading">overloading</link>) avec la même priorité que <literal>*</literal> ou <literal>/</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+A=rand(3,2);b=[1;1;1]; x=A\b; y=pinv(A)*b;  x-y
+A=rand(2,3);b=[1;1]; x=A\b; y=pinv(A)*b; x-y, A*x-b, A*y-b
+
+// Rang non maximal
+A=rand(3,1)*rand(1,2); b=[1;1;1]; x=A\b; y=pinv(A)*b; A*x-b, A*y-b
+A=rand(2,1)*rand(1,3); b=[1;1]; x=A\b; y=pinv(A)*b; A*x-b, A*y-b
+// Une comparaison de différents solveurs linéaire creux
+
+[A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+
+b = zeros(size(A,1),1);
+
+tic();
+res = umfpack(A,'\',b);
+mprintf('\ntemps nécessaire à la résolution du système avec umfpack: %.3f\n',toc());
+
+tic();
+res = linsolve(A,b);
+mprintf('\ntemps nécessaire à la résolution du système avec linsolve: %.3f\n',toc());
+
+tic();
+res = A\b;
+mprintf('\ntemps nécessaire à la résolution du système avec l''opérateur backslash: %.3f\n',toc());
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="slash">slash</link>
+            </member>
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
+            <member>
+                <link linkend="pinv">pinv</link>
+            </member>
+            <member>
+                <link linkend="percent">percent</link>
+            </member>
+            <member>
+                <link linkend="ieee">ieee</link>
+            </member>
+            <member>
+                <link linkend="linsolve">linsolve</link>
+            </member>
+            <member>
+                <link linkend="umfpack">umfpack</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

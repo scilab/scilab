@@ -54,7 +54,6 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
     public SwingScilabFileChooser() {
         super();
 
-
         //System.out.println("[Constructor] SwingScilabFileChooser");
         /** Bug 3231 fixed: do not explore all zip files on desktop under Windows */
         //putClientProperty("FileChooser.useShellFolder", Boolean.FALSE);
@@ -141,6 +140,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
         JFrame parentFrame;
         if (parent == null) {
             parentFrame = new JFrame();
+            parentFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage());
         } else {
             parentFrame = parent;
         }
@@ -189,7 +189,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
                             //set the filter index of the JFileChooser at 0 if "cancel" button was selected
                             filterIndex = 0;
 
-                            //return the filechooser's informations
+                            //return the filechooser's information
                             //they are stocked into FileChooserInfos
                             FileChooserInfos.getInstance().setSelection(selection);
                             FileChooserInfos.getInstance().setSelectionPathName(selectionPath);
@@ -213,7 +213,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
                 selectionSize = 1;
             }
 
-            //return the filechooser's informations
+            //return the filechooser's information
             //they are stocked into FileChooserInfos
             FileChooserInfos.getInstance().setSelection(selection);
             FileChooserInfos.getInstance().setSelectionPathName(selectionPath);
@@ -239,7 +239,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
             //set the filter index of the JFileChooser at 0 if "cancel" button was selected
             filterIndex = 0;
 
-            //return the filechooser's informations
+            //return the filechooser's information
             //they are stocked into FileChooserInfos
             FileChooserInfos.getInstance().setSelection(selection);
             FileChooserInfos.getInstance().setSelectionPathName(selectionPath);

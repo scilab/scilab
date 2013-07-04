@@ -14,22 +14,24 @@
 
 #include "SetUicontrolFontName.hxx"
 
-int SetUicontrolFontName(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontName(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     // Font Name must be only one character string
 
     BOOL status = FALSE;
 
-    if (valueType != sci_strings) {
+    if (valueType != sci_strings)
+    {
         Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "FontName");
         return SET_PROPERTY_ERROR;
     }
-    if (nbCol != 1 || nbRow == 0) {
+    if (nbCol != 1 || nbRow == 0)
+    {
         Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "FontName");
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FONTNAME__), getStringFromStack(stackPointer), jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTNAME__, _pvData, jni_string, 1);
 
     if (status == TRUE)
     {

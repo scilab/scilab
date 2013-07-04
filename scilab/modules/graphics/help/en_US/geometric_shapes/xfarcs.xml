@@ -10,63 +10,50 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="en" xml:id="xfarcs">
-  <refnamediv>
-    <refname>xfarcs</refname>
-    <refpurpose>Fill parts of a set of ellipses</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>xfarcs(arcs,[style])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>arcs</term>
-        <listitem>
-          <para>matrix of size (6,n) describing the ellipses.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>style</term>
-        <listitem>
-          <para>row vector of size n giving the colors to use.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>xarcs</literal> fills parts of a set of ellipses described by <literal>arcs</literal>: 
-      <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> where each ellipse is defined 
-      by the 6 parameters <literal>(x,y,w,h,a1,a2)</literal> (see <literal>xfarc</literal>).
-    </para>
-    <para>
-      <literal>x, y, w, h</literal> parameters are specified in user coordinates.
-    </para>
-    <para>
-      <literal>style(i)</literal> gives the color number for filling ellipse number <literal>i</literal>.
-    </para>
-    <para>If a2 is equal to 360*64, a complete circle will be drawn.</para>
-  </refsection>
-  <refsection>
-    <title>Sample</title>
-    <scilab:image>
-      plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
-      arcs=[-1.0 0.0 0.5; 
-      1.0 0.0 0.5; 
-      0.5 1.0 0.5; 
-      0.5 0.5 1.0; 
-      0.0 0.0 0.0; 
-      180*64 360*64 90*64]; 
-      xfarcs(arcs,[1,2,3])
-    </scilab:image>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xfarcs">
+    <refnamediv>
+        <refname>xfarcs</refname>
+        <refpurpose>Fill parts of a set of ellipses</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>xfarcs(arcs,[style])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>arcs</term>
+                <listitem>
+                    <para>matrix of size (6,n) describing the ellipses.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>style</term>
+                <listitem>
+                    <para>row vector of size n giving the colors to use.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>xarcs</literal> fills parts of a set of ellipses described by <literal>arcs</literal>: 
+            <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> where each ellipse is defined 
+            by the 6 parameters <literal>(x,y,w,h,a1,a2)</literal> (see <literal>xfarc</literal>).
+        </para>
+        <para>
+            <literal>x, y, w, h</literal> parameters are specified in user coordinates.
+        </para>
+        <para>
+            <literal>style(i)</literal> gives the color number for filling ellipse number <literal>i</literal>.
+        </para>
+        <para>If a2 is equal to 360*64, a complete circle will be drawn.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
 arcs=[-1.0 0.0 0.5; // upper left x
        1.0 0.0 0.5; // upper left y
@@ -76,19 +63,30 @@ arcs=[-1.0 0.0 0.5; // upper left x
        180*64 360*64 90*64]; // angle 2
 xfarcs(arcs,[1,2,3])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="xarc">xarc</link>
-      </member>
-      <member>
-        <link linkend="xfarc">xfarc</link>
-      </member>
-      <member>
-        <link linkend="xfarc">xfarc</link>
-      </member>
-    </simplelist>
-  </refsection>
+        <scilab:image>
+            plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
+            arcs=[-1.0 0.0 0.5; 
+            1.0 0.0 0.5; 
+            0.5 1.0 0.5; 
+            0.5 0.5 1.0; 
+            0.0 0.0 0.0; 
+            180*64 360*64 90*64]; 
+            xfarcs(arcs,[1,2,3])
+        </scilab:image>
+        
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xarc">xarc</link>
+            </member>
+            <member>
+                <link linkend="xfarc">xfarc</link>
+            </member>
+            <member>
+                <link linkend="xfarc">xfarc</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

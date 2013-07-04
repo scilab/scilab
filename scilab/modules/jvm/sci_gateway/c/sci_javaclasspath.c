@@ -21,33 +21,33 @@
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_javaclasspath(char *fname,unsigned long fname_len)
+int sci_javaclasspath(char *fname, unsigned long fname_len)
 {
     int *piAddressVarOne = NULL;
     int iType = 0;
     SciErr sciErr;
 
-    Rhs = Max(Rhs,0);
-    CheckRhs(0,1);
-    CheckLhs(0,1);
+    Rhs = Max(Rhs, 0);
+    CheckRhs(0, 1);
+    CheckLhs(0, 1);
 
     if (Rhs == 0)
     {
-        int nbRow=0;
-        int nbCol=1;
-        char **Strings=NULL;
+        int nbRow = 0;
+        int nbCol = 1;
+        char **Strings = NULL;
 
         Strings = getClasspath(&nbRow);
-        createMatrixOfString(pvApiCtx, Rhs+1, nbRow, nbCol, Strings);
+        createMatrixOfString(pvApiCtx, Rhs + 1, nbRow, nbCol, Strings);
 
-        LhsVar(1) = Rhs+1;
+        LhsVar(1) = Rhs + 1;
         PutLhsVar();
         freeArrayOfString(Strings, nbRow * nbCol);
     }
     else
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -55,7 +55,7 @@ int sci_javaclasspath(char *fname,unsigned long fname_len)
         }
 
         sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -66,63 +66,75 @@ int sci_javaclasspath(char *fname,unsigned long fname_len)
         {
             char **pStVarOne = NULL;
             int *lenStVarOne = NULL;
-            static int n1 = 0,m1 = 0;
+            static int n1 = 0, m1 = 0;
             int i = 0;
 
             /* get dimensions */
             sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 
-            lenStVarOne = (int*)MALLOC(sizeof(int)*(m1 * n1));
+            lenStVarOne = (int*)MALLOC(sizeof(int) * (m1 * n1));
             if (lenStVarOne == NULL)
             {
-                Scierror(999,_("%s: No more memory.\n"), fname);
+                Scierror(999, _("%s: No more memory.\n"), fname);
                 return 0;
             }
 
             /* get lengths */
             sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
-                if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
+                if (lenStVarOne)
+                {
+                    FREE(lenStVarOne);
+                    lenStVarOne = NULL;
+                }
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 
-            pStVarOne = (char **)MALLOC(sizeof(char*)*(m1*n1));
+            pStVarOne = (char **)MALLOC(sizeof(char*) * (m1 * n1));
             if (pStVarOne == NULL)
             {
-                if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
-                Scierror(999,_("%s: No more memory.\n"), fname);
+                if (lenStVarOne)
+                {
+                    FREE(lenStVarOne);
+                    lenStVarOne = NULL;
+                }
+                Scierror(999, _("%s: No more memory.\n"), fname);
                 return 0;
             }
-            for(i = 0; i < m1 * n1; i++)
+            for (i = 0; i < m1 * n1; i++)
             {
                 pStVarOne[i] = (char*)MALLOC(sizeof(char*) * (lenStVarOne[i] + 1));
             }
 
             /* get strings */
             sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
                 freeArrayOfString(pStVarOne, m1 * n1);
-                if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
+                if (lenStVarOne)
+                {
+                    FREE(lenStVarOne);
+                    lenStVarOne = NULL;
+                }
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 
-            for (i = 0; i<m1*n1 ;i++)
+            for (i = 0; i < m1 * n1 ; i++)
             {
-                if (!addToClasspath(pStVarOne[i],STARTUP))
+                if (!addToClasspath(pStVarOne[i], STARTUP))
                 {
-                    Scierror(999,_("%s: Could not add URL to system classloader : %s.\n"),fname,pStVarOne[i]);
+                    Scierror(999, _("%s: Could not add URL to system classloader : %s.\n"), fname, pStVarOne[i]);
                     freeArrayOfString(pStVarOne, m1 * n1);
                     return 0;
                 }
@@ -133,7 +145,7 @@ int sci_javaclasspath(char *fname,unsigned long fname_len)
         }
         else
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
         }
     }
 

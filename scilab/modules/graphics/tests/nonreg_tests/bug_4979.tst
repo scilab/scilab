@@ -22,5 +22,5 @@ clf(gcf(),'reset');
 zoom_rect([0,0,1,1]);
 unzoom();
 a=gca();
-if a.zoom_box != [] then pause;end;
+if a.zoom_box <> [] then pause;end;
 // should not display any warning or error

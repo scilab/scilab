@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-07-22 14:55+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-01-15 09:49+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 
 msgid "overflow error"
 msgstr "ошибка переполнения"
@@ -261,7 +261,7 @@ msgid "Integer matrix multiplication"
 msgstr "Умножение матриц целочисленных значений."
 
 msgid "JK flip-flop"
-msgstr ""
+msgstr "JK-триггер"
 
 msgid "The 'Initial Value' must be 0 or 1 of type int8"
 msgstr "'Начальное значение' должно быть 0 или 1 типа int8"
@@ -328,7 +328,7 @@ msgid "Shift Type"
 msgstr "Тип сдвига"
 
 msgid "SR flip-flop"
-msgstr ""
+msgstr "SR-триггер"
 
 msgid "Invalid masked block."
 msgstr ""
@@ -355,10 +355,10 @@ msgid "Domain"
 msgstr ""
 
 msgid "PDE Specification"
-msgstr ""
+msgstr "Спецификация ДРЧП"
 
 msgid "PDE Expression:"
-msgstr ""
+msgstr "Выражение ДРЧП:"
 
 msgid "Display"
 msgstr ""
@@ -429,6 +429,48 @@ msgstr "Утвердить"
 msgid "Cancel"
 msgstr "Отмена"
 
+msgid "Please give the discretization domain values"
+msgstr ""
+
+#, c-format
+msgid "Please give the %s operator coefficients"
+msgstr ""
+
+msgid "Please give the sign for the variable discriminant"
+msgstr ""
+
+msgid "Please give the discretization method type"
+msgstr ""
+
+msgid "Please give the discretization method degree"
+msgstr ""
+
+msgid "Please give the number of discretization points"
+msgstr ""
+
+#, c-format
+msgid "Please give the initial condition %s"
+msgstr ""
+
+msgid "Please give the boundary conditions"
+msgstr ""
+
+#, c-format
+msgid "The finite element discrtization takes %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The finite differences discrtization takes %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The finite volume discrtization takes %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The code generation, the compilation and link takes %.2f seconds"
+msgstr ""
+
 msgid "Event output port"
 msgstr ""
 
@@ -447,6 +489,14 @@ msgstr ""
 
 msgid "Regular output port"
 msgstr ""
+
+#, c-format
+msgid "Feature %s is obsolete."
+msgstr "Функция %s устарела."
+
+#, c-format
+msgid "Please use %s instead."
+msgstr "Используйте %s."
 
 msgid "Write to output file"
 msgstr "Запись в файл вывода"
@@ -497,7 +547,7 @@ msgid "Directory '%s' does not exist"
 msgstr "Каталог '%s' не существует"
 
 msgid "Input Format"
-msgstr ""
+msgstr "Формат ввода"
 
 msgid "You must enclose the format's string between parentheses."
 msgstr "Вы должны поместить строку формата между скобками."
@@ -548,7 +598,7 @@ msgid "&nbsp; Do not start if 'Initialisation Time' is negative"
 msgstr "&nbsp; Не запускать, если 'Время инициализации' отрицательно"
 
 msgid "Initialisation Time"
-msgstr ""
+msgstr "Время инициализации"
 
 msgid "Period"
 msgstr ""
@@ -710,6 +760,50 @@ msgstr "[1, Размер записи = "
 msgid "Wrong value for indexes in '%s' parameter: %s."
 msgstr "Неверное значение для индексов в параметре '%s': %s."
 
+msgid "Read from an input file"
+msgstr ""
+
+msgid "Read is done on:"
+msgstr "Прочитано:"
+
+msgid "&nbsp; - A formatted text file if a  format (fortran type) is given"
+msgstr ""
+
+msgid "Empty matrix or scalar expected."
+msgstr "Ожидалась пустая матрица или скаляр."
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %d"
+msgstr "Неверное значение параметра '%s': %d"
+
+msgid ""
+"Simulation running !!! You cannot switch <br />between formatted and "
+"unformatted"
+msgstr ""
+
+msgid "Simulation running !!! You cannot modify 'Input File Name"
+msgstr ""
+
+msgid "Simulation running !!! You cannot modify 'Time Record Selection"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %s"
+msgstr "Неверное значение параметра '%s': %s"
+
+#, c-format
+msgid "Wrong format for '%s' parameter: %s."
+msgstr "Неверный формат параметра '%s': %s."
+
+msgid "Buffer size must be at least 2."
+msgstr "Размер буфера должен быть не меньше 2."
+
+msgid "You must read at least one field in record."
+msgstr "Вы должны прочитать хотя бы одно поле в записи."
+
+msgid "Strictly positive indexes expected."
+msgstr "Ожидались строго положительные индексы."
+
 msgid "Step Function"
 msgstr ""
 
@@ -738,3 +832,7 @@ msgstr "&Правка"
 
 msgid "&?"
 msgstr "&Справка"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr ""

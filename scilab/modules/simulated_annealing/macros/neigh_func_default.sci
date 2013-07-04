@@ -8,15 +8,15 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function x_neigh = neigh_func_default(x_current, T, param)
-if ~isdef('param','local') then
-  param = [];
-end
+    if ~isdef("param","local") then
+        param = [];
+    end
 
-[sa_min_delta,err] = get_param(param,'min_delta',-0.1*ones(size(x_current,1),size(x_current,2)));
-[sa_max_delta,err] = get_param(param,'max_delta',0.1*ones(size(x_current,1),size(x_current,2)));
-[Min,err]          = get_param(param,'min_bound',-%inf*ones(size(x_current,1),size(x_current,2)));
-[Max,err]          = get_param(param,'max_bound',%inf*ones(size(x_current,1),size(x_current,2)));
+    [sa_min_delta,err] = get_param(param,"min_delta",-0.1*ones(size(x_current,1),size(x_current,2)));
+    [sa_max_delta,err] = get_param(param,"max_delta",0.1*ones(size(x_current,1),size(x_current,2)));
+    [Min,err]          = get_param(param,"min_bound",-%inf*ones(size(x_current,1),size(x_current,2)));
+    [Max,err]          = get_param(param,"max_bound",%inf*ones(size(x_current,1),size(x_current,2)));
 
-x_neigh = x_current + (sa_max_delta - sa_min_delta).*rand(size(x_current,1),size(x_current,2)) + sa_min_delta;
-x_neigh = max(min(x_neigh, Max),Min);
+    x_neigh = x_current + (sa_max_delta - sa_min_delta).*grand(size(x_current,1),size(x_current,2),"def") + sa_min_delta;
+    x_neigh = max(min(x_neigh, Max),Min);
 endfunction

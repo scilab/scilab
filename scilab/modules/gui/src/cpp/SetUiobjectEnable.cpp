@@ -14,19 +14,19 @@
 #include "SetUiobjectEnable.hxx"
 
 /* Set the enable property of an uicontrol or uimenu */
-int SetUiobjectEnable(void* _pvCtx, char *sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUiobjectEnable(void* _pvCtx, char *sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
     BOOL status = FALSE;
 
-    b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, const_cast < char *>("Enable"));
+    b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, const_cast < char *>("Enable"));
 
     if (b == NOT_A_BOOLEAN_VALUE)
     {
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast < char *>(__GO_UI_ENABLE__), &b, jni_bool, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_ENABLE__, &b, jni_bool, 1);
 
     if (status == TRUE)
     {

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="addf">
+    <refnamediv>
+        <refname>addf</refname>
+        <refpurpose>addition symbolique  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>addf("a","b")</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>"a","b"  </term>
+                <listitem>
+                    <para>chaînes de caractères
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>addf("a","b")</literal> renvoie la chaîne de caractères <literal>"a+b"</literal>.
+            Des simplifications triviales du type <literal>addf("0","a")</literal> ou
+            <literal>addf("1","2")</literal> sont effectuées.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+addf('0','1')
+addf('1','a')
+addf('1','2')
+'a'+'b'
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mulf">mulf</link>
+            </member>
+            <member>
+                <link linkend="subf">subf</link>
+            </member>
+            <member>
+                <link linkend="ldivf">ldivf</link>
+            </member>
+            <member>
+                <link linkend="rdivf">rdivf</link>
+            </member>
+            <member>
+                <link linkend="eval">eval</link>
+            </member>
+            <member>
+                <link linkend="evstr">evstr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

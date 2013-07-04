@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="chdir">
+    <refnamediv>
+        <refname>chdir</refname>
+        <refpurpose>changes Scilab current directory</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="cd">
+        <refname>cd</refname>
+        <refpurpose>changes Scilab current directory</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>b = chdir(path)
+            realpath = cd(path)
+            cd path
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>
+                        a boolean  <constant>%t</constant> if <function>chdir</function> operation is ok
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>a character string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>realpath</term>
+                <listitem>
+                    <para>a character string, the real path name after pathname
+                        conversion (see below)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Change the current Scilab directory to those given by
+            <varname>path</varname>. Note that path conversion is performed and for example
+            <literal>SCI/modules/core/macros</literal> is a valid pattern for both Unix and Windows.
+            If <varname>path</varname> is empty change to "home" directory.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+chdir(TMPDIR);
+pwd
+cd 
+cd SCI
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pwd">pwd</link>
+            </member>
+            <member>
+                <link linkend="SCI">SCI</link>
+            </member>
+            <member>
+                <link linkend="SCIHOME">SCIHOME</link>
+            </member>
+            <member>
+                <link linkend="TMPDIR">TMPDIR</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

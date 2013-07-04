@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="comma">
+    <refnamediv>
+        <refname>comma</refname>
+        <refpurpose>(,) comma; instruction, argument separator</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Commas are used to separate parameters in functions, 
+            to separate entries of a row vector or to separate entries of a row of matrix .
+        </para>
+        <para>
+            Blanks can also be used to separate entries in a row vector but
+            use preferably commas.
+        </para>
+        <para>
+            Commas are also used to separate Scilab instructions.
+            (Use <literal>;</literal> to have the result not displayed on the screen).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+a=[1,2,3;4,5,6];
+b=1,c=1;d=2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="semicolon">semicolon</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

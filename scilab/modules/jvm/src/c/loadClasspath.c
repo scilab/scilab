@@ -185,8 +185,14 @@ BOOL LoadClasspath(char *xmlfilename)
                 fprintf(stderr, _("Wrong format for %s.\n"), xmlfilename);
             }
 
-            if (xpathObj) xmlXPathFreeObject(xpathObj);
-            if (xpathCtxt) xmlXPathFreeContext(xpathCtxt);
+            if (xpathObj)
+            {
+                xmlXPathFreeObject(xpathObj);
+            }
+            if (xpathCtxt)
+            {
+                xmlXPathFreeContext(xpathCtxt);
+            }
             if (XPath)
             {
                 FREE(XPath);

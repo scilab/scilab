@@ -23,4 +23,6 @@ extern "C"
 #include "Scierror.h"
 }
 
+char *IntToStyle(int _iStyle);
+
 #endif /* __GET_UICONTROL_STYLE_HXX__ */

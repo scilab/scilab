@@ -3,20 +3,34 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2010.
-# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2012.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-26 20:31+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-13 13:43+0000\n"
 "Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: uk\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s: помилковий тип аргументу %d: мало бути використано ціле число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"квадратну матрицю.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d: мало бути %d.\n"
 
 #, c-format
 msgid ""
@@ -24,6 +38,16 @@ msgid ""
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: кількість стовпчиків має "
 "дорівнювати %d.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"дійсне число.\n"
 
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
@@ -53,6 +77,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: %s must be an integer in the range 0 "
 "to %d.\n"
 msgstr ""
+"%s: помилкове значення вхідного параметра №%d: %s має бути цілим числом у "
+"діапазоні від 0 до %d.\n"
 
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
@@ -135,6 +161,12 @@ msgstr "Помилка у dspev, info = %d.\n"
 msgid "Non linear data fitting"
 msgstr "Нелінійна апроксимація"
 
+msgid "Experimental data"
+msgstr "Експериментальні дані"
+
+msgid "Fitting function"
+msgstr "Функція наближення"
+
 msgid "LQV"
 msgstr "LQV"
 
@@ -146,6 +178,15 @@ msgstr "Обчислення оптимальних параметрів"
 
 msgid "Running optimization ...\n"
 msgstr "Виконується оптимізація…\n"
+
+msgid "No"
+msgstr "Ні"
+
+msgid "View Code?"
+msgstr "Переглянути код?"
+
+msgid "Yes"
+msgstr "Так"
 
 msgid "fminsearch - Rosenbrock"
 msgstr "fminsearch — Розенброк"
@@ -174,7 +215,7 @@ msgstr "neldermead — змінна Розенброка"
 msgid "neldermead - Output Command"
 msgstr "neldermead — команда виводу"
 
-msgid "neldermead - Dimensionnality"
+msgid "neldermead - Dimensionality"
 msgstr "neldermead — розмірність"
 
 msgid "nmplot - Han #1"
@@ -358,6 +399,9 @@ msgstr "Креслення контура (будь ласка, зачекайт
 msgid "Defining McKinnon function...\n"
 msgstr "Визначення функції Маккінона…\n"
 
+msgid "Error: function expects a two dimensional input\n"
+msgstr "Помилка: функції слід передавати двовимірні дані\n"
+
 #, c-format
 msgid "x0 = %s\n"
 msgstr "x0 = %s\n"
@@ -459,6 +503,10 @@ msgid "Simulated Annealing"
 msgstr "Моделювання відпалювання"
 
 #, c-format
+msgid "%s: More than 20 equations are not allowed"
+msgstr "%s: не можна задавати понад 20 рівнянь"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: помилкова кількість вхідних параметрів.\n"
 
@@ -472,6 +520,27 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%s: мала бути зовнішня функція.\n"
 
 #, c-format
+msgid "%s: Jacobian cannot be a list, parameters must be set in G."
+msgstr "%s: якобіан не може бути списком, слід встановити параметри у G."
+
+#, c-format
+msgid "%s: Wrong measurement matrix."
+msgstr "%s: помилкова матриця вимірнювання."
+
+#, c-format
+msgid "%s: Initial guess must be a column vector."
+msgstr "%s: початкове припущення має бути вектором-стовпчиком."
+
+#, c-format
+msgid "%s: Weighting matrix must be square."
+msgstr "%s: вагова матриця має бути квадратною."
+
+#, c-format
+msgid "%s: With hard coded function, user must give output size of G."
+msgstr ""
+"%s: якщо функцію задано явно, користувач має вказати вихідний розмір G."
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
@@ -479,7 +548,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати N-вимірний "
 "масив.\n"
@@ -605,6 +674,12 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d. x0 перевищує верхню межу (ub)."
 
 #, c-format
+msgid "%s: The algorithm did not converge (exitflag= %d).\n"
+msgstr ""
+"%s: збіжності з використанням визначеного алгоритму не досягнуто (прапорець "
+"виходу = %d).\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
 "constraints."
@@ -619,6 +694,15 @@ msgid ""
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d. x0 не задовольняє умовам "
 "рівності."
+
+#, c-format
+msgid "%s: Jacobian cannot be a list, parameters must be set in fun."
+msgstr "%s: якобіан не може бути списком, слід встановити параметри у fun."
+
+#, c-format
+msgid "%s: With hard coded function, user must give output size of fun."
+msgstr ""
+"%s: якщо функцію задано явно, користувач має вказати вихідний розмір fun."
 
 #, c-format
 msgid "%s: initial guess is feasible."
@@ -724,6 +808,158 @@ msgstr "%s: можливо, задача необмежена знизу"
 #, c-format
 msgid "%s: optimal solution found"
 msgstr "%s: знайдено оптимальний розв’язок"
+
+msgid "Welcome to LMITOOL"
+msgstr "Вітаємо у LMITOOL"
+
+msgid "LMITOOL is a Scilab package for LMI optimization"
+msgstr ""
+"LMITOOL — пакунок Scilab для виконання завдань з оптимізації на основі "
+"лінійних матричних нерівностей (LMI)"
+
+msgid "It can solve the following problem"
+msgstr "Пакунок здатен розв’язувати такі задачі"
+
+msgid "   minimize  f(X1,...,XM)  "
+msgstr "   мінімізувати  f(X1,...,XM)  "
+
+msgid "subject to the LME constraints: "
+msgstr "за умови обмежень, заданих лінійними матричними рівностями: "
+
+msgid "   Gi(X1,...,XM)=0,  i=1,2,...,p,"
+msgstr "   Gi(X1,...,XM)=0,  i=1,2,...,p,"
+
+msgid "and the LMI constraints:  "
+msgstr "та лінійними матричними нерівностями:  "
+
+msgid "   Hj(X1,...,XM)>=0,  j=1,2,...,q."
+msgstr "   Hj(X1,...,XM)>=0,  j=1,2,...,q."
+
+msgid "where"
+msgstr "де"
+
+msgid ""
+"X1,...,XM are unknown real matrices, referred to as the unknown matrices,"
+msgstr ""
+"X1,...,XM — невідомі дійсні матриці, які будемо називати невідомими "
+"матрицями,"
+
+msgid ""
+"f is the objective function, a linear scalar function of the entries of the "
+"X's,"
+msgstr "f — цільова функція, лінійна скалярна функція аргументів X,"
+
+msgid "Gi's are affine matrix functions of the entries of the X's,"
+msgstr "Gi — афінні матричні функції аргументів X,"
+
+msgid "Hj's are affine symmetric matrix functions of the entries of the X's."
+msgstr "Hj — афінні симетричні матричні функції аргументів X."
+
+msgid ""
+"These functions are parameterized by the entries of known data matrices "
+"D1,...,DN."
+msgstr ""
+"Ці функції параметризуються аргументами відомих матриць даних D1,...,DN."
+
+msgid "For a detailed description and examples consult: "
+msgstr "Докладний опис та приклади можна знайти тут: "
+
+msgid ""
+"          'LMITOOL: a Package for LMI Optimization in Scilab, User's Guide' "
+msgstr ""
+"          «LMITOOL: пакунок для виконання завдань з оптимізації на основі "
+"лінійних матричних нерівностей у Scilab, підручник користувача» "
+
+msgid ""
+"LMITOOL uses Semidefinite Programming package SP developed by L. "
+"Vandenberghe and S. Boyd."
+msgstr ""
+"LMITOOL використовує пакунок напіввизначеного програмування SP, розроблений "
+"L. Vandenberghe і S. Boyd."
+
+msgid "LMI problem name: "
+msgstr "Назва задачі з лінійними матричними нерівностями "
+
+msgid "Names of unknown matrices: "
+msgstr "Позначення невідомих матриць: "
+
+msgid "Names of data matrices: "
+msgstr "Позначення відомих матриць: "
+
+msgid "Problem definition"
+msgstr "Умова задачі"
+
+msgid "LMITOOL will generate for you a skeleton of the functions needed"
+msgstr "LMITOOL створить каркас потрібних вам функцій"
+
+msgid " (see User's Guide for details). For that, you need to specify:"
+msgstr " (докладніше у «Підручнику користувача»). Вам слід вказати:"
+
+msgid "1- Name of you problem which will be given to the solver function,"
+msgstr "1- назву задачі, яку буде передано функції розв’язування,"
+
+msgid "2- Names of unknown matrices or list of unknown matrices,"
+msgstr "2- позначення для невідомих матриць або список невідомих матриць,"
+
+msgid "3- Names of data matrices or list of data matrices."
+msgstr "3- позначення відомих матриць або список відомих матриць."
+
+msgid "Try again"
+msgstr "Повторити спробу"
+
+msgid "File not generated by lmitool or badly modified."
+msgstr ""
+"Файл не було створено за допомогою lmitool або до файла було внесено "
+"некоректні зміни."
+
+msgid "Function definitions"
+msgstr "Визначення функцій"
+
+msgid "Here is a skeleton of the functions which you shoud edit"
+msgstr "Тут наведено каркас функцій, до якого ви маєте внести потрібні зміни"
+
+msgid "You can do the editing in this window or click on 'ok', save"
+msgstr ""
+"Виконайте відповідні редагування у цьому вікні або натисніть кнопку «Гаразд»,"
+
+msgid "the skeleton and edit later using your favorite editor"
+msgstr ""
+"збережіть каркас і внесіть до нього зміни за допомогою вашого улюбленого "
+"редактора"
+
+msgid "Name of file in which you want the solver function"
+msgstr "Назва файла, до якого буде збережено функцію розв’язування"
+
+msgid "and the evaluation function be saved (overwrites if a"
+msgstr "та функцію оцінки (перезаписується, якщо"
+
+msgid "file with the same name exists already)"
+msgstr "вже існує файл з такою назвою)"
+
+msgid "functions saved in "
+msgstr "функції збережено до "
+
+msgid "    To solve your problem, you need to "
+msgstr "    Щоб розв’язати задачу, вам слід "
+
+msgid "1- edit file "
+msgstr "1- внести зміни до файла "
+
+msgid "2- load (and compile) your functions:"
+msgstr "2- завантажити (або зібрати) ваші функції:"
+
+msgid " and call "
+msgstr " і викликати функцію "
+
+msgid " function:"
+msgstr " :"
+
+msgid "3- Define "
+msgstr "3- Визначити "
+
+msgid "To check the result, use [LME,LMI,OBJ]="
+msgstr ""
+"Щоб ознайомитися з результатом, скористайтеся командою [LME,LMI,OBJ]="
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -1002,6 +1238,13 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Hard coded function not allowed, create a Scilab function using call."
+msgstr ""
+"%s: не можна вбудовувати код функції, скористайтеся викликом окремого коду "
+"функції Scilab за допомогою call."
+
+#, c-format
+msgid ""
 "%s: The number of variables %d does not match the number of max bounds: %d.\n"
 msgstr ""
 "%s: кількість змінних, %d, не відповідає кількості верхніх меж: %d.\n"
@@ -1172,7 +1415,7 @@ msgstr ""
 "4."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: %s expected.\n"
+msgid "%s: Wrong type for argument #%d: %s expected.\n"
 msgstr "%s: помилковий тип параметра %d: мало бути використано %s.\n"
 
 #, c-format
@@ -1238,7 +1481,7 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr "%s: у векторі індексів виключення %d рядків замість 1."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю дійсних "
 "значень.\n"
@@ -1259,11 +1502,3 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: %s must be a integer in the range 0 "
-#~ "to %d.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: %s мало бути цілим числом у "
-#~ "діапазоні від 0 до %d.\n"

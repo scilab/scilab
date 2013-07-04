@@ -10,27 +10,27 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fftw_forget_wisdom">
-  <refnamediv>
-    <refname>fftw_forget_wisdom</refname>
-    <refpurpose>Сброс опыта fftw</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>fftw_forget_wisdom()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Эта функция сбрасывает текущий опыт fftw.
-    </para>
-    <para>
-      FFTW включает в себя метод для сохранения планов на диск и восстановления их. На самом деле то, что делает FFTW, это вообще-то больше, чем просто сохранение и загрузка планов. Этот механизм называется "опыт" (wisdom). Файлы опыта wisdom содержат информацию о том, как оптимально вычислить БПФ разных размеров.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="fftw_forget_wisdom">
+    <refnamediv>
+        <refname>fftw_forget_wisdom</refname>
+        <refpurpose>Сброс опыта fftw</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>fftw_forget_wisdom()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта функция сбрасывает текущий опыт fftw.
+        </para>
+        <para>
+            FFTW включает в себя метод для сохранения планов на диск и восстановления их. На самом деле то, что делает FFTW, это вообще-то больше, чем просто сохранение и загрузка планов. Этот механизм называется "опыт" (wisdom). Файлы опыта wisdom содержат информацию о том, как оптимально вычислить БПФ разных размеров.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 //вернуть опыт fftw
 txt=get_fftw_wisdom();
 //установить опыт fftw
@@ -38,19 +38,19 @@ set_fftw_wisdom(txt);
 //сбросить опыт fftw
 fftw_forget_wisdom();
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="fftw">fftw</link>
-      </member>
-      <member>
-        <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
-      </member>
-      <member>
-        <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fftw">fftw</link>
+            </member>
+            <member>
+                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline Carnis
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="dollar">
+    <refnamediv>
+        <refname>dollar</refname>
+        <refpurpose>($) last index </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>$</literal> symbol denotes the last index (row or column) of the array. It is therefore equal to the number of rows or columns.
+        </para>
+        <para>
+            The <literal>$</literal> symbol is also used to LaTeX texts, which must start and end by <literal>$</literal>. See also  <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+a=[1,2,3;4,5,6];
+a($)
+
+b = [1 2 3;4 5 6;7 8 9];
+// Access the last element of first row, i.e. 3
+b(1,$)
+// Access the last element of second column, i.e. 8
+b($,2)
+//Access the last element of b, i.e. 9
+b($,$)
+
+// Add a row at the end of the matrix b
+b($+1,:) = [1 1 1]
+
+// The $ symbol as a LaTeX delimiter
+titlepage(['$\Huge\textrm{It is }\LaTeX:$';'$\Huge 2^2+1=\sqrt{25}$'])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>
+            </member>
+            <member>
+                <link linkend="size">size</link>
+            </member>
+            <member>
+                <link linkend="length">length</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

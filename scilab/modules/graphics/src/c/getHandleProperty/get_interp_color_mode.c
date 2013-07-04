@@ -39,11 +39,11 @@ int get_interp_color_mode_property(void* _pvCtx, char* pobjUID)
 
     if (piInterpColorMode == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "interp_color_mode");
         return -1;
     }
 
-    if(iInterpColorMode)
+    if (iInterpColorMode)
     {
         return sciReturnString(_pvCtx, "on");
     }

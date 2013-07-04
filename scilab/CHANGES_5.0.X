@@ -248,11 +248,11 @@ Sparse LU factorization:
 ========================
  - UMFPACK features added in Scilab. Many thanks to Bruno Pincon.
 	+ umfpack       - Solve sparse linear system 
-	+ umf_lufact    - LU factorisation of a sparse matrix 
+	+ umf_lufact    - LU factorization of a sparse matrix 
 	+ umf_lusolve   - Solve a linear sparse system given the LU factors
 	+ umf_luinfo    - Get information on LU factors
 	+ umf_luget     - Retrieve LU factors at the Scilab level 
-	+ taucs_chfac   - Cholesky factorisation of a sparse Symmetric Positive 
+	+ taucs_chfac   - Cholesky factorization of a sparse Symmetric Positive 
 	                  Definite (s.p.d.) matrix
 	+ taucs_chsolve - Solve a linear sparse (s.p.d.) system given the Cholesky factors
 	+ taucs_chinfo  - Get information on Cholesky factors
@@ -311,7 +311,7 @@ Simulated Annealing:
 	+ compute_initial_temp - Compute the initial temperature of the simulated annealing
 	+ neigh_func_csa       - The classical neighborhood relationship for the simulated annealing 
 	+ neigh_func_default   - Computes a neighbor of a given point
-	+ neigh_func_fsa       - The Fast Simulated Annealing neghborhood relationship 
+	+ neigh_func_fsa       - The Fast Simulated Annealing neighborhood relationship 
 	+ neigh_func_vfsa      - The Very Fast Simulated Annealing neighborhood relationship 
 	+ optim_sa             - Simulated Annealing optimization method 
 	+ temp_law_csa         - The classical temperature decrease law
@@ -390,7 +390,7 @@ String manipulation:
 System relative Functions:
 =========================
  - New functions:
-	+ getdebuginfo          - returns informations about scilab and your system
+	+ getdebuginfo          - returns information about scilab and your system
 	+ getscilabmode         - returns scilab mode
 	+ getvariablesonstack   - get variable names on stack of scilab
 	+ getmd5                - get the MD5 checksum of strings or files.

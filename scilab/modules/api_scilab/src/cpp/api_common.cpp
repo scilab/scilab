@@ -21,6 +21,7 @@
 #include "call_scilab.h"
 #include "stackinfo.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "localization.h"
 #include "MALLOC.h"
 
@@ -46,6 +47,9 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 #define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
 #define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);
+
+static SciErr getinternalVarAddress(void* _pvCtx, int _iVar, int** _piAddress);
+
 /*--------------------------------------------------------------------------*/
 /* Replaces Rhs */
 int* getNbInputArgument(void* _pvCtx)
@@ -198,7 +202,7 @@ int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
 int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _iNameLen)
 {
     int iVar = 0;
-    if(_iVar != 0)
+    if (_iVar != 0)
     {
         iVar = _iVar + Top - Rhs;
     }
@@ -265,6 +269,21 @@ SciErr getVarAddressFromPosition(void *_pvCtx, int _iVar, int **_piAddress)
     SciErr sciErr;
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
+
+    sciErr = getinternalVarAddress(_pvCtx, _iVar, _piAddress);
+
+    //sciprint("type : %d(%c)\n", (*_piAddress)[0], intersci_.ntypes[_iVar - 1]);
+    //update variable state to "read
+    intersci_.ntypes[_iVar - 1] = '$';
+    return sciErr;
+}
+
+/*--------------------------------------------------------------------------*/
+static SciErr getinternalVarAddress(void *_pvCtx, int _iVar, int **_piAddress)
+{
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     int iAddr = 0;
     int iValType = 0;
 
@@ -284,10 +303,8 @@ SciErr getVarAddressFromPosition(void *_pvCtx, int _iVar, int **_piAddress)
     }
 
     *_piAddress = istk(iAddr);
-    intersci_.ntypes[_iVar - 1] = '$';
     return sciErr;
 }
-
 /*--------------------------------------------------------------------------*/
 SciErr getVarNameFromPosition(void *_pvCtx, int _iVar, char *_pstName)
 {
@@ -537,7 +554,8 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
         return sciErr;
     }
 
-    sciErr = getVarAddressFromPosition(_pvCtx, _iPos, &piAddr2);
+    //sciprint("getProcessMode ->");
+    sciErr = getinternalVarAddress(_pvCtx, _iPos, &piAddr2);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Unable to get variable address"), "getProcessMode");
@@ -564,7 +582,7 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
 
         if (iRows2 != 1 || iCols2 != 1)
         {
-            addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
+            addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument #%d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
                             1);
             return sciErr;
         }
@@ -585,7 +603,7 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
 
         if (iRows2 != 1 || iCols2 != 1)
         {
-            addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
+            addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong size for argument #%d: (%d,%d) expected.\n"), "getProcessMode", _iPos, 1,
                             1);
             return sciErr;
         }
@@ -616,18 +634,28 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
     }
 
     if (iMode == ROW_LETTER || iMode == BY_ROWS)
+    {
         *_piMode = BY_ROWS;
+    }
     else if (iMode == COL_LETTER || iMode == BY_COLS)
+    {
         *_piMode = BY_COLS;
+    }
     else if (iMode == STAR_LETTER || iMode == BY_ALL)
+    {
         *_piMode = BY_ALL;
+    }
     else if (iMode == MTLB_LETTER || iMode == BY_MTLB)
     {
         *_piMode = 0;
         if (iRows1 > 1)
+        {
             *_piMode = 1;
+        }
         else if (iCols1 > 1)
+        {
             *_piMode = 2;
+        }
     }
     else
     {
@@ -660,7 +688,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
     {
         if (isVarComplex(_pvCtx, _piAddress))
         {
-            addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for argument %d: Real matrix expected.\n"), "getDimFromVar",
+            addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "getDimFromVar",
                             getRhsFromAddress(_pvCtx, _piAddress));
             return sciErr;
         }
@@ -687,7 +715,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
 
         if (iRows != 1 || iCols != 1)
         {
-            addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "getProcessMode",
+            addErrorMessage(&sciErr, API_ERROR_GET_DIMFROMVAR, _("%s: Wrong size for argument #%d: (%d,%d) expected.\n"), "getProcessMode",
                             getRhsFromAddress(_pvCtx, _piAddress), 1, 1);
             return sciErr;
         }
@@ -825,7 +853,8 @@ int getRhsFromAddress(void *_pvCtx, int *_piAddress)
 
     for (i = 0; i < Rhs; i++)
     {
-        getVarAddressFromPosition(_pvCtx, i + 1, &piAddr);
+        //sciprint("getRhsFromAddress ->");
+        getinternalVarAddress(_pvCtx, i + 1, &piAddr);
         if (_piAddress == piAddr)
         {
             return i + 1;
@@ -1223,6 +1252,35 @@ int checkNamedVarType(void *_pvCtx, const char *_pstName, int _iType)
 }
 
 /*--------------------------------------------------------------------------*/
+int getInputArgumentType(void* _pvCtx, int _iVar)
+{
+    SciErr sciErr;
+    int* piAddr = NULL;
+    int iType = 0;
+
+    //sciprint("getInputArgumentType ->");
+    sciErr = getinternalVarAddress(_pvCtx, _iVar, &piAddr);
+    if (sciErr.iErr)
+    {
+        return 0;
+    }
+
+    sciErr = getVarType(_pvCtx, piAddr, &iType);
+    if (sciErr.iErr)
+    {
+        return 0;
+    }
+
+    return iType;
+}
+
+/*--------------------------------------------------------------------------*/
+int checkInputArgumentType(void* _pvCtx, int _iVar, int _iType)
+{
+    return getInputArgumentType(_pvCtx, _iVar) == _iType;
+}
+
+/*--------------------------------------------------------------------------*/
 int isEmptyMatrix(void *_pvCtx, int *_piAddress)
 {
     if (checkVarType(_pvCtx, _piAddress, sci_matrix))
@@ -1316,21 +1374,36 @@ int checkNamedVarFormat(void* _pvCtx, const char *_pstName)
     int iRet = 1;
 
     // check pointer
-    if (_pstName == NULL) iRet = 0;
+    if (_pstName == NULL)
+    {
+        iRet = 0;
+    }
 
     // check length _pstName =< nlgh
-    if ((strlen(_pstName) == 0 || strlen(_pstName) > nlgh)) iRet = 0;
+    if ((strlen(_pstName) == 0 || strlen(_pstName) > nlgh))
+    {
+        iRet = 0;
+    }
 
     // forbidden characters
-    if (strpbrk(_pstName, FORBIDDEN_CHARS) != NULL) iRet = 0;
+    if (strpbrk(_pstName, FORBIDDEN_CHARS) != NULL)
+    {
+        iRet = 0;
+    }
 
     // variable does not begin by a digit
-    if (isdigit(_pstName[0])) iRet = 0;
+    if (isdigit(_pstName[0]))
+    {
+        iRet = 0;
+    }
 
     // check that we have only ascii characters
     for (int i = 0; i < (int)strlen(_pstName); i++)
     {
-        if (!isascii(_pstName[i])) iRet = 0;
+        if (!isascii(_pstName[i]))
+        {
+            iRet = 0;
+        }
         break;
     }
 
@@ -1365,7 +1438,7 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
     //get varId from varName
     C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 
-    //create a null matrix a the Top of the stack
+    //create a null matrix at the Top of the stack
     Top = Top + 1;
     il = iadr(*Lstk(Top));
     *istk(il) = 0;

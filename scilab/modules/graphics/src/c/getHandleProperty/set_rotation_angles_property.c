@@ -30,15 +30,15 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_rotation_angles_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_rotation_angles_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    double * values = getDoubleMatrixFromStack( stackPointer ) ;
+    double* values = (double*)_pvData;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "rotation_angles");
-        return SET_PROPERTY_ERROR ;
+        return SET_PROPERTY_ERROR;
     }
 
     status = setGraphicObjectProperty(pobjUID, __GO_ROTATION_ANGLES__, values, jni_double_vector, 2);
@@ -49,7 +49,7 @@ int set_rotation_angles_property(void* _pvCtx, char* pobjUID, size_t stackPointe
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_angles") ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "rotation_angles");
         return SET_PROPERTY_ERROR;
     }
 }

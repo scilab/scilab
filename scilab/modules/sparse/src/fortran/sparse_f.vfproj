@@ -126,8 +126,6 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="dspis.f"/>
 		<File RelativePath="dspisp.f"/>
 		<File RelativePath="dspmat.f"/>
-		<File RelativePath="dspmax.f"/>
-		<File RelativePath="dspmin.f"/>
 		<File RelativePath="dspms.f"/>
 		<File RelativePath="dspmsp.f"/>
 		<File RelativePath="dspos.f"/>
@@ -176,7 +174,6 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spcompa.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spget.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spmatrix.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spmax.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_symfcti.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ta2lpd.f"/>
 		<File RelativePath="sp2col.f"/>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlName" xml:lang="en">
+    <refnamediv>
+        <refname>xmlName</refname>
+        <refpurpose>Retrieve the name of the elements.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            names = xmlName(obj)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>obj</term>
+                <listitem>
+                    <para>obj, a XML mlist typed XMLSet or XMLList or XMLElem or XMLAttr</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>names, a single row of strings</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Retrieve the name(s) of the elements composing the XMLObject.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+doc = xmlReadStr("<root><foo a=""123"" b=""456"" c=""789""/></root>")
+
+// Retrieve the name of a single element
+xmlName(doc.root.children(1))
+
+// Retrieve the names of an attributes list
+xmlName(doc.root.children(1).attributes)
+
+// Retrieve the names of the result of a XPath query
+xmlName(xmlXPath(doc,"//foo/@*"))
+
+xmlDelete(doc);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xmlXPath">xmlXPath</link>
+            </member>
+            <member>
+                <link linkend="xmlAsText">xmlAsText</link>
+            </member>
+            <member>
+                <link linkend="xmlAsNumber">xmlAsNumber</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>xmlName function introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

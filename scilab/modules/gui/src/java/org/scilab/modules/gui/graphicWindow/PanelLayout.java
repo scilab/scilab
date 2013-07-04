@@ -26,6 +26,7 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 /**
  * @author Pierre Lando
  */
+@SuppressWarnings(value = { "serial" })
 public class PanelLayout implements LayoutManager, Serializable {
 
     public static final String GL_CANVAS = "GL_CANVAS";
@@ -64,7 +65,11 @@ public class PanelLayout implements LayoutManager, Serializable {
             String figureIdentifier = ((SwingScilabCanvas) parent).getFigure().getIdentifier();
             String resizeFcn = (String) GraphicController.getController().getProperty(figureIdentifier, GraphicObjectProperties.__GO_RESIZEFCN__);
             if (resizeFcn != null && !resizeFcn.equals("")) {
-                InterpreterManagement.requestScilabExec(resizeFcn);
+                String resizeCommand = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
+                                       + "gcbo = getcallbackobject(\"" + figureIdentifier + "\");"
+                                       + resizeFcn
+                                       + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
+                InterpreterManagement.requestScilabExec(resizeCommand);
             }
 
             /* Here you can perform the layout of UI object. */

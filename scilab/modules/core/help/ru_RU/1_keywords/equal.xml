@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="equal">
+    <refnamediv>
+        <refname>знак равенства</refname>
+        <refpurpose>(=) присвоение, сравнение, знак равенства</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <variablelist>
+            <varlistentry>
+                <term>Присвоение:</term>
+                <listitem>
+                    <para>
+                        Знак равенства <literal>=</literal> используется для обозначения присвоения переменным значений. 
+                        Используется следующий синтаксис:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>a=expr</literal>, где <literal>a</literal> -- имя переменной, а <literal>expr</literal> --
+                                scilab-выражение, которое вычисляет единственный результат.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>[a,b,...]=expr</literal>, где <literal>a</literal>, <literal>b</literal>, 
+                                <literal>...</literal> -- имена переменных, а <literal>expr</literal> -- scilab-выражение, 
+                                которая выдаёт столько результатов, сколько имён переменных указано.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Сравнение:</term>
+                <listitem>
+                    <para>
+                        Знак равенства <literal>=</literal> также применяется в операторах сравнения:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>a==b</literal> обозначает проверку равенства значений <literal>a</literal> 
+                                и <literal>b</literal>;
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>a~=b</literal> означает проверку неравенства значений <literal>a</literal> 
+                                и <literal> b</literal>;
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>a&lt;=b</literal> и <literal>a&gt;=b</literal> означает сравнение порядка 
+                                величин <literal>a</literal> и <literal>b</literal>.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        См. <link linkend="comparison">сравнение</link> для дополнительных сведений.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+a = sin(3.2)
+M = [2.1,3.3,8.5;7.6,6.7,6.9;0,6.3,8.8];
+[u,s] = schur(M)
+2*2 == 4
+[1:10] == 4
+"foo" == "bar"
+sparse([1,2;4,5;3,10],[1,2,3]) == sparse([1,2;4,5;3,10],[1,2,3])
+1~=2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="less">меньше</link>
+            </member>
+            <member>
+                <link linkend="greater">больше</link>
+            </member>
+            <member>
+                <link linkend="boolean">boolean</link>
+            </member>
+            <member>
+                <link linkend="isequal">isequal</link>
+            </member>
+            <member>
+                <link linkend="comparison">сравнение</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

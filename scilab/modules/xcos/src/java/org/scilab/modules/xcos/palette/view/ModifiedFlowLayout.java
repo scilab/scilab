@@ -22,12 +22,13 @@ import java.awt.Insets;
 /**
  * A modified version of FlowLayout that allows containers using this Layout to
  * behave in a reasonable manner when placed inside a JScrollPane
- * 
+ *
  * @author Babu Kalakrishnan
  * @see http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5082531
  * @see http ://www.javakb.com/Uwe/Forum.aspx/java-gui/1904/Flowlayout-JPanel-
  *      and-JScrollPane-Scrolling-vertically-impossible
  */
+@SuppressWarnings(value = { "serial" })
 public class ModifiedFlowLayout extends FlowLayout {
     public ModifiedFlowLayout() {
         super();
@@ -59,12 +60,14 @@ public class ModifiedFlowLayout extends FlowLayout {
 
             // Let this behave like a regular FlowLayout (single row)
             // if the container hasn't been assigned any size yet
-            if (w == 0)
+            if (w == 0) {
                 w = Integer.MAX_VALUE;
+            }
 
             Insets insets = target.getInsets();
-            if (insets == null)
+            if (insets == null) {
                 insets = new Insets(0, 0, 0, 0);
+            }
             int reqdWidth = 0;
 
             int maxwidth = w - (insets.left + insets.right + hgap * 2);
@@ -77,7 +80,7 @@ public class ModifiedFlowLayout extends FlowLayout {
                 Component c = target.getComponent(i);
                 if (c.isVisible()) {
                     Dimension d = minimum ? c.getMinimumSize() : c
-                            .getPreferredSize();
+                                  .getPreferredSize();
                     if ((x == 0) || ((x + d.width) <= maxwidth)) {
                         if (x > 0) {
                             x += hgap;
@@ -94,7 +97,7 @@ public class ModifiedFlowLayout extends FlowLayout {
             }
             y += rowHeight;
             return new Dimension(reqdWidth + insets.left + insets.right, y
-                    + vgap);
+                                 + vgap);
         }
     }
 }

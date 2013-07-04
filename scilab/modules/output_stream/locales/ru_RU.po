@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: output_stream-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-06-27 15:52+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-14 12:10+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: ru\n"
 
 #, c-format
@@ -216,7 +216,7 @@ msgid "Redefining permanent variable.\n"
 msgstr "Переопределение неизменной переменной.\n"
 
 msgid "Eye variable undefined in this context.\n"
-msgstr "Переменная окна (eye variable) не определена в данном контексте.\n"
+msgstr "Переменная единичной матрицы в данном контексте не определена.\n"
 
 msgid "Submatrix incorrectly defined.\n"
 msgstr "Подматрица задана некорректно.\n"
@@ -252,7 +252,7 @@ msgid "Wrong type for first argument: Square matrix expected.\n"
 msgstr "Неверный тип первого аргумента: ожидалась квадратная матрица.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Square matrix expected.\n"
+msgid "Wrong type for argument #%d: Square matrix expected.\n"
 msgstr "Неверный тип первого аргумента %d: ожидалась квадратная матрица.\n"
 
 msgid "Invalid index.\n"
@@ -306,8 +306,8 @@ msgid "Wrong first argument.\n"
 msgstr "Неверный первый параметр.\n"
 
 #, c-format
-msgid "Wrong input argument %d.\n"
-msgstr "Неверный входной параметр %d.\n"
+msgid "Wrong input argument #%d.\n"
+msgstr "Неверный входной аргумент №%d.\n"
 
 #, c-format
 msgid "Incorrect function at line %d.\n"
@@ -335,8 +335,8 @@ msgid "Not implemented in scilab...\n"
 msgstr "Не реализовано в scilab...\n"
 
 #, c-format
-msgid "Wrong argument %d.\n"
-msgstr "Неверный параметр %d.\n"
+msgid "Wrong argument #%d.\n"
+msgstr "Неверный аргумент №%d.\n"
 
 #, c-format
 msgid "null matrix (argument # %d).\n"
@@ -360,25 +360,25 @@ msgid "subroutine not found: %s\n"
 msgstr "подпрограмма не найдена: %s\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Real matrix expected.\n"
+msgid "Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "Неверный тип параметра %d: ожидалась матрица вещественных чисел.\n"
 
 #, c-format
-msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
+msgid "Wrong type for input argument #%d: Real or complex matrix expected.\n"
 msgstr ""
-"Неверный тип входного параметра %d: ожидалась матрица вещественных или "
-"комплексных чисел.\n"
+"Неверный тип аргумента №%d: ожидалась матрица вещественных или комплексных "
+"значений.\n"
 
 #, c-format
-msgid "Wrong type for input argument %d: Polynomial expected.\n"
-msgstr "Неверный тип входного параметра %d: ожидался полином.\n"
+msgid "Wrong type for input argument #%d: Polynomial expected.\n"
+msgstr "Неверный тип входного аргумента №%d: ожидался полином.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: String expected.\n"
+msgid "Wrong type for argument #%d: String expected.\n"
 msgstr "Неверный тип параметра %d: ожидалась строка.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: List expected.\n"
+msgid "Wrong type for argument #%d: List expected.\n"
 msgstr "Неверный тип параметра %d: ожидался список.\n"
 
 msgid "Problem with comparison symbol...\n"
@@ -481,22 +481,22 @@ msgid "Incorrect function (argument n: %d).\n"
 msgstr "Некорректная функция (параметр n: %d).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 "%s: Неверный тип параметра %d: ожидалась матрица вещественных или "
 "комплексных чисел.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: Неверный тип параметра %d: ожидалась матрица вещественных чисел.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидался вещественный вектор.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидался скаляр.\n"
 
 msgid "Host does not answer...\n"
@@ -513,41 +513,41 @@ msgid "%s: singular or asymmetric problem.\n"
 msgstr "%s: вырожденная или асимметричная задача.\n"
 
 #, c-format
-msgid "Wrong size for argument %d.\n"
+msgid "Wrong size for argument #%d.\n"
 msgstr "Неверный размер параметра %d.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Transfer matrix expected.\n"
+msgid "Wrong type for argument #%d: Transfer matrix expected.\n"
 msgstr "Неверный тип параметра %d: ожидалась матрица преобразования.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In state space form expected.\n"
+msgid "Wrong type for argument #%d: In state space form expected.\n"
 msgstr ""
 "Неверный тип параметра %d: ожидалась форма в пространстве состояний.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Rational matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational matrix expected.\n"
 msgstr "Неверный тип параметра %d: ожидалась рациональная матрица.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In continuous time expected.\n"
+msgid "Wrong type for argument #%d: In continuous time expected.\n"
 msgstr "Неверный тип параметра %d: ожидалось в непрерывном времени.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In discrete time expected.\n"
+msgid "Wrong type for argument #%d: In discrete time expected.\n"
 msgstr "Неверный тип параметра %d: ожидалось в дискретном времени.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "Неверный тип параметра %d: ожидалось SISO (один вход, один выход).\n"
 
 #, c-format
-msgid "time domain of argument %d is not defined.\n"
-msgstr "Временной интервал аргумента %d не задан.\n"
+msgid "time domain of argument #%d is not defined.\n"
+msgstr "временная область аргумента №%d не определена.\n"
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: A system in state space or transfer matrix form "
+"Wrong type for argument #%d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr ""
 "Неверный тип параметра %d: ожидалась система в пространстве состояний или в "
@@ -637,7 +637,7 @@ msgstr ""
 "Пожалуйста, сообщите об этой проблеме :\n"
 
 #, c-format
-msgid "Wrong value for argument %d.\n"
+msgid "Wrong value for argument #%d.\n"
 msgstr "Неверное значение параметра %d.\n"
 
 #, c-format
@@ -646,7 +646,7 @@ msgstr "Элемент списка с номером %d не определён
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: Named variable not an expression expected.\n"
+"Wrong type for argument #%d: Named variable not an expression expected.\n"
 msgstr ""
 "Неверный тип параметра %d: ожидалась именованная переменная или выражение.\n"
 
@@ -741,49 +741,49 @@ msgid "check or define function %s for overloading.\n"
 msgstr "отметьте или определите функцию %s как перегружаемую.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Неверный размер параметра %d: ожидался размер (%d,%d).\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Неверный размер параметра %d: ожидался %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидалась матрица строк.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 "%s: Неверный тип параметра %d: ожидалась матрица логических значений.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидалась матрица.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
+msgid "%s: Wrong type for argument #%d: List expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидался список.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
+"%s: Wrong type for argument #%d: Function or string (external function) "
 "expected.\n"
 msgstr ""
 "%s: Неверный тип параметра %d: ожидалась функция или строка (внешняя "
 "функция).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
 msgstr "%s:Неверный тип параметра %d: ожидался полином.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr ""
 "%s: Неверный тип параметра %d: ожидалась целочисленная рабочая матрица.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Vector expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидался вектор.\n"
 
 #, c-format
@@ -794,24 +794,24 @@ msgid "Argument type must be boolean.\n"
 msgstr "Тип параметра должен быть логическим.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
+msgid "Wrong type for argument #%d: Boolean or scalar expected.\n"
 msgstr ""
 "Неверный тип параметра %d: ожидалось логическое значение или скаляр.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
+msgid "Wrong type for argument #%d: Sparse matrix of scalars expected.\n"
 msgstr "Неверный тип параметра %d: ожидалась разреженная числовая матрица.\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
+msgid "Wrong type for argument #%d: Handle to sparse lu factors expected.\n"
 msgstr ""
 "Неверный тип параметра %d: ожидался дескриптор разреженных LU-множителей .\n"
 
 #, c-format
-msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
+msgid "Wrong type argument #%d: Sparse or full scalar matrix expected.\n"
 msgstr ""
-"Неверный тип параметра %d: ожидалась полная или разреженная числовая "
-"матрица.\n"
+"Неверный тип аргумента №%d: ожидалась разрежённая или полная матрица "
+"скаляров.\n"
 
 msgid "Null variable cannot be used here.\n"
 msgstr "Здесь не может использоваться пустая переменная.\n"
@@ -915,17 +915,17 @@ msgid "Function not defined for given argument type(s),\n"
 msgstr "Функция не определена для заданных типов параметров,\n"
 
 #, c-format
-msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr ""
 "Неверное значение параметра %d: дескриптор LU более недействителен.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Valid variable name expected.\n"
+msgid "Wrong value for argument #%d: Valid variable name expected.\n"
 msgstr ""
 "Неверное значение параметра %d: ожидалось корректное имя переменной.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Empty string expected.\n"
+msgid "Wrong value for argument #%d: Empty string expected.\n"
 msgstr "Неверное значение параметра %d: ожидалась пустая строка.\n"
 
 msgid "Recursive extraction is not valid in this context.\n"
@@ -979,7 +979,7 @@ msgid "Error while writing in file: disk full or deleted file.\n"
 msgstr "Ошибка при записи в файл: диск полный или файл удалён.\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgid "Wrong value for argument #%d: Must not contain NaN or Inf.\n"
 msgstr ""
 "Неверное значение параметра %d: параметр не должен содержать NaN и Inf.\n"
 
@@ -1003,14 +1003,14 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+"Wrong value for argument #%d: eigenvalues must have negative real parts.\n"
 msgstr ""
 "Неверное значение параметра %d: собственные значения должны иметь "
 "отрицательные вещественные части.\n"
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+"Wrong value for argument #%d: eigenvalues modulus must be less than one.\n"
 msgstr ""
 "Неверное значение параметра %d: модуль собственного значения должен быть "
 "меньше единицы.\n"
@@ -1416,24 +1416,37 @@ msgstr ""
 "модулю.\n"
 
 #, c-format
-msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
-msgstr "%s: Количество вызовов %s достигло или превысило %s.\n"
+msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr "%s: %s: Количество вызовов %s достигло или превысило %s.\n"
+
+msgid "Warning"
+msgstr "Внимание"
 
 #, c-format
 msgid ""
-"%s: %s is too small. No further reduction in the criterion is possible.\n"
-msgstr "%s: %s слишком мало. Невозможно дальнейшее уменьшение по критерию.\n"
+"%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+"%s: %s: %s слишком мала. Дальнейшее уменьшение по критерию не возможно.\n"
 
 #, c-format
 msgid ""
-"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"%s: %s: %s is too small. %s is orthogonal to the columns of the jacobian to "
 "machine precision.\n"
 msgstr ""
-"%s: %s слишком мал. %s ортогонален столбцам Якобиана в пределах машинной "
-"точности.\n"
+"%s: %s: %s слишком мала. %s ортогонален столбцам Якобиана в пределах "
+"машинной точности.\n"
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly: имя переменной должно быть длиной менее 5 символов.\n"
+
+msgid ""
+"Warning: Syntax \"vector ^ scalar\" is obsolete. It will be removed in "
+"Scilab 6.0.\n"
+"  Use \"vector .^ scalar\" instead.\n"
+msgstr ""
+"Внимание: синтаксис \"вектор ^ скаляр\" устарел. Он будет удалён в Scilab "
+"6.0.\n"
+"  Вместо него используйте \"вектор .^ скаляр\".\n"
 
 #, c-format
 msgid "  (cont'd) %s\n"

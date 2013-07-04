@@ -13,16 +13,16 @@ package org.scilab.modules.gui;
 
 public interface SwingViewObject {
 
-	/**
-	 * Set the UID
-	 * @param id the UID
-	 */
+    /**
+     * Set the UID
+     * @param id the UID
+     */
     public void setId(String id);
-	
-	/**
-	 * Get the UID
-	 * @return the UID
-	 */
+
+    /**
+     * Get the UID
+     * @return the UID
+     */
     public String getId();
 
     /**
@@ -30,5 +30,5 @@ public interface SwingViewObject {
      * @param property - the name of the property to update.
      * @param value - the new value.
      */
-    public void update(String property, Object value);
+    public void update(int property, Object value);
 }

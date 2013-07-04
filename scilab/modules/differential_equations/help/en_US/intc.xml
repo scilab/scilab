@@ -10,49 +10,60 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="intc">
-  <refnamediv>
-    <refname>intc</refname>
-    <refpurpose> Cauchy integral</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[y]=intc(a,b,f)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>a, b</term>
-        <listitem>
-          <para>two complex numbers</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>f</term>
-        <listitem>
-          <para>"external" function</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      If <literal>f</literal> is  a complex-valued function, <literal> intc(a,b,f) </literal>
-      computes the integral from <literal>a</literal> to <literal>b</literal> of <literal>f(z)dz</literal> along the  
-      straight line <literal>a b</literal> of the complex plane.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="intg">intg</link>
-      </member>
-      <member>
-        <link linkend="intl">intl</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="intc">
+    <refnamediv>
+        <refname>intc</refname>
+        <refpurpose>Cauchy integral</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[y]=intc(a,b,f)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>a, b</term>
+                <listitem>
+                    <para>two complex numbers</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>"external" function</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If <literal>f</literal> is  a complex-valued function, <literal> intc(a,b,f) </literal>
+            computes the integral from <literal>a</literal> to <literal>b</literal> of <literal>f(z)dz</literal> along the  
+            straight line <literal>a b</literal> of the complex plane.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+function y=f(z)
+  y = z^(3 + %pi * %i)
+endfunction
+
+intc(1+%i, 4-%i, f)
+ ]]></programlisting>
+    </refsection>
+    
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="intg">intg</link>
+            </member>
+            <member>
+                <link linkend="intl">intl</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -25,7 +25,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Setup dialog for Xcos
  */
-public class SetupAction extends SimulationNotRunningAction {
+@SuppressWarnings(value = { "serial" })
+public final class SetupAction extends SimulationNotRunningAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.SETUP;
     /** Icon name of the action */
@@ -37,7 +38,7 @@ public class SetupAction extends SimulationNotRunningAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            Associated Scilab Graph
      */
@@ -47,7 +48,7 @@ public class SetupAction extends SimulationNotRunningAction {
 
     /**
      * Create corresponding menu
-     * 
+     *
      * @param scilabGraph
      *            Associated Scilab Graph
      * @return the menu
@@ -58,7 +59,7 @@ public class SetupAction extends SimulationNotRunningAction {
 
     /**
      * Action !
-     * 
+     *
      * @param e
      *            the event
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
@@ -72,9 +73,9 @@ public class SetupAction extends SimulationNotRunningAction {
         if (comp.isEditing()) {
             return;
         }
-        
+
         final SetupDialog dialog = new SetupDialog(comp,
-                graph.getScicosParameters());
+                graph, graph.getScicosParameters());
 
         dialog.pack();
         dialog.setVisible(true);

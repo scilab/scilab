@@ -1,0 +1,1362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="Graphics">
+    <refnamediv>
+        <refname>Графики: введение</refname>
+        <refpurpose>обзор библиотеки графиков</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>2d plotting</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="plot2d">plot2d</link>
+                </term>
+                <listitem>
+                    <para>Построение кривой</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>plot2d();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="plot2d2">plot2d2</link>
+                </term>
+                <listitem>
+                    <para>Построение кривой в виде ступенчатой функции</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>plot2d2();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="plot2d3">plot2d3</link>
+                </term>
+                <listitem>
+                    <para>Построение кривой в виде вертикальных полос</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>plot2d3();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="plot2d4">plot2d4</link>
+                </term>
+                <listitem>
+                    <para>Построение кривой со стрелками</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>plot2d4();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="fplot2d">fplot2d</link>
+                </term>
+                <listitem>
+                    <para>Построение кривой, определяемой функцией</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>fplot2d();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="champ">champ</link>
+                </term>
+                <listitem>
+                    <para>Двумерное векторное поле</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>champ();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="champ1">champ1</link>
+                </term>
+                <listitem>
+                    <para>Двумерное векторное поле с цветными стрелками</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>champ1();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="fchamp">fchamp</link>
+                </term>
+                <listitem>
+                    <para>
+                        Поле направлений двумерного ОДУ первого порядка
+                    </para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>fchamp();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="contour2d">contour2d</link>
+                </term>
+                <listitem>
+                    <para>
+                        Кривые уровней поверхности на двумерном графике
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="fcontour2d">fcontour2d</link>
+                </term>
+                <listitem>
+                    <para>
+                        Кривые уровней поверхности, определённой функцией, на
+                        двумерном графике.
+                    </para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>fcontour2d();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="grayplot">grayplot</link>
+                </term>
+                <listitem>
+                    <para>
+                        Двумерное построение поверхности с помощью цветов
+                    </para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>grayplot();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="fgrayplot">fgrayplot</link>
+                </term>
+                <listitem>
+                    <para>
+                        Двумерное построение поверхности, определённой функцией, с помощью цветов
+                    </para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>fgrayplot();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="Sgrayplot">Sgrayplot</link>
+                </term>
+                <listitem>
+                    <para>
+                        Гладкое двумерное построение поверхности с помощью цветов
+                    </para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>Sgrayplot();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="Sfgrayplot">Sfgrayplot</link>
+                </term>
+                <listitem>
+                    <para>
+                        Гладкое двумерное построение поверхности, определённой
+                        функцией, с помощью цветов
+                    </para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>Sfgrayplot();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xgrid">xgrid</link>
+                </term>
+                <listitem>
+                    <para>Добавление сетки на двумерный график</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>x=[0:0.1:2*%pi]'; plot2d(sin(x));xgrid(5)</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="errbar">errbar</link>
+                </term>
+                <listitem>
+                    <para>Добавление на двумерный график вертикальных полос погрешности</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>errbar();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="histplot">histplot</link>
+                </term>
+                <listitem>
+                    <para>Построение гистограммы</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>histplot();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="Matplot">Matplot</link>
+                </term>
+                <listitem>
+                    <para>Двумерное построение матрицы с помощью цветов</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>Matplot();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>3d plotting</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="plot3d">plot3d</link>
+                </term>
+                <listitem>
+                    <para>Построение поверхности</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>plot3d();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="plot3d1">plot3d1</link>
+                </term>
+                <listitem>
+                    <para>
+                        Построение поверхности с серыми или цветными линиями уровня
+                    </para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>plot3d1();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="fplot3d">fplot3d</link>
+                </term>
+                <listitem>
+                    <para>Построение поверхности, определённой функцией</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>fplot3d();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="fplot3d1">fplot3d1</link>
+                </term>
+                <listitem>
+                    <para>
+                        Построение поверхности, определённой функцией, с серыми
+                        или цветными линиями уровня
+                    </para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>fplot3d1();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="param3d">param3d</link>
+                </term>
+                <listitem>
+                    <para>Построение одной кривой</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>param3d();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="param3d1">param3d1</link>
+                </term>
+                <listitem>
+                    <para>Построение кривых</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>param3d1();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="contour">contour</link>
+                </term>
+                <listitem>
+                    <para>Кривые уровней на трёхмерной поверхности</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>contour();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="fcontour">fcontour</link>
+                </term>
+                <listitem>
+                    <para>
+                        Кривые уровней на трёхмерной поверхности, определённой функцией
+                    </para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>fcontour();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="hist3d">hist3d</link>
+                </term>
+                <listitem>
+                    <para>
+                        Трёхмерное представление гистограммы
+                    </para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>hist3d();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="genfac3d">genfac3d</link>
+                </term>
+                <listitem>
+                    <para>Вычисление фацетов трёхмерной поверхности</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>genfac3d();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="eval3dp">eval3dp</link>
+                </term>
+                <listitem>
+                    <para>Вычисление фацетов трёхмерной поверхности</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>p1=linspace(0,2*%pi,10);
+                            p2=linspace(0,2*%pi,10);
+                            deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
+                            "y=p1.*cos(p1).*cos(p2)";..
+                            "z=p1.*sin(p2)"])
+                            [Xf,Yf,Zf]=eval3dp(scp,p1,p2);
+                            plot3d(Xf,Yf,Zf)
+                        </scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="geom3d">geom3d</link>
+                </term>
+                <listitem>
+                    <para>
+                        Проекция из трёхмерного построения на двумерное после того, как трёхмерное построено
+                    </para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>deff("[z]=surface(x,y)","z=sin(x)*cos(y)")
+                            t=%pi*(-10:10)/10;
+                            // 3D plot of the surface
+                            fplot3d(t,t,surface,35,45,"X@Y@Z")
+                            // now (t,t,sin(t).*cos(t)) is a curve on the surface
+                            // which can be drawn using geom3d and xpoly
+                            [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
+                        </scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Построение линии и многоугольника</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="xpoly">xpoly</link>
+                </term>
+                <listitem>
+                    <para>Рисование ломаной линии или многоугольника</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xpolys">xpolys</link>
+                </term>
+                <listitem>
+                    <para>
+                        Рисование набора ломаных линий или многоугольников
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xrpoly">xrpoly</link>
+                </term>
+                <listitem>
+                    <para>Рисование правильного многоугольника</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xsegs">xsegs</link>
+                </term>
+                <listitem>
+                    <para>Рисование несоединённых сегментов</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xfpoly">xfpoly</link>
+                </term>
+                <listitem>
+                    <para>Заливка многоугольника</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xfpolys">xfpolys</link>
+                </term>
+                <listitem>
+                    <para>Заливка набора многоугольников</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Rectangle plotting</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="xrect">xrect</link>
+                </term>
+                <listitem>
+                    <para>Рисование прямоугольника</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xfrect">xfrect</link>
+                </term>
+                <listitem>
+                    <para>Заливка прямоугольника</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xrects">xrects</link>
+                </term>
+                <listitem>
+                    <para>Рисование или заливка набора прямоугольников</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Arc plotting</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="xarc">xarc</link>
+                </term>
+                <listitem>
+                    <para>Рисование части эллипса</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xarcs">xarcs</link>
+                </term>
+                <listitem>
+                    <para>Рисование частей набора эллипсов</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xfarc">xfarc</link>
+                </term>
+                <listitem>
+                    <para>Заливка части эллипса</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xfarcs">xfarcs</link>
+                </term>
+                <listitem>
+                    <para>Заливка частей набора эллипсов</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Построение стрелок</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="xarrows">xarrows</link>
+                </term>
+                <listitem>
+                    <para>Рисование набора стрелок</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Строки</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="xstring">xstring</link>
+                </term>
+                <listitem>
+                    <para>Рисование строк</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xstringl">xstringl</link>
+                </term>
+                <listitem>
+                    <para>Вычисление рамки, которая окружает строки</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xstringb">xstringb</link>
+                </term>
+                <listitem>
+                    <para>Рисование строк в рамке</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>xstringb();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xtitle">xtitle</link>
+                </term>
+                <listitem>
+                    <para>Добавление заголовков в графическое окно</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>xtitle();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="titlepage">titlepage</link>
+                </term>
+                <listitem>
+                    <para>
+                        Добавление заголовка в центр графического окна
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xinfo">xinfo</link>
+                </term>
+                <listitem>
+                    <para>
+                        Рисование информационной строки в подокне сообщений
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Рамки и оси</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="drawaxis">drawaxis</link>
+                </term>
+                <listitem>
+                    <para>Рисование осей</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="graduate">graduate</link>
+                </term>
+                <listitem>
+                    <para>Структурная градуировка оси</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="plotframe">plotframe</link>
+                </term>
+                <listitem>
+                    <para>
+                        Рисование рамки с масштабированием и сетками
+                        <warning>
+                            Эта функция устарела.
+                        </warning>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Преобразования координат</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="isoview">isoview</link>
+                </term>
+                <listitem>
+                    <para>
+                        Установка равного масштаба осей графика (не меняет размер окна)
+                        <warning>
+                            Эта функция устарела.
+                        </warning>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="square">square</link>
+                </term>
+                <listitem>
+                    <para>
+                        Установка равного масштаба осей графика (меняет размер окна)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="scaling">scaling</link>
+                </term>
+                <listitem>
+                    <para>Аффинное преобразование набора точек</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="rotate">rotate</link>
+                </term>
+                <listitem>
+                    <para>Поворот набора точек</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xsetech">xsetech</link>
+                </term>
+                <listitem>
+                    <para>
+                        Установка подокна в графическом окне для построения графика
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="subplot">subplot</link>
+                </term>
+                <listitem>
+                    <para>
+                        Деление графического окна на матрицу подокон
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xgetech">xgetech</link>
+                </term>
+                <listitem>
+                    <para>Получение масштаба текущего графика</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xchange">xchange</link>
+                </term>
+                <listitem>
+                    <para>
+                        Преобразование вещественных координат в пиксельные
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Цвета</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="colormap">colormap</link>
+                </term>
+                <listitem>
+                    <para>Использование цветовых карт</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="getcolor">getcolor</link>
+                </term>
+                <listitem>
+                    <para>
+                        Диалог выбора цветов в текущей цветовой карте
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="addcolor">addcolor</link>
+                </term>
+                <listitem>
+                    <para>
+                        Добавление новых цветов в текущую цветовую карту
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="graycolormap">graycolormap</link>
+                </term>
+                <listitem>
+                    <para>Линейная серая цветовая карта</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="hotcolormap">hotcolormap</link>
+                </term>
+                <listitem>
+                    <para>Цветовая карта от красного до жёлтого</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Графическое окружение</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="xset">xset</link>
+                </term>
+                <listitem>
+                    <para>
+                        Установка значений графического окружения
+                        <warning>
+                            Эта функция устарела.
+                        </warning>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xget">xget</link>
+                </term>
+                <listitem>
+                    <para>
+                        Получение текущих значений графического окружения
+                        <warning>
+                            Эта функция устарела.
+                        </warning>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xlfont">xlfont</link>
+                </term>
+                <listitem>
+                    <para>
+                        Загрузка шрифта в графическое окружение или получение
+                        загруженного шрифта
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="getsymbol">getsymbol</link>
+                </term>
+                <listitem>
+                    <para>
+                        Диалог выбора символа и его размера
+                        <warning>
+                            Эта функция устарела.
+                        </warning>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Сохранение и загрузка</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="xsave">xsave</link>
+                </term>
+                <listitem>
+                    <para>Сохранение графиков в файл</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xload">xload</link>
+                </term>
+                <listitem>
+                    <para>Загрузка сохранённых графиков</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2bmp">xs2bmp</link>
+                </term>
+                <listitem>
+                    <para>Экспорт графиков в формат BMP</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2emf">xs2emf</link>
+                </term>
+                <listitem>
+                    <para>
+                        Экспорт графиков в формат EMF
+                        <warning>
+                            Только под Windows.
+                        </warning>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2eps">xs2eps</link>
+                </term>
+                <listitem>
+                    <para>Экспорт графиков в формат EPS</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2gif">xs2gif</link>
+                </term>
+                <listitem>
+                    <para>Экспорт графиков в формат GIF</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2jpg">xs2jpg</link>
+                </term>
+                <listitem>
+                    <para>Экспорт графиков в формат JPG</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2pdf">xs2pdf</link>
+                </term>
+                <listitem>
+                    <para>Экспорт графиков в формат PDFt</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2png">xs2png</link>
+                </term>
+                <listitem>
+                    <para>Экспорт графиков в формат PNG</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2ppm">xs2ppm</link>
+                </term>
+                <listitem>
+                    <para>Экспорт графиков в формат PPM</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2ps">xs2ps</link>
+                </term>
+                <listitem>
+                    <para>Экспорт графиков в формат PS</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2svg">xs2svg</link>
+                </term>
+                <listitem>
+                    <para>Экспорт графиков в формат SVG</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Графические примитивы</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="clf">clf</link>
+                </term>
+                <listitem>
+                    <para>
+                        Очистка графического окна или сброс в исходные значения
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xclear">xclear</link>
+                </term>
+                <listitem>
+                    <para>
+                        Очистка графического окна
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="driver">driver</link>
+                </term>
+                <listitem>
+                    <para>
+                        Выбор графического драйвера
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xinit">xinit</link>
+                </term>
+                <listitem>
+                    <para>
+                        Инициализация графического драйвера
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xend">xend</link>
+                </term>
+                <listitem>
+                    <para>
+                        Закрытие графической сессии
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="replot">replot</link>
+                </term>
+                <listitem>
+                    <para>
+                        Перерисовка текущего графического окна с новыми
+                        пределами
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xpause">xpause</link>
+                </term>
+                <listitem>
+                    <para>Приостановка работы Scilab'а</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="show_window">show_window</link>
+                </term>
+                <listitem>
+                    <para>
+                        Подъём текущего графического окна
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xdel">xdel</link>
+                </term>
+                <listitem>
+                    <para>Удаление графического окна</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="winsid">winsid</link>
+                </term>
+                <listitem>
+                    <para>
+                        Возврат списка графических окон
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xname">xname</link>
+                </term>
+                <listitem>
+                    <para>
+                        Изменение имени текущего графического окна
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Положение курсора мыши</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="xclick">xclick</link>
+                </term>
+                <listitem>
+                    <para>
+                        Ожидание щелчка мыши или события в графическом окне
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="locate">locate</link>
+                </term>
+                <listitem>
+                    <para>
+                        Выбор набора точек мышью
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xgetmouse">xgetmouse</link>
+                </term>
+                <listitem>
+                    <para>
+                        Получение текущего положения и событий мыши
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Интерактивный редактор</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="edit_curv">edit_curv</link>
+                </term>
+                <listitem>
+                    <para>Интерактивный редактор кривых на графике</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Графические функции для автоматического контроля</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    <link linkend="bode">bode</link>
+                </term>
+                <listitem>
+                    <para>Диаграмма Боде</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>s=poly(0,'s')
+                            h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+                            clf();bode(h,0.01,100);
+                        </scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="gainplot">gainplot</link>
+                </term>
+                <listitem>
+                    <para>График АЧХ</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>s=poly(0,'s')
+                            h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+                            h2=syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+                            clf();gainplot([h1;h2],0.01,100,['h1';'h2'])
+                            title('Gainplot');
+                        </scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="nyquist">nyquist</link>
+                </term>
+                <listitem>
+                    <para>Диаграмма Найквиста</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>s=poly(0,'s')
+                            h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+                            h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+                            nyquist(h1)
+                            ax=gca();
+                            h_h=ax.children($).children(2);
+                            tip=datatipCreate(h_h,[1.331,0.684]);
+                            datatipSetOrientation(tip,"upper left");
+                        </scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="m_circle">m_circle</link>
+                </term>
+                <listitem>
+                    <para>
+                        Построение на комплексной плоскости контуров равного усиления y/(1+y)
+                        <warning>
+                            Эта функция устарела.
+                        </warning>
+                    </para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image>m_circle();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="hallchart">hallchart</link>
+                </term>
+                <listitem>
+                    <para>
+                        График Холла
+                    </para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image localized="true">hallchart();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="chart">chart</link>
+                </term>
+                <listitem>
+                    <para>Диаграмма Никольса</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image localized="true">chart();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="black">black</link>
+                </term>
+                <listitem>
+                    <para>Диаграмма Блэка</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image localized="true">s=poly(0,'s');
+                            sl=syslin('c',5*(1+s)/(.1*s^4+s^3+15*s^2+3*s+1))
+                            clf();black(sl,0.01,10);
+                        </scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="evans">evans</link>
+                </term>
+                <listitem>
+                    <para>Корневой годограф Эванса</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image localized="true">evans();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="sgrid">sgrid</link>
+                </term>
+                <listitem>
+                    <para>линии сетки в s-плоскости</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image localized="true">sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="plzr">plzr</link>
+                </term>
+                <listitem>
+                    <para>схема размещения полюсов и нулей</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image localized="true">s=poly(0,'s');
+                            n=[1+s   2+3*s+4*s^2        5; 0        1-s             s];
+                            d=[1+3*s   5-s^3           s+1;1+s     1+s+s^2      3*s-1];
+                            h=syslin('c',n./d);
+                            plzr(h);
+                        </scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="zgrid">zgrid</link>
+                </term>
+                <listitem>
+                    <para>линии сетки в z-плоскости</para>
+                    <para>
+                        <emphasis role="bold">Пример:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image localized="true">zgrid();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+</refentry>

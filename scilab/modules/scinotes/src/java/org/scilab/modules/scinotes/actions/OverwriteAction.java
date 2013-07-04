@@ -25,6 +25,7 @@ import org.scilab.modules.scinotes.SciNotes;
  * @author Calixte DENIZET
  *
  */
+@SuppressWarnings(value = { "serial" })
 public final class OverwriteAction extends DefaultAction {
 
     /**
@@ -46,12 +47,12 @@ public final class OverwriteAction extends DefaultAction {
     public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
         final MenuItem menuitem = createMenu(label, null, new OverwriteAction(label, editor), key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    if (editor.getTextPane() != null) {
-                        menuitem.setEnabled(editor.getTextPane().checkExternalModif());
-                    }
+            public void propertyChange(PropertyChangeEvent e) {
+                if (editor.getTextPane() != null) {
+                    menuitem.setEnabled(editor.getTextPane().checkExternalModif());
                 }
-            });
+            }
+        });
 
         return menuitem;
     }

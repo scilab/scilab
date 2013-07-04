@@ -13,8 +13,8 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="output_stream">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -30,13 +30,14 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
-
-<PRIMITIVE gatewayId="33" primitiveId="1" primitiveName="print" />
-<PRIMITIVE gatewayId="33" primitiveId="2" primitiveName="mprintf" />
-<PRIMITIVE gatewayId="33" primitiveId="2" primitiveName="printf" />
-<PRIMITIVE gatewayId="33" primitiveId="3" primitiveName="msprintf" />
-<PRIMITIVE gatewayId="33" primitiveId="3" primitiveName="sprintf" />
-<PRIMITIVE gatewayId="33" primitiveId="4" primitiveName="disp" />
-<PRIMITIVE gatewayId="33" primitiveId="5" primitiveName="diary" />  
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="33" primitiveId="1" primitiveName="print" />
+    <PRIMITIVE gatewayId="33" primitiveId="2" primitiveName="mprintf" />
+    <PRIMITIVE gatewayId="33" primitiveId="2" primitiveName="printf" />
+    <PRIMITIVE gatewayId="33" primitiveId="3" primitiveName="msprintf" />
+    <PRIMITIVE gatewayId="33" primitiveId="3" primitiveName="sprintf" />
+    <PRIMITIVE gatewayId="33" primitiveId="4" primitiveName="disp" />
+    <PRIMITIVE gatewayId="33" primitiveId="5" primitiveName="diary" />
+    
 </GATEWAY>

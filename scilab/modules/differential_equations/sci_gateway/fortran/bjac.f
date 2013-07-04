@@ -33,13 +33,13 @@ c
       ils=iadr(lstk(tops))
 c
       if(istk(ils).eq.10) then
-c     cas d'un simulateur en fortran
+c     Case of a Fortran simulator
          call fjac(ny,t,y,ml,mu,jac,nrowj)
          return
       endif
 c     external is a Scilab function
 
-c     on return iero=1 is used to notify to the ode solver that
+c     On return iero=1 is used to notify to the ode solver that
 c     scilab was not able to evaluate the external
       iero=1
 
@@ -53,21 +53,20 @@ c+
 c     
       
 c     
-c     recuperation de l'adresse du simulateur
+c     Retrieving the simulator's address
       fin=lstk(tops)
 c     
       if(istk(ils).eq.15) then
-c     cas ou le simulateur est decrit par une liste
+c     Case when the simulator is described by a list
       nelt=istk(ils+1)
       l=sadr(ils+3+nelt)
       ils=ils+2
 c     
-c     recuperation de l'adresse du simulateur
+c     Retrieving the simulator's address
       fin=l
 c     
-c     gestion des parametres supplementaires du simulateur
-c     proviennent du contexte  (elements de la liste
-c     decrivant le simulateur
+c     Managing the additional simulator parameters coming from
+c     the context (elements of the list describing the simulator)
 c     
       nelt=nelt-1
       if(nelt.eq.0) goto 40
@@ -91,7 +90,7 @@ c
       endif
  40   continue
 c     
-c     execution de la macro definissant le simulateur
+c     Running the macro defining the simulator
 c     
       pt=pt+1
       if(pt.gt.psiz) then
@@ -115,7 +114,7 @@ c
       pt=pt-1
       niv=niv-1
 c+    
-c     transfert des variables  de sortie vers fortran
+c     Transferring the output to Fortran
       if(ml.gt.0.or.mu.gt.0) then
          mm=ml+mu+1
          call btofm(jac,nrowj,mm,ny)

@@ -3,11 +3,11 @@
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
 
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -32,185 +32,185 @@ import org.scilab.modules.gui.utils.Size;
  */
 public class ScilabCanvas extends ScilabDockable implements Canvas {
 
-	private SimpleCanvas component;
-	
-	/**
-	 * Constructor
-	 * @param figureIndex index of the displayed figure
-	 * @param antialiasingQuality Specify the number of pass to use for antialiasing.
+    private SimpleCanvas component;
+
+    /**
+     * Constructor
+     * @param figureIndex index of the displayed figure
+     * @param antialiasingQuality Specify the number of pass to use for antialiasing.
      *                            If its value is 0, then antialiasing is disable.
-	 */
-	protected ScilabCanvas(int figureIndex, int antialiasingQuality) {
-		component = ScilabBridge.createCanvas(figureIndex, antialiasingQuality);
-	}
+     */
+    protected ScilabCanvas(int figureIndex, int antialiasingQuality) {
+        component = ScilabBridge.createCanvas(figureIndex, antialiasingQuality);
+    }
 
-	/**
-	 * Creates a Scilab Canvas
-	 * @param figureIndex index of the displayed figure
-	 * @param antialiasingQuality Specify the number of pass to use for antialiasing.
+    /**
+     * Creates a Scilab Canvas
+     * @param figureIndex index of the displayed figure
+     * @param antialiasingQuality Specify the number of pass to use for antialiasing.
      *                            If its value is 0, then antialiasing is disable.
-	 * @return the created canvas
-	 */
-	public static Canvas createCanvas(int figureIndex, int antialiasingQuality) {
-		return new ScilabCanvas(figureIndex, antialiasingQuality);
-	}
+     * @return the created canvas
+     */
+    public static Canvas createCanvas(int figureIndex, int antialiasingQuality) {
+        return new ScilabCanvas(figureIndex, antialiasingQuality);
+    }
 
-	/**
-	 * Gets this Bridge component object
-	 * @return this Bridge component object
-	 */
-	public SimpleCanvas getAsSimpleCanvas() {
-		return component;
-	}
-	
-	/**
-	 * Sets a MenuBar to an element
-	 * @param newMenuBar the MenuBar to set to the element
-	 */
-	public void addMenuBar(MenuBar newMenuBar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Gets this Bridge component object
+     * @return this Bridge component object
+     */
+    public SimpleCanvas getAsSimpleCanvas() {
+        return component;
+    }
 
-	/**
-	 * Sets a ToolBar to an element
-	 * @param newToolBar the ToolBar to set to the element
-	 */
-	public void addToolBar(ToolBar newToolBar) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-	}
-	
-	/**
-	 * Draws a Scilab canvas
-	 * @see org.scilab.modules.gui.UIElement#draw()
-	 */
-	public void draw() {
-		ScilabBridge.draw(this);
-	}
+    /**
+     * Sets a MenuBar to an element
+     * @param newMenuBar the MenuBar to set to the element
+     */
+    public void addMenuBar(MenuBar newMenuBar) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * Gets the dimensions (width and height) of a Scilab Canvas
-	 * @return the size of the canvas
-	 * @see org.scilab.modules.gui.UIElement#getDims()
-	 */
-	public Size getDims() {
-		return ScilabBridge.getDims(this);
-	}
+    /**
+     * Sets a ToolBar to an element
+     * @param newToolBar the ToolBar to set to the element
+     */
+    public void addToolBar(ToolBar newToolBar) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * Gets the position (X-coordinate and Y-coordinate) of a Scilab canvas
-	 * @return the position of the canvas
-	 * @see org.scilab.modules.gui.UIElement#getPosition()
-	 */
-	public Position getPosition() {
-		return ScilabBridge.getPosition(this);
-	}
+    /**
+     * Draws a Scilab canvas
+     * @see org.scilab.modules.gui.UIElement#draw()
+     */
+    public void draw() {
+        ScilabBridge.draw(this);
+    }
 
-	/**
-	 * Gets the visibility status of a Scilab Canvas
-	 * @return the visibility status of the canvas (true if the canvas is visible, false if not)
-	 * @see org.scilab.modules.gui.UIElement#isVisible()
-	 */
-	public boolean isVisible() {
-		return ScilabBridge.isVisible(this);
-	}
+    /**
+     * Gets the dimensions (width and height) of a Scilab Canvas
+     * @return the size of the canvas
+     * @see org.scilab.modules.gui.UIElement#getDims()
+     */
+    public Size getDims() {
+        return ScilabBridge.getDims(this);
+    }
 
-	/**
-	 * Sets the dimensions (width and height) of a Scilab Canvas
-	 * @param newSize the size we want to set to the canvas
-	 * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
-	 */
-	public void setDims(Size newSize) {
-		ScilabBridge.setDims(this, newSize);
-	}
+    /**
+     * Gets the position (X-coordinate and Y-coordinate) of a Scilab canvas
+     * @return the position of the canvas
+     * @see org.scilab.modules.gui.UIElement#getPosition()
+     */
+    public Position getPosition() {
+        return ScilabBridge.getPosition(this);
+    }
 
-	/**
-	 * Sets the position (X-coordinate and Y-coordinate) of a Scilab canvas
-	 * @param newPosition the position we want to set to the canvas
-	 * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
-	 */
-	public void setPosition(Position newPosition) {
-		ScilabBridge.setPosition(this, newPosition);
-	}
+    /**
+     * Gets the visibility status of a Scilab Canvas
+     * @return the visibility status of the canvas (true if the canvas is visible, false if not)
+     * @see org.scilab.modules.gui.UIElement#isVisible()
+     */
+    public boolean isVisible() {
+        return ScilabBridge.isVisible(this);
+    }
 
-	/**
-	 * Sets the visibility status of a Scilab Canvas
-	 * @param newVisibleState the visibility status we want to set to the canvas (true to set the canvas visible, false else)
-	 * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
-	 */
-	public void setVisible(boolean newVisibleState) {
-		ScilabBridge.setVisible(this, newVisibleState);
-	}
-	
-	/**
-	 * Force the canvas to render itself immediately.
-	 */
-	public void display() {
-		ScilabBridge.display(this);
-	}
+    /**
+     * Sets the dimensions (width and height) of a Scilab Canvas
+     * @param newSize the size we want to set to the canvas
+     * @see org.scilab.modules.gui.UIElement#setDims(org.scilab.modules.gui.utils.Size)
+     */
+    public void setDims(Size newSize) {
+        ScilabBridge.setDims(this, newSize);
+    }
 
-	/**
-	  * Get the GL pipeline used by the canvas
-	  * @return GL pipeline
-	 */
-	public GL getGL() {
-		return ScilabBridge.getGL(this);
-	}
-	
-	/**
-	 * @param onOrOff set wether the swap buffer mode is on or off.
-	 */
-	public void setAutoSwapBufferMode(boolean onOrOff) {
-		ScilabBridge.setAutoSwapBufferMode(this, onOrOff);
-	}
-	
-	/**
-	 * @return set wether the swap buffer mode is on or off.
-	 */
-	public boolean getAutoSwapBufferMode() {
-		return ScilabBridge.getAutoSwapBufferMode(this);
-	}
-	
-	/**
-	 * Force the canvas to render itself with synchronisation with its OpenGL process.
-	 */
-	public void repaint() {
-		ScilabBridge.repaint(this);
-	}
-	
-	
-	/**
-	 * Set the background of the Canvas.
-	 * @param red red channel
-	 * @param green green channel 
-	 * @param blue blue channel
-	 */
-	public void setBackgroundColor(double red, double green, double blue) {
-		ScilabBridge.setBackgroundColor(this, red, green, blue);
-	}
-	
-	/**
-	  * Disable the canvas before closing
-	  */
-	public void close() {
-		ScilabBridge.close(this);
-	}
+    /**
+     * Sets the position (X-coordinate and Y-coordinate) of a Scilab canvas
+     * @param newPosition the position we want to set to the canvas
+     * @see org.scilab.modules.gui.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
+     */
+    public void setPosition(Position newPosition) {
+        ScilabBridge.setPosition(this, newPosition);
+    }
 
-	/**
-	 * Convert to a BufferedImage
-	 * @return BufferedImage
-	 */
-	public BufferedImage dumpAsBufferedImage() {
-		return ScilabBridge.dumpAsBufferedImage(this);
-	}
-	
-	/**
-	 * Set double buffer mode on or Off
-	 * @param useSingleBuffer if true use single buffer if false use double buffering
-	 */
-	public void setSingleBuffered(boolean useSingleBuffer) {
-		ScilabBridge.setSingleBuffered(this, useSingleBuffer);
-	}
-	
+    /**
+     * Sets the visibility status of a Scilab Canvas
+     * @param newVisibleState the visibility status we want to set to the canvas (true to set the canvas visible, false else)
+     * @see org.scilab.modules.gui.UIElement#setVisible(boolean)
+     */
+    public void setVisible(boolean newVisibleState) {
+        ScilabBridge.setVisible(this, newVisibleState);
+    }
+
+    /**
+     * Force the canvas to render itself immediately.
+     */
+    public void display() {
+        ScilabBridge.display(this);
+    }
+
+    /**
+      * Get the GL pipeline used by the canvas
+      * @return GL pipeline
+     */
+    public GL getGL() {
+        return ScilabBridge.getGL(this);
+    }
+
+    /**
+     * @param onOrOff set wether the swap buffer mode is on or off.
+     */
+    public void setAutoSwapBufferMode(boolean onOrOff) {
+        ScilabBridge.setAutoSwapBufferMode(this, onOrOff);
+    }
+
+    /**
+     * @return set wether the swap buffer mode is on or off.
+     */
+    public boolean getAutoSwapBufferMode() {
+        return ScilabBridge.getAutoSwapBufferMode(this);
+    }
+
+    /**
+     * Force the canvas to render itself with synchronisation with its OpenGL process.
+     */
+    public void repaint() {
+        ScilabBridge.repaint(this);
+    }
+
+
+    /**
+     * Set the background of the Canvas.
+     * @param red red channel
+     * @param green green channel
+     * @param blue blue channel
+     */
+    public void setBackgroundColor(double red, double green, double blue) {
+        ScilabBridge.setBackgroundColor(this, red, green, blue);
+    }
+
+    /**
+      * Disable the canvas before closing
+      */
+    public void close() {
+        ScilabBridge.close(this);
+    }
+
+    /**
+     * Convert to a BufferedImage
+     * @return BufferedImage
+     */
+    public BufferedImage dumpAsBufferedImage() {
+        return ScilabBridge.dumpAsBufferedImage(this);
+    }
+
+    /**
+     * Set double buffer mode on or Off
+     * @param useSingleBuffer if true use single buffer if false use double buffering
+     */
+    public void setSingleBuffered(boolean useSingleBuffer) {
+        ScilabBridge.setSingleBuffered(this, useSingleBuffer);
+    }
+
 }

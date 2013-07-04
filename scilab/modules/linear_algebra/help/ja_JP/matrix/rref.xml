@@ -10,43 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rref">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="rref">
     <refnamediv>
         <refname>rref</refname>
-        <refpurpose> computes  matrix row echelon form by lu transformations</refpurpose>
+        <refpurpose>LU分解により行echelon形式の行列を計算</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>R=rref(A)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para> m x n matrix with scalar entries</para>
+                    <para> スカラーのエントリを有するm x n 行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>R</term>
                 <listitem>
-                    <para> m x n matrix,row echelon form of a</para>
+                    <para> Aの行echelon形式のm x n行列</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            <literal>rref</literal> computes the row echelon form of the given matrix by left lu
-            decomposition. If ones need the transformation used just call
-            <literal>X=rref([A,eye(m,m)])</literal> the row echelon form <literal>R</literal> is <literal>X(:,1:n)</literal> and
-            the left transformation <literal>L</literal> is given by <literal>X(:,n+1:n+m)</literal> such as <literal>L*A=R</literal>
+            <literal>rref</literal> は左LU分解により指定した行列
+            の行echelon形式を計算します.
+            <literal>X=rref([A,eye(m,m)])</literal>をコールする際に使用した
+            変換が必要な場合,行echelon形式は<literal>X(:,1:n)</literal>となり,
+            左分解<literal>L</literal>は<literal>L*A=R</literal>となるような
+            <literal>X(:,n+1:n+m)</literal> により指定されます.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 A=[1 2;3 4;5 6];
 X=rref([A,eye(3,3)]);
@@ -55,7 +57,7 @@ L=X(:,3:5);L*A
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="lu">lu</link>

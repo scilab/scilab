@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5read" xml:lang="en">
+    <refnamediv>
+        <refname>h5read</refname>
+        <refpurpose>Read the data of HDF5 dataset</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            h5read(obj [, name, [, start, count [, stride [, block]]]])
+            h5read(filename, name [, start, count [, stride [, block]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>obj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>a string giving the path to the new dataset</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>start</term>
+                <listitem>
+                    <para>a row of doubles containing the start of the hyperslab</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>count</term>
+                <listitem>
+                    <para>a row of doubles containing the count of the hyperslab</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>stride</term>
+                <listitem>
+                    <para>a row of doubles containing the stride of the hyperslab</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>block</term>
+                <listitem>
+                    <para>a row of doubles containing the block of the hyperslab</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>a string giving the filename</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Read the content of a dataset according to the optional hyperslab selection.</para>
+        <para>It is possible to make an hyperslab selection on the data.</para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../images/hyperslab_selection.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>The arguments start, count, stride and block must have a size equals to the number of dimensions of the data:
+            <simplelist type="inline">
+                <member>
+                    start: gives the coordinates in the data where to start the selection. 
+                </member>
+                <member>
+                    count: gives the number of selected blocks in each dimension. 
+                </member>
+                <member>
+                    stride: gives the shift between two consecutives blocks in each dimension. Take care that the stride must be greater than the corresponding block dimension. 
+                </member>
+                <member>
+                    block: gives the block dimensions. 
+                </member>
+            </simplelist>
+        </para>
+        <para>By default stride and block are set to 1 in each dimension.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x = int8(matrix(1:80, 10, 8));
+save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
+
+// Open the created file
+a = h5open(TMPDIR + "/x.sod");
+
+// Read the data from the dataset 'x'
+dx = h5read(a, "/x")
+
+// Now select a part
+dx1 = h5read(a, "/x", [3 4], [5 3])
+
+// ...which is equivalent to
+dx(3:(3+5-1),4:(4+3-1))
+
+// We have finished so we free all the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5readattr">h5readattr</link>
+            </member>
+            <member>
+                <link linkend="h5write">h5write</link>
+            </member>
+            <member>
+                <link linkend="h5dataset">h5dataset</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HDF5 module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

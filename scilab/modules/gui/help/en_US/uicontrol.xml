@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="uicontrol" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uicontrol" xml:lang="en">
     <refnamediv>
         <refname>uicontrol</refname>
         <refpurpose>create a Graphic User Interface object</refpurpose>
@@ -110,7 +110,7 @@
                 <listitem>
                     <para>{on} | off</para>
                     <para>
-                        Enable or disable the uicontrol. If this property is set to <literal>"on"</literal> (default), the uicontrol is operational, 
+                        Enable or disable the uicontrol. If this property is set to <literal>"on"</literal> (default), the uicontrol is operational,
                         but if this property is set to <literal>"off"</literal>, the uicontrol will not respond to the mouse actions and will be grayed out.
                     </para>
                 </listitem>
@@ -314,7 +314,7 @@
                         separated by a "|". For Text uicontrols, this string can contain HTML code to format the text.
                     </para>
                     <para>
-                        For Pushbutton or Text uicontrols, if the text is enclosed between two $ (dollar sign), then it will be 
+                        For Pushbutton or Text uicontrols, if the text is enclosed between two $ (dollar sign), then it will be
                         considered as a LaTeX expression, and if it is enclosed between &lt; and &gt;, it will be considered
                         as a MathML one.
                     </para>
@@ -351,14 +351,14 @@
                             </para>
                         </listitem>
                         <listitem>
-                            <para>Radiobutton: a button with to states. RadioButtons are
+                            <para>Radiobutton: a button with two states. RadioButtons are
                                 intended to be mutually exclusive (Your code must implement
                                 mutually exclusive behavior).
                             </para>
                         </listitem>
                         <listitem>
-                            <para>Checkbox: a button with to states (Used for multiple
-                                independent choices). 
+                            <para>Checkbox: a button with two states (Used for multiple
+                                independent choices).
                             </para>
                         </listitem>
                         <listitem>
@@ -466,7 +466,7 @@
                 <listitem>
                     <para>{on} | off</para>
                     <para>
-                        Set the visibility of the uicontrol. If this property is set to <literal>"on"</literal> (default), the uicontrol is visible, 
+                        Set the visibility of the uicontrol. If this property is set to <literal>"on"</literal> (default), the uicontrol is visible,
                         but if this property is set to <literal>"off"</literal>, the uicontrol will not appear in its parent figure.
                     </para>
                 </listitem>
@@ -475,7 +475,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 f=figure();
 // create a figure
 h=uicontrol(f,'style','listbox', ...
@@ -489,7 +489,7 @@ close(f);
 // close the figure
  ]]></programlisting>
         <para>uicontrol function can be overloaded</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // create a mlist
 mymlist = mlist(['objid','A','B'],[],[]);
 
@@ -505,7 +505,7 @@ endfunction
 res = uicontrol(mymlist,'property');
  ]]></programlisting>
         <para>Pushbuttons or Text can have LaTeX or MathML label</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // LaTeX
 f=figure();
 h=uicontrol(f,"style","pushbutton","string","$x^2$");
@@ -517,7 +517,7 @@ h=uicontrol(f,"Style","text","string","$\Gamma(s)=\int_0^\infty t^{s-1}\mathrm{e
 // If it is too little
 h.fontsize=20
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Include an editable table into a figure:
 // Building a table of data:
 params = [" " "Country" "Population [Mh]" "Temp.[Â°C]" ];

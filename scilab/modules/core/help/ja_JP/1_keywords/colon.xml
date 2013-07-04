@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="colon">
+    <refnamediv>
+        <refname>colon</refname>
+        <refpurpose>(:) コロン演算子</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            コロン記号 <literal>:</literal> は暗黙的にベクトルを作成する
+            際に使用することができます.
+            (<link linkend="linspace">linspace</link>,  
+            <link linkend="logspace">logspace</link>も参照ください) 
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>j:k</term>
+                <listitem>
+                    <para>
+                        ベクトル <literal>[j, j+1,...,k]</literal> (
+                        <literal>j&gt;k</literal>の場合は空ベクトル).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>j:d:k</term>
+                <listitem>
+                    <para>
+                        ベクトル <literal>[j, j+d, ..., j+m*d]  </literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            コロン表記は,ベクトルおよび行列の指定した行,列および要素を抽出する際にも
+            使用することができます(<link linkend="extraction">extraction</link>,
+            <link linkend="insertion">insertion</link>も参照ください).
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>A(:)</term>
+                <listitem>
+                    <para>
+                        <literal>A</literal>の全要素を一つの列としてベクトル.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A(:,j)</term>
+                <listitem>
+                    <para>
+                        <literal>A</literal>の<literal>j</literal>番目の列
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A(j:k)</term>
+                <listitem>
+                    <para>
+                        <literal>[A(j),A(j+1),...,A(k)]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A(:,j:k)</term>
+                <listitem>
+                    <para>
+                        <literal>[A(:,j),A(:,j+1),...,A(:,k)] </literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A(:)=w</term>
+                <listitem>
+                    <para>
+                        行列 <literal>A</literal>に<literal>w</literal>のエントリを代入します
+                        (<literal>w</literal> が行列の場合,列毎に取り出されます).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="matrix">matrix</link>
+            </member>
+            <member>
+                <link linkend="for">for</link>
+            </member>
+            <member>
+                <link linkend="linspace">linspace</link>
+            </member>
+            <member>
+                <link linkend="logspace">logspace</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

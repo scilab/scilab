@@ -26,6 +26,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * CloseAction class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class CloseAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY Q";
@@ -56,7 +57,7 @@ public final class CloseAction extends CommonCallBack {
      * {@inheritDoc}
      */
     public void callBack() {
-	EditVar.closeVariableEditor();
+        EditVar.closeVariableEditor();
     }
 
     /**

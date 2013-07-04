@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-22 14:25+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-18 03:18+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -22,6 +22,14 @@ msgstr ""
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無効です.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -37,8 +45,16 @@ msgid ""
 msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s'  または '%s' を指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr "%s: 入力引数 %d 型が間違っています: 文字列行列を指定してください.\n"
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s: 引数 %d の型が間違っています:  実数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -68,12 +84,12 @@ msgid "%s: Figure number must be given when not in '%s' mode.\n"
 msgstr "%s: '%s' モードでないときに、図形番号を与えなくてはなりません。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: ハンドル行列を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -88,12 +104,16 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数スカラーまたは'Figure'のハンドルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行列を指定してください.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -248,6 +268,10 @@ msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルを指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Handle expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: ハンドルを指定してください.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: '%s'または'%s'ハンドルを指定してください.\n"
@@ -313,6 +337,41 @@ msgstr ""
 "%s: Java例外が発生しました:\n"
 "%s"
 
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: At least 2 elements expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  要素数は2以上を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: First element must be a string.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  最初の要素には文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Tree expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  Tree を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Second element must be a mlist.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  2番目の要素には mlist を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Label: A string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Icon: A string expected.\n"
+msgstr "%s: 入力引数 #%d: Icon の型が間違っています:  文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: callback: A string expected.\n"
+msgstr "%s: 入力引数 #%d: callback  の型が間違っています:  文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Error in the tree parsing.\n"
+msgstr "%s: treeのパース中にエラーが発生しました.\n"
+
 #
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
 #, c-format
@@ -341,10 +400,6 @@ msgstr ""
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: ファイル %s は存在しません。\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
@@ -387,14 +442,6 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値行列を指定してください.\n"
 
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 59
 # File: scilab_fake_localization_file.c, line: 1
@@ -529,9 +576,6 @@ msgstr "編集(&E)"
 msgid "&Select as current figure"
 msgstr "現在の構成として選択(&S)"
 
-msgid "&Redraw figure"
-msgstr "構成の再描画(&R)"
-
 #
 # File: scilab_fake_localization_file.c, line: 29
 msgid "&Clear figure"
@@ -655,28 +699,22 @@ msgstr "コピー(&C)"
 msgid "&Paste"
 msgstr "貼り付け(&P)"
 
-#
-# File: scilab_fake_localization_file.c, line: 55
 msgid "&Empty clipboard"
-msgstr "クリップボードを空(&E)"
+msgstr "クリップボードを空にする(&E)"
 
 #
 # File: scilab_fake_localization_file.c, line: 56
 msgid "&Select all"
 msgstr "全て選択(&S)"
 
-#
-# File: scilab_fake_localization_file.c, line: 63
 msgid "Clear &History"
-msgstr "ヒストリークリア(&H)"
+msgstr "履歴を消去(&H)"
 
-#
-# File: scilab_fake_localization_file.c, line: 64
 msgid "Clear C&onsole"
-msgstr "コンソールクリア(&C)"
+msgstr "コンソールを消去(&C)"
 
 msgid "P&references"
-msgstr "プリファレンス(&r)"
+msgstr "設定(&r)"
 
 #
 # File: scilab_fake_localization_file.c, line: 65
@@ -806,6 +844,9 @@ msgstr "コピー"
 msgid "Paste"
 msgstr "貼り付け"
 
+msgid "Clear Console"
+msgstr "コンソールを消去"
+
 #
 # File: scilab_fake_localization_file.c, line: 93
 msgid "Print..."
@@ -920,6 +961,27 @@ msgstr "デスクトップテキストフォント"
 
 msgid "Custom:"
 msgstr "カスタム："
+
+msgid "Web"
+msgstr "Web"
+
+msgid "Web browser and mailer"
+msgstr "Webブラウザおよびメーラー"
+
+msgid "Use default web browser"
+msgstr "デフォルトのWebブラウザを使用"
+
+msgid "Command for web browser: "
+msgstr "Webブラウザのコマンド: "
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr "(パスが空白文字を含む場合,必ず引用符で括ってください)"
+
+msgid "Use default mailer"
+msgstr "デフォルトのメーラーを使用"
+
+msgid "Command for mailer: "
+msgstr "メーラーのコマンド: "
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -1131,6 +1193,7 @@ msgstr "バックグランド・コンソール..."
 msgid "No print service found."
 msgstr "印刷サービスが見つかりません."
 
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1139,6 +1202,7 @@ msgstr ""
 "警告: 設定ファイルの制限のため, Scilab は uicontrolとグラフィックスが利用できないモードに変更されました.詳細な情報については %s "
 "と入力ください."
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "いくつかのケースでは, %s は問題を修正します"
 
@@ -1157,21 +1221,14 @@ msgstr ""
 "disp(\"警告: 事前の警告にも関わらず, 新しいグラフィック機能を有効にしてScilabを使用することを選択しました.  "
 "詳細な情報を得るには,\"\"help usecanvas\"\" と入力してください.\")"
 
-#
-# File: scilab_fake_localization_file.c, line: 64
-msgid "Clear Console"
-msgstr "コンソールクリア"
-
 msgid "Are you sure you want to clear the console ?"
 msgstr "コンソールを消去してもよろしいですか?"
 
 msgid "Do not show this message again"
 msgstr "次回からこのメッセージを表示しない"
 
-#
-# File: scilab_fake_localization_file.c, line: 63
 msgid "Clear History"
-msgstr "ヒストリークリア"
+msgstr "履歴を消去"
 
 #
 # File: scilab_fake_localization_file.c, line: 56
@@ -1331,6 +1388,7 @@ msgstr "保存して実行"
 msgid "Empty tab"
 msgstr "空のタブ"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1338,9 +1396,11 @@ msgstr ""
 "uuid %s のタブは回復できません.\n"
 "前のメッセージを指定し,ファイル %s を付けてバグを報告してください."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "%s を閉じても良ろしいですか?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "%s と %s を閉じても宜しいですか?"
 
@@ -1395,6 +1455,7 @@ msgstr "PNG画像ファイル"
 msgid "All RTF (Rich Text Format) files"
 msgstr "RTF (Rich Text Format)ファイル"
 
+#, c-format
 msgid "All %s files"
 msgstr "全ての %s ファイル"
 
@@ -1615,7 +1676,7 @@ msgstr "%s: この方法ではメニューを加えることができません: 
 
 #, c-format
 msgid "%s: can not add a menu in console in this mode: %s.\n"
-msgstr "%s: この方法ではコンソールにメニューを加えることができません: %s\n"
+msgstr "%s: このモードではコンソールにメニューを加えることができません: %s\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
@@ -1651,11 +1712,6 @@ msgstr "%s: NWNIモードでは利用できない関数です。\n"
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルまたは実数を指定してください.\n"
-
-#
-# File: macros/createpopup.sci, line: 50
-msgid "createPopupItems: found an empty cascading menu."
-msgstr "createPopupItems: 何も無いカスケード・メニューを見つけました。"
 
 #
 # File: macros/figure.sci, line: 26

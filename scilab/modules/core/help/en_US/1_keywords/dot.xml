@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dot" xml:lang="en">
+    <refnamediv>
+        <refname>dot</refname>
+        <refpurpose>(.) symbol</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            123.33
+            a.*b
+            
+            [123,..
+            456]
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <variablelist>
+            <varlistentry>
+                <term>.</term>
+                <listitem>
+                    <para>Dot is used to mark decimal point for numbers : 3.25 and
+                        0.001
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>.&lt;op&gt;</term>
+                <listitem>
+                    <para>
+                        used in conjunction with other operator symbols (<literal>*/ \ ^ '</literal>) to form other operators. Element-by-element
+                        multiplicative operations are obtained using <literal> .* , .^ , ./ , .\</literal>
+                        or <literal>.'</literal>. For example,  <literal>C = A ./ B</literal> is
+                        the matrix with elements <literal>c(i,j) = a(i,j)/b(i,j)</literal>. Kronecker product
+                        is noted <literal>.*.</literal> . Note that when dot follows a number it is always a part
+                        of the number so <literal>2.*x</literal> is evaluated as <literal>2.0*x</literal> and <literal>2 .*x</literal> is evaluated
+                        as <literal>(2).*x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>..</term>
+                <listitem>
+                    <para>Continuation mark. Two or more dots at the end of a
+                        line (or followed by a comment) causes the following line to be a
+                        continuation.
+                    </para>
+                    <para>Continuation lines are handled by a preprocessor which builds
+                        a long logical line from a sequence of continuation lines. So the
+                        continuation marks can be used to cut a line at any point.
+                    </para>
+                    <para>
+                        The following function <literal>foo</literal>:
+                    </para>
+                    <programlisting role=""><![CDATA[ 
+function foo
+  a=1
+  disp(a),..
+  disp('ok')
+endfunction
+ ]]></programlisting>
+                    <para>is equivalent to:</para>
+                    <programlisting role=""><![CDATA[ 
+function foo 
+  a=1
+
+  disp(a),disp('ok') 
+endfunction
+ ]]></programlisting>
+                    <para>The logical line formed by physical line 3 and physical line 4
+                        is built as if it was entirely written in the physical line 4 while
+                        physical line 3 would be empty. This is done this way because
+                        continuation marks can be put anywhere even inside an
+                        expression.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+//decimal point
+1.345
+
+//used as part of an operator
+x=[1 2 3];x.^2 .*x // a space is required between 2 and dot
+
+// used to enter continuation lines
+T=[123,..//first element
+   456] //second one
+
+a="here I start a very long string...  //but I'm not in the mood of continuing
+     - and here I go on"
+y=12..
+45
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="star">star</link>
+            </member>
+            <member>
+                <link linkend="hat">hat</link>
+            </member>
+            <member>
+                <link linkend="slash">slash</link>
+            </member>
+            <member>
+                <link linkend="backslash">backslash</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

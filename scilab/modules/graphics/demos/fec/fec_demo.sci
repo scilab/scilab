@@ -24,14 +24,14 @@ function []=amdbaR(File_name)
     // The file is of amdba type
 
     [lhs,rhs]=argn(0);
-    if rhs == 0 ; File_name='MESH'; end
-    unit=file('open',File_name,'old');
+    if rhs == 0 ; File_name="MESH"; end
+    unit=file("open",File_name,"old");
     x=read(unit,1,2);
     noeuds=x(1);
     triang=x(2);
     noeul=read(unit,x(1),4);
     trianl=read(unit,x(2),5);
-    file('close',unit);
+    file("close",unit);
     [noeuds,triang,noeul,trianl]=resume(noeuds,triang,noeul,trianl);
 
 endfunction
@@ -44,13 +44,13 @@ function []=meshvisu(col,rect)
     [lhs,rhs]=argn(0);
     if rhs<=0;col=1;end
     if rhs<=1;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
-    if rhs<=2;iso='1';end
+    if rhs<=2;iso="1";end
     plot2d(1,1,[1],"031"," ",rect);
     xset("clipgrf");
     xx=trianl(:,2:4);
     xx=matrix(xx,prod(size(xx)),1);
     x=noeul(xx,2);
-    triang=size(x,'*')/3;
+    triang=size(x,"*")/3;
     x=matrix(x,triang,3);
     y=noeul(xx,3);
     y=matrix(y,triang,3);
@@ -89,8 +89,8 @@ function []=emc2V(i,j,k,sa,FN,rect)
     [lhs,rhs]=argn(0);
     plot2d(1,1,[1],"031"," ",rect);
     xset("clipgrf");
-    if rhs == 0 ; FN='MESH';end
-    unit=file('open',FN,'old')
+    if rhs == 0 ; FN="MESH";end
+    unit=file("open",FN,"old")
     resu=read(unit,noeuds,k);
     resu=resu(:,[i,j]);
     nm=[];
@@ -102,9 +102,9 @@ function []=emc2V(i,j,k,sa,FN,rect)
     nmax=max(nm);
     if nmax<>0; nm=nm/nmax;end
     xsegs([noeul(:,2)-(1/sa)*resu(:,1),noeul(:,2)+(1/sa)*resu(:,1)]',...
-        [noeul(:,3)-(1/sa)*resu(:,2),noeul(:,3)+(1/sa)*resu(:,2)]',...
-        16*ones(nm)-16*nm);
-    file('close',unit);
+    [noeul(:,3)-(1/sa)*resu(:,2),noeul(:,3)+(1/sa)*resu(:,2)]',...
+    16*ones(nm)-16*nm);
+    file("close",unit);
     xset("clipoff");
     file("close",unit);
 
@@ -118,10 +118,10 @@ function []=emc2C(i,j,FN,rect)
     // du fichier file qui en contient j
 
     [lhs,rhs]=argn(0);
-    unit=file('open',FN,'old');
+    unit=file("open",FN,"old");
     resu=read(unit,-1,j);
     resu=resu(:,i);
-    file('close',unit);
+    file("close",unit);
     if rhs<=3;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
     fec(noeul(:,2),noeul(:,3),trianl,resu,"031"," ",rect);
     file("close",unit);

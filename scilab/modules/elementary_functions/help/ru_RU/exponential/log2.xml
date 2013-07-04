@@ -10,57 +10,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="log2" xml:lang="ru">
-  <refnamediv>
-    <refname>log2</refname>
-    <refpurpose>логарифм по основанию 2</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>y=log2(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>вектор или матрица</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      <literal>log2(x)</literal> является поэлементным логарифмом по основанию 2  
-      <literal>y(i,j)=log2(x(i,j))</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="log2" xml:lang="ru">
+    <refnamediv>
+        <refname>log2</refname>
+        <refpurpose>логарифм по основанию 2</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>y=log2(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>вектор или матрица</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>log2(x)</literal> является поэлементным логарифмом по основанию 2  
+            <literal>y(i,j)=log2(x(i,j))</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 2.^log2([1,%i,-1,-%i])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="log">log</link>
-      </member>
-      <member>
-        <link linkend="hat">hat</link>
-      </member>
-      <member>
-        <link linkend="ieee">ieee</link>
-      </member>
-      <member>
-        <link linkend="log10">log10</link>
-      </member>
-      <member>
-        <link linkend="frexp">frexp</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="log">log</link>
+            </member>
+            <member>
+                <link linkend="hat">hat</link>
+            </member>
+            <member>
+                <link linkend="ieee">ieee</link>
+            </member>
+            <member>
+                <link linkend="log10">log10</link>
+            </member>
+            <member>
+                <link linkend="frexp">frexp</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

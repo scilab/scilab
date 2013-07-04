@@ -131,21 +131,21 @@
  *      The largest expected external row or column number.
  */
 
-void spPrint(char *eMatrix,int PrintReordered,int Data,int Header )
+void spPrint(char *eMatrix, int PrintReordered, int Data, int Header )
 {
-register  int  J = 0;
-int I = 0, Row = 0, Col = 0, Size = 0, Top_ = 0, StartCol = 1, StopCol = 0, Columns = 0, ElementCount = 0;
-double  Magnitude = 0., SmallestDiag = 0., SmallestElement = 0.;
-double  LargestElement = 0.0, LargestDiag = 0.0;
-MatrixPtr  Matrix = (MatrixPtr)eMatrix;
-ElementPtr  pElement = NULL, pImagElements[PRINTER_WIDTH/10+1];
-int  *PrintOrdToIntRowMap = NULL, *PrintOrdToIntColMap = NULL;
+    register  int  J = 0;
+    int I = 0, Row = 0, Col = 0, Size = 0, Top_ = 0, StartCol = 1, StopCol = 0, Columns = 0, ElementCount = 0;
+    double  Magnitude = 0., SmallestDiag = 0., SmallestElement = 0.;
+    double  LargestElement = 0.0, LargestDiag = 0.0;
+    MatrixPtr  Matrix = (MatrixPtr)eMatrix;
+    ElementPtr  pElement = NULL, pImagElements[PRINTER_WIDTH / 10 + 1];
+    int  *PrintOrdToIntRowMap = NULL, *PrintOrdToIntColMap = NULL;
 
-/* Begin `spPrint'. */
+    /* Begin `spPrint'. */
     ASSERT( IS_SPARSE( Matrix ) );
     Size = Matrix->Size;
 
-/* Create a packed external to internal row and column translation array. */
+    /* Create a packed external to internal row and column translation array. */
 # if TRANSLATE
     Top_ = Matrix->AllocatedExtSize;
 #else
@@ -154,185 +154,275 @@ int  *PrintOrdToIntRowMap = NULL, *PrintOrdToIntColMap = NULL;
     SPCALLOC( PrintOrdToIntRowMap, int, Top_ + 1 );
     SPCALLOC( PrintOrdToIntColMap, int, Top_ + 1 );
     if ( PrintOrdToIntRowMap == NULL OR PrintOrdToIntColMap == NULL)
-    {   Matrix->Error = spNO_MEMORY;
+    {
+        Matrix->Error = spNO_MEMORY;
         return;
     }
     for (I = 1; I <= Size; I++)
-    {   PrintOrdToIntRowMap[ Matrix->IntToExtRowMap[I] ] = I;
+    {
+        PrintOrdToIntRowMap[ Matrix->IntToExtRowMap[I] ] = I;
         PrintOrdToIntColMap[ Matrix->IntToExtColMap[I] ] = I;
     }
 
-/* Pack the arrays. */
+    /* Pack the arrays. */
     for (J = 1, I = 1; I <= Top_; I++)
-    {   if (PrintOrdToIntRowMap[I] != 0)
+    {
+        if (PrintOrdToIntRowMap[I] != 0)
+        {
             PrintOrdToIntRowMap[ J++ ] = PrintOrdToIntRowMap[ I ];
+        }
     }
     for (J = 1, I = 1; I <= Top_; I++)
-    {   if (PrintOrdToIntColMap[I] != 0)
+    {
+        if (PrintOrdToIntColMap[I] != 0)
+        {
             PrintOrdToIntColMap[ J++ ] = PrintOrdToIntColMap[ I ];
+        }
     }
 
-/* Print header. */
+    /* Print header. */
     if (Header)
-    {   printf(_("MATRIX SUMMARY\n\n"));
+    {
+        printf(_("MATRIX SUMMARY\n\n"));
         printf(_("Size of matrix = %1u x %1u.\n"), Size, Size);
         if ( Matrix->Reordered AND PrintReordered )
+        {
             printf(_("Matrix has been reordered.\n"));
+        }
         putchar('\n');
 
         if ( Matrix->Factored )
+        {
             printf(_("Matrix after factorization:\n"));
+        }
         else
+        {
             printf(_("Matrix before factorization:\n"));
+        }
 
         SmallestElement = LARGEST_REAL;
         SmallestDiag = SmallestElement;
     }
 
-/* Determine how many columns to use. */
+    /* Determine how many columns to use. */
     Columns = PRINTER_WIDTH;
-    if (Header) Columns -= 5;
-    if (Data) Columns = (Columns+1) / 10;
+    if (Header)
+    {
+        Columns -= 5;
+    }
+    if (Data)
+    {
+        Columns = (Columns + 1) / 10;
+    }
 
-/*
- * Print matrix by printing groups of complete columns until all the columns
- * are printed.
- */
+    /*
+     * Print matrix by printing groups of complete columns until all the columns
+     * are printed.
+     */
     J = 0;
     while ( J <= Size )
 
-/* Calculate index of last column to printed in this group. */
-    {   StopCol = StartCol + Columns - 1;
+        /* Calculate index of last column to printed in this group. */
+    {
+        StopCol = StartCol + Columns - 1;
         if (StopCol > Size)
+        {
             StopCol = Size;
+        }
 
-/* Label the columns. */
+        /* Label the columns. */
         if (Header)
-        {   if (Data)
-            {   printf("    ");
+        {
+            if (Data)
+            {
+                printf("    ");
                 for (I = StartCol; I <= StopCol; I++)
-                {   if (PrintReordered)
+                {
+                    if (PrintReordered)
+                    {
                         Col = I;
+                    }
                     else
+                    {
                         Col = PrintOrdToIntColMap[I];
+                    }
                     printf(" %9d", Matrix->IntToExtColMap[ Col ]);
                 }
                 printf("\n\n");
             }
             else
-            {   if (PrintReordered)
-                    printf(_("Columns %1d to %1d.\n"),StartCol,StopCol);
+            {
+                if (PrintReordered)
+                {
+                    printf(_("Columns %1d to %1d.\n"), StartCol, StopCol);
+                }
                 else
-                {   printf(_("Columns %1d to %1d.\n"),
-                        Matrix->IntToExtColMap[ PrintOrdToIntColMap[StartCol] ],
-                        Matrix->IntToExtColMap[ PrintOrdToIntColMap[StopCol] ]);
+                {
+                    printf(_("Columns %1d to %1d.\n"),
+                           Matrix->IntToExtColMap[ PrintOrdToIntColMap[StartCol] ],
+                           Matrix->IntToExtColMap[ PrintOrdToIntColMap[StopCol] ]);
                 }
             }
         }
 
-/* Print every row ...  */
+        /* Print every row ...  */
         for (I = 1; I <= Size; I++)
-        {   if (PrintReordered)
+        {
+            if (PrintReordered)
+            {
                 Row = I;
+            }
             else
+            {
                 Row = PrintOrdToIntRowMap[I];
-
-            if (Header)
-            {   if (PrintReordered AND NOT Data)
-                    printf("%4d", I);
-                else
-                    printf("%4d", Matrix->IntToExtRowMap[ Row ]);
-                if (NOT Data) putchar(' ');
             }
 
-/* ... in each column of the group. */
-            for (J = StartCol; J <= StopCol; J++)
-            {   if (PrintReordered)
-                    Col = J;
+            if (Header)
+            {
+                if (PrintReordered AND NOT Data)
+                {
+                    printf("%4d", I);
+                }
                 else
+                {
+                    printf("%4d", Matrix->IntToExtRowMap[ Row ]);
+                }
+                if (NOT Data)
+                {
+                    putchar(' ');
+                }
+            }
+
+            /* ... in each column of the group. */
+            for (J = StartCol; J <= StopCol; J++)
+            {
+                if (PrintReordered)
+                {
+                    Col = J;
+                }
+                else
+                {
                     Col = PrintOrdToIntColMap[J];
+                }
 
                 pElement = Matrix->FirstInCol[Col];
-                while(pElement != NULL AND pElement->Row != Row)
+                while (pElement != NULL AND pElement->Row != Row)
+                {
                     pElement = pElement->NextInCol;
+                }
 
                 if (Data)
+                {
                     pImagElements[J - StartCol] = pElement;
+                }
 
                 if (pElement != NULL)
 
-/* Case where element exists */
-                {   if (Data)
+                    /* Case where element exists */
+                {
+                    if (Data)
+                    {
                         printf(" %9.3lg", (double)pElement->Real);
+                    }
                     else
+                    {
                         putchar('x');
+                    }
 
-/* Update status variables */
+                    /* Update status variables */
                     if ( (Magnitude = ELEMENT_MAG(pElement)) > LargestElement )
+                    {
                         LargestElement = Magnitude;
+                    }
                     if ((Magnitude < SmallestElement) AND (Magnitude != 0.0))
+                    {
                         SmallestElement = Magnitude;
+                    }
                     ElementCount++;
                 }
 
-/* Case where element is structurally zero */
+                /* Case where element is structurally zero */
                 else
-                {   if (Data)
+                {
+                    if (Data)
+                    {
                         printf("       ...");
+                    }
                     else
+                    {
                         putchar('.');
+                    }
                 }
             }
             putchar('\n');
 
 #if spCOMPLEX
             if (Matrix->Complex AND Data)
-            {   printf("    ");
+            {
+                printf("    ");
                 for (J = StartCol; J <= StopCol; J++)
-                {   if (pImagElements[J - StartCol] != NULL)
-                    {   printf(" %8.2lgj",
-                               (double)pImagElements[J-StartCol]->Imag);
+                {
+                    if (pImagElements[J - StartCol] != NULL)
+                    {
+                        printf(" %8.2lgj",
+                               (double)pImagElements[J - StartCol]->Imag);
                     }
-                    else printf("          ");
+                    else
+                    {
+                        printf("          ");
+                    }
                 }
                 putchar('\n');
             }
 #endif /* spCOMPLEX */
         }
 
-/* Calculate index of first column in next group. */
+        /* Calculate index of first column in next group. */
         StartCol = StopCol;
         StartCol++;
         putchar('\n');
     }
     if (Header)
-    {   printf(_("\nLargest element in matrix = %-1.4lg.\n"), LargestElement);
+    {
+        printf(_("\nLargest element in matrix = %-1.4lg.\n"), LargestElement);
         printf(_("Smallest element in matrix = %-1.4lg.\n"), SmallestElement);
 
-/* Search for largest and smallest diagonal values */
+        /* Search for largest and smallest diagonal values */
         for (I = 1; I <= Size; I++)
-        {   if (Matrix->Diag[I] != NULL)
-            {   Magnitude = ELEMENT_MAG( Matrix->Diag[I] );
-                if ( Magnitude > LargestDiag ) LargestDiag = Magnitude;
-                if ( Magnitude < SmallestDiag ) SmallestDiag = Magnitude;
+        {
+            if (Matrix->Diag[I] != NULL)
+            {
+                Magnitude = ELEMENT_MAG( Matrix->Diag[I] );
+                if ( Magnitude > LargestDiag )
+                {
+                    LargestDiag = Magnitude;
+                }
+                if ( Magnitude < SmallestDiag )
+                {
+                    SmallestDiag = Magnitude;
+                }
             }
         }
 
-    /* Print the largest and smallest diagonal values */
+        /* Print the largest and smallest diagonal values */
         if ( Matrix->Factored )
-        {   printf(_("\nLargest diagonal element = %-1.4lg.\n"), LargestDiag);
+        {
+            printf(_("\nLargest diagonal element = %-1.4lg.\n"), LargestDiag);
             printf(_("Smallest diagonal element = %-1.4lg.\n"), SmallestDiag);
         }
         else
-        {   printf(_("\nLargest pivot element = %-1.4lg.\n"), LargestDiag);
+        {
+            printf(_("\nLargest pivot element = %-1.4lg.\n"), LargestDiag);
             printf(_("Smallest pivot element = %-1.4lg.\n"), SmallestDiag);
         }
 
-    /* Calculate and print sparsity and number of fill-ins created. */
+        /* Calculate and print sparsity and number of fill-ins created. */
         printf(_("\nDensity = %2.2lf%%.\n"), ((double)(ElementCount * 100)) /
-                                                       ((double)(Size * Size)));
+               ((double)(Size * Size)));
         if (NOT Matrix->NeedsOrdering)
+        {
             printf(_("Number of fill-ins = %1d.\n"), Matrix->Fillins);
+        }
     }
     putchar('\n');
     (void)fflush(stdout);
@@ -394,112 +484,159 @@ int  *PrintOrdToIntRowMap = NULL, *PrintOrdToIntColMap = NULL;
  *      The size of the matrix.
  */
 
-int spFileMatrix(char * eMatrix,char * File,char * Label,int  Reordered,int Data,int Header )
+int spFileMatrix(char * eMatrix, char * File, char * Label, int  Reordered, int Data, int Header )
 {
-MatrixPtr  Matrix = (MatrixPtr)eMatrix;
-register  int  I = 0, Size = 0;
-register  ElementPtr  pElement = NULL;
-int  Row = 0, Col = 0, Err = 0;
-FILE  *pMatrixFile = NULL;
+    MatrixPtr  Matrix = (MatrixPtr)eMatrix;
+    register  int  I = 0, Size = 0;
+    register  ElementPtr  pElement = NULL;
+    int  Row = 0, Col = 0, Err = 0;
+    FILE  *pMatrixFile = NULL;
 
-/* Begin `spFileMatrix'. */
+    /* Begin `spFileMatrix'. */
     ASSERT( IS_SPARSE( Matrix ) );
 
-/* Open file matrix file in write mode. */
-		wcfopen(pMatrixFile, File, "w");
-    if(pMatrixFile == NULL)
+    /* Open file matrix file in write mode. */
+    wcfopen(pMatrixFile, File, "w");
+    if (pMatrixFile == NULL)
+    {
         return 0;
-
-/* Output header. */
-    Size = Matrix->Size;
-    if (Header)
-    {   if (Matrix->Factored AND Data)
-        {   Err = fprintf
-            (   pMatrixFile,
-                _("Warning : The following matrix is factored in to LU form.\n")
-            );
-        }
-        if (Err < 0) return 0;
-        if (fprintf(pMatrixFile, "%s\n", Label) < 0) return 0;
-        Err = fprintf( pMatrixFile, "%d\t%s\n", Size,
-                                    (Matrix->Complex ? "complex" : "real"));
-        if (Err < 0) return 0;
     }
 
-/* Output matrix. */
+    /* Output header. */
+    Size = Matrix->Size;
+    if (Header)
+    {
+        if (Matrix->Factored AND Data)
+        {
+            Err = fprintf
+                  (   pMatrixFile,
+                      _("Warning : The following matrix is factored in to LU form.\n")
+                  );
+        }
+        if (Err < 0)
+        {
+            return 0;
+        }
+        if (fprintf(pMatrixFile, "%s\n", Label) < 0)
+        {
+            return 0;
+        }
+        Err = fprintf( pMatrixFile, "%d\t%s\n", Size,
+                       (Matrix->Complex ? "complex" : "real"));
+        if (Err < 0)
+        {
+            return 0;
+        }
+    }
+
+    /* Output matrix. */
     if (NOT Data)
-    {   for (I = 1; I <= Size; I++)
-        {   pElement = Matrix->FirstInCol[I];
+    {
+        for (I = 1; I <= Size; I++)
+        {
+            pElement = Matrix->FirstInCol[I];
             while (pElement != NULL)
-            {   if (Reordered)
-                {   Row = pElement->Row;
+            {
+                if (Reordered)
+                {
+                    Row = pElement->Row;
                     Col = I;
                 }
                 else
-                {   Row = Matrix->IntToExtRowMap[pElement->Row];
+                {
+                    Row = Matrix->IntToExtRowMap[pElement->Row];
                     Col = Matrix->IntToExtColMap[I];
                 }
                 pElement = pElement->NextInCol;
-                if (fprintf(pMatrixFile, "%d\t%d\n", Row, Col) < 0) return 0;
+                if (fprintf(pMatrixFile, "%d\t%d\n", Row, Col) < 0)
+                {
+                    return 0;
+                }
             }
         }
-/* Output terminator, a line of zeros. */
+        /* Output terminator, a line of zeros. */
         if (Header)
-            if (fprintf(pMatrixFile, "0\t0\n") < 0) return 0;
+            if (fprintf(pMatrixFile, "0\t0\n") < 0)
+            {
+                return 0;
+            }
     }
 
 #if spCOMPLEX
     if (Data AND Matrix->Complex)
-    {   for (I = 1; I <= Size; I++)
-        {   pElement = Matrix->FirstInCol[I];
+    {
+        for (I = 1; I <= Size; I++)
+        {
+            pElement = Matrix->FirstInCol[I];
             while (pElement != NULL)
-            {   if (Reordered)
-                {   Row = pElement->Row;
+            {
+                if (Reordered)
+                {
+                    Row = pElement->Row;
                     Col = I;
                 }
                 else
-                {   Row = Matrix->IntToExtRowMap[pElement->Row];
+                {
+                    Row = Matrix->IntToExtRowMap[pElement->Row];
                     Col = Matrix->IntToExtColMap[I];
                 }
                 Err = fprintf
-                (   pMatrixFile,"%d\t%d\t%-.15lg\t%-.15lg\n",
-                    Row, Col, (double)pElement->Real, (double)pElement->Imag
-                );
-                if (Err < 0) return 0;
+                      (   pMatrixFile, "%d\t%d\t%-.15lg\t%-.15lg\n",
+                          Row, Col, (double)pElement->Real, (double)pElement->Imag
+                      );
+                if (Err < 0)
+                {
+                    return 0;
+                }
                 pElement = pElement->NextInCol;
             }
         }
-/* Output terminator, a line of zeros. */
+        /* Output terminator, a line of zeros. */
         if (Header)
-            if (fprintf(pMatrixFile,"0\t0\t0.0\t0.0\n") < 0) return 0;
+            if (fprintf(pMatrixFile, "0\t0\t0.0\t0.0\n") < 0)
+            {
+                return 0;
+            }
 
     }
 #endif /* spCOMPLEX */
 
 #if REAL
     if (Data AND NOT Matrix->Complex)
-    {   for (I = 1; I <= Size; I++)
-        {   pElement = Matrix->FirstInCol[I];
+    {
+        for (I = 1; I <= Size; I++)
+        {
+            pElement = Matrix->FirstInCol[I];
             while (pElement != NULL)
-            {   Row = Matrix->IntToExtRowMap[pElement->Row];
+            {
+                Row = Matrix->IntToExtRowMap[pElement->Row];
                 Col = Matrix->IntToExtColMap[I];
                 Err = fprintf
-                (   pMatrixFile,"%d\t%d\t%-.15lg\n",
-                    Row, Col, (double)pElement->Real
-                );
-                if (Err < 0) return 0;
+                      (   pMatrixFile, "%d\t%d\t%-.15lg\n",
+                          Row, Col, (double)pElement->Real
+                      );
+                if (Err < 0)
+                {
+                    return 0;
+                }
                 pElement = pElement->NextInCol;
             }
         }
-/* Output terminator, a line of zeros. */
+        /* Output terminator, a line of zeros. */
         if (Header)
-            if (fprintf(pMatrixFile,"0\t0\t0.0\n") < 0) return 0;
+            if (fprintf(pMatrixFile, "0\t0\t0.0\n") < 0)
+            {
+                return 0;
+            }
 
     }
 #endif /* REAL */
 
-/* Close file. */
-    if (fclose(pMatrixFile) < 0) return 0;
+    /* Close file. */
+    if (fclose(pMatrixFile) < 0)
+    {
+        return 0;
+    }
     return 1;
 }
 
@@ -546,21 +683,23 @@ FILE  *pMatrixFile = NULL;
  *      without a trace.
  */
 
-int spFileVector(char *eMatrix,char *File,RealVector RHS IMAG_RHS )
+int spFileVector(char *eMatrix, char *File, RealVector RHS IMAG_RHS )
 {
-MatrixPtr  Matrix = (MatrixPtr)eMatrix;
-register  int  I, Size, Err;
-FILE  *pMatrixFile;
+    MatrixPtr  Matrix = (MatrixPtr)eMatrix;
+    register  int  I, Size, Err;
+    FILE  *pMatrixFile;
 
-/* Begin `spFileVector'. */
+    /* Begin `spFileVector'. */
     ASSERT( IS_SPARSE( Matrix ) AND RHS != NULL)
 
-/* Open File in append mode. */
-		wcfopen(pMatrixFile, File, "a");
+    /* Open File in append mode. */
+    wcfopen(pMatrixFile, File, "a");
     if (pMatrixFile == NULL)
+    {
         return 0;
+    }
 
-/* Correct array pointers for ARRAY_OFFSET. */
+    /* Correct array pointers for ARRAY_OFFSET. */
 #if NOT ARRAY_OFFSET
 #if spCOMPLEX
     if (Matrix->Complex)
@@ -579,26 +718,34 @@ FILE  *pMatrixFile;
 #endif /* NOT ARRAY_OFFSET */
 
 
-/* Output vector. */
+    /* Output vector. */
     Size = Matrix->Size;
 #if spCOMPLEX
     if (Matrix->Complex)
     {
 #if spSEPARATED_COMPLEX_VECTORS
         for (I = 1; I <= Size; I++)
-        {   Err = fprintf
-            (   pMatrixFile, "%-.15lg\t%-.15lg\n",
-                (double)RHS[I], (double)iRHS[I]
-            );
-            if (Err < 0) return 0;
+        {
+            Err = fprintf
+                  (   pMatrixFile, "%-.15lg\t%-.15lg\n",
+                      (double)RHS[I], (double)iRHS[I]
+                  );
+            if (Err < 0)
+            {
+                return 0;
+            }
         }
 #else
         for (I = 1; I <= Size; I++)
-        {   Err = fprintf
-            (   pMatrixFile, "%-.15lg\t%-.15lg\n",
-                (double)RHS[2*I], (double)RHS[2*I+1]
-            );
-            if (Err < 0) return 0;
+        {
+            Err = fprintf
+                  (   pMatrixFile, "%-.15lg\t%-.15lg\n",
+                      (double)RHS[2 * I], (double)RHS[2 * I + 1]
+                  );
+            if (Err < 0)
+            {
+                return 0;
+            }
         }
 #endif
     }
@@ -607,15 +754,22 @@ FILE  *pMatrixFile;
     else
 #endif
 #if REAL
-    {   for (I = 1; I <= Size; I++)
-        {   if (fprintf(pMatrixFile, "%-.15lg\n", (double)RHS[I]) < 0)
+    {
+        for (I = 1; I <= Size; I++)
+        {
+            if (fprintf(pMatrixFile, "%-.15lg\n", (double)RHS[I]) < 0)
+            {
                 return 0;
+            }
         }
     }
 #endif /* REAL */
 
-/* Close file. */
-    if (fclose(pMatrixFile) < 0) return 0;
+    /* Close file. */
+    if (fclose(pMatrixFile) < 0)
+    {
+        return 0;
+    }
     return 1;
 }
 
@@ -632,7 +786,7 @@ FILE  *pMatrixFile;
  *
  *  Writes useful information concerning the matrix to a file.  Should be
  *  executed after the matrix is factored.
- * 
+ *
  *  >>> Returns:
  *  One is returned if routine was successful, otherwise zero is returned.
  *  The calling function can query errno (the system global error variable)
@@ -663,76 +817,90 @@ FILE  *pMatrixFile;
  *      The smallest element in the matrix excluding zero elements.
  */
 
-int spFileStats(char *eMatrix,char *File,char *Label )
+int spFileStats(char *eMatrix, char *File, char *Label )
 {
-MatrixPtr  Matrix = (MatrixPtr)eMatrix;
-register  int  Size, I;
-register  ElementPtr  pElement;
-int NumberOfElements;
-RealNumber  Data, LargestElement, SmallestElement;
-FILE  *pStatsFile;
+    MatrixPtr  Matrix = (MatrixPtr)eMatrix;
+    register  int  Size, I;
+    register  ElementPtr  pElement;
+    int NumberOfElements;
+    RealNumber  Data, LargestElement, SmallestElement;
+    FILE  *pStatsFile;
 
-/* Begin `spFileStats'. */
+    /* Begin `spFileStats'. */
     ASSERT( IS_SPARSE( Matrix ) );
 
-/* Open File in append mode. */
-		wcfopen(pStatsFile, File, "a");
-    if(pStatsFile == NULL)
+    /* Open File in append mode. */
+    wcfopen(pStatsFile, File, "a");
+    if (pStatsFile == NULL)
+    {
         return 0;
+    }
 
-/* Output statistics. */
+    /* Output statistics. */
     Size = Matrix->Size;
     if (NOT Matrix->Factored)
+    {
         fprintf(pStatsFile, _("Matrix has not been factored.\n"));
+    }
     fprintf(pStatsFile, _("|||  Starting new matrix  |||\n"));
     fprintf(pStatsFile, "%s\n", Label);
     if (Matrix->Complex)
+    {
         fprintf(pStatsFile, _("Matrix is complex.\n"));
+    }
     else
+    {
         fprintf(pStatsFile, _("Matrix is real.\n"));
-    fprintf(pStatsFile,"     Size = %d\n",Size);
+    }
+    fprintf(pStatsFile, "     Size = %d\n", Size);
 
-/* Search matrix. */
+    /* Search matrix. */
     NumberOfElements = 0;
     LargestElement = 0.0;
     SmallestElement = LARGEST_REAL;
 
     for (I = 1; I <= Size; I++)
-    {   pElement = Matrix->FirstInCol[I];
+    {
+        pElement = Matrix->FirstInCol[I];
         while (pElement != NULL)
-        {   NumberOfElements++;
+        {
+            NumberOfElements++;
             Data = ELEMENT_MAG(pElement);
             if (Data > LargestElement)
+            {
                 LargestElement = Data;
+            }
             if (Data < SmallestElement AND Data != 0.0)
+            {
                 SmallestElement = Data;
+            }
             pElement = pElement->NextInCol;
         }
     }
 
     SmallestElement = Min( SmallestElement, LargestElement );
 
-/* Output remaining statistics. */
+    /* Output remaining statistics. */
     fprintf(pStatsFile, _("     Initial number of elements = %d\n"),
             NumberOfElements - Matrix->Fillins);
     fprintf(pStatsFile,
             _("     Initial average number of elements per row = %lf\n"),
             (double)(NumberOfElements - Matrix->Fillins) / (double)Size);
-    fprintf(pStatsFile, _("     Fill-ins = %d\n"),Matrix->Fillins);
+    fprintf(pStatsFile, _("     Fill-ins = %d\n"), Matrix->Fillins);
     fprintf(pStatsFile, _("     Average number of fill-ins per row = %lf%%\n"),
             (double)Matrix->Fillins / (double)Size);
     fprintf(pStatsFile, _("     Total number of elements = %d\n"),
             NumberOfElements);
     fprintf(pStatsFile, _("     Average number of elements per row = %lf\n"),
             (double)NumberOfElements / (double)Size);
-    fprintf(pStatsFile,_("     Density = %lf%%\n"),
-            (double)(100.0*NumberOfElements)/(double)(Size*Size));
-    fprintf(pStatsFile,_("     Relative Threshold = %e\n"), Matrix->RelThreshold);
-    fprintf(pStatsFile,_("     Absolute Threshold = %e\n"), Matrix->AbsThreshold);
-    fprintf(pStatsFile,_("     Largest Element = %e\n"), LargestElement);
-    fprintf(pStatsFile,_("     Smallest Element = %e\n\n\n"), SmallestElement);
+    fprintf(pStatsFile, _("     Density = %lf%%\n"),
+            (double)(100.0 * NumberOfElements) / (double)(Size * Size));
+    fprintf(pStatsFile, _("     Relative Threshold = %e\n"), Matrix->RelThreshold);
+    fprintf(pStatsFile, _("     Absolute Threshold = %e\n"), Matrix->AbsThreshold);
+    fprintf(pStatsFile, _("     Largest Element = %e\n"), LargestElement);
+    fprintf(pStatsFile, _("     Smallest Element = %e\n\n\n"), SmallestElement);
 
-/* Close file. */
+    /* Close file. */
     (void)fclose(pStatsFile);
     return 1;
 }

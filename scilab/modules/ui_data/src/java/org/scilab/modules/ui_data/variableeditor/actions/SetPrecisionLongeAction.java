@@ -29,6 +29,7 @@ import org.scilab.modules.ui_data.variableeditor.renderers.ScilabComplexRenderer
  * Set Precision Action class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class SetPrecisionLongeAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY shift L";
@@ -91,7 +92,7 @@ public final class SetPrecisionLongeAction extends CommonCallBack {
     public static JMenuItem createMenuItem(SwingScilabVariableEditor editor, String title) {
         JMenuItem mi = new JMenuItem(title);
         mi.addActionListener(new SetPrecisionLongeAction(editor, title));
-	mi.setAccelerator(ScilabKeyStroke.getKeyStroke(KEY));
+        mi.setAccelerator(ScilabKeyStroke.getKeyStroke(KEY));
 
         return mi;
     }

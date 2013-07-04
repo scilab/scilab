@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 4898 -->
 //
@@ -15,7 +15,6 @@
 // <-- Short Description -->
 // Block scifunc_block_m stored some list in model.ipar instead of model.opar.
 
-loadXcosLibs;
 
 // Check for a new block instantiation
 scs_m = scifunc_block_m("define", [], []);
@@ -24,7 +23,7 @@ if scs_m.model.ipar <> 0 then pause,end;
 if scs_m.model.opar <> list() then pause,end;
 
 // Check for simulation for an old Xcos instance
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_4898.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_4898.zcos");
 if status <> %t then pause,end;
 
 scicos_simulate(scs_m);

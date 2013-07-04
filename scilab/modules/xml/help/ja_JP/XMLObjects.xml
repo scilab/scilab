@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="XMLObjects" xml:lang="ja">
+    <refnamediv>
+        <refname>XML Objects</refname>
+        <refpurpose>異なるのXMLオブジェクトのプロパティを記述する</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>内容</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="XMLDocument">XML文書</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="XMLElement">XML要素</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="XMLAttributes">XML属性</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="XMLNamespace">XML名前空間</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="XMLNodeList">XMLノードリスト</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="XMLNodeSet">XML XPath結果セット</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="XMLValid">XML検証ファイル</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>ノードおよびそのプロパティをアクセスおよび修正可能です.</para>
+    </refsection>
+    <refsection id="XMLDocument">
+        <title>XML文書</title>
+        <para>XML文書は以下の2つのプロパティを有します: root および url
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">root</emphasis>: 文書のルート要素で, XML要素です;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">url</emphasis>: urlは文字列で,
+                        存在する場合は文書のURL,未定義の場合は空文字列となります.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
+    doc.root = doc.root.children(1);
+    xmlDump(doc)
+    doc.url = TMPDIR+"/foo.xml";
+    doc
+    xmlWrite(doc);
+    xmlDelete(doc);
+    ]]></programlisting>
+    </refsection>
+    <refsection id="XMLElement">
+        <title>XML要素</title>
+        <para>XML要素は以下の7つのプロパティを有します:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">name</emphasis>: タグ名;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">namespace</emphasis>: XML名前空間オブジェクト;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">content</emphasis>: 
+                        ノードの内容を表す文字列.
+                        例えば,&lt;A&gt;hello &lt;B&gt;world&lt;/B&gt; というノードA
+                        の内容は文字列 "hello world"となります.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">type</emphasis>: 
+                        ノードの型を表す文字列. 以下の値のどれかとなります:
+                        "XML_ELEMENT_NODE", "XML_ATTRIBUTE_NODE", "XML_TEXT_NODE", "XML_CDATA_SECTION_NODE", "XML_ENTITY_REF_NODE", "XML_ENTITY_NODE", "XML_PI_NODE", "XML_COMMENT_NODE", "XML_DOCUMENT_NODE", "XML_DOCUMENT_TYPE_NODE", "XML_DOCUMENT_FRAG_NODE", "XML_NOTATION_NODE", "XML_HTML_DOCUMENT_NODE", "XML_DTD_NODE", "XML_ELEMENT_DECL", "XML_ATTRIBUTE_DECL", "XML_ENTITY_DECL", "XML_NAMESPACE_DECL", "XML_XINCLUDE_START", "XML_XINCLUDE_END", "XML_DOCB_DOCUMENT_NODE".
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">parent</emphasis>: 親XML要素;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">attributes</emphasis>: 
+                        XML属性オブジェクトとして表したノード属性;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">children</emphasis>: 
+                        XMLノードリストオブジェクトとして表した子要素.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">line</emphasis>: 
+                        XML要素の線の定義.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    first = doc.root.children(1);
+    b = first.children(1);
+
+    // "new_attribute"という名前の属性を新規に追加
+    first.attributes.new_attribute = "value";
+
+    // firstの子の名前空間を表示
+    first.namespace
+
+    // ノードの内容を表示
+    first.content
+
+    // bは親を有します
+    b.parent
+
+    // firstに子を追加できます.
+    first.children(3) = b
+
+    // 整数でない添字により挿入を行えます.
+    first.children(1.5) = "<d> Scilab</d>"
+
+    // firstの子が上の行で定義されています...
+    b.line
+
+    xmlDump(first)
+    xmlDelete(doc);
+    ]]></programlisting>
+        </para>
+    </refsection>
+    <refsection id="XMLAttributes">
+        <title>XML属性</title>
+        <para>
+            XML属性は,属性の名前を属性の値にマップするハッシュテーブルの一種です.
+            属性の値は,このオブジェクトのフィールドとして属性の名前,または
+            1から属性の大きさまでの添字番号によりアクセスや修正が可能です.
+        </para>
+        <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    first = doc.root.children(1);
+
+    // 属性を読み込みます
+    first.attributes.att
+
+    // 空の属性を設定します
+    first.attributes.att = "";
+
+    // 新しい属性を追加します
+    first.attributes.hello = "world";
+
+    // 添字を使用します
+    first.attributes(1) = "Bonjour";
+    first.attributes(1)
+
+    xmlDump(first)
+    xmlDelete(doc);
+    ]]></programlisting>
+    </refsection>
+    <refsection id="XMLNamespace">
+        <title>XML名前空間</title>
+        <para>XML名前空間は以下の2つのプロパティを有します: href および prefix
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">href</emphasis>: 名前空間hrefを表す文字列;
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">prefix</emphasis>: 
+                        この名前空間で使用する接頭辞を表す文字列.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    ns = doc.root.children(1).namespace;
+    ns.href
+    ns.prefix
+
+    xmlDelete(doc);
+    ]]></programlisting>
+    </refsection>
+    <refsection id="XMLNodeList">
+        <title>XMLノードリスト</title>
+        <para>
+            XMLノードリストはある要素の子に番号を付ける際に使用される
+            型です.各要素は整数の添字によりアクセスできます.
+            これはリストであるため,doubleの添字により,
+            新しい要素をこのリストに挿入することができます.
+        </para>
+        <para>
+            リストの大きさは,'size'フィールドにより取得できます.
+        </para>
+        <para>
+            リストの各ノードの名前または内容は'name'または'content'フィールド
+            により取得できます.
+        </para>
+        <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root><a>Hello</a><b> world</b></root>");
+    c = doc.root.children;
+
+    // 2つの要素があることが確認できます
+    c.size
+
+    // 最初の要素を読み込みます
+    xmlDump(c(1))
+
+    // 特定の要素を他の要素で置換します
+    c(1) = "<c>Hello</c>"
+
+    // 新しい要素を最初の要素と二番目の要素の間に挿入します
+    c(1.5) = "<d> Scilab</d>" // 1.5 or 1.234...
+
+    // 新しい要素を末尾またはリストの先頭に挿入します
+    c(0) = "<e>Head </e>"
+    c(217) = "<f> Tail</f>"
+
+    xmlDump(c)
+
+    // ノードの名前を取得します
+    c.name
+
+    // ノードの内容を取得します
+    c.content
+
+    xmlDelete(doc);
+    ]]></programlisting>
+    </refsection>
+    <refsection id="XMLNodeSet">
+        <title>XML XPath結果セット</title>
+        <para>
+            XMLノードセットは,XPathクエリから返されたオブジェクトです.
+            新しい要素を挿入したり,既存の要素を置換することはできません.
+            できることは整数の添字により要素を取得することのみです.
+        </para>
+        <para>
+            このセットの大きさは'size'フィールドにより取得できます.
+        </para>
+        <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root><a><b>Hello</b></a><a>World</a></root>");
+    s = xmlXPath(doc, "//a")
+    s.size
+
+    s(1).content
+    s(2).content
+
+    // または ...
+    s.content
+
+    xmlDelete(doc);
+    ]]></programlisting>
+    </refsection>
+    <refsection id="XMLValid">
+        <title>XML検証ファイル</title>
+        <para>XML検証ファイルは文書の検証に使用されるオブジェクトです.
+            DTD, Relax NGまたは schemaにより検証できます.
+        </para>
+        <programlisting role="example"><![CDATA[
+    doc = xmlRead("SCI/modules/xml/tests/unit_tests/library.xml");
+    dtd = xmlDTD("SCI/modules/xml/tests/unit_tests/library.dtd");
+    schema = xmlSchema("SCI/modules/xml/tests/unit_tests/library.xsd");
+    rng = xmlRelaxNG("SCI/modules/xml/tests/unit_tests/library.rng");
+
+    // 検証
+    xmlValidate(doc, dtd);
+    xmlValidate(doc, rng);
+    xmlValidate(doc, schema);
+
+    xmlDelete("all");
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xmlRead">xmlRead</link>
+            </member>
+            <member>
+                <link linkend="xmlReadStr">xmlReadStr</link>
+            </member>
+            <member>
+                <link linkend="xmlElement">xmlElement</link>
+            </member>
+            <member>
+                <link linkend="xmlDocument">xmlDocument</link>
+            </member>
+            <member>
+                <link linkend="xmlNs">xmlNs</link>
+            </member>
+            <member>
+                <link linkend="xmlDTD">xmlDTD</link>
+            </member>
+            <member>
+                <link linkend="xmlSchema">xmlSchema</link>
+            </member>
+            <member>
+                <link linkend="xmlRelaxNG">xmlRelaxNG</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>XMLモジュールが導入されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

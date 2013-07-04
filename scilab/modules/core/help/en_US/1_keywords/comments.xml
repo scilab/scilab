@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="comments">
+    <refnamediv>
+        <refname>comments</refname>
+        <refpurpose>(//) comments</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            A sequence of two consecutive slashes <literal>//</literal> out of
+            a string definition marks the beginning of a comment. The slashes
+            as well as all the following characters up to the end of the lines
+            are not interpreted.
+        </para>
+        <para>Inside a function, the first comment lines, up to the first
+            instruction or an empty line may be used to provide the default
+            contents for the function help. 
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+g=9.81// the gravity
+
+text='a//b'
+
+function y=myfunction(x)
+  // myfunction computes y=x^2+1
+  // x should be a vector or matrix
+  y=x^2+1
+endfunction
+
+help myfunction
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="slash">slash</link>
+            </member>
+            <member>
+                <link linkend="backslash">backslash</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

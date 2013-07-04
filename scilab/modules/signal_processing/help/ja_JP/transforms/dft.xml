@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="dft">
+    <refnamediv>
+        <refname>dft</refname>
+        <refpurpose>離散フーリエ変換</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[xf]=dft(x,flag);</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>入力ベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>dft (flag=-1)  または idft (flag=1)を指定</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xf</term>
+                <listitem>
+                    <para>出力ベクトル</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ベクトル<literal>x</literal>のDFTを計算する関数.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+n=8;omega = exp(-2*%pi*%i/n);
+j=0:n-1;F=omega.^(j'*j);  //Fourier matrix
+x=1:8;x=x(:);
+F*x
+fft(x,-1)
+dft(x,-1)
+inv(F)*x
+fft(x,1)
+dft(x,1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

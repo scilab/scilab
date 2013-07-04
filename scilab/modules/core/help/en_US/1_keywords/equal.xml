@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="equal">
+    <refnamediv>
+        <refname>equal</refname>
+        <refpurpose>(=) assignment , comparison, equal sign</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <variablelist>
+            <varlistentry>
+                <term>Assignment:</term>
+                <listitem>
+                    <para>
+                        The equal sign  <literal>=</literal> is used to denote the assignment of value(s) to
+                        variable(s). The syntax can be :
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>a=expr</literal> where
+                                <literal>a</literal> is a variable name and <literal>expr</literal> a scilab
+                                expression which evaluates to a single result;
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>[a,b,...]=expr</literal> where
+                                <literal>a</literal>,<literal>b</literal>,<literal>...</literal> are variable names and <literal>expr</literal> a scilab
+                                expression which results in as many results as given variable
+                                names.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Comparison:</term>
+                <listitem>
+                    <para>
+                        The equal sign  <literal>=</literal> is also used in the comparison
+                        operators:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>a==b</literal> denotes equality comparison between the values
+                                of the expressions <literal> a</literal> and <literal>b</literal>;
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>a~=b</literal> denotes inequality comparison between the values
+                                of the  expressions <literal>a</literal> and <literal>b</literal>;
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>a&lt;=b</literal> and <literal>a&gt;=b</literal>  denote ordering
+                                comparison between the values of the expressions <literal>a</literal>
+                                and <literal>b</literal>.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        See <link linkend="comparison">comparison</link> for semantic details.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+a = sin(3.2)
+M = [2.1,3.3,8.5;7.6,6.7,6.9;0,6.3,8.8];
+[u,s] = schur(M)
+2*2 == 4
+[1:10] == 4
+"foo" == "bar"
+sparse([1,2;4,5;3,10],[1,2,3]) == sparse([1,2;4,5;3,10],[1,2,3])
+1~=2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="less">less</link>
+            </member>
+            <member>
+                <link linkend="greater">greater</link>
+            </member>
+            <member>
+                <link linkend="boolean">boolean</link>
+            </member>
+            <member>
+                <link linkend="isequal">isequal</link>
+            </member>
+            <member>
+                <link linkend="comparison">comparison</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

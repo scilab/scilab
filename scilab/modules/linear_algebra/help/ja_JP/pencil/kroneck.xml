@@ -10,60 +10,60 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="kroneck">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="kroneck">
     <refnamediv>
         <refname>kroneck</refname>
-        <refpurpose> Kronecker form of matrix pencil</refpurpose>
+        <refpurpose>行列ペンシルのクロネッカー形式</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F)
             [Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(E,A)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>F</term>
                 <listitem>
                     <para>
-                        real matrix pencil <literal>F=s*E-A</literal>
+                        実数行列ペンシル <literal>F=s*E-A</literal>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>E,A</term>
                 <listitem>
-                    <para>two real matrices of same dimensions</para>
+                    <para>同じ次元の実数行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Q,Z</term>
                 <listitem>
-                    <para>two square orthogonal matrices</para>
+                    <para>正方直交行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Qd,Zd</term>
                 <listitem>
-                    <para>two vectors of integers</para>
+                    <para>整数ベクトル</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>numbeps,numeta</term>
                 <listitem>
-                    <para>two vectors of integers</para>
+                    <para>整数ベクトル</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            Kronecker form of matrix pencil: <literal>kroneck</literal> computes two
-            orthogonal matrices <literal>Q, Z</literal> which put the pencil <literal>F=s*E -A</literal> into
-            upper-triangular form:
+            行列ペンシルのクロネッカー形式: <literal>kroneck</literal> は,
+            ペンシル<literal>F=s*E -A</literal>を以下のような上三角形式に変換する
+            2つの直交行列<literal>Q, Z</literal>を計算します:
         </para>
         <programlisting role=""><![CDATA[ 
            | sE(eps)-A(eps) |        X       |      X     |      X        |
@@ -77,47 +77,45 @@ Q(sE-A)Z = |---------------------------------|----------------------------|
            |        0       |       0        |      0     | sE(eta)-A(eta)|
  ]]></programlisting>
         <para>
-            The dimensions of the four blocks are given by:
+            4個のブロックの次元は以下のように指定されます:
         </para>
         <para>
             <literal>eps=Qd(1) x Zd(1)</literal>, <literal>inf=Qd(2) x Zd(2)</literal>,
             <literal>f = Qd(3) x Zd(3)</literal>, <literal>eta=Qd(4)xZd(4)</literal>
         </para>
         <para>
-            The <literal>inf</literal> block contains the infinite modes of
-            the pencil.
+            <literal>inf</literal>ブロックにはペンシルの無限大モードが含まれます.
         </para>
         <para>
-            The <literal>f</literal> block contains the finite modes of
-            the pencil
+            <literal>f</literal> ブロックにはペンシルの有限モードが含まれます.
         </para>
         <para>
-            The structure of epsilon and eta blocks are given by:
+            イプシロンとetaブロックの構造は以下のように指定されます:
         </para>
         <para>
-            <literal>numbeps(1)</literal> = <literal>#</literal> of eps blocks of size 0 x 1
+            <literal>numbeps(1)</literal> = 大きさ 0 x 1のepsブロックの番号
         </para>
         <para>
-            <literal>numbeps(2)</literal> = <literal>#</literal> of eps blocks of size 1 x 2
+            <literal>numbeps(2)</literal> = 大きさ 1 x 2のepsブロックの番号
         </para>
         <para>
-            <literal>numbeps(3)</literal> = <literal>#</literal> of eps blocks of size 2 x 3     etc...
+            <literal>numbeps(3)</literal> = 大きさ 2 x 3のepsブロックの番号     etc...
         </para>
         <para>
-            <literal>numbeta(1)</literal> = <literal>#</literal> of eta blocks of size 1 x 0
+            <literal>numbeta(1)</literal> = 大きさ 1 x 0のetaブロックの番号
         </para>
         <para>
-            <literal>numbeta(2)</literal> = <literal>#</literal> of eta blocks of size 2 x 1
+            <literal>numbeta(2)</literal> = 大きさ 2 x 1のetaブロックの番号
         </para>
         <para>
-            <literal>numbeta(3)</literal> = <literal>#</literal> of eta blocks of size 3 x 2     etc...
+            <literal>numbeta(3)</literal> = 大きさ 3 x 2のetaブロックの番号     etc...
         </para>
         <para>
-            The code is taken from T. Beelen (Slicot-WGS group).
+            このコードはT. Beelen (Slicot-WGS group)によるものです.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 F=randpencil([1,1,2],[2,3],[-1,3,1],[0,3]);
 Q=rand(17,17);Z=rand(18,18);F=Q*F*Z;
@@ -134,7 +132,7 @@ numbeta
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="gschur">gschur</link>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="hat">
+    <refnamediv>
+        <refname>крышечка</refname>
+        <refpurpose>(^) возведение в степень</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>A^b</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Возведение матриц или векторов в степень вектора констант.
+        </para>
+        <para>
+            Если <literal>A</literal> является вектором или прямоугольной матрицей, то возведение 
+            в степень делается поэлементно, в обычном смысле.
+        </para>
+        <para>
+            Для квадратной матрицы <literal>A</literal> возведение в степень делается в матричном смысле.
+        </para>
+        <para>
+            Для матриц логических, полиномиальных и рациональных значений показатель степени 
+            должен быть целым числом.
+        </para>
+        <refsection>
+            <title>Примечания</title>
+            <para>
+                <literal>123.^b</literal> интерпретируется как <literal>(123).^b</literal>. В таких случаях 
+                точка воспринимается как часть оператора, а не числа.
+            </para>
+            <para>
+                Для двух вещественных или комплексных чисел <literal>x1</literal> и <literal>x2</literal>
+                значение  <literal>x1^x2</literal> является главным значением, определённым как 
+                <literal>x1^x2 = exp(x2*log(x1))</literal>.
+            </para>
+        </refsection>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+2^4
+(-0.5)^(1/3)
+[1 2;2 4]^(1+%i)
+s=poly(0,"s");
+[1 2 s]^4
+[s 1;1  s]^(-1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="exp">exp</link>
+            </member>
+            <member>
+                <link linkend="log">log</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

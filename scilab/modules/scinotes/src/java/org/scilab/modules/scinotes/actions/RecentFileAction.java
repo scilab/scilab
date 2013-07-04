@@ -12,7 +12,9 @@
 package org.scilab.modules.scinotes.actions;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -20,17 +22,19 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.SciNotesOptions;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+
 
 /**
  * RecentFileAction Class
  * @author Allan SIMON
  *
  */
+@SuppressWarnings(value = { "serial" })
 public class RecentFileAction extends DefaultAction {
 
-    private static Menu recentsMenu = ScilabMenu.createMenu();
-    private static String label;
+    private static Map<SciNotes, Menu> menus = new HashMap<SciNotes, Menu>();
 
     private File recentFile;
 
@@ -71,7 +75,10 @@ public class RecentFileAction extends DefaultAction {
      * @return the menu
      */
     public static Menu createMenu(String label, SciNotes editor, KeyStroke key) {
-        RecentFileAction.label = label;
+        Menu recentsMenu = ScilabMenu.createMenu();
+        recentsMenu.setText(label);
+        menus.put(editor, recentsMenu);
+
         updateRecentOpenedFilesMenu(editor);
         return recentsMenu;
     }
@@ -80,13 +87,33 @@ public class RecentFileAction extends DefaultAction {
      * Update menu displaying recent opened files.
      * @param editor SciNotes
      */
+    public static void updateRecentOpenedFilesMenu() {
+        List<File> recentFiles = ConfigSciNotesManager.getAllRecentOpenedFiles();
+        for (SciNotes ed : menus.keySet()) {
+            Menu recentsMenu = menus.get(ed);
+            if (recentsMenu != null) {
+                ((SwingScilabMenu) recentsMenu.getAsSimpleMenu()).removeAll();
+                final int N = Math.min(recentFiles.size(), SciNotesOptions.getSciNotesPreferences().numberOfRecentlyOpen);
+                for (int i = N - 1; i >= 0; i--) {
+                    recentsMenu.add(RecentFileAction.createMenu(ed, recentFiles.get(i)));
+                }
+            }
+        }
+    }
+
+    /**
+     * Update menu displaying recent opened files.
+     * @param editor SciNotes
+     */
     public static void updateRecentOpenedFilesMenu(SciNotes editor) {
         List<File> recentFiles = ConfigSciNotesManager.getAllRecentOpenedFiles();
-
-        ((SwingScilabMenu) recentsMenu.getAsSimpleMenu()).removeAll();
-        for (int i = recentFiles.size() - 1; i >= 0; i--) {
-            recentsMenu.add(RecentFileAction.createMenu(editor, recentFiles.get(i)));
+        Menu recentsMenu = menus.get(editor);
+        if (recentsMenu != null) {
+            ((SwingScilabMenu) recentsMenu.getAsSimpleMenu()).removeAll();
+            final int N = Math.min(recentFiles.size(), SciNotesOptions.getSciNotesPreferences().numberOfRecentlyOpen);
+            for (int i = N - 1; i >= 0; i--) {
+                recentsMenu.add(RecentFileAction.createMenu(editor, recentFiles.get(i)));
+            }
         }
-        recentsMenu.setText(label);
     }
 }

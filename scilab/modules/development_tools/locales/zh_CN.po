@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-06-05 02:19+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: \n"
 
 #, c-format
@@ -68,6 +68,11 @@ msgstr "%s：计算值为实数，应为复数。"
 #, c-format
 msgid "%s: Computed is complex, but expected is real."
 msgstr "%s：计算值为复数，应为实数。"
+
+#, c-format
+msgid ""
+"%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -168,6 +173,54 @@ msgstr "错误：输入参数的大小不正确"
 msgid "The test %s is not available from the %s module"
 msgstr "测试 %s 无法从模块 %s 找到。"
 
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab module name expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid language expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A '%s' module function name "
+"expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
 msgstr "%s：第一个输入参数错误：应该是带有 .dia 扩展名的文件。"
@@ -192,6 +245,10 @@ msgid "%s: Wrong size for input argument."
 msgstr "%s:输入参数的大小错误。"
 
 #, c-format
+msgid "%s: Wrong number of input arguments."
+msgstr ""
+
+#, c-format
 msgid "%s is not an installed module or toolbox"
 msgstr "%s是未安装的模块或工具箱"
 
@@ -202,7 +259,7 @@ msgstr "ref文件 (%s) 不存在"
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
-"'testsuites"
+"'testsuites'.\n"
 msgstr ""
 
 #, c-format

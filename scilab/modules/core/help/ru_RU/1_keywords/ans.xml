@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="ans">
+    <refnamediv>
+        <refname>ans</refname>
+        <refpurpose>ответ</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>ans</literal> означает "ответ" (англ. "answer").
+            Переменная <literal>ans</literal> создаётся автоматически, когда выражения не присваиваются какой-либо переменной. 
+            <literal>ans</literal> содержит результат последнего вычисленного неприсвоенного выражения.
+        </para>
+        <para>
+            Переменная <literal>ans</literal> не защищается с помощью <function>predef</function>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+2+2
+ans // 4
+ans=10 // 10
+clear ans
+a=2+2;
+isdef("ans") // F
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="predef">predef</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

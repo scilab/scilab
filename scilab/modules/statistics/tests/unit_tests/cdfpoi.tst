@@ -9,11 +9,13 @@
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 
+// Run with test_run('statistics','cdfpoi',['no_check_error_output']);
+
 //
 // Assessing the quality of the Normal distribution function
 // References
 //   Yalta, A. T. 2008. The accuracy of statistical distributions in Microsoft®Excel 2007. Comput. Stat. Data Anal. 52, 10 (Jun. 2008), 4579-4586. DOI= http://dx.doi.org/10.1016/j.csda.2008.03.005 
-//   Computation of Statistical Distributions (ELV), Leo Knüsel 
+//   Computation of Statistical Distributions (ELV), Leo Knüsel
 // Table 4
 // Check Poisson distribution with parameters (lambda, k, Sigma)
 // If Sigma = 1, the cumulated distribution function is to be computed.
@@ -95,4 +97,17 @@ for k = 1 : nt
   end
 end
 
+// IEEE support
+// See http://bugzilla.scilab.org/show_bug.cgi?id=7296
+Xlam = 0;
+Std = 1;
 
+S = %inf; // Inf
+[P, Q] = cdfpoi("PQ", S, Xlam);
+assert_checkequal(P, 1);
+assert_checkequal(Q, 0);
+
+S = %nan; // NaN
+[P, Q] = cdfpoi("PQ", S, Xlam);
+assert_checkequal(P, %nan);
+assert_checkequal(Q, %nan);

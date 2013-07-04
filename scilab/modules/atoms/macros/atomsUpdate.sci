@@ -140,7 +140,7 @@ function result = atomsUpdate(name,section)
         this_package_ins_section = package_main_list(i,3);
 
         if (this_package_MRV_ava == -1) | ..
-                ( atomsVersionCompare(this_package_MRV_ins,this_package_MRV_ava) == 0 ) then
+            ( atomsVersionCompare(this_package_MRV_ins,this_package_MRV_ava) == 0 ) then
             // The installed version is already the Most Recent Version Available
             atomsDisp(msprintf("\t%s (%s) : The most recent version is already installed",name(i),this_package_MRV_ins));
         else

@@ -17,6 +17,7 @@ extern "C"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
+#include <stdio.h>
 }
 
 #include "CallGraphicController.hxx"
@@ -24,7 +25,7 @@ extern "C"
 
 using namespace org_scilab_modules_graphic_objects;
 
-void getGraphicObjectProperty(char const* _pstID, char const* _pstName, _ReturnType_ _returnType, void **_pvData)
+void getGraphicObjectProperty(char const* _pstID, int _iName, _ReturnType_ _returnType, void **_pvData)
 {
     // do not perform anything if the id is undefined
     if (_pstID == NULL)
@@ -33,9 +34,40 @@ void getGraphicObjectProperty(char const* _pstID, char const* _pstName, _ReturnT
     }
 
     /* All the Data model properties have the DATA_MODEL prefix */
-    if (strncmp(_pstName, __GO_DATA_MODEL__, strlen(__GO_DATA_MODEL__)) == 0)
+    if (_iName == __GO_DATA_MODEL__
+            || _iName == __GO_DATA_MODEL_COORDINATES__
+            || _iName == __GO_DATA_MODEL_X__
+            || _iName == __GO_DATA_MODEL_Y__
+            || _iName == __GO_DATA_MODEL_Z__
+            || _iName == __GO_DATA_MODEL_X_COORDINATES_SHIFT__
+            || _iName == __GO_DATA_MODEL_Y_COORDINATES_SHIFT__
+            || _iName == __GO_DATA_MODEL_Z_COORDINATES_SHIFT__
+            || _iName == __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__
+            || _iName == __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__
+            || _iName == __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__
+            || _iName == __GO_DATA_MODEL_NUM_ELEMENTS__
+            || _iName == __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__
+            || _iName == __GO_DATA_MODEL_NUM_VERTICES_PER_GON__
+            || _iName == __GO_DATA_MODEL_NUM_GONS__
+            || _iName == __GO_DATA_MODEL_Z_COORDINATES_SET__
+            || _iName == __GO_DATA_MODEL_COLORS__
+            || _iName == __GO_DATA_MODEL_NUM_COLORS__
+            || _iName == __GO_DATA_MODEL_NUM_VERTICES__
+            || _iName == __GO_DATA_MODEL_NUM_INDICES__
+            || _iName == __GO_DATA_MODEL_INDICES__
+            || _iName == __GO_DATA_MODEL_VALUES__
+            || _iName == __GO_DATA_MODEL_FEC_TRIANGLES__
+            || _iName == __GO_DATA_MODEL_NUM_X__
+            || _iName == __GO_DATA_MODEL_NUM_Y__
+            || _iName == __GO_DATA_MODEL_NUM_Z__
+            || _iName == __GO_DATA_MODEL_GRID_SIZE__
+            || _iName == __GO_DATA_MODEL_X_DIMENSIONS__
+            || _iName == __GO_DATA_MODEL_Y_DIMENSIONS__
+            || _iName == __GO_DATA_MODEL_MATPLOT_BOUNDS__
+            || _iName == __GO_DATA_MODEL_MATPLOT_TYPE__
+       )
     {
-        DataController::getGraphicObjectProperty(_pstID, _pstName, _pvData);
+        DataController::getGraphicObjectProperty(_pstID, _iName, _pvData);
         return;
     }
 
@@ -45,42 +77,42 @@ void getGraphicObjectProperty(char const* _pstID, char const* _pstName, _ReturnT
         {
             case jni_string:
             {
-                *(_pvData) = CallGraphicController::getGraphicObjectPropertyAsString(getScilabJavaVM(), _pstID, _pstName);
+                *(_pvData) = CallGraphicController::getGraphicObjectPropertyAsString(getScilabJavaVM(), _pstID, _iName);
                 return;
             }
             case jni_string_vector:
             {
-                *_pvData = CallGraphicController::getGraphicObjectPropertyAsStringVector(getScilabJavaVM(), _pstID, _pstName);
+                *_pvData = CallGraphicController::getGraphicObjectPropertyAsStringVector(getScilabJavaVM(), _pstID, _iName);
                 return;
             }
             case jni_double:
             {
-                ((double *)*_pvData)[0] = (double)CallGraphicController::getGraphicObjectPropertyAsDouble(getScilabJavaVM(), _pstID, _pstName);
+                ((double *)*_pvData)[0] = (double)CallGraphicController::getGraphicObjectPropertyAsDouble(getScilabJavaVM(), _pstID, _iName);
                 return;
             }
             case jni_double_vector:
             {
-                *_pvData = CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _pstName);
+                *_pvData = CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _iName);
                 return;
             }
             case jni_bool:
             {
-                ((int *)*_pvData)[0] = (int)CallGraphicController::getGraphicObjectPropertyAsBoolean(getScilabJavaVM(), _pstID, _pstName);
+                ((int *)*_pvData)[0] = (int)CallGraphicController::getGraphicObjectPropertyAsBoolean(getScilabJavaVM(), _pstID, _iName);
                 return;
             }
             case jni_bool_vector:
             {
-                *_pvData = CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _pstName);
+                *_pvData = CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _iName);
                 return;
             }
             case jni_int:
             {
-                ((int *)*_pvData)[0] = CallGraphicController::getGraphicObjectPropertyAsInteger(getScilabJavaVM(), _pstID, _pstName);
+                ((int *)*_pvData)[0] = CallGraphicController::getGraphicObjectPropertyAsInteger(getScilabJavaVM(), _pstID, _iName);
                 return;
             }
             case jni_int_vector:
             {
-                *_pvData = CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _pstName);
+                *_pvData = CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _iName);
                 return;
             }
             default:
@@ -99,11 +131,42 @@ void getGraphicObjectProperty(char const* _pstID, char const* _pstName, _ReturnT
 }
 
 
-void releaseGraphicObjectProperty(char const* _pstName, void * _pvData, enum _ReturnType_ _returnType, int numElements)
+void releaseGraphicObjectProperty(int _iName, void * _pvData, enum _ReturnType_ _returnType, int numElements)
 {
 
     /* All the Data model properties have the DATA_MODEL prefix */
-    if (strncmp(_pstName, __GO_DATA_MODEL__, strlen(__GO_DATA_MODEL__)) == 0)
+    if (_iName == __GO_DATA_MODEL__
+            || _iName == __GO_DATA_MODEL_COORDINATES__
+            || _iName == __GO_DATA_MODEL_X__
+            || _iName == __GO_DATA_MODEL_Y__
+            || _iName == __GO_DATA_MODEL_Z__
+            || _iName == __GO_DATA_MODEL_X_COORDINATES_SHIFT__
+            || _iName == __GO_DATA_MODEL_Y_COORDINATES_SHIFT__
+            || _iName == __GO_DATA_MODEL_Z_COORDINATES_SHIFT__
+            || _iName == __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__
+            || _iName == __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__
+            || _iName == __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__
+            || _iName == __GO_DATA_MODEL_NUM_ELEMENTS__
+            || _iName == __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__
+            || _iName == __GO_DATA_MODEL_NUM_VERTICES_PER_GON__
+            || _iName == __GO_DATA_MODEL_NUM_GONS__
+            || _iName == __GO_DATA_MODEL_Z_COORDINATES_SET__
+            || _iName == __GO_DATA_MODEL_COLORS__
+            || _iName == __GO_DATA_MODEL_NUM_COLORS__
+            || _iName == __GO_DATA_MODEL_NUM_VERTICES__
+            || _iName == __GO_DATA_MODEL_NUM_INDICES__
+            || _iName == __GO_DATA_MODEL_INDICES__
+            || _iName == __GO_DATA_MODEL_VALUES__
+            || _iName == __GO_DATA_MODEL_FEC_TRIANGLES__
+            || _iName == __GO_DATA_MODEL_NUM_X__
+            || _iName == __GO_DATA_MODEL_NUM_Y__
+            || _iName == __GO_DATA_MODEL_NUM_Z__
+            || _iName == __GO_DATA_MODEL_GRID_SIZE__
+            || _iName == __GO_DATA_MODEL_X_DIMENSIONS__
+            || _iName == __GO_DATA_MODEL_Y_DIMENSIONS__
+            || _iName == __GO_DATA_MODEL_MATPLOT_BOUNDS__
+            || _iName == __GO_DATA_MODEL_MATPLOT_TYPE__
+       )
     {
         // passed by reference, do not free them
         return;

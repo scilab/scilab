@@ -196,7 +196,7 @@ int errorTable(int iErr)
             }
             else
             {
-                iValueReturned = Scierror(iErr, _("Wrong type for argument %d: Square matrix expected.\n"), Err);
+                iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: Square matrix expected.\n"), Err);
             }
         }
         break;
@@ -312,16 +312,20 @@ int errorTable(int iErr)
             }
             else
             {
-                iValueReturned = Scierror(iErr, _("Wrong input argument %d.\n"), Err);
+                iValueReturned = Scierror(iErr, _("Wrong input argument #%d.\n"), Err);
             }
         }
         break;
         case 37:
         {
             if (Err > 0)
+            {
                 iValueReturned = Scierror(iErr, _("Incorrect function at line %d.\n"), Err);
+            }
             else
+            {
                 iValueReturned = Scierror(iErr, _("Incorrect function.\n"));
+            }
         }
         break;
         case 38:
@@ -364,7 +368,7 @@ int errorTable(int iErr)
             }
             else
             {
-                iValueReturned = Scierror(iErr, _("Wrong argument %d.\n"), Err);
+                iValueReturned = Scierror(iErr, _("Wrong argument #%d.\n"), Err);
             }
         }
         break;
@@ -402,7 +406,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_5);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("subroutine not found: %s\n"), NameVarOnStack);
+                iValueReturned = Scierror(iErr, _("%s: subroutine not found.\n"), NameVarOnStack);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -416,27 +420,27 @@ int errorTable(int iErr)
         break;
         case 52:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: Real matrix expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: Real matrix expected.\n"), Err);
         }
         break;
         case 53:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for input argument %d: Real or complex matrix expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for input argument #%d: Real or complex matrix expected.\n"), Err);
         }
         break;
         case 54:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for input argument %d: Polynomial expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for input argument #%d: Polynomial expected.\n"), Err);
         }
         break;
         case 55:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: String expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: String expected.\n"), Err);
         }
         break;
         case 56:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: List expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: List expected.\n"), Err);
         }
         break;
         case 57:
@@ -601,7 +605,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Real or complex matrix expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -612,7 +616,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Real matrix expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -623,7 +627,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Real vector expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Real vector expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -634,7 +638,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Scalar expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Scalar expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -662,47 +666,47 @@ int errorTable(int iErr)
         break;
         case 89:
         {
-            iValueReturned = Scierror(iErr, _("Wrong size for argument %d.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong size for argument #%d.\n"), Err);
         }
         break;
         case 90:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: Transfer matrix expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: Transfer matrix expected.\n"), Err);
         }
         break;
         case 91:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: In state space form expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: In state space form expected.\n"), Err);
         }
         break;
         case 92:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: Rational matrix expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: Rational matrix expected.\n"), Err);
         }
         break;
         case 93:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: In continuous time expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: In continuous time expected.\n"), Err);
         }
         break;
         case 94:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: In discrete time expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: In discrete time expected.\n"), Err);
         }
         break;
         case 95:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: SISO expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: SISO expected.\n"), Err);
         }
         break;
         case 96:
         {
-            iValueReturned = Scierror(iErr, _("time domain of argument %d is not defined.\n"), Err);
+            iValueReturned = Scierror(iErr, _("time domain of argument #%d is not defined.\n"), Err);
         }
         break;
         case 97:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: A system in state space or transfer matrix form expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: A system in state space or transfer matrix form expected.\n"), Err);
         }
         break;
         case 98:
@@ -851,7 +855,7 @@ int errorTable(int iErr)
         break;
         case 116:
         {
-            iValueReturned = Scierror(iErr, _("Wrong value for argument %d.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong value for argument #%d.\n"), Err);
         }
         break;
         case 117:
@@ -861,7 +865,7 @@ int errorTable(int iErr)
         break;
         case 118:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: Named variable not an expression expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: Named variable not an expression expected.\n"), Err);
         }
         break;
         case 119:
@@ -1016,23 +1020,30 @@ int errorTable(int iErr)
         /* error 145 to 199  not used */
 
         /*
-        messages from 201 to 203 and 205 to 214 are no more used by error
-        (see Scierror  in stack1.c)
+        messages from 200 to 203 and 205 to 214 are no more used by error
+        (see Scierror in stack1.c)
         */
         case 200:
         {
-            /* no message  */
-            iValueReturned = Scierror(iErr, "");
-        }
-        break;
-        case 201:
-        {
-            /* not used  */
+            /* not used */
             /* only for compatibility */
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Real or complex matrix expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Matrix of handle expected.\n"), NameVarOnStack, Err);
+                FREE(NameVarOnStack);
+                NameVarOnStack = NULL;
+            }
+        }
+        break;
+        case 201:
+        {
+            /* not used */
+            /* only for compatibility */
+            char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
+            if (NameVarOnStack)
+            {
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1040,12 +1051,12 @@ int errorTable(int iErr)
         break;
         case 202:
         {
-            /* not used  */
+            /* not used */
             /* only for compatibility */
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Real matrix expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1053,12 +1064,12 @@ int errorTable(int iErr)
         break;
         case 203:
         {
-            /* not used  */
+            /* not used */
             /* only for compatibility */
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Real vector expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Real vector expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1069,7 +1080,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Scalar expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Scalar expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1083,7 +1094,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), NameVarOnStack, Err, minvalue, maxvalue);
+                iValueReturned = Scierror(iErr, _("%s: Wrong size for argument #%d: (%d,%d) expected.\n"), NameVarOnStack, Err, minvalue, maxvalue);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1096,7 +1107,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong size for argument %d: %d expected.\n"), NameVarOnStack, Err, vectorsize);
+                iValueReturned = Scierror(iErr, _("%s: Wrong size for argument #%d: %d expected.\n"), NameVarOnStack, Err, vectorsize);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1107,7 +1118,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Matrix of strings expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Matrix of strings expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1118,7 +1129,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Boolean matrix expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Boolean matrix expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1129,7 +1140,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Matrix expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Matrix expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1140,7 +1151,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: List expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: List expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1151,7 +1162,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Function or string (external function) expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Function or string (external function) expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1162,7 +1173,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Polynomial expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Polynomial matrix expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1173,7 +1184,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Working int matrix expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Working int matrix expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1184,7 +1195,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument %d: Vector expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Vector expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1204,22 +1215,22 @@ int errorTable(int iErr)
         break;
         case 216:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: Boolean or scalar expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: Boolean or scalar expected.\n"), Err);
         }
         break;
         case 217:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: Sparse matrix of scalars expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: Sparse matrix of scalars expected.\n"), Err);
         }
         break;
         case 218:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type for argument %d: Handle to sparse lu factors expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type for argument #%d: Handle to sparse lu factors expected.\n"), Err);
         }
         break;
         case 219:
         {
-            iValueReturned = Scierror(iErr, _("Wrong type argument %d: Sparse or full scalar matrix expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong type argument #%d: Sparse or full scalar matrix expected.\n"), Err);
         }
         break;
         case 220:
@@ -1397,17 +1408,17 @@ int errorTable(int iErr)
         break;
         case 247:
         {
-            iValueReturned = Scierror(iErr, _("Wrong value for argument %d: the lu handle is no more valid.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong value for argument #%d: the lu handle is no more valid.\n"), Err);
         }
         break;
         case 248:
         {
-            iValueReturned = Scierror(iErr, _("Wrong value for argument %d: Valid variable name expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong value for argument #%d: Valid variable name expected.\n"), Err);
         }
         break;
         case 249:
         {
-            iValueReturned = Scierror(iErr, _("Wrong value for argument %d: Empty string expected.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong value for argument #%d: Empty string expected.\n"), Err);
         }
         break;
         case 250:
@@ -1479,7 +1490,7 @@ int errorTable(int iErr)
         break;
         case 264:
         {
-            iValueReturned = Scierror(iErr, _("Wrong value for argument %d: Must not contain NaN or Inf.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong value for argument #%d: Must not contain NaN or Inf.\n"), Err);
         }
         break;
         case 265:
@@ -1504,12 +1515,12 @@ int errorTable(int iErr)
         break;
         case 269:
         {
-            iValueReturned = Scierror(iErr, _("Wrong value for argument %d: eigenvalues must have negative real parts.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong value for argument #%d: eigenvalues must have negative real parts.\n"), Err);
         }
         break;
         case 270:
         {
-            iValueReturned = Scierror(iErr, _("Wrong value for argument %d: eigenvalues modulus must be less than one.\n"), Err);
+            iValueReturned = Scierror(iErr, _("Wrong value for argument #%d: eigenvalues modulus must be less than one.\n"), Err);
         }
         break;
         case 271:
@@ -1595,11 +1606,17 @@ static void strip_blank(char *source)
     char *p;
     p = source;
     /* look for end of string */
-    while (*p != '\0') p++;
+    while (*p != '\0')
+    {
+        p++;
+    }
     while (p != source)
     {
         p--;
-        if (*p != ' ') break;
+        if (*p != ' ')
+        {
+            break;
+        }
         *p = '\0';
     }
 }

@@ -29,27 +29,20 @@ NgonGridMatplotData::~NgonGridMatplotData(void)
 
 }
 
-int NgonGridMatplotData::getPropertyFromName(char const* propertyName)
+int NgonGridMatplotData::getPropertyFromName(int propertyName)
 {
-    if (strcmp(propertyName, __GO_DATA_MODEL_GRID_SIZE__) == 0)
+    switch (propertyName)
     {
-        return GRID_SIZE;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_MATPLOT_BOUNDS__) == 0)
-    {
-        return MATPLOT_BOUNDS;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_MATPLOT_TYPE__) == 0)
-    {
-        return MATPLOT_TYPE;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Z__) == 0)
-    {
-        return Z_COORDINATES;
-    }
-    else
-    {
-        return NgonGridData::getPropertyFromName(propertyName);
+        case __GO_DATA_MODEL_GRID_SIZE__ :
+            return GRID_SIZE;
+        case __GO_DATA_MODEL_MATPLOT_BOUNDS__ :
+            return MATPLOT_BOUNDS;
+        case __GO_DATA_MODEL_MATPLOT_TYPE__ :
+            return MATPLOT_TYPE;
+        case __GO_DATA_MODEL_Z__ :
+            return Z_COORDINATES;
+        default :
+            return NgonGridData::getPropertyFromName(propertyName);
     }
 
 }

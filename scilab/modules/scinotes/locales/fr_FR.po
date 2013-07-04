@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-30 09:50+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-17 20:50+0000\n"
+"Last-Translator: jojolebestof <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: fr\n"
 
 #, c-format
@@ -28,7 +28,7 @@ msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 #, c-format
 msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument n°%d : Une matrice de chaîne de caractères "
+"%s : Type erroné de l'argument n°%d : Une matrice de chaînes de caractères "
 "attendue.\n"
 
 #, c-format
@@ -125,8 +125,8 @@ msgstr "Fermer tout"
 msgid "Close All But This"
 msgstr "Fermer tout sauf le document actif"
 
-msgid "Exit"
-msgstr "Quitter"
+msgid "Exit Scinotes"
+msgstr "Quitter SciNotes"
 
 msgid "Edit"
 msgstr "Édition"
@@ -251,6 +251,18 @@ msgstr "Encodage du fichier actuel"
 msgid "Line Endings"
 msgstr "Fin de lignes"
 
+msgid "Preferences"
+msgstr "Préférences"
+
+msgid "Set font"
+msgstr "Définir la police"
+
+msgid "Set colors"
+msgstr "Définir les couleurs"
+
+msgid "Scinotes General settings"
+msgstr "Paramètres généraux de SciNotes"
+
 msgid "Auto-completion on"
 msgstr "Complétion automatique sur"
 
@@ -310,7 +322,7 @@ msgstr "Enregistrer et exécuter tous les fichiers"
 msgid "?"
 msgstr "?"
 
-msgid "SciNotes help"
+msgid "Scinotes help"
 msgstr "Aide de SciNotes"
 
 msgid "Help on ;Help on selection"
@@ -337,7 +349,7 @@ msgstr "Enregistrement automatique"
 msgid "Editor"
 msgstr "Éditeur"
 
-msgid "Use SciNotes"
+msgid "Use Scinotes"
 msgstr "Utiliser SciNotes"
 
 msgid "External editor: "
@@ -350,9 +362,6 @@ msgstr ""
 
 msgid "Scilab command: "
 msgstr "Commande Scilab : "
-
-msgid "SciNotes General settings"
-msgstr "Paramètres de base de Scinotes"
 
 msgid "Restore previous session on start-up"
 msgstr "Restaurer la session précédente au démarrage"
@@ -387,6 +396,12 @@ msgstr "Normal"
 msgid "Wrap lines"
 msgstr "Retour automatique à la ligne"
 
+msgid "Background color: "
+msgstr "Couleur d'arrière-plan : "
+
+msgid "Cursor color: "
+msgstr "Couleur du curseur : "
+
 msgid "Keywords"
 msgstr "Mots-clés"
 
@@ -409,7 +424,7 @@ msgid "Style: "
 msgstr "Style : "
 
 msgid "Filled"
-msgstr "Justifié"
+msgstr "Surligné"
 
 msgid "Framed"
 msgstr "Encadré"
@@ -452,7 +467,7 @@ msgid "Enable autosave in Scinotes"
 msgstr "Activer l'enregistrement automatique dans SciNotes"
 
 msgid "Save options"
-msgstr "Enregistrer les options"
+msgstr "Options de sauvegarde"
 
 msgid "Save every "
 msgstr "Enregistrer toutes les "
@@ -461,7 +476,7 @@ msgid " minutes "
 msgstr " minutes "
 
 msgid "Close options"
-msgstr "Fermer les options"
+msgstr "Options de fermeture"
 
 msgid "Delete automatically saved files"
 msgstr "Supprimer les fichiers enregistrés automatiquement"
@@ -505,6 +520,18 @@ msgstr "SciNotes"
 msgid "Error while reading the String"
 msgstr "Erreur pendant la lecture de la chaîne de caractères"
 
+#, c-format
+msgid "File not found: %s"
+msgstr "Fichier introuvable : %s"
+
+#, c-format
+msgid "I/O error: %s"
+msgstr "Erreur E/S : %s"
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr "Le fichier %s a été modifié par un autre programme. Le recharger ?"
+
 msgid "Source of '"
 msgstr "Source de '"
 
@@ -530,6 +557,9 @@ msgstr "Une erreur s'est produite pendant l'exécution du code avec FOP"
 
 msgid "An error occurred when printing"
 msgstr "Une erreur s'est produite pendant l'impression"
+
+msgid "Exit"
+msgstr "Quitter"
 
 msgid "Tools"
 msgstr "Outils"
@@ -627,6 +657,9 @@ msgstr "Évaluer depuis le début..."
 msgid "Execute File Into Scilab"
 msgstr "Exécuter le fichier dans Scilab"
 
+msgid "SciNotes help"
+msgstr "Aide de SciNotes"
+
 msgid "Help on the current keyword"
 msgstr "Aide sur le mot-clé actuel"
 
@@ -690,6 +723,7 @@ msgstr "Remplacer"
 msgid "Replace All"
 msgstr "Remplacer tout"
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Expression rationnelle invalide : %s"
 
@@ -705,15 +739,13 @@ msgstr "Vous avez atteint la fin du document"
 msgid "You have reached the beginning of the document"
 msgstr "Vous avez atteint le début du document"
 
+#, c-format
 msgid "String %s not found"
 msgstr "Chaîne %s non trouvée"
 
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"Le fichier %s n'existe pas\n"
-"Le créer ?"
+#, c-format
+msgid "The file %s does not exist. Do you want to create it?"
+msgstr "Le fichier %s n'existe pas. Souhaitez-vous le créer ?"
 
 msgid "close this tab"
 msgstr "Fermer cet onglet"
@@ -721,19 +753,13 @@ msgstr "Fermer cet onglet"
 msgid "This file"
 msgstr "Ce fichier"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
-msgstr ""
-" a été modifié depuis le dernier enregistrement\n"
-"L'enregistrer ?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
+msgstr "%s a été modifié depuis le dernier enregistrement. L'enregistrer ?"
 
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
-msgstr ""
-"Le fichier %s a été modifié par un autre programme !\n"
-" L'écraser ?"
+#, c-format
+msgid "The file %s has been modified by another program ! Overwrite it ?"
+msgstr "Le fichier %s a été modifié par un autre programme. L'écraser ?"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "Attention : Le fichier a été modifié par un autre programme !"
@@ -814,12 +840,14 @@ msgstr "Ouvrir le code source de la macro "
 msgid "Show the definition of the macro "
 msgstr "Afficher la définition de la macro "
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Ligne %s, Colonne %s. Fonction '%s' à la Ligne %s."
 
 msgid "Unknown function"
 msgstr "Fonction inconnue"
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr "Ligne %s, Colonne %s."
 
@@ -835,6 +863,7 @@ msgstr "Impossible d'enregistrer le fichier"
 msgid "The file could not be converted."
 msgstr "Impossible de convertir le fichier"
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s est un répertoire."
 
@@ -861,6 +890,7 @@ msgstr "Pas de texte sélectionné."
 msgid "No text to execute."
 msgstr "Pas de texte à exécuter."
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -873,6 +903,7 @@ msgstr "Problèmes d'encodage"
 msgid "Cannot guess the file encoding."
 msgstr "Impossible de supposer l'encodage du fichier."
 
+#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
 "Impossible d'enregistrer le fichier %s... Arrêt du processus de sauvegarde"
@@ -880,6 +911,7 @@ msgstr ""
 msgid "Backup finished..."
 msgstr "Sauvegarde terminée..."
 
+#, c-format
 msgid "%s occurences found."
 msgstr "%s occurrences trouvées."
 
@@ -1003,14 +1035,17 @@ msgstr "Rechercher dans des fichiers..."
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 308
+#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr "<html>%s <i>(%s correspondances)</i></html>"
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 309
+#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr "<html>%s <i>(%s correspondance)</i></html>"
 
+#, c-format
 msgid "Elapsed time: %s sec."
 msgstr "Temps écoulé : %s sec."
 
@@ -1094,3 +1129,21 @@ msgstr "Sélectionner le répertoire de base pour la recherche"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Le module '%s' de Scilab n'est pas installé.\n"
+
+msgid "the last error did not occur inside a library function."
+msgstr ""
+
+msgid " on line "
+msgstr ""
+
+msgid "opening file "
+msgstr "ouverture du fichier "
+
+msgid " of the source file of the function "
+msgstr " du fichier source de la fonction "
+
+msgid "the source file of the function "
+msgstr "le fichier source de la fonction "
+
+msgid " was not found in any library path"
+msgstr ""

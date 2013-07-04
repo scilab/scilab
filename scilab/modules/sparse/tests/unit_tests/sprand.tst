@@ -45,7 +45,7 @@ assert_checkequal ( nnzs > 10000 , %t );
 assert_checkequal ( min(values) < -3 , %t );
 assert_checkalmostequal ( mean(values) , 0 , [] , 1.e-2 );
 assert_checkequal ( max(values) > 3 , %t );
-assert_checkalmostequal ( variance(values) , 1 , 1.e-3 );
+assert_checkalmostequal ( variance(values) , 1 , 1.e-2 );
 
 rand("seed",0);
 grand("setsd",0);

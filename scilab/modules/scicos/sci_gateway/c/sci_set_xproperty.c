@@ -29,23 +29,23 @@
 /* variable defined in scicos.c */
 extern COSIM_struct C2F(cosim);
 /*--------------------------------------------------------------------------*/
-int sci_set_xproperty(char *fname,unsigned long fname_len)
+int sci_set_xproperty(char *fname, unsigned long fname_len)
 {
-	int isrun = C2F(cosim).isrun;
+    int isrun = C2F(cosim).isrun;
 
-	if (!isrun) 
-	{
-		Scierror(999,_("%s: scicosim is not running.\n"),fname);
-	}
-	else 
-	{
-		int one = 1, l1 = 0, m1 = 0;
-		CheckRhs(1,1);
-		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&one,&l1);
-		set_pointer_xproperty(istk(l1));
-		LhsVar(1)=0;
-		PutLhsVar();
-	}
-	return 0;
+    if (!isrun)
+    {
+        Scierror(999, _("%s: scicosim is not running.\n"), fname);
+    }
+    else
+    {
+        int one = 1, l1 = 0, m1 = 0;
+        CheckRhs(1, 1);
+        GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &m1, &one, &l1);
+        set_pointer_xproperty(istk(l1));
+        LhsVar(1) = 0;
+        PutLhsVar();
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

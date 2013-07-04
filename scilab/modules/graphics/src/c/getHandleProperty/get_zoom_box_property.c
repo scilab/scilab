@@ -43,7 +43,7 @@ int get_zoom_box_property(void* _pvCtx, char* pobjUID)
 
     if (zoomEnabled == NULL || zoomBox == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "zoom_box");
         return -1;
     }
 

@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// 
+//
 // <-- CLI SHELL MODE -->
 //
 // <-- Non-regression test for bug 7003 -->
@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=7003
 //
 // <-- Short Description -->
-//  
+//
 // read_csv function was not be able to convert "NaN" strings to "%nan" string.
 N = eye(3,3);
 ref = (N == 1);

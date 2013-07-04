@@ -8,6 +8,10 @@ Scilab a better software.
 * Vorona Aleksey
     - Russian localization
 
+* Guillaume Azema
+    - Patches
+    - Feedbacks & bug reports
+
 * Jonathan Blanchard
     - Misc patches for Solaris
     - Testing and binary of Scilab under Solaris
@@ -79,8 +83,15 @@ Scilab a better software.
 * Rui Hirokawa
     - Translation of the help into Japanese
 
+* Steven G. Johnson
+    - New features on the complex functions
+
 * Sébastien Jourdain from Artenum ( http://www.artenum.com )
     - Scilab Console ( Jrosetta )
+
+* Alain Lamy
+    - Patches
+    - Feedbacks & bug reports
 
 * Vincent Lejeune
     - Patches
@@ -107,6 +118,10 @@ Scilab a better software.
 
 * Dan McMahill
       - Patches for NetBSD
+
+* Thierry Martin
+    - Patches
+    - Feedbacks & bug reports
 
 * Olivier Mehani
     - Advice
@@ -261,5 +276,5 @@ sparse: Operations on sparse matrices (interfaced by S. Steer INRIA, Bruno Pinco
 
 tclsci: interface with TCL/TK developed by Allan CORNET.
 
-scicos: developped by then INRIA's Metalau project
-        PDE Scicos palette: developped by  EADS-CCR.
+scicos: developed by then INRIA's Metalau project
+        PDE Scicos palette: developed by  EADS-CCR.

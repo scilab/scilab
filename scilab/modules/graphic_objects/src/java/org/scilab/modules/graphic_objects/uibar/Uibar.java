@@ -22,7 +22,7 @@ import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 /**
  * @author Vincent COUVERT
  */
-public class Uibar extends GraphicObject {
+public abstract class Uibar extends GraphicObject {
 
     private String[] message = {""};
     private int value;
@@ -48,18 +48,17 @@ public class Uibar extends GraphicObject {
      * @param propertyName the property name
      * @return the property enum
      */
-    public Object getPropertyFromName(String propertyName) {
-        Object property = null;
-        if (propertyName.equals(__GO_UI_MESSAGE__)) {
-            property = UibarProperty.MESSAGE;
-        } else if (propertyName.equals(__GO_UI_MESSAGE_SIZE__)) {
-            property = UibarProperty.MESSAGE_SIZE;
-        } else if (propertyName.equals(__GO_UI_VALUE__)) {
-            property = UibarProperty.VALUE;
-        } else {
-            property = super.getPropertyFromName(propertyName);
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+            case __GO_UI_MESSAGE__ :
+                return UibarProperty.MESSAGE;
+            case __GO_UI_MESSAGE_SIZE__ :
+                return UibarProperty.MESSAGE_SIZE;
+            case __GO_UI_VALUE__ :
+                return UibarProperty.VALUE;
+            default :
+                return  super.getPropertyFromName(propertyName);
         }
-        return property;
     }
 
     /**
@@ -76,7 +75,7 @@ public class Uibar extends GraphicObject {
         } else if (property == UibarProperty.VALUE) {
             propertyValue = getValue();
         } else {
-            propertyValue = super.getProperty(property); 
+            propertyValue = super.getProperty(property);
         }
         return propertyValue;
     }
@@ -101,7 +100,7 @@ public class Uibar extends GraphicObject {
 
     /**
      * Get the uibar message
-     * @return the message 
+     * @return the message
      */
     public String[] getMessage() {
         return this.message;
@@ -117,7 +116,7 @@ public class Uibar extends GraphicObject {
 
     /**
      * Get the uibar value
-     * @return the value 
+     * @return the value
      */
     public Integer getValue() {
         return this.value;

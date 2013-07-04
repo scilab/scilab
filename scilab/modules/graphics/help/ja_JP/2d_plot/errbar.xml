@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="errbar">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="errbar">
     <refnamediv>
         <refname>errbar</refname>
         <refpurpose>2次元プロットに垂直誤差バーを追加</refpurpose>
@@ -46,7 +46,12 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>errbar();</scilab:image>
+        <scilab:image>
+            t=[0:0.1:2*%pi]';
+            y=[sin(t) cos(t)]; x=[t t];
+            plot2d(x,y)
+            errbar(x,y,0.05*ones(x),0.03*ones(x))
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

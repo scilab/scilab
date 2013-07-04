@@ -11,59 +11,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="copyfile" xml:lang="ja">
-  <refnamediv>
-    <refname>copyfile</refname>
-    <refpurpose>ファイルをコピー</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>copyfile('source','destination')
-      [status,message] = copyfile('source','destination')
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>説明</title>
-    <para>copyfile('source','destination') は,
-      ファイルまたはディレクトリ,
-      コピー元 (およびサブディレクトリ)を
-      ファイルまたはディレクトリ,コピー先も
-      コピーします.
-    </para>
-    <para>コピー元がディレクトリの場合, コピー先にファイルを指定することは
-      できません. copyfileは警告を発生せずに既存のファイルを置換します.
-    </para>
-    <para>[status, message] = copyfile('source','destination') は
-      コピー元からコピー先にコピーし,ステータスとメッセージを返します. 
-    </para>
-    <para>
-      どのようなオペレーティン部システムであろうと,
-      コピーに成功した場合,ステータスは1となり,
-      メッセージは空になります ;
-      コピーに失敗した場合,
-      ステータスは0となり,メッセージは空でなくなります.
-    </para>
-    <para>
-      コピー先のファイルのタイムスタンプは
-      コピー元のファイルのものと同じになります.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"> 
-      copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
-      [status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
-    </programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="movefile">movefile</link>
-      </member>
-      <member>
-        <link linkend="mdelete">mdelete</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="copyfile" xml:lang="ja">
+    <refnamediv>
+        <refname>copyfile</refname>
+        <refpurpose>ファイルをコピー</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>copyfile('source','destination')
+            [status,message] = copyfile('source','destination')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>copyfile('source','destination') は,
+            ファイルまたはディレクトリ,
+            コピー元 (およびサブディレクトリ)を
+            ファイルまたはディレクトリ,コピー先も
+            コピーします.
+        </para>
+        <para>コピー元がディレクトリの場合, コピー先にファイルを指定することは
+            できません. copyfileは警告を発生せずに既存のファイルを置換します.
+        </para>
+        <para>[status, message] = copyfile('source','destination') は
+            コピー元からコピー先にコピーし,ステータスとメッセージを返します. 
+        </para>
+        <para>
+            どのようなオペレーティン部システムであろうと,
+            コピーに成功した場合,ステータスは1となり,
+            メッセージは空になります ;
+            コピーに失敗した場合,
+            ステータスは0となり,メッセージは空でなくなります.
+        </para>
+        <para>
+            コピー先のファイルのタイムスタンプは
+            コピー元のファイルのものと同じになります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"> 
+            copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
+            [status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="movefile">movefile</link>
+            </member>
+            <member>
+                <link linkend="mdelete">mdelete</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

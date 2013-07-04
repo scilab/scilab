@@ -9,7 +9,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine namstr(id,str,n,job)
 c     
-c     converti un nom code scilab en une chaine scilab
+c     convertit un nom code scilab en une chaine scilab
 c     
 c
       include 'stack.h'

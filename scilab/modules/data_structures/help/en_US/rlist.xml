@@ -10,38 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rlist">
-  <refnamediv>
-    <refname>rlist</refname>
-    <refpurpose> Scilab rational fraction function definition</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>rlist()
-      rlist(a1,....an)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>rlist(a1,....an)</literal> is a shortcut  to
-      <literal>tlist(['r','num';'den','dt'], a1,....an)</literal>
-    </para>
-    <para>
-      Creates a <literal>tlist</literal> with  <literal>['r','num';'den','dt']</literal> as
-      first entry and  <literal>ai</literal>'s as next entries if any. No type nor size
-      checking is done on <literal>ai</literal>'s.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="tlist">tlist</link>
-      </member>
-      <member>
-        <link linkend="syslin">syslin</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="rlist">
+    <refnamediv>
+        <refname>rlist</refname>
+        <refpurpose>Scilab rational fraction function definition</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>rlist()
+            rlist(a1 ,..., an)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>rlist(a1, ..., an)</literal> is a shortcut  to
+            <literal>tlist(['r','num';'den','dt'], a1, ..., an)</literal>.
+        </para>
+        <para>
+            <literal>rlist(a1, ..., an)</literal> creates a <literal>tlist</literal> with  <literal>['r','num';'den','dt']</literal> as
+            first entry and  <literal>ai</literal>'s as next entries if any. No type nor size
+            checking is done on <literal>ai</literal>'s.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+W=[1/s,1/(s+1)]
+W'*W
+Num=[s,s+2;1,s];
+Den=[s*s,s;s,s*s];
+rlist(Num,Den,[])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="rational">rational</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -31,21 +31,21 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_polyline_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_polyline_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int value = 0;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "polyline_style");
         return SET_PROPERTY_ERROR;
     }
 
-    value = (int) getDoubleFromStack( stackPointer );
-    if ( value < 1 || value > 7 )
+    value = (int) ((double*)_pvData)[0];
+    if (value < 1 || value > 7)
     {
-        Scierror(999, _("Wrong value for '%s' property: Must be between %d and %d.\n"),"polyline_style",1,7);
+        Scierror(999, _("Wrong value for '%s' property: Must be between %d and %d.\n"), "polyline_style", 1, 7);
         return SET_PROPERTY_ERROR;
     }
 
@@ -57,7 +57,7 @@ int set_polyline_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"polyline_style");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "polyline_style");
         return SET_PROPERTY_ERROR;
     }
 

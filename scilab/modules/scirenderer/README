@@ -1,0 +1,19 @@
+SciRenderer is a rendering library based on JoGL.
+
+This Java API allows contructor of 2D or 3D plotting of simple 2d graph to
+complex scenes.
+
+This library has been developped by the Scilab Consortium (DIGITEO) and
+Scilab Enterprises.
+
+This library has been developed in the context of the Collaviz project
+http://www.collaviz.org/ .
+
+Collaviz is a project with the financial support of the French National
+Research Agency (ANR).
+
+This library is released under the CeCILL license. See COPYING-FR or COPYING.
+
+Source releases are prepared with:
+VERSION=1.1.0
+git archive master -o scirenderer-$VERSION.tar.gz -9 --prefix scirenderer-$VERSION/

@@ -40,7 +40,7 @@ int get_clip_box_property(void* _pvCtx, char* pobjUID)
 
     if (piClipState == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"clip_box");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "clip_box");
         return -1;
     }
 
@@ -52,7 +52,7 @@ int get_clip_box_property(void* _pvCtx, char* pobjUID)
 
         if (clipBox == NULL)
         {
-            Scierror(999, _("'%s' property does not exist for this handle.\n"),"clip_box");
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "clip_box");
             return -1;
         }
 
@@ -65,7 +65,7 @@ int get_clip_box_property(void* _pvCtx, char* pobjUID)
     }
     else
     {
-        Scierror(999, _("Wrong value for '%s' property.\n"),"clip_state");
+        Scierror(999, _("Wrong value for '%s' property.\n"), "clip_state");
         return -1;
     }
 }

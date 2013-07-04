@@ -64,6 +64,7 @@ import com.artenum.rosetta.util.StringConstants;
  * @author Vincent COUVERT
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class SciInputCommandView extends ConsoleTextPane implements InputCommandView, CaretListener, ViewFactory {
 
     private static final long serialVersionUID = 1L;

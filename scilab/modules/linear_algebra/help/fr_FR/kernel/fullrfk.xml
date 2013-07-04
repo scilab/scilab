@@ -10,34 +10,37 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fullrfk">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="fullrfk">
     <refnamediv>
         <refname>fullrfk</refname>
-        <refpurpose> full rank factorization of A^k</refpurpose>
+        <refpurpose>factorisation de rang plein de A^k  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[Bk,Ck]=fullrfk(A,k)</synopsis>
+        <title>Séquence d'appel</title>
+        <synopsis>[Q,M]=fullrfk(A,k)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>A</term>
+                <term>A  </term>
                 <listitem>
-                    <para>real or complex matrix</para>
+                    <para>matrice réelle ou complexe
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>k</term>
+                <term>k  </term>
                 <listitem>
-                    <para>integer</para>
+                    <para>entier
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Bk,Ck</term>
+                <term>Q,M  </term>
                 <listitem>
-                    <para>real or complex matrices</para>
+                    <para>matrices réelles ou complexes
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,23 +48,23 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function computes the full rank factorization of <literal>A^k</literal> i.e.
-            <literal>Bk*Ck=A^k</literal> where <literal>Bk</literal> is full column rank and <literal>Ck</literal> full row rank.
-            One has range(<literal>Bk</literal>)=range(<literal>A^k</literal>) and ker(<literal>Ck</literal>)=ker(<literal>A^k</literal>).
+            Cette fonction calcule la factorisation de rang plein de <literal>A^k</literal> : <literal>fullrfk</literal> renvoie <literal>Q</literal> et <literal>M</literal> telles que <literal>A^k = Q*M</literal>
+            avec Im(<literal>Q</literal>)=Im(<literal>A^k</literal>) et ker(<literal>M</literal>)=ker(<literal>A^k</literal>),
+            <literal>Q</literal> de rang maximal, et les lignes de <literal>M</literal> sont linéairement indépendantes, 
         </para>
         <para>
-            For <literal>k=1</literal>, <literal>fullrfk</literal> is equivalent to <literal>fullrf</literal>.
+            Pour <literal>k=1</literal>, <literal>fullrfk</literal> est équivalent à <literal>fullrf</literal>.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 
 A=rand(5,2)*rand(2,5);[Bk,Ck]=fullrfk(A,3);
 norm(Bk*Ck-A^3,1)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="fullrf">fullrf</link>

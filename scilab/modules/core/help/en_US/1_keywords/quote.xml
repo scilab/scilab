@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="quote">
+    <refnamediv>
+        <refname>quote</refname>
+        <refpurpose>(') transpose operator, string delimiter</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Quote (<literal>'</literal>) is used for conjugate transpose (Hermitian conjugation) of matrix.
+        </para>
+        <para>
+            Quote (<literal>.'</literal>) is used for non-conjugate transpose of matrix.
+        </para>
+        <para>
+            Simple (') or double (") quotes are also used to define character strings.
+            (Character strings are defined between two quotes). A quote within a
+            character string is denoted by two quotes.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+[1+%i, 2]'
+[1+%i, 2].'
+x='This is a character string'
+x="This is another character string"
+'He said:''Good'''
+'He said:""Very Good""'
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="conj">conj</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -10,48 +10,48 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="varargout" xml:lang="en">
-  <refnamediv>
-    <refname>varargout</refname>
-    <refpurpose>variável do número de argumentos de saída em uma lista de
-      argumentos de saída
-    </refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Descrição</title>
-    <para>Uma função cuja lista de argumentos de saída contém
-      <literal>varargout</literal> deve ser chamada com mais argumentos de saída
-      que indicado na lista de argumentos de saída. A chamada de argumentos
-      passados da palavra-chave <literal>varargout</literal> em diante são
-      extraídos da lista <literal>varargout</literal> definida na função.
-    </para>
-    <para>
-      <literal>varargout= function ex()</literal> pode ser chamado com
-      qualquer número de argumentos de saída. Dentro da função
-      <literal>ex</literal> , argumentos de saída podem ser armazenados em
-      <literal>varargout(i)</literal>.
-    </para>
-    <para>
-      <literal>[X1,...Xn,varargout]= function ex()</literal> também pode
-      ser usado. Neste caso, as variáveis <literal>Xi</literal> devem estar
-      atribuídas na função tanto quanto <literal>varargout(i)</literal>.
-    </para>
-    <para>
-      O número total real de argumentos de saída é dado por <link linkend="argn">argn(1)</link>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Observação</title>
-    <para>
-      A variável <literal>varargout</literal> deve ser criada dentro de
-      uma função e atribuída a uma <link linkend="list">list</link>. Se
-      varargout for a única variável de saída formal, a lista deve conter pelo
-      menos uma entrada.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varargout" xml:lang="en">
+    <refnamediv>
+        <refname>varargout</refname>
+        <refpurpose>variável do número de argumentos de saída em uma lista de
+            argumentos de saída
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Descrição</title>
+        <para>Uma função cuja lista de argumentos de saída contém
+            <literal>varargout</literal> deve ser chamada com mais argumentos de saída
+            que indicado na lista de argumentos de saída. A chamada de argumentos
+            passados da palavra-chave <literal>varargout</literal> em diante são
+            extraídos da lista <literal>varargout</literal> definida na função.
+        </para>
+        <para>
+            <literal>varargout= function ex()</literal> pode ser chamado com
+            qualquer número de argumentos de saída. Dentro da função
+            <literal>ex</literal> , argumentos de saída podem ser armazenados em
+            <literal>varargout(i)</literal>.
+        </para>
+        <para>
+            <literal>[X1,...Xn,varargout]= function ex()</literal> também pode
+            ser usado. Neste caso, as variáveis <literal>Xi</literal> devem estar
+            atribuídas na função tanto quanto <literal>varargout(i)</literal>.
+        </para>
+        <para>
+            O número total real de argumentos de saída é dado por <link linkend="argn">argn(1)</link>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Observação</title>
+        <para>
+            A variável <literal>varargout</literal> deve ser criada dentro de
+            uma função e atribuída a uma <link linkend="list">list</link>. Se
+            varargout for a única variável de saída formal, a lista deve conter pelo
+            menos uma entrada.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 function varargout=exampl()
   varargout=list(1,2,3,4)
 endfunction
@@ -69,19 +69,19 @@ exampl1()
 [a,b]=exampl1()
 [a,b,c]=exampl1()
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="function">function</link>
-      </member>
-      <member>
-        <link linkend="varargin">varargin</link>
-      </member>
-      <member>
-        <link linkend="list">list</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="function">function</link>
+            </member>
+            <member>
+                <link linkend="varargin">varargin</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

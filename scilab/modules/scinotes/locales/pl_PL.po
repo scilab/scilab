@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-07-16 15:57+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: pl\n"
 
 #, c-format
@@ -120,8 +120,8 @@ msgstr "Zamknij wszystko"
 msgid "Close All But This"
 msgstr "Zamknij wszystko poza tym"
 
-msgid "Exit"
-msgstr "Wyjście"
+msgid "Exit Scinotes"
+msgstr ""
 
 msgid "Edit"
 msgstr "Edycja"
@@ -246,6 +246,18 @@ msgstr "Kodowanie bieżącego pliku"
 msgid "Line Endings"
 msgstr "Zakończenie linii"
 
+msgid "Preferences"
+msgstr ""
+
+msgid "Set font"
+msgstr ""
+
+msgid "Set colors"
+msgstr ""
+
+msgid "Scinotes General settings"
+msgstr ""
+
 msgid "Auto-completion on"
 msgstr ""
 
@@ -303,8 +315,8 @@ msgstr "Zapisz i wykonaj wszystkie pliki"
 msgid "?"
 msgstr "?"
 
-msgid "SciNotes help"
-msgstr "Pomoc SciNotes"
+msgid "Scinotes help"
+msgstr ""
 
 msgid "Help on ;Help on selection"
 msgstr "Pomoc dla ;Pomoc dla zaznaczenia"
@@ -330,7 +342,7 @@ msgstr ""
 msgid "Editor"
 msgstr ""
 
-msgid "Use SciNotes"
+msgid "Use Scinotes"
 msgstr ""
 
 msgid "External editor: "
@@ -340,9 +352,6 @@ msgid "(Don't forget to quote path containing white spaces)"
 msgstr ""
 
 msgid "Scilab command: "
-msgstr ""
-
-msgid "SciNotes General settings"
 msgstr ""
 
 msgid "Restore previous session on start-up"
@@ -376,6 +385,12 @@ msgid "Normal"
 msgstr ""
 
 msgid "Wrap lines"
+msgstr ""
+
+msgid "Background color: "
+msgstr ""
+
+msgid "Cursor color: "
 msgstr ""
 
 msgid "Keywords"
@@ -495,6 +510,18 @@ msgstr "SciNotes"
 msgid "Error while reading the String"
 msgstr "Błąd przy odczytywaniu łańcucha"
 
+#, c-format
+msgid "File not found: %s"
+msgstr ""
+
+#, c-format
+msgid "I/O error: %s"
+msgstr ""
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr ""
+
 msgid "Source of '"
 msgstr "Źródło '"
 
@@ -520,6 +547,9 @@ msgstr "Błąd w czasie eksportowania kodu za pomocą FOP"
 
 msgid "An error occurred when printing"
 msgstr "Błąd w czasie drukowania"
+
+msgid "Exit"
+msgstr "Wyjście"
 
 msgid "Tools"
 msgstr "Narzędzia"
@@ -617,6 +647,9 @@ msgstr "Oblicz od początku..."
 msgid "Execute File Into Scilab"
 msgstr "Wykonaj plik w Scilab"
 
+msgid "SciNotes help"
+msgstr "Pomoc SciNotes"
+
 msgid "Help on the current keyword"
 msgstr "Pomoc dt. bierzącego słowa kluczowego"
 
@@ -680,6 +713,7 @@ msgstr "Zastąp"
 msgid "Replace All"
 msgstr "Zastąp wszystko"
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Błędne wyrażenie regularne : %s"
 
@@ -695,15 +729,13 @@ msgstr "Jesteś na końcu dokumentu"
 msgid "You have reached the beginning of the document"
 msgstr "Jesteś na początku dokumentu"
 
+#, c-format
 msgid "String %s not found"
 msgstr "Nie znaleziono ciągu %s"
 
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
+#, c-format
+msgid "The file %s does not exist. Do you want to create it?"
 msgstr ""
-"Plik %s nie istnieje\n"
-"Czy chcesz go utworzyć?"
 
 msgid "close this tab"
 msgstr "zamknij kartę"
@@ -711,19 +743,13 @@ msgstr "zamknij kartę"
 msgid "This file"
 msgstr "Ten plik"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
 msgstr ""
-" został zmieniony.\n"
-"Czy chcesz go zapisać?"
 
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
+#, c-format
+msgid "The file %s has been modified by another program ! Overwrite it ?"
 msgstr ""
-"Plik %s został zmodyfikowany przez inny program !\n"
-" Zastąpić istniejący plik ?"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "Ostrzeżenie: plik został zmieniony przez inny program !"
@@ -802,12 +828,14 @@ msgstr "Otwórz plik źródłowy dla makra "
 msgid "Show the definition of the macro "
 msgstr "Pokaż definicję makra "
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Linia %s,  kolumna %s. funkcja '%s' w wierszu %s."
 
 msgid "Unknown function"
 msgstr "Nieznana funkcja"
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr "Linia %s, kolumna %s."
 
@@ -823,6 +851,7 @@ msgstr "Plik nie może być zapisany"
 msgid "The file could not be converted."
 msgstr "Plik nie może być przekonwertowany"
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s jest katalogiem."
 
@@ -847,6 +876,7 @@ msgstr "Brak zaznaczonego tekstu"
 msgid "No text to execute."
 msgstr "Brak kodu do wykonania"
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -859,12 +889,14 @@ msgstr "Problemy z kodowaniem"
 msgid "Cannot guess the file encoding."
 msgstr "NIe rozpoznano kodowania pliku"
 
+#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
 
 msgid "Backup finished..."
 msgstr ""
 
+#, c-format
 msgid "%s occurences found."
 msgstr ""
 
@@ -982,12 +1014,15 @@ msgstr "Znajdź pliki..."
 msgid "Search in Files..."
 msgstr "Znajdź w plikach..."
 
+#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
+#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr ""
 
+#, c-format
 msgid "Elapsed time: %s sec."
 msgstr "Minęło: %s sec."
 
@@ -1045,3 +1080,21 @@ msgstr "Wybierz katalog bazowy do wyszukiwania"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Moduł %s Scilab nie jest zainstalowany.\n"
+
+msgid "the last error did not occur inside a library function."
+msgstr ""
+
+msgid " on line "
+msgstr ""
+
+msgid "opening file "
+msgstr ""
+
+msgid " of the source file of the function "
+msgstr ""
+
+msgid "the source file of the function "
+msgstr ""
+
+msgid " was not found in any library path"
+msgstr ""

@@ -30,3 +30,5 @@ vFreeDoubleComplexFromPointer
 oGetDoubleComplexFromPointer
 GetRhsVarMatrixComplex
 getrhscvar_
+MyHeapAlloc
+MyHeapFree

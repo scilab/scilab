@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="polar">
+    <refnamediv>
+        <refname>polar</refname>
+        <refpurpose>polar form</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[Ro, Theta] = polar(A)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>a real or complex square matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ro</term>
+                <listitem>
+                    <para>a real matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Theta</term>
+                <listitem>
+                    <para>a real or complex matrix.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>[Ro, Theta]=polar(A)</code> returns the polar form of
+            <varname>A</varname> i.e.<code>A=Ro*expm(%i*Theta)</code> when <varname>Ro</varname> symmetric &gt;=0 and <varname>Theta</varname> hermitian
+            &gt;=0.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+A=rand(5,5);
+[Ro,Theta]=polar(A);
+norm(A-Ro*expm(%i*Theta),1)
+
+B = complex(5,7)
+[M, P] = polar(B)
+M * exp(%i * P)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="expm">expm</link>
+            </member>
+            <member>
+                <link linkend="svd">svd</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

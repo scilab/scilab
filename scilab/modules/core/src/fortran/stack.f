@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) 2006 - INRIA - Allan CORNET
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine adjuststacksize(mem,offset)
@@ -13,15 +13,15 @@ c     routine for intstacksize
       INCLUDE 'stack.h'
       integer offset,p
       integer iadr,sadr
-         
+
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-      
+
       lbot=lstk(isiz)-lstk(bot)
       ltop=lstk(top+1)-lstk(1)
-      
+
       offset=offset+1
-      
+
       l1=lstk(1)
       l2=lstk(bot)
 c     copy the top of the stack
@@ -38,7 +38,7 @@ c     copy the bottom of the stack
          lstk(k)=lstk(k)+kd2
  40   continue
 
-      call freemem()
+      call freeStackLastMemory()
 c     update reference variables
       do 41 i=1,top
          if(infstk(i).ne.2) then
@@ -90,16 +90,16 @@ c ====================================================================
       logical eqid
 c
       iadr(l)=l+l-1
-      
+
       offset=offset+1
       call unsfdcopy(l,stk(lstk(isiz+2)),1,stk(offset),1)
       kd=offset-lstk(isiz+2)
       do 05 k=isiz+2,gtop+1
          lstk(k)=lstk(k)+kd
- 05   continue 
-      call freegmem()
+ 05   continue
+      call freeGlobalStackLastMemory()
       lstk(gbot)=lstk(isiz+2)+mem
-c     following lines are necessary because of use of il=iadr(istk(il+1)) 
+c     following lines are necessary because of use of il=iadr(istk(il+1))
 c     to get variable pointed by an indirect variable.
 c     it should be no more useful with il=iadr(lstk(istk(il+2)))
       do 09 i = isiz+2, gtop

@@ -7,6 +7,9 @@
 
 // <-- CLI SHELL MODE -->
 
+// Do not check ref since execution depends on Scilab version used (Source, Binary, ...)
+// <-- NO CHECK REF -->
+
 // Test errors
 refMsg = msprintf(gettext("%s: Wrong type for input argument #%d: A row array of strings expected.\n"), "example_run", 1);
 assert_checkerror("example_run(10);", refMsg);
@@ -26,15 +29,20 @@ assert_checkerror("example_run(""core"", ""extraction"", [""en_US"", ""fr_FR""])
 refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A Scilab module name expected.\n"), "example_run", 1);
 assert_checkerror("example_run(""toto"");", refMsg);
 
-refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A ''%s'' module function name expected.\n"), "example_run", 2, "core");
-assert_checkerror("example_run(""core"", ""doesnotexistsname"");", refMsg);
+// On Windows, the binary version doesn't contain help directory
+if isdir(fullfile(SCI,"modules","core","help")) then
+    refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A ''%s'' module function name expected.\n"), "example_run", 2, "core");
+    assert_checkerror("example_run(""core"", ""doesnotexistsname"");", refMsg);
 
-refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A valid language expected.\n"), "example_run", 3);
-assert_checkerror("example_run(""core"", ""extraction"", ""aa_BB"");", refMsg);
+    refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: A valid language expected.\n"), "example_run", 3);
+    assert_checkerror("example_run(""core"", ""extraction"", ""aa_BB"");", refMsg);
+end
 
-example_run("xml", [], "", "short_summary");
-example_run("functions", "argn", "", "short_summary");
-example_run("core", ["extraction"; "insertion"], "", "short_summary");
-example_run("core", "extraction", "en_US", "short_summary");
-example_run("core", "extraction", "en_US", ["no_check_error_output", "short_summary"]);
-example_run("core", "extraction", "en_US", ["no_check_error_output", "short_summary"], TMPDIR + "/example_run.xml");
+if ~isempty(ls("SCI/modules/xml/help/en_US/*.xml")) then // Help XML sources must be available for the following lines
+    example_run("xml", [], "", "short_summary");
+    example_run("functions", "argn", "", "short_summary");
+    example_run("core", ["extraction"; "insertion"], "", "short_summary");
+    example_run("core", "extraction", "en_US", "short_summary");
+    example_run("core", "extraction", "en_US", ["no_check_error_output", "short_summary"]);
+    example_run("core", "extraction", "en_US", ["no_check_error_output", "short_summary"], TMPDIR + "/example_run.xml");
+end

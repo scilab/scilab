@@ -1,0 +1,20 @@
+\1int* piAddr\5 = NULL; //@MOVE@
+\1int* \6 = NULL; //@MOVE@
+\1int* \7 = NULL; //@MOVE@
+\1sciErr = getVarAddressFromPosition(pvApiCtx, \2, &piAddr\5);
+\1if (sciErr.iErr)
+\1{
+\1    printError(&sciErr, 0);
+\1    return 1;
+\1}
+\1
+\1// Retrieve a matrix of double at position \2.
+\1// YOU MUST REMOVE YOUR VARIABLES DECLARATIONS "int \6" and "int \7".
+\1sciErr = getComplexMatrixOfDoubleAsInteger(pvApiCtx, piAddr\5, &\4, &\5, &\6, &\7);\8
+\1if (sciErr.iErr)
+\1{
+\1    printError(&sciErr, 0);
+\1    Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, \2);
+\1    return 1;
+\1}
+

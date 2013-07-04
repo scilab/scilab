@@ -16,11 +16,11 @@
 #include "api_scilab.h"
 #include "HistoryManager.h"
 /*--------------------------------------------------------------------------*/
-int sci_displayhistory(char *fname,unsigned long fname_len)
+int sci_displayhistory(char *fname, unsigned long fname_len)
 {
-	displayScilabHistory();
-	LhsVar(1) = 0;
-	PutLhsVar();
-	return 0;
+    displayScilabHistory();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

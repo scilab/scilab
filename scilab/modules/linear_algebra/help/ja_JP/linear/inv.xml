@@ -10,52 +10,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="inv">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="inv">
     <refnamediv>
         <refname>inv</refname>
-        <refpurpose> matrix inverse</refpurpose>
+        <refpurpose>逆行列</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>inv(X)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>real or complex square matrix, polynomial matrix, rational matrix in transfer or state-space representation.</para>
+                    <para>実数または複素数の正方行列, 多項式行列および
+                        伝達関数または状態空間表現の有理行列.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            <literal>inv(X)</literal> is the inverse of the square matrix <literal>X</literal>. A warning
-            message is printed if <literal>X</literal> is badly scaled or nearly singular.
+            <literal>inv(X)</literal> は正方行列 <literal>X</literal>の逆行列
+            となる. 
+            <literal>X</literal> のスケーリングが
+            悪い場合や特異行列に近い場合には警告を出力する.
         </para>
         <para>
-            For polynomial matrices or rational matrices in transfer representation,
-            <literal>inv(X)</literal> is equivalent to <literal>invr(X)</literal>.
+            多項式行列または伝達関数表現の有理行列の場合,
+            <literal>inv(X)</literal> は <literal>invr(X)</literal>に等しくなる.
         </para>
         <para>
-            For linear systems in state-space representation (<literal>syslin</literal> list),
-            <literal>invr(X)</literal> is equivalent to <literal>invsyslin(X)</literal>.
+            状態空間表現の線形システム(<literal>syslin</literal> リスト)の場合,
+            <literal>invr(X)</literal> は <literal>invsyslin(X)</literal>に等しくなる.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <para>
+            数値行列用の<literal>inv</literal> 関数は Lapack ルーチン
+            DGETRF, DGETRI (実数行列の場合)および  ZGETRF, ZGETRI
+            (複素数の場合)に基づいている.
+            多項式および有理行列に関する <literal>inv</literal> は
+            Scilab関数<literal>invr</literal>に基づいている.
         </para>
     </refsection>
     <refsection>
-        <title>References</title>
-        <para>
-            <literal>inv</literal> function for matrices of numbers is  based on the Lapack routines
-            DGETRF, DGETRI for  real matrices and  ZGETRF, ZGETRI for the complex case.
-            For polynomial matrix and rational function matrix <literal>inv</literal> is based on the <literal>invr</literal>
-            Scilab function.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 A=rand(3,3);inv(A)*A
 
@@ -70,8 +75,8 @@ W=inv(A)*A
 clean(ss2tf(W))
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title>参考</title>
         <simplelist type="inline">
             <member>
                 <link linkend="slash">slash</link>

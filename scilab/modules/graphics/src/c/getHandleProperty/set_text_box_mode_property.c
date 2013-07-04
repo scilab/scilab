@@ -19,6 +19,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include "stricmp.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -29,9 +30,10 @@
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "MALLOC.h"
 
 /*------------------------------------------------------------------------*/
-int set_text_box_mode_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_text_box_mode_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status[2];
     int autoSize = 0;
@@ -39,23 +41,23 @@ int set_text_box_mode_property(void* _pvCtx, char* pobjUID, size_t stackPointer,
     int status1 = 0;
     int status2 = 0;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "text_box_mode");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( isStringParamEqual( stackPointer, "off" ) )
+    if (stricmp((char*)_pvData, "off") == 0)
     {
         autoSize = 1;
         textBoxMode = 0;
     }
-    else if ( isStringParamEqual( stackPointer, "centered" ) )
+    else if (stricmp((char*)_pvData, "centered") == 0)
     {
         autoSize = 1;
         textBoxMode = 1;
     }
-    else if ( isStringParamEqual( stackPointer, "filled" ) )
+    else if (stricmp((char*)_pvData, "filled") == 0)
     {
         autoSize = 0;
         textBoxMode = 2;
@@ -75,7 +77,7 @@ int set_text_box_mode_property(void* _pvCtx, char* pobjUID, size_t stackPointer,
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"text_box_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "text_box_mode");
         status1 = SET_PROPERTY_ERROR;
     }
 
@@ -88,6 +90,6 @@ int set_text_box_mode_property(void* _pvCtx, char* pobjUID, size_t stackPointer,
         status2 = SET_PROPERTY_ERROR;
     }
 
-    return sciSetFinalStatus( (SetPropertyStatus)status1, (SetPropertyStatus)status2 );
+    return sciSetFinalStatus((SetPropertyStatus)status1, (SetPropertyStatus)status2);
 }
 /*------------------------------------------------------------------------*/

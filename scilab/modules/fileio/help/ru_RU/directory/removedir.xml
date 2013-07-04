@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="removedir">
+    <refnamediv>
+        <refname>removedir</refname>
+        <refpurpose>удаляет директорию</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            removedir(dirname)
+            [status] = removedir(dirname)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>dirname</term>
+                <listitem>
+                    <para>символьная строка: имя директории, которую нужно удалить.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                    <para>логическое значение: статус.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>removedir(dirname)</code> удаляет директорию 
+            <varname>dirname</varname> из текущей директории. Если директория не 
+            пуста, то файлы и поддиректории удаляются. Если 
+            <varname>dirname</varname> не является текущей директорией, то укажите 
+            относительный путь к текущей директории или абсолютный путь для 
+            <varname>dirname</varname>.
+        </para>
+        <para>
+            <code>[status] = removedir(dirname)</code> удаляет директорию 
+            <varname>dirname</varname> и всё её содержимое, возвращая статус  
+            <varname>status</varname>. Здесь <varname>status</varname> равен 
+            <constant>%T</constant> в случае успеха и <constant>%F</constant> в 
+            случае ошибки.
+        </para>
+        <para>
+            Функция <function>removedir</function> используется в <function>rmdir</function>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+createdir(SCIHOME+'/Directory_test')
+removedir(SCIHOME+'/Directory_test')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="createdir">createdir</link>
+            </member>
+            <member>
+                <link linkend="mkdir">mkdir</link>
+            </member>
+            <member>
+                <link linkend="rmdir">rmdir</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

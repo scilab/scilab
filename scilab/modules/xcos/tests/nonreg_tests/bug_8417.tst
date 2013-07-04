@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 8417 -->
 //
@@ -21,7 +21,7 @@ pause,
 // check that a window is open
 closeXcos();
 
-xcos("modules/xcos/demos/Bouncing_ball.xcos");
+xcos("modules/xcos/demos/Bouncing_ball.zcos");
 pause,
 // check that a window is open with a complete diagram on it
 closeXcos();

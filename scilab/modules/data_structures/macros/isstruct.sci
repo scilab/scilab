@@ -9,5 +9,5 @@
 
 
 function r=isstruct(S)
-r=typeof(S)=='st'
+    r=typeof(S)=="st"
 endfunction

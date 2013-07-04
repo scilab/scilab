@@ -13,10 +13,10 @@
 //============================
 // Create a librarie with functions in SCI+'/modules/functions/examples directory
 // to do once time
-genlib('demofunctionslib',SCI+'/modules/functions/examples');
+genlib("demofunctionslib",SCI+"/modules/functions/examples");
 //============================
 // load demofunctionslib
-load(SCI+'/modules/functions/examples/lib');
+load(SCI+"/modules/functions/examples/lib");
 //============================
 y=3;
 x=f(y);

@@ -10,70 +10,71 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="erf" xml:lang="ja">
-  <refnamediv>
-    <refname>erf</refname>
-    <refpurpose>誤差関数.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>y = erf(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>実数ベクトルまたは行列</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y</term>
-        <listitem>
-          <para>(xと同じ大きさの)実数ベクトルまたは行列 </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>erf</literal> は誤差関数を計算します:
-    </para>
-    <informalequation>
-      <mediaobject>
-        <imageobject>
-          <imagedata align="center" fileref="../mml/erf_equation1.mml"/>
-        </imageobject>
-      </mediaobject>
-    </informalequation>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="erf" xml:lang="ja">
+    <refnamediv>
+        <refname>erf</refname>
+        <refpurpose>誤差関数.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>y = erf(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>実数ベクトルまたは行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>(xと同じ大きさの)実数ベクトルまたは行列 </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>erf</literal> は誤差関数を計算します:  <latex>
+                \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt
+            </latex>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 deff('y=f(t)','y=exp(-t^2)');
 erf(0.5)-2/sqrt(%pi)*intg(0,0.5,f)
+
+
+x = [1+2*%i, -1+2*%i, 1e-6+2e-6*%i,0+2*%i];
+a=erf(x)
+
+1-erfc(x)
 ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="calerf">calerf</link>
-      </member>
-      <member>
-        <link linkend="cdfnor">cdfnor</link>
-      </member>
-      <member>
-        <link linkend="erfc">erfc</link>
-      </member>
-      <member>
-        <link linkend="erfcx">erfcx</link>
-      </member>
-      <member>
-        <link linkend="erfinv">erfinv</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="calerf">calerf</link>
+            </member>
+            <member>
+                <link linkend="cdfnor">cdfnor</link>
+            </member>
+            <member>
+                <link linkend="erfc">erfc</link>
+            </member>
+            <member>
+                <link linkend="erfcx">erfcx</link>
+            </member>
+            <member>
+                <link linkend="erfinv">erfinv</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

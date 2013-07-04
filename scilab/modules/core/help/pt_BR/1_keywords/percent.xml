@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percent" xml:lang="en">
+    <refnamediv>
+        <refname>percent</refname>
+        <refpurpose>caractere especial (%)</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Descrição</title>
+        <para>Alguns nomes de variáveis predefinidas começam com '
+            <literal>%</literal>', tais como <literal>%i</literal> (para
+            <literal>sqrt(-1)</literal>), <literal>%inf</literal> (para
+            <literal>Infinity</literal>), <literal>%pi</literal> (para
+            <literal>3.14...</literal>), <literal>%T</literal> (para a constante
+            booleana<literal>"true"</literal>),...
+        </para>
+        <para>Ainda, funções cujo nome começa com % são especiais : elas são
+            usadas para primitivas e overloading ("sobrecarga") de operadores (ver
+            <literal>overloading</literal>).
+        </para>
+        <para>
+            Por exemplo, a função <literal>%rmr</literal> realiza a operação de
+            multiplicação (<literal>m</literal>) <literal>x*y</literal> para
+            <literal>x</literal> e <literal>y</literal> matrizes de razões de
+            polinômios (<literal>r</literal>). As convenções de codificação são
+            fornecidas pelo arquivo "leia-me" no diretório
+            <literal>SCI/modules/overloading/macros</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
+x1=tlist('x',1,2);
+x2=tlist('x',2,3);
+deff('x=%xmx(x1,x2)','x=list(''x'',x1(2)*x2(2),x2(3)*x2(3))');
+x1*x2
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="overloading">overloading</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

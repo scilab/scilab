@@ -40,7 +40,7 @@ int get_triangles_property(void* _pvCtx, char* pobjUID)
 
     if (triangles == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"triangles");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "triangles");
         return -1;
     }
 

@@ -10,15 +10,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gschur">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="gschur">
     <refnamediv>
         <refname>gschur</refname>
-        <refpurpose>
-            generalized Schur form. <emphasis role="bold">This function is obsolete.</emphasis>
-        </refpurpose>
+        <refpurpose>一般化Schur分解 (古い関数).  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[As,Es]=gschur(A,E)
             [As,Es,Q,Z]=gschur(A,E)
             [As,Es,Z,dim] = gschur(A,E,flag)
@@ -26,14 +24,14 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            This function is obsolete and is now included in the <literal>schur</literal>
-            function. In most cases the <literal>gschur</literal> function will still work as
-            before, but it will be removed in the future release. 
+            この関数は古い関数であり,  <literal>schur</literal>関数に統合されています.
+            多くの場合, <literal>gschur</literal>関数は以前と同様に動作しますが,
+            将来のリリースでは削除される予定です.
         </para>
         <para>
-            The first three syntaxes can be replaced by
+            最初の3つの構文は以下のように置き換えることができます
         </para>
         <programlisting role=""><![CDATA[ 
 [As,Es]=schur(A,E)
@@ -41,15 +39,16 @@
 [As,Es,Z,dim] = schur(A,E,flag) 
  ]]></programlisting>
         <para>
-            The last syntax requires little more adaptations:
+            最後の構文はさらに若干の調整が必要です:
         </para>
         <variablelist>
             <varlistentry>
-                <term>if</term>
+                <term>もし,</term>
                 <listitem>
-                    <para>extern is a scilab function  the new calling sequence
-                        should be <literal>[As,Es,Z,dim]= schur(A,E,Nextern)</literal> with
-                        Nextern defined as follow:
+                    <para>extern が　Scilab関数の場合,
+                        新しい呼び出し手順は, Nextern を以下のように定義するとき,
+                        <literal>[As,Es,Z,dim]= schur(A,E,Nextern)</literal>
+                        となります:
                     </para>
                     <programlisting role=""><![CDATA[ 
 function t=Nextern(R)
@@ -66,8 +65,11 @@ endfunction
             <varlistentry>
                 <term>if</term>
                 <listitem>
-                    <para>extern is the name of an external function coded in Fortran or C
-                        the new calling sequence should be <literal>[As,Es,Z,dim]=    schur(A,E,'nextern')</literal> with nextern defined as follow:
+                    <para>extern は,Fortran または Cで記述された外部関数の名前です.
+                        新しい呼び出し手順は,
+                        nextern を以下のように定義すると
+                        <literal>[As,Es,Z,dim]=    schur(A,E,'nextern')</literal> 
+                        のようになります:
                     </para>
                 </listitem>
             </varlistentry>
@@ -86,7 +88,7 @@ end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="external">external</link>

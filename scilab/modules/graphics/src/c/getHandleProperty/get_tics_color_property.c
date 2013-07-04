@@ -39,7 +39,7 @@ int get_tics_color_property(void* _pvCtx, char* pobjUID)
 
     if (piTicksColor == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_color");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_color");
         return -1;
     }
 

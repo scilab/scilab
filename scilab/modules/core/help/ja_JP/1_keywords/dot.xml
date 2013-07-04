@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dot" xml:lang="ja">
+    <refnamediv>
+        <refname>dot</refname>
+        <refpurpose>(.) 記号</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>123.33
+            a.*b
+            [123,..
+            456]
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <variablelist>
+            <varlistentry>
+                <term>.</term>
+                <listitem>
+                    <para>ドットは以下のように数字の小数点を示すために使用されます : 3.25 および
+                        0.001
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>.&lt;op&gt;</term>
+                <listitem>
+                    <para>
+                        は他の演算記号 (<literal>* /
+                            \ ^ '
+                        </literal>
+                        )と組み合わせて別の演算子を作成するために
+                        使用されます.
+                        要素毎の複合演算子は<literal> .* , .^ , ./
+                            , .\
+                        </literal>
+                        または <literal>.'</literal>により
+                        得られます.
+                        例えば, C = A ./ B は c(i,j) = a(i,j)/b(i,j) を要素とする
+                        行列となります.
+                        クロネッカー積は .*. と表記されます.
+                        ドットの後に数字が続く場合,このドットは数字の一部とみなされる
+                        ことに注意してください.
+                        このため, 2.*x は 2.0*x として評価され,
+                        2 .*x は (2).*x として評価されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>..</term>
+                <listitem>
+                    <para>継続記号. 2つ以上の小数点が行の末尾(あるいはコメントの前)にあると,
+                        次の行は継続されます.
+                    </para>
+                    <para>継続行は, プリプロセッサにより処理され,
+                        一連の継続行から一つの長い論理行が作成されます.
+                        このため,継続記号は,行を任意の点で分割するために使用することができます..
+                    </para>
+                    <para>以下の関数 foo:</para>
+                    <programlisting role=""><![CDATA[ 
+function foo
+  a=1
+  disp(a),..
+  disp('ok')
+endfunction
+ ]]></programlisting>
+                    <para>は次の関数と等価です:</para>
+                    <programlisting role=""><![CDATA[ 
+function foo 
+  a=1
+
+  disp(a),disp('ok') 
+endfunction
+ ]]></programlisting>
+                    <para>物理行3行目と物理行4行目からなる論理行は
+                        物理行4行目に全体が書かれ,物理行3行目が空の時と
+                        同じとなります.このようなことが可能なのは,
+                        継続記号を式の中の任意の場所に置く事ができるためです.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+//decimal point
+1.345
+
+//used as part of an operator
+x=[1 2 3];x.^2 .*x // a space is required between 2 and dot
+
+// used to enter continuation lines
+T=[123,..//first element
+   456] //second one
+
+a="here I start a very long string...  //but I'm not in the mood of continuing
+     - and here I go on"
+y=12..
+45
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="star">star</link>
+            </member>
+            <member>
+                <link linkend="hat">hat</link>
+            </member>
+            <member>
+                <link linkend="slash">slash</link>
+            </member>
+            <member>
+                <link linkend="backslash">backslash</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

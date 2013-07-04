@@ -147,8 +147,17 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * Create a lexer used to colorize the text
      * @return ScilabLexer the lexer
      */
+    public ScilabLexer createLexer(boolean update) {
+        return new ScilabLexer(this, update);
+    }
+
+    /**
+     * Create a lexer used to colorize the text
+     * @param update true if the scilab vars must be updated
+     * @return ScilabLexer the lexer
+     */
     public ScilabLexer createLexer() {
-        return new ScilabLexer(this);
+        return new ScilabLexer(this, true);
     }
 
     /**
@@ -275,19 +284,18 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public void addEOL() {
         if (SciNotesOptions.getSciNotesPreferences().addLineTermination) {
             int len = getLength();
-            int lenEOL = getEOL().length();
-            if (getLength() >= lenEOL) {
+            if (getLength() >= 1) {
                 try {
-                    String end = getText(len - lenEOL, lenEOL);
-                    if (!end.equals(getEOL())) {
-                        insertString(len, getEOL(), null);
+                    String end = getText(len - 1, 1);
+                    if (!end.equals("\n")) {
+                        insertString(len, "\n", null);
                     }
                 } catch (BadLocationException e) {
                     System.err.println(e);
                 }
             } else {
                 try {
-                    insertString(len, getEOL(), null);
+                    insertString(len, "\n", null);
                 } catch (BadLocationException e) {
                     System.err.println(e);
                 }
@@ -745,10 +753,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @param ev the DocumentEvent to handle
      */
     private void handleEvent(DocumentEvent ev) {
-        if (!contentModified && pane != null) {
+        if (!contentModified) {
             contentModified = true;
-            pane.updateTitle();
+            if (pane != null) {
+                pane.updateTitle();
+            }
         }
+
         contentModifiedSinceBackup = true;
 
         DocumentEvent.ElementChange chg = ev.getChange(getDefaultRootElement());
@@ -854,6 +865,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         public static final int BROKEN = 4;
 
         private boolean visible = true;
+        private int previousType;
         private int type;
         private FunctionScanner.FunctionInfo info;
         private boolean broken;
@@ -892,6 +904,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 oldName = info.functionName;
             }
 
+            previousType = type;
             type = funScanner.getLineType(getStartOffset(), getEndOffset());
 
             if ((type & BROKEN) == BROKEN) {
@@ -916,6 +929,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             resetTypeWhenBroken();
 
             return type;
+        }
+
+        /**
+         * @return true if the Line number panel need to be refreshed (useful in whereami mode)
+         */
+        public boolean needLineNumberRepaint() {
+            return type == FUN || type == ENDFUN || type != previousType;
         }
 
         /**

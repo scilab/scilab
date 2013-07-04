@@ -27,6 +27,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Action to go to SCI
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class GoToSCIAction extends CommonCallBack {
 
     /**
@@ -53,7 +54,7 @@ public class GoToSCIAction extends CommonCallBack {
     public static PushButton createButton() {
         PushButton button = ScilabPushButton.createPushButton();
         button.setCallback(new GoToSCIAction());
-        button.setText(UiDataMessages.SCIFOLDER);
+        ((SwingScilabPushButton) button.getAsSimplePushButton()).setToolTipText(UiDataMessages.SCIFOLDER);
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(FileUtils.getSCIIcon());
 
         return button;

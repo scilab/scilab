@@ -11,45 +11,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bin2dec" xml:lang="ru">
-  <refnamediv>
-    <refname>bin2dec</refname>
-    <refpurpose>преобразование из двоичной системы счисления в десятичную</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>y=bin2dec(str)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>str</term>
-        <listitem>
-          <para>матрица строк, содержащая только символы '1' и '0'</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y</term>
-        <listitem>
-          <para>
-            матрица чисел двойной точности, положительные целые значения
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Эта функция возвращает десятичное число <literal>y</literal>, чьё двоичное 
-      представление задаётся строкой  <literal>str</literal> ( <literal>y</literal> и
-      <literal>str</literal> имеют одинаковый размер).
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bin2dec" xml:lang="ru">
+    <refnamediv>
+        <refname>bin2dec</refname>
+        <refpurpose>преобразование из двоичной системы счисления в десятичную</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>y=bin2dec(str)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>матрица строк, содержащая только символы '1' и '0'</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности, положительные целые значения
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта функция возвращает десятичное число <literal>y</literal>, чьё двоичное 
+            представление задаётся строкой  <literal>str</literal> ( <literal>y</literal> и
+            <literal>str</literal> имеют одинаковый размер).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 // Пример 1 :
 // '1010110' : двоичное представление числа 86 
 str='1010110';
@@ -61,28 +61,28 @@ y=bin2dec(str)
 str=['1011011'; '1010010']
 y=bin2dec(str)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="base2dec">base2dec</link>
-      </member>
-      <member>
-        <link linkend="oct2dec">oct2dec</link>
-      </member>
-      <member>
-        <link linkend="hex2dec">hex2dec</link>
-      </member>
-      <member>
-        <link linkend="dec2bin">dec2bin</link>
-      </member>
-      <member>
-        <link linkend="dec2oct">dec2oct</link>
-      </member>
-      <member>
-        <link linkend="dec2hex">dec2hex</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="base2dec">base2dec</link>
+            </member>
+            <member>
+                <link linkend="oct2dec">oct2dec</link>
+            </member>
+            <member>
+                <link linkend="hex2dec">hex2dec</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+            <member>
+                <link linkend="dec2oct">dec2oct</link>
+            </member>
+            <member>
+                <link linkend="dec2hex">dec2hex</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

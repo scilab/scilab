@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="iirlp">
+    <refnamediv>
+        <refname>iirlp</refname>
+        <refpurpose>Lp IIR フィルタ最適化</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[cost,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>フィルタの極およびゼロの絶対値および偏角からなる1X2 ベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        文字列 : 振幅の場合は<literal>'a'</literal> , 群遅延の場合は'gd'; 
+                        振幅および群遅延の場合のデフォルト値.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>omega</term>
+                <listitem>
+                    <para>フィルタ仕様を指定する周波数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wa,wt</term>
+                <listitem>
+                    <para>振幅および群遅延に関する重み関数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lambda</term>
+                <listitem>
+                    <para>
+                        コストの重み (<literal>1-lambda</literal>)
+                        (グローバルなコストを得る場合は<literal>'a'</literal> および
+                        <literal>'gd'</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ad, td</term>
+                <listitem>
+                    <para>振幅および群遅延の指定値</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cost, grad</term>
+                <listitem>
+                    <para>評価値および傾斜の値</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            振幅および群遅延に関するLp基準に基づき
+            IIRフィルタを最適化します
+            (Rabiner &amp; Gold pp270-273).
+        </para>
+    </refsection>
+</refentry>

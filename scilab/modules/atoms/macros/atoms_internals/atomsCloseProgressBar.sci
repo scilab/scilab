@@ -11,6 +11,6 @@
 //
 function atomsCloseProgressBar(winId)
     if (getscilabmode() <> "NWNI")
-        winclose(winId);
+        delete(winId);
     end
 endfunction

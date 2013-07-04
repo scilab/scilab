@@ -39,7 +39,7 @@ int get_alignment_property(void* _pvCtx, char* pobjUID)
 
     if (piAlignment == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"alignment");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "alignment");
         return -1;
     }
 
@@ -57,7 +57,7 @@ int get_alignment_property(void* _pvCtx, char* pobjUID)
     }
     else
     {
-        Scierror(999, _("Wrong value for '%s' property.\n"),"alignment");
+        Scierror(999, _("Wrong value for '%s' property.\n"), "alignment");
         return -1;
     }
 

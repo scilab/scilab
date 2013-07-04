@@ -19,6 +19,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -44,6 +46,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
@@ -60,6 +63,12 @@ import javax.swing.text.View;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.gui.ScilabCaret;
 import org.scilab.modules.console.utils.ScilabLaTeXViewer;
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabMessageBox;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.scinotes.actions.CopyAsHTMLAction;
 import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
@@ -105,10 +114,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private String infoBar = "";
     private String shortName = "";
     private String title = "";
+    private Timer selectionTimer;
+    private Timer matcherTimer;
 
     private Point mousePoint;
 
     private long lastModified;
+    private long lastExternalModification;
 
     /* matchLR matches Left to Right ... */
     private MatchingBlockManager matchLR;
@@ -172,10 +184,12 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                         nav.update((ScilabDocument) getDocument());
                     }
                 }
+                ((ScilabCaret) getCaret()).setMustAdjustVisibility(true);
             }
 
             public void focusLost(FocusEvent e) {
                 ((ScilabDocument) getDocument()).setFocused(false);
+                ((ScilabCaret) getCaret()).setMustAdjustVisibility(false);
             }
         });
 
@@ -278,6 +292,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
         addKeyListener(this);
         setTransferHandler(new CopyAsHTMLAction.HTMLTransferHandler());
+
+        ((ScilabCaret) getCaret()).setMustAdjustVisibility(false);
     }
 
     public void enableColorization(boolean b) {
@@ -302,6 +318,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             enableHighlightedLine(SciNotesOptions.getSciNotesDisplay().highlightCurrentLine);
             setHighlightedLineColor(SciNotesOptions.getSciNotesDisplay().currentLineColor);
             enableColorization(SciNotesOptions.getSciNotesDisplay().keywordsColorization);
+            setBackground(SciNotesOptions.getSciNotesDisplay().backgroundColor);
+            setCaretColor(SciNotesOptions.getSciNotesDisplay().caretColor);
 
             boolean kw = SciNotesOptions.getSciNotesDisplay().highlightKeywords;
             boolean op = SciNotesOptions.getSciNotesDisplay().highlightBrackets;
@@ -544,8 +562,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         doc.getUndoManager().enableUndoRedoButtons();
 
         if (editor != null) {
-            if (checkExternalModif()) {
+            if (checkExternalModif() && lastExternalModification < getLastModification()) {
                 editor.getInfoBar().setText(SciNotesMessages.EXTERNAL_MODIFICATION_INFO);
+                if (ScilabModalDialog.show(editor, String.format(SciNotesMessages.ASK_TO_RELOAD, getShortName()), SciNotesMessages.RELOAD, IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.YES_OPTION) {
+                    editor.reload(getEditor().getTabPane().indexOfComponent(getEditorComponent()));
+                    editor.getTextPane().updateInfosWhenFocused();
+                }
+                lastExternalModification = getLastModification();
             } else {
                 editor.getInfoBar().setText(getInfoBarText());
             }
@@ -566,6 +589,22 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             }
         }
         return false;
+    }
+
+    /**
+     * Get last modification on file
+     * @return the lastModified value
+     */
+    public long getLastModification() {
+        String path = getName();
+        if (path != null) {
+            File f = new File(path);
+            if (f != null && f.exists()) {
+                return f.lastModified();
+            }
+        }
+
+        return -1;
     }
 
     /**
@@ -691,10 +730,14 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         trailingWhite = null;
         enableMatchingKeywords(false);
         enableMatchingOpeners(false);
-        matchLR.desactivateMouseOver();
-        matchLR = null;
-        matchRL.desactivateMouseOver();
-        matchRL = null;
+        if (matchLR != null) {
+            matchLR.desactivateMouseOver();
+            matchLR = null;
+        }
+        if (matchRL != null) {
+            matchRL.desactivateMouseOver();
+            matchRL = null;
+        }
     }
 
     /**
@@ -1087,27 +1130,39 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param e event
      */
     public void caretUpdate(CaretEvent e) {
-        boolean search = false;
         if (hasBeenSaved) {
             removeHighlightForLine();
         }
 
         if (hasFocus()) {
-            String str = getSelectedText();
+            final String str = getSelectedText();
             if (str != null && str.length() != 0) {
-                int tok = lexer.getKeyword(getSelectionStart(), false);
-                int s = lexer.start + lexer.yychar();
-                if (ScilabLexerConstants.isSearchable(tok) && getSelectionStart() == s && getSelectionEnd() == s + lexer.yylength()) {
-                    highlightWords(tok, SearchManager.generatePattern(str, false, true, false), false);
-                } else {
-                    highlightWords(str, false);
-                }
+                if (selectionTimer == null) {
+                    selectionTimer = new Timer(1000, new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            final String str = getSelectedText();
+                            if (str != null && str.length() != 0) {
+                                int tok = lexer.getKeyword(getSelectionStart(), false);
+                                int s = lexer.start + lexer.yychar();
+                                if (ScilabLexerConstants.isSearchable(tok) && getSelectionStart() == s && getSelectionEnd() == s + lexer.yylength()) {
+                                    highlightWords(tok, SearchManager.generatePattern(str, false, true, false), false);
+                                } else {
+                                    highlightWords(str, false);
+                                }
 
-                if (highlightedWords.size() > 1) {
-                    editor.getInfoBar().setText(String.format(SciNotesMessages.OCCURENCES_FOUND, Integer.toString(highlightedWords.size())));
-                    search = true;
+                                if (highlightedWords.size() > 1 && editor != null && editor.getInfoBar() != null) {
+                                    editor.getInfoBar().setText(String.format(SciNotesMessages.OCCURENCES_FOUND, Integer.toString(highlightedWords.size())));
+                                }
+                                removeHighlightOnPosition(getSelectionStart());
+                            }
+                            selectionTimer = null;
+                        }
+                    });
+                    selectionTimer.setRepeats(false);
+                    selectionTimer.start();
+                } else {
+                    selectionTimer.restart();
                 }
-                removeHighlightOnPosition(getSelectionStart());
             } else {
                 removeHighlightedWords();
             }
@@ -1120,13 +1175,27 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         int pos = getCaretPosition();
 
         if (matchingKeywordsEnable || matchingOpenersEnable) {
-            int tok = lexer.getKeyword(pos, false);
-            matchLR.searchMatchingBlock(false, tok, lexer.start + lexer.yychar());
-            tok = lexer.getKeyword(pos, true);
-            matchRL.searchMatchingBlock(false, tok, lexer.start + lexer.yychar() + lexer.yylength());
+            if (matcherTimer == null) {
+                matcherTimer = new Timer(100, new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        int pos = getCaretPosition();
+                        int tok = lexer.getKeyword(pos, false);
+                        matchLR.searchMatchingBlock(false, tok, lexer.start + lexer.yychar());
+                        tok = lexer.getKeyword(pos, true);
+                        matchRL.searchMatchingBlock(false, tok, lexer.start + lexer.yychar() + lexer.yylength());
+                        matcherTimer = null;
+                    }
+                });
+                matcherTimer.setRepeats(false);
+                matcherTimer.start();
+            } else {
+                matcherTimer.restart();
+                matchLR.update();
+                matchRL.update();
+            }
         }
 
-        if (!search && !readonly && !binary && editor != null) {
+        if (!readonly && !binary && editor != null) {
             editor.getInfoBar().setText(((ScilabDocument) getDocument()).getCurrentFunction(pos));
         }
     }

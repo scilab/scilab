@@ -8,15 +8,15 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function Mut_Indiv = mutation_ga_default(Indiv,param)
-if ~isdef('param','local') then
-  param = [];
-end
-// We deal with some parameters to take into account the boundary of the domain and the neighborhood size
-[Delta,err]     = get_param(param,'delta',0.1);
-[MinBounds,err] = get_param(param,'minbound',-2*ones(size(Indiv,1),size(Indiv,2)));
-[MaxBounds,err] = get_param(param,'maxbound', 2*ones(size(Indiv,1),size(Indiv,2)));
+    if ~isdef("param","local") then
+        param = [];
+    end
+    // We deal with some parameters to take into account the boundary of the domain and the neighborhood size
+    [Delta,err]     = get_param(param,"delta",0.1);
+    [MinBounds,err] = get_param(param,"minbound",-2*ones(size(Indiv,1),size(Indiv,2)));
+    [MaxBounds,err] = get_param(param,"maxbound", 2*ones(size(Indiv,1),size(Indiv,2)));
 
-Mut_Indiv = Indiv + 2*Delta*rand(size(Indiv,1),size(Indiv,2)) - Delta*ones(size(Indiv,1),size(Indiv,2));
+    Mut_Indiv = Indiv + 2*Delta*grand(size(Indiv,1),size(Indiv,2),"def") - Delta*ones(size(Indiv,1),size(Indiv,2));
 
-Mut_Indiv = max(min(Mut_Indiv, MaxBounds),MinBounds);
+    Mut_Indiv = max(min(Mut_Indiv, MaxBounds),MinBounds);
 endfunction

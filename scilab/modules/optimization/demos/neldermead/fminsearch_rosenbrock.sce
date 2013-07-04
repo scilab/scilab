@@ -39,9 +39,9 @@ function demo_fmin_rosenbrock()
     //
     // Load this script into the editor
     //
-    m = messagebox(_("View Code?"), "Question", "question", _(["Yes" "No"]), "modal")
+    m = messagebox(_("View Code?"), "Question", "question", [_("Yes") _("No")], "modal")
     if(m == 1)
-        filename = 'fminsearch_rosenbrock.sce';
+        filename = "fminsearch_rosenbrock.sce";
         dname = get_absolute_file_path(filename);
         editor ( dname + filename, "readonly" );
     end
@@ -55,4 +55,5 @@ clear demo_fmin_rosenbrock;
 
 
 
-
+
+

@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.palette.model;
 
+import java.io.File;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -23,11 +25,11 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>
  * Representation of a function. This can be associated with an icon.
- * 
+ *
  * <p>
  * The following schema fragment specifies the expected content contained within
  * this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="PaletteBlock">
  *   &lt;complexContent>
@@ -41,8 +43,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PaletteBlock", propOrder = { "data", "icon" })
@@ -63,9 +65,9 @@ public class PaletteBlock {
 
     /**
      * Gets the value of the data property.
-     * 
+     *
      * @return possible object is {@link VariablePath }
-     * 
+     *
      */
     public VariablePath getData() {
         return data;
@@ -73,10 +75,10 @@ public class PaletteBlock {
 
     /**
      * Sets the value of the data property.
-     * 
+     *
      * @param value
      *            allowed object is {@link VariablePath }
-     * 
+     *
      */
     public void setData(VariablePath value) {
         this.data = value;
@@ -84,9 +86,9 @@ public class PaletteBlock {
 
     /**
      * Gets the value of the icon property.
-     * 
+     *
      * @return possible object is {@link VariablePath }
-     * 
+     *
      */
     public VariablePath getIcon() {
         return icon;
@@ -94,10 +96,10 @@ public class PaletteBlock {
 
     /**
      * Sets the value of the icon property.
-     * 
+     *
      * @param value
      *            allowed object is {@link VariablePath }
-     * 
+     *
      */
     public void setIcon(VariablePath value) {
         this.icon = value;
@@ -105,9 +107,9 @@ public class PaletteBlock {
 
     /**
      * Gets the value of the name property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getName() {
         return name;
@@ -115,10 +117,10 @@ public class PaletteBlock {
 
     /**
      * Sets the value of the name property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setName(String value) {
         this.name = value;
@@ -126,13 +128,22 @@ public class PaletteBlock {
 
     /**
      * Load the icon and return it.
-     * 
+     *
      * @return the loaded icon
      * @see PaletteBlock#getIcon()
      */
     public Icon getLoadedIcon() {
         String path = getIcon().getEvaluatedPath();
-        return new ImageIcon(path);
+
+        /*
+         * Return an image icon only if the file exists to avoid caching an
+         * erroneous image status on the Toolkit.
+         */
+        if (new File(path).exists()) {
+            return new ImageIcon(path);
+        } else {
+            return new ImageIcon();
+        }
     }
 
 }

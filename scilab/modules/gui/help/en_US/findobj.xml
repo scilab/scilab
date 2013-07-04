@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="findobj">
-  <refnamediv>
-    <refname>findobj</refname>
-    <refpurpose> find an object with specified property</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      h =  findobj(propertyName, propertyValue)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>propertyName</term>
-        <listitem>
-          <para>string character Name of the property to test (case unsensitive).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>propertyValue</term>
-        <listitem>
-          <para>string character specify the value the tested propoerty should be equal to (case sensitive).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>h</term>
-        <listitem>
-          <para>handle of the found object.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      This routine is currently used to find objects knowing their 'tag'
-      property.  It returns handle of the first found object which property
-      <emphasis role="italic">propertyName</emphasis> is equal to <emphasis role="italic">propertyValue</emphasis>. If such an object does not exist, the
-      function returns an empty matrix.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="findobj">
+    <refnamediv>
+        <refname>findobj</refname>
+        <refpurpose>find an object with specified property</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            h =  findobj(propertyName, propertyValue)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>propertyName</term>
+                <listitem>
+                    <para>string character Name of the property to test (case unsensitive).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>propertyValue</term>
+                <listitem>
+                    <para>string character specify the value the tested propoerty should be equal to (case sensitive).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>handle of the found object.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This routine is currently used to find objects knowing their 'tag'
+            property.  It returns handle of the first found object which property
+            <emphasis role="italic">propertyName</emphasis> is equal to <emphasis role="italic">propertyValue</emphasis>. If such an object does not exist, the
+            function returns an empty matrix.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // Create a figure
 h=figure();
 // Put a text in the figure
@@ -59,22 +59,22 @@ disp("The text of the label is """+lab.string+"""");
 // Close the figure
 close();
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="uicontrol">uicontrol</link>
-      </member>
-      <member>
-        <link linkend="uimenu">uimenu</link>
-      </member>
-      <member>
-        <link linkend="set">set</link>
-      </member>
-      <member>
-        <link linkend="get">get</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uimenu">uimenu</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

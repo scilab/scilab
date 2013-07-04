@@ -11,64 +11,64 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  * 
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="bitxor" xml:lang="ja">
-  <refnamediv>
-    <refname>bitxor</refname>
-    <refpurpose>ビット単位の排他的論理和(XOR)</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>
-      z = bitxor(x,y)
-      
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>x :</term>
-        <listitem>
-          <para>
-            m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-            または符合なし整数(uint8, uint16 または uint32)の
-            m行n列行列.値は正の整数値である必要があります.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y :</term>
-        <listitem>
-          <para>
-            m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-            または符合なし整数(uint8, uint16 または uint32)の
-            m行n列行列.値は正の整数値である必要があります.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>z :</term>
-        <listitem>
-          <para>
-            m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-            または符合なし整数.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      2つの正の整数 x および y を指定すると,この関数は2進形式が
-      x および y の2進形式の排他的論理和となるような10進数を返します.
-    </para>
-    <para>
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitxor" xml:lang="ja">
+    <refnamediv>
+        <refname>bitxor</refname>
+        <refpurpose>ビット単位の排他的論理和(XOR)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            z = bitxor(x,y)
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x :</term>
+                <listitem>
+                    <para>
+                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+                        または符合なし整数(uint8, uint16 または uint32)の
+                        m行n列行列.値は正の整数値である必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y :</term>
+                <listitem>
+                    <para>
+                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+                        または符合なし整数(uint8, uint16 または uint32)の
+                        m行n列行列.値は正の整数値である必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z :</term>
+                <listitem>
+                    <para>
+                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+                        または符合なし整数.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            2つの正の整数 x および y を指定すると,この関数は2進形式が
+            x および y の2進形式の排他的論理和となるような10進数を返します.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
 // Compute the bitwise XOR of two matrices of doubles.
 x = [0 1 0 1];
 y = [0 0 1 1];
@@ -92,5 +92,5 @@ bitxor(uint8(13), uint8(27))
 bitxor(13, 27)
 
    ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

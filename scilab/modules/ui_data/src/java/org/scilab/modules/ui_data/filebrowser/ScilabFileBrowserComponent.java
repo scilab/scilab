@@ -27,6 +27,7 @@ import org.scilab.modules.gui.pushbutton.PushButton;
  * A JPanel containing the different elements composing the File Browser
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabFileBrowserComponent extends JPanel {
 
     private static final int GAP = 3;
@@ -49,7 +50,6 @@ public class ScilabFileBrowserComponent extends JPanel {
         add(new ScilabFileSelectorFilter(stt), BorderLayout.PAGE_END);
 
         JScrollPane jsp = new JScrollPane(stt);
-        jsp.getViewport().setScrollMode(JViewport.BACKINGSTORE_SCROLL_MODE);
         jsp.getViewport().setBackground(bg);
         add(jsp, BorderLayout.CENTER);
     }
@@ -60,10 +60,10 @@ public class ScilabFileBrowserComponent extends JPanel {
      */
     public void setBaseDir(final String baseDir) {
         SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    stt.setBaseDir(baseDir);
-                }
-            });
+            public void run() {
+                stt.setBaseDir(baseDir);
+            }
+        });
     }
 
     /**

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Farid BELAHCENE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="char" xml:lang="ru">
+    <refnamediv>
+        <refname>char</refname>
+        <refpurpose>преобразует в массив символов</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>y=char(x)
+            y = char(st1, st2, st3,...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        cell-массив строковых значений или массив ASCII-кодов.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>st1, st2, st3</term>
+                <listitem>
+                    <para>массивы строковых значений.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>вектор-столбец строковых значений.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <emphasis role="bold">Один входной аргумент:</emphasis>
+        </para>
+        <para>
+            Для  заданного cell-массива строковых значений <varname>x</varname> данная функция
+            возвращает вектор строковых значений <varname>y</varname> в котором строки являются
+            конкатенированными элементами соответствующих строк cell-массива строковых значений.
+        </para>
+        <para>
+            Для заданного массива ASCII-кодов <varname>x</varname> данная функция
+            возвращает массив строковых значений <varname>y</varname>, соответствующих
+            ASCII-кодам. Если размеры <varname>x</varname> равны <literal>[n1, n2, n3, n4,...]</literal>,
+            то возвращаемое значение имеет те же размеры, что и входное значение за 
+            исключением второго размера, т. е. размеры <varname>y</varname> равны
+            <literal>[n1, n3, n4,...]</literal>.
+        </para>
+        <para>
+            <emphasis role="bold">Более одного входного аргумента:</emphasis>
+        </para>
+        <para>
+            Для заданных массивов строковых значений <literal>st1, st2, st3,...</literal> эта функция
+            возвращает вектор строковых значений в котором строки являются конкатенированными 
+            элементами соответствующих строк <literal>st1, st2, st3,...</literal>. В векторе
+            <varname>y</varname> всех строковые значения <literal>sti</literal> дополняются
+            пробелами чтобы получить ту же длину, что и максимальная длина <literal>sti</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+// Пример с гиперматрицей ASCII-кодов:
+x=hypermat([4,2,3],61:84);
+y=char(x)
+size(x)
+size(y)
+ 
+// Пример со множеством входных аргументов:
+st1="zeros";
+st2=["one","two"];
+st3=["three"];
+y=char(st1,st2,st3)
+size(y)
+ 
+//все строки строковых значений дополняются "пробелами" так, чтобы
+//иметь одинаковую длину: 6
+length(y)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ascii">ascii</link>
+            </member>
+            <member>
+                <link linkend="asciimat">asciimat</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

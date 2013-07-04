@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,48 +10,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="classmarkov">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="classmarkov" xml:lang="en">
     <refnamediv>
         <refname>classmarkov</refname>
-        <refpurpose> recurrent and transient classes of Markov matrix</refpurpose>
+        <refpurpose>classes transientes e recorrentes da matriz de
+            Markov
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title> Seqüência de Chamamento</title>
         <synopsis>[perm,rec,tr,indsRec,indsT]=classmarkov(M)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
                 <term>M</term>
                 <listitem>
-                    <para>real N x N Markov matrix. Sum of entries in each row should add to one.</para>
+                    <para>matriz de Markov N x N de reais. A soma das entradas em cada
+                        linha deve ser acrescida em uma unidade
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>perm</term>
                 <listitem>
-                    <para>integer permutation vector.</para>
+                    <para>vetor de permutação de inteiros</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rec, tr</term>
                 <listitem>
-                    <para>integer vector, number (number of states in each recurrent classes, number of transient states).</para>
+                    <para>vetor de inteiros, número (número de estados em cada classe
+                        recorrente, número de estados transientes) 
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>indsRec,indsT</term>
                 <listitem>
-                    <para>integer vectors. (Indexes of recurrent and transient states).</para>
+                    <para>vetor de inteiros (índices dos estados recorrentes e
+                        transientes)
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Descrição</title>
         <para>
-            Returns a permutation vector <literal>perm</literal> such that
+            Retorna um vetor de permutação <literal>perm</literal> tal
+            que
         </para>
         <programlisting role=""><![CDATA[ 
 M(perm,perm) = [M11 0 0 0 0   0]
@@ -62,25 +71,25 @@ M(perm,perm) = [M11 0 0 0 0   0]
                [* *        *  Q]
  ]]></programlisting>
         <para>
-            Each <literal>Mii</literal> is a Markov matrix of dimension <literal>rec(i)  i=1,..,r</literal>.
-            <literal>Q</literal> is sub-Markov matrix of dimension <literal>tr</literal>.
-            States 1 to sum(rec) are recurrent and states from r+1 to n
-            are transient. 
-            One has <literal>perm=[indsRec,indsT]</literal> where indsRec is a  vector of size sum(rec) 
-            and indsT is a vector of size tr.
+            Cada <literal>Mii</literal> é uma matriz de Markov de dimensão
+            <literal>rec(i) i=1,..,r</literal>. <literal>Q</literal> é uma submatriz
+            de Markov de dimensão <literal>tr</literal>. Estados de 1 a sum(rec) são
+            recorrentes e estados de r+1 a n são transientes. Tem-se
+            <literal>perm=[indsRec,indsT]</literal> onde indsRec é um vetor de tamanho
+            sum(rec) e indsT é um vetor de tamanho tr.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
-//P has two recurrent classes (with 2 and 1 states) 2 transient states
+//P tem 2 classes recorrentes (com 2 e 1 estados) e 2 estados transientes
 P=genmarkov([2,1],2,'perm')
 [perm,rec,tr,indsRec,indsT]=classmarkov(P);
 P(perm,perm)
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title> Ver Também</title>
         <simplelist type="inline">
             <member>
                 <link linkend="genmarkov">genmarkov</link>

@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="fplot3d">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="fplot3d">
     <refnamediv>
         <refname>fplot3d</refname>
         <refpurpose>関数により定義された曲面の3次元プロット</refpurpose>
@@ -75,7 +75,11 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>fplot3d();</scilab:image>
+        <scilab:image>
+            deff('z=f(x,y)','z=x^4-y^4')
+            x=-3:0.2:3 ;y=x ;
+            clf() ;fplot3d(x,y,f,alpha=5,theta=31)  
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

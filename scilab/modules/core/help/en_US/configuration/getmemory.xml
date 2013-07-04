@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getmemory">
-  <refnamediv>
-    <refname>getmemory</refname>
-    <refpurpose>returns free and total system memory</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[free, total]=getmemory()</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>getmemory()</literal> returns free system memory  (kilo-octets).
-    </para>
-    <para>
-      <literal>[free, total]=getmemory()</literal> returns free and total system memory  (kilo-octets).
-    </para>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="getmemory">
+    <refnamediv>
+        <refname>getmemory</refname>
+        <refpurpose>returns free and total system memory</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[free, total]=getmemory()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>getmemory()</code> returns free system memory  (kilo-octets).
+        </para>
+        <para>
+            <code>[free, total] = getmemory()</code> returns free and total system memory  (kilo-octets).
+        </para>
+        <para>
+            <note>
+                Do not rely too much on this function. Due to various level of caching,
+                free memory detection is a tricky thing under most modern operating
+                systems.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+[a,b]=getmemory()
+ ]]></programlisting>
+    </refsection>
+    
 </refentry>

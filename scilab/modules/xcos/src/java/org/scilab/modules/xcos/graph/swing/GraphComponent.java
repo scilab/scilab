@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.graph.swing;
 
+import java.awt.GraphicsEnvironment;
 import java.awt.MouseInfo;
 
 import org.scilab.modules.graph.ScilabComponent;
@@ -44,11 +45,12 @@ import com.mxgraph.swing.handler.mxSelectionCellsHandler;
  * Implement a specific {@link com.mxgraph.swing.mxGraphComponent} for an Xcos
  * diagram.
  */
+@SuppressWarnings(value = { "serial" })
 public class GraphComponent extends ScilabComponent {
 
     /**
      * Default constructor.
-     * 
+     *
      * @param graph
      *            the graph
      */
@@ -71,6 +73,10 @@ public class GraphComponent extends ScilabComponent {
      */
     @Override
     protected mxGraphHandler createGraphHandler() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return null;
+        }
+
         return new GraphHandler(this);
     }
 
@@ -115,9 +121,8 @@ public class GraphComponent extends ScilabComponent {
         /*---*/
         menu.add(XcosDocumentationAction.createMenu((ScilabGraph) getGraph()));
 
-        ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
-                MouseInfo.getPointerInfo().getLocation().x, MouseInfo
-                        .getPointerInfo().getLocation().y);
+        ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo()
+                .getLocation().y);
 
         menu.setVisible(true);
     }

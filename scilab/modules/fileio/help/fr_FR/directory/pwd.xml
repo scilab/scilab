@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="pwd">
+    <refnamediv>
+        <refname>pwd</refname>
+        <refpurpose>affiche le répertoire courant de Scilab  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>pwd
+            x=pwd()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>pwd</literal> renvoie dans <literal>ans</literal> le répertoire courant de Scilab.
+            <literal>x=pwd()</literal> renvoie dans <literal>x</literal> le répertoire courant de Scilab.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+pwd
+x=pwd()
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="chdir">chdir</link>
+            </member>
+            <member>
+                <link linkend="cd">cd</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

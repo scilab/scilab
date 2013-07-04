@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 5099 -->
 //
@@ -16,5 +16,5 @@
 // <-- Short Description -->
 // With some diagrams, The whole diagramm is not visible after "Fit diagramm to view".
 
-xcos(SCI+'/modules/xcos/demos/susp.xcos');
+xcos(SCI+'/modules/xcos/demos/susp.zcos');
 // "Menu → View → Fit diagram to view"

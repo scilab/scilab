@@ -56,48 +56,30 @@ NgonPolylineData::~NgonPolylineData(void)
     }
 }
 
-int NgonPolylineData::getPropertyFromName(char const* propertyName)
+int NgonPolylineData::getPropertyFromName(int propertyName)
 {
-
-    if (strcmp(propertyName, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__) == 0)
+    switch (propertyName)
     {
-        return NUM_ELEMENTS_ARRAY;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_X_COORDINATES_SHIFT__) == 0)
-    {
-        return X_COORDINATES_SHIFT;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__) == 0)
-    {
-        return Y_COORDINATES_SHIFT;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__) == 0)
-    {
-        return Z_COORDINATES_SHIFT;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_NUM_ELEMENTS__) == 0)
-    {
-        return NUM_ELEMENTS;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__) == 0)
-    {
-        return X_COORDINATES_SHIFT_SET;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__) == 0)
-    {
-        return Y_COORDINATES_SHIFT_SET;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__) == 0)
-    {
-        return Z_COORDINATES_SHIFT_SET;
-    }
-    else if (strcmp(propertyName, __GO_DATA_MODEL_Z_COORDINATES_SET__) == 0)
-    {
-        return Z_COORDINATES_SET;
-    }
-    else
-    {
-        return NgonGeneralData::getPropertyFromName(propertyName);
+        case __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__ :
+            return NUM_ELEMENTS_ARRAY;
+        case __GO_DATA_MODEL_X_COORDINATES_SHIFT__ :
+            return X_COORDINATES_SHIFT;
+        case __GO_DATA_MODEL_Y_COORDINATES_SHIFT__ :
+            return Y_COORDINATES_SHIFT;
+        case __GO_DATA_MODEL_Z_COORDINATES_SHIFT__ :
+            return Z_COORDINATES_SHIFT;
+        case __GO_DATA_MODEL_NUM_ELEMENTS__ :
+            return NUM_ELEMENTS;
+        case __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__ :
+            return X_COORDINATES_SHIFT_SET;
+        case __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__ :
+            return Y_COORDINATES_SHIFT_SET;
+        case __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__ :
+            return Z_COORDINATES_SHIFT_SET;
+        case __GO_DATA_MODEL_Z_COORDINATES_SET__ :
+            return Z_COORDINATES_SET;
+        default :
+            return NgonGeneralData::getPropertyFromName(propertyName);
     }
 
 }

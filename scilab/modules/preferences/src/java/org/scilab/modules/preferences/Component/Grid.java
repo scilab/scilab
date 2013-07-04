@@ -39,34 +39,34 @@ public class Grid extends Panel implements XComponent {
      */
     private static final long serialVersionUID = 3462302313959678932L;
     private static final HashMap<String, Integer> ANCHORS = new HashMap<String, Integer>();
-    
+
     static {
-	ANCHORS.put("northwest", GridBagConstraints.NORTHWEST);
-	ANCHORS.put("north", GridBagConstraints.NORTH);
-	ANCHORS.put("northeast", GridBagConstraints.NORTHEAST);
-	ANCHORS.put("west", GridBagConstraints.WEST);
-	ANCHORS.put("center", GridBagConstraints.CENTER);
-	ANCHORS.put("east", GridBagConstraints.EAST);
-	ANCHORS.put("southwest", GridBagConstraints.SOUTHWEST);
-	ANCHORS.put("south", GridBagConstraints.SOUTH);
-	ANCHORS.put("southeast", GridBagConstraints.SOUTHEAST);
-	ANCHORS.put("first_line_start", GridBagConstraints.FIRST_LINE_START);
-	ANCHORS.put("page_start", GridBagConstraints.PAGE_START);
-	ANCHORS.put("first_line_end", GridBagConstraints.FIRST_LINE_END);
-	ANCHORS.put("line_start", GridBagConstraints.LINE_START);
-	ANCHORS.put("line_end", GridBagConstraints.LINE_END);
-	ANCHORS.put("last_line_start", GridBagConstraints.LAST_LINE_START);
-	ANCHORS.put("page_end", GridBagConstraints.PAGE_END);
-	ANCHORS.put("last_line_end", GridBagConstraints.LAST_LINE_END);
-	ANCHORS.put("baseline", GridBagConstraints.BASELINE);
-	ANCHORS.put("baseline_leading", GridBagConstraints.BASELINE_LEADING);
-	ANCHORS.put("baseline_trailing", GridBagConstraints.BASELINE_TRAILING);
-	ANCHORS.put("above_baseline", GridBagConstraints.ABOVE_BASELINE);
-	ANCHORS.put("above_baseline_leading", GridBagConstraints.ABOVE_BASELINE_LEADING);
-	ANCHORS.put("above_baseline_trailing", GridBagConstraints.ABOVE_BASELINE_TRAILING);
-	ANCHORS.put("below_baseline", GridBagConstraints.BELOW_BASELINE);
-	ANCHORS.put("below_baseline_leading", GridBagConstraints.BELOW_BASELINE_LEADING);
-	ANCHORS.put("below_baseline_trailing", GridBagConstraints.BELOW_BASELINE_TRAILING);
+        ANCHORS.put("northwest", GridBagConstraints.NORTHWEST);
+        ANCHORS.put("north", GridBagConstraints.NORTH);
+        ANCHORS.put("northeast", GridBagConstraints.NORTHEAST);
+        ANCHORS.put("west", GridBagConstraints.WEST);
+        ANCHORS.put("center", GridBagConstraints.CENTER);
+        ANCHORS.put("east", GridBagConstraints.EAST);
+        ANCHORS.put("southwest", GridBagConstraints.SOUTHWEST);
+        ANCHORS.put("south", GridBagConstraints.SOUTH);
+        ANCHORS.put("southeast", GridBagConstraints.SOUTHEAST);
+        ANCHORS.put("first_line_start", GridBagConstraints.FIRST_LINE_START);
+        ANCHORS.put("page_start", GridBagConstraints.PAGE_START);
+        ANCHORS.put("first_line_end", GridBagConstraints.FIRST_LINE_END);
+        ANCHORS.put("line_start", GridBagConstraints.LINE_START);
+        ANCHORS.put("line_end", GridBagConstraints.LINE_END);
+        ANCHORS.put("last_line_start", GridBagConstraints.LAST_LINE_START);
+        ANCHORS.put("page_end", GridBagConstraints.PAGE_END);
+        ANCHORS.put("last_line_end", GridBagConstraints.LAST_LINE_END);
+        ANCHORS.put("baseline", GridBagConstraints.BASELINE);
+        ANCHORS.put("baseline_leading", GridBagConstraints.BASELINE_LEADING);
+        ANCHORS.put("baseline_trailing", GridBagConstraints.BASELINE_TRAILING);
+        ANCHORS.put("above_baseline", GridBagConstraints.ABOVE_BASELINE);
+        ANCHORS.put("above_baseline_leading", GridBagConstraints.ABOVE_BASELINE_LEADING);
+        ANCHORS.put("above_baseline_trailing", GridBagConstraints.ABOVE_BASELINE_TRAILING);
+        ANCHORS.put("below_baseline", GridBagConstraints.BELOW_BASELINE);
+        ANCHORS.put("below_baseline_leading", GridBagConstraints.BELOW_BASELINE_LEADING);
+        ANCHORS.put("below_baseline_trailing", GridBagConstraints.BELOW_BASELINE_TRAILING);
     }
 
     /** Define the set of actuators.
@@ -85,7 +85,7 @@ public class Grid extends Panel implements XComponent {
     public Grid(final Node peer) {
         super(peer);
         setLayout(new GridBagLayout());
-	//setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.RED));
+        //setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.RED));
     }
 
     /** Translation of constraints.
@@ -102,16 +102,16 @@ public class Grid extends Panel implements XComponent {
         gbc.ipadx = XCommonManager.getInt(component, "ipadx", 0);
         gbc.ipady = XCommonManager.getInt(component, "ipady", 0);
 
-	Integer an = ANCHORS.get(XConfigManager.getAttribute(component, "anchor").toLowerCase());
-	if (an != null) {
-	    gbc.anchor = an.intValue();
-	}
+        Integer an = ANCHORS.get(XConfigManager.getAttribute(component, "anchor").toLowerCase());
+        if (an != null) {
+            gbc.anchor = an.intValue();
+        }
 
         String insets = XConfigManager.getAttribute(component, "insets");
         if (insets.equals("large")) {
-            gbc.insets = new Insets(5,5,5,5);
+            gbc.insets = new Insets(5, 5, 5, 5);
         } else if (insets.equals("huge")) {
-            gbc.insets = new Insets(15,15,15,15);
+            gbc.insets = new Insets(15, 15, 15, 15);
         }
 
         String fill = XConfigManager.getAttribute(component, "fill");

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="contour2d">
+    <refnamediv>
+        <refname>contour2d</refname>
+        <refpurpose>
+            кривые уровней поверхности на двумерном графике
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            contour2d(x, y, z, nz, [style, strf, leg, rect, nax])
+            contour2d(x, y, z, nz, &lt;opt_args&gt;)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y</term>
+                <listitem>
+                    <para>
+                        два вещественных вектора-строки размером
+                        <literal>n1</literal> и <literal>n2</literal>: сетка.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>
+                        вещественная матрица размером <literal>(n1,n2)</literal>,
+                        значение функции в сетке, либо Scilab-функция, которая
+                        определяет поверхность <literal>z=f(x,y)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nz</term>
+                <listitem>
+                    <para>
+                        значения уровней или число уровней.
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>
+                                Если <literal>nz</literal> - целое число
+                            </term>
+                            <listitem>
+                                <para>
+                                    его значение указывает количество кривых
+                                    уровня равномерно распределённых от <literal>zmin</literal>
+                                    до <literal>zmax</literal>, как показано
+                                    ниже:
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[
+z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
+ ]]></programlisting>
+                                <para>
+                                    <note>
+                                        Заметьте, что уровни <literal>zmin</literal>
+                                        и <literal>zmax</literal> не рисуются
+                                        (вообще, они сводятся в точку), но их можно
+                                        добавить следующим образом:
+                                    </note>
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[
+[im,jm] = find(z == zmin); // или zmax
+plot2d(x(im)',y(jm)',-9,"000")
+ ]]></programlisting>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>
+                                Если <literal>nz</literal> - вектор
+                            </term>
+                            <listitem>
+                                <para>
+                                    <literal>nz(i)</literal> указывает значение
+                                    <literal>i</literal>-той кривой уровня.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;opt_args&gt;</term>
+                <listitem>
+                    <para>
+                        Это представляет последовательность инструкций
+                        <literal>key1=value1, key2=value2</literal>,... где
+                        <literal>key1</literal>, <literal>key2</literal>,...
+                        могут иметь одно из следующих значений:
+                        <literal>style</literal>, <literal>leg</literal>,
+                        <literal>rect</literal>, <literal>nax</literal>,
+                        <literal>strf</literal> или <literal>axesflag</literal>
+                        и <literal>frameflag</literal> (см. <link linkend="plot2d">plot2d</link>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>style, strf, leg, rect, nax</term>
+                <listitem>
+                    <para>
+                        см. <link linkend="plot2d">plot2d</link>. Аргумент
+                        <literal>style</literal> указывает стили штриха или
+                        цвета, которые требуется использовать для кривых уровня.
+                        Он должен быть того же самого размера, что и количество
+                        уровней.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <function>contour2d</function> рисует кривые уровней поверхности
+            <literal>z=f(x,y)</literal> на двумерном графике. Значения
+            <literal>f(x,y)</literal> указываются в матрице
+            <varname>z</varname> в точках сетки, определённой через
+            <varname>x</varname> и <varname>y</varname>.
+        </para>
+        <para>
+            Вы можете изменить формат чисел с плавающей запятой, печатаемых на
+            уровнях, с помощью <code>xset("fpf",string)</code>, где
+            <varname>string</varname> указывает формат в формате C-синтаксиса
+            (например, <code>string="%.3f"</code>). Используйте
+            <code>string=""</code> для переключения обратно в формат по
+            умолчанию и используйте <code>string=" "</code> для подавления
+            печати. Это последняя возможность очень полезна в сочетании с <link
+            linkend="legends">legends</link> для отображения номеров уровней в
+            легенде, а не прямо на кривых уровней, как обычно (см. раздел
+            "Примеры").
+        </para>
+        <para>
+            Необязательные аргументы <varname>style</varname>,
+            <varname>strf</varname>, <varname>leg</varname>,
+            <varname>rect</varname>, <varname>nax</varname> могут быть переданы
+            в виде последовательности инструкций <literal>key1=value1,
+                key2=value2
+            </literal>
+            ,... где ключи <literal>key</literal> могут
+            быть <literal>style</literal>, <literal>strf</literal>,
+            <literal>leg</literal>, <literal>rect</literal>,
+            <literal>nax</literal>. В этом случае порядок не имеет особого значения.
+        </para>
+        <para>
+            Используйте функцию <function>contour</function> для рисования кривых уровней на трёхмерной поверхности.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
+ ]]></programlisting>
+        <scilab:image>
+            contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11]);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+clf()
+// Изменение формата печати уровней
+xset("fpf","%.2f")
+contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
+  ]]></programlisting>
+        <scilab:image>
+            xset("fpf","%.2f")
+            contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// Пример с номерами уровней, печатаемых в легенде.
+// Предупреждение: есть много уловок...
+x = linspace(0,4*%pi,80);
+z = cos(x')*cos(x);
+clf(); f=gcf();
+xset("fpf"," ")
+
+// уловка 1: подразумевается, что номера уровней
+//           не рисуются на кривых уровней
+f.color_map=jetcolormap(7);
+
+// уловка 2: чтобы иметь возможность поместить легенду справа без
+//          наложения на кривые уровней, используйте rect с достаточно
+//          большим значением xmax
+contour2d(x,x,z,-0.75:0.25:0.75,frameflag=3,rect=[0,0,5*%pi,4*%pi])
+
+// уловка 3: используйте legends (заметьте, что наиболее практичная функция
+//          легенды не будет работать, когда один из уровней формируется
+//          двумя кривыми)
+legends(string(-0.75:0.25:0.75),1:7,"lr");
+xtitle("Некоторые уровни кривых функции cos(x)cos(y)")
+ ]]></programlisting>
+        <scilab:image localized="true">
+            x = linspace(0,4*%pi,80);
+            z = cos(x')*cos(x);
+            
+            clf(); f=gcf();
+            xset("fpf"," ")
+            
+            f.color_map=jetcolormap(7);
+            
+            contour2d(x,x,z,-0.75:0.25:0.75,frameflag=3,rect=[0,0,5*%pi,4*%pi])
+            
+            legends(string(-0.75:0.25:0.75),1:7,"lr");
+            xtitle("Некоторые уровни кривых функции cos(x)cos(y)")
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="contour">contour</link>
+            </member>
+            <member>
+                <link linkend="contour2di">contour2di</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

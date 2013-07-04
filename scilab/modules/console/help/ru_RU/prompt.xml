@@ -10,76 +10,84 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="prompt" xml:lang="ru">
-  <info>
-    <pubdate>$LastChangedDate: 2007-05-13 12:13:33 +0200 (dim., 13 mai 2007)
-      $
-    </pubdate>
-  </info>
-  <refnamediv>
-    <refname>prompt</refname>
-    <refpurpose>получение/установка текущего приглашения командной строки</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>
-      currentprompt = prompt()
-      [currentprompt,pauselevel] = prompt()
-      prompt(userprompt)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>currentprompt</term>
-        <listitem>
-          <para>
-            Строка: текущее приглашение командной строки, возвращённое
-            в виде символьной строки.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>pauselevel</term>
-        <listitem>
-          <para>Целое число: текущий уровень паузы.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>userprompt</term>
-        <listitem>
-          <para>
-            Строка: приглашение командной строки, которое будет
-            отображено для следующего пользовательского ввода. 
-            Затем текущее приглашение командной строки будет использоваться
-            вновь.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Инструкция <literal>currentprompt = prompt()</literal> получает текущее 
-      приглашение командной строки.
-    </para>
-    <para>
-      Инструкция <literal>prompt(userprompt)</literal> устанавливает приглашение 
-      командной строки.
-    </para>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="pause">pause</link>
-      </member>
-      <member>
-        <link linkend="input">input</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="prompt" xml:lang="ru">
+    <refnamediv>
+        <refname>prompt</refname>
+        <refpurpose>получение/установка текущего приглашения командной строки</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            currentprompt = prompt()
+            [currentprompt,pauselevel] = prompt()
+            prompt(userprompt)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>currentprompt</term>
+                <listitem>
+                    <para>
+                        Строка: текущее приглашение командной строки, возвращённое
+                        в виде символьной строки.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pauselevel</term>
+                <listitem>
+                    <para>Целое число: текущий уровень паузы.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>userprompt</term>
+                <listitem>
+                    <para>
+                        Строка: приглашение командной строки, которое будет
+                        отображено для следующего пользовательского ввода. 
+                        Затем текущее приглашение командной строки будет использоваться
+                        вновь.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Инструкция <literal>currentprompt = prompt()</literal> получает текущее 
+            приглашение командной строки.
+        </para>
+        <para>
+            Инструкция <literal>prompt(userprompt)</literal> устанавливает приглашение 
+            командной строки.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+currentPrompt = prompt();
+disp(currentPrompt); // Вероятно "-->"
+
+[currentPrompt, pauseLevel] = prompt();
+disp(pauseLevel); // Вероятно 0
+
+prompt(">>"); // Создать новое приглашение командной строки лишь для следующей команды
+
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pause">pause</link>
+            </member>
+            <member>
+                <link linkend="input">input</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
 

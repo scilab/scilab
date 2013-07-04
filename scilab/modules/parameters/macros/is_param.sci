@@ -8,16 +8,16 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [result,err] = is_param(list_name,param_name)
-[nargout,nargin] = argn();
-result = [];
-if typeof(list_name)=='plist' then
-  result = or(getfield(1,list_name)==param_name);
-  if nargout==2 then err = %F; end
-else
-  if nargout==2 then 
-    err = %T;
-  else
-    error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), "is_param", 1, "plist"));
-  end
-end
+    [nargout,nargin] = argn();
+    result = [];
+    if typeof(list_name)=="plist" then
+        result = or(getfield(1,list_name)==param_name);
+        if nargout==2 then err = %F; end
+    else
+        if nargout==2 then
+            err = %T;
+        else
+            error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), "is_param", 1, "plist"));
+        end
+    end
 endfunction

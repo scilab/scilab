@@ -13,8 +13,8 @@
  -->
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="sound">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -29,7 +29,7 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
-<PRIMITIVE gatewayId="49" primitiveId="1" primitiveName="PlaySound" />
-<PRIMITIVE gatewayId="49" primitiveId="2" primitiveName="beep" />
+    <!-- =================== -->
+    <PRIMITIVE gatewayId="49" primitiveId="1" primitiveName="PlaySound" />
+    <PRIMITIVE gatewayId="49" primitiveId="2" primitiveName="beep" />
 </GATEWAY>

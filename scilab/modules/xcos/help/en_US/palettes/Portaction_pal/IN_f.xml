@@ -22,228 +22,242 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="IN_f" xml:lang="en_US">
-  <refnamediv>
-    <refname>IN_f</refname>
-    <refpurpose>Regular Input Port</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../../images/palettes/IN_f.png" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Contents_IN_f">
-    <title>Contents</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="IN_f" xml:lang="en_US">
+    <refnamediv>
+        <refname>IN_f</refname>
+        <refpurpose>Regular Input Port</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="IN_f">Regular Input Port</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/IN_f.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Contents_IN_f">
+        <title>Contents</title>
         <itemizedlist>
-          <listitem>
-            <para>
-              <xref linkend="Palette_IN_f">Palette</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Description_IN_f">Description</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Datatype_IN_f">Data types</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Dialogbox_IN_f">Dialog box</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Defaultproperties_IN_f">Default properties</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Example_IN_f">Example</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Interfacingfunction_IN_f">Interfacing function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Seealso_IN_f">See also</xref>
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    <link linkend="IN_f">Regular Input Port</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_IN_f">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_IN_f">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Datatype_IN_f">Data types</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_IN_f">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_IN_f">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_IN_f">Example</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_IN_f">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Seealso_IN_f">See also</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Palette_IN_f">
-    <title>Palettes</title>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Palette_IN_f">
+        <title>Palettes</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Portaction_pal">Port &amp; Subsystem palette</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="Sources_pal">Sources Palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_IN_f">
+        <title>Description</title>
         <para>
-          <link linkend="Portaction_pal">Port &amp; Subsystem palette</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="Sources_pal">Sources Palette</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_IN_f">
-    <title>Description</title>
-    <para>
-      This block represent a regular input port. It must only be used inside a Xcos Super Block and be connected to a regular input in the subsystem.
-    </para>
-    <para>
-      This block is a signal link from outside of a system into a sub-system. In a Super Block, the regular's input ports must be numbered from 1 to the total number of regular's input ports. You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
-    </para>
-  </refsection>
-  <refsection id="Datatype_IN_f">
-    <title>Data types</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          Output : same type that the input connected to it in the sub-system.
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Dialogbox_IN_f">
-    <title>Dialog box</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../gui/portaction_pal/en_US/IN_f_gui.png" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-    <para/>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">Port number</emphasis>
-        </para>
-        <para> An integer defining the port number.</para>
-        <para> Properties : Type 'vec' of size 1.</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Defaultproperties_IN_f">
-    <title>Default properties</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <emphasis role="bold">always active:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">direct-feedthrough:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">zero-crossing:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">mode:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular outputs:</emphasis>
+            This block represent a regular input port. It must only be used inside a Xcos Super Block and be connected to a regular input in the subsystem.
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [-1,-2] / type -1</emphasis>
+            This block is a signal link from outside of a system into a sub-system. In a Super Block, the regular's input ports must be numbered from 1 to the total number of regular's input ports. You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Datatype_IN_f">
+        <title>Data types</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Output : same type that the input connected to it in the sub-system.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Dialogbox_IN_f">
+        <title>Dialog box</title>
         <para>
-          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../gui/portaction_pal/en_US/IN_f_gui.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+        <para/>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Port number</emphasis>
+                </para>
+                <para> An integer defining the port number.</para>
+                <para> Properties : Type 'vec' of size 1.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_IN_f">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,-2] / type -1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">input</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_IN_f">
+        <title>Example</title>
         <para>
-          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+            In the following example the Super block is an amplitude modulator. The IN_f block is used as a modulation signal input. Its data type is defined by the input type of the gain block that is a scalar double data type.
         </para>
-      </listitem>
-      <listitem>
+        <para><link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/en_US/IN_f_en_US.zcos">
+                Open this example in Xcos
+            </link>
+        </para>
+        <para/>
         <para>
-          <emphasis role="bold">continuous-time state:</emphasis> no
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/IN_f_en_US.zcos"/>
+                </imageobject>
+            </mediaobject>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/IN_f_internal_en_US.zcos"/>
+                </imageobject>
+            </mediaobject>
         </para>
-      </listitem>
-      <listitem>
         <para>
-          <emphasis role="bold">discrete-time state:</emphasis> no
+            The following figure shows the output of the bloc :
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">object discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">input</emphasis>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Example_IN_f">
-    <title>Example</title>
-    <para>
-      In the following example the Super block is an amplitude modulator. The IN_f block is used as a modulation signal input. Its data type is defined by the input type of the gain block that is a scalar double data type.
-      <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/IN_f_en_US.xcos">
-        Open this example in Xcos
-      </link>
-      .
-    </para>
-    <para/>
-    <mediaobject>
-      <imageobject>
-        <imagedata fileref="../../../examples/portaction_pal/en_US/in_f_diagram_en_US.png"/>
-      </imageobject>
-    </mediaobject>
-  </refsection>
-  <refsection id="Interfacingfunction_IN_f">
-    <title>Interfacing function</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/IN_f.sci">SCI/modules/scicos_blocks/macros/Sources/IN_f.sci</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection role="see also" id="Seealso_IN_f">
-    <title>See also</title>
-    <itemizedlist>
-      <listitem>
-        <link linkend="OUT_f">OUT_f</link>
-      </listitem>
-      <listitem>
-        <link linkend="SUPER_f">SUPER_f</link>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+        <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/IN_f_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+    </refsection>
+    <refsection id="Interfacingfunction_IN_f">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/IN_f.sci">SCI/modules/scicos_blocks/macros/Sinks/IN_f.sci</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection role="see also" id="Seealso_IN_f">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <link linkend="OUT_f">OUT_f</link>
+            </listitem>
+            <listitem>
+                <link linkend="SUPER_f">SUPER_f</link>
+            </listitem>
+        </itemizedlist>
+    </refsection>
 </refentry>

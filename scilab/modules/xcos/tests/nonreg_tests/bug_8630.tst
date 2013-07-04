@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 8630 -->
 //
@@ -15,9 +15,8 @@
 // <-- Short Description -->
 // Scilab crash when simulating scopes with the same window ids.
 
-loadXcosLibs();
 
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8630.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8630.zcos");
 if ~status then pause, end
 
 prot = funcprot();

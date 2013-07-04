@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlReadStr" xml:lang="ja">
+    <refnamediv>
+        <refname>xmlReadStr</refname>
+        <refpurpose>文字列からXMLツリーを読み込む</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            doc = xmlReadStr(string [, validateDTD])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>string</term>
+                <listitem>
+                    <para>XMLコードを含む文字列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>validateDTD</term>
+                <listitem>
+                    <para>文書を検証する必要があるかどうかを示す論理値.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>doc</term>
+                <listitem>
+                    <para>XMLDoc型のmlist</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            XML文字列を読み込んでパースします.
+            返された文書によりメモリに保持されるDOMツリーにアクセスできます.
+        </para>
+        <para>validateDTDにtrueが指定された場合, 
+            文書は検証され,失敗するとパース処理は行われません.
+        </para>
+        <para>
+            (メモリリークを避けるために)
+            <link linkend="xmlDelete">xmlDelete</link>関数により
+            ツリーを開放する必要があることに注意してください.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
+    e = doc.root.children(1).children(1)
+    e.name
+    e.content
+    xmlDump(e)
+    doc.root.children(1).attributes.att
+    doc.root.children(1).attributes.rib
+
+    // 属性を修正
+    doc.root.children(1).attributes.att = "truc"
+    doc.root.children(1).attributes.rib = "machin"
+    xmlDump(doc.root.children(1))
+
+    // 文書を削除します
+    xmlDelete(doc);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xmlRead">xmlRead</link>
+            </member>
+            <member>
+                <link linkend="xmlGetOpenDocs">xmlGetOpenDocs</link>
+            </member>
+            <member>
+                <link linkend="xmlDelete">xmlDelete</link>
+            </member>
+            <member>
+                <link linkend="xmlDocument">xmlDocument</link>
+            </member>
+            <member>
+                <link linkend="xmlValidate">xmlValidate</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>XMLモジュールが導入されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

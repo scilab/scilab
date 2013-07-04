@@ -6,8 +6,7 @@
 // =============================================================================
 //
 // <-- ENGLISH IMPOSED -->
-//
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Unit test for DEBUG_SCICOS -->
 //
@@ -17,7 +16,7 @@
 
 global Result;Result=[];
 
-importXcosDiagram('SCI/modules/xcos/tests/nonreg_tests/bug_8480.xcos');
+importXcosDiagram('SCI/modules/xcos/tests/nonreg_tests/bug_8480.zcos');
 Info=scicos_simulate(scs_m,list());
 
 guis = [];

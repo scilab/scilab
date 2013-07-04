@@ -10,50 +10,50 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="spcompack">
-  <refnamediv>
-    <refname>spcompack</refname>
-    <refpurpose> converts a compressed adjacency representation</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>xadj</term>
-        <listitem>
-          <para> integer vector of length (n+1).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>xlindx</term>
-        <listitem>
-          <para> integer vector of length n+1 (pointers).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>lindx</term>
-        <listitem>
-          <para> integer vector</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>adjncy</term>
-        <listitem>
-          <para> integer vector</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <programlisting role=""><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="spcompack">
+    <refnamediv>
+        <refname>spcompack</refname>
+        <refpurpose>converts a compressed adjacency representation</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>xadj</term>
+                <listitem>
+                    <para> integer vector of length (n+1).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xlindx</term>
+                <listitem>
+                    <para> integer vector of length n+1 (pointers).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lindx</term>
+                <listitem>
+                    <para> integer vector</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>adjncy</term>
+                <listitem>
+                    <para> integer vector</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <programlisting role=""><![CDATA[ 
 Utility fonction spcompak is used to convert a compressed adjacency
 representation into standard adjacency representation.
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // A is the sparse matrix:
 A=[1,0,0,0,0,0,0;
    0,1,0,0,0,0,0;
@@ -89,19 +89,19 @@ xlindx=[1,2,3,8,9,11];
 [xadj,adjncy,anz]= sp2adj(A);
 adjncy-spcompack(xadj,xlindx,lindx)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="sp2adj">sp2adj</link>
-      </member>
-      <member>
-        <link linkend="adj2sp">adj2sp</link>
-      </member>
-      <member>
-        <link linkend="spget">spget</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sp2adj">sp2adj</link>
+            </member>
+            <member>
+                <link linkend="adj2sp">adj2sp</link>
+            </member>
+            <member>
+                <link linkend="spget">spget</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

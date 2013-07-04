@@ -23,11 +23,11 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>
  * A Palette has a representation on the main view
- * 
+ *
  * <p>
  * The following schema fragment specifies the expected content contained within
  * this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="Palette">
  *   &lt;complexContent>
@@ -37,12 +37,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Palette")
-@XmlSeeAlso({ Custom.class, PreLoaded.class, PreLoaded.Dynamic.class })
+@XmlSeeAlso( { Custom.class, PreLoaded.class, PreLoaded.Dynamic.class })
 public abstract class Palette extends PaletteNode {
 
     /*

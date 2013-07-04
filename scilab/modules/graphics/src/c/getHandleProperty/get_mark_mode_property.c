@@ -39,7 +39,7 @@ int get_mark_mode_property(void* _pvCtx, char* pobjUID)
 
     if (piMarkMode == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"mark_mode");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_mode");
         return -1;
     }
 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sqrtm" xml:lang="en">
+    <refnamediv>
+        <refname>sqrtm</refname>
+        <refpurpose>raiz quadrada da matriz (matriz raiz quadrada)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>y=sqrtm(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>matriz quadrada de reais ou complexos </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>y=sqrtm(x)</literal> é a raiz quadrada da matriz
+            <literal>x</literal> (matriz raiz quadrada de x)
+            (<literal>x=y^2</literal>) . O resultado pode ser inacurado se
+            <literal>x</literal> não é simétrica.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
+x=[0 1;2 4]
+w=sqrtm(x); 
+norm(w*w-x)
+x(1,2)=%i;
+w=sqrtm(x);norm(w*w-x,1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="expm">expm</link>
+            </member>
+            <member>
+                <link linkend="sqroot">sqroot</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

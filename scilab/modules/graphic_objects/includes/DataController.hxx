@@ -20,24 +20,19 @@ class DataController
 {
 
 public :
-    static BOOL setGraphicObjectProperty(char const* _pstID, char const* _pstName, void const* _dblValue, int numElements)
+    static BOOL setGraphicObjectProperty(char const* _pstID, int _iName, void const* _dblValue, int numElements)
     {
-        return DataModel::get()->setGraphicObjectProperty(_pstID, _pstName, _dblValue, numElements);
+        return DataModel::get()->setGraphicObjectProperty(_pstID, _iName, _dblValue, numElements);
     }
 
-    static void getGraphicObjectProperty(char const* _pstID, char const* _pstName, void **_pvData)
+    static void getGraphicObjectProperty(char const* _pstID, int _iName, void **_pvData)
     {
-        return DataModel::get()->getGraphicObjectProperty(_pstID, _pstName, _pvData);
+        return DataModel::get()->getGraphicObjectProperty(_pstID, _iName, _pvData);
     }
 
-    static void getGraphicObjectIntProperty(char const* _pstID, char const* _pstName, void **_pvData)
+    static char const* createDataObject(char const* _pstID, int _iType)
     {
-        return DataModel::get()->getGraphicObjectIntProperty(_pstID, _pstName, _pvData);
-    }
-
-    static char const* createDataObject(char const* _pstID, char const* _sType)
-    {
-        return DataModel::get()->createDataObject(_pstID, _sType);
+        return DataModel::get()->createDataObject(_pstID, _iType);
     }
 
     static void deleteDataObject(char const* _pstID)

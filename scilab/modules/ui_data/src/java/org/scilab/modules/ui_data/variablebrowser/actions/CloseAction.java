@@ -1,3 +1,16 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2010 - Allan Simon
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.ui_data.variablebrowser.actions;
 
 import java.awt.Toolkit;
@@ -9,6 +22,7 @@ import org.scilab.modules.ui_data.actions.DefaultAction;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
+@SuppressWarnings(value = { "serial" })
 public class CloseAction extends DefaultAction {
 
     /** Name of the action */

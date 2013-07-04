@@ -11,20 +11,20 @@ int check_matrix_dimension(char * fname)
     CheckInputArgument(pvApiCtx, 1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 1;
     }
 
     sciErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 1;
     }
 
-    if(checkVarDimension(pvApiCtx, piAddr, iCols, iRows))
+    if (checkVarDimension(pvApiCtx, piAddr, iCols, iRows))
     {
         sciprint("checkVarDimension returns false\n");
     }
@@ -33,32 +33,32 @@ int check_matrix_dimension(char * fname)
         sciprint("checkVarDimension returns true\n");
     }
 
-    if(isRowVector(pvApiCtx, piAddr))
+    if (isRowVector(pvApiCtx, piAddr))
     {
         sciprint("isRowVector\n");
     }
 
-    if(isColumnVector(pvApiCtx, piAddr))
+    if (isColumnVector(pvApiCtx, piAddr))
     {
         sciprint("isColumnVector\n");
     }
 
-    if(isVector(pvApiCtx, piAddr))
+    if (isVector(pvApiCtx, piAddr))
     {
         sciprint("isVector\n");
     }
 
-    if(isScalar(pvApiCtx, piAddr))
+    if (isScalar(pvApiCtx, piAddr))
     {
         sciprint("isScalar\n");
     }
 
-    if(isSquareMatrix(pvApiCtx, piAddr))
+    if (isSquareMatrix(pvApiCtx, piAddr))
     {
         sciprint("isSquareMatrix\n");
     }
 
-    if(isEmptyMatrix(pvApiCtx, piAddr))
+    if (isEmptyMatrix(pvApiCtx, piAddr))
     {
         sciprint("isEmptyMatrix\n");
     }

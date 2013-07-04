@@ -13,7 +13,7 @@
 
 package org.scilab.modules.xcos.graph;
 
-import java.awt.Color;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -26,7 +26,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.IllegalFormatException;
 import java.util.LinkedList;
 import java.util.List;
@@ -51,7 +53,9 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
+import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.SaveAsAction;
@@ -63,6 +67,12 @@ import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
+import org.scilab.modules.xcos.block.io.EventInBlock;
+import org.scilab.modules.xcos.block.io.EventOutBlock;
+import org.scilab.modules.xcos.block.io.ExplicitInBlock;
+import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
+import org.scilab.modules.xcos.block.io.ImplicitInBlock;
+import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.io.XcosFileType;
@@ -81,6 +91,7 @@ import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.preferences.XcosOptions;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosDialogs;
@@ -113,6 +124,10 @@ public class XcosDiagram extends ScilabGraph {
 
     private static final String MODIFIED = "modified";
     private static final String CELLS = "cells";
+    protected static final String IN = "in";
+    protected static final String OUT = "out";
+    protected static final String EIN = "ein";
+    protected static final String EOUT = "eout";
 
     /**
      * Prefix used to tag text node.
@@ -223,6 +238,166 @@ public class XcosDiagram extends ScilabGraph {
         });
     }
 
+    /**
+     * Sort the blocks per first integer parameter value
+     *
+     * @param blocks
+     *            the block list
+     * @return the sorted block list (same instance)
+     */
+    private List <? extends BasicBlock > iparSort(final List <? extends BasicBlock > blocks) {
+        Collections.sort(blocks, new Comparator<BasicBlock>() {
+            @Override
+            public int compare(BasicBlock o1, BasicBlock o2) {
+                final ScilabDouble data1 = (ScilabDouble) o1.getIntegerParameters();
+                final ScilabDouble data2 = (ScilabDouble) o2.getIntegerParameters();
+
+                int value1 = 0;
+                int value2 = 0;
+
+                if (data1.getWidth() >= 1 && data1.getHeight() >= 1) {
+                    value1 = (int) data1.getRealPart()[0][0];
+                }
+                if (data2.getWidth() >= 1 && data2.getHeight() >= 1) {
+                    value2 = (int) data2.getRealPart()[0][0];
+                }
+
+                return value1 - value2;
+            }
+        });
+        return blocks;
+    }
+
+    /**
+     * @param <T>
+     *            The type to work on
+     * @param klass
+     *            the class instance to work on
+     * @return list of typed block
+     */
+    @SuppressWarnings("unchecked")
+    private <T extends BasicBlock> List<T> getAllTypedBlock(Class<T> klass) {
+        final List<T> list = new ArrayList<T>();
+
+        int blockCount = getModel().getChildCount(getDefaultParent());
+
+        for (int i = 0; i < blockCount; i++) {
+            Object cell = getModel().getChildAt(getDefaultParent(), i);
+            if (klass.isInstance(cell)) {
+                // According to the test we are sure that the cell is an
+                // instance of T. Thus we can safely cast it.
+                list.add((T) cell);
+            }
+        }
+        return list;
+    }
+
+    /**
+     * @param <T>
+     * @param <T>
+     *            The type to work on
+     * @param klasses
+     *            the class instance list to work on
+     * @return list of typed block
+     */
+    private <T extends BasicBlock> List<T> getAllTypedBlock(Class<T>[] klasses) {
+        final List<T> list = new ArrayList<T>();
+        for (Class<T> klass : klasses) {
+            list.addAll(getAllTypedBlock(klass));
+        }
+        return list;
+    }
+
+    /**
+     * Fill the context with I/O port
+     *
+     * @param context
+     *            the context to fill
+     */
+    @SuppressWarnings("unchecked")
+    protected void fillContext(final Hashtable<Object, Object> context) {
+        if (!context.containsKey(IN)) {
+            context.put(IN, iparSort(getAllTypedBlock( new Class [] { ExplicitInBlock.class, ImplicitInBlock.class })));
+        }
+        if (!context.containsKey(OUT)) {
+            context.put(OUT, iparSort(getAllTypedBlock(new Class[] { ExplicitOutBlock.class, ImplicitOutBlock.class })));
+        }
+        if (!context.containsKey(EIN)) {
+            context.put(EIN, iparSort(getAllTypedBlock(new Class[] { EventInBlock.class })));
+        }
+        if (!context.containsKey(EOUT)) {
+            context.put(EOUT, iparSort(getAllTypedBlock(new Class[] { EventOutBlock.class })));
+        }
+    }
+
+    /**
+     * Function to update IO block numbering
+     * @param block
+     * @param ioBlockClass
+     */
+    @SuppressWarnings("unchecked")
+    private void updateIOBlockByType(BasicBlock block, Hashtable<Object, Object> context, String type) {
+        List <ContextUpdate> listOfBlocks = (List <ContextUpdate>) context.get(type);
+        if (listOfBlocks.contains(block)) {
+            int newIndex = 0;
+
+            /*  Get an empty index :
+             *  The list should always have a size greater of equal to one
+             *  since new added element is always added to the list
+             */
+            if (listOfBlocks.size() > 1) {
+                // if a hole exists, then assign a port from this hole
+                for (int i = 0; i < listOfBlocks.size() - 1; i++) {
+                    int indexNext = (int) ((ScilabDouble) listOfBlocks.get(i + 1).getIntegerParameters()).getRealPart()[0][0];
+                    int indexPrevious = (int) ((ScilabDouble) listOfBlocks.get(i).getIntegerParameters()).getRealPart()[0][0];
+                    if (indexNext - indexPrevious > 1) {
+                        newIndex = indexPrevious + 1;
+                        break;
+                    }
+                }
+                // if no hole is present, then detect multiple items
+                if (newIndex == 0) {
+                    for (int i = 0; i < listOfBlocks.size() - 1; i++) {
+                        int indexNext = (int) ((ScilabDouble) listOfBlocks.get(i + 1).getIntegerParameters()).getRealPart()[0][0];
+                        int indexPrevious = (int) ((ScilabDouble) listOfBlocks.get(i).getIntegerParameters()).getRealPart()[0][0];
+                        if (indexNext - indexPrevious == 0) {
+                            newIndex = (int) ((ScilabDouble) listOfBlocks.get(listOfBlocks.size() - 1).getIntegerParameters()).getRealPart()[0][0] + 1;
+                            break;
+                        }
+                    }
+                    // if no multiple items are present, item is already at the right place
+                    if (newIndex == 0) {
+                        newIndex = (int) ((ScilabDouble) block.getIntegerParameters()).getRealPart()[0][0];
+                    }
+                }
+            } else {
+                newIndex = 1;
+            }
+
+            /*
+             * Update the IO block with this new index
+             */
+            block.setIntegerParameters(new ScilabDouble(newIndex));
+            block.setExprs(new ScilabString(Integer.toString(newIndex)));
+            block.setOrdering(newIndex);
+        }
+    }
+
+    /**
+     * If the block is a IO block, update its index to a free index
+     * @param block
+     */
+    private void updateIOBlocks(BasicBlock block) {
+        Hashtable<Object, Object> context = new Hashtable<Object, Object> ();
+
+        fillContext(context);
+
+        updateIOBlockByType(block, context, IN);
+        updateIOBlockByType(block, context, OUT);
+        updateIOBlockByType(block, context, EIN);
+        updateIOBlockByType(block, context, EOUT);
+    }
+
     /*
      * Static diagram listeners
      */
@@ -273,6 +448,9 @@ public class XcosDiagram extends ScilabGraph {
                         if (cell instanceof BasicBlock) {
                             // Update parent on cell addition
                             ((BasicBlock) cell).setParentDiagram(diagram);
+
+                            // update port numbering
+                            diagram.updateIOBlocks((BasicBlock) cell);
                         }
                         return false;
                     }
@@ -461,7 +639,21 @@ public class XcosDiagram extends ScilabGraph {
 
             BlockPositioning.updateBlockView(updatedBlock);
 
+            // force super block to refresh
             diagram.getView().clear(updatedBlock, true, true);
+
+            // force links connected to super block to refresh
+            final int childCount = diagram.getModel().getChildCount(updatedBlock);
+            for (int i = 0; i < childCount; i++) {
+                final Object port = diagram.getModel().getChildAt(updatedBlock, i);
+
+                final int edgeCount = diagram.getModel().getEdgeCount(port);
+                for (int j = 0; j < edgeCount; j++) {
+                    final Object edge = diagram.getModel().getEdgeAt(port, j);
+                    diagram.getView().clear(edge, true, true);
+                }
+            }
+
             diagram.getView().validate();
             diagram.repaint();
         }
@@ -519,8 +711,34 @@ public class XcosDiagram extends ScilabGraph {
                             current.updateFieldsFromStyle();
                         }
 
+                        // update the superblock container ports if the block is
+                        // inside a superblock diagram
+                        if (current.getParentDiagram() instanceof SuperBlockDiagram) {
+                            SuperBlockDiagram superdiagram = (SuperBlockDiagram) current.getParentDiagram();
+                            SuperBlock superblock = superdiagram.getContainer();
+                            superblock.updateExportedPort();
+                        }
+
                         // Update the block position
                         BlockPositioning.updateBlockView(current);
+
+                        // force a refresh of the block ports and links
+                        // connected to these ports
+                        final int childCount = current.getParentDiagram().getModel().getChildCount(current);
+                        for (int i = 0; i < childCount; i++) {
+                            final Object port = current.getParentDiagram().getModel().getChildAt(current, i);
+                            current.getParentDiagram().getView().clear(port, true, true);
+                            final int edgeCount = current.getParentDiagram().getModel().getEdgeCount(port);
+                            for (int j = 0; j < edgeCount; j++) {
+                                final Object edge = current.getParentDiagram().getModel().getEdgeAt(port, j);
+                                current.getParentDiagram().getView().clear(edge, true, true);
+                            }
+                        }
+                        // force a refresh of the block
+                        current.getParentDiagram().getView().clear(current, true, true);
+
+                        current.getParentDiagram().getView().validate();
+                        current.getParentDiagram().repaint();
                     }
                 }
             } finally {
@@ -925,9 +1143,14 @@ public class XcosDiagram extends ScilabGraph {
         getAsComponent().setTolerance(1);
 
         getAsComponent().getViewport().setOpaque(false);
-        getAsComponent().setBackground(Color.WHITE);
 
-        setGridVisible(true);
+        getAsComponent().setBackground(XcosOptions.getEdition().getGraphBackground());
+
+        final boolean gridEnable = XcosOptions.getEdition().isGraphGridEnable();
+        setGridVisible(gridEnable);
+        if (gridEnable) {
+            setGridSize(XcosOptions.getEdition().getGraphGrid());
+        }
 
         /*
          * Reinstall related listeners
@@ -1743,15 +1966,20 @@ public class XcosDiagram extends ScilabGraph {
     public boolean saveDiagramAs(final File fileName) {
         boolean isSuccess = false;
         File writeFile = fileName;
-        XcosFileType format = XcosFileType.ZCOS;
+        XcosFileType format = XcosOptions.getPreferences().getFileFormat();
 
         info(XcosMessages.SAVING_DIAGRAM);
         if (fileName == null) {
             final SwingScilabFileChooser fc = SaveAsAction.createFileChooser();
             SaveAsAction.configureFileFilters(fc);
+            ConfigurationManager.configureCurrentDirectory(fc);
 
             if (getSavedFile() != null) {
-                fc.setSelectedFile(getSavedFile());
+                // using save-as, the file chooser should have a filename
+                // without extension as default
+                String filename = getSavedFile().getName();
+                filename = filename.substring(0, filename.lastIndexOf('.'));
+                fc.setSelectedFile(new File(filename));
             } else {
                 final String title = getTitle();
                 if (title != null) {
@@ -1767,9 +1995,8 @@ public class XcosDiagram extends ScilabGraph {
                         escaped = escaped.replace(c, '-');
                     }
 
-                    fc.setSelectedFile(new File(escaped + XcosFileType.ZCOS.getDottedExtension()));
+                    fc.setSelectedFile(new File(escaped));
                 }
-                ConfigurationManager.configureCurrentDirectory(fc);
             }
 
             int status = fc.showSaveDialog(this.getAsComponent());
@@ -1792,11 +2019,11 @@ public class XcosDiagram extends ScilabGraph {
         final String filename = writeFile.getName();
 
         /*
-         * Look for the user extension
-         * if it does not exists, append a default one
+         * Look for the user extension if it does not exists, append a default
+         * one
          *
-         * if the specified extension is handled, update the save format ;
-         * else append a default extension and use the default format
+         * if the specified extension is handled, update the save format ; else
+         * append a default extension and use the default format
          */
         XcosFileType userExtension = XcosFileType.findFileType(filename);
         if (userExtension == null) {
@@ -2176,7 +2403,7 @@ public class XcosDiagram extends ScilabGraph {
      * Display the message in info bar.
      *
      * @param message
-     *            Informations
+     *            Information
      */
     public void info(final String message) {
         final XcosTab tab = XcosTab.get(this);
@@ -2208,6 +2435,11 @@ public class XcosDiagram extends ScilabGraph {
     public void warnCellByUID(final String uid, final String message) {
         final Object cell = ((mxGraphModel) getModel()).getCell(uid);
         if (cell == null) {
+            return;
+        }
+
+        if (GraphicsEnvironment.isHeadless()) {
+            System.err.printf("%s at %s\n    %s: %s\n", "warnCell", getRootDiagram().getTitle(), uid, message);
             return;
         }
 

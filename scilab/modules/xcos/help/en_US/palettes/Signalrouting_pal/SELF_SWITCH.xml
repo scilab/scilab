@@ -1,184 +1,184 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SELF_SWITCH">
-  <refnamediv>
-    <refname>SELF_SWITCH</refname>
-    <refpurpose>Switch</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../../images/palettes/SELF_SWITCH_on.png" align="center" valign="middle"/>
-        </imageobject>
-        <imageobject>
-          <imagedata fileref="../../../../images/palettes/SELF_SWITCH_off.png" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Contents_SELF_SWITCH">
-    <title>Contents</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SELF_SWITCH">
+    <refnamediv>
+        <refname>SELF_SWITCH</refname>
+        <refpurpose>Switch</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
         <para>
-          <link linkend="SELF_SWITCH">Switch</link>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/SELF_SWITCH_on.png" align="center" valign="middle"/>
+                </imageobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/SELF_SWITCH_off.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
         </para>
-      </listitem>
-      <listitem>
+    </refsection>
+    <refsection id="Contents_SELF_SWITCH">
+        <title>Contents</title>
         <itemizedlist>
-          <listitem>
-            <para>
-              <xref linkend="Palette_SELF_SWITCH">Palette</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Description_SELF_SWITCH">Description</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Defaultproperties_SELF_SWITCH">Default properties</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Interfacingfunction_SELF_SWITCH">Interfacing function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Computationalfunction_SELF_SWITCH">Computational function</xref>
-            </para>
-          </listitem>
+            <listitem>
+                <para>
+                    <link linkend="SELF_SWITCH">Switch</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_SELF_SWITCH">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_SELF_SWITCH">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_SELF_SWITCH">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_SELF_SWITCH">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_SELF_SWITCH">Computational function</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Palette_SELF_SWITCH">
-    <title>Palette</title>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Palette_SELF_SWITCH">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Signalrouting_pal">Signal routing palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_SELF_SWITCH">
+        <title>Description</title>
         <para>
-          <link linkend="Signalrouting_pal">Signal routing palette</link>
+            This is an Automatic Switch Block. Double Click on it to invert it's state (on/off).
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_SELF_SWITCH">
-    <title>Description</title>
-    <para>
-      This is an Automatic Switch Block. Double Click on it to invert it's state (on/off).
-    </para>
-  </refsection>
-  <refsection id="Defaultproperties_SELF_SWITCH">
-    <title>Default properties</title>
-    <itemizedlist>
-      <listitem>
+    </refsection>
+    <refsection id="Defaultproperties_SELF_SWITCH">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">csuper</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Interfacingfunction_SELF_SWITCH">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/Branching/SELF_SWITCH.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_SELF_SWITCH">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SELF_SWITCH is a SuperBLock.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_SELF_SWITCH">
+        <title>Examples</title>
         <para>
-          <emphasis role="bold">always active:</emphasis> yes
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">direct-feedthrough:</emphasis> yes
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">zero-crossing:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">mode:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular inputs:</emphasis>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/signalrouting_pal/SELF_SWITCH_on_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SELF_SWITCH_on_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
         <para>
-          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/signalrouting_pal/SELF_SWITCH_off_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SELF_SWITCH_off_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">regular outputs:</emphasis>
-        </para>
-        <para>
-          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">continuous-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">object discrete-time state:</emphasis> no
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">name of computational function:</emphasis>
-          <emphasis role="italic">csuper</emphasis>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Interfacingfunction_SELF_SWITCH">
-    <title>Interfacing function</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Branching/SELF_SWITCH.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Computationalfunction_SELF_SWITCH">
-    <title>Computational function</title>
-    <itemizedlist>
-      <listitem>
-        <para> SELF_SWITCH is a SuperBLock.</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Example_SELF_SWITCH">
-    <title>Examples</title>
-    <para>
-      <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SELF_SWITCH_on_Example.xcos">
-        <inlinemediaobject>
-          <imageobject>
-            <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SELF_SWITCH_on_Example.png" valign="middle"/>
-          </imageobject>
-        </inlinemediaobject>
-      </link>
-    </para>
-    <para>
-      <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SELF_SWITCH_off_Example.xcos">
-        <inlinemediaobject>
-          <imageobject>
-            <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SELF_SWITCH_off_Example.png" valign="middle"/>
-          </imageobject>
-        </inlinemediaobject>
-      </link>
-    </para>
-  </refsection>
+    </refsection>
 </refentry>

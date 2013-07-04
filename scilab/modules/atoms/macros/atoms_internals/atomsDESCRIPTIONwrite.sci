@@ -102,8 +102,8 @@ function atomsDESCRIPTIONwrite(description_in,file_out)
 
                     if (this_field=="Version") & ~isempty(strindex(this_value(1),"-")) then
                         str_mat = [ str_mat ; ..
-                                        sprintf("Version: %s",part(this_value(1),1:strindex(this_value(1),"-")-1)) ; ..
-                                        sprintf("PackagingVersion: %s",part(this_value(1),strindex(this_value(1),"-")+1:length(this_value(1)))) ];
+                        sprintf("Version: %s",part(this_value(1),1:strindex(this_value(1),"-")-1)) ; ..
+                        sprintf("PackagingVersion: %s",part(this_value(1),strindex(this_value(1),"-")+1:length(this_value(1)))) ];
                         continue;
                     elseif(this_field=="PackagingVersion")
                         continue;

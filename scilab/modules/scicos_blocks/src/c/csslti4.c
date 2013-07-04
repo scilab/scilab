@@ -18,55 +18,96 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "scicos_block.h"
 #include "machine.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void csslti4(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void csslti4(scicos_block *block, int flag)
 {
-  /*  Copyright INRIA
+    /*  Copyright INRIA
 
-      Scicos block simulator
-      continuous state space linear system simulator
-      rpar(1:nx*nx)=A
-      rpar(nx*nx+1:nx*nx+nx*nu)=B
-      rpar(nx*nx+nx*nu+1:nx*nx+nx*nu+nx*ny)=C
-      rpar(nx*nx+nx*nu+nx*ny+1:nx*nx+nx*nu+nx*ny+ny*nu)=D */
-  
-  int un=1,lb = 0,lc = 0,ld = 0;
-  int nx=block->nx;
-  double* x=block->x;
-  double* xd=block->xd;
-  double* rpar=block->rpar;
-  double* y=block->outptr[0];
-  double* u=block->inptr[0];
-  int* outsz=block->outsz;
-  int* insz=block->insz;
-  
-  lb = nx * nx;
-  lc = lb + nx * insz[0];
-  
-  if (flag ==1 || flag ==6){
-    /* y=c*x+d*u     */
-    ld=lc+nx*outsz[0];
-    if (nx==0) {
-      C2F(dmmul)(&rpar[ld],outsz,u,insz,y,outsz,outsz,insz,&un);
-    }else{
-      C2F(dmmul)(&rpar[lc],outsz,x,&nx,y,outsz,outsz,&nx,&un);
-      C2F(dmmul1)(&rpar[ld],outsz,u,insz,y,outsz,outsz,insz,&un);
+        Scicos block simulator
+        continuous state space linear system simulator
+        rpar(1:nx*nx)=A
+        rpar(nx*nx+1:nx*nx+nx*nu)=B
+        rpar(nx*nx+nx*nu+1:nx*nx+nx*nu+nx*ny)=C
+        rpar(nx*nx+nx*nu+nx*ny+1:nx*nx+nx*nu+nx*ny+ny*nu)=D */
+
+    int un = 1, lb = 0, lc = 0, ld = 0;
+    int nx = block->nx;
+    int nout = block->nout;
+    int nin = block->nin;
+    double* x = NULL;
+    double* xd = NULL;
+    double* rpar = block->rpar;
+    double* y = NULL;
+    double* u = NULL;
+    int empty[2] = {0, 0};
+    int* outsz = empty;
+    int* insz = empty;
+
+    if (nout > 0)
+    {
+        outsz = block->outsz;
+        y = (double*) (block->outptr[0]);
     }
-  }
+    if (nin > 0)
+    {
+        insz = block->insz;
+        u = (double*) (block->inptr[0]);
+    }
+    if (nx > 0)
+    {
+        x = block->x;
+        xd = block->xd;
+    }
 
-  else if (flag ==0){
-    /* xd=a*x+b*u */
-    C2F(dmmul)(&rpar[0],&nx,x,&nx,xd,&nx,&nx,&nx,&un);
-    C2F(dmmul1)(&rpar[lb],&nx,u,insz,xd,&nx,&nx,insz,&un);
-  }
+    lb = nx * nx;
+    lc = lb + nx * insz[0];
+
+    if (flag == 1 || flag == 6)
+    {
+        /* y=c*x+d*u     */
+
+        if (nout > 0)
+        {
+            ld = lc + nx * outsz[0];
+            if (nx == 0)
+            {
+                if (nin > 0)
+                {
+                    C2F(dmmul)(&rpar[ld], outsz, u, insz, y, outsz, outsz, insz, &un);
+                }
+            }
+            else
+            {
+                C2F(dmmul)(&rpar[lc], outsz, x, &nx, y, outsz, outsz, &nx, &un);
+                if (nin > 0)
+                {
+                    C2F(dmmul1)(&rpar[ld], outsz, u, insz, y, outsz, outsz, insz, &un);
+                }
+            }
+        }
+    }
+
+    else if (flag == 0)
+    {
+        /* xd=a*x+b*u */
+
+        if (nx > 0)
+        {
+            C2F(dmmul)(&rpar[0], &nx, x, &nx, xd, &nx, &nx, &nx, &un);
+            if (nin > 0)
+            {
+                C2F(dmmul1)(&rpar[lb], &nx, u, insz, xd, &nx, &nx, insz, &un);
+            }
+        }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 
 

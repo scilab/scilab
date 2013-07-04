@@ -17,11 +17,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CENTIMETERS_UNITS__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_INCHES_UNITS__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_NORMALIZED_UNITS__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PIXELS_UNITS__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POINTS_UNITS__;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
@@ -36,7 +31,11 @@ public final class UnitsConverter {
 
     private static double POINT_PER_INCH = 72.0;
     private static double CM_PER_INCH = 2.54;
-
+    protected static final String __GO_UI_POINTS_UNITS__ =        "points";
+    protected static final String __GO_UI_NORMALIZED_UNITS__ =    "normalized";
+    protected static final String __GO_UI_INCHES_UNITS__ =        "inches";
+    protected static final String __GO_UI_CENTIMETERS_UNITS__ =   "centimeters";
+    protected static final String __GO_UI_PIXELS_UNITS__ =        "pixels";
 
     public enum UicontrolUnits { /* Needed in SwingScilabWidget */
         POINTS,
@@ -47,32 +46,39 @@ public final class UnitsConverter {
     };
 
     public static UicontrolUnits stringToUnitsEnum(String style) {
-        if (style.equals(__GO_UI_POINTS_UNITS__)) {
+        if (style.compareTo(__GO_UI_POINTS_UNITS__) == 0) {
             return UicontrolUnits.POINTS;
-        } else if (style.equals(__GO_UI_NORMALIZED_UNITS__)) {
-            return UicontrolUnits.NORMALIZED;
-        } else if (style.equals(__GO_UI_INCHES_UNITS__)) {
-            return UicontrolUnits.INCHES;
-        } else if (style.equals(__GO_UI_CENTIMETERS_UNITS__)) {
-            return UicontrolUnits.CENTIMETERS;
-        } else if (style.equals(__GO_UI_PIXELS_UNITS__)) {
-            return UicontrolUnits.PIXELS;
-        } else {
-            return null;
         }
+
+        if (style.compareTo(__GO_UI_NORMALIZED_UNITS__) == 0) {
+            return UicontrolUnits.NORMALIZED;
+        }
+
+        if (style.compareTo(__GO_UI_INCHES_UNITS__) == 0) {
+            return UicontrolUnits.INCHES;
+        }
+
+        if (style.compareTo(__GO_UI_CENTIMETERS_UNITS__) == 0) {
+            return UicontrolUnits.CENTIMETERS;
+        }
+
+        if (style.compareTo(__GO_UI_PIXELS_UNITS__) == 0) {
+            return UicontrolUnits.PIXELS;
+        }
+        return null;
     }
 
     public static double convertFromPoint(double value, UicontrolUnits newUnit, Widget uicontrol, boolean widthAsRef) {
         int refSize = 0;
 
         String parentId = null;
-        String parentType = null;
+        int parentType = -1;
 
         SwingViewObject uicontrolAsView = (SwingViewObject) uicontrol;
-        String widgetType = (String) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_TYPE__);
+        int widgetType = (Integer) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_TYPE__);
 
         /* Get the component height from java */
-        if (widgetType.equals(__GO_FIGURE__)) { /* Figure */
+        if (widgetType == __GO_FIGURE__) { /* Figure */
             if (widthAsRef) {
                 refSize = (int) CallScilabBridge.getScreenWidth();
             } else {
@@ -84,14 +90,14 @@ public final class UnitsConverter {
             if (parentId == null && newUnit == UicontrolUnits.NORMALIZED) { /* Parent not yet set */
                 return 0.0;
             }
-            parentType = (String) GraphicController.getController().getProperty(parentId, __GO_TYPE__);
+            parentType = (Integer) GraphicController.getController().getProperty(parentId, __GO_TYPE__);
         }
 
         switch (newUnit) {
             case POINTS:
                 return value;
             case NORMALIZED:
-                if (parentType.equals(__GO_FIGURE__)) { /* Figure */
+                if (parentType == __GO_FIGURE__) { /* Figure */
                     Integer[] parentSize = (Integer[]) GraphicController.getController().getProperty(parentId, __GO_AXES_SIZE__);
                     if (widthAsRef) {
                         refSize = parentSize[0].intValue();
@@ -123,13 +129,13 @@ public final class UnitsConverter {
         int refSize = 0;
 
         String parentId = null;
-        String parentType = null;
+        Integer parentType = null;
 
         SwingViewObject uicontrolAsView = (SwingViewObject) uicontrol;
-        String widgetType = (String) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_TYPE__);
+        int widgetType = (Integer) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_TYPE__);
 
         /* Get the component height from java */
-        if (widgetType.equals(__GO_FIGURE__)) { /* Figure */
+        if (widgetType == __GO_FIGURE__) { /* Figure */
             /* The parent is the screen */
             if (widthAsRef)	{
                 refSize = (int) CallScilabBridge.getScreenWidth();
@@ -142,14 +148,14 @@ public final class UnitsConverter {
             if ((parentId == null || parentId.equals("")) && oldUnit == UicontrolUnits.NORMALIZED) { /* Parent not yet set */
                 return 0;
             }
-            parentType = (String) GraphicController.getController().getProperty(parentId, __GO_TYPE__);
+            parentType = (Integer) GraphicController.getController().getProperty(parentId, __GO_TYPE__);
         }
 
         switch (oldUnit) {
             case POINTS:
                 return (int) value;
             case NORMALIZED:
-                if (parentType.equals(__GO_FIGURE__)) { /* Figure */
+                if (parentType == __GO_FIGURE__) { /* Figure */
                     Integer[] parentSize = (Integer[]) GraphicController.getController().getProperty(parentId, __GO_AXES_SIZE__);
 
                     if (widthAsRef) {
@@ -181,9 +187,9 @@ public final class UnitsConverter {
     public static double convertFromPixel(int value, UicontrolUnits newUnit, Widget uicontrol, boolean widthAsRef) {
 
         SwingViewObject uicontrolAsView = (SwingViewObject) uicontrol;
-        String widgetType = (String) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_TYPE__);
+        int widgetType = (Integer) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_TYPE__);
 
-        if ((uicontrol != null) && (widgetType.equals(__GO_FIGURE__))) {/* Uicontrol figure */
+        if ((uicontrol != null) && (widgetType == __GO_FIGURE__)) {/* Uicontrol figure */
             newUnit = UicontrolUnits.PIXELS;
         }
 
@@ -197,9 +203,9 @@ public final class UnitsConverter {
     public static int convertToPixel(double value, UicontrolUnits oldUnit, Widget uicontrol, boolean widthAsRef) {
 
         SwingViewObject uicontrolAsView = (SwingViewObject) uicontrol;
-        String widgetType = (String) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_TYPE__);
+        int widgetType = (Integer) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_TYPE__);
 
-        if ((uicontrol != null) && (widgetType.equals(__GO_FIGURE__))) { /* Uicontrol figure */
+        if ((uicontrol != null) && (widgetType == __GO_FIGURE__)) { /* Uicontrol figure */
             oldUnit = UicontrolUnits.PIXELS;
         }
 

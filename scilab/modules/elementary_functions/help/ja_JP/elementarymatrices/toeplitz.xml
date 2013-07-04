@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="toeplitz" xml:lang="ja">
+    <refnamediv>
+        <refname>toeplitz</refname>
+        <refpurpose>toeplitz行列</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>A=toeplitz(c [,r])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>a,c,r</term>
+                <listitem>
+                    <para>定数, 多項式 または文字列行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            最初の行を<literal>r</literal>,
+            最初の列を<literal>c</literal>とするToeplitz行列を返します.
+            <literal>c(1)</literal> は<literal>r(1)</literal>に等しい
+            必要があります.
+            <literal>toeplitz(c)</literal> は対称Toeplitz行列を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+A=toeplitz(1:5);
+
+T=toeplitz(1:5,1:2:7);T1=[1 3 5 7;2 1 3 5;3 2 1 3;4 3 2 1;5 4 3 2];
+T-T1
+
+s=poly(0,'s');
+t=toeplitz([s,s+1,s^2,1-s]);
+t1=[s,1+s,s*s,1-s;1+s,s,1+s,s*s;s*s,1+s,s,1+s;1-s,s*s,1+s,s]
+t-t1
+
+t=toeplitz(['1','2','3','4']);
+t1=['1','2','3','4';'2','1','2','3';'3','2','1','2';'4','3','2','1']
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="matrix">matrix</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

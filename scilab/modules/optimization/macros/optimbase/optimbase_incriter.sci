@@ -13,6 +13,6 @@
 //   Increments the number of iterations.
 //
 function this = optimbase_incriter ( this )
-  this.iterations = this.iterations + 1
+    this.iterations = this.iterations + 1
 endfunction
 

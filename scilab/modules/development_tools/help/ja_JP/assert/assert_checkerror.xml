@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkerror" xml:lang="ja">
+    <refnamediv>
+        <refname>assert_checkerror</refname>
+        <refpurpose>命令が予測したエラーを発生することを確認する.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            flag = assert_checkerror ( instr , expectedmsg )
+            flag = assert_checkerror ( instr , expectedmsg , expectederrnb )
+            flag = assert_checkerror ( instr , expectedmsg , expectederrnb , a1, ... )
+            [flag,errmsg] = assert_checkerror ( ... )
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>instr:</term>
+                <listitem>
+                    <para>1行1列の文字列行列, 評価する式</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>expectedmsg :</term>
+                <listitem>
+                    <para>
+                        文字列または文字列ベクトル,生成するエラーメッセージ
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>expectederrnb :</term>
+                <listitem>
+                    <para>
+                        1行1列のdouble,整数値,エラー番号の行列
+                        (デフォルト: expectederrnb=[]).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a1 :</term>
+                <listitem>
+                    <para>
+                        <literal>msprintf</literal> 関数に指定する,
+                        オプションのローカライズ用引数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag :</term>
+                <listitem>
+                    <para>1行1列の論理値行列,正しいエラーメッセージが生成された場合に %t ,
+                        そうでない場合に %f
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>errmsg :</term>
+                <listitem>
+                    <para>
+                        1行1列の文字列行列で,エラーメッセージ.
+                        flag==%t の場合, errormsg==""となります. 
+                        flag==%f の場合, errmsgにはエラーメッセージが出力されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            式がエラーを発生しない場合,
+            <literal>assert_checkerror</literal> はエラーを発生します. 
+            評価された式が予想されたエラーメッセージを生成する場合,そのまま実行されます.
+        </para>
+        <para>
+            エラーメッセージ<literal>expectedmsg</literal>が指定され,
+            空の行列 <literal>[]</literal>でない場合,
+            生成されたエラーメッセージが指定されたものに一致することが確認されます.
+            エラー番号<literal>expectederrnb</literal>が指定され,
+            空の行列 <literal>[]</literal>でない場合,
+            生成されたエラー番号が指定されたものに一致することが確認されます.
+            エラーメッセージ<literal>expectedmsg</literal>および
+            エラー番号 <literal>expectederrnb</literal>を
+            同時に空の行列<literal>[]</literal>とすることはできません:
+            少なくとも一つを指定する必要があります.
+        </para>
+        <para>
+            文字列の一致では文字列が厳密に等しいことが確認されます:
+            パターンまたは正規表現は使用できません.
+        </para>
+        <para>
+            エラーメッセージが予測値と異なるか,エラー番号が異なる場合,
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        errmsg出力変数が指定されない場合,エラーが生成され,
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        errmsg出力変数が指定される場合,エラーは生成されません.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            この関数の目的は,簡単なフレームワークによりエラーのケースを
+            確認できるようにすることです.
+            ある関数のエラーメッセージを確認することには以下のような利点があります:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        必要な時に正しいエラーが生成されることを確認する,
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        エラーメッセージが正しく整形されていることを確認する,
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        エラーメッセージが正しくローカライズされていることを確認する.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            予測されるメッセージをローカライズされたメッセージとすることができます.
+            この場合,メッセージは<literal>gettext</literal>関数の出力と
+            比較され,ローカルな言語に依存します.
+            オプション引数<literal>a1</literal>をこの目的,
+            例えばローカライズされたメッセージを整形するために,使用できます.
+            全てのオプション引数
+            <literal>a1</literal>,
+            <literal>a2</literal>, ... は計算されたエラーメッセージと比較する前に自動的に
+            <literal>msprintf</literal>関数に指定されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <para>
+            <literal>assert_checkerror</literal>関数を使用する複数の例を示します.
+            まずテストする関数を定義する必要があります.
+        </para>
+        <para>
+            以下の関数<literal>f</literal>は,
+            入力引数の数が間違っているか<literal>x</literal>の型が間違っている
+            場合にエラーを発生します.
+        </para>
+        <programlisting role="example">function y = f(x)
+            [lhs, rhs] = argn()
+            if ( rhs &lt;&gt; 1 ) then
+            lstr = gettext("%s: Wrong number of input argument: %d expected.\n")
+            errmsg = msprintf ( lstr , "f" , 1 )
+            error(errmsg)
+            end
+            if ( typeof(x) &lt;&gt; "constant" ) then
+            lstr = gettext("%s: Wrong type for argument #%d: Matrix expected.\n")
+            errmsg = msprintf ( lstr , "f" , 1 )
+            error(errmsg,123456789)
+            end
+            y = x
+            endfunction    
+        </programlisting>
+        <para>
+            我々のタスクは,この関数により生成されたエラーメッセージを確認することです.
+            以下の2つのテストをパスします:
+            エラーメッセージが予測されたものである.
+            ローカライズされたメッセージとオプションの
+            パラメータ<literal>"f"</literal>(関数名)と
+            <literal>1</literal>(入力引数の添字)のみを指定し,
+            <literal>assert_checkerror</literal>がローカライズ化を管理するようにします.
+            これらの2つのオプションパラメータは,
+            メッセージを整形し,
+            "%s" および "%d" フォーマットを実際の値に変換する際に使用されます.
+        </para>
+        <programlisting role="example">lcl1 = "%s: Wrong number of input argument: %d expected.\n";
+            assert_checkerror ( "y = f()"      , lcl1 , [] , "f" , 1);
+            
+            lcl2 = "%s: Wrong type for argument #%d: Matrix expected.\n";
+            assert_checkerror ( "y = f(""a"")" , lcl2 , [] , "f" , 1);    
+        </programlisting>
+        <para>
+            ここで,カレントのロケール言語が英語であると仮定すると,
+            以下のコードを正しく使用できます.
+            しかし,例えばカレントのロケールがフランス語である場合に失敗するため,
+            これは推奨される手法ではありません.
+        </para>
+        <programlisting role="example">assert_checkerror ( "y = f()" , "f: Wrong number of input argument: 1 expected." );   </programlisting>
+        <para>以下のテストでは, エラー番号も確認します.</para>
+        <programlisting role="example">lcl1="%s: Wrong number of input argument: %d expected.\n";
+            assert_checkerror ( "y=f()" ,      lcl1 , 10000     , "f" , 1);
+            
+            lcl2 = "%s: Wrong type for argument #%d: Matrix expected.\n";
+            assert_checkerror ( "y=f(""a"")" , lcl2 , 123456789 , "f" , 1);    
+        </programlisting>
+        <para>以下の2つのテストは失敗します.</para>
+        <programlisting role="example">assert_checkerror ( "y = f()" , "oups" );
+            
+            msg1 = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "f", 1);
+            assert_checkerror ( "y = f()" , msg1 , 12 );    
+        </programlisting>
+        <para>
+            errmsgが出力引数に指定された場合,以下の例のように,エラーが生成されます.
+            変数<literal>flag</literal> および <literal>errmsg</literal>の内容に
+            注意してください.
+        </para>
+        <programlisting role="example">// パスするテスト: flag は %t, errmsg は空
+            msg1 = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "f", 1);
+            [flag, errmsg] = assert_checkerror ( "y = f()" , msg1 )
+            
+            // 失敗するテスト: flag は %f, errmsg は空でない
+            [flag, errmsg] = assert_checkerror ( "y = f()" , "oups" )    
+        </programlisting>
+        <para>
+            以下の2つのテストのメッセージはローカライズされており,
+            カレントの言語が何であっても動作します.
+            オプションのパラメータ<literal>a1</literal>を使用する代わりに
+            長くはなりますが,完全に有効なコードである
+            ローカライズされたメッセージを直接使用します.
+        </para>
+        <programlisting role="example">msg1 = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "f", 1);
+            assert_checkerror ( "y = f()"      , msg1 );
+            
+            msg2 = msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "f", 1);
+            assert_checkerror ( "y = f(""a"")" , msg2 );
+        </programlisting>
+        <para>
+            エラー番号を確認したいがエラーメッセージは確認したくない場合がありえます.
+            以下のスクリプトは,
+            最初の引数が doubleの行列でない場合に
+            生成されるエラー番号が 123456789 であることのみを
+            確認します: エラーメッセージは確認しません.
+        </para>
+        <programlisting role="example">assert_checkerror("f(""foo"")", [], 123456789);</programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>関数が導入されました</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -3,17 +3,17 @@
 //
 // This file is distributed under the same license as the Scilab package.
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // Check that Xcos never use Saxon (before or after building doc).
 
-xcos(SCI + "/modules/xcos/demos/Simple_Demo.xcos");
+xcos(SCI + "/modules/xcos/demos/Simple_Demo.zcos");
 closeXcos();
 
 // load the saxon jar using a documentation Java call
 execstr("buildDoc(""pdf"",""non-existing-file"",TMPDIR,TMPDIR);", "errcatch");
 
-xcos(SCI + "/modules/xcos/demos/Simple_Demo.xcos");
+xcos(SCI + "/modules/xcos/demos/Simple_Demo.zcos");
 closeXcos();
 

@@ -37,12 +37,12 @@ public class MainDataLoader {
     /**
      * The names of Java-based objects.
      */
-    private static final Set<String> JAVA_OBJECTS = new HashSet<String>(Arrays.asList(
-            GraphicObjectProperties.__GO_ARC__,
-            GraphicObjectProperties.__GO_CHAMP__,
-            GraphicObjectProperties.__GO_RECTANGLE__,
-            GraphicObjectProperties.__GO_SEGS__
-    ));
+    private static final Set<Integer> JAVA_OBJECTS = new HashSet<Integer>(Arrays.asList(
+                GraphicObjectProperties.__GO_ARC__,
+                GraphicObjectProperties.__GO_CHAMP__,
+                GraphicObjectProperties.__GO_RECTANGLE__,
+                GraphicObjectProperties.__GO_SEGS__
+            ));
 
     /**
      * Returns the data width for the given object.
@@ -81,17 +81,17 @@ public class MainDataLoader {
      * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int getDataSize(String id) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-            if (type == null) {
-                throw (new ObjectRemovedException(id));
-            }
-            
-            if (JAVA_OBJECTS.contains(type)) {
-                    return JavaObjectLoader.getDataSize(id);
-            } else {
-                    return DataLoader.getDataSize(id);
-            }
+        if (type == null) {
+            throw (new ObjectRemovedException(id));
+        }
+
+        if (JAVA_OBJECTS.contains(type)) {
+            return JavaObjectLoader.getDataSize(id);
+        } else {
+            return DataLoader.getDataSize(id);
+        }
     }
 
     /**
@@ -106,18 +106,18 @@ public class MainDataLoader {
      * @throws ObjectRemovedException if the object no longer exist.
      */
     public static void fillVertices(String id, FloatBuffer buffer, int elementsSize,
-            int coordinateMask, double[] scale, double[] translation, int logMask) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-            
-            if (type == null) {
-                throw (new ObjectRemovedException(id));
-            }
-            
-            if (JAVA_OBJECTS.contains(type)) {
-                    JavaObjectLoader.fillVertices(id, buffer, elementsSize, coordinateMask, scale, translation, logMask);
-            } else {
-                    DataLoader.fillVertices(id, buffer, buffer.capacity(), elementsSize, coordinateMask, scale, translation, logMask);
-            }
+                                    int coordinateMask, double[] scale, double[] translation, int logMask) throws ObjectRemovedException {
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+
+        if (type == null) {
+            throw (new ObjectRemovedException(id));
+        }
+
+        if (JAVA_OBJECTS.contains(type)) {
+            JavaObjectLoader.fillVertices(id, buffer, elementsSize, coordinateMask, scale, translation, logMask);
+        } else {
+            DataLoader.fillVertices(id, buffer, buffer.capacity(), elementsSize, coordinateMask, scale, translation, logMask);
+        }
     }
 
     /**
@@ -128,17 +128,17 @@ public class MainDataLoader {
      * @throws ObjectRemovedException if the object no longer exist.
      */
     public static void fillColors(String id, FloatBuffer buffer, int elementsSize) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-            
-            if (type == null) {
-                throw (new ObjectRemovedException(id));
-            }
-            
-            if (JAVA_OBJECTS.contains(type)) {
-                    JavaObjectLoader.fillColors(id, buffer, elementsSize);
-            } else {
-                    DataLoader.fillColors(id, buffer, buffer.capacity(), elementsSize);
-            }
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+
+        if (type == null) {
+            throw (new ObjectRemovedException(id));
+        }
+
+        if (JAVA_OBJECTS.contains(type)) {
+            JavaObjectLoader.fillColors(id, buffer, elementsSize);
+        } else {
+            DataLoader.fillColors(id, buffer, buffer.capacity(), elementsSize);
+        }
     }
 
     /**
@@ -148,17 +148,17 @@ public class MainDataLoader {
      * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int getIndicesSize(String id) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-            
-            if (type == null) {
-                throw (new ObjectRemovedException(id));
-            }
-            
-            if (JAVA_OBJECTS.contains(type)) {
-                    return JavaObjectLoader.getIndicesSize(id);
-            } else {
-                    return DataLoader.getIndicesSize(id);
-            }
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+
+        if (type == null) {
+            throw (new ObjectRemovedException(id));
+        }
+
+        if (JAVA_OBJECTS.contains(type)) {
+            return JavaObjectLoader.getIndicesSize(id);
+        } else {
+            return DataLoader.getIndicesSize(id);
+        }
     }
 
     /**
@@ -170,17 +170,17 @@ public class MainDataLoader {
      * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int fillIndices(String id, IntBuffer buffer, int logMask) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-            if (type == null) {
-                throw (new ObjectRemovedException(id));
-            }
-            
-              if (JAVA_OBJECTS.contains(type)) {
-                    return JavaObjectLoader.fillIndices(id, buffer, logMask);
-            } else {
-                    return DataLoader.fillIndices(id, buffer, buffer.capacity(), logMask);
-            }
+        if (type == null) {
+            throw (new ObjectRemovedException(id));
+        }
+
+        if (JAVA_OBJECTS.contains(type)) {
+            return JavaObjectLoader.fillIndices(id, buffer, logMask);
+        } else {
+            return DataLoader.fillIndices(id, buffer, buffer.capacity(), logMask);
+        }
     }
 
     /**
@@ -190,18 +190,18 @@ public class MainDataLoader {
      * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int getWireIndicesSize(String id) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-            
-            if (type == null) {
-                throw (new ObjectRemovedException(id));
-            }
-            
-            if (JAVA_OBJECTS.contains(type)) {
-                    return JavaObjectLoader.getWireIndicesSize(id);
-            } else {
-                    return DataLoader.getWireIndicesSize(id);
-            }
+
+        if (type == null) {
+            throw (new ObjectRemovedException(id));
+        }
+
+        if (JAVA_OBJECTS.contains(type)) {
+            return JavaObjectLoader.getWireIndicesSize(id);
+        } else {
+            return DataLoader.getWireIndicesSize(id);
+        }
     }
 
     /**
@@ -213,17 +213,17 @@ public class MainDataLoader {
      * @throws ObjectRemovedException if the object no longer exist.
      */
     public static int fillWireIndices(String id, IntBuffer buffer, int logMask) throws ObjectRemovedException {
-            String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
-            if (type == null) {
-                throw (new ObjectRemovedException(id));
-            }
-            
-            if (JAVA_OBJECTS.contains(type)) {
-                    return JavaObjectLoader.fillWireIndices(id, buffer, logMask);
-            } else {
-                    return DataLoader.fillWireIndices(id, buffer, buffer.capacity(), logMask);
-            }
+        if (type == null) {
+            throw (new ObjectRemovedException(id));
+        }
+
+        if (JAVA_OBJECTS.contains(type)) {
+            return JavaObjectLoader.fillWireIndices(id, buffer, logMask);
+        } else {
+            return DataLoader.fillWireIndices(id, buffer, buffer.capacity(), logMask);
+        }
     }
 
     /**
@@ -233,7 +233,7 @@ public class MainDataLoader {
      * @return the number of mark indices.
      */
     public static int getMarkIndicesSize(String id) {
-            return 0;
+        return 0;
     }
 
     /**
@@ -244,7 +244,7 @@ public class MainDataLoader {
      * @return the number of indices actually written.
      */
     public static int fillMarkIndices(String id, IntBuffer buffer) {
-            return 0;
+        return 0;
     }
 
     public static int getLogMask(String id) {

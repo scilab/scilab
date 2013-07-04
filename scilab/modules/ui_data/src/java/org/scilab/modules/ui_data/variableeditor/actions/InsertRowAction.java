@@ -28,10 +28,11 @@ import org.scilab.modules.ui_data.variableeditor.TableVariableEditor;
  * Set Precision Action class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class InsertRowAction extends CommonCallBack {
 
     private final JTable table;
-    
+
     /**
      * Constructor
      * @param editor the editor
@@ -48,9 +49,9 @@ public final class InsertRowAction extends CommonCallBack {
     @Override
     public void callBack() {
         int row = ((TableVariableEditor) table).getPopupRow();
-	SwingEditvarTableModel model = (SwingEditvarTableModel) table.getModel();
-	model.insertRow(row);
-	table.setRowSelectionInterval(row, row);
+        SwingEditvarTableModel model = (SwingEditvarTableModel) table.getModel();
+        model.insertRow(row);
+        table.setRowSelectionInterval(row, row);
     }
 
     /**

@@ -28,7 +28,7 @@ static char **getmacrosonstacklist(int *sizearray);
 static char **getmacrosinlibrarieslist(int *sizearray);
 static int getsizemacrosinlibrarieslist(void);
 static void RemoveDuplicateStrings(char **Strings, int *SizeStrings);
-static int cmpstr( const void *a ,const void *b);
+static int cmpstr( const void *a , const void *b);
 /*--------------------------------------------------------------------------*/
 char **getmacroslist(int *sizearray)
 {
@@ -105,7 +105,10 @@ static char **getmacrosonstacklist(int *sizearray)
             SciErr sciErr = getNamedVarType(pvApiCtx, localvariables[i], &iType);
             if (!sciErr.iErr)
             {
-                if (iType == sci_c_function) nbMacros++;
+                if (iType == sci_c_function)
+                {
+                    nbMacros++;
+                }
             }
         }
 
@@ -150,7 +153,7 @@ static char **getmacrosinlibrarieslist(int *sizearray)
         int sizelibraries = 0;
         char **libraries = getlibrarieslist(&sizelibraries);
 
-        dictionary = (char**)MALLOC(sizeof(char*)*sizedictionary);
+        dictionary = (char**)MALLOC(sizeof(char*) * sizedictionary);
 
         if (dictionary)
         {
@@ -158,17 +161,17 @@ static char **getmacrosinlibrarieslist(int *sizearray)
             if (libraries)
             {
                 int i = 0;
-                for (i = 0;i < sizelibraries; i++)
+                for (i = 0; i < sizelibraries; i++)
                 {
                     int j = 0;
                     char **macros = NULL;
                     int sizemacros = 0;
 
-                    macros = getlistmacrosfromlibrary(libraries[i],&sizemacros);
+                    macros = getlistmacrosfromlibrary(libraries[i], &sizemacros);
 
                     if (macros)
                     {
-                        for (j=0;j<sizemacros;j++)
+                        for (j = 0; j < sizemacros; j++)
                         {
                             dictionary[m] = macros[j];
                             m++;
@@ -198,14 +201,14 @@ static int getsizemacrosinlibrarieslist(void)
     if (libraries)
     {
         int i = 0;
-        for (i = 0;i < sizelibraries; i++)
+        for (i = 0; i < sizelibraries; i++)
         {
             if (libraries[i])
             {
                 char **macros = NULL;
                 int sizemacros = 0;
 
-                macros = getlistmacrosfromlibrary(libraries[i],&sizemacros);
+                macros = getlistmacrosfromlibrary(libraries[i], &sizemacros);
                 if (macros)
                 {
                     sizedictionary = sizedictionary + sizemacros;
@@ -224,20 +227,20 @@ static int getsizemacrosinlibrarieslist(void)
     return sizedictionary;
 }
 /*--------------------------------------------------------------------------*/
-static void RemoveDuplicateStrings(char **Strings,int *SizeStrings)
+static void RemoveDuplicateStrings(char **Strings, int *SizeStrings)
 {
     int fin = 0, i = 0;
     int newsize = *SizeStrings;
 
-    for(fin = *SizeStrings - 1; fin > 0; fin--)
+    for (fin = *SizeStrings - 1; fin > 0; fin--)
     {
         int Sorted = FALSE;
 
-        for(i = 0; i < fin; i++)
+        for (i = 0; i < fin; i++)
         {
             if (Strings[i])
             {
-                if(strcmp(Strings[i], Strings[i+1]) == 0)
+                if (strcmp(Strings[i], Strings[i + 1]) == 0)
                 {
                     FREE(Strings[i + 1]);
                     Strings[i + 1] = NULL;
@@ -247,8 +250,8 @@ static void RemoveDuplicateStrings(char **Strings,int *SizeStrings)
             }
             else
             {
-                Strings[i] = Strings[i+1];
-                Strings[i+1] = NULL;
+                Strings[i] = Strings[i + 1];
+                Strings[i + 1] = NULL;
                 Sorted = TRUE;
             }
         }
@@ -261,7 +264,7 @@ static void RemoveDuplicateStrings(char **Strings,int *SizeStrings)
     *SizeStrings = newsize;
 }
 /*--------------------------------------------------------------------------*/
-static int cmpstr( const void *a ,const void *b)
+static int cmpstr( const void *a , const void *b)
 {
     return strcmp(*(const char **)a, *(const char **)b );
 }

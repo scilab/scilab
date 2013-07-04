@@ -7,77 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-07-03 14:57+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-14 15:09+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
-
-#
-# File: macros/fscanf.sci, line: 33
-# File: macros/halt.sci, line: 26
-# File: macros/input.sci, line: 14
-# File: macros/sscanf.sci, line: 30
-# File: macros/sscanf.sci, line: 38
-# File: macros/unix_g.sci, line: 36
-# File: macros/unix_s.sci, line: 33
-# File: macros/unix_w.sci, line: 34
-# File: macros/unix_x.sci, line: 34
-# File: sci_gateway/c/sci_host.c, line: 55
-# File: sci_gateway/c/sci_newest.c, line: 60
-# File: sci_gateway/c/sci_newest.c, line: 76
-# File: sci_gateway/c/sci_newest.c, line: 92
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字を想定します。\n"
-
-#
-# File: macros/fscanf.sci, line: 37
-# File: macros/halt.sci, line: 30
-# File: macros/input.sci, line: 18
-# File: macros/sscanf.sci, line: 34
-# File: macros/sscanf.sci, line: 42
-# File: macros/unix_g.sci, line: 40
-# File: macros/unix_s.sci, line: 37
-# File: macros/unix_w.sci, line: 38
-# File: macros/unix_x.sci, line: 38
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 46
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 55
-# File: sci_gateway/c/sci_host.c, line: 35
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 整数を想定します。\n"
-
-#
-# File: macros/fscanf.sci, line: 37
-# File: macros/halt.sci, line: 30
-# File: macros/input.sci, line: 18
-# File: macros/sscanf.sci, line: 34
-# File: macros/sscanf.sci, line: 42
-# File: macros/unix_g.sci, line: 40
-# File: macros/unix_s.sci, line: 37
-# File: macros/unix_w.sci, line: 38
-# File: macros/unix_x.sci, line: 38
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 46
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 55
-# File: sci_gateway/c/sci_host.c, line: 35
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: スカラーを想定します。\n"
-
-#
-# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 117
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 84
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 88
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A int expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 整数を想定します。\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -116,6 +56,23 @@ msgstr "%s: ファイルは存在しません。\n"
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
+#
+# File: macros/fscanf.sci, line: 37
+# File: macros/halt.sci, line: 30
+# File: macros/input.sci, line: 18
+# File: macros/sscanf.sci, line: 34
+# File: macros/sscanf.sci, line: 42
+# File: macros/unix_g.sci, line: 40
+# File: macros/unix_s.sci, line: 37
+# File: macros/unix_w.sci, line: 38
+# File: macros/unix_x.sci, line: 38
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 46
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 55
+# File: sci_gateway/c/sci_host.c, line: 35
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: スカラーを想定します。\n"
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
@@ -138,6 +95,24 @@ msgstr "%s: これ以上のメモリはありません。\n"
 #, c-format
 msgid "%s: Undefined environment variable %s.\n"
 msgstr "%s: 環境変数 %s は定義されていません。\n"
+
+#
+# File: macros/fscanf.sci, line: 33
+# File: macros/halt.sci, line: 26
+# File: macros/input.sci, line: 14
+# File: macros/sscanf.sci, line: 30
+# File: macros/sscanf.sci, line: 38
+# File: macros/unix_g.sci, line: 36
+# File: macros/unix_s.sci, line: 33
+# File: macros/unix_w.sci, line: 34
+# File: macros/unix_x.sci, line: 34
+# File: sci_gateway/c/sci_host.c, line: 55
+# File: sci_gateway/c/sci_newest.c, line: 60
+# File: sci_gateway/c/sci_newest.c, line: 76
+# File: sci_gateway/c/sci_newest.c, line: 92
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字を想定します。\n"
 
 #, c-format
 msgid "%s: Feature %s is obsolete.\n"
@@ -204,6 +179,10 @@ msgid "unmanaged error by v2cunit.\n"
 msgstr "v2cunitによる管理外のエラー.\n"
 
 #, c-format
+msgid "%s: handle no more valid ignored.\n"
+msgstr "%s: ハンドルは有効ではありません, 無視しました.\n"
+
+#, c-format
 msgid "%s : Invalid entity %s\n"
 msgstr "%s 無効なエンティティ %s\n"
 
@@ -267,3 +246,8 @@ msgstr "%s: インタープリタシステムは応答しません..."
 #, c-format
 msgid "%s: error during %s execution"
 msgstr "%s: %s 実行で、エラーが起こりました"
+
+#, c-format
+msgid ""
+"%s: The command failed with the error code %s and the following message:\n"
+msgstr "%s: コマンドはエラーコード %s および以下のメッセージで終了しました:\n"

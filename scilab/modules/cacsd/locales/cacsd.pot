@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-08-06 10:22+0100\n"
+"Revision-Date: 2013-06-25 16:31+0100\n"
 
 # File: sci_gateway/c/sci_contr.c, line: 72
 # File: sci_gateway/c/sci_contr.c, line: 78
@@ -35,9 +35,489 @@ msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_contr.c, line: 109
+# File: sci_gateway/c/sci_contr.c, line: 112
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dhinf.c, line: 101
+# File: sci_gateway/c/sci_dhinf.c, line: 123
+# File: sci_gateway/c/sci_dhinf.c, line: 145
+# File: sci_gateway/c/sci_dhinf.c, line: 167
+# File: sci_gateway/c/sci_dhinf.c, line: 249
+# File: sci_gateway/c/sci_dhinf.c, line: 274
+# File: sci_gateway/c/sci_dhinf.c, line: 298
+# File: sci_gateway/c/sci_hinf.c, line: 98
+# File: sci_gateway/c/sci_hinf.c, line: 120
+# File: sci_gateway/c/sci_hinf.c, line: 142
+# File: sci_gateway/c/sci_hinf.c, line: 164
+# File: sci_gateway/c/sci_hinf.c, line: 247
+# File: sci_gateway/c/sci_hinf.c, line: 272
+# File: sci_gateway/c/sci_hinf.c, line: 296
+# File: sci_gateway/c/sci_linmeq.c, line: 227
+# File: sci_gateway/c/sci_linmeq.c, line: 273
+# File: sci_gateway/c/sci_linmeq.c, line: 316
+# File: sci_gateway/c/sci_linmeq.c, line: 499
+# File: sci_gateway/c/sci_mucomp.c, line: 164
+# File: sci_gateway/c/sci_mucomp.c, line: 180
+# File: sci_gateway/c/sci_ricc2.c, line: 76
+# File: sci_gateway/c/sci_ricc2.c, line: 98
+# File: sci_gateway/c/sci_ricc2.c, line: 120
+# File: sci_gateway/c/sci_rrankqr.c, line: 84
+# File: sci_gateway/c/sci_rrankqr.c, line: 128
+# File: sci_gateway/c/sci_rrankqr.c, line: 164
+# File: sci_gateway/c/sci_rrankqr.c, line: 186
+# File: sci_gateway/c/sci_zrankqr.c, line: 138
+# File: sci_gateway/c/sci_zrankqr.c, line: 174
+# File: sci_gateway/c/sci_zrankqr.c, line: 196
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dhinf.c, line: 107
+# File: sci_gateway/c/sci_hinf.c, line: 104
+# File: sci_gateway/c/sci_ricc2.c, line: 82
+#, c-format
+msgid "%s: A must be a square matrix.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dhinf.c, line: 129
+# File: sci_gateway/c/sci_hinf.c, line: 126
+#, c-format
+msgid "%s: A and B must have equal number of rows.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dhinf.c, line: 151
+# File: sci_gateway/c/sci_hinf.c, line: 148
+#, c-format
+msgid "%s: A and C must have equal number of columns.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dhinf.c, line: 173
+# File: sci_gateway/c/sci_hinf.c, line: 170
+#, c-format
+msgid "%s: B and D must have equal number of columns.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dhinf.c, line: 179
+# File: sci_gateway/c/sci_hinf.c, line: 176
+#, c-format
+msgid "%s: C and D must have equal number of rows.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dhinf.c, line: 193
+# File: sci_gateway/c/sci_dhinf.c, line: 201
+# File: sci_gateway/c/sci_dhinf.c, line: 209
+# File: sci_gateway/c/sci_dhinf.c, line: 217
+# File: sci_gateway/c/sci_dhinf.c, line: 225
+# File: sci_gateway/c/sci_dhinf.c, line: 316
+# File: sci_gateway/c/sci_dhinf.c, line: 324
+# File: sci_gateway/c/sci_dhinf.c, line: 332
+# File: sci_gateway/c/sci_dhinf.c, line: 340
+# File: sci_gateway/c/sci_dhinf.c, line: 348
+# File: sci_gateway/c/sci_dhinf.c, line: 356
+# File: sci_gateway/c/sci_dhinf.c, line: 364
+# File: sci_gateway/c/sci_dhinf.c, line: 373
+# File: sci_gateway/c/sci_dhinf.c, line: 382
+# File: sci_gateway/c/sci_dhinf.c, line: 399
+# File: sci_gateway/c/sci_hinf.c, line: 190
+# File: sci_gateway/c/sci_hinf.c, line: 198
+# File: sci_gateway/c/sci_hinf.c, line: 206
+# File: sci_gateway/c/sci_hinf.c, line: 214
+# File: sci_gateway/c/sci_hinf.c, line: 222
+# File: sci_gateway/c/sci_hinf.c, line: 314
+# File: sci_gateway/c/sci_hinf.c, line: 322
+# File: sci_gateway/c/sci_hinf.c, line: 330
+# File: sci_gateway/c/sci_hinf.c, line: 338
+# File: sci_gateway/c/sci_hinf.c, line: 346
+# File: sci_gateway/c/sci_hinf.c, line: 355
+# File: sci_gateway/c/sci_hinf.c, line: 364
+# File: sci_gateway/c/sci_hinf.c, line: 383
+# File: sci_gateway/c/sci_linmeq.c, line: 636
+# File: sci_gateway/c/sci_linmeq.c, line: 651
+# File: sci_gateway/c/sci_linmeq.c, line: 664
+# File: sci_gateway/c/sci_linmeq.c, line: 678
+# File: sci_gateway/c/sci_linmeq.c, line: 690
+# File: sci_gateway/c/sci_linmeq.c, line: 702
+# File: sci_gateway/c/sci_linmeq.c, line: 729
+# File: sci_gateway/c/sci_linmeq.c, line: 742
+# File: sci_gateway/c/sci_linmeq.c, line: 750
+# File: sci_gateway/c/sci_linmeq.c, line: 758
+# File: sci_gateway/c/sci_linmeq.c, line: 766
+# File: sci_gateway/c/sci_linmeq.c, line: 776
+# File: sci_gateway/c/sci_linmeq.c, line: 787
+# File: sci_gateway/c/sci_linmeq.c, line: 799
+# File: sci_gateway/c/sci_linmeq.c, line: 807
+# File: sci_gateway/c/sci_linmeq.c, line: 815
+# File: sci_gateway/c/sci_linmeq.c, line: 823
+# File: sci_gateway/c/sci_linmeq.c, line: 1040
+# File: sci_gateway/c/sci_linmeq.c, line: 1102
+# File: sci_gateway/c/sci_mucomp.c, line: 90
+# File: sci_gateway/c/sci_mucomp.c, line: 103
+# File: sci_gateway/c/sci_mucomp.c, line: 111
+# File: sci_gateway/c/sci_mucomp.c, line: 125
+# File: sci_gateway/c/sci_mucomp.c, line: 133
+# File: sci_gateway/c/sci_mucomp.c, line: 141
+# File: sci_gateway/c/sci_mucomp.c, line: 196
+# File: sci_gateway/c/sci_mucomp.c, line: 204
+# File: sci_gateway/c/sci_mucomp.c, line: 212
+# File: sci_gateway/c/sci_mucomp.c, line: 221
+# File: sci_gateway/c/sci_mucomp.c, line: 230
+# File: sci_gateway/c/sci_mucomp.c, line: 239
+# File: sci_gateway/c/sci_mucomp.c, line: 248
+# File: sci_gateway/c/sci_ricc2.c, line: 210
+# File: sci_gateway/c/sci_ricc2.c, line: 218
+# File: sci_gateway/c/sci_ricc2.c, line: 226
+# File: sci_gateway/c/sci_ricc2.c, line: 234
+# File: sci_gateway/c/sci_ricc2.c, line: 242
+# File: sci_gateway/c/sci_ricc2.c, line: 251
+# File: sci_gateway/c/sci_ricc2.c, line: 260
+# File: sci_gateway/c/sci_ricc2.c, line: 291
+# File: sci_gateway/c/sci_rrankqr.c, line: 97
+# File: sci_gateway/c/sci_rrankqr.c, line: 106
+# File: sci_gateway/c/sci_rrankqr.c, line: 142
+# File: sci_gateway/c/sci_rrankqr.c, line: 202
+# File: sci_gateway/c/sci_rrankqr.c, line: 211
+# File: sci_gateway/c/sci_rrankqr.c, line: 219
+# File: sci_gateway/c/sci_rrankqr.c, line: 227
+# File: sci_gateway/c/sci_rrankqr.c, line: 235
+# File: sci_gateway/c/sci_rrankqr.c, line: 244
+# File: sci_gateway/c/sci_zrankqr.c, line: 107
+# File: sci_gateway/c/sci_zrankqr.c, line: 116
+# File: sci_gateway/c/sci_zrankqr.c, line: 152
+# File: sci_gateway/c/sci_zrankqr.c, line: 212
+# File: sci_gateway/c/sci_zrankqr.c, line: 221
+# File: sci_gateway/c/sci_zrankqr.c, line: 229
+# File: sci_gateway/c/sci_zrankqr.c, line: 237
+# File: sci_gateway/c/sci_zrankqr.c, line: 245
+# File: sci_gateway/c/sci_zrankqr.c, line: 254
+# File: sci_gateway/c/sci_zrankqr.c, line: 263
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dhinf.c, line: 256
+# File: sci_gateway/c/sci_hinf.c, line: 254
+#, c-format
+msgid "%s: NCON must be a scalar.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dhinf.c, line: 280
+# File: sci_gateway/c/sci_hinf.c, line: 278
+#, c-format
+msgid "%s: NMEAS must be a scalar.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dhinf.c, line: 304
+# File: sci_gateway/c/sci_hinf.c, line: 302
+#, c-format
+msgid "%s: GAMMA must be a scalar.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dhinf.c, line: 411
+#, c-format
+msgid "%s: SB10DD exit with info = %d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_hinf.c, line: 395
+#, c-format
+msgid "%s: SB10FD exit with info = %d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 233
+#, c-format
+msgid "%s: TASK must be a scalar.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 240
+#, c-format
+msgid "%s: TASK has 1, 2 or 3 the only admissible values.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 248
+#, c-format
+msgid "%s: TASK = 1 : LINMEQ requires at least 4 input arguments.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 280
+#, c-format
+msgid "%s: TRANS must be a scalar.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 289
+#, c-format
+msgid "%s: TRANS has 0, 1, 2 or 3 the only admissible values.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 294
+#, c-format
+msgid "%s: TRANS has 0 or 1 the only admissible values.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 322
+#, c-format
+msgid "%s: SCHUR must be a scalar.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 330
+#, c-format
+msgid "%s: SCHUR has 1 or 2 the only admissible values.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 347
+# File: sci_gateway/c/sci_linmeq.c, line: 379
+# File: sci_gateway/c/sci_linmeq.c, line: 407
+# File: sci_gateway/c/sci_linmeq.c, line: 440
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 355
+# File: sci_gateway/c/sci_linmeq.c, line: 387
+# File: sci_gateway/c/sci_linmeq.c, line: 415
+# File: sci_gateway/c/sci_linmeq.c, line: 448
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 361
+# File: sci_gateway/c/sci_linmeq.c, line: 393
+# File: sci_gateway/c/sci_mucomp.c, line: 78
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 421
+#, c-format
+msgid ""
+"%s: Wrong column size for input argument #%d: Same column size of input "
+"argument #%d expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 458
+# File: sci_gateway/c/sci_linmeq.c, line: 466
+#, c-format
+msgid ""
+"%s: Wrong row size for input argument #%d: Same row size of input argument #"
+"%d expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 507
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At most 3 elements expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 515
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At most 2 elements expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 1124
+# File: sci_gateway/c/sci_linmeq.c, line: 1141
+# File: sci_gateway/c/sci_linmeq.c, line: 1162
+# File: sci_gateway/c/sci_linmeq.c, line: 1198
+#, c-format
+msgid "%s: Convergence problem...\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 1129
+# File: sci_gateway/c/sci_linmeq.c, line: 1146
+# File: sci_gateway/c/sci_linmeq.c, line: 1152
+# File: sci_gateway/c/sci_linmeq.c, line: 1167
+# File: sci_gateway/c/sci_linmeq.c, line: 1176
+#, c-format
+msgid "%s: Problem is singular.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 1183
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: eigenvalues must have negative real "
+"parts.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 1187
+# File: sci_gateway/c/sci_linmeq.c, line: 1193
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: eigenvalues modulus must be less "
+"than one.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 1223
+# File: sci_gateway/c/sci_linmeq.c, line: 1228
+#, c-format
+msgid "%s: Warning: the right hand sides were scaled by %lf to avoid overflow."
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 1233
+#, c-format
+msgid ""
+"%s: Warning: the equation is (almost) singular. Perturbed values have been "
+"used."
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_mucomp.c, line: 72
+# File: sci_gateway/c/sci_zrankqr.c, line: 95
+#, c-format
+msgid "%s: Wrong type for argument %d: A complex expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_mucomp.c, line: 186
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_mucomp.c, line: 258
+#, c-format
+msgid "%s: AB13MD exit with info = %d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_ricc2.c, line: 104
+#, c-format
+msgid "%s: D must be a square matrix.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_ricc2.c, line: 126
+#, c-format
+msgid "%s: C must be a square matrix.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_ricc2.c, line: 132
+#, c-format
+msgid "%s: The matrices A, C and D must have the same order.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_ricc2.c, line: 148
+# File: sci_gateway/c/sci_ricc2.c, line: 176
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_ricc2.c, line: 158
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Type must be continuous or "
+"discrete.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_ricc2.c, line: 187
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_ricc2.c, line: 197
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_ricc2.c, line: 306
+#, c-format
+msgid "%s: RICCSL exit with info = %d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_ricc2.c, line: 318
+#, c-format
+msgid "%s: RICCMS exit with info = %d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_ricc2.c, line: 334
+#, c-format
+msgid "%s: RICDSL exit with info = %d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_ricc2.c, line: 346
+#, c-format
+msgid "%s: RICDMF exit with info = %d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_rrankqr.c, line: 134
+# File: sci_gateway/c/sci_rrankqr.c, line: 170
+# File: sci_gateway/c/sci_zrankqr.c, line: 144
+# File: sci_gateway/c/sci_zrankqr.c, line: 180
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_rrankqr.c, line: 192
+# File: sci_gateway/c/sci_zrankqr.c, line: 202
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same column dimension as input "
+"argument #%d expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_rrankqr.c, line: 256
+#, c-format
+msgid "%s: MB03OD exit with info = %d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_rrankqr.c, line: 304
+#, c-format
+msgid "%s: DORGQR exit with info = %d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_zrankqr.c, line: 275
+#, c-format
+msgid "%s: ZB03OD exit with info = %d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_zrankqr.c, line: 323
+#, c-format
+msgid "%s: ZUNGQR exit with info = %d.\n"
 msgstr ""
 
 # File: demos/cacsd.dem.gateway.sce, line: 9
@@ -92,7 +572,7 @@ msgstr ""
 # File: macros/h_norm.sci, line: 34
 # File: macros/nyquistfrequencybounds.sci, line: 22
 # File: macros/obsv_mat.sci, line: 26
-# File: macros/plzr.sci, line: 52
+# File: macros/plzr.sci, line: 54
 # File: macros/repfreq.sci, line: 17
 #, c-format
 msgid ""
@@ -103,8 +583,8 @@ msgstr ""
 # File: macros/abinv.sci, line: 60
 # File: macros/abinv.sci, line: 66
 # File: macros/abinv.sci, line: 70
-# File: macros/plzr.sci, line: 46
-# File: macros/plzr.sci, line: 58
+# File: macros/plzr.sci, line: 48
+# File: macros/plzr.sci, line: 60
 # File: macros/syslin.sci, line: 79
 # File: macros/syslin.sci, line: 86
 # File: macros/syslin.sci, line: 93
@@ -119,7 +599,7 @@ msgstr ""
 # File: macros/abinv.sci, line: 76
 # File: macros/augment.sci, line: 119
 # File: macros/augment.sci, line: 250
-# File: macros/csim.sci, line: 82
+# File: macros/csim.sci, line: 79
 # File: macros/ctr_gram.sci, line: 22
 # File: macros/damp.sci, line: 26
 # File: macros/gamitg.sci, line: 74
@@ -206,21 +686,21 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/armax.sci, line: 71
+# File: macros/armax.sci, line: 72
 #, c-format
 msgid ""
 "%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"
 msgstr ""
 
 #
-# File: macros/armax.sci, line: 82
+# File: macros/armax.sci, line: 83
 #, c-format
 msgid "%s: %s is numerically singular.\n"
 msgstr ""
 
 #
-# File: macros/armax.sci, line: 117
-# File: macros/armax.sci, line: 121
+# File: macros/armax.sci, line: 119
+# File: macros/armax.sci, line: 123
 #, c-format
 msgid "%s: Standard deviation of the estimator %s:\n"
 msgstr ""
@@ -316,7 +796,7 @@ msgstr ""
 # File: macros/bode.sci, line: 61
 # File: macros/bode.sci, line: 68
 # File: macros/bode.sci, line: 72
-# File: macros/csim.sci, line: 91
+# File: macros/csim.sci, line: 88
 # File: macros/gainplot.sci, line: 60
 # File: macros/gainplot.sci, line: 68
 # File: macros/nyquist.sci, line: 72
@@ -386,7 +866,7 @@ msgstr ""
 # File: macros/gainplot.sci, line: 124
 # File: macros/hallchart.sci, line: 87
 # File: macros/hallchart.sci, line: 130
-# File: macros/nicholschart.sci, line: 191
+# File: macros/nicholschart.sci, line: 193
 msgid "dB"
 msgstr ""
 
@@ -541,7 +1021,7 @@ msgstr ""
 # File: macros/h_inf.sci, line: 35
 # File: macros/macglov.sci, line: 18
 # File: macros/plzr.sci, line: 26
-# File: macros/plzr.sci, line: 35
+# File: macros/plzr.sci, line: 36
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
@@ -590,7 +1070,7 @@ msgstr ""
 # File: macros/h_inf.sci, line: 77
 # File: macros/lqg.sci, line: 18
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 
 #
@@ -616,19 +1096,19 @@ msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
 msgstr ""
 
 #
-# File: macros/chart.sci, line: 11
-# File: macros/nicholschart.sci, line: 25
+# File: macros/chart.sci, line: 12
+# File: macros/nicholschart.sci, line: 27
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr ""
 
 #
-# File: macros/chart.sci, line: 88
+# File: macros/chart.sci, line: 89
 msgid "magnitude(y) (Db)"
 msgstr ""
 
 #
-# File: macros/chart.sci, line: 88
-# File: macros/nicholschart.sci, line: 26
+# File: macros/chart.sci, line: 89
+# File: macros/nicholschart.sci, line: 28
 msgid "phase(y) (degree)"
 msgstr ""
 
@@ -650,7 +1130,7 @@ msgstr ""
 # File: macros/obs_gram.sci, line: 52
 # File: macros/obsv_mat.sci, line: 28
 # File: macros/obsvss.sci, line: 42
-# File: macros/plzr.sci, line: 54
+# File: macros/plzr.sci, line: 56
 #, c-format
 msgid ""
 "%s: Wrong type of input argument #%d: Array of floating point numbers "
@@ -689,7 +1169,7 @@ msgstr ""
 # File: macros/linfn.sci, line: 99
 # File: macros/macglov.sci, line: 26
 #, c-format
-msgid "%s: Wrong type for argument %d: In continuous time expected.\n"
+msgid "%s: Wrong type for argument #%d: In continuous time expected.\n"
 msgstr ""
 
 #
@@ -713,7 +1193,7 @@ msgstr ""
 # File: macros/copfac.sci, line: 62
 # File: macros/copfac.sci, line: 68
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr ""
 
 #
@@ -729,16 +1209,21 @@ msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
 msgstr ""
 
 #
-# File: macros/csim.sci, line: 58
+# File: macros/csim.sci, line: 57
 #, c-format
-msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
+msgid "%s: Wrong type for argument %d: a proper system expected\n"
 msgstr ""
 
 #
-# File: macros/csim.sci, line: 72
-# File: macros/csim.sci, line: 78
+# File: macros/csim.sci, line: 67
 #, c-format
-msgid "%s: Direct feedthrough set to zero.\n"
+msgid "Wrong type for argument %d: SIMO expected.\n"
+msgstr ""
+
+#
+# File: macros/csim.sci, line: 156
+#, c-format
+msgid "%s: Simulation failed before final time is reached.\n"
 msgstr ""
 
 #
@@ -820,19 +1305,6 @@ msgid "%s: More than %d iterations.\n"
 msgstr ""
 
 #
-# File: macros/dscr.sci, line: 15
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-
-#
-# File: macros/dscr.sci, line: 18
-# File: macros/syslin.sci, line: 20
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#
 # File: macros/dscr.sci, line: 21
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
@@ -897,14 +1369,16 @@ msgstr ""
 #
 # File: macros/evans.sci, line: 133
 # File: macros/hallchart.sci, line: 50
-# File: macros/plzr.sci, line: 112
+# File: macros/plzr.sci, line: 114
+# File: macros/plzr.sci, line: 122
 msgid "Real axis"
 msgstr ""
 
 #
 # File: macros/evans.sci, line: 134
 # File: macros/hallchart.sci, line: 51
-# File: macros/plzr.sci, line: 113
+# File: macros/plzr.sci, line: 115
+# File: macros/plzr.sci, line: 123
 msgid "Imaginary axis"
 msgstr ""
 
@@ -985,7 +1459,7 @@ msgstr ""
 # File: macros/g_margin.sci, line: 20
 # File: macros/krac2.sci, line: 26
 # File: macros/p_margin.sci, line: 20
-# File: macros/routh_t.sci, line: 40
+# File: macros/routh_t.sci, line: 50
 # File: macros/trfmod.sci, line: 20
 # File: macros/trfmod.sci, line: 25
 #, c-format
@@ -1257,8 +1731,8 @@ msgstr ""
 #
 # File: macros/leqr.sci, line: 48
 # File: macros/leqr.sci, line: 77
-# File: macros/lqr.sci, line: 45
-# File: macros/lqr.sci, line: 86
+# File: macros/lqr.sci, line: 44
+# File: macros/lqr.sci, line: 85
 #, c-format
 msgid "%s: Stable subspace is too small.\n"
 msgstr ""
@@ -1266,8 +1740,8 @@ msgstr ""
 #
 # File: macros/leqr.sci, line: 56
 # File: macros/leqr.sci, line: 84
-# File: macros/lqr.sci, line: 49
-# File: macros/lqr.sci, line: 90
+# File: macros/lqr.sci, line: 48
+# File: macros/lqr.sci, line: 89
 # File: macros/ui_observer.sci, line: 111
 # File: macros/ui_observer.sci, line: 114
 #, c-format
@@ -1323,7 +1797,7 @@ msgid "%s: %s is not zero! (set to zero)"
 msgstr ""
 
 #
-# File: macros/lqr.sci, line: 27
+# File: macros/lqr.sci, line: 26
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Time domain must be 'c' or 'd'.\n"
@@ -1353,7 +1827,7 @@ msgid "%s: Incompatible input arguments #%d and #%d: "
 msgstr ""
 
 #
-# File: macros/nicholschart.sci, line: 27
+# File: macros/nicholschart.sci, line: 29
 msgid "magnitude(y) (dB)"
 msgstr ""
 
@@ -1395,7 +1869,7 @@ msgstr ""
 #
 # File: macros/nyquistfrequencybounds.sci, line: 16
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
 
 #
@@ -1409,7 +1883,7 @@ msgstr ""
 #
 # File: macros/nyquistfrequencybounds.sci, line: 25
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr ""
 
 #
@@ -1425,30 +1899,31 @@ msgid "Phase (Deg)"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 31
-# File: macros/plzr.sci, line: 39
+# File: macros/plzr.sci, line: 32
+# File: macros/plzr.sci, line: 41
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 43
+# File: macros/plzr.sci, line: 45
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 99
+# File: macros/plzr.sci, line: 100
 msgid "Zeros"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 106
+# File: macros/plzr.sci, line: 107
 msgid "Poles"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 112
+# File: macros/plzr.sci, line: 114
+# File: macros/plzr.sci, line: 122
 msgid "Transmission zeros and poles"
 msgstr ""
 
@@ -1467,14 +1942,14 @@ msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/routh_t.sci, line: 36
+# File: macros/routh_t.sci, line: 46
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: rational fraction array expected.\n"
 msgstr ""
 
 #
-# File: macros/routh_t.sci, line: 48
+# File: macros/routh_t.sci, line: 58
 # File: macros/sm2ss.sci, line: 16
 # File: macros/syslin.sci, line: 53
 # File: macros/syslin.sci, line: 56
@@ -1484,7 +1959,7 @@ msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
 msgstr ""
 
 #
-# File: macros/routh_t.sci, line: 51
+# File: macros/routh_t.sci, line: 61
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""

@@ -59,8 +59,8 @@ extern "C"
 {
 #endif /* __cplusplus */
 
-/* If <complex.h> is included, use the C99 complex type.  Otherwise
-   define a type bit-compatible with C99 complex */
+    /* If <complex.h> is included, use the C99 complex type.  Otherwise
+       define a type bit-compatible with C99 complex */
 #if !defined(FFTW_NO_Complex) && defined(_Complex_I) && defined(complex) && defined(I)
 #  define FFTW_DEFINE_COMPLEX(R, C) typedef R _Complex C
 #else
@@ -72,17 +72,17 @@ extern "C"
 #define FFTW_MANGLE_FLOAT(name) FFTW_CONCAT(fftwf_, name)
 #define FFTW_MANGLE_LONG_DOUBLE(name) FFTW_CONCAT(fftwl_, name)
 
-/* IMPORTANT: for Windows compilers, you should add a line
-*/
+    /* IMPORTANT: for Windows compilers, you should add a line
+    */
 #define FFTW_DLL
-/*
-   here and in kernel/ifftw.h if you are compiling/using FFTW as a
-   DLL, in order to do the proper importing/exporting, or
-   alternatively compile with -DFFTW_DLL or the equivalent
-   command-line flag.  This is not necessary under MinGW/Cygwin, where
-   libtool does the imports/exports automatically. */
+    /*
+       here and in kernel/ifftw.h if you are compiling/using FFTW as a
+       DLL, in order to do the proper importing/exporting, or
+       alternatively compile with -DFFTW_DLL or the equivalent
+       command-line flag.  This is not necessary under MinGW/Cygwin, where
+       libtool does the imports/exports automatically. */
 #if defined(FFTW_DLL) && (defined(_WIN32) || defined(__WIN32__))
-   /* annoying Windows syntax for shared-library declarations */
+    /* annoying Windows syntax for shared-library declarations */
 #  if defined(COMPILING_FFTW) /* defined in api.h when compiling FFTW */
 #    define FFTW_EXTERN extern __declspec(dllexport)
 #  else /* user is calling FFTW; import symbol */
@@ -92,26 +92,27 @@ extern "C"
 #  define FFTW_EXTERN extern
 #endif
 
-enum fftw_r2r_kind_do_not_use_me {
-     FFTW_R2HC=0, FFTW_HC2R=1, FFTW_DHT=2,
-     FFTW_REDFT00=3, FFTW_REDFT01=4, FFTW_REDFT10=5, FFTW_REDFT11=6,
-     FFTW_RODFT00=7, FFTW_RODFT01=8, FFTW_RODFT10=9, FFTW_RODFT11=10
-};
+    enum fftw_r2r_kind_do_not_use_me {
+        FFTW_R2HC = 0, FFTW_HC2R = 1, FFTW_DHT = 2,
+        FFTW_REDFT00 = 3, FFTW_REDFT01 = 4, FFTW_REDFT10 = 5, FFTW_REDFT11 = 6,
+        FFTW_RODFT00 = 7, FFTW_RODFT01 = 8, FFTW_RODFT10 = 9, FFTW_RODFT11 = 10
+    };
 
-struct fftw_iodim_do_not_use_me {
-     int n;                     /* dimension size */
-     int is;			/* input stride */
-     int os;			/* output stride */
-};
+    struct fftw_iodim_do_not_use_me
+    {
+        int n;                     /* dimension size */
+        int is;			/* input stride */
+        int os;			/* output stride */
+    };
 
-/*
-  huge second-order macro that defines prototypes for all API
-  functions.  We expand this macro for each supported precision
+    /*
+      huge second-order macro that defines prototypes for all API
+      functions.  We expand this macro for each supported precision
 
-  X: name-mangling macro
-  R: real data type
-  C: complex data type
-*/
+      X: name-mangling macro
+      R: real data type
+      C: complex data type
+    */
 
 #define FFTW_DEFINE_API(X, R, C)					   \
 									   \
@@ -289,18 +290,18 @@ FFTW_EXTERN const char X(cc)[];						   \
 FFTW_EXTERN const char X(codelet_optim)[];
 
 
-/* end of FFTW_DEFINE_API macro */
+    /* end of FFTW_DEFINE_API macro */
 
-FFTW_DEFINE_API(FFTW_MANGLE_DOUBLE, double, fftw_complex)
-FFTW_DEFINE_API(FFTW_MANGLE_FLOAT, float, fftwf_complex)
-FFTW_DEFINE_API(FFTW_MANGLE_LONG_DOUBLE, long double, fftwl_complex)
+    FFTW_DEFINE_API(FFTW_MANGLE_DOUBLE, double, fftw_complex)
+    FFTW_DEFINE_API(FFTW_MANGLE_FLOAT, float, fftwf_complex)
+    FFTW_DEFINE_API(FFTW_MANGLE_LONG_DOUBLE, long double, fftwl_complex)
 
 #define FFTW_FORWARD (-1)
 #define FFTW_BACKWARD (+1)
 
 #define FFTW_NO_TIMELIMIT (-1.0)
 
-/* documented flags */
+    /* documented flags */
 #define FFTW_MEASURE (0U)
 #define FFTW_DESTROY_INPUT (1U << 0)
 #define FFTW_UNALIGNED (1U << 1)
@@ -310,7 +311,7 @@ FFTW_DEFINE_API(FFTW_MANGLE_LONG_DOUBLE, long double, fftwl_complex)
 #define FFTW_PATIENT (1U << 5) /* IMPATIENT is default */
 #define FFTW_ESTIMATE (1U << 6)
 
-/* undocumented beyond-guru flags */
+    /* undocumented beyond-guru flags */
 #define FFTW_ESTIMATE_PATIENT (1U << 7)
 #define FFTW_BELIEVE_PCOST (1U << 8)
 #define FFTW_NO_DFT_R2HC (1U << 9)

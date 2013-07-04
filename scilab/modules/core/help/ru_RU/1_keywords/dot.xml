@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dot" xml:lang="ru">
+    <refnamediv>
+        <refname>точка</refname>
+        <refpurpose>(.) символ точка</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            123.33
+            a.*b
+            
+            [123,..
+            456]
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <variablelist>
+            <varlistentry>
+                <term>.</term>
+                <listitem>
+                    <para>
+                        Точка используется для обозначения десятичной запятой для чисел: 3.25 и
+                        0.001
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>.&lt;оператор&gt;</term>
+                <listitem>
+                    <para>
+                        используется в сочетании с другими символами операторов (<literal>*/ \ ^ '</literal>) 
+                        для формирования других операторов. Операторы поэлементного умножения, деления и 
+                        возведения в степень и транспонирования получаются с помощью
+                        <literal> .*, ./, .\, .^ </literal>; транспонирование без комплексного сопряжения 
+                        получается с помощью <literal>.'</literal> . Например,  <literal>C = A ./ B</literal> 
+                        является матрицей с элементами <literal>c(i,j) = a(i,j)/b(i,j)</literal>. Произведение 
+                        Кронекера обозначается <literal>.*.</literal> . Заметьте, что когда точка стоит
+                        сразу после числа, то она всегда является частью числа, так что <literal>2.*x</literal> 
+                        вычисляется как <literal>2.0*x</literal>, а <literal>2 .*x</literal> вычисляется как 
+                        <literal>(2).*x</literal>. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>..</term>
+                <listitem>
+                    <para>
+                        Обозначение продолжения. Две или более точек в конце строки
+                        (или с последующим комментарием) приводит к тому, что следующая
+                        строка будет продолжением.
+                    </para>
+                    <para>
+                        Строки продолжения обрабатываются предпроцессором, который строит длинную логическую
+                        линию из последовательности строк продолжения. Так что обозначения продолжения
+                        могут использоваться для разрезания строки во многих местах.
+                    </para>
+                    <para>
+                        Следующая функция <literal>foo</literal>:
+                    </para>
+                    <programlisting role=""><![CDATA[ 
+function foo
+  a=1
+  disp(a),..
+  disp('ok')
+endfunction
+ ]]></programlisting>
+                    <para>эквивалентна:</para>
+                    <programlisting role=""><![CDATA[ 
+function foo 
+  a=1
+ 
+  disp(a),disp('ok') 
+endfunction
+ ]]></programlisting>
+                    <para>
+                        Логическая строка, сформированная физической строкой №3 и физической строкой №4, 
+                        построена так, как если бы она была полностью написана на физической строке №4, а 
+                        физическая строка №3 была бы пустой. Так сделано для того, чтобы обозначения 
+                        конкатенации можно было помещать куда угодно внутри выражения.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+//десятичная запятая
+1.345
+ 
+//используется как часть оператора
+x=[1 2 3];x.^2 .*x // требуется пробел между 2 и точкой
+ 
+// используется для введения строк продолжения
+T=[123,..//первый элемент
+   456] //второй элемент
+ 
+a="здесь я начинаю очень длинную строчку...  //но мне что-то не хочется продолжать
+     - а вот тут я продолжаю"
+y=12..
+45
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="star">звёздочка</link>
+            </member>
+            <member>
+                <link linkend="hat">крышечка</link>
+            </member>
+            <member>
+                <link linkend="slash">слэш</link>
+            </member>
+            <member>
+                <link linkend="backslash">обратный слэш</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

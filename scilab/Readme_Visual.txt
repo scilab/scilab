@@ -9,6 +9,6 @@ or
 
 * Visual Studio C++ .NET 2010 Express
 
-Please read http://wiki.scilab.org/Build_Scilab_with_Visual_Studio_2010 for more informations
+Please read http://wiki.scilab.org/Build_Scilab_with_Visual_Studio_2010 for more information
 
 

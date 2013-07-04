@@ -195,15 +195,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
                     return 0;
                 }
 
-                if (m2 != 1 || n2 != 1)
-                {
-                    Scierror(999, _("%s: Wrong type for argument #%d: Real matrix or \'readonly\' expected.\n"), fname, 2);
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
-                    FREE(lenStVarOne);
-                    return 0;
-                }
-
-                lenStVarTwo = (int *)MALLOC(sizeof(int));
+                lenStVarTwo = (int *)MALLOC(sizeof(int) * m2 * n2);
                 if (lenStVarTwo == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), fname);
@@ -224,7 +216,7 @@ int sci_scinotes(char *fname, unsigned long fname_len)
                     return 0;
                 }
 
-                pStVarTwo = (wchar_t **) MALLOC(sizeof(wchar_t *));
+                pStVarTwo = (wchar_t **) MALLOC(sizeof(wchar_t *) * m2 * n2);
                 if (pStVarTwo == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), fname);
@@ -234,15 +226,18 @@ int sci_scinotes(char *fname, unsigned long fname_len)
                     return 0;
                 }
 
-                pStVarTwo[0] = (wchar_t *) MALLOC(sizeof(wchar_t) * (lenStVarTwo[0] + 1));
-                if (pStVarTwo[0] == NULL)
+                for (int i = 0; i < m2 * n2; i++)
                 {
-                    Scierror(999, _("%s: No more memory.\n"), fname);
-                    FREE(pStVarTwo);
-                    FREE(lenStVarTwo);
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
-                    FREE(lenStVarOne);
-                    return 0;
+                    pStVarTwo[i] = (wchar_t *) MALLOC(sizeof(wchar_t) * (lenStVarTwo[i] + 1));
+                    if (pStVarTwo[i] == NULL)
+                    {
+                        Scierror(999, _("%s: No more memory.\n"), fname);
+                        freeArrayOfWideString(pStVarTwo, i);
+                        FREE(lenStVarTwo);
+                        freeArrayOfWideString(pStVarOne, m1 * n1);
+                        FREE(lenStVarOne);
+                        return 0;
+                    }
                 }
 
                 /* get strings */
@@ -260,12 +255,12 @@ int sci_scinotes(char *fname, unsigned long fname_len)
 
                 try
                 {
-                    callSciNotesWWithOption(pStVarOne, pStVarTwo, m1 * n1);
+                    callSciNotesWWithOption(pStVarOne, pStVarTwo, m2 * n2, m1 * n1);
                 }
                 catch (GiwsException::JniCallMethodException exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
-                    FREE(pStVarTwo);
+                    freeArrayOfWideString(pStVarTwo, m2 * n2);
                     FREE(lenStVarTwo);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
@@ -274,13 +269,13 @@ int sci_scinotes(char *fname, unsigned long fname_len)
                 catch (GiwsException::JniException exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
-                    FREE(pStVarTwo);
+                    freeArrayOfWideString(pStVarTwo, m2 * n2);
                     FREE(lenStVarTwo);
                     freeArrayOfWideString(pStVarOne, m1 * n1);
                     FREE(lenStVarOne);
                     return 0;
                 }
-                freeArrayOfWideString(pStVarTwo, 1);
+                freeArrayOfWideString(pStVarTwo, m2 * n2);
                 FREE(lenStVarTwo);
             }
             else

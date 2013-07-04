@@ -10,45 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="isempty" xml:lang="ja">
-  <refnamediv>
-    <refname>isempty</refname>
-    <refpurpose>変数が空の行列または空のリストかどうかを調べる</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>t=isempty(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>ベクトルまたは行列またはリスト</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>t</term>
-        <listitem>
-          <para>論理値</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      <literal>isempty(x)</literal> は x が空の行列または
-      空のリストの場合に真を返します.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isempty" xml:lang="ja">
+    <refnamediv>
+        <refname>isempty</refname>
+        <refpurpose>変数が空の行列または空のリストかどうかを調べる</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>t=isempty(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>ベクトルまたは行列またはリスト</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>論理値</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>isempty(x)</literal> は x が空の行列または
+            空のリストの場合に真を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 a=1
 isempty(a(2:$))
 isempty(find(rand(1:10)==5))
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

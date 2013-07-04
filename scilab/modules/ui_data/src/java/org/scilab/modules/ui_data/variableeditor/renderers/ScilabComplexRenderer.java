@@ -32,6 +32,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author Allan SIMON
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabComplexRenderer extends DefaultTableCellRenderer {
 
     public static final int SHORT = 0;
@@ -79,22 +80,22 @@ public class ScilabComplexRenderer extends DefaultTableCellRenderer {
      */
     public static void setFormat(int format) {
         switch (format) {
-        case SHORT:
-            numberFormat = SHORTFORMAT;
-            numberFormatE = SHORTFORMAT;
-            break;
-        case SHORTE:
-            numberFormat = SHORTEFORMAT;
-            numberFormatE = SHORTEFORMAT;
-            break;
-        case LONG:
-            numberFormat = LONGFORMAT;
-            numberFormatE = LONGEFORMAT;
-            break;
-        case LONGE:
-            numberFormat = LONGEFORMAT;
-            numberFormatE = LONGEFORMAT;
-            break;
+            case SHORT:
+                numberFormat = SHORTFORMAT;
+                numberFormatE = SHORTFORMAT;
+                break;
+            case SHORTE:
+                numberFormat = SHORTEFORMAT;
+                numberFormatE = SHORTEFORMAT;
+                break;
+            case LONG:
+                numberFormat = LONGFORMAT;
+                numberFormatE = LONGEFORMAT;
+                break;
+            case LONGE:
+                numberFormat = LONGEFORMAT;
+                numberFormatE = LONGEFORMAT;
+                break;
         }
     }
 

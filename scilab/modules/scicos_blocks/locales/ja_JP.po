@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-10-05 14:16+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-15 04:23+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: ja\n"
 
 msgid "overflow error"
@@ -423,6 +423,48 @@ msgstr "検証"
 msgid "Cancel"
 msgstr "取消"
 
+msgid "Please give the discretization domain values"
+msgstr "離散化領域値を指定してください"
+
+#, c-format
+msgid "Please give the %s operator coefficients"
+msgstr "%s 演算子係数を指定してください"
+
+msgid "Please give the sign for the variable discriminant"
+msgstr "変数判別式の符号を指定してください"
+
+msgid "Please give the discretization method type"
+msgstr "離散化メソッド型を指定してください"
+
+msgid "Please give the discretization method degree"
+msgstr "離散化メソッド度を指定してください"
+
+msgid "Please give the number of discretization points"
+msgstr "離散化点の数を指定してください"
+
+#, c-format
+msgid "Please give the initial condition %s"
+msgstr "初期条件 %s を指定してください"
+
+msgid "Please give the boundary conditions"
+msgstr "境界条件を指定してください"
+
+#, c-format
+msgid "The finite element discrtization takes %.2f seconds"
+msgstr "有限要素離散化には %.2f 秒かかります"
+
+#, c-format
+msgid "The finite differences discrtization takes %.2f seconds"
+msgstr "有限離散化には %.2f 秒かかります"
+
+#, c-format
+msgid "The finite volume discrtization takes %.2f seconds"
+msgstr "有限容積離散化には %.2f 秒かかります"
+
+#, c-format
+msgid "The code generation, the compilation and link takes %.2f seconds"
+msgstr "コード生成, コンパイルおよびリンクには %.2f 秒かかります"
+
 msgid "Event output port"
 msgstr "出力ポートのイベント"
 
@@ -441,6 +483,14 @@ msgstr "陰的出力ポート"
 
 msgid "Regular output port"
 msgstr "標準出力ポート"
+
+#, c-format
+msgid "Feature %s is obsolete."
+msgstr "機能 %s は廃止されています."
+
+#, c-format
+msgid "Please use %s instead."
+msgstr "代わりに %s を使用してください."
 
 msgid "Write to output file"
 msgstr "出力ファイルに書込む"
@@ -700,6 +750,50 @@ msgstr "[1, レコードの大きさ = "
 msgid "Wrong value for indexes in '%s' parameter: %s."
 msgstr "'%s' パラメータのインデックスの値に誤りがあります: %s."
 
+msgid "Read from an input file"
+msgstr "入力ファイルから読み込む"
+
+msgid "Read is done on:"
+msgstr "読込完了:"
+
+msgid "&nbsp; - A formatted text file if a  format (fortran type) is given"
+msgstr "&nbsp; - フォーマット(fortran型)が指定された場合は整形済みのテキストファイル"
+
+msgid "Empty matrix or scalar expected."
+msgstr "空の行列またはスカラーを指定してください."
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %d"
+msgstr "'%s'パラメータの値が間違っています: %d"
+
+msgid ""
+"Simulation running !!! You cannot switch <br />between formatted and "
+"unformatted"
+msgstr "シミュレーション実行中 !!! 整形式と非整形式を<br />切り替えられません"
+
+msgid "Simulation running !!! You cannot modify 'Input File Name"
+msgstr "シミュレーション実行中 !!!  入力ファイル名を<br />修正できません"
+
+msgid "Simulation running !!! You cannot modify 'Time Record Selection"
+msgstr "シミュレーション実行中 !!!  時間レコード選択を<br />修正できません"
+
+#, c-format
+msgid "Wrong value for '%s' parameter: %s"
+msgstr "'%s'パラメータの値が間違っています: %s"
+
+#, c-format
+msgid "Wrong format for '%s' parameter: %s."
+msgstr "'%s'パラメータのフォーマットが間違っています: %s."
+
+msgid "Buffer size must be at least 2."
+msgstr "バッファの大きさは2以上を指定してください."
+
+msgid "You must read at least one field in record."
+msgstr "レコード中のフィールドを最低1つ読み込んでください."
+
+msgid "Strictly positive indexes expected."
+msgstr "厳密に正の添字を指定してください."
+
 msgid "Step Function"
 msgstr "ステップ関数"
 
@@ -727,3 +821,7 @@ msgstr "編集(&E)"
 
 msgid "&?"
 msgstr "&?"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: 最大でも %d 個としてください.\n"

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="abs" xml:lang="ru">
+    <refnamediv>
+        <refname>abs</refname>
+        <refpurpose>абсолютное значение, амплитуда</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>t=abs(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>вещественный или комплексный вектор или матрица</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>вещественный вектор или матрица</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>abs(x)</literal> является абсолютным значение элементов 
+            <literal>x</literal>. Если <literal>x</literal> является комплексным, то
+            <literal>abs(x)</literal> равно модулю (амплитуде) комплексных элементов 
+            <literal>x</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+abs([1,%i,-1,-%i,1+%i])
+ ]]></programlisting>
+    </refsection>
+</refentry>

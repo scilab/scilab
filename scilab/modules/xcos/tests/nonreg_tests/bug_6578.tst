@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 6578 -->
 //
@@ -16,6 +16,6 @@
 // <-- Short Description -->
 // This test validate that the 10001 simulation index (4.X.X blocks) is working
 
-// xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_6578.xcos");
+// xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_6578.zcos");
 // Simulate
 

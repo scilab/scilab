@@ -31,18 +31,18 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_text_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_text_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    double * values = getDoubleMatrixFromStack( stackPointer );
+    double* values = (double*)_pvData;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "text_box");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbRow * nbCol != 2 )
+    if (nbRow * nbCol != 2)
     {
         Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "text_box", 2);
         return SET_PROPERTY_ERROR;
@@ -56,7 +56,7 @@ int set_text_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"text_box");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "text_box");
         return SET_PROPERTY_ERROR;
     }
 }

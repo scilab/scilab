@@ -42,13 +42,13 @@ public class OnePointRubberBox extends RubberBox implements PointRubberBox {
 
     public double[] getResults() {
         double result[] = {
-                mouseButton - 1,
-                Math.min(firstPoint.getX(), secondPoint.getX()),
-                Math.max(firstPoint.getY(), secondPoint.getY()),
-                Math.max(firstPoint.getZ(), secondPoint.getZ()),
-                Math.abs(firstPoint.getX() - secondPoint.getX()),
-                Math.abs(firstPoint.getY() - secondPoint.getY()),
-                Math.abs(firstPoint.getZ() - secondPoint.getZ())
+            mouseButton - 1,
+            Math.min(firstPoint.getX(), secondPoint.getX()),
+            Math.max(firstPoint.getY(), secondPoint.getY()),
+            Math.max(firstPoint.getZ(), secondPoint.getZ()),
+            Math.abs(firstPoint.getX() - secondPoint.getX()),
+            Math.abs(firstPoint.getY() - secondPoint.getY()),
+            Math.abs(firstPoint.getZ() - secondPoint.getZ())
         };
 
         return result;
@@ -60,7 +60,7 @@ public class OnePointRubberBox extends RubberBox implements PointRubberBox {
         setPointB(e.getPoint());
         process();
         setEnable(false);
-        fireRubberBoxEnd();       
+        fireRubberBoxEnd();
     }
 
     /**
@@ -78,6 +78,6 @@ public class OnePointRubberBox extends RubberBox implements PointRubberBox {
                 return true;
             }
         }
-        return false;  
+        return false;
     }
 }

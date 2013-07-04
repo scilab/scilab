@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="comma">
+    <refnamediv>
+        <refname>запятая</refname>
+        <refpurpose>(,) запятая; разделитель инструкций, аргументов</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Запятые используются для разделения параметров в функциях, для
+            разделения элементов вектора-строки, либо для разделения элементов 
+            одной строки в матрице.
+        </para>
+        <para>
+            Пробелы также могут быть использованы для разделения элементов в строке, но
+            лучше использовать запятые.
+        </para>
+        <para>
+            Также запятые используются для разделения инструкций Scilab.
+            Чтобы результат не выводился на экран, используйте точку с запятой <literal>;</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+a=[1,2,3;4,5,6];
+b=1,c=1;d=2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="semicolon">точка с запятой</link>
+            </member>
+            <member>
+                <link linkend="brackets">квадратные скобки</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

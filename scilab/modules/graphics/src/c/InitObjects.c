@@ -208,6 +208,11 @@ int C2F(graphicsmodels) (void)
     // Create default Axes by Asking MVC a new one.
     paxesmdlUID = createGraphicObject(__GO_AXESMODEL__);
     setAxesModel(paxesmdlUID);
+
+    /* Sets the parent-child relationship between the default Figure and Axes */
+    setGraphicObjectRelationship(pfiguremdlUID, paxesmdlUID);
+    releaseGraphicObjectProperty(-1, pfiguremdlUID, jni_string, 0);
+
     /* Axes Model properties */
 
     result = InitAxesModel();
@@ -243,12 +248,11 @@ int C2F(graphicsmodels) (void)
     firstPlot = 1;
     setGraphicObjectProperty(paxesmdlUID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
+    releaseGraphicObjectProperty(-1, paxesmdlUID, jni_string, 0);
+
 #if 0
     ppaxesmdl->FirstPlot = TRUE;
 #endif
-
-    /* Sets the parent-child relationship between the default Figure and Axes */
-    setGraphicObjectRelationship(pfiguremdlUID, paxesmdlUID);
 
     return 1;
 }
@@ -558,15 +562,19 @@ int InitAxesModel()
     /* Creates the Axes model's labels and sets the model as their parent */
     labelUID = initLabel(paxesmdlUID);
     setGraphicObjectProperty(paxesmdlUID, __GO_TITLE__, labelUID, jni_string, 1);
+    releaseGraphicObjectProperty(__GO_TITLE__, labelUID, jni_string, 0);
 
     labelUID = initLabel(paxesmdlUID);
     setGraphicObjectProperty(paxesmdlUID, __GO_X_AXIS_LABEL__, labelUID, jni_string, 1);
+    releaseGraphicObjectProperty(__GO_X_AXIS_LABEL__, labelUID, jni_string, 0);
 
     labelUID = initLabel(paxesmdlUID);
     setGraphicObjectProperty(paxesmdlUID, __GO_Y_AXIS_LABEL__, labelUID, jni_string, 1);
+    releaseGraphicObjectProperty(__GO_Y_AXIS_LABEL__, labelUID, jni_string, 0);
 
     labelUID = initLabel(paxesmdlUID);
     setGraphicObjectProperty(paxesmdlUID, __GO_Z_AXIS_LABEL__, labelUID, jni_string, 1);
+    releaseGraphicObjectProperty(__GO_Z_AXIS_LABEL__, labelUID, jni_string, 0);
 
     return 0;
 }
@@ -582,16 +590,17 @@ int InitAxesModel()
  */
 int sciInitGraphicMode(char *pobjUID)
 {
-    char *type = NULL;
+    int iType = -1;
+    int *piType = &iType;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
      * The GO_FIGURE block is never reached as InitFigureModel
      * is not called at all (was previously called by
      * the graphicsmodels function).
      */
-    if (strcmp(type, __GO_FIGURE__) == 0)
+    if (iType == __GO_FIGURE__)
     {
         /* 3: copy pixel drawing mode */
         int xormode = 3;
@@ -605,7 +614,7 @@ int sciInitGraphicMode(char *pobjUID)
             setGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, &xormode, jni_int, 1);
         }
     }
-    else if (strcmp(type, __GO_AXES__) == 0)
+    else if (iType == __GO_AXES__)
     {
         /*
          * Same values as the ones from the Figure model. These values were copied from the parent

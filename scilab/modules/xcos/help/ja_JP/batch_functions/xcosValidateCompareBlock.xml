@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xcosValidateCompareBlock" xml:lang="ja">
-  <refnamediv>
-    <refname>xcosValidateCompareBlock</refname>
-    <refpurpose>2つのXcosブロックを比較する関数.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>[status, message] = xcosValidateCompareBlock(block1, block2)</synopsis>
-  </refsynopsisdiv>
-  <refsection id="Parameters_xcosValidateCompareBlock">
-    <title>引数</title>
-    <variablelist>
-      <varlistentry>
-        <term>block1</term>: Xcosブロック.
-      </varlistentry>
-      <varlistentry>
-        <term>block2</term>: Xcosブロック.
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection id="Module_xcosValidateCompareBlock">
-    <title>モジュール</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcosValidateCompareBlock" xml:lang="ja">
+    <refnamediv>
+        <refname>xcosValidateCompareBlock</refname>
+        <refpurpose>2つのXcosブロックを比較する関数.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[status, message] = xcosValidateCompareBlock(block1, block2)</synopsis>
+    </refsynopsisdiv>
+    <refsection id="Parameters_xcosValidateCompareBlock">
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>block1</term>: Xcosブロック.
+            </varlistentry>
+            <varlistentry>
+                <term>block2</term>: Xcosブロック.
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection id="Module_xcosValidateCompareBlock">
+        <title>モジュール</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_xcosValidateCompareBlock">
+        <title>説明</title>
+        この関数は2つのブロックを比較する際に使用されます.
+        
         <para>
-          <link linkend="xcos">xcos</link>
+            この関数は,各ブロックのフィールドを調べて,2つの値を比較します.
+            この関数は2つのブロックが等しい場合にtrue,そうでない場合にfalseを返します.
+            <literal>message</literal> は等しくないフィールドに関する情報を有します.
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_xcosValidateCompareBlock">
-    <title>説明</title>
-    この関数は2つのブロックを比較する際に使用されます.
-    
-    <para>
-      この関数は,各ブロックのフィールドを調べて,2つの値を比較します.
-      この関数は2つのブロックが等しい場合にtrue,そうでない場合にfalseを返します.
-      <literal>message</literal> は等しくないフィールドに関する情報を有します.
-    </para>
-  </refsection>
-  <refsection id="Filecontent_xcosValidateCompareBlock">
-    <title>ファイルの内容</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/xcos/macros/xcosValidateCompareBlock.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Examples_xcosValidateCompareBlock">
-    <title>例</title>
-    <para>
-      <programlisting role="example"><![CDATA[
+    </refsection>
+    <refsection id="Filecontent_xcosValidateCompareBlock">
+        <title>ファイルの内容</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/xcos/macros/xcosValidateCompareBlock.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Examples_xcosValidateCompareBlock">
+        <title>例</title>
+        <para>
+            <programlisting role="example"><![CDATA[
       loadXcosLibs();
       block1 = CONST_m("define");
       block2 = CONST_m("define");
@@ -59,28 +59,28 @@
       block2.model.rpar = 42;
       [status, message] = xcosValidateCompareBlock(block1,block2)
       ]]></programlisting>
-    </para>
-  </refsection>
-  <refsection id="SeeAlso_xcosValidateCompareBlock">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="scicos_diagram">scs_m 構造体</link>
-      </member>
-      <member>
-        <link linkend="xcos">xcos: ハイブリッドシミュレータ用のブロック図ダイアグラムエディタ
-          およびGUI
-        </link>
-      </member>
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>履歴</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revremark>関数 xcosValidateCompareBlock を導入.</revremark>
-      </revision>
-    </revhistory>
-  </refsection>
+        </para>
+    </refsection>
+    <refsection id="SeeAlso_xcosValidateCompareBlock">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scicos_diagram">scs_m 構造体</link>
+            </member>
+            <member>
+                <link linkend="xcos">xcos: ハイブリッドシミュレータ用のブロック図ダイアグラムエディタ
+                    およびGUI
+                </link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>関数 xcosValidateCompareBlock を導入.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

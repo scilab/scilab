@@ -17,80 +17,84 @@
 #include "localization.h"
 #include "GlobalTclInterp.h"
 /*--------------------------------------------------------------------------*/
-int sci_TCL_UnsetVar(char *fname,unsigned long l)
+int sci_TCL_UnsetVar(char *fname, unsigned long l)
 {
-  static int l1,n1,m1;
-  static int l2,n2,m2;
+    static int l1, n1, m1;
+    static int l2, n2, m2;
 
-  Tcl_Interp *TCLinterpreter=NULL;
+    Tcl_Interp *TCLinterpreter = NULL;
 
-  CheckRhs(1,2);
-  CheckLhs(1,1);
+    CheckRhs(1, 2);
+    CheckLhs(1, 1);
 
-  if (GetType(1) == sci_strings)
+    if (GetType(1) == sci_strings)
     {
-      int *paramoutINT=(int*)MALLOC(sizeof(int));
+        int *paramoutINT = (int*)MALLOC(sizeof(int));
 
-      char *VarName=NULL;
+        char *VarName = NULL;
 
-      GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-      VarName=cstk(l1);
+        GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
+        VarName = cstk(l1);
 
-      if (!existsGlobalInterp())
-	{
-	  Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
-	  return 0;
-	}
+        if (!existsGlobalInterp())
+        {
+            Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
+            return 0;
+        }
 
-      if (Rhs==2)
-	{
-	  /* two arguments given - get a pointer on the slave interpreter */
-	  if (GetType(2) == sci_strings)
-		  {
-			  GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-			  TCLinterpreter=Tcl_GetSlave(getTclInterp(),cstk(l2));
-			  releaseTclInterp();
-			  if (TCLinterpreter==NULL)
-				  {
-					  Scierror(999,_("%s: No such slave interpreter.\n"),fname);
-					  return 0;
-				  }
-		  }
-	  else
-	    {
-	      Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
-	      return 0;
-	    }
-	}
-      else
-	{
-	  /* only one argument given - use the main interpreter */
-	  TCLinterpreter=getTclInterp();
-	}
+        if (Rhs == 2)
+        {
+            /* two arguments given - get a pointer on the slave interpreter */
+            if (GetType(2) == sci_strings)
+            {
+                GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);
+                TCLinterpreter = Tcl_GetSlave(getTclInterp(), cstk(l2));
+                releaseTclInterp();
+                if (TCLinterpreter == NULL)
+                {
+                    Scierror(999, _("%s: No such slave interpreter.\n"), fname);
+                    return 0;
+                }
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+                return 0;
+            }
+        }
+        else
+        {
+            /* only one argument given - use the main interpreter */
+            TCLinterpreter = getTclInterp();
+        }
 
-      if (Tcl_UnsetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY) == TCL_ERROR)
-	{
-	  *paramoutINT=(int)(FALSE);
-	}
-      else
-	{
-	  *paramoutINT=(int)(TRUE);
-	}
+        if (Tcl_UnsetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY) == TCL_ERROR)
+        {
+            *paramoutINT = (int)(FALSE);
+        }
+        else
+        {
+            *paramoutINT = (int)(TRUE);
+        }
 
-      n1=1;
-      CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &paramoutINT);
-      LhsVar(1)=Rhs+1;
-      if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-      PutLhsVar();
+        n1 = 1;
+        CreateVarFromPtr(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &paramoutINT);
+        LhsVar(1) = Rhs + 1;
+        if (paramoutINT)
+        {
+            FREE(paramoutINT);
+            paramoutINT = NULL;
+        }
+        PutLhsVar();
     }
-  else
+    else
     {
-      releaseTclInterp();
-      Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname, 1);
-      return 0;
+        releaseTclInterp();
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        return 0;
     }
-  releaseTclInterp();
+    releaseTclInterp();
 
-  return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

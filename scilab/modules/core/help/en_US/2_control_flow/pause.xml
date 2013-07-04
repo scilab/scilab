@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="pause">
+    <refnamediv>
+        <refname>pause</refname>
+        <refpurpose>pause mode, invoke keyboard</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Switch to the <code>pause</code> mode;
+            inserted in the code of a function, <code>pause</code> interrupts the execution
+            of the function: one receives a prompt symbol which indicates
+            the level of the <code>pause</code> (e.g. <literal>-1-&gt;</literal>). The user is
+            then in a new workspace in which all the lower-level variables
+            (and in particular all the variable of the function) are available.
+            To return to the calling workspace enter <code>return</code>.
+        </para>
+        <para>
+            In this mode, <literal>[...]=return(...) </literal>
+            returns the variables of the argument <literal>(...)</literal> to the calling workspace with 
+            names in the output <literal>[...]</literal>. Otherwise, the lower-level variables
+            are protected and cannot be modified.
+        </para>
+        <para>
+            The <literal>pause</literal> is extremely useful for debugging purposes.
+        </para>
+        <para>
+            This mode is killed by the command <code>abort</code>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+    function c=foo(b)
+    a=42+b
+    disp("Thanks to the pause, you can investigate if ''a'' has the right value");
+    disp("Value can be changed too if needed.");
+    pause
+    c=a+2
+    endfunction
+    
+    foo(2)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="halt">halt</link>
+            </member>
+            <member>
+                <link linkend="return">return</link>
+            </member>
+            <member>
+                <link linkend="abort">abort</link>
+            </member>
+            <member>
+                <link linkend="quit">quit</link>
+            </member>
+            <member>
+                <link linkend="whereami">whereami</link>
+            </member>
+            <member>
+                <link linkend="where">where</link>
+            </member>
+            <member>
+                <link linkend="sleep">sleep</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

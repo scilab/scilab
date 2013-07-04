@@ -10,51 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="part" xml:lang="en">
-  <refnamediv>
-    <refname>part</refname>
-    <refpurpose>extração de strings</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>[strings_out] = part(strings_in, v)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>strings_in, strings_out</term>
-        <listitem>
-          <para>matriz de strings</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>v</term>
-        <listitem>
-          <para>vetor linha de inteiros</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      Seja <literal>s[k]</literal> o caractere <literal>k</literal> do
-      string <literal>s</literal> (ou o espaço em branco se <literal>k
-        &gt;length(s)
-      </literal>
-      ).
-    </para>
-    <para>
-      <literal>part</literal> retorna <literal>strings_out</literal>, uma
-      matriz de strings, tal que <literal>strings_out(i,j)</literal> é o string
-      <literal>"s[v(1)]...s[v(n)]"</literal> (
-      <literal>s=strings_in(i,j)</literal> ).
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="part" xml:lang="en">
+    <refnamediv>
+        <refname>part</refname>
+        <refpurpose>extração de strings</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>[strings_out] = part(strings_in, v)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>strings_in, strings_out</term>
+                <listitem>
+                    <para>matriz de strings</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>vetor linha de inteiros</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Seja <literal>s[k]</literal> o caractere <literal>k</literal> do
+            string <literal>s</literal> (ou o espaço em branco se <literal>k
+                &gt;length(s)
+            </literal>
+            ).
+        </para>
+        <para>
+            <literal>part</literal> retorna <literal>strings_out</literal>, uma
+            matriz de strings, tal que <literal>strings_out(i,j)</literal> é o string
+            <literal>"s[v(1)]...s[v(n)]"</literal> (
+            <literal>s=strings_in(i,j)</literal> ).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 // retorna caracteres da posição 8 a 11
 part("Como usar ""part"" ?",8:11)
 
@@ -80,16 +80,16 @@ part(['a','abc','abcd'],[1,1])
 // aa aab aab 
 part(['a','abc','abcd'],[1,1,2])
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="string">string</link>
-      </member>
-      <member>
-        <link linkend="length">length</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="length">length</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 6671 -->
 //
@@ -19,7 +19,7 @@
 //
 // start scilab
 // start xcos
-// open demo Cont.Disc-Observer.xcos
+// open demo Cont.Disc-Observer.zcos
 // double click on the second super block
 // change the direction of the gain block
 // close the superBlockDiagram

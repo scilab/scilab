@@ -20,6 +20,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Align block on the bottom
  */
+@SuppressWarnings(value = { "serial" })
 public final class AlignBlockActionBottom extends AlignBlockAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.ALIGN_BOTTOM;
@@ -32,7 +33,7 @@ public final class AlignBlockActionBottom extends AlignBlockAction {
 
     /**
      * Default constructor
-     * 
+     *
      * @param scilabGraph
      *            the graph to work on
      */
@@ -42,7 +43,7 @@ public final class AlignBlockActionBottom extends AlignBlockAction {
 
     /**
      * Create the menu associated with this action.
-     * 
+     *
      * @param scilabGraph
      *            the associated graph
      * @return The associated menu

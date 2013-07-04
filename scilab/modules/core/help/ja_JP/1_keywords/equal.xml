@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="equal">
+    <refnamediv>
+        <refname>equal</refname>
+        <refpurpose>(=) 代入 , 比較,  等号</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <variablelist>
+            <varlistentry>
+                <term>代入t:</term>
+                <listitem>
+                    <para>
+                        等号記号  <literal>=</literal> は値の変数への代入を定義する
+                        際に使用されます.構文は次のようになります :
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>a=expr</literal> ただし
+                                <literal>a</literal> は変数名,  <literal>expr</literal> は
+                                単一の結果を返すScilab式です.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>[a,b,...]=expr</literal> ただし,
+                                <literal>a</literal>,<literal>b</literal>,<literal>...</literal> は変数名,
+                                <literal>expr</literal> は指定した変数名と同じ数の結果を返すScilab式です.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>比較:</term>
+                <listitem>
+                    <para>
+                        等号記号  <literal>=</literal> は,比較演算子にも使用されます:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>a==b</literal> は,
+                                式 <literal> a</literal> および <literal>b</literal>の値の等値比較を定義します.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>a~=b</literal>は, 
+                                式 <literal>a</literal>と <literal> b</literal>の値の非等値比較も定義します:
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>a&lt;=b</literal> と <literal>a&gt;=b</literal>  は,
+                                式 <literal> a</literal>
+                                と <literal> b</literal>の値の順序比較も定義します:
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        構文の詳細については, <link linkend="comparison">比較</link> を参照ください.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+a = sin(3.2)
+M = [2.1,3.3,8.5;7.6,6.7,6.9;0,6.3,8.8];
+[u,s] = schur(M)
+2*2 == 4
+[1:10] == 4
+"foo" == "bar"
+sparse([1,2;4,5;3,10],[1,2,3]) == sparse([1,2;4,5;3,10],[1,2,3])
+1~=2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="less">less</link>
+            </member>
+            <member>
+                <link linkend="greater">greater</link>
+            </member>
+            <member>
+                <link linkend="boolean">boolean</link>
+            </member>
+            <member>
+                <link linkend="isequal">isequal</link>
+            </member>
+            <member>
+                <link linkend="comparison">comparison</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

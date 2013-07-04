@@ -58,6 +58,10 @@ import org.scilab.modules.gui.utils.ToolBarBuilder;
  */
 public class Scilab {
 
+    static {
+        System.setProperty("java.protocol.handler.pkgs", "org.scilab.modules.commons");
+    }
+
     /** Index of windows vista version */
     private static final double VISTA_VERSION = 6.0;
 

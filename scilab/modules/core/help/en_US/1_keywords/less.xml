@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="less">
+    <refnamediv>
+        <refname>less</refname>
+        <refpurpose>(&lt;) less than comparison</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="greater">
+        <refname>great</refname>
+        <refpurpose>(&gt;) greater than comparison</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            logical comparison symbol
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>&lt;&gt;</term>
+                <listitem>
+                    <para>
+                        means "different" (same as <literal>~=</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;</term>
+                <listitem>
+                    <para>means "less than"</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&gt;</term>
+                <listitem>
+                    <para>means "greater than"</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;=</term>
+                <listitem>
+                    <para>means less than or equal to.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&gt;=</term>
+                <listitem>
+                    <para>means greater than or equal to</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+(1:5)==3
+(1:5)<=4
+(1:5)<=[1 4 2 3 0]
+1<[]
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="comparison">comparison</link>
+            </member>
+            <member>
+                <link linkend="equal">equal</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

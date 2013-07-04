@@ -23,7 +23,7 @@
 * @param[in] index : index in TCL VarName Hashtabl
 * @return value (string)
 */
-char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,char *index);
+char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter, char *VarName, char *index);
 
 #endif /* __TCL_ARRAYGETVAR_H__ */
 /*--------------------------------------------------------------------------*/

@@ -27,59 +27,59 @@ public class FileBrowserTabFactory extends AbstractScilabTabFactory {
     public static final String APPLICATION = "FileBrowser";
     public static final String PACKAGE = "";
     public static final String CLASS = "org.scilab.modules.ui_data.tabfactory.FileBrowserTabFactory";
-    
+
     private static FileBrowserTabFactory instance;
 
     /**
      * Default constructor
      */
     public FileBrowserTabFactory() {
-	if (instance == null) {
-	    instance = this;
-	}
+        if (instance == null) {
+            instance = this;
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     public SwingScilabTab getTab(String uuid) {
-	return FileBrowserTab.getFileBrowserInstance();
+        return FileBrowserTab.getFileBrowserInstance();
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public String getPackage() {
-	return PACKAGE;
+        return PACKAGE;
     }
 
     /**
      * {@inheritDoc}
      */
     public String getClassName() {
-	return CLASS;
+        return CLASS;
     }
 
     /**
      * {@inheritDoc}
      */
     public String getApplication() {
-	return APPLICATION;
+        return APPLICATION;
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean isAValidUUID(String uuid) {
-	return SwingScilabFileBrowser.FILEBROWSERUUID.equals(uuid);
+        return SwingScilabFileBrowser.FILEBROWSERUUID.equals(uuid);
     }
 
     /**
      * @return an instance of this factory
      */
     public static FileBrowserTabFactory getInstance() {
-	new FileBrowserTabFactory();
-	
-	return instance;
+        new FileBrowserTabFactory();
+
+        return instance;
     }
 }

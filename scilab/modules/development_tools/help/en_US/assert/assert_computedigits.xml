@@ -11,106 +11,106 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="assert_computedigits" xml:lang="en">
-  <refnamediv>
-    <refname>assert_computedigits</refname>
-    <refpurpose>Returns the number of significant digits in computed result.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      d = assert_computedigits ( computed , expected )
-      d = assert_computedigits ( computed , expected , basis )
-      
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parameters</title>
-    <variablelist>
-      <varlistentry>
-        <term>computed :</term>
-        <listitem>
-          <para> a matrix of doubles, the computed value</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>expected :</term>
-        <listitem>
-          <para> a matrix of doubles, the expected value</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>basis :</term>
-        <listitem>
-          <para> a 1-by-1 matrix of doubles, integer values,  the basis (default basis=10)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>d :</term>
-        <listitem>
-          <para> a matrix of doubles, the number of significant digits.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Computes the number of significant digits in a computed
-      result with respect to a nonzero expected result, using the formula:
-    </para>
-    <para>
-      <latex>
-        \begin{eqnarray}
-        d = - \frac{\log_{10} ( r )}{\log_{10}(basis)}
-        \end{eqnarray}
-      </latex>
-    </para>
-    <para>
-      where r is the relative error defined by
-    </para>
-    <para>
-      <latex>
-        \begin{eqnarray}
-        r = \frac{|computed - expected|}{|expected|}
-        \end{eqnarray}
-      </latex>
-    </para>
-    <para>
-      Any optional input argument equal to the empty matrix is replaced by its default value.
-    </para>
-    <para>
-      The number of significant digits is between dmin = 0 and dmax = -log10(2^(-53)) which
-      is approximately 15.95 ~ 16.
-      In base 2, the number of significant bits is 53.
-    </para>
-    <para>
-      If expected is equal to computed, then d is set to its maximum value, i.e. dmax.
-      If not, if expected is zero and computed is nonzero, then d is set to its minimum
-      value, i.e. dmin=0.
-    </para>
-    <para>
-      The values of computed and expected cannot be exchanged, since the relative
-      error is based on the expected value.
-    </para>
-    <para>
-      The computation separates the real part and the imaginary parts of the
-      values.
-      The returned number of digits is the minimum of the number of digits for the
-      real and imaginary parts.
-    </para>
-    <para>
-      TODO : use computedigits inside an assert_digits ( computed , expected , dmin ) function
-    </para>
-    <para>
-      TODO : add a comptype option to make the comparison "matrix" (current is "element")
-    </para>
-    <para>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_computedigits" xml:lang="en">
+    <refnamediv>
+        <refname>assert_computedigits</refname>
+        <refpurpose>Returns the number of significant digits in computed result.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            d = assert_computedigits ( computed , expected )
+            d = assert_computedigits ( computed , expected , basis )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>computed :</term>
+                <listitem>
+                    <para> a matrix of doubles, the computed value</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>expected :</term>
+                <listitem>
+                    <para> a matrix of doubles, the expected value</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>basis :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of doubles, integer values,  the basis (default basis=10)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d :</term>
+                <listitem>
+                    <para> a matrix of doubles, the number of significant digits.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Computes the number of significant digits in a computed
+            result with respect to a nonzero expected result, using the formula:
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                d = - \frac{\log_{10} ( r )}{\log_{10}(basis)}
+                \end{eqnarray}
+            </latex>
+        </para>
+        <para>
+            where r is the relative error defined by
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                r = \frac{|computed - expected|}{|expected|}
+                \end{eqnarray}
+            </latex>
+        </para>
+        <para>
+            Any optional input argument equal to the empty matrix is replaced by its default value.
+        </para>
+        <para>
+            The number of significant digits is between dmin = 0 and dmax = -log10(2^(-53)) which
+            is approximately 15.95 ~ 16.
+            In base 2, the number of significant bits is 53.
+        </para>
+        <para>
+            If expected is equal to computed, then d is set to its maximum value, i.e. dmax.
+            If not, if expected is zero and computed is nonzero, then d is set to its minimum
+            value, i.e. dmin=0.
+        </para>
+        <para>
+            The values of computed and expected cannot be exchanged, since the relative
+            error is based on the expected value.
+        </para>
+        <para>
+            The computation separates the real part and the imaginary parts of the
+            values.
+            The returned number of digits is the minimum of the number of digits for the
+            real and imaginary parts.
+        </para>
+        <para>
+            TODO : use computedigits inside an assert_digits ( computed , expected , dmin ) function
+        </para>
+        <para>
+            TODO : add a comptype option to make the comparison "matrix" (current is "element")
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 d = assert_computedigits ( 1 , 1 ) // d ~ 16
 d = assert_computedigits ( 1 , 1 , 2 ) // d = 53
 d = assert_computedigits ( 0 , 0 ) // d ~ 16
@@ -136,15 +136,15 @@ d = assert_computedigits([0 0 0 0],[%nan %inf -%inf 0])
 d = assert_computedigits ( 1.2345 + %i*6.7891 , 1.23456789 + %i*6.789123456 ) // d ~ 4
 
    ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revdescription>Function introduced
-        </revdescription>
-      </revision>
-    </revhistory>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>Function introduced
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

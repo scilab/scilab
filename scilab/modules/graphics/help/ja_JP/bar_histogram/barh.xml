@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="barh">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="barh">
     <refnamediv>
         <refname>barh</refname>
         <refpurpose>棒ヒストグラムの水平表示</refpurpose>
@@ -114,9 +114,8 @@
     <refsection>
         <title>例</title>
         <scilab:image>
-            x=[1 2 5];
-            y=[1  -5 6;3 -2 7;4  -3 8];
-            barh(x,y);
+            y=[1 -3 5];
+            barh(y,0.5,'yellow');
         </scilab:image>
     </refsection>
     <refsection>
@@ -135,6 +134,11 @@ scf(1);
 x=[1 2 5]; y=[1  -5 6;3 -2 7;4  -3 8];
 barh(x,y);
  ]]></programlisting>
+        <scilab:image>
+            x=[1 2 5];
+            y=[1  -5 6;3 -2 7;4  -3 8];
+            barh(x,y);
+        </scilab:image>
         <programlisting role="example"><![CDATA[ 
 
 // 3番目の例 : style='stacked'.
@@ -142,6 +146,12 @@ scf(2);
 x=[1 2 5]; y=[1 4 7;2 5 8;3 6  9];
 barh(x,y,'stacked');
  ]]></programlisting>
+        <scilab:image>
+            x=[1 2 5];
+            y=[1 4 7;2 5 8;3 6  9];
+            barh(x,y,'stacked');
+        </scilab:image>
+        
         <programlisting role="example"><![CDATA[ 
 
 // 4番目の例: width=0.2;color='green'; default style='grouped'
@@ -149,6 +159,11 @@ scf(3);
 x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
 barh(x,y,0.2,'green');
  ]]></programlisting>
+        <scilab:image>
+            x=[1 2 5];
+            y=[1 4 7;2 5 8;3 6 9];
+            barh(x,y,0.2,'green');
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

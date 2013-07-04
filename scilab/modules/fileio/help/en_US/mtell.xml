@@ -11,10 +11,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtell">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="mtell">
     <refnamediv>
         <refname>mtell</refname>
-        <refpurpose>binary file management</refpurpose>
+        <refpurpose>Returns the offset of the current byte relative to the beginning of a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -44,6 +44,27 @@
             the named stream <varname>fd</varname>.
         </para>
     </refsection>
+    
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Open in binary write a temporary file
+testFile=TMPDIR + '/testFile.bin';
+fd = mopen(testFile,'wb');
+
+mput(42,'d'); // Will write 42 in last opened file
+mtell() // Will return 8, the current position in the file descriptor
+
+mput(42+2,'d', fd); // Will open fd transparently to write 42
+mtell(fd) // Will return 16, the current position in the file descriptor
+
+mseek(0, fd); // return at the beginning of the file
+mtell(fd) // Will return 0
+
+mclose(fd);
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

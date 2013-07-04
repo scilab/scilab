@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getlongpathname" xml:lang="ru">
+    <refnamediv>
+        <refname>getlongpathname</refname>
+        <refpurpose>получает длинное имя пути (только для Windows)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>longpath = getlongpathname(shortpath)
+            [longpath, bOK] = getlongpathname(shortpath)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>shortpath</term>
+                <listitem>
+                    <para>символьная строка или матрица строк: короткое имя пути.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>longpath</term>
+                <listitem>
+                    <para>символьная строка или матрица строк: длинное имя пути.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bOK</term>
+                <listitem>
+                    <para>
+                        логическое значение или матрица логических значений: <constant>%T</constant>, если путь был преобразован, в противном случае -- <constant>%F</constant>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Примитив <function>getlongpathname</function> преобразует указанное имя 
+            пути <varname>shortpath</varname> в его длинную форму. Если не было 
+            найдено длинного имени пути, то этот примитив возвращает указанное имя.
+        </para>
+        <para>
+            <note>
+                Примечание: если путь нельзя преобразовать (<varname>bOK</varname> равен <constant>%F</constant>), в особенности, если операционная система не Windows, то возвращаемый длинный путь идентичен входному краткому пути.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+[longpath,bOK]=getlongpathname(SCI) 
+[longpaths,bOKs]=getlongpathname([SCI;SCI]) 
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getshortpathname">getshortpathname</link>
+            </member>
+            <member>
+                <link linkend="getrelativefilename">getrelativefilehname</link>
+            </member>
+            <member>
+                <link linkend="pwd">pwd</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

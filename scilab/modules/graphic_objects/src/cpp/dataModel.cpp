@@ -20,48 +20,54 @@ extern "C" {
 
 DataModel *DataModel::m_me = NULL;
 
-BOOL DataModel::setGraphicObjectProperty(char const* _pstID, char const* _pstName, void const* _dblValue, int numElements)
+BOOL DataModel::setGraphicObjectProperty(char const* _pstID, int _iName, void const* _dblValue, int numElements)
 {
     Data3D* dataObject = NULL;
     int property = 0;
     int returnValue = 0;
 
     dataObject = (*m_dataMap)[std::string(_pstID)];
+    if (dataObject == NULL)
+    {
+        return FALSE;
+    }
 
-    property = dataObject->getPropertyFromName(_pstName);
+    property = dataObject->getPropertyFromName(_iName);
+
+    if (property == UNKNOWN_DATA_PROPERTY)
+    {
+        return FALSE;
+    }
 
     returnValue = dataObject->setDataProperty(property, _dblValue, numElements);
 
     return (BOOL) returnValue;
 }
 
-void DataModel::getGraphicObjectProperty(char const* _pstID, char const* _pstName, void **_pvData)
+void DataModel::getGraphicObjectProperty(char const* _pstID, int _iName, void **_pvData)
 {
     Data3D* dataObject = NULL;
     int property = 0;
 
     dataObject = (*m_dataMap)[std::string(_pstID)];
 
-    property = dataObject->getPropertyFromName(_pstName);
+    if (dataObject == NULL)
+    {
+        *_pvData = NULL;
+        return;
+    }
+
+    property = dataObject->getPropertyFromName(_iName);
+    if (property == UNKNOWN_DATA_PROPERTY)
+    {
+        *_pvData = NULL;
+        return;
+    }
 
     dataObject->getDataProperty(property, _pvData);
 }
 
-void DataModel::getGraphicObjectIntProperty(char const* _pstID, char const* _pstName, void **_pvData)
-{
-    Data3D* dataObject = NULL;
-    int property = 0;
-
-    property = (*m_dataMap)[std::string(_pstID)]->getPropertyFromName(_pstName);
-
-    dataObject = (*m_dataMap)[std::string(_pstID)];
-
-    property = dataObject->getPropertyFromName(_pstName);
-
-    dataObject->getDataProperty(property, _pvData);
-}
-
-char const* DataModel::createDataObject(char const* _pstID, char const* _sType)
+char const* DataModel::createDataObject(char const* _pstID, int _iType)
 {
     Data3D* newObject = NULL;
 
@@ -69,33 +75,29 @@ char const* DataModel::createDataObject(char const* _pstID, char const* _sType)
      * To be implemented as the Java graphicObject class' similar function
      * (getTypeFromName) in order to avoid strcmp calls.
      */
-    if (strcmp(_sType, __GO_GRAYPLOT__) == 0)
+
+    switch (_iType)
     {
-        newObject = new NgonGridData();
-    }
-    else if (strcmp(_sType, __GO_MATPLOT__) == 0)
-    {
-        newObject = new NgonGridMatplotData();
-    }
-    else if (strcmp(_sType, __GO_FAC3D__) == 0)
-    {
-        newObject = new NgonGeneralData();
-    }
-    else if (strcmp(_sType, __GO_PLOT3D__) == 0)
-    {
-        newObject = new NgonGridData();
-    }
-    else if (strcmp(_sType, __GO_POLYLINE__) == 0)
-    {
-        newObject = new NgonPolylineData();
-    }
-    else if (strcmp(_sType, __GO_FEC__) == 0)
-    {
-        newObject = new TriangleMeshFecData();
-    }
-    else
-    {
-        return NULL;
+        case __GO_GRAYPLOT__ :
+            newObject = new NgonGridData();
+            break;
+        case __GO_MATPLOT__ :
+            newObject = new NgonGridMatplotData();
+            break;
+        case __GO_FAC3D__ :
+            newObject = new NgonGeneralData();
+            break;
+        case __GO_PLOT3D__ :
+            newObject = new NgonGridData();
+            break;
+        case __GO_POLYLINE__ :
+            newObject = new NgonPolylineData();
+            break;
+        case __GO_FEC__ :
+            newObject = new TriangleMeshFecData();
+            break;
+        default :
+            return NULL;
     }
 
     (*m_dataMap)[std::string(_pstID)] = newObject;
@@ -105,6 +107,19 @@ char const* DataModel::createDataObject(char const* _pstID, char const* _sType)
 
 void DataModel::deleteDataObject(char const* _pstID)
 {
-    m_dataMap->erase(std::string(_pstID));
+    std::map<std::string, Data3D*>::iterator it = m_dataMap->find(std::string(_pstID));
+    if (it != m_dataMap->end() && it->second != NULL)
+    {
+        delete it->second;
+        m_dataMap->erase(it);
+    }
+
+    /*Data3D* newObject = (*m_dataMap)[std::string(_pstID)];
+      if (newObject != NULL)
+      {
+      delete newObject;
+      }
+
+      m_dataMap->erase(std::string(_pstID));*/
 }
 

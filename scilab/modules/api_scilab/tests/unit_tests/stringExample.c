@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009-2010 - DIGITEO - Scilab Consortium Operational Team
+ * Copyright (C) 2009-2010 - DIGITEO
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -46,7 +46,7 @@ int stringExample(char *fname, unsigned long fname_len)
                 return iRet;
             }
 
-            iRet = createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + + 1, pstData);
+            iRet = createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstData);
             if (iRet)
             {
                 freeAllocatedSingleString(pstData);
@@ -68,7 +68,7 @@ int stringExample(char *fname, unsigned long fname_len)
                 return iRet;
             }
 
-            sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + + 1, iRows, iCols, pstData);
+            sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, pstData);
             if (sciErr.iErr)
             {
                 freeAllocatedMatrixOfString(iRows, iCols, pstData);
@@ -79,7 +79,7 @@ int stringExample(char *fname, unsigned long fname_len)
             freeAllocatedMatrixOfString(iRows, iCols, pstData);
         }
 
-        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + + 1;
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     }
     else
     {

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2010-06-21 09:22+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: \n"
 
 #, c-format
@@ -95,6 +95,18 @@ msgstr ""
 msgid "Signal derivative estimate"
 msgstr ""
 
+msgid "Choose filter type and parameters"
+msgstr ""
+
+msgid "Discrete IIR filter "
+msgstr ""
+
+msgid "Discrete IIR filter : low pass  fr < 0.2"
+msgstr ""
+
+msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
+msgstr ""
+
 msgid "Minimax FIR filter"
 msgstr ""
 
@@ -102,6 +114,12 @@ msgid "low pass  cut-off in [.23,.27]"
 msgstr ""
 
 msgid "length 33"
+msgstr ""
+
+msgid "Remez Triangular filter"
+msgstr ""
+
+msgid "magnitude error"
 msgstr ""
 
 msgid "Signal Processing"
@@ -143,6 +161,18 @@ msgstr ""
 msgid "Arma, Spectral power estimation"
 msgstr ""
 
+msgid "Data spectrum"
+msgstr ""
+
+msgid "magnitude"
+msgstr ""
+
+msgid "Spectral estimation"
+msgstr ""
+
+msgid "spectral power"
+msgstr ""
+
 msgid "estimates xf"
 msgstr "計算xf"
 
@@ -151,6 +181,27 @@ msgstr "計算xs"
 
 msgid "real state"
 msgstr "真實的狀態"
+
+msgid "Windowed FIR Low pass Filter"
+msgstr ""
+
+msgid "Kaiser window,cut-off:0.2"
+msgstr ""
+
+msgid "Hamming window,cut-off:0.2,0.3"
+msgstr ""
+
+msgid "length 127"
+msgstr ""
+
+msgid "Windowed FIR Band pass Filter"
+msgstr ""
+
+msgid "Chebyshev window,cut-off:0.15,0.35"
+msgstr ""
+
+msgid "length 55"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -233,6 +284,10 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: 輸入參數數目錯誤: 預期為 %d 或 %d 個.\n"
 
 #, c-format
+msgid "%s: Filter order too small.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A single input, single output system "
 "expected.\n"
@@ -291,6 +346,10 @@ msgstr "%s: 第 %d 輸入參數值有誤: 元素必在在範圍[%s, %s].\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
 msgstr "%s: 第 %d 輸入參數長度錯誤 :  tall 矩陣才對.\n"
+
+#, c-format
+msgid "%s: Wrong values for input arguments #%d and #%d.\n"
+msgstr ""
 
 #, c-format
 msgid ""

@@ -10,51 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="savehistory">
-  <refnamediv>
-    <refname>savehistory</refname>
-    <refpurpose>sauvegarde l'historique de scilab dans un fichier.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>savehistory()
-      savehistory(f)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Paramètres</title>
-    <variablelist>
-      <varlistentry>
-        <term>f</term>
-        <listitem>
-          <para>chemin du fichier dans lequel sera sauvegardé l'historique de scilab</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>sauvegarde l'historique de scilab dans un fichier.</para>
-    <para>Par défaut, l'historique est sauvegardé dans SCIHOME+'/.history.scilab'</para>
-  </refsection>
-  <refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
-savehistory(SCI+'/session.scilab') 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="savehistory">
+    <refnamediv>
+        <refname>savehistory</refname>
+        <refpurpose>sauvegarde l'historique de scilab dans un fichier.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>savehistory()
+            savehistory(f)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>chemin du fichier dans lequel sera sauvegardé l'historique de scilab</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>sauvegarde l'historique de scilab dans un fichier.</para>
+        <para>Par défaut, l'historique est sauvegardé dans SCIHOME/history</para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+savehistory(SCI+'/session.scilab')
 ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Voir aussi</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="loadhistory">loadhistory</link>
-      </member>
-      <member>
-        <link linkend="resethistory">resethistory</link>
-      </member>
-      <member>
-        <link linkend="gethistory">gethistory</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="loadhistory">loadhistory</link>
+            </member>
+            <member>
+                <link linkend="resethistory">resethistory</link>
+            </member>
+            <member>
+                <link linkend="gethistory">gethistory</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    Le fichier par défaut pour stocker l'historique est SCIHOME/history (au lieu de SCIHOME/.history.scilab).
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

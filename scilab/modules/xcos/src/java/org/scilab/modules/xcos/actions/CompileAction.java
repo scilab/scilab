@@ -31,7 +31,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Diagram compilation management
  */
-public class CompileAction extends SimulationNotRunningAction {
+@SuppressWarnings(value = { "serial" })
+public final class CompileAction extends SimulationNotRunningAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.COMPILE;
     /** Icon name of the action */

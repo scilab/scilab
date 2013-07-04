@@ -44,7 +44,7 @@ public class Panel extends JPanel implements XComponent {
      * @return array of actuator names.
      */
     public String [] actuators() {
-        return new String[]{};
+        return new String[] {};
     }
 
     /** Constructor.
@@ -56,17 +56,17 @@ public class Panel extends JPanel implements XComponent {
         setLayout(new BorderLayout());
         XConfigManager.setDimension(this, peer);
 
-	String fixed = XConfigManager.getAttribute(peer, "fixed-width");
-	if (!(fixed.equals(XConfigManager.NAV))) {
-	    this.fixedWidth = fixed.equals("true");
-	}
+        String fixed = XConfigManager.getAttribute(peer, "fixed-width");
+        if (!(fixed.equals(XConfigManager.NAV))) {
+            this.fixedWidth = fixed.equals("true");
+        }
 
-	fixed = XConfigManager.getAttribute(peer, "fixed-height");
-	if (!(fixed.equals(XConfigManager.NAV))) {
-	    this.fixedHeight = fixed.equals("true");
-	}
+        fixed = XConfigManager.getAttribute(peer, "fixed-height");
+        if (!(fixed.equals(XConfigManager.NAV))) {
+            this.fixedHeight = fixed.equals("true");
+        }
 
-	//setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.GREEN));
+        //setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.GREEN));
     }
 
     /**
@@ -77,15 +77,15 @@ public class Panel extends JPanel implements XComponent {
         if (fixedHeight) {
             maxDim.height = getPreferredSize().height;
         } else {
-	    maxDim.height = max.height;
-	}
+            maxDim.height = max.height;
+        }
 
         if (fixedWidth) {
             maxDim.width = getPreferredSize().width;
         } else {
-	    maxDim.width = max.width;
-	}
-	
+            maxDim.width = max.width;
+        }
+
         return maxDim;
     }
 
@@ -97,15 +97,15 @@ public class Panel extends JPanel implements XComponent {
         if (fixedHeight) {
             minDim.height = getPreferredSize().height;
         } else {
-	    minDim.height = min.height;
-	}
+            minDim.height = min.height;
+        }
 
         if (fixedWidth) {
             minDim.width = getPreferredSize().width;
         } else {
-	    minDim.width = min.width;
-	}
-	
+            minDim.width = min.width;
+        }
+
         return minDim;
     }
 

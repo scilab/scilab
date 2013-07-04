@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="scanf_conversion">
+    <refnamediv>
+        <refname>преобразование scanf</refname>
+        <refpurpose>
+            спецификации преобразования mscanf, msscanf, mfscanf
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Каждая спецификация преобразования в параметре <varname>format</varname> содержит следующие элементы:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    символ <literal>%</literal> (знак "процент");
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    необязательный символ подавления присвоения <literal>*</literal> ("звёздочка");
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    необязательное числовое значение максимальной ширины поля;
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    код преобразования.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Спецификация преобразования имеет следующий синтаксис:
+        </para>
+        <para>
+            <literal>[*][ширина][размер]код_преобразования</literal>.
+        </para>
+        <para>
+            Результаты преобразования помещаются в аргументы <varname>v_i</varname> если вы не укажете подавление присвоения с помощью символа <literal>*</literal> ("звёздочка"). Подавления присвоения предоставляет способ описать входное поле, которое следует пропустить. Входное поле является строкой символов-непробелов. Оно простирается до ближайшего некорректного символа или до тех пор, пока ширина поля, если она указана, не кончится.
+        </para>
+        <para>
+            Код преобразования указывает как интерпретировать входное поле. Вам не нужно указывать параметр <varname>v_i</varname> для подавленного поля. Вы можете использовать следующие коды преобразования:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>%</term>
+                <listitem>
+                    <para>
+                        принимает отдельный символ <literal>%</literal> (знак "процент"), вводимый в этом месте; присвоение не делается.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d, i</term>
+                <listitem>
+                    <para>принимает десятичное целое число.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>принимает беззнаковое десятичное целое число.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>o</term>
+                <listitem>
+                    <para>принимает восьмеричное целое число.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>принимает шестнадцатеричное целое число.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e, f, g</term>
+                <listitem>
+                    <para>
+                        принимает число с плавающей запятой. Следующее поле преобразуется соответствующим образом и сохраняется через соответствующий параметр, который должен быть указателем на число с плавающей запятой. Формат ввода для чисел с плавающей запятой является строкой цифр со следующими необязательными характеристиками:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                это может быть значение со знаком;
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                это может быть экспоненциальное значение, содержащее десятичную запятую, за которой следует экспоненциальное поле, которое состоит из <literal>E</literal> или <literal>e</literal>, за которым следует целое число (может быть со знаком);
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                это может быть одно из специальных значений <constant>%inf</constant>, <constant>%nan</constant>.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>принимает строку символов;</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>
+                        ожидается символьное значение. Нормальный пропуск пробела подавляется.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>%lg</term>
+                <listitem>
+                    <para>получает значение в виде числа удвоенной точности (double).</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scanf">mcscanf</link>
+            </member>
+            <member>
+                <link linkend="printf_conversion">преобразование printf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

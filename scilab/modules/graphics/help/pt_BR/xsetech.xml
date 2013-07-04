@@ -10,96 +10,96 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xsetech" xml:lang="en">
-  <refnamediv>
-    <refname>xsetech</refname>
-    <refpurpose>ajusta a sub-janela de uma janela de gráficos para
-      esboço
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>xsetech(wrect,[frect,logflag])
-      xsetech(wrect=[...],frect=[..],logflag="..", arect=[...])
-      xsetech()
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>wrect</term>
-        <listitem>
-          <para>vetor de tamanho 4 definindo a sub-janela a ser utilizada.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>frect</term>
-        <listitem>
-          <para>vetor de tamanho 4. </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>logflag</term>
-        <listitem>
-          <para>string de tamanho 2 "xy", onde x e y podem ser "n" ou "l". "n"
-            escala normal e "l" significa escala logarítmica. x refere-se ao
-            eixo x e y ao eixo y. 
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>arect</term>
-        <listitem>
-          <para>vetor de tamanho 4.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição </title>
-    <para>
-      <literal>xsetech</literal> é principalmente utilizado para ajustar a
-      sub-janela da janela de gráficos que será utilizada para esboço. A
-      sub-janela é especificada através do parâmetro
-      <literal>wrect=[x,y,w,h]</literal> (ponto superior esquerdo, largura,
-      altura). Os valores em <literal>wrect</literal> a são especificados
-      utilizando-se a proporção de largura ou altura da janela de gráficos
-      corrente. Por exemplo, <literal>wrect=[0,0,1,1]</literal> significa que
-      toda a janela será utilizada e <literal>wrect=[0.5,0,0.5,1]</literal>
-      significa que a região gráfica será a metade direita da janela de
-      gráficos.
-    </para>
-    <para>
-      <literal>xsetech</literal> também ajusta as escalas gráficas
-      correntes para esboço 2d e pode ser utilizada juntamente a rotinas
-      gráficas que requerem a escala de gráficos corrente (por exemplo
-      <literal>strf="x0z"</literal> ou <literal>frameflag=0</literal> em
-      <literal>plot2d</literal>).
-    </para>
-    <para>
-      <literal>frect=[xmin,ymin,xmax,ymax]</literal> é utilizado para
-      ajustar a escala gráfica e é igual ao argumento <literal>rect</literal> de
-      <literal>plot2d</literal>. Se <literal>frect</literal> não for fornecido,
-      o valor corrente da escala de gráficos permanece inalterado. O valor
-      padrão de <literal>rect</literal> é <literal>[0,0,1,1]</literal> (na
-      criação de janelas, quando se volta para o valor padrão com
-      <literal>xset('default')</literal> ou quando se limpa eventos gráficos
-      gravados <literal>clf()</literal>).
-    </para>
-    <para>
-      <literal>arect=[x_left, x_right,y_up,y_down]</literal> é utilizado
-      para ajustar a moldura gráfica dentro da sub-janela. A moldura gráfica é
-      especificada (como <literal>wrect</literal>) utilizando-se a proporção de
-      largura ou altura da sub-janela de gráficos corrente. O valor padrão é
-      <literal>1/8*[1,1,1,1]</literal>. Se <literal>arect</literal> não for
-      fornecido, o valor padrão permanece inalterado.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xsetech" xml:lang="en">
+    <refnamediv>
+        <refname>xsetech</refname>
+        <refpurpose>ajusta a sub-janela de uma janela de gráficos para
+            esboço
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>xsetech(wrect,[frect,logflag])
+            xsetech(wrect=[...],frect=[..],logflag="..", arect=[...])
+            xsetech()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>wrect</term>
+                <listitem>
+                    <para>vetor de tamanho 4 definindo a sub-janela a ser utilizada.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frect</term>
+                <listitem>
+                    <para>vetor de tamanho 4. </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>logflag</term>
+                <listitem>
+                    <para>string de tamanho 2 "xy", onde x e y podem ser "n" ou "l". "n"
+                        escala normal e "l" significa escala logarítmica. x refere-se ao
+                        eixo x e y ao eixo y. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arect</term>
+                <listitem>
+                    <para>vetor de tamanho 4.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição </title>
+        <para>
+            <literal>xsetech</literal> é principalmente utilizado para ajustar a
+            sub-janela da janela de gráficos que será utilizada para esboço. A
+            sub-janela é especificada através do parâmetro
+            <literal>wrect=[x,y,w,h]</literal> (ponto superior esquerdo, largura,
+            altura). Os valores em <literal>wrect</literal> a são especificados
+            utilizando-se a proporção de largura ou altura da janela de gráficos
+            corrente. Por exemplo, <literal>wrect=[0,0,1,1]</literal> significa que
+            toda a janela será utilizada e <literal>wrect=[0.5,0,0.5,1]</literal>
+            significa que a região gráfica será a metade direita da janela de
+            gráficos.
+        </para>
+        <para>
+            <literal>xsetech</literal> também ajusta as escalas gráficas
+            correntes para esboço 2d e pode ser utilizada juntamente a rotinas
+            gráficas que requerem a escala de gráficos corrente (por exemplo
+            <literal>strf="x0z"</literal> ou <literal>frameflag=0</literal> em
+            <literal>plot2d</literal>).
+        </para>
+        <para>
+            <literal>frect=[xmin,ymin,xmax,ymax]</literal> é utilizado para
+            ajustar a escala gráfica e é igual ao argumento <literal>rect</literal> de
+            <literal>plot2d</literal>. Se <literal>frect</literal> não for fornecido,
+            o valor corrente da escala de gráficos permanece inalterado. O valor
+            padrão de <literal>rect</literal> é <literal>[0,0,1,1]</literal> (na
+            criação de janelas, quando se volta para o valor padrão com
+            <literal>xset('default')</literal> ou quando se limpa eventos gráficos
+            gravados <literal>clf()</literal>).
+        </para>
+        <para>
+            <literal>arect=[x_left, x_right,y_up,y_down]</literal> é utilizado
+            para ajustar a moldura gráfica dentro da sub-janela. A moldura gráfica é
+            especificada (como <literal>wrect</literal>) utilizando-se a proporção de
+            largura ou altura da sub-janela de gráficos corrente. O valor padrão é
+            <literal>1/8*[1,1,1,1]</literal>. Se <literal>arect</literal> não for
+            fornecido, o valor padrão permanece inalterado.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 // para obter uma explanação gráfica dos parâmetros de xsetech entre com:
 exec('SCI/modules/graphics/demos/xsetechfig.sce');
 
@@ -135,22 +135,22 @@ x=1:0.1:10;plot2d(x',sin(x)')
 clf()
 xset("default")
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Ver Também </title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="xgetech">xgetech</link>
-      </member>
-      <member>
-        <link linkend="subplot">subplot</link>
-      </member>
-      <member>
-        <link linkend="isoview">isoview</link>
-      </member>
-      <member>
-        <link linkend="square">square</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xgetech">xgetech</link>
+            </member>
+            <member>
+                <link linkend="subplot">subplot</link>
+            </member>
+            <member>
+                <link linkend="isoview">isoview</link>
+            </member>
+            <member>
+                <link linkend="square">square</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -10,81 +10,93 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="qr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="qr">
     <refnamediv>
         <refname>qr</refname>
-        <refpurpose> QR decomposition</refpurpose>
+        <refpurpose>QR 分解</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[Q,R]=qr(X [,"e"])
             [Q,R,E]=qr(X [,"e"])
             [Q,R,rk,E]=qr(X [,tol])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>real or complex matrix</para>
+                    <para>実数または複素数の行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>nonnegative real number</para>
+                    <para>非負の実数</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Q</term>
                 <listitem>
-                    <para>square orthogonal or unitary matrix</para>
+                    <para>正方直交またはユニタリ行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>R</term>
                 <listitem>
                     <para>
-                        matrix with same dimensions as <literal>X</literal>
+                        <literal>X</literal>と同じ次元の行列
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>E</term>
                 <listitem>
-                    <para>permutation matrix</para>
+                    <para>置換行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rk</term>
                 <listitem>
                     <para>
-                        integer (QR-rank of <literal>X</literal>)
+                        整数 (<literal>X</literal>のQRランク)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <variablelist>
             <varlistentry>
                 <term>[Q,R] = qr(X)</term>
                 <listitem>
                     <para>
-                        produces an upper triangular matrix <literal>R</literal> of the same dimension as <literal>X</literal> and an orthogonal (unitary in the complex case) matrix <literal>Q</literal> so that <literal>X = Q*R</literal>. <literal>[Q,R] = qr(X,"e")</literal> produces an "economy size": If <literal>X</literal> is m-by-n with m &gt; n, then only the first n columns of <literal>Q</literal>  are computed as well as the first n rows of <literal>R</literal>.
+                        <literal>X= Q*R</literal>となるような
+                        <literal>X</literal>と同じ次元の
+                        上三角行列<literal>R</literal>および直交(複素数の場合はユニタリ)行列
+                        <literal>Q</literal>を出力します.
+                        <literal>[Q,R] = qr(X,"e")</literal>は次にように
+                        "エコノミーサイズ"で出力します:
+                        <literal>X</literal> が m行n列 (m &gt; n)の場合,
+                        <literal>Q</literal>の最初のn列のみが
+                        <literal>R</literal>の最初のn行と同時に計算されます.
                     </para>
                     <para>
-                        From <literal>Q*R = X</literal> , it follows that
-                        the kth column of the matrix <literal>X</literal>, is expressed as a linear combination
-                        of the k first columns of <literal>Q</literal> (with coefficients <literal> R(1,k), ..., R(k,k) </literal>). The  k first columns of <literal>Q</literal> make an orthogonal basis
-                        of the subspace spanned by the k first comumns of <literal>X</literal>. If column <literal>k</literal>
-                        of <literal>X</literal> (i.e. <literal>X(:,k)</literal> ) is a linear combination of the first 
-                        <literal>p</literal> columns of <literal>X</literal>, then the entries <literal>R(p+1,k), ..., R(k,k)</literal>
-                        are zero. It this situation, <literal>R</literal> is upper trapezoidal. If <literal>X</literal> has
-                        rank <literal>rk</literal>, rows <literal>R(rk+1,:), R(rk+2,:), ...</literal> are zeros.
+                        <literal>Q*R = X</literal> から,
+                        行列 <literal>X</literal>のk番目の列は,
+                        (係数 <literal> R(1,k), ..., R(k,k) </literal>を用いて)
+                        <literal>Q</literal>の最初のk列の線形結合で表されます. 
+                        <literal>Q</literal>の最初のk列は,<literal>X</literal>の最初のk列
+                        に広がる部分空間の直交基底を作成します.
+                        <literal>X</literal>の列<literal>k</literal>(すなわち, <literal>X(:,k)</literal> )
+                        が<literal>X</literal>の最初の<literal>p</literal>列の線形結合の場合,
+                        エントリ<literal>R(p+1,k), ..., R(k,k)</literal>は 0 となります.
+                        この場合,<literal>R</literal>は上台形となります.
+                        <literal>X</literal> がランク<literal>rk</literal>を有する場合,
+                        行 <literal>R(rk+1,:), R(rk+2,:), ...</literal> は 0 となります.
                     </para>
                 </listitem>
             </varlistentry>
@@ -92,17 +104,21 @@
                 <term>[Q,R,E] = qr(X)</term>
                 <listitem>
                     <para>
-                        produces a (column) permutation matrix <literal>E</literal>, an upper
-                        triangular <literal>R</literal> with decreasing diagonal elements and an
-                        orthogonal (or unitary) <literal>Q</literal> so that <literal>X*E =    Q*R</literal>. 
-                        If <literal>rk</literal> is the rank of <literal>X</literal>, the
-                        <literal>rk</literal> first  entries along the main diagonal of
-                        <literal>R</literal>, i.e. <literal>R(1,1), R(2,2), ..., R(rk,rk)</literal>
-                        are all different from zero.  <literal>[Q,R,E] =  qr(X,"e")</literal> 
-                        produces an "economy size":
-                        If <literal>X</literal> is m-by-n with m &gt; n, then only the first n
-                        columns of <literal>Q</literal>  are computed as well as the first n
-                        rows of <literal>R</literal>. 
+                        <literal>X*E =    Q*R</literal>となるような
+                        (列)置換行列<literal>E</literal>,
+                        降順の対角要素を有する上三角行列 <literal>R</literal>,
+                        直交(またはユニタリ)<literal>Q</literal>
+                        を出力します.
+                        <literal>rk</literal>が<literal>X</literal>のランクの場合,
+                        <literal>R</literal>の主対角項に沿った
+                        最初の<literal>rk</literal>個のエントリ,
+                        すなわち,<literal>R(1,1), R(2,2), ..., R(rk,rk)</literal>は
+                        全て0以外となります.
+                        <literal>[Q,R,E] =  qr(X,"e")</literal> は
+                        "エコノミーサイズ"で出力します:
+                        <literal>X</literal> が m行n列 (m &gt; n)の場合,
+                        <literal>Q</literal>の最初のn列のみが
+                        <literal>R</literal>の最初のn行と同時に計算されます.
                     </para>
                 </listitem>
             </varlistentry>
@@ -110,7 +126,11 @@
                 <term>[Q,R,rk,E] = qr(X ,tol)</term>
                 <listitem>
                     <para>
-                        returns <literal>rk</literal> = rank estimate of <literal>X</literal> i.e. <literal>rk</literal> is the number of diagonal elements in <literal>R</literal> which are larger than a given threshold <literal>tol</literal>.
+                        <literal>rk</literal> = <literal>X</literal>のランクの推定値
+                        を返します.
+                        すなわち, <literal>rk</literal>は,
+                        指定した閾値<literal>tol</literal>より大きな
+                        <literal>R</literal>の対角要素の数となります.
                     </para>
                 </listitem>
             </varlistentry>
@@ -118,19 +138,21 @@
                 <term>[Q,R,rk,E] = qr(X) </term>
                 <listitem>
                     <para>
-                        returns <literal>rk</literal> = rank estimate of <literal>X</literal>
-                        i.e. <literal>rk</literal> is the number of diagonal elements in
-                        <literal>R</literal> which are larger than
-                        <literal>tol=R(1,1)*%eps*max(size(R))</literal>. See <literal>rankqr</literal>
-                        for a rank revealing QR factorization, using the condition number
-                        of <literal>R</literal>.
+                        <literal>rk</literal> = <literal>X</literal>のランクの推定値
+                        を返します.
+                        すなわち,<literal>rk</literal> は
+                        <literal>tol=R(1,1)*%eps*max(size(R))</literal>より大きな
+                        <literal>R</literal>の対角要素の数となります.
+                        <literal>R</literal>の条件数を用いる
+                        ランク計算型のQR分解については,<literal>rankqr</literal>を
+                        参照してください.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 // QR factorization, generic case
 // X is tall (full rank)
@@ -154,7 +176,7 @@ svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="rankqr">rankqr</link>
@@ -174,11 +196,11 @@ svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk))
         </simplelist>
     </refsection>
     <refsection>
-        <title>Used Functions</title>
+        <title>使用する関数</title>
         <para>
-            qr decomposition is based  the Lapack routines DGEQRF, DGEQPF,
-            DORGQR for the real matrices and  ZGEQRF, ZGEQPF, ZORGQR for the
-            complex case.
+            qr 分解はLapack ルーチン DGEQRF, DGEQPF,
+            DORGQR (実数行列)および  ZGEQRF, ZGEQPF, ZORGQR (複素数の場合)
+            に基づいています.
         </para>
     </refsection>
 </refentry>

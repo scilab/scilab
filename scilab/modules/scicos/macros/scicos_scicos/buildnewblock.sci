@@ -27,159 +27,159 @@
 //=============================================================================
 function [ok]=buildnewblock(blknam, files, filestan, filesint, libs, rpat, ldflags, cflags)
 
-//** buildnewblock : generates Makefiles for
-//                   the generated C code of a scicos block,
-//                   compile and link it in Scilab
-//
-// Input : blknam : a prefix
-//         files : files to be compiled
-//         filestan : files to be compiled and included in
-//         resu           the standalone code
-//         filesint : files to be compiled and included in
-//                    the interfacing of standalone code
-//         libs : a vector of string of object files
-//                    to include in the building process
-//         rpat     : a target directory
-//         ldflags  : linker flags
-//         cflags   : C compiler flags
-//
-// Output :  ok : a flag to say if build is ok
+    //** buildnewblock : generates Makefiles for
+    //                   the generated C code of a scicos block,
+    //                   compile and link it in Scilab
+    //
+    // Input : blknam : a prefix
+    //         files : files to be compiled
+    //         filestan : files to be compiled and included in
+    //         resu           the standalone code
+    //         filesint : files to be compiled and included in
+    //                    the interfacing of standalone code
+    //         libs : a vector of string of object files
+    //                    to include in the building process
+    //         rpat     : a target directory
+    //         ldflags  : linker flags
+    //         cflags   : C compiler flags
+    //
+    // Output :  ok : a flag to say if build is ok
 
-  //** check rhs paramaters
-  [lhs,rhs] = argn(0);
- 
-  if rhs <= 1 then files    = blknam, end
-  if rhs <= 2 then filestan = "", end
-  if rhs <= 3 then filesint = "", end
-  if rhs <= 4 then libs     = "", end
-  if rhs <= 5 then rpat     = TMPDIR, end
-  if rhs <= 6 then ldflags  = "", end
-  if rhs <= 7 then cflags   = "", end
-  
-  // Add .c extension if it is not already added
-  exts_files = fileext(files);
-  exts_filestan = fileext(filestan);
-  exts_filesint = fileext(filesint);
-  
-  for i = 1:size(files, "*")
-    if exts_files(i) == "" & files(i) <> "" then
-      files(i) = files(i) + ".c";
+    //** check rhs paramaters
+    [lhs,rhs] = argn(0);
+
+    if rhs <= 1 then files    = blknam, end
+    if rhs <= 2 then filestan = "", end
+    if rhs <= 3 then filesint = "", end
+    if rhs <= 4 then libs     = "", end
+    if rhs <= 5 then rpat     = TMPDIR, end
+    if rhs <= 6 then ldflags  = "", end
+    if rhs <= 7 then cflags   = "", end
+
+    // Add .c extension if it is not already added
+    exts_files = fileext(files);
+    exts_filestan = fileext(filestan);
+    exts_filesint = fileext(filesint);
+
+    for i = 1:size(files, "*")
+        if exts_files(i) == "" & files(i) <> "" then
+            files(i) = files(i) + ".c";
+        end
     end
-  end
 
-  for i = 1:size(filestan, "*")
-    if exts_filestan(i) == "" & filestan(i) <> "" then
-      filestan(i) = filestan(i) + ".c";
+    for i = 1:size(filestan, "*")
+        if exts_filestan(i) == "" & filestan(i) <> "" then
+            filestan(i) = filestan(i) + ".c";
+        end
     end
-  end
-  
-  for i = 1:size(filesint, "*")
-    if exts_filesint(i) == "" & ~isdir(filesint(i)) & filesint(i) <> "" then
-      filesint(i) = filesint(i) + ".c";
+
+    for i = 1:size(filesint, "*")
+        if exts_filesint(i) == "" & ~isdir(filesint(i)) & filesint(i) <> "" then
+            filesint(i) = filesint(i) + ".c";
+        end
     end
-  end
 
-  // add a external file if it exists
-  // added for compatibility with 4.x
-  // By RN ...
-  if isfile(rpat + "/" + blknam + "f.f") then
-    files=[files, blknam + "f.f"];
-  end
+    // add a external file if it exists
+    // added for compatibility with 4.x
+    // By RN ...
+    if isfile(rpat + "/" + blknam + "f.f") then
+        files=[files, blknam + "f.f"];
+    end
 
-  //** adjust path and name of object files
-  //   to include in the building process
-  if (libs ~= emptystr() & libs <> []) then
-    libs = pathconvert(libs, %f, %t);
-  end
+    //** adjust path and name of object files
+    //   to include in the building process
+    if (libs ~= emptystr() & libs <> []) then
+        libs = pathconvert(libs, %f, %t);
+    end
 
-  //** otherlibs treatment
-  [ok, libs, for_link] = link_olibs(libs, rpat);
-  if ~ok then
-    ok = %f;
-    message(["sorry compiling problem"; lasterror()]);
-    return;
-  end
+    //** otherlibs treatment
+    [ok, libs, for_link] = link_olibs(libs, rpat);
+    if ~ok then
+        ok = %f;
+        message(["sorry compiling problem"; lasterror()]);
+        return;
+    end
 
-  //** unlink if necessary
-  [a, b] = c_link(blknam);
-  while a
-    ulink(b);
+    //** unlink if necessary
     [a, b] = c_link(blknam);
-  end
+    while a
+        ulink(b);
+        [a, b] = c_link(blknam);
+    end
 
-  //** save path in case of error in ilib_compile
-  oldpath = pwd();
-  
-  if getos() <> "Windows" then
-    if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
-      //** Binary version
-      cflags = cflags + " -I" + SCI + "/../../include/scilab/scicos/";
-      cflags = cflags + " -I" + SCI + "/../../include/scilab/scicos_blocks/";
-      cflags = cflags + " -I" + SCI + "/../../include/scilab/dynamic_link/";
-    else	  
-      //** it is a source version 
-      cflags = cflags + " -I" + SCI + "/modules/scicos/includes/"; 
-      cflags = cflags + " -I" + SCI + "/modules/scicos_blocks/includes/"; 
-      cflags = cflags + " -I" + SCI + "/modules/dynamic_link/includes/"; 
+    //** save path in case of error in ilib_compile
+    oldpath = pwd();
+
+    if getos() <> "Windows" then
+        if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
+            //** Binary version
+            cflags = cflags + " -I" + SCI + "/../../include/scilab/scicos/";
+            cflags = cflags + " -I" + SCI + "/../../include/scilab/scicos_blocks/";
+            cflags = cflags + " -I" + SCI + "/../../include/scilab/dynamic_link/";
+        else
+            //** it is a source version
+            cflags = cflags + " -I" + SCI + "/modules/scicos/includes/";
+            cflags = cflags + " -I" + SCI + "/modules/scicos_blocks/includes/";
+            cflags = cflags + " -I" + SCI + "/modules/dynamic_link/includes/";
+        end
+    else
+        // Load dynamic_link Internal lib if it's not already loaded
+        if ~exists("dynamic_linkwindowslib") then
+            load("SCI/modules/dynamic_link/macros/windows/lib");
+        end
+        cflags = cflags + strcat(" -I""" + dlwGetXcosIncludes() + """");
+        ldflags = ldflags + strcat(" """ + dlwGetLibrariesPath() + dlwGetXcosLibraries() + """");
     end
-  else
-    // Load dynamic_link Internal lib if it's not already loaded
-    if ~exists("dynamic_linkwindowslib") then
-      load("SCI/modules/dynamic_link/macros/windows/lib");
+
+    if (rpat == "" | rpat == []) & isdir(filesint) then
+        // Prepare Block "Code Generation" from Menu
+        chdir(filesint);
+    else
+        // generate Block in TMPDIR (default)
+        chdir(TMPDIR);
     end
-    cflags = cflags + strcat(" -I""" + dlwGetXcosIncludes() + """");
-    ldflags = ldflags + strcat(" """ + dlwGetLibrariesPath() + dlwGetXcosLibraries() + """");
-  end
- 
-  if (rpat == "" | rpat == []) & isdir(filesint) then
-    // Prepare Block "Code Generation" from Menu
-    chdir(filesint);
-  else
-    // generate Block in TMPDIR (default)
-    chdir(TMPDIR);
-  end
-  
-  // Since all files Xcos generated files of all diagrams are in the same TEMP directory 
-  // Here, we force to rebuild (not a simple incremental build on Windows)
-  if getos() == "Windows" then
-    VC_rebuild_mode = dlwForceRebuild();
-    dlwForceRebuild(%t);
-  end  
-  
-  ierr = execstr("libn =ilib_for_link(blknam,files,"""",""c"","""",""loader.sce"","""",ldflags,cflags)","errcatch");
-  
-  // restore previous build mode
-  if getos() == "Windows" then
-    dlwForceRebuild(VC_rebuild_mode);
-  end  
-  
-  if ierr <> 0 then
-    ok = %f;
-    chdir(oldpath);
-    disp(["sorry compiling problem"; lasterror()]);
-    return;
-  end
-  
-  if (rpat == "" | rpat == []) & isdir(filesint) then
-    NAME_BLOCK_C_SCI = filesint + filesep() + blknam + "_c.sci";
-    if isfile(NAME_BLOCK_C_SCI) then
-      ierr = exec(NAME_BLOCK_C_SCI, "errcatch");
-      if ierr <> 0 then
+
+    // Since all files Xcos generated files of all diagrams are in the same TEMP directory
+    // Here, we force to rebuild (not a simple incremental build on Windows)
+    if getos() == "Windows" then
+        VC_rebuild_mode = dlwForceRebuild();
+        dlwForceRebuild(%t);
+    end
+
+    ierr = execstr("libn =ilib_for_link(blknam,files,"""",""c"","""",""loader.sce"","""",ldflags,cflags)","errcatch");
+
+    // restore previous build mode
+    if getos() == "Windows" then
+        dlwForceRebuild(VC_rebuild_mode);
+    end
+
+    if ierr <> 0 then
         ok = %f;
         chdir(oldpath);
-        return
-      end
+        disp(["sorry compiling problem"; lasterror()]);
+        return;
     end
-  end
-  
-  ierr = exec("loader.sce", "errcatch");
-  if ierr <> 0 then
-    ok = %f;
-  else
-    ok = %t;
-  end
-  
-  chdir(oldpath);
+
+    if (rpat == "" | rpat == []) & isdir(filesint) then
+        NAME_BLOCK_C_SCI = filesint + filesep() + blknam + "_c.sci";
+        if isfile(NAME_BLOCK_C_SCI) then
+            ierr = exec(NAME_BLOCK_C_SCI, "errcatch");
+            if ierr <> 0 then
+                ok = %f;
+                chdir(oldpath);
+                return
+            end
+        end
+    end
+
+    ierr = exec("loader.sce", "errcatch");
+    if ierr <> 0 then
+        ok = %f;
+    else
+        ok = %t;
+    end
+
+    chdir(oldpath);
 
 endfunction
 

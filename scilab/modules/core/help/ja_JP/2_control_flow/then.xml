@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="then">
+    <refnamediv>
+        <refname>then</refname>
+        <refpurpose>if-then-elseのキーワード</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>if</literal>と共に使用されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+if 2*2 == 4 then
+   disp("It works")
+end
+
+n=round(10*rand(1,1))
+select n
+    case 0 then
+        disp(0)
+    case 1 then
+        disp(1)
+    else
+      disp(n);
+end
+        ]]></programlisting>
+    </refsection>
+    
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="if">if</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

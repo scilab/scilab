@@ -39,6 +39,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * PasteAction class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class PasteAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY V";

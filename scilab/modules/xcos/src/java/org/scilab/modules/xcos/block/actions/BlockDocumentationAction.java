@@ -32,6 +32,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * View Xcos documentation
  */
+@SuppressWarnings(value = { "serial" })
 public final class BlockDocumentationAction extends VertexSelectionDependantAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.BLOCK_DOCUMENTATION;

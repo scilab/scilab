@@ -10,84 +10,85 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="bdiag">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="bdiag">
     <refnamediv>
         <refname>bdiag</refname>
-        <refpurpose> block diagonalization, generalized eigenvectors</refpurpose>
+        <refpurpose>ブロック対角化, 一般化固有ベクトル</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>[Ab [,X [,bs]]]=bdiag(A [,rmax])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>実数または複素数の正方行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rmax</term>
                 <listitem>
-                    <para>real number</para>
+                    <para>実数</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Ab</term>
                 <listitem>
-                    <para>real or complex square matrix</para>
+                    <para>実数または複素数の正方行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>real or complex non-singular matrix</para>
+                    <para>実数または複素数の正則行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>bs</term>
                 <listitem>
-                    <para>vector of integers</para>
+                    <para>整数ベクトル</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <programlisting role=""><![CDATA[ 
 [Ab [,X [,bs]]]=bdiag(A [,rmax]) 
  ]]></programlisting>
         <para>
-            performs the block-diagonalization of matrix <literal>A</literal>.  bs
-            gives the structure of the blocks (respective sizes of the
-            blocks).  <literal>X</literal> is the change of basis i.e 
-            <literal>Ab = inv(X)*A*X</literal>is block diagonal.
+            は,行列<literal>A</literal>のブロック対角化を行ないます.
+            bs はブロックの構造(個々のブロックの大きさ)を出力します.
+            <literal>X</literal> は基底変換です.
+            すなわち, <literal>Ab = inv(X)*A*X</literal> はブロック対角です.
         </para>
         <para>
-            <literal>rmax</literal> controls the conditioning of <literal>X</literal>; the
-            default value is the l1 norm of <literal>A</literal>.
+            <literal>rmax</literal> は<literal>X</literal>の
+            条件数を制御します;
+            デフォルト値は <literal>A</literal> の l1ノルムです.
         </para>
         <para>
-            To get a diagonal form (if it exists) choose a large value for
-            <literal>rmax</literal> (<literal>rmax=1/%eps</literal> for example).
-            Generically (for real random A) the blocks are (1x1) and (2x2) and
-            <literal>X</literal> is the matrix of eigenvectors.
+            (存在する場合,)対角形式を得るには<literal>rmax</literal>に
+            大きな値を指定します(例えば,<literal>rmax=1/%eps</literal>).
+            一般に(ランダムな実数の Aの場合) ブロックは (1x1) および (2x2) で,
+            <literal>X</literal> は固有値の行列です.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[ 
-//Real case: 1x1 and 2x2 blocks
+//実数の場合: 1x1 および 2x2 ブロック
 a=rand(5,5);[ab,x,bs]=bdiag(a);ab
 
-//Complex case: complex 1x1 blocks
+//複素数の場合: 複素数 1x1 ブロック
 [ab,x,bs]=bdiag(a+%i*0);ab
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="schur">schur</link>

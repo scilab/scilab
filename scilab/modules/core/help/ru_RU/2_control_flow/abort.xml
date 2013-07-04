@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="abort">
+    <refnamediv>
+        <refname>abort</refname>
+        <refpurpose>прерывание исполнения</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Инструкция <code>abort</code> прерывает текущее исполнение и даёт приглашение к вводу.
+            С того уровня, на котором вызвана <code>pause</code>, инструкция <code>abort</code> возвращает на уровень 0.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+a=2
+b=3
+abort // Здесь исполнение будет остановлено.
+c=4   // c не будет определено
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="quit">quit</link>
+            </member>
+            <member>
+                <link linkend="pause">pause</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

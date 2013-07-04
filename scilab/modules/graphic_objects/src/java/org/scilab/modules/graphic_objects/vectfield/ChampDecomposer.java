@@ -40,7 +40,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
         int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         /* 2 vertices per segment plus 3 vertices for the arrow tip */
-        return 5*numberArrows;
+        return 5 * numberArrows;
     }
 
     /**
@@ -55,7 +55,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
      * @param logMask the bit mask specifying whether logarithmic coordinates are used.
      */
     public static void fillVertices(FloatBuffer buffer, String id, int elementsSize,
-        int coordinateMask, double[] scale, double[] translation, int logMask) {
+                                    int coordinateMask, double[] scale, double[] translation, int logMask) {
         int bufferOffset = 0;
 
         /* The coordinates of a segment's base */
@@ -93,11 +93,11 @@ public class ChampDecomposer extends VectFieldDecomposer {
             for (int i = 0; i < xBase.length; i++) {
                 base[0] = xBase[i];
                 base[1] = yBase[j];
-                base[2] = zBase[j*xBase.length+i];
+                base[2] = zBase[j * xBase.length + i];
 
-                direction[0] = xDirection[j*xBase.length+i];
-                direction[1] = yDirection[j*xBase.length+i];
-                direction[2] = zDirection[j*xBase.length+i];
+                direction[0] = xDirection[j * xBase.length + i];
+                direction[1] = yDirection[j * xBase.length + i];
+                direction[2] = zDirection[j * xBase.length + i];
 
                 /* Compute the segment tip */
                 tip = computeSegmentTip(base, direction, colored, maxUsableLength, maxLength);
@@ -113,7 +113,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
                     tip[0] = tip[0] * scale[0] + translation[0];
 
                     buffer.put(bufferOffset, (float) base[0]);
-                    buffer.put(bufferOffset+elementsSize, (float) tip[0]);
+                    buffer.put(bufferOffset + elementsSize, (float) tip[0]);
                 }
 
                 if ((coordinateMask & 0x2) != 0) {
@@ -125,8 +125,8 @@ public class ChampDecomposer extends VectFieldDecomposer {
                     base[1] = base[1] * scale[1] + translation[1];
                     tip[1] = tip[1] * scale[1] + translation[1];
 
-                    buffer.put(bufferOffset+1, (float) base[1]);
-                    buffer.put(bufferOffset+elementsSize+1, (float) tip[1]);
+                    buffer.put(bufferOffset + 1, (float) base[1]);
+                    buffer.put(bufferOffset + elementsSize + 1, (float) tip[1]);
                 }
 
                 if ((coordinateMask & 0x4) != 0) {
@@ -138,16 +138,16 @@ public class ChampDecomposer extends VectFieldDecomposer {
                     base[2] = base[2] * scale[2] + translation[2];
                     tip[2] = tip[2] * scale[2] + translation[2];
 
-                    buffer.put(bufferOffset+2, (float) base[2]);
-                    buffer.put(bufferOffset+elementsSize+2, (float) tip[2]);
+                    buffer.put(bufferOffset + 2, (float) base[2]);
+                    buffer.put(bufferOffset + elementsSize + 2, (float) tip[2]);
                 }
 
                 if (elementsSize == 4 && (coordinateMask & 0x8) != 0) {
-                    buffer.put(bufferOffset+3, 1.0f);
-                    buffer.put(bufferOffset+elementsSize +3, 1.0f);
+                    buffer.put(bufferOffset + 3, 1.0f);
+                    buffer.put(bufferOffset + elementsSize + 3, 1.0f);
                 }
 
-                bufferOffset += 2*elementsSize;
+                bufferOffset += 2 * elementsSize;
             }
         }
     }
@@ -201,38 +201,38 @@ public class ChampDecomposer extends VectFieldDecomposer {
         /* Colors are output in the same order as vertices: first the base's color and then the tip's */
         for (int j = 0; j < yBase.length; j++) {
             for (int i = 0; i < xBase.length; i++) {
-                direction[0] = xDirection[j*xBase.length+i];
-                direction[1] = yDirection[j*xBase.length+i];
-                direction[2] = zDirection[j*xBase.length+i];
+                direction[0] = xDirection[j * xBase.length + i];
+                direction[1] = yDirection[j * xBase.length + i];
+                direction[2] = zDirection[j * xBase.length + i];
 
-                double norm = Math.sqrt(direction[0]*direction[0] + direction[1]*direction[1] + direction[2]*direction[2]);
+                double norm = Math.sqrt(direction[0] * direction[0] + direction[1] * direction[1] + direction[2] * direction[2]);
 
-                int colorIndex  = (int) Math.floor((((double) colorMapSize -1.0) * norm / maxLength) + 0.5);
+                int colorIndex  = (int) Math.floor((((double) colorMapSize - 1.0) * norm / maxLength) + 0.5);
 
                 float[] color = colorMap.getScilabColor(colorIndex);
 
                 writeSegmentColors(buffer, elementsSize, bufferOffset, color);
 
-                bufferOffset += 2*elementsSize;
+                bufferOffset += 2 * elementsSize;
             }
         }
 
         /* Arrow colors */
         for (int j = 0; j < yBase.length; j++) {
             for (int i = 0; i < xBase.length; i++) {
-                direction[0] = xDirection[j*xBase.length+i];
-                direction[1] = yDirection[j*xBase.length+i];
-                direction[2] = zDirection[j*xBase.length+i];
+                direction[0] = xDirection[j * xBase.length + i];
+                direction[1] = yDirection[j * xBase.length + i];
+                direction[2] = zDirection[j * xBase.length + i];
 
-                double norm = Math.sqrt(direction[0]*direction[0] + direction[1]*direction[1] + direction[2]*direction[2]);
+                double norm = Math.sqrt(direction[0] * direction[0] + direction[1] * direction[1] + direction[2] * direction[2]);
 
-                int colorIndex  = (int) Math.floor((((double) colorMapSize -1.0) * norm / maxLength) + 0.5);
+                int colorIndex  = (int) Math.floor((((double) colorMapSize - 1.0) * norm / maxLength) + 0.5);
 
                 float[] color = colorMap.getScilabColor(colorIndex);
 
                 writeArrowColors(buffer, elementsSize, bufferOffset, color);
 
-                bufferOffset += 3*elementsSize;
+                bufferOffset += 3 * elementsSize;
             }
         }
 
@@ -248,7 +248,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
         int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         /* 3 indices per arrow */
-        return 3*numberArrows;
+        return 3 * numberArrows;
     }
 
     /**
@@ -270,7 +270,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
             return 0;
         }
 
-        segmentOffset = 2*numberArrows;
+        segmentOffset = 2 * numberArrows;
 
         Double[] xBase = (Double[]) GraphicController.getController().getProperty(id, __GO_BASE_X__);
         Double[] yBase = (Double[]) GraphicController.getController().getProperty(id, __GO_BASE_Y__);
@@ -291,37 +291,37 @@ public class ChampDecomposer extends VectFieldDecomposer {
 
         for (int j = 0; j < yBase.length; j++) {
             for (int i = 0; i < xBase.length; i++) {
-                int tipIndex = 3*(xBase.length*j+i) + segmentOffset;
-                int leftIndex = tipIndex +1;
-                int rightIndex = tipIndex +2;
+                int tipIndex = 3 * (xBase.length * j + i) + segmentOffset;
+                int leftIndex = tipIndex + 1;
+                int rightIndex = tipIndex + 2;
 
                 base[0] = xBase[i];
                 base[1] = yBase[j];
-                base[2] = zBase[j*xBase.length+i];
+                base[2] = zBase[j * xBase.length + i];
 
-                direction[0] = xDirection[j*xBase.length+i];
-                direction[1] = yDirection[j*xBase.length+i];
-                direction[2] = zDirection[j*xBase.length+i];
+                direction[0] = xDirection[j * xBase.length + i];
+                direction[1] = yDirection[j * xBase.length + i];
+                direction[2] = zDirection[j * xBase.length + i];
 
                 /* Compute the segment tip */
                 direction = computeSegmentTip(base, direction, colored, maxUsableLength, maxLength);
 
                 if (Utils.isValid(base[0], base[1], base[2])
-                    && Utils.isValid(direction[0], direction[1], direction[2])) {
+                        && Utils.isValid(direction[0], direction[1], direction[2])) {
                     valid = true;
                 } else {
                     valid = false;
                 }
 
                 if (logMask != 0) {
-                    valid = valid && Utils.isLogValid(base[0], base[1], base[2]+DEFAULT_LOG_COORD_Z, logMask);
-                    valid = valid && Utils.isLogValid(direction[0], direction[1], direction[2]+DEFAULT_LOG_COORD_Z, logMask);
+                    valid = valid && Utils.isLogValid(base[0], base[1], base[2] + DEFAULT_LOG_COORD_Z, logMask);
+                    valid = valid && Utils.isLogValid(direction[0], direction[1], direction[2] + DEFAULT_LOG_COORD_Z, logMask);
                 }
 
                 if (valid) {
                     buffer.put(bufferOffset, tipIndex);
-                    buffer.put(bufferOffset+1, leftIndex);
-                    buffer.put(bufferOffset+2, rightIndex);
+                    buffer.put(bufferOffset + 1, leftIndex);
+                    buffer.put(bufferOffset + 2, rightIndex);
                     bufferOffset += 3;
                 }
 
@@ -349,7 +349,7 @@ public class ChampDecomposer extends VectFieldDecomposer {
 
         /* The current vector's norm is used to normalize for colored Champ objects instead of the maximum length. */
         if (colored) {
-            double norm = Math.sqrt(direction[0]*direction[0] + direction[1]*direction[1] + direction[2]*direction[2]);
+            double norm = Math.sqrt(direction[0] * direction[0] + direction[1] * direction[1] + direction[2] * direction[2]);
 
             if (norm <= Double.MIN_VALUE) {
                 norm = 1.0;
@@ -404,35 +404,35 @@ public class ChampDecomposer extends VectFieldDecomposer {
 
         for (int j = 0; j < yBase.length; j++) {
             for (int i = 0; i < xBase.length; i++) {
-                int baseIndex = 2*(xBase.length*j+i);
-                int tipIndex = baseIndex +1;
+                int baseIndex = 2 * (xBase.length * j + i);
+                int tipIndex = baseIndex + 1;
 
                 base[0] = xBase[i];
                 base[1] = yBase[j];
-                base[2] = zBase[j*xBase.length+i];
+                base[2] = zBase[j * xBase.length + i];
 
-                direction[0] = xDirection[j*xBase.length+i];
-                direction[1] = yDirection[j*xBase.length+i];
-                direction[2] = zDirection[j*xBase.length+i];
+                direction[0] = xDirection[j * xBase.length + i];
+                direction[1] = yDirection[j * xBase.length + i];
+                direction[2] = zDirection[j * xBase.length + i];
 
                 /* Compute the segment tip */
                 direction = computeSegmentTip(base, direction, colored, maxUsableLength, maxLength);
 
                 if (Utils.isValid(base[0], base[1], base[2])
-                    && Utils.isValid(direction[0], direction[1], direction[2])) {
+                        && Utils.isValid(direction[0], direction[1], direction[2])) {
                     valid = true;
                 } else {
                     valid = false;
                 }
 
                 if (logMask != 0) {
-                    valid = valid && Utils.isLogValid(base[0], base[1], base[2]+DEFAULT_LOG_COORD_Z, logMask);
-                    valid = valid && Utils.isLogValid(direction[0], direction[1], direction[2]+DEFAULT_LOG_COORD_Z, logMask);
+                    valid = valid && Utils.isLogValid(base[0], base[1], base[2] + DEFAULT_LOG_COORD_Z, logMask);
+                    valid = valid && Utils.isLogValid(direction[0], direction[1], direction[2] + DEFAULT_LOG_COORD_Z, logMask);
                 }
 
                 if (valid) {
                     buffer.put(bufferOffset, baseIndex);
-                    buffer.put(bufferOffset+1, tipIndex);
+                    buffer.put(bufferOffset + 1, tipIndex);
                     bufferOffset += 2;
                 }
 

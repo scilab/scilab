@@ -7,33 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-10-21 22:51+0000\n"
-"Last-Translator: Fido <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-01-03 18:01+0000\n"
+"Last-Translator: Marc Coll Carrillo <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: es\n"
-
-#, c-format
-msgid "%s: Feature %s is obsolete.\n"
-msgstr ""
-
-msgid "Warning"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: This feature will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "Sólo en Modo Ventana, no en Modo Consola.\n"
@@ -55,7 +37,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: No se puede leer el argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -75,6 +57,11 @@ msgstr ""
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: No hay más memoria.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"

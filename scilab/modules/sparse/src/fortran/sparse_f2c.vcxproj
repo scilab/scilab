@@ -279,7 +279,6 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_spcompa.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_spget.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_spmatrix.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_spmax.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_symfcti.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ta2lpd.c" />
     <ClCompile Include="blkfc1.c" />
@@ -299,8 +298,6 @@ cd ..
     <ClCompile Include="dspis.c" />
     <ClCompile Include="dspisp.c" />
     <ClCompile Include="dspmat.c" />
-    <ClCompile Include="dspmax.c" />
-    <ClCompile Include="dspmin.c" />
     <ClCompile Include="dspms.c" />
     <ClCompile Include="dspmsp.c" />
     <ClCompile Include="dspos.c" />
@@ -394,7 +391,6 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_spcompa.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_spget.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_spmatrix.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_spmax.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_symfcti.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ta2lpd.f" />
     <f2c_rule Include="blkfc1.f" />
@@ -414,8 +410,6 @@ cd ..
     <f2c_rule Include="dspis.f" />
     <f2c_rule Include="dspisp.f" />
     <f2c_rule Include="dspmat.f" />
-    <f2c_rule Include="dspmax.f" />
-    <f2c_rule Include="dspmin.f" />
     <f2c_rule Include="dspms.f" />
     <f2c_rule Include="dspmsp.f" />
     <f2c_rule Include="dspos.f" />

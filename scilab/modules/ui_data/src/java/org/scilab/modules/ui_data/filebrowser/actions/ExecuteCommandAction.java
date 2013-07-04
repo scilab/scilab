@@ -28,6 +28,7 @@ import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
  * @author Calixte DENIZET
  */
 
+@SuppressWarnings(value = { "serial" })
 public class ExecuteCommandAction extends CommonCallBack {
 
     private SwingScilabTreeTable table;

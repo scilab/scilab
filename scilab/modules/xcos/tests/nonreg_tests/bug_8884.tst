@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 8884 -->
 //
@@ -17,7 +17,7 @@
 // Region to super block does not reconstruct 2 links from the same start point
 // but only one.
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8884.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8884.zcos");
 // Follow diagram labels
 
 

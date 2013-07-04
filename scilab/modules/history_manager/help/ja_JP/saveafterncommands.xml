@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="saveafterncommands">
+    
+    <refnamediv>
+        
+        <refname>saveafterncommands</refname>
+        
+        <refpurpose>
+            
+            ファイルにn個の命令を追加した後,履歴ファイルを保存する.
+            
+        </refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>saveafterncommands(n)
+            
+            v = saveafterncommands()
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>n</term>
+                
+                <listitem>
+                    
+                    <para>整数, n 命令</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>v</term>
+                
+                <listitem>
+                    
+                    <para>カレントの値</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            ファイルにn個の命令を追加した後,履歴ファイルを保存します.
+            
+        </para>
+        
+        <para>
+            
+            例えば, オプションを選択し, n に 5を設定した場合,
+            
+            5個の命令が追加される度に,履歴ファイルが自動的に保存されます.
+            
+        </para>
+        
+        <para>
+            
+            電源異常のような異常終了により保存された履歴のエントリを
+            
+            失ないたくない場合には,このオプションを使用してください.
+            
+        </para>
+        
+        <para>saveafterncommands() はカレントの値を返します.</para>
+        
+        <para>
+            
+            デフォルト値は0です. 履歴ファイルは
+            
+            Scilabセッションの最後に保存されます.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[ 
+saveafterncommands(3)
+ ]]></programlisting>
+        
+    </refsection>
+    
+</refentry>
+

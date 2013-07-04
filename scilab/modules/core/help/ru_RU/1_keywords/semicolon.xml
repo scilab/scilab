@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="semicolon">
+    <refnamediv>
+        <refname>точка с запятой</refname>
+        <refpurpose>(;) завершение выражения и разделитель строк</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Точки с запятыми используются для разделения строк при определении матрицы (внутри квадратных 
+            скобок).
+        </para>
+        <para>
+            Точки с запятыми могут также использоваться в конце инструкции (в файле или консоли Scilab). 
+            В этом случае точка с запятой означает, что результаты не будут выведены на экран. И, 
+            наоборот, для вывода на экран используется запятая (,).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+a=[1,2,3;4,5,6];
+a=1;b=1,c=2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="comma">запятая</link>
+            </member>
+            <member>
+                <link linkend="brackets">квадратные скобки</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

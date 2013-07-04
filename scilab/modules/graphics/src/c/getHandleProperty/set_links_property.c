@@ -29,23 +29,25 @@
 #include "localization.h"
 #include "HandleManagement.h"
 #include "MALLOC.h"
+#include "sci_types.h"
 
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_links_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_links_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
     char* parentAxes = NULL;
     char** links = NULL;
     int i = 0;
     int iLinksCount = 0;
     int* piLinksCount = &iLinksCount;
 
-    if ( !isParameterHandle( valueType ) )
+    if (valueType != sci_handles)
     {
         Scierror(999, _("Wrong type for '%s' property: Graphic handle array expected.\n"), "links");
         return SET_PROPERTY_ERROR;
@@ -59,7 +61,7 @@ int set_links_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
         return SET_PROPERTY_ERROR;
     }
 
-    if (nbRow*nbCol != iLinksCount)
+    if (nbRow * nbCol != iLinksCount)
     {
         Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "links", iLinksCount);
         return SET_PROPERTY_ERROR;
@@ -80,11 +82,11 @@ int set_links_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
     for (i = 0 ; i < iLinksCount ; i++)
     {
         char* polylineParentAxes;
-        char* polylineObjectUID = (char*)getObjectFromHandle( getHandleFromStack( stackPointer + i ) );
+        char* polylineObjectUID = (char*)getObjectFromHandle((long)((long long*)_pvData)[i]);
 
-        getGraphicObjectProperty(polylineObjectUID, __GO_TYPE__, jni_string, (void **)&type);
+        getGraphicObjectProperty(polylineObjectUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-        if (strcmp(type, __GO_POLYLINE__) != 0)
+        if (type != __GO_POLYLINE__)
         {
             Scierror(999, _("%s: Input argument #%d must be a '%s' handle.\n"), "links", i, "polyline");
             status = FALSE;

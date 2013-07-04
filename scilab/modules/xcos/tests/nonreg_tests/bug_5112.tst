@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 5112 -->
 //
@@ -19,7 +19,7 @@
 // → Title of some of them is "Untitled"
 // When opening the same diagrams separately, this behavior doesn't happen.
 
-A = ls(SCI+'/modules/xcos/demos/*.xcos');
+A = ls(SCI+'/modules/xcos/demos/*.zcos');
 xcos(A);
 
 // Check that no title is set to Untitled

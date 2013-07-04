@@ -14,7 +14,7 @@
 
 #include "SetUicontrolHorizontalAlignment.hxx"
 
-int SetUicontrolHorizontalAlignment(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolHorizontalAlignment(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* HorizontalAlignment can be left, center or right */
 
@@ -33,18 +33,18 @@ int SetUicontrolHorizontalAlignment(void* _pvCtx, char* sciObjUID, size_t stackP
         return SET_PROPERTY_ERROR;
     }
 
-    alignment = getStringFromStack(stackPointer);
+    alignment = (char*)_pvData;
 
     if (stricmp(alignment, "left") != 0
-        && stricmp(alignment, "center") != 0
-        && stricmp(alignment, "right") != 0)
+            && stricmp(alignment, "center") != 0
+            && stricmp(alignment, "right") != 0)
     {
         /* Wrong string format */
         Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n")), "HorizontalAlignment", "left", "center", "right");
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_HORIZONTALALIGNMENT__), alignment, jni_string, 1);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_HORIZONTALALIGNMENT__, alignment, jni_string, 1);
 
     if (status == TRUE)
     {

@@ -21,7 +21,7 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
 
 /**
  * Class to create SciNotes instances
- * 
+ *
  * @author Calixte DENIZET
  */
 public class HelpBrowserTab {
@@ -36,28 +36,28 @@ public class HelpBrowserTab {
         ScilabTabFactory.getInstance().addToCache(hb);
 
         ClosingOperationsManager.registerClosingOperation(hb,
-                new ClosingOperationsManager.ClosingOperation() {
+        new ClosingOperationsManager.ClosingOperation() {
 
-                    @Override
-                    public int canClose() {
-                        return 1;
-                    }
+            @Override
+            public int canClose() {
+                return 1;
+            }
 
-                    @Override
-                    public void destroy() {
-                        ScilabHelpBrowser.closeHB();
-                    }
+            @Override
+            public void destroy() {
+                ScilabHelpBrowser.closeHB();
+            }
 
-                    @Override
-                    public String askForClosing(final List<SwingScilabTab> list) {
-                        return null;
-                    }
+            @Override
+            public String askForClosing(final List<SwingScilabTab> list) {
+                return null;
+            }
 
-                    @Override
-                    public void updateDependencies(List<SwingScilabTab> list,
-                            ListIterator<SwingScilabTab> it) {
-                    }
-                });
+            @Override
+            public void updateDependencies(List<SwingScilabTab> list,
+            ListIterator<SwingScilabTab> it) {
+            }
+        });
 
         ClosingOperationsManager.addDependencyWithRoot(hb);
 

@@ -14,8 +14,7 @@
 
 AUTOMAKE_OPTIONS = 1.11 dist-zip dist-bzip2
 
-SUBDIRS= libs \
-	modules \
+SUBDIRS= modules \
 	contrib \
 	desktop
 
@@ -28,11 +27,12 @@ AM_CXXFLAGS = $(SCI_CXXFLAGS)
 AM_FFLAGS   = $(SCI_FFLAGS)
 AM_LDFLAGS  = $(SCI_LDFLAGS)
 
-changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X
+changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X  CHANGES_5.5.X
 
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
-bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
+bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli \
+bin/scinotes bin/xcos
 
 if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
@@ -101,7 +101,7 @@ if COMPILATION_TESTS
 TARGETS_ALL+=check-java
 endif
 
-# check is performed with scilab
+# check is performed with scilab
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
 TESTS = $(top_srcdir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
 
@@ -126,6 +126,7 @@ $(top_srcdir)/CHANGES_5.1.X \
 $(top_srcdir)/CHANGES_5.2.X \
 $(top_srcdir)/CHANGES_5.3.X \
 $(top_srcdir)/CHANGES_5.4.X \
+$(top_srcdir)/CHANGES_5.5.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-BSD \
@@ -137,6 +138,7 @@ $(top_srcdir)/RELEASE_NOTES_5.2.X \
 $(top_srcdir)/RELEASE_NOTES_5.3.X \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt \
+$(top_builddir)/license.txt \
 $(top_builddir)/Version.incl
 
 valgrinddir=$(pkgdatadir)/tools/profiling
@@ -194,6 +196,11 @@ doc-ru_RU:
 doc-ja_JP:
 	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=ja_JP
 
+# Regenerate all images
+doc-images:
+	rm -rf $(top_srcdir)/modules/helptools/images/
+	mkdir $(top_srcdir)/modules/helptools/images/
+	$(MAKE) doc
 
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
@@ -234,6 +241,12 @@ else
 	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 endif
 
+doxygen: modules/development_tools/etc/doxyfile
+if DOXYGEN
+	mkdir $(top_builddir)/reports/
+	$(DOXYGEN_BIN) modules/development_tools/etc/doxyfile
+endif
+
 check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
 		for l in $(ALL_LINGUAS_DOC); do \
@@ -251,11 +264,13 @@ if CODE_COVERAGE
 	@if test ! -d $(top_builddir)/coverage/; then \
 		mkdir $(top_builddir)/coverage/; \
 	fi; \
-	touch $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h; \
+	touch $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h; \
 	$(LCOV) --directory $(top_builddir) --capture --ignore-errors source --output-file $(top_builddir)/coverage/scilab-code-coverage.info; \
-	$(GENHTML) -o $(top_builddir)/coverage/results/ --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
+	echo -e "genhtml_hi_limit = 85\ngenhtml_med_limit = 70" > $(top_builddir)/coverage/lcovrc; \
+	$(GENHTML) -o $(top_builddir)/coverage/results/ --config-file $(top_builddir)/coverage/lcovrc --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
+	rm -f $(top_builddir)/coverage/lcovrc; \
 	echo "To open the result: firefox  $(top_builddir)/coverage/results/index.html"; \
-	rm -f $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h
+	rm -f $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h
 #--frames is disable because of : http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=607206
 else
 	@echo "Cannot start the code coverage. Add --enable-code-coverage to the ./configure and 'make clean all'."
@@ -296,7 +311,9 @@ clean-help:
 	echo "rm -f $(top_builddir)/modules/scicos/jar/"; \
 	rm -rf $(top_builddir)/modules/scicos/jar/; \
 	echo "rm -rf $(top_builddir)/modules/javasci/javadoc"; \
-	rm -rf $(top_builddir)/modules/javasci/javadoc;
+	rm -rf $(top_builddir)/modules/javasci/javadoc; \
+	echo "rm -rf $(top_builddir)/html"; \
+	rm -rf $(top_builddir)/html;
 
 clean-tests:
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
@@ -306,7 +323,7 @@ clean-tests:
 	fi
 
 clean-localization:
-	rm -rf $(top_srcdir)/locale/
+	rm -rf $(top_srcdir)/locale/*
 
 clean-generated:
 # Deleted junit + code coverage
@@ -399,11 +416,16 @@ endif
 
 # How help files look like.
 DOCMASK=scilab_*_help.jar
+DOCIMAGES=scilab_images.jar
 
-# Path to builded files
+# Path to built files
 PATHTOHELPFILES = modules/helptools/jar/
 
-# Path javasci to builded files
+# Path to scirenderer jar
+PATHTOSCIRENDERER = modules/scirenderer/jar/
+SCIRENDERERJAR = scirenderer.jar
+
+# Path javasci to built files
 PATHTOJAVASCIDOC = modules/javasci/javadoc/
 JAVASCI_DIRS = . resources \
 	org/scilab/modules/javasci/ \
@@ -429,7 +451,7 @@ if BUILD_HELP
 	@$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
 	echo $(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
 	if ls -lLd $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK) >/dev/null 2>&1; then \
-		for file in $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK); do \
+		for file in $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK) $(top_builddir)/$(PATHTOHELPFILES)/$(DOCIMAGES); do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES)" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES) ; \
 		done; \
@@ -448,6 +470,11 @@ if BUILD_HELP
 			done; \
 	done; \
 	fi
+endif
+if !EXTERNAL_SCIRENDERER
+# Also install scirenderer.jar
+	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)
+	$(INSTALL_DATA) $(top_builddir)/$(PATHTOSCIRENDERER)/$(SCIRENDERERJAR) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)/
 endif
 
 # Pkgconfig directory

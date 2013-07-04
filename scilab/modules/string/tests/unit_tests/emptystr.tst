@@ -55,5 +55,5 @@ d = size(s);
 if (d <> [1 1]) then pause,end;
 if (s <> '') then pause,end;
 //===============================
-if ( size(emptystr(0,1)) <> [ 0 0 ] ) then pause,end	
+if ( size(emptystr(0,1)) <> [ 0 0 ] ) then pause,end
 //===============================

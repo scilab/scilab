@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 8569 -->
 //
@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // Link destruction algorithm is not the right one
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8569.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8569.zcos");
 // Check that all the actions performs fine (comments in the diagram)
 
 

@@ -98,7 +98,7 @@ int main(void)
         char** pstData  = NULL;
         SciErr sciErr;
 
-        //fisrt call to retrieve dimensions
+        //first call to retrieve dimensions
         sciErr = readNamedMatrixOfString(pvApiCtx, variableToBeRetrieved, &iRows, &iCols, NULL, NULL);
         if (sciErr.iErr)
         {
@@ -148,7 +148,7 @@ int main(void)
     }
 
 
-    /* Load an element of a the previously set variable B */
+    /* Load an element of the previously set variable B */
     {
 
         char variableToBeRetrieved[] = "B";
@@ -160,7 +160,7 @@ int main(void)
         char** pstData  = NULL;
         SciErr sciErr;
 
-        //fisrt call to retrieve dimensions
+        //first call to retrieve dimensions
         sciErr = readNamedMatrixOfString(pvApiCtx, variableToBeRetrieved, &iRows, &iCols, NULL, NULL);
         if (sciErr.iErr)
         {

@@ -16,6 +16,6 @@
 //   <no arg>
 //
 function sd = optimsimplex_fvmean ( this )
-  sd = mean(this.fv)
+    sd = mean(this.fv)
 endfunction
 

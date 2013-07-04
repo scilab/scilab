@@ -6,12 +6,12 @@
 // ============================================================================
 //
 // <-- ENGLISH IMPOSED -->
+// <-- XCOS TEST -->
 //
 // <-- Short Description -->
 // Blocks must have valid dimensions for their settings.
 // Some dimensions were not coherents between theirs "set" and "define" method.
 
-loadXcosLibs(); loadScicos();
 
 defaultlibs = ["Branching",
                "Electrical",
@@ -31,6 +31,7 @@ notTested = ["DSUPER" "SUPER_f" "TEXT_f" "PAL_f" ,..   // Specific blocks
             , ..                                       // native blocks
             "CBLOCK" "CBLOCK4" "c_block" "fortran_block",..
             ,..                                        // not interface function
+            "WFILE_f", ..                              // Deprecated blocks
             "vanne_inputs" "vanne_outputs" "vanne_draw_ports" ,..
             "source_inputs" "source_outputs" "source_draw_ports" ,..
             "puit_inputs" "puit_outputs" "puit_draw_ports" ,..

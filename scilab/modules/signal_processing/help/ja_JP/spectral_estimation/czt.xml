@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="czt">
+    <refnamediv>
+        <refname>czt</refname>
+        <refpurpose>チャープz変換アルゴリズム</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[czx]=czt(x,m,w,phi,a,theta)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>入力データ</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>
+                        cztはz平面の<literal>m</literal> 個の点で評価されます
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w</term>
+                <listitem>
+                    <para>振幅乗数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phi</term>
+                <listitem>
+                    <para>位相増分</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>振幅初期値</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>theta</term>
+                <listitem>
+                    <para>位相初期値</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>czx</term>
+                <listitem>
+                    <para>チャープz変換出力</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>k=0,1,...,m-1</literal>として
+            点<literal>[a*exp(j*theta)][w^kexp(j*k*phi)] </literal>における
+            z平面の螺旋上でz変換を計算するチャープz変換アルゴリズム.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+a=.7*exp(%i*%pi/6);
+[ffr,bds]=xgetech(); //カレントのコンテキストを保存
+rect=[-1.2,-1.2*sqrt(2),1.2,1.2*sqrt(2)];
+t=2*%pi*(0:179)/179;xsetech([0,0,0.5,1]);
+plot2d(sin(t)',cos(t)',[2],"012",' ',rect)
+plot2d([0 real(a)]',[0 imag(a)]',[3],"000")
+xsegs([-1.0,0;1.0,0],[0,-1.0;0,1.0])
+w0=.93*exp(-%i*%pi/15);w=exp(-(0:9)*log(w0));z=a*w;
+zr=real(z);zi=imag(z);
+plot2d(zr',zi',[5],"000")
+xsetech([0.5,0,0.5,1]);
+plot2d(sin(t)',cos(t)',[2],"012",' ',rect)
+plot2d([0 real(a)]',[0 imag(a)]',[-1],"000")
+xsegs([-1.0,0;1.0,0],[0,-1.0;0,1.0])
+w0=w0/(.93*.93);w=exp(-(0:9)*log(w0));z=a*w;
+zr=real(z);zi=imag(z);
+plot2d(zr',zi',[5],"000")
+xsetech(ffr,bds); //コンテキストを回復
+ ]]></programlisting>
+    </refsection>
+</refentry>

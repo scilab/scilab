@@ -135,12 +135,16 @@ int C2F(isopt) (int *k, char *namex, unsigned long name_len)
     int i1 = *k + Top - Rhs;
 
     if (C2F(isoptlw) (&Top, &i1, namex, name_len) == FALSE)
+    {
         return FALSE;
+    }
     /* add a '\0' at the end of the string removing trailing blanks */
     for (i1 = nlgh - 1; i1 >= 0; i1--)
     {
         if (namex[i1] != ' ')
+        {
             break;
+        }
     }
     namex[i1 + 1] = '\0';
     return TRUE;
@@ -153,7 +157,9 @@ int C2F(isopt) (int *k, char *namex, unsigned long name_len)
 void C2F(freeptr) (double *ip[])
 {
     if (ip)
+    {
         FREE((char *)(*ip));
+    }
 }
 
 /*---------------------------------------
@@ -166,7 +172,9 @@ void C2F(freeptr) (double *ip[])
 int C2F(isoptlw) (int *topk, int *lw, char *namex, unsigned long name_len)
 {
     if (*Infstk(*lw) != 1)
+    {
         return FALSE;
+    }
     C2F(cvname) (&C2F(vstk).idstk[(*lw) * nsiz - nsiz], namex, &cx1, name_len);
     return TRUE;
 }
@@ -183,7 +191,9 @@ int C2F(firstopt) (void)
 
     for (k = 1; k <= Rhs; ++k)
         if (*Infstk(k + Top - Rhs) == 1)
+        {
             return k;
+        }
     return (Rhs + 1);
 }
 
@@ -200,8 +210,11 @@ int C2F(findopt) (char *str, rhs_opts opts[])
 
     i = rhs_opt_find(str, opts);
     if (i >= 0)
-        if (opts[i].position > 0)
-            return opts[i].position;
+        if (opts[i].iPos > 0)
+        {
+            return opts[i].iPos;
+
+        }
 
     return 0;
 }
@@ -219,7 +232,9 @@ int C2F(numopt) (void)
 
     for (k = 1; k <= Rhs; ++k)
         if (*Infstk(k + Top - Rhs) == 1)
+        {
             ret++;
+        }
     return ret;
 }
 
@@ -246,7 +261,9 @@ int C2F(gettype) (int *lw)
 
     il = iadr(*Lstk(*lw));
     if (*istk(il) < 0)
+    {
         il = iadr(*istk(il + 1));
+    }
     return *istk(il);
 }
 
@@ -263,7 +280,9 @@ static int overloadtype(int *lw, char *fname, unsigned char *typ)
 
     il = iadr(*Lstk(*lw));
     if (*istk(il) < 0)
+    {
         il = iadr(*istk(il + 1));
+    }
     switch (*typ)
     {
         case 'c':                  /* string */
@@ -352,9 +371,9 @@ int get_optionals(char *fname, rhs_opts opts[])
     /* this could be avoided with ansi compilers by removing static in the
      * opts declaration */
 
-    while (opts[i].name != NULL)
+    while (opts[i].pstName != NULL)
     {
-        opts[i].position = -1;
+        opts[i].iPos = -1;
         i++;
     }
 
@@ -374,17 +393,18 @@ int get_optionals(char *fname, rhs_opts opts[])
             if (isopt >= 0)
             {
                 rhs_opts *ro = &opts[isopt];
-
-                ro->position = k;
-                if (ro->type[0] != '?')
-                    GetRhsVar(ro->position, ro->type, &ro->m, &ro->n, &ro->l);
+                ro->iPos = k;
+                if (ro->iType != '?')
+                {
+                    GetRhsVar(ro->iPos, ro->iType, &ro->iRows, &ro->iCols, &ro->piAddr);
+                }
             }
             else
             {
                 sciprint(_("%s: Unrecognized optional arguments %s.\n"), fname, name);
                 rhs_opt_print_names(opts);
                 SciError(999);
-                return (0);
+                return 0;
             }
         }
     }
@@ -397,12 +417,12 @@ int rhs_opt_find(char *name, rhs_opts opts[])
 {
     int rep = -1, i = 0;
 
-    while (opts[i].name != NULL)
+    while (opts[i].pstName != NULL)
     {
         int cmp;
 
         /* name is terminated by white space and we want to ignore them */
-        if ((cmp = strcmp(name, opts[i].name)) == 0)
+        if ((cmp = strcmp(name, opts[i].pstName)) == 0)
         {
             rep = i;
             break;
@@ -425,18 +445,18 @@ void rhs_opt_print_names(rhs_opts opts[])
 {
     int i = 0;
 
-    if (opts[i].name == NULL)
+    if (opts[i].pstName == NULL)
     {
         sciprint(_("Optional argument list is empty.\n"));
         return;
     }
     sciprint(_("Optional arguments list: \n"));
-    while (opts[i + 1].name != NULL)
+    while (opts[i + 1].pstName != NULL)
     {
-        sciprint("%s, ", opts[i].name);
+        sciprint("%s, ", opts[i].pstName);
         i++;
     }
-    sciprint(_("and %s.\n"), opts[i].name);
+    sciprint(_("and %s.\n"), opts[i].pstName);
 }
 
 /*---------------------------------------------------------------------
@@ -462,9 +482,13 @@ int C2F(isref) (int *number)
     }
     il = iadr(*Lstk(lw));
     if (*istk(il) < 0)
+    {
         return TRUE;
+    }
     else
+    {
         return FALSE;
+    }
 }
 
 /*---------------------------------------------------------------------
@@ -503,13 +527,17 @@ int C2F(createvar) (int *lw, char *typex, int *m, int *n, int *lr, unsigned long
     switch (Type)
     {
         case 'c':
-            ix1 = *m * *n;
+            ix1 = *m **n;
             if (!C2F(cresmat2) (fname, &lw1, &ix1, lr, nlgh))
+            {
                 return FALSE;
+            }
             *lr = cadr(*lr);
             // Fill the string with spaces
             for (ix = 0; ix < (*m) * (*n); ++ix)
+            {
                 *cstk(*lr + ix) = ' ';
+            }
             *cstk(*lr + (*m) * (*n)) = '\0';
             C2F(intersci).ntypes[*lw - 1] = Type;
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
@@ -517,7 +545,9 @@ int C2F(createvar) (int *lw, char *typex, int *m, int *n, int *lr, unsigned long
             break;
         case 'd':
             if (!C2F(cremat) (fname, &lw1, &it, m, n, lr, &lcs, nlgh))
+            {
                 return FALSE;
+            }
             C2F(intersci).ntypes[*lw - 1] = Type;
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
             C2F(intersci).lad[*lw - 1] = *lr;
@@ -525,9 +555,13 @@ int C2F(createvar) (int *lw, char *typex, int *m, int *n, int *lr, unsigned long
         case 'z':
             IT = 1;
             if (!(*Lstk(lw1) % 2))
+            {
                 *Lstk(lw1) = *Lstk(lw1) + 1;
+            }
             if (!C2F(cremat) (fname, &lw1, &IT, m, n, lr, &lcs, nlgh))
+            {
                 return FALSE;
+            }
             C2F(intersci).ntypes[*lw - 1] = Type;
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
             C2F(intersci).lad[*lw - 1] = *lr;
@@ -553,7 +587,9 @@ int C2F(createvar) (int *lw, char *typex, int *m, int *n, int *lr, unsigned long
             break;
         case 'r':
             if (!C2F(cremat) (fname, &lw1, &it, m, n, lr, &lcs, nlgh))
+            {
                 return FALSE;
+            }
             *lr = iadr(*lr);
             C2F(intersci).ntypes[*lw - 1] = Type;
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
@@ -561,7 +597,9 @@ int C2F(createvar) (int *lw, char *typex, int *m, int *n, int *lr, unsigned long
             break;
         case 'i':
             if (!C2F(cremat) (fname, &lw1, &it, m, n, lr, &lcs, nlgh))
+            {
                 return FALSE;
+            }
             *lr = iadr(*lr);
             C2F(intersci).ntypes[*lw - 1] = Type;
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
@@ -569,14 +607,18 @@ int C2F(createvar) (int *lw, char *typex, int *m, int *n, int *lr, unsigned long
             break;
         case 'b':
             if (!C2F(crebmat) (fname, &lw1, m, n, lr, nlgh))
+            {
                 return FALSE;
+            }
             C2F(intersci).ntypes[*lw - 1] = Type;
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
             C2F(intersci).lad[*lw - 1] = *lr;
             break;
         case 'p':
             if (!C2F(crepointer) (fname, &lw1, lr, nlgh))
+            {
                 return FALSE;
+            }
             C2F(intersci).ntypes[*lw - 1] = '$';
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
             C2F(intersci).lad[*lw - 1] = *lr;
@@ -584,14 +626,18 @@ int C2F(createvar) (int *lw, char *typex, int *m, int *n, int *lr, unsigned long
         case 'I':
             it = *lr;               /* on entry lr gives the int type */
             if (!C2F(creimat) (fname, &lw1, &it, m, n, lr, nlgh))
+            {
                 return FALSE;
+            }
             C2F(intersci).ntypes[*lw - 1] = '$';
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
             C2F(intersci).lad[*lw - 1] = *lr;
             break;
         case 'h':
             if (!C2F(crehmat) (fname, &lw1, m, n, lr, nlgh))
+            {
                 return FALSE;
+            }
             C2F(intersci).ntypes[*lw - 1] = Type;
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
             C2F(intersci).lad[*lw - 1] = *lr;
@@ -634,25 +680,31 @@ int C2F(createcvar) (int *lw, char *typex, int *it, int *m, int *n, int *lr, int
     {
         case 'd':
             if (!C2F(cremat) (fname, &lw1, it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
+            }
             C2F(intersci).ntypes[*lw - 1] = Type;
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
             C2F(intersci).lad[*lw - 1] = *lr;
             break;
         case 'r':
             if (!C2F(cremat) (fname, &lw1, it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
+            }
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             C2F(intersci).ntypes[*lw - 1] = Type;
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
             C2F(intersci).lad[*lw - 1] = *lr;
             break;
         case 'i':
             if (!C2F(cremat) (fname, &lw1, it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
+            }
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             C2F(intersci).ntypes[*lw - 1] = Type;
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
             C2F(intersci).lad[*lw - 1] = *lr;
@@ -723,63 +775,95 @@ int C2F(createvarfrom) (int *lw, char *typex, int *m, int *n, int *lr, int *lar,
     {
         case 'c':
             if (!C2F(cresmat2) (fname, &lw1, &MN, lr, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(cvstr1) (&MN, istk(*lr), cstk(*lar), &cx0, MN + 1);
+            }
             *lar = *lr;
             *lr = cadr(*lr);
             break;
         case 'd':
             if (!C2F(cremat) (fname, &lw1, &it, m, n, lr, &lcs, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(dcopy) (&MN, stk(*lar), &cx1, stk(*lr), &cx1);
+            }
             *lar = *lr;
             break;
         case 'r':
             if (!C2F(cremat) (fname, &lw1, &it, m, n, lr, &lcs, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(rea2db) (&MN, sstk(*lar), &cx1, stk(*lr), &cx1);
+            }
             *lar = *lr;
             *lr = iadr(*lr);
             break;
         case 'i':
             if (!C2F(cremat) (fname, &lw1, &it, m, n, lr, &lcs, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(int2db) (&MN, istk(*lar), &cx1, stk(*lr), &cx1);
+            }
             *lar = *lr;
             *lr = iadr(*lr);
             break;
         case 'b':
             if (!C2F(crebmat) (fname, &lw1, m, n, lr, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(icopy) (&MN, istk(*lar), &cx1, istk(*lr), &cx1);
+            }
             *lar = *lr;
             break;
         case 'I':
             it = *lr;
             if (!C2F(creimat) (fname, &lw1, &it, m, n, lr, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(tpconv) (&it, &it, &MN, istk(*lar), &inc, istk(*lr), &inc);
+            }
             *lar = *lr;
             break;
         case 'p':
             MN = 1;
             if (!C2F(crepointer) (fname, &lw1, lr, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(dcopy) (&MN, stk(*lar), &cx1, stk(*lr), &cx1);
+            }
             *lar = *lr;
             break;
         case 'h':
             if (!C2F(crehmat) (fname, &lw1, m, n, lr, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(dcopy) (&MN, stk(*lar), &cx1, stk(*lr), &cx1);
+            }
             *lar = *lr;
             break;
     }
@@ -824,37 +908,55 @@ int C2F(createcvarfrom) (int *lw, char *typex, int *it, int *m, int *n, int *lr,
     {
         case 'd':
             if (!C2F(cremat) (fname, &lw1, it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(dcopy) (&MN, stk(*lar), &cx1, stk(*lr), &cx1);
+            }
             if (*lac != -1 && *it == 1)
+            {
                 C2F(dcopy) (&MN, stk(*lac), &cx1, stk(*lc), &cx1);
+            }
             *lar = *lr;
             *lac = *lc;
             break;
         case 'r':
             if (!C2F(cremat) (fname, &lw1, it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(rea2db) (&MN, sstk(*lar), &cx1, stk(*lr), &cx1);
+            }
             if (*lac != -1 && *it == 1)
+            {
                 C2F(rea2db) (&MN, sstk(*lac), &cx1, stk(*lc), &cx1);
+            }
             *lar = *lr;
             *lac = *lc;
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
         case 'i':
             if (!C2F(cremat) (fname, &lw1, it, m, n, lr, &lcs, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(int2db) (&MN, istk(*lar), &cx1, stk(*lr), &cx1);
+            }
             if (*lac != -1 && (*it == 1))
+            {
                 C2F(int2db) (&MN, istk(*lac), &cx1, stk(*lc), &cx1);
+            }
             *lar = *lr;
             *lac = *lc;
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
     }
     C2F(intersci).ntypes[*lw - 1] = '$';
@@ -901,7 +1003,9 @@ int C2F(createlistvarfrom) (int *lnumber, int *number, char *typex, int *m, int 
                 return FALSE;
             }
             if (*lar != -1)
-                C2F(cvstr1) (m, istk(*lr), cstk(*lar), &cx0, *m * *n + 1);
+            {
+                C2F(cvstr1) (m, istk(*lr), cstk(*lar), &cx0, *m **n + 1);
+            }
             *lar = *lr;
             *lr = cadr(*lr);
             break;
@@ -912,7 +1016,9 @@ int C2F(createlistvarfrom) (int *lnumber, int *number, char *typex, int *m, int 
                 return FALSE;
             }
             if (*lar != -1)
+            {
                 C2F(dcopy) (&mn, stk(*lar), &cx1, stk(*lr), &cx1);
+            }
             *lar = *lr;
             break;
         case 'r':
@@ -922,7 +1028,9 @@ int C2F(createlistvarfrom) (int *lnumber, int *number, char *typex, int *m, int 
                 return FALSE;
             }
             if (*lar != -1)
+            {
                 C2F(rea2db) (&mn, sstk(*lar), &cx1, stk(*lr), &cx1);
+            }
             *lar = *lr;
             *lr = iadr(*lr);
             break;
@@ -933,7 +1041,9 @@ int C2F(createlistvarfrom) (int *lnumber, int *number, char *typex, int *m, int 
                 return FALSE;
             }
             if (*lar != -1)
+            {
                 C2F(int2db) (&mn, istk(*lar), &cx1, stk(*lr), &cx1);
+            }
             *lar = *lr;
             *lr = iadr(*lr);
             break;
@@ -944,7 +1054,9 @@ int C2F(createlistvarfrom) (int *lnumber, int *number, char *typex, int *m, int 
                 return FALSE;
             }
             if (*lar != -1)
+            {
                 C2F(icopy) (&mn, istk(*lar), &cx1, istk(*lr), &cx1);
+            }
             *lar = *lr;
             break;
         case 'I':
@@ -955,7 +1067,9 @@ int C2F(createlistvarfrom) (int *lnumber, int *number, char *typex, int *m, int 
                 return FALSE;
             }
             if (*lar != -1)
+            {
                 C2F(tpconv) (&it, &it, &mn, istk(*lar), &inc, istk(*lr), &inc);
+            }
             *lar = *lr;
             break;
         case 'p':
@@ -965,7 +1079,9 @@ int C2F(createlistvarfrom) (int *lnumber, int *number, char *typex, int *m, int 
                 return FALSE;
             }
             if (*lar != -1)
+            {
                 *stk(*lr) = *stk(*lar);
+            }
             *lar = *lr;
             break;
         case 'h':
@@ -975,7 +1091,9 @@ int C2F(createlistvarfrom) (int *lnumber, int *number, char *typex, int *m, int 
                 return FALSE;
             }
             if (*lar != -1)
+            {
                 C2F(dcopy) (&mn, stk(*lar), &cx1, stk(*lr), &cx1);
+            }
             *lar = *lr;
             break;
         default:
@@ -1009,39 +1127,57 @@ int C2F(createlistcvarfrom) (int *lnumber, int *number, char *typex, int *it, in
         case 'd':
             ix1 = *lnumber + Top - Rhs;
             if (!C2F(listcremat) (fname, &ix1, number, &C2F(intersci).lad[*lnumber - 1], it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(dcopy) (&mn, stk(*lar), &cx1, stk(*lr), &cx1);
+            }
             if (*lac != -1 && *it == 1)
+            {
                 C2F(dcopy) (&mn, stk(*lac), &cx1, stk(*lc), &cx1);
+            }
             *lar = *lr;
             *lac = *lc;
             break;
         case 'r':
             ix1 = *lnumber + Top - Rhs;
             if (!C2F(listcremat) (fname, &ix1, number, &C2F(intersci).lad[*lnumber - 1], it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(rea2db) (&mn, sstk(*lar), &cx1, stk(*lr), &cx1);
+            }
             if (*lac != -1 && *it == 1)
+            {
                 C2F(rea2db) (&mn, sstk(*lac), &cx1, stk(*lc), &cx1);
+            }
             *lar = *lr;
             *lac = *lc;
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
         case 'i':
             ix1 = *lnumber + Top - Rhs;
             if (!C2F(listcremat) (fname, &ix1, number, &C2F(intersci).lad[*lnumber - 1], it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
+            }
             if (*lar != -1)
+            {
                 C2F(int2db) (&mn, istk(*lar), &cx1, stk(*lr), &cx1);
+            }
             if (*lac != -1 && *it == 1)
+            {
                 C2F(int2db) (&mn, istk(*lac), &cx1, stk(*lc), &cx1);
+            }
             *lar = *lr;
             *lac = *lc;
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
         default:
             Scierror(999, _("%s: (%s) bad third argument!\n"), fname, "createlistcvar");
@@ -1111,7 +1247,7 @@ int C2F(createlistvarfromptr) (int *lnumber, int *number, char *typex, int *m, i
             {
                 return FALSE;
             }
-            ix1 = *m * *n;
+            ix1 = *m **n;
             C2F(cint) (&ix1, (int **)iptr, stk(lr));
             break;
         case 'b':
@@ -1119,16 +1255,20 @@ int C2F(createlistvarfromptr) (int *lnumber, int *number, char *typex, int *m, i
             {
                 return FALSE;
             }
-            ix1 = *m * *n;
+            ix1 = *m **n;
             C2F(cbool) (&ix1, (int **)iptr, istk(lr));
             break;
         case 'S':
             if (!cre_listsmat_from_str(fname, &ix1, number, &C2F(intersci).lad[*lnumber - 1], m, n, (char **)iptr, nlgh))   /* XXX */
+            {
                 return FALSE;
+            }
             break;
         case 's':
             if (!cre_listsparse_from_ptr(fname, &ix1, number, &C2F(intersci).lad[*lnumber - 1], m, n, (SciSparse *) iptr, nlgh))
+            {
                 return FALSE;
+            }
             break;
         case 'I':
             it = ((SciIntMat *) iptr)->it;
@@ -1193,7 +1333,9 @@ int C2F(createlistcvarfromptr) (int *lnumber, int *number, char *typex, int *it,
             ix1 = (*m) * (*n);
             C2F(cdouble) (&ix1, (double **)iptr, stk(lr));
             if (*it == 1)
+            {
                 C2F(cdouble) (&ix1, (double **)iptc, stk(lc));
+            }
             break;
         case 'r':
             ix1 = *lnumber + Top - Rhs;
@@ -1204,7 +1346,9 @@ int C2F(createlistcvarfromptr) (int *lnumber, int *number, char *typex, int *it,
             ix1 = (*m) * (*n);
             C2F(cfloat) (&ix1, (float **)iptr, stk(lr));
             if (*it == 1)
+            {
                 C2F(cfloat) (&ix1, (float **)iptc, stk(lc));
+            }
             break;
         case 'i':
             ix1 = *lnumber + Top - Rhs;
@@ -1212,10 +1356,12 @@ int C2F(createlistcvarfromptr) (int *lnumber, int *number, char *typex, int *it,
             {
                 return FALSE;
             }
-            ix1 = *m * *n;
+            ix1 = *m **n;
             C2F(cint) (&ix1, (int **)iptr, stk(lr));
             if (*it == 1)
+            {
                 C2F(cint) (&ix1, (int **)iptc, stk(lc));
+            }
             break;
         default:
             Scierror(999, _("%s: (%s) bad third argument!\n"), fname, "createlistcvarfromptr");
@@ -1252,7 +1398,9 @@ int C2F(creatework) (int *number, int *m, int *lr)
     *m = *Lstk(Bot) - sadr(il + 4);
     n = 1;
     if (!C2F(cremat) (fname, &lw1, &it, m, &n, lr, &lcs, nlgh))
+    {
         return FALSE;
+    }
     return TRUE;
 }
 
@@ -1260,7 +1408,7 @@ int C2F(creatework) (int *number, int *m, int *lr)
 * This can be used with creatework to
 * set the size of object which was intialy sized to the whole
 * remaining space with creatework
-* Moreover informations the objet is recorded
+* Moreover information the objet is recorded
 *---------------------------------------------------------------------*/
 
 int C2F(setworksize) (int *number, int *size)
@@ -1307,11 +1455,13 @@ int C2F(getmatdims) (int *number, int *m, int *n)
 
     il = iadr(*Lstk(lw));
     if (*istk(il) < 0)
+    {
         il = iadr(*istk(il + 1));
+    }
     typ = *istk(il);
     if (typ > sci_strings)
     {
-        Scierror(199, _("%s: Wrong type for argument %d: Matrix expected.\n"), fname, *number);
+        Scierror(199, _("%s: Wrong type for argument #%d: Matrix expected.\n"), fname, *number);
         return FALSE;
     }
     *m = *istk(il + 1);
@@ -1364,7 +1514,9 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
     }
 
     if (overloadtype(&lw, fname, &Type) == 0)
+    {
         return FALSE;
+    }
 
     topk = Top;
     switch (Type)
@@ -1383,14 +1535,16 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
                 return FALSE;
             }
 
-            ix2 = *m * *n;
+            ix2 = *m **n;
             /* in case where ix2 is 0 in2str adds the \0 char after the end of
              * the storage of the variable, so it writes over the next variable
              * tp avoid this pb we shift up by one the location where the
              * data is written */
             lrr = *lr;
             if (ix2 == 0)
+            {
                 lrr--;
+            }
 
             C2F(in2str) (&ix2, istk(*lr), cstk(cadr(*lr)), ix2 + 1);
             *lr = cadr(*lr);
@@ -1401,15 +1555,19 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
 
         case 'd':
             if (!C2F(getmat) (fname, &topk, &lw, &it, m, n, lr, &lc, nlgh))
+            {
                 return FALSE;
+            }
             C2F(intersci).ntypes[*number - 1] = Type;
             C2F(intersci).iwhere[*number - 1] = *Lstk(lw);
             C2F(intersci).lad[*number - 1] = *lr;
             break;
         case 'z':
             if (!C2F(getmat) (fname, &topk, &lw, &it, m, n, lr, &lc, nlgh))
+            {
                 return FALSE;
-            ix2 = *m * *n;
+            }
+            ix2 = *m **n;
             if ((it != 1) && (ix2 != 0))
             {
                 Scierror(999, _("%s: Wrong type for argument: Complex expected.\n"), fname);
@@ -1439,8 +1597,10 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
             break;
         case 'r':
             if (!C2F(getmat) (fname, &topk, &lw, &it, m, n, lr, &lc, nlgh))
+            {
                 return FALSE;
-            ix1 = *m * *n;
+            }
+            ix1 = *m **n;
             C2F(simple) (&ix1, stk(*lr), sstk(iadr(*lr)));
             *lr = iadr(*lr);
             C2F(intersci).ntypes[*number - 1] = Type;
@@ -1449,8 +1609,10 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
             break;
         case 'i':
             if (!C2F(getmat) (fname, &topk, &lw, &it, m, n, lr, &lc, nlgh))
+            {
                 return FALSE;
-            ix1 = *m * *n;
+            }
+            ix1 = *m **n;
             C2F(entier) (&ix1, stk(*lr), istk(iadr(*lr)));
             *lr = iadr(*lr);
             C2F(intersci).ntypes[*number - 1] = Type;
@@ -1459,7 +1621,9 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
             break;
         case 'b':
             if (!C2F(getbmat) (fname, &topk, &lw, m, n, lr, nlgh))
+            {
                 return FALSE;
+            }
             C2F(intersci).ntypes[*number - 1] = Type;
             C2F(intersci).iwhere[*number - 1] = *Lstk(lw);
             C2F(intersci).lad[*number - 1] = *lr;
@@ -1469,7 +1633,9 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
         case 'm':
             *n = 1;
             if (!C2F(getilist) (fname, &topk, &lw, m, n, lr, nlgh))
+            {
                 return FALSE;
+            }
             /* No data conversion for list members ichar(type)='$' */
             Type = '$';
             C2F(intersci).ntypes[*number - 1] = Type;
@@ -1479,11 +1645,15 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
         case 'S':
             /** getwsmat : must be back in stack1.c from xawelm.f */
             if (!C2F(getwsmat) (fname, &topk, &lw, m, n, &il1, &ild1, nlgh))
+            {
                 return FALSE;
+            }
             nn = (*m) * (*n);
             ScilabMStr2CM(istk(il1), &nn, istk(ild1), &items, &ierr);
             if (ierr == 1)
+            {
                 return FALSE;
+            }
             Type = '$';
             /*
              * Warning : lr must have the proper size when calling getrhsvar
@@ -1498,7 +1668,9 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
             /* sparse matrices */
             Sp = (SciSparse *) lr;
             if (!C2F(getsparse) (fname, &topk, &lw, &it, m, n, &(Sp->nel), &mnel, &icol, &lr1, &lc, nlgh))
+            {
                 return FALSE;
+            }
             Sp->m = *m;
             Sp->n = *n;
             Sp->it = it;
@@ -1515,7 +1687,9 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
             /* int matrices */
             Im = (SciIntMat *) lr;
             if (!C2F(getimat) (fname, &topk, &lw, &it, m, n, &lr1, nlgh))
+            {
                 return FALSE;
+            }
             Im->m = *m;
             Im->n = *n;
             Im->it = it;
@@ -1550,14 +1724,18 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
             break;
         case 'p':
             if (!C2F(getpointer) (fname, &topk, &lw, lr, nlgh))
+            {
                 return FALSE;
+            }
             C2F(intersci).ntypes[*number - 1] = Type;
             C2F(intersci).iwhere[*number - 1] = *Lstk(lw);
             C2F(intersci).lad[*number - 1] = *lr;
             break;
         case 'h':
             if (!C2F(gethmat) (fname, &topk, &lw, m, n, lr, nlgh))
+            {
                 return FALSE;
+            }
             C2F(intersci).ntypes[*number - 1] = Type;
             C2F(intersci).iwhere[*number - 1] = *Lstk(lw);
             C2F(intersci).lad[*number - 1] = *lr;
@@ -1596,23 +1774,29 @@ int C2F(getrhscvar) (int *number, char *typex, int *it, int *m, int *n, int *lr,
     {
         case 'd':
             if (!C2F(getmat) (fname, &topk, &lw, it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
+            }
             break;
         case 'r':
             if (!C2F(getmat) (fname, &topk, &lw, it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
-            ix1 = *m * *n * (*it + 1);
+            }
+            ix1 = *m **n * (*it + 1);
             C2F(simple) (&ix1, stk(*lr), sstk(iadr(*lr)));
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
         case 'i':
             if (!C2F(getmat) (fname, &topk, &lw, it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
-            ix1 = *m * *n * (*it + 1);
+            }
+            ix1 = *m **n * (*it + 1);
             C2F(entier) (&ix1, stk(*lr), istk(iadr(*lr)));
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
     }
     C2F(intersci).ntypes[*number - 1] = Type;
@@ -1642,12 +1826,14 @@ int C2F(elementtype) (int *lnumber, int *number)
     lw = *lnumber + Top - Rhs;  /*index of the variable numbered *lnumber in the stack */
     il = iadr(*Lstk(lw));
     if (*istk(il) < 0)
+    {
         il = iadr(*istk(il + 1));
+    }
     itype = *istk(il);          /* type of the variable numbered *lnumber */
     if (itype < sci_list || itype > sci_mlist)
     {
         /* check if it is really a list */
-        Scierror(210, _("%s: Wrong type for argument %d: List expected.\n"), fname, *lnumber);
+        Scierror(210, _("%s: Wrong type for argument #%d: List expected.\n"), fname, *lnumber);
         return FALSE;
     }
     n = *istk(il + 1);          /* number of elements in the list */
@@ -1708,38 +1894,50 @@ int C2F(getlistrhsvar) (int *lnumber, int *number, char *typex, int *m, int *n, 
         case 'c':
             *n = 1;
             if (!C2F(getlistsimat) (fname, &topk, &lw, number, &m1, &n1, &cx1, &cx1, lr, m, nlgh))
+            {
                 return FALSE;
-            ix2 = *m * *n;
+            }
+            ix2 = *m **n;
             C2F(in2str) (&ix2, istk(*lr), cstk(cadr(*lr)), ix2 + 1);
             *lr = cadr(*lr);
             break;
         case 'd':
             if (!C2F(getlistmat) (fname, &topk, &lw, number, &it, m, n, lr, &lc, nlgh))
+            {
                 return FALSE;
+            }
             break;
         case 'r':
             if (!C2F(getlistmat) (fname, &topk, &lw, number, &it, m, n, lr, &lc, nlgh))
+            {
                 return FALSE;
-            ix1 = *m * *n;
+            }
+            ix1 = *m **n;
             C2F(simple) (&ix1, stk(*lr), sstk(iadr(*lr)));
             *lr = iadr(*lr);
             break;
         case 'i':
             if (!C2F(getlistmat) (fname, &topk, &lw, number, &it, m, n, lr, &lc, nlgh))
+            {
                 return FALSE;
-            ix1 = *m * *n;
+            }
+            ix1 = *m **n;
             C2F(entier) (&ix1, stk(*lr), istk(iadr(*lr)));
             *lr = iadr(*lr);
             break;
         case 'b':
             if (!C2F(getlistbmat) (fname, &topk, &lw, number, m, n, lr, nlgh))
+            {
                 return FALSE;
+            }
             *lr = *lr;
             break;
         case 'z':
             if (!C2F(getlistmat) (fname, &topk, &lw, number, &it, m, n, lr, &lc, nlgh))
+            {
                 return FALSE;
-            ix2 = *m * *n;
+            }
+            ix2 = *m **n;
             if ((it != 1) && (ix2 != 0))
             {
                 Scierror(999, _("%s: argument %d > (%d) should be a complex matrix.\n"), fname, Rhs + (lw - topk), *number);
@@ -1765,11 +1963,15 @@ int C2F(getlistrhsvar) (int *lnumber, int *number, char *typex, int *m, int *n, 
         case 'S':
             /** getwsmat : must be back in stack1.c from xawelm.f */
             if (!C2F(getlistwsmat) (fname, &topk, &lw, number, m, n, &il1, &ild1, nlgh))
+            {
                 return FALSE;
+            }
             nn = (*m) * (*n);
             ScilabMStr2CM(istk(il1), &nn, istk(ild1), &items, &ierr);
             if (ierr == 1)
+            {
                 return FALSE;
+            }
             /*
              * Warning : lr must have the proper size when calling getrhsvar
              * char **Str1; .... GetRhsVar(...., &lr)
@@ -1780,7 +1982,9 @@ int C2F(getlistrhsvar) (int *lnumber, int *number, char *typex, int *m, int *n, 
             /* sparse matrices */
             Sp = (SciSparse *) lr;
             if (!C2F(getlistsparse) (fname, &topk, &lw, number, &it, m, n, &(Sp->nel), &mnel, &icol, &lr1, &lc, nlgh))
+            {
                 return FALSE;
+            }
             Sp->m = *m;
             Sp->n = *n;
             Sp->it = it;
@@ -1793,7 +1997,9 @@ int C2F(getlistrhsvar) (int *lnumber, int *number, char *typex, int *m, int *n, 
             /* int matrices */
             Im = (SciIntMat *) lr;
             if (!C2F(getlistimat) (fname, &topk, &lw, number, &it, m, n, &lr1, nlgh))
+            {
                 return FALSE;
+            }
             Im->m = *m;
             Im->n = *n;
             Im->it = it;
@@ -1802,7 +2008,9 @@ int C2F(getlistrhsvar) (int *lnumber, int *number, char *typex, int *m, int *n, 
             break;
         case 'p':
             if (!C2F(getlistpointer) (fname, &topk, &lw, number, lr, nlgh))
+            {
                 return FALSE;
+            }
             break;
         default:
             Scierror(999, _("%s: bad call to %s (third argument %c).\n"), fname, "getlistrhsvar", Type);
@@ -1839,23 +2047,29 @@ int C2F(getlistrhscvar) (int *lnumber, int *number, char *typex, int *it, int *m
     {
         case 'd':
             if (!C2F(getlistmat) (fname, &topk, &lw, number, it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
+            }
             break;
         case 'r':
             if (!C2F(getlistmat) (fname, &topk, &lw, number, it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
-            ix1 = *m * *n * (*it + 1);
+            }
+            ix1 = *m **n * (*it + 1);
             C2F(simple) (&ix1, stk(*lr), sstk(iadr(*lr)));
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
         case 'i':
             if (!C2F(getlistmat) (fname, &topk, &lw, number, it, m, n, lr, lc, nlgh))
+            {
                 return FALSE;
-            ix1 = *m * *n * (*it + 1);
+            }
+            ix1 = *m **n * (*it + 1);
             C2F(entier) (&ix1, stk(*lr), istk(iadr(*lr)));
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
         default:
             Scierror(999, _("%s: (%s) bad third argument!\n"), fname, "getlistrhscvar");
@@ -1885,42 +2099,56 @@ int C2F(createvarfromptr) (int *number, char *typex, int *m, int *n, void *iptr,
     {
         case 'd':
             if (C2F(createvar) (number, typex, m, n, &lr, type_len) == FALSE)
+            {
                 return FALSE;
+            }
             C2F(dcopy) (&MN, *((double **)iptr), &un, stk(lr), &un);
             break;
         case 'i':
         case 'b':
             if (C2F(createvar) (number, typex, m, n, &lr, type_len) == FALSE)
+            {
                 return FALSE;
+            }
             C2F(icopy) (&MN, *((int **)iptr), &un, istk(lr), &un);
             break;
         case 'r':
             if (C2F(createvar) (number, typex, m, n, &lr, type_len) == FALSE)
+            {
                 return FALSE;
+            }
             C2F(rcopy) (&MN, *((float **)iptr), &un, sstk(lr), &un);
             break;
         case 'c':
             if (C2F(createvar) (number, typex, m, n, &lr, type_len) == FALSE)
+            {
                 return FALSE;
+            }
             strcpy(cstk(lr), *((char **)iptr));
             break;
         case 'I':
             /* on entry lr must gives the int type */
             it = lr = ((SciIntMat *) iptr)->it;
             if (C2F(createvar) (number, typex, m, n, &lr, type_len) == FALSE)
+            {
                 return FALSE;
+            }
             C2F(tpconv) (&it, &it, &MN, ((SciIntMat *) iptr)->D, &un, istk(lr), &un);
             break;
         case 'p':
             if (C2F(createvar) (number, typex, m, n, &lr, type_len) == FALSE)
+            {
                 return FALSE;
+            }
             *stk(lr) = (double)((unsigned long int)iptr);
             break;
         case 'S':
             /* special case: not taken into account in createvar */
             Nbvars = Max(*number, Nbvars);
             if (!cre_smat_from_str(fname, &lw1, m, n, (char **)iptr, nlgh))
+            {
                 return FALSE;
+            }
             C2F(intersci).iwhere[*number - 1] = *Lstk(lw1);
             C2F(intersci).ntypes[*number - 1] = '$';
             break;
@@ -1928,7 +2156,9 @@ int C2F(createvarfromptr) (int *number, char *typex, int *m, int *n, void *iptr,
             /* special case: not taken into account in createvar */
             Nbvars = Max(*number, Nbvars);
             if (!cre_sparse_from_ptr(fname, &lw1, m, n, (SciSparse *) iptr, nlgh))
+            {
                 return FALSE;
+            }
             C2F(intersci).iwhere[*number - 1] = *Lstk(lw1);
             C2F(intersci).ntypes[*number - 1] = '$';
             break;
@@ -1962,23 +2192,27 @@ int C2F(createcvarfromptr) (int *number, char *typex, int *it, int *m, int *n, d
     {
         case 'd':
             if (!C2F(cremat) (fname, &lw1, it, m, n, &lrs, &lcs, nlgh))
+            {
                 return FALSE;
-            ix1 = *m * *n;
+            }
+            ix1 = *m **n;
             C2F(cdouble) (&ix1, (double **)iptr, stk(lrs));
             if (*it == 1)
             {
-                ix1 = *m * *n;
+                ix1 = *m **n;
                 C2F(cdouble) (&ix1, (double **)iptc, stk(lcs));
             }
             break;
         case 'i':
             if (!C2F(cremat) (fname, &lw1, it, m, n, &lrs, &lcs, nlgh))
+            {
                 return FALSE;
-            ix1 = *m * *n;
+            }
+            ix1 = *m **n;
             C2F(cint) (&ix1, (int **)iptr, stk(lrs));
             if (*it == 1)
             {
-                ix1 = *m * *n;
+                ix1 = *m **n;
                 C2F(cint) (&ix1, (int **)iptc, stk(lcs));
             }
             break;
@@ -2004,7 +2238,9 @@ int C2F(mklistfromvars) (int *pos, int *n)
     int k;
 
     for (k = *pos; k < *pos + *n; k++)
+    {
         C2F(convert2sci) (&k);
+    }
     Top = Top - Rhs + *pos - 1 + *n;
     C2F(mklist) (n);
     Top = tops;
@@ -2024,7 +2260,9 @@ int C2F(mktlistfromvars) (int *pos, int *n)
     int k;
 
     for (k = *pos; k < *pos + *n; k++)
+    {
         C2F(convert2sci) (&k);
+    }
     Top = Top - Rhs + *pos - 1 + *n;
     C2F(mklistt) (n, &type);
     Top = tops;
@@ -2044,7 +2282,9 @@ int C2F(mkmlistfromvars) (int *pos, int *n)
     int k;
 
     for (k = *pos; k < *pos + *n; k++)
+    {
         C2F(convert2sci) (&k);
+    }
     Top = Top - Rhs + *pos - 1 + *n;
     C2F(mklistt) (n, &type);
     Top = tops;
@@ -2124,7 +2364,9 @@ L60:
         goto L200;
     }
     if (Err > 0)
+    {
         goto L97;
+    }
 
     if (isRecursionCallToFunction())
     {
@@ -2181,7 +2423,9 @@ L89:
     goto L91;
 L90:
     if (Err > 0)
+    {
         goto L97;
+    }
     /**/
 L91:
     k = C2F(com).fun;
@@ -2193,10 +2437,14 @@ L91:
     }
     C2F(recu).krec = -1;
     if (k == 0)
+    {
         goto L60;
+    }
 L95:
     if (!C2F(allowptr) (&k))
+    {
         C2F(ref2val) ();
+    }
     C2F(recu).krec = k;
     C2F(callinterf) (&k);
 
@@ -2208,9 +2456,13 @@ L95:
             C2F(iset) (&Rhs, &cx0, &C2F(vstk).infstk[Top - Lhs], &cx1);
         }
         if (C2F(recu).paus > 0)
+        {
             goto L91;
+        }
         if (C2F(errgst).err1 > 0)
+        {
             Top = ireftop;
+        }
         goto L90;
     }
     /*    called interface ask for a scilab function to perform the function (fun=-1)
@@ -2222,19 +2474,25 @@ L95:
     C2F(com).fun = 0;
     C2F(funs) (&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz]);
     if (Err > 0)
+    {
         goto L97;
+    }
 
     if (C2F(com).fun > 0)
     {
         if (C2F(isbyref) (&C2F(com).fun) == 0)
+        {
             C2F(ref2val) ();
+        }
         goto L91;
     }
     if (Fin == 0)
     {
         SciError(246);
         if (Err > 0)
+        {
             goto L97;
+        }
         goto L90;
     }
     ++C2F(recu).pt;
@@ -2293,13 +2551,13 @@ L9999:
 *     input args are supposed to be indexed by ifirst,ifirst+1,...
 *     thestring= string made of the name of a Scilab function
 *     mlhs,mlhs = number of lhs and rhs parameters of the function
-*     ifisrt,thestring,mlhs and mrhs are input parameters.
+*     ifirst,thestring,mlhs and mrhs are input parameters.
 *---------------------------------------------------------------------*/
 
 int C2F(scistring) (int *ifirst, char *thestring, int *mlhs, int *mrhs, unsigned long thestring_len)
 {
     int ret = FALSE;
-    int ifin = 0, ifun = 0, tops = 0, moutputs = 0;
+    int ifin = 0, ifun = 0, tops = 0;
     int id[nsiz];
     int lf = 0, op = 0, ils = 0, nnn = thestring_len;
 
@@ -2326,8 +2584,6 @@ int C2F(scistring) (int *ifirst, char *thestring, int *mlhs, int *mrhs, unsigned
         if (C2F(com).fun <= 0)
         {
             lf = *Lstk(Fin);
-            ils = iadr(lf) + 1;
-            moutputs = *istk(ils);
             ret = C2F(scifunction) (ifirst, &lf, mlhs, mrhs);
         }
         else
@@ -2353,7 +2609,9 @@ int C2F(getopcode) (char *string, unsigned long string_len)
     {
         /* .op  or op. */
         if (ch == '.')
+        {
             ch = string[1];
+        }
         op += 51;
     }
 
@@ -2398,7 +2656,7 @@ int C2F(getopcode) (char *string, unsigned long string_len)
 int C2F(scibuiltin) (int *number, int *ifun, int *ifin, int *mlhs, int *mrhs)
 {
     int srhs = 0, slhs = 0;
-    int ix = 0, k = 0, intop = 0, lw = 0;
+    int ix = 0, k = 0, intop = 0, lw = 0, pt0 = C2F(recu).pt;
     int imode = 0, ireftop = 0;
 
     intop = Top;
@@ -2427,13 +2685,17 @@ L60:
         {
             imode = abs(C2F(errgst).errct) / 100000 % 8;
             if (imode != 3)
+            {
                 goto L97;
+            }
         }
         C2F(com).fun = 0;
         goto L200;
     }
     if (Err > 0)
+    {
         goto L97;
+    }
 
     if (isRecursionCallToFunction())
     {
@@ -2472,7 +2734,9 @@ L89:
     goto L91;
 L90:
     if (Err > 0)
+    {
         goto L97;
+    }
     /**/
 L91:
     k = C2F(com).fun;
@@ -2484,10 +2748,20 @@ L91:
     }
     C2F(recu).krec = -1;
     if (k == 0)
+    {
         goto L60;
+        if (C2F(recu).pt > pt0)
+        {
+            goto L60;
+        }
+        // goto L60;
+        goto L200;
+    }
 L95:
     if (!C2F(allowptr) (&k))
+    {
         C2F(ref2val) ();
+    }
     C2F(recu).krec = k;
     C2F(callinterf) (&k);
     C2F(recu).krec = -1;
@@ -2498,9 +2772,13 @@ L95:
             C2F(iset) (&Lhs, &cx0, &C2F(vstk).infstk[Top - Lhs], &cx1);
         }
         if (C2F(recu).paus > 0)
+        {
             goto L91;
+        }
         if (C2F(errgst).err1 > 0)
+        {
             Top = ireftop;
+        }
         goto L90;
     }
     /*    called interface ask for a sci function to perform the function (fun=-1) */
@@ -2509,18 +2787,24 @@ L95:
     C2F(com).fun = 0;
     C2F(funs) (&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz]);
     if (Err > 0)
+    {
         goto L97;
+    }
     if (C2F(com).fun > 0)
     {
         if (C2F(isbyref) (&C2F(com).fun) == 0)
+        {
             C2F(ref2val) ();
+        }
         goto L91;
     }
     if (Fin == 0)
     {
         SciError(246);
         if (Err > 0)
+        {
             goto L97;
+        }
         goto L90;
     }
     ++C2F(recu).pt;
@@ -2583,7 +2867,9 @@ int C2F(sciops) (int *number, int *op, int *mlhs, int *mrhs)
             return FALSE;
         };
         if (C2F(com).fun == 0)
+        {
             break;
+        }
         Top = intop;
         ifun = C2F(com).fun;
         ifin = Fin;
@@ -2635,24 +2921,38 @@ int C2F(getrhssys) (int *lw, int *n, int *m, int *p, int *ptra, int *ptrb, int *
                              -12, -13, -33, 0, 13, 29
                            };
     if (!C2F(getrhsvar) (lw, "t", &msys, &nsys, &ptrsys, 1L))
+    {
         return FALSE;
+    }
     il = iadr(ptrsys) - msys - 1;
     /*     syslin tlist=[ chain, (A,B,C,D,X0) ,chain or scalar ]
      *                     10     1 1 1 1 1      10       1
      */
     junk = il + msys + iadr(*istk(il));
     if (*istk(junk) != 10)
+    {
         return FALSE;
+    }
     if (*istk(il + msys + iadr(*istk(il + 1))) != 1)
+    {
         return FALSE;
+    }
     if (*istk(il + msys + iadr(*istk(il + 2))) != 1)
+    {
         return FALSE;
+    }
     if (*istk(il + msys + iadr(*istk(il + 3))) != 1)
+    {
         return FALSE;
+    }
     if (*istk(il + msys + iadr(*istk(il + 4))) != 1)
+    {
         return FALSE;
+    }
     if (*istk(il + msys + iadr(*istk(il + 5))) != 1)
+    {
         return FALSE;
+    }
     itimedomain = *istk(il + msys + iadr(*istk(il + 6)));
     switch (itimedomain)
     {
@@ -2690,15 +2990,25 @@ int C2F(getrhssys) (int *lw, int *n, int *m, int *p, int *ptra, int *ptrb, int *
         }
     }
     if (!C2F(getlistrhsvar) (lw, &cx2, "d", &ma, &na, ptra, 1L))
+    {
         return FALSE;
+    }
     if (!C2F(getlistrhsvar) (lw, &cx3, "d", &mb, &nb, ptrb, 1L))
+    {
         return FALSE;
+    }
     if (!C2F(getlistrhsvar) (lw, &cx4, "d", &mc, &nc, ptrc, 1L))
+    {
         return FALSE;
+    }
     if (!C2F(getlistrhsvar) (lw, &cx5, "d", &md, &nd, ptrd, 1L))
+    {
         return FALSE;
+    }
     if (!C2F(getlistrhsvar) (lw, &cx6, "d", &mx0, &nx0, ptrx0, 1L))
+    {
         return FALSE;
+    }
     if (ma != na)
     {
         Scierror(999, _("A non square matrix!\n"));
@@ -2808,7 +3118,9 @@ static int Check_references()
 
                 /* back conversion if necessary of a reference */
                 if (*istk(il) < 0)
+                {
                     il = iadr(*istk(il + 1));
+                }
                 m = *istk(il + 1);
                 n = *istk(il + 2);
                 it = *istk(il + 3);
@@ -2875,9 +3187,13 @@ int C2F(putlhsvar) ()
     }
 
     if (Err > 0 || C2F(errgst).err1 > 0)
+    {
         return TRUE;
+    }
     if (C2F(com).fun == -1)
-        return TRUE;            /* execution continue with an
+    {
+        return TRUE;
+    }            /* execution continue with an
                                  * overloaded function */
     if (LhsVar(1) == 0)
     {
@@ -2888,7 +3204,9 @@ int C2F(putlhsvar) ()
     }
     nbvars1 = 0;
     for (k = 1; k <= Lhs; ++k)
+    {
         nbvars1 = Max(nbvars1, LhsVar(k));
+    }
     /* check if output variabe are in increasing order in the stack */
     lcres = TRUE;
     ibufprec = 0;
@@ -2989,7 +3307,9 @@ static int C2F(mvfromto) (int *itopl, int *ix)
 
         ilp = iadr(iwh);
         if (*istk(ilp) < 0)
+        {
             ilp = iadr(*istk(ilp + 1));
+        }
         m = *istk(ilp + 1);
         n = *istk(ilp + 2);
         it = *istk(ilp + 3);
@@ -3028,9 +3348,13 @@ static int C2F(mvfromto) (int *itopl, int *ix)
                 ix1 = m * n * (it + 1);
                 l = C2F(intersci).lad[*ix - 1];
                 if (abs(l - lrs) < ix1)
+                {
                     C2F(unsfdcopy) (&ix1, stk(l), &cx1, stk(lrs), &cx1);
+                }
                 else
+                {
                     C2F(dcopy) (&ix1, stk(l), &cx1, stk(lrs), &cx1);
+                }
                 C2F(intersci).lad[*ix - 1] = lrs;
             }
             break;
@@ -3090,7 +3414,9 @@ static int C2F(mvfromto) (int *itopl, int *ix)
                 return FALSE;
             }
             if (C2F(vcopyobj) ("mvfromto", &pointed, itopl, 8L) == FALSE)
+            {
                 return FALSE;
+            }
             break;
         case 'h':
             if (!C2F(crehmat) ("mvfromto", itopl, &m, &n, &lrs, 8L))
@@ -3105,9 +3431,13 @@ static int C2F(mvfromto) (int *itopl, int *ix)
                 ix1 = m * n;
                 l = C2F(intersci).lad[*ix - 1];
                 if (abs(l - lrs) < ix1)
+                {
                     C2F(unsfdcopy) (&ix1, stk(l), &cx1, stk(lrs), &cx1);
+                }
                 else
+                {
                     C2F(dcopy) (&ix1, stk(l), &cx1, stk(lrs), &cx1);
+                }
                 C2F(intersci).lad[*ix - 1] = lrs;
             }
             break;
@@ -3118,7 +3448,9 @@ static int C2F(mvfromto) (int *itopl, int *ix)
             {
                 ix1 = Top - Rhs + *ix;
                 if (C2F(vcopyobj) ("mvfromto", &ix1, itopl, 8L) == FALSE)
+                {
                     return FALSE;
+                }
             }
     }
     return TRUE;
@@ -3167,7 +3499,9 @@ int C2F(convert2sci) (int *ix)
     int ix1 = Top - Rhs + *ix;
 
     if (!C2F(mvfromto) (&ix1, ix))
+    {
         return FALSE;
+    }
     C2F(intersci).ntypes[*ix - 1] = '$';
     return TRUE;
 }
@@ -3183,9 +3517,13 @@ void strcpy_tws(char *str1, char *str2, int len)
     int i;
 
     for (i = 0; i < (int)strlen(str2); i++)
+    {
         str1[i] = str2[i];
+    }
     for (i = (int)strlen(str2); i < len; i++)
+    {
         str1[i] = ' ';
+    }
     str1[len - 1] = '\0';
 }
 
@@ -3302,7 +3640,9 @@ char *ArgsPosition(int i, int j)
             FREE(tmp_buffer_1);
         }
         else
+        {
             sprintf(arg_position, _("arguments #%d and #%d"), i, j);
+        }
     }
     return arg_position;
 }
@@ -3430,7 +3770,9 @@ int check_length(int posi, int m, int m1)
 int check_same_dims(int i, int j, int m1, int n1, int m2, int n2)
 {
     if (m1 == m2 && n1 == n2)
+    {
         return TRUE;
+    }
     Scierror(999, _("%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"), Get_Iname(), ArgsPosition(i, j), m1, n1, m2, n2);
     return FALSE;
 }
@@ -3513,7 +3855,9 @@ int C2F(createdata) (int *lw, int n)
         return FALSE;
     }
     if (!C2F(credata) (fname, &lw1, n, nlgh))
+    {
         return FALSE;
+    }
     C2F(intersci).ntypes[*lw - 1] = '$';
     C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
     C2F(intersci).lad[*lw - 1] = *Lstk(lw1);
@@ -3532,7 +3876,9 @@ int C2F(copyvarfromsciptr) (int lw, int n, int l)
     int ret, un = 1;
 
     if ((ret = C2F(createdata) (&lw, n)) == FALSE)
+    {
         return ret;
+    }
     C2F(unsfdcopy) (&n, stk(l), &un, stk(*Lstk(lw + Top - Rhs)), &un);
     return TRUE;
 }
@@ -3701,10 +4047,14 @@ static int intersci_push(void)
 
     new = MALLOC(Nbvars * sizeof(intersci_state));
     if (new == 0)
+    {
         return 0;
+    }
     loc = MALLOC(sizeof(intersci_list));
     if (loc == NULL)
+    {
         return 0;
+    }
     loc->next = L_intersci;
     loc->state = new;
     loc->nbvars = Nbvars;
@@ -3725,7 +4075,9 @@ static void intersci_pop(void)
     intersci_list *loc = L_intersci;
 
     if (loc == NULL)
+    {
         return;
+    }
     Nbvars = loc->nbvars;
     for (i = 0; i < Nbvars; i++)
     {

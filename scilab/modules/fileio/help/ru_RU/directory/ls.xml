@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="ls">
+    <refnamediv>
+        <refname>ls</refname>
+        <refpurpose>показывает файлы</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            files = ls [path]
+            files = ls( [path] )
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>
+                        матрица строк, указывающая путь к директории (обычно 
+                        заканчивающаяся шаблоном, содержащим <literal>*</literal>). Значение по умолчанию <literal>.</literal> (точка).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>
+                        вектор-столбец строковых значений. По умолчанию он содержит вывод, отформатированный в столбец.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>ls</function> может быть использована для 
+            составления списка файлов, которые соответствуют шаблонам, 
+            заданным аргументом <varname>path</varname>. Шаблоны указываются 
+            Unix-команде <command>ls</command> или Windows-команде  
+            <command>dir</command> для получения информации о файлах. Таким 
+            образом, чтобы написать переносимый Scilab-сценарий, необходимо 
+            указать допустимые символы замещения в шаблонах для обоих ОС. 
+            Заметьте, что выполняется преобразование имени пути, и, например,  
+            <literal>SCI/modules/core/macros/*.sci</literal> является 
+            допустимым шаблоном как для Unix, так и для Windows.
+        </para>
+        <para>
+            Если вы хотите получить вектор всех файлов, соответствующих 
+            шаблону, то лучше использовать функцию <link linkend="listfiles">listfiles</link>
+            или функцию <link linkend="dir">dir</link>.
+        </para>
+        <para>
+            <note>
+                Пожалуйста, заметьте, что, начиная с версии 5.0 Scilab'а, 
+                второй входной аргумент удалён (последовательность строк, 
+                которую можно добавить в Unix-системах: опции Unix-команды 
+                <command>ls</command>). Эта опция была удалена, главным 
+                образом, по причинам безопасности и переносимости.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+ls
+ls SCI/modules/core/macros/*.sci
+x=ls('SCI/modules/core/macros/*.sci')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="listfiles">listfiles</link>
+            </member>
+            <member>
+                <link linkend="findfiles">findfiles</link>
+            </member>
+            <member>
+                <link linkend="dir">dir</link>
+            </member>
+            <member>
+                <link linkend="fileinfo">fileinfo</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

@@ -53,12 +53,12 @@ int GetCommand (char *str);
 * flag = 0 : the command is not shown in scilab window
 * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
 */
-int StorePrioritaryCommandWithFlag (char *command,int flag);
+int StorePrioritaryCommandWithFlag (char *command, int flag);
 
 /**
 *
 */
-int C2F(getmen)(char * btn_cmd,int * lb, int * entry);
+int C2F(getmen)(char * btn_cmd, int * lb, int * entry);
 
 /**
 * check if command queue is empty

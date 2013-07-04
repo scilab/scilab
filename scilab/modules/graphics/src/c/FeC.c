@@ -54,7 +54,7 @@ static void coloutPatch(int colout[2]);
 /*------------------------------------------------------------
  *  Iso contour with grey level or colors
  *  for a function defined by finite elements
- *  ( f is linear on triangles )
+ *  (f is linear on triangles)
  *  we give two versions of the function :
  *     - a quick version wich only fill triangles according to the average
  *     value of f on a triangle (no more such version now ?)

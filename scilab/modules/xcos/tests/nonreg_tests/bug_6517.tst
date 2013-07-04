@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 6517 -->
 //
@@ -17,7 +17,7 @@
 // This test validate the (Xcos file loading, export to hdf5)(Java part) and 
 // (import from hdf5)(Scilab part)
 
-result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_6517.xcos");
+result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_6517.zcos");
 if (result <> %T) then pause,end
 if (isdef("scs_m") <> %T) then pause,end
 

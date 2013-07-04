@@ -7,4 +7,5 @@
 deff('y=f(t)','y=exp(-t^2)');
 r = calerf(1,0);
 ref = 2/sqrt(%pi)*intg(0,1,f);
-if abs(r - ref) > %eps then pause,end
+assert_checkalmostequal(r, ref);
+

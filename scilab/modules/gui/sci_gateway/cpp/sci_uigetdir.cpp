@@ -19,7 +19,7 @@ extern "C"
 #include <stdio.h>
 #include "gw_gui.h"
 #include "PATH_MAX.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -32,95 +32,96 @@ using namespace org_scilab_modules_gui_filechooser;
 /*--------------------------------------------------------------------------*/
 int sci_uigetdir(char *fname, unsigned long l)
 {
+    SciErr sciErr;
+
     int nbRow = 0, nbCol = 0;
 
-    int titleAdr = 0;
-    int initialDirectoryAdr = 0;
+    int* piAddr1 = NULL;
+    int* piAddr2 = NULL;
 
-    char *title = NULL, *initialDirectory = NULL;
+    char* title = NULL;
+    char* initialDirectory = NULL;
+    char** userSelection = NULL;
+    char* expandedpath = NULL;
 
-    char **userSelection = NULL;
+    CheckInputArgument(pvApiCtx, 0, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
-    char *expandedpath = NULL;
-
-    CheckRhs(0, 2);
-    CheckLhs(1, 1);
-
-    if (Rhs >= 1)
+    if (nbInputArgument(pvApiCtx) >= 1)
     {
         /* First argument is initial directory */
-        if (VarType(1) == sci_strings)
+        if (checkInputArgumentType(pvApiCtx, 1, sci_strings))
         {
-            GetRhsVar(1, STRING_DATATYPE, &nbRow, &nbCol, &initialDirectoryAdr);
-            if (nbCol != 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+            if (sciErr.iErr)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-                FREE(expandedpath);
-                return FALSE;
+                printError(&sciErr, 0);
+                return 1;
             }
-            initialDirectory = cstk(initialDirectoryAdr);
+
+            if (getAllocatedSingleString(pvApiCtx, piAddr1, &initialDirectory))
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
 
             expandedpath = expandPathVariable(initialDirectory);
+            freeAllocatedSingleString(initialDirectory);
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-            if (expandedpath)
-            {
-                FREE(expandedpath);
-                expandedpath = NULL;
-            }
-            return FALSE;
+            return 1;
         }
-
     }
 
-    if (Rhs == 2)
+    if (nbInputArgument(pvApiCtx) == 2)
     {
         /* Second argument is title */
-        if (VarType(2) == sci_strings)
+        if (checkInputArgumentType(pvApiCtx, 2, sci_strings))
         {
-            GetRhsVar(2, STRING_DATATYPE, &nbRow, &nbCol, &titleAdr);
-            if (nbCol != 1)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+            if (sciErr.iErr)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
-                if (expandedpath)
-                {
-                    FREE(expandedpath);
-                    expandedpath = NULL;
-                }
-                return FALSE;
+                FREE(expandedpath);
+                printError(&sciErr, 0);
+                return 1;
             }
-            title = cstk(titleAdr);
+
+            if (getAllocatedSingleString(pvApiCtx, piAddr2, &title))
+            {
+                FREE(expandedpath);
+                printError(&sciErr, 0);
+                return 1;
+            }
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-            if (expandedpath)
-            {
-                FREE(expandedpath);
-                expandedpath = NULL;
-            }
-            return FALSE;
+            FREE(expandedpath);
+            return 1;
         }
     }
 
     try
     {
-        switch (Rhs)
+        switch (nbInputArgument(pvApiCtx))
         {
-            /* Initial path is given */
-        case 1:
-            CallJuigetfileForDirectoryWithInitialdirectory(expandedpath);
-            break;
-            /* Initial path and title are given */
-        case 2:
-            CallJuigetfileForDirectoryWithInitialdirectoryAndTitle(expandedpath, title);
-            break;
-            /* Default call with default path and title */
-        default:
-            CallJuigetfileForDirectoryWithoutInput();
-            break;
+                /* Initial path is given */
+            case 1:
+                CallJuigetfileForDirectoryWithInitialdirectory(expandedpath);
+                FREE(expandedpath);
+                break;
+                /* Initial path and title are given */
+            case 2:
+                CallJuigetfileForDirectoryWithInitialdirectoryAndTitle(expandedpath, title);
+                FREE(expandedpath);
+                freeAllocatedSingleString(title);
+                break;
+                /* Default call with default path and title */
+            default:
+                CallJuigetfileForDirectoryWithoutInput();
+                break;
         }
 
         /* Read the size of the selection, if 0 then no file selected */
@@ -128,15 +129,19 @@ int sci_uigetdir(char *fname, unsigned long l)
         /* Read the selection */
         userSelection = getJuigetfileSelection();
     }
-    catch(const GiwsException::JniCallMethodException & exception)
+    catch (const GiwsException::JniCallMethodException & exception)
     {
+        FREE(expandedpath);
+        FREE(title);
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
-        return 0;
+        return 1;
     }
-    catch(const GiwsException::JniException & e)
+    catch (const GiwsException::JniException & e)
     {
+        FREE(expandedpath);
+        FREE(title);
         Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
-        return FALSE;
+        return 1;
     }
 
     if (nbRow != 0)
@@ -144,7 +149,13 @@ int sci_uigetdir(char *fname, unsigned long l)
         /* The user selected a file --> returns the files names */
         nbCol = 1;
 
-        CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, userSelection);
+        sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, userSelection);
+        if (sciErr.iErr)
+        {
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
+
         if (userSelection)
         {
             for (int i = 0; i < nbRow; i++)
@@ -152,7 +163,6 @@ int sci_uigetdir(char *fname, unsigned long l)
                 if (userSelection[i])
                 {
                     delete userSelection[i];
-
                     userSelection[i] = NULL;
                 }
             }
@@ -162,21 +172,20 @@ int sci_uigetdir(char *fname, unsigned long l)
     }
     else
     {
-        /* The user canceled the selection --> returns an empty matrix */
-        nbRow = 1;
-        nbCol = 1;
-        CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, NULL);
+        char* empty = "";
+        /* The user canceled the selection --> returns an empty string */
+        sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 1, &empty);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
     }
 
-    LhsVar(1) = Rhs + 1;
-
-    if (expandedpath)
-    {
-        FREE(expandedpath);
-        expandedpath = NULL;
-    }
-    PutLhsVar();
-    return TRUE;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    returnArguments(pvApiCtx);
+    return 0;
 }
 
 /*--------------------------------------------------------------------------*/

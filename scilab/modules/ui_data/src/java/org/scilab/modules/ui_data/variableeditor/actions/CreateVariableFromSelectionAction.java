@@ -49,6 +49,7 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RefreshAction class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class CreateVariableFromSelectionAction extends CommonCallBack {
 
     private static final String KEY = "OSSCKEY K";
@@ -98,7 +99,7 @@ public final class CreateVariableFromSelectionAction extends CommonCallBack {
 
     public String askForName() {
         final JDialog dialog = new JDialog();
-        final String[] ret = new String[]{ "" };
+        final String[] ret = new String[] { "" };
         dialog.setModalityType(ModalityType.APPLICATION_MODAL);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("rrze_table", "256x256")).getImage());
@@ -143,32 +144,32 @@ public final class CreateVariableFromSelectionAction extends CommonCallBack {
         dialog.setContentPane(panel);
 
         cancelButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dialog.dispose();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dialog.dispose();
+            }
+        });
 
         okButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dialog.dispose();
-                    ret[0] = textField.getText();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dialog.dispose();
+                ret[0] = textField.getText();
+            }
+        });
 
         textField.addKeyListener(new KeyAdapter() {
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    int code = e.getKeyCode();
-                    if (code == KeyEvent.VK_ENTER) {
-                        dialog.dispose();
-                        ret[0] = textField.getText();
-                    } else if (code == KeyEvent.VK_ESCAPE) {
-                        dialog.dispose();
-                    }
+            @Override
+            public void keyReleased(KeyEvent e) {
+                int code = e.getKeyCode();
+                if (code == KeyEvent.VK_ENTER) {
+                    dialog.dispose();
+                    ret[0] = textField.getText();
+                } else if (code == KeyEvent.VK_ESCAPE) {
+                    dialog.dispose();
                 }
-            });
+            }
+        });
 
         dialog.setTitle(UiDataMessages.CREATEVAR);
         dialog.pack();

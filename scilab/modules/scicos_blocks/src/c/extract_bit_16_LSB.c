@@ -18,25 +18,27 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void extract_bit_16_LSB(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void extract_bit_16_LSB(scicos_block *block, int flag)
 {
-   int i = 0,maxim = 0;
-   short *y = NULL,*u = NULL,ref = 0,n = 0;
-   int *ipar = NULL;
-   y=Getint16OutPortPtrs(block,1);
-   u=Getint16InPortPtrs(block,1);
-   ipar=GetIparPtrs(block);
-   maxim=16;
-   ref=0;
-   for(i=0;i<*ipar;i++)
-       {n=(short)pow(2,i);
-        ref=ref+n;}
-   *y=(*u)&(ref);
+    int i = 0, maxim = 0;
+    short *y = NULL, *u = NULL, ref = 0, n = 0;
+    int *ipar = NULL;
+    y = Getint16OutPortPtrs(block, 1);
+    u = Getint16InPortPtrs(block, 1);
+    ipar = GetIparPtrs(block);
+    maxim = 16;
+    ref = 0;
+    for (i = 0; i < *ipar; i++)
+    {
+        n = (short)pow(2, i);
+        ref = ref + n;
+    }
+    *y = (*u) & (ref);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

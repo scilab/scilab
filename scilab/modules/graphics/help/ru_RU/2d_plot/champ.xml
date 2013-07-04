@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="champ">
+    <refnamediv>
+        <refname>champ</refname>
+        <refpurpose>двумерный график векторного поля</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            champ(x, y, fx, fy, [arfact, rect, strf])
+            champ(x, y, fx, fy, &lt;opt_args&gt;)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y</term>
+                <listitem>
+                    <para>
+                        два вектора, которые определяют сетку графика.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fx</term>
+                <listitem>
+                    <para>
+                        матрица, которая описывает x-составляющую векторного
+                        поля. <literal>fx(i,j)</literal> - это x-составляющая
+                        векторного поля в точке <literal>(x(i),y(j))</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fy</term>
+                <listitem>
+                    <para>
+                        матрица, которая описывает y-составляющую векторного
+                        поля. <literal>fy(i,j)</literal> - это y-составляющая
+                        векторного поля в точке <literal>(x(i),y(j))</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;opt_args&gt;</term>
+                <listitem>
+                    <para>
+                        Этот аргумент представляет последовательность инструкций
+                        <literal>key1=value1, key2=value2</literal>,..., где
+                        <literal>key1</literal>, <literal>key2</literal>,...
+                        могут быть одним из следующих:
+                        <varname>arfact</varname>, <varname>rect</varname>,
+                        <varname>strf</varname> (см. ниже).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arfact</term>
+                <listitem>
+                    <para>
+                        необязательный аргумент типа <literal>real</literal>,
+                        который даёт масштабирующий коэффициент для отображения
+                        остриё стрелки на графике (значение по умолчанию равно
+                        <literal>1.0</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rect</term>
+                <listitem>
+                    <para>
+                        вектор <literal>rect=[xmin, ymin, xmax, ymax]</literal>,
+                        который указывает используемые пределы кадра графика.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>strf</term>
+                <listitem>
+                    <para>
+                        строковое значение длиной 3 "xyz", которое имеет то же
+                        самое значение, что и параметр <varname>strf</varname>
+                        функции <function>plot2d</function>. Первый символ
+                        <literal>x</literal> не имеет значения для <function>champ</function>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <function>champ</function> рисует двумерное векторное поле. Длина
+            стрелок пропорциональна интенсивности поля.
+        </para>
+        <para>
+            Если вы желаете раскрасить стрелки в зависимости от интенсивности
+            поля, то используйте <function>champ1</function>.
+        </para>
+        <para>
+            Введите команду <code>champ()</code> для просмотра демонстрации.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+// использование rect в качестве границ графика
+champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
+ ]]></programlisting>
+        <scilab:image>
+            champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+// использование (x,y) для получения границ
+clf()
+champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
+ ]]></programlisting>
+        <scilab:image>
+            champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="champ1">champ1</link>
+            </member>
+            <member>
+                <link linkend="fchamp">fchamp</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

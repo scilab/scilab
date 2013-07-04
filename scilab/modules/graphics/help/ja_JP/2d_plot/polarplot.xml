@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="polarplot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="polarplot">
     <refnamediv>
         <refname>polarplot</refname>
         <refpurpose>極座標プロット</refpurpose>
@@ -258,33 +258,62 @@
         </para>
     </refsection>
     <refsection>
-        <title>例</title>
-        <scilab:image>polarplot();</scilab:image>
-    </refsection>
-    <refsection>
         <title>例1</title>
-        <programlisting role="example1"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t= 0:.01:2*%pi;
 clf();polarplot(sin(7*t),cos(8*t))
-
-clf();polarplot([sin(7*t') sin(6*t')],[cos(8*t') cos(8*t')],[1,2])
  ]]></programlisting>
+        <scilab:image>
+            t= 0:.01:2*%pi;
+            polarplot(sin(7*t),cos(8*t))
+        </scilab:image>
+        
     </refsection>
     <refsection>
         <title>例2</title>
-        <programlisting role="example2"><![CDATA[ 
+        <programlisting role="example"><![CDATA[ 
 t= 0:.01:2*%pi;
 
 clf();polarplot([sin(7*t') sin(6*t')],[cos(8*t') cos(8*t')],[1,2])
  ]]></programlisting>
+        <scilab:image>
+            t= 0:.01:2*%pi;
+            
+            clf();polarplot([sin(7*t') sin(6*t')],[cos(8*t') cos(8*t')],[1,2])
+        </scilab:image>
+        
     </refsection>
     <refsection>
         <title>例3</title>
-        <programlisting role="example3"><![CDATA[ 
+        <programlisting role="example"><![CDATA[ 
 t = 0:0.01:2*%pi;
-
 polarplot(t, -1 + sin(t));
 
  ]]></programlisting>
+        <scilab:image>
+            t = 0:0.01:2*%pi;
+            polarplot(t, -1 + sin(t));
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>例4</title>
+        <programlisting role="example"><![CDATA[
+  clf()
+  theta=[0:0.02:2*%pi]';
+  rho=1+0.2*cos(theta.^2)
+  polarplot(theta,rho,style=5)
+  a=gca()
+  a.isoview='on'
+  a.data_bounds=[-1.2,-1.2;1.2,01.2] 
+ ]]></programlisting>
+        <scilab:image>
+            theta=[0:0.02:2*%pi]';
+            rho=1+0.2*cos(theta.^2)
+            polarplot(theta,rho,style=5)
+            a=gca()
+            a.isoview='on'
+            a.data_bounds=[-1.2,-1.2;1.2,01.2] 
+            
+        </scilab:image>
     </refsection>
 </refentry>

@@ -13,7 +13,7 @@
  */
 
 #include "gw_gui.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "localization.h"
@@ -31,30 +31,53 @@
 /*--------------------------------------------------------------------------*/
 int sci_toolbar(char *fname, unsigned long l)
 {
-    static int stkAdr = 0, nbCol = 0, nbRow = 0;
+    SciErr sciErr;
+
+    int* piAddr1 = NULL;
+    int* piStkAdr = NULL;
+    int* piAddrstkAdr = NULL;
+    long long* stkAdr = NULL;
+    int* piAddrparam = NULL;
+
+    int nbCol = 0;
+    int nbRow = 0;
 
     char *Output = NULL;
-
     char **param = NULL;
-
     int figNum = -2;
 
     char *pParentUID = NULL;
-    char *pParentType = NULL;
+    int iParentType = -1;
+    int *piParentType = &iParentType;
 
-    CheckRhs(1, 2);
-    CheckLhs(0, 1);
+    CheckInputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     /* Figure number */
-    if (GetType(1) == sci_matrix)
+    if (checkInputArgumentType(pvApiCtx, 1, sci_matrix))
     {
-        GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &nbRow, &nbCol, &stkAdr);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 1.
+        sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddr1, &nbRow, &nbCol, &piStkAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 1);
+            return 1;
+        }
+
         if (nbRow * nbCol != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
             return FALSE;
         }
-        figNum = *istk(stkAdr);
+        figNum = *piStkAdr;
 
         if (figNum < -1)
         {
@@ -80,16 +103,30 @@ int sci_toolbar(char *fname, unsigned long l)
             pParentUID = (char*)getFigureFromIndex(figNum);
         }
     }
-    else if (GetType(1) == sci_handles)
+    else if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
     {
-        GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrstkAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of handle at position 1.
+        sciErr = getMatrixOfHandle(pvApiCtx, piAddrstkAdr, &nbRow, &nbCol, &stkAdr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 1);
+            return 1;
+        }
 
         if (nbRow * nbCol != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
             return FALSE;
         }
-        pParentUID = (char*)getObjectFromHandle((long) * hstk(stkAdr));
+        pParentUID = (char*)getObjectFromHandle((long) * stkAdr);
 
         if (pParentUID == NULL)
         {
@@ -97,14 +134,12 @@ int sci_toolbar(char *fname, unsigned long l)
             return FALSE;
         }
 
-        getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_string, (void **)&pParentType);
-        if (strcmp(pParentType, __GO_FIGURE__) != 0)
+        getGraphicObjectProperty(pParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+        if (iParentType == __GO_FIGURE__)
         {
-            FREE(pParentType);
             Scierror(999, _("%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"), fname, 1);
             return FALSE;
         }
-        free(pParentType);
     }
     else
     {
@@ -112,14 +147,27 @@ int sci_toolbar(char *fname, unsigned long l)
         return FALSE;
     }
 
-    if (Rhs == 2)               /* New status */
+    if (nbInputArgument(pvApiCtx) == 2)               /* New status */
     {
-        if ((GetType(2) == sci_strings))
+        if ((checkInputArgumentType(pvApiCtx, 2, sci_strings)))
         {
-            GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &param);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrparam);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            // Retrieve a matrix of string at position 2.
+            if (getAllocatedMatrixOfString(pvApiCtx, piAddrparam, &nbRow, &nbCol, &param))
+            {
+                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+                return 1;
+            }
+
             if (nbRow * nbCol != 1)
             {
-                freeArrayOfString(param, nbRow * nbCol);
+                freeAllocatedMatrixOfString(nbRow, nbCol, param);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
                 return FALSE;
             }
@@ -127,11 +175,11 @@ int sci_toolbar(char *fname, unsigned long l)
             if ((strcmp(param[0], "off") == 0) || (strcmp(param[0], "on") == 0))
             {
                 setToolbarVisible(pParentUID, strcmp(param[0], "on") == 0);
-                freeArrayOfString(param, nbRow * nbCol);
+                freeAllocatedMatrixOfString(nbRow, nbCol, param);
             }
             else
             {
-                freeArrayOfString(param, nbRow * nbCol);
+                freeAllocatedMatrixOfString(nbRow, nbCol, param);
                 Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 2, "on", "off");
                 return FALSE;
             }
@@ -155,8 +203,13 @@ int sci_toolbar(char *fname, unsigned long l)
 
     nbCol = 1;
     nbRow = (int)strlen(Output);
-    CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &nbRow, &nbCol, &Output);
-    LhsVar(1) = Rhs + 1;
+    if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, Output))
+    {
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
+
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 
     if (Output)
     {
@@ -164,7 +217,7 @@ int sci_toolbar(char *fname, unsigned long l)
         Output = NULL;
     }
 
-    PutLhsVar();
+    ReturnArguments(pvApiCtx);
     return TRUE;
 }
 

@@ -2,74 +2,80 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="asec" xml:lang="ru">
-  <refnamediv>
-    <refname>asec</refname>
-    <refpurpose>вычисляет поэлементно арксеканс аргумента.
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>y = asec(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>Вещественный или комплексный массив.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y</term>
-        <listitem>
-          <para>Вещественный или комплексный массив.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Вычисляет поэлементно арксеканс аргумента. Для вещественного аргумента с абсолютным значением больше 1 результат вещественный.
-    </para>
-    <para>
-      Используются следующие равенства: <literal>asec(z) = -acsc(-z) =
-        asin(1/z) = %pi/2-asec(x) = %i*acsch(%i*z)
-      </literal>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="asec" xml:lang="ru">
+    <refnamediv>
+        <refname>asec</refname>
+        <refpurpose>вычисляет поэлементно арксеканс аргумента.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>y = asec(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>вещественный или комплексный массив.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>вещественный или комплексный массив.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Вычисляет поэлементно арксеканс аргумента. Для вещественного аргумента с абсолютным значением больше 1 результат вещественный.
+        </para>
+        <para>
+            Используются следующие равенства: <code>asec(z) == -acsc(-z) == asin(1/z) == %pi/2-asec(x) == %i*acsch(%i*z)</code>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Образец</title>
+        <scilab:image>
+            x=linspace(1,20,200);
+            x=[-x($:-1:1) %nan x];
+            plot(x,asec(x))
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 x=[1 2 -2 sqrt(2) -sqrt(2) 2/sqrt(3) -2/sqrt(3) -1];
 asec(x)/%pi
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="sec">sec</link>
-      </member>
-      <member>
-        <link linkend="asecd">asecd</link>
-      </member>
-      <!--<member>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sec">sec</link>
+            </member>
+            <member>
+                <link linkend="asecd">asecd</link>
+            </member>
+            <!--<member>
         <link linkend="csgn">csgn</link>
       </member>-->
-    </simplelist>
-  </refsection>
-  <refsection>
-    <title>Сcылки</title>
-    <simplelist type="vert">
-      <member>Kahan, W., "Branch cuts for complex elementary functions, or,
-        Much ado about nothing's sign bit", Proceedings of the joing IMA/SIAM
-        conference on The State of the Art in Numerical Analysis, University of
-        Birmingham, A. Iserles and M.J.D. Powell, eds, Clarendon Press, Oxford,
-        1987, 165-210.
-      </member>
-    </simplelist>
-  </refsection>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Сcылки</title>
+        <simplelist type="vert">
+            <member>Kahan, W., "Branch cuts for complex elementary functions, or,
+                Much ado about nothing's sign bit", Proceedings of the joing IMA/SIAM
+                conference on The State of the Art in Numerical Analysis, University of
+                Birmingham, A. Iserles and M.J.D. Powell, eds, Clarendon Press, Oxford,
+                1987, 165-210.
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

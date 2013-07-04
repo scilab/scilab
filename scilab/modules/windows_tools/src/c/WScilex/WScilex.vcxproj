@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -74,7 +74,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)libs\MALLOC\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>
@@ -97,7 +97,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)libs\MALLOC\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>
@@ -117,7 +117,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)libs\MALLOC\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>
@@ -142,7 +142,7 @@
     </Midl>
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)libs\MALLOC\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>
@@ -177,6 +177,7 @@
     <None Include="..\resources\SCE.ICO" />
     <None Include="..\resources\SCI.ICO" />
     <None Include="..\resources\scilab.ico" />
+    <None Include="..\resources\sod.ico" />
     <None Include="..\resources\TST.ICO" />
     <None Include="..\resources\xcos.ico" />
   </ItemGroup>
@@ -186,10 +187,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\libs\GetWindowsVersion\GetWindowsVersion.vcxproj">
       <Project>{982bf37f-42c4-4d37-8d14-60521b141503}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\tools\localization\generatePoFile.vcxproj">

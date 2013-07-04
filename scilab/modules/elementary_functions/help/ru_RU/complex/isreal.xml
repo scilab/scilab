@@ -10,52 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="isreal" xml:lang="ru">
-  <refnamediv>
-    <refname>isreal</refname>
-    <refpurpose>проверка, имеет ли переменная вещественные или комплексные элементы.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>
-      t=isreal(x)
-      t=isreal(x,eps)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>вектор или матрица с элементами с плавающей запятой или коэффициенты</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>t</term>
-        <listitem>
-          <para>логическое значение</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      <literal>isreal(x)</literal> возвращает значение "истина", если <literal>x</literal> хранится как вещественная переменная, и "ложь", если <literal>x</literal> имеет мнимую часть (даже если она нулевая).
-    </para>
-    <para>
-      <literal>isreal(x,eps)</literal> возвращает "истину", если <literal>x</literal> хранится как вещественная переменная или если максимальное по модулю значение мнимой части меньше или равно <literal>eps</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isreal" xml:lang="ru">
+    <refnamediv>
+        <refname>isreal</refname>
+        <refpurpose>проверка, имеет ли переменная вещественные или комплексные элементы.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            t=isreal(x)
+            t=isreal(x,eps)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>вектор или матрица с элементами с плавающей запятой или коэффициенты</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>логическое значение</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>isreal(x)</literal> возвращает значение "истина", если <literal>x</literal> хранится как вещественная переменная, и "ложь", если <literal>x</literal> имеет мнимую часть (даже если она нулевая).
+        </para>
+        <para>
+            <literal>isreal(x,eps)</literal> возвращает "истину", если <literal>x</literal> хранится как вещественная переменная или если максимальное по модулю значение мнимой части меньше или равно <literal>eps</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 isreal([1 2])
 isreal(1+0*%i)
 isreal(1+0*%i,0)
 isreal(1+%s)
 isreal(sprand(3,3,0.1))
  ]]></programlisting>
-  </refsection>
+    </refsection>
 </refentry>

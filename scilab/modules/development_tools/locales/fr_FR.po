@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-07-20 14:24+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-17 19:40+0000\n"
+"Last-Translator: jojolebestof <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: fr\n"
 
 #, c-format
@@ -80,6 +80,13 @@ msgstr ""
 msgid "%s: Computed is complex, but expected is real."
 msgstr ""
 "%s : L'objet calculé est de type complexe, cependant il aurait dû être réel."
+
+#, c-format
+msgid ""
+"%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"
+msgstr ""
+"%s : Échec de l'assertion : attendu = %s, cependant calculé = %s (différence "
+"moyenne = %s)"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -202,6 +209,72 @@ msgstr "Erreur : Les dimensions de l'argument d'entrée sont invalides."
 msgid "The test %s is not available from the %s module"
 msgstr "Le test %s n'est pas disponible dans le module %s"
 
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s : Mauvais nombre d'argument(s) d'entrée : %d à %d attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur ligne de chaînes "
+"de caractères attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur ligne de "
+"chaînes de caractères attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur ligne de chaînes "
+"de caractères ou une matrice vide attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur ligne de "
+"chaînes de caractères ou une matrice vide attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab module name expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un nom de module Scilab "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid language expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un langage valide "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A '%s' module function name "
+"expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un nom de fonction du "
+"module '%s' attendu.\n"
+
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
 msgstr "%s : Premier argument erroné : Fichier avec un suffixe .dia attendu."
@@ -226,6 +299,10 @@ msgid "%s: Wrong size for input argument."
 msgstr "%s : Dimension erronée de l'argument d'entrée."
 
 #, c-format
+msgid "%s: Wrong number of input arguments."
+msgstr "%s : Nombre erroné d'arguments d'entrée."
+
+#, c-format
 msgid "%s is not an installed module or toolbox"
 msgstr "%s n'est pas une boîte-à-outils ou un module installé"
 
@@ -236,8 +313,10 @@ msgstr "Le fichier ref (%s) n'existe pas"
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
-"'testsuites"
+"'testsuites'.\n"
 msgstr ""
+"Le fichier '%s' ne respecte pas le format XML XUnit. La balise Root "
+"attendait 'testsuites'.\n"
 
 #, c-format
 msgid "No variable %s_ref in reference file"

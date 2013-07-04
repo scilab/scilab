@@ -36,6 +36,7 @@ import javax.swing.SwingUtilities;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.core.Scilab;
+import org.scilab.modules.graph.actions.base.GraphActionManager;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
@@ -52,6 +53,7 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.actions.ExternalAction;
+import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
@@ -92,19 +94,15 @@ public final class Xcos {
     public static final String TRADENAME = "Xcos";
     public static final ImageIcon ICON = new ImageIcon(ScilabSwingUtilities.findIcon("utilities-system-monitor", "256x256"));
 
-    private static final String LOAD_XCOS_LIBS_LOAD_SCICOS = "loadXcosLibs(); loadScicos();";
+    private static final String LOAD_XCOS_LIBS_LOAD_SCICOS = "prot=funcprot(); funcprot(0); loadXcosLibs(); loadScicos(); funcprot(prot); clear prot";
 
     /*
      * Dependencies version
      */
     private static final List<String> MXGRAPH_VERSIONS = null;
-    private static final List<String> HDF5_VERSIONS = Arrays.asList("[1, 8, 4]", "[1, 8, 5]", "[1, 8, 6]", "[1, 8, 7]", "[1, 8, 8]");
-    private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7");
+    private static final List<String> BATIK_VERSIONS = Arrays.asList("1.7", "1.8pre", "1.8");
 
     private static final String UNABLE_TO_LOAD_JGRAPHX = Messages.gettext("Unable to load the jgraphx library.\nExpecting version %s ; Getting version %s .");
-    private static final String UNABLE_TO_LOAD_JHDF5 = Messages
-            .gettext("Unable to load the hdf5-java (jhdf5) library. \nExpecting version %s ; Getting version %s .");
-    private static final String UNABLE_TO_LOAD_HDF5 = Messages.gettext("Unable to load the native HDF5 library.");
     private static final String UNABLE_TO_LOAD_BATIK = Messages.gettext("Unable to load the Batik library. \nExpecting version %s ; Getting version %s .");
 
     private static final String CALLED_OUTSIDE_THE_EDT_THREAD = "Called outside the EDT thread.";
@@ -161,7 +159,7 @@ public final class Xcos {
         }
 
         /* Check the dependencies at startup time */
-        // checkDependencies();
+        checkDependencies();
 
         /*
          * Allocate data
@@ -219,33 +217,6 @@ public final class Xcos {
             }
         } catch (final Throwable e) {
             throw new RuntimeException(String.format(UNABLE_TO_LOAD_JGRAPHX, MXGRAPH_VERSIONS.get(0), mxGraphVersion), e);
-        }
-
-        /* HDF5 */
-        final int[] libVersion = new int[3];
-        try {
-            final Class<?> klass = loader.loadClass("ncsa.hdf.hdf5lib.H5");
-
-            /* hdf5-java */
-            int ret = (Integer) klass.getMethod("H5get_libversion", libVersion.getClass()).invoke(null, libVersion);
-            if (ret < 0) {
-                throw new Exception();
-            }
-
-            if (!HDF5_VERSIONS.contains(Arrays.toString(libVersion))) {
-                throw new Exception();
-            }
-
-            /* hdf5 */
-            ret = (Integer) klass.getMethod("H5check_version", int.class, int.class, int.class).invoke(null, libVersion[0], libVersion[1], libVersion[2]);
-            if (ret < 0) {
-                throw new RuntimeException(UNABLE_TO_LOAD_HDF5);
-            }
-
-        } catch (final Throwable e) {
-            if (!(e instanceof RuntimeException)) {
-                throw new RuntimeException(String.format(UNABLE_TO_LOAD_JHDF5, HDF5_VERSIONS.get(0), Arrays.toString(libVersion)), e);
-            }
         }
 
         /* Batik */
@@ -571,6 +542,7 @@ public final class Xcos {
      *
      * @return the diagram collection
      */
+    @SuppressWarnings("serial")
     public Collection<XcosDiagram> createDiagramCollection() {
         return new ArrayList<XcosDiagram>() {
             @Override
@@ -649,9 +621,9 @@ public final class Xcos {
             diagrams.remove(f);
         }
 
-        if (openedDiagrams().size() <= 1) {
+        if (openedDiagrams().size() <= 0) {
             /* halt scicos (stop the simulation) */
-            InterpreterManagement.requestScilabExec("haltscicos()");
+            InterpreterManagement.requestScilabExec("if isdef('haltscicos'), haltscicos(), end;");
         }
     }
 
@@ -748,7 +720,7 @@ public final class Xcos {
             instance.addDiagram(null, null);
 
             /* terminate any remaining simulation */
-            InterpreterManagement.putCommandInScilabQueue("if isdef('haltscicos'), then haltscicos(), end;");
+            InterpreterManagement.putCommandInScilabQueue("if isdef('haltscicos'), haltscicos(), end;");
 
             /* Saving modified data */
             instance.palette.saveConfig();
@@ -832,8 +804,10 @@ public final class Xcos {
                 }
             });
         } catch (final InterruptedException e) {
-            LOG.severe(e.toString());
+            e.printStackTrace();
         } catch (final InvocationTargetException e) {
+            e.printStackTrace();
+
             Throwable throwable = e;
             String firstMessage = null;
             while (throwable != null) {
@@ -902,7 +876,7 @@ public final class Xcos {
         });
     }
 
-    private Object lookupForCell(final String[] uid) {
+    public Object lookupForCell(final String[] uid) {
         final ArrayDeque<String> deque = new ArrayDeque<String>(Arrays.asList(uid));
 
         // specific case with an empty array
@@ -1156,6 +1130,15 @@ public final class Xcos {
     @Deprecated
     public static void xcosDiagramClose(final String[] uid) {
         throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Inform Xcos the simulator has just started
+     *
+     */
+    @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
+    public static void xcosSimulationStarted() {
+        GraphActionManager.setEnable(StopAction.class, true);
     }
 
     /**

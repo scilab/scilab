@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="if">
+    <refnamediv>
+        <refname>if then else</refname>
+        <refpurpose>条件付き実行</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>if expr1 then statements
+            elseif expri then statements
+            ....
+            else statements
+            end
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>if</literal> 命令は論理式を評価し,その値が真の時に
+            一連の命令を実行します.
+        </para>
+        <para>
+            <literal>expri</literal> は数値または論理値を値とする式です.
+            　　<literal>expri</literal> が行列の場合,
+            全ての行列のエントリが真またはゼロでない場合にのみ
+            その条件は真となります.
+        </para>
+        <para>
+            オプションの <literal>elseif</literal> および <literal>else</literal> により,
+            別の命令のグループを実行することができます.
+            <literal>if</literal>に対応する
+            <literal>end</literal> キーワードにより,最後の命令のグループが
+            終了します.
+            上記の行の構造には意味がなく,唯一の拘束条件は,
+            各<literal>then</literal>キーワードを対応する
+            <literal>if</literal> または <literal>elseif</literal>キーワードと
+            同じ行に置く必要があることのみです.
+        </para>
+        <para>
+            キーワード <literal>then</literal> はキャリッジ・リターンまたはカンマで
+            置き換えることができます.
+        </para>
+        <para>
+            警告: 条件文(if while for または select/case)の内部に記述可能な文字数は
+            16kに制限されています.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+i=2
+for j = 1:3, 
+  if i == j then
+    a(i,j) = 2; 
+  elseif abs(i-j) == 1 then 
+    a(i,j) = -1; 
+  else a(i,j) = 0;
+  end,
+end
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="try">try</link>
+            </member>
+            <member>
+                <link linkend="while">while</link>
+            </member>
+            <member>
+                <link linkend="select">select</link>
+            </member>
+            <member>
+                <link linkend="boolean">boolean</link>
+            </member>
+            <member>
+                <link linkend="end">end</link>
+            </member>
+            <member>
+                <link linkend="then">then</link>
+            </member>
+            <member>
+                <link linkend="else">else</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

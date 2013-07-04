@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -28,15 +28,15 @@
 #endif
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-#define finite(x) _finite(x) 
+#define finite(x) _finite(x)
 #endif
 #define EOL "\n"
 #define NanString "Nan"
 #define InfString "Inf"
 #define NegInfString "-Inf"
 /*--------------------------------------------------------------------------*/
-#define NB_FORMAT_SUPPORTED 7 
-static char *supportedFormat[NB_FORMAT_SUPPORTED] = 
+#define NB_FORMAT_SUPPORTED 7
+static char *supportedFormat[NB_FORMAT_SUPPORTED] =
 {"lf", "lg", "d", "i", "e", "f", "g"};
 /*--------------------------------------------------------------------------*/
 static BOOL checkFprintfMatFormat(char *format);
@@ -58,13 +58,13 @@ static int signbit(double x)
     return u.i[1] < 0;
 #else
     return u.s[3] < 0;
-#endif 
+#endif
 }
 #endif /* signbit */
 /*--------------------------------------------------------------------------*/
 fprintfMatError fprintfMat(char *filename, char *format, char *separator,
-    double *MatrixValues, int m, int n,
-    char **textAdded, int sizeTextAdded)
+                           double *MatrixValues, int m, int n,
+                           char **textAdded, int sizeTextAdded)
 {
 #if _MSC_VER
 #define MODEFD "wt"
@@ -74,23 +74,44 @@ fprintfMatError fprintfMat(char *filename, char *format, char *separator,
     int i = 0;
     FILE  *fd = NULL;
 
-    if (filename == NULL) return FPRINTMAT_NULL_POINTER_ERROR;
-    if (format == NULL) return FPRINTMAT_NULL_POINTER_ERROR;
-    if (separator == NULL) return FPRINTMAT_NULL_POINTER_ERROR;
-    if ((sizeTextAdded > 0) && (textAdded == NULL)) return FPRINTFMAT_ERROR;
-    if ((m > 0) && (n > 0) && (MatrixValues == NULL)) return FPRINTFMAT_ERROR;
+    if (filename == NULL)
+    {
+        return FPRINTMAT_NULL_POINTER_ERROR;
+    }
+    if (format == NULL)
+    {
+        return FPRINTMAT_NULL_POINTER_ERROR;
+    }
+    if (separator == NULL)
+    {
+        return FPRINTMAT_NULL_POINTER_ERROR;
+    }
+    if ((sizeTextAdded > 0) && (textAdded == NULL))
+    {
+        return FPRINTFMAT_ERROR;
+    }
+    if ((m > 0) && (n > 0) && (MatrixValues == NULL))
+    {
+        return FPRINTFMAT_ERROR;
+    }
 
-    if (!checkFprintfMatFormat(format)) return FPRINTMAT_FORMAT_ERROR;
+    if (!checkFprintfMatFormat(format))
+    {
+        return FPRINTMAT_FORMAT_ERROR;
+    }
 
     wcfopen(fd , filename, MODEFD);
 
-    if ( fd == (FILE *)NULL ) return FPRINTFMAT_FOPEN_ERROR;
+    if ( fd == (FILE *)NULL )
+    {
+        return FPRINTFMAT_FOPEN_ERROR;
+    }
 
     if (sizeTextAdded > 0)
     {
         if (textAdded)
         {
-            for (i = 0; i < sizeTextAdded; i++) 
+            for (i = 0; i < sizeTextAdded; i++)
             {
                 if (textAdded[i])
                 {
@@ -105,7 +126,7 @@ fprintfMatError fprintfMat(char *filename, char *format, char *separator,
         int j = 0;
         for ( j = 0 ; j < n ; j++)
         {
-            if (ISNAN(MatrixValues[i + m*j]))
+            if (ISNAN(MatrixValues[i + m * j]))
             {
                 char *localFormat = replaceInFormat(format);
                 if (localFormat)
@@ -116,16 +137,16 @@ fprintfMatError fprintfMat(char *filename, char *format, char *separator,
                 }
                 else
                 {
-                    fprintf(fd, format, MatrixValues[i + m*j]);
+                    fprintf(fd, format, MatrixValues[i + m * j]);
                 }
             }
-            else if (finite(MatrixValues[i + m*j]))
+            else if (finite(MatrixValues[i + m * j]))
             {
-                fprintf(fd, format, MatrixValues[i + m*j]);
+                fprintf(fd, format, MatrixValues[i + m * j]);
             }
             else
             {
-                if ( signbit(MatrixValues[i + m*j]) )
+                if ( signbit(MatrixValues[i + m * j]) )
                 {
                     char *localFormat = replaceInFormat(format);
                     if (localFormat)
@@ -136,7 +157,7 @@ fprintfMatError fprintfMat(char *filename, char *format, char *separator,
                     }
                     else
                     {
-                        fprintf(fd, format, MatrixValues[i + m*j]);
+                        fprintf(fd, format, MatrixValues[i + m * j]);
                     }
                 }
                 else
@@ -144,13 +165,13 @@ fprintfMatError fprintfMat(char *filename, char *format, char *separator,
                     char *localFormat = replaceInFormat(format);
                     if (localFormat)
                     {
-                        fprintf(fd, localFormat,InfString);
+                        fprintf(fd, localFormat, InfString);
                         FREE(localFormat);
                         localFormat = NULL;
                     }
                     else
                     {
-                        fprintf(fd, format, MatrixValues[i + m*j]);
+                        fprintf(fd, format, MatrixValues[i + m * j]);
                     }
                 }
             }
@@ -210,17 +231,17 @@ static char *getCleanedFormat(char *format)
         if (percent)
         {
             int i = 0;
-            for(i = 0; i < NB_FORMAT_SUPPORTED; i++)
+            for (i = 0; i < NB_FORMAT_SUPPORTED; i++)
             {
                 char *token = strstr(percent, supportedFormat[i]);
                 if (token)
                 {
-                    int nbcharacters = (int)(strlen(percent) - strlen(token));          
+                    int nbcharacters = (int)(strlen(percent) - strlen(token));
                     cleanedFormat = strdup(percent);
                     cleanedFormat[nbcharacters] = 0;
-                    if ( ((nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters-1])) ||
-                        (cleanedFormat[nbcharacters-1]) == '.') ||
-                        (cleanedFormat[nbcharacters-1]) == '%')
+                    if ( ((nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters - 1])) ||
+                            (cleanedFormat[nbcharacters - 1]) == '.') ||
+                            (cleanedFormat[nbcharacters - 1]) == '%')
                     {
                         strcat(cleanedFormat, supportedFormat[i]);
                         return cleanedFormat;

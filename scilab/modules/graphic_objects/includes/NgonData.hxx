@@ -53,7 +53,7 @@ public :
      * @param[in] propertyName the property name
      * @return the property identifier
      */
-    int getPropertyFromName(char const* propertyName);
+    int getPropertyFromName(int propertyName);
 
     /**
      * Sets a data property

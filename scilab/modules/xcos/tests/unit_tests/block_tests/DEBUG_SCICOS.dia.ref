@@ -15,7 +15,7 @@
 // The debug block is called before each real block call
 //
 global Result;Result=[];
-importXcosDiagram('SCI/modules/xcos/tests/nonreg_tests/bug_8480.xcos');
+importXcosDiagram('SCI/modules/xcos/tests/nonreg_tests/bug_8480.zcos');
 Info=scicos_simulate(scs_m,list());
 block 1 is called with flag 4 at time 0.000000 
 Entering the block 

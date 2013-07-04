@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline Carnis
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="dollar">
+    <refnamediv>
+        <refname>доллар</refname>
+        <refpurpose>($) последний индекс </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Символ <literal>$</literal> обозначает последний индекс массива (строки или столбца). Он равен количеству строк или столбцов.
+        </para>
+        <para>
+            Символ <literal>$</literal> может также использоваться для текстов в формате LaTeX, которые должны начинаться и заканчиваться символом <literal>$</literal>. См. также  <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+a=[1,2,3;4,5,6];
+a($)
+ 
+b = [1 2 3;4 5 6;7 8 9];
+// Доступ к последнему элементу первой строки, т.е. 3
+b(1,$)
+// Доступ к последнему элементу второго столбца, т.е. 8
+b($,2)
+// Доступ к последнему элементу b, т.е. 9
+b($,$)
+ 
+// Добавление строки к концу матрицы b
+b($+1,:) = [1 1 1]
+ 
+// Символ $ в качестве обособления LaTeX
+titlepage(['$\Huge\textrm{Это } \LaTeX:$';'$\Huge 2^2+1=\sqrt{25}$'])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>
+            </member>
+            <member>
+                <link linkend="size">size</link>
+            </member>
+            <member>
+                <link linkend="length">length</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -162,7 +162,9 @@ static char *getLineAfterCaret(char *wk_buf, unsigned int *cursor, unsigned int 
 static void backspace(int n)
 {
     if (n < 1)
+    {
         return;
+    }
     while (n--)
 #ifdef TERMCAP
         if (BC)
@@ -316,15 +318,25 @@ static char **concatenateStrings(int *sizearrayofstring, char *string1, char *st
     *sizearrayofstring = 0;
 
     if (string1)
+    {
         newsize++;
+    }
     if (string2)
+    {
         newsize++;
+    }
     if (string3)
+    {
         newsize++;
+    }
     if (string4)
+    {
         newsize++;
+    }
     if (string5)
+    {
         newsize++;
+    }
 
     if (newsize > 0)
     {
@@ -424,17 +436,29 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                 char *new_line = NULL;
 
                 if (completionDictionaryFields)
+                {
                     completionDictionary = completionDictionaryFields;
+                }
                 if (completionDictionaryFunctions)
+                {
                     completionDictionary = completionDictionaryFunctions;
+                }
                 if (completionDictionaryCommandWords)
+                {
                     completionDictionary = completionDictionaryCommandWords;
+                }
                 if (completionDictionaryMacros)
+                {
                     completionDictionary = completionDictionaryMacros;
+                }
                 if (completionDictionaryVariables)
+                {
                     completionDictionary = completionDictionaryVariables;
+                }
                 if (completionDictionaryHandleGraphicsProperties)
+                {
                     completionDictionary = completionDictionaryHandleGraphicsProperties;
+                }
 
                 new_line = completeLine(lineBeforeCaret, completionDictionary[0], NULL, defaultPattern, FALSE, lineAfterCaret);
                 if (new_line)

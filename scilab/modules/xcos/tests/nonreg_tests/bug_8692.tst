@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 8692 -->
 //
@@ -16,6 +16,6 @@
 // Blocks null values produce an exception on export.
 
 // open then export a diagram with null values
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8692.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8692.zcos");
 if ~status then pause, end
 

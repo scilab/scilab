@@ -30,7 +30,7 @@ int ScilabGateway::wrapAsRef(char * fname, const int envId, void * pvApiCtx)
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
     ScilabGatewayOptions & options = env.getGatewayOptions();
-    OptionsHelper::setCopyOccured(false);
+    OptionsHelper::setCopyOccurred(false);
     ScilabObjects::initialization(env, pvApiCtx);
     options.setIsNew(false);
 
@@ -53,7 +53,7 @@ int ScilabGateway::wrapAsRef(char * fname, const int envId, void * pvApiCtx)
         {
             ScilabObjects::removeTemporaryVars(envId, tmpvar);
             delete[] tmpvar;
-            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Can only wrap as a reference a named variable"));
+            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Can only wrap as a reference to a named variable"));
         }
 
         if (getAllocatedSingleString(pvApiCtx, addr, &varName))

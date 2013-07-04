@@ -68,10 +68,18 @@ public final class XConfigManager extends XCommonManager {
     private static final String SCILAB_CONFIG_XSL = System.getenv("SCI") + "/modules/preferences/src/xslt/XConfiguration.xsl";
 
     /** User configuration file.*/
-    private static final String USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/XConfiguration.xml";
+    private static String USER_CONFIG_FILE;
+    private static boolean mustSave = true;
 
     static {
         //ScilabPreferences.addToolboxInfos("MyToolbox", System.getenv("SCI") + "/contrib/toolbox_skeleton/", System.getenv("SCI") + "/contrib/toolbox_skeleton/etc/toolbox_skeleton_preferences.xml");
+
+        if (ScilabConstants.SCIHOME != null && ScilabConstants.SCIHOME.canRead() && ScilabConstants.SCIHOME.canWrite()) {
+            USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/XConfiguration.xml";
+        } else {
+            USER_CONFIG_FILE = SCILAB_CONFIG_FILE;
+            mustSave = false;
+        }
     }
 
     /**
@@ -84,7 +92,7 @@ public final class XConfigManager extends XCommonManager {
     /** Display dialog and wait for events.
      *
      */
-    public static void displayAndWait() {
+    public static void displayAndWait(String initialPath) {
         XConfigManager.active = true;
         XWizardManager.active = false;
 
@@ -99,6 +107,10 @@ public final class XConfigManager extends XCommonManager {
 
         // Set up DOM Side
         readUserDocuments();
+        if (initialPath != null && !initialPath.equals("")) {
+            String path = getPath(initialPath);
+            document.getDocumentElement().setAttribute("path", path);
+        }
         updated = false;
 
         // Plug in resize
@@ -143,8 +155,15 @@ public final class XConfigManager extends XCommonManager {
     /**
      * Opens a dialog to setup preferences.
      */
+    public static void openPreferences(String initialPath) {
+        XConfigManager.displayAndWait(initialPath);
+    }
+
+    /**
+     * Opens a dialog to setup preferences.
+     */
     public static void openPreferences() {
-        XConfigManager.displayAndWait();
+        XConfigManager.displayAndWait(null);
     }
 
     /** Secondary dialog for help.*/
@@ -247,8 +266,8 @@ public final class XConfigManager extends XCommonManager {
             Element tbxs = (Element) toolboxes.item(0);
             document.getDocumentElement().removeChild(tbxs);
         }
+        correspondance = null;
         updated = false;
-        refreshDisplay();
     }
 
     /** Interpret action.
@@ -349,5 +368,14 @@ public final class XConfigManager extends XCommonManager {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Save the modifications
+     */
+    protected static void writeDocument(String filename, Node written) {
+        if (!SCILAB_CONFIG_FILE.equals(filename)) {
+            XCommonManager.writeDocument(filename, written);
+        }
     }
 }

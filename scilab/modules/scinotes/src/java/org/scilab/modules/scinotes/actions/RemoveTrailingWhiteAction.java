@@ -11,6 +11,8 @@
  */
 package org.scilab.modules.scinotes.actions;
 
+import java.io.IOException;
+
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -23,6 +25,7 @@ import org.scilab.modules.scinotes.TrailingWhiteManager;
  * RemoveTrailingWhiteAction Class
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public final class RemoveTrailingWhiteAction extends DefaultAction {
 
     /**
@@ -38,7 +41,7 @@ public final class RemoveTrailingWhiteAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        ScilabEditorPane sep = (ScilabEditorPane) getEditor().getTextPane();
+        ScilabEditorPane sep = getEditor().getTextPane();
         int start = sep.getSelectionStart();
         int end = sep.getSelectionEnd();
         int pos = sep.getCaretPosition();
@@ -63,6 +66,18 @@ public final class RemoveTrailingWhiteAction extends DefaultAction {
             }
         }
         doc.mergeEditsEnd();
+    }
+
+    /**
+     * @return an action to reindent a document
+     */
+    public static SciNotes.ActionOnDocument getActionOnDocument() {
+        return new SciNotes.ActionOnDocument() {
+            public void actionOn(ScilabDocument doc) throws IOException {
+                TrailingWhiteManager trailingWhite = new TrailingWhiteManager(doc);
+                trailingWhite.removeTrailingWhite(0, doc.getLength());
+            }
+        };
     }
 
     /**

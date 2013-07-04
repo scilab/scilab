@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="comments" xml:lang="en">
+    <refnamediv>
+        <refname>comments</refname>
+        <refpurpose>comentários</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Uma seqüência de duas barras <literal> // </literal> fora de uma
+            definição de string marca o início de um comentário. As barras, tanto
+            quanto o restante dos caracteres até o fim das linhas não são
+            interpretados. 
+        </para>
+        <para>Dentro de uma função, as primeiras linhas de comentário até a
+            primeira instrução ou linha vazia podem ser usadas para fornecer o
+            conteúdo padrão para a documentação de ajuda da função ("help" da função).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
+g=9.81// a gravidade
+
+text='a//b'
+
+function y=myfunction(x)
+//  myfunction computa y=x^2+1
+// x deve ser um vetor ou uma matriz
+  y=x^2+1
+endfunction
+
+help myfunction
+ ]]></programlisting>
+    </refsection>
+</refentry>

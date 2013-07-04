@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Sylvestre Ledru
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="filebrowser">
+    <refnamediv>
+        <refname>filebrowser</refname>
+        <refpurpose>Scilabファイルブラウザを開く</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>filebrowser()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>ファイルブラウザを開きます.</para>
+        <para>
+            <literal>filebrowser</literal>によりScilabから直接システム上の
+            ファイルとディレクトリをブラウズすることができます.
+        </para>
+        <para>
+            <literal>filebrowser</literal> には以下のような機能があります: 
+            <itemizedlist>
+                <listitem><para>
+                        便利で分かりやすいファイルブラウザ
+                        <para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/filebrowser_list.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
+                        </para>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        ファイルアイテム上で簡単に処理(SciNotesで開く, 実行, Scilabにロード, 
+                        Xcosで開く, など)を実行可能.
+                        <para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/filebrowser_action.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
+                        </para>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem><para>
+                        システムのデフォルトアプリケーションで開く
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem><para>
+                        ファイルアイテムを複数選択<para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/filebrowser_multiple.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
+                        </para>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem><para>
+                        簡単で分かりやすいフィルタ
+                        <para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/filebrowser_filter.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
+                        </para>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem><para>
+                        <ulink url="http://en.wikipedia.org/wiki/Regular_expression">正規表現</ulink>
+                        による高度なフィルタ
+                        <para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/filebrowser_filter_regexp.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
+                        </para>
+                        <para/>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </refsection>
+</refentry>

@@ -9,6 +9,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function demo_message(fil)
-	text=mgetl(fil);
-	messagebox(text,"modal");
+    text=mgetl(fil);
+    messagebox(text,"modal");
 endfunction

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="break">
+    <refnamediv>
+        <refname>break</refname>
+        <refpurpose>ключевое слово для прерывания циклов</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Внутри цикла <literal>for</literal> или <literal>while</literal> команда  <literal>break</literal> насильно прерывает цикл.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+k=0; 
+while 1==1, 
+	  k=k+1;
+	  if k > 100 then  
+	     break
+	  end; 
+end
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="while">while</link>
+            </member>
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="for">for</link>
+            </member>
+            <member>
+                <link linkend="abort">abort</link>
+            </member>
+            <member>
+                <link linkend="return">return</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

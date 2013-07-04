@@ -42,7 +42,7 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
     /* first step, create a text object */
     char * parentSubwinUID = (char*)getCurrentSubWin();
     char * pTextUID = NULL;
-    double * textCorners = NULL;
+    double* textCorners = NULL;
     int defaultColor = 0; /* color does not matter */
     int visible = 0;
     double fontAngle = 0.;
@@ -55,7 +55,7 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
                             xPos, yPos,
                             TRUE,
                             NULL,
-                            FALSE,
+                            0,
                             &defaultColor, &defaultColor,
                             FALSE, FALSE, FALSE,
                             ALIGN_LEFT);

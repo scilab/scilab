@@ -10,62 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tand" xml:lang="ru">
-  <refnamediv>
-    <refname>tand</refname>
-    <refpurpose>тангенс, аргумент в градусах.</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>t=tand(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>вещественный вектор или матрица</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>t</term>
-        <listitem>
-          <para>вещественный вектор или матрица</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Элементы <literal>t</literal> являются тангенсом элементов <literal>x</literal> 
-      в предположении, что они заданы в градусах.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Примеры</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tand" xml:lang="ru">
+    <refnamediv>
+        <refname>tand</refname>
+        <refpurpose>тангенс, аргумент в градусах.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>t = tand(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>вещественный вектор или матрица.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>вещественный вектор или матрица.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Элементы <varname>t</varname> являются тангенсом элементов <varname>x</varname>
+            в предположении, что они заданы в градусах.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 mod=ieee();ieee(2);
 x=[0,30 45 60 90 360];
 tand(x)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="atan">atan</link>
-      </member>
-      <member>
-        <link linkend="atand">atand</link>
-      </member>
-      <member>
-        <link linkend="tan">tan</link>
-      </member>
-      <member>
-        <link linkend="tanm">tanm</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="atan">atan</link>
+            </member>
+            <member>
+                <link linkend="atand">atand</link>
+            </member>
+            <member>
+                <link linkend="tan">tan</link>
+            </member>
+            <member>
+                <link linkend="tanm">tanm</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -16,7 +16,9 @@
 /* file: sci_geom3d.c                                                     */
 /* desc : interface for geom3d routine                                    */
 /*------------------------------------------------------------------------*/
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "Scierror.h"
+#include "localization.h"
 #include "gw_graphics.h"
 #include "GetProperty.h"
 #include "HandleManagement.h"
@@ -47,29 +49,98 @@ int geom3d(double *x, double *y, double *z, int n)
 /*--------------------------------------------------------------------------*/
 int sci_geom3d(char * fname, unsigned long fname_len)
 {
-    int ix1 = 0, m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, l3 = 0;
+    SciErr sciErr;
+    int ix1 = 0, m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0;
 
-    CheckRhs(3,3);
-    CheckLhs(2,3);
+    int* piAddr1 = NULL;
+    int* piAddr2 = NULL;
+    int* piAddr3 = NULL;
 
-    GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-    GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
-    GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
-    CheckSameDims(1,2,m1,n1,m2,n2);
-    CheckSameDims(2,3,m2,n2,m3,n3);
+    double* l1 = NULL;
+    double* l2 = NULL;
+    double* l3 = NULL;
+
+    CheckInputArgument(pvApiCtx, 3, 3);
+    CheckOutputArgument(pvApiCtx, 2, 3);
+
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 1.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 2.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    //get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 3.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &m3, &n3, &l3);
+    if (sciErr.iErr)
+    {
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    //CheckSameDims
+    if (m1 != m2 || n1 != n2)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), fname, 1, m1, n1);
+        return 1;
+    }
+
+    //CheckSameDims
+    if (m2 != m3 || n2 != n3)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), fname, 2, m2, n2);
+        return 1;
+    }
+
     if (m1 * n1 == 0)
     {
-        LhsVar(1) = 0;
-        PutLhsVar();
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
     ix1 = m1 * n1;
-    geom3d(stk(l1), stk(l2), stk(l3), ix1);
+    geom3d((l1), (l2), (l3), ix1);
 
-    LhsVar(1) = 1;
-    LhsVar(2) = 2;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 1;
+    AssignOutputVariable(pvApiCtx, 2) = 2;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

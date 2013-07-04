@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../windows_tools/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../windows_tools/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;UI_DATA_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -108,7 +108,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../windows_tools/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../windows_tools/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;UI_DATA_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -135,7 +135,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../windows_tools/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../windows_tools/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;UI_DATA_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -168,7 +168,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../../libs/MALLOC/includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../windows_tools/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../windows_tools/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;UI_DATA_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -196,10 +196,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_closeEditvar.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_filebrowser.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_updatebrowsevar.cpp" />
     <ClCompile Include="..\cpp\FileBrowserChDir.cpp" />
-    <ClCompile Include="..\cpp\UpdateBrowseVar.cpp" />
+    <ClCompile Include="..\cpp\BrowseVarManager.cpp" />
     <ClCompile Include="..\jni\BrowseVar.cpp" />
     <ClCompile Include="..\jni\FileBrowser.cpp" />
     <ClCompile Include="..\jni\ui_data_wrap.c" />
@@ -213,7 +214,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\includes\FileBrowserChDir.h" />
     <ClInclude Include="..\..\includes\ui_data.h" />
-    <ClInclude Include="..\..\includes\UpdateBrowseVar.h" />
+    <ClInclude Include="..\..\includes\BrowseVarManager.h" />
     <ClInclude Include="..\jni\BrowseVar.hxx" />
     <ClInclude Include="..\..\includes\dynlib_ui_data.h" />
     <ClInclude Include="..\jni\EditVar.hxx" />
@@ -228,10 +229,6 @@
     <None Include="..\..\sci_gateway\ui_data_gateway.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Visual-Studio-settings\rename-vc-files\rename-vc-files.vcxproj">
       <Project>{dd8a0506-8d31-4cf8-856a-c10ece9c13a4}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

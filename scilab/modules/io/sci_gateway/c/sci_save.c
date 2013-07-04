@@ -55,7 +55,7 @@ int sci_save(char *fname, unsigned long fname_len)
         int iColsI      = 0;
         char* pstVarI   = NULL;
 
-        if(Rhs > 1)
+        if (Rhs > 1)
         {
             int i = 0;
             for (i = 2 ; i <= Rhs ; i++)
@@ -98,7 +98,7 @@ int sci_save(char *fname, unsigned long fname_len)
                     return 1;
                 }
 
-                if(strcmp(pstVarI, "-append") != 0)
+                if (strcmp(pstVarI, "-append") != 0)
                 {
                     //try to get variable by name
                     sciErr = getVarAddressFromName(pvApiCtx, pstVarI, &piAddrI2);
@@ -119,17 +119,10 @@ int sci_save(char *fname, unsigned long fname_len)
 
                 freeAllocatedSingleString(pstVarI);
             }
-
-            if(iOldSave == FALSE)
-            {
-                int lw = 0;
-                //call "overload" to prepare data to export_to_hdf5 function.
-                C2F(overload) (&lw, "save", (unsigned long)strlen("save"));
-            }
         }
         else
         {
-            iOldSave = TRUE;
+            iOldSave = FALSE;
         }
     }
     else
@@ -137,11 +130,19 @@ int sci_save(char *fname, unsigned long fname_len)
         iOldSave = TRUE;
     }
 
+    //new save to sod format
+    if (iOldSave == FALSE)
+    {
+        int lw = 0;
+        //call "overload" to prepare data to export_to_hdf5 function.
+        C2F(overload) (&lw, "save", (unsigned long)strlen("save"));
+    }
 
     //old save
 
     if (iOldSave)
-    {//show warning only for variable save, not for environment.
+    {
+        //show warning only for variable save, not for environment.
         if (getWarningMode() && Rhs > 1)
         {
             sciprint(_("%s: Scilab 6 will not support the file format used.\n"), _("Warning"));

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="parents" xml:lang="en">
+    <refnamediv>
+        <refname>parents</refname>
+        <refpurpose>( ) parênteses esquerdo e direito</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>(expressão)
+            [...]=func(e1,e2,...)
+            [x1,x2,...]=(e1,e2,...)
+            x(i,j)
+            v(i)
+            [...]=l(i)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros </title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>matriz de qualquer tipo possível </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>vetor linha ou coluna de qualquer tipo possível </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>l</term>
+                <listitem>
+                    <para>variável tipo lista </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>func</term>
+                <listitem>
+                    <para>qualquer nome de função </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e1,e2,...</term>
+                <listitem>
+                    <para>qualquer tipo possível de expressão</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Parênteses esquerdo e direito são usados para</para>
+        <para>* Especificar ordem de avaliação dentro de expressões,</para>
+        <para>* Formar listas de argumentos do lado direito de uma função. Dentro
+            de lados direitos múltiplos, os argumentos devem ser separados por
+            vírgula.
+        </para>
+        <para>* Selecionar elementos dentro de vetores, matrizes e listas.Ver
+            ajuda em insertion e extraction para maiores informações.
+        </para>
+        <para> * [x1,x2,...]=(e1,e2,...) é equivalente a realizar primeiro %t_1 =
+            e1, %t_2 = e2, ..., e então x1 = %t_1, x2 = %t_2, ..., onde as variáveis
+            %t_i, i = 1, 2, ... são visíveis ao usuário.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
+3^(-1)
+x=poly(0,"x");
+//
+(x+10)/2
+i3=eye(3,3)
+//
+a=[1 2 3;4 5 6;7 8 9],a(1,3),a([1 3],:),a(:,3)
+a(:,3)=[]
+a(1,$)=33
+a(2,[$ $-1])
+a(:,$+1)=[10;11;12]
+//
+w=ssrand(2,2,2);ssprint(w)
+ssprint(w(:,1))
+ss2tf(w(:,1)) 
+//
+l=list(1,2,3,4)
+[a,b,c,d]=l(:)
+l($+1)='novo'
+//
+v=%t([1 1 1 1 1])
+//
+[x,y,z]=(1,2,3)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title> Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="colon">colon</link>
+            </member>
+            <member>
+                <link linkend="comma">comma</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="insertion">insertion</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

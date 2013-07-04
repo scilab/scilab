@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_cond2reltol" xml:lang="ja">
+    <refnamediv>
+        <refname>assert_cond2reltol</refname>
+        <refpurpose>条件数から計算した相対誤差を提案する.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            rtol = assert_cond2reltol ( condition )
+            rtol = assert_cond2reltol ( condition , offset )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>condition :</term>
+                <listitem>
+                    <para>
+                        doubleの行列,条件数.
+                        条件数は厳密に正とする必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>offset :</term>
+                <listitem>
+                    <para>
+                        doubleの行列, 必要な10進桁数のためのシフト
+                        (デフォルト: offset=0).
+                        例えば,offset=1は必要な精度を増加させ
+                        (相対許容誤差を10^-1倍に減らします),
+                        offset=-1は必要な精度を減らします
+                        (相対許容誤差を10^1倍に増やします).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rtol :</term>
+                <listitem>
+                    <para>
+                        doubleの行列, 相対許容誤差. 
+                        相対許容誤差は厳密に正で, 1より小さい数です
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            条件数に基づき,対応する相対許容誤差を返します.
+        </para>
+        <para>
+            オプションのパラメータが空の行列 [] に等しい場合,
+            そのデフォルト値を設定します.
+        </para>
+        <para>
+            この相対許容誤差は単なる推奨値であることを強調しておきます.
+            代わりに,より小さいまたは大きな相対許容誤差を使用する
+            正当な理由がある場合がありえます.
+        </para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        悪条件の問題においても,
+                        正確な計算が可能な素晴らしいアルゴリズムがある場合を
+                        考えてみましょう.
+                        この場合,より高い精度(正のオフセット)が必要となります.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        性能と精度のトレードオフがあり,性能が勝る場合について
+                        考えてみましょう.
+                        この場合, より劣る精度(負のオフセット)が必要となります.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            スカラー入力引数は全て他の入力引数と同じ大きさのdoubleの
+            行列に展開されます.
+        </para>
+        <para>
+            必要な桁数 d を計算した後,相対許容誤差 10^-d を計算します.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+assert_cond2reltol ( 0 ) // 1.110D-16
+assert_cond2reltol ( 1 ) // 1.110D-16
+assert_cond2reltol ( 1.e1 ) // 1.110D-15
+assert_cond2reltol ( 1.e2 ) // 1.110D-14
+assert_cond2reltol ( 1.e3 ) // 1.110D-13
+assert_cond2reltol ( 1.e16 ) // 1
+assert_cond2reltol ( 1.e17 ) // 1
+assert_cond2reltol ( 1.e18 ) // 1
+
+// 行列入力.
+condition = [0,1,10,100,1000,1.D13,1.D14,1.D15,1.D16,1.D17,1.D18];
+expected = [1.110D-16    1.110D-16    1.110D-15    1.110D-14    1.110D-13    0.0011102    0.0111022    0.1110223    1.    1.    1.];
+assert_cond2reltol ( condition )
+
+// オフセットを使用
+// Negative offset : require less accuracy
+assert_cond2reltol ( 1.e2 , [0 -1] ) // [1.1D-14 1.1D-13]
+// 正のオフセット : より高い精度を必要とします
+// オフセットの影響を調べます
+assert_cond2reltol ( 1.e2 , [0 1 2 3] ) // [1.1D-14 1.1D-15 1.1D-16 1.1D-16]
+// 負のオフセット
+// オフセットの影響を調べます
+assert_cond2reltol ( 1.e14 , [0 -1 -2 -3] ) // [1.1D-02    1.1D-01    1 1]
+
+// 条件数に対して相対許容誤差をプロット
+condition = logspace(0,18,1000);
+r = assert_cond2reltol ( condition );
+plot(condition,r)
+h=gcf();
+h.children.log_flags="lln";
+h.children.children.children.thickness=4;
+xt = h.children.x_ticks;
+xt.locations = 10^(0:2:18)';
+xt.labels = ["10^0";"10^2";"10^4";"10^6";"10^8";"10^10";"10^12";"10^14";"10^16";"10^18"];
+h.children.x_ticks=xt;
+yt = h.children.y_ticks;
+yt.locations = 10^-(0:2:18)';
+yt.labels = ["10^0";"10^-2";"10^-4";"10^-6";"10^-8";"10^-10";"10^-12";"10^-14";"10^-16";"10^-18"];
+h.children.y_ticks=yt;
+xtitle("Relative tolerance","Condition","Relative tolerance");
+r = assert_cond2reltol ( condition , +3 );
+plot(condition,r,"r")
+r = assert_cond2reltol ( condition , -3 );
+plot(condition,r,"g")
+legend(["Offset=0","Offset=+3","Offset=-3"]);
+
+   ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>関数が導入されました
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

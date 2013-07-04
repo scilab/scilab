@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="srkf">
+    <refnamediv>
+        <refname>srkf</refname>
+        <refpurpose>平方根カルマンフィルタ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[x1,p1]=srkf(y,x0,p0,f,h,q,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>f, h</term>
+                <listitem>
+                    <para>カレントのシステム行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>q, r</term>
+                <listitem>
+                    <para>ダイナミクスおよび観測ノイズの共分散行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0, p0</term>
+                <listitem>
+                    <para>t=-1までのデータに基づくt=0における状態量推定値および誤差共分散</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>カレントの観測出力</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x1, p1</term>
+                <listitem>
+                    <para>t=0までのデータに基づくt=1における状態量推定値および誤差共分散</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            平方根カルマンフィルタアルゴリズム
+        </para>
+    </refsection>
+</refentry>

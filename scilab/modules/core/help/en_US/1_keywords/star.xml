@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="star">
+    <refnamediv>
+        <refname>star</refname>
+        <refpurpose>(*) multiplication operator</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Multiplication. Usual meaning. Valid for constant,
+            boolean, polynomial, rational matrices and for <literal>syslin</literal> lists (the meaning is series connection).
+        </para>
+        <para>
+            Element-wise multiplication is denoted <literal>x.*y</literal>. If
+            <literal>x</literal> or <literal>y</literal> is scalar (1x1 matrix) <literal> .* </literal>
+            is the same as <literal>*</literal>.
+        </para>
+        <para>
+            Kronecker product is <literal>x.*.y</literal>.
+        </para>
+        <para>
+            <literal>A*.B</literal>  is an operator with no predefined meaning. It may be used
+            to define a new operator (see <link linkend="overloading">overloading</link>) with  the same precedence as <literal>*</literal> or <literal>/</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Basic numerical operations
+2 * 2 // 4
+2 * [%pi, %eps] // 6.2831853    4.441D-16
+rand(2,2) * rand(2)
+[1, 2; 3, 4] * [%pi,%eps; %e, %pi]
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Polynomial operations
+s=poly(0,"s");
+p=1+s+2*s^2;
+q=1+s+2*s^3;
+p * q
+//               2    3    4    5
+//    1 + 2s + 3s + 4s + 2s + 4s
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Rational
+s=poly(0,'s');
+W=[1/s,1/(s+1)];
+W' * W
+//    1           1          
+//    -         -----        
+//     2             2       
+//    s         s + s        
+//                           
+//      1           1        
+//    -----     ---------    
+//         2              2  
+//    s + s     1 + 2s + s   
+ ]]></programlisting>
+    </refsection>
+    
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dot">dot</link>
+            </member>
+            <member>
+                <link linkend="slash">slash</link>
+            </member>
+            <member>
+                <link linkend="backslash">backslash</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="overloading">overloading</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="Matplot_properties">
+    <refnamediv>
+        <refname>свойства Matplot</refname>
+        <refpurpose>
+            описание свойств объектов Matplot
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Объект <literal>Matplot</literal> - это лист иерархии графических объектов.
+            Он представляет двумерные графики поверхности, используя цвета и изображения
+            (см. <function>Matplot</function> и <function>Matplot1</function>).
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>parent: </term>
+                <listitem>
+                    <para>
+                        это свойство содержит указатель предка. Предок объекта
+                        <literal>Matplot</literal> должен быть типа <literal>"Axes"</literal> ("Оси").
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>children: </term>
+                <listitem>
+                    <para>
+                        это свойство содержит вектор с потомками <literal>children</literal>
+                        указателя. Однако, указатели <literal>Matplot</literal> в настоящее
+                        время не имеют потомков <literal>children</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>visible: </term>
+                <listitem>
+                    <para>
+                        это поле содержит значение свойства видимости <literal>visible</literal>
+                        для объекта. Оно должно быть <literal>"on"</literal> ("вкл.") или
+                        <literal>"off"</literal> ("откл."). По умолчанию, график видим, значение
+                        свойства <literal>"on"</literal>. Если же <literal>"off"</literal>, то
+                        график на экране не рисуется.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>data: </term>
+                <listitem>
+                    <para>
+                        это поле определяет матрицу данных о цвете <literal>color</literal>
+                        размером [<literal>m</literal> на <literal>n</literal>] с помощью
+                        текущей цветовой карты. Цвет, связанный с <literal>color(i,j)</literal>
+                        используется для рисования маленького квадрата длиной 1 с центром в
+                        <literal>(x=j,y=(m-i+1))</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>clip_state: </term>
+                <listitem>
+                    <para>
+                        это поле содержит значение свойства <literal>clip_state</literal>
+                        ("обрезка") для <literal>Matplot</literal>. Оно должно быть:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>"off"</literal> - это значит, что <literal>Matplot</literal> не обрезан.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"clipgrf"</literal> - это значит, что <literal>Matplot</literal>
+                                обрезан с внешней стороы рамки осей <literal>Axes</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"on"</literal> - это значит, что <literal>Matplot</literal> обрезан по внешеней
+                                стороне прямоугольника, заданного свойством <literal>clip_box</literal>.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>clip_box: </term>
+                <listitem>
+                    <para>
+                        это поле предназначено для определения свойства <literal>clip_box</literal> ("рамка обрезки").
+                        По умолчанию его значение должно быть пустой матрицей, если <literal>clip_state</literal>
+                        равно <literal>"off"</literal>. В других случаях вектор <literal>[x,y,w,h]</literal>
+                        (верхняя левая точка, ширина, высота) определяет часть <literal>Matplot</literal>,
+                        которую нужно отобразить, однако значение свойства <literal>clip_state</literal> будет меняться.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>user_data: </term>
+                <listitem>
+                    <para>
+                        это поле может быть использовано для хранения и возврата любой переменной Scilab в
+                        структуре данных <literal>Matplot</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+Matplot((1:xget("lastpattern")))
+e=gce(); // получить текущий объект
+e.data=e.data($:-1:1) // обратить порядок
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="delete">delete</link>
+            </member>
+            <member>
+                <link linkend="grayplot">grayplot</link>
+            </member>
+            <member>
+                <link linkend="Matplot">Matplot</link>
+            </member>
+            <member>
+                <link linkend="Matplot1">Matplot1</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+            <member>
+                <link linkend="grayplot_properties">grayplot_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

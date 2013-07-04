@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="comments">
+    <refnamediv>
+        <refname>comments</refname>
+        <refpurpose>(//) commentaires</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Une séquence de deux barres obliques consécutives <literal>//</literal> en dehors 
+            d'une chaîne de caractères marque le début d'un commentaire. Les barres obliques 
+            ainsi que tous les caractères suivants jusqu'à la fin de la ligne 
+            ne sont pas interprétés.
+        </para>
+        <para>A l'intérieur d'une fonction, les premières lignes en commentaire, jusqu'à la première 
+            instruction ou la première ligne vide peuvent être utilisées comme contenu par défaut 
+            pour l'aide de la fonction. 
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+g=9.81// La gravité
+
+text='a//b'
+
+function y=myfunction(x)
+  // Ma fonction calcule y=x^2+1
+  // x doit être un vecteur ou une matrice
+  y=x^2+1
+endfunction
+
+help myfunction
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="slash">slash</link>
+            </member>
+            <member>
+                <link linkend="backslash">backslash</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

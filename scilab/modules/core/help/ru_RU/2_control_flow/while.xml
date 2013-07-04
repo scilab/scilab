@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="while">
+    <refnamediv>
+        <refname>while</refname>
+        <refpurpose>ключевое слово while</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Оператор <literal>while</literal> должен заканчиваться ключевым словом 
+            <literal>"end"</literal>.
+        </para>
+        <para>
+            <literal>while expr ,инструкции,...[,else инструкции], end</literal>
+        </para>
+        <para>
+            <literal>while expr do инструкции,...[,else инструкции], end</literal>
+        </para>
+        <para>
+            <literal>while expr then инструкции,...[,else инструкции], end</literal>
+        </para>
+        <para>Примечания:</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Единственное ограничение состоит в том, что каждое ключевое слово <literal>then</literal> 
+                    или <literal>do</literal> должно быть в той же самой строке, что и ключевое слово
+                    <literal>while</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Ключевые слова <literal>then</literal> или <literal>do</literal> могут 
+                    быть заменены на возврат каретки или запятую. Для совместимости с 
+                    Matlab можно, но не рекомендуется, вставлять пробел между концом
+                    инструкции и началом новой инструкции.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Необязательная конструкция <literal>[,else инструкции]</literal> позволяет
+                    указывать инструкции <literal>инструкции</literal>, которые исполняются когда выражение
+                    <literal>expr</literal> становится ложным.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            В соответствии с договорённостями по написанию кода  в Scilab рекомендуется:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    начинать новую инструкцию на новой строке;
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    писать не более одной простой инструкции на одной строке;
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    разбивать составные инструкции на множество строк.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Например, используйте:
+        </para>
+        <programlisting role=""><![CDATA[
+      i = 0
+      while i<5 
+	disp("i");
+	i = i + 1; 
+      end
+]]></programlisting>
+        <para>
+            а не:
+        </para>
+        <programlisting role=""><![CDATA[
+      i = 0; while i<5 disp("i"); i = i + 1; end
+]]></programlisting>
+        <para>
+            Предупреждение: число символов, используемых для определения тела любой инструкции условия
+            (<literal>if while for</literal> или <literal>select/case</literal>) должно быть ограничено
+            16К.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+e=1; a=1; k=1;
+while norm(a-(a+e),1) > %eps, 
+    e=e/2; 
+    k=k+1; 
+end
+e,k
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="for">for</link>
+            </member>
+            <member>
+                <link linkend="select">select</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="return">return</link>
+            </member>
+            <member>
+                <link linkend="pause">pause</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

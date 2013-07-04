@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ans">
+    <refnamediv>
+        <refname>ans</refname>
+        <refpurpose>answer</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>ans</literal> means "answer".
+            Variable <literal>ans</literal> is created automatically when expressions 
+            are not assigned. <literal>ans</literal> contains the last unassigned evaluated expression.
+        </para>
+        <para>
+            Variable <literal>ans</literal> is not protected by <function>predef</function>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+2+2
+ans // 4
+ans=10 // 10
+clear ans
+a=2+2;
+isdef("ans") // F
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="predef">predef</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

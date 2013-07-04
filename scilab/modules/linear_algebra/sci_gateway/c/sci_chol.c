@@ -21,34 +21,35 @@
 extern int C2F(intdpotrf)(char *fname, unsigned long fname_len);
 extern int C2F(intzpotrf)(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(intchol)(char *fname,unsigned long fname_len)
+int C2F(intchol)(char *fname, unsigned long fname_len)
 {
-	int *header1;
-	int CmplxA;int ret;
+    int *header1;
+    int CmplxA;
+    int ret;
 
-	/*   chol(A)  */
-	if (GetType(1)!=sci_matrix) 
-	{
-		OverLoad(1);
-		return 0;
-	}
+    /*   chol(A)  */
+    if (GetType(1) != sci_matrix)
+    {
+        OverLoad(1);
+        return 0;
+    }
 
-	header1 = (int *) GetData(1);
-	CmplxA=header1[3];
+    header1 = (int *) GetData(1);
+    CmplxA = header1[3];
 
-	switch (CmplxA) 
-	{
-		case REAL:
-			ret = C2F(intdpotrf)("chol",4L);
-		break;
-		case COMPLEX:
-			ret = C2F(intzpotrf)("chol",4L);
-		break;
-		default:
-			Scierror(999,_("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),
-					fname,1);
-		break;
-	}
-	return 0;
+    switch (CmplxA)
+    {
+        case REAL:
+            ret = C2F(intdpotrf)("chol", 4L);
+            break;
+        case COMPLEX:
+            ret = C2F(intzpotrf)("chol", 4L);
+            break;
+        default:
+            Scierror(999, _("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),
+                     fname, 1);
+            break;
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

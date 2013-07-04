@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Serge STEER
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -43,16 +43,16 @@ static int IsEqualVar(double *d1, int n1, double *d2, int n2);
 /* comparison mode for double precision numbers */
 void SetDoubleCompMode(int mode);
 int GetDoubleCompMode(void);
-int DoubleCompMode=1; /*IEEE mode */
+int DoubleCompMode = 1; /*IEEE mode */
 
 /* Structure for walking inside Scilab lists (used by IsEqualList)*/
 int AllocRecIfRequired(int krec);
 void FreeRec(void);
 typedef struct RecursionRecord
 {
-  double* d1 ;/* pointers on the first list header */
-  double* d2 ;/* pointers on the second list header */
-  int     k; /* index of current list element  */
+    double* d1 ;/* pointers on the first list header */
+    double* d2 ;/* pointers on the second list header */
+    int     k; /* index of current list element  */
 } RecursionRecord, *RecursionRecordPtr;
 
 RecursionRecordPtr Rrec;

@@ -4,9 +4,18 @@
 # This file is distributed under the same license as the Scilab package.
 
 
-SPREADSHEET_C_SOURCES = src/c/xls.c
+SPREADSHEET_C_SOURCES = \
+src/c/xls.c \
+src/c/checkCsvWriteFormat.c \
+src/c/csvDefault.c \
+src/c/csvRead.c \
+src/c/csvWrite.c \
+src/c/getRange.c \
+src/c/splitLine.c \
+src/c/utftolatin.c
 
-RIPOLE_SOURCES = src/c/ripole/olestream-unwrap.c \
+RIPOLE_SOURCES = \
+src/c/ripole/olestream-unwrap.c \
 src/c/ripole/pldstr.c \
 src/c/ripole/ole.c \
 src/c/ripole/bytedecoders.c \
@@ -14,21 +23,29 @@ src/c/ripole/logger.c \
 src/c/ripole/ripole.c \
 src/c/ripole/bt-int.c
 
-
-GATEWAY_C_SOURCES = sci_gateway/c/gw_spreadsheet.c \
+GATEWAY_C_SOURCES = \
+sci_gateway/c/gw_spreadsheet.c \
 sci_gateway/c/sci_xls_read.c \
-sci_gateway/c/sci_xls_open.c
+sci_gateway/c/sci_xls_open.c \
+sci_gateway/c/gw_csv_helpers.c \
+sci_gateway/c/sci_csvDefault.c \
+sci_gateway/c/sci_csvRead.c \
+sci_gateway/c/sci_csvStringToDouble.c \
+sci_gateway/c/sci_csvTextScan.c \
+sci_gateway/c/sci_csvWrite.c
 
-libscispreadsheet_la_CPPFLAGS = -I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(srcdir)/src/c/ripole \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/localization/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/io/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/fileio/includes/ \
-				$(AM_CPPFLAGS)
+libscispreadsheet_la_CPPFLAGS = \
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(srcdir)/src/c/ripole \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/io/includes/ \
+-I$(top_srcdir)/modules/string/src/c/ \
+-I$(top_srcdir)/modules/string/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/fileio/includes/ \
+$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscispreadsheet.la
 noinst_LTLIBRARIES = libscispreadsheet-algo.la
@@ -42,7 +59,7 @@ libscispreadsheet_algo_la_CPPFLAGS = $(libscispreadsheet_la_CPPFLAGS)
 CHECK_SRC= $(SPREADSHEET_C_SOURCES) $(GATEWAY_C_SOURCES) $(RIPOLE_SOURCES)
 INCLUDE_FLAGS = $(libscispreadsheet_la_CPPFLAGS)
 
-libscispreadsheet_la_LIBADD = libscispreadsheet-algo.la 
+libscispreadsheet_la_LIBADD = libscispreadsheet-algo.la
 
 #### Target ######
 modulename=spreadsheet
@@ -50,7 +67,7 @@ modulename=spreadsheet
 
 #### spreadsheet : Conf files ####
 libscispreadsheet_la_rootdir = $(mydatadir)
-libscispreadsheet_la_root_DATA =  license.txt 
+libscispreadsheet_la_root_DATA =  license.txt
 
 
 ####�spreadsheet : init scripts ####

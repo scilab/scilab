@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-06-22 03:34+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-01-26 04:08+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 
 #, c-format
 msgid "%s: Invalid argument address"
@@ -141,7 +141,7 @@ msgid "%s: Unable to get argument data"
 msgstr "%s：无法获取参数数据"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s：参数%d的大小错误：应该为(%d,%d)。\n"
 
 #, c-format
@@ -154,7 +154,7 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s：参数%d的类型错误：应该是实数矩阵。\n"
 
 #, c-format
@@ -165,7 +165,7 @@ msgstr "%s：无法获取参数精度"
 msgid ""
 "%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
 "expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的类型错误：应该实数标量或整数标量。\n"
 
 #, c-format
 msgid "%s: Unable to get dimension from variable \"%s\""
@@ -173,10 +173,6 @@ msgstr "%s：无法获从变量\"%s\"获取维数"
 
 msgid "double matrix"
 msgstr "双精度矩阵"
-
-#, c-format
-msgid "%s: Bad call to get a non complex matrix"
-msgstr "%s：调用非复矩阵错误"
 
 #, c-format
 msgid "stack size exceeded!\n"
@@ -204,6 +200,9 @@ msgstr "API错误：\n"
 #, c-format
 msgid "\tin %s\n"
 msgstr "\t在%s中\n"
+
+msgid "handle matrix"
+msgstr ""
 
 msgid "int matrix"
 msgstr "整型矩阵"
@@ -242,11 +241,33 @@ msgstr "%s：条目必须顺序插入"
 msgid "API_ERROR_GET_POLY_IN_LIST"
 msgstr "API_ERROR_GET_POLY_IN_LIST"
 
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr ""
+
+msgid "Optional argument list is empty.\n"
+msgstr ""
+
+msgid "Optional arguments list: \n"
+msgstr ""
+
+#, c-format
+msgid "and %s.\n"
+msgstr ""
+
 msgid "pointer"
 msgstr "指针"
 
 msgid "polynomial matrix"
 msgstr "多项式矩阵"
+
+#, c-format
+msgid "%s: Bad call to get a non complex matrix"
+msgstr "%s：调用非复矩阵错误"
 
 #, c-format
 msgid "%s: Formal variable name of polynomial can't exceed 4 characters"
@@ -263,6 +284,10 @@ msgstr "字符串矩阵"
 
 msgid "matrix of string"
 msgstr "字符串矩阵"
+
+#, c-format
+msgid "%s: Unable to convert to wide string #%d"
+msgstr "%s：无法转换成宽字符#%d"
 
 msgid "matrix of wide string"
 msgstr "宽字符串矩阵"
@@ -286,3 +311,7 @@ msgstr "%s：内存不足。\n"
 #, c-format
 msgid "%s: Invalid variable name.\n"
 msgstr "%s：无效的变量名。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An integer expected.\n"
+msgstr ""

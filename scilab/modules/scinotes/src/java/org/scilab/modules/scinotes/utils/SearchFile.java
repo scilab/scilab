@@ -75,6 +75,7 @@ import org.w3c.dom.NodeList;
  * Class SearchFile: open a window with a JTree to show the results of a search in files.
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class SearchFile extends SwingScilabTab {
 
     public static final String SEARCHDONE = "SearchFile.SearchDone";
@@ -215,10 +216,10 @@ public class SearchFile extends SwingScilabTab {
                 buffer.append(" base=\"" + mySearch.base + "\"");
                 buffer.append(" recursive=\"" + mySearch.recursive + "\"");
                 buffer.append(" ignoreCR=\"" + mySearch.ignoreCR + "\"");
-                buffer.append(" filePattern=\"" + mySearch.filePattern.replaceAll("\"", "&quot;") + "\"");
+                buffer.append(" filePattern=\"" + ScilabXMLUtilities.getXMLString(mySearch.filePattern) + "\"");
                 buffer.append(" fileCaseSensitive=\"" + mySearch.fileCaseSensitive + "\"");
                 if (mySearch.wordPattern != null && !mySearch.wordPattern.isEmpty()) {
-                    buffer.append(" wordPattern=\"" + mySearch.wordPattern.replaceAll("\"", "&quot;") + "\"");
+                    buffer.append(" wordPattern=\"" + ScilabXMLUtilities.getXMLString(mySearch.wordPattern) + "\"");
                 }
                 buffer.append(" wordCaseSensitive=\"" + mySearch.wordCaseSensitive + "\"");
                 buffer.append(" wholeWord=\"" + mySearch.wholeWord + "\"");

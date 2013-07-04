@@ -11,328 +11,339 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mopen" xml:lang="ru">
-  <refnamediv>
-    <refname>mopen</refname>
-    <refpurpose>открывает файл в Scilab'е</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Последовательность вызова</title>
-    <synopsis>[fd, err] = mopen(file [, mode, swap ])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Аргументы</title>
-    <variablelist>
-      <varlistentry>
-        <term>file</term>
-        <listitem>
-          <para>
-	    символьная строка. Имя файла, который требуется открыть.
-	  </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>mode</term>
-        <listitem>
-          <para>
-	    символьная строка, которая контролирует открыт ли файл для 
-	    чтения (<literal>r</literal>), записи (<literal>w</literal>) 
-	    или дополнения (<literal>a</literal>) и открыт ли файл для 
-	    обновления (<literal>+</literal>). <varname>mode</varname> 
-	    может также включать в себя параметр <literal>b</literal> для 
-	    указания бинарного файла.
-          </para>
-	  <para>
-	    Значение по умолчанию -- <literal>'rb'</literal>.
-	  </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>swap</term>
-        <listitem>
-          <para>
-            скаляр. Если есть <varname>swap</varname> и <code>swap = 0</code>, тогда автоматическая перестановка байтов отключается.
-          </para>
-          <para>Значение по умолчанию равно 1.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>err</term>
-        <listitem>
-          <para>скаляр. Индикатор ошибки.</para>
-          <informaltable border="1">
-            <tr>
-              <td>значение ошибки:</td>
-              <td>сообщение об ошибке:</td>
-            </tr>
-            <tr>
-              <td>0</td>
-              <td>нет ошибки</td>
-            </tr>
-            <tr>
-              <td>-1</td>
-              <td>больше нет логических модулей</td>
-            </tr>
-            <tr>
-              <td>-2</td>
-              <td>не могу открыть файл</td>
-            </tr>
-            <tr>
-              <td>-3</td>
-              <td>больше нет памяти</td>
-            </tr>
-            <tr>
-              <td>-4</td>
-              <td>некорректное имя</td>
-            </tr>
-            <tr>
-              <td>-5</td>
-              <td>некорректный статус</td>
-            </tr>
-          </informaltable>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>fd</term>
-        <listitem>
-          <para>
-            скаляр: дескриптор файла (это положительное целое число).
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Описание</title>
-    <para>
-      Функция <function>mopen</function> может использоваться для того, чтобы открыть файл <varname>file</varname> способом, совместимым с C-процедурой <function>fopen</function>. Без аргумента <varname>swap</varname> файл <varname>file</varname> предполагается закодированным в формате IEEE "с прямым порядком байтов" и байты данных автоматически переставляются, если необходимо соответствовать формату IEEE процессора.
-    </para>
-    <para>
-      Параметр <varname>mode</varname> управляет разрешённым доступом к потоку. Этот параметр может иметь одно из следующих значений. В этом списке значений символ <literal>b</literal> обозначает бинарный файл.
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>r</term>
-        <listitem>
-          <para>открывает файл для чтения.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>rb</term>
-        <listitem>
-          <para>открывает бинарный файл для чтения.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>rt</term>
-        <listitem>
-          <para>открывает текстовый файл для чтения.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>w</term>
-        <listitem>
-          <para>
-	    создаёт новый файл для записи или открывает и усекает файл до нулевой длины.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>wb</term>
-        <listitem>
-          <para>
-	    создаёт новый бинарный файл для записи или открывает и усекает файл до нулевой длины.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>wt</term>
-        <listitem>
-          <para>
-	    создаёт текстовый бинарный файл для записи или открывает и усекает файл до нулевой длины.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>a или ab</term>
-        <listitem>
-          <para>
-	    добавляет запись (открывает файл для записи в конце файла или создаёт файл для записи).
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>r+ или r+b</term>
-        <listitem>
-          <para>
-	    открывает файл для обновления (чтение и запись).
-	  </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>w+ or w+b</term>
-        <listitem>
-          <para>
-	    усекает до нулевой длины или создаёт файл для обновления.
-	  </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>a+ или a+b</term>
-        <listitem>
-          <para>
-	    добавляет запись (открывает файл для обновления, записывая в конце файла, или создаёт файл для записи).
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <para>
-      Когда вы открываете файл для обновления, вы можете выполнять операции 
-      как ввода, так и вывода в результирующем потоке. Однако за операцией 
-      вывода не может напрямую идти операция ввода без операции 
-      позиционирования файла (функция <function>mseek</function>). Также, 
-      за операцией ввода не может идти операция вывода без промежуточной 
-      операции позиционирования файла пока операция ввода не встретит конец 
-      файла.
-    </para>
-    <para>
-      Когда вы открываете файл для добавления записи (то есть, когда 
-      параметр <varname>mode</varname> равен <literal>a</literal> или 
-      <literal>a+</literal>), то невозможно перезаписать информацию, 
-      которая уже есть в файле. Вы можете использовать функцию 
-      <function>mseek</function> для смены положения указателя позиции в 
-      файле в любое место файла, но, когда вывод записан в файл, текущий 
-      указатель позиции в файле игнорируется. Весь вывод записывается в 
-      конец файла и указатель позиции в файле перемещается в конец вывода.      
-    </para>
-    <para>
-      Чтобы открыть файлы способом, совместимым с Fortran-функциями используйте функцию <function>file</function>.
-    </para>
-  </refsection>
-  <refsection>
-  </refsection>
-  <refsection>
-    <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mopen" xml:lang="ru">
+    <refnamediv>
+        <refname>mopen</refname>
+        <refpurpose>открывает файл в Scilab'е</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[fd, err] = mopen(file [, mode, swap ])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>file</term>
+                <listitem>
+                    <para>
+                        символьная строка, содержащая имя файла, который требуется открыть.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mode</term>
+                <listitem>
+                    <para>
+                        символьная строка, определяющая требуемый режим доступа к файлу.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>swap</term>
+                <listitem>
+                    <para>
+                        скаляр. Если есть <varname>swap</varname> и <code>swap = 0</code>, тогда автоматическая перестановка байтов отключается.
+                    </para>
+                    <para>Значение по умолчанию равно 1.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>скаляр. Индикатор ошибки.</para>
+                    <informaltable border="1">
+                        <tr>
+                            <td>значение ошибки:</td>
+                            <td>сообщение об ошибке:</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>нет ошибки</td>
+                        </tr>
+                        <tr>
+                            <td>-1</td>
+                            <td>больше нет логических модулей</td>
+                        </tr>
+                        <tr>
+                            <td>-2</td>
+                            <td>не могу открыть файл</td>
+                        </tr>
+                        <tr>
+                            <td>-3</td>
+                            <td>больше нет памяти</td>
+                        </tr>
+                        <tr>
+                            <td>-4</td>
+                            <td>некорректное имя</td>
+                        </tr>
+                        <tr>
+                            <td>-5</td>
+                            <td>некорректный статус</td>
+                        </tr>
+                    </informaltable>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fd</term>
+                <listitem>
+                    <para>
+                        скаляр: дескриптор файла (это положительное целое число).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>mopen</function> может использоваться для
+            того, чтобы открыть файл <varname>file</varname> способом,
+            совместимым с C-процедурой <function>fopen</function>. Без
+            аргумента <varname>swap</varname> файл
+            <varname>file</varname> предполагается закодированным в
+            формате IEEE "с прямым порядком байтов" и байты данных
+            автоматически переставляются, если необходимо
+            соответствовать формату IEEE процессора.
+        </para>
+        <para>
+            Параметр <varname>mode</varname> управляет типом            доступа к потоку. Этот параметр может иметь одно из
+            следующих значений:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        открывает файл для чтения (по умолчанию). Файл
+                        должен существовать, в противном случае ничего
+                        не получится.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w</term>
+                <listitem>
+                    <para>
+                        открывает файл на запись. Если этот файл
+                        существует, то его содержимое будет уничтожено.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>
+                        открывает файл для добавления записи. Создаёт
+                        файл если он не существует.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r+</term>
+                <listitem>
+                    <para>
+                        открывает файл как для чтения, так и для записи.
+                        Файл должен существовать, иначе ничего не
+                        получится.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w+</term>
+                <listitem>
+                    <para>
+                        открывает файл как для чтения, так и для записи.
+                        Если файл существует, то его содержимое будет
+                        уничтожено.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a+</term>
+                <listitem>
+                    <para>
+                        открывает файл как на чтение, так и на
+                        добавление записи. Создаёт файл если он не
+                        существует.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            Кроме того могут быть использованы следующие символы для определения типа файла:
+            <variablelist>
+                <varlistentry>
+                    <term>t</term>
+                    <listitem>
+                        <para>текстовый файл.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>b</term>
+                    <listitem>
+                        <para>двоичный файл (по умолчанию).</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </para>
+        <para>
+            По умолчанию режим доступа <literal>'rb'</literal> (чтение
+            двоичного файла).
+        </para>
+        <para>
+            <note>
+                Заметьте: в Windows, в режиме текстового файла комбинации CR (возврат каретки) - LF (конец строки) преобразуются в LF при чтении, а LF преобразуются в комбинации CR-LF при записи.
+            </note>
+        </para>
+        <para>
+            Когда вы открываете файл для обновления, вы можете выполнять операции
+            как ввода, так и вывода в результирующем потоке. Однако за операцией
+            вывода не может напрямую идти операция ввода без операции
+            позиционирования файла (функция <function>mseek</function>). Также,
+            за операцией ввода не может идти операция вывода без промежуточной
+            операции позиционирования файла пока операция ввода не встретит конец
+            файла.
+        </para>
+        <para>
+            Когда вы открываете файл для добавления записи (то есть, когда
+            параметр <varname>mode</varname> равен <literal>a</literal> или
+            <literal>a+</literal>), то невозможно перезаписать информацию,
+            которая уже есть в файле. Вы можете использовать функцию
+            <function>mseek</function> для смены положения указателя позиции в
+            файле в любое место файла, но, когда вывод записан в файл, текущий
+            указатель позиции в файле игнорируется. Весь вывод записывается в
+            конец файла и указатель позиции в файле перемещается в конец вывода.
+        </para>
+        <para>
+            Чтобы открыть файлы способом, совместимым с Fortran-функциями используйте функцию <function>file</function>.
+        </para>
+    </refsection>
+    <refsection>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
 // открываем SCI+'/ACKNOWLEDGEMENTS' как текст только для чтения
 fd_r = mopen(SCI+'/ACKNOWLEDGEMENTS', 'rt')
- 
+
 // читаем пять строк в fd_r
 mgetl(fd_r, 5)
- 
+
 // другой способ чтения файла
 // здесь читаются пять слов
 mfscanf(5, fd_r, '%s')
- 
+
 // закрываем дескриптор файл, связанный с SCI+'/ACKNOWLEDGEMENTS'
 mclose(fd_r);
     ]]></programlisting>
-  </refsection>
-  <refsection>
-  </refsection>
-  <refsection>
-    <programlisting role="example"><![CDATA[
+    </refsection>
+    <refsection>
+    </refsection>
+    <refsection>
+        <programlisting role="example"><![CDATA[
 // открываем файл как текст с возможностью записи
 fd_w = mopen(TMPDIR+'/write.txt', 'wt');
- 
+
 // записываем строчку в fd_w
 mputl('This is a line of text', fd_w);
 mclose(fd_w);
- 
+
 // читаем текст
 fd_r2 = mopen(TMPDIR+'/write.txt', 'rt');
 mgetl(fd_r2)
 mclose(fd_r2);
     ]]></programlisting>
-  </refsection>
-  <refsection>
-  </refsection>
-  <refsection>
-    <programlisting role="example"><![CDATA[
+    </refsection>
+    <refsection>
+    </refsection>
+    <refsection>
+        <programlisting role="example"><![CDATA[
 // читаем/записываем файл как двоичный
- 
+
 // сперва мы запишем файл
 fd_wb = mopen(TMPDIR+'/writeread.bin', 'wb')
- 
+
 // положим значения в двоичном виде
 mput(2003, 'l', fd_wb);
 mput(2008, 'i', fd_wb);
 mput(2012, 's', fd_wb);
 mput(98, 'c', fd_wb);
- 
+
 // закроем дескриптор файла, связанный с TMPDIR+'/writeread.bin'
 mclose(fd_wb);
- 
+
 // прочитаем файл
 fd_rb = mopen(TMPDIR+'/writeread.bin', 'rb')
- 
+
 mget(fd_rb, 'l')
 mget(fd_rb, 'i')
 mget(fd_rb, 's')
 mget(fd_rb, 'c')
- 
-mclose(fd_rb) 
+
+mclose(fd_rb)
     ]]></programlisting>
-  </refsection>
-  <refsection>
-  </refsection>
-  <refsection role="see also">
-    <title>Смотрите также</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="file">file</link>
-      </member>
-       <member>
-        <link linkend="mclose">mclose</link>
-      </member>
-      <member>
-        <link linkend="merror">merror</link>
-      </member>
-      <member>
-        <link linkend="meof">meof</link>
-      </member>
-      <member>
-        <link linkend="mfprintf">mfprintf</link>
-      </member>
-      <member>
-        <link linkend="fprintfMat">fprintfMat</link>
-      </member>
-      <member>
-        <link linkend="mfscanf">mfscanf</link>
-      </member>
-      <member>
-        <link linkend="fscanfMat">fscanfMat</link>
-      </member>
-      <member>
-        <link linkend="mget">mget</link>
-      </member>
-      <member>
-        <link linkend="mgetl">mgetl</link>
-      </member>
-      <member>
-        <link linkend="mgetstr">mgetstr</link>
-      </member>
-      <member>
-        <link linkend="mprintf">mprintf</link>
-      </member>
-      <member>
-        <link linkend="mput">mput</link>
-      </member>
-      <member>
-        <link linkend="mputl">mputl</link>
-      </member>
-      <member>
-        <link linkend="mputstr">mputstr</link>
-      </member>
-      <member>
-        <link linkend="mseek">mseek</link>
-      </member>
-      <member>
-        <link linkend="mtell">mtell</link>
-      </member>
-      <member>
-        <link linkend="mdelete">mdelete</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="file">file</link>
+            </member>
+            <member>
+                <link linkend="mclose">mclose</link>
+            </member>
+            <member>
+                <link linkend="merror">merror</link>
+            </member>
+            <member>
+                <link linkend="meof">meof</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+            <member>
+                <link linkend="fprintfMat">fprintfMat</link>
+            </member>
+            <member>
+                <link linkend="mfscanf">mfscanf</link>
+            </member>
+            <member>
+                <link linkend="fscanfMat">fscanfMat</link>
+            </member>
+            <member>
+                <link linkend="mget">mget</link>
+            </member>
+            <member>
+                <link linkend="mgetl">mgetl</link>
+            </member>
+            <member>
+                <link linkend="mgetstr">mgetstr</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+            <member>
+                <link linkend="mputl">mputl</link>
+            </member>
+            <member>
+                <link linkend="mputstr">mputstr</link>
+            </member>
+            <member>
+                <link linkend="mseek">mseek</link>
+            </member>
+            <member>
+                <link linkend="mtell">mtell</link>
+            </member>
+            <member>
+                <link linkend="mdelete">mdelete</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
- 
+

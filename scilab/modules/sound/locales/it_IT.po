@@ -7,25 +7,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-19 08:35+0000\n"
-"Last-Translator: Christos Spyroglou <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2012-09-30 16:37+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: it\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Si è verificato il seg. errore: %s\n"
+
+msgid "Cannot play file."
+msgstr "Non è possibile eseguire il file."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -38,13 +45,6 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Si è verificato il seg. errore: %s\n"
-
-msgid "Cannot play file."
-msgstr "Non è possibile eseguire il file."
-
-#, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
@@ -53,7 +53,7 @@ msgid "Scilab sound module not installed.\n"
 msgstr "Il modulo di Scilab per il suono non è installato.\n"
 
 msgid "Sound file handling"
-msgstr ""
+msgstr "Gestione dei file del suono"
 
 msgid "FFT on a wav file"
 msgstr "FFT su file wav"
@@ -77,6 +77,30 @@ msgstr ""
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Non è possibile aprire il file %s.\n"
 
+msgid "Index range must be specified as a scalar or 2-element vector."
+msgstr ""
+
+msgid "Sample limit vector must have 2 elements."
+msgstr ""
+
+msgid "Sample limits out of range."
+msgstr "Gli estremi del campione audio sono oltre il limite massimo."
+
+msgid "Sample limits must be given in ascending order."
+msgstr ""
+
+msgid "Error in file format."
+msgstr ""
+
+msgid "Error while reading sound file."
+msgstr ""
+
+msgid "Unrecognized data format."
+msgstr "Formato di dati non riconosciuto."
+
+msgid "Truncated data file."
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
 msgstr ""
@@ -86,16 +110,15 @@ msgstr ""
 msgid "Data array must have 1- or 2-dimensions only."
 msgstr "Gli array di dati devono avere 1- o 2- dimensioni soltanto."
 
+msgid "Data clipped during write to file."
+msgstr ""
+
 msgid "Error while writing sound file."
 msgstr "Errore durante la scrittura del file di suono."
 
 msgid "Mu-law can only be used with 8 bit data. Use method='linear' instead."
 msgstr ""
-"La Mu-law può essere usata solo con dati a 8 bit.Usare invece "
-"metodo='lineare'"
-
-msgid "Unrecognized data format."
-msgstr "Formato di dati non riconosciuto."
+"La Mu-law può essere usata solo con dati a 8 bit.Usare invece metodo='linear'"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -112,7 +135,7 @@ msgstr "%s: Il numero degli argomenti in uscita è sbagliato.\n"
 
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
-msgstr ""
+msgstr "%s: Impossibile riprodurre il suono con il seg. comando: %s.\n"
 
 #, c-format
 msgid "%s: Audio capabilities not available.\n"
@@ -178,12 +201,12 @@ msgstr ""
 
 msgid "Invalid .wav file: found data before format information."
 msgstr ""
-"File .wav non valido: sono stati trovati dei dati prima dell'informatione "
+"File .wav non valido: sono stati trovati dei dati prima dell'informazione "
 "sul formato"
 
 msgid "Incorrect chunk size information in RIFF file."
 msgstr ""
-"C'è una informazione sulla grandezza del blocco inesatto nel file RIFF"
+"Nel file RIFF l'informazione sulla dimensione del frammento non è corretta."
 
 msgid "Invalid wav format."
 msgstr "Formato wav non valido"
@@ -203,9 +226,6 @@ msgstr ""
 
 msgid "Sample limit vector must have 2 entries."
 msgstr "Il vettore del limite del campione audio  deve avere 2 voci."
-
-msgid "Sample limits out of range."
-msgstr "Gli estremi del campione audio sono oltre il limite massimo."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr ""

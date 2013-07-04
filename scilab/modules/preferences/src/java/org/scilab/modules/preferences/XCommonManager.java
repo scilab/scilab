@@ -199,8 +199,10 @@ public abstract class XCommonManager {
         //    TODO top layout changes
         visitor = new XUpdateVisitor(correspondance);
         visitor.visit(topSwing, topDOM);
-        setDimension(dialog, topDOM);
-        dialog.pack();
+        boolean changed = setDimension(dialog, topDOM);
+        if (changed) {
+            dialog.pack();
+        }
 
         return true;
     }
@@ -421,6 +423,42 @@ public abstract class XCommonManager {
     }
 
     /**
+     * Get the real path from an abstract path: scinotes/header will be converted into 8/2
+     * @param name abstract path
+     * @return real path
+     */
+    public static String getPath(String name) {
+        String[] ids = name.split("/");
+        Element element = document.getDocumentElement();
+        String path = "";
+        for (int i = 0; i < ids.length; i++) {
+            int index = 1;
+            NodeList childNodes = element.getChildNodes();
+            Node node = null;
+            int len = childNodes.getLength();
+            int j = 0;
+            for (; j < len; j++) {
+                node = childNodes.item(j);
+                String nodeName = node.getNodeName();
+                if (nodeName.equalsIgnoreCase(ids[i])) {
+                    path += index + "/";
+                    element = (Element) node;
+                    break;
+                }
+                if (!node.getNodeName().equals("#text") && !node.getNodeName().equals("#comment")) {
+                    index++;
+                }
+            }
+
+            if (j == len) {
+                System.err.println("Invalid path: " + name);
+                return "1/";
+            }
+        }
+        return path;
+    }
+
+    /**
      * Interpret action.
      * @param action : to be interpreted.
      * @param source : component source of the action (only class is needed).
@@ -443,6 +481,9 @@ public abstract class XCommonManager {
                 Element element = getElementByContext(context);
                 String value = getAttribute(action, "value");
                 String attribute = getAttribute(action, "set");
+                if (attribute.equals("path") && context.equals("/") && !Character.isDigit(value.charAt(0))) {
+                    value = getPath(value);
+                }
                 if (element != null) {
                     element.setAttribute(attribute, value);
                     XConfiguration.addModifiedPath(getNodePath(element));
@@ -674,10 +715,10 @@ public abstract class XCommonManager {
             return NAV;
         }
 
-	String response = attr.getNodeValue();
-	if (response.startsWith("_(") && response.endsWith(")")) {
-	    response = Messages.gettext(response.substring(2, response.length() - 1));
-	}
+        String response = attr.getNodeValue();
+        if (response.startsWith("_(") && response.endsWith(")")) {
+            response = Messages.gettext(response.substring(2, response.length() - 1));
+        }
 
         return response;
     }
@@ -779,12 +820,18 @@ public abstract class XCommonManager {
      * @param component : the resized component.
      * @param peer : the node having the dimension information.
      */
-    public static void setDimension(final Component component, final Node peer) {
+    public static boolean setDimension(final Component component, final Node peer) {
         int height = XConfigManager.getInt(peer, "height", 0);
         int width = XConfigManager.getInt(peer, "width",  0);
         if (height > 0 && width > 0) {
-            component.setPreferredSize(new Dimension(width, height));
+            Dimension old = component.getPreferredSize();
+            if (old.width != width || old.height != height) {
+                component.setPreferredSize(new Dimension(width, height));
+                return true;
+            }
         }
+
+        return false;
     }
 
     /**

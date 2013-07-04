@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="comma" xml:lang="en">
+    <refnamediv>
+        <refname>comma</refname>
+        <refpurpose>(,) separador de colunas, instruções e argumentos</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Descrição</title>
+        <para>Vírgulas são usadas para separar parâmetros em funções, ou para
+            separar entradas em vetores linhas.
+        </para>
+        <para>Espaços vazios podem ser usados para separar entradas em um vetor
+            linha, mas é preferível que se use vírgulas.
+        </para>
+        <para>Também é usada para separar instruções do Scilab. (Use ; para que o
+            resultado não seja exibido na tela).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
+a=[1,2,3;4,5,6];
+a=1,b=1;c=2
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title> Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="semicolon">semicolon</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

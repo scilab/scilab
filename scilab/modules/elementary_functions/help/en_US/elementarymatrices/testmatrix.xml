@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="testmatrix">
+    <refnamediv>
+        <refname>testmatrix</refname>
+        <refpurpose>generate special matrices, such as Hilbert, Franck</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[y] = testmatrix(name, n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>a character string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integers, matrix size</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        <varname>n</varname> x <varname>n</varname> matrix
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Creates some particular matrices.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>testmatrix('magi',n)</term>
+                <listitem>
+                    <para>
+                        returns a magic square of size <varname>n</varname> x <varname>n</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>testmatrix('frk',n)</term>
+                <listitem>
+                    <para>returns the Franck matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>testmatrix('hilb',n)</term>
+                <listitem>
+                    <para>
+                        is the inverse of the <varname>n</varname> x <varname>n</varname> Hilbert matrix  <literal>(Hij= 1/(i+j-1))</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+testmatrix('magi',3)
+testmatrix('frk',10)
+testmatrix('hilb',4)
+ ]]></programlisting>
+    </refsection>
+    
+</refentry>

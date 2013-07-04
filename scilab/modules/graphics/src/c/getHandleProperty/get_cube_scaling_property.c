@@ -39,8 +39,8 @@ int get_cube_scaling_property(void* _pvCtx, char* pobjUID)
 
     if (piCubeScaling == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"cube_scaling");
-        return -1 ;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "cube_scaling");
+        return -1;
     }
 
     if (iCubeScaling)

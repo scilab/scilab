@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="select">
+    <refnamediv>
+        <refname>select</refname>
+        <refpurpose>ключевое слово выбора</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            select variable
+            case value1 then 
+            instructions 1
+            case value2 then 
+            instructions 2
+            ...  
+            case valuen then 
+            instructions n
+            [else instructions]
+            end      
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>variable</term>
+                <listitem>
+                    <para>
+                        переменная, значение которой анализируется. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>value1, ..., valuen</term>
+                <listitem>
+                    <para>
+                        значения переменной <literal>variable</literal> для которых предусмотрен соответствующий набор 
+                        инструкций  <literal>instructions 1, ..., instructions n</literal>. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>instructions</term>
+                <listitem>
+                    <para>
+                        набор корректных инструкций. 
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Управляющая инструкция выбора действий по значению переменной <literal>variable</literal>.
+        </para>
+        <para>
+            Примечания:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Единственное ограничение в том, что каждое ключевое слово <literal>"then"</literal> должно быть на 
+                    той же строке, что и соответствующее ключевое слово <literal>"case"</literal> (либо используйте  
+                    обозначение продолжения, см <link linkend="dot">точка</link>).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Ключевое слово <literal>"then"</literal> можно заменить на перевод каретки или запятую.
+                    Инструкции <literal>instructions1</literal> исполняются, если <literal>expr1=expr</literal>, 
+                    и т. д.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            В соответствии с договорённостями по написанию кода  в Scilab рекомендуется:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    начинать новую инструкцию на новой строке;
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    писать не более одной простой инструкции на одной строке;
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    разбивать составные инструкции на множество строк.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Например, используйте:
+        </para>
+        <programlisting role=""><![CDATA[
+A = 2
+select A
+case 1 then
+    disp(1)
+case 2 then
+    disp(2)
+else
+    disp(3)
+end
+]]></programlisting>
+        <para>
+            а не:
+        </para>
+        <programlisting role=""><![CDATA[
+A = 2;select A case 1 then disp(1); case 2 then disp(2); else  disp(3); end
+]]></programlisting>
+        <para>
+            Предупреждение: число символов, используемых для определения тела любой инструкции условия
+            (<literal>if while for</literal> или <literal>select/case</literal>) должно быть ограничено
+            16К.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+while %t do
+  n=round(10*rand(1,1))
+  select n
+  case 0 then 
+    disp(0)
+  case 1 then
+    disp(1)
+  else
+    break
+  end
+end
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="while">while</link>
+            </member>
+            <member>
+                <link linkend="for">for</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

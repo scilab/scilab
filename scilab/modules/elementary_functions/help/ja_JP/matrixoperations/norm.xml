@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="norm" xml:lang="ja">
+    <refnamediv>
+        <refname>norm</refname>
+        <refpurpose>行列のノルム</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[y]=norm(x [,flag])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>実数または複素数のベクトルまたは(フルまたは疎の)行列 </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>文字列 (ノルムの型) (デフォルト値 =2)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>行列の場合</para>
+        <variablelist>
+            <varlistentry>
+                <term>norm(x)</term>
+                <listitem>
+                    <para>
+                        または<literal>norm(x,2)</literal> は
+                        <literal>x</literal>の最大特異値 (<literal>max(svd(x))</literal>)
+                        となります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>norm(x,1)</term>
+                <listitem>
+                    <para>
+                        <literal>x</literal>のl_1 ノルム  (列の和の最大値:
+                        <literal>maxi(sum(abs(x),'r'))</literal> ).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>norm(x,'inf'),norm(x,%inf)</term>
+                <listitem>
+                    <para>
+                        <literal>x</literal>の無限大ノルム (列の和の最大値
+                        : <literal>maxi(sum(abs(x),'c'))</literal> ).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>norm(x,'fro')</term>
+                <listitem>
+                    <para>フロベニウスノルム,すなわち, 
+                        <literal>sqrt(sum(diag(x'*x)))</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>ベクトルの場合</para>
+        <variablelist>
+            <varlistentry>
+                <term>norm(v,p)</term>
+                <listitem>
+                    <para>
+                        l_p ノルム (<literal>sum(v(i)^p))^(1/p)</literal> .
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>norm(v)</term>
+                <listitem>
+                    <para>
+                        <literal>=norm(v,2)</literal> : l_2 ノルム
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>norm(v,'inf')</term>
+                <listitem>
+                    <para>
+                        <literal>max(abs(v(i)))</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+A=[1,2,3];
+norm(A,1)
+norm(A,'inf')
+A=[1,2;3,4]
+max(svd(A))-norm(A)
+
+A=sparse([1 0 0 33 -1])
+norm(A)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h_norm">h_norm</link>
+            </member>
+            <member>
+                <link linkend="dhnorm">dhnorm</link>
+            </member>
+            <member>
+                <link linkend="h2norm">h2norm</link>
+            </member>
+            <member>
+                <link linkend="abs">abs</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

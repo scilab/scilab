@@ -13,8 +13,12 @@
 package org.scilab.modules.graphic_export;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.PathIterator;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -24,6 +28,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetEncoder;
+import java.text.AttributedCharacterIterator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -38,6 +45,7 @@ import org.apache.xmlgraphics.java2d.ps.AbstractPSDocumentGraphics2D;
 import org.apache.xmlgraphics.java2d.ps.EPSDocumentGraphics2D;
 import org.apache.xmlgraphics.java2d.ps.PSDocumentGraphics2D;
 import org.apache.xmlgraphics.ps.DSCConstants;
+import org.apache.xmlgraphics.ps.PSGenerator;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvas;
 import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvasFactory;
@@ -47,6 +55,7 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.graphic_export.convertToPPM.PPMEncoder;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
@@ -198,11 +207,11 @@ public class Export {
             Canvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
             DrawerVisitor oldVisitor = DrawerVisitor.getVisitor(uid);
             DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
-                    @Override
-                    public void updateObject(String id, String property) {
-                        // Don't update during the export
-                    }
-                };
+                @Override
+                public void updateObject(String id, int property) {
+                    // Don't update during the export
+                }
+            };
 
             try {
                 canvas.setMainDrawer(visitor);
@@ -216,10 +225,13 @@ public class Export {
                 GraphicController.getController().unregister(visitor);
                 DrawerVisitor.changeVisitor(figure, oldVisitor);
                 exporter.dispose();
+                exporter = null;
+                visitorsToExp.remove(visitor);
             }
         } else {
             DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
-            Canvas canvas = visitor.getCanvas();
+            G2DCanvas canvas = (G2DCanvas) visitor.getCanvas();
+            canvas.enableDraw();
             Exporter exporter = null;
             try {
                 canvas.redraw();
@@ -235,9 +247,11 @@ public class Export {
             } finally {
                 if (exporter != null) {
                     exporter.dispose();
+                    exporter = null;
                     visitorsToExp.remove(visitor);
                 }
                 DrawerVisitor.changeVisitor(figure, null);
+                GraphicController.getController().unregister(visitor);
             }
         }
 
@@ -296,16 +310,16 @@ public class Export {
                 DrawerVisitor oldVisitor = DrawerVisitor.getVisitor(uid);
                 joglCanvas = (JoGLCanvas) JoGLCanvasFactory.createCanvas(dims[0], dims[1]);
                 DrawerVisitor visitor = new DrawerVisitor(null, joglCanvas, figure) {
-                        @Override
-                        public void updateObject(String id, String property) {
-                            // Don't update during the export
-                        }
+                    @Override
+                    public void updateObject(String id, int property) {
+                        // Don't update during the export
+                    }
 
-                        @Override
-                        public void deleteObject(String id) {
-                            // Don't delete during the export
-                        }
-                    };
+                    @Override
+                    public void deleteObject(String id) {
+                        // Don't delete during the export
+                    }
+                };
                 joglCanvas.setMainDrawer(visitor);
                 joglCanvas.redraw();
                 GraphicController.getController().unregister(visitor);
@@ -318,6 +332,7 @@ public class Export {
                 PNGExporter exporter = (PNGExporter) getExporter(type);
                 exporter.setImage(file, image, params);
                 exporter.write();
+                exporter.dispose();
             }
         }
     }
@@ -329,28 +344,45 @@ public class Export {
      * @param file the file where to export
      * @param params the export paramaters
      */
-    public static void setVisitor(String uid, int type, ExportParams params) {
-        Exporter exporter = getExporter(types[type]);
+    public static void setVisitor(String uid, int type, final ExportParams params) {
+        final Exporter exporter = getExporter(types[type]);
         Figure figure = (Figure) GraphicController.getController().getObjectFromId(uid);
-        Integer[] dims = figure.getAxesSize();
+        final Integer[] dims = figure.getAxesSize();
         int width = dims[0];
         int height = dims[1];
 
-        Graphics2D g2d = exporter.getGraphics2D(width, height, null, params);
+        final Graphics2D g2d = exporter.getGraphics2D(width, height, null, params);
         params.setParamsOnGraphics(g2d);
 
-        G2DCanvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
+        final G2DCanvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
+        canvas.disableDraw();
         DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
-                @Override
-                public void updateObject(String id, String property) {
-                    // Don't update during the export
-                }
+            @Override
+            public void deleteObject(String id) {
+                // Don't delete during the export
+            }
 
-                @Override
-                public void deleteObject(String id) {
-                    // Don't delete during the export
+            @Override
+            public void updateObject(String id, int property) {
+                if (needUpdate(id, property)) {
+                    axesDrawer.update(id, property);
+                    if (property == GraphicObjectProperties.__GO_AXES_SIZE__) {
+                        Integer[] size = getFigure().getAxesSize();
+                        if (size[0] != dims[0] || size[1] != dims[1]) {
+                            Graphics2D newg2d = exporter.getGraphics2D(size[0], size[1], null, params);
+                            params.setParamsOnGraphics(newg2d);
+                            canvas.setGraphics(newg2d, size[0], size[1]);
+                            dims[0] = size[0];
+                            dims[1] = size[1];
+
+                            g2d.dispose();
+                        }
+                    } else if (property == GraphicObjectProperties.__GO_ANTIALIASING__) {
+                        canvas.setAntiAliasingLevel(getFigure().getAntialiasing());
+                    }
                 }
-            };
+            }
+        };
         visitor.setDrawingTools(canvas.getDrawingTools());
         canvas.setMainDrawer(visitor);
         visitorsToExp.put(visitor, exporter);
@@ -363,33 +395,33 @@ public class Export {
      */
     private static Exporter getExporter(TYPE type) {
         switch (type) {
-        case PNG :
-            return new PNGExporter();
-        case GIF :
-            return new GIFExporter();
-        case JPEG :
-            return new JPEGExporter();
-        case BMP :
-            return new BMPExporter();
-        case PPM :
-            return new PPMExporter();
-        case SVG :
-            if (!svgLoaded) {
-                ScilabCommonsUtils.loadOnUse(CLASSPATH_SVG_EXPORT_NAME);
-                svgLoaded = true;
-            }
-            return new SVGExporter();
-        case PDF :
-            loadPDF();
-            return new PDFExporter();
-        case PS :
-            loadPDF();
-            return new PSExporter();
-        case EPS :
-            loadPDF();
-            return new PSExporter();
-        default :
-            break;
+            case PNG :
+                return new PNGExporter();
+            case GIF :
+                return new GIFExporter();
+            case JPEG :
+                return new JPEGExporter();
+            case BMP :
+                return new BMPExporter();
+            case PPM :
+                return new PPMExporter();
+            case SVG :
+                if (!svgLoaded) {
+                    ScilabCommonsUtils.loadOnUse(CLASSPATH_SVG_EXPORT_NAME);
+                    svgLoaded = true;
+                }
+                return new SVGExporter();
+            case PDF :
+                loadPDF();
+                return new PDFExporter();
+            case PS :
+                loadPDF();
+                return new PSExporter();
+            case EPS :
+                loadPDF();
+                return new EPSExporter();
+            default :
+                break;
         }
 
         return null;
@@ -462,7 +494,9 @@ public class Export {
 
         @Override
         public void dispose() {
-            g2d.dispose();
+            if (g2d != null) {
+                g2d.dispose();
+            }
         }
     }
 
@@ -554,12 +588,25 @@ public class Export {
             this.params = params;
             DOMImplementation domImpl = GenericDOMImplementation.getDOMImplementation();
             Document document = domImpl.createDocument("http://www.w3.org/2000/svg", "svg", null);
-            SVGGeneratorContext ctx = SVGGeneratorContext.createDefault(document);
+            final SVGGeneratorContext ctx = SVGGeneratorContext.createDefault(document);
             ctx.setComment("Generated by Scilab with Batik SVG Generator");
             // TODO: better handle of LaTeX fonts (should remove the 'true' below and include the font in the SVG)
             // same thing for PDF & co...
             ctx.setEmbeddedFontsOn(true);
-            g2d = new SVGGraphics2D(ctx, true);
+            g2d = new SVGGraphics2D(ctx, false) {
+
+                @Override
+                public void drawString(String s, float x, float y) {
+                    textAsShapes = getFont().getFontName().startsWith("jlm");
+                    super.drawString(s, x, y);
+                }
+
+                @Override
+                public void drawString(AttributedCharacterIterator ati, float x, float y) {
+                    textAsShapes = getFont().getFontName().startsWith("jlm");
+                    super.drawString(ati, x, y);
+                }
+            };
             if (params.orientation == ExportParams.LANDSCAPE) {
                 g2d.setSVGCanvasSize(new Dimension(height, width));
                 AffineTransform transf = AffineTransform.getRotateInstance(Math.PI / 2);
@@ -583,7 +630,9 @@ public class Export {
 
         @Override
         public void dispose() {
-            g2d.dispose();
+            if (g2d != null) {
+                g2d.dispose();
+            }
         }
     }
 
@@ -677,16 +726,88 @@ public class Export {
                     out = new BufferedOutputStream(new FileOutputStream(file));
                 }
                 g2d = new PSDocumentGraphics2D(true, out, width, height) {
-                        @Override
-                        protected void writePageHeader() throws IOException {
-                            super.writePageHeader();
-                            if (params.orientation == ExportParams.LANDSCAPE) {
-                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
-                            } else {
-                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
+                    @Override
+                    protected void writePageHeader() throws IOException {
+                        super.writePageHeader();
+                        if (params.orientation == ExportParams.LANDSCAPE) {
+                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
+                        } else {
+                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
+                        }
+                        gen.writeln("/ReEncode { /MyEncoding exch def exch findfont dup length dict begin {def} forall /Encoding MyEncoding def currentdict end definefont } def");
+                        gen.writeln("/Helvetica /HelveticaLatin1 ISOLatin1Encoding ReEncode");
+                        gen.writeln("/Times /TimesLatin1 ISOLatin1Encoding ReEncode");
+                    }
+
+                    @Override
+                    public void drawString(String s, float x, float y) {
+                        if (s != null && !s.isEmpty()) {
+                            CharsetEncoder encoder = Charset.forName("ISO-8859-1").newEncoder();
+                            if (encoder.canEncode(s)) {
+                                Font font = getFont();
+                                boolean sserif = font.getName().equals("SansSerif");
+                                boolean serif = font.getName().equals("Serif");
+                                if (sserif || serif) {
+                                    try {
+                                        preparePainting();
+                                        establishColor(getColor());
+                                        gen.writeln((sserif ? "/HelveticaLatin1" : "/TimesLatin1") + " " + gen.formatDouble(getFont().getSize()) + " F");
+
+                                        gen.saveGraphicsState();
+                                        Shape imclip = getClip();
+                                        writeClip(imclip);
+
+                                        AffineTransform trans = getTransform();
+                                        boolean newTransform = gen.getCurrentState().checkTransform(trans) && !trans.isIdentity();
+
+                                        if (newTransform) {
+                                            gen.concatMatrix(trans);
+                                        }
+
+                                        gen.writeln(gen.formatDouble(x)
+                                                    + " " + gen.formatDouble(y)
+                                                    + " M 1 -1 scale");
+
+                                        StringBuffer buf = new StringBuffer("(");
+                                        for (int i = 0; i < s.length(); i++) {
+                                            PSGenerator.escapeChar(s.charAt(i), buf);
+                                        }
+                                        buf.append(") t");
+
+                                        gen.writeln(buf.toString());
+
+                                        gen.restoreGraphicsState();
+                                    } catch (IOException e) {
+                                        System.err.println(e);
+                                    }
+
+                                    return;
+                                }
+                            }
+
+                            super.drawString(s, x, y);
+                        }
+                    }
+
+                    @Override
+                    public int processShape(Shape s) throws IOException {
+                        if (s instanceof Ellipse2D.Double) {
+                            Ellipse2D.Double ell = (Ellipse2D.Double) s;
+                            if (ell.height == ell.width) {
+                                gen.writeln(gen.formatDouble(ell.x + ell.width / 2)
+                                            + " " + gen.formatDouble(ell.y + ell.height / 2)
+                                            + " " + gen.formatDouble(ell.width / 2)
+                                            + " " + gen.formatDouble(0d)
+                                            + " " + gen.formatDouble(360d)
+                                            + " arc cp");
+
+                                return PathIterator.WIND_NON_ZERO;
                             }
                         }
-                    };
+
+                        return super.processShape(s);
+                    }
+                };
                 g2d.setGraphicContext(new GraphicContext());
             } catch (IOException e) { }
 
@@ -712,7 +833,9 @@ public class Export {
 
         @Override
         public void dispose() {
-            g2d.dispose();
+            if (g2d != null) {
+                g2d.dispose();
+            }
         }
     }
 
@@ -735,16 +858,89 @@ public class Export {
                     out = new BufferedOutputStream(new FileOutputStream(file));
                 }
                 g2d = new EPSDocumentGraphics2D(true) {
-                        @Override
-                        protected void writePageHeader() throws IOException {
-                            super.writePageHeader();
-                            if (params.orientation == ExportParams.LANDSCAPE) {
-                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
-                            } else {
-                                gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
+                    @Override
+                    protected void writePageHeader() throws IOException {
+                        super.writePageHeader();
+                        if (params.orientation == ExportParams.LANDSCAPE) {
+                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Landscape");
+                        } else {
+                            gen.writeDSCComment(DSCConstants.PAGE_ORIENTATION, "Portrait");
+                        }
+                        gen.writeln("/ReEncode { /MyEncoding exch def exch findfont dup length dict begin {def} forall /Encoding MyEncoding def currentdict end definefont } def");
+                        gen.writeln("/Helvetica /HelveticaLatin1 ISOLatin1Encoding ReEncode");
+                        gen.writeln("/Times /TimesLatin1 ISOLatin1Encoding ReEncode");
+                    }
+
+                    @Override
+                    public void drawString(String s, float x, float y) {
+                        if (s != null && !s.isEmpty()) {
+                            CharsetEncoder encoder = Charset.forName("ISO-8859-1").newEncoder();
+                            if (encoder.canEncode(s)) {
+                                Font font = getFont();
+                                boolean sserif = font.getName().equals("SansSerif");
+                                boolean serif = font.getName().equals("Serif");
+                                if (sserif || serif) {
+                                    try {
+                                        preparePainting();
+                                        establishColor(getColor());
+                                        gen.writeln((sserif ? "/HelveticaLatin1" : "/TimesLatin1") + " " + gen.formatDouble(getFont().getSize()) + " F");
+
+                                        gen.saveGraphicsState();
+                                        Shape imclip = getClip();
+                                        writeClip(imclip);
+
+                                        AffineTransform trans = getTransform();
+                                        boolean newTransform = gen.getCurrentState().checkTransform(trans) && !trans.isIdentity();
+
+                                        if (newTransform) {
+                                            gen.concatMatrix(trans);
+                                        }
+
+                                        gen.writeln(gen.formatDouble(x)
+                                                    + " " + gen.formatDouble(y)
+                                                    + " M 1 -1 scale");
+
+                                        StringBuffer buf = new StringBuffer("(");
+                                        for (int i = 0; i < s.length(); i++) {
+                                            PSGenerator.escapeChar(s.charAt(i), buf);
+                                        }
+                                        buf.append(") t");
+
+                                        gen.writeln(buf.toString());
+
+                                        gen.restoreGraphicsState();
+                                    } catch (IOException e) {
+                                        System.err.println(e);
+                                    }
+
+                                    return;
+                                }
+                            }
+
+                            super.drawString(s, x, y);
+                        }
+                    }
+
+                    @Override
+                    public int processShape(Shape s) throws IOException {
+                        if (s instanceof Ellipse2D.Double) {
+                            Ellipse2D.Double ell = (Ellipse2D.Double) s;
+                            if (ell.height == ell.width) {
+                                gen.writeln(gen.formatDouble(ell.x + ell.width / 2)
+                                            + " " + gen.formatDouble(ell.y + ell.height / 2)
+                                            + " " + gen.formatDouble(ell.width / 2)
+                                            + " " + gen.formatDouble(0d)
+                                            + " " + gen.formatDouble(360d)
+                                            + " arc cp");
+
+                                return PathIterator.WIND_NON_ZERO;
                             }
                         }
-                    };
+
+                        return super.processShape(s);
+                    }
+
+                };
                 g2d.setupDocument(out, width, height);
                 g2d.setGraphicContext(new GraphicContext());
             } catch (IOException e) { }

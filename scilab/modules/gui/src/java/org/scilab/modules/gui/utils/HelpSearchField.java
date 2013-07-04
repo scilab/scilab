@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Calixte DENIZET
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -41,16 +42,19 @@ import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.gui.ScilabKeyStroke;
 
 /**
  * Class to have an incremental search field.
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class HelpSearchField extends JPanel implements FocusListener, KeyListener {
 
     private static final String SCI = ScilabConstants.SCI.getPath();
     private static final String TAB = "tab";
-    private static final String F3 = "f3";
+    private static final String F3 = "F3";
+    private static final String KEY = "help-search-field";
     private static final ImageIcon CLOSEICON = new ImageIcon(SCI + "/modules/gui/images/icons/close-tab.png");
     private static final ImageIcon TOPICON = new ImageIcon(ScilabSwingUtilities.findIcon("go-top"));
     private static final ImageIcon BOTICON = new ImageIcon(ScilabSwingUtilities.findIcon("go-bottom"));
@@ -64,23 +68,31 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
 
     private final DefaultHighlighter.DefaultHighlightPainter highlighter = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
     private int currentPos;
+    private String currentWord;
 
     /**
      * Default Constructor
      */
     public HelpSearchField(JPanel parent, JTextComponent textcomp) {
+        this(parent, textcomp, F3);
+    }
+
+    /**
+     * Default Constructor
+     */
+    public HelpSearchField(JPanel parent, JTextComponent textcomp, String key) {
         super(new BorderLayout());
         this.parent = parent;
-        this.textcomp = textcomp;
+        setTextComponent(textcomp, key);
         field = new JTextField();
         field.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
         field.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), TAB);
         field.getActionMap().put(TAB, new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    HelpSearchField.this.textcomp.requestFocus();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HelpSearchField.this.textcomp.requestFocus();
+            }
+        });
         JPanel panelButtons = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
         panelButtons.add(new CloseButton());
         panelButtons.add(new TopBotButtons(true));
@@ -95,17 +107,33 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
      * @param textcomp the new textcomponent
      */
     public void setTextComponent(JTextComponent textcomp) {
+        setTextComponent(textcomp, F3);
+    }
+
+    /**
+     * Change the textcomponent
+     * @param textcomp the new textcomponent
+     */
+    public void setTextComponent(JTextComponent textcomp, String key) {
         this.textcomp = textcomp;
-        textcomp.getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0), F3);
-        textcomp.getActionMap().put(F3, new AbstractAction() {
+        if (textcomp != null) {
+            textcomp.getInputMap(WHEN_IN_FOCUSED_WINDOW).put(ScilabKeyStroke.getKeyStroke(key), KEY);
+            textcomp.getActionMap().put(KEY, new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     HelpSearchField.this.showField();
                 }
             });
+        }
 
         text = null;
         currentPos = 0;
+    }
+
+    public void setKeyStroke(KeyStroke key) {
+        if (textcomp != null) {
+            textcomp.getInputMap(WHEN_IN_FOCUSED_WINDOW).put(key, KEY);
+        }
     }
 
     /**
@@ -160,11 +188,11 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
      * Hide the search field
      */
     public void hideField() {
+        parent.requestFocus();
         removeListeners();
         textcomp.getHighlighter().removeAllHighlights();
         setVisible(false);
         parent.remove(this);
-        parent.revalidate();
     }
 
     /**
@@ -177,7 +205,6 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
             field.addFocusListener(this);
             parent.add(this, BorderLayout.PAGE_END);
             setVisible(true);
-            parent.revalidate();
         }
         requestFocus();
     }
@@ -188,7 +215,6 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
      * @param end the end position
      */
     public void highlightText(int start, int end) {
-        textcomp.getHighlighter().removeAllHighlights();
         if (start != -1) {
             try {
                 JScrollPane scrollPane = (JScrollPane) SwingUtilities.getAncestorOfClass(JScrollPane.class, textcomp);
@@ -198,14 +224,15 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
                     final int value = sb.getValue();
                     final int h = sb.getHeight();
                     SwingUtilities.invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (rect.y < value || rect.y > value + h) {
-                                    sb.setValue(Math.max(0, rect.y - h / 2));
-                                }
+                        @Override
+                        public void run() {
+                            if (rect.y < value || rect.y > value + h) {
+                                sb.setValue(Math.max(0, rect.y - h / 2));
                             }
-                        });
+                        }
+                    });
                 }
+                textcomp.getHighlighter().removeAllHighlights();
                 textcomp.getHighlighter().addHighlight(start, end, highlighter);
                 currentPos = start;
             } catch (BadLocationException ex) {
@@ -233,19 +260,33 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
             if (str != null) {
                 int start;
                 str = str.toLowerCase();
+                if (!str.equals(currentWord)) {
+                    currentWord = str;
+                    currentPos = 0;
+                    textcomp.getHighlighter().removeAllHighlights();
+                }
                 getText();
                 if ((key == KeyEvent.VK_ENTER || key == KeyEvent.VK_F3) && ((e.getModifiers() & KeyEvent.SHIFT_MASK) != 0)) {
                     currentPos = Math.max(0, currentPos - 1);
                     start = text.lastIndexOf(str, currentPos);
+                    if (start == -1) {
+                        currentPos = text.length() - 1;
+                    }
                     e.consume();
                 } else {
                     if (key == KeyEvent.VK_ENTER || key == KeyEvent.VK_F3) {
                         currentPos++;
                     }
                     start = text.indexOf(str, currentPos);
+                    if (start == -1) {
+                        currentPos = 0;
+                    }
                 }
 
-                highlightText(start, start + str.length());
+                int end = start + str.length();
+                if (start != end) {
+                    highlightText(start, end);
+                }
             }
         }
     }
@@ -279,11 +320,11 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
             setBorderPainted(false);
             setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
             addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        hideField();
-                    }
-                });
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    hideField();
+                }
+            });
         }
     }
 
@@ -305,32 +346,38 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
             setBorderPainted(false);
             setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
             addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        String str = field.getText();
-                        String txt = "";
-                        Document doc = textcomp.getDocument();
-                        try {
-                            txt = doc.getText(0, doc.getLength()).toLowerCase();
-                        } catch (BadLocationException ex) {
-                            System.err.println(ex);
-                        }
-
-                        if (str != null) {
-                            int start;
-                            str = str.toLowerCase();
-                            if (top) {
-                                currentPos = Math.max(0, currentPos - 1);;
-                                start = txt.lastIndexOf(str, currentPos);
-                            } else {
-                                currentPos++;
-                                start = txt.indexOf(str, currentPos);
-                            }
-
-                            highlightText(start, start + str.length());
-                        }
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String str = field.getText();
+                    String txt = "";
+                    Document doc = textcomp.getDocument();
+                    try {
+                        txt = doc.getText(0, doc.getLength()).toLowerCase();
+                    } catch (BadLocationException ex) {
+                        System.err.println(ex);
                     }
-                });
+
+                    if (str != null && !str.isEmpty()) {
+                        int start;
+                        str = str.toLowerCase();
+                        if (top) {
+                            currentPos = Math.max(0, currentPos - 1);;
+                            start = txt.lastIndexOf(str, currentPos);
+                            if (start == -1) {
+                                currentPos = text.length() - 1;
+                            }
+                        } else {
+                            currentPos++;
+                            start = txt.indexOf(str, currentPos);
+                            if (start == -1) {
+                                currentPos = 0;
+                            }
+                        }
+
+                        highlightText(start, start + str.length());
+                    }
+                }
+            });
         }
     }
 }

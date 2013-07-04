@@ -1,10 +1,8 @@
-	LIBRARY    core.dll
+LIBRARY    core.dll
 
 
 EXPORTS
-;
 ;core
-;
 callFunctionFromGateway
 com_
 putlhsvar_
@@ -15,5 +13,7 @@ stack_
 getrhsvar_
 iop_
 vstk_
-
-
+overload_
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc

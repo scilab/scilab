@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-07-20 15:34+0000\n"
-"Last-Translator: Hiroshi <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-19 14:20+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -70,6 +70,11 @@ msgstr "%s: 計算結果は実数ですが, 予定は複素数でした."
 #, c-format
 msgid "%s: Computed is complex, but expected is real."
 msgstr "%s: 計算値は複素数ですが, 実数となる必要があります."
+
+#, c-format
+msgid ""
+"%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"
+msgstr "%s: アサーションに失敗しました:  予想値 = %s , 計算値 = %s (差の平均 = %s)"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -170,6 +175,54 @@ msgstr "エラー: 入力引数の大きさが間違っています."
 msgid "The test %s is not available from the %s module"
 msgstr "テスト %s は %s モジュールで利用できません."
 
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行配列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行配列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行配列または空の配列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row array of strings or empty "
+"matrix expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行配列または空の配列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A Scilab module name expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: Scilabモジュール名を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid language expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 有効な言語を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A '%s' module function name "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s'モジュール関数名を指定してください.\n"
+
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
 msgstr "%s: 最初の入力引数が間違っています: 接尾辞 .dia を有するファイルを指定してください."
@@ -194,6 +247,10 @@ msgid "%s: Wrong size for input argument."
 msgstr "%s: 入力引数の大きさが間違っています."
 
 #, c-format
+msgid "%s: Wrong number of input arguments."
+msgstr "%s: 入力引数の数が間違っています."
+
+#, c-format
 msgid "%s is not an installed module or toolbox"
 msgstr "%s はインストール済みのモジュールまたはツールボックスではありません."
 
@@ -204,8 +261,8 @@ msgstr "参照先ファイル (%s) が存在しません"
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
-"'testsuites"
-msgstr "ファイル'%s'は、XUnit XMLフォーマットに従っていません。ルートはテストスイートを想定しました"
+"'testsuites'.\n"
+msgstr "ファイル'%s'は,XUnit XMLフォーマットに準拠していません. ルートタグに'testsuites'を指定してください.\n"
 
 #
 # File: macros/testexamples.sci, line: 17

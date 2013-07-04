@@ -10,49 +10,49 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="sfact">
-  <refnamediv>
-    <refname>sfact</refname>
-    <refpurpose> discrete time spectral factorization</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>F=sfact(P)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>P</term>
-        <listitem>
-          <para>real polynomial matrix</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      Finds <literal>F</literal>, a spectral factor of
-      <literal>P</literal>. <literal>P</literal> is a polynomial matrix such that
-      each root of <literal>P</literal> has a mirror image w.r.t the unit
-      circle. Problem is singular if a root is on the unit circle.
-    </para>
-    <para>
-      <literal>sfact(P)</literal> returns a polynomial matrix
-      <literal>F(z)</literal> which is antistable and such that
-    </para>
-    <para>
-      <literal>P = F(z)* F(1/z) *z^n</literal>
-    </para>
-    <para>
-      For scalar polynomials a specific algorithm is implemented.
-      Algorithms are adapted from Kucera's book.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="sfact">
+    <refnamediv>
+        <refname>sfact</refname>
+        <refpurpose>discrete time spectral factorization</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>F=sfact(P)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>real polynomial matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Finds <literal>F</literal>, a spectral factor of
+            <literal>P</literal>. <literal>P</literal> is a polynomial matrix such that
+            each root of <literal>P</literal> has a mirror image w.r.t the unit
+            circle. Problem is singular if a root is on the unit circle.
+        </para>
+        <para>
+            <literal>sfact(P)</literal> returns a polynomial matrix
+            <literal>F(z)</literal> which is antistable and such that
+        </para>
+        <para>
+            <literal>P = F(z)* F(1/z) *z^n</literal>
+        </para>
+        <para>
+            For scalar polynomials a specific algorithm is implemented.
+            Algorithms are adapted from Kucera's book.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 //Simple polynomial example
 z=poly(0,'z');
 p=(z-1/2)*(2-z)
@@ -79,16 +79,16 @@ f=f/sqrt(horner(f*gtild(f,'c'),0));f=f*sqrt(horner(p,0));      //normalization
 roots(f)    //f is stable
 clean(f*gtild(f,'c')-p)    //f(s)*f(-s) is p(s)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="gtild">gtild</link>
-      </member>
-      <member>
-        <link linkend="fspecg">fspecg</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gtild">gtild</link>
+            </member>
+            <member>
+                <link linkend="fspecg">fspecg</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

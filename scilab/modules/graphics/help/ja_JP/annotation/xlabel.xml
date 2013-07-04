@@ -10,72 +10,104 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xlabel" xml:lang="ja">
-  <refnamediv>
-    <refname>xlabel</refname>
-    <refpurpose>x軸ラベルを付加する</refpurpose>
-  </refnamediv>
-  <refnamediv xml:id="ylabel">
-    <refname>ylabel</refname>
-    <refpurpose>y軸ラベルを付加する</refpurpose>
-  </refnamediv>
-  <refnamediv xml:id="zlabel">
-    <refname>zlabel</refname>
-    <refpurpose>z軸ラベルを付加する</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>xlabel("string label")</synopsis>
-    <synopsis>xlabel("string label", "PropertyName", PropertyValue)</synopsis>
-    <synopsis>ylabel("string label")</synopsis>
-    <synopsis>ylabel("string label", "PropertyName", PropertyValue)</synopsis>
-    <synopsis>zlabel("string label")</synopsis>
-    <synopsis>zlabel("string label", "PropertyName", PropertyValue)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>引数</title>
-    <variablelist>
-      <varlistentry>
-        <term>"string label"</term>
-        <listitem>
-          <para>文字列: カレントの軸の軸ラベル</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>"PropertyName"</term>
-        <listitem>
-          <para>文字列: プロパティ名</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>PropertyValue</term>
-        <listitem>
-          <para>プロパティの値</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>各軸のグラフィックオブジェクトは,
-      x, y, および z軸に各一つのラベルを有することができます.
-    </para>
-    <para>このラベルは2次元プロットでは対応する軸の下,
-      3次元プロットでは軸の横または下に表示されます.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example">xlabel(["first line";"second line"])
-      ylabel("A label on y axis", "fontsize", 6)
-    </programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="title">title</link>
-      </member>
-    </simplelist>
-  </refsection>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="xlabel" xml:lang="ja">
+    <refnamediv>
+        <refname>xlabel</refname>
+        <refpurpose>x軸ラベルを付加する</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="ylabel">
+        <refname>ylabel</refname>
+        <refpurpose>y軸ラベルを付加する</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="zlabel">
+        <refname>zlabel</refname>
+        <refpurpose>z軸ラベルを付加する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>xlabel("string label")</synopsis>
+        <synopsis>xlabel("string label", "PropertyName", PropertyValue)</synopsis>
+        <synopsis>ylabel("string label")</synopsis>
+        <synopsis>ylabel("string label", "PropertyName", PropertyValue)</synopsis>
+        <synopsis>zlabel("string label")</synopsis>
+        <synopsis>zlabel("string label", "PropertyName", PropertyValue)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>"string label"</term>
+                <listitem>
+                    <para>文字列: カレントの軸の軸ラベル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"PropertyName"</term>
+                <listitem>
+                    <para>文字列: プロパティ名</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PropertyValue</term>
+                <listitem>
+                    <para>プロパティの値</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>各軸のグラフィックオブジェクトは,
+            x, y, および z軸に各一つのラベルを有することができます.
+        </para>
+        <para>このラベルは2次元プロットでは対応する軸の下,
+            3次元プロットでは軸の横または下に表示されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example">
+            t = linspace(-2*%pi, 2*%pi, 30);
+            
+            subplot(2,1,1);
+            plot(t, sin(t), "r");
+            xlabel("t", "fontsize", 2);
+            ylabel("sin(t)");
+            axis1_handle = gca();
+            
+            subplot(2,1,2);
+            plot(t, cos(t), "b");
+            xlabel("t", "fontsize", 2);
+            ylabel("cos(t)", "fontsize", 6, "color", "blue");
+            
+            ylabel(axis1_handle, "sin(t)", "fontsize", 6, "color", "red");
+        </programlisting>
+        <scilab:image>
+            t = linspace(-2*%pi, 2*%pi, 50);
+            subplot(2,1,1);
+            plot(t, sin(t), "r");
+            xlabel("t", "fontsize", 2);
+            ylabel("sin(t)");
+            axis1_handle = gca();
+            subplot(2,1,2);
+            plot(t, cos(t), "b");
+            xlabel("t", "fontsize", 2);
+            ylabel("cos(t)", "fontsize", 6, "color", "blue");
+            ylabel(axis1_handle, "sin(t)", "fontsize", 6, "color", "red");
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example">xlabel(["first line";"second line"])
+            ylabel("A label on y axis", "fontsize", 6)
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="title">title</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

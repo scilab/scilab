@@ -6,13 +6,13 @@
 
 function subdemolist = demo_gateway()
 
-  demopath = get_absolute_file_path("polynomials.dem.gateway.sce");
-  add_demo(gettext("Polynomials"),demopath+"polynomials.dem.gateway.sce");
+    demopath = get_absolute_file_path("polynomials.dem.gateway.sce");
+    add_demo(gettext("Polynomials"),demopath+"polynomials.dem.gateway.sce");
 
-  subdemolist = [_("Introduction")             , "intro/poly.intro.dem.sce" ];
+    subdemolist = [_("Introduction")             , "intro/poly.intro.dem.sce" ];
 
-  subdemolist(:,2) = demopath + subdemolist(:,2);
-  
+    subdemolist(:,2) = demopath + subdemolist(:,2);
+
 endfunction
 
 subdemolist = demo_gateway();

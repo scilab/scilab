@@ -175,6 +175,7 @@ public final class ScilabSpecialTextUtilities {
          * @return the Icon
          */
         static Icon compile(String str, int fontSize) {
+            TeXFormula.setDefaultDPI();
             Icon icon = null;
             try {
                 TeXFormula formula = new TeXFormula(str);
@@ -218,6 +219,10 @@ public final class ScilabSpecialTextUtilities {
             LayoutContextImpl parameters = new LayoutContextImpl(LayoutContextImpl.getDefaultLayoutContext());
             parameters.setParameter(Parameter.MATHSIZE, fontSize);
             parameters.setParameter(Parameter.MATHCOLOR, fontColor);
+            if (!str.startsWith("<mathml>")) {
+                str = "<mathml>" + str + "</mathml>";
+            }
+
             Document doc = null;
             try {
                 doc = MathMLParserSupport.parseString(str);

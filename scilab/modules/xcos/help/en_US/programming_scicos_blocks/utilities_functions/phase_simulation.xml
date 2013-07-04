@@ -21,54 +21,58 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="phase_simulation">
-  <refnamediv>
-    <refname>phase_simulation</refname>
-    <refpurpose>Get the current simulation phase</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[psim]=phase_simulation()</synopsis>
-  </refsynopsisdiv>
-  <refsection id="Module_phase_simulation">
-    <title>Module</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="phase_simulation">
+    <refnamediv>
+        <refname>phase_simulation</refname>
+        <refpurpose>Get the current simulation phase</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[psim]=phase_simulation()</synopsis>
+    </refsynopsisdiv>
+    <refsection id="Module_phase_simulation">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_phase_simulation">
+        <title>Description</title>
         <para>
-          <link linkend="xcos">xcos</link>
+            That function says if the Scicos simulator is realizing the time domain integration.  
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Description_phase_simulation">
-    <title>Description</title>
-    <para>
-That function says if the Scicos simulator is realizing the time domain integration.  
-</para>
-    <para>
-</para>
-    <programlisting role="example"><![CDATA[ 
+        <para>
+        </para>
+        <programlisting role="example"><![CDATA[ 
 [psim]=phase_simulation()
  ]]></programlisting>
-  </refsection>
-  <refsection id="Parameters_phase_simulation">
-    <title>Arguments</title>
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">psim :</emphasis> get the current phase of the simulation</para>
+    </refsection>
+    <refsection id="Parameters_phase_simulation">
+        <title>Arguments</title>
         <itemizedlist>
-          <listitem>
-            <para><emphasis role="bold">1 :</emphasis>
-   The simulator is on a discrete activation time.
-</para>
-          </listitem>
-          <listitem>
-            <para><emphasis role="bold">2 :</emphasis>
-   The simulator is realizing a continuous time domain integration.
-</para>
-          </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">psim :</emphasis> get the current phase of the simulation
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">1:</emphasis>
+                            The simulator is on a discrete activation time.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">2:</emphasis>
+                            The simulator is realizing a continuous time domain integration.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
         </itemizedlist>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+    </refsection>
 </refentry>

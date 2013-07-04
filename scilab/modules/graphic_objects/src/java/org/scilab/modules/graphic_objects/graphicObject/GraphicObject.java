@@ -148,77 +148,78 @@ public abstract class GraphicObject implements Cloneable {
      * @param typeName the property name
      * @return the type enum
      */
-    public static Type getTypeFromName(String typeName) {
-        if (typeName.equals(__GO_ARC__)) {
-            return Type.ARC;
-        } else if (typeName.equals(__GO_AXES__)) {
-            return Type.AXES;
-        } else if (typeName.equals(__GO_AXESMODEL__)) {
-            return Type.AXESMODEL;
-        } else if (typeName.equals(__GO_AXIS__)) {
-            return Type.AXIS;
-        } else if (typeName.equals(__GO_CHAMP__)) {
-            return Type.CHAMP;
-        } else if (typeName.equals(__GO_COMPOUND__)) {
-            return Type.COMPOUND;
-        } else if (typeName.equals(__GO_FAC3D__)) {
-            return Type.FAC3D;
-        } else if (typeName.equals(__GO_FEC__)) {
-            return Type.FEC;
-        } else if (typeName.equals(__GO_FIGURE__)) {
-            return Type.FIGURE;
-        } else if (typeName.equals(__GO_FIGUREMODEL__)) {
-            return Type.FIGUREMODEL;
-        } else if (typeName.equals(__GO_GRAYPLOT__)) {
-            return Type.GRAYPLOT;
-        } else if (typeName.equals(__GO_LABEL__)) {
-            return Type.LABEL;
-        } else if (typeName.equals(__GO_LEGEND__)) {
-            return Type.LEGEND;
-        } else if (typeName.equals(__GO_MATPLOT__)) {
-            return Type.MATPLOT;
-        } else if (typeName.equals(__GO_PLOT3D__)) {
-            return Type.PLOT3D;
-        } else if (typeName.equals(__GO_POLYLINE__)) {
-            return Type.POLYLINE;
-        } else if (typeName.equals(__GO_RECTANGLE__)) {
-            return Type.RECTANGLE;
-        } else if (typeName.equals(__GO_SEGS__)) {
-            return Type.SEGS;
-        } else if (typeName.equals(__GO_TEXT__)) {
-            return Type.TEXT;
-        } else if (typeName.equals(__GO_UI_CHECKBOX__)) {
-            return Type.CHECKBOX;
-        } else if (typeName.equals(__GO_UI_EDIT__)) {
-            return Type.EDIT;
-        } else if (typeName.equals(__GO_UI_FRAME__)) {
-            return Type.FRAME;
-        } else if (typeName.equals(__GO_UI_IMAGE__)) {
-            return Type.IMAGE;
-        } else if (typeName.equals(__GO_UI_LISTBOX__)) {
-            return Type.LISTBOX;
-        } else if (typeName.equals(__GO_UI_POPUPMENU__)) {
-            return Type.POPUPMENU;
-        } else if (typeName.equals(__GO_UI_PUSHBUTTON__)) {
-            return Type.PUSHBUTTON;
-        } else if (typeName.equals(__GO_UI_RADIOBUTTON__)) {
-            return Type.RADIOBUTTON;
-        } else if (typeName.equals(__GO_UI_SLIDER__)) {
-            return Type.SLIDER;
-        } else if (typeName.equals(__GO_UI_TABLE__)) {
-            return Type.TABLE;
-        } else if (typeName.equals(__GO_UI_TEXT__)) {
-            return Type.UITEXT;
-        } else if (typeName.equals(__GO_UIMENU__)) {
-            return Type.UIMENU;
-        } else if (typeName.equals(__GO_UICONTEXTMENU__)) {
-            return Type.UICONTEXTMENU;
-        } else if (typeName.equals(__GO_PROGRESSIONBAR__)) {
-            return Type.PROGRESSIONBAR;
-        } else if (typeName.equals(__GO_WAITBAR__)) {
-            return Type.WAITBAR;
-        } else {
-            return Type.UNKNOWNOBJECT;
+    public static Type getTypeFromName(int typeName) {
+        switch (typeName) {
+            case __GO_ARC__ :
+                return Type.ARC;
+            case __GO_AXES__ :
+                return Type.AXES;
+            case __GO_AXESMODEL__ :
+                return Type.AXESMODEL;
+            case __GO_AXIS__ :
+                return Type.AXIS;
+            case __GO_CHAMP__ :
+                return Type.CHAMP;
+            case __GO_COMPOUND__ :
+                return Type.COMPOUND;
+            case __GO_FAC3D__ :
+                return Type.FAC3D;
+            case __GO_FEC__ :
+                return Type.FEC;
+            case __GO_FIGURE__ :
+                return Type.FIGURE;
+            case __GO_FIGUREMODEL__ :
+                return Type.FIGUREMODEL;
+            case __GO_GRAYPLOT__ :
+                return Type.GRAYPLOT;
+            case __GO_LABEL__ :
+                return Type.LABEL;
+            case __GO_LEGEND__ :
+                return Type.LEGEND;
+            case __GO_MATPLOT__ :
+                return Type.MATPLOT;
+            case __GO_PLOT3D__ :
+                return Type.PLOT3D;
+            case __GO_POLYLINE__ :
+                return Type.POLYLINE;
+            case __GO_RECTANGLE__ :
+                return Type.RECTANGLE;
+            case __GO_SEGS__ :
+                return Type.SEGS;
+            case __GO_TEXT__ :
+                return Type.TEXT;
+            case __GO_UI_CHECKBOX__ :
+                return Type.CHECKBOX;
+            case __GO_UI_EDIT__ :
+                return Type.EDIT;
+            case __GO_UI_FRAME__ :
+                return Type.FRAME;
+            case __GO_UI_IMAGE__ :
+                return Type.IMAGE;
+            case __GO_UI_LISTBOX__ :
+                return Type.LISTBOX;
+            case __GO_UI_POPUPMENU__ :
+                return Type.POPUPMENU;
+            case __GO_UI_PUSHBUTTON__ :
+                return Type.PUSHBUTTON;
+            case __GO_UI_RADIOBUTTON__ :
+                return Type.RADIOBUTTON;
+            case __GO_UI_SLIDER__ :
+                return Type.SLIDER;
+            case __GO_UI_TABLE__ :
+                return Type.TABLE;
+            case __GO_UI_TEXT__ :
+                return Type.UITEXT;
+            case __GO_UIMENU__ :
+                return Type.UIMENU;
+            case __GO_UICONTEXTMENU__ :
+                return Type.UICONTEXTMENU;
+            case __GO_PROGRESSIONBAR__ :
+                return Type.PROGRESSIONBAR;
+            case __GO_WAITBAR__ :
+                return Type.WAITBAR;
+            default :
+                return Type.UNKNOWNOBJECT;
         }
     }
 
@@ -227,50 +228,49 @@ public abstract class GraphicObject implements Cloneable {
      * @param propertyName the property name
      * @return the property enum
      */
-    public Object getPropertyFromName(String propertyName) {
-        if (propertyName.equals(__GO_PARENT__)) {
-            return  GraphicObjectPropertyType.PARENT;
-        } else if (propertyName.equals(__GO_CHILDREN__)) {
-            return GraphicObjectPropertyType.CHILDREN;
-        } else if (propertyName.equals(__GO_CHILDREN_COUNT__)) {
-            return GraphicObjectPropertyType.CHILDREN_COUNT;
-        } else if (propertyName.equals(__GO_HIDDEN__)) {
-            return GraphicObjectPropertyType.HIDDEN;
-        } else if (propertyName.equals(__GO_VISIBLE__)) {
-            return GraphicObjectPropertyType.VISIBLE;
-        } else if (propertyName.equals(__GO_USER_DATA__)) {
-            return GraphicObjectPropertyType.USERDATA;
-        } else if (propertyName.equals(__GO_USER_DATA_SIZE__)) {
-            return GraphicObjectPropertyType.USERDATASIZE;
-        } else if (propertyName.equals(__GO_REFERENCED__)) {
-            return GraphicObjectPropertyType.REFERENCED;
-        } else if (propertyName.equals(__GO_VALID__)) {
-            return GraphicObjectPropertyType.VALID;
-        } else if (propertyName.equals(__GO_PARENT_FIGURE__)) {
-            return GraphicObjectPropertyType.PARENT_FIGURE;
-        } else if (propertyName.equals(__GO_PARENT_AXES__)) {
-            return GraphicObjectPropertyType.PARENT_AXES;
-        } else if (propertyName.equals(__GO_PARENT_AXES__)) {
-            return GraphicObjectPropertyType.PARENT_AXES;
-        } else if (propertyName.equals(__GO_HAS_LEGEND_CHILD__)) {
-            return GraphicObjectPropertyType.HASLEGENDCHILD;
-        } else if (propertyName.equals(__GO_LEGEND_CHILD__)) {
-            return GraphicObjectPropertyType.LEGENDCHILD;
-        } else if (propertyName.equals(__GO_SELECTED_CHILD__)) {
-            return GraphicObjectPropertyType.SELECTEDCHILD;
-        } else if (propertyName.equals(__GO_TYPE__)) {
-            return GraphicObjectPropertyType.TYPE;
-        }  else if (propertyName.equals(__GO_DATA_MODEL__)) {
-            return GraphicObjectPropertyType.DATA;
-        }  else if (propertyName.equals(__GO_TAG__)) {
-            return GraphicObjectPropertyType.TAG;
-        }  else if (propertyName.equals(__GO_CALLBACK__)) {
-            return GraphicObjectPropertyType.CALLBACK;
-        }  else if (propertyName.equals(__GO_CALLBACKTYPE__)) {
-            return GraphicObjectPropertyType.CALLBACKTYPE;
-        }  else {
-            //System.err.println("[ERROR] Unknown Property : "+propertyName+" !!!!!!!!!!");
-            return GraphicObjectPropertyType.UNKNOWNPROPERTY;
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+            case __GO_PARENT__ :
+                return  GraphicObjectPropertyType.PARENT;
+            case __GO_CHILDREN__ :
+                return GraphicObjectPropertyType.CHILDREN;
+            case __GO_CHILDREN_COUNT__ :
+                return GraphicObjectPropertyType.CHILDREN_COUNT;
+            case __GO_HIDDEN__ :
+                return GraphicObjectPropertyType.HIDDEN;
+            case __GO_VISIBLE__ :
+                return GraphicObjectPropertyType.VISIBLE;
+            case __GO_USER_DATA__ :
+                return GraphicObjectPropertyType.USERDATA;
+            case __GO_USER_DATA_SIZE__ :
+                return GraphicObjectPropertyType.USERDATASIZE;
+            case __GO_REFERENCED__ :
+                return GraphicObjectPropertyType.REFERENCED;
+            case __GO_VALID__ :
+                return GraphicObjectPropertyType.VALID;
+            case __GO_PARENT_FIGURE__ :
+                return GraphicObjectPropertyType.PARENT_FIGURE;
+            case __GO_PARENT_AXES__ :
+                return GraphicObjectPropertyType.PARENT_AXES;
+            case __GO_HAS_LEGEND_CHILD__ :
+                return GraphicObjectPropertyType.HASLEGENDCHILD;
+            case __GO_LEGEND_CHILD__ :
+                return GraphicObjectPropertyType.LEGENDCHILD;
+            case __GO_SELECTED_CHILD__ :
+                return GraphicObjectPropertyType.SELECTEDCHILD;
+            case __GO_TYPE__ :
+                return GraphicObjectPropertyType.TYPE;
+            case __GO_DATA_MODEL__ :
+                return GraphicObjectPropertyType.DATA;
+            case __GO_TAG__ :
+                return GraphicObjectPropertyType.TAG;
+            case __GO_CALLBACK__ :
+                return GraphicObjectPropertyType.CALLBACK;
+            case __GO_CALLBACKTYPE__ :
+                return GraphicObjectPropertyType.CALLBACKTYPE;
+            default:
+                //System.err.println("[ERROR] Unknown Property : "+propertyName+" !!!!!!!!!!");
+                return GraphicObjectPropertyType.UNKNOWNPROPERTY;
         }
     }
 
@@ -280,46 +280,52 @@ public abstract class GraphicObject implements Cloneable {
      * @return the property value
      */
     public Object getProperty(Object property) {
-        if (property == GraphicObjectPropertyType.PARENT) {
-            return getParent();
-        } else if (property == GraphicObjectPropertyType.CHILDREN) {
-            return getChildren();
-        } else if (property == GraphicObjectPropertyType.CHILDREN_COUNT) {
-            return getChildren().length;
-        } else if (property == GraphicObjectPropertyType.VALID) {
-            return isValid();
-        } else if (property == GraphicObjectPropertyType.HIDDEN) {
-            return isHidden();
-        } else if (property == GraphicObjectPropertyType.VISIBLE) {
-            return getVisible();
-        } else if (property == GraphicObjectPropertyType.USERDATA) {
-            return getUserData();
-        } else if (property == GraphicObjectPropertyType.USERDATASIZE) {
-            return getUserDataSize();
-        } else if (property == GraphicObjectPropertyType.PARENT_FIGURE) {
-            return getParentFigure();
-        } else if (property == GraphicObjectPropertyType.PARENT_AXES) {
-            return getParentAxes();
-        } else if (property == GraphicObjectPropertyType.HASLEGENDCHILD) {
-            return getHasLegendChild();
-        } else if (property == GraphicObjectPropertyType.LEGENDCHILD) {
-            return getLegendChild();
-        } else if (property == GraphicObjectPropertyType.SELECTEDCHILD) {
-            return getSelectedChild();
-        } else if (property == GraphicObjectPropertyType.TYPE) {
-            return getType();
-        }  else if (property == GraphicObjectPropertyType.DATA) {
-            return getIdentifier();
-        }  else if (property == GraphicObjectPropertyType.TAG) {
-            return getTag();
-        }  else if (property == GraphicObjectPropertyType.CALLBACK) {
-            return getCallbackString();
-        }  else if (property == GraphicObjectPropertyType.CALLBACKTYPE) {
-            return getCallbackType();
-        }  else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
+        if (!(property instanceof GraphicObjectPropertyType)) {
             return null;
-        } else {
-            return null;
+        }
+
+        GraphicObjectPropertyType p = (GraphicObjectPropertyType) property;
+        switch (p) {
+            case PARENT:
+                return getParent();
+            case CHILDREN:
+                return getChildren();
+            case CHILDREN_COUNT:
+                return children.size();
+            case VALID:
+                return isValid();
+            case HIDDEN:
+                return isHidden();
+            case VISIBLE:
+                return getVisible();
+            case USERDATA:
+                return getUserData();
+            case USERDATASIZE:
+                return getUserDataSize();
+            case PARENT_FIGURE:
+                return getParentFigure();
+            case PARENT_AXES:
+                return getParentAxes();
+            case HASLEGENDCHILD:
+                return getHasLegendChild();
+            case LEGENDCHILD:
+                return getLegendChild();
+            case SELECTEDCHILD:
+                return getSelectedChild();
+            case TYPE:
+                return getType();
+            case DATA:
+                return getIdentifier();
+            case TAG:
+                return getTag();
+            case CALLBACK:
+                return getCallbackString();
+            case CALLBACKTYPE:
+                return getCallbackType();
+            case UNKNOWNPROPERTY:
+                return null;
+            default:
+                return null;
         }
     }
 
@@ -330,32 +336,50 @@ public abstract class GraphicObject implements Cloneable {
      * @return true if the property has been set, false otherwise
      */
     public UpdateStatus setProperty(Object property, Object value) {
-        if (property == GraphicObjectPropertyType.PARENT) {
-            setParent((String) value);
-        } else if (property == GraphicObjectPropertyType.CHILDREN) {
-            setChildren((String[]) value);
-        } else if (property == GraphicObjectPropertyType.VALID) {
-            setValid((Boolean) value);
-        } else if (property == GraphicObjectPropertyType.HIDDEN) {
-            setHidden((Boolean) value);
-        } else if (property == GraphicObjectPropertyType.VISIBLE) {
-            setVisible((Boolean) value);
-        } else if (property == GraphicObjectPropertyType.USERDATA) {
-            setUserData((Integer[]) value);
-        } else if (property == GraphicObjectPropertyType.USERDATASIZE) {
-            return UpdateStatus.Fail;
-        } else if (property == GraphicObjectPropertyType.SELECTEDCHILD) {
-            setSelectedChild((String) value);
-        } else if (property == GraphicObjectPropertyType.DATA) {
+        if (!(property instanceof GraphicObjectPropertyType)) {
             return UpdateStatus.Success;
-        } else if (property == GraphicObjectPropertyType.TAG) {
-            setTag((String) value);
-        } else if (property == GraphicObjectPropertyType.CALLBACK) {
-            setCallbackString((String) value);
-        } else if (property == GraphicObjectPropertyType.CALLBACKTYPE) {
-            setCallbackType((Integer) value);
-        } else if (property == GraphicObjectPropertyType.UNKNOWNPROPERTY) {
-            return UpdateStatus.Fail;
+        }
+
+        GraphicObjectPropertyType p = (GraphicObjectPropertyType) property;
+        switch (p) {
+            case PARENT:
+                setParent((String) value);
+                break;
+            case CHILDREN:
+                setChildren((String[]) value);
+                break;
+            case VALID:
+                setValid((Boolean) value);
+                break;
+            case HIDDEN:
+                setHidden((Boolean) value);
+                break;
+            case VISIBLE:
+                setVisible((Boolean) value);
+                break;
+            case USERDATA:
+                setUserData((Integer[]) value);
+                break;
+            case USERDATASIZE:
+                return UpdateStatus.Fail;
+            case SELECTEDCHILD:
+                setSelectedChild((String) value);
+                break;
+            case DATA:
+                return UpdateStatus.Success;
+            case TAG:
+                setTag((String) value);
+                break;
+            case CALLBACK:
+                setCallbackString((String) value);
+                break;
+            case CALLBACKTYPE:
+                setCallbackType((Integer) value);
+                break;
+            case UNKNOWNPROPERTY:
+                return UpdateStatus.Fail;
+            default:
+                return UpdateStatus.Success;
         }
 
         return UpdateStatus.Success;
@@ -401,9 +425,7 @@ public abstract class GraphicObject implements Cloneable {
      * @param child the identifier of the added child.
      */
     public void addChild(String child) {
-        if (!children.contains(child)) {
-            children.add(0, child);
-        }
+        children.add(0, child);
     }
 
     /**
@@ -640,11 +662,7 @@ public abstract class GraphicObject implements Cloneable {
      * Each type should name itself
      * @return Type as String
      */
-    // TODO : Should be public abstract.
-    //public abstract String getType();
-    public String getType() {
-        return "???";
-    }
+    public abstract Integer getType();
 
     /**
      * isValid method

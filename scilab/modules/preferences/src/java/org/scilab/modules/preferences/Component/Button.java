@@ -34,9 +34,9 @@ public class Button extends JButton implements XComponent {
      */
     private static final long serialVersionUID = -3412653691044553310L;
 
-    
+
     private String cachedStatus = "enabled";
-    
+
     /** Define the set of actuators.
     *
     * @return array of actuator names.
@@ -52,7 +52,7 @@ public class Button extends JButton implements XComponent {
      */
     public Button(final Node peer) {
         super();
-	setRequestFocusEnabled(true);
+        setRequestFocusEnabled(true);
         setFocusable(true);
 
         refresh(peer);
@@ -88,10 +88,10 @@ public class Button extends JButton implements XComponent {
         setText(text);
     }
 
-   /** Developer serialization method.
-     *
-     * @return equivalent signature.
-     */
+    /** Developer serialization method.
+      *
+      * @return equivalent signature.
+      */
     public final String toString() {
         String signature = "Button";
 

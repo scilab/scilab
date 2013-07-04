@@ -69,9 +69,9 @@ int sci_csum(char *fname)
     csum(&dVarOne, &dVarTwo, &dOut);
 
     /* create result on stack */
-    createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + + 1, dOut);
+    createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dOut);
 
-    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 
     ReturnArguments(pvApiCtx);
 

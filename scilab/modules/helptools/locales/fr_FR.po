@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-30 08:44+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-29 10:07+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: fr\n"
 
 #, c-format
@@ -133,11 +133,11 @@ msgid "%s: Reading from directory %s\n"
 msgstr "%s : Lecture depuis le répertoire %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s to %s\n"
+msgid "%s: Processing of file: %s to %s\n"
 msgstr "%s : Traitement du fichier : de %s à %s\n"
 
 #, c-format
-msgid "%s: Processing file: %s\n"
+msgid "%s: Processing of file: %s\n"
 msgstr "%s : Traitement du fichier : %s\n"
 
 #, c-format
@@ -162,21 +162,78 @@ msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
-#, c-format
-msgid "%02d-%02d-%04d"
-msgstr "%02d-%02d-%04d"
+msgid " * Add some comments about XML file"
+msgstr " * Ajouter des commentaires sur le fichier XML"
+
+msgid "Add short description here."
+msgstr "Ajouter une courte description ici."
+
+msgid "Calling Sequence"
+msgstr "Séquence d'appel"
+
+msgid "Arguments"
+msgstr "Arguments"
+
+msgid "            Add here the input/output argument description."
+msgstr ""
+"            Ajouter ici la description des arguments d'entrée/sortie."
+
+msgid "          Add here a paragraph of the function description."
+msgstr ""
+"          Ajouter ici un paragraphe sur la description de la fonction."
+
+msgid "          Other paragraph can be added"
+msgstr "          Un autre paragraphe peut être ajouté"
+
+msgid "More information"
+msgstr "Informations complémentaires"
+
+msgid "Examples"
+msgstr "Exemples"
+
+msgid "        Add here scilab instructions and comments"
+msgstr "        Ajouter ici les instructions et commentaires Scilab"
+
+msgid "        Add here scilab instructions to generate a graphic"
+msgstr ""
+"        Ajouter ici les instructions Scilab pour générer un graphique"
+
+msgid "See Also"
+msgstr "Voir aussi"
+
+msgid "add a reference"
+msgstr "Ajouter une référence"
+
+msgid "add a reference name"
+msgstr "Ajouter un nom de référence"
+
+msgid "Authors"
+msgstr "Auteurs"
+
+msgid "add the author name and author reference"
+msgstr "Ajouter le nom de l'auteur et ses références"
+
+msgid "add another author name and his/her reference"
+msgstr "Ajouter un autre nom d'auteur et ses références"
+
+msgid "Bibliography"
+msgstr "Bibliographie"
+
+msgid "         Add here the function bibliography"
+msgstr "         Ajouter ici la bibliographie de la fonction"
+
+msgid "History"
+msgstr "Historique"
+
+msgid "Used Functions"
+msgstr "Fonctions utilisées"
+
+msgid "         Add here the Scilab, C,... used code references"
+msgstr "         Ajouter ici les références de codes Scilab, C, ... utilisés"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument d'entrée : %d attendu.\n"
-
-#, c-format
-msgid "\tProcessing file %s.xml\n"
-msgstr "\tTraitement du fichier %s.xml\n"
-
-#, c-format
-msgid "Warning %s does not follow the dtd"
-msgstr "Attention %s ne suit pas la dtd"
 
 #, c-format
 msgid "%s: This function is only supported on Windows platforms.\n"
@@ -228,14 +285,6 @@ msgid "Building the scilab manual file ["
 msgstr "Génère le fichier d'aide de Scilab ["
 
 #, c-format
-msgid "%s: %s has not been generated."
-msgstr "%s : %s n'a pas été généré."
-
-#, c-format
-msgid "%s: %s file hasn't been moved in the %s directory."
-msgstr "%s : le fichier %s n'a pas été déplacé dans le répertoire %s."
-
-#, c-format
 msgid ""
 "\n"
 "Building the manual file [%s] in %s.\n"
@@ -250,6 +299,14 @@ msgid ""
 msgstr ""
 "\n"
 "Génération du fichier d'aide [%s].\n"
+
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr "%s : %s n'a pas été généré."
+
+#, c-format
+msgid "%s: %s file hasn't been moved in the %s directory."
+msgstr "%s : le fichier %s n'a pas été déplacé dans le répertoire %s."
 
 #, c-format
 msgid "%s: Please check %s, number of modules is invalid.\n"

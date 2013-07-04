@@ -11,674 +11,686 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="man" xml:lang="en">
-  <refnamediv>
-    <refname>Scilab documentation format</refname>
-    <refpurpose>on line help XML file description format</refpurpose>
-  </refnamediv>
-  <refsection>
-    <title>Description</title>
-    <para>The on line help source files are written in XML.</para>
-    <para>Source files (with extension .xml) can be found in the
-      <literal>&lt;SCIDIR&gt;/modules/&lt;MODULE
-        NAME&gt;/help/&lt;language&gt;/*
-      </literal>
-      directories. The file name is
-      usually associated to a keyword (corresponding to a function name most of
-      the cases) it describes.
-    </para>
-  </refsection>
-  <refsection>
-    <title>A few words about XML</title>
-    <para>An XML file resembles to a HTML file but with a more rigid syntax.
-      The documentation of Scilab must be written using the strict subset of
-      DocBook 5 defined in SCI/modules/helptools/schema/scilab.rnc. DocBook 5
-      elements are fully documented in <ulink url="http://docbook.org/tdg5/en/html/docbook.html">"DocBook 5.0: The Definitive Guide"</ulink>
-    </para>
-    <para>
-      Scilab is able to understand a large subset of Docbook tags. However, if any are missing, a bug report can be reported on the <ulink url="http://bugzilla.scilab.org/">Scilab bug tracker</ulink>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>How to write a simple XML scilab help page:</title>
-    <para>If one want to write the XML file associated to a new scilab
-      function he or she may use the Scilab function <link linkend="help_skeleton">help_skeleton</link> to produce the skeleton of
-      the XML file. In most cases, the user will not be required to know XML
-      syntax.
-    </para>
-  </refsection>
-  <refsection>
-    <title>How to write a simple XML scilab help page: an example</title>
-    <para>The root element of a document which conforms to the Scilab DocBook
-      5 subset must have version attribute set to "5.0-subset Scilab".
-    </para>
-    <programlisting role="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-      &lt;refentry version="5.0-subset Scilab" xml:id="foo" xml:lang="en"
-      xmlns="http://docbook.org/ns/docbook"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns:ns4="http://www.w3.org/1999/xhtml"
-      xmlns:mml="http://www.w3.org/1998/Math/MathML"
-      xmlns:db="http://docbook.org/ns/docbook"&gt; 
-    </programlisting>
-    <para role="bold">Example:</para>
-    <programlisting role="example">function y = foo(a,b,c)
-      y = a + 2 * b + c;
-      endfunction
-      
-      path = help_skeleton('foo', TMPDIR)
-      if (isdef('editor') | (funptr('editor')&lt;&gt;0)) then
-      editor(path);
-      end
-    </programlisting>
-    <para role="bold">Generated foo.xml in TMPDIR:</para>
-    <programlisting role="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-      &lt;!--
-      * Add some comments about XML file
-      --&gt;
-      &lt;refentry version="5.0-subset Scilab" xml:id="foo" xml:lang="en"
-      xmlns="http://docbook.org/ns/docbook"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns:ns4="http://www.w3.org/1999/xhtml"
-      xmlns:mml="http://www.w3.org/1998/Math/MathML"
-      xmlns:db="http://docbook.org/ns/docbook"&gt;
-      &lt;info&gt;
-      &lt;pubdate&gt;$LastChangedDate: 29-11-2010 $&lt;/pubdate&gt;
-      &lt;/info&gt;
-      &lt;refnamediv&gt;
-      &lt;refname&gt;foo&lt;/refname&gt;
-      &lt;refpurpose&gt;Add short description here. &lt;/refpurpose&gt;
-      &lt;/refnamediv&gt;
-      &lt;refsynopsisdiv&gt;
-      &lt;title&gt;Calling Sequence&lt;/title&gt;
-      &lt;synopsis&gt;y = foo(a,b,c)&lt;/synopsis&gt;
-      &lt;/refsynopsisdiv&gt;
-      &lt;refsection&gt;
-      &lt;title&gt;Parameters&lt;/title&gt;
-      &lt;variablelist&gt;
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="man" xml:lang="en">
+    <refnamediv>
+        <refname>Scilab documentation format</refname>
+        <refpurpose>on line help XML file description format</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>The on line help source files are written in XML.</para>
+        <para>Source files (with extension .xml) can be found in the
+            <literal>&lt;SCIDIR&gt;/modules/&lt;MODULE
+                NAME&gt;/help/&lt;language&gt;/*
+            </literal>
+            directories. The file name is
+            usually associated to a keyword (corresponding to a function name most of
+            the cases) it describes.
+        </para>
+    </refsection>
+    <refsection>
+        <title>A few words about XML</title>
+        <para>A XML file is similar to a HTML file but with a more rigid syntax.
+            The documentation of Scilab must be written using the strict subset of
+            DocBook 5 defined in SCI/modules/helptools/schema/scilab.rnc. DocBook 5
+            elements are fully documented in <ulink url="http://docbook.org/tdg5/en/html/docbook.html">"DocBook 5.0: The Definitive Guide"</ulink>
+        </para>
+        <para>
+            Scilab is able to understand a large subset of Docbook tags. However, if any are missing, a bug report can be reported on the <ulink url="http://bugzilla.scilab.org/">Scilab bug tracker</ulink>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>How to write a simple XML scilab help page:</title>
+        <para>If one want to write the XML file associated to a new scilab
+            function he or she may use the Scilab function <link linkend="help_skeleton">help_skeleton</link> to produce the skeleton of
+            the XML file. In most cases, the user will not be required to know XML
+            syntax.
+        </para>
+    </refsection>
+    <refsection>
+        <title>How to write a simple XML scilab help page: an example</title>
+        <para>The root element of a document which conforms to the Scilab DocBook
+            5 subset must have version attribute set to "5.0-subset Scilab".
+        </para>
+        <programlisting role="xml"><![CDATA[
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;refentry xmlns:scilab="http://www.scilab.org" xml:id="foo" xml:lang="en"
+xmlns="http://docbook.org/ns/docbook"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:svg="http://www.w3.org/2000/svg"
+xmlns:ns4="http://www.w3.org/1999/xhtml"
+xmlns:mml="http://www.w3.org/1998/Math/MathML"
+xmlns:db="http://docbook.org/ns/docbook"&gt; 
+ ]]></programlisting>
+        <para role="bold">Example:</para>
+        <programlisting role="example"><![CDATA[
+function y = foo(a,b,c)
+   y = a + 2 * b + c;
+endfunction
+
+path = help_skeleton('foo', TMPDIR)
+if (isdef('editor') | (funptr('editor')&lt;&gt;0)) then
+   editor(path);
+end
+         ]]></programlisting>
+        <para role="bold">Generated foo.xml in TMPDIR:</para>
+        <programlisting role="xml"><![CDATA[
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!--
+* Add some comments about XML file
+--&gt;
+&lt;refentry xmlns:scilab="http://www.scilab.org" xml:id="foo" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"&gt;
+  &lt;refnamediv&gt;
+    &lt;refname&gt;foo&lt;/refname&gt;
+    &lt;refpurpose&gt;Add short description here. &lt;/refpurpose&gt;
+  &lt;/refnamediv&gt;
+  &lt;refsynopsisdiv&gt;
+    &lt;title&gt;Calling Sequence&lt;/title&gt;
+    &lt;synopsis&gt;y = foo(a,b,c)&lt;/synopsis&gt;
+  &lt;/refsynopsisdiv&gt;
+  &lt;refsection&gt;
+    &lt;title&gt;Arguments&lt;/title&gt;
+    &lt;variablelist&gt;
       &lt;varlistentry&gt;
-      &lt;term&gt;a&lt;/term&gt;
-      &lt;listitem&gt;
-      &lt;para&gt;
-      Add here the input argument description.
-      &lt;/para&gt;
-      &lt;/listitem&gt;
+        &lt;term&gt;a&lt;/term&gt;
+        &lt;listitem&gt;
+          &lt;para&gt;
+            Add here the input argument description.
+          &lt;/para&gt;
+        &lt;/listitem&gt;
       &lt;/varlistentry&gt;
       &lt;varlistentry&gt;
-      &lt;term&gt;b&lt;/term&gt;
-      &lt;listitem&gt;
-      &lt;para&gt;
-      Add here the input argument description.
-      &lt;/para&gt;
-      &lt;/listitem&gt;
+        &lt;term&gt;b&lt;/term&gt;
+        &lt;listitem&gt;
+          &lt;para&gt;
+            Add here the input argument description.
+          &lt;/para&gt;
+        &lt;/listitem&gt;
       &lt;/varlistentry&gt;
       &lt;varlistentry&gt;
-      &lt;term&gt;c&lt;/term&gt;
-      &lt;listitem&gt;
-      &lt;para&gt;
-      Add here the input argument description.
-      &lt;/para&gt;
-      &lt;/listitem&gt;
+        &lt;term&gt;c&lt;/term&gt;
+        &lt;listitem&gt;
+          &lt;para&gt;
+            Add here the input argument description.
+          &lt;/para&gt;
+        &lt;/listitem&gt;
       &lt;/varlistentry&gt;
       &lt;varlistentry&gt;
-      &lt;term&gt;y&lt;/term&gt;
-      &lt;listitem&gt;
-      &lt;para&gt;
-      Add here the output argument description.
-      &lt;/para&gt;
-      &lt;/listitem&gt;
+        &lt;term&gt;y&lt;/term&gt;
+        &lt;listitem&gt;
+          &lt;para&gt;
+            Add here the output argument description.
+          &lt;/para&gt;
+        &lt;/listitem&gt;
       &lt;/varlistentry&gt;
-      &lt;/variablelist&gt;
-      &lt;/refsection&gt;
-      &lt;refsection&gt;
-      &lt;title&gt;Description&lt;/title&gt;
-      &lt;para&gt;
+    &lt;/variablelist&gt;
+  &lt;/refsection&gt;
+  &lt;refsection&gt;
+    &lt;title&gt;Description&lt;/title&gt;
+    &lt;para&gt;
       Add here a paragraph of the function description. 
       Other paragraph can be added 
-      &lt;/para&gt;
-      &lt;para&gt;With a latex expression
-      &lt;latex&gt;
+    &lt;/para&gt;
+    &lt;para&gt;With a latex expression
+    &lt;latex&gt;
       \begin{eqnarray}
       f(x,a,r) = \frac{1}{r^{-a}\Gamma(a)} \int_0^x t^{a-1} \exp\left(-rt\right) dt
       \end{eqnarray}
-      &lt;/latex&gt;
-      &lt;/para&gt;
-      &lt;/refsection&gt;
-      
-      &lt;refsection&gt;
-      &lt;title&gt;More information&lt;/title&gt;
-      &lt;note&gt;&lt;para&gt;A note about foo&lt;/para&gt;&lt;/note&gt;
-      &lt;caution&gt;&lt;para&gt;A caution about foo&lt;/para&gt;&lt;/caution&gt;
-      &lt;warning&gt;&lt;para&gt;A warsning about foo&lt;/para&gt;&lt;/warning&gt;
-      &lt;important&gt;&lt;para&gt;A important about foo&lt;/para&gt;&lt;/important&gt;
-      &lt;tip&gt;&lt;para&gt;A tip about foo&lt;/para&gt;&lt;/tip&gt;
-      &lt;/refsection&gt;
-      
-      &lt;refsection&gt;
-      &lt;title&gt;Examples&lt;/title&gt;
-      &lt;programlisting role="example"&gt;&lt;![CDATA[
-      Add here scilab instructions and comments
-      ]]&gt;&lt;/programlisting&gt;
-      &lt;/refsection&gt;
-      &lt;refsection&gt;
-      &lt;title&gt;See Also&lt;/title&gt;
-      &lt;simplelist type="inline"&gt;
+    &lt;/latex&gt;
+    &lt;/para&gt;
+  &lt;/refsection&gt;
+  &lt;refsection&gt;
+    &lt;title&gt;More information&lt;/title&gt;
+    &lt;note&gt;&lt;para&gt;A note about foo&lt;/para&gt;&lt;/note&gt;
+    &lt;caution&gt;&lt;para&gt;A caution about foo&lt;/para&gt;&lt;/caution&gt;
+    &lt;warning&gt;&lt;para&gt;A warsning about foo&lt;/para&gt;&lt;/warning&gt;
+    &lt;important&gt;&lt;para&gt;A important about foo&lt;/para&gt;&lt;/important&gt;
+    &lt;tip&gt;&lt;para&gt;A tip about foo&lt;/para&gt;&lt;/tip&gt;
+  &lt;/refsection&gt;
+  &lt;refsection&gt;
+    &lt;title&gt;Examples&lt;/title&gt;
+    &lt;programlisting role="example"&gt;&lt;![CDATA[
+    Add here scilab instructions and comments
+    ]]&gt;&lt;/programlisting&gt;
+  &lt;/refsection&gt;
+  &lt;refsection&gt;
+    &lt;title&gt;See Also&lt;/title&gt;
+    &lt;simplelist type="inline"&gt;
       &lt;member&gt;
-      &lt;link linkend="add a reference name" &gt;add a reference&lt;/link&gt;
+        &lt;link linkend="add a reference name" &gt;add a reference&lt;/link&gt;
       &lt;/member&gt;
       &lt;member&gt;
-      &lt;link linkend="add a reference name"&gt;add a reference&lt;/link&gt;
+        &lt;link linkend="add a reference name"&gt;add a reference&lt;/link&gt;
       &lt;/member&gt;
-      &lt;/simplelist&gt;
-      &lt;/refsection&gt;
-      &lt;refsection&gt;
-      &lt;title&gt;Authors&lt;/title&gt;
-      &lt;simplelist type="vert"&gt;
+    &lt;/simplelist&gt;
+  &lt;/refsection&gt;
+  &lt;refsection&gt;
+    &lt;title&gt;Authors&lt;/title&gt;
+    &lt;simplelist type="vert"&gt;
       &lt;member&gt;add the author name and author reference&lt;/member&gt;
       &lt;member&gt;add another author name and it's reference&lt;/member&gt;
-      &lt;/simplelist&gt;
-      &lt;/refsection&gt;
-      &lt;refsection&gt;
-      &lt;title&gt;Bibliography&lt;/title&gt;
-      &lt;para&gt;
+    &lt;/simplelist&gt;
+  &lt;/refsection&gt;
+  &lt;refsection&gt;
+    &lt;title&gt;Bibliography&lt;/title&gt;
+    &lt;para&gt;
       Add here the function bibliography
-      &lt;/para&gt;
-      &lt;/refsection&gt;
-      &lt;refsection&gt;
-      &lt;title&gt;History&lt;/title&gt;
-      &lt;revhistory&gt;
+    &lt;/para&gt;
+  &lt;/refsection&gt;
+  &lt;refsection&gt;
+    &lt;title&gt;History&lt;/title&gt;
+    &lt;revhistory&gt;
       &lt;revision&gt;
-      &lt;revnumber&gt;X.Y&lt;/revnumber&gt;
-      &lt;revdescription&gt;Function foo added&lt;/revdescription&gt;
+        &lt;revnumber&gt;X.Y&lt;/revnumber&gt;
+        &lt;revdescription&gt;Function foo added&lt;/revdescription&gt;
       &lt;/revision&gt;
-      &lt;/revhistory&gt;
-      &lt;/refsection&gt;
-      &lt;refsection&gt;
-      &lt;title&gt;Used Functions&lt;/title&gt;
-      &lt;para&gt;
+    &lt;/revhistory&gt;
+  &lt;/refsection&gt;
+  &lt;refsection&gt;
+    &lt;title&gt;Used Functions&lt;/title&gt;
+    &lt;para&gt;
       Add here the Scilab, C,... used code references
-      &lt;/para&gt;
-      &lt;/refsection&gt;
-      &lt;/refentry&gt;
-    </programlisting>
-  </refsection>
-  <refsection>
-    <title>How to create a help chapter</title>
-    <para>Create a directory and write down a set of XML files build as
-      described above. Then start Scilab and execute <literal>xmltojar
-      </literal>
-      (see <link linkend="xmltojar">xmltojar</link> for more details)
-      .
-    </para>
-  </refsection>
-  <refsection>
-    <title>How to make Scilab know a new help chapter</title>
-    <para>
-      This can be done by the function <link linkend="add_help_chapter">add_help_chapter</link>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>List of docbook supported tags</title>
-    <para>Generic tags
-      <informaltable border="1">
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/refentry.html">refentry</ulink>
-          </td>
-          <td>A reference page</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/section.html">section</ulink>
-          </td>
-          <td>A recursive section</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/book.html">book</ulink>
-          </td>
-          <td>A book</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/part.html">part</ulink>
-          </td>
-          <td>A division in a book</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/chapter.html">chapter</ulink>
-          </td>
-          <td>A chapter, as of a book</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/title.html">title</ulink>
-          </td>
-          <td>The text of the title of a section of a document or of a formal block-level element</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/para.html">para</ulink>
-          </td>
-          <td>A paragraph</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/literal.html">literal</ulink>
-          </td>
-          <td>Inline text that is some literal value</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/refnamediv.html">refnamediv</ulink>
-          </td>
-          <td>The name, purpose, and classification of a reference page</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/refname.html">refname</ulink>
-          </td>
-          <td>The name of (one of) the subject(s) of a reference page</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/refpurpose.html">refpurpose</ulink>
-          </td>
-          <td>A short (one sentence) synopsis of the topic of a reference page</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/refsynopsisdiv.html">refsynopsisdiv</ulink>
-          </td>
-          <td>A syntactic synopsis of the subject of the reference page
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/synopsis.html">synopsis</ulink>
-          </td>
-          <td>A general-purpose element for representing the syntax of commands or functions</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/refsection.html">refsection</ulink>
-          </td>
-          <td>A recursive section in a refentry</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/programlisting.html">programlisting</ulink>
-          </td>
-          <td>A literal listing of all or part of a program</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/screen.html">screen</ulink>
-          </td>
-          <td>Text that a user sees or might see on a computer screen</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/pubdate.html">pubdate</ulink>
-          </td>
-          <td>The date of publication of a document</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/link.html">link</ulink>
-          </td>
-          <td>A hypertext link</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/ulink.html">ulink</ulink>
-          </td>
-          <td>A link that addresses its target by means of a URL (Uniform Resource Locator)</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/xref.html">xref</ulink>
-          </td>
-          <td>A cross reference to another part of the document</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/term.html">term</ulink>
-          </td>
-          <td>The word or phrase being defined or described in a variable list</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/emphasis.html">emphasis</ulink>
-          </td>
-          <td>Emphasized text</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/informalequation.html">informalequation</ulink>
-          </td>
-          <td>A displayed mathematical equation without a title
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/subscript.html">subscript</ulink>
-          </td>
-          <td>
-            A subscript (as in H<subscript>2</subscript>O, the molecular formula for water)
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/superscript.html">superscript</ulink>
-          </td>
-          <td>
-            A superscript (as in x<superscript>2</superscript>, the mathematical notation for x multiplied by itself)
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/replaceable.html">replaceable</ulink>
-          </td>
-          <td>Content that may or must be replaced by the user
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/caption.html">caption</ulink>
-          </td>
-          <td>A caption</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/surname.html">surname</ulink>
-          </td>
-          <td>A family name; in western cultures the 'last name'</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/firstname.html">firstname</ulink>
-          </td>
-          <td>The first name of a person
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/bibliomset.html">bibliomset</ulink>
-          </td>
-          <td>A 'cooked' container for related bibliographic information</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/bibliomixed.html">bibliomixed</ulink>
-          </td>
-          <td>An entry in a Bibliography</td>
-        </tr>
-      </informaltable>
-    </para>
-    <para>List tags:
-      <informaltable border="1">
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/simplelist.html">simplelist</ulink>
-          </td>
-          <td>An undecorated list of single words or short phrases</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/member.html">member</ulink>
-          </td>
-          <td>An element of a simple list</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/listitem.html">listitem</ulink>
-          </td>
-          <td>A wrapper for the elements of a list item
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/varlistentry.html">varlistentry</ulink>
-          </td>
-          <td>A wrapper for a set of terms and the associated description in a variable list</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/variablelist.html">variablelist</ulink>
-          </td>
-          <td>A list in which each entry is composed of a set of one or more terms and an associated description</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/itemizedlist.html">itemizedlist</ulink>
-          </td>
-          <td>A list in which each entry is marked with a bullet or other dingbat
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/orderedlist.html">orderedlist</ulink>
-          </td>
-          <td>A list in which each entry is marked with a sequentially incremented label
-          </td>
-        </tr>
-      </informaltable>
-    </para>
-    <para>Table tags:
-      <informaltable border="1">
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/table.html">table</ulink>
-          </td>
-          <td>A formal table in a document</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/informaltable.html">informaltable</ulink>
-          </td>
-          <td>A table without a title</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/tbody.html">tbody</ulink>
-          </td>
-          <td>A wrapper for the rows of a table or informal table</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/tr.html">tr</ulink>
-          </td>
-          <td>A row in an HTML table</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/td.html">td</ulink>
-          </td>
-          <td>A table entry in an HTML table</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/th.html">th</ulink>
-          </td>
-          <td>A table header entry in an HTML table</td>
-        </tr>
-      </informaltable>
-    </para>
-    <para>Image tags:
-      <informaltable border="1">
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/imagedata.html">imagedata</ulink>
-          </td>
-          <td>Pointer to external image data</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/imageobject.html">imageobject</ulink>
-          </td>
-          <td>A wrapper for image data and its associated meta-information</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/inlinemediaobject.html">inlinemediaobject</ulink>
-          </td>
-          <td>An inline media object (video, audio, image, and so on)</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/screenshot.html">screenshot</ulink>
-          </td>
-          <td>A representation of what the user sees or might see on a computer screen</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/mediaobject.html">mediaobject</ulink>
-          </td>
-          <td>A displayed media object (video, audio, image, etc.)</td>
-        </tr>
-      </informaltable>
-    </para>
-    <para>FAQ tags:
-      <informaltable border="1">
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/question.html">question</ulink>
-          </td>
-          <td>A question in a QandASet</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/answer.html">answer</ulink>
-          </td>
-          <td>An answer to a question posed in a QandASet</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/qandaentry.html">qandaentry</ulink>
-          </td>
-          <td>A question/answer set within a QandASet</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/qandaset.html">qandaset</ulink>
-          </td>
-          <td>A question-and-answer set</td>
-        </tr>
-      </informaltable>
-    </para>
-    <para>History tags:
-      <informaltable border="1">
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/revhistory.html">revhistory</ulink>
-          </td>
-          <td>A history of the revisions to a document</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/revision.html">revision</ulink>
-          </td>
-          <td>An entry describing a single revision in the history of the revisions to a document</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/revnumber.html">revnumber</ulink>
-          </td>
-          <td>A document revision number</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/revremark.html">revremark</ulink>
-          </td>
-          <td>A description of a revision to a document</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/revdescription.html">revdescription</ulink>
-          </td>
-          <td>A extended description of a revision to a document
-          </td>
-        </tr>
-      </informaltable>
-    </para>
-    <para>Information tags:
-      <informaltable border="1">
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/note.html">note</ulink>
-          </td>
-          <td>A message set off from the text
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/warning.html">warning</ulink>
-          </td>
-          <td>An admonition set off from the text</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/caution.html">caution</ulink>
-          </td>
-          <td>A note of caution</td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/tip.html">tip</ulink>
-          </td>
-          <td>A suggestion to the user, set off from the text
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <ulink url="http://docbook.org/tdg/en/html/important.html">important</ulink>
-          </td>
-          <td>An admonition set off from the text</td>
-        </tr>
-      </informaltable>
-    </para>
-    <para>Scilab specific tag:
-      <informaltable border="1">
-        <tr>
-          <td>latex</td><td>Scilab proprietary tag to write directly LaTeX expression in the help pages</td>
-        </tr>
-      </informaltable>
-    </para>
-  </refsection>
-  <refsection>
-    <title>History</title>
-    <revhistory>
-      <revision>
-        <revnumber>5.4.0</revnumber>
-        <revdescription>Management of tags &lt;note&gt;, &lt;caution&gt;, &lt;warning&gt;, &lt;important&gt; and &lt;tip&gt; 
-        </revdescription>
-      </revision>
-    </revhistory>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="apropos">apropos</link>
-      </member>
-      <member>
-        <link linkend="help">help</link>
-      </member>
-      <member>
-        <link linkend="help_skeleton">help_skeleton</link>
-      </member>
-      <member>
-        <link linkend="help_from_sci">help_from_sci</link>
-      </member>
-      <member>
-        <link linkend="xmltojar">xmltojar</link>
-      </member>
-      <member>
-        <link linkend="add_help_chapter">add_help_chapter</link>
-      </member>
-    </simplelist>
-  </refsection>
+    &lt;/para&gt;
+  &lt;/refsection&gt;
+&lt;/refentry&gt;
+        ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>How to create a help chapter</title>
+        <para>Create a directory and write down a set of XML files build as
+            described above. Then start Scilab and execute <literal>xmltojar
+            </literal>
+            (see <link linkend="xmltojar">xmltojar</link> for more details)
+            .
+        </para>
+    </refsection>
+    <refsection>
+        <title>How to make Scilab know a new help chapter</title>
+        <para>
+            This can be done by the function <link linkend="add_help_chapter">add_help_chapter</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>List of docbook supported tags</title>
+        <para>Generic tags
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/refentry.html">refentry</ulink>
+                    </td>
+                    <td>A reference page</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/section.html">section</ulink>
+                    </td>
+                    <td>A recursive section</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/book.html">book</ulink>
+                    </td>
+                    <td>A book</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/part.html">part</ulink>
+                    </td>
+                    <td>A division in a book</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/chapter.html">chapter</ulink>
+                    </td>
+                    <td>A chapter, as of a book</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/title.html">title</ulink>
+                    </td>
+                    <td>The text of the title of a section of a document or of a formal block-level element</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/para.html">para</ulink>
+                    </td>
+                    <td>A paragraph</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/literal.html">literal</ulink>
+                    </td>
+                    <td>Inline text that is some literal value</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/refnamediv.html">refnamediv</ulink>
+                    </td>
+                    <td>The name, purpose, and classification of a reference page</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/refname.html">refname</ulink>
+                    </td>
+                    <td>The name of (one of) the subject(s) of a reference page</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/refpurpose.html">refpurpose</ulink>
+                    </td>
+                    <td>A short (one sentence) synopsis of the topic of a reference page</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/refsynopsisdiv.html">refsynopsisdiv</ulink>
+                    </td>
+                    <td>A syntactic synopsis of the subject of the reference page
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/synopsis.html">synopsis</ulink>
+                    </td>
+                    <td>A general-purpose element for representing the syntax of commands or functions</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/refsection.html">refsection</ulink>
+                    </td>
+                    <td>A recursive section in a refentry</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/programlisting.html">programlisting</ulink>
+                    </td>
+                    <td>A literal listing of all or part of a program</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/screen.html">screen</ulink>
+                    </td>
+                    <td>Text that a user sees or might see on a computer screen</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/pubdate.html">pubdate</ulink>
+                    </td>
+                    <td>The date of publication of a document</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/link.html">link</ulink>
+                    </td>
+                    <td>A hypertext link</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/ulink.html">ulink</ulink>
+                    </td>
+                    <td>A link that addresses its target by means of a URL (Uniform Resource Locator)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/xref.html">xref</ulink>
+                    </td>
+                    <td>A cross reference to another part of the document</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/term.html">term</ulink>
+                    </td>
+                    <td>The word or phrase being defined or described in a variable list</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/emphasis.html">emphasis</ulink>
+                    </td>
+                    <td>Emphasized text</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/informalequation.html">informalequation</ulink>
+                    </td>
+                    <td>A displayed mathematical equation without a title
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/subscript.html">subscript</ulink>
+                    </td>
+                    <td>
+                        A subscript (as in H<subscript>2</subscript>O, the molecular formula for water)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/superscript.html">superscript</ulink>
+                    </td>
+                    <td>
+                        A superscript (as in x<superscript>2</superscript>, the mathematical notation for x multiplied by itself)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/replaceable.html">replaceable</ulink>
+                    </td>
+                    <td>Content that may or must be replaced by the user
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/caption.html">caption</ulink>
+                    </td>
+                    <td>A caption</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/surname.html">surname</ulink>
+                    </td>
+                    <td>A family name; in western cultures the 'last name'</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/firstname.html">firstname</ulink>
+                    </td>
+                    <td>The first name of a person
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/bibliomset.html">bibliomset</ulink>
+                    </td>
+                    <td>A 'cooked' container for related bibliographic information</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/bibliomixed.html">bibliomixed</ulink>
+                    </td>
+                    <td>An entry in a Bibliography</td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>List tags:
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/simplelist.html">simplelist</ulink>
+                    </td>
+                    <td>An undecorated list of single words or short phrases</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/member.html">member</ulink>
+                    </td>
+                    <td>An element of a simple list</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/listitem.html">listitem</ulink>
+                    </td>
+                    <td>A wrapper for the elements of a list item
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/varlistentry.html">varlistentry</ulink>
+                    </td>
+                    <td>A wrapper for a set of terms and the associated description in a variable list</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/variablelist.html">variablelist</ulink>
+                    </td>
+                    <td>A list in which each entry is composed of a set of one or more terms and an associated description</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/itemizedlist.html">itemizedlist</ulink>
+                    </td>
+                    <td>A list in which each entry is marked with a bullet or other dingbat
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/orderedlist.html">orderedlist</ulink>
+                    </td>
+                    <td>A list in which each entry is marked with a sequentially incremented label
+                    </td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>Table tags:
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/table.html">table</ulink>
+                    </td>
+                    <td>A formal table in a document</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/informaltable.html">informaltable</ulink>
+                    </td>
+                    <td>A table without a title</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/tbody.html">tbody</ulink>
+                    </td>
+                    <td>A wrapper for the rows of a table or informal table</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/tr.html">tr</ulink>
+                    </td>
+                    <td>A row in an HTML table</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/td.html">td</ulink>
+                    </td>
+                    <td>A table entry in an HTML table</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/th.html">th</ulink>
+                    </td>
+                    <td>A table header entry in an HTML table</td>
+                </tr>
+                <tr>
+                    <td>
+                        bgcolor
+                    </td>
+                    <td>A HTML attribute for a table, a tr or a td to set the background color</td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>Image tags:
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/imagedata.html">imagedata</ulink>
+                    </td>
+                    <td>Pointer to external image data</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/imageobject.html">imageobject</ulink>
+                    </td>
+                    <td>A wrapper for image data and its associated meta-information</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/inlinemediaobject.html">inlinemediaobject</ulink>
+                    </td>
+                    <td>An inline media object (video, audio, image, and so on)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/screenshot.html">screenshot</ulink>
+                    </td>
+                    <td>A representation of what the user sees or might see on a computer screen</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/mediaobject.html">mediaobject</ulink>
+                    </td>
+                    <td>A displayed media object (video, audio, image, etc.)</td>
+                </tr>
+                <tr>
+                    <td>
+                        scilab:image
+                    </td>
+                    <td>
+                        Any Scilab code into the &lt;scilab:image&gt; foo() &lt;scilab:image&gt; will be executed by an instance of Scilab and the generated graphic included directly into the documentation. This is a Scilab extension of Docbook and is based on the <link linkend="xinit">driver/xinit/xend</link> feature.
+                    </td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>FAQ tags:
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/question.html">question</ulink>
+                    </td>
+                    <td>A question in a QandASet</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/answer.html">answer</ulink>
+                    </td>
+                    <td>An answer to a question posed in a QandASet</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/qandaentry.html">qandaentry</ulink>
+                    </td>
+                    <td>A question/answer set within a QandASet</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/qandaset.html">qandaset</ulink>
+                    </td>
+                    <td>A question-and-answer set</td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>History tags:
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/revhistory.html">revhistory</ulink>
+                    </td>
+                    <td>A history of the revisions to a document</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/revision.html">revision</ulink>
+                    </td>
+                    <td>An entry describing a single revision in the history of the revisions to a document</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/revnumber.html">revnumber</ulink>
+                    </td>
+                    <td>A document revision number</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/revremark.html">revremark</ulink>
+                    </td>
+                    <td>A description of a revision to a document</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/revdescription.html">revdescription</ulink>
+                    </td>
+                    <td>A extended description of a revision to a document
+                    </td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>Information tags:
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/note.html">note</ulink>
+                    </td>
+                    <td>A message set off from the text
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/warning.html">warning</ulink>
+                    </td>
+                    <td>An admonition set off from the text</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/caution.html">caution</ulink>
+                    </td>
+                    <td>A note of caution</td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/tip.html">tip</ulink>
+                    </td>
+                    <td>A suggestion to the user, set off from the text
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg/en/html/important.html">important</ulink>
+                    </td>
+                    <td>An admonition set off from the text</td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>Scilab specific tag:
+            <informaltable border="1">
+                <tr>
+                    <td>latex</td><td>Scilab extension to write directly LaTeX expression in the help pages</td>
+                </tr>
+            </informaltable>
+        </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>Management of tags &lt;note&gt;, &lt;caution&gt;, &lt;warning&gt;, &lt;important&gt; and &lt;tip&gt; 
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="apropos">apropos</link>
+            </member>
+            <member>
+                <link linkend="help">help</link>
+            </member>
+            <member>
+                <link linkend="help_skeleton">help_skeleton</link>
+            </member>
+            <member>
+                <link linkend="help_from_sci">help_from_sci</link>
+            </member>
+            <member>
+                <link linkend="xmltojar">xmltojar</link>
+            </member>
+            <member>
+                <link linkend="add_help_chapter">add_help_chapter</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

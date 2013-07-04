@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 // <-- INTERACTIVE TEST -->
 //
 // <-- Non-regression test for bug 7945 -->
@@ -20,8 +20,8 @@ xcos();
 // check that the diagram title is "Untitled - Xcos"
 // check that the palette browser title is "Palette browser - Xcos"
 
-xcos("SCI/modules/xcos/demos/Electrical/Boost_Converter.xcos");
-// check that the title is "Boost_Converter (SCI/modules/xcos/demos/Electrical/Boost_Converter.xcos) - Xcos"
+xcos("SCI/modules/xcos/demos/Electrical/Boost_Converter.zcos");
+// check that the title is "Boost_Converter (SCI/modules/xcos/demos/Electrical/Boost_Converter.zcos) - Xcos"
 
 xcos("SCI/modules/scicos/demos/Bouncing_ball.cosf");
 // check that the title is "*Bouncing_ball - Xcos"

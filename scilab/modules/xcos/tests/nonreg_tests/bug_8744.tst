@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 // <-- INTERACTIVE TEST -->
 //
 // <-- Non-regression test for bug 8744 -->
@@ -17,7 +17,7 @@
 // Using the modelica initialize gui, produced an OCaML exception while solved
 // twice.
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8744.xcos")
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8744.zcos")
 
 // Compilation -> Initialize modelica
 // Solve (may produce and error)

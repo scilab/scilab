@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 7715 -->
 //
@@ -17,13 +17,13 @@
 
 
 timer();
-xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.xcos");
+xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.zcos");
 run1 = timer();
 
-xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.xcos");
+xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.zcos");
 
 timer();
-xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.xcos");
+xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.zcos");
 run3 = timer();
 
 // If the computer slows for an other reasons, we might have this bug again.

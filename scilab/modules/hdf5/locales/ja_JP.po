@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-03 14:52+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-24 14:43+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: ja\n"
 
 #, c-format
@@ -30,12 +30,19 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: ファイル %s を開けません.\n"
 
 #, c-format
-msgid "%s: Wrong hdf5 file format version. Expected: %d from file: %d\n"
-msgstr "%s: hdf5ファイル形式のバージョンが間違っています.  仕様値: %d, ファイルの値: %d\n"
+msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
+msgstr "%s:  SODファイル形式のバージョンが間違っています. 仕様値: %d 指定値: %d\n"
 
 #, c-format
-msgid "%s: Variable '%s' already exists in file '%s'."
-msgstr "%s: 変数 '%s' はファイル '%s' に既に存在します."
+msgid "%s: Unable to delete existing variable \"%s\"."
+msgstr "%s: 既存の変数 \"%s\" を削除できませんでした."
+
+#, c-format
+msgid ""
+"%s: Variable '%s' already exists in file '%s'\n"
+"Use -append option to replace existing variable\n"
+"."
+msgstr "%s: 変数 '%s' がファイル '%s' にすでに存在します"
 
 #, c-format
 msgid "%s: Unable to update Scilab version in \"%s\"."
@@ -50,13 +57,687 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#, c-format
+msgid "%s: Invalid H5Object.\n"
+msgstr "%s:  H5Object が無効です.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはH5Objectを指定してください.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s: %s\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A H5Object expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: H5Object を指定してください.\n"
+
+#, c-format
+msgid "%s: Cannot remove H5Object.\n"
+msgstr "%s: H5Object  を削除できませんでした.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: double の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrogn size for input argument #%d: five row vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  5行のベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr "%s: 入力引数#%dの型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: six row vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  6行のベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d column vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  %d 列のベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Can not print H5Object: invalid object.\n"
+msgstr "%s:  H5Object: を出力できません:  オブジェクトが無効です.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  H5Object を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Can not create output argument.\n"
+msgstr "%s: 出力引数を作成できません.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A HDF5 object expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  HDF5オブジェクトを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  実数の行ベクトルを指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Real row or column vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  実数の行または列ベクトルを指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  文字列の行配列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row or column vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 行または列ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Can not use H5Object: invalid object.\n"
+msgstr "%s: H5Objectを使用できません: オブジェクトが無効です.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または論理値を指定してください.\n"
+
+#, c-format
+msgid "%s: Invalid number of arguments: more than %d expected.\n"
+msgstr "%s: 引数の数が間違っています: %d より多い引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Invalid access mode: %s.\n"
+msgstr "%s: アクセスモードが間違っています: %s.\n"
+
+#, c-format
+msgid "%s: Invalid number of input arguments.\n"
+msgstr "%s: 入力引数の数が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: doubleを指定してください.\n"
+
+#, c-format
+msgid "%s: Invalid number of input argument.\n"
+msgstr "%s: 入力引数の数が間違っています.\n"
+
+#, c-format
+msgid "%s: Invalid path: cannot be empty.\n"
+msgstr "%s: パスが間違っています: 空とすることはできません.\n"
+
+#, c-format
+msgid "%s: Second argument must be a dataset name.\n"
+msgstr "%s: 2番目の引数はデータセット名とする必要があります.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  同じ大きさで指定してください.\n"
+
+#, c-format
+msgid "%s: Argument 'count' is missing.\n"
+msgstr "%s: 引数 'count' が指定されていません.\n"
+
+#, c-format
+msgid "%s: Invalid number of argument(s): %d expected.\n"
+msgstr "%s: 引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Unable to open file: %s\n"
 msgstr "%s: ファイルをオープンできません: %s\n"
 
 #, c-format
+msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
+msgstr "%s:  SODファイル形式のバージョンが間違っています. 仕様上の最大値: %d 指定値: %d\n"
+
+#, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: 無効なHDF5 Scilab形式.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: More than %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています:  %d 個より大きい引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはdoubleを指定してください.\n"
+
+#, c-format
+msgid "%s: Only one field can be requested.\n"
+msgstr "%s:  フィールドは1つだけリクエストできます.\n"
+
+#, c-format
+msgid ""
+"%s: Error in retrieving field content:\n"
+"%s\n"
+msgstr ""
+"%s: フィールドの内容を取得する際にエラーが発生しました:\n"
+"%s\n"
+
+#, c-format
+msgid "%s: Not an H5 Compound object.\n"
+msgstr "%s: H5 Compoundオブジェクトではありません.\n"
+
+#, c-format
+msgid "%s: Can not print H5Object.\n"
+msgstr "%s: H5Objectを出力できません.\n"
+
+msgid "Invalid index."
+msgstr "添字が間違っています."
+
+msgid "Dimensions"
+msgstr "次元"
+
+#, c-format
+msgid "Cannot open attribute: %s"
+msgstr "属性をオープンできませんでした: %s"
+
+msgid "Cannot get the attribute type"
+msgstr "属性typeを取得できませんでした"
+
+msgid "Cannot get the attribute dataspace"
+msgstr "属性dataspaceを取得できませんでした"
+
+msgid "Error in retrieving data."
+msgstr "データを取得する際にエラーが発生しました."
+
+#, c-format
+msgid "Attribute %s already exists."
+msgstr "属性 %s が既に存在します."
+
+msgid "Cannot create a new attribute."
+msgstr "新しい属性を作成できませんでした."
+
+msgid "Cannot write data in the attribute."
+msgstr "属性にデータを書き込めません."
+
+msgid "Cannot copy the attribute"
+msgstr "属性をコピーできません."
+
+msgid "Cannot read attribute data."
+msgstr "属性データを読み込めません"
+
+msgid "Cannot get the size of attribute list."
+msgstr "属性リストの大きさを取得できません."
+
+#, c-format
+msgid "Invalid index %d: must be between 0 and %d."
+msgstr "添字 %d が不正です: 0 と %d の間とする必要があります."
+
+#, c-format
+msgid "Cannot open attribute at position %d."
+msgstr "位置 %d で属性をオープンできませんでした."
+
+msgid "Filename"
+msgstr "ファイル名"
+
+msgid "Number of elements"
+msgstr "要素数"
+
+msgid "Cannot copy data to an empty pointer"
+msgstr "データを空ポインタにコピーできません"
+
+msgid "Wrong dimensions."
+msgstr "次元が間違っています."
+
+#, c-format
+msgid "Invalid field name: %s"
+msgstr "フィールド名が無効です: %s"
+
+msgid "Fields Names"
+msgstr "フィールド名"
+
+msgid "Cannot create an hypermatrix on the stack"
+msgstr "ハイパー行列をスタック上に作成できません"
+
+msgid "Cannot get the data type"
+msgstr "データ型を取得できません"
+
+msgid "Unknown integer datatype."
+msgstr "整数データ型が不明です."
+
+msgid "Unknown floating-point datatype."
+msgstr "浮動小数点型が不明です."
+
+msgid "Bitfield is too big"
+msgstr "ビットフィールドが大きすぎます"
+
+msgid "Cannot get data from an unknown data type."
+msgstr "未知のデータ型からデータを取得できません."
+
+msgid "Memory to allocate is too big"
+msgstr "確保するメモリが大きすぎます"
+
+msgid "Cannot allocate memory to get the data"
+msgstr "データ取得用のメモリを確保できません"
+
+msgid "Cannot retrieve the data from the attribute"
+msgstr "属性からデータを取得できません"
+
+#, c-format
+msgid "Cannot open the given dataset %s."
+msgstr "指定したデータセット %s をオープンできません."
+
+#, c-format
+msgid "Cannot get the dataspace associated with dataset named %s."
+msgstr "%s という名前のデータセットに関連付けられたデータ空間を取得出来ません."
+
+msgid "Invalid layout"
+msgstr "レイアウトが無効です"
+
+#, c-format
+msgid "Only %d dimensions."
+msgstr "次元が %d のみです."
+
+msgid "Cannot list dataset attributes."
+msgstr "データセットの属性の一覧を取得できませんでした."
+
+#, c-format
+msgid "Cannot open the dataset: %s"
+msgstr "データセットをオープンできませんでした: %s"
+
+msgid "Invalid source space"
+msgstr "ソース空間が間違っています"
+
+msgid "Invalid target space"
+msgstr "目標空間が間違っています"
+
+msgid "Cannot modify maximum dimensions."
+msgstr "最大次元を修正できません."
+
+#, c-format
+msgid "Cannot modify dimension %d."
+msgstr "次元 %d を修正できませんでした."
+
+#, c-format
+msgid "Cannot set the chunk dimensions: %s"
+msgstr "チャンク次元 を設定できませんでした: %s"
+
+#, c-format
+msgid "Cannot create the dataset: %s"
+msgstr "データセットを作成できませんでした: %s"
+
+msgid "Cannot write data in the dataset."
+msgstr "データセットにデータを書き込めませんでした."
+
+msgid "unknown dataspace"
+msgstr "データ空間が不明です"
+
+msgid "Unknown dataspace: cannot get its dimensions"
+msgstr "未知のデータ空間: 次元を取得できませんでした"
+
+msgid "Cannot select all."
+msgstr "全てを選択できませんでした."
+
+msgid "Cannot create an array of integer on the stack."
+msgstr "スタック上に整数配列を作成できませんでした."
+
+msgid "Cannot create a string on the stack."
+msgstr "スタック上に文字列を作成できませんでした."
+
+msgid "Unknown dataspace"
+msgstr "データ空間が不明です"
+
+msgid "Extents"
+msgstr "範囲"
+
+msgid "Invalid selection rank."
+msgstr "ランク選択が無効です."
+
+msgid "Invalid selection."
+msgstr "選択部が無効です."
+
+msgid "Cannot get the current errors stack"
+msgstr "現在のエラースタックを取得できません"
+
+msgid "HDF5 description"
+msgstr "HDF5の説明"
+
+msgid "Exception thrown in file"
+msgstr "ファイルで例外発生"
+
+msgid "at line"
+msgstr "行"
+
+msgid "Cannot get the link info"
+msgstr "リンク情報を取得できません"
+
+msgid "Cannot get the link target"
+msgstr "リンク対象を取得できません"
+
+msgid "Link type"
+msgstr "リンク型"
+
+msgid "Link name"
+msgstr "リンク名"
+
+msgid "Link path"
+msgstr "リンクのパス"
+
+msgid "Link target file"
+msgstr "リンク先のファイル"
+
+msgid "Link target path"
+msgstr "リンク先のパス"
+
+msgid "Invalid hdf5 file: empty filename."
+msgstr "hdf5ファイルが無効です: ファイル名が空です."
+
+#, c-format
+msgid "Invalid hdf5 file: %s."
+msgstr "hdf5ファイルが無効です: %s."
+
+#, c-format
+msgid "Cannot open the given hdf5 file: %s."
+msgstr "指定した hdf5 ファイルを開けません: %s."
+
+#, c-format
+msgid "Cannot create the given hdf5 file: %s."
+msgstr "指定した hdf5 ファイルを作成できません: %s."
+
+#, c-format
+msgid ""
+"Cannot open the file: %s, an empty file with the same name already exists."
+msgstr "ファイルを開けません: %s, 同じ名前の空のファイルが既に存在します."
+
+#, c-format
+msgid "Cannot append the file (not HDF5): %s."
+msgstr "(HDF5ではない)ファイルに追加できません: %s."
+
+msgid "Invalid flag."
+msgstr "フラグが無効です."
+
+#, c-format
+msgid "Invalid path: %s"
+msgstr "パスが無効です: %s"
+
+msgid "Cannot set 'core' as driver."
+msgstr "'core'をドライバに指定できません."
+
+#, c-format
+msgid "Invalid filename: must contain a '%d'."
+msgstr "ファイル名が無効です: '%d' を含めることはできません."
+
+msgid "Cannot set 'family' as driver."
+msgstr "'familly'をドライバに指定できません."
+
+msgid "Error in flushing the file."
+msgstr "ファイルをフラッシュする際にエラーが発生しました."
+
+#, c-format
+msgid "Cannot retrieve file size: %s"
+msgstr "ファイルの大きさを取得できません: %s"
+
+#, c-format
+msgid "Cannot retrieve file version: %s"
+msgstr "ファイルのバージョンを取得できません: %s"
+
+msgid "Cannot create an integer on the stack."
+msgstr "スタック上に整数を作成できませんでした."
+
+#, c-format
+msgid "Invalid field %s."
+msgstr "フィールド %s が無効です."
+
+#, c-format
+msgid "Cannot open the group %s."
+msgstr "グループ %s を開けません."
+
+msgid "Cannot get the links number"
+msgstr "リンク番号を取得できません"
+
+msgid "Cannot create a column of strings on the stack."
+msgstr "スタック上に1列分の文字列を作成できませんでした."
+
+msgid "Cannot list group links."
+msgstr "グループリンクの一覧を取得できませんでした."
+
+msgid "Cannot list group attributes."
+msgstr "グループ属性の一覧を取得できませんでした."
+
+msgid "Cannot list group contents"
+msgstr "グループコンテンツの一覧を取得できませんでした."
+
+#, c-format
+msgid "The group already exists: %s."
+msgstr "グループが既に存在します: %s."
+
+#, c-format
+msgid "Cannot create the group: %s."
+msgstr "グループを作成できませんでした: %s."
+
+msgid "Cannot get the number of groups."
+msgstr "グループの数を取得できませんでした."
+
+msgid "Cannot get linked object"
+msgstr "リンク結合されたオブジェクトを取得できませんでした"
+
+msgid "Link target name"
+msgstr "リンク先の名前"
+
+#, c-format
+msgid "The link %s does not exist."
+msgstr "リンク %s は存在しません."
+
+#, c-format
+msgid "Invalid link type: %s."
+msgstr "リンク型が無効です: %s."
+
+msgid "Cannot get the number of links."
+msgstr "リンク番号を取得できませんでした."
+
+msgid "Invalid operation"
+msgstr "無効な操作です"
+
+#, c-format
+msgid "Invalid index at position %d"
+msgstr "位置 %d における添字が無効です."
+
+msgid "Cannot get the number of objects."
+msgstr "オブジェクトの数を取得できませんでした."
+
+msgid "Parent group name"
+msgstr "親グループの名前"
+
+msgid "Parent group path"
+msgstr "親グループのパス"
+
+msgid "Elements type"
+msgstr "要素型"
+
+msgid "Size"
+msgstr "大きさ"
+
+#, c-format
+msgid "Invalid index: %d."
+msgstr "添字が無効です: %d."
+
+#, c-format
+msgid "Cannot get object at position %d."
+msgstr "位置 %d にあるオブジェクトを取得できませんでした."
+
+#, c-format
+msgid "Invalid name: %s."
+msgstr "名前が無効です: %s."
+
+msgid "Invalid HDF5 object"
+msgstr "HDF5オブジェクトが無効です"
+
+#, c-format
+msgid "Invalid field: %s"
+msgstr "フィールドが無効です: %s"
+
+msgid "Cannot create a mlist on the stack."
+msgstr "スタック上にmlistを作成できませんでした."
+
+msgid "Cannot list names."
+msgstr "名前の一覧を取得できませんでした."
+
+msgid "Cannot retrieve information about the object"
+msgstr "オブジェクトに関する情報を取得できませんでした."
+
+msgid "Unknown HDF5 object"
+msgstr "HDF5オブジェクトが不明です"
+
+msgid "Cannot retrieve numeric index."
+msgstr "数値添字を取得できませんでした."
+
+msgid "Cannot open object at the given position."
+msgstr "指定した位置のオブジェクトを開けませんでした."
+
+msgid "Link target"
+msgstr "リンク先"
+
+msgid "Cannot free the memory associated with String data"
+msgstr "文字列データ用のメモリを開放できませんでした"
+
+#, c-format
+msgid "Invalid H5Type name: %s."
+msgstr "H5Type名が無効です: %s."
+
+msgid "Unknown datatype"
+msgstr "データ型が無効です"
+
+msgid "Cannot get H5Object id"
+msgstr "H5Object id を取得できませんでした"
+
+msgid "Invalid object: not a dataset."
+msgstr "オブジェクトが無効です: データセットではありません."
+
+msgid "Cannot remove a file."
+msgstr "ファイルを削除できませんでした."
+
+msgid "Cannot remove root element."
+msgstr "ルート要素を削除できませんでした."
+
+#, c-format
+msgid "The name doesn't exist: %s."
+msgstr "名前が存在しません: %s."
+
+#, c-format
+msgid "Cannot remove the attribute: %s."
+msgstr "属性を削除できませんでした: %s."
+
+#, c-format
+msgid "Cannot remove the link: %s."
+msgstr "リンクを削除できませんでした: %s."
+
+#, c-format
+msgid "The link already exists: %s."
+msgstr "リンクが既に存在します: %s."
+
+#, c-format
+msgid "Cannot create the hard link: %s."
+msgstr "ハードリンクを作成できませんでした: %s."
+
+#, c-format
+msgid "Cannot create the soft link: %s."
+msgstr "ソフトリンクを作成できませんでした: %s."
+
+#, c-format
+msgid "Cannot create a hard link to an external object: %s."
+msgstr "外部オブジェクトへのハードリンクを作成できませんでした: %s."
+
+#, c-format
+msgid "Cannot create the external link: %s."
+msgstr "外部リンクを作成できませんでした: %s."
+
+msgid "Cannot copy object."
+msgstr "オブジェクトをコピーできませんでした."
+
+msgid "Invalid filter"
+msgstr "フィルタが無効です"
+
+msgid "Can only label a dataset"
+msgstr "データセットの分類のみが可能です"
+
+msgid "Target object is not a file"
+msgstr "目標オブジェクトがファイルではありません"
+
+msgid "Invalid location"
+msgstr "位置が無効です"
+
+#, c-format
+msgid "Invalid location: %s"
+msgstr "位置が無効です: %s"
+
+#, c-format
+msgid "Cannot mount the file: %s"
+msgstr "ファイルをマウントできません: %s"
+
+#, c-format
+msgid "Cannot unmount the file at location: %s"
+msgstr "位置: %s でファイルのマウントを解除できませんでした"
+
+#, c-format
+msgid "Can not read input argument #%d."
+msgstr "入力引数 #%d を読み込めませんでした."
+
+#, c-format
+msgid "Can not get the type of input argument #%d."
+msgstr "入力引数 #%d の型を取得できませんでした."
+
+msgid "Complex datatype not handled for now."
+msgstr "現時点では複素数データ型は処理できません."
+
+#, c-format
+msgid "%s: Can not read input argument #%d."
+msgstr "%s: 入力引数 #%d を読み込めませんでした."
+
+#, c-format
+msgid "%s: Datatype not handled for now."
+msgstr "%s: データ型は現時点では処理できません."
+
+#, c-format
+msgid "Invalid rank, must be in the interval [0, %d]."
+msgstr "ランクが無効です, [0,%d] の範囲とする必要があります."
+
+msgid "No converter found for the specified target datatype."
+msgstr "指定した目標データ型へのコンバータが見つかりません."
+
+msgid "Cannot create a new dataspace."
+msgstr "新しいデータ空間を作成できませんでした."
+
+msgid "Invalid target dataspace."
+msgstr "目標データ空間が無効です."
+
+msgid "Cannot create the target type."
+msgstr "目標型を作成できませんでした."
+
+msgid "Incompatible dimensions"
+msgstr "次元に互換性がありません"
+
+msgid "References must be given as strings"
+msgstr "リファレンスは文字列で指定してください"
+
+#, c-format
+msgid "Invalid path: %s."
+msgstr "パスが無効です: %s."

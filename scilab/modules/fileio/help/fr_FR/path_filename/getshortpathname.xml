@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getshortpathname" xml:lang="fr">
+    <refnamediv>
+        <refname>getshortpathname</refname>
+        <refpurpose>retourne le chemin au format court (Seulement pour
+            Windows)
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>shortpath=getshortgpathname(longpath)
+            [shortpath,bOK]=getshortpathname(longpath)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>longpath</term>
+                <listitem>
+                    <para>Une chaine de caractere ou une matrice de chaines de
+                        caracteres contenant le chemin au format long.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>shortpath</term>
+                <listitem>
+                    <para>Une chaine de caractere ou une matrice de chaines de
+                        caracteres contenant le chemin au format court
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bOK</term>
+                <listitem>
+                    <para>contient %T si le chemin a ete converti ou %F si ce n'est pas
+                        le cas.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>La primitive getshortpathname convertie un chemin au format long en
+            un chemin au format court.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+[shortpath,bOK]=getshortpathname(SCI) 
+[shortpaths,bOKs]=getshortpathname([SCI,SCI]) 
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getlongpathname">getlongpathname</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

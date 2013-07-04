@@ -10,24 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cmb_lin">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="cmb_lin">
     <refnamediv>
         <refname>cmb_lin</refname>
-        <refpurpose> symbolic linear combination</refpurpose>
+        <refpurpose>combinaison linéaire symbolique  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Séquence d'appel</title>
         <synopsis>[x]=cmb_lin(alfa,x,beta,y)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>
-            Evaluates <literal>alfa*x-beta*y</literal>. <literal> alfa, beta, x, y</literal> are character
-            strings. (low-level routine)
+            Évalue <literal>alfa*x-beta*y</literal>. <literal> alfa, beta, x, y</literal> sont des chaînes de caractères (routine de bas niveau).
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="mulf">mulf</link>

@@ -24,7 +24,8 @@
 static BOOL loadedDep = FALSE;
 
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] = {
+static gw_generic_table Tab[] =
+{
     {sci_buildDocv2, "buildDocv2"}
 };
 
@@ -45,12 +46,12 @@ int gw_helptools(void)
         loadedDep = TRUE;
     }
 
-	if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-	}
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
 
-	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
     callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 
     return 0;

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,157 +13,186 @@
 
 package org.scilab.modules.graphic_objects.contouredObject;
 
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+
 /**
  * Mark class
  * @author Manuel JULIACHS
  */
 public class Mark {
-	/** Mark properties */
-	public enum MarkPropertyType { MODE, STYLE, SIZEUNIT, SIZE, FOREGROUND, BACKGROUND };
+    /** Mark properties */
+    public enum MarkPropertyType { MODE, STYLE, SIZEUNIT, SIZE, FOREGROUND, BACKGROUND };
 
-	/** Mark size unit type */
-	public enum MarkSizeUnitType { POINT, TABULATED;
+    /** Mark size unit type */
+    public enum MarkSizeUnitType { POINT, TABULATED;
 
-		/**
-		 * Converts an integer to the corresponding enum
-		 * @param intValue the integer value
-		 * @return the mark size unit type enum
-		 */
-		public static MarkSizeUnitType intToEnum(Integer intValue) {
-			switch (intValue) {
-				case 0:
-					return MarkSizeUnitType.POINT;
-				case 1:
-					return MarkSizeUnitType.TABULATED;
-				default:
-					return null;
-			}
-		}
-	}
+                                   /**
+                                    * Converts an integer to the corresponding enum
+                                    * @param intValue the integer value
+                                    * @return the mark size unit type enum
+                                    */
+    public static MarkSizeUnitType intToEnum(Integer intValue) {
+        switch (intValue) {
+            case 0:
+                return MarkSizeUnitType.POINT;
+            case 1:
+                return MarkSizeUnitType.TABULATED;
+            default:
+                return null;
+        }
+    }
+                                 }
 
 
-	/** Specifies whether marks must be drawn or not */
-	private boolean mode;
+    /** Specifies whether marks must be drawn or not */
+    private boolean mode;
 
-	/** Mark style */
-	private int style;
+    /** Mark style */
+    private int style;
 
-	/** Mark size unit */
-	private MarkSizeUnitType markSizeUnit;
+    /** Mark size unit */
+    private MarkSizeUnitType markSizeUnit;
 
-	/** Mark size */
-	private int size;
+    /** Mark size */
+    private int size;
 
-	/** Foreground color */
-	private int foreground;
+    /** Foreground color */
+    private int foreground;
 
-	/** Background color */
-	private int background;
+    /** Background color */
+    private int background;
 
-	/** Constructor */
-	public Mark() {
-		super();
-		mode = false;
-		style = 0;
-		markSizeUnit = MarkSizeUnitType.POINT;
-		foreground = 0;
-		background = 0;
-	}
+    /** Constructor */
+    public Mark() {
+        super();
+        mode = false;
+        style = 0;
+        markSizeUnit = MarkSizeUnitType.POINT;
+        foreground = 0;
+        background = 0;
+    }
 
-	/**
-	 * Copy constructor
-	 * @param mark the Mark to copy
-	 */
-	public Mark(Mark mark) {
-		mode = mark.mode;
-		style = mark.style;
-		markSizeUnit = mark.markSizeUnit;
-		foreground = mark.foreground;
-		background = mark.background;
-	}
+    /**
+     * Copy constructor
+     * @param mark the Mark to copy
+     */
+    public Mark(Mark mark) {
+        mode = mark.mode;
+        style = mark.style;
+        size = mark.size;
+        markSizeUnit = mark.markSizeUnit;
+        foreground = mark.foreground;
+        background = mark.background;
+    }
 
-	/**
-	 * @return the background
-	 */
-	public Integer getBackground() {
-		return background;
-	}
+    /**
+     * @return the background
+     */
+    public Integer getBackground() {
+        return background;
+    }
 
-	/**
-	 * @param background the background to set
-	 */
-	public void setBackground(Integer background) {
-		this.background = background;
-	}
+    /**
+     * @param background the background to set
+     */
+    public UpdateStatus setBackground(Integer background) {
+        if (this.background != background) {
+            this.background = background;
+            return UpdateStatus.Success;
+        }
 
-	/**
-	 * @return the foreground
-	 */
-	public Integer getForeground() {
-		return foreground;
-	}
+        return UpdateStatus.NoChange;
+    }
 
-	/**
-	 * @param foreground the foreground to set
-	 */
-	public void setForeground(Integer foreground) {
-		this.foreground = foreground;
-	}
+    /**
+     * @return the foreground
+     */
+    public Integer getForeground() {
+        return foreground;
+    }
 
-	/**
-	 * @return the markSizeUnit
-	 */
-	public MarkSizeUnitType getMarkSizeUnit() {
-		return markSizeUnit;
-	}
+    /**
+     * @param foreground the foreground to set
+     */
+    public UpdateStatus setForeground(Integer foreground) {
+        if (this.foreground != foreground) {
+            this.foreground = foreground;
+            return UpdateStatus.Success;
+        }
 
-	/**
-	 * @param markSizeUnit the markSizeUnit to set
-	 */
-	public void setMarkSizeUnit(MarkSizeUnitType markSizeUnit) {
-		this.markSizeUnit = markSizeUnit;
-	}
+        return UpdateStatus.NoChange;
+    }
 
-	/**
-	 * @return the size
-	 */
-	public Integer getSize() {
-		return size;
-	}
+    /**
+     * @return the markSizeUnit
+     */
+    public MarkSizeUnitType getMarkSizeUnit() {
+        return markSizeUnit;
+    }
 
-	/**
-	 * @param size the size to set
-	 */
-	public void setSize(Integer size) {
-		this.size = size;
-	}
+    /**
+     * @param markSizeUnit the markSizeUnit to set
+     */
+    public UpdateStatus setMarkSizeUnit(MarkSizeUnitType markSizeUnit) {
+        if (this.markSizeUnit != markSizeUnit) {
+            this.markSizeUnit = markSizeUnit;
+            return UpdateStatus.Success;
+        }
 
-	/**
-	 * @return the mode
-	 */
-	public Boolean getMode() {
-		return mode;
-	}
+        return UpdateStatus.NoChange;
+    }
 
-	/**
-	 * @param mode the mode to set
-	 */
-	public void setMode(Boolean mode) {
-		this.mode = mode;
-	}
+    /**
+     * @return the size
+     */
+    public Integer getSize() {
+        return size;
+    }
 
-	/**
-	 * @return the style
-	 */
-	public Integer getStyle() {
-		return style;
-	}
+    /**
+     * @param size the size to set
+     */
+    public UpdateStatus setSize(Integer size) {
+        if (this.size == size) {
+            return UpdateStatus.NoChange;
+        }
+        this.size = size;
+        return UpdateStatus.Success;
+    }
 
-	/**
-	 * @param style the style to set
-	 */
-	public void setStyle(Integer style) {
-		this.style = style;
-	}
-	
+    /**
+     * @return the mode
+     */
+    public Boolean getMode() {
+        return mode;
+    }
+
+    /**
+     * @param mode the mode to set
+     */
+    public UpdateStatus setMode(Boolean mode) {
+        if (this.mode == mode) {
+            return UpdateStatus.NoChange;
+        }
+        this.mode = mode;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the style
+     */
+    public Integer getStyle() {
+        return style;
+    }
+
+    /**
+     * @param style the style to set
+     */
+    public UpdateStatus setStyle(Integer style) {
+        if (this.style == style) {
+            return UpdateStatus.NoChange;
+        }
+        this.style = style;
+        return UpdateStatus.Success;
+    }
 }

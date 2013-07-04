@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ls">
+    <refnamediv>
+        <refname>ls</refname>
+        <refpurpose>ファイルを表示</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>ls path options
+            files=ls( [path] )
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>ディレクトリパス名を指定する文字列行列 (多くの場合,末尾が
+                        <literal>*</literal>のパターンとなります).デフォルト値は
+                        <literal>.</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>文字列の列ベクトル. デフォルトで,
+                        列整形された出力を含みます.オプションの一つが
+                        <literal>'-1'</literal>の場合, <literal>files</literal> は各ファイルに関する
+                        エントリを含みます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>ls</literal> は,
+            path引数で指定したパターンに一致するファイルの一覧を得るために
+            使用することができます.
+            パターンは,ファイルに関する情報を取得するために
+            Unixでは<literal>ls</literal>,Windowsでは
+            <literal>dir</literal>コマンドに指定されます.
+            このため, ポータブルなScilabスクリプトを書くためには,
+            両方のOSに有効なワイルドカードパターンを指定する必要があります.
+            パス名の変換が行われ,例えば<literal>SCI/core/macros/*.sci</literal>
+            はUnixとWindowsの両方で有効なパターンであることに注意してください.
+        </para>
+        <para>
+            全てのファイルのベクトルを取得したい場合には,
+            <link linkend="listfiles">listfiles</link>  または <link linkend="dir">dir</link>関数
+            を使用することが推奨されます.
+        </para>
+        <para>
+            Scilab バージョン 5.0 以降, 2番目の入力引数
+            (Unixシステムで指定可能な一連の文字列: Unix ls コマンドオプション)
+            が削除されたことに注意してください.
+            このオプションは,主にセキュリティおよび移植性のため削除されました.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+ls
+ls SCI/modules/core/macros/*.sci
+x=ls('SCI/modules/core/macros/*.sci')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="listfiles">listfiles</link>
+            </member>
+            <member>
+                <link linkend="findfiles">findfiles</link>
+            </member>
+            <member>
+                <link linkend="dir">dir</link>
+            </member>
+            <member>
+                <link linkend="fileinfo">fileinfo</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

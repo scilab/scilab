@@ -16,6 +16,7 @@ import java.util.Set;
 
 import org.scilab.modules.commons.xml.XConfigurationEvent;
 import org.scilab.modules.commons.xml.XConfigurationListener;
+import org.scilab.modules.console.utils.ScilabLaTeXViewer;
 
 public class ConsoleConfiguration implements XConfigurationListener {
 
@@ -35,11 +36,13 @@ public class ConsoleConfiguration implements XConfigurationListener {
         if (conf.changed()) {
             ConsoleOptions.invalidate(conf);
             sciConsole.configurationChanged(conf);
+            ScilabLaTeXViewer.configurationChanged(conf);
         }
     }
 
     public static class Conf {
 
+        public boolean latex;
         public boolean font;
         public boolean color;
         public boolean display;
@@ -51,7 +54,9 @@ public class ConsoleConfiguration implements XConfigurationListener {
                 color = true;
                 display = true;
                 keymap = true;
+                latex = true;
             } else {
+                latex = path.contains(ConsoleOptions.LATEXPATH);
                 font = path.contains(ConsoleOptions.CONSOLEFONTPATH) || path.contains(ConsoleOptions.FONTPATH);
                 color = path.contains(ConsoleOptions.COLORSPATH);
                 display = path.contains(ConsoleOptions.DISPLAYPATH);
@@ -60,7 +65,7 @@ public class ConsoleConfiguration implements XConfigurationListener {
         }
 
         public boolean changed() {
-            return font || color || display || keymap;
+            return font || color || display || keymap || latex;
         }
     }
 }

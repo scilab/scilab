@@ -7,17 +7,24 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
+// <-- XCOS TEST -->
+
 
 ilib_verbose(0);
 
+prot = funcprot();
+funcprot(0);
 exec("SCI/modules/xcos/tests/unit_tests/PENDULUM_ANIM.sci");
 exec("SCI/modules/xcos/tests/unit_tests/anim_pen.sci");
-importXcosDiagram("SCI/modules/xcos/tests/unit_tests/pendulum_anim45.xcos");
+funcprot(prot);
+importXcosDiagram("SCI/modules/xcos/tests/unit_tests/pendulum_anim45.zcos");
 
 M  = 10;
 m  = 3;
 l  = 3;
 ph = 0.1;
+z0 = -4;
+th0 = .02;
 
 for i=1:length(scs_m.objs)
     if typeof(scs_m.objs(i))=="Block" & scs_m.objs(i).gui=="SUPER_f" then

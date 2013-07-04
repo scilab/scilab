@@ -1,0 +1,285 @@
+scirenderer (1.1.0)
+
+     * Fix bad subticks number.
+
+     * Draw the last tick.
+
+     * Avoid to return subtick when no ticks defined.
+
+scirenderer (1.0.9)
+
+     * Return all subticks when defined by their numbers
+
+ -- Calixte DENIZET <calixte.denizet@scilab-enterprises.com>  Thu, 28 Mar 2013 10:33:28 +0100
+
+scirenderer (1.0.8)
+
+     * Bug #12289 fixed: sub_ticks property was ignored.
+     * Bug #12405 fixed: Floating point errors could lead to an infinite loop
+                         in ticks computation.
+
+ -- Calixte DENIZET <calixte.denizet@scilab-enterprises.com>  Wed, 27 Mar 2013 09:11:22 +0100
+
+scirenderer (1.0.7)
+
+     * Can change the graphics2D on export
+     * Bug #11982 fixed - Ticks computations were made when drawing.
+     * Legends were not drawn
+     * Bug #12398 fixed: dotted lines were displayed as plain lines.
+     * Fix various issues in the export
+
+ -- Calixte DENIZET <calixte.denizet@scilab-enterprises.com>  Fri, 15 Mar 2013 15:10:40 +0100
+
+scirenderer (1.0.6)
+
+     * Improve memory management on export.
+     * Bug #2547 fixed - Too small marks were not correctly rendered in vectorial export.
+     * Bug #11407 fixed - Exception with dashed line with numm thickness.
+     * Bug #12051 fixed - Legends were not correctly exported.
+     * Fix bugs (line width and line style) on export.
+     * Bug #10633 fixed - Exported graphics were mirrored on some graphics cards.
+     * Bug #11399 fixed - 2D plot with small axes were slanted.
+     * Bug #12250 fixed - Export functions could be called before the graph was really built.
+
+ -- Calixte DENIZET <calixte.denizet@scilab-enterprises.com>  Tue, 19 Feb 2013 13:04:58 +0100
+
+scirenderer (1.0.5)
+
+     * Avoid "UnsupportedOperationException" when clearing ticks
+     * Avoid "ConcurrentAccessException" when disposing OneShotRuler resources.
+     * Fix export problems.
+     * Bug #11791 fixed - Avoid to bind empty buffers.
+
+ -- Calixte DENIZET <calixte.denizet@scilab-enterprises.com>  Fri, 18 Jan 2013 08:59:49 +0100
+
+scirenderer (1.0.4)
+
+     * Fix for bug 11477: textures were not correctly delete.
+     * Export: Remove artefacts and draw correctly segments on surface
+     * Avoid to draw empty buffers
+
+ -- Calixte DENIZET <calixte.denizet@scilab-enterprises.com>  Wed, 09 Jan 2013 11:07:49 +0100
+
+scirenderer (1.0.3)
+
+     * Fix for Scilab's bug 11947: texture was not correctly scaled
+     * Add a synchronous draw method for Scilab drawlater/drawnow
+     * Remove memory leaks
+
+     [ Sylvestre Ledru ]
+     * The scirenderer jar was containing the examples (but not documented in
+       it usages)
+
+ -- Calixte DENIZET <calixte.denizet@scilab-enterprises.com>  Wed, 19 Dec 2012 15:27:40 +0100
+
+scirenderer (1.0.2)
+
+     * Fix a problem with the memory cleaning with the Scilab graphic export.
+
+ -- Bruno Jofret <bruno.jofret@scilab-enterprises.com>  Wed, 26 Sep 2012 12:12:22 +0200
+
+scirenderer (1.0.1)
+
+     * Remove unused import.
+     * Clear Raw Memory direct buffer.
+
+ -- Bruno Jofret <bruno.jofret@scilab-enterprises.com>  Tue, 25 Sep 2012 14:50:27 +0200
+
+scirenderer (1.0.0)
+
+     * Force ticks/grid margin to avoid big display density on small figures.
+     * Limit Graduations values to be within Double precision.
+
+ -- Bruno Jofret <bruno.jofret@scilab-enterprises.com>  Mon, 24 Sep 2012 16:03:12 +0200
+
+scirenderer (0.5.8)
+
+     * Fix bug with NaN values when export
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Tue, 04 Sep 2012 10:54:11 +0200
+
+scirenderer (0.5.7)
+
+     * Fix a bug on the export of boxes in the 2d export.
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Thu, 30 Aug 2012 09:22:39 +0200
+
+scirenderer (0.5.6)
+
+     * Fix crash on scilab -nw -e 'plot3d();exit' (See Scilab bug #11508)
+     * Check correctly the vbo availability
+     * Improve graypolarplot rendering (and make it available in SVG and PDF)
+     * Remove blue dashed line in 2D export
+     * Fix bugs on Scilab's surf() export
+
+     [ Sylvestre Ledru ]
+     * Silent the serial warnings at compilation time
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Sat, 04 Aug 2012 10:53:49 +0200
+
+scirenderer (0.5.5)
+
+     * Fix a problem of display with the marks
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Wed, 01 Aug 2012 15:10:47 +0200
+
+scirenderer (0.5.4)
+
+     * Fix a color problem with sgrayplot on Scilab
+     * Fix a bug on texture rendering, when plot2d() was rotated
+     * Remove gray background in legends
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Mon, 30 Jul 2012 16:23:44 +0200
+
+scirenderer (0.5.3)
+
+     * Revert the "scilab -nw -e 'plot3d();exit'" patch. It was causing some
+       issues in Javasci
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Mon, 30 Jul 2012 16:23:44 +0200
+
+scirenderer (0.5.2)
+
+     * Improve performances (390 => 24 seconds) on
+       stacksize("max");a=rand(1,5000000);b=rand(a);tic();plot2d(a,b,-4);toc()
+       in Scilab
+     * Fix crash on scilab -nw -e 'plot3d();exit' (See Scilab bug #11508)
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Mon, 30 Jul 2012 15:18:01 +0200
+
+scirenderer (0.5.1)
+
+     * Fix some antialiasing issues under some operating systems.
+     * Fix ticks precision on small/huge inner values.
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Sun, 15 Jul 2012 23:06:10 +0200
+
+scirenderer (0.5.0)
+
+     * Fix a Null Pointer Exception when doing in Scilab:
+       driver('png');xinit('/tmp/foo.png');errbar();xend()
+     * G2D export: Improve speed of 2D offscreen export
+     * Export: avoid memleaks
+     * Fix for Scilab bug #11407: Exception with lineWidth lower than 1 with
+       offscreen export
+     * Avoid a java.nio.BufferUnderflowException on offscreen export
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Mon, 09 Jul 2012 09:23:39 -0600
+
+scirenderer (0.4.9)
+
+     * User defined ticks rendering issue fixed (Regression introduced in version 0.4.8)
+     * Transparency managed using alpha channel
+
+ -- Vincent Couvert <vincent.couvert@scilab.org>  Wed, 20 Jun 2012 21:30:46 (UTC+0200)
+
+scirenderer (0.4.8)
+
+     * Figures were not reset when using clf() (See Scilab bug #11268)
+     * Objects ordering was wrong when drawing rectangles and polylines (See Scilab bug #11271)
+     * Ticks rendering speed up using Java cached values
+
+ -- Vincent Couvert <vincent.couvert@scilab.org>  Wed, 20 Jun 2012 12:21:46 (UTC+0200)
+
+scirenderer (0.4.7)
+
+     * Ticks labels were truncated (See Scilab bug #11238)
+     * Thickness property was not managed for Axes objects
+     * Threads were not killed in canvas animator
+
+ -- Vincent Couvert <vincent.couvert@scilab.org>  Thu, 12 Jun 2012 16:22:27 (UTC+0200)
+
+scirenderer (0.4.6)
+
+     * Fix a problem with the drawlater
+     * Add used DecimalFormat in RulerDrawingResult
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Fri, 08 Jun 2012 08:55:57 +0200
+
+scirenderer (0.4.5)
+
+     * Bad position for rotated labels fixed
+     * Fix a crash when playing with export with legends 
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Tue, 22 May 2012 15:04:47 +0200
+
+scirenderer (0.4.4)
+
+     * Plug anti-aliasing capabilities.
+
+ -- Vincent Couvert <vincent.couvert@scilab.org>  Wed 16 May 2012, 11:40:27 (UTC+0200)
+
+scirenderer (0.4.3)
+
+     * Fix a problem in canvas.waitEndOfDrawing() (Needed for Scilab drawlater/drawnow)
+
+ -- Vincent Couvert <vincent.couvert@scilab.org>  Fri 11 May 2012 15:55:43 (UTC+0200)
+
+scirenderer (0.4.2)
+
+     * Canvas redrawing was synchronous and lead to performances issues: now redrawing in asynchronous.
+     * Add a waitImage() method for canvas to synchronously wait an image to be drawn.
+
+ -- Vincent Couvert <vincent.couvert@scilab.org>  Thu 10 May 2012 15:01:22 (UTC+0200)
+
+scirenderer (0.4.1)
+
+     * Disable DEBUG mode & add a setter to enable debug mode
+
+     [ Sylvestre Ledru ]
+     * Show warnings at build time
+     * Various improvements on the jar
+     * Add a manifest to avoid load of jogl.jar
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Thu, 19 Apr 2012 14:16:08 +0200
+
+scirenderer (0.4.0)
+
+     * Moved to jogl2
+     * Improve the detection of the VBO. See Scilab bug #10996
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Sun, 15 Apr 2012 17:22:49 +0200
+
+scirenderer (0.3.5)
+
+     * Graphic export added
+
+ -- Calixte Denizet <calixte.denizet@scilab-enterprises.com>  Tue, 10 Apr 2012 17:22:49 +0200
+
+scirenderer (0.3.4)
+
+     * More examples/demos
+     * Comments of the code
+     * Coding style
+     * More documentations in the source code
+
+     [ Sylvestre Ledru ]
+     * ant clean really cleans everything
+
+ -- Pierre Lando <pierre.lando@scilab.org>  Fri, 02 Mar 2012 16:43:42 +0100
+
+scirenderer (0.3.3)
+
+     * Allow texture rendering
+
+     [ Sylvestre Ledru ]
+     * "ant javadoc" target added
+     * "ant all" target added
+     * AUTHORS  CHANGES  COPYING  COPYING-FR  README files added
+
+ -- Bruno JOFRET <bruno.jofret@scilab-enterprises.com>  Sat, 18 Feb 2012 12:33:46 +0100
+
+scirenderer (0.3.2)
+
+     * Ticks distance fixed to have more readable ticks
+     * Fix update on OpenGL clipping plane.
+
+ -- Bruno JOFRET <bruno.jofret@scilab-enterprises.com>  Sat, 18 Feb 2012 12:33:46 +0100
+
+scirenderer (0.3.0)
+
+     * Logarithmic Ruler added
+     * Avoid duplicate FloatBuffer when not needed
+     * Add Latex rendering
+
+ -- Bruno JOFRET <bruno.jofret@scilab-enterprises.com>  Sat, 18 Feb 2012 12:33:46 +0100

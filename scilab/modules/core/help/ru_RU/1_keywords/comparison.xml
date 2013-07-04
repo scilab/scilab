@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="comparison">
+    <refnamediv>
+        <refname>сравнение</refname>
+        <refpurpose>операторы сравнения, отношения</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            a==b
+            a~=b или a&lt;&gt;b
+            a&lt;b
+            a&lt;=b
+            a&gt;b
+            a&gt;=b
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>
+                        любой тип переменной для сравнения величин <literal>a==b</literal>, <literal>a~=b</literal>
+                        <literal>a&lt;&gt;b</literal>, но для сравнений, связанных с порядком
+                        <literal>a&lt;b</literal>, <literal>a&lt;=b</literal>, 
+                        <literal>a&gt;b</literal>, <literal>a&gt;=b</literal>, ограничен массивами вещественных чисел
+                        с плавающей запятой и массивами целочисленных значений. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>
+                        любой тип переменной для сравнения величин <literal>a==b</literal>, <literal>a~=b</literal>
+                        <literal>a&lt;&gt;b</literal>, но для сравнений, связанных с порядком
+                        <literal>a&lt;b</literal>, <literal>a&lt;=b</literal>, 
+                        <literal>a&gt;b</literal>, <literal>a&gt;=b</literal>, ограничен массивами вещественных чисел
+                        с плавающей запятой и массивами целочисленных значений. 
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>Нужно различать два класса операторов:</para>
+        <variablelist>
+            <varlistentry>
+                <term>сравнение на равенство и неравенство: </term>
+                <listitem>
+                    <para>
+                        <literal>a==b</literal>, <literal>a~=b</literal> (или по-другому <literal>a&lt;&gt;b</literal>).
+                        Эти операторы применимы к любому типу операндов.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Сравнения, связанные с порядком: </term>
+                <listitem>
+                    <para>
+                        <literal>a&lt;b</literal>, <literal>a&lt;=b</literal>,
+                        <literal>a&gt;b</literal>, <literal>a&gt;=b</literal>. Эти операторы применимы
+                        только к массивам чисел с плавающей запятой и целочисленным массивам.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>Смысл операторов сравнения также зависит от типа операндов:</para>
+        <variablelist>
+            <varlistentry>
+                <term>Для массивов переменных </term>
+                <listitem>
+                    <para>
+                        таких как массивы чисел с плавающей запятой и массивы целочисленных значений,
+                        массивы логических значений, строковые массивы, массивы полиномиальных и рациональных 
+                        значений, массивы дескрипторов, списки... применимы следующие правила:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                Если <literal>a</literal> и <literal>b</literal> являются массивами одного типа и размера,
+                                то сравнение выполняется поэлементно, а результат является массивом логических значений 
+                                того же размера.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                Если <literal>a</literal> и <literal>b</literal> являются массивами одного 
+                                типа, но <literal>a</literal> или <literal>b</literal> является скаляром, то
+                                скаляр сравнивается с каждым элементом массива. Результат является массивом 
+                                логических значений того же размера, что и оператор-нескаляр.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                В иных случаях результатом является логическое значение <literal>%f</literal>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                Если типы данных операндов отличаются, но "совместимы" как числа с плавающей запятой 
+                                и целые числа, то перед сравнение производится преобразование типов.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Для других типов операндов </term>
+                <listitem>
+                    <para>
+                        таких как <literal>function</literal> и <literal>libraries</literal> 
+                        результатом является <literal>%t</literal>, если объекты идентичны и 
+                        <literal>%f</literal> в противном случае.
+                    </para>
+                    <para>
+                        Сравнение на равенство операндов несовместимых типов данных возвращает 
+                        <literal>%f</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+// поэлементные сравнения
+(1:5)==3
+(1:5)<=4 
+(1:5)<=[1 4 2 3 0]
+1<[]
+list(1,2,3)~=list(1,3,3)
+"foo"=="bar"
+sparse([1,2;4,5;3,10],[1,2,3]) == sparse([1,2;4,5;3,10],[1,2,3])
+ 
+//пообъектные сравнения
+(1:10)==[4,3]
+'foo'==3
+1==[]
+list(1,2,3)==1
+ 
+isequal(list(1,2,3),1)
+isequal(1:10,1)
+ 
+//сравнение с преобразованием типов данных
+int32(1)==1
+int32(1)<1.5
+int32(1:5)<int8(3)
+p=poly(0,'s','c')
+p==0
+p/poly(1,'s','c')==0
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="less">меньше</link>
+            </member>
+            <member>
+                <link linkend="greater">больше</link>
+            </member>
+            <member>
+                <link linkend="boolean">boolean</link>
+            </member>
+            <member>
+                <link linkend="isequal">isequal</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

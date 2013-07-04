@@ -16,11 +16,10 @@
 
 Name: desktopicon; Description:{cm:DescriptionCreateDesktopIcon}; GroupDescription: Additional icons:; MinVersion: 4,4
 ;
-Name: AssociateSCESCI; Description:{cm:DescriptionAssociateSceSci}; GroupDescription: Files Association:; Components: {#COMPN_SCINOTES}
+Name: AssociateSCESCI; Description:{cm:DescriptionAssociateSceSci}; GroupDescription: Files Association:; Components: {#COMPN_SCINOTES}; Check: IsAdminUser
 ;
-Name: AssociateTSTDEM; Description:{cm:DescriptionAssociateTstDem}; GroupDescription: Files Association:; Components: {#COMPN_SCINOTES}
+Name: AssociateTSTDEM; Description:{cm:DescriptionAssociateTstDem}; GroupDescription: Files Association:; Components: {#COMPN_SCINOTES}; Check: IsAdminUser
 ;
-Name: AssociateSCICOS; Description:{cm:DescriptionAssociateScicos}; GroupDescription: Files Association:; Components: {#COMPN_XCOS}
+Name: AssociateSCICOS; Description:{cm:DescriptionAssociateScicos}; GroupDescription: Files Association:; Components: {#COMPN_XCOS}; Check: IsAdminUser
 ;
-;-------------------------------------------------------------------------------
-;
+Name: AssociateSOD; Description:{cm:DescriptionAssociateSOD}; GroupDescription: Files Association:; Components: {#COMPN_SCILAB}; Check: IsAdminUser

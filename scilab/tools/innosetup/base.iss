@@ -34,6 +34,7 @@ Source: CHANGES*.*; DestDir: {app}; Components: {#COMPN_SCILAB}
 ;Source: license.txt; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: COPYING; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: COPYING-FR; DestDir: {app}; Components: {#COMPN_SCILAB}
+Source: COPYING-BSD; DestDir: {app}; Components: {#COMPN_SCILAB}
 ;
 Source: Readme_Visual.txt; DestDir: {app}; Components: {#COMPN_SCILAB}
 Source: README_Windows.txt; DestDir: {app}; Components: {#COMPN_SCILAB}

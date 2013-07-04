@@ -9,10 +9,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [Q]=orth(A)
-// Orthogonal basis for the span of A.
-// Range(Q) = Range(A) and Q'*Q=eye
-//!
-  [X,n]=rowcomp(A);X=X';
-  Q=X(:,1:n);
+    // Orthogonal basis for the span of A.
+    // Range(Q) = Range(A) and Q'*Q=eye
+    //!
+    [X,n]=rowcomp(A);X=X';
+    Q=X(:,1:n);
 endfunction
 

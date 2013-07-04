@@ -34,6 +34,7 @@ import org.scilab.modules.scinotes.ScilabEditorKit;
  * Class for paste action
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class PasteColumnAction extends DefaultAction {
 
     private static final String CR = "\n";
@@ -74,7 +75,7 @@ public class PasteColumnAction extends DefaultAction {
                 pos = positions[0][0];
             }
             int spos = pos;
-            ((CompoundUndoManager) doc.getUndoManager()).enableOneShot(true);
+            doc.getUndoManager().enableOneShot(true);
             doc.mergeEditsBegin();
             getEditor().getTextPane().replaceSelection("");
             StringTokenizer tokens = new StringTokenizer(str, CR);
@@ -101,7 +102,7 @@ public class PasteColumnAction extends DefaultAction {
                 }
             }
             doc.mergeEditsEnd();
-            ((CompoundUndoManager) doc.getUndoManager()).enableOneShot(false);
+            doc.getUndoManager().enableOneShot(false);
             getEditor().getTextPane().setCaretPosition(spos);
         }
     }

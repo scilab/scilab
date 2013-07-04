@@ -3,11 +3,11 @@
  * Copyright (C) INRIA
  * Copyright (C) ENPC
  * Copyright (C) DIGITEO - 2010 - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,7 +19,8 @@
 #include "BOOL.h"
 #include "stackinfo.h"
 /*--------------------------------------------------------------------------*/
-static char *dataStrings[] = {
+static char *dataStrings[] =
+{
     /* on crash save file */
     "home/scilab.save",
     /* start_up instructions file */
@@ -30,7 +31,7 @@ static char *dataStrings[] = {
     /* on exit , we try to catch errors */
     /* workaround to not have scilab "zombie" */
     /* bug 3672 */
-    "exec('SCI/etc/scilab.quit','errcatch',-1);quit;"	 
+    "exec('SCI/etc/scilab.quit','errcatch',-1);quit;"
 };
 /*--------------------------------------------------------------------------*/
 static char stringCommand[bsiz] = "";
@@ -65,7 +66,7 @@ char *get_sci_data_strings(int n)
 static BOOL haveTooManyVariables(void)
 {
     /* nb variables used by scilab.quit 10 */
-    #define NB_VARIABLES_SECURITY 10*2
+#define NB_VARIABLES_SECURITY 10*2
     int nbVarTotal = 0;
     int nbVarUsed = 0;
 

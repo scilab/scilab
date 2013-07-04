@@ -35,23 +35,24 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_position_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_position_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    char* type = NULL;
+    int type = -1;
+    int *piType = &type;
     BOOL status = FALSE;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_UICONTROL__) == 0 || strcmp(type, __GO_FIGURE__) == 0)
+    if (type == __GO_UICONTROL__ || type == __GO_FIGURE__)
     {
-        return SetUicontrolPosition(pobjUID, stackPointer, valueType, nbRow, nbCol);
+        return SetUicontrolPosition(pobjUID, _pvData, valueType, nbRow, nbCol);
     }
 
     /* Type test required since a position set requires a 3-element, and 2-element vector
     for respectively the Label and Legend */
-    if (strcmp(type, __GO_LABEL__) == 0)
+    if (type == __GO_LABEL__)
     {
-        double* values = getDoubleMatrixFromStack( stackPointer );
+        double* values = (double*)_pvData;
         double* currentPosition;
         double labelPosition[3];
 
@@ -74,9 +75,9 @@ int set_position_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int 
         }
 
     }
-    else if (strcmp(type, __GO_LEGEND__) == 0)
+    else if (type == __GO_LEGEND__)
     {
-        double * values = getDoubleMatrixFromStack( stackPointer );
+        double* values = (double*)_pvData;
 
         status = setGraphicObjectProperty(pobjUID, __GO_POSITION__, values, jni_double_vector, 2);
 

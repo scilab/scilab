@@ -41,7 +41,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
     public Object getChild(Object parent, int index) {
         if (parent instanceof String) {
             String id = (String) parent;
-            Object children =  GraphicController.getController().getProperty(id, "Children");
+            Object children =  GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__);
             if (children instanceof String[]) {
                 if (index >= 0 && index < ((String[]) children).length) {
                     return ((String[]) children)[index];
@@ -54,7 +54,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
     public int getChildCount(Object parent) {
         if (parent instanceof String) {
             String id = (String) parent;
-            Object children =  GraphicController.getController().getProperty(id, "Children");
+            Object children =  GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__);
             if (children instanceof String[]) {
                 return ((String[]) children).length;
             }
@@ -76,7 +76,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
             childId = (String) child;
             if (parent instanceof String) {
                 String id = (String) parent;
-                Object children =  GraphicController.getController().getProperty(id, "Children");
+                Object children =  GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__);
                 if (children instanceof String[]) {
                     for (int i = 0 ; i < ((String[]) children).length ; i++) {
                         if (((String[]) children)[i].equals(childId)) {
@@ -84,7 +84,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
                         }
                     }
                 }
-            }            
+            }
         }
         return -1;
     }
@@ -97,11 +97,11 @@ public class SciTreeModel implements TreeModel, GraphicView {
         listeners.remove(TreeModelListener.class, l);
     }
 
-    public void updateObject(String id, String property) {
+    public void updateObject(String id, int property) {
         Vector<String> path = getPath(id);
         if (path != null) {
             for (TreeModelListener listener : listeners.getListeners(TreeModelListener.class)) {
-                TreeModelEvent e = new TreeModelEvent(id, path.toArray(), new int[]{0}, new Object[]{id});
+                TreeModelEvent e = new TreeModelEvent(id, path.toArray(), new int[] {0}, new Object[] {id});
                 listener.treeStructureChanged(e);
             }
         }
@@ -111,7 +111,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
         Vector<String> path = getPath(id);
         if (path != null) {
             for (TreeModelListener listener : listeners.getListeners(TreeModelListener.class)) {
-                TreeModelEvent e = new TreeModelEvent(id, path.toArray(), new int[]{0}, new Object[]{id});
+                TreeModelEvent e = new TreeModelEvent(id, path.toArray(), new int[] {0}, new Object[] {id});
                 listener.treeNodesInserted(e);
             }
         }
@@ -121,7 +121,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
         Vector<String> path = getPath(id);
         if (path != null) {
             for (TreeModelListener listener : listeners.getListeners(TreeModelListener.class)) {
-                TreeModelEvent e = new TreeModelEvent(id, path.toArray(), new int[]{0}, new Object[]{id});
+                TreeModelEvent e = new TreeModelEvent(id, path.toArray(), new int[] {0}, new Object[] {id});
                 listener.treeNodesRemoved(e);
             }
         }
@@ -150,6 +150,6 @@ public class SciTreeModel implements TreeModel, GraphicView {
         if (parent instanceof String) {
             return (String) parent;
         }
-        return null; 
+        return null;
     }
 }

@@ -39,6 +39,7 @@ import org.scilab.modules.scinotes.ScilabLexerConstants;
  * @author Pierre GRADIT
  *
  */
+@SuppressWarnings(value = { "serial" })
 public class PreviewCode extends Panel implements XComponent, XChooser {
 
     /** Universal identifier for serialization.
@@ -61,10 +62,11 @@ public class PreviewCode extends Panel implements XComponent, XChooser {
         previewEditorPane.setEditorKit(kit);
         previewEditorPane.setFont(kit.getStylePreferences().tokenFonts[0]);
         String codeSample = "// A comment with whites    and tabulations \t\t\n"
-                            + "// Email: <scilab.support@scilab.org>\n"
-                            + "// Scilab editor: http://www.scilab.org/\n"
+                            + "// Email: <support@scilab-enterprises.com>\n"
+                            + "// Scilab editor: http://www.scilab-enterprises.com/\n"
                             + "//\n"
-                            + "// LaTeX $\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6$\n"
+                            + "// LaTeX $$\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6$$\n"
+                            + "// TODO: blah blah\n"
                             + "function [a, b] = myfunction(d, e, f)\n"
                             + "\ta = 2.71828 + %pi + f($, :);\n"
                             + "\tb = cos(a) + cosh(a) + \"$\\frac12$\";\n"

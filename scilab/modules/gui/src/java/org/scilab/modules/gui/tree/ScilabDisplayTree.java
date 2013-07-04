@@ -20,122 +20,122 @@ import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
  * Display a graphical tree
  *
  */
-public class ScilabDisplayTree {	
+public class ScilabDisplayTree {
 
-	private static String[][] myShapedTree;
+    private static String[][] myShapedTree;
 
-	
-	/**
-	 * PRIVATE constructor
-	 */
-	private ScilabDisplayTree() { };
 
-	/**
-	 * scilabDisplayTree called with 1 arg (treeData)
-	 * @param treeData structure of the trees
-	 */
-	public static void scilabDisplayTree(String[] treeData) {	
+    /**
+     * PRIVATE constructor
+     */
+    private ScilabDisplayTree() { };
 
-		// Get depth and parent node for each node
-		myShapedTree = treeShaping(treeData);
+    /**
+     * scilabDisplayTree called with 1 arg (treeData)
+     * @param treeData structure of the trees
+     */
+    public static void scilabDisplayTree(String[] treeData) {
 
-		// Display the GUI tree
-		createGraphicTree();
-	}
+        // Get depth and parent node for each node
+        myShapedTree = treeShaping(treeData);
 
-	public static Tree uicontrolScilabDisplayTree(String[] treeData) {
-		// Get depth and parent node for each node
-		myShapedTree = treeShaping(treeData);
-		// Create the ScilabTree
-		ScilabTree t = createTree(myShapedTree);
+        // Display the GUI tree
+        createGraphicTree();
+    }
 
-		return t;
-	}
+    public static Tree uicontrolScilabDisplayTree(String[] treeData) {
+        // Get depth and parent node for each node
+        myShapedTree = treeShaping(treeData);
+        // Create the ScilabTree
+        ScilabTree t = createTree(myShapedTree);
 
-	/**
-	 * Get depth and parent node for each node
-	 * @param treeData data of a tree
-	 * @return treeShape
-	 */
-	public static String[][] treeShaping(String[] treeData) {
+        return t;
+    }
 
-		String[][] treeShape = new String[treeData.length][3];
-		StringTokenizer st;
-		int depth = 0;		
-		int point_index = 0;
+    /**
+     * Get depth and parent node for each node
+     * @param treeData data of a tree
+     * @return treeShape
+     */
+    public static String[][] treeShaping(String[] treeData) {
 
-		for (int i = 0; i < treeData.length; i++) {
+        String[][] treeShape = new String[treeData.length][3];
+        StringTokenizer st;
+        int depth = 0;
+        int point_index = 0;
 
-			// Get original structure
-			treeShape[i][0] = treeData[i];
+        for (int i = 0; i < treeData.length; i++) {
 
-			// Get depth & parent node
-			if (i % 4 == 0) {
-				// Depth
-				st = new StringTokenizer(treeData[i], ".");
-				depth = st.countTokens() - 1;
-				treeShape[i][1] = "" + depth;
+            // Get original structure
+            treeShape[i][0] = treeData[i];
 
-				// Parent Node
-				if (depth == 0) {
-					treeShape[i][2] = "root";
-				} else {
-					point_index = treeData[i].lastIndexOf(".");
-					treeShape[i][2] = treeData[i].substring(0, point_index);
-				} 
-			}
-		}
-		return treeShape;
-	}
+            // Get depth & parent node
+            if (i % 4 == 0) {
+                // Depth
+                st = new StringTokenizer(treeData[i], ".");
+                depth = st.countTokens() - 1;
+                treeShape[i][1] = "" + depth;
 
-	/**
-	 * Display the GUI tree
-	 */
-	public static void createGraphicTree() {
+                // Parent Node
+                if (depth == 0) {
+                    treeShape[i][2] = "root";
+                } else {
+                    point_index = treeData[i].lastIndexOf(".");
+                    treeShape[i][2] = treeData[i].substring(0, point_index);
+                }
+            }
+        }
+        return treeShape;
+    }
 
-		// Create the ScilabTree
-		ScilabTree t = createTree(myShapedTree);
-		
-		// Display the tree
-		t.showTree();
-	}
+    /**
+     * Display the GUI tree
+     */
+    public static void createGraphicTree() {
 
-	/**
-	 * Get tree's max depth
-	 * @param myShapedTree shaped tree
-	 * @return an integer
-	 */
-	public static int getTreeDepth(String[][] myShapedTree) {
-		int depth = 0;
-		for (int i = 0; i < myShapedTree.length; i++) {
+        // Create the ScilabTree
+        ScilabTree t = createTree(myShapedTree);
 
-			if (i % 4 == 0 && i > 0) {
-				if (Integer.parseInt(myShapedTree[i][1]) > depth) {
-					depth = Integer.parseInt(myShapedTree[i][1]);
-				}
-			}
-		}
-		return depth;
-	}
+        // Display the tree
+        t.showTree();
+    }
 
-	/**
-	 * Create the tree structure
-	 * @param myShapedTree shaped tree
-	 * @return ScilabTree
-	 */
-	public static ScilabTree createTree(String[][] myShapedTree) {
+    /**
+     * Get tree's max depth
+     * @param myShapedTree shaped tree
+     * @return an integer
+     */
+    public static int getTreeDepth(String[][] myShapedTree) {
+        int depth = 0;
+        for (int i = 0; i < myShapedTree.length; i++) {
 
-		ScilabTree tree = null;
-		Hashtable<String, ScilabTree> treeVsPosition = new Hashtable<String, ScilabTree>();
+            if (i % 4 == 0 && i > 0) {
+                if (Integer.parseInt(myShapedTree[i][1]) > depth) {
+                    depth = Integer.parseInt(myShapedTree[i][1]);
+                }
+            }
+        }
+        return depth;
+    }
 
-		tree = new ScilabTree(myShapedTree[1][0], myShapedTree[2][0], myShapedTree[3][0]);
-		treeVsPosition.put(myShapedTree[0][0], tree);
-		for (int i = 4; i < myShapedTree.length; i = i + 4) {
-			tree = new ScilabTree(myShapedTree[i + 1][0], myShapedTree[i + 2][0], myShapedTree[i + 3][0]);
-			treeVsPosition.put(myShapedTree[i][0], tree);
-			((ScilabTree) treeVsPosition.get(myShapedTree[i][2])).addChild(tree);
-		}
-		return ((ScilabTree) treeVsPosition.get(myShapedTree[0][0]));
-	}
+    /**
+     * Create the tree structure
+     * @param myShapedTree shaped tree
+     * @return ScilabTree
+     */
+    public static ScilabTree createTree(String[][] myShapedTree) {
+
+        ScilabTree tree = null;
+        Hashtable<String, ScilabTree> treeVsPosition = new Hashtable<String, ScilabTree>();
+
+        tree = new ScilabTree(myShapedTree[1][0], myShapedTree[2][0], myShapedTree[3][0]);
+        treeVsPosition.put(myShapedTree[0][0], tree);
+        for (int i = 4; i < myShapedTree.length; i = i + 4) {
+            tree = new ScilabTree(myShapedTree[i + 1][0], myShapedTree[i + 2][0], myShapedTree[i + 3][0]);
+            treeVsPosition.put(myShapedTree[i][0], tree);
+            treeVsPosition.get(myShapedTree[i][2]).addChild(tree);
+        }
+        return treeVsPosition.get(myShapedTree[0][0]);
+    }
 
 }

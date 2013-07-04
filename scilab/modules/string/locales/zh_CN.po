@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-09-01 13:26+0100\n"
-"PO-Revision-Date: 2012-06-22 03:37+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2012-07-31 13:51+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: \n"
 
 msgid "WARNING : \n"
@@ -109,6 +109,10 @@ msgstr "%s：输入参数#%d的类型错误：应该为实数矩阵或字符串�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: impossible to get dimensions of this matrix.\n"
@@ -236,7 +240,7 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个标量。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A value > 0 expected.\n"
@@ -265,6 +269,10 @@ msgid ""
 "%s: Wrong size for input argument #%d: Non-empty matrix of strings "
 "expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为非空字符串矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '.' or ',' expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -333,6 +341,16 @@ msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个字符的字符串。\n"
 
 #, c-format
+msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
 
@@ -358,10 +376,6 @@ msgstr "%s：指定的表达式没有值。\n"
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
 msgstr "%s：该功能尚未实现：%s\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

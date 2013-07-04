@@ -14,11 +14,11 @@ package org.scilab.modules.renderer.JoGLView.interaction;
 import org.scilab.modules.renderer.JoGLView.postRendering.PostRendered;
 
 public interface PointRubberBox extends PostRendered {
-    
+
     public double[] getResults();
-    
+
     public void addListener(RubberBoxListener listener);
-    
+
     public void setEnable(boolean enabled);
 
 }

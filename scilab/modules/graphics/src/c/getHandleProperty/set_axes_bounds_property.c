@@ -34,35 +34,32 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_axes_bounds_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_axes_bounds_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-  BOOL status = FALSE;
-  double axesBounds[4];
+    BOOL status = FALSE;
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "axes_bounds");
-    return SET_PROPERTY_ERROR ;
-  }
+    if (valueType != sci_matrix)
+    {
+        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "axes_bounds");
+        return SET_PROPERTY_ERROR;
+    }
 
-  if ( nbRow * nbCol != 4 )
-  {
-    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "axes_bounds", 4);
-    return SET_PROPERTY_ERROR ;
-  }
+    if (nbRow * nbCol != 4)
+    {
+        Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "axes_bounds", 4);
+        return SET_PROPERTY_ERROR;
+    }
 
-  copyDoubleVectorFromStack( stackPointer, axesBounds, 4 );
+    status = setGraphicObjectProperty(pobjUID, __GO_AXES_BOUNDS__, _pvData, jni_double_vector, 4);
 
-  status = setGraphicObjectProperty(pobjUID, __GO_AXES_BOUNDS__, axesBounds, jni_double_vector, 4);
-
-  if (status == TRUE)
-  {
-    return SET_PROPERTY_SUCCEED;
-  }
-  else
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"axes_bounds");
-    return SET_PROPERTY_ERROR;
-  }
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_bounds");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/

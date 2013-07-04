@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2010.
-# Yuri Chornoivan <yurchor@ukr.net>, 2012.
+# Yuri Chornoivan <yurchor@ukr.net>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-27 05:03+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-13 13:44+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: uk\n"
 
 #, c-format
@@ -127,8 +127,8 @@ msgstr "Закрити всі"
 msgid "Close All But This"
 msgstr "Закрити всі крім поточної"
 
-msgid "Exit"
-msgstr "Вийти"
+msgid "Exit Scinotes"
+msgstr "Вийти зі Scinotes"
 
 msgid "Edit"
 msgstr "Зміни"
@@ -253,6 +253,18 @@ msgstr "Кодування поточного файла"
 msgid "Line Endings"
 msgstr "Завершення рядків"
 
+msgid "Preferences"
+msgstr "Параметри"
+
+msgid "Set font"
+msgstr "Встановити шрифт"
+
+msgid "Set colors"
+msgstr "Встановити кольори"
+
+msgid "Scinotes General settings"
+msgstr "Загальні параметри Scinotes"
+
 msgid "Auto-completion on"
 msgstr "Автодоповнення"
 
@@ -310,8 +322,8 @@ msgstr "Зберегти і виконати всі файли"
 msgid "?"
 msgstr "Довідка"
 
-msgid "SciNotes help"
-msgstr "Довідка SciNotes"
+msgid "Scinotes help"
+msgstr "Довідка зі Scinotes"
 
 msgid "Help on ;Help on selection"
 msgstr "Довідка щодо ;Довідка щодо позначеного"
@@ -337,8 +349,8 @@ msgstr "Автозбереження"
 msgid "Editor"
 msgstr "Редактор"
 
-msgid "Use SciNotes"
-msgstr "Використовувати SciNotes"
+msgid "Use Scinotes"
+msgstr "Користування Scinotes"
 
 msgid "External editor: "
 msgstr "Зовнішній редактор: "
@@ -348,9 +360,6 @@ msgstr "(Не забудьте додати лапки, якщо у запису
 
 msgid "Scilab command: "
 msgstr "Команда Scilab: "
-
-msgid "SciNotes General settings"
-msgstr "Загальні параметри SciNotes"
 
 msgid "Restore previous session on start-up"
 msgstr "Відновлювати попередній сеанс під час запуску"
@@ -384,6 +393,12 @@ msgstr "Звичайна"
 
 msgid "Wrap lines"
 msgstr "Переносити рядки"
+
+msgid "Background color: "
+msgstr "Колір тла: "
+
+msgid "Cursor color: "
+msgstr "Колір курсора: "
 
 msgid "Keywords"
 msgstr "Ключові слова"
@@ -502,6 +517,19 @@ msgstr "SciNotes"
 msgid "Error while reading the String"
 msgstr "Помилка під час спроби читання рядка"
 
+#, c-format
+msgid "File not found: %s"
+msgstr "Файла не існує: %s"
+
+#, c-format
+msgid "I/O error: %s"
+msgstr "Помилка введення-виведення: %s"
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr ""
+"До файла %s внесено зміни сторонньою програмою. Перезавантажити його вміст?"
+
 msgid "Source of '"
 msgstr "Джерело «"
 
@@ -525,6 +553,9 @@ msgstr "Під час експортування коду за допомого�
 
 msgid "An error occurred when printing"
 msgstr "Під час спроби друку сталася помилка"
+
+msgid "Exit"
+msgstr "Вийти"
 
 msgid "Tools"
 msgstr "Інструменти"
@@ -622,6 +653,9 @@ msgstr "Обчислити з початку…"
 msgid "Execute File Into Scilab"
 msgstr "Виконати файл у Scilab"
 
+msgid "SciNotes help"
+msgstr "Довідка SciNotes"
+
 msgid "Help on the current keyword"
 msgstr "Довідка щодо поточного ключового слова"
 
@@ -685,6 +719,7 @@ msgstr "Замінити"
 msgid "Replace All"
 msgstr "Замінити всі"
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr "Некоректний формальний вираз: %s"
 
@@ -700,15 +735,13 @@ msgstr "Досягнуто кінця документа"
 msgid "You have reached the beginning of the document"
 msgstr "Досягнуто початку документа"
 
+#, c-format
 msgid "String %s not found"
 msgstr "Рядка %s не знайдено"
 
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"Файла з назвою %s не існує.\n"
-"Створити такий файл?"
+#, c-format
+msgid "The file %s does not exist. Do you want to create it?"
+msgstr "Файла з назвою %s не інує. Хочете його створити?"
 
 msgid "close this tab"
 msgstr "закрити цю вкладку"
@@ -716,19 +749,16 @@ msgstr "закрити цю вкладку"
 msgid "This file"
 msgstr "Поточний файл"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
 msgstr ""
-" було змінено з часу останнього збереження.\n"
-"Зберегти зміни?"
+"До файла %s було внесено зміни з часу його останнього збереження. Зберегти "
+"ці зміни?"
 
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
+#, c-format
+msgid "The file %s has been modified by another program ! Overwrite it ?"
 msgstr ""
-"Вміст файла %s було змінено сторонньою програмою!\n"
-" Перезаписати його?"
+"Файл %s було змінено іншою програмою! Перезаписати його поточний вміст?"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "Попередження: до файла було внесено зміни сторонньою програмою!"
@@ -810,12 +840,14 @@ msgstr "Відкрити початковий код макросу "
 msgid "Show the definition of the macro "
 msgstr "Показати місце визначення макросу "
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr "Рядок %s, позиція %s. Функція «%s» у рядку %s."
 
 msgid "Unknown function"
 msgstr "Невідома функція"
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr "Рядок %s, позиція %s."
 
@@ -831,6 +863,7 @@ msgstr "Зберегти файл не вдалося."
 msgid "The file could not be converted."
 msgstr "Перетворити файл не вдалося."
 
+#, c-format
 msgid "%s is a directory."
 msgstr "%s — це каталог."
 
@@ -856,6 +889,7 @@ msgstr "Не позначено жодного фрагмента тексту."
 msgid "No text to execute."
 msgstr "Немає тексту для обробки."
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -868,6 +902,7 @@ msgstr "Проблеми з кодуванням"
 msgid "Cannot guess the file encoding."
 msgstr "Не вдалося визначити кодування даних файла."
 
+#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
 "Не вдалося зберегти файл %s… Процедуру створення резервної копії перервано."
@@ -875,6 +910,7 @@ msgstr ""
 msgid "Backup finished..."
 msgstr "Створення резервної копії завершено…"
 
+#, c-format
 msgid "%s occurences found."
 msgstr "Знайдено відповідники %s."
 
@@ -992,12 +1028,15 @@ msgstr "Знайти файли…"
 msgid "Search in Files..."
 msgstr "Знайти у файлах…"
 
+#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr "<html>%s <i>(%s відповідників)</i></html>"
 
+#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr "<html>%s <i>(%s відповідник)</i></html>"
 
+#, c-format
 msgid "Elapsed time: %s sec."
 msgstr "Витрачено часу: %s сек."
 
@@ -1055,3 +1094,21 @@ msgstr "Виберіть кореневий каталог пошуку"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» Scilab не встановлено.\n"
+
+msgid "the last error did not occur inside a library function."
+msgstr "остання помилка сталася поза межами функції з бібліотеки."
+
+msgid " on line "
+msgstr " у рядку "
+
+msgid "opening file "
+msgstr "відкриття файла "
+
+msgid " of the source file of the function "
+msgstr " початкового коду функції "
+
+msgid "the source file of the function "
+msgstr "початковий код функції "
+
+msgid " was not found in any library path"
+msgstr " не було знайдено за жодною з адрес бібліотек"

@@ -33,34 +33,35 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_zoom_box_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_zoom_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    char* type = NULL;
+    int iType = -1;
+    int *piType = &iType;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "zoom_box");
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_AXES__) != 0)
+    if (iType != __GO_AXES__)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "zoom_box");
         return SET_PROPERTY_ERROR;
     }
 
     /* We must have a 4x1 matrix */
-    if ( nbRow * nbCol == 6 )
+    if (nbRow * nbCol == 6)
     {
-        return sciZoom3D(pobjUID, getDoubleMatrixFromStack(stackPointer));
+        return sciZoom3D(pobjUID, (double*)_pvData);
     }
-    else if( nbRow * nbCol == 4)
+    else if (nbRow * nbCol == 4)
     {
-        return sciZoom2D(pobjUID, getDoubleMatrixFromStack(stackPointer));
+        return sciZoom2D(pobjUID, (double*)_pvData);
     }
-    else if ( nbCol * nbRow == 0 )
+    else if (nbCol * nbRow == 0)
     {
         sciUnzoomSubwin(pobjUID);
     }

@@ -7,31 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-01-23 17:36+0000\n"
 "Last-Translator: mrx5682 <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: de\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr "%s: Falscher Wert für Eingangsargument #%d: Integer erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: ein Skalar erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A int expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: ein Integer erwatet.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -59,6 +43,10 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Falscher Typ für Eingangsargument #%d: ein Skalar erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: ein Skalar erwartet.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: eine Ganzzahl erwartet.\n"
@@ -75,6 +63,10 @@ msgstr "%s: kein weiterer Speicher.\n"
 #, c-format
 msgid "%s: Undefined environment variable %s.\n"
 msgstr "%s: undefinierte Umgebungsvariable %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
 
 #, c-format
 msgid "%s: Feature %s is obsolete.\n"
@@ -134,6 +126,10 @@ msgid "unmanaged error by v2cunit.\n"
 msgstr "nicht behandelter Fehler durch v2cunit.\n"
 
 #, c-format
+msgid "%s: handle no more valid ignored.\n"
+msgstr ""
+
+#, c-format
 msgid "%s : Invalid entity %s\n"
 msgstr ""
 
@@ -176,3 +172,8 @@ msgstr "%s: Der System-Interpreter antwortet nicht..."
 #, c-format
 msgid "%s: error during %s execution"
 msgstr "%s: Fehler während des %s Ausführens"
+
+#, c-format
+msgid ""
+"%s: The command failed with the error code %s and the following message:\n"
+msgstr ""

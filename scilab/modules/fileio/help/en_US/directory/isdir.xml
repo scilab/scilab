@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="isdir">
+    <refnamediv>
+        <refname>isdir</refname>
+        <refpurpose>checks if argument is a directory path</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>r = isdir(path)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>a character string or a matrix of strings: a directory pathname.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        a boolean: <constant>%t</constant> if <varname>path</varname> is a path to a directory.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>r = isdir(path)</code> checks if <varname>path</varname> is a path to a directory.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Reference</title>
+        <para>
+            This function is based on the C function 
+            <function>stat</function>. The <literal>SCI</literal> and <literal>~</literal> shortcuts for Scilab directory and home directory are handled.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+isdir(TMPDIR)
+isdir SCI/etc/scilab.start
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="isfile">isfile</link>
+            </member>
+            <member>
+                <link linkend="fileinfo">fileinfo</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

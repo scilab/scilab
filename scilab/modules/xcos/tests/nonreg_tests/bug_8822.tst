@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 8822 -->
 //
@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // Implicit links connected with split blocks might not be removed cleanly.
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8822.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8822.zcos");
 // delete the link tagged with "please delete" (from #3)
 // check that the link #1->#2 is not deleted
 

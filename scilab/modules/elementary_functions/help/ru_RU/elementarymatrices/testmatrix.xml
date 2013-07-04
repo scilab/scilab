@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="testmatrix">
+    <refnamediv>
+        <refname>testmatrix</refname>
+        <refpurpose>
+            формирование специальных матриц, таких как матрица Гильберта и матрица Франка
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[y] = testmatrix(name, n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>символьная строка; имя матрицы</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>целые числа; размер матрицы</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        матрица размером <varname>n</varname> на <varname>n</varname>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Создаёт некоторые специальные матрицы:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>testmatrix('magi',n)</term>
+                <listitem>
+                    <para>
+                        возвращает магический квадрат размером <varname>n</varname> на <varname>n</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>testmatrix('frk',n)</term>
+                <listitem>
+                    <para>возвращает матрицу Франка.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>testmatrix('hilb',n)</term>
+                <listitem>
+                    <para>
+                        инверсия матрицы Гильберта размером <varname>n</varname> на <varname>n</varname>. Элементы матрицы Гильберта равны <literal>Hij= 1/(i+j-1)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+testmatrix('magi',3)
+testmatrix('frk',10)
+testmatrix('hilb',4)
+ ]]></programlisting>
+    </refsection>
+</refentry>

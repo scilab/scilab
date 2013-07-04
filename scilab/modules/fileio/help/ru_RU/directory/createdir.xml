@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="createdir">
+    <info>
+        <pubdate>$LastChangedDate$</pubdate>
+    </info>
+    <refnamediv>
+        <refname>createdir</refname>
+        <refpurpose>создаёт новую директорию</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            createdir(dirname)
+            status = createdir(dirname)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>dirname</term>
+                <listitem>
+                    <para>символьная строка: имя директории.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                    <para>логическое значение: статус.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>createdir(dirname)</code> создаёт директорию
+            <varname>dirname</varname> в текущей директории. Если 
+            <varname>dirname</varname> находится не в текущей директории, то 
+            определите относительный путь к текущей директории, либо 
+            полный путь для <varname>dirname</varname>.
+        </para>
+        <para>
+            <code>[status] = createdir(dirname)</code> создаёт директорию <varname>dirname</varname> в существующей директории, возвращая статус <varname>status</varname>. Здесь <varname>status</varname> равен <constant>%T</constant> в случае успеха, иначе <constant>%F</constant>.
+        </para>
+        <para>
+            <function>createdir</function> используется <function>mkdir</function>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+createdir(TMPDIR+'/Directory_test')
+removedir(TMPDIR+'/Directory_test')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mkdir">mkdir</link>
+            </member>
+            <member>
+                <link linkend="rmdir">rmdir</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

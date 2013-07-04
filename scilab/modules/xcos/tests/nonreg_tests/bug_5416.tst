@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 5416 -->
 //
@@ -19,7 +19,7 @@
 
 
 
-// xcos(SCI + '/modules/xcos/demos/Discrete-KalmanFilter.xcos');
+// xcos(SCI + '/modules/xcos/demos/Discrete-KalmanFilter.zcos');
 // Open a superblock
 // modify value inside
 // check that the simulation differs when values changes

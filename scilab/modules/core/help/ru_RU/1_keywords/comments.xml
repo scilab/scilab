@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="comments">
+    <refnamediv>
+        <refname>комментарии</refname>
+        <refpurpose>(//) комментарии</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Два последовательных слэша <literal>//</literal> за пределами определения 
+            строкового значения обозначают начало комментария. Слэши, как и все последующие
+            символы вплоть до конца строки, не интерпретируются.
+        </para>
+        <para>
+            Внутри функции первые строки, вплоть до первой инструкции или пустой строки
+            могут использоваться для указания содержимого для функции <literal>help</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+g=9.81// ускорение свободного падения
+ 
+text='a//b'
+ 
+function y=myfunction(x)
+  // myfunction вычисляет y=x^2+1
+  // x должен быть вектором или матрицей
+  y=x^2+1
+endfunction
+ 
+help myfunction
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="slash">слэш</link>
+            </member>
+            <member>
+                <link linkend="backslash">обратный слэш</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

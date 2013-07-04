@@ -10,52 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="quart">
-  <refnamediv>
-    <refname>quart</refname>
-    <refpurpose> computation of quartiles
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>s=quart(x)
-      s=quart(x,'r') or m=quart(x,1)
-      s=quart(x,'c') or m=quart(x,2)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>real or complex vector or matrix</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      For a vector  or a matrix x,  [q]=quart(x,y)
-      returns in the vector q the quartiles of x.
-      
-      [q]=quart(x,'r')        (or,         equivalently,
-      [q]=quart(x,1)) are the   rowwise percentiles.  It
-      returns in  each  column of    the matrix  q   the
-      quartiles  of   data   in the   corresponding column  of
-      x.
-    </para>
-    <para>
-      [q]=quart(x,'c')        (or,         equivalently,
-      [q]=quart(x,2)) are the  columnwise quartiles.  It
-      returns in each row of  the matrix q the quartiles
-      of data in the corresponding row of x.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="quart">
+    <refnamediv>
+        <refname>quart</refname>
+        <refpurpose>computation of quartiles
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>s=quart(x)
+            s=quart(x,'r') or m=quart(x,1)
+            s=quart(x,'c') or m=quart(x,2)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>real or complex vector or matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            For a vector  or a matrix x,  [q]=quart(x,y)
+            returns in the vector q the quartiles of x.
+            
+            [q]=quart(x,'r')        (or,         equivalently,
+            [q]=quart(x,1)) are the   rowwise percentiles.  It
+            returns in  each  column of    the matrix  q   the
+            quartiles  of   data   in the   corresponding column  of
+            x.
+        </para>
+        <para>
+            [q]=quart(x,'c')        (or,         equivalently,
+            [q]=quart(x,2)) are the  columnwise quartiles.  It
+            returns in each row of  the matrix q the quartiles
+            of data in the corresponding row of x.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 x=[6 7 0 7 10 4 2 2 7 1;
    6 0 5 5 5 2 0 6 8 10;
    8 6 4 3 5 9 8 3 4 7;
@@ -70,11 +70,11 @@ q=quart(x)
 q=quart(x,'r')
 q=quart(x,'c')
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>Bibliography</title>
-    <para>
-      Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
-    </para>
-  </refsection>
+    </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>
+            Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+        </para>
+    </refsection>
 </refentry>

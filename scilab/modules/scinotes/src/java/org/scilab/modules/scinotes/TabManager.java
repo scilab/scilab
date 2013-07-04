@@ -57,7 +57,7 @@ public class TabManager {
         }
         doc.putProperty("tabSize", new Integer(Math.max(n, 1)));
         if (indent != null) {
-            indent.setProperties(tab, n);
+            indent.setProperties(tab, SciNotesOptions.getSciNotesDisplay().indentSize);
         }
     }
 
@@ -65,12 +65,25 @@ public class TabManager {
         if (tab.equals(" ")) {
             Element startL = elem.getElement(elem.getElementIndex(position));
             int sstart = position - startL.getStartOffset();
-            int len = (sstart / lengthTab + 1) * lengthTab - (sstart + 1);
+            int len = lengthTab - (sstart % lengthTab);
             if (len == 0) {
                 len = lengthTab;
             }
             char[] str = new char[len];
             for (int i = 0; i < len; i++) {
+                str[i] = ' ';
+            }
+
+            return new String(str);
+        } else {
+            return tab;
+        }
+    }
+
+    public String getBasicTabulationString() {
+        if (tab.equals(" ")) {
+            char[] str = new char[lengthTab];
+            for (int i = 0; i < lengthTab; i++) {
                 str[i] = ' ';
             }
 
@@ -220,7 +233,7 @@ public class TabManager {
 
         try {
             String str = doc.getText(sstart, end - sstart + 1);
-            String untab = EOL + tab;
+            String untab = EOL + getBasicTabulationString();
             str = str.replaceAll(untab, EOL);
             IndentScanner iscan = indent.getIndentScanner();
             int n = iscan.getTabsAtBeginning(elem.getElementIndex(sstart));

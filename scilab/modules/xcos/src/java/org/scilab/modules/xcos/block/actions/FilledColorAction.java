@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -34,6 +34,7 @@ import com.mxgraph.util.mxUtils;
 /**
  * Change the filled color of multiple blocks
  */
+@SuppressWarnings(value = { "serial" })
 public final class FilledColorAction extends VertexSelectionDependantAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.FILL_COLOR;
@@ -75,7 +76,7 @@ public final class FilledColorAction extends VertexSelectionDependantAction {
         if (comp.isEditing()) {
             return;
         }
-        
+
         Object[] selectedCells = graph.getSelectionCells();
 
         // if no cells are selected : Do nothing
@@ -87,7 +88,7 @@ public final class FilledColorAction extends VertexSelectionDependantAction {
         Map<String, Integer> colorStats = new HashMap<String, Integer>();
         for (Object object : selectedCells) {
             String color = (String) graph.getCellStyle(object).get(
-                    mxConstants.STYLE_FILLCOLOR);
+                               mxConstants.STYLE_FILLCOLOR);
             if (colorStats.containsKey(color)) {
                 colorStats.put(color, colorStats.get(color) + 1);
             } else {
@@ -111,7 +112,7 @@ public final class FilledColorAction extends VertexSelectionDependantAction {
 
         if (newColor != null) {
             graph.setCellStyles(mxConstants.STYLE_FILLCOLOR,
-                    mxUtils.hexString(newColor));
+                                mxUtils.hexString(newColor));
         }
     }
 }

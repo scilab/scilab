@@ -10,49 +10,49 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="getfield">
-  <refnamediv>
-    <refname>getfield</refname>
-    <refpurpose>  リストのフィールドの展開</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>呼び出し手順</title>
-    <synopsis>[x,...]=getfield(i,l)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>パラメータ</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-          <para>任意の型の行列</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>l</term>
-        <listitem>
-          <para>list, tlist または mlist変数</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>i</term>
-        <listitem>
-          <para>フィールド添え字, 詳細は extraction 参照.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>説明</title>
-    <para>
-      この関数は, フィールド展開用の <literal>[x,...]=l(i)</literal> 構文と等価ですが,
-      唯一の違いは, <literal>mlist</literal> オブジェクトにも適用できる
-      ことです.
-    </para>
-  </refsection>
-  <refsection>
-    <title>例</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="getfield">
+    <refnamediv>
+        <refname>getfield</refname>
+        <refpurpose>リストのフィールドの展開</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[x,...]=getfield(i,l)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>任意の型の行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>l</term>
+                <listitem>
+                    <para>list, tlist または mlist変数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i</term>
+                <listitem>
+                    <para>フィールド添え字, 詳細は extraction 参照.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は, フィールド展開用の <literal>[x,...]=l(i)</literal> 構文と等価ですが,
+            唯一の違いは, <literal>mlist</literal> オブジェクトにも適用できる
+            ことです.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 l=list(1,'qwerw',%s)
 [a,b]=getfield([3 2],l)
 
@@ -60,13 +60,13 @@ a=hypermat([2,2,2],rand(1:2^3));// hypermatrices are coded using mlists
 a(1) // the a(1,1,1) entry
 getfield(1,a) // the mlist first field
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>参照</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="extraction">extraction</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

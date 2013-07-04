@@ -33,6 +33,7 @@
 #include "BasicAlgos.h"
 #include "set_data_property.h"
 #include "MALLOC.h"
+#include "sci_types.h"
 
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
@@ -43,7 +44,7 @@
 /* F.Leray 29.04.05 */
 /* the champ data is now set as a tlist (like for surface objects) */
 /* setchampdata(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
-int setchampdata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
+int setchampdata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
 {
     int nbRow[4];
     int nbCol[4];
@@ -51,35 +52,35 @@ int setchampdata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
     int numberArrows = 0;
     int dimensions[2];
 
-    double * vx  = NULL;
-    double * vy  = NULL;
-    double * vfx = NULL;
-    double * vfy = NULL;
+    double* vx  = NULL;
+    double* vy  = NULL;
+    double* vfx = NULL;
+    double* vfy = NULL;
 
     /* get parameters */
-    vx  = getCurrentDoubleMatrixFromList( tlist, &nbRow[0], &nbCol[0] );
-    vy  = getCurrentDoubleMatrixFromList( tlist, &nbRow[1], &nbCol[1] );
-    vfx = getCurrentDoubleMatrixFromList( tlist, &nbRow[2], &nbCol[2] );
-    vfy = getCurrentDoubleMatrixFromList( tlist, &nbRow[3], &nbCol[3] );
+    vx  = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &nbRow[0], &nbCol[0]);
+    vy  = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &nbRow[1], &nbCol[1]);
+    vfx = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &nbRow[2], &nbCol[2]);
+    vfy = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &nbRow[3], &nbCol[3]);
 
     /* check dim */
-    if ( nbCol[0] != 1 || nbCol[1] != 1 )
+    if (nbCol[0] != 1 || nbCol[1] != 1)
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: Columns vectors expected.\n"),"Tlist",1);
+        Scierror(999, _("%s: Wrong type for argument #%d: Columns vectors expected.\n"), "Tlist", 1);
         return SET_PROPERTY_ERROR;
     }
 
-    numberArrows = nbRow[0]*nbRow[1];
+    numberArrows = nbRow[0] * nbRow[1];
     dimensions[0] = nbRow[0];
     dimensions[1] = nbRow[1];
 
-    if ( nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] || nbRow[3] != nbRow[2] || nbCol[3] != nbCol[2] )
+    if (nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] || nbRow[3] != nbRow[2] || nbCol[3] != nbCol[2])
     {
-        Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",3,4);
+        Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"), "Tlist", 3, 4);
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0 || nbRow[3] * nbCol[3] == 0 )
+    if (nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0 || nbRow[3] * nbCol[3] == 0)
     {
         return sciReturnEmptyMatrix(_pvCtx);
     }
@@ -100,7 +101,7 @@ int setchampdata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
 /* F.Leray 29.04.05 */
 /* the grayplot data is now set as a tlist (like for surface and champ objects) */
 /* setgrayplot(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
-int setgrayplotdata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
+int setgrayplotdata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
 {
     BOOL result;
 
@@ -108,31 +109,31 @@ int setgrayplotdata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
     int nbCol[3];
     int gridSize[4];
 
-    double * pvecx = NULL;
-    double * pvecy = NULL;
-    double * pvecz = NULL;
+    double* pvecx = NULL;
+    double* pvecy = NULL;
+    double* pvecz = NULL;
 
-    pvecx = getDoubleMatrixFromList(tlist, 2, &nbRow[0], &nbCol[0]);
-    pvecy = getDoubleMatrixFromList(tlist, 3, &nbRow[1], &nbCol[1]);
-    pvecz = getDoubleMatrixFromList(tlist, 4, &nbRow[2], &nbCol[2]);
+    pvecx = getDoubleMatrixFromList(_pvCtx, tlist, 2, &nbRow[0], &nbCol[0]);
+    pvecy = getDoubleMatrixFromList(_pvCtx, tlist, 3, &nbRow[1], &nbCol[1]);
+    pvecz = getDoubleMatrixFromList(_pvCtx, tlist, 4, &nbRow[2], &nbCol[2]);
 
-    if ( nbCol[0] != 1 || nbCol[1] != 1 )
+    if (nbCol[0] != 1 || nbCol[1] != 1)
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: Columns vectors expected.\n"),"Tlist",1);
+        Scierror(999, _("%s: Wrong type for argument #%d: Columns vectors expected.\n"), "Tlist", 1);
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] )
+    if (nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1])
     {
-        Scierror(999, _("%s: Wrong size for arguments #%d: Incompatible length.\n"),"Tlist",3);
+        Scierror(999, _("%s: Wrong size for arguments #%d: Incompatible length.\n"), "Tlist", 3);
         /* Was previously: */
 #if 0
-        Scierror(999, _("%s: Wrong size for arguments #%d: Incompatible length.\n"),"Tlist","Tlist",3);
+        Scierror(999, _("%s: Wrong size for arguments #%d: Incompatible length.\n"), "Tlist", "Tlist", 3);
 #endif
         return 0;
     }
 
-    if ( nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0 )
+    if (nbRow[0] * nbCol[0] == 0 || nbRow[1] * nbCol[1] == 0 || nbRow[2] * nbCol[2] == 0)
     {
         return sciReturnEmptyMatrix(_pvCtx);
     }
@@ -163,17 +164,18 @@ int setgrayplotdata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
 }
 /*--------------------------------------------------------------------------*/
 /* set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3) */
-int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
+int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist)
 {
-    char* type;
+    int type = -1;
+    int *piType = &type;
 
     int m1, n1, m2, n2, m3, n3;
     int m3n, n3n;
     int isFac3d;
 
-    double * pvecx = NULL;
-    double * pvecy = NULL;
-    double * pvecz = NULL;
+    double* pvecx = NULL;
+    double* pvecy = NULL;
+    double* pvecz = NULL;
     int dimvectx = 0;
     int dimvecty = 0;
 
@@ -186,47 +188,47 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
     int izcol;
 
     /* no copy now we just perform tests on the matrices */
-    pvecx = getCurrentDoubleMatrixFromList( tlist, &m1, &n1 );
-    pvecy = getCurrentDoubleMatrixFromList( tlist, &m2, &n2 );
-    pvecz = getCurrentDoubleMatrixFromList( tlist, &m3, &n3 );
+    pvecx = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &m1, &n1);
+    pvecy = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &m2, &n2);
+    pvecz = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &m3, &n3);
 
-    if ( m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1 )
+    if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1)
     {
-        if ( !(m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3) )
+        if (!(m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3))
         {
-            Scierror(999, _("%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"),"Tlist",1,2,3);
+            Scierror(999, _("%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"), "Tlist", 1, 2, 3);
             return SET_PROPERTY_ERROR;
         }
     }
     else
     {
-        if ( m2 * n2 != n3 )
+        if (m2 * n2 != n3)
         {
-            Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",2,3);
+            Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"), "Tlist", 2, 3);
             return SET_PROPERTY_ERROR;
         }
-        if ( m1 * n1 != m3 )
+        if (m1 * n1 != m3)
         {
-            Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",1,3);
+            Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"), "Tlist", 1, 3);
             return SET_PROPERTY_ERROR;
         }
-        if ( m1 * n1 <= 1 || m2 * n2 <= 1 )
+        if (m1 * n1 <= 1 || m2 * n2 <= 1)
         {
-            Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"),"Tlist",1,2,2);
+            Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"), "Tlist", 1, 2, 2);
             return SET_PROPERTY_ERROR;
         }
     }
 
-    if ( m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0 )
+    if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0)
     {
         return sciReturnEmptyMatrix(_pvCtx);
     }
 
     /* get color size if exists */
-    if ( getAssignedListNbElement( tlist ) == 4 )
+    if (getAssignedListNbElement(tlist) == 4)
     {
-        getCurrentDoubleMatrixFromList( tlist, &m3n, &n3n ) ;
-        if ( m3n * n3n == m3 * n3 )
+        getCurrentDoubleMatrixFromList(_pvCtx, tlist, &m3n, &n3n);
+        if (m3n * n3n == m3 * n3)
         {
             /* the color is a matrix, with same size as Z */
             izcol = 2;
@@ -249,9 +251,9 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
         izcol = 0;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_FAC3D__) == 0)
+    if (type == __GO_FAC3D__)
     {
         isFac3d = 1;
     }
@@ -260,12 +262,12 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
         isFac3d = 0;
     }
 
-    if ( m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1 ) /* NG beg */
+    if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) /* NG beg */
     {
         /* case isfac=1;*/
         if (isFac3d == 0)
         {
-            Scierror(999, _("Can not change the %s of graphic object: its type is %s.\n"),"typeof3d","SCI_PLOT3D");
+            Scierror(999, _("Can not change the %s of graphic object: its type is %s.\n"), "typeof3d", "SCI_PLOT3D");
             return SET_PROPERTY_ERROR;
         }
     }
@@ -274,7 +276,7 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
         /* case isfac=0;*/
         if (isFac3d == 1)
         {
-            Scierror(999, _("Can not change the %s of graphic object: its type is %s.\n"),"typeof3d","SCI_FAC3D");
+            Scierror(999, _("Can not change the %s of graphic object: its type is %s.\n"), "typeof3d", "SCI_FAC3D");
             return SET_PROPERTY_ERROR;
         }
     }
@@ -286,11 +288,11 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
         /* x is considered as a matrix */
         dimvectx = -1;
     }
-    else if ( m1 == 1 ) /* x is a row vector */
+    else if (m1 == 1) /* x is a row vector */
     {
         dimvectx = n1;
     }
-    else if ( n1 == 1 ) /* x is a column vector */
+    else if (n1 == 1) /* x is a column vector */
     {
         dimvectx = m1;
     }
@@ -299,12 +301,12 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
         dimvectx = -1;
     }
 
-    if ( dimvectx > 1 )
+    if (dimvectx > 1)
     {
-        int monotony = checkMonotony( pvecx, dimvectx );
-        if ( monotony == 0 )
+        int monotony = checkMonotony(pvecx, dimvectx);
+        if (monotony == 0)
         {
-            Scierror(999, _("%s: Wrong value: Vector is not monotonous.\n"),"Objplot3d");
+            Scierror(999, _("%s: Wrong value: Vector is not monotonous.\n"), "Objplot3d");
             return SET_PROPERTY_ERROR;
         }
 
@@ -319,11 +321,11 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
         /* x is considered as a matrix */
         dimvecty = -1;
     }
-    else if(m2 == 1) /* y is a row vector */
+    else if (m2 == 1) /* y is a row vector */
     {
         dimvecty = n2;
     }
-    else if(n2 == 1) /* y is a column vector */
+    else if (n2 == 1) /* y is a column vector */
     {
         dimvecty = m2;
     }
@@ -332,12 +334,12 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
         dimvecty = -1;
     }
 
-    if( dimvecty > 1 )
+    if (dimvecty > 1)
     {
-        int monotony = checkMonotony( pvecy, dimvecty );
-        if ( monotony == 0 )
+        int monotony = checkMonotony(pvecy, dimvecty);
+        if (monotony == 0)
         {
-            Scierror(999, _("%s: Wrong value: Vector is not monotonous.\n"),"Objplot3d");
+            Scierror(999, _("%s: Wrong value: Vector is not monotonous.\n"), "Objplot3d");
             return SET_PROPERTY_ERROR;
         }
 
@@ -348,11 +350,11 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
     }
 
     /* get the values now */
-    rewindAssignedList( tlist );
+    rewindAssignedList(tlist);
 
-    pvecx = getCurrentDoubleMatrixFromList( tlist, &m1, &n1 );
-    pvecy = getCurrentDoubleMatrixFromList( tlist, &m2, &n2 );
-    pvecz = getCurrentDoubleMatrixFromList( tlist, &m3, &n3 );
+    pvecx = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &m1, &n1);
+    pvecy = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &m2, &n2);
+    pvecz = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &m3, &n3);
 
     if (isFac3d == 1)
     {
@@ -390,13 +392,13 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
         }
     }
 
-    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, m1*n1);
-    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, m2*n2);
-    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, m3*n3);
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, m1 * n1);
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, m2 * n2);
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, pvecz, jni_double_vector, m3 * n3);
 
-    if( getAssignedListNbElement( tlist ) == 4 ) /* F.Leray There is a color matrix */
+    if (getAssignedListNbElement(tlist) == 4) /* F.Leray There is a color matrix */
     {
-        inputColors = getCurrentDoubleMatrixFromList( tlist, &m3n, &n3n );
+        inputColors = getCurrentDoubleMatrixFromList(_pvCtx, tlist, &m3n, &n3n);
         nbInputColors = m3n * n3n;
     }
     else
@@ -423,103 +425,104 @@ int set3ddata(void* _pvCtx, char* pobjUID, AssignedList * tlist )
     return SET_PROPERTY_SUCCEED;
 }
 /*--------------------------------------------------------------------------*/
-int set_data_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    char* type;
+    int type = -1;
+    int *piType = &type;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_string, (void **)&type);
+    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (strcmp(type, __GO_CHAMP__) == 0)
+    if (type == __GO_CHAMP__)
     {
         AssignedList* tlist = NULL;
         int status = -1;
 
-        if( !isParameterTlist( valueType ) )
+        if (!(valueType  == sci_tlist))
         {
             Scierror(999, "Incorrect argument, must be a Tlist!\n");
             return SET_PROPERTY_ERROR;
         }
 
         /* we should have 4 properties in the tlist */
-        tlist = createAssignedList( 3, 4 );
-        if ( tlist == NULL )
+        tlist = createAssignedList(_pvCtx, 3, 4);
+        if (tlist == NULL)
         {
             return SET_PROPERTY_ERROR;
         }
 
         status = setchampdata(_pvCtx, pobjUID, tlist);
-        destroyAssignedList( tlist );
+        destroyAssignedList(tlist);
         return status;
     }
-    else if (strcmp(type, __GO_GRAYPLOT__) == 0)
+    else if (type == __GO_GRAYPLOT__)
     {
         AssignedList * tlist = NULL;
         int status = -1;
 
-        if( !isParameterTlist( valueType ) )
+        if (!(valueType  == sci_tlist))
         {
             Scierror(999, _("Wrong type for input argument: Tlist expected.\n"));
             return SET_PROPERTY_ERROR;
         }
 
         /* we should have 3 properties in the tlist */
-        tlist = createAssignedList( 3, 3 );
-        if ( tlist == NULL )
+        tlist = createAssignedList(_pvCtx, 3, 3);
+        if (tlist == NULL)
         {
             return SET_PROPERTY_ERROR;
         }
 
         status = setgrayplotdata(_pvCtx, pobjUID, tlist);
-        destroyAssignedList( tlist );
+        destroyAssignedList(tlist);
         return status;
     }
-    else if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
+    else if (type == __GO_FAC3D__ || type == __GO_PLOT3D__)
     {
         AssignedList * tlist = NULL;
         int status = -1;
         int listSize = 0;
 
-        if( !isParameterTlist( valueType ) )
+        if (!(valueType  == sci_tlist))
         {
             Scierror(999, _("Wrong type for input argument: Tlist expected.\n"));
-            return SET_PROPERTY_ERROR ;
-        }
-
-        listSize = getStackListNbElement( 3 );
-
-        if ( listSize == 3 )
-        {
-            tlist = createAssignedList( 3, 3 );
-        }
-        else if ( listSize == 4 )
-        {
-            tlist = createAssignedList( 3, 4 );
-        }
-        else
-        {
-            Scierror(999, _("Wrong size for input argument: %d or %d expected.\n"),4,5);
             return SET_PROPERTY_ERROR;
         }
 
-        if ( tlist == NULL )
+        listSize = getStackListNbElement(_pvCtx, 3);
+
+        if (listSize == 3)
+        {
+            tlist = createAssignedList(_pvCtx, 3, 3);
+        }
+        else if (listSize == 4)
+        {
+            tlist = createAssignedList(_pvCtx, 3, 4);
+        }
+        else
+        {
+            Scierror(999, _("Wrong size for input argument: %d or %d expected.\n"), 4, 5);
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (tlist == NULL)
         {
             return SET_PROPERTY_ERROR;
         }
 
         status = set3ddata(_pvCtx, pobjUID, tlist);
-        destroyAssignedList( tlist );
+        destroyAssignedList(tlist);
         return status;
 
     }
     else  /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
     {
-        if ( !isParameterDoubleMatrix( valueType ) )
+        if (valueType != sci_matrix)
         {
-            Scierror(999, _("Incompatible type for property %s.\n"),"data");
+            Scierror(999, _("Incompatible type for property %s.\n"), "data");
             return SET_PROPERTY_ERROR;
         }
 
-        return sciSetPoint( pobjUID, getDoubleMatrixFromStack( stackPointer ), &nbRow, &nbCol );
+        return sciSetPoint(pobjUID, (double*)_pvData, &nbRow, &nbCol);
     }
     return SET_PROPERTY_ERROR;
 

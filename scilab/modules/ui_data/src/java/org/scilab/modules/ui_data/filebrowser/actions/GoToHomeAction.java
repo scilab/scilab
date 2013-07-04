@@ -28,6 +28,7 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * Action to go to user-home
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class GoToHomeAction extends CommonCallBack {
 
     /**
@@ -54,7 +55,7 @@ public class GoToHomeAction extends CommonCallBack {
     public static PushButton createButton() {
         PushButton button = ScilabPushButton.createPushButton();
         button.setCallback(new GoToHomeAction());
-        button.setText(UiDataMessages.USERHOME);
+        ((SwingScilabPushButton) button.getAsSimplePushButton()).setToolTipText(UiDataMessages.USERHOME);
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(FileUtils.getClosedUserHomeIcon());
 
         return button;

@@ -24,6 +24,7 @@ import org.scilab.modules.ui_data.filebrowser.actions.ChangeCWDAction;
  * The JPanel containing the combobox used to set the path and the two buttons
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabFileSelectorPanel extends JPanel {
 
     private SwingScilabTreeTable table;
@@ -53,20 +54,22 @@ public class ScilabFileSelectorPanel extends JPanel {
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.weightx = 0;
-        gbc.anchor = gbc.LINE_START;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.anchor = GridBagConstraints.LINE_START;
         add(changeDirButton, gbc);
 
         gbc.gridx = 1;
         gbc.gridwidth = gbc.gridheight = 1;
         gbc.weightx = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.anchor = gbc.LINE_START;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.LINE_START;
         add(table.getComboBox(), gbc);
 
         gbc.gridx = 2;
         gbc.gridwidth = gbc.gridheight = 1;
         gbc.weightx = 0;
-        gbc.anchor = gbc.LINE_START;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.anchor = GridBagConstraints.LINE_START;
         add(upDirButton, gbc);
     }
 }

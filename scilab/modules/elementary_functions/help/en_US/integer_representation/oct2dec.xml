@@ -11,68 +11,68 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="oct2dec" xml:lang="en">
-  <refnamediv>
-    <refname>oct2dec</refname>
-    <refpurpose>convert from octal to decimal</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>d=oct2dec(o)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>o</term>
-        <listitem>
-          <para>matrix of strings corresponding to octal
-            representation
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>d</term>
-        <listitem>
-          <para>matrix of doubles, positive integer values</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>oct2dec(x)</literal> returns the matrix of numbers
-      corresponding to the octal representation.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="oct2dec" xml:lang="en">
+    <refnamediv>
+        <refname>oct2dec</refname>
+        <refpurpose>convert from octal to decimal</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>d=oct2dec(o)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>o</term>
+                <listitem>
+                    <para>matrix of strings corresponding to octal
+                        representation
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>matrix of doubles, positive integer values</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>oct2dec(x)</literal> returns the matrix of numbers
+            corresponding to the octal representation.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 oct2dec(["1" "756115"; "0" "23"])
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="base2dec">base2dec</link>
-      </member>
-      <member>
-        <link linkend="bin2dec">bin2dec</link>
-      </member>
-      <member>
-        <link linkend="hex2dec">hex2dec</link>
-      </member>
-      <member>
-        <link linkend="dec2bin">dec2bin</link>
-      </member>
-      <member>
-        <link linkend="dec2oct">dec2oct</link>
-      </member>
-      <member>
-        <link linkend="dec2hex">dec2hex</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="base2dec">base2dec</link>
+            </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="hex2dec">hex2dec</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+            <member>
+                <link linkend="dec2oct">dec2oct</link>
+            </member>
+            <member>
+                <link linkend="dec2hex">dec2hex</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

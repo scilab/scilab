@@ -15,7 +15,7 @@
 
 #include "SetUicontrolListboxTop.hxx"
 
-int SetUicontrolListboxTop(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+int SetUicontrolListboxTop(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int value = 0;
     int* valueTab;
@@ -23,60 +23,60 @@ int SetUicontrolListboxTop(void* _pvCtx, char* sciObjUID, size_t stackPointer, i
     int nbValues = 0;
     BOOL status = FALSE;
 
-  if (valueType == sci_matrix)
+    if (valueType == sci_matrix)
     {
-      if(nbCol > 1 || nbRow > 1)
+        if (nbCol > 1 || nbRow > 1)
         {
-          /* Wrong value size */
-          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A real expected.\n")), "ListboxTop");
-          return SET_PROPERTY_ERROR;
+            /* Wrong value size */
+            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A real expected.\n")), "ListboxTop");
+            return SET_PROPERTY_ERROR;
         }
 
-      value = (int) getDoubleFromStack(stackPointer);
+        value = (int)((double*)_pvData)[0];
     }
-  else if (valueType == sci_strings) // Ascendant compatibility
+    else if (valueType == sci_strings) // Ascendant compatibility
     {
-      if(nbCol > 1 || nbRow > 1)
+        if (nbCol > 1 || nbRow > 1)
         {
-          /* Wrong value size */
-          Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A real expected.\n")), "ListboxTop");
-          return SET_PROPERTY_ERROR;
+            /* Wrong value size */
+            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A real expected.\n")), "ListboxTop");
+            return SET_PROPERTY_ERROR;
         }
 
-      nbValues = sscanf(getStringFromStack(stackPointer), "%d", &value);
+        nbValues = sscanf((char*)_pvData, "%d", &value);
 
-      if(nbValues != 1)
+        if (nbValues != 1)
         {
-          /* Wrong value size */
-          Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: A real expected.\n")), "ListboxTop");
-          return SET_PROPERTY_ERROR;
+            /* Wrong value size */
+            Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: A real expected.\n")), "ListboxTop");
+            return SET_PROPERTY_ERROR;
         }
     }
-  else
+    else
     {
-      /* Wrong datatype */
-      Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A real expected.\n")), "ListboxTop");
-      return SET_PROPERTY_ERROR;
+        /* Wrong datatype */
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A real expected.\n")), "ListboxTop");
+        return SET_PROPERTY_ERROR;
     }
 
-  valueSize = nbCol*nbRow;
-  valueTab = new int[valueSize];
-  if (valueSize > 0)
-  {
-      valueTab[0] = value;
-  }
+    valueSize = nbCol * nbRow;
+    valueTab = new int[valueSize];
+    if (valueSize > 0)
+    {
+        valueTab[0] = value;
+    }
 
-  status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_LISTBOXTOP__), valueTab, jni_int_vector, valueSize);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_LISTBOXTOP__, valueTab, jni_int_vector, valueSize);
 
-  delete[] valueTab;
+    delete[] valueTab;
 
-  if (status == TRUE)
-  {
-      return SET_PROPERTY_SUCCEED;
-  }
-  else
-  {
-      Scierror(999, _("'%s' property does not exist for this handle.\n"), "ListboxTop");
-      return SET_PROPERTY_ERROR;
-  }
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "ListboxTop");
+        return SET_PROPERTY_ERROR;
+    }
 }

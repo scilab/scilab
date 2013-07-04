@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline Carnis
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="dollar">
+    <refnamediv>
+        <refname>dollar</refname>
+        <refpurpose>($) 最後の添字 </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>$</literal>記号は,配列の(行または列の)最後の添字を表します.
+            このため,この記号は,行または列の数と等しくなります.
+        </para>
+        <para>
+            この<literal>$</literal> 記号は,
+            <literal>$</literal>を開始および終了タグで使用する
+            LaTeXテキストでも使用されます.
+            <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>も参照ください.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+a=[1,2,3;4,5,6];
+a($)
+
+b = [1 2 3;4 5 6;7 8 9];
+// 最初の行の最後の要素(3)にアクセス
+b(1,$)
+// ２番目の行の最後の要素(8)にアクセス
+b($,2)
+//bの最後の要素(9)にアクセス
+b($,$)
+
+// 行列bの最後に行を追加
+b($+1,:) = [1 1 1]
+
+// $記号をLaTeXデリミタとして使用
+titlepage(['$\Huge\textrm{It is }\LaTeX:$';'$\Huge 2^2+1=\sqrt{25}$'])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>
+            </member>
+            <member>
+                <link linkend="size">size</link>
+            </member>
+            <member>
+                <link linkend="length">length</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

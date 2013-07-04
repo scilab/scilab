@@ -15,7 +15,7 @@ modulename=graphic_objects
 
 #### graphic_objects : Conf files ####
 libscigraphic_objects_la_rootdir = $(mydatadir)
-libscigraphic_objects_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscigraphic_objects_la_root_DATA = changelog.txt license.txt readme.txt
 
 
 #### graphic_objects : init scripts ####
@@ -29,7 +29,8 @@ BUILT_SOURCES = 	includes/graphicObjectsProperties.h
 #This file is also generated, but can not be listed to prevent GCJ call.
 #src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
 
-GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp
+GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp \
+                              src/jni/GraphicObjectBuilder.cpp
 
 GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
 							src/jni/ScilabNativeView_wrap.c
@@ -77,16 +78,11 @@ BUILT_SOURCES += giws
 endif
 
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_objects.c
-
-GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_graphicfunction.cpp
-
 libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
 			-I$(top_srcdir)/modules/commons/src/jni/ \
 			-I$(top_srcdir)/modules/core/includes/ \
@@ -97,7 +93,6 @@ libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 
 # Without the graphic_objects module
 libscigraphic_objects_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			$(AM_CPPFLAGS)
@@ -127,8 +122,7 @@ if SWIG
   BUILT_SOURCES += swig
 endif
 
-libscigraphic_objects_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 #### graphic_objects : gateway declaration ####

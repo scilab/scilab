@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,37 +10,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rowshuff">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rowshuff" xml:lang="en">
     <refnamediv>
         <refname>rowshuff</refname>
-        <refpurpose> shuffle algorithm</refpurpose>
+        <refpurpose>algoritmo de embaralhamento</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title> Seqüência de Chamamento </title>
         <synopsis>[Ws,Fs1]=rowshuff(Fs, [alfa])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
                 <term>Fs</term>
                 <listitem>
                     <para>
-                        square real pencil <literal>Fs = s*E-A</literal>
+                        feixe quadrado de reais <literal>Fs = s*E-A</literal>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Ws</term>
                 <listitem>
-                    <para>polynomial matrix</para>
+                    <para>matriz de polinômios </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Fs1</term>
                 <listitem>
                     <para>
-                        square real pencil <literal>F1s = s*E1 -A1</literal> with <literal>E1</literal> non-singular
+                        feixe quadrado de reais <literal>F1s = s*E1 -A1</literal> com
+                        <literal>E1</literal> não-singular 
                     </para>
                 </listitem>
             </varlistentry>
@@ -48,46 +49,53 @@
                 <term>alfa</term>
                 <listitem>
                     <para>
-                        real number (<literal>alfa = 0</literal> is the default value)
+                        número real (<literal>alfa = 0</literal> é o valor
+                        padrão)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
-        <para>
-            Shuffle algorithm: Given the pencil <literal>Fs=s*E-A</literal>, returns Ws=W(s) 
-            (square polynomial matrix) such that:
+        <title>Descrição</title>
+        <para>Algoritmo de embaralhamento: dado o feixe
+            <literal>Fs=s*E-A</literal>, retorna Ws=W(s) (matriz quadrada de
+            polinômios) tal que:
         </para>
         <para>
-            <literal> Fs1 = s*E1-A1 = W(s)*(s*E-A) </literal> is a pencil with non singular <literal>E1</literal> matrix.
+            <literal> Fs1 = s*E1-A1 = W(s)*(s*E-A) </literal> é um feixe com
+            matriz <literal>E1</literal> não-singular.
         </para>
         <para>
-            This is possible iff the pencil <literal>Fs = s*E-A</literal> is regular (i.e. invertible).
-            The degree of <literal>Ws</literal> is equal to the index of the pencil.
+            Isto é possível se, e só se, o feixe <literal>Fs = s*E-A</literal> é
+            regular (i.e., invertível). O grau de <literal>Ws</literal> é igual ao
+            índice do feixe.
         </para>
         <para>
-            The poles at infinity of <literal>Fs</literal> are put to <literal>alfa</literal> and the zeros of <literal>Ws</literal> are at <literal>alfa</literal>.
+            Os pólos no infinito de<literal> Fs</literal> asão colocados para
+            <literal>alfa</literal> e os zeros de <literal>Ws</literal> estão em
+            <literal>alfa</literal>.
         </para>
         <para>
-            Note that <literal>(s*E-A)^-1 = (s*E1-A1)^-1 * W(s) = (W(s)*(s*E-A))^-1 *W(s)</literal>
+            Note que <literal>(s*E-A)^-1 = (s*E1-A1)^-1 * W(s) =
+                (W(s)*(s*E-A))^-1 *W(s)
+            </literal>
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
 F=randpencil([],[2],[1,2,3],[]);
-F=rand(5,5)*F*rand(5,5);   // 5 x 5 regular pencil with 3 evals at 1,2,3
+F=rand(5,5)*F*rand(5,5);   // feixe regular  5 x 5 com três avaliações em 1,2,3
 [Ws,F1]=rowshuff(F,-1);
 [E1,A1]=pen2ea(F1);
-svd(E1)           //E1 non singular
+svd(E1)           //E1 não-singular
 roots(det(Ws))
 clean(inv(F)-inv(F1)*Ws,1.d-7)
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
+    <refsection>
+        <title> Ver Também </title>
         <simplelist type="inline">
             <member>
                 <link linkend="pencan">pencan</link>

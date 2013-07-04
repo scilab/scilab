@@ -36,27 +36,26 @@
 
 /*------------------------------------------------------------------------*/
 /* @TODO: remove stackPointer, nbRow, nbCol which are used */
-int set_ytics_coord_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_ytics_coord_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int N = 0;
-    double * vector = NULL;
+    double* vector = NULL;
     char c_format[5];
     int iYNumberTicks = 0;
     int* piYNumberTicks = &iYNumberTicks;
     char** stringVector = NULL;
-    double* coordsVector = NULL;
     int iTicksStyle = 0;
     int* piTicksStyle = &iTicksStyle;
     char ticksStyle = 0;
 
-    if ( !isParameterDoubleMatrix( valueType ) )
+    if (valueType != sci_matrix)
     {
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "ytics_coord");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( nbRow != 1 )
+    if (nbRow != 1)
     {
         Scierror(999, _("Wrong size for '%s' property: Row vector expected.\n"), "ytics_coord");
         return SET_PROPERTY_ERROR;
@@ -66,35 +65,30 @@ int set_ytics_coord_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
 
     if (piYNumberTicks == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"ytics_coord");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "ytics_coord");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( iYNumberTicks == 1 && nbCol != 1 )
+    if (iYNumberTicks == 1 && nbCol != 1)
     {
         Scierror(999, _("Wrong size for '%s' property: Scalar expected.\n"), "ytics_coord");
         return SET_PROPERTY_ERROR;
     }
 
-    if ( iYNumberTicks != 1 && nbCol == 1 )
+    if (iYNumberTicks != 1 && nbCol == 1)
     {
         Scierror(999, _("Wrong size for '%s' property: At least %d elements expected.\n"), "ytics_coord", 2);
         return SET_PROPERTY_ERROR;
     }
 
     /* what follows remains here as it was */
-    coordsVector = createCopyDoubleVectorFromStack( stackPointer, nbCol );
-
-    status = setGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, coordsVector, jni_double_vector, nbCol);
+    status = setGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, _pvData, jni_double_vector, nbCol);
 
     if (status == FALSE)
     {
-        FREE(coordsVector);
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"ytics_coord");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "ytics_coord");
         return SET_PROPERTY_ERROR;
     }
-
-    FREE(coordsVector);
 
     getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, (void**)&piTicksStyle);
 
@@ -111,14 +105,14 @@ int set_ytics_coord_property(void* _pvCtx, char* pobjUID, size_t stackPointer, i
         ticksStyle = 'i';
     }
 
-    ComputeXIntervals( pobjUID, ticksStyle, &vector, &N, 0 );
-    ComputeC_format( pobjUID, c_format );
+    ComputeXIntervals(pobjUID, ticksStyle, &vector, &N, 0);
+    ComputeC_format(pobjUID, c_format);
 
-    stringVector = copyFormatedArray( vector, N, c_format, 256 );
+    stringVector = copyFormatedArray(vector, N, c_format, 256);
 
     status = setGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, N);
 
-    FREE( vector );
+    FREE(vector);
 
     destroyStringArray(stringVector, N);
 

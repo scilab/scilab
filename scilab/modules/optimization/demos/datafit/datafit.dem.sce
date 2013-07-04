@@ -4,6 +4,6 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-exec("SCI/modules/optimization/demos/datafit/demo_datafit.sci');
+exec("SCI/modules/optimization/demos/datafit/demo_datafit.sci");
 demo_datafit();
 clear demo_datafit;

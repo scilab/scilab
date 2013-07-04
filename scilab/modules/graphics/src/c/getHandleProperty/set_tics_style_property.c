@@ -19,6 +19,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include "stricmp.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -33,29 +34,29 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_tics_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_tics_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int ticksStyle = 0;
 
     char xy_type = 0;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "tics_style");
         return SET_PROPERTY_ERROR;
     }
 
-    if (    !isStringParamEqual( stackPointer, "v" )
-         && !isStringParamEqual( stackPointer, "r" )
-         && !isStringParamEqual( stackPointer, "i" ) )
+    if (   stricmp((char*)_pvData, "v") != 0 &&
+            stricmp((char*)_pvData, "r") != 0 &&
+            stricmp((char*)_pvData, "i") != 0)
     {
         Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "tics_style", "v, r, i");
         return SET_PROPERTY_ERROR;
     }
 
-     /* get the character 'v', 'r' or 'i' */
-    xy_type = getStringFromStack( stackPointer )[0];
+    /* get the character 'v', 'r' or 'i' */
+    xy_type = ((char*)_pvData)[0];
 
     if (xy_type == 'v')
     {
@@ -78,7 +79,7 @@ int set_tics_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, in
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"tics_style");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_style");
         return SET_PROPERTY_ERROR;
     }
 }

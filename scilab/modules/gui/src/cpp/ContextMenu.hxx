@@ -14,7 +14,7 @@
 #define __CONTEXTMENU_HXX__
 
 #include "CallScilabBridge.hxx"
-extern "C"{
+extern "C" {
 #include "ContextMenu.h"
 #include "BOOL.h"
 #include "getScilabJavaVM.h"

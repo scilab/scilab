@@ -18,7 +18,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "gw_graphics.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "sciCall.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
@@ -34,9 +34,21 @@
 /*--------------------------------------------------------------------------*/
 int sci_xstring(char *fname, unsigned long fname_len)
 {
+    SciErr sciErr;
+
+    int* piAddrStr = NULL;
+    int* piAddrl1 = NULL;
+    double* l1 = NULL;
+    int* piAddrl2 = NULL;
+    double* l2 = NULL;
+    int* piAddrl4 = NULL;
+    double* l4 = NULL;
+    int* piAddrl5 = NULL;
+    double* l5 = NULL;
+
     double rect[4];
     double x = 0., y = 0., angle = 0.0;
-    int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, l2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0, l4 = 0, m5 = 0, n5 = 0, l5 = 0;
+    int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0, m5 = 0, n5 = 0;
     char **Str = NULL;
     char **sendStr = NULL;
     int sendm3 = 0, sendn3 = 0;
@@ -44,18 +56,61 @@ int sci_xstring(char *fname, unsigned long fname_len)
     int nbElement = 0, i = 0;
     BOOL isboxed = FALSE;
 
-    CheckRhs(3, 5);
+    CheckInputArgument(pvApiCtx, 3, 5);
 
-    GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &m3, &n3, &Str);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrStr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of string at position 3.
+    if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m3, &n3, &Str))
+    {
+        Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+        return 1;
+    }
+
     if (m3 * n3 == 0)
     {
-        LhsVar(1) = 0;
-        PutLhsVar();
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
-    GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-    GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 1.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    // Retrieve a matrix of double at position 2.
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrl2, &m2, &n2, &l2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        return 1;
+    }
+
 
     if (m1 * n1 == 1 || m2 * n2 == 1)
     {
@@ -68,56 +123,90 @@ int sci_xstring(char *fname, unsigned long fname_len)
     else
     {
         Scierror(999, _("%s: Incompatible input arguments #%d and #%d: Same element number expected.\n"), fname, 1, 2);
-        LhsVar(1) = 0;
-        PutLhsVar();
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
     if (nbElement == 0)
     {
-        LhsVar(1) = 0;
-        PutLhsVar();
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
-    if (Rhs >= 4)
+    if (nbInputArgument(pvApiCtx) >= 4)
     {
-        GetRhsVar(4, MATRIX_OF_DOUBLE_DATATYPE, &m4, &n4, &l4);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddrl4);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 4.
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddrl4, &m4, &n4, &l4);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+            return 1;
+        }
+
         if (m4 * n4 != 1 && m4 * n4 != nbElement)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: %d or %d elements expected.\n"), fname, 4, 1, nbElement);
-            LhsVar(1) = 0;
-            PutLhsVar();
+            AssignOutputVariable(pvApiCtx, 1) = 0;
+            ReturnArguments(pvApiCtx);
             return 0;
         }
     }
-    if (Rhs >= 5)
+    if (nbInputArgument(pvApiCtx) >= 5)
     {
-        GetRhsVar(5, MATRIX_OF_DOUBLE_DATATYPE, &m5, &n5, &l5);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 5, &piAddrl5);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 5.
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddrl5, &m5, &n5, &l5);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+            return 1;
+        }
+
         if (m5 * n5 != 1 && m5 * n5 != nbElement)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: %d or %d elements expected.\n"), fname, 5, 1, nbElement);
-            LhsVar(1) = 0;
-            PutLhsVar();
+            AssignOutputVariable(pvApiCtx, 1) = 0;
+            ReturnArguments(pvApiCtx);
             return 0;
         }
     }
 
-    x = *stk(l1);
-    y = *stk(l2);
+    x = *l1;
+    y = *l2;
     sendStr = Str;
     sendm3 = m3;
     sendn3 = n3;
-    if (Rhs >= 4)
-        angle = DEG2RAD(*stk(l4));
-    if (Rhs >= 5)
-        isboxed = (*stk(l5) != 0);
+    if (nbInputArgument(pvApiCtx) >= 4)
+    {
+        angle = DEG2RAD(*l4);
+    }
+    if (nbInputArgument(pvApiCtx) >= 5)
+    {
+        isboxed = (*l5 != 0);
+    }
 
     getOrCreateDefaultSubwin();
 
     if (nbElement == 1)
     {
-        Objstring(sendStr, sendm3, sendn3, x, y, &angle, rect, TRUE, NULL, &hdlstr, FALSE, NULL, NULL, isboxed
+        Objstring(sendStr, sendm3, sendn3, x, y, &angle, rect, TRUE, NULL, &hdlstr, 0, NULL, NULL, isboxed
                   && (angle == 0), TRUE, FALSE, ALIGN_LEFT);
     }
     else
@@ -125,20 +214,28 @@ int sci_xstring(char *fname, unsigned long fname_len)
         for (i = 0; i < nbElement; i++)
         {
             if (m1 * n1 == nbElement)
-                x = *(stk(l1) + i);
+            {
+                x = *((l1) + i);
+            }
             if (m2 * n2 == nbElement)
-                y = *(stk(l2) + i);
+            {
+                y = *((l2) + i);
+            }
             if (m3 * n3 == nbElement)
             {
                 sendStr = Str + i;
                 sendm3 = sendn3 = 1;
             }
-            if (Rhs >= 4 && m4 * n4 == nbElement)
-                angle = DEG2RAD(*(stk(l4) + i));
-            if (Rhs >= 5 && m5 * n5 == nbElement)
-                isboxed = (*stk(l5) != 0);
+            if (nbInputArgument(pvApiCtx) >= 4 && m4 * n4 == nbElement)
+            {
+                angle = DEG2RAD(*((l4) + i));
+            }
+            if (nbInputArgument(pvApiCtx) >= 5 && m5 * n5 == nbElement)
+            {
+                isboxed = ((l5) != 0);
+            }
 
-            Objstring(sendStr, sendm3, sendn3, x, y, &angle, rect, TRUE, NULL, &hdlstr, FALSE, NULL, NULL, isboxed
+            Objstring(sendStr, sendm3, sendn3, x, y, &angle, rect, TRUE, NULL, &hdlstr, 0, NULL, NULL, isboxed
                       && (angle == 0), TRUE, FALSE, ALIGN_LEFT);
         }
 
@@ -157,8 +254,8 @@ int sci_xstring(char *fname, unsigned long fname_len)
 
     freeArrayOfString(Str, m3 * n3);
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

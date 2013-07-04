@@ -6,7 +6,6 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
-// <-- INTERACTIVE TEST -->
 
 // <-- Non-regression test for bug 244 -->
 //
@@ -164,8 +163,10 @@ Y=[
 // fitting
 Z=[Y;X];
 deff('e=G(p,z)','pK1=p(1),pK2=p(2),v=z(2),pHexp=z(1),e=pHexp-fpH(v)');
+wMode = warning("query");
+warning("off");
 [p,err]=fit_dat(G,[6;7],Z);
-
+warning(wMode);
 
 // graphic part
 clf()

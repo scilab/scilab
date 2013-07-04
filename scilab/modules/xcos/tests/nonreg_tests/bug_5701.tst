@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 5701 -->
 //
@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // The AFFICH_m block perform update of the view when simulated, validate it.
 
-// xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5701.xcos");
+// xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5701.zcos");
 // Launch simulation
 // Check that the AFFICH_m block is incrementing
 

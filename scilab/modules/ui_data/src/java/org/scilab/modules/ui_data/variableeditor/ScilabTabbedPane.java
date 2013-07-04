@@ -55,6 +55,7 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
  * Class for a tabbedpane with close-button
  * @author Calixte DENIZET
  */
+@SuppressWarnings(value = { "serial" })
 public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener,
     DragSourceListener,
     DropTargetListener,

@@ -27,7 +27,7 @@ import org.scilab.modules.renderer.JoGLView.text.TextManager;
  * See SCI/modules/renderer/src/jni/renderer.giws.xml for other details.
  **/
 public final class CallRenderer {
-	
+
     /**
      * Start an interactive zoom.
      * @param id the uid of the figure where the zoom happen.
@@ -38,21 +38,21 @@ public final class CallRenderer {
             visitor.getInteractionManager().startInteractiveZoom();
         }
     }
-    
+
     public static double[] clickRubberBox(String id, double initialRect[]) {
         DrawerVisitor visitor = DrawerVisitor.getVisitor(id);
         if (visitor != null) {
             return visitor.getInteractionManager().startClickRubberBox(initialRect);
         }
-        return new double[] {-1,-1,-1,-1,-1,-1,-1};
+        return new double[] { -1, -1, -1, -1, -1, -1, -1};
     }
-    
+
     public static double[] dragRubberBox(String id) {
         DrawerVisitor visitor = DrawerVisitor.getVisitor(id);
         if (visitor != null) {
             return visitor.getInteractionManager().startDragRubberBox();
         }
-        return new double[] {-1,-1,-1,-1,-1,-1,-1};
+        return new double[] { -1, -1, -1, -1, -1, -1, -1};
     }
     /**
      * Updates the coordinate transformation of the Axes object given by the identifier.
@@ -88,7 +88,7 @@ public final class CallRenderer {
      * @return the 2d view coordinates (3-element array).
      */
     public static double[] get2dViewCoordinates(String id, double[] coords) {
-        double[] point2d = new double[]{0.0, 0.0, 0.0};
+        double[] point2d = new double[] {0.0, 0.0, 0.0};
 
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
 
@@ -111,7 +111,7 @@ public final class CallRenderer {
      * @return the pixel coordinates (2-element array: x, y).
      */
     public static double[] getPixelFrom2dViewCoordinates(String id, double[] coords) {
-        double[] pointPix = new double[]{0.0, 0.0};
+        double[] pointPix = new double[] {0.0, 0.0};
 
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
 
@@ -135,7 +135,7 @@ public final class CallRenderer {
      * @return the 2d view coordinates (3-element array: x, y, z).
      */
     public static double[] get2dViewFromPixelCoordinates(String id, double[] coords) {
-        double[] point2d = new double[]{0.0, 0.0, 0.0};
+        double[] point2d = new double[] {0.0, 0.0, 0.0};
 
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
 
@@ -157,7 +157,7 @@ public final class CallRenderer {
      * @return the Axes' viewing area (4-element array: x, y, width, height).
      */
     public static double[] getViewingArea(String id) {
-        double[] viewingArea = new double[]{0.0, 0.0, 0.0, 0.0};
+        double[] viewingArea = new double[] {0.0, 0.0, 0.0, 0.0};
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
 
         if (object != null && object instanceof Axes) {

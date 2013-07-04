@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" version="5.0-subset Scilab" xml:lang="ja" xml:id="Sgrayplot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="Sgrayplot">
     <refnamediv>
         <refname>Sgrayplot</refname>
         <refpurpose>色付きの曲面の2次元平滑化プロット</refpurpose>
@@ -272,7 +272,12 @@ _____________
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>Sgrayplot();</scilab:image>
+        <scilab:image>
+            x=-10:10; y=-10:10;m =rand(21,21);
+            clf()
+            xset("colormap",hotcolormap(64))
+            Sgrayplot(x,y,m, strf="011", rect=[-20,-20,20,20])
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>
@@ -300,16 +305,13 @@ t = linspace(0,4*%pi,nt);
 show_window(); clf()
 f=gcf();
 f.color_map=jetcolormap(64);
-f.pixmap='on';
 colorbar(-1,1)
 Sgrayplot(x,y,cos(t(1))*z, strf="042", zminmax=[-1,1])
 c=gce(),e=c.children
 xtitle("Kaa''s eyes")
 for i = 1:nt
   e.data(:,3)=matrix(cos(t(i))*z,-1,1);
-  show_pixmap()
 end
-f.pixmap='off';
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

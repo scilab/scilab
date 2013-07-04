@@ -21,7 +21,7 @@ int GetUicontrolListboxTop(void* _pvCtx, char *sciObjUID)
     int* piListboxTopSize = &listboxTopSize;
     int* piListboxTop = NULL;;
 
-    getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_LISTBOXTOP_SIZE__), jni_int, (void**) &piListboxTopSize);
+    getGraphicObjectProperty(sciObjUID, __GO_UI_LISTBOXTOP_SIZE__, jni_int, (void**) &piListboxTopSize);
 
     if (piListboxTopSize == NULL)
     {
@@ -32,11 +32,11 @@ int GetUicontrolListboxTop(void* _pvCtx, char *sciObjUID)
     {
         if (listboxTopSize == 0)
         {
-          return sciReturnEmptyMatrix(_pvCtx);
+            return sciReturnEmptyMatrix(_pvCtx);
         }
         else
         {
-            getGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_LISTBOXTOP__), jni_int_vector, (void**) &piListboxTop);
+            getGraphicObjectProperty(sciObjUID, __GO_UI_LISTBOXTOP__, jni_int_vector, (void**) &piListboxTop);
 
             if (piListboxTop == NULL)
             {

@@ -10,48 +10,48 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="ilib_verbose" xml:lang="en">
-  <refnamediv>
-    <refname>ilib_verbose</refname>
-    <refpurpose>set level of display used by dynamic link
-      functions.
-    </refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>
-      level = ilib_verbose()
-      ilib_verbose(level)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>level :</term>
-        <listitem>
-          <para>level of verbose for dynamic link functions.</para>
-          <para>0 : no message</para>
-          <para>1 : default level (as previous version of scilab)</para>
-          <para>2 : maximum verbose level (configure , makefile, debug
-            information, ...)
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>"ilib_verbose" set level of display used by dynamic link
-      functions.
-    </para>
-    <para>All dynamic functions in dynamic link module check this value and
-      display or not some information.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ilib_verbose" xml:lang="en">
+    <refnamediv>
+        <refname>ilib_verbose</refname>
+        <refpurpose>set level of display used by dynamic link
+            functions.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            level = ilib_verbose()
+            ilib_verbose(level)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>level :</term>
+                <listitem>
+                    <para>level of verbose for dynamic link functions.</para>
+                    <para>0 : no message</para>
+                    <para>1 : default level (as previous version of scilab)</para>
+                    <para>2 : maximum verbose level (configure , makefile, debug
+                        information, ...)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>"ilib_verbose" set level of display used by dynamic link
+            functions.
+        </para>
+        <para>All dynamic functions in dynamic link module check this value and
+            display or not some information.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 if haveacompiler() then
   cur_verbose = ilib_verbose();
   ilib_verbose(0);
@@ -95,28 +95,28 @@ if haveacompiler() then
 
 end
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="mode">mode</link>
-      </member>
-      <member>
-        <link linkend="link">link</link>
-      </member>
-      <member>
-        <link linkend="ilib_compile">ilib_compile</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_Make">ilib_build</link>
-      </member>
-      <member>
-        <link linkend="ilib_for_link">ilib_for_link</link>
-      </member>
-      <member>
-        <link linkend="api_scilab">api_scilab</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mode">mode</link>
+            </member>
+            <member>
+                <link linkend="link">link</link>
+            </member>
+            <member>
+                <link linkend="ilib_compile">ilib_compile</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_Make">ilib_build</link>
+            </member>
+            <member>
+                <link linkend="ilib_for_link">ilib_for_link</link>
+            </member>
+            <member>
+                <link linkend="api_scilab">api_scilab</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

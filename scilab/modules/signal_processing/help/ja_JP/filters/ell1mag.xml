@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ell1mag">
+    <refnamediv>
+        <refname>ell1mag</refname>
+        <refpurpose>楕円フィルタの振幅</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[v]=ell1mag(eps,m1,z)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>eps</term>
+                <listitem>
+                    <para>
+                        通過域のリップル=<literal>1/(1+eps^2)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m1</term>
+                <listitem>
+                    <para>
+                        阻止域のリップル=<literal>1/(1+(eps^2)/m1)</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>複素平面上の標本ベクトルの値</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>標本点における楕円フィルタの値</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            楕円フィルタの二乗振幅を得る際に使用される関数.
+            通常は,<literal>m1=eps*eps/(a*a-1)</literal>です. 
+            <literal>s=%sn(z,m1)</literal>として,
+            <literal>v=real(ones(z)./(ones(z)+eps*eps*s.*s))</literal>を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+deff('[alpha,BeTa]=alpha_beta(n,m,m1)',...
+'if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;...
+alpha=%k(1-m1)/%k(1-m);')
+epsilon=0.1;A=10;  //リップルパラメータ
+m1=(epsilon*epsilon)/(A*A-1);n=5;omegac=6;
+m=find_freq(epsilon,A,n);omegar = omegac/sqrt(m)
+%k(1-m1)*%k(m)/(%k(m1)*%k(1-m))-n   //チェック...
+[alpha,Beta]=alpha_beta(n,m,m1)
+alpha*%asn(1,m)-n*%k(m1)      //チェック
+sample=0:0.01:20;
+//等高線に正の実軸をマップ...
+z=alpha*%asn(sample/omegac,m)+Beta*ones(sample);
+plot(sample,ell1mag(epsilon,m1,z))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="buttmag">buttmag</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

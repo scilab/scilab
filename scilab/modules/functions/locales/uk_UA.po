@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-02-21 17:04+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-18 04:43+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: uk\n"
 
 #, c-format
@@ -167,8 +167,8 @@ msgstr ""
 "але його завантаження до Scilab неможливе, оскільки %s — захищена змінна.\n"
 
 #, c-format
-msgid "%s: Warning: Error in file %s : %s. File ignored\n"
-msgstr "%s: попередження: помилка у файлі %s: %s. Файл проігноровано.\n"
+msgid "%s: Error in file %s : %s.\n"
+msgstr "%s: помилка у файлі %s: %s.\n"
 
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"
@@ -177,6 +177,10 @@ msgstr "%s: не вдалося відкрити файл %s для запису
 #, c-format
 msgid "%s: File %s does not contain any function.\n"
 msgstr "%s: у файлі %s не міститься жодної функції.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 #, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
@@ -226,7 +230,7 @@ msgid "Tools"
 msgstr "Інструменти"
 
 msgid "Edit"
-msgstr "Правка"
+msgstr "Зміни"
 
 msgid "?"
 msgstr "Довідка"

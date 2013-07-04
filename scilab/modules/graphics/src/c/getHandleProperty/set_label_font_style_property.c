@@ -36,18 +36,18 @@
  */
 
 /*------------------------------------------------------------------------*/
-int set_labels_font_style_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_labels_font_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-   BOOL status = FALSE;
-   int fontStyle = 0;
+    BOOL status = FALSE;
+    int fontStyle = 0;
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "labels_font_style");
-    return SET_PROPERTY_ERROR ;
-  }
+    if (valueType != sci_matrix)
+    {
+        Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "labels_font_style");
+        return SET_PROPERTY_ERROR;
+    }
 
-    fontStyle = (int) getDoubleFromStack(stackPointer);
+    fontStyle = (int)((double*)_pvData)[0];
 
     status = setGraphicObjectProperty(pobjUID, __GO_FONT_STYLE__, &fontStyle, jni_int, 1);
 
@@ -57,7 +57,7 @@ int set_labels_font_style_property(void* _pvCtx, char* pobjUID, size_t stackPoin
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"labels_font_style");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "labels_font_style");
         return SET_PROPERTY_ERROR;
     }
 

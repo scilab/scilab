@@ -10,48 +10,48 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Matplot1" xml:lang="en">
-  <refnamediv>
-    <refname>Matplot1</refname>
-    <refpurpose>Esboço 2d de matrizes utilizando cores</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-    <synopsis>Matplot1(a,rect)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Parâmetros</title>
-    <variablelist>
-      <varlistentry>
-        <term>a</term>
-        <listitem>
-          <para>matriz de reais de tamanho (n1,n2). </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>rect</term>
-        <listitem>
-          <para>
-            <literal>[xmin,ymin,xmax,ymax]</literal>
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Descrição</title>
-    <para>
-      As entradas da matriz <literal>int(a)</literal> são utilizadas como
-      entradas de mapa de cores no mapa de cores corrente.
-      <literal>rect</literal> especifica um retângulo na escala corrente e a
-      matriz é desenhada dentro deste retângulo. Cada entrada da matriz será
-      renderizada como um pequeno retângulo preenchido com sua cor
-      associada.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Exemplos</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Matplot1" xml:lang="en">
+    <refnamediv>
+        <refname>Matplot1</refname>
+        <refpurpose>Esboço 2d de matrizes utilizando cores</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>Matplot1(a,rect)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>matriz de reais de tamanho (n1,n2). </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rect</term>
+                <listitem>
+                    <para>
+                        <literal>[xmin,ymin,xmax,ymax]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            As entradas da matriz <literal>int(a)</literal> são utilizadas como
+            entradas de mapa de cores no mapa de cores corrente.
+            <literal>rect</literal> especifica um retângulo na escala corrente e a
+            matriz é desenhada dentro deste retângulo. Cada entrada da matriz será
+            renderizada como um pequeno retângulo preenchido com sua cor
+            associada.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 //--- primeiro exemplo
 clf();
 ax=gca();//obtendo o manipulador dos eixos correntes
@@ -69,11 +69,9 @@ n=100;
 
 clf();
 f=gcf();//obtendo o manipulador da figura corrente
-f.pixmap='on';//modo de buffer duplo
 ax=gca();//obtendo o manipulador dos eixos corrente
 ax.data_bounds=[0,0;10,10];//ajustando the data_bounds
 ax.box='on'; //desenhando uma caixa
-show_pixmap()
 for k=-n:n,
   a=ones(n,n);
   a= 3*tril(a,k)+ 2*a;
@@ -81,30 +79,28 @@ for k=-n:n,
   k1= 3*(k+100)/200;
   if k>-n then delete(gce()),end
   Matplot1(a,[k1,2,k1+7,9])
-  show_pixmap() //enviando o buffer duplo para a tela
   sleep(8);
 end
-f.pixmap='off';
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>Ver Também</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="colormap">colormap</link>
-      </member>
-      <member>
-        <link linkend="plot2d">plot2d</link>
-      </member>
-      <member>
-        <link linkend="Matplot">Matplot</link>
-      </member>
-      <member>
-        <link linkend="grayplot">grayplot</link>
-      </member>
-      <member>
-        <link linkend="Matplot_properties">Matplot_properties</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="colormap">colormap</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="Matplot">Matplot</link>
+            </member>
+            <member>
+                <link linkend="grayplot">grayplot</link>
+            </member>
+            <member>
+                <link linkend="Matplot_properties">Matplot_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

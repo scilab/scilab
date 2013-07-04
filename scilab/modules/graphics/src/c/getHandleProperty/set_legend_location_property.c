@@ -34,23 +34,24 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_legend_location_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_legend_location_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     char* legendLocationsNames[11] = {"in_upper_right", "in_upper_left", "in_lower_right", "in_lower_left",
-      "out_upper_right", "out_upper_left", "out_lower_right", "out_lower_left", "upper_caption", "lower_caption",
-      "by_coordinates"};
+                                      "out_upper_right", "out_upper_left", "out_lower_right", "out_lower_left", "upper_caption", "lower_caption",
+                                      "by_coordinates"
+                                     };
     int i = 0;
     int index = -1;
     char* legendLocation = NULL;
 
-    if ( !isParameterStringMatrix( valueType ) )
+    if (valueType != sci_strings)
     {
         Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "legend_location");
         return SET_PROPERTY_ERROR;
     }
 
-    legendLocation = getStringFromStack(stackPointer);
+    legendLocation = (char*)_pvData;
 
     for (i = 0; i < 11; i++)
     {
@@ -75,7 +76,7 @@ int set_legend_location_property(void* _pvCtx, char* pobjUID, size_t stackPointe
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"),"legend_location");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "legend_location");
         return SET_PROPERTY_ERROR;
     }
 

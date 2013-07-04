@@ -10,74 +10,74 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_mex_build">
-  <refnamediv>
-    <refname>ilib_mex_build</refname>
-    <refpurpose> utility for mex library management</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>ilib_mex_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags,cc])</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>lib_name</term>
-        <listitem>
-          <para>a character string, the generic name of the library without path and extension.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>table</term>
-        <listitem>
-          <para>3 column string matrix giving the table of 'scilab-name', 'interface name', 'cmex' or 'fmex'</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>files</term>
-        <listitem>
-          <para>string matrix giving objects files needed for shared library creation</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>libs</term>
-        <listitem>
-          <para>string matrix giving extra libraries needed for shared library creation</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>makename</term>
-        <listitem>
-          <para>character string. The path of the Makefile file without extension.</para>
-          <para>This parameter is useless since Scilab 5.0. Default value to use: [].</para>
-          <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>ldflags,cflags,fflags,cc</term>
-        <listitem>
-          <para>character strings to provide options/flags for the loader, the C compiler, the Fortran compiler. cc provides the name of the compiler.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      This function is used to create mex libraries and to generate a 
-      loader file which can be used to dynamically load the mex shared library.
-    </para>
-    <para>
-      Note that the file name containing the mex code can be set in the third input argument (<literal>files</literal>) or the second value of the <literal>table</literal> input argument.
-    </para>
-    <para>
-      <emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ilib_mex_build">
+    <refnamediv>
+        <refname>ilib_mex_build</refname>
+        <refpurpose>utility for mex library management</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>ilib_mex_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags,cc])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>lib_name</term>
+                <listitem>
+                    <para>a character string, the generic name of the library without path and extension.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>table</term>
+                <listitem>
+                    <para>3 column string matrix giving the table of 'scilab-name', 'interface name', 'cmex' or 'fmex'</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>string matrix giving objects files needed for shared library creation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>libs</term>
+                <listitem>
+                    <para>string matrix giving extra libraries needed for shared library creation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>makename</term>
+                <listitem>
+                    <para>character string. The path of the Makefile file without extension.</para>
+                    <para>This parameter is useless since Scilab 5.0. Default value to use: [].</para>
+                    <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ldflags,cflags,fflags,cc</term>
+                <listitem>
+                    <para>character strings to provide options/flags for the loader, the C compiler, the Fortran compiler. cc provides the name of the compiler.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function is used to create mex libraries and to generate a 
+            loader file which can be used to dynamically load the mex shared library.
+        </para>
+        <para>
+            Note that the file name containing the mex code can be set in the third input argument (<literal>files</literal>) or the second value of the <literal>table</literal> input argument.
+        </para>
+        <para>
+            <emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 cd(TMPDIR);
 
 mputl(['#include ""mex.h""'
@@ -91,34 +91,34 @@ ilib_mex_build('libmex',['mexf16','mexfunction16','cmex'],[],[],'','','','');
 exec(TMPDIR+'/loader.sce');
 mexf16(rand(2,3,2));
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="addinter">addinter</link>
-      </member>
-      <member>
-        <link linkend="link">link</link>
-      </member>
-      <member>
-        <link linkend="ilib_compile">ilib_compile</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_Make">ilib_gen_Make</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
-      </member>
-      <member>
-        <link linkend="ilib_gen_loader">ilib_gen_loader</link>
-      </member>
-      <member>
-        <link linkend="ilib_for_link">ilib_for_link</link>
-      </member>
-      <member>
-        <link linkend="api_scilab">api_scilab</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="addinter">addinter</link>
+            </member>
+            <member>
+                <link linkend="link">link</link>
+            </member>
+            <member>
+                <link linkend="ilib_compile">ilib_compile</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_Make">ilib_gen_Make</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_gateway">ilib_gen_gateway</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_loader">ilib_gen_loader</link>
+            </member>
+            <member>
+                <link linkend="ilib_for_link">ilib_for_link</link>
+            </member>
+            <member>
+                <link linkend="api_scilab">api_scilab</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

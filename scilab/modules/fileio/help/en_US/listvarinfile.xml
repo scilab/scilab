@@ -1,104 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="listvarinfile">
-  <refnamediv>
-    <refname>listvarinfile</refname>
-    <refpurpose>list of variables in a saved data file</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>listvarinfile(filename)
-      [names,typs,dims,vols]=listvarinfile(filename)
-    </synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>filename</term>
-        <listitem>
-          <para>
-            a character string, the pathname of the file to be inspected.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>nams</term>
-        <listitem>
-          <para>
-            a matrix of strings, names of the variables saved in the file.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>dims</term>
-        <listitem>
-          <para>
-            a list, dimensions of the variables saved in the file.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>typs</term>
-        <listitem>
-          <para>
-            a numeric matrix, types of the variables saved in the file.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>vols</term>
-        <listitem>
-          <para>
-            a numeric matrix, size in bytes of the variables saved in the file.
-          </para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <itemizedlist>
-      <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="listvarinfile">
+    <refnamediv>
+        <refname>listvarinfile</refname>
+        <refpurpose>list of variables in a saved data file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>listvarinfile(filename)
+            [names, typs, dims, vols] = listvarinfile(filename)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>
+                        a character string, the pathname of the file to be inspected.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nams</term>
+                <listitem>
+                    <para>
+                        a matrix of strings, names of the variables saved in the file.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>
+                        a list, dimensions of the variables saved in the file.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>typs</term>
+                <listitem>
+                    <para>
+                        a numeric matrix, types of the variables saved in the file.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>vols</term>
+                <listitem>
+                    <para>
+                        a numeric matrix, size in bytes of the variables saved in the file.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
         <para>
-          This utility function lists "a la <link linkend="whos">whos</link>" the variables contained in
-          a Scilab data file produced by <link linkend="save">save</link>.
+            This utility function lists "a la <link linkend="whos">whos</link>" the variables contained in
+            a Scilab data file produced by <link linkend="save">save</link>.
         </para>
         <para>
-          <note>
-            Hypermatrices are reported as plain mlists;
-            rationals and state-spaces are reported as plain tlists;
-            graphic handles are not recognized.
-          </note>
+            <note>
+                Hypermatrices are reported as plain mlists;
+                rationals and state-spaces are reported as plain tlists;
+                graphic handles are not recognized.
+            </note>
         </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 a=eye(2,2); b=int16(ones(a)); c=rand(2,3,3);
 save(fullfile(TMPDIR,"vals.sod"),'a','b','c')
 [names,typs,dims,vols] = listvarinfile(fullfile(TMPDIR,"vals.sod"))
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="whos">whos</link>
-      </member>
-      <member>
-        <link linkend="save">save</link>
-      </member>
-      <member>
-        <link linkend="load">load</link>
-      </member>
-      <member>
-        <link linkend="save_format">save_format</link>
-      </member>
-      <member>
-        <link linkend="type">type</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="whos">whos</link>
+            </member>
+            <member>
+                <link linkend="save">save</link>
+            </member>
+            <member>
+                <link linkend="load">load</link>
+            </member>
+            <member>
+                <link linkend="save_format">save_format</link>
+            </member>
+            <member>
+                <link linkend="type">type</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

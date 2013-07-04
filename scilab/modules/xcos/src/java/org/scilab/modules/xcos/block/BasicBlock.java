@@ -104,7 +104,13 @@ import com.mxgraph.util.mxUtils;
  */
 // CSOFF: ClassDataAbstractionCoupling
 // CSOFF: ClassFanOutComplexity
+@SuppressWarnings(value = { "serial" })
 public class BasicBlock extends ScilabGraphUniqueObject implements Serializable {
+    /**
+     * Sorted kind of input, useful to sort them by kind
+     */
+    private static final Class<?>[] sortedChildrenClass = {InputPort.class, OutputPort.class, ControlPort.class, CommandPort.class, Object.class};
+
     /*
      * Property names
      */
@@ -221,12 +227,21 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         Collections.sort(children, new Comparator<Object>() {
             @Override
             public int compare(Object o1, Object o2) {
-                final int o1Base = calcBaseIncrement(o1);
-                final int o2Base = calcBaseIncrement(o2);
+                // diff is the major sorting by kind
+                int diff = compareByChildClass(o1, o2);
 
-                int diff = o1Base - o2Base;
                 if (o1 instanceof BasicPort && o2 instanceof BasicPort) {
-                    diff = diff + reference.indexOf(o1) - reference.indexOf(o2) + ((BasicPort) o1).getOrdering() - ((BasicPort) o2).getOrdering();
+                    // first sort with the port list index
+                    final int diffIndexOf = Integer.signum(reference.indexOf(o1) - reference.indexOf(o2));
+                    // then sort with the ordering value
+                    final int diffOrdering = Integer.signum(((BasicPort) o1).getOrdering() - ((BasicPort) o2).getOrdering());
+                    // then sort with the port position value
+                    final mxGeometry o1Geom = ((BasicPort) o1).getGeometry();
+                    final mxGeometry o2Geom = ((BasicPort) o2).getGeometry();
+                    final int diffPosition = Integer.signum((int) (o2Geom.getX() - o1Geom.getX() - o2Geom.getY() + o1Geom.getY()));
+
+                    // voting is performed with these equivalent 3 selector
+                    diff = diff + diffIndexOf + diffOrdering + diffPosition;
                 }
 
                 return diff;
@@ -242,22 +257,29 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      *            the cell
      * @return the base index
      */
-    private static int calcBaseIncrement(Object cell) {
-        final int base;
+    private static final int compareByChildClass(final Object o1, final Object o2) {
+        int o1Index = 0;
+        int o2Index = 0;
 
-        if (cell instanceof InputPort) {
-            base = 1;
-        } else if (cell instanceof OutputPort) {
-            base = 2;
-        } else if (cell instanceof ControlPort) {
-            base = 3;
-        } else if (cell instanceof CommandPort) {
-            base = 4;
-        } else {
-            base = 0;
+        for (int i = 0; i < sortedChildrenClass.length; i++) {
+            final Class<?> klass = sortedChildrenClass[i];
+
+            if (klass.isInstance(o1)) {
+                o1Index = i;
+                break;
+            }
+        }
+        for (int i = 0; i < sortedChildrenClass.length; i++) {
+            final Class<?> klass = sortedChildrenClass[i];
+
+            if (klass.isInstance(o2)) {
+                o2Index = i;
+                break;
+            }
         }
 
-        return base * (Integer.MAX_VALUE / 5);
+        final int base = o1Index - o2Index;
+        return base * (Integer.MAX_VALUE / sortedChildrenClass.length);
     }
 
     /**
@@ -1064,9 +1086,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         /*
          * Update the children ports
          */
-        if (children != null) {
-            updateChildren(modifiedBlock);
-        }
+        updateChildren(modifiedBlock);
 
         /*
          * If the block is in a superblock then update it.
@@ -1203,6 +1223,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
             oldPorts.put(type, new LinkedList<mxICell>());
         }
 
+        if (getChildCount() <= 0) {
+            return oldPorts;
+        }
+
         // sort children according to the ordering parameter (useful on
         // scilab-5.2.x diagrams)
         sort(children);
@@ -1235,6 +1259,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * emit any event.
      */
     public void sortChildren() {
+        if (getChildCount() <= 0) {
+            return;
+        }
+
         sort(children);
     }
 
@@ -1263,6 +1291,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         if (isLocked()) {
             return;
         }
+
+        // sort children according to the ordering parameter (useful on
+        // scilab-5.2.x diagrams)
+        sortChildren();
 
         final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
         if (handler == null) {

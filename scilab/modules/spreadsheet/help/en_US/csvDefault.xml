@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) 2010-2011 - INRIA - Allan CORNET
+ * Copyright (C) 2011 - INRIA - Michael Baudin
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ -->
+<refentry version="5.0-subset Scilab" xml:id="csvDefault" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+    <refnamediv>
+        <refname>csvDefault</refname>
+        
+        <refpurpose>Get or set defaults behavior for csv files.</refpurpose>
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        
+        <synopsis>allvalues = csvDefault() </synopsis>
+        
+        <synopsis>value = csvDefault(field) </synopsis>
+        
+        <synopsis>bRes = csvDefault(field, value) </synopsis>
+    </refsynopsisdiv>
+    
+    <refsection>
+        <title>Parameters</title>
+        
+        <variablelist>
+            <varlistentry>
+                <term>allvalues</term>
+                
+                <listitem>
+                    <para>a 6-by-2 matrix of strings, the values of all the fields. The
+                        first column contains the available fields, while the second column
+                        contains the current values.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>field</term>
+                
+                <listitem>
+                    <para>a 1-by-1 matrix of strings, the name of the field to get or
+                        set. The available values of <literal>field</literal> are
+                        "separator", "decimal", "conversion", "precision", "regexp", "eol",
+                        "encoding", "blank".
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>value</term>
+                
+                <listitem>
+                    <para>a 1-by-1 matrix of strings, the value of the field to get or
+                        set.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>bRes</term>
+                
+                <listitem>
+                    <para>a 1-by-1 matrix of booleans, bRes is true if the value was
+                        correctly set, bRes is wrong is the value was not correct.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    
+    <refsection>
+        <title>Description</title>
+        
+        <para>This function allows to quiery or configure the options of the csv
+            files. These options are used by the read and write function when the user
+            does not specify them in the calling sequence.
+        </para>
+        
+        <para>
+            The <literal>allvalues = csvDefault()</literal> calling sequence
+            returns the value of all the fields.
+        </para>
+        
+        <para>
+            The <literal>value = csvDefault(field)</literal> calling sequence
+            returns the value corresponding to the given field.
+        </para>
+        
+        <para>
+            The <literal>bRes = csvDefault(field, value)</literal> calling
+            sequence allows to set the value of the given field. <itemizedlist>
+                <listitem>
+                    <para>If the function cannot set the field to the given value, then
+                        <literal>bRes</literal> is false. In this case, the value of the
+                        field is unchanged.
+                    </para>
+                </listitem>
+                
+                <listitem>
+                    <para>If the function is able to change the field to the given
+                        value, then <literal>bRes</literal> is true.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        
+        <para>The available fields are the following. <itemizedlist>
+                <listitem>
+                    <para>field = "separator": the separator of the columns of the csv
+                        files. Default separator = ",".
+                    </para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "decimal": the decimal point used in the csv files.
+                        The available values are "." or ",". Default decimal = ".".
+                    </para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "conversion": the type of the output of the
+                        <literal>csvRead</literal>function. Possible values are "string" or
+                        "double". Default conversion = "double". If conversion = "string",
+                        then the <literal>csvRead</literal> function returns a matrix of
+                        strings. If conversion = "double", then the
+                        <literal>csvRead</literal> function returns a matrix of
+                        doubles.
+                    </para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "precision": the C format used to create the strings
+                        from the doubles in the <literal>csvWrite</literal> function. The
+                        default value is <literal>precision="%.17lg"</literal>. This format
+                        allows to perform write-read error-free cycles. This means that we
+                        can save a double into a .csv, then read the double and get the
+                        exact same value. The supported format is: %type or
+                        %[width].[precision]type. <itemizedlist>
+                            <listitem>
+                                <para>type: lf, lg, d, i, e, f, g</para>
+                            </listitem>
+                            
+                            <listitem>
+                                <para>width: Optional number that specifies the minimum number
+                                    of characters output.
+                                </para>
+                            </listitem>
+                            
+                            <listitem>
+                                <para>precision: Optional number that specifies the maximum
+                                    number of characters printed for all or part of the output
+                                    field, or the minimum number of digits printed for integer
+                                    values.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "regexp": regular expression used to extract comments
+                        of the <literal>csvRead</literal>function.
+                    </para>
+                    
+                    <para>by default, this value is '' (no regexp).</para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "eol": end of line used to write lines of the
+                        <literal>csvWrite</literal>function.
+                    </para>
+                    
+                    <para>Possible values are "linux", "windows", "macos9".</para>
+                    
+                    <para>by default, this value is platform-dependant.</para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "encoding":</para>
+                    
+                    <para>Possible values are "utf-8", "iso-latin".</para>
+                    
+                    <para>by default, this value is "utf-8".</para>
+                </listitem>
+                
+                <listitem>
+                    <para>field = "blank": remove all blank lines before to parse
+                        text
+                    </para>
+                    
+                    <para>Possible values are "on", "off".</para>
+                    
+                    <para>by default, this value is "on".</para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </refsection>
+    
+    <refsection>
+        <title>Examples</title>
+        
+        <programlisting role="example">// See all the available fields
+            allvalues = csvDefault()
+            // Get the value of the "precision" field
+            value = csvDefault("precision")
+            // Set the value of the "precision" field
+            bRes = csvDefault("precision","%.17e") // Expected = %t
+            // Set the value of the "precision" field to 
+            // an impossible value
+            bRes = csvDefault("precision","Ouch!") // Expected = %f    
+        </programlisting>
+    </refsection>
+    
+    <refsection>
+        <title>See Also</title>
+        
+        <simplelist type="inline">
+            <member>
+                <link linkend="csvRead">csvRead</link>
+            </member>
+            
+            <member>
+                <link linkend="csvWrite">csvWrite</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function introduced. Based on the 'csv_readwrite' module.</revremark>
+            </revision>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>'blank' is enabled by default.</revremark>
+            </revision>
+            
+        </revhistory>
+    </refsection>
+</refentry>
+

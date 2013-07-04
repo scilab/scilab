@@ -20,51 +20,56 @@
 
 int ShowVariables()
 {
-  int i;
-  VARPTR var;
-  for (i = 0; i < nVariable; i++)
+    int i;
+    VARPTR var;
+    for (i = 0; i < nVariable; i++)
     {
-      int j;
-      var = variables[i];
-      fprintf(stderr,"==============variable %d : name %s\n",i+1,var->name);
-      fprintf(stderr,"type %s<->%s\n",SGetSciType(var->type),
-	      SGetForType(var->for_type));
-      fprintf(stderr,"elts : [");
-      for (j=0 ; j < var->length ; j++)
-	{
-	  fprintf(stderr,"{var %d:%s}",var->el[j],
-		  variables[var->el[j]-1]->name);
-	}
-      fprintf(stderr,"]\n");
-      /* fprintf(stderr," name of external function when type is  char *fexternal[MAXNAM];
-	 external
-      */
-      fprintf(stderr," ?  equal %d\n",var->equal);
-      fprintf(stderr,"for_names [");
-      if ( var->nfor_name != 0)
-	{
-	  for (j=0 ; j < var->nfor_name ; j++)
-	    {
-	      fprintf(stderr,"{%s:%d}",var->for_name[j],
-		      var->for_name_orig[j]);
-	      if ( j != var->nfor_name-1) fprintf(stderr,",");
-	    }
-	}
-      fprintf(stderr,"]\n");
-      fprintf(stderr," position in a list %d\n",var->list_el);
-      if ( var->list_el > 0 )
-	fprintf(stderr," List name %s\n",var->list_name);
-      fprintf(stderr," type of optional variable %d\n",var->opt_type);
-      if ( var->opt_type != 0)
-	fprintf(stderr," name or value default for optional variable %s\n",
-		var->opt_name);
-      fprintf(stderr," 1 if the variable is really present %d\n",var->present);
-      fprintf(stderr,"sciarg %d, rhs %d, lhs %d\n",
-	      var->is_sciarg,
-	      var->stack_position,
-	      var->out_position);
+        int j;
+        var = variables[i];
+        fprintf(stderr, "==============variable %d : name %s\n", i + 1, var->name);
+        fprintf(stderr, "type %s<->%s\n", SGetSciType(var->type),
+                SGetForType(var->for_type));
+        fprintf(stderr, "elts : [");
+        for (j = 0 ; j < var->length ; j++)
+        {
+            fprintf(stderr, "{var %d:%s}", var->el[j],
+                    variables[var->el[j] - 1]->name);
+        }
+        fprintf(stderr, "]\n");
+        /* fprintf(stderr," name of external function when type is  char *fexternal[MAXNAM];
+        external
+            */
+        fprintf(stderr, " ?  equal %d\n", var->equal);
+        fprintf(stderr, "for_names [");
+        if ( var->nfor_name != 0)
+        {
+            for (j = 0 ; j < var->nfor_name ; j++)
+            {
+                fprintf(stderr, "{%s:%d}", var->for_name[j],
+                        var->for_name_orig[j]);
+                if ( j != var->nfor_name - 1)
+                {
+                    fprintf(stderr, ",");
+                }
+            }
+        }
+        fprintf(stderr, "]\n");
+        fprintf(stderr, " position in a list %d\n", var->list_el);
+        if ( var->list_el > 0 )
+        {
+            fprintf(stderr, " List name %s\n", var->list_name);
+        }
+        fprintf(stderr, " type of optional variable %d\n", var->opt_type);
+        if ( var->opt_type != 0)
+            fprintf(stderr, " name or value default for optional variable %s\n",
+                    var->opt_name);
+        fprintf(stderr, " 1 if the variable is really present %d\n", var->present);
+        fprintf(stderr, "sciarg %d, rhs %d, lhs %d\n",
+                var->is_sciarg,
+                var->stack_position,
+                var->out_position);
     }
-  return 0;
+    return 0;
 }
 
 /*******************************************************
@@ -82,25 +87,27 @@ int ShowVariables()
 
 int FixStackPositions()
 {
-  int i;
-  VARPTR var,var1;
-  for (i = nVariable-1 ; i >= 0; i--)
+    int i;
+    VARPTR var, var1;
+    for (i = nVariable - 1 ; i >= 0; i--)
     {
-      int j;
-      var = variables[i];
-      if ( ISNONSTACK(var) )
-	{
-	  icre--;
-	  for ( j = 0 ; j < nVariable ; j++ )
-	    {
-	      var1 = variables[j];
-	      if ( var1->stack_position > var->stack_position
-		   && ! (ISNONSTACK(var1)))
-		var1->stack_position--;
-	    }
-	}
+        int j;
+        var = variables[i];
+        if ( ISNONSTACK(var) )
+        {
+            icre--;
+            for ( j = 0 ; j < nVariable ; j++ )
+            {
+                var1 = variables[j];
+                if ( var1->stack_position > var->stack_position
+                        && ! (ISNONSTACK(var1)))
+                {
+                    var1->stack_position--;
+                }
+            }
+        }
     }
-  return 0;
+    return 0;
 }
 
 /********************************************************
@@ -112,51 +119,56 @@ int FixStackPositions()
  *********************************************************/
 
 
-IVAR GetVar(name,p)
-     char *name;
-     int p;
+IVAR GetVar(name, p)
+char *name;
+int p;
 {
-  int i;
-  VARPTR var;
-  if (strcmp(name,"out") == 0) {
-    printf("the name of a variable which is not the output variable\n");
-    printf("  of SCILAB function cannot be \"out\"\n");
-    exit(1);
-  }
-  for (i = 0; i < nVariable; i++) {
-    var = variables[i];
-    if (strcmp(var->name,name) == 0) {
-      var->present = var->present || p;
-      return(i+1);
+    int i;
+    VARPTR var;
+    if (strcmp(name, "out") == 0)
+    {
+        printf("the name of a variable which is not the output variable\n");
+        printf("  of SCILAB function cannot be \"out\"\n");
+        exit(1);
     }
-  }
-  if (nVariable == MAXVAR) {
-    printf("too many variables\n");
-    printf("  augment constant \"MAXVAR\" and recompile intersci\n");
-    exit(1);
-  }
-  var = VarAlloc();
-  if (var == 0) {
-    printf("Running out of memory\n");
-    exit(1);
-  }
-  var->name = (char *)malloc((unsigned)(strlen(name) + 1));
-  strcpy(var->name,name);
-  var->type = 0;
-  var->length = 0;
-  var->for_type = 0;
-  var->equal = 0;
-  var->nfor_name = 0;
-  var->kp_state = -1;
-  var->list_el = 0;
-  var->opt_type = 0;
-  var->present = p;
-  var->out_position = 0;
-  var->stack_position = 0;
-  var->is_sciarg = 0;
-  variables[nVariable++] = var;
-  var->vpos = nVariable;
-  return(nVariable);
+    for (i = 0; i < nVariable; i++)
+    {
+        var = variables[i];
+        if (strcmp(var->name, name) == 0)
+        {
+            var->present = var->present || p;
+            return(i + 1);
+        }
+    }
+    if (nVariable == MAXVAR)
+    {
+        printf("too many variables\n");
+        printf("  augment constant \"MAXVAR\" and recompile intersci\n");
+        exit(1);
+    }
+    var = VarAlloc();
+    if (var == 0)
+    {
+        printf("Running out of memory\n");
+        exit(1);
+    }
+    var->name = (char *)malloc((unsigned)(strlen(name) + 1));
+    strcpy(var->name, name);
+    var->type = 0;
+    var->length = 0;
+    var->for_type = 0;
+    var->equal = 0;
+    var->nfor_name = 0;
+    var->kp_state = -1;
+    var->list_el = 0;
+    var->opt_type = 0;
+    var->present = p;
+    var->out_position = 0;
+    var->stack_position = 0;
+    var->is_sciarg = 0;
+    variables[nVariable++] = var;
+    var->vpos = nVariable;
+    return(nVariable);
 }
 
 /************************************************************************
@@ -164,27 +176,33 @@ IVAR GetVar(name,p)
  ***********************************************************************/
 
 IVAR GetExistVar(name)
-     char *name;
+char *name;
 {
-  int i;
-  VARPTR var;
-  if (strcmp(name,"out") == 0) {
-    printf("the name of a variable which is not the output variable\n");
-    printf("  of SCILAB function cannot be \"out\"\n");
-    exit(1);
-  }
-  for (i = 0; i < nVariable; i++) {
-    var = variables[i];
-    if (strcmp(var->name,name) == 0) {
-      /* always present */
-      var->present = 1;
-      return(i+1);
+    int i;
+    VARPTR var;
+    if (strcmp(name, "out") == 0)
+    {
+        printf("the name of a variable which is not the output variable\n");
+        printf("  of SCILAB function cannot be \"out\"\n");
+        exit(1);
     }
-  }
-  i=CreatePredefVar(name);
-  if ( i != -1) return(i);
-  printf("variable \"%s\" must exist\n",name);
-  exit(1);
+    for (i = 0; i < nVariable; i++)
+    {
+        var = variables[i];
+        if (strcmp(var->name, name) == 0)
+        {
+            /* always present */
+            var->present = 1;
+            return(i + 1);
+        }
+    }
+    i = CreatePredefVar(name);
+    if ( i != -1)
+    {
+        return(i);
+    }
+    printf("variable \"%s\" must exist\n", name);
+    exit(1);
 }
 
 /******************************************************************
@@ -194,21 +212,21 @@ IVAR GetExistVar(name)
  ******************************************************************/
 
 int CreatePredefVar(name)
-     char *name;
+char *name;
 {
-  VARPTR var;
-  if (strcmp(name,"err")  == 0
-      || strcmp(name,"rhs") == 0
-      || strcmp(name,"lhs") == 0
-      || strcmp(name,"fname") == 0)
+    VARPTR var;
+    if (strcmp(name, "err")  == 0
+            || strcmp(name, "rhs") == 0
+            || strcmp(name, "lhs") == 0
+            || strcmp(name, "fname") == 0)
     {
-      int num ;
-      num=GetVar(name,1);
-      var = variables[num-1];
-      var->for_type = PREDEF;
-      return(num);
+        int num ;
+        num = GetVar(name, 1);
+        var = variables[num - 1];
+        var->for_type = PREDEF;
+        return(num);
     }
-  return(-1);
+    return(-1);
 }
 
 /********************************************************
@@ -217,39 +235,42 @@ int CreatePredefVar(name)
  ********************************************************/
 
 IVAR GetOutVar(name)
-     char *name;
+char *name;
 {
-  VARPTR var;
-  if (strcmp(name,"out") != 0) {
-    printf("the name of output variable of SCILAB function\n");
-    printf("  must be \"out\"\n");
-    exit(1);
-  }
-  if (nVariable == MAXVAR) {
-    printf("too many variables\n");
-    printf("  augmente constant \"MAXVAR\" and recompile intersci\n");
-    exit(1);
-  }
-  var = VarAlloc();
-  if (var == 0) {
-    printf("Running out of memory\n");
-    exit(1);
-  }
-  var->name = (char *)malloc((unsigned)(strlen(name) + 1));
-  strcpy(var->name,name);
-  var->type = 0;
-  var->length = 0;
-  var->for_type = 0;
-  var->equal = 0;
-  var->nfor_name = 0;
-  var->kp_state = -1;
-  var->list_el = 0;
-  var->opt_type = 0;
-  var->present = 0;
-  var->out_position = 0;
-  var->stack_position = 0;
-  variables[nVariable++] = var;
-  return(nVariable);
+    VARPTR var;
+    if (strcmp(name, "out") != 0)
+    {
+        printf("the name of output variable of SCILAB function\n");
+        printf("  must be \"out\"\n");
+        exit(1);
+    }
+    if (nVariable == MAXVAR)
+    {
+        printf("too many variables\n");
+        printf("  augmente constant \"MAXVAR\" and recompile intersci\n");
+        exit(1);
+    }
+    var = VarAlloc();
+    if (var == 0)
+    {
+        printf("Running out of memory\n");
+        exit(1);
+    }
+    var->name = (char *)malloc((unsigned)(strlen(name) + 1));
+    strcpy(var->name, name);
+    var->type = 0;
+    var->length = 0;
+    var->for_type = 0;
+    var->equal = 0;
+    var->nfor_name = 0;
+    var->kp_state = -1;
+    var->list_el = 0;
+    var->opt_type = 0;
+    var->present = 0;
+    var->out_position = 0;
+    var->stack_position = 0;
+    variables[nVariable++] = var;
+    return(nVariable);
 }
 
 /* return the variable number of variable "out"
@@ -257,29 +278,35 @@ IVAR GetOutVar(name)
 
 IVAR GetExistOutVar()
 {
-  int i;
-  char str[4];
-  strcpy(str,"out");
-  for (i = 0; i < nVariable; i++) {
-    if (strcmp(variables[i]->name,str) == 0)
-      return(i+1);
-  }
-  printf("variable \"out\" must exist\n");
-  exit(1);
+    int i;
+    char str[4];
+    strcpy(str, "out");
+    for (i = 0; i < nVariable; i++)
+    {
+        if (strcmp(variables[i]->name, str) == 0)
+        {
+            return(i + 1);
+        }
+    }
+    printf("variable \"out\" must exist\n");
+    exit(1);
 }
 
 /* return the variable number of variable "out" or 0 */
 
 IVAR CheckOutVar()
 {
-  int i;
-  char str[4];
-  strcpy(str,"out");
-  for (i = 0; i < nVariable; i++) {
-    if (strcmp(variables[i]->name,str) == 0)
-      return(i+1);
-  }
-  return 0;
+    int i;
+    char str[4];
+    strcpy(str, "out");
+    for (i = 0; i < nVariable; i++)
+    {
+        if (strcmp(variables[i]->name, str) == 0)
+        {
+            return(i + 1);
+        }
+    }
+    return 0;
 }
 
 
@@ -297,32 +324,35 @@ IVAR CheckOutVar()
  * the same value for m1,n2,m3
  *************************************************/
 
-void AddForName(ivar,name,cname,ivar1)
-     IVAR ivar;
-     IVAR ivar1;
-     char* name;
-     char* cname;
+void AddForName(ivar, name, cname, ivar1)
+IVAR ivar;
+IVAR ivar1;
+char* name;
+char* cname;
 {
-  VARPTR var;
-  int l;
-  var = variables[ivar-1];
-  l = var->nfor_name;
-  if (l == MAXARG) {
-    printf("too many \"for_name\" for variable \"%s\"\n",var->name);
-    printf("  augment constant \"MAXARG\" and recompile intersci\n");
-    exit(1);
-  }
-  var->for_name[l] = (char *)malloc((unsigned)(strlen(name) + 1));
-  if ( cname != NULL)
+    VARPTR var;
+    int l;
+    var = variables[ivar - 1];
+    l = var->nfor_name;
+    if (l == MAXARG)
     {
-      var->C_name[l] = (char *)malloc((unsigned)(strlen(cname) + 1));
-      strcpy(var->C_name[l],cname);
+        printf("too many \"for_name\" for variable \"%s\"\n", var->name);
+        printf("  augment constant \"MAXARG\" and recompile intersci\n");
+        exit(1);
     }
-  else
-    var->C_name[l] = NULL;
-  var->for_name_orig[l] = ivar1;
-  strcpy(var->for_name[l],name);
-  var->nfor_name = l + 1;
+    var->for_name[l] = (char *)malloc((unsigned)(strlen(name) + 1));
+    if ( cname != NULL)
+    {
+        var->C_name[l] = (char *)malloc((unsigned)(strlen(cname) + 1));
+        strcpy(var->C_name[l], cname);
+    }
+    else
+    {
+        var->C_name[l] = NULL;
+    }
+    var->for_name_orig[l] = ivar1;
+    strcpy(var->for_name[l], name);
+    var->nfor_name = l + 1;
 }
 
 /***************************
@@ -332,37 +362,40 @@ void AddForName(ivar,name,cname,ivar1)
  * the two passes
  ***************************/
 
-void AddForName1(ivar,name,cname,ivar1)
-     IVAR ivar;
-     IVAR ivar1;
-     char* name;
-     char* cname;
+void AddForName1(ivar, name, cname, ivar1)
+IVAR ivar;
+IVAR ivar1;
+char* name;
+char* cname;
 {
-  VARPTR var;
-  int l;
-  var = variables[ivar-1];
-  l = var->nfor_name;
-  if ( pass == 0 && var->kp_state == -1 )
+    VARPTR var;
+    int l;
+    var = variables[ivar - 1];
+    l = var->nfor_name;
+    if ( pass == 0 && var->kp_state == -1 )
     {
-      var->kp_state = var->nfor_name ;
+        var->kp_state = var->nfor_name ;
     }
-  if (l == MAXARG) {
-    printf("too many \"for_name\" for variable \"%s\"\n",var->name);
-    printf("  augment constant \"MAXARG\" and recompile intersci\n");
-    exit(1);
-  }
-  var->for_name[l] = (char *)malloc((unsigned)(strlen(name) + 1));
-  if ( cname != NULL)
+    if (l == MAXARG)
     {
-      var->C_name[l] = (char *)malloc((unsigned)(strlen(cname) + 1));
-      strcpy(var->C_name[l],cname);
+        printf("too many \"for_name\" for variable \"%s\"\n", var->name);
+        printf("  augment constant \"MAXARG\" and recompile intersci\n");
+        exit(1);
+    }
+    var->for_name[l] = (char *)malloc((unsigned)(strlen(name) + 1));
+    if ( cname != NULL)
+    {
+        var->C_name[l] = (char *)malloc((unsigned)(strlen(cname) + 1));
+        strcpy(var->C_name[l], cname);
     }
 
-  else
-    var->C_name[l] = NULL;
-  var->for_name_orig[l] = ivar1;
-  strcpy(var->for_name[l],name);
-  var->nfor_name = l + 1;
+    else
+    {
+        var->C_name[l] = NULL;
+    }
+    var->for_name_orig[l] = ivar1;
+    strcpy(var->for_name[l], name);
+    var->nfor_name = l + 1;
 }
 
 
@@ -373,15 +406,16 @@ void AddForName1(ivar,name,cname,ivar1)
 
 void ForNameClean()
 {
-  VARPTR var;
-  int i;
-  for (i = 0; i < nVariable; i++) {
-    var = variables[i];
-    if ( var->kp_state != -1 )
-      {
-	var->nfor_name = var->kp_state ;
-      }
-  }
+    VARPTR var;
+    int i;
+    for (i = 0; i < nVariable; i++)
+    {
+        var = variables[i];
+        if ( var->kp_state != -1 )
+        {
+            var->nfor_name = var->kp_state ;
+        }
+    }
 }
 
 /***********************************************************
@@ -396,49 +430,53 @@ void ForNameClean()
 
 #include <stdarg.h>
 
-void ChangeForName2(VARPTR varptr,char * format ,...)
+void ChangeForName2(VARPTR varptr, char * format , ...)
 {
-  char forbuf[FORNAME];
-  va_list ap;
-  va_start(ap,format);
+    char forbuf[FORNAME];
+    va_list ap;
+    va_start(ap, format);
 
-  vsprintf(forbuf,format,ap);
-  ChangeForName1(varptr,forbuf);
-  va_end(ap);
+    vsprintf(forbuf, format, ap);
+    ChangeForName1(varptr, forbuf);
+    va_end(ap);
 }
 
-void ChangeForName1(var,name)
-     VARPTR var;
-     char* name;
+void ChangeForName1(var, name)
+VARPTR var;
+char* name;
 {
-  int l,pos=0;
-  l = var->nfor_name;
-  if ( l  != 0)
+    int l, pos = 0;
+    l = var->nfor_name;
+    if ( l  != 0)
     {
-      int i;
-      for ( i=0 ; i < l ; i++)
-	{
-	  if ( var->for_name_orig[i] == var->stack_position )
-	    {
-	      pos = i ; break;
-	    }
-	}
+        int i;
+        for ( i = 0 ; i < l ; i++)
+        {
+            if ( var->for_name_orig[i] == var->stack_position )
+            {
+                pos = i ;
+                break;
+            }
+        }
     }
-  var->for_name[pos] = (char *)malloc((unsigned)(strlen(name) + 1));
-  strcpy(var->for_name[pos],name);
-  if ( pos != 0)
+    var->for_name[pos] = (char *)malloc((unsigned)(strlen(name) + 1));
+    strcpy(var->for_name[pos], name);
+    if ( pos != 0)
     {
-      int xx;
-      char *loc = var->for_name[pos];
-      var->for_name[pos] =       var->for_name[0];
-      var->for_name[0] = loc;
-      xx= var->for_name_orig[pos];
-      var->for_name_orig[pos] =       var->for_name_orig[0];
-      var->for_name_orig[0] = xx;
+        int xx;
+        char *loc = var->for_name[pos];
+        var->for_name[pos] =       var->for_name[0];
+        var->for_name[0] = loc;
+        xx = var->for_name_orig[pos];
+        var->for_name_orig[pos] =       var->for_name_orig[0];
+        var->for_name_orig[0] = xx;
     }
-  /* we keep the C name  var->C_name[0] = NULL; */
-  /** if l==0 a for_name **/
-  if (l == 0) var->nfor_name = 1;
+    /* we keep the C name  var->C_name[0] = NULL; */
+    /** if l==0 a for_name **/
+    if (l == 0)
+    {
+        var->nfor_name = 1;
+    }
 }
 
 /***********************************************************
@@ -448,58 +486,67 @@ void ChangeForName1(var,name)
 
 /* Attention tableau en ordre alphabetique */
 
-static struct btype { char *sname ;
-  int  code ;}
-SType[] = {
-  {"any",	ANY},
-  {"bmatrix",    BMATRIX},
-  {"bpointer",   SCIBPOINTER},
-  {"column",	COLUMN},
-  {"empty",	EMPTY},
-  {"imatrix",    IMATRIX},
-  {"list", 	LIST},
-  {"lpointer",	SCILPOINTER},
-  {"matrix",	MATRIX},
-  {"mpointer",	SCIMPOINTER},
-  {"opointer",	SCIOPOINTER},
-  {"polynom",	POLYNOM},
-  {"row",	ROW},
-  {"scalar",	SCALAR},
-  {"sequence",	SEQUENCE},
-  {"smpointer",  SCISMPOINTER},
-  {"sparse",    SPARSE},
-  {"string",	STRING},
-  {"stringmat",	STRINGMAT},
-  {"tlist", 	TLIST},
-  {"mlist", 	MLIST},
-  {"vector",	VECTOR},
-  {"work",	WORK},
-  {(char *) 0 ,  -1}
+static struct btype
+{
+    char *sname ;
+    int  code ;
+}
+SType[] =
+{
+    {"any",	ANY},
+    {"bmatrix",    BMATRIX},
+    {"bpointer",   SCIBPOINTER},
+    {"column",	COLUMN},
+    {"empty",	EMPTY},
+    {"imatrix",    IMATRIX},
+    {"list", 	LIST},
+    {"lpointer",	SCILPOINTER},
+    {"matrix",	MATRIX},
+    {"mpointer",	SCIMPOINTER},
+    {"opointer",	SCIOPOINTER},
+    {"polynom",	POLYNOM},
+    {"row",	ROW},
+    {"scalar",	SCALAR},
+    {"sequence",	SEQUENCE},
+    {"smpointer",  SCISMPOINTER},
+    {"sparse",    SPARSE},
+    {"string",	STRING},
+    {"stringmat",	STRINGMAT},
+    {"tlist", 	TLIST},
+    {"mlist", 	MLIST},
+    {"vector",	VECTOR},
+    {"work",	WORK},
+    {(char *) 0 ,  -1}
 };
 
 /* Type Scilab:  renvoit un codage du type en nombre entier etant donne une chaine */
 
 int GetBasType(sname)
-     char *sname;
+char *sname;
 {
-  int i=0;
-  while ( SType[i].sname != (char *) NULL)
+    int i = 0;
+    while ( SType[i].sname != (char *) NULL)
     {
-      int j ;
-      j = strcmp(sname,SType[i].sname);
-      if ( j == 0 )
-	{
-	  return(SType[i].code);
-	}
-      else
-	{
-	  if ( j <= 0)
-	    break;
-	  else i++;
-	}
+        int j ;
+        j = strcmp(sname, SType[i].sname);
+        if ( j == 0 )
+        {
+            return(SType[i].code);
+        }
+        else
+        {
+            if ( j <= 0)
+            {
+                break;
+            }
+            else
+            {
+                i++;
+            }
+        }
     }
-  printf("the type of variable \"%s\" is unknown\n",sname);
-  exit(1);
+    printf("the type of variable \"%s\" is unknown\n", sname);
+    exit(1);
 }
 
 /**********************************************
@@ -508,44 +555,51 @@ int GetBasType(sname)
  **********************************************/
 
 char *SGetSciType(type)
-     int type;
+int type;
 {
-  int i=0;
-  while ( SType[i].code  != -1 )
+    int i = 0;
+    while ( SType[i].code  != -1 )
     {
-      if ( SType[i].code == type )
-	return(SType[i].sname);
-      else
-	i++;
+        if ( SType[i].code == type )
+        {
+            return(SType[i].sname);
+        }
+        else
+        {
+            i++;
+        }
     }
-  return("unknown");
+    return("unknown");
 }
 
 /* Warning : Ftype is lexicographically sorted */
 
-static struct ftype { char *fname ; /* full fortran type name */
-  int  code ; /* associated code */
-  char *abrev; /* abbrev code : just for c d i r */
-  char *st_name; /* stack to use :just for c d i r*/
-  char *b_convert; /* converter for building lhs (for lists)*/
-  int dec; /* declaration for the Fortran name */
-  char *ctype; /* type in C */
+static struct ftype
+{
+    char *fname ; /* full fortran type name */
+    int  code ; /* associated code */
+    char *abrev; /* abbrev code : just for c d i r */
+    char *st_name; /* stack to use :just for c d i r*/
+    char *b_convert; /* converter for building lhs (for lists)*/
+    int dec; /* declaration for the Fortran name */
+    char *ctype; /* type in C */
 }
-FType[] = {
-  {"Cstringv",CSTRINGV,"XX","XX","XX",-1,"XX"},
-  {"boolean",BOOLEAN,MATRIX_OF_BOOLEAN_DATATYPE,"istk","icopy",DEC_INT,"int"},
-  {"bpointer",BPOINTER,"XX","XX","XX",-1,"XX"},
-  {"char",CHAR,STRING_DATATYPE,"cstk","cvstr1",DEC_CHAR,"char"},
-  {"double", DOUBLE,MATRIX_OF_DOUBLE_DATATYPE,"stk","dcopy",DEC_DOUBLE,"double"},
-  {"int",INT,MATRIX_OF_INTEGER_DATATYPE,"istk","int2db",DEC_INT,"int"},
-  {"integer",INT,MATRIX_OF_INTEGER_DATATYPE,"istk","int2db",DEC_INT,"int"},
-  {"lpointer",LPOINTER,"XX","XX","XX",-1,"XX"},
-  {"mpointer",MPOINTER,"XX","XX","XX",-1,"XX"},
-  {"opointer",OPOINTER,"XX","XX","XX",-1,"XX"},
-  {"predef",PREDEF,"XX","XX","XX",-1,"XX"},
-  {"real",REAL,MATRIX_OF_RATIONAL_DATATYPE,"sstk","rea2db",DEC_REAL,"float"},
-  {"smpointer",SMPOINTER,"XX","XX","XX",-1,"XX"},
-  {(char *) 0 ,  -1}
+FType[] =
+{
+    {"Cstringv", CSTRINGV, "XX", "XX", "XX", -1, "XX"},
+    {"boolean", BOOLEAN, MATRIX_OF_BOOLEAN_DATATYPE, "istk", "icopy", DEC_INT, "int"},
+    {"bpointer", BPOINTER, "XX", "XX", "XX", -1, "XX"},
+    {"char", CHAR, STRING_DATATYPE, "cstk", "cvstr1", DEC_CHAR, "char"},
+    {"double", DOUBLE, MATRIX_OF_DOUBLE_DATATYPE, "stk", "dcopy", DEC_DOUBLE, "double"},
+    {"int", INT, MATRIX_OF_INTEGER_DATATYPE, "istk", "int2db", DEC_INT, "int"},
+    {"integer", INT, MATRIX_OF_INTEGER_DATATYPE, "istk", "int2db", DEC_INT, "int"},
+    {"lpointer", LPOINTER, "XX", "XX", "XX", -1, "XX"},
+    {"mpointer", MPOINTER, "XX", "XX", "XX", -1, "XX"},
+    {"opointer", OPOINTER, "XX", "XX", "XX", -1, "XX"},
+    {"predef", PREDEF, "XX", "XX", "XX", -1, "XX"},
+    {"real", REAL, MATRIX_OF_RATIONAL_DATATYPE, "sstk", "rea2db", DEC_REAL, "float"},
+    {"smpointer", SMPOINTER, "XX", "XX", "XX", -1, "XX"},
+    {(char *) 0 ,  -1}
 };
 
 /**********************************************
@@ -554,25 +608,30 @@ FType[] = {
  **********************************************/
 
 int GetForType(type)
-     char *type;
+char *type;
 {
-  int i=0;
-  while ( FType[i].fname != (char *) NULL)
+    int i = 0;
+    while ( FType[i].fname != (char *) NULL)
     {
-      int j;
-      j = strcmp(type,FType[i].fname);
-      if ( j == 0 )
-	{
-	  return(FType[i].code);
-	}
-      else
-	{
-	  if ( j <= 0)
-	    break;
-	  else i++;
-	}
+        int j;
+        j = strcmp(type, FType[i].fname);
+        if ( j == 0 )
+        {
+            return(FType[i].code);
+        }
+        else
+        {
+            if ( j <= 0)
+            {
+                break;
+            }
+            else
+            {
+                i++;
+            }
+        }
     }
-  return(EXTERNAL);
+    return(EXTERNAL);
 }
 
 /**********************************************
@@ -581,17 +640,21 @@ int GetForType(type)
  **********************************************/
 
 char *SGetForType(type)
-     int type;
+int type;
 {
-  int i=0;
-  while ( FType[i].code  != -1 )
+    int i = 0;
+    while ( FType[i].code  != -1 )
     {
-      if ( FType[i].code == type )
-	return(FType[i].fname);
-      else
-	i++;
+        if ( FType[i].code == type )
+        {
+            return(FType[i].fname);
+        }
+        else
+        {
+            i++;
+        }
     }
-  return("External");
+    return("External");
 }
 
 
@@ -601,17 +664,21 @@ char *SGetForType(type)
  **********************************************/
 
 char *SGetForTypeAbrev(var)
-     VARPTR var;
+VARPTR var;
 {
-  int i=0;
-  while ( FType[i].code  != -1 )
+    int i = 0;
+    while ( FType[i].code  != -1 )
     {
-      if ( FType[i].code == var->for_type )
-	return(FType[i].abrev);
-      else
-	i++;
+        if ( FType[i].code == var->for_type )
+        {
+            return(FType[i].abrev);
+        }
+        else
+        {
+            i++;
+        }
     }
-  return("XX");
+    return("XX");
 }
 
 /**********************************************
@@ -620,17 +687,21 @@ char *SGetForTypeAbrev(var)
  **********************************************/
 
 int SGetForDec(type)
-     int type;
+int type;
 {
-  int i=0;
-  while ( FType[i].code  != -1 )
+    int i = 0;
+    while ( FType[i].code  != -1 )
     {
-      if ( FType[i].code == type )
-	return(FType[i].dec);
-      else
-	i++;
+        if ( FType[i].code == type )
+        {
+            return(FType[i].dec);
+        }
+        else
+        {
+            i++;
+        }
     }
-  return(-1);
+    return(-1);
 }
 
 /**********************************************
@@ -639,17 +710,21 @@ int SGetForDec(type)
  **********************************************/
 
 char* SGetCDec(type)
-     int type;
+int type;
 {
-  int i=0;
-  while ( FType[i].code  != -1 )
+    int i = 0;
+    while ( FType[i].code  != -1 )
     {
-      if ( FType[i].code == type )
-	return(FType[i].ctype);
-      else
-	i++;
+        if ( FType[i].code == type )
+        {
+            return(FType[i].ctype);
+        }
+        else
+        {
+            i++;
+        }
     }
-  return("XXX");
+    return("XXX");
 }
 
 
@@ -659,26 +734,28 @@ char* SGetCDec(type)
  **********************************************/
 
 char *SGetForTypeStack(var)
-     VARPTR var;
+VARPTR var;
 {
-  int i=0;
-  while ( FType[i].code  != -1 )
+    int i = 0;
+    while ( FType[i].code  != -1 )
     {
-      if ( FType[i].code == var->for_type )
-	{
-	  if ( FType[i].st_name[0] == 'X' )
-	    {
-	      printf("incompatibility between Scilab and Fortran type for variable \"%s\"\n",
-		     var->name);
-	      exit(1);
-	    }
-	  return(FType[i].st_name);
-	}
-      else
-	i++;
+        if ( FType[i].code == var->for_type )
+        {
+            if ( FType[i].st_name[0] == 'X' )
+            {
+                printf("incompatibility between Scilab and Fortran type for variable \"%s\"\n",
+                       var->name);
+                exit(1);
+            }
+            return(FType[i].st_name);
+        }
+        else
+        {
+            i++;
+        }
     }
-  printf("Unknown Fortran type for variable \"%s\"\n", var->name);
-  exit(1);
+    printf("Unknown Fortran type for variable \"%s\"\n", var->name);
+    exit(1);
 }
 
 
@@ -691,26 +768,28 @@ char *SGetForTypeStack(var)
  **********************************************/
 
 char *SGetForTypeBConvert(var)
-     VARPTR var;
+VARPTR var;
 {
-  int i=0;
-  while ( FType[i].code  != -1 )
+    int i = 0;
+    while ( FType[i].code  != -1 )
     {
-      if ( FType[i].code == var->for_type )
-	{
-	  if ( FType[i].b_convert[0] == 'X' )
-	    {
-	      printf("incompatibility between Scilab and Fortran type for variable \"%s\"\n",
-		     var->name);
-	      exit(1);
-	    }
-	  return(FType[i].b_convert);
-	}
-      else
-	i++;
+        if ( FType[i].code == var->for_type )
+        {
+            if ( FType[i].b_convert[0] == 'X' )
+            {
+                printf("incompatibility between Scilab and Fortran type for variable \"%s\"\n",
+                       var->name);
+                exit(1);
+            }
+            return(FType[i].b_convert);
+        }
+        else
+        {
+            i++;
+        }
     }
-  printf("Unknown Fortran type for variable \"%s\"\n", var->name);
-  exit(1);
+    printf("Unknown Fortran type for variable \"%s\"\n", var->name);
+    exit(1);
 }
 
 
@@ -723,16 +802,22 @@ char *SGetForTypeBConvert(var)
  **********************************************/
 
 char *SGetExtForTypeAbrev(var)
-     VARPTR var;
+VARPTR var;
 {
-  if ( var->type == BMATRIX )
-    return MATRIX_OF_DOUBLE_DATATYPE;
-  else
+    if ( var->type == BMATRIX )
     {
-      if ( strcmp(var->fexternal,"cintf")==0)
-	return MATRIX_OF_INTEGER_DATATYPE;
-      else
-	return MATRIX_OF_DOUBLE_DATATYPE;
+        return MATRIX_OF_DOUBLE_DATATYPE;
+    }
+    else
+    {
+        if ( strcmp(var->fexternal, "cintf") == 0)
+        {
+            return MATRIX_OF_INTEGER_DATATYPE;
+        }
+        else
+        {
+            return MATRIX_OF_DOUBLE_DATATYPE;
+        }
     }
 }
 
@@ -745,11 +830,15 @@ char *SGetExtForTypeAbrev(var)
  **********************************************/
 
 char *SGetExtForTypeStack(var)
-     VARPTR var;
+VARPTR var;
 {
-  if ( var->type == BMATRIX )
-    return(FType[1].st_name);
-  else
-    return(FType[4].st_name);
+    if ( var->type == BMATRIX )
+    {
+        return(FType[1].st_name);
+    }
+    else
+    {
+        return(FType[4].st_name);
+    }
 }
 

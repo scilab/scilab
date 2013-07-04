@@ -7,15 +7,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-04-21 23:57+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-01-26 04:08+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: pt_BR\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -23,6 +35,14 @@ msgid ""
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se %d "
 "colunas.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
@@ -135,6 +155,12 @@ msgstr "Erro em dspev, info = %d.\n"
 msgid "Non linear data fitting"
 msgstr "Filtragem de dados não-linear"
 
+msgid "Experimental data"
+msgstr ""
+
+msgid "Fitting function"
+msgstr ""
+
 msgid "LQV"
 msgstr "LQV"
 
@@ -146,6 +172,15 @@ msgstr "Cálculo de parâmetros ótimos"
 
 msgid "Running optimization ...\n"
 msgstr "Otimização em execução ...\n"
+
+msgid "No"
+msgstr ""
+
+msgid "View Code?"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
 
 msgid "fminsearch - Rosenbrock"
 msgstr "fminsearch - Rosenbrock"
@@ -174,7 +209,7 @@ msgstr "neldermead - Variável Rosenbrock"
 msgid "neldermead - Output Command"
 msgstr "neldermead - Comando de saída"
 
-msgid "neldermead - Dimensionnality"
+msgid "neldermead - Dimensionality"
 msgstr "neldermead - Dimensionalidade"
 
 msgid "nmplot - Han #1"
@@ -358,6 +393,9 @@ msgstr "Plotando contorno (por favor, aguarde) ...\n"
 msgid "Defining McKinnon function...\n"
 msgstr "Definindo função de McKinnor...\n"
 
+msgid "Error: function expects a two dimensional input\n"
+msgstr ""
+
 #, c-format
 msgid "x0 = %s\n"
 msgstr "x0 = %s\n"
@@ -459,6 +497,10 @@ msgid "Simulated Annealing"
 msgstr "Arrefecimento simulado"
 
 #, c-format
+msgid "%s: More than 20 equations are not allowed"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Quantidade errada de argumento(s) de entrada.\n"
 
@@ -472,13 +514,33 @@ msgstr ""
 "%s: Tipo incorreto para o %sº argumento de entrada: esperava-se 'external'.\n"
 
 #, c-format
+msgid "%s: Jacobian cannot be a list, parameters must be set in G."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong measurement matrix."
+msgstr ""
+
+#, c-format
+msgid "%s: Initial guess must be a column vector."
+msgstr ""
+
+#, c-format
+msgid "%s: Weighting matrix must be square."
+msgstr ""
+
+#, c-format
+msgid "%s: With hard coded function, user must give output size of G."
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr ""
 "%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de N "
 "dimensões.\n"
@@ -604,6 +666,10 @@ msgstr ""
 "superior ub (upper bound)."
 
 #, c-format
+msgid "%s: The algorithm did not converge (exitflag= %d).\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
 "constraints."
@@ -618,6 +684,14 @@ msgid ""
 msgstr ""
 "%s: Valor incorreto para o %dº argumento de entrada. x0 não satisfaz as "
 "condições da igualdade."
+
+#, c-format
+msgid "%s: Jacobian cannot be a list, parameters must be set in fun."
+msgstr ""
+
+#, c-format
+msgid "%s: With hard coded function, user must give output size of fun."
+msgstr ""
 
 #, c-format
 msgid "%s: initial guess is feasible."
@@ -722,6 +796,143 @@ msgstr "%s: pode ser não limitada para baixo"
 #, c-format
 msgid "%s: optimal solution found"
 msgstr "%s: solução ótima encontrada"
+
+msgid "Welcome to LMITOOL"
+msgstr ""
+
+msgid "LMITOOL is a Scilab package for LMI optimization"
+msgstr ""
+
+msgid "It can solve the following problem"
+msgstr ""
+
+msgid "   minimize  f(X1,...,XM)  "
+msgstr ""
+
+msgid "subject to the LME constraints: "
+msgstr ""
+
+msgid "   Gi(X1,...,XM)=0,  i=1,2,...,p,"
+msgstr ""
+
+msgid "and the LMI constraints:  "
+msgstr ""
+
+msgid "   Hj(X1,...,XM)>=0,  j=1,2,...,q."
+msgstr ""
+
+msgid "where"
+msgstr ""
+
+msgid ""
+"X1,...,XM are unknown real matrices, referred to as the unknown matrices,"
+msgstr ""
+
+msgid ""
+"f is the objective function, a linear scalar function of the entries of the "
+"X's,"
+msgstr ""
+
+msgid "Gi's are affine matrix functions of the entries of the X's,"
+msgstr ""
+
+msgid "Hj's are affine symmetric matrix functions of the entries of the X's."
+msgstr ""
+
+msgid ""
+"These functions are parameterized by the entries of known data matrices "
+"D1,...,DN."
+msgstr ""
+
+msgid "For a detailed description and examples consult: "
+msgstr ""
+
+msgid ""
+"          'LMITOOL: a Package for LMI Optimization in Scilab, User's Guide' "
+msgstr ""
+
+msgid ""
+"LMITOOL uses Semidefinite Programming package SP developed by L. "
+"Vandenberghe and S. Boyd."
+msgstr ""
+
+msgid "LMI problem name: "
+msgstr ""
+
+msgid "Names of unknown matrices: "
+msgstr ""
+
+msgid "Names of data matrices: "
+msgstr ""
+
+msgid "Problem definition"
+msgstr ""
+
+msgid "LMITOOL will generate for you a skeleton of the functions needed"
+msgstr ""
+
+msgid " (see User's Guide for details). For that, you need to specify:"
+msgstr ""
+
+msgid "1- Name of you problem which will be given to the solver function,"
+msgstr ""
+
+msgid "2- Names of unknown matrices or list of unknown matrices,"
+msgstr ""
+
+msgid "3- Names of data matrices or list of data matrices."
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "File not generated by lmitool or badly modified."
+msgstr ""
+
+msgid "Function definitions"
+msgstr ""
+
+msgid "Here is a skeleton of the functions which you shoud edit"
+msgstr ""
+
+msgid "You can do the editing in this window or click on 'ok', save"
+msgstr ""
+
+msgid "the skeleton and edit later using your favorite editor"
+msgstr ""
+
+msgid "Name of file in which you want the solver function"
+msgstr ""
+
+msgid "and the evaluation function be saved (overwrites if a"
+msgstr ""
+
+msgid "file with the same name exists already)"
+msgstr ""
+
+msgid "functions saved in "
+msgstr ""
+
+msgid "    To solve your problem, you need to "
+msgstr ""
+
+msgid "1- edit file "
+msgstr ""
+
+msgid "2- load (and compile) your functions:"
+msgstr ""
+
+msgid " and call "
+msgstr ""
+
+msgid " function:"
+msgstr ""
+
+msgid "3- Define "
+msgstr ""
+
+msgid "To check the result, use [LME,LMI,OBJ]="
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -993,6 +1204,11 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Hard coded function not allowed, create a Scilab function using call."
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: The number of variables %d does not match the number of max bounds: %d.\n"
 msgstr ""
 "%s: O número de variáveis %d não coincide com o número máximo de limites: "
@@ -1165,7 +1381,7 @@ msgstr ""
 "espera-se de 2 a 4."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: %s expected.\n"
+msgid "%s: Wrong type for argument #%d: %s expected.\n"
 msgstr "%s: Tipo incorreto para o argumento %d: esperava-se %s.\n"
 
 #, c-format
@@ -1228,7 +1444,7 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #, c-format

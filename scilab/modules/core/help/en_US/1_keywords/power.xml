@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="power">
+    <refnamediv>
+        <refname>power</refname>
+        <refpurpose>(^,.^) power operation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>t=A^b
+            t=A**b
+            t=A.^b
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,t</term>
+                <listitem>
+                    <para>scalar, polynomial or rational matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>a scalar, a vector or a scalar matrix.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    If <literal>A</literal> is a square matrix and <literal>b</literal> is a scalar then  <literal>A^b</literal> is the matrix <literal>A</literal> to the power <literal>b</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>b</literal> is a scalar and <literal>A</literal> a matrix then
+                    <literal>A.^b</literal>  is the matrix formed by the element of
+                    <literal>A</literal> to the power <literal>b</literal> (element-wise power). If
+                    <literal>A</literal> is a vector and <literal>b</literal> is a scalar then
+                    <literal>A^b</literal> and <literal>A.^b</literal> performs the same operation
+                    (i.e. element-wise power). 
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>A</literal> is a scalar  and <literal>b</literal> is a matrix (or vector) <literal>A^b</literal> and <literal>A.^b</literal> are the matrices (or vectors) formed by  <literal> a^(b(i,j))</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>A</literal> and <literal>b</literal>  are vectors (matrices) of the same size <literal>A.^b</literal> is the  <literal>A(i)^b(i)</literal> vector (<literal>A(i,j)^b(i,j)</literal> matrix).
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Notes:
+        </para>
+        <para>
+            -
+            For square matrices <literal>A^p</literal> is computed through successive
+            matrices multiplications if <literal>p</literal> is a positive integer, and by
+            diagonalization if not.
+        </para>
+        <para>
+            -
+            <literal>**</literal> and <literal>^</literal> operators are synonyms.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+A=[1 2;3 4];
+A^2.5,
+A.^2.5
+(1:10)^2
+(1:10).^2
+
+s=poly(0,'s')
+s^(1:10)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="exp">exp</link>
+            </member>
+            <member>
+                <link linkend="hat">hat</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

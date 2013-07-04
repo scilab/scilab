@@ -11,16 +11,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fscanf">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" scilab:needs-examples="no" xml:id="fscanf">
     <refnamediv>
         <refname>fscanf</refname>
         <refpurpose>
-            converts formatted input read on a file (<emphasis role="bold">This function is obsolete</emphasis>)
+            converts formatted input read on a file. <emphasis role="bold">This function is obsolete</emphasis>.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[v_1, ..., v_n]=fscanf (file, format)</synopsis>
+        <synopsis>[v_1, ..., v_n] = fscanf(file, format)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -47,7 +47,7 @@
         <title>Description</title>
         <para>
             <warning>
-                This function is obsolete, use preferably the <function>mfscanf</function>
+                This function is obsolete and will be removed in Scilab 5.5.0, use preferably the <link linkend="mfscanf">mfscanf</link>
                 function which is more efficient and is more compatible with the C
                 <function>fscanf</function> procedure.
             </warning>
@@ -82,6 +82,16 @@
             </listitem>
         </itemizedlist>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>Function tagged as obsolete. Will be removed in 5.5.0.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

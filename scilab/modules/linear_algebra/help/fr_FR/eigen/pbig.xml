@@ -10,42 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="pbig">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="pbig">
     <refnamediv>
         <refname>pbig</refname>
-        <refpurpose> eigen-projection</refpurpose>
+        <refpurpose>projection sur des sous-espaces propres   </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Séquence d'appel</title>
         <synopsis>[Q,M]=pbig(A,thres,flag)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>A</term>
+                <term>A  </term>
                 <listitem>
-                    <para>real square matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>thres</term>
-                <listitem>
-                    <para>real number</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>flag</term>
-                <listitem>
-                    <para>
-                        character string (<literal>'c'</literal> or <literal>'d'</literal>)
+                    <para>matrice réelle carrée
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Q,M</term>
+                <term>thres  </term>
                 <listitem>
-                    <para>real matrices</para>
+                    <para>nombre réel
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag  </term>
+                <listitem>
+                    <para>
+                        chaîne de caractères (<literal>'c'</literal> ou <literal>'d'</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Q,M  </term>
+                <listitem>
+                    <para>matrices réelles
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -53,43 +56,43 @@
     <refsection>
         <title>Description</title>
         <para>
-            Projection on eigen-subspace associated with eigenvalues with real
-            part &gt;= <literal>thres</literal> (<literal>flag='c'</literal>) or
-            with magnitude &gt;= <literal>thres</literal>
-            (<literal>flag='d'</literal>).
+            Projection sur des sous-espaces propres de A associés aux valeurs
+            propres avec partie réelle &gt;= <literal>thres</literal>
+            (<literal>flag='c'</literal>) ou avec module &gt;=
+            <literal>thres</literal> (<literal>flag='d'</literal>).
         </para>
         <para>
-            The projection is defined by <literal>Q*M</literal>, <literal>Q</literal> is
-            full column rank, <literal>M</literal> is full row rank and
-            <literal>M*Q=eye</literal>.
+            La projection est définie par <literal>Q*M</literal>, où <literal>Q</literal>
+            est de rang maximal, les lignes de <literal>M</literal> sont
+            linéairement indépendantes et <literal>M*Q=eye</literal>.
         </para>
         <para>
-            If <literal>flag='c'</literal>, the eigenvalues of
-            <literal>M*A*Q</literal> = eigenvalues of <literal>A</literal> with real part
+            Si <literal>flag='c'</literal>, les valeurs propres de
+            <literal>M*A*Q</literal> = valeurs propres de <literal>A</literal> avec partie
+            réelle &gt;= <literal>thres</literal>.
+        </para>
+        <para>
+            Si <literal>flag='d'</literal>, les valeurs propres de
+            <literal>M*A*Q</literal> = valeurs propres de <literal>A</literal> avec module
             &gt;= <literal>thres</literal>.
         </para>
         <para>
-            If <literal>flag='d'</literal>, the eigenvalues of
-            <literal>M*A*Q</literal> = eigenvalues of <literal>A</literal> with magnitude
-            &gt;= <literal>thres</literal>.
+            Si <literal>flag='c'</literal> et si <literal>[Q1,M1]</literal> =
+            factorisation de rang maximal (<literal>fullrf</literal>) de
+            <literal>eye()-Q*M</literal> alors les valeurs propres de
+            <literal>M1*A*Q1</literal> = valeurs propres de <literal>A</literal> avec
+            partie réelle &lt; <literal>thres</literal>.
         </para>
         <para>
-            If <literal>flag='c'</literal> and if <literal>[Q1,M1]</literal> =
-            full rank factorization (<literal>fullrf</literal>) of
-            <literal>eye()-Q*M</literal> then eigenvalues of <literal>M1*A*Q1</literal> =
-            eigenvalues of <literal>A</literal> with real part &lt;
-            <literal>thres</literal>.
-        </para>
-        <para>
-            If <literal>flag='d'</literal> and if <literal>[Q1,M1]</literal> =
-            full rank factorization (<literal>fullrf</literal>) of
-            <literal>eye()-Q*M</literal> then eigenvalues of <literal>M1*A*Q1</literal> =
-            eigenvalues of <literal>A</literal> with magnitude &lt;
-            <literal>thres</literal>.
+            Si <literal>flag='d'</literal> et si <literal>[Q1,M1]</literal> =
+            factorisation de rang maximal (<literal>fullrf</literal>) de
+            <literal>eye()-Q*M</literal> alors les valeurs propres de
+            <literal>M1*A*Q1</literal> = valeurs propres de <literal>A</literal> avec
+            module &lt; <literal>thres</literal>.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 
 A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
 [Q,M]=pbig(A,1.5,'d');
@@ -99,7 +102,7 @@ spec(M1*A*Q1)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="psmall">psmall</link>
@@ -116,10 +119,10 @@ spec(M1*A*Q1)
         </simplelist>
     </refsection>
     <refsection>
-        <title>Used Functions</title>
+        <title>Fonctions Utilisées</title>
         <para>
-            <literal>pbig</literal> is based on the ordered schur form (scilab
-            function <literal>schur</literal>).
+            <literal>pbig</literal> est basée sur la forme de Schur ordonnée
+            (fonction Scilab <literal>schur</literal>).
         </para>
     </refsection>
 </refentry>

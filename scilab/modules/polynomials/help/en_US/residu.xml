@@ -10,41 +10,41 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="residu">
-  <refnamediv>
-    <refname>residu</refname>
-    <refpurpose> residue</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[V]=residu(P,Q1,Q2)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>P, Q1, Q2</term>
-        <listitem>
-          <para>polynomials or matrix polynomials with real or complex coefficients.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <literal>V=residu(P,Q1,Q2)</literal> returns the matrix <literal>V</literal>
-      such that <literal>V(i,j)</literal> is the sum of the residues of the
-      rational fraction <literal>P(i,j)/(Q1(i,j)*Q2(i,j))</literal> calculated
-      at the zeros of <literal>Q1(i,j)</literal>.
-    </para>
-    <para>
-      <literal>Q1(i,j)</literal> and <literal>Q2(i,j)</literal> must not have any common root.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="residu">
+    <refnamediv>
+        <refname>residu</refname>
+        <refpurpose>residue</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[V]=residu(P,Q1,Q2)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P, Q1, Q2</term>
+                <listitem>
+                    <para>polynomials or matrix polynomials with real or complex coefficients.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>V=residu(P,Q1,Q2)</literal> returns the matrix <literal>V</literal>
+            such that <literal>V(i,j)</literal> is the sum of the residues of the
+            rational fraction <literal>P(i,j)/(Q1(i,j)*Q2(i,j))</literal> calculated
+            at the zeros of <literal>Q1(i,j)</literal>.
+        </para>
+        <para>
+            <literal>Q1(i,j)</literal> and <literal>Q2(i,j)</literal> must not have any common root.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 H=[s/(s+1)^2,1/(s+2)];N=numer(H);D=denom(H);
 w=residu(N.*horner(N,-s),D,horner(D,-s));  //N(s) N(-s) / D(s) D(-s)
@@ -60,25 +60,25 @@ residu(b*btild,z*a,atild)-2.9488038   //Exact
 a=a+0*%i;b=b+0*%i;
 real(residu(b*btild,z*a,atild)-2.9488038) //Complex case
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="pfss">pfss</link>
-      </member>
-      <member>
-        <link linkend="bdiag">bdiag</link>
-      </member>
-      <member>
-        <link linkend="roots">roots</link>
-      </member>
-      <member>
-        <link linkend="poly">poly</link>
-      </member>
-      <member>
-        <link linkend="gtild">gtild</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pfss">pfss</link>
+            </member>
+            <member>
+                <link linkend="bdiag">bdiag</link>
+            </member>
+            <member>
+                <link linkend="roots">roots</link>
+            </member>
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+            <member>
+                <link linkend="gtild">gtild</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

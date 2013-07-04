@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-03 14:38+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-18 02:46+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -84,7 +84,7 @@ msgid "Van der Pol vector field"
 msgstr "Van der Pol ベクトル・フィールド"
 
 msgid "Reading a precomputed trajectory"
-msgstr "初期軌道を読込中"
+msgstr "計算済みの軌道を読み込む"
 
 msgid "Simulation with ode (needs a Fortran compiler)"
 msgstr "微分方程式に基づくシミュレーション (Fortranコンパイラが必要)"
@@ -129,6 +129,10 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定し�
 msgid ""
 "%s: Wrong value for input argument #%d: syntax error in given expression\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 指定された式に構文エラーがあります\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A real expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 実数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"

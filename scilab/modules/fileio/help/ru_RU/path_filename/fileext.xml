@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="fileext">
+    <refnamediv>
+        <refname>fileext</refname>
+        <refpurpose>возвращает расширение файла</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>extension = fileext(fullpath)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>fullpath</term>
+                <listitem>
+                    <para>строковая матрица, указывающая путь до файла.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>extension</term>
+                <listitem>
+                    <para>строковая матрица, часть, относящаяся к расширению;
+                        может быть любой или <literal>''</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>extension = fileext(fullpath)</code> изымает из
+            символьной строки часть, относящуюся к расширению, включая точку.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+extension = fileext('SCI/etc/scilab.start')
+extension = fileext(['SCI/etc/scilab.start';'SCI/etc/scilab.quit'])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fileparts">fileparts</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

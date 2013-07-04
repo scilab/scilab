@@ -4,7 +4,7 @@
 # This file is distributed under the same license as the Scilab package.
 
 
-ELEMENTARIES_FUNCTIONS_C_SOURCES = src/c/sci_tools.c \
+ELEMENTARIES_FUNCTIONS_C_SOURCES = \
 src/c/finite.c \
 src/c/vfinite.c \
 src/c/cmp.c \
@@ -29,6 +29,7 @@ src/c/convertbase.c
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CXX_SOURCES =
+
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -182,7 +183,6 @@ src/fortran/wcerr.f \
 src/fortran/ivimp.f \
 src/fortran/cupro.f \
 src/fortran/dadd.f \
-src/fortran/calerf.f \
 src/fortran/isort.f \
 src/fortran/hilber.f \
 src/fortran/wdpowe.f \
@@ -369,13 +369,11 @@ libdummy_elementary_functions_la_SOURCES = src/fortran/eispack/hqror2.f \
 libdummy_elementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/core/includes/ \
     $(AM_CPPFLAGS)
-	
 
 # Includes need for the compilation
 libscielementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(srcdir)/src/c/ \
-	-I$(top_srcdir)/libs/MALLOC/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/core/src/c/ \
 	-I$(top_srcdir)/modules/localization/includes/ \

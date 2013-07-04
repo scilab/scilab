@@ -26,6 +26,7 @@ import com.mxgraph.util.mxConstants;
 /**
  * Implement the set link horizontal action
  */
+@SuppressWarnings(value = { "serial" })
 public class StyleStraightAction extends StyleAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.LINK_STYLE_STRAIGHT;
@@ -36,7 +37,7 @@ public class StyleStraightAction extends StyleAction {
 
     /**
      * Default constructor the associated graph
-     * 
+     *
      * @param scilabGraph
      *            the graph to associate
      */
@@ -55,7 +56,7 @@ public class StyleStraightAction extends StyleAction {
 
     /**
      * Action !!!
-     * 
+     *
      * @param e
      *            params
      * @see org.scilab.modules.xcos.link.actions.StyleAction#actionPerformed(java.awt.event.ActionEvent)
@@ -69,7 +70,7 @@ public class StyleStraightAction extends StyleAction {
         if (comp.isEditing()) {
             return;
         }
-        
+
         final Object[] links = getLinks();
 
         graph.getModel().beginUpdate();

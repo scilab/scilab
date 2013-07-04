@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 // <-- INTERACTIVE TEST -->
 //
 // <-- Non-regression test for bug 9024 -->
@@ -17,7 +17,7 @@
 // Opening a non-existing file lead to problems when closing Xcos.
 //
 
-execstr("xcos(); xcos(""DoesNotExist.xcos"")");
+execstr("xcos(); xcos(""DoesNotExist.zcos"")");
 // Answer NO to the create file dialog
 // Close the Xcos window
 // check that the palette is also closed

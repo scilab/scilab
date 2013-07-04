@@ -31,13 +31,13 @@ int sci_xcosPalLoad(char *fname, unsigned long fname_len)
     CheckRhs(1, 2);
     CheckLhs(0, 1);
 
-    char *path = NULL;
+    char *name = NULL;
 
     int lenCategory = 0;
     char **category = NULL;
 
-    /* path setup */
-    if (readSingleString(pvApiCtx, 1, &path, fname))
+    /* name setup */
+    if (readSingleString(pvApiCtx, 1, &name, fname))
     {
         return 0;
     }
@@ -45,7 +45,7 @@ int sci_xcosPalLoad(char *fname, unsigned long fname_len)
     /* category setup */
     if (Rhs == 2 && readVectorString(pvApiCtx, 2, &category, &lenCategory, fname))
     {
-        FREE(path);
+        FREE(name);
         return 0;
     }
 
@@ -56,11 +56,11 @@ int sci_xcosPalLoad(char *fname, unsigned long fname_len)
         // check category emptyness
         if (category == NULL || (lenCategory == 1 && *category == '\0'))
         {
-            Palette::loadPal(getScilabJavaVM(), path);
+            Palette::loadPal(getScilabJavaVM(), name);
         }
         else
         {
-            Palette::loadPal(getScilabJavaVM(), path, category, lenCategory);
+            Palette::loadPal(getScilabJavaVM(), name, category, lenCategory);
         }
     }
     catch (GiwsException::JniCallMethodException &exception)

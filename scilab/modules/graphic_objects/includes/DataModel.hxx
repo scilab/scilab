@@ -60,22 +60,13 @@ public :
      * property return value (also FALSE); returning an int, with -1 for a failed
      * allocation would possibly solve this problem.
      */
-    BOOL setGraphicObjectProperty(char const* _pstID, char const* _pstName, void const* _dblValue, int numElements);
+    BOOL setGraphicObjectProperty(char const* _pstID, int _iName, void const* _dblValue, int numElements);
 
     /** Returns a graphic object vector property */
-    void getGraphicObjectProperty(char const* _pstID, char const* _pstName, void **_pvData);
-
-    /**
-     * Returns a graphic object integer property
-     * Implemented in order to avoid returning the address of a
-     * static local variable across too many function calls (see the getProperty
-     * methods of the different Data classes when integer values are returned)
-     * Probably redundant with getGraphicObjectProperty
-     */
-    void getGraphicObjectIntProperty(char const* _pstID, char const* _pstName, void **_pvData);
+    void getGraphicObjectProperty(char const* _pstID, int _iName, void **_pvData);
 
     /** Creates a data object */
-    char const* createDataObject(char const* _pstID, char const* _sType);
+    char const* createDataObject(char const* _pstID, int _iType);
 
     /**
      * Deletes a data object

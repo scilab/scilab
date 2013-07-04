@@ -13,8 +13,8 @@
  */
 
 #include "SetUiobjectForegroundColor.hxx"
-
-int SetUiobjectForegroundColor(void* _pvCtx, char* sciObjUID, size_t stackPointer, int valueType, int nbRow, int nbCol)
+#include "stack-c.h"
+int SetUiobjectForegroundColor(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Color can be [R, G, B] or "R|G|B" */
 
@@ -25,14 +25,14 @@ int SetUiobjectForegroundColor(void* _pvCtx, char* sciObjUID, size_t stackPointe
 
     if (valueType == sci_strings)
     {
-        if(nbCol != 1 || nbRow == 0) /* More than one string */
+        if (nbCol != 1 || nbRow == 0) /* More than one string */
         {
             Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n")), "ForegroundColor");
             return SET_PROPERTY_ERROR;
         }
 
         allColors = new double[3];
-        nbValues = sscanf(getStringFromStack(stackPointer), "%lf|%lf|%lf", &allColors[0], &allColors[1], &allColors[2]);
+        nbValues = sscanf((char*)_pvData, "%lf|%lf|%lf", &allColors[0], &allColors[1], &allColors[2]);
 
         if (nbValues != 3) /* Wrong format string */
         {
@@ -43,13 +43,13 @@ int SetUiobjectForegroundColor(void* _pvCtx, char* sciObjUID, size_t stackPointe
     }
     else if (valueType == sci_matrix)
     {
-        if(nbCol != 3 || nbRow != 1) /* Wrong matrix size */
+        if (nbCol != 3 || nbRow != 1) /* Wrong matrix size */
         {
             Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string expected.\n")), "ForegroundColor");
             return SET_PROPERTY_ERROR;
         }
 
-        allColors = getDoubleMatrixFromStack(stackPointer);
+        allColors = (double*)_pvData;
     }
     else
     {
@@ -64,7 +64,7 @@ int SetUiobjectForegroundColor(void* _pvCtx, char* sciObjUID, size_t stackPointe
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, const_cast<char*>(__GO_UI_FOREGROUNDCOLOR__), allColors, jni_double_vector, 3);
+    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FOREGROUNDCOLOR__, allColors, jni_double_vector, 3);
 
     if (valueType == sci_strings)
     {

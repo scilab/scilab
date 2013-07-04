@@ -26,6 +26,7 @@ import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
  * @author Sylvestre Koumar
  *
  */
+@SuppressWarnings(value = { "serial" })
 public class PageSetupAction extends DefaultAction {
 
     private static PageFormat pageFormat;

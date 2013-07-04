@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="left">
+    <refnamediv>
+        <refname>left</refname>
+        <refpurpose>([) 左括弧</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[a11,a12,...;a21,a22,...;...]
+            [s1,s2,...]=func(...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>a11,a12,...  </term>
+                <listitem>
+                    <para>
+                        互換性のある次元 s1,s2,... を有する任意の互換性のある型の行列 : 任意の変数名
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            左括弧および右括弧は,ベクトルおよび行列を結合する際に使用されます.
+            これらの記号は,関数コールの際に複数の左辺引数を定義する際に使用されます.
+        </para>
+        <para>
+            結合括弧の中で,空白またはカンマ文字は "列結合"を意味し,
+            セミコロンおよびキャレッジリターンは "行結合" を意味します.
+        </para>
+        <para>
+            注意 : 混乱を回避するため, 列を区切るために空白ではなくカンマを使用する
+            方がより安全でしょう.
+        </para>
+        <para>
+            複数の左辺引数の括弧の中では,変数名はカンマで区切る必要があります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+[6.9,9.64; sqrt(-1) 0]
+[1 +%i  2 -%i  3]
+[]
+['this is';'a string';'vector']
+s=poly(0,'s');[1/s,2/s]
+[tf2ss(1/s),tf2ss(2/s)]
+
+[u,s]=schur(rand(3,3))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="comma">comma</link>
+            </member>
+            <member>
+                <link linkend="semicolon">semicolon</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

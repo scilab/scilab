@@ -44,6 +44,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 /**
  * Implement the default view for the palette
  */
+@SuppressWarnings(value = { "serial" })
 public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
     public static final String DEFAULT_WIN_UUID = "xcos-palette-default-window";
     public static final String DEFAULT_TAB_UUID = PaletteManager.MODEL_CLASS_PACKAGE;
@@ -53,13 +54,13 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
 
     /**
      * Default constructor
-     * 
+     *
      * @param controller
      *            the associated controller
      */
     private PaletteManagerView(final PaletteManager controller) {
         super(XcosMessages.PALETTE_BROWSER + " - " + Xcos.TRADENAME,
-                DEFAULT_TAB_UUID);
+              DEFAULT_TAB_UUID);
 
         this.controller = controller;
         setWindowIcon(Xcos.ICON.getImage());
@@ -68,8 +69,8 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
     }
 
     private static class ClosingOperation
-            implements
-            org.scilab.modules.gui.utils.ClosingOperationsManager.ClosingOperation {
+        implements
+        org.scilab.modules.gui.utils.ClosingOperationsManager.ClosingOperation {
 
         public ClosingOperation() {
         }
@@ -81,6 +82,7 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
 
         @Override
         public void destroy() {
+            PaletteManager.getInstance().firePropertyChange("visible", true, false);
         }
 
         @Override
@@ -90,7 +92,7 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
 
         @Override
         public void updateDependencies(List<SwingScilabTab> list,
-                ListIterator<SwingScilabTab> it) {
+                                       ListIterator<SwingScilabTab> it) {
         }
     }
 
@@ -100,7 +102,7 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
 
     public static PaletteManagerView get() {
         return (PaletteManagerView) ScilabTabFactory.getInstance()
-                .getFromCache(DEFAULT_TAB_UUID);
+               .getFromCache(DEFAULT_TAB_UUID);
     }
 
     public static void restore(Void v) {
@@ -109,7 +111,7 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
 
     public static void restore(Void v, final boolean visible) {
         PaletteManagerView tab = new PaletteManagerView(
-                PaletteManager.getInstance());
+            PaletteManager.getInstance());
         if (visible) {
             tab.createDefaultWindow().setVisible(true);
         }
@@ -180,7 +182,7 @@ public class PaletteManagerView extends SwingScilabTab implements SimpleTab {
     /** @return the category tree */
     public JTree getTree() {
         return (JTree) ((JScrollPane) panel.getLeftComponent()).getViewport()
-                .getView();
+               .getView();
     }
 
     /**

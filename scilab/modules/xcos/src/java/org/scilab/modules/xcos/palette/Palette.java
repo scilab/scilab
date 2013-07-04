@@ -12,13 +12,14 @@
 
 package org.scilab.modules.xcos.palette;
 
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.synchronousScilabExec;
-
+import java.awt.GraphicsEnvironment;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,11 +27,9 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
 
-import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
-
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.utils.ScilabExported;
-import org.scilab.modules.hdf5.read.H5Read;
+import org.scilab.modules.javasci.JavasciException;
+import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.xcos.Xcos;
@@ -131,25 +130,29 @@ public final class Palette {
     /**
      * Load an xcos palette into the palette manager
      *
-     * @param path
-     *            full path to the scilab exported palette
+     * @param name
+     *            the scilab exported palette variable name
      * @param category
      *            TreePath of the palette
+     * @throws JavasciException
+     *             on invocation error
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
-    public static void loadPal(final String path, final String[] category) {
+    public static void loadPal(final String name, final String[] category) throws JavasciException {
+        /*
+         * If the env. is headless only perform fake loading to assert data
+         * integrity.
+         */
+        if (GraphicsEnvironment.isHeadless()) {
+            LOG.warning("Headless environment detected, only perform sanity check");
+            loadPalHeadless(name);
+            return;
+        }
+
         /*
          * Import the palette
          */
-        final ScilabTList data = new ScilabTList();
-        final String file = new File(path).getAbsolutePath();
-        try {
-            final int fileId = H5Read.openFile(file);
-            H5Read.readDataFromFile(fileId, data);
-            H5Read.closeFile(fileId);
-        } catch (final HDF5Exception e) {
-            throw new RuntimeException(String.format(UNABLE_TO_IMPORT, file), e);
-        }
+        final ScilabTList data = (ScilabTList) Scilab.getInCurrentScilabSession(name);
 
         /*
          * handle shared data on the EDT thread
@@ -158,50 +161,54 @@ public final class Palette {
             SwingUtilities.invokeAndWait(new Runnable() {
                 @Override
                 public void run() {
-                    /*
-                     * Decode the style part of the palette
-                     */
-                    final mxStylesheet styleSheet = Xcos.getInstance().getStyleSheet();
                     try {
-                        new StyleElement().decode(data, styleSheet);
-                    } catch (final ScicosFormatException e) {
-                        throw new RuntimeException(e);
-                    }
+                        /*
+                         * Decode the style part of the palette
+                         */
+                        final mxStylesheet styleSheet = Xcos.getInstance().getStyleSheet();
+                        try {
+                            new StyleElement().decode(data, styleSheet);
+                        } catch (final ScicosFormatException e) {
+                            throw new RuntimeException(e);
+                        }
 
-                    // reload all the opened diagram (clear states)
-                    for (final XcosDiagram d : Xcos.getInstance().openedDiagrams()) {
-                        if (d != null) {
-                            final mxGraphView view = d.getView();
-                            if (view != null) {
-                                view.reload();
-                            }
+                        // reload all the opened diagram (clear states)
+                        for (final XcosDiagram d : Xcos.getInstance().openedDiagrams()) {
+                            if (d != null) {
+                                final mxGraphView view = d.getView();
+                                if (view != null) {
+                                    view.reload();
+                                }
 
-                            final mxGraphComponent comp = d.getAsComponent();
-                            if (comp != null) {
-                                comp.refresh();
+                                final mxGraphComponent comp = d.getAsComponent();
+                                if (comp != null) {
+                                    comp.refresh();
+                                }
                             }
                         }
-                    }
 
-                    final PaletteNode node = getPathNode(category, true);
-                    if (!(node instanceof Category)) {
-                        throw new RuntimeException(String.format(WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, "category"));
-                    }
-                    final Category cat = (Category) node;
+                        final PaletteNode node = getPathNode(category, true);
+                        if (!(node instanceof Category)) {
+                            throw new RuntimeException(String.format(WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, "category"));
+                        }
+                        final Category cat = (Category) node;
 
-                    /*
-                     * Adding the palette tree part of the palette
-                     */
-                    PreLoaded pal;
-                    try {
-                        pal = new PreLoadedElement().decode(data, new PreLoaded.Dynamic());
-                    } catch (final ScicosFormatException e) {
-                        throw new RuntimeException(e);
-                    }
-                    cat.getNode().add(pal);
-                    pal.setParent(cat);
+                        /*
+                         * Adding the palette tree part of the palette
+                         */
+                        PreLoaded pal;
+                        try {
+                            pal = new PreLoadedElement().decode(data, new PreLoaded.Dynamic());
+                        } catch (final ScicosFormatException e) {
+                            throw new RuntimeException(e);
+                        }
+                        cat.getNode().add(pal);
+                        pal.setParent(cat);
 
-                    PaletteNode.refreshView(pal);
+                        PaletteNode.refreshView(pal);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         } catch (final InterruptedException e) {
@@ -218,15 +225,32 @@ public final class Palette {
         }
     }
 
+    private static final void loadPalHeadless(final String name) throws JavasciException {
+        try {
+            final ScilabTList data = (ScilabTList) Scilab.getInCurrentScilabSession(name);
+
+            // style check
+            new StyleElement().decode(data, new mxStylesheet());
+
+            // palette data check
+            new PreLoadedElement().decode(data, new PreLoaded.Dynamic());
+
+        } catch (ScicosFormatException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /**
      * Load an xcos palette into the palette manager at the root category.
      *
-     * @param path
-     *            full path to the scilab exported palette
+     * @param name
+     *            the scilab exported palette variable name
+     * @throws JavasciException
+     *             on invocation error
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
-    public static void loadPal(final String path) {
-        loadPal(path, null);
+    public static void loadPal(final String name) throws JavasciException {
+        loadPal(name, null);
     }
 
     /**
@@ -388,37 +412,32 @@ public final class Palette {
     }
 
     /**
-     * Generate a palette block image from a block saved instance (need a valid
-     * style).
+     * Generate a palette block image from a block instance stored into scilab
+     * (need a valid style).
      *
-     * @param blockName
-     *            the block name
      * @param iconPath
      *            the output file path use to save the palette block.
-     * @throws IOException
-     *             in case of write errors
+     * @throws Exception
+     *             on error
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
-    public static void generatePaletteIcon(final String blockName, final String iconPath) throws IOException {
-        BasicBlock block;
-
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        if (handler == null) {
+    public static void generatePaletteIcon(final String iconPath) throws Exception {
+        /*
+         * If the env. is headless does nothing
+         */
+        if (GraphicsEnvironment.isHeadless()) {
+            LOG.warning("Headless environment detected, do not generate icons");
             return;
         }
 
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
         try {
-            synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(blockName, "define"));
-            block = handler.readBlock();
-        } catch (ScicosFormatException e) {
-            throw new IOException(e);
-        } catch (InterpreterException e) {
-            throw new IOException(e);
+            final BasicBlock block = handler.readBlock();
+
+            generateIcon(block, iconPath);
         } finally {
             handler.release();
         }
-
-        generateIcon(block, iconPath);
 
         if (LOG.isLoggable(Level.FINEST)) {
             LOG.finest(iconPath + " updated.");
@@ -462,56 +481,5 @@ public final class Palette {
 
         final String extension = iconPath.substring(iconPath.lastIndexOf('.') + 1);
         ImageIO.write(image, extension, new File(iconPath));
-    }
-
-    /**
-     * Helper function used to regenerate palette block images from block
-     * instance.
-     *
-     * This method is not export to scilab but is needed for internal purpose
-     * (palette block image generation)
-     */
-    public static void generateAllPaletteImages() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                final PaletteManager current = PaletteManager.getInstance();
-                iterate(current.getRoot().getNode());
-                current.saveConfig();
-            }
-
-            private void iterate(final List<PaletteNode> children) {
-                for (final PaletteNode next : children) {
-                    if (next instanceof Category) {
-                        iterate(((Category) next).getNode());
-                    } else if (next instanceof PreLoaded) {
-                        generatePreLoadedIcon((PreLoaded) next);
-                    }
-                }
-            }
-
-            /**
-             * Generate PreLoaded icon file.
-             *
-             * @param current
-             *            the current node
-             */
-            private void generatePreLoadedIcon(final PreLoaded current) {
-                final List<PaletteBlock> blocks = current.getBlock();
-                for (final PaletteBlock paletteBlock : blocks) {
-
-                    try {
-                        final BasicBlock block = new PaletteBlockCtrl(paletteBlock).loadBlock();
-                        generateIcon(block, paletteBlock.getIcon().getEvaluatedPath());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ScicosFormatException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-
-        LOG.finest("All images has been generated.");
     }
 }

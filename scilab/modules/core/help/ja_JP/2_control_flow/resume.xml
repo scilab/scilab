@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="resume">
+    <refnamediv>
+        <refname>resume</refname>
+        <refpurpose>リターンまたは復帰実行およびローカル変数をコピー</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>resume
+            [x1,..,xn]=resume(a1,..,an)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>...</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            関数内で <literal>resume</literal> は関数の実行を中断します.また，
+            <literal>[..]=resume(..)</literal> は関数の実行を中断,
+            ローカル変数<literal>ai</literal>をコールした側の環境の
+            名前<literal>xi</literal>に代入します.
+        </para>
+        <para>
+            <literal>pause</literal> モードの場合, より低いレベルに戻ることができます.
+            <literal>[..]=resume(..)</literal>はより低いレベルに戻り,
+            ローカル変数<literal>ai</literal>をコールした側の環境の
+            名前<literal>xi</literal>に代入します.
+        </para>
+        <para>
+            関数によりコールされる<literal>execstr</literal>の場合,
+            <literal>[..]=resume(..)</literal> はその関数の実行を停止し,
+            ローカル変数<literal>ai</literal>をコールした側の環境の
+            名前<literal>xi</literal>に代入します.
+        </para>
+        <para>
+            <literal>resume</literal> は <literal>return</literal>と等価です.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="abort">abort</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

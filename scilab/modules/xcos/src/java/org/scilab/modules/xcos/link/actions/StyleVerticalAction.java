@@ -26,6 +26,7 @@ import com.mxgraph.util.mxConstants;
 /**
  * Implement the set link vertical action
  */
+@SuppressWarnings(value = { "serial" })
 public class StyleVerticalAction extends StyleAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.LINK_STYLE_VERTICAL;
@@ -36,7 +37,7 @@ public class StyleVerticalAction extends StyleAction {
 
     /**
      * Default constructor the associated graph
-     * 
+     *
      * @param scilabGraph
      *            the graph to associate
      */
@@ -55,7 +56,7 @@ public class StyleVerticalAction extends StyleAction {
 
     /**
      * Action !!!
-     * 
+     *
      * @param e
      *            params
      * @see org.scilab.modules.xcos.link.actions.StyleAction#actionPerformed(java.awt.event.ActionEvent)
@@ -69,16 +70,16 @@ public class StyleVerticalAction extends StyleAction {
         if (comp.isEditing()) {
             return;
         }
-        
+
         final Object[] links = getLinks();
 
         graph.getModel().beginUpdate();
         try {
             graph.setCellStyles(mxConstants.STYLE_NOEDGESTYLE, "0", links);
             graph.setCellStyles(mxConstants.STYLE_EDGE,
-                    mxConstants.EDGESTYLE_ELBOW, links);
+                                mxConstants.EDGESTYLE_ELBOW, links);
             graph.setCellStyles(mxConstants.STYLE_ELBOW,
-                    mxConstants.ELBOW_VERTICAL, links);
+                                mxConstants.ELBOW_VERTICAL, links);
 
             reset(graph, links);
         } finally {

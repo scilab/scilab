@@ -10,54 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="householder">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="householder">
     <refnamediv>
         <refname>householder</refname>
-        <refpurpose> Householder orthogonal reflexion matrix</refpurpose>
+        <refpurpose>ハウスホルダー直交鏡映行列</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         <synopsis>u=householder(v [,w])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>real or complex column vector</para>
+                    <para>実数または複素数の列ベクトル</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>w</term>
                 <listitem>
                     <para>
-                        real or complex column vector with same size as <literal>v</literal>. Default value is <literal>eye(v)</literal>
+                        <literal>v</literal>と同じ大きさの実数または複素数の列ベクトル.
+                        デフォルト値は<literal>eye(v)</literal>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>u</term>
                 <listitem>
-                    <para>real or complex column vector</para>
+                    <para>実数または複素数の列ベクトル</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>説明</title>
         <para>
-            given 2 column vectors <literal>v</literal>, <literal> w</literal> of same size, <literal>householder(v,w)</literal> returns a unitary 
-            column vector <literal>u</literal>, such that <literal> (eye()-2*u*u')*v</literal> is proportional to <literal>w</literal>.
-            <literal>(eye()-2*u*u')</literal> is the orthogonal Householder reflexion matrix .
+            同じ大きさの列ベクトル
+            <literal>v</literal>, <literal> w</literal> を指定すると, 
+            <literal>householder(v,w)</literal> は,
+            <literal> (eye()-2*u*u')*v</literal>が<literal>w</literal>に比例するような
+            ユニタリ列ベクトル<literal>u</literal>を返します.
+            <literal>(eye()-2*u*u')</literal> はハウスホルダー直交鏡映行列です.
         </para>
         <para>
-            <literal>w</literal> default value is <literal> eye(v)</literal>. In this case vector <literal> (eye()-2*u*u')*v</literal> is the 
-            vector  <literal> eye(v)*norm(v)</literal>.
+            <literal>w</literal> のデフォルト値は <literal> eye(v)</literal>です. 
+            この場合,ベクトル<literal> (eye()-2*u*u')*v</literal> はベクトル 
+            <literal> eye(v)*norm(v)</literal>です.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="qr">qr</link>

@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- INTERACTIVE TEST -->
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Non-regression test for bug 10393 -->
 //
@@ -18,7 +18,7 @@
 
 // start xcos, and create an empty test file
 // accept to create this file on first call
-xcos(TMPDIR + "/../bug_10393.xcos");
+xcos(TMPDIR + "/../bug_10393.zcos");
 
 // define a function to load the test palette
 function loadPalette()
