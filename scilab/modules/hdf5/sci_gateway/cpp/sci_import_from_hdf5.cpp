@@ -26,6 +26,7 @@ extern "C"
 #include "h5_attributeConstants.h"
 #include "intmacr2tree.h"
 #include "expandPathVariable.h"
+#include "stdlib.h"
 }
 
 #include "import_from_hdf5_v1.hxx"
