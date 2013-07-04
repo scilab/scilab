@@ -53,6 +53,7 @@ sci_gateway/cpp/sci_jnewInstance.cpp \
 sci_gateway/cpp/sci_jremove.cpp \
 sci_gateway/cpp/sci_jexists.cpp \
 sci_gateway/cpp/sci_junwrap.cpp \
+sci_gateway/cpp/sci_jautoUnwrap.cpp \
 sci_gateway/cpp/sci_junwraprem.cpp \
 sci_gateway/cpp/sci_jenableTrace.cpp \
 sci_gateway/cpp/sci_jdisableTrace.cpp \

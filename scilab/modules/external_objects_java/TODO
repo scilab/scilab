@@ -1,15 +1,16 @@
 jallowClassReloading
 jarray                   - Tests are failing
-jautoUnwrap
-jcast
 jconvMatrixMethod
 jinvoke_db
 jnull
-jsetfield
 junwraprem
 junwrap
 jvoid
 jwrapinchar
 jwrapinfloat
-jwrap                    - Other types should be managed
+jwrap
 new
+
+In the help pages, add the matching types <=> java
+
+what is long / float / char wrap  ? 

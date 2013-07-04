@@ -38,6 +38,7 @@ EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jcast(char *fname, unsigned long fna
 EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jallowClassReloading(char *fname, unsigned long fname_len);
 EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jwrapinfloat(char *fname, unsigned long fname_len);
 EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jsetfield(char *fname, unsigned long fname_len);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jautoUnwrap(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_EXTERNAL_OBJECTS_H__ */
 /*--------------------------------------------------------------------------*/
