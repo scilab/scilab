@@ -24,36 +24,18 @@
     <ClCompile Include="common_f2c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="complexify.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DGELSY1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ZGELSY1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="writebuf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="voiddummy.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="complexify.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="DGELSY1.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="ZGELSY1.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="writebuf.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="voiddummy.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>

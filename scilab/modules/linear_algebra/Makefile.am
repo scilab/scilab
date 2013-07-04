@@ -21,11 +21,8 @@ src/c/det.c \
 src/c/lsq.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = \
-    src/fortran/complexify.f \
     src/fortran/DGELSY1.f \
-    src/fortran/ZGELSY1.f \
-    src/fortran/voiddummy.f \
-    src/fortran/writebuf.f 
+    src/fortran/ZGELSY1.f
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/gw_linear_algebra2.c \

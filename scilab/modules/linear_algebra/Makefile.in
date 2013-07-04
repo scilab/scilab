@@ -134,8 +134,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscilinear_algebra_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscilinear_algebra_algo_la_LIBADD =
-am__objects_1 = complexify.lo DGELSY1.lo ZGELSY1.lo voiddummy.lo \
-	writebuf.lo
+am__objects_1 = DGELSY1.lo ZGELSY1.lo
 am__objects_2 = libscilinear_algebra_algo_la-schurtable.lo \
 	libscilinear_algebra_algo_la-issymmetric.lo \
 	libscilinear_algebra_algo_la-lu.lo \
@@ -507,11 +506,8 @@ src/c/det.c \
 src/c/lsq.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = \
-    src/fortran/complexify.f \
     src/fortran/DGELSY1.f \
-    src/fortran/ZGELSY1.f \
-    src/fortran/voiddummy.f \
-    src/fortran/writebuf.f 
+    src/fortran/ZGELSY1.f
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/gw_linear_algebra2.c \
@@ -1040,20 +1036,11 @@ libscilinear_algebra_la-sci_schur.lo: sci_gateway/cpp/sci_schur.cpp
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
 
-complexify.lo: src/fortran/complexify.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o complexify.lo `test -f 'src/fortran/complexify.f' || echo '$(srcdir)/'`src/fortran/complexify.f
-
 DGELSY1.lo: src/fortran/DGELSY1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o DGELSY1.lo `test -f 'src/fortran/DGELSY1.f' || echo '$(srcdir)/'`src/fortran/DGELSY1.f
 
 ZGELSY1.lo: src/fortran/ZGELSY1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ZGELSY1.lo `test -f 'src/fortran/ZGELSY1.f' || echo '$(srcdir)/'`src/fortran/ZGELSY1.f
-
-voiddummy.lo: src/fortran/voiddummy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o voiddummy.lo `test -f 'src/fortran/voiddummy.f' || echo '$(srcdir)/'`src/fortran/voiddummy.f
-
-writebuf.lo: src/fortran/writebuf.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

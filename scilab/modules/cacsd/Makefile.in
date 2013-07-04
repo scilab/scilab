@@ -157,7 +157,8 @@ am__objects_2 = sb04pd.lo ib01ad.lo tb01wd.lo ib01py.lo mb01rx.lo \
 	sb02ou.lo mb02qy.lo sb03ou.lo sb04qr.lo sb03mx.lo ib01nd.lo \
 	sb02oy.lo sb03oy.lo sb03qx.lo ib01rd.lo sb03sy.lo mb04nd.lo \
 	mb01rd.lo mb01vd.lo sb10qd.lo ereduc.lo fstair.lo inva.lo \
-	polmc.lo ssxmc.lo ZB03OD.lo riccpack.lo Ex-schur.lo
+	polmc.lo ssxmc.lo ZB03OD.lo riccpack.lo Ex-schur.lo \
+	voiddummy.lo
 am_libscicacsd_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscicacsd_algo_la_OBJECTS = $(am_libscicacsd_algo_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscicacsd_algo_la_rpath =
@@ -588,7 +589,8 @@ src/slicot/polmc.f \
 src/slicot/ssxmc.f \
 src/slicot/ZB03OD.f \
 src/slicot/riccpack.f \
-src/slicot/Ex-schur.f
+src/slicot/Ex-schur.f \
+src/fortran/voiddummy.f
 
 CACSD_FORTRAN_SOURCES = \
 src/fortran/jacl2.f \
@@ -1490,6 +1492,9 @@ riccpack.lo: src/slicot/riccpack.f
 
 Ex-schur.lo: src/slicot/Ex-schur.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-schur.lo `test -f 'src/slicot/Ex-schur.f' || echo '$(srcdir)/'`src/slicot/Ex-schur.f
+
+voiddummy.lo: src/fortran/voiddummy.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o voiddummy.lo `test -f 'src/fortran/voiddummy.f' || echo '$(srcdir)/'`src/fortran/voiddummy.f
 
 sci_f_tzer.lo: sci_gateway/fortran/sci_f_tzer.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_tzer.lo `test -f 'sci_gateway/fortran/sci_f_tzer.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_tzer.f

@@ -110,7 +110,8 @@ src/slicot/polmc.f \
 src/slicot/ssxmc.f \
 src/slicot/ZB03OD.f \
 src/slicot/riccpack.f \
-src/slicot/Ex-schur.f
+src/slicot/Ex-schur.f \
+src/fortran/voiddummy.f
 
 CACSD_FORTRAN_SOURCES = \
 src/fortran/jacl2.f \

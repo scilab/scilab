@@ -252,6 +252,7 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\fortran\voiddummy.c" />
     <ClCompile Include="..\ab01nd.c" />
     <ClCompile Include="..\ab01od.c" />
     <ClCompile Include="..\ab13md.c" />
@@ -361,6 +362,7 @@ cd ..
     <ClCompile Include="..\ZB03OD.c" />
   </ItemGroup>
   <ItemGroup>
+    <f2c_rule Include="..\..\fortran\voiddummy.f" />
     <f2c_rule Include="..\ab01nd.f" />
     <f2c_rule Include="..\ab01od.f" />
     <f2c_rule Include="..\ab13md.f" />
