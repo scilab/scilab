@@ -463,10 +463,20 @@ static bool import_string(int _iDatasetId, int _iItemPos, int *_piAddress, char 
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(piDims);
+        for (int i = 0 ; i < iSize ; i++)
+        {
+            free(pstData[i]);
+        }
+        FREE(pstData);
         return false;
     }
 
     FREE(piDims);
+    for (int i = 0 ; i < iSize ; i++)
+    {
+        free(pstData[i]);
+    }
     FREE(pstData);
 
     return true;

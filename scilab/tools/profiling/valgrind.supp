@@ -15,7 +15,6 @@
    Memcheck:Leak
    fun:_Znwm
    ...
-   fun:call_init.part.0
    fun:_dl_init
 }
 {
