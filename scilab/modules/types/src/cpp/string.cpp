@@ -412,16 +412,6 @@ wchar_t* String::copyValue(const wchar_t* _pwstData)
     return os_wcsdup(_pwstData);
 }
 
-bool String::set(int _iPos, wchar_t* _pwstData)
-{
-    if (m_pRealData == NULL || _iPos >= m_iSize)
-    {
-        return false;
-    }
-    m_pRealData[_iPos] = copyValue(_pwstData);
-    return true;
-}
-
 bool String::set(int _iPos, const wchar_t* _pwstData)
 {
     if (m_pRealData == NULL || _iPos >= m_iSize)
@@ -438,13 +428,7 @@ bool String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
     return set(getIndex(piIndexes), _pwstData);
 }
 
-bool String::set(int _iRows, int _iCols, wchar_t* _pwstData)
-{
-    int piIndexes[2] = {_iRows, _iCols};
-    return set(getIndex(piIndexes), _pwstData);
-}
-
-bool String::set(wchar_t** _pwstData)
+bool String::set(const wchar_t* const* _pwstData)
 {
     if (m_pRealData == NULL)
     {
@@ -454,6 +438,39 @@ bool String::set(wchar_t** _pwstData)
     for (int i = 0 ; i < getSize() ; i++)
     {
         if (set(i, _pwstData[i]) == false)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool String::set(int _iPos, const char* _pcData)
+{
+    if (m_pRealData == NULL || _iPos >= m_iSize)
+    {
+        return false;
+    }
+    m_pRealData[_iPos] = to_wide_string(_pcData);
+    return true;
+}
+
+bool String::set(int _iRows, int _iCols, const char* _pcData)
+{
+    int piIndexes[2] = {_iRows, _iCols};
+    return set(getIndex(piIndexes), _pcData);
+}
+
+bool String::set(const char* const* _pstrData)
+{
+    if (m_pRealData == NULL)
+    {
+        return false;
+    }
+
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        if (set(i, _pstrData[i]) == false)
         {
             return false;
         }

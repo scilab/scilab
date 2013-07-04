@@ -42,11 +42,13 @@ public :
 
     void                    whoAmI();
 
-    virtual bool            set(int _iPos, wchar_t* _pwstData);
     virtual bool            set(int _iPos, const wchar_t* _pwstData);
     virtual bool            set(int _iRows, int _iCols, const wchar_t* _pwstData);
-    virtual bool            set(int _iRows, int _iCols, wchar_t* _pwstData);
-    virtual bool            set(wchar_t** _pwstData);
+    virtual bool            set(const wchar_t* const* _pwstData);
+
+    virtual bool            set(int _iPos, const char* _pcData);
+    virtual bool            set(int _iRows, int _iCols, const char* _pcData);
+    virtual bool            set(const char* const* _pstrData);
 
     bool                    operator==(const InternalType& it);
     bool                    operator!=(const InternalType& it);
