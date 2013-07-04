@@ -344,7 +344,7 @@ int C2F(getval)(double *s, int *dotdet, int *opt)
 
       On IEEE 754 we have : max positive float num = (approx) 1.8E+308
       min positive float num = (approx) 4.9EEXPMIN
-      (if denormalised number are used)
+      (if denormalized number are used)
 
       So that EXPMAX = 309
       and  EXPMIN = -324  are OK (but larger limits are possible to take
