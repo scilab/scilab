@@ -328,6 +328,7 @@ cd ..
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CustomBuildStep>
     <None Include="..\..\Makefile.am" />
+    <None Include="core.def" />
     <None Include="core_export.def" />
     <None Include="functions_manager_Import.def" />
   </ItemGroup>
@@ -444,7 +445,6 @@ cd ..
     <ClInclude Include="str2sci.h" />
     <ClInclude Include="terme.h" />
     <ClInclude Include="TerminateCore.h" />
-    <ClInclude Include="typename.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\libs\GetWindowsVersion\GetWindowsVersion.vcxproj">
