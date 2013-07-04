@@ -30,7 +30,7 @@ void set_xxprintf(FILE *fp, XXPRINTF *xxprintf, FLUSH *flush, char **target)
 #ifdef _MSC_VER
     _set_output_format(_TWO_DIGIT_EXPONENT);
 #endif
-    /* re-initialize value of sprintf_buffer */
+    /* reinitialize value of sprintf_buffer */
     strcpy(sprintf_buffer, "");
     if (fp == (FILE *) 0)
     {

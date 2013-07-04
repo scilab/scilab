@@ -127,7 +127,7 @@
         <para>The dialog box also allows you to add an event port to the block in order to
             reset its state to a specified initial condition.
         </para>
-        <para>If ”re-initialization” is selected the following yields:</para>
+        <para>If ”reinitialization” is selected the following yields:</para>
         <itemizedlist>
             <listitem>
                 <para>The value to be integrated shall be connected to the integral block
@@ -165,7 +165,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">With re-initialization</emphasis>
+                    <emphasis role="bold">With reinitialization</emphasis>
                 </para>
                 <para>To reset its state to the specified initial condition based on
                     an external signal select<emphasis role="bold">1</emphasis> .
@@ -308,7 +308,7 @@
             <para>This sample model demonstrates how to use the integrator's state
                 port.
             </para>
-            <para>The re-initialization parameter is set to 1, the Upper limit to 1
+            <para>The reinitialization parameter is set to 1, the Upper limit to 1
                 and the lower limit to -1.
             </para>
             <para>

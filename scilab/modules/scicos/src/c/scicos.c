@@ -5123,7 +5123,7 @@ static void reinitdoit(double *told)
         }
     }
 
-    /* re-initialize */
+    /* reinitialize */
     for (ii = 0; ii < * (scs_imp->noord); ii++)
     {
         kf = &scs_imp->oord[ii];

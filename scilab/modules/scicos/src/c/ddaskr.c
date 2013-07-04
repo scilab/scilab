@@ -217,7 +217,7 @@ int DDaskrInit (void * ddaskr_mem, DDASResFn Res, realtype t0, N_Vector yy0, N_V
  *
  * =============================
  *
- * DDaskrReInit re-initializes DDASKR's memory for a problem,
+ * DDaskrReInit reinitializes DDASKR's memory for a problem,
  * assuming it has already been allocated in a prior DDaskrInit call.
  * All problem specification inputs are checked for errors.
  * If any error occurs during initialization, it is reported to the file whose file pointer is errfp.
