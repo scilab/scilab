@@ -231,7 +231,7 @@ xtitle("interpolation of the Runge function")
 // example 2 : show behavior of different splines on random data
 a = 0; b = 1;        // interval of interpolation
 n = 10;              // nb of interpolation  points
-m = 800;             // discretisation for evaluation
+m = 800;             // discretization for evaluation
 x = linspace(a,b,n)'; // abscissae of interpolation points
 y = rand(x);          // ordinates of interpolation points
 xx = linspace(a,b,m)';
@@ -248,7 +248,7 @@ show_window()
         <scilab:image>
             a = 0; b = 1;        // interval of interpolation
             n = 10;              // nb of interpolation  points
-            m = 800;             // discretisation for evaluation
+            m = 800;             // discretization for evaluation
             x = linspace(a,b,n)'; // abscissae of interpolation points
             y = rand(x);          // ordinates of interpolation points
             xx = linspace(a,b,m)';

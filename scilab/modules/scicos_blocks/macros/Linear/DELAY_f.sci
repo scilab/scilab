@@ -56,12 +56,12 @@ function [x,y,typ]=DELAY_f(job,arg1,arg2)
         evtdly_exprs=evtdly.graphics.exprs
         exprs=[evtdly_exprs(1);register_exprs]
         while %t do
-            [ok,dt,z0,exprs]=scicos_getvalue(["This block implements as a discretised delay";
+            [ok,dt,z0,exprs]=scicos_getvalue(["This block implements as a discretized delay";
             "it is consist of a shift register and a clock";
             "value of the delay is given by;"
-            "the discretisation time step multiplied by the";
+            "the discretization time step multiplied by the";
             "number-1 of state of the register"],..
-            ["Discretisation time step";
+            ["Discretization time step";
             "Register initial state"],list("vec",1,"vec",-1),exprs)
             if ~ok then break,end
             mess=[]
@@ -70,7 +70,7 @@ function [x,y,typ]=DELAY_f(job,arg1,arg2)
                 ok=%f
             end
             if dt<=0 then
-                mess=[mess;"Discretisation time step must be positive";" "]
+                mess=[mess;"Discretization time step must be positive";" "]
                 ok=%f
             end
             if ~ok then
@@ -80,7 +80,7 @@ function [x,y,typ]=DELAY_f(job,arg1,arg2)
                 evtdly.graphics.exprs(1)=exprs(1);
                 //      evtdly.model.firing=0; //initial delay firing date
 
-                if evtdly.model.rpar<>dt then //Discretisation time step
+                if evtdly.model.rpar<>dt then //Discretization time step
                     evtdly.model.rpar=dt
                     newpar($+1)=ppath(2) // notify clock changes
                 end
