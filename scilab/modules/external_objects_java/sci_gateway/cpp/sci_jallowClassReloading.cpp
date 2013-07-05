@@ -27,7 +27,8 @@ int sci_jallowClassReloading(char * fname, unsigned long fname_len)
     try
     {
         const int envId = ScilabJavaEnvironment::start();
-        //        return ScilabGateway::setAllowReload(fname, envId, pvApiCtx);
+        JavaOptionsSetter setter = ScilabJavaEnvironment::getInstance().getOptionsHelper().getSetter(JavaOptionsSetter::ALLOWRELOAD);
+        return ScilabGateway::getsetOptions(fname, envId, setter, pvApiCtx);
     }
     catch (std::exception & e)
     {

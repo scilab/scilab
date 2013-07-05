@@ -31,7 +31,6 @@ class EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP JavaOptionsSetter : public ScilabOptio
 public:
 
     static const unsigned int SHOWPRIVATE;
-    static const unsigned int ATTACHMODULE;
 
     JavaOptionsSetter(JavaOptionsHelper & _helper, unsigned int _type);
     ~JavaOptionsSetter() { }

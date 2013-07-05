@@ -28,11 +28,10 @@ namespace org_scilab_modules_external_objects_java
 class JavaOptionsHelper : public OptionsHelper
 {
     bool showPrivate;
-    bool attachModule;
 
 public :
 
-    JavaOptionsHelper () : OptionsHelper(), showPrivate(false), attachModule(false)
+    JavaOptionsHelper () : OptionsHelper(), showPrivate(false)
     {
 
     }
@@ -47,16 +46,6 @@ public :
     bool getShowPrivate() const
     {
         return showPrivate;
-    }
-
-    void setAttachModule(const bool _attachModule)
-    {
-        attachModule = _attachModule;
-    }
-
-    bool getAttachModule() const
-    {
-        return attachModule;
     }
 
     JavaOptionsSetter getSetter(unsigned int type)

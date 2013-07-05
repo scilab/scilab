@@ -18,7 +18,6 @@ using namespace org_modules_external_objects;
 namespace org_scilab_modules_external_objects_java
 {
 const unsigned int JavaOptionsSetter::SHOWPRIVATE = LAST_OPTION_INDEX + 2;
-const unsigned int JavaOptionsSetter::ATTACHMODULE = LAST_OPTION_INDEX + 3;
 
 JavaOptionsSetter::JavaOptionsSetter(JavaOptionsHelper & _helper, unsigned int _type) : ScilabOptionsSetter(_helper, _type) { }
 
@@ -28,9 +27,6 @@ void JavaOptionsSetter::set(const bool state)
     {
         case SHOWPRIVATE:
             reinterpret_cast<JavaOptionsHelper *>(&helper)->setShowPrivate(state);
-            break;
-        case ATTACHMODULE:
-            reinterpret_cast<JavaOptionsHelper *>(&helper)->setAttachModule(state);
             break;
         default:
             ScilabOptionsSetter::set(state);
@@ -43,8 +39,6 @@ bool JavaOptionsSetter::get() const
     {
         case SHOWPRIVATE:
             return reinterpret_cast<JavaOptionsHelper *>(&helper)->getShowPrivate();
-        case ATTACHMODULE:
-            return reinterpret_cast<JavaOptionsHelper *>(&helper)->getAttachModule();
         default:
             return ScilabOptionsSetter::get();
     }
