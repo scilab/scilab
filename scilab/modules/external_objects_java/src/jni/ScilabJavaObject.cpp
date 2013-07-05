@@ -115,6 +115,7 @@ ScilabJavaObject::ScilabJavaObject(JavaVM * jvm_)
 
     /* Methods ID set to NULL */
     jintinvokejintintjstringjava_lang_StringjintArray_intintID = NULL;
+    jintextractjintintjintArray_intintID = NULL;
     voidinitScilabJavaObjectID = NULL;
     voidgarbageCollectID = NULL;
     jstringgetRepresentationjintintID = NULL;
@@ -221,6 +222,7 @@ ScilabJavaObject::ScilabJavaObject(JavaVM * jvm_, jobject JObj)
     }
     /* Methods ID set to NULL */
     jintinvokejintintjstringjava_lang_StringjintArray_intintID = NULL;
+    jintextractjintintjintArray_intintID = NULL;
     voidinitScilabJavaObjectID = NULL;
     voidgarbageCollectID = NULL;
     jstringgetRepresentationjintintID = NULL;
@@ -361,6 +363,45 @@ int ScilabJavaObject::invoke (JavaVM * jvm_, int id, char const* methodName, int
 
     jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintinvokejintintjstringjava_lang_StringjintArray_intintID , id, methodName_, args_));
     curEnv->DeleteLocalRef(methodName_);
+    curEnv->DeleteLocalRef(args_);
+    curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+    return res;
+
+}
+
+int ScilabJavaObject::extract (JavaVM * jvm_, int id, int const* args, int argsSize)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = curEnv->FindClass( className().c_str() );
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    jmethodID jintextractjintintjintArray_intintID = curEnv->GetStaticMethodID(cls, "extract", "(I[I)I" ) ;
+    if (jintextractjintintjintArray_intintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "extract");
+    }
+
+    jintArray args_ = curEnv->NewIntArray( argsSize ) ;
+
+    if (args_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( args_, 0, argsSize, (jint*)(args) ) ;
+
+
+    jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintextractjintintjintArray_intintID , id, args_));
     curEnv->DeleteLocalRef(args_);
     curEnv->DeleteLocalRef(cls);
     if (curEnv->ExceptionCheck())

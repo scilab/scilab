@@ -15,6 +15,7 @@ package org.scilab.modules.external_objects_java;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
@@ -102,10 +103,17 @@ public class ScilabJavaArray {
         Object obj = array;
         for (int i = 0; i < index.length; i++) {
             if (obj != null && obj.getClass().isArray()) {
-                if (index[i] < Array.getLength(obj)) {
+                if (index[i] >= 0 && index[i] < Array.getLength(obj)) {
                     obj = Array.get(obj, index[i]);
                 } else {
                     throw new ScilabJavaException("Problem in retrieving " + i + "-th element: " + index[i] + ">" + (Array.getLength(obj) - 1));
+                }
+            } else if (obj instanceof List) {
+                List list = (List) obj;
+                if (index[i] >= 0 && index[i] < list.size()) {
+                    obj = list.get(index[i]);
+                } else {
+                    throw new ScilabJavaException("Problem in retrieving " + i + "-th element: " + index[i] + ">" + (list.size() - 1));
                 }
             } else {
                 throw new ScilabJavaException("Problem in retrieving " + i + "-th element: it is not an array");
@@ -126,10 +134,17 @@ public class ScilabJavaArray {
         int i = 0;
         for (; i < index.length - 1; i++) {
             if (obj != null && obj.getClass().isArray()) {
-                if (index[i] < Array.getLength(obj)) {
+                if (index[i] >= 0 && index[i] < Array.getLength(obj)) {
                     obj = Array.get(obj, index[i]);
                 } else {
                     throw new ScilabJavaException("Problem in retrieving " + i + "-th element: " + index[i] + ">" + (Array.getLength(obj) - 1));
+                }
+            } else if (obj instanceof List) {
+                List list = (List) obj;
+                if (index[i] >= 0 && index[i] < list.size()) {
+                    obj = list.get(index[i]);
+                } else {
+                    throw new ScilabJavaException("Problem in retrieving " + i + "-th element: " + index[i] + ">" + (list.size() - 1));
                 }
             } else {
                 throw new ScilabJavaException("Problem in retrieving " + i + "-th element: it is not an array");
@@ -137,7 +152,7 @@ public class ScilabJavaArray {
         }
 
         if (obj != null && obj.getClass().isArray()) {
-            if (index[i] < Array.getLength(obj)) {
+            if (index[i] >= 0 && index[i] < Array.getLength(obj)) {
                 try {
                     Array.set(obj, index[i], x);
                 } catch (IllegalArgumentException e) {
@@ -145,6 +160,15 @@ public class ScilabJavaArray {
                 }
             } else {
                 throw new ScilabJavaException("Problem in setting " + index[i] + "-th element: " + index[i] + ">" + (Array.getLength(obj) - 1));
+            }
+        } else if (obj instanceof List) {
+            List list = (List) obj;
+            if (index[i] >= 0 && index[i] < list.size()) {
+                list.set(index[i], x);
+            } else if (index[i] == list.size()) {
+                list.add(x);
+            } else {
+                throw new ScilabJavaException("Problem in retrieving " + i + "-th element: " + index[i] + ">" + (list.size() - 1));
             }
         } else {
             throw new ScilabJavaException("Problem in retrieving " + i + "-th element: it is not an array");

@@ -19,6 +19,11 @@
             <param type="int[]" name="args" />
         </method>
         
+        <method name="extract" returnType="int" modifier="static">
+            <param type="int" name="id" />
+            <param type="int[]" name="args" />
+        </method>
+        
         <method name="initScilabJavaObject" returnType="void" modifier="static" />
         
         <method name="garbageCollect" returnType="void" modifier="static" />

@@ -24,6 +24,7 @@ import java.nio.LongBuffer;
 import java.nio.ShortBuffer;
 import java.nio.ByteOrder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import java.io.IOException;
@@ -530,6 +531,79 @@ public class ScilabJavaObject {
 
             if (arraySJO[id] != null) {
                 return new ScilabJavaObject(arraySJO[id].methods.get(methName).invoke(arraySJO[id].object, returnType, args), returnType[0]).id;
+            }
+            throw new ScilabJavaException("Invalid Java object");
+        } else {
+            throw new ScilabJavaException("null is not an object");
+        }
+    }
+
+    /**
+     * @param id the Java Object id
+     * @param args an array containing the id of the arguments
+     * @return the id of the invocation result
+     */
+    public static int extract(final int id, final int[] args) throws ScilabJavaException {
+        if (id > 0) {
+            if (debug) {
+                StringBuffer buf = new StringBuffer();
+                buf.append("(");
+                if (args.length > 0) {
+                    int i = 0;
+                    for (; i < args.length - 1; i++) {
+                        buf.append(Integer.toString(args[i]));
+                        buf.append(",");
+                    }
+                    buf.append(Integer.toString(args[i]));
+                }
+                buf.append(")");
+                logger.log(Level.INFO, "Extract in object id=" + id + " with arguments id=" + buf.toString());
+            }
+
+            for (int i = 0; i < args.length; i++) {
+                if (args[i] < 0 || arraySJO[args[i]] == null) {
+                    throw new ScilabJavaException("Invalid Java object at position " + i);
+                }
+            }
+
+            if (arraySJO[id] != null) {
+                Object o = arraySJO[id].object;
+                for (int i = 0; i < args.length; i++) {
+                    Object a = args[i] == 0 ? null : arraySJO[args[i]].object;
+                    if (o instanceof Map) {
+                        o = ((Map) o).get(a);
+                    } else if (o instanceof List) {
+                        List l = (List) o;
+                        int pos = -1;
+                        if (a instanceof Double) {
+                            pos = ((Double) a).intValue();
+                        } else if (a instanceof Integer) {
+                            pos = ((Integer) a).intValue();
+                        } else {
+                            pos = l.indexOf(a);
+                        }
+                        if (pos >= 0 || pos < l.size()) {
+                            o = l.get(pos);
+                        } else {
+                            throw new ScilabJavaException("Cannot get object at position " + (i + 1));
+                        }
+                    } else if (o.getClass().isArray()) {
+                        int pos = -1;
+                        if (a instanceof Double) {
+                            pos = ((Double) a).intValue();
+                        } else if (a instanceof Integer) {
+                            pos = ((Integer) a).intValue();
+                        }
+
+                        o = ScilabJavaArray.get(o, new int[] {pos});
+                    }
+                }
+
+                if (o == null) {
+                    return 0;
+                }
+
+                return new ScilabJavaObject(o).id;
             }
             throw new ScilabJavaException("Invalid Java object");
         } else {

@@ -181,41 +181,8 @@ int ScilabJavaEnvironment::extract(int id, int * args, int argsSize)
         writeLog("extract", "Extraction on object %d with arguments: %s.", id, os.str().c_str());
     }
 
-    /*    PyObject * obj = scope.getObject(id);
-        if (!obj)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid object with id %d"), id);
-        }
-
-        if (PyDict_Check(obj))
-        {
-            if (argsSize != 1)
-            {
-                throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot extract more than one element from a dictionary"));
-            }
-
-            PyObject * key = scope.getObject(*args);
-            if (!obj)
-            {
-                throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid key object"));
-            }
-
-            if (!PyDict_Contains(obj, key))
-            {
-                throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid key"));
-            }
-
-            PyObject * value = PyDict_GetItem(obj, key);
-    	Py_INCREF(value);
-
-            int ret = scope.addObject(value);
-            writeLog("extract", "returned id: %d.", ret);
-
-            return ret;
-            }
-    */
-
-    throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot extract from Java object"));
+    JavaVM * vm = getScilabJavaVM();
+    return ScilabJavaObject::extract(vm, id, args, argsSize);
 }
 
 void ScilabJavaEnvironment::insert(int id, int * args, int argsSize)
@@ -622,45 +589,9 @@ int ScilabJavaEnvironment::getfieldtype(int id, const char * fieldName)
 {
     writeLog("getfieldtype", "Get the type of the field %s on object with id %d.", fieldName, id);
 
-    if ((!helper.getShowPrivate() && *fieldName == '_') || *fieldName == '\0')
-    {
-        writeLog("getfieldtype", "Return NONE.");
-        return -1;
-    }
-    /*
-        PyObject * obj = scope.getObject(id);
-        if (!obj)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid object with id %d"), id);
-        }
+    JavaVM * vm = getScilabJavaVM();
 
-        if (!PyObject_HasAttrString(obj, fieldName))
-        {
-            writeLog("getfieldtype", "Return NONE.");
-            return -1;
-        }
-
-        PyObject * field = PyObject_GetAttrString(obj, fieldName);
-        if (!field)
-        {
-            writeLog("getfieldtype", "Return NONE.");
-            return -1;
-        }
-
-        if (PyCallable_Check(field))
-        {
-            Py_DECREF(field);
-            writeLog("getfieldtype", "Return METHOD.");
-            return 0;
-        }
-        else
-        {
-            Py_DECREF(field);
-            writeLog("getfieldtype", "Return FIELD.");
-            return 1;
-        }
-    */
-    return 0;
+    return ScilabJavaObject::getFieldType(vm, id, fieldName);
 }
 
 int ScilabJavaEnvironment::getarrayelement(int id, int * index, int length)
