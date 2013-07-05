@@ -14,6 +14,7 @@ package org.scilab.modules.external_objects_java;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
@@ -26,7 +27,6 @@ import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -410,30 +410,28 @@ public class ScilabJavaObject {
                 }
 
                 f = arraySJO[id].clazz.getField(fieldName);
-                f.set(arraySJO[id].object, arraySJO[idarg].object);
-            } catch (NoSuchFieldException e) {
-                if (!fieldName.isEmpty()) {
+                if (Modifier.isPublic(f.getModifiers())) {
+                	try {
+	                    f.set(arraySJO[id].object, arraySJO[idarg].object);
+                	} catch (IllegalArgumentException e) {
+                		if (f != null && f.getType() == int.class && arraySJO[idarg].clazz == double.class
+                                && ((Double) arraySJO[idarg].object).intValue() == ((Double) arraySJO[idarg].object).doubleValue()) {
+                			f.set(arraySJO[id].object, ((Double) arraySJO[idarg].object).intValue());
+                		} else {
+                			throw e;
+                		}
+                	}
+                } else {
                     String setter = "set" + Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
                     if (arraySJO[id].methods.containsKey(setter)) {
                         arraySJO[id].methods.get(setter).invoke(arraySJO[id].object, returnType, new int[] {idarg});
-                        return;
+                    } else {
+                        throw new ScilabJavaException("No method " + setter + " in object " + getClassName(id));
                     }
                 }
-
+            } catch (NoSuchFieldException e) {
                 throw new ScilabJavaException("No field " + fieldName + " in object " + getClassName(id));
             } catch (IllegalArgumentException e) {
-                if (f != null && f.getType() == int.class && arraySJO[idarg].clazz == double.class
-                        && ((Double) arraySJO[idarg].object).intValue() == ((Double) arraySJO[idarg].object).doubleValue()) {
-                    try {
-                        f.set(arraySJO[id].object, ((Double) arraySJO[idarg].object).intValue());
-                        return;
-                    } catch (IllegalArgumentException ee) {
-                        throw new ScilabJavaException("Bad argument value for field " + fieldName + " in object " + getClassName(id));
-                    } catch (IllegalAccessException ee) {
-                        throw new ScilabJavaException("Cannot access to the field " + fieldName + " in object " + getClassName(id));
-                    }
-                }
-
                 throw new ScilabJavaException("Bad argument value for field " + fieldName + " in object " + getClassName(id));
             } catch (IllegalAccessException e) {
                 throw new ScilabJavaException("Cannot access to the field " + fieldName + " in object " + getClassName(id));
@@ -464,34 +462,41 @@ public class ScilabJavaObject {
                 }
 
                 final Field f = arraySJO[id].clazz.getField(fieldName);
-                final Class cl = f.getType();
-                if (cl == int.class) {
-                    return new ScilabJavaObject(f.getInt(arraySJO[id].object), int.class).id;
-                } else if (cl == double.class) {
-                    return new ScilabJavaObject(f.getDouble(arraySJO[id].object), double.class).id;
-                } else if (cl == boolean.class) {
-                    return new ScilabJavaObject(f.getBoolean(arraySJO[id].object), boolean.class).id;
-                } else if (cl == short.class) {
-                    return new ScilabJavaObject(f.getShort(arraySJO[id].object), short.class).id;
-                } else if (cl == char.class) {
-                    return new ScilabJavaObject(f.getChar(arraySJO[id].object), char.class).id;
-                } else if (cl == float.class) {
-                    return new ScilabJavaObject(f.getFloat(arraySJO[id].object), float.class).id;
-                } else if (cl == byte.class) {
-                    return new ScilabJavaObject(f.getByte(arraySJO[id].object), byte.class).id;
-                } else if (cl == long.class) {
-                    return new ScilabJavaObject(f.getLong(arraySJO[id].object), long.class).id;
-                }
+                if (Modifier.isPublic(f.getModifiers())) {
+                    final Class cl = f.getType();
+                    if (cl == int.class) {
+                        return new ScilabJavaObject(f.getInt(arraySJO[id].object), int.class).id;
+                    } else if (cl == double.class) {
+                        return new ScilabJavaObject(f.getDouble(arraySJO[id].object), double.class).id;
+                    } else if (cl == boolean.class) {
+                        return new ScilabJavaObject(f.getBoolean(arraySJO[id].object), boolean.class).id;
+                    } else if (cl == short.class) {
+                        return new ScilabJavaObject(f.getShort(arraySJO[id].object), short.class).id;
+                    } else if (cl == char.class) {
+                        return new ScilabJavaObject(f.getChar(arraySJO[id].object), char.class).id;
+                    } else if (cl == float.class) {
+                        return new ScilabJavaObject(f.getFloat(arraySJO[id].object), float.class).id;
+                    } else if (cl == byte.class) {
+                        return new ScilabJavaObject(f.getByte(arraySJO[id].object), byte.class).id;
+                    } else if (cl == long.class) {
+                        return new ScilabJavaObject(f.getLong(arraySJO[id].object), long.class).id;
+                    }
 
-                return new ScilabJavaObject(f.get(arraySJO[id].object)).id;
-            } catch (NoSuchFieldException e) {
-                if (!fieldName.isEmpty()) {
-                    String getter = "get" + Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
+                    return new ScilabJavaObject(f.get(arraySJO[id].object)).id;
+                } else {
+                    final String fieldStr = Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
+                    final String getter = "get" + fieldStr;
+                    final String iser = "is" + fieldStr;
+
                     if (arraySJO[id].methods.containsKey(getter)) {
                         return new ScilabJavaObject(arraySJO[id].methods.get(getter).invoke(arraySJO[id].object, returnType, new int[] {}), returnType[0]).id;
+                    } else if (Boolean.class.equals(f.getClass()) && arraySJO[id].methods.containsKey(iser)) {
+                        return new ScilabJavaObject(arraySJO[id].methods.get(iser).invoke(arraySJO[id].object, returnType, new int[] {}), returnType[0]).id;
+                    } else {
+                        throw new ScilabJavaException("No method " + getter + " in object " + getClassName(id));
                     }
                 }
-
+            } catch (NoSuchFieldException e) {
                 throw new ScilabJavaException("No field " + fieldName + " in object " + getClassName(id));
             } catch (IllegalArgumentException e) {
                 throw new ScilabJavaException("Bad argument value for field " + fieldName + " in object " + getClassName(id));
@@ -529,15 +534,21 @@ public class ScilabJavaObject {
                     }
                 }
 
-                arraySJO[id].clazz.getField(fieldName);
-                return 1;
-            } catch (NoSuchFieldException e) {
-                if (!fieldName.isEmpty()) {
-                    String part = Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
-                    if (arraySJO[id].methods.containsKey("set" + part) && arraySJO[id].methods.containsKey("get" + part)) {
+                Field f = arraySJO[id].clazz.getField(fieldName);
+                if (Modifier.isPublic(f.getModifiers())) {
+                    return 1;
+                } else {
+                    final String fieldStr = Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
+                    final String getter = "get" + fieldStr;
+                    final String iser = "is" + fieldStr;
+                    final String setter = "set" + fieldStr;
+                    if (arraySJO[id].methods.containsKey(setter) && (arraySJO[id].methods.containsKey(getter) || Boolean.class.equals(f.getClass()) && arraySJO[id].methods.containsKey(iser))) {
                         return 1;
+                    } else {
+                        return -1;
                     }
                 }
+            } catch (NoSuchFieldException e) {
                 return -1;
             } catch (IllegalArgumentException e) {
                 return -1;
