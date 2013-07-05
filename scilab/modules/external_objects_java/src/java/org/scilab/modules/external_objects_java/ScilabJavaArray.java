@@ -25,7 +25,7 @@ import java.util.logging.Level;
  * @author Calixte DENIZET
  */
 @SuppressWarnings("serial")
-public class ScilabJavaArray {
+public final class ScilabJavaArray {
 
     private static final Map<Class, Class> mappings = new HashMap<Class, Class>();
     private static final Map<Class, Method> mappingsMethods = new HashMap<Class, Method>();
@@ -241,6 +241,126 @@ public class ScilabJavaArray {
         } catch (Exception e) { }
 
         return ret;
+    }
+
+    /**
+     * Convert a list to an array of primitive type
+     * @return an array
+     */
+    public static double[] toArray(List<Double> l) {
+        double[] arr = new double[l.size()];
+        int i = 0;
+        for (Double d : l) {
+            arr[i++] = d;
+        }
+
+        return arr;
+    }
+
+    /**
+     * Convert a list to an array of primitive type
+     * @return an array
+     */
+    public static float[] toArray(List<Float> l) {
+        float[] arr = new float[l.size()];
+        int i = 0;
+        for (Float f : l) {
+            arr[i++] = f;
+        }
+
+        return arr;
+    }
+
+    /**
+     * Convert a list to an array of primitive type
+     * @return an array
+     */
+    public static byte[] toArray(List<Byte> l) {
+        byte[] arr = new byte[l.size()];
+        int i = 0;
+        for (Byte b : l) {
+            arr[i++] = b;
+        }
+
+        return arr;
+    }
+
+    /**
+     * Convert a list to an array of primitive type
+     * @return an array
+     */
+    public static short[] toArray(List<Short> l) {
+        short[] arr = new short[l.size()];
+        int i = 0;
+        for (Short s : l) {
+            arr[i++] = s;
+        }
+
+        return arr;
+    }
+
+    /**
+     * Convert a list to an array of primitive type
+     * @return an array
+     */
+    public static int[] toArray(List<Integer> l) {
+        int[] arr = new int[l.size()];
+        int i = 0;
+        for (Integer in : l) {
+            arr[i++] = in;
+        }
+
+        return arr;
+    }
+
+    /**
+     * Convert a list to an array of primitive type
+     * @return an array
+     */
+    public static long[] toArray(List<Long> l) {
+        long[] arr = new long[l.size()];
+        int i = 0;
+        for (Long lo : l) {
+            arr[i++] = lo;
+        }
+
+        return arr;
+    }
+
+    /**
+     * Convert a list to an array of primitive type
+     * @return an array
+     */
+    public static String[] toArray(List<String> l) {
+        return l.toArray(new String[l.size()]);
+    }
+
+    /**
+     * Convert a list to an array of primitive type
+     * @return an array
+     */
+    public static boolean[] toArray(List<Boolean> l) {
+        boolean[] arr = new boolean[l.size()];
+        int i = 0;
+        for (Boolean b : l) {
+            arr[i++] = b;
+        }
+
+        return arr;
+    }
+
+    /**
+     * Convert a list to an array of primitive type
+     * @return an array
+     */
+    public static char[] toArray(List<Character> l) {
+        char[] arr = new char[l.size()];
+        int i = 0;
+        for (Character c : l) {
+            arr[i++] = c;
+        }
+
+        return arr;
     }
 
     /**

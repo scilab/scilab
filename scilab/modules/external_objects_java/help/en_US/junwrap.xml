@@ -54,10 +54,20 @@
                s = String.new("Hello JIMS !!");
                s1 = s.toUpperCase();
                s2 = s.toLowerCase()
-               typeof(s1), typeof(s2)
-               typeof(jwrap(s1))
-               typeof(jwrap(s2))
-               jremove s s1 s2
+               [S1 S2] = junwrap(s1, s2)
+               typeof(S1), typeof(S2)
+
+               jremove String s s1 s2
+      ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+               jautoUnwrap(%f)
+               jimport java.io.File;
+
+               f = File.new(SCI);
+               jfiles = f.list(), // a java object due to a disabled autoUnwrap
+               files = junwrap(jfiles); // the corresponding scilab vector
+               
+               jremove File f jfiles
       ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -68,6 +78,9 @@
             </member>
             <member>
                 <link linkend="jwrap">jwrap</link>
+            </member>
+            <member>
+                <link linkend="jautoUnwrap">jautoUnwrap</link>
             </member>
         </simplelist>
     </refsection>
