@@ -41,6 +41,7 @@ static gw_generic_table Tab[] =
     {sci_jsetfield, "jsetfield"},
     {sci_jautoUnwrap, "jautoUnwrap"},
     {sci_jautoTranspose, "jautoTranspose"},
+    {sci_jinvoke, "jinvoke"}
 };
 
 /*--------------------------------------------------------------------------*/

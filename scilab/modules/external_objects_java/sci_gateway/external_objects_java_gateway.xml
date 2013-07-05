@@ -51,4 +51,5 @@
     <PRIMITIVE gatewayId="72" primitiveId="20" primitiveName="jsetfield" />
     <PRIMITIVE gatewayId="72" primitiveId="21" primitiveName="jautoUnwrap" />
     <PRIMITIVE gatewayId="72" primitiveId="22" primitiveName="jautoTranspose" />
+    <PRIMITIVE gatewayId="72" primitiveId="23" primitiveName="jinvoke" />
 </GATEWAY>

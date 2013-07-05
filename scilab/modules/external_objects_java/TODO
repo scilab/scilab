@@ -10,3 +10,8 @@ jwrapinchar
 new
 
 In the help pages, add the matching types <=> java
+update of the examples to match the current behavior
+
+Add ecj into the thirdparty
+
+Check example of jinvoke
