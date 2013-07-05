@@ -7,4 +7,4 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("Java from Scilab",SCI+"/modules/external_objects_java/help/en_US",%T);
+add_help_chapter("Java from Scilab",SCI+"/modules/external_objects_java/help/ru_RU",%T);

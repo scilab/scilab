@@ -7,10 +7,6 @@ junwraprem
 junwrap
 jvoid
 jwrapinchar
-jwrapinfloat
-jwrap
 new
 
 In the help pages, add the matching types <=> java
-
-what is long / float / char wrap  ? 

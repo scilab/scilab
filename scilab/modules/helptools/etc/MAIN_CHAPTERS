@@ -63,9 +63,10 @@ parallel
 modules_manager
 localization
 action_binding
-jvm
 api_scilab
 call_scilab
+jvm
+external_objects_java
 javasci
 intersci
 graph

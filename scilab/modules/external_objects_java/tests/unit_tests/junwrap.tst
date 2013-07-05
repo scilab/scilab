@@ -5,9 +5,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-
+jautoUnwrap(%f);
 myString=jwrap("foo");
 assert_checkequal(jgetclassname(myString),"java.lang.String");
+assert_checkequal("foo",junwrap(myString));
 
 a=jwrap(2);
 assert_checkequal(typeof(a),"_EObj");
@@ -23,7 +24,7 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal(int32([1,2,3,4]), t.returnArrayInt());
+assert_checkequal(int32([1,2,3,4]), junwrap(t.returnArrayInt()));
 
 c = jcompile("Test", ["public class Test {";
     "public int returnInt() {";
@@ -32,7 +33,7 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal(int32(32), t.returnInt());
+assert_checkequal(int32(32), junwrap(t.returnInt()));
 
 //////////////////////////////////////////////
 
@@ -43,7 +44,7 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal([1,2,3,4], t.returnDouble());
+assert_checkequal([1,2,3,4], junwrap(t.returnDouble()));
 
 c = jcompile("Test", ["public class Test {";
     "public double returnDouble() {";
@@ -52,7 +53,7 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal(32, t.returnDouble());
+assert_checkequal(32, junwrap(t.returnDouble()));
 
 //////////////////////////////////////////////
 
@@ -63,7 +64,7 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal(int8([1,2,3,4]), t.returnByte());
+assert_checkequal(int8([1,2,3,4]), junwrap(t.returnByte()));
 
 c = jcompile("Test", ["public class Test {";
     "public byte returnByte() {";
@@ -72,7 +73,7 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal(int8(32), t.returnByte());
+assert_checkequal(int8(32), junwrap(t.returnByte()));
 
 //////////////////////////////////////////////
 
@@ -83,7 +84,7 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal(int16([1,2,3,4]), t.returnShort());
+assert_checkequal(int16([1,2,3,4]), junwrap(t.returnShort()));
 
 c = jcompile("Test", ["public class Test {";
     "public short returnShort() {";
@@ -92,7 +93,7 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal(int16(32), t.returnShort());
+assert_checkequal(int16(32), junwrap(t.returnShort()));
 
 
 //////////////////////////////////////////////
@@ -104,7 +105,7 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal(int32([1,2,3,4]), t.returnLong());
+assert_checkequal(int32([1,2,3,4]), junwrap(t.returnLong()));
 
 c = jcompile("Test", ["public class Test {";
     "public long returnLong() {";
@@ -113,7 +114,7 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal(int32(32), t.returnLong());
+assert_checkequal(int32(32), junwrap(t.returnLong()));
 
 //////////////////////////////////////////////
 
@@ -124,7 +125,7 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal([1,2,3,4], t.returnFloat());
+assert_checkequal([1,2,3,4], junwrap(t.returnFloat()));
 
 c = jcompile("Test", ["public class Test {";
     "public float returnFloat() {";
@@ -133,7 +134,7 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal(32, t.returnFloat());
+assert_checkequal(32, junwrap(t.returnFloat()));
 
 
 //////////////////////////////////////////////
@@ -167,7 +168,7 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal([%t,%t,%f,%f], t.returnBoolean());
+assert_checkequal([%t,%t,%f,%f], junwrap(t.returnBoolean()));
 
 c = jcompile("Test", ["public class Test {";
     "public boolean returnBoolean() {";
@@ -176,5 +177,6 @@ c = jcompile("Test", ["public class Test {";
     "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal(%t, t.returnBoolean());
+assert_checkequal(%t, junwrap(t.returnBoolean()));
 
+jautoUnwrap(%t);

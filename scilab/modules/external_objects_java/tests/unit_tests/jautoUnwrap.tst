@@ -7,8 +7,9 @@
 
 jautoUnwrap(%t)
 assert_checktrue(jautoUnwrap());
-jautoUnwrap(%f)
+jautoUnwrap(%f);
 assert_checkfalse(jautoUnwrap());
+jautoUnwrap(%t); // Plug back the normal behavior
 
 c = jcompile("Test", ["public class Test {";"public static double foo(double d) { return d; }";"}"]);
 jautoUnwrap(%f);
