@@ -9,8 +9,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 // =============================================================================
 
-// Run with test_run('differential_equations', 'daskr', ['no_check_error_output']);
-
 //C-----------------------------------------------------------------------
 //C First problem.
 //C The initial value problem is..
@@ -50,15 +48,6 @@ if abs(nn(1)-2.53)>0.001 then pause,end
 
 // Same problem, but using macros for the preconditioner evaluation and application functions 'pjac' and 'psol'
 // pjac uses the macro res1 defined above.
-function [r, ier] = psol(wp, iwp, b)
-    ier = 0;
-    //Compute the LU factorization of R.
-    sp = sparse(iwp, wp);
-    [h, rk] = lufact(sp);
-    //Solve the system LU*X = b
-    r = lusolve(h, b);
-    ludel(h);
-endfunction
 function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
     ires = 0;
     SQuround = 1.490D-08;
@@ -75,17 +64,33 @@ function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
         y(i) = y(i) + del;
         ydot(i) = ydot(i) + cj*del;
         [e ires]=res1(tx, y, ydot);
-        if ires < 0 then return; end
+        if ires < 0 then
+            ires = -1;
+            return;
+        end
         delinv = 1/del;
         for j=1:neq
             wp(nrow+j) = delinv*(e(j)-savr(j));
-            iwp(nrow+j,1) = i;
-            iwp(nrow+j,2) = j;
+            if isnan(wp(nrow+j)) then
+                ires = -1;
+                return;
+            end
+            iwp(nrow+j, 1) = i;
+            iwp(nrow+j, 2) = j;
         end
         nrow = nrow + neq;
         y(i) = ysave;
         ydot(i) = ypsave;
     end
+endfunction
+function [r, ier] = psol(wp, iwp, b)
+    ier = 0;
+    //Compute the LU factorization of R.
+    sp = sparse(iwp, wp);
+    [h, rk] = lufact(sp);
+    //Solve the system LU*X = b
+    r = lusolve(h, b);
+    ludel(h);
 endfunction
 
 y0=1;t=2:6;t0=1;y0d=3;
