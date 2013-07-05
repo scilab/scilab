@@ -53,7 +53,8 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-               jconvMatrixMethod();
+               jconvMatrixMethod()
+               jconvMatrixMethod("cr")
       ]]></programlisting>
     </refsection>
 </refentry>

@@ -53,7 +53,7 @@
 	       d = Double.new("1.23456");
 	       jexists(d)
 	       jremove d;
-	       jexists(d)
+	       jexists(d) // Will fail
       ]]></programlisting>
     </refsection>
     <refsection role="see also">

@@ -41,12 +41,16 @@
             If autoUnwrap is true, all the values returned by a method invocation are unwrapped if it is possible.
         </para>
         <para>
-            By default, autoUnwrap is false.
+          This strongly simplifies the usage of the Java / Scilab conversions.
+        </para>
+        <para>
+            By default, autoUnwrap is true.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
+               jautoUnwrap(%f);
                jautoUnwrap()
                jautoUnwrap(%t);
       ]]></programlisting>

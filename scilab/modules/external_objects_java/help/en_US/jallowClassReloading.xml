@@ -55,6 +55,7 @@
         <programlisting role="example"><![CDATA[
                jallowClassReloading(%t);
                jallowClassReloading()
+               jallowClassReloading(%f);
       ]]></programlisting>
     </refsection>
     <refsection role="see also">

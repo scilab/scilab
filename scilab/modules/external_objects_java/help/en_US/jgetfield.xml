@@ -68,7 +68,7 @@
                v = jgetfield(t, "field")
 
                // or more easier
-               junwraprem(t.field)
+               t.field
 
                jremove c t v;
       ]]></programlisting>

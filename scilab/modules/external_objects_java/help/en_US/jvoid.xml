@@ -26,9 +26,10 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-	       jimport java.lang.String;
-	       
-	       s = String.new(jvoid);
+        jimport java.lang.String;
+
+        s = String.new(jvoid);
+        jgetclassname(s)
       ]]></programlisting>
     </refsection>
 </refentry>

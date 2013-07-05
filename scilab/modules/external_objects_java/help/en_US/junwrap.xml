@@ -54,9 +54,9 @@
                s = String.new("Hello JIMS !!");
                s1 = s.toUpperCase();
                s2 = s.toLowerCase()
-               [S1 S2] = junwrap(s1, s2)
-               typeof(S1), typeof(S2)
-
+               typeof(s1), typeof(s2)
+               typeof(jwrap(s1))
+               typeof(jwrap(s2))
                jremove s s1 s2
       ]]></programlisting>
     </refsection>

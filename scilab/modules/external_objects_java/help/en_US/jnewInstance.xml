@@ -55,6 +55,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
+               jautoUnwrap(%f)
                jimport java.util.Date;
                jimport java.lang.System;
 
@@ -64,6 +65,7 @@
                d = s.toString()
 
                jremove Date System t s str;
+               jautoUnwrap(%t)
       ]]></programlisting>
     </refsection>
     <refsection role="see also">

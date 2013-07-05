@@ -65,13 +65,13 @@
                                      "}";
                                      "}";]);
                t = c.new(128);
-               junwrap(t.field)
+               t.field
                jsetfield(t, "field", 256);
-               junwrap(t.field)
+               t.field
 
                // But it is easier to use...
                t.field = 512;
-               junwrap(t.field)
+               t.field
                jremove c t;
       ]]></programlisting>
         <programlisting role="example"><![CDATA[

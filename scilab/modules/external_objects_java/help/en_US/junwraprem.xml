@@ -49,6 +49,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
+               jautoUnwrap(%f);
                jimport java.lang.String;
 
                s = String.new("Hello JIMS !!");
@@ -57,6 +58,7 @@
                [S1 S2] = junwraprem(s1, s2)
 
                jremove s
+               jautoUnwrap(%t);
       ]]></programlisting>
     </refsection>
     <refsection role="see also">
