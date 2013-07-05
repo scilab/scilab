@@ -17,6 +17,10 @@ function s = csgn(z)
     if rhs <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"csgn", 1));
     end
+    
+    if and(typeof(z) <> ["constant" "sparse" "hypermat"]) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix or hypermatrix expected.\n"), "csgn", 1));
+    end
 
     s = -ones(z);
     s(real(z)>0|(real(z)==0&imag(z)>0))=1

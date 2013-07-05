@@ -14,10 +14,11 @@ function y = cotd(x)
     if rhs <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"cotd", 1));
     end
-
-    if ~isreal(x) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"cotd",1));
+    
+    if type(x) <> 1 | ~isreal(x) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "cotd", 1));
     end
+
     y = ones(x)./tand(x);
 endfunction
 

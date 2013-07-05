@@ -299,6 +299,8 @@ Bug fixes
 
 * Bug #9109 fixed - nfreq tagged as obsolete.
 
+* Bug #9385 fixed - The type checking in trigonometric functions has been added.
+
 * Bug #9459 fixed - Default values of the optional plot3d arguments were not documented.
 
 * Bug #9601 fixed - Cylinder demo failed with a bad value.
