@@ -648,6 +648,8 @@ public class ScilabJavaObject {
                         }
 
                         o = ScilabJavaArray.get(o, new int[] {pos});
+                    } else {
+                        throw new ScilabJavaException("Invalid field " + (a == null ? "null" : a.toString()));
                     }
                 }
 

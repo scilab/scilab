@@ -12,6 +12,7 @@
 
 package org.scilab.modules.external_objects_java;
 
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,8 @@ import java.util.Map;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.InvocationTargetException;
+
+import javax.swing.SwingUtilities;
 
 /**
  * A method wrapper
@@ -70,17 +73,54 @@ public class ScilabJavaMethod {
      * @param argsClass the Class of the arguments
      * @return the resulting object
      */
-    protected Object call(Object obj, Class[] returnType, Object[] args, Class[] argsClass) throws ScilabJavaException {
+    protected Object call(final Object obj, final Class[] returnType, final Object[] args, final Class[] argsClass) throws ScilabJavaException {
         try {
-            Method meth = FunctionArguments.findMethod(name, clazz.getMethods(), argsClass, args);
-            Object ret;
+            final Method meth = FunctionArguments.findMethod(name, clazz.getMethods(), argsClass, args);
+            final Class returned = meth.getReturnType();
+            Object ret = null;
+
             if (Modifier.isStatic(meth.getModifiers())) {
                 ret = meth.invoke(null, args);
             } else {
-                ret = meth.invoke(obj, args);
+                if (Component.class.isAssignableFrom(obj.getClass())) {
+                    if (returned == Void.TYPE) {
+                        if (SwingUtilities.isEventDispatchThread()) {
+                            ret = meth.invoke(obj, args);
+                        } else {
+                            SwingUtilities.invokeLater(new Runnable() {
+
+                                public void run() {
+                                    try {
+                                        meth.invoke(obj, args);
+                                    } catch (Exception e) {
+                                        System.err.println(e);
+                                    }
+                                }
+                            });
+                        }
+                    } else {
+                        if (SwingUtilities.isEventDispatchThread()) {
+                            ret = meth.invoke(obj, args);
+                        } else {
+                            final Object[] ref = new Object[1];
+                            SwingUtilities.invokeAndWait(new Runnable() {
+                                public void run() {
+                                    try {
+                                        ref[0] = meth.invoke(obj, args);
+                                    } catch (Exception e) {
+                                        System.err.println(e);
+                                    }
+                                }
+                            });
+
+                            ret = ref[0];
+                        }
+                    }
+                } else {
+                    ret = meth.invoke(obj, args);
+                }
             }
 
-            Class returned = meth.getReturnType();
             returnType[0] = ret != null ? ret.getClass() : returned;
 
             if (returned == double.class || returned == int.class ||
@@ -104,6 +144,8 @@ public class ScilabJavaMethod {
             throw new ScilabJavaException("No method " + name + " in the class " + clazz.getName() + " or bad arguments type.");
         } catch (FunctionArguments.TooManyMethodsException e) {
             throw new ScilabJavaException("Too many possible methods named " + name + " in the class " + clazz.getName() + ".");
+        } catch (InterruptedException e) {
+            throw new ScilabJavaException("EDT has been interrupted...");
         }
     }
 

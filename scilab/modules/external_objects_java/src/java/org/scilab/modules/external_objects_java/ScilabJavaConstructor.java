@@ -12,10 +12,14 @@
 
 package org.scilab.modules.external_objects_java;
 
+import java.awt.Component;
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+
+import javax.swing.SwingUtilities;
 
 /**
  * A constructor wrapper
@@ -39,10 +43,10 @@ public class ScilabJavaConstructor {
      * @param args the ids of arguments
      * @return the resulting object
      */
-    public Object invoke(int[] args) throws ScilabJavaException {
-        int nbargs = args.length;
-        Class[] cls = new Class[nbargs];
-        Object[] argsO = new Object[nbargs];
+    public Object invoke(final int[] args) throws ScilabJavaException {
+        final int nbargs = args.length;
+        final Class[] cls = new Class[nbargs];
+        final Object[] argsO = new Object[nbargs];
 
         for (int i = 0; i < nbargs; i++) {
             argsO[i] = ScilabJavaObject.arraySJO[args[i]].object;
@@ -50,7 +54,28 @@ public class ScilabJavaConstructor {
         }
 
         try {
-            return FunctionArguments.findConstructor(clazz.getConstructors(), cls, argsO).newInstance(argsO);
+            final Constructor constructor = FunctionArguments.findConstructor(clazz.getConstructors(), cls, argsO);
+            if (Component.class.isAssignableFrom(clazz)) {
+                if (SwingUtilities.isEventDispatchThread()) {
+                    return constructor.newInstance(argsO);
+                } else {
+                    final Object[] ref = new Object[1];
+                    SwingUtilities.invokeAndWait(new Runnable() {
+
+                        public void run() {
+                            try {
+                                ref[0] = constructor.newInstance(argsO);
+                            } catch (Exception e) {
+                                System.err.println(e);
+                            }
+                        }
+                    });
+
+                    return ref[0];
+                }
+            }
+
+            return constructor.newInstance(argsO);
         } catch (IllegalAccessException e) {
             throw new ScilabJavaException("Illegal access to the constructor of class " + clazz.getName() + ".");
         } catch (IllegalArgumentException e) {
@@ -65,6 +90,8 @@ public class ScilabJavaConstructor {
             throw new ScilabJavaException("No such constructor in the class " + clazz.getName() + ".");
         } catch (FunctionArguments.TooManyMethodsException e) {
             throw new ScilabJavaException("Too many possible constructors in the class " + clazz.getName() + ".");
+        } catch (InterruptedException e) {
+            throw new ScilabJavaException("EDT has been interrupted...");
         }
     }
 }
