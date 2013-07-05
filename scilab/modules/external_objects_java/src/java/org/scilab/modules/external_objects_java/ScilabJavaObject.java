@@ -393,6 +393,14 @@ public class ScilabJavaObject {
                 f = arraySJO[id].clazz.getField(fieldName);
                 f.set(arraySJO[id].object, arraySJO[idarg].object);
             } catch (NoSuchFieldException e) {
+                if (!fieldName.isEmpty()) {
+                    String setter = "set" + Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
+                    if (arraySJO[id].methods.containsKey(setter)) {
+                        arraySJO[id].methods.get(setter).invoke(arraySJO[id].object, returnType, new int[] {idarg});
+                        return;
+                    }
+                }
+
                 throw new ScilabJavaException("No field " + fieldName + " in object " + getClassName(id));
             } catch (IllegalArgumentException e) {
                 if (f != null && f.getType() == int.class && arraySJO[idarg].clazz == double.class
@@ -458,6 +466,13 @@ public class ScilabJavaObject {
 
                 return new ScilabJavaObject(f.get(arraySJO[id].object)).id;
             } catch (NoSuchFieldException e) {
+                if (!fieldName.isEmpty()) {
+                    String getter = "get" + Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
+                    if (arraySJO[id].methods.containsKey(getter)) {
+                        return new ScilabJavaObject(arraySJO[id].methods.get(getter).invoke(arraySJO[id].object, returnType, new int[] {}), returnType[0]).id;
+                    }
+                }
+
                 throw new ScilabJavaException("No field " + fieldName + " in object " + getClassName(id));
             } catch (IllegalArgumentException e) {
                 throw new ScilabJavaException("Bad argument value for field " + fieldName + " in object " + getClassName(id));
@@ -494,9 +509,16 @@ public class ScilabJavaObject {
                         return -1;
                     }
                 }
+
                 arraySJO[id].clazz.getField(fieldName);
                 return 1;
             } catch (NoSuchFieldException e) {
+                if (!fieldName.isEmpty()) {
+                    String part = Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
+                    if (arraySJO[id].methods.containsKey("set" + part) && arraySJO[id].methods.containsKey("get" + part)) {
+                        return 1;
+                    }
+                }
                 return -1;
             } catch (IllegalArgumentException e) {
                 return -1;

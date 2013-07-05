@@ -51,6 +51,9 @@
         <para>
             Get the value of the field named fieldName. If the optional third argument is true, then the value is automatically unwrapped.
         </para>
+        <para>
+            This function also works with beans properties which may not be mapped to a public java field.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -68,6 +71,15 @@
                junwraprem(t.field)
 
                jremove c t v;
+      ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+jimport java.util.Date;
+
+d = Date.new();
+d.minutes, // will call d.getMinutes()
+jgetfield(d, "minutes"), // will also call d.getMinutes()
+
+jremove Date d;
       ]]></programlisting>
     </refsection>
     <refsection role="see also">

@@ -51,6 +51,9 @@
         <para>
             Set the field named fieldName to the given value.
         </para>
+        <para>
+            This function also works with beans properties which may not be mapped to a public java field.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -70,6 +73,15 @@
                t.field = 512;
                junwrap(t.field)
                jremove c t;
+      ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+jimport java.util.Date;
+
+d = Date.new();
+d.minutes = 3; // will call d.setMinutes(3);
+jsetfield(d, "minutes", 3); // will call d.setMinutes(3);
+
+jremove Date d;
       ]]></programlisting>
     </refsection>
     <refsection role="see also">
