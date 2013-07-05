@@ -44,11 +44,10 @@
     <PRIMITIVE gatewayId="72" primitiveId="13" primitiveName="jenableTrace" />
     <PRIMITIVE gatewayId="72" primitiveId="14" primitiveName="jdisableTrace" />
     <PRIMITIVE gatewayId="72" primitiveId="15" primitiveName="jdeff" />
-    <PRIMITIVE gatewayId="72" primitiveId="16" primitiveName="jvoid" />
-    <PRIMITIVE gatewayId="72" primitiveId="17" primitiveName="jarray" />
-    <PRIMITIVE gatewayId="72" primitiveId="18" primitiveName="jcast" />
-    <PRIMITIVE gatewayId="72" primitiveId="19" primitiveName="jallowClassReloading" />
-    <PRIMITIVE gatewayId="72" primitiveId="20" primitiveName="jwrapinfloat" />
-    <PRIMITIVE gatewayId="72" primitiveId="21" primitiveName="jsetfield" />
-    <PRIMITIVE gatewayId="72" primitiveId="22" primitiveName="jautoUnwrap" />
+    <PRIMITIVE gatewayId="72" primitiveId="16" primitiveName="jarray" />
+    <PRIMITIVE gatewayId="72" primitiveId="17" primitiveName="jcast" />
+    <PRIMITIVE gatewayId="72" primitiveId="18" primitiveName="jallowClassReloading" />
+    <PRIMITIVE gatewayId="72" primitiveId="19" primitiveName="jwrapinfloat" />
+    <PRIMITIVE gatewayId="72" primitiveId="20" primitiveName="jsetfield" />
+    <PRIMITIVE gatewayId="72" primitiveId="21" primitiveName="jautoUnwrap" />
 </GATEWAY>

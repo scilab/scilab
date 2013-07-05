@@ -30,6 +30,7 @@ int ScilabGateway::invoke_lu(char * fname, const int envId, void * pvApiCtx)
     int * eId;
     int row, col;
     int * ret = 0;
+    int nbArgs = 0;
 
     CheckInputArgument(pvApiCtx, 4, 4);
 
@@ -152,6 +153,7 @@ int ScilabGateway::invoke_lu(char * fname, const int envId, void * pvApiCtx)
     *tmpvar = 0;
 
     args = new int[len];
+    nbArgs = len;
 
     for (int i = 0; i < len; i++)
     {
@@ -174,6 +176,11 @@ int ScilabGateway::invoke_lu(char * fname, const int envId, void * pvApiCtx)
             delete[] tmpvar;
             throw;
         }
+
+        if (args[i] == VOID_OBJECT)
+        {
+            nbArgs = 0;
+        }
     }
 
     try
@@ -190,7 +197,7 @@ int ScilabGateway::invoke_lu(char * fname, const int envId, void * pvApiCtx)
 
     try
     {
-        ret = env.invoke(idObj, methName, args, len);
+        ret = env.invoke(idObj, methName, args, nbArgs);
     }
     catch (std::exception & e)
     {

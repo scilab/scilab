@@ -22,6 +22,7 @@ int ScilabGateway::invoke(char * fname, const int envId, ScilabAbstractInvoker &
     int * addr = 0;
     int * args = 0;
     int ret = 0;
+    int nbArgs = Rhs;
 
     CheckOutputArgument(pvApiCtx, 1, 1);
 
@@ -56,11 +57,16 @@ int ScilabGateway::invoke(char * fname, const int envId, ScilabAbstractInvoker &
             delete[] tmpvar;
             throw;
         }
+
+        if (args[i] == VOID_OBJECT)
+        {
+            nbArgs = 0;
+        }
     }
 
     try
     {
-        ret = invoker.invoke(args, Rhs);
+        ret = invoker.invoke(args, nbArgs);
     }
     catch (std::exception & e)
     {

@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// TODO : make this '71' more dynamic (with a funptr)
-intppty(71);
-load("SCI/modules/external_objects/macros/lib");
+// TODO : make this '72' more dynamic (with a funptr)
+intppty(72);
+jvoid = evoid;
+//load("SCI/modules/external_objects_java/macros/lib");

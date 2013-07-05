@@ -32,7 +32,6 @@ void ScilabObjects::initialization(ScilabAbstractEnvironment & env, void * pvApi
     if (!isInit)
     {
         isInit = true;
-        //createNamedEnvironmentObject(EXTERNAL_VOID, "evoid", 0, 0, pvApiCtx);
     }
 }
 

@@ -24,6 +24,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
     int idObj = 0;
     int * ret = 0;
     char * methName = 0;
+    int nbArgs = Rhs - 2;
 
     if (Rhs < 2)
     {
@@ -86,6 +87,11 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
             delete[] tmpvar;
             throw;
         }
+
+        if (args[i] == VOID_OBJECT)
+        {
+            nbArgs = 0;
+        }
     }
 
     try
@@ -102,7 +108,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
 
     try
     {
-        ret = env.invoke(idObj, methName, args, Rhs - 2);
+        ret = env.invoke(idObj, methName, args, nbArgs);
     }
     catch (std::exception & e)
     {

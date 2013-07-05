@@ -29,6 +29,7 @@ int ScilabGateway::doubleExclam_invoke(char * fname, const int envId, void * pvA
     int ret = 0;
     int * sret = 0;
     int len = Rhs;
+    int nbArgs = len;
 
     CheckOutputArgument(pvApiCtx, 1, 1);
 
