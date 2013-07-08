@@ -33,25 +33,6 @@ CC__OPTIMISATION_MODE=-Z7 -O2 -MD -DNDEBUG
 CC_COMMON=-D__MSC__ -DFORDLL $(DWIN) -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES)
 LINKER_FLAGS=/NOLOGO $(MACHINE) /DYNAMICBASE:NO /NXCOMPAT:NO $(LINKER_OPTIMISATION_MODE)
 CC_OPTIONS = $(CC_COMMON) -W3 -Gd $(CC__OPTIMISATION_MODE) /Fo"$(DIR_OBJ)/" /Fd"$(DIR_OBJ)/"
-
-# include options 
-INCLUDES=-I"$(SCIDIR)/libs/MALLOC/includes" \
--I"$(SCIDIR)/modules/core/includes" \
--I"$(SCIDIR)/modules/api_scilab/includes" \
--I"$(SCIDIR)/modules/call_scilab/includes" \
--I"$(SCIDIR)/modules/output_stream/includes" \
--I"$(SCIDIR)/modules/jvm/includes" \
--I"$(SCIDIR)/modules/localization/includes" \
--I"$(SCIDIR)/modules/dynamic_link/includes" \
--I"$(SCIDIR)/modules/mexlib/includes" \
--I"$(SCIDIR)/modules/time/includes" \
--I"$(SCIDIR)/modules/windows_tools/includes" \
--I"$(SCIDIR)/libs/f2c" \
--I"$(SCIDIR)/libs/hashtable" \
--I"$(SCIDIR)/libs/intl" \
--I"$(SCIDIR)/modules/operations/includes" \
--I"$(SCIDIR)/modules/symbol/includes" \
--I"$(SCIDIR)/modules/types/includes"
 #==================================================
 CC_LDFLAGS = 
 #==================================================
@@ -89,7 +70,7 @@ FC_OPTIONS_COMMON=/nologo /DFORDLL /assume:underscore \
 /noaltparam /f77rtl /fpscomp:nolibs /names:lowercase \
 /iface:cref /threads /c /Qvc9 \
 /Fo"$(DIR_OBJ)/" /Fd"$(DIR_OBJ)/" \
-/include:"$(SCIDIR1)/modules/core/includes"
+/include:"$(SCIDIR)/modules/core/includes"
 #==================================================
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
 FC_OPTIONS=$(FC_OPTIONS_COMMON) /Zi /Od /debug /dbglibs
@@ -106,22 +87,6 @@ LINKER_FLAGS=$(LINKER_FLAGS) /force:multiple
 RC=rc
 RCVARS=-r -DWIN32
 #==================================================
-# Libraries 
-#==================================================
-# SCILAB_LIBS is used by the binary version of Scilab for linking external codes
-SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
-"$(SCIDIR1)/bin/libf2c.lib" "$(SCIDIR1)/bin/lapack.lib" \
-"$(SCIDIR1)/bin/intersci.lib" \
-"$(SCIDIR1)/bin/output_stream.lib" "$(SCIDIR1)/bin/dynamic_link.lib" \
-"$(SCIDIR1)/bin/integer.lib" "$(SCIDIR1)/bin/optimization_f.lib" \
-"$(SCIDIR1)/bin/libjvm.lib" "$(SCIDIR1)/bin/scilocalization.lib" \
-"$(SCIDIR1)/bin/libintl.lib" "$(SCIDIR1)/bin/linpack_f.lib" \
-"$(SCIDIR1)/bin/call_scilab.lib" "$(SCIDIR1)/bin/time.lib" \
-"$(SCIDIR1)/bin/api_scilab.lib" "$(SCIDIR1)/bin/hashtable.lib" \
-"$(SCIDIR1)/bin/scilab_windows.lib" "$(SCIDIR1)/bin/operations.lib" \
-"$(SCIDIR1)/bin/symbol.lib"
-
-#==================================================
 # default rules for Fortran 77 & 90 Compilation 
 #==================================================
 !IF "$(USE_F2C)" == "YES"
@@ -131,9 +96,9 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 .f{$(DIR_OBJ)}.obj	:
 	@echo ----------- Compile file $< (using f2c) -------------
 !IF "$(F2C_IMPORT_COMMON)" == "YES"	
-	@"$(SCIDIR1)/bin/f2c.exe" -E -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $< 2>NUL
+	@"$(SCIDIR)/bin/f2c.exe" -E -I"$(SCIDIR)/modules/core/includes" $(FFLAGS) $< 2>NUL
 !ELSE
-	@"$(SCIDIR1)/bin/f2c.exe" -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $< 2>NUL
+	@"$(SCIDIR)/bin/f2c.exe" -I"$(SCIDIR)/modules/core/includes" $(FFLAGS) $< 2>NUL
 !ENDIF
 	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 

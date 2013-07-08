@@ -61,31 +61,13 @@ function libn = ilib_compile(lib_name, ..
 
     if getos() == "Windows" then
         //** ----------- Windows section  -----------------
-        msgs_make = "";
-        nf = size(files,"*");
 
-        for i=1:nf
-            if ( ilib_verbose() <> 0 ) then
-                mprintf(_("   Compilation of ") + string(files(i)) +"\n");
-            end
+        // Load dynamic_link Internal lib if it"s not already loaded
+        if ~ exists("dynamic_linkwindowslib") then
+            load("SCI/modules/dynamic_link/macros/windows/lib");
         end
 
-        // then the shared library
-        if ( ilib_verbose() <> 0 ) then
-            mprintf(_("   Building shared library (be patient)\n"));
-        end
-
-        [msg, stat] = unix_g(make_command + makename + " all 2>&0");
-        if stat <> 0 then
-            // more feedback when compilation fails
-            [msg, stat, stderr] = unix_g(make_command + makename + " all 1>&2");
-            disp(stderr);
-            error(msprintf(gettext("%s: Error while executing %s.\n"), "ilib_compile", makename));
-        else
-            if ilib_verbose() > 1 then
-                disp(msg);
-            end
-        end
+        dlwCompile(files, make_command, makename);
 
     else
         //** ---------- Linux/MacOS/Unix section ---------------------
@@ -95,7 +77,7 @@ function libn = ilib_compile(lib_name, ..
         // Source tree version
         // Headers are dispatched in the source tree
         if isdir(SCI+"/modules/core/includes/") then
-            defaultModulesCHeader=[ "core", "mexlib","api_scilab","output_stream","localization", "operations", "symbol", "types" ];
+            defaultModulesCHeader=[ "core", "mexlib","api_scilab","output_stream","localization" ];
             defaultModulesFHeader=[ "core" ];
             ScilabTreeFound=%t
 

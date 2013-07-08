@@ -12,7 +12,6 @@ function scilabincludeslist = dlwGetScilabIncludes()
 
     scilabincludeslist = ["$(SCIDIR)/libs/MALLOC/includes"; ..
     "$(SCIDIR)/libs/f2c"; ..
-    "$(SCIDIR)/libs/hashtable"; ..
     "$(SCIDIR)/libs/intl"; ..
     "$(SCIDIR)/modules/core/includes"; ..
     "$(SCIDIR)/modules/api_scilab/includes"; ..
@@ -23,6 +22,9 @@ function scilabincludeslist = dlwGetScilabIncludes()
     "$(SCIDIR)/modules/dynamic_link/includes"; ..
     "$(SCIDIR)/modules/mexlib/includes"; ..
     "$(SCIDIR)/modules/time/includes"; ..
-    "$(SCIDIR)/modules/windows_tools/includes"];
+    "$(SCIDIR)/modules/windows_tools/includes"; ..
+    "$(SCIDIR)/modules/symbol/includes"; ..
+    "$(SCIDIR)/modules/types/includes"; ..
+    "$(SCIDIR)/modules/operations/includes"];
 endfunction
 //=============================================================================

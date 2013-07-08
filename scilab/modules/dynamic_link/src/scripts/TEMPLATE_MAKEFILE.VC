@@ -4,7 +4,12 @@
 # see SCI/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.VC
 # ------------------------------------------------------
 SCIDIR = __SCI__
-SCIDIR1 = __SCIDIR1__
+# ------------------------------------------------------
+# default include options 
+INCLUDES = __SCILAB_INCLUDES__
+# ------------------------------------------------------
+# SCILAB_LIBS is used by the binary version of Scilab for linking external codes
+SCILAB_LIBS = __SCILAB_LIBS__
 # ------------------------------------------------------
 # name of the dll to be built
 LIBRARY = __LIBNAME__
@@ -20,7 +25,7 @@ OBJS_WITH_PATH = __OBJS_WITH_PATH__
 FORTRAN_RUNTIME_LIBRARIES = __FORTRAN_RUNTIME__
 OTHERLIBS = __OTHERSLIBS__
 # ------------------------------------------------------
-!include $(SCIDIR1)\modules\dynamic_link\src\scripts\Makefile.incl.mak
+!include $(SCIDIR)\modules\dynamic_link\src\scripts\Makefile.incl.mak
 # ------------------------------------------------------
 CC = __CC__
 # ------------------------------------------------------
@@ -30,5 +35,5 @@ FFLAGS = $(FC_OPTIONS) -DFORDLL __FFLAGS__ __MEXFFLAGS__
 # ------------------------------------------------------
 EXTRA_LDFLAGS = __LDFLAGS__
 # ------------------------------------------------------
-!include $(SCIDIR1)\modules\dynamic_link\src\scripts\Makedll.incl
+!include $(SCIDIR)\modules\dynamic_link\src\scripts\Makedll.incl
 # ------------------------------------------------------

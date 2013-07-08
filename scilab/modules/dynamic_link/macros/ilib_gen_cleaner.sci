@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
+// Copyright (C) DIGITEO - 2009-2011 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -40,12 +40,12 @@ function ilib_gen_cleaner(makename,loadername,files)
     mfprintf(fd,"// ------------------------------------------------------\n");
 
     if getos() == "Windows" then
-        make_command = get_make_command(makename);
-        mfprintf(fd,"if fileinfo(''%s%s'') <> [] then\n",makename,get_makefile_ext());
-        mfprintf(fd,"  unix_s(''%s'');\n",make_command);
-        mfprintf(fd,"  mdelete(''%s%s'');\n",makename,get_makefile_ext());
-        mfprintf(fd,"end\n");
-        mfprintf(fd,"// ------------------------------------------------------\n");
+        // Load dynamic_link Internal lib if it"s not already loaded
+        if ~ exists("dynamic_linkwindowslib") then
+            load("SCI/modules/dynamic_link/macros/windows/lib");
+        end
+
+        dlwGenerateCleaner(fd, makename);
     end
 
     if getos() == "Windows" then
@@ -76,30 +76,6 @@ function ilib_gen_cleaner(makename,loadername,files)
 
     if ilib_verbose() > 1 then
         disp(mgetl("cleaner.sce"));
-    end
-endfunction
-//=============================================================================
-function cmd = get_make_command(makename)
-    if getos() == "Windows" then // WINDOWS
-        // Load dynamic_link Internal lib if it's not already loaded
-        if ~ exists("dynamic_linkwindowslib") then
-            load("SCI/modules/dynamic_link/macros/windows/lib");
-        end
-        cmd = dlwGetMakefileCmdCleaner(makename);
-    else // LINUX
-        cmd = "make " + makename + " clean";
-    end
-endfunction
-//=============================================================================
-function ext = get_makefile_ext()
-    if getos() == "Windows" then // WINDOWS
-        // Load dynamic_link Internal lib if it's not already loaded
-        if ~ exists("dynamic_linkwindowslib") then
-            load("SCI/modules/dynamic_link/macros/windows/lib");
-        end
-        ext = dlwGetMakefileExt();
-    else // LINUX
-        ext = "";
     end
 endfunction
 //=============================================================================

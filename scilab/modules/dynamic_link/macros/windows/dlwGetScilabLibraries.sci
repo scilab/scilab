@@ -15,7 +15,6 @@ function scilablibrarieslist = dlwGetScilabLibraries()
     "core_f.lib"; ..
     "lapack.lib"; ..
     "libintl.lib"; ..
-    "intersci.lib"; ..
     "output_stream.lib"; ..
     "dynamic_link.lib"; ..
     "integer.lib"; ..
@@ -26,7 +25,9 @@ function scilablibrarieslist = dlwGetScilabLibraries()
     "call_scilab.lib"; ..
     "time.lib"; ..
     "api_scilab.lib"; ..
-    "scilab_windows.lib"];
-
+    "scilab_windows.lib"; ..
+    "types.lib"; ..
+    "operations.lib"; ..
+    "symbol.lib"];
 endfunction
 //=============================================================================

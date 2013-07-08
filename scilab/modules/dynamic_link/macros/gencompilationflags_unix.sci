@@ -27,9 +27,9 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
     tbxFlag = " -D__SCILAB_TOOLBOX__ ";
     envFlag = "";
 
-    //if getenv('__USE_DEPRECATED_STACK_FUNCTIONS__', 'NO') == "YES" then
-    //  envFlag = " -D__USE_DEPRECATED_STACK_FUNCTIONS__ ";
-    //end
+    if getenv("__USE_DEPRECATED_STACK_FUNCTIONS__", "NO") == "YES" then
+        envFlag = " -D__USE_DEPRECATED_STACK_FUNCTIONS__ ";
+    end
 
     if getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "YES" then
         envFlag = envFlag + " -g ";

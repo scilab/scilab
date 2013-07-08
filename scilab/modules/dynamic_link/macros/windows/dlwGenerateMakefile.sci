@@ -68,9 +68,9 @@ function Makename = dlwGenerateMakefile(name, ..
         libname = "lib" + libname;
     end
 
-    //if getenv('__USE_DEPRECATED_STACK_FUNCTIONS__', 'NO') == "YES" then
-    //  cflags = cflags + " -D__USE_DEPRECATED_STACK_FUNCTIONS__";
-    //end
+    if getenv("__USE_DEPRECATED_STACK_FUNCTIONS__", "NO") == "YES" then
+        cflags = cflags + " -D__USE_DEPRECATED_STACK_FUNCTIONS__";
+    end
 
     ilib_gen_Make_win32(name, tables, files, libs, libname, Makename, with_gateway, ldflags, cflags, fflags)
 
@@ -90,7 +90,6 @@ function ilib_gen_Make_win32(name, ..
     managed_ext = [".cxx", ".cpp", ".c", ".f90", ".f"];
 
     SCIDIR = SCI;
-    SCIDIR1 = pathconvert(SCI,%f,%f,"w");
     LIBRARY = name;
     FILES_SRC = "";
     OBJS = "";
@@ -103,6 +102,16 @@ function ilib_gen_Make_win32(name, ..
     FFLAGS = fflags;
     MEXFFLAGS = "";
     LDFLAGS = ldflags;
+
+    SCILAB_INCLUDES = dlwGetScilabIncludes();
+    SCILAB_INCLUDES = "-I""" + SCILAB_INCLUDES + """";
+    SCILAB_INCLUDES = [SCILAB_INCLUDES(1:$-1) + " \"; SCILAB_INCLUDES($)];
+    SCILAB_INCLUDES = strcat(SCILAB_INCLUDES, ascii(10));
+
+    SCILAB_LIBS = dlwGetScilabLibraries();
+    SCILAB_LIBS = """$(SCIDIR)/bin/" + SCILAB_LIBS + """";
+    SCILAB_LIBS = [SCILAB_LIBS(1:$-1) + " \"; SCILAB_LIBS($)];
+    SCILAB_LIBS = strcat(SCILAB_LIBS, ascii(10));
 
     if isempty(libname) then
         LIBRARY = name;
@@ -219,7 +228,8 @@ function ilib_gen_Make_win32(name, ..
     end
 
     MAKEFILE_VC = strsubst(MAKEFILE_VC, "__SCI__", SCIDIR);
-    MAKEFILE_VC = strsubst(MAKEFILE_VC, "__SCIDIR1__", SCIDIR1);
+    MAKEFILE_VC = strsubst(MAKEFILE_VC, "__SCILAB_INCLUDES__", SCILAB_INCLUDES);
+    MAKEFILE_VC = strsubst(MAKEFILE_VC, "__SCILAB_LIBS__",SCILAB_LIBS);
     MAKEFILE_VC = strsubst(MAKEFILE_VC, "__LIBNAME__", LIBRARY);
     MAKEFILE_VC = strsubst(MAKEFILE_VC, "__FILES_SRC__", FILES_SRC);
     MAKEFILE_VC = strsubst(MAKEFILE_VC, "__OBJS__", OBJS);
