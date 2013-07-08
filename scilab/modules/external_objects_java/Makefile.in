@@ -184,7 +184,8 @@ am__objects_3 =  \
 	libsciexternal_objects_java_la-sci_jcast.lo \
 	libsciexternal_objects_java_la-sci_jallowClassReloading.lo \
 	libsciexternal_objects_java_la-sci_jwrapinfloat.lo \
-	libsciexternal_objects_java_la-sci_jsetfield.lo
+	libsciexternal_objects_java_la-sci_jsetfield.lo \
+	libsciexternal_objects_java_la-sci_jautoTranspose.lo
 am_libsciexternal_objects_java_la_OBJECTS = $(am__objects_3) \
 	$(am__objects_1)
 libsciexternal_objects_java_la_OBJECTS =  \
@@ -611,7 +612,8 @@ sci_gateway/cpp/sci_jarray.cpp \
 sci_gateway/cpp/sci_jcast.cpp \
 sci_gateway/cpp/sci_jallowClassReloading.cpp \
 sci_gateway/cpp/sci_jwrapinfloat.cpp \
-sci_gateway/cpp/sci_jsetfield.cpp
+sci_gateway/cpp/sci_jsetfield.cpp \
+sci_gateway/cpp/sci_jautoTranspose.cpp
 
 GIWS_WRAPPERS = src/jni/ScilabObjects.giws.xml
 @GIWS_TRUE@BUILT_SOURCES = giws
@@ -761,6 +763,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-gw_external_objects_java.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jallowClassReloading.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jarray.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jautoTranspose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jautoUnwrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jcast.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jcompile.Plo@am__quote@
@@ -1039,6 +1042,13 @@ libsciexternal_objects_java_la-sci_jsetfield.lo: sci_gateway/cpp/sci_jsetfield.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_jsetfield.cpp' object='libsciexternal_objects_java_la-sci_jsetfield.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciexternal_objects_java_la-sci_jsetfield.lo `test -f 'sci_gateway/cpp/sci_jsetfield.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jsetfield.cpp
+
+libsciexternal_objects_java_la-sci_jautoTranspose.lo: sci_gateway/cpp/sci_jautoTranspose.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciexternal_objects_java_la-sci_jautoTranspose.lo -MD -MP -MF $(DEPDIR)/libsciexternal_objects_java_la-sci_jautoTranspose.Tpo -c -o libsciexternal_objects_java_la-sci_jautoTranspose.lo `test -f 'sci_gateway/cpp/sci_jautoTranspose.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jautoTranspose.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciexternal_objects_java_la-sci_jautoTranspose.Tpo $(DEPDIR)/libsciexternal_objects_java_la-sci_jautoTranspose.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_jautoTranspose.cpp' object='libsciexternal_objects_java_la-sci_jautoTranspose.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciexternal_objects_java_la-sci_jautoTranspose.lo `test -f 'sci_gateway/cpp/sci_jautoTranspose.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jautoTranspose.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

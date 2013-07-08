@@ -50,4 +50,5 @@
     <PRIMITIVE gatewayId="72" primitiveId="19" primitiveName="jwrapinfloat" />
     <PRIMITIVE gatewayId="72" primitiveId="20" primitiveName="jsetfield" />
     <PRIMITIVE gatewayId="72" primitiveId="21" primitiveName="jautoUnwrap" />
+    <PRIMITIVE gatewayId="72" primitiveId="22" primitiveName="jautoTranspose" />
 </GATEWAY>
