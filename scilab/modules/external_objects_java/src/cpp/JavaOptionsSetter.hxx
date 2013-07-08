@@ -33,6 +33,9 @@ public:
     static const unsigned int SHOWPRIVATE;
 
     JavaOptionsSetter(JavaOptionsHelper & _helper, unsigned int _type);
+
+    JavaOptionsSetter(const JavaOptionsSetter & setter);
+
     ~JavaOptionsSetter() { }
 
     void set(const bool state);

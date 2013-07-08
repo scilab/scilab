@@ -1,0 +1,83 @@
+/*
+ * PIMS ( http://forge.scilab.org/index.php/p/pims ) - This file is part of PIMS
+ * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2013 - Scilab Enterprises - Sylvestre Ledru
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+#include "ScilabJavaEnvironment.hxx"
+#include "ScilabGateway.hxx"
+
+extern "C" {
+#include "Scierror.h"
+#include "gw_external_objects_java.h"
+}
+
+using namespace org_scilab_modules_external_objects_java;
+using namespace org_modules_external_objects;
+
+int sci_jconvMatrixMethod(char * fname, unsigned long fname_len)
+{
+    SciErr sciErr;
+    int * addr = 0;
+    int val = 0;
+    int envId;
+    char * type = 0;
+
+    CheckInputArgument(pvApiCtx, 0, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+    envId = ScilabJavaEnvironment::start();
+    JavaOptionsSetter setter = ScilabJavaEnvironment::getInstance().getOptionsHelper().getSetter(JavaOptionsSetter::METHODOFCONV);
+    ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
+    ScilabGatewayOptions & options = env.getGatewayOptions();
+    OptionsHelper::setCopyOccurred(false);
+    ScilabObjects::initialization(env, pvApiCtx);
+    options.setIsNew(false);
+
+    if (Rhs == 0)
+    {
+        const char * order = setter.get() ? "rc" : "cr";
+        createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, &order);
+
+        LhsVar(1) = 1;
+        PutLhsVar();
+
+        return 0;
+    }
+
+    try
+    {
+        type = ScilabObjects::getSingleString(Rhs, pvApiCtx);
+    }
+    catch (const std::exception & e)
+    {
+        Scierror(999, "%s: String \"rc\" or \"cr\" expected.", fname);
+        return 0;
+    }
+
+    if (!strcmp(type, "rc"))
+    {
+        setter.set(true);
+    }
+    else if (!strcmp(type, "cr"))
+    {
+        setter.set(false);
+    }
+    else
+    {
+        Scierror(999, "%s: Invalid string: \"rc\" or \"cr\" expected.", fname);
+        return 0;
+    }
+
+    LhsVar(1) = 0;
+    PutLhsVar();
+
+    return 0;
+}

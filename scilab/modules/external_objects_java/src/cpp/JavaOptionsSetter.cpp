@@ -21,6 +21,8 @@ const unsigned int JavaOptionsSetter::SHOWPRIVATE = LAST_OPTION_INDEX + 2;
 
 JavaOptionsSetter::JavaOptionsSetter(JavaOptionsHelper & _helper, unsigned int _type) : ScilabOptionsSetter(_helper, _type) { }
 
+JavaOptionsSetter::JavaOptionsSetter(const JavaOptionsSetter & setter) : ScilabOptionsSetter(setter) { }
+
 void JavaOptionsSetter::set(const bool state)
 {
     switch (type)

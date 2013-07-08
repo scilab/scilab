@@ -42,6 +42,9 @@ public:
     static const unsigned int USESCILABINDEX;
 
     ScilabOptionsSetter(OptionsHelper & _helper, unsigned int _type) : helper(_helper), type(_type) { }
+
+    ScilabOptionsSetter(const ScilabOptionsSetter & setter) : helper(setter.helper), type(setter.type) { }
+
     ~ScilabOptionsSetter() { }
 
     virtual void set(const bool state);
