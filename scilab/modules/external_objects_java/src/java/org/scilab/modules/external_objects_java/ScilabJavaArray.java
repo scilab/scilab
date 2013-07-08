@@ -28,10 +28,6 @@ import java.util.logging.Level;
 public final class ScilabJavaArray {
 
     private static final Map<Class, Class> mappings = new HashMap<Class, Class>();
-    private static final Map<Class, Method> mappingsMethods = new HashMap<Class, Method>();
-
-    private static final Class[] EMPTYC = new Class[0];
-    private static final Object[] EMPTYO = new Object[0];
 
     static {
         mappings.put(Double.class, double.class);
@@ -42,17 +38,6 @@ public final class ScilabJavaArray {
         mappings.put(Character.class, char.class);
         mappings.put(Long.class, long.class);
         mappings.put(Float.class, float.class);
-
-        try {
-            mappingsMethods.put(Double.class, Double.class.getMethod("doubleValue", EMPTYC));
-            mappingsMethods.put(Integer.class, Integer.class.getMethod("intValue", EMPTYC));
-            mappingsMethods.put(Boolean.class, Boolean.class.getMethod("booleanValue", EMPTYC));
-            mappingsMethods.put(Short.class, Short.class.getMethod("shortValue", EMPTYC));
-            mappingsMethods.put(Byte.class, Byte.class.getMethod("byteValue", EMPTYC));
-            mappingsMethods.put(Character.class, Character.class.getMethod("charValue", EMPTYC));
-            mappingsMethods.put(Long.class, Long.class.getMethod("longValue", EMPTYC));
-            mappingsMethods.put(Float.class, Float.class.getMethod("floatValue", EMPTYC));
-        } catch (Exception e) { }
     }
 
     /**
@@ -176,72 +161,193 @@ public final class ScilabJavaArray {
     }
 
     /**
+     * Unbox a Double array
+     * @param a an array
+     * @return an unboxed array
+     */
+    public static double[] toPrimitive(final Double[] a) {
+        double[] arr = new double[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Unbox a Float array
+     * @param a an array
+     * @return an unboxed array
+     */
+    public static float[] toPrimitive(final Float[] a) {
+        float[] arr = new float[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Unbox an Integer array
+     * @param a an array
+     * @return an unboxed array
+     */
+    public static int[] toPrimitive(final Integer[] a) {
+        int[] arr = new int[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Unbox a Character array
+     * @param a an array
+     * @return an unboxed array
+     */
+    public static char[] toPrimitive(final Character[] a) {
+        char[] arr = new char[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Unbox a Double array
+     * @param a an array
+     * @return an unboxed array
+     */
+    public static byte[] toPrimitive(final Byte[] a) {
+        byte[] arr = new byte[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Unbox a Short array
+     * @param a an array
+     * @return an unboxed array
+     */
+    public static short[] toPrimitive(final Short[] a) {
+        short[] arr = new short[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Unbox a Long array
+     * @param a an array
+     * @return an unboxed array
+     */
+    public static long[] toPrimitive(final Long[] a) {
+        long[] arr = new long[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Unbox a Boolean array
+     * @param a an array
+     * @return an unboxed array
+     */
+    public static boolean[] toPrimitive(final Boolean[] a) {
+        boolean[] arr = new boolean[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
      * Convert a Double (or other type of the same kind) multiarray into a primitive double multiarray.
      * (Take care: it is not a high performance function !!! if you have a better implementation, send it to me...)
      * @param the array to convert, allowed types are: Double, Float, Integer, Character, Byte, Boolean, Short, Long
      * @return the primitive array.
      */
-    public static Object toPrimitive(Object array) {
-        /* TODO:
-           1) Verifier qu'on peut faire mieux avec des templates
-           2) Faire des tests (pas sur que ca passe...)
-        */
-        String info[] = getBasicType(array);
-        if (info == null) {
-            return null;
-        }
-        Class clazz;
-        try {
-            clazz = Class.forName(info[1]);
-        } catch (ClassNotFoundException e) {
-            return null;
-        }
-
-        Method method = mappingsMethods.get(clazz);
-        clazz = mappings.get(clazz);
-        if (clazz == null) {
-            return null;
-        }
-
-        int[] dims = new int[info[0].length()];
-        Object obj = array;
-        for (int i = 0; i < dims.length; i++) {
-            dims[i] = Array.getLength(obj);
-            obj = Array.get(obj, 0);
-        }
-
-        Object ret = Array.newInstance(clazz, dims);
-
-        int[] index = new int[dims.length - 1];
-        int last = dims.length - 1;
-        int pos = dims.length - 1;
-        try {
-            while (true) {
-                Object arrG = array;
-                Object arrS = ret;
-                for (int i = 0; i < index.length; i++) {
-                    arrG = Array.get(arrG, index[i]);
-                    arrS = Array.get(arrS, index[i]);
-                }
-                for (int i = 0; i < dims[last]; i++) {
-                    Array.set(arrS, i, method.invoke(Array.get(arrG, i), EMPTYO));
-                }
-                pos = dims.length - 1;
-                while (--pos >= 0 && index[pos] == dims[pos]) {
-                    ;
-                }
-                if (pos < 0) {
-                    break;
-                }
-                index[pos]++;
-                for (int i = pos + 1; i < index.length; i++) {
-                    index[pos] = 0;
-                }
+    public static Object toPrimitive(final Object a) {
+        Class base = a.getClass();
+        if (base.isArray()) {
+            Class[] types = getPrimClasses(base);
+            if (types == null) {
+                return a;
             }
-        } catch (Exception e) { }
 
-        return ret;
+            return toPrimitive(a, types.length - 1, types);
+        }
+
+        return a;
     }
+
+    /**
+     * Recursively convert an array Double[][][] into an array double[][][]
+     * @param a the array
+     * @param pos the position in the array types
+     * @param types an array containing the intermediate array class (see getPrimClass)
+     * @return the converted array
+     */
+    private static Object toPrimitive(final Object a, int pos, Class[] types) {
+        Object[] arr = (Object[]) a;
+        Object[] o = (Object[]) Array.newInstance(types[pos], arr.length);
+
+        if (pos != 0) {
+            for (int i = 0; i < arr.length; i++) {
+                o[i] = toPrimitive(arr[i], pos - 1, types);
+            }
+        } else {
+            try {
+                Method m = ScilabJavaArray.class.getDeclaredMethod("toPrimitive", a.getClass().getComponentType());
+                for (int i = 0; i < arr.length; i++) {
+                    o[i] = m.invoke(null, arr[i]);
+                }
+            } catch (Exception e) {
+                return null;
+            }
+        }
+
+        return o;
+    }
+
+    /**
+     * Get an array of primitive arrays classes. For example, Double[][][][] will give {double[], double[][], double[][][]}.
+     * @param c the base class
+     * @return an array of classes
+     */
+    private static Class[] getPrimClasses(Class c) {
+        int nbDims = 0;
+        Class base = c;
+        while (base.isArray()) {
+            base = base.getComponentType();
+            nbDims++;
+        }
+
+        base = mappings.get(base);
+        if (base == null) {
+            return null;
+        }
+
+        Class[] cl = new Class[nbDims - 1];
+        cl[0] = Array.newInstance(base, 0).getClass();
+        for (int i = 1; i < nbDims - 1; i++) {
+            cl[i] = Array.newInstance(cl[i - 1], 0).getClass();
+        }
+
+        return cl;
+    }
+
 
     /**
      * Convert a list to an array of primitive type
@@ -361,29 +467,5 @@ public final class ScilabJavaArray {
         }
 
         return arr;
-    }
-
-    /**
-     * @param array an array
-     * @return the Object base type or null if it is not an Object
-     */
-    private static final String[] getBasicType(Object array) {
-        if (array != null && array.getClass().isArray()) {
-            String signature = array.toString();
-            String[] ret = new String[2];
-            int pos = 0;
-            while (signature.charAt(pos++) == '[') {
-                ;
-            }
-            ret[0] = signature.substring(0, pos - 1);
-            int semicolon = signature.indexOf(';');
-
-            if (signature.charAt(pos - 1) == 'L') {
-                ret[1] = signature.substring(pos, semicolon);
-                return ret;
-            }
-        }
-
-        return null;
     }
 }
