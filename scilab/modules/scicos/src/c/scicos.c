@@ -3444,7 +3444,7 @@ L30:
             ddoit(told);
             if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
             {
-                sciprint(_("End of activation"));
+                sciprint(_("End of activation\n"));
             }
             if (*ierr != 0)
             {

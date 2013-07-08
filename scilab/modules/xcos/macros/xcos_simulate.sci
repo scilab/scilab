@@ -353,7 +353,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         if kfun<>0 then //** block error
             path = corinv(kfun);
             //** get error cmd for the block
-            get_errorcmd(path,gettext("Simulation problem"),str_err);
+            execstr(get_errorcmd(path,gettext("Simulation problem"),str_err));
         else //** simulator error
             message(["Simulation problem:";str_err])
             //scf(curwin);
