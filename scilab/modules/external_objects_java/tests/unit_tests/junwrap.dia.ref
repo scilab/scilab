@@ -149,3 +149,11 @@ t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
 assert_checkequal(%t, junwrap(t.returnBoolean()));
 jautoUnwrap(%t);
+c = jcompile("Test", ["import java.util.*;"
+  "public class Test {";
+  "public static Double[][] foo(double d) {";
+  "Double[][] dd = new Double[][]{{d, d+1},{d+2,d+3}};";
+  "return dd;"
+  "}";
+  "}"]);
+assert_checkequal( [123,125;124,126], c.foo(123));
