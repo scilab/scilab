@@ -67,7 +67,7 @@
 #define STGTY_PROPERTY 4
 #define STGTY_ROOT 5
 
-/* Directory tag colors*/
+/* Directory tag colours*/
 #define DE_RED 0
 #define DE_BLACK 1
 
@@ -159,7 +159,7 @@ int OLE_dir_init(struct OLE_directory_entry *dir)
     dir->element_name_byte_count = 0;
 
     dir->element_type = 0;
-    dir->element_color = 0;
+    dir->element_colour = 0;
 
     dir->left_child = 0;
     dir->right_child = 0;
@@ -830,11 +830,11 @@ int OLE_convert_directory(struct OLE_object *ole, unsigned char *buf, struct OLE
     **/
     dir->element_type = (char)get_1byte_value(buf + 0x42);
 
-    /** Element color for the red-black tree:
+    /** Element colour for the red-black tree:
     ** 0x00 - Red
     ** 0x01 - Black
     **/
-    dir->element_color = (char)get_1byte_value(buf + 0x43);
+    dir->element_colour = (char)get_1byte_value(buf + 0x43);
 
     /** Directory ID (DID) of the left child, -1 if no sibling **/
     dir->left_child = get_4byte_value(buf + 0x44);
@@ -886,13 +886,13 @@ int OLE_print_directory(struct OLE_object *ole, struct OLE_directory_entry *dir)
 
     printf("Element Name = %s\n"
            "Element type = %d\n"
-           "Element color = %d\n"
+           "Element colour = %d\n"
            "Left Child = %d\n"
            "Right Child = %d\n"
            "Root = %d\n"
            "User flags = %d\n"
            "Start sector = %d\n"
-           "Stream Size = %d\n", element, dir->element_type, dir->element_color, dir->left_child, dir->right_child, dir->root, dir->userflags,
+           "Stream Size = %d\n", element, dir->element_type, dir->element_colour, dir->left_child, dir->right_child, dir->root, dir->userflags,
            dir->start_sector, dir->stream_size);
 
     return OLE_OK;
@@ -2048,7 +2048,7 @@ int OLE_decode_file(struct OLE_object *ole, char *fname, char *decode_path)
             LOGGER_log("%s:%d:OLE_decode_file:DEBUG: End of directory details", FL);
         }
 
-        if (adir->element_color > 1)
+        if (adir->element_colour > 1)
         {
             break;
         }
