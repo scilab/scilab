@@ -247,7 +247,7 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static double[] toArray(List<Double> l) {
+    public static double[] toDoubleArray(List<Double> l) {
         double[] arr = new double[l.size()];
         int i = 0;
         for (Double d : l) {
@@ -261,7 +261,7 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static float[] toArray(List<Float> l) {
+    public static float[] toFloatArray(List<Float> l) {
         float[] arr = new float[l.size()];
         int i = 0;
         for (Float f : l) {
@@ -275,7 +275,7 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static byte[] toArray(List<Byte> l) {
+    public static byte[] toByteArray(List<Byte> l) {
         byte[] arr = new byte[l.size()];
         int i = 0;
         for (Byte b : l) {
@@ -289,7 +289,7 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static short[] toArray(List<Short> l) {
+    public static short[] toShortArray(List<Short> l) {
         short[] arr = new short[l.size()];
         int i = 0;
         for (Short s : l) {
@@ -303,7 +303,7 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static int[] toArray(List<Integer> l) {
+    public static int[] toIntArray(List<Integer> l) {
         int[] arr = new int[l.size()];
         int i = 0;
         for (Integer in : l) {
@@ -317,7 +317,7 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static long[] toArray(List<Long> l) {
+    public static long[] toLongArray(List<Long> l) {
         long[] arr = new long[l.size()];
         int i = 0;
         for (Long lo : l) {
@@ -331,7 +331,7 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static String[] toArray(List<String> l) {
+    public static String[] toStringArray(List<String> l) {
         return l.toArray(new String[l.size()]);
     }
 
@@ -339,7 +339,7 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static boolean[] toArray(List<Boolean> l) {
+    public static boolean[] toBooleanArray(List<Boolean> l) {
         boolean[] arr = new boolean[l.size()];
         int i = 0;
         for (Boolean b : l) {
@@ -353,7 +353,7 @@ public final class ScilabJavaArray {
      * Convert a list to an array of primitive type
      * @return an array
      */
-    public static char[] toArray(List<Character> l) {
+    public static char[] toCharArray(List<Character> l) {
         char[] arr = new char[l.size()];
         int i = 0;
         for (Character c : l) {
