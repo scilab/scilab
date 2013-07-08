@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import org.apache.batik.gvt.GraphicsNode;
+import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.modules.graph.shape.LatexTextShape;
 import org.scilab.modules.graph.shape.MathMLTextShape;
 import org.scilab.modules.graph.shape.SvgShape;
@@ -91,7 +92,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
                 try {
                     // parse the text and cache it if valid. Will throw an exception
                     // if the text is not valid.
-                    ScilabGraphUtils.getTexIcon(text);
+                    new TeXFormula(SupportedLabelType.Latex.escape(text));
 
                     ret = textShapes.get(type.name());
                 } catch (RuntimeException e) {
