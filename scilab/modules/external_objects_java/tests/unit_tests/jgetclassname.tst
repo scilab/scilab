@@ -22,7 +22,7 @@ if jgetclassname(1) <> "double" then pause, end
 
 if jgetclassname(%t) <> "boolean" then pause, end
 
-if jgetclassname(int8(2)) <> "char" then pause, end
+if jgetclassname(int8(2)) <> "int" then pause, end
 
 if jgetclassname(int16(2)) <> "short" then pause, end
 
