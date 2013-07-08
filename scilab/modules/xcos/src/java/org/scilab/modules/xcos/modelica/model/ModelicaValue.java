@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
+ * Copyright (C) 2011-2013 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,46 +17,38 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
 
 /**
  * Modelica String assignation.
  *
- * The data is on the value property and the content doesn't contains any data.
+ * <p>
+ * Java class for ModelicaValue complex type.
+ *
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
+ *
+ * <pre>
+ * &lt;complexType name="ModelicaValue">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ModelicaValue")
-public final class ModelicaValue {
-    @XmlAttribute
-    private String value;
+public class ModelicaValue {
 
-    /**
-     * Default constructor.
+    /*
+     * Value may not be null to ease serialization
      */
-    public ModelicaValue() {
-        value = "";
-    }
-
-    /**
-     * @return always empty String.
-     *
-     */
-    @XmlValue
-    @Deprecated
-    public String getContent() {
-        return null;
-    }
-
-    /**
-     * Empty implementation as the content is always null.
-     *
-     * @param value
-     *            allowed object is {@link String }
-     *
-     */
-    @Deprecated
-    public void setContent(String value) {
-    }
+    @XmlAttribute(name = "value")
+    protected String value = "";
 
     /**
      * Gets the value of the value property.
@@ -77,4 +70,5 @@ public final class ModelicaValue {
     public void setValue(String value) {
         this.value = value;
     }
+
 }

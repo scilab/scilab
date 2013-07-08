@@ -272,7 +272,7 @@ public enum TerminalAccessor {
                 terminal.setSelected(new ModelicaValue());
             }
 
-            return terminal.getSelected().getValue().equals(TRUE);
+            return TRUE.equals(terminal.getSelected().getValue());
         }
 
         @Override
