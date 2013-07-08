@@ -38,6 +38,7 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <vector>
 #include <string>
 
 #ifdef _MSC_VER
@@ -193,7 +194,11 @@ public :
 
     void getaccessiblemethods(int id, const ScilabStringStackAllocator & allocator);
 
+    std::vector<std::string> getaccessiblemethods(int id);
+
     void getaccessiblefields(int id, const ScilabStringStackAllocator & allocator);
+
+    std::vector<std::string> getaccessiblefields(int id);
 
     std::string getclassname(int id);
 

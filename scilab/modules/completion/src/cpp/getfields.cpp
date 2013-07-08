@@ -13,6 +13,7 @@
 #include <string>
 #include "FieldsManager.hxx"
 #include "XMLFieldsGetter.hxx"
+#include "EOFieldsGetter.hxx"
 
 extern "C"
 {
@@ -29,4 +30,5 @@ const char ** getFieldsForType(const char * typeName, int * mlist)
 void initializeFieldsGetter()
 {
     XMLFieldsGetter::initializeXML();
+    EOFieldsGetter::initializeEO();
 }

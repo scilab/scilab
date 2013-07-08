@@ -453,11 +453,41 @@ void ScilabJavaEnvironment::getaccessiblemethods(int id, const ScilabStringStack
     getMethodResult(vm, "getAccessibleMethods", id, allocator);
 }
 
+std::vector<std::string> ScilabJavaEnvironment::getaccessiblemethods(int id)
+{
+    JavaVM * vm = getScilabJavaVM();
+    int len = 0;
+    char ** methods = ScilabJavaObject::getAccessibleMethods(vm, id, &len);
+    std::vector<std::string> v;
+
+    for (int i = 0; i < len; i++)
+    {
+        v.push_back(methods[i]);
+    }
+
+    return v;
+}
+
 void ScilabJavaEnvironment::getaccessiblefields(int id, const ScilabStringStackAllocator & allocator)
 {
     JavaVM *vm = getScilabJavaVM();
     getMethodResult(vm, "getAccessibleFields", id, allocator);
     getAccessibleFields(id, allocator, true);
+}
+
+std::vector<std::string> ScilabJavaEnvironment::getaccessiblefields(int id)
+{
+    JavaVM * vm = getScilabJavaVM();
+    int len = 0;
+    char ** fields = ScilabJavaObject::getAccessibleFields(vm, id, &len);
+    std::vector<std::string> v;
+
+    for (int i = 0; i < len; i++)
+    {
+        v.push_back(fields[i]);
+    }
+
+    return v;
 }
 
 std::string ScilabJavaEnvironment::getclassname(int id)
