@@ -42,6 +42,11 @@
         
         <method name="disableTrace" returnType="void" modifier="static" />
         
+        <method name="writeLog" returnType="void" modifier="static">
+            <param type="String" name="s" />
+        </method>
+         
+        
         <method name="setField" returnType="void" modifier="static">
             <param type="int" name="id" />
             <param type="String" name="fieldName" />

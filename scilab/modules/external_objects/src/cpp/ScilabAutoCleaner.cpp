@@ -162,6 +162,16 @@ void ScilabAutoCleaner::removeUnusedObjects(const _MapIds & current, const _MapI
                 }
             }
         }
+        else
+        {
+            ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(itm->first);
+
+            for (std::set<int>::const_iterator itu = itm->second.begin(); itu != itm->second.end(); itu++)
+            {
+                env.writeLog("removeUnusedObjects", "autoremove id=%d.", *itu);
+                env.autoremoveobject(*itu);
+            }
+        }
     }
 }
 }

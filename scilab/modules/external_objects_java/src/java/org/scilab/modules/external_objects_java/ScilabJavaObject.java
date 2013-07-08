@@ -206,6 +206,12 @@ public class ScilabJavaObject {
         }
     }
 
+    public static final void writeLog(String s) {
+        if (debug) {
+            logger.log(Level.INFO, s);
+        }
+    }
+
     /**
      * Disable trace
      */
@@ -719,7 +725,7 @@ public class ScilabJavaObject {
     public static final void removeScilabJavaObject(final int id) {
         if (id > 0 && arraySJO[id] != null) {
             if (debug) {
-                logger.log(Level.INFO, "Remove object id=" + id);
+                logger.log(Level.INFO, "Remove object id=" + id + " (" + java.util.Arrays.deepToString(new Object[] {freePlace.getCurrentFreePlace()})  + ")");
             }
             freePlace.addFreePlace(id);
             if (arraySJO[id] instanceof ScilabJavaClass) {
@@ -1352,6 +1358,17 @@ public class ScilabJavaObject {
                 return -1;
             }
             return fp[currentPos--];
+        }
+
+        final int[] getCurrentFreePlace() {
+            if (currentPos == -1) {
+                return null;
+            }
+
+            int[] ret = new int[currentPos + 1];
+            System.arraycopy(fp, 0, ret, 0, ret.length);
+
+            return ret;
         }
     }
 }

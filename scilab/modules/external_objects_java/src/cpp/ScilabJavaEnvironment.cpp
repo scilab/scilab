@@ -24,6 +24,7 @@
 #include "ScilabJavaArray.hxx"
 #include "ScilabJavaCompiler.hxx"
 #include "NoMoreScilabMemoryException.hxx"
+#include "ScilabAutoCleaner.hxx"
 
 //#include "ScilabJavaObjectHelper.hxx"
 extern "C" {
@@ -138,8 +139,6 @@ const std::string & ScilabJavaEnvironment::getEnvironmentName()
 void ScilabJavaEnvironment::getEnvironmentInfos(const ScilabStringStackAllocator & allocator)
 {
 
-    writeLog("getEnvironmentInfos", "Get information");
-
     /*
         std::vector<char *> version = breakInLines(std::string(Py_GetVersion()));
         std::vector<char *> platform = breakInLines(std::string(Py_GetPlatform()));
@@ -168,37 +167,16 @@ void ScilabJavaEnvironment::getEnvironmentInfos(const ScilabStringStackAllocator
 
 int ScilabJavaEnvironment::extract(int id, int * args, int argsSize)
 {
-    if (traceEnabled)
-    {
-        std::ostringstream os;
-        for (int i = 0; i < argsSize - 1; i++)
-        {
-            os << args[i] << ", ";
-        }
-        os << args[argsSize - 1];
-        os.flush();
-
-        writeLog("extract", "Extraction on object %d with arguments: %s.", id, os.str().c_str());
-    }
-
     JavaVM * vm = getScilabJavaVM();
-    return ScilabJavaObject::extract(vm, id, args, argsSize);
+    const int ret = ScilabJavaObject::extract(vm, id, args, argsSize);
+
+    ScilabAutoCleaner::registerVariable(envId, ret);
+
+    return ret;
 }
 
 void ScilabJavaEnvironment::insert(int id, int * args, int argsSize)
 {
-    if (traceEnabled)
-    {
-        std::ostringstream os;
-        for (int i = 0; i < argsSize - 1; i++)
-        {
-            os << args[i] << ", ";
-        }
-        os << args[argsSize - 1];
-        os.flush();
-
-        writeLog("insert", "Insertion on object %d with arguments: %s.", id, os.str().c_str());
-    }
     /*
         PyObject * obj = scope.getObject(id);
         if (!obj)
@@ -265,7 +243,6 @@ void ScilabJavaEnvironment::garbagecollect() { }
 
 void ScilabJavaEnvironment::addtoclasspath(const char * path)
 {
-    writeLog("addtoclasspath", "Add the path %s to syspath", path);
     /*
         PyObject * syspath = PySys_GetObject(const_cast<char *>("path"));
         PyObject * _path = PyString_FromString(path);
@@ -275,7 +252,6 @@ void ScilabJavaEnvironment::addtoclasspath(const char * path)
 
 void ScilabJavaEnvironment::getclasspath(const ScilabStringStackAllocator & allocator)
 {
-    writeLog("getclasspath", "Get syspath");
     /*
         PyObject * syspath = PySys_GetObject(const_cast<char *>("path"));
         int size = PyList_Size(syspath);
@@ -298,138 +274,41 @@ void ScilabJavaEnvironment::getclasspath(const ScilabStringStackAllocator & allo
 
 void ScilabJavaEnvironment::addNamedVariable(int id, const char * varName)
 {
-    writeLog("addNamedVariable", "Associate the variable named %s with object with id %d.", varName, id);
-
-    /*    PyObject * obj = scope.getObject(id);
-        if (!obj)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid object with id %d"), id);
-        }
-
-        PyObject * _main_ = PyImport_AddModule("__main__");
-        if (!_main_)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot evaluate the code since __main__ is not accessible."));
-        }
-
-        if (PyObject_SetAttrString(_main_, varName, obj) == -1)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot set the variable named %s."), varName);
-        }
-    */
+    // Useless in Java environment
 }
 
 int ScilabJavaEnvironment::getNamedVariable(const char * varName)
 {
-    writeLog("getNamedVariable", "Get the variable named %s.", varName);
-    /*
-        PyObject * _main_ = PyImport_AddModule("__main__");
-        if (!_main_)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot evaluate the code since __main__ is not accessible."));
-        }
-
-        PyObject * var = PyObject_GetAttrString(_main_, varName);
-        if (!var)
-        {
-            if (PyErr_Occurred())
-            {
-                PyObject *type, *value, *traceback;
-                PyErr_Fetch(&type, &value, &traceback);
-                PyErr_NormalizeException(&type, &value, &traceback);
-                PyErr_Clear();
-
-                throw ScilabJavaException(__LINE__, __FILE__, type, value, traceback, gettext("Cannot get the variable value"));
-            }
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot get the variable value"));
-        }
-
-        int ret = scope.addObject(var);
-
-        writeLog("getNamedVariable", "returned id %d.", ret);
-
-        return ret;
-    */
     return 0;
 }
 
 void ScilabJavaEnvironment::evalString(const char ** code, int nbLines, ScilabStringStackAllocator * allocator)
 {
-    writeLog("evalString", "Evaluate code: %s...(truncated)", *code);
-    /*
-        std::ostringstream os;
-        for (int i = 0; i < nbLines; i++)
-        {
-            os << code[i] << std::endl;
-        }
-        os.flush();
-
-        PyObject * _main_ = PyImport_AddModule("__main__");
-        if (!_main_)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot evaluate the code since __main__ is not accessible."));
-        }
-
-        std::ostream * old;
-        std::ostringstream os1;
-        if (allocator)
-        {
-            old = ScilabJavaOStream::setStdOutStream(&os1);
-        }
-
-        PyObject * dict = PyModule_GetDict(_main_);
-        PyObject * ret = PyRun_StringFlags(os.str().c_str(), Py_file_input, dict, dict, 0);
-
-        if (allocator)
-        {
-            ScilabJavaOStream::setStdOutStream(old);
-        }
-
-        if (!ret)
-        {
-            if (PyErr_Occurred())
-            {
-                PyObject *type, *value, *traceback;
-                PyErr_Fetch(&type, &value, &traceback);
-                PyErr_NormalizeException(&type, &value, &traceback);
-                PyErr_Clear();
-
-                throw ScilabJavaException(__LINE__, __FILE__, type, value, traceback, gettext("Cannot evaluate the code"));
-            }
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot evaluate the code"));
-        }
-
-        if (allocator)
-        {
-            std::vector<char *> buf = breakInLines(os1.str());
-            allocator->allocate(buf.size(), 1, &(buf[0]));
-            for (std::vector<char *>::iterator i = buf.begin(); i != buf.end(); i++)
-            {
-                free(*i);
-            }
-        }
-
-        Py_DECREF(ret);
-    */
+    // Useless in Java (it is not a script language !)
 }
 
 int ScilabJavaEnvironment::createarray(char * className, int * dims, int len)
 {
-    writeLog("createarray", "Create array %s of size (%d, %d).", className, dims, len);
     JavaVM *vm = getScilabJavaVM();
-    return ScilabJavaArray::newInstance(vm, className, dims, len);
+    const int ret = ScilabJavaArray::newInstance(vm, className, dims, len);
+
+    ScilabAutoCleaner::registerVariable(envId, ret);
+
+    return ret;
 }
 
 int ScilabJavaEnvironment::loadclass(char * className, char * currentSciPath, bool isNamedVarCreated, bool allowReload)
 {
-    writeLog("loadclass", "Load the module %s and allowReload is set to %s", className, allowReload ? "true" : "false");
     JavaVM *vm = getScilabJavaVM();
-    return ScilabClassLoader::loadJavaClass(vm, className, allowReload);
+    const int ret = ScilabClassLoader::loadJavaClass(vm, className, allowReload);
+
+    ScilabAutoCleaner::registerVariable(envId, ret);
+
+    return ret;
 }
 
 void ScilabJavaEnvironment::getrepresentation(int id, const ScilabStringStackAllocator & allocator)
 {
-    writeLog("getrepresentation", "Get the representation of object %d.", id);
     JavaVM *vm = getScilabJavaVM();
     char *str = ScilabJavaObject::getRepresentation(vm, id);
     allocator.allocate(1, 1, &str);
@@ -437,7 +316,6 @@ void ScilabJavaEnvironment::getrepresentation(int id, const ScilabStringStackAll
 
 std::string ScilabJavaEnvironment::getrepresentation(int id)
 {
-    writeLog("getrepresentation", "Get the representation of object %d.", id);
     JavaVM *vm = getScilabJavaVM();
     return std::string(ScilabJavaObject::getRepresentation(vm, id));
 }
@@ -445,113 +323,44 @@ std::string ScilabJavaEnvironment::getrepresentation(int id)
 /* Used by jexists */
 bool ScilabJavaEnvironment::isvalidobject(int id)
 {
-
     JavaVM *vm = getScilabJavaVM();
-    bool ret = ScilabJavaObject::isValidJavaObject(vm, id);
-    writeLog("isvalidobject", "Test the validity of object %d which is%s valid.", id, ret ? "" : " not");
-    return ret;
+    return ScilabJavaObject::isValidJavaObject(vm, id);
 }
 
 int ScilabJavaEnvironment::newinstance(int id, int * args, int argsSize)
 {
     JavaVM *vm = getScilabJavaVM();
-    return ScilabJavaClass::newInstance(vm, id, args, argsSize);
+    const int ret = ScilabJavaClass::newInstance(vm, id, args, argsSize);
+
+    ScilabAutoCleaner::registerVariable(envId, ret);
+
+    return ret;
 }
 
 int ScilabJavaEnvironment::operation(int idA, int idB, const OperatorsType type)
 {
-    writeLog("operation", "Evalute an operation (%d) with objects with id %d and %d.", (int)type, idA, idB);
-    /*
-        const char * opName = getOpNameFromType(type);
+    // TODO: plug String concatenation and maybe others things like operations on double, int, ...
 
-        PyObject * _operator_ = PyImport_AddModule("operator");
-        if (!_operator_)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot get the operator module."));
-        }
-
-        PyObject * objA = scope.getObject(idA);
-        if (!objA)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid object with id %d"), idA);
-        }
-
-        PyObject * objB = 0;
-        if (idB != -1)
-        {
-            // Binary op
-            objB = scope.getObject(idB);
-            if (!objB)
-            {
-                throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid object with id %d"), idB);
-            }
-        }
-
-        PyObject * _op_ = PyObject_GetAttrString(_operator_, opName);
-
-        PyObject * pArgs = PyTuple_New(objB ? 2 : 1);
-        Py_INCREF(objA);
-        PyTuple_SetItem(pArgs, 0, objA);
-
-        if (objB)
-        {
-            Py_INCREF(objB);
-            PyTuple_SetItem(pArgs, 1, objB);
-        }
-
-        PyObject * result = PyObject_Call(_op_, pArgs, 0);
-        Py_DECREF(pArgs);
-        Py_DECREF(_op_);
-
-        if (!result)
-        {
-            if (PyErr_Occurred())
-            {
-                PyObject * type, * value, * traceback;
-                PyErr_Fetch(&type, &value, &traceback);
-                PyErr_NormalizeException(&type, &value, &traceback);
-                PyErr_Clear();
-
-                throw ScilabJavaException(__LINE__, __FILE__, type, value, traceback, gettext("Unable to make the operation (%s)."), opName);
-            }
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Unable to make the operation (%s)."), opName);
-        }
-
-        int ret = scope.addObject(result);
-
-        writeLog("operation", "returned id %d.", ret);
-
-        return ret;
-    */
     return 0;
 }
 
 int * ScilabJavaEnvironment::invoke(int id, const char * methodName, int * args, int argsSize)
 {
-    if (traceEnabled)
-    {
-        std::ostringstream os;
-        for (int i = 0; i < argsSize - 1; i++)
-        {
-            os << args[i] << ", ";
-        }
-        os << args[argsSize - 1];
-        os.flush();
-
-        writeLog("invoke", "Invoke the method %s on object %d with arguments: %s.", methodName, id, os.str().c_str());
-    }
+    // TODO: In Java, an array can be passed as a reference so we need to "return" it
+    // for example, stream.read(buf, ...), the bytes are put in buf so we need to get it !
 
     JavaVM *vm = getScilabJavaVM();
     int * invokedId = new int[2];
     invokedId[0] = 1 ; //1 object returned
     invokedId[1] = ScilabJavaObject::invoke(vm, id, methodName, args, argsSize);
+
+    ScilabAutoCleaner::registerVariable(envId, invokedId[1]);
+
     return invokedId;
 }
 
 void ScilabJavaEnvironment::setfield(int id, const char * fieldName, int idarg)
 {
-    writeLog("setfield", "Set the field named %s with value id %d on object with id %d.", fieldName, idarg, id);
-
     if (*fieldName == '\0')
     {
         throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid field name"));
@@ -566,110 +375,86 @@ void ScilabJavaEnvironment::setfield(int id, const char * fieldName, int idarg)
     {
         throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot set the field: %s"), fieldName);
     }
-
-    writeLog("setfield", "Value successfully set.");
 }
 
 int ScilabJavaEnvironment::getfield(int id, const char * fieldName)
 {
-    writeLog("getfield", "Get the field named %s on object with id %d.", fieldName, id);
-
     if (*fieldName == '\0')
     {
         throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid field name"));
     }
 
     JavaVM * vm = getScilabJavaVM();
-    int ret = ScilabJavaObject::getField(vm, id, fieldName);
+    const int ret = ScilabJavaObject::getField(vm, id, fieldName);
+
+    ScilabAutoCleaner::registerVariable(envId, ret);
 
     return ret;
 }
 
 int ScilabJavaEnvironment::getfieldtype(int id, const char * fieldName)
 {
-    writeLog("getfieldtype", "Get the type of the field %s on object with id %d.", fieldName, id);
-
     JavaVM * vm = getScilabJavaVM();
-
     return ScilabJavaObject::getFieldType(vm, id, fieldName);
 }
 
 int ScilabJavaEnvironment::getarrayelement(int id, int * index, int length)
 {
-    if (traceEnabled)
-    {
-        std::ostringstream os;
-        for (int i = 0; i < length - 1; i++)
-        {
-            os << index[i] << ", ";
-        }
-        os << index[length - 1];
-        os.flush();
-
-        writeLog("getarrayelement", "Get element from array with id %d and with index: %s.", id, os.str().c_str());
-    }
-
     JavaVM * vm = getScilabJavaVM();
+    const int ret = ScilabJavaObject::getArrayElement(vm, id, index, length);
 
-    return ScilabJavaObject::getArrayElement(vm, id, index, length);
+    ScilabAutoCleaner::registerVariable(envId, ret);
+
+    return ret;
 }
 
 void ScilabJavaEnvironment::setarrayelement(int id, int * index, int length, int idArg)
 {
-    if (traceEnabled)
-    {
-        std::ostringstream os;
-        for (int i = 0; i < length - 1; i++)
-        {
-            os << index[i] << ", ";
-        }
-        os << index[length - 1];
-        os.flush();
-
-        writeLog("setarrayelement", "Set element with id %d in array with id %d and with index: %s.", idArg, id, os.str().c_str());
-    }
-
     JavaVM * vm = getScilabJavaVM();
-
     ScilabJavaObject::setArrayElement(vm, id, index, length, idArg);
-
-    writeLog("setarrayelement", "Successfully set");
 }
 
 int ScilabJavaEnvironment::cast(int id, char * className)
 {
     JavaVM *vm = getScilabJavaVM();
-    return ScilabJavaObject::javaCast(vm, id, className);
+    const int ret = ScilabJavaObject::javaCast(vm, id, className);
+
+    ScilabAutoCleaner::registerVariable(envId, ret);
+
+    return ret;
 }
 
 int ScilabJavaEnvironment::castwithid(int id, int classId)
 {
     JavaVM *vm = getScilabJavaVM();
-    return ScilabJavaObject::javaCast(vm, id, classId);
+    const int ret = ScilabJavaObject::javaCast(vm, id, classId);
+
+    ScilabAutoCleaner::registerVariable(envId, ret);
+
+    return ret;
 }
 
 void ScilabJavaEnvironment::removeobject(int id)
 {
-    writeLog("removeobject", "Remove object with id %d.", id);
-    //    scope.removeObject(id);
-    //    ScilabAutoCleaner::unregisterVariable(envId, id);
+    JavaVM *vm = getScilabJavaVM();
+    ScilabJavaObject::removeScilabJavaObject(vm, id);
+    ScilabAutoCleaner::unregisterVariable(envId, id);
 }
 
 void ScilabJavaEnvironment::autoremoveobject(int id)
 {
-    //    scope.removeObject(id);
+    JavaVM *vm = getScilabJavaVM();
+    ScilabJavaObject::removeScilabJavaObject(vm, id);
 }
 
 void ScilabJavaEnvironment::getaccessiblemethods(int id, const ScilabStringStackAllocator & allocator)
 {
-    writeLog("getaccessiblemethods", "Get accessible methods on object with id %d.", id);
     JavaVM *vm = getScilabJavaVM();
     getMethodResult(vm, "getAccessibleMethods", id, allocator);
 }
 
 void ScilabJavaEnvironment::getaccessiblefields(int id, const ScilabStringStackAllocator & allocator)
 {
-    writeLog("getaccessiblefields", "Get accessible fields on object with id %d.", id);
     JavaVM *vm = getScilabJavaVM();
     getMethodResult(vm, "getAccessibleFields", id, allocator);
     getAccessibleFields(id, allocator, true);
@@ -677,21 +462,17 @@ void ScilabJavaEnvironment::getaccessiblefields(int id, const ScilabStringStackA
 
 std::string ScilabJavaEnvironment::getclassname(int id)
 {
-    writeLog("getclassname", "Get the class name of object with id %d.", id);
     JavaVM *vm = getScilabJavaVM();
     return std::string(ScilabJavaObject::getClassName(vm, id));
 }
 
 VariableType ScilabJavaEnvironment::isunwrappable(int id)
 {
-    writeLog("isunwrappable", "Test if the object with id %d is unwrappable.", id);
     return wrapper.isunwrappable(id);
 }
 
 int ScilabJavaEnvironment::compilecode(char * className, char ** code, int size)
 {
-    writeLog("compilecode", "Compile the code %s...", *code);
-
     std::ostringstream os;
     for (int i = 0; i < size; i++)
     {
@@ -700,25 +481,32 @@ int ScilabJavaEnvironment::compilecode(char * className, char ** code, int size)
     os.flush();
 
     JavaVM *vm = getScilabJavaVM();
-    return ScilabJavaCompiler::compileCode(vm, className, code, size);
+    const int ret = ScilabJavaCompiler::compileCode(vm, className, code, size);
+
+    ScilabAutoCleaner::registerVariable(envId, ret);
+
+    return ret;
 }
 
 void ScilabJavaEnvironment::enabletrace(const char * filename)
 {
     JavaVM *vm = getScilabJavaVM();
     ScilabJavaObject::enableTrace(vm, filename);
+    traceEnabled = true;
 }
 
 void ScilabJavaEnvironment::disabletrace(void)
 {
     JavaVM *vm = getScilabJavaVM();
     ScilabJavaObject::disableTrace(vm);
+    traceEnabled = false;
 }
 
 void ScilabJavaEnvironment::writeLog(const std::string & fun, const std::string str, ...) const
 {
     if (traceEnabled)
     {
+        JavaVM * vm = getScilabJavaVM();
         char _str[LOG_BUFFER_SIZE];
         va_list args;
 
@@ -726,7 +514,7 @@ void ScilabJavaEnvironment::writeLog(const std::string & fun, const std::string 
         vsnprintf(_str, LOG_BUFFER_SIZE, str.c_str(), args);
         va_end(args);
 
-        *file << fun << ": " << _str << std::endl;
+        ScilabJavaObject::writeLog(vm, _str);
     }
 }
 
@@ -789,167 +577,4 @@ void ScilabJavaEnvironment::getMethodResult(JavaVM * jvm_, const char * const me
         throw GiwsException::JniCallMethodException(curEnv);
     }
 };
-
-/*
-template <typename T, typename U, class V>
-void unwrapMat(JavaVM * jvm_, const bool methodOfConv, const int javaID, const ScilabStringStackAllocator & allocator)
-{
-    SciErr err;
-    jint lenRow, lenCol;
-    jboolean isCopy = JNI_FALSE;
-    jarray oneDim;
-    JNIEnv * curEnv = NULL;
-    U *addr = NULL;
-
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = curEnv->FindClass(SCILABJAVAOBJECT);
-
-    jmethodID id = curEnv->GetStaticMethodID(cls, V::getMatMethodName(), V::getMatMethodSignature()) ;
-    if (id == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, V::getMatMethodName());
-    }
-
-    jobjectArray res = static_cast<jobjectArray>(curEnv->CallStaticObjectMethod(cls, id, javaID));
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    lenRow = curEnv->GetArrayLength(res);
-    oneDim = reinterpret_cast<jarray>(curEnv->GetObjectArrayElement(res, 0));
-    lenCol = curEnv->GetArrayLength(oneDim);
-    curEnv->DeleteLocalRef(oneDim);
-
-//    allocator.allocate(lenRow, lenCol, addr);
-
-    if (getMethodOfConv())
-    {
-        err = V::allocMatrix(pvApiCtx, pos, lenRow, lenCol, (void**) &addr);
-    }
-    else
-    {
-        err = V::allocMatrix(pvApiCtx, pos, lenCol, lenRow, (void**) &addr);
-    }
-
-    if (err.iErr)
-    {
-        curEnv->DeleteLocalRef(res);
-        throw org_scilab_modules_external_objects_java::NoMoreScilabMemoryException();
-    }
-
-    T *resultsArray;
-    for (int i = 0; i < lenRow; i++)
-    {
-        oneDim = reinterpret_cast<jarray>(curEnv->GetObjectArrayElement(res, i));
-        resultsArray = static_cast<T *>(curEnv->GetPrimitiveArrayCritical(oneDim, &isCopy));
-        if (getMethodOfConv())
-        {
-            for (int j = 0; j < lenCol; j++)
-            {
-                addr[j * lenRow + i] = static_cast<U>(resultsArray[j]);
-            }
-        }
-        else
-        {
-            for (int j = 0; j < lenCol; j++)
-            {
-                addr[i * lenCol + j] = static_cast<U>(resultsArray[j]);
-            }
-        }
-        curEnv->ReleasePrimitiveArrayCritical(oneDim, resultsArray, JNI_ABORT);
-        curEnv->DeleteLocalRef(oneDim);
-    }
-
-    curEnv->DeleteLocalRef(res);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-}
-
-template <typename T, typename U, class V>
-void unwrapRow(JavaVM * jvm_, const bool methodOfConv, const int javaID, const ScilabStringStackAllocator & allocator)
-{
-    SciErr err;
-    jint lenRow;
-    jboolean isCopy = JNI_FALSE;
-    JNIEnv * curEnv = NULL;
-    U *addr = NULL;
-
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = curEnv->FindClass(SCILABJAVAOBJECT);
-
-    jmethodID id = curEnv->GetStaticMethodID(cls, V::getRowMethodName(), V::getRowMethodSignature());
-    if (id == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, V::getRowMethodName());
-    }
-
-    jobjectArray res = static_cast<jobjectArray>(curEnv->CallStaticObjectMethod(cls, id, javaID));
-    if (curEnv->ExceptionCheck())
-    {
-        curEnv->DeleteLocalRef(res);
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-
-    lenRow = curEnv->GetArrayLength(res);
-
-    // err = V::allocMatrix(pvApiCtx, pos, 1, lenRow, (void**) &addr);
-
-    // if (err.iErr)
-    // {
-    //     curEnv->DeleteLocalRef(res);
-    //     throw org_scilab_modules_external_objects_java::NoMoreScilabMemoryException();
-    // }
-
-    T *resultsArray = static_cast<T *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
-    for (int i = 0; i < lenRow; i++)
-    {
-        addr[i] = static_cast<U>(resultsArray[i]);
-    }
-
-    allocator.allocate(lenRow, lenCol, addr);
-
-    curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
-    curEnv->DeleteLocalRef(res);
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-}
-
-template <typename T, typename U, class V>
-void unwrapSingle(JavaVM * jvm_, const bool methodOfConv, const int javaID, const ScilabStringStackAllocator & allocator)
-{
-    SciErr err;
-    JNIEnv * curEnv = NULL;
-    U *addr = NULL;
-
-    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-    jclass cls = curEnv->FindClass(SCILABJAVAOBJECT);
-
-    jmethodID id = curEnv->GetStaticMethodID(cls, V::getMethodName(), V::getMethodSignature()) ;
-    if (id == NULL)
-    {
-        throw GiwsException::JniMethodNotFoundException(curEnv, V::getMethodName());
-    }
-
-    // err = V::allocMatrix(pvApiCtx, pos, 1, 1, (void**) &addr);
-
-    // if (err.iErr)
-    // {
-    //     throw org_scilab_modules_external_objects_java::NoMoreScilabMemoryException();
-    // }
-
-
-
-    *addr = static_cast<U>(V::getSingleVar(curEnv, cls, id, javaID));
-    allocator.allocate(lenRow, lenCol, addr);
-
-    if (curEnv->ExceptionCheck())
-    {
-        throw GiwsException::JniCallMethodException(curEnv);
-    }
-*/
 }
