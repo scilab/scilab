@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
- * Copyright (C) 2011-2013 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,151 +14,43 @@ package org.scilab.modules.xcos.modelica.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
  * Root of the modelica tree.
- *
- * <p>
- * Java class for Model complex type.
- *
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
- *
- * <pre>
- * &lt;complexType name="Model">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="model_info" type="{}Info" minOccurs="0"/>
- *         &lt;element name="identifiers" minOccurs="0">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="parameter" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *                   &lt;element name="explicit_variable" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *                   &lt;element name="implicit_variable" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *                   &lt;element name="input" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="implicit_relations" minOccurs="0">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="implicit_relation" maxOccurs="unbounded" minOccurs="0">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;sequence>
- *                             &lt;element name="implicit_variable" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *                             &lt;element name="input" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *                           &lt;/sequence>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="explicit_relations" minOccurs="0">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="explicit_relation" maxOccurs="unbounded" minOccurs="0">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;sequence>
- *                             &lt;element name="explicit_variable" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *                           &lt;/sequence>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="outputs" minOccurs="0">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="output" type="{}Output" maxOccurs="unbounded" minOccurs="0"/>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="elements" minOccurs="0">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="struct" type="{}Struct" maxOccurs="unbounded" minOccurs="0"/>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="equations" minOccurs="0">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="equation" type="{}ModelicaValue" maxOccurs="unbounded" minOccurs="0"/>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="when_clauses" minOccurs="0">
- *           &lt;simpleType>
- *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *             &lt;/restriction>
- *           &lt;/simpleType>
- *         &lt;/element>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Model", propOrder = { "name", "modelInfo", "identifiers", "implicitRelations", "explicitRelations", "outputs", "elements", "equations",
-                                       "whenClauses"
+@XmlType(name = "Model", propOrder = { "name", "modelInfo", "identifiers",
+                                       "implicitRelations", "explicitRelations", "outputs", "elements",
+                                       "equations", "whenClauses"
                                      })
-public class Model {
+@XmlRootElement(name = "model")
+public final class Model {
 
-    protected String name;
+    private String name;
     @XmlElement(name = "model_info")
-    protected Info modelInfo;
-    protected Model.Identifiers identifiers;
+    private Info modelInfo;
+    private Model.Identifiers identifiers;
     @XmlElement(name = "implicit_relations")
-    protected Model.ImplicitRelations implicitRelations;
+    private Model.ImplicitRelations implicitRelations;
     @XmlElement(name = "explicit_relations")
-    protected Model.ExplicitRelations explicitRelations;
-    protected Model.Outputs outputs;
-    protected Model.Elements elements;
-    protected Model.Equations equations;
+    private Model.ExplicitRelations explicitRelations;
+    private Model.Outputs outputs;
+    private Model.Elements elements;
+    private Model.Equations equations;
     @XmlElement(name = "when_clauses")
-    protected String whenClauses;
+    private Model.WhenClauses whenClauses;
+
+    /**
+     * Default constructor.
+     */
+    public Model() {
+    }
 
     /**
      * Gets the value of the name property.
@@ -179,7 +70,7 @@ public class Model {
      *
      */
     public void setName(String value) {
-        this.name = value;
+        name = value;
     }
 
     /**
@@ -200,7 +91,7 @@ public class Model {
      *
      */
     public void setModelInfo(Info value) {
-        this.modelInfo = value;
+        modelInfo = value;
     }
 
     /**
@@ -221,7 +112,7 @@ public class Model {
      *
      */
     public void setIdentifiers(Model.Identifiers value) {
-        this.identifiers = value;
+        identifiers = value;
     }
 
     /**
@@ -242,7 +133,7 @@ public class Model {
      *
      */
     public void setImplicitRelations(Model.ImplicitRelations value) {
-        this.implicitRelations = value;
+        implicitRelations = value;
     }
 
     /**
@@ -263,7 +154,7 @@ public class Model {
      *
      */
     public void setExplicitRelations(Model.ExplicitRelations value) {
-        this.explicitRelations = value;
+        explicitRelations = value;
     }
 
     /**
@@ -284,7 +175,7 @@ public class Model {
      *
      */
     public void setOutputs(Model.Outputs value) {
-        this.outputs = value;
+        outputs = value;
     }
 
     /**
@@ -305,7 +196,7 @@ public class Model {
      *
      */
     public void setElements(Model.Elements value) {
-        this.elements = value;
+        elements = value;
     }
 
     /**
@@ -326,16 +217,16 @@ public class Model {
      *
      */
     public void setEquations(Model.Equations value) {
-        this.equations = value;
+        equations = value;
     }
 
     /**
      * Gets the value of the whenClauses property.
      *
-     * @return possible object is {@link String }
+     * @return possible object is {@link Model.WhenClauses }
      *
      */
-    public String getWhenClauses() {
+    public Model.WhenClauses getWhenClauses() {
         return whenClauses;
     }
 
@@ -343,41 +234,27 @@ public class Model {
      * Sets the value of the whenClauses property.
      *
      * @param value
-     *            allowed object is {@link String }
+     *            allowed object is {@link Model.WhenClauses }
      *
      */
-    public void setWhenClauses(String value) {
-        this.whenClauses = value;
+    public void setWhenClauses(Model.WhenClauses value) {
+        whenClauses = value;
     }
 
     /**
-     * <p>
-     * Java class for anonymous complex type.
-     *
-     * <p>
-     * The following schema fragment specifies the expected content contained
-     * within this class.
-     *
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="struct" type="{}Struct" maxOccurs="unbounded" minOccurs="0"/>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     *
-     *
+     * Wrapper around the {@link Struct} list.
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = { "struct" })
     public static class Elements {
 
-        @XmlElement(nillable = true)
-        protected List<Struct> struct;
+        private List<Struct> struct;
+
+        /**
+         * Default constructor.
+         */
+        public Elements() {
+        }
 
         /**
          * Gets the value of the struct property.
@@ -400,45 +277,31 @@ public class Model {
          * Objects of the following type(s) are allowed in the list
          * {@link Struct }
          *
-         *
+         * @return the value of the struct property.
          */
         public List<Struct> getStruct() {
             if (struct == null) {
                 struct = new ArrayList<Struct>();
             }
-            return this.struct;
+            return struct;
         }
 
     }
 
     /**
-     * <p>
-     * Java class for anonymous complex type.
-     *
-     * <p>
-     * The following schema fragment specifies the expected content contained
-     * within this class.
-     *
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="equation" type="{}ModelicaValue" maxOccurs="unbounded" minOccurs="0"/>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     *
-     *
+     * Wrapper around the equations list.
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = { "equation" })
     public static class Equations {
 
-        @XmlElement(nillable = true)
-        protected List<ModelicaValue> equation;
+        private List<ModelicaValue> equation;
+
+        /**
+         * Default constructor.
+         */
+        public Equations() {
+        }
 
         /**
          * Gets the value of the equation property.
@@ -461,57 +324,32 @@ public class Model {
          * Objects of the following type(s) are allowed in the list
          * {@link ModelicaValue }
          *
-         *
+         * @return the value of the equation property.
          */
         public List<ModelicaValue> getEquation() {
             if (equation == null) {
                 equation = new ArrayList<ModelicaValue>();
             }
-            return this.equation;
+            return equation;
         }
 
     }
 
     /**
-     * Wrapper around the explicit variables list.
-     *
-     * <p>
-     * Java class for anonymous complex type.
-     *
-     * <p>
-     * The following schema fragment specifies the expected content contained
-     * within this class.
-     *
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="explicit_relation" maxOccurs="unbounded" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence>
-     *                   &lt;element name="explicit_variable" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
-     *                 &lt;/sequence>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     *
-     *
+     * Wrapper around the {@link Model.ExplicitRelations.ExplicitRelation}.
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = { "explicitRelation" })
     public static class ExplicitRelations {
 
         @XmlElement(name = "explicit_relation")
-        protected List<Model.ExplicitRelations.ExplicitRelation> explicitRelation;
+        private List<Model.ExplicitRelations.ExplicitRelation> explicitRelation;
+
+        /**
+         * Default constructor.
+         */
+        public ExplicitRelations() {
+        }
 
         /**
          * Gets the value of the explicitRelation property.
@@ -534,43 +372,30 @@ public class Model {
          * Objects of the following type(s) are allowed in the list
          * {@link Model.ExplicitRelations.ExplicitRelation }
          *
-         *
+         * @return the value of the explicitRelation property.
          */
         public List<Model.ExplicitRelations.ExplicitRelation> getExplicitRelation() {
             if (explicitRelation == null) {
                 explicitRelation = new ArrayList<Model.ExplicitRelations.ExplicitRelation>();
             }
-            return this.explicitRelation;
+            return explicitRelation;
         }
 
         /**
-         * <p>
-         * Java class for anonymous complex type.
-         *
-         * <p>
-         * The following schema fragment specifies the expected content
-         * contained within this class.
-         *
-         * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence>
-         *         &lt;element name="explicit_variable" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
-         *       &lt;/sequence>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
-         * </pre>
-         *
-         *
+         * Wrapper around the explicit variable list.
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = { "explicitVariable" })
         public static class ExplicitRelation {
 
             @XmlElement(name = "explicit_variable")
-            protected List<String> explicitVariable;
+            private List<String> explicitVariable;
+
+            /**
+             * Default constructor.
+             */
+            public ExplicitRelation() {
+            }
 
             /**
              * Gets the value of the explicitVariable property.
@@ -593,13 +418,13 @@ public class Model {
              * Objects of the following type(s) are allowed in the list
              * {@link String }
              *
-             *
+             * @return the value of the explicitVariable property.
              */
             public List<String> getExplicitVariable() {
                 if (explicitVariable == null) {
                     explicitVariable = new ArrayList<String>();
                 }
-                return this.explicitVariable;
+                return explicitVariable;
             }
 
         }
@@ -607,43 +432,25 @@ public class Model {
     }
 
     /**
-     * Describe any model identifier.
-     *
-     * <p>
-     * Java class for anonymous complex type.
-     *
-     * <p>
-     * The following schema fragment specifies the expected content contained
-     * within this class.
-     *
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="parameter" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
-     *         &lt;element name="explicit_variable" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
-     *         &lt;element name="implicit_variable" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
-     *         &lt;element name="input" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     *
-     *
+     * Wrapper around the identifiers types.
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = { "parameter", "explicitVariable", "implicitVariable", "input" })
+    @XmlType(name = "", propOrder = { "parameter", "explicitVariable",
+                                      "implicitVariable"
+                                    })
     public static class Identifiers {
 
-        @XmlElement(nillable = true)
-        protected List<String> parameter;
+        private List<String> parameter;
         @XmlElement(name = "explicit_variable")
-        protected List<String> explicitVariable;
+        private List<String> explicitVariable;
         @XmlElement(name = "implicit_variable")
-        protected List<String> implicitVariable;
-        protected List<String> input;
+        private List<String> implicitVariable;
+
+        /**
+         * Default constructor.
+         */
+        public Identifiers() {
+        }
 
         /**
          * Gets the value of the parameter property.
@@ -666,13 +473,13 @@ public class Model {
          * Objects of the following type(s) are allowed in the list
          * {@link String }
          *
-         *
+         * @return the value of the parameter property.
          */
         public List<String> getParameter() {
             if (parameter == null) {
                 parameter = new ArrayList<String>();
             }
-            return this.parameter;
+            return parameter;
         }
 
         /**
@@ -696,13 +503,13 @@ public class Model {
          * Objects of the following type(s) are allowed in the list
          * {@link String }
          *
-         *
+         * @return the value of the explicitVariable property.
          */
         public List<String> getExplicitVariable() {
             if (explicitVariable == null) {
                 explicitVariable = new ArrayList<String>();
             }
-            return this.explicitVariable;
+            return explicitVariable;
         }
 
         /**
@@ -726,88 +533,32 @@ public class Model {
          * Objects of the following type(s) are allowed in the list
          * {@link String }
          *
-         *
+         * @return the value of the implicitVariable property.
          */
         public List<String> getImplicitVariable() {
             if (implicitVariable == null) {
                 implicitVariable = new ArrayList<String>();
             }
-            return this.implicitVariable;
-        }
-
-        /**
-         * Gets the value of the input property.
-         *
-         * <p>
-         * This accessor method returns a reference to the live list, not a
-         * snapshot. Therefore any modification you make to the returned list
-         * will be present inside the JAXB object. This is why there is not a
-         * <CODE>set</CODE> method for the input property.
-         *
-         * <p>
-         * For example, to add a new item, do as follows:
-         *
-         * <pre>
-         * getInput().add(newItem);
-         * </pre>
-         *
-         *
-         * <p>
-         * Objects of the following type(s) are allowed in the list
-         * {@link String }
-         *
-         *
-         */
-        public List<String> getInput() {
-            if (input == null) {
-                input = new ArrayList<String>();
-            }
-            return this.input;
+            return implicitVariable;
         }
 
     }
 
     /**
-     * Wrapper around the implicit (and inputs) variables list.
-     *
-     * <p>
-     * Java class for anonymous complex type.
-     *
-     * <p>
-     * The following schema fragment specifies the expected content contained
-     * within this class.
-     *
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="implicit_relation" maxOccurs="unbounded" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence>
-     *                   &lt;element name="implicit_variable" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
-     *                   &lt;element name="input" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
-     *                 &lt;/sequence>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     *
-     *
+     * Wrapper around the {@link Model.ImplicitRelations.ImplicitRelation} list
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = { "implicitRelation" })
     public static class ImplicitRelations {
 
         @XmlElement(name = "implicit_relation")
-        protected List<Model.ImplicitRelations.ImplicitRelation> implicitRelation;
+        private List<Model.ImplicitRelations.ImplicitRelation> implicitRelation;
+
+        /**
+         * Default constructor.
+         */
+        public ImplicitRelations() {
+        }
 
         /**
          * Gets the value of the implicitRelation property.
@@ -830,45 +581,30 @@ public class Model {
          * Objects of the following type(s) are allowed in the list
          * {@link Model.ImplicitRelations.ImplicitRelation }
          *
-         *
+         * @return the value of the implicitRelation property.
          */
         public List<Model.ImplicitRelations.ImplicitRelation> getImplicitRelation() {
             if (implicitRelation == null) {
                 implicitRelation = new ArrayList<Model.ImplicitRelations.ImplicitRelation>();
             }
-            return this.implicitRelation;
+            return implicitRelation;
         }
 
         /**
-         * <p>
-         * Java class for anonymous complex type.
-         *
-         * <p>
-         * The following schema fragment specifies the expected content
-         * contained within this class.
-         *
-         * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence>
-         *         &lt;element name="implicit_variable" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
-         *         &lt;element name="input" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
-         *       &lt;/sequence>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
-         * </pre>
-         *
-         *
+         * Wrapper around the implicit variable list
          */
         @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "", propOrder = { "implicitVariable", "input" })
+        @XmlType(name = "", propOrder = { "implicitVariable" })
         public static class ImplicitRelation {
 
             @XmlElement(name = "implicit_variable")
-            protected List<String> implicitVariable;
-            protected List<String> input;
+            private List<String> implicitVariable;
+
+            /**
+             * Default constructor.
+             */
+            public ImplicitRelation() {
+            }
 
             /**
              * Gets the value of the implicitVariable property.
@@ -891,43 +627,13 @@ public class Model {
              * Objects of the following type(s) are allowed in the list
              * {@link String }
              *
-             *
+             * @return the value of the implicitVariable property.
              */
             public List<String> getImplicitVariable() {
                 if (implicitVariable == null) {
                     implicitVariable = new ArrayList<String>();
                 }
-                return this.implicitVariable;
-            }
-
-            /**
-             * Gets the value of the input property.
-             *
-             * <p>
-             * This accessor method returns a reference to the live list, not a
-             * snapshot. Therefore any modification you make to the returned
-             * list will be present inside the JAXB object. This is why there is
-             * not a <CODE>set</CODE> method for the input property.
-             *
-             * <p>
-             * For example, to add a new item, do as follows:
-             *
-             * <pre>
-             * getInput().add(newItem);
-             * </pre>
-             *
-             *
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link String }
-             *
-             *
-             */
-            public List<String> getInput() {
-                if (input == null) {
-                    input = new ArrayList<String>();
-                }
-                return this.input;
+                return implicitVariable;
             }
 
         }
@@ -937,32 +643,18 @@ public class Model {
     /**
      * Wrapper around the {@link Output} list.
      *
-     * <p>
-     * Java class for anonymous complex type.
-     *
-     * <p>
-     * The following schema fragment specifies the expected content contained
-     * within this class.
-     *
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="output" type="{}Output" maxOccurs="unbounded" minOccurs="0"/>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     *
-     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = { "output" })
+    @XmlType(name = "")
     public static class Outputs {
+        @XmlElement
+        private List<Output> output;
 
-        protected List<Output> output;
+        /**
+         * Default constructor.
+         */
+        public Outputs() {
+        }
 
         /**
          * Gets the value of the output property.
@@ -985,13 +677,63 @@ public class Model {
          * Objects of the following type(s) are allowed in the list
          * {@link Output }
          *
-         *
+         * @return the value of the output property.
          */
         public List<Output> getOutput() {
             if (output == null) {
                 output = new ArrayList<Output>();
             }
-            return this.output;
+            return output;
+        }
+    }
+
+    /**
+     * Wrapper around the when clauses.
+     *
+     * This class is only partially defined as we need more information on the
+     * internals.
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType
+    public static class WhenClauses {
+        @XmlElement(name = "when_clause")
+        private List<String> whenClause;
+
+        /**
+         * Default constructor.
+         */
+        public WhenClauses() {
+        }
+
+        /**
+         * Gets the value of the whenClause property.
+         *
+         * <p>
+         * This accessor method returns a reference to the live list, not a
+         * snapshot. Therefore any modification you make to the returned list
+         * will be present inside the JAXB object. This is why there is not a
+         * <CODE>set</CODE> method for the output property.
+         *
+         * <p>
+         * For example, to add a new item, do as follows:
+         *
+         * <pre>
+         * getWhenClause().add(newItem);
+         * </pre>
+         *
+         *
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link String }
+         *
+         * @return the value of the whenClause property.
+         */
+        public List<String> getWhenClause() {
+            if (whenClause == null) {
+                whenClause = new ArrayList<String>();
+            }
+
+            return whenClause;
         }
 
     }

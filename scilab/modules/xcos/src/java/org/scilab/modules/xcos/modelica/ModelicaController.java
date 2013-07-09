@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
- * Copyright (C) 2011-2013 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2011 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -150,7 +150,6 @@ public final class ModelicaController {
             dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             ScilabSwingUtilities.closeOnEscape(dialog);
         } catch (JAXBException e) {
-            System.err.println(e);
             Logger.getLogger(ModelicaController.class.getName()).severe(e.toString());
         }
     }
@@ -306,7 +305,7 @@ public final class ModelicaController {
      *            the current node
      */
     private void updateInfo(Struct struct) {
-        for (Object child : struct.getSubnodes().getStructOrTerminal()) {
+        for (Object child : struct.getSubnodes().getTerminalOrStruct()) {
             if (child instanceof Terminal) {
                 final Terminal terminal = (Terminal) child;
 
@@ -378,7 +377,7 @@ public final class ModelicaController {
      */
     @SuppressWarnings("unused")
     private void setDefaultValues(final Struct struct) {
-        for (final Object child : struct.getSubnodes().getStructOrTerminal()) {
+        for (final Object child : struct.getSubnodes().getTerminalOrStruct()) {
             if (child instanceof Terminal) {
                 final Terminal terminal = (Terminal) child;
 
@@ -436,7 +435,7 @@ public final class ModelicaController {
         /*
          * Find the derivates and states
          */
-        for (final Object child : struct.getSubnodes().getStructOrTerminal()) {
+        for (final Object child : struct.getSubnodes().getTerminalOrStruct()) {
             if (child instanceof Terminal) {
                 final Terminal terminal = (Terminal) child;
                 final String id = TerminalAccessor.getData(TerminalAccessor.ID, terminal);

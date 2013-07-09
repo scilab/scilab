@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
- * Copyright (C) 2011-2013 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,72 +12,47 @@
 
 package org.scilab.modules.xcos.modelica.model;
 
-import javax.xml.bind.JAXBElement;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlType;
 
 /**
  * Terminal node of a {@link Struct} tree. This node is always a leaf.
- *
- * <p>
- * Java class for Terminal complex type.
- *
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
- *
- * <pre>
- * &lt;complexType name="Terminal">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="kind" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="fixed" type="{}ModelicaValue" minOccurs="0"/>
- *         &lt;element name="initial_value" type="{}ModelicaValue" minOccurs="0"/>
- *         &lt;element name="weight" type="{}ModelicaValue" minOccurs="0"/>
- *         &lt;element name="max" type="{}ModelicaValue" minOccurs="0"/>
- *         &lt;element name="min" type="{}ModelicaValue" minOccurs="0"/>
- *         &lt;element name="nominal_value" type="{}ModelicaValue" minOccurs="0"/>
- *         &lt;element name="comment" type="{}ModelicaValue" minOccurs="0"/>
- *         &lt;element name="selected" type="{}ModelicaValue" minOccurs="0"/>
- *         &lt;element name="output" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Terminal", propOrder = { "name", "kind", "id", "fixed", "initialValue", "weight", "max", "min", "nominalValue", "comment", "selected",
-         "output"
+@XmlType(name = "Terminal", propOrder = { "name", "kind", "id", "fixed",
+         "initialValue", "weight", "max", "min", "nominalValue", "comment",
+         "selected", "output"
                                         })
-public class Terminal {
+public final class Terminal {
 
     @XmlElement(required = true)
-    protected String name;
+    private String name;
     @XmlElement(required = true)
-    protected String kind;
+    private String kind;
     @XmlElement(required = true)
-    protected String id;
-    protected ModelicaValue fixed;
+    private String id;
+    private ModelicaValue fixed;
     @XmlElement(name = "initial_value")
-    protected ModelicaValue initialValue;
-    protected ModelicaValue weight;
-    protected ModelicaValue max;
-    protected ModelicaValue min;
+    private ModelicaValue initialValue;
+    private ModelicaValue weight;
+    private ModelicaValue max;
+    private ModelicaValue min;
     @XmlElement(name = "nominal_value")
-    protected ModelicaValue nominalValue;
-    protected ModelicaValue comment;
-    protected ModelicaValue selected;
-    @XmlElementRef(name = "output", type = JAXBElement.class, required = false)
-    protected JAXBElement<String> output;
+    private ModelicaValue nominalValue;
+    private ModelicaValue comment;
+    private ModelicaValue selected;
+    private List<Output> output;
+
+    /**
+     * Default constructor.
+     */
+    public Terminal() {
+    }
 
     /**
      * Gets the value of the name property.
@@ -98,7 +72,7 @@ public class Terminal {
      *
      */
     public void setName(String value) {
-        this.name = value;
+        name = value;
     }
 
     /**
@@ -119,7 +93,7 @@ public class Terminal {
      *
      */
     public void setKind(String value) {
-        this.kind = value;
+        kind = value;
     }
 
     /**
@@ -140,7 +114,7 @@ public class Terminal {
      *
      */
     public void setId(String value) {
-        this.id = value;
+        id = value;
     }
 
     /**
@@ -161,7 +135,7 @@ public class Terminal {
      *
      */
     public void setFixed(ModelicaValue value) {
-        this.fixed = value;
+        fixed = value;
     }
 
     /**
@@ -182,7 +156,7 @@ public class Terminal {
      *
      */
     public void setInitialValue(ModelicaValue value) {
-        this.initialValue = value;
+        initialValue = value;
     }
 
     /**
@@ -203,7 +177,7 @@ public class Terminal {
      *
      */
     public void setWeight(ModelicaValue value) {
-        this.weight = value;
+        weight = value;
     }
 
     /**
@@ -224,7 +198,7 @@ public class Terminal {
      *
      */
     public void setMax(ModelicaValue value) {
-        this.max = value;
+        max = value;
     }
 
     /**
@@ -245,7 +219,7 @@ public class Terminal {
      *
      */
     public void setMin(ModelicaValue value) {
-        this.min = value;
+        min = value;
     }
 
     /**
@@ -266,7 +240,7 @@ public class Terminal {
      *
      */
     public void setNominalValue(ModelicaValue value) {
-        this.nominalValue = value;
+        nominalValue = value;
     }
 
     /**
@@ -287,7 +261,7 @@ public class Terminal {
      *
      */
     public void setComment(ModelicaValue value) {
-        this.comment = value;
+        comment = value;
     }
 
     /**
@@ -308,35 +282,38 @@ public class Terminal {
      *
      */
     public void setSelected(ModelicaValue value) {
-        this.selected = value;
+        selected = value;
     }
 
     /**
      * Gets the value of the output property.
      *
-     * @return possible object is {@link JAXBElement }{@code <}{@link String }
-     *         {@code >}
+     * <p>
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the output property.
      *
+     * <p>
+     * For example, to add a new item, do as follows:
+     *
+     * <pre>
+     * getOutput().add(newItem);
+     * </pre>
+     *
+     *
+     * <p>
+     * Objects of the following type(s) are allowed in the list {@link Output }
+     *
+     * @return the value of the output property.
      */
-    public JAXBElement<String> getOutput() {
+    public List<Output> getOutput() {
+        if (output == null) {
+            output = new ArrayList<Output>();
+        }
+
         return output;
     }
-
-    /**
-     * Sets the value of the output property.
-     *
-     * @param value
-     *            allowed object is {@link JAXBElement }{@code <}{@link String }
-     *            {@code >}
-     *
-     */
-    public void setOutput(JAXBElement<String> value) {
-        this.output = value;
-    }
-
-    /*
-     * Overriden methods
-     */
 
     /**
      * @return the id
@@ -346,5 +323,4 @@ public class Terminal {
     public String toString() {
         return getId();
     }
-
 }
