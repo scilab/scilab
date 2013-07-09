@@ -45,7 +45,7 @@ while (IDO <> 99) & (IDO <> 3)
 end;
 t1 = toc();
 printf("loop %d",i);
-loop 72b = rand(N,1);
+loop 77b = rand(N,1);
 tic();
 for j = 1:i
   b = A * b;
