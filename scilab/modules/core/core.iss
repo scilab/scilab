@@ -45,7 +45,6 @@ Source: modules\{#CORE}\includes\mode_exec.h; DestDir: {app}\modules\{#CORE}\inc
 Source: modules\{#CORE}\includes\MALLOC.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\PATH_MAX.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\scisparse.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\sciquit.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\scilabDefaults.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\stack1.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\stack2.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
