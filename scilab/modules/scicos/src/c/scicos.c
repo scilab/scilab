@@ -6173,7 +6173,7 @@ void Coserror(const char *fmt, ...)
     va_start(ap, fmt);
 
 #ifdef vsnprintf
-    retval = vsnprintf(coserr.buf, 4095, fmt, ap);
+    retval = vsnprintf(coserr.buf, COSERR_len, fmt, ap);
 #else
     retval = vsprintf(coserr.buf, fmt, ap);
 #endif
@@ -6190,20 +6190,13 @@ void Coserror(const char *fmt, ...)
 }
 /*--------------------------------------------------------------------------*/
 /* SundialsErrHandler: in case of a Sundials error,
-* append info into full_message and call Coserror() to write it in coserr.buf
+* call Coserror() to write it in coserr.buf
 *
 * The unused parameters are there to square with Sundials' IDA error function, for better genericity.
 */
 void SundialsErrHandler(int error_code, const char *module, const char *function, char *msg, void *user_data)
 {
-    char full_message[1800]; // Set big buffer to be able to redesign the message later
-
-    full_message[0] = '\0';
-    strncat(full_message, function, 25); // Sundials' longest function name : ~20 chars
-    strncat(full_message, ": ", 2);
-    strncat(full_message, msg, 120);     // Actual error message
-
-    Coserror(full_message);
+    Coserror("%s: %s", function, msg);
 }
 /*--------------------------------------------------------------------------*/
 /* get_block_error : get the block error
