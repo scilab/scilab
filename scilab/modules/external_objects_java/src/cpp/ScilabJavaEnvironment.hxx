@@ -194,11 +194,9 @@ public :
 
     void getaccessiblemethods(int id, const ScilabStringStackAllocator & allocator);
 
-    std::vector<std::string> getaccessiblemethods(int id);
-
     void getaccessiblefields(int id, const ScilabStringStackAllocator & allocator);
 
-    std::vector<std::string> getaccessiblefields(int id);
+    std::vector<std::string> getCompletion(int id, char ** fieldPath, const int fieldPathLen);
 
     std::string getclassname(int id);
 

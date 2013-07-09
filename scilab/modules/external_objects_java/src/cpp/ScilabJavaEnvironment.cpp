@@ -453,21 +453,6 @@ void ScilabJavaEnvironment::getaccessiblemethods(int id, const ScilabStringStack
     getMethodResult(vm, "getAccessibleMethods", id, allocator);
 }
 
-std::vector<std::string> ScilabJavaEnvironment::getaccessiblemethods(int id)
-{
-    JavaVM * vm = getScilabJavaVM();
-    int len = 0;
-    char ** methods = ScilabJavaObject::getAccessibleMethods(vm, id, &len);
-    std::vector<std::string> v;
-
-    for (int i = 0; i < len; i++)
-    {
-        v.push_back(methods[i]);
-    }
-
-    return v;
-}
-
 void ScilabJavaEnvironment::getaccessiblefields(int id, const ScilabStringStackAllocator & allocator)
 {
     JavaVM *vm = getScilabJavaVM();
@@ -475,11 +460,11 @@ void ScilabJavaEnvironment::getaccessiblefields(int id, const ScilabStringStackA
     getAccessibleFields(id, allocator, true);
 }
 
-std::vector<std::string> ScilabJavaEnvironment::getaccessiblefields(int id)
+std::vector<std::string> ScilabJavaEnvironment::getCompletion(int id, char ** fieldsPath, const int fieldPathLen)
 {
     JavaVM * vm = getScilabJavaVM();
     int len = 0;
-    char ** fields = ScilabJavaObject::getAccessibleFields(vm, id, &len);
+    char ** fields = ScilabJavaObject::getCompletion(vm, id, fieldsPath + 1 , fieldPathLen - 1, &len);
     std::vector<std::string> v;
 
     for (int i = 0; i < len; i++)

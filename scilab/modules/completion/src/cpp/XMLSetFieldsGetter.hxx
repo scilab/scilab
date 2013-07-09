@@ -10,13 +10,15 @@
  *
  */
 
-#ifndef __EOFIELDSGETTER_HXX__
-#define __EOFIELDSGETTER_HXX__
+#ifndef __XMLSETFIELDSGETTER_HXX__
+#define __XMLSETFIELDSGETTER_HXX__
 
 #include <string>
 #include <cstring>
-#include <vector>
+
 #include "FieldsGetter.hxx"
+#include "XMLFieldsGetter.hxx"
+#include "xmlObjects.h"
 
 extern "C"
 {
@@ -26,6 +28,8 @@ extern "C"
 #endif
 }
 
+using namespace org_modules_xml;
+
 namespace org_modules_completion
 {
 
@@ -33,30 +37,19 @@ namespace org_modules_completion
  * @file
  * @author Calixte DENIZET <calixte.denizet@scilab.org>
  *
- * Class to manage the retrievment of the fields name in objects wrapped by External Objects module
+ * Class to manage the retrievment of the fields name of a XML object
  */
-class EOFieldsGetter : FieldsGetter
+class XMLSetFieldsGetter : public XMLFieldsGetter
 {
 
 public :
+    XMLSetFieldsGetter() { }
+
+    virtual ~XMLSetFieldsGetter() { }
 
     virtual const char ** getFieldsName(const std::string & typeName, int * mlist, char ** fieldPath, const int fieldPathLen, int * fieldsSize) const;
 
-    /**
-     * Initialization
-     */
-    static void initializeEO()
-    {
-        EOFieldsGetter * getter = new EOFieldsGetter();
-        FieldsManager::addFieldsGetter(std::string("_EClass"), getter);
-        FieldsManager::addFieldsGetter(std::string("_EObj"), getter);
-    }
-
-private :
-
-    EOFieldsGetter() { }
-
-    virtual ~EOFieldsGetter() { }
+    static const char ** getFieldsName(const XMLNodeSet * set, char ** fieldPath, const int fieldPathLen, int * fieldsSize);
 };
 }
 

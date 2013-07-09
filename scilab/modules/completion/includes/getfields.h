@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,11 +20,15 @@
  * @param mlist the mlist address
  * @return the arry of fields name
  */
-const char ** getFieldsForType(const char * typeName, int * mlist);
+const char ** getFieldsForType(const char * typeName, int * mlist, char ** fieldPath, const int fieldPathLen, int * fieldsSize);
+
+const char ** getFields(int * mlist, char ** fieldPath, const int fieldPathLen, int * fieldsSize);
 
 /**
  * Initialization
  */
 void initializeFieldsGetter();
+
+char ** getFieldPath(const char * _str, int * len);
 
 #endif

@@ -201,7 +201,7 @@ public:
      * @param id the object id
      * @return the methods
      */
-    virtual std::vector<std::string> getaccessiblemethods(int id)
+    virtual std::vector<std::string> getCompletion(int id, char ** fieldPath, const int fieldPathLen)
     {
         std::vector<std::string>();
     }
@@ -212,16 +212,6 @@ public:
      * @param pos the position in the Scilab stack where to put the names
      */
     virtual void getaccessiblefields(int id, const ScilabStringStackAllocator & allocator) = 0;
-
-    /**
-     * Get all the accessible fields (public ones) in the given object (used in completion)
-     * @param id the object id
-     * @return the fields
-     */
-    virtual std::vector<std::string> getaccessiblefields(int id)
-    {
-        return std::vector<std::string>();
-    }
 
     /**
      * Get the class name of the given object

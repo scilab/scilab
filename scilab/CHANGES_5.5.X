@@ -38,6 +38,8 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 * In browsevar, allows a user to plot the variable (already available in
   editvar).
 
+* Multi level completion on mlist, struct, XML structures...
+
 
 Syntax changes
 ===============

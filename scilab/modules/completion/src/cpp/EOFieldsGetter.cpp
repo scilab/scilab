@@ -28,42 +28,30 @@ using namespace org_modules_external_objects;
 namespace org_modules_completion
 {
 
-const char ** EOFieldsGetter::getFieldsName(const std::string & typeName, int * mlist) const
+const char ** EOFieldsGetter::getFieldsName(const std::string & typeName, int * mlist, char ** fieldPath, const int fieldPathLen, int * fieldsSize) const
 {
     int envId = ScilabObjects::getEnvironmentId(mlist, pvApiCtx);
     int idObj = ScilabObjects::getExternalId(mlist, pvApiCtx);
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
     ScilabObjects::initialization(env, pvApiCtx);
     std::vector<std::string> fields;
-    std::vector<std::string> methods;
     const char ** ret = 0;
-    int fieldsSize;
-    int totalSize;
 
     try
     {
-        fields = env.getaccessiblefields(idObj);
-        methods = env.getaccessiblemethods(idObj);
+        fields = env.getCompletion(idObj, fieldPath, fieldPathLen);
     }
     catch (const std::exception & e)
     {
         return 0;
     }
 
-    fieldsSize = fields.size();
-    totalSize = fieldsSize + methods.size() + 2;
-    ret = (const char **)MALLOC(sizeof(char *) * totalSize);
-    ret[totalSize - 1] = 0;
-    ret[0] = strdup(typeName.c_str());
+    *fieldsSize = fields.size();
+    ret = (const char **)MALLOC(sizeof(char *) **fieldsSize);
 
-    for (int i = 0; i < fieldsSize; i++)
+    for (int i = 0; i < *fieldsSize; i++)
     {
-        ret[i + 1] = strdup(fields.at(i).c_str());
-    }
-
-    for (int i = 0; i < methods.size(); i++)
-    {
-        ret[fieldsSize + i + 1] = strdup(methods.at(i).c_str());
+        ret[i] = strdup(fields.at(i).c_str());
     }
 
     return ret;

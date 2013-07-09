@@ -14,6 +14,7 @@ package org.scilab.modules.external_objects_java;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
@@ -27,7 +28,10 @@ import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -335,6 +339,66 @@ public class ScilabJavaObject {
             ScilabJavaArray.set(arraySJO[id].object, index, arraySJO[idArg].object);
         } else {
             throw new ScilabJavaException("null is not an array");
+        }
+    }
+
+    /**
+     * @param id the Java Object id
+     * @return the accessibles methods and fields corresponding to the given path
+     */
+    public static final String[] getCompletion(final int id, final String[] fieldPath) throws ScilabJavaException {
+        if (id > 0) {
+            if (debug) {
+                logger.log(Level.INFO, "Get accessible methods and fields in object id=" + id + " with path " + Arrays.deepToString(fieldPath));
+            }
+
+            if (arraySJO[id] == null) {
+                throw new ScilabJavaException("Invalid Java object");
+            }
+
+            Class clazz = arraySJO[id].clazz;
+            for (int i = 0; i < fieldPath.length; i++) {
+                try {
+                    Field f = clazz.getDeclaredField(fieldPath[i]);
+                    clazz = f.getType();
+                } catch (Exception e) {
+                    return new String[0];
+                }
+            }
+
+            return getFieldsAndMethods(clazz);
+
+        } else {
+            return new String[0];
+        }
+    }
+
+    /**
+     * Get fields and methods in a Class
+     * @param clazz the base class
+     * @return names
+     */
+    private static final String[] getFieldsAndMethods(final Class clazz) {
+        if (clazz.isArray()) {
+            return new String[] {"length"};
+        }
+
+        try {
+            final Field[] f = clazz.getDeclaredFields();
+            final Method[] m = clazz.getDeclaredMethods();
+
+            Set<String> set = new TreeSet<String>();
+            for (int i = 0; i < f.length; i++) {
+                set.add(f[i].getName());
+            }
+
+            for (int i = 0; i < m.length; i++) {
+                set.add(m[i].getName());
+            }
+
+            return set.toArray(new String[set.size()]);
+        } catch (Exception e) {
+            return new String[0];
         }
     }
 
