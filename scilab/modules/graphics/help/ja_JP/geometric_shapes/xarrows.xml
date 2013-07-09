@@ -76,7 +76,7 @@ ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
     </refsection>
     <refsection>
         <title>例</title>
-
+        
         <scilab:image>
             x = 2*%pi*(0:7)/8
             x1 = [sin(x); 9*sin(x)];

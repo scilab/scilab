@@ -231,6 +231,9 @@ Time for Runge-Kutta:
                 <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
             </member>
             <member>
+                <link linkend="DDaskr">DDaskr</link>
+            </member>
+            <member>
                 <link linkend="Comparisons">Comparisons</link>
             </member>
             <member>

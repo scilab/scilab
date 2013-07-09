@@ -248,11 +248,11 @@ Sparse LU factorization:
 ========================
  - UMFPACK features added in Scilab. Many thanks to Bruno Pincon.
 	+ umfpack       - Solve sparse linear system 
-	+ umf_lufact    - LU factorisation of a sparse matrix 
+	+ umf_lufact    - LU factorization of a sparse matrix 
 	+ umf_lusolve   - Solve a linear sparse system given the LU factors
 	+ umf_luinfo    - Get information on LU factors
 	+ umf_luget     - Retrieve LU factors at the Scilab level 
-	+ taucs_chfac   - Cholesky factorisation of a sparse Symmetric Positive 
+	+ taucs_chfac   - Cholesky factorization of a sparse Symmetric Positive 
 	                  Definite (s.p.d.) matrix
 	+ taucs_chsolve - Solve a linear sparse (s.p.d.) system given the Cholesky factors
 	+ taucs_chinfo  - Get information on Cholesky factors

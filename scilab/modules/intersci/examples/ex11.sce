@@ -14,10 +14,10 @@
 // Making object files
 //  Interface file '/tmp/ex11fi.o'
 //  User's files '/tmp/ex11c.o';
-files=G_make(['/tmp/ex11fi.o','/tmp/ex11c.o'],'ex11.dll');
+files=G_make(["/tmp/ex11fi.o","/tmp/ex11c.o"],"ex11.dll");
 //2-Link object files .o with addinter
 //addinter(files,'intex11',intex1_funs);
-exec('ex11fi.sce');
+exec("ex11fi.sce");
 //Run Scilab functions:
 a=[1,2,3]+%i*[4,5,6];
 b=ext11c(a);

@@ -10,7 +10,7 @@
 function demo_sin()
 
     exec("SCI/modules/graphics/demos/cmplxfunc/MacCmplx.sci", -1);
-    
+
     R     = %pi;
     theta = -130;
     alpha = 73;

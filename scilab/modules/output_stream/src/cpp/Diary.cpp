@@ -2,11 +2,11 @@
 /*
 * ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) DIGITEO - 2009 - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -144,7 +144,9 @@ void Diary::write(std::wstring _wstr, bool bInput)
                         }
                     }
                     if (line)
+                    {
                         fileDiary << line;
+                    }
                 }
             }
             else                // output
@@ -163,7 +165,9 @@ void Diary::write(std::wstring _wstr, bool bInput)
                         }
                     }
                     if (line)
+                    {
                         fileDiary << line;
+                    }
                 }
             }
 
@@ -221,7 +225,9 @@ std::wstring Diary::replace(std::wstring text, std::wstring s, std::wstring repl
         pos = text.find(s, pos);
         if (pos == std::wstring::npos)
             // no more 's' in '*this'
+        {
             break;
+        }
 
         text.replace(pos, s.length(), replacement);
         pos += replacement.length();
@@ -269,9 +275,13 @@ diary_prefix_time_filter Diary::getPrefixIoModeFilter(void)
 bool compareDiary(Diary first, Diary second)
 {
     if (first.getID() < second.getID())
+    {
         return true;
+    }
     else
+    {
         return false;
+    }
 }
 
 /*--------------------------------------------------------------------------*/

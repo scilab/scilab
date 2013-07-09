@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5mv" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>h5mv</refname>
+        
+        <refpurpose>オブジェクトを移動</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            h5mv(srcobj [, srcloc], destobj [, destloc])
+            
+            h5mv(srcobj [, srcloc], destfile, destloc)
+            
+            h5mv(srcfile, srcloc, destobj [, destloc])
+            
+            h5mv(srcfile, srcloc, destfile, destloc)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>srcobj</term>
+                
+                <listitem>
+                    
+                    <para>H5Object</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>destobj</term>
+                
+                <listitem>
+                    
+                    <para>H5Object</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>srcloc</term>
+                
+                <listitem>
+                    
+                    <para>移動元の位置を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>destloc</term>
+                
+                <listitem>
+                    
+                    <para>移動先の位置を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>srcfile</term>
+                
+                <listitem>
+                    
+                    <para>移動元のファイル名(文字列)</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>destfile</term>
+                
+                <listitem>
+                    
+                    <para>移動先のファイル名(文字列)</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            オブジェクトを他の場所(同じファイルまたは別のファイル)に移動します.
+            
+            このコマンドは, <code>h5cp</code> の後に <code>h5rm</code>を
+            
+            実行するのと等価です.
+            
+        </para>
+        
+        <para>新規に作成されたオブジェクトを移動する前には,
+            
+            ファイルをフラッシュする必要があります.
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+// HDF5ファイルを作成
+a = h5open(TMPDIR + "/test.h5");
+b = h5open(TMPDIR + "/test1.h5");
+
+// グループとデータセットを作成
+h5group(a, "Grp_1");
+h5write(a.root.Grp_1, "Dset_1", [1 2 ; 3 4]);
+
+// 移動時に確実に修正が反映されるように,ファイルをフラッシュ
+h5flush(a);
+
+// b内にグループとデータセットを作成
+h5group(b, "BGrp");
+h5write(b("/BGrp"), "BDset", 11:18);
+h5close(b)
+
+// Dset_1をroot以下のDset_2に移動
+h5mv(a.root.Grp_1, "Dset_1", a, "Dset_2")
+
+// BDsetをデータセットGrp_1にコピー
+h5mv(TMPDIR  +"/test1.h5", "/BGrp/BDset", a.root.Grp_1)
+
+// 処理を完了し, 全てのリソースを解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5open">h5open</link>
+                
+            </member>
+            
+        </simplelist>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5cp">h5cp</link>
+                
+            </member>
+            
+        </simplelist>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5rm">h5rm</link>
+                
+            </member>
+            
+        </simplelist>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5flush">h5flush</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>HDF5モジュールが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

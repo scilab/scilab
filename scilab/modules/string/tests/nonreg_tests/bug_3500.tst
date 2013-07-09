@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3500
 //
 // Short description:
-// No character matched shoud be a "no match" even if we matched a position
+// No character matched should be a "no match" even if we matched a position
 
 if regexp('foo', '/^/') <> [] then pause, end;
 if regexp('foo', '/$/') <> [] then pause, end;

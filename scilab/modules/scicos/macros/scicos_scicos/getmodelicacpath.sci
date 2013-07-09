@@ -11,57 +11,57 @@
 //
 function compilerpath = getmodelicacpath()
 
-MODELICAC_FILENAME = 'modelicac';
+    MODELICAC_FILENAME = "modelicac";
 
-compilerpath = "";
-
-if getos() == 'Windows' then
-  // --- WINDOWS ---
-  MODELICAC_FILENAME = MODELICAC_FILENAME + '.exe';
-  defaultPath = SCI + "/bin/";
-  
-  if isfile(defaultPath + MODELICAC_FILENAME) then
-    compilerpath = defaultPath;
-  else
     compilerpath = "";
-  end
-  
-else
-  // --- LINUX/MACOS ---
-  
-  // Check if source tree version
-  if isdir(SCI+"/modules/core/includes/") then
-    defaultPath = SCI + "/modules/scicos/";
-    
-    if isfile(defaultPath + MODELICAC_FILENAME) then
-      compilerpath = defaultPath;
-    else
-      compilerpath = "";
-    end
-  end
 
-  // Check if binary version
-  if compilerpath=="" & isdir(SCI+"/../../include/scilab/") then
-    defaultPath = SCI + "/../../bin/";
-    
-    if isfile(defaultPath + MODELICAC_FILENAME) then
-      compilerpath = defaultPath;
-    else
-      compilerpath = "";
-    end
-  end
+    if getos() == "Windows" then
+        // --- WINDOWS ---
+        MODELICAC_FILENAME = MODELICAC_FILENAME + ".exe";
+        defaultPath = SCI + "/bin/";
 
-  // Check if system version
-  if compilerpath=="" & isdir("/usr/include/scilab/") then
-    defaultPath = "/usr/bin/";
-    
-    if isfile(defaultPath + MODELICAC_FILENAME) then
-      compilerpath = defaultPath;
-    else
-      compilerpath = "";
-    end
-  end
+        if isfile(defaultPath + MODELICAC_FILENAME) then
+            compilerpath = defaultPath;
+        else
+            compilerpath = "";
+        end
 
-end
+    else
+        // --- LINUX/MACOS ---
+
+        // Check if source tree version
+        if isdir(SCI+"/modules/core/includes/") then
+            defaultPath = SCI + "/modules/scicos/";
+
+            if isfile(defaultPath + MODELICAC_FILENAME) then
+                compilerpath = defaultPath;
+            else
+                compilerpath = "";
+            end
+        end
+
+        // Check if binary version
+        if compilerpath=="" & isdir(SCI+"/../../include/scilab/") then
+            defaultPath = SCI + "/../../bin/";
+
+            if isfile(defaultPath + MODELICAC_FILENAME) then
+                compilerpath = defaultPath;
+            else
+                compilerpath = "";
+            end
+        end
+
+        // Check if system version
+        if compilerpath=="" & isdir("/usr/include/scilab/") then
+            defaultPath = "/usr/bin/";
+
+            if isfile(defaultPath + MODELICAC_FILENAME) then
+                compilerpath = defaultPath;
+            else
+                compilerpath = "";
+            end
+        end
+
+    end
 endfunction
 

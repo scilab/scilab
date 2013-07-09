@@ -128,9 +128,9 @@
                     <td align="justify">
                         <programlisting>
                             dense=[%F, %F, %T, %F, %F
-                                   %T, %F, %F, %F, %F
-                                   %F, %F, %F, %F, %F
-                                   %F, %F, %F, %F, %T];
+                            %T, %F, %F, %F, %F
+                            %F, %F, %F, %F, %F
+                            %F, %F, %F, %F, %T];
                             sp=sparse(dense)
                         </programlisting>
                     </td>
@@ -277,7 +277,7 @@
                         <para>SCILAB_Class = string</para>
                     </td>
                     <td align="left">
-
+                        
                     </td>
                     <td align="left">
                         <para>строковое значение</para>
@@ -291,7 +291,7 @@
                         <para>SCILAB_Class = boolean</para>
                     </td>
                     <td align="left">
-
+                        
                     </td>
                     <td align="left">
                         <para>32-битное целое число</para>
@@ -365,7 +365,8 @@
         </para>
         <para>
             <emphasis role="bold">Типы, в которых данные хранятся в
-            соответствующей группе</emphasis>
+                соответствующей группе
+            </emphasis>
         </para>
         <para>
             Многие типы данных Scilab'а хранятся с помощью групп. Это
@@ -422,14 +423,18 @@
         </para>
         <para>
             <emphasis role="strong">атрибут HDF5 типа
-                Scilab'а:</emphasis> SCILAB_Class = sparse
+                Scilab'а:
+            </emphasis>
+            SCILAB_Class = sparse
         </para>
         <para>
             <emphasis role="strong">атрибуты HDF5: </emphasis>
         </para>
         <para>SCILAB_rows = &lt;int&gt;</para>
         <para>Количество строк</para>
-        <para><emphasis>SCILAB_cols = &lt;int&gt;</emphasis></para>
+        <para>
+            <emphasis>SCILAB_cols = &lt;int&gt;</emphasis>
+        </para>
         <para>Количество столбцов</para>
         <para>
             <emphasis>SCILAB_items = &lt;int&gt;</emphasis>
@@ -465,7 +470,7 @@
         </programlisting>
         <para>которая формируется функцией:</para>
         <programlisting role="scilab_code">
-        sparse([1,2;4,5;3,10],[1,2,3])
+            sparse([1,2;4,5;3,10],[1,2,3])
         </programlisting>
         <para>
             будем иметь:
@@ -509,7 +514,9 @@
         </para>
         <para>
             <emphasis role="strong">Значения корневого набора
-            данных:</emphasis> в то время как разрежённая матрица имеет
+                данных:
+            </emphasis>
+            в то время как разрежённая матрица имеет
             3 набора данных, разрежённая матрица логических значений
             имеет только 2, поскольку определяемые значения
             автоматически рассматриваются как истинные.
@@ -529,10 +536,10 @@
         </para>
         <para>В разрежённой матрице логических значений:</para>
         <programlisting>
-        dense=[%F, %F, %T, %F, %F
-               %T, %F, %F, %F, %F
-               %F, %F, %F, %F, %F
-               %F, %F, %F, %F, %T];
+            dense=[%F, %F, %T, %F, %F
+            %T, %F, %F, %F, %F
+            %F, %F, %F, %F, %F
+            %F, %F, %F, %F, %T];
         </programlisting>
         <para>
             <emphasis>#0#</emphasis> содержит <emphasis>1;1;0;1</emphasis>.
@@ -546,7 +553,9 @@
         </para>
         <para>
             <emphasis role="bold">Расположение типов данных
-            HDF</emphasis>: 32-битное целое
+                HDF
+            </emphasis>
+            :32-битное целое
         </para>
         <para>
             <emphasis role="bold">Числа удвоенной точности</emphasis>
@@ -574,7 +583,9 @@
         </para>
         <para>
             <emphasis role="bold">Расположение типов данных
-            HDF</emphasis> 64-битное с плавающей запятой
+                HDF
+            </emphasis>
+            64-битное с плавающей запятой
         </para>
         <para>
             <emphasis role="bold">Полином</emphasis>
@@ -584,7 +595,9 @@
         </para>
         <para>
             <emphasis role="strong">атрибут HDF5 типа
-                Scilab'а:</emphasis> SCILAB_Class = polynomial
+                Scilab'а:
+            </emphasis>
+            SCILAB_Class = polynomial
         </para>
         <para>
             <emphasis role="strong">атрибуты HDF5: </emphasis>
@@ -600,7 +613,8 @@
         </para>
         <para>
             <emphasis role="strong">Значения корневого набора
-            данных:</emphasis>
+                данных:
+            </emphasis>
         </para>
         <para>
             Коэффициенты хранятся в виде матрицы чисел удвоенной
@@ -709,8 +723,8 @@
             сформированы с помощью следующего синтаксиса:
         </para>
         <programlisting>
-        undefinedelement_ref=list(2,%i,'f',ones(3,3));
-        undefinedelement_ref(6)="toto"
+            undefinedelement_ref=list(2,%i,'f',ones(3,3));
+            undefinedelement_ref(6)="toto"
         </programlisting>
     </refsection>
     <refsection>
@@ -843,7 +857,7 @@
                 </tr>
                 <tr>
                     <td align="justify">
-
+                        
                     </td>
                     <td align="justify">
                         <para>6.0.0 (будущая)</para>

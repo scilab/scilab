@@ -8,20 +8,20 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function datatipRemoveNearest(curve,pt)
-//datatip utility function
-  ud=datatipGetStruct(curve)
-  if typeof(ud)=='datatips' then
-    tips=ud.tips.children
-    dmin=%inf;l=[];
-    pt=pt(:);
-    for tip_index=1:size(tips,'*')
-      d=norm(tips(tip_index).children(1).data(1:2)-pt(1:2))
-      if d<dmin then
-        l=tip_index;dmin=d;
-      end
+    //datatip utility function
+    ud=datatipGetStruct(curve)
+    if typeof(ud)=="datatips" then
+        tips=ud.tips.children
+        dmin=%inf;l=[];
+        pt=pt(:);
+        for tip_index=1:size(tips,"*")
+            d=norm(tips(tip_index).children(1).data(1:2)-pt(1:2))
+            if d<dmin then
+                l=tip_index;dmin=d;
+            end
+        end
+        if l<>[] then
+            datatipRemove(curve,l);
+        end
     end
-    if l<>[] then
-      datatipRemove(curve,l);
-    end
-  end
 endfunction

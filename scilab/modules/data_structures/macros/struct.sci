@@ -9,69 +9,69 @@
 
 
 function s=struct(varargin)
-// Equivalent for Matlab struct function
+    // Equivalent for Matlab struct function
 
-rhs=argn(2)
+    rhs=argn(2)
 
-fields=["st","dims"];
+    fields=["st","dims"];
 
-if rhs==0 then
-  // No Matlab equivalent
-  s=mlist(fields,int32([0,0]))
-  return
-end
-
-if floor(rhs/2)*2<>rhs then
-  error(msprintf(gettext("%s: Wrong number of input argument(s) : an even number is expected.\n"),"struct"));
-end
-
-nbfields=size(varargin)/2
-
-dims=[]
-for kf=1:2:size(varargin)
-  if varargin(kf)=="dims" then
-    error(msprintf(gettext("%s: ''dims'' can not be used as a field name.\n"),"struct"));
-  end
-  if or(varargin(kf)==fields(2:$)) then
-    error(msprintf(gettext("%s: field name ''%s'' defined twice.\n"),"struct",varargin(kf)));
-  end
-  fields=[fields varargin(kf)]
-end
-
-dims=[1 1]
-// Search struct size
-for kf=2:2:size(varargin)
-  if typeof(varargin(kf))=="ce" then
-    if or(double(varargin(kf).dims)<>[1 1]) then
-      dims=varargin(kf).dims
-      break
+    if rhs==0 then
+        // No Matlab equivalent
+        s=mlist(fields,int32([0,0]))
+        return
     end
-  end
-end
-s=mlist(fields,int32(dims))
 
-// Search if one value is a scalar cell
-fnb=3
-for kf=2:2:size(varargin)
-  if typeof(varargin(kf))<>"ce" then
-    value=list()
-    for kk=1:prod(double(dims))
-      value(kk)=varargin(kf)
+    if floor(rhs/2)*2<>rhs then
+        error(msprintf(gettext("%s: Wrong number of input argument(s) : an even number is expected.\n"),"struct"));
     end
-  elseif and(double(varargin(kf).dims)==[1 1]) then
-    value=list()
-    for kk=1:prod(double(dims))
-      value(kk)=varargin(kf).entries
+
+    nbfields=size(varargin)/2
+
+    dims=[]
+    for kf=1:2:size(varargin)
+        if varargin(kf)=="dims" then
+            error(msprintf(gettext("%s: ''dims'' can not be used as a field name.\n"),"struct"));
+        end
+        if or(varargin(kf)==fields(2:$)) then
+            error(msprintf(gettext("%s: field name ''%s'' defined twice.\n"),"struct",varargin(kf)));
+        end
+        fields=[fields varargin(kf)]
     end
-  else
-    value=varargin(kf).entries
-  end
-  if prod(double(dims))==1 then
-  setfield(fnb,value(1),s)
-  else
-    setfield(fnb,value,s)
-  end
-  fnb=fnb+1
-end
+
+    dims=[1 1]
+    // Search struct size
+    for kf=2:2:size(varargin)
+        if typeof(varargin(kf))=="ce" then
+            if or(double(varargin(kf).dims)<>[1 1]) then
+                dims=varargin(kf).dims
+                break
+            end
+        end
+    end
+    s=mlist(fields,int32(dims))
+
+    // Search if one value is a scalar cell
+    fnb=3
+    for kf=2:2:size(varargin)
+        if typeof(varargin(kf))<>"ce" then
+            value=list()
+            for kk=1:prod(double(dims))
+                value(kk)=varargin(kf)
+            end
+        elseif and(double(varargin(kf).dims)==[1 1]) then
+            value=list()
+            for kk=1:prod(double(dims))
+                value(kk)=varargin(kf).entries
+            end
+        else
+            value=varargin(kf).entries
+        end
+        if prod(double(dims))==1 then
+            setfield(fnb,value(1),s)
+        else
+            setfield(fnb,value,s)
+        end
+        fnb=fnb+1
+    end
 
 endfunction

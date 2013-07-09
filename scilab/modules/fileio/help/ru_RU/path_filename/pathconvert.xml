@@ -40,7 +40,7 @@
                         или <literal>/</literal> в зависимости от целевого формата пути).
                         Его значение по умолчанию равно <constant>%t</constant>.
                     </para>
-                 </listitem>
+                </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flagexpand</term>

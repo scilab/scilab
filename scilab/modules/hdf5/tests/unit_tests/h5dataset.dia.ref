@@ -13,11 +13,11 @@ msgerr = msprintf(gettext("%s: Wrong type for input argument #1: A string or a H
 assert_checkerror("h5dataset(42,42,42,42,42)",msgerr,999);
 msgerr = msprintf(gettext("%s: Wrong type for input argument #2: A string expected."), "h5dataset");
 assert_checkerror("h5dataset(""42"",42,42,42,42)",msgerr,999);
-msgerr = msprintf(gettext("%s: Bad dimensions for input argument #3: five rows expected."), "h5dataset");
+msgerr = msprintf(gettext("%s: Wrong size for input argument #3: five row vector expected."), "h5dataset");
 assert_checkerror("h5dataset(""42"",""42"",42,42,42)",msgerr,999);
 msgerr = msprintf(gettext("%s: Wrong type for input argument #3: A double matrix expected."), "h5dataset");
 assert_checkerror("h5dataset(""42"",""42"",[""42"",""42"",""42"",""42"",""42""],42,42)",msgerr,999);
-msgerr = msprintf(gettext("%s: Bad dimensions for input argument #5: six rows expected."), "h5dataset");
+msgerr = msprintf(gettext("%s: Wrong size for input argument #5: six row vector expected."), "h5dataset");
 assert_checkerror("h5dataset(""42"",""42"",[42;42;42;42;42],42,42)",msgerr,999);
 msgerr = msprintf(gettext("%s: Invalid hdf5 file: %s."), "h5dataset","42");
 assert_checkerror("h5dataset(""42"",""42"",[42;42;42;42;42],42,[42;42;42;42;42;42])",msgerr,999);

@@ -45,7 +45,7 @@
             <latex>10^{d1}</latex> および
             <latex>10^{d2}</latex>の間に指数的に等しい間隔にとった
             <literal>n</literal>個の点からなる行ベクトルを返します.
-            <literal>d2=%pi</literal> の場合,
+            <latex>d2=\pi</latex> の場合,
             <latex>10^{d1}</latex> および <latex>\pi</latex>の間の
             点となります.
         </para>

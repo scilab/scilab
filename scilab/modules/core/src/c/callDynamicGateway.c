@@ -72,7 +72,8 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
         if (*hlib == NULL) /* Load of the hardcoded path to the lib failed */
         {
 
-            if (FileExist(pathToLib)) {
+            if (FileExist(pathToLib))
+            {
                 /* It fails but the file exists */
                 char *previousError = GetLastDynLibError();
                 if (previousError != NULL)
@@ -252,7 +253,10 @@ BOOL freeDynamicGateway(char **dynLibName,
         *ptrGateway = NULL;
     }
 
-    if ((*hlib == NULL) && (*ptrGateway == NULL)) return TRUE;
+    if ((*hlib == NULL) && (*ptrGateway == NULL))
+    {
+        return TRUE;
+    }
 
     return FALSE;
 }

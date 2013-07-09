@@ -16,5 +16,5 @@
 //
 
 function [] = %_champ()
-  champ(1:10,1:10,rand(10,10),rand(10,10),1.0);
+    champ(1:10,1:10,rand(10,10),rand(10,10),1.0);
 endfunction

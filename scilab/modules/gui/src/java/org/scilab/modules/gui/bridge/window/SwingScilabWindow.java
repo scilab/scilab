@@ -114,11 +114,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
         // By default ctrl+w close the window
         ActionListener listener = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    processWindowEvent(new WindowEvent(SwingScilabWindow.this, WindowEvent.WINDOW_CLOSING));
-                }
-            };
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                processWindowEvent(new WindowEvent(SwingScilabWindow.this, WindowEvent.WINDOW_CLOSING));
+            }
+        };
         getRootPane().registerKeyboardAction(listener, ScilabKeyStroke.getKeyStroke("OSSCKEY W"), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
         // TODO : Only for testing : Must be removed
@@ -155,27 +155,27 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         setLocationByPlatform(true);
 
         addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosing(WindowEvent e) {
-                    ClosingOperationsManager.startClosingOperation(SwingScilabWindow.this);
-                }
-            });
+            @Override
+            public void windowClosing(WindowEvent e) {
+                ClosingOperationsManager.startClosingOperation(SwingScilabWindow.this);
+            }
+        });
 
         addComponentListener(new ComponentAdapter() {
-                @Override
-                public void componentResized(ComponentEvent e) {
-                    if (getExtendedState() == NORMAL) {
-                        lastDimension = getSize();
-                    }
+            @Override
+            public void componentResized(ComponentEvent e) {
+                if (getExtendedState() == NORMAL) {
+                    lastDimension = getSize();
                 }
+            }
 
-                @Override
-                public void componentMoved(ComponentEvent e) {
-                    if (getExtendedState() == NORMAL) {
-                        lastPosition = getLocation();
-                    }
+            @Override
+            public void componentMoved(ComponentEvent e) {
+                if (getExtendedState() == NORMAL) {
+                    lastPosition = getLocation();
                 }
-            });
+            }
+        });
 
         if (MAC_OS_X) {
             registerForMacOSXEvents();
@@ -313,11 +313,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             /* javasci bug: See bug 9544 why we are doing this check */
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
-                        @Override
-                        public void run() {
-                            raiseToFront();
-                        }
-                    });
+                    @Override
+                    public void run() {
+                        raiseToFront();
+                    }
+                });
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {

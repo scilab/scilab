@@ -31,10 +31,10 @@ function demo_fmin_display()
     //
     m = messagebox(_("View Code?"), "Question", "question", [_("Yes") _("No")], "modal")
     if(m == 1)
-        filename = 'fminsearch_display.sce';
+        filename = "fminsearch_display.sce";
         dname = get_absolute_file_path(filename);
         editor ( dname + filename, "readonly" );
-    end 
+    end
 endfunction
 
 demo_fmin_display();
@@ -46,4 +46,5 @@ clear demo_fmin_display;
 
 
 
-
+
+

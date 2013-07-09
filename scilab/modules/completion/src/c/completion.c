@@ -27,7 +27,7 @@
 #include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/
-char **completionOnDictionary(char **dictionary,int sizedictionary,char *somechars,int *sizearrayreturned);
+char **completionOnDictionary(char **dictionary, int sizedictionary, char *somechars, int *sizearrayreturned);
 /*--------------------------------------------------------------------------*/
 char **completion(char *somechars, int *sizeArrayReturned)
 {
@@ -57,7 +57,7 @@ char **completion(char *somechars, int *sizeArrayReturned)
     *sizeArrayReturned = 0;
 
     sizedictionary = sizecompletionfunctions + sizecompletioncommandwords + sizecompletionmacros
-        + sizecompletionvariables + sizecompletionhandlegraphicsproperties + sizecompletionfiles;
+                     + sizecompletionvariables + sizecompletionhandlegraphicsproperties + sizecompletionfiles;
 
 
     if ( (completionfiles) && (sizedictionary == sizecompletionfiles) )
@@ -67,25 +67,28 @@ char **completion(char *somechars, int *sizeArrayReturned)
     }
     else
     {
-        if (sizedictionary > 0) dictionary = (char**)MALLOC(sizeof(char*)*sizedictionary);
+        if (sizedictionary > 0)
+        {
+            dictionary = (char**)MALLOC(sizeof(char*) * sizedictionary);
+        }
 
         if (dictionary)
         {
             int i = 0;
-            appendDictionary(&dictionary,&i,&completionfunctions,&sizecompletionfunctions);
-            appendDictionary(&dictionary,&i,&completioncommandwords,&sizecompletioncommandwords);
-            appendDictionary(&dictionary,&i,&completionmacros,&sizecompletionmacros);
-            appendDictionary(&dictionary,&i,&completionvariables,&sizecompletionvariables);
-            appendDictionary(&dictionary,&i,&completionhandlegraphicsproperties,&sizecompletionhandlegraphicsproperties);
-            appendDictionary(&dictionary,&i,&completionfiles,&sizecompletionfiles);
+            appendDictionary(&dictionary, &i, &completionfunctions, &sizecompletionfunctions);
+            appendDictionary(&dictionary, &i, &completioncommandwords, &sizecompletioncommandwords);
+            appendDictionary(&dictionary, &i, &completionmacros, &sizecompletionmacros);
+            appendDictionary(&dictionary, &i, &completionvariables, &sizecompletionvariables);
+            appendDictionary(&dictionary, &i, &completionhandlegraphicsproperties, &sizecompletionhandlegraphicsproperties);
+            appendDictionary(&dictionary, &i, &completionfiles, &sizecompletionfiles);
 
-            dictionary = SortDictionary(dictionary,i);
-            dictionary = RemoveDuplicateDictionary(dictionary,&i);
+            dictionary = SortDictionary(dictionary, i);
+            dictionary = RemoveDuplicateDictionary(dictionary, &i);
 
             sizedictionary = i;
         }
-        ListWords = completionOnDictionary(dictionary,sizedictionary,somechars,sizeArrayReturned);
-        freePointerDictionary(dictionary,sizedictionary);
+        ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
+        freePointerDictionary(dictionary, sizedictionary);
     }
 
     return ListWords;
@@ -101,9 +104,9 @@ char **completionOnFunctions(char *somechars, int *sizeArrayReturned)
 
     if (dictionary)
     {
-        dictionary = SortDictionary(dictionary,sizedictionary);
-        ListWords = completionOnDictionary(dictionary,sizedictionary,somechars,sizeArrayReturned);
-        freePointerDictionary(dictionary,sizedictionary);
+        dictionary = SortDictionary(dictionary, sizedictionary);
+        ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
+        freePointerDictionary(dictionary, sizedictionary);
     }
     else
     {
@@ -122,10 +125,10 @@ char **completionOnCommandWords(char *somechars, int *sizeArrayReturned)
 
     if (dictionary)
     {
-        dictionary = SortDictionary(dictionary,sizedictionary);
-        dictionary = RemoveDuplicateDictionary(dictionary,&sizedictionary);
-        ListWords = completionOnDictionary(dictionary,sizedictionary,somechars,sizeArrayReturned);
-        freePointerDictionary(dictionary,sizedictionary);
+        dictionary = SortDictionary(dictionary, sizedictionary);
+        dictionary = RemoveDuplicateDictionary(dictionary, &sizedictionary);
+        ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
+        freePointerDictionary(dictionary, sizedictionary);
     }
     else
     {
@@ -144,10 +147,10 @@ char **completionOnMacros(char *somechars, int *sizeArrayReturned)
 
     if (dictionary)
     {
-        dictionary = SortDictionary(dictionary,sizedictionary);
-        dictionary = RemoveDuplicateDictionary(dictionary,&sizedictionary);
-        ListWords = completionOnDictionary(dictionary,sizedictionary,somechars,sizeArrayReturned);
-        freePointerDictionary(dictionary,sizedictionary);
+        dictionary = SortDictionary(dictionary, sizedictionary);
+        dictionary = RemoveDuplicateDictionary(dictionary, &sizedictionary);
+        ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
+        freePointerDictionary(dictionary, sizedictionary);
     }
     else
     {
@@ -162,10 +165,10 @@ char **completionOnVariables(char *somechars, int *sizeArrayReturned)
     char **dictionary = NULL;
     int sizedictionary = 0;
 
-    dictionary = getVariablesName(&sizedictionary,TRUE);
+    dictionary = getVariablesName(&sizedictionary, TRUE);
 
-    ListWords = completionOnDictionary(dictionary,sizedictionary,somechars,sizeArrayReturned);
-    freePointerDictionary(dictionary,sizedictionary);
+    ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
+    freePointerDictionary(dictionary, sizedictionary);
 
     return ListWords;
 }
@@ -182,7 +185,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
     char **dictionaryVariables = NULL;
     int sizedictionaryVariables = 0;
 
-    dictionaryVariables = completionOnVariables(somechars,&sizedictionaryVariables);
+    dictionaryVariables = completionOnVariables(somechars, &sizedictionaryVariables);
 
     if (sizedictionaryVariables)
     {
@@ -224,7 +227,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
                     {
                         for ( j = 0; j < sizedictionaryMacros; j++)
                         {
-                            if ( strcmp(dictionaryVariables[i],dictionaryMacros[j]) == 0 )
+                            if ( strcmp(dictionaryVariables[i], dictionaryMacros[j]) == 0 )
                             {
                                 FREE(ListWordsTmp[i]);
                                 ListWordsTmp[i] = NULL;
@@ -232,7 +235,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
                         }
                     }
 
-                    ListWords = (char**)MALLOC(sizeof(char*)*(sizeListWords+1));
+                    ListWords = (char**)MALLOC(sizeof(char*) * (sizeListWords + 1));
                     if (ListWords)
                     {
                         for ( i = 0; i < sizedictionaryVariables; i++)
@@ -240,7 +243,10 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
                             if (ListWordsTmp[i])
                             {
                                 ListWords[k] = strdup(ListWordsTmp[i]);
-                                if (k <= sizeListWords) k++;
+                                if (k <= sizeListWords)
+                                {
+                                    k++;
+                                }
                             }
                         }
                         /* Add a NULL element at the end (to get number of items from JNI) */
@@ -289,7 +295,7 @@ char **completionOnFiles(char *somechars, int *sizeArrayReturned)
     char **dictionary = NULL;
     int sizedictionary = 0;
 
-    dictionary = getfilesdictionary(somechars,&sizedictionary,FALSE);
+    dictionary = getfilesdictionary(somechars, &sizedictionary, FALSE);
 
     if (dictionary)
     {
@@ -344,23 +350,23 @@ char **completionOnHandleGraphicsProperties(char *somechars, int *sizeArrayRetur
 
     if (sizedictionary > 0)
     {
-        dictionary = (char**)MALLOC(sizeof(char*)*sizedictionary);
+        dictionary = (char**)MALLOC(sizeof(char*) * sizedictionary);
 
         if (dictionary)
         {
             int i = 0;
 
-            appendDictionary(&dictionary,&i,&HandleGraphicsGetPropertiesDictionary,&sizeHandleGraphicsGetPropertiesDictionary);
-            appendDictionary(&dictionary,&i,&HandleGraphicsSetPropertiesDictionary,&sizeHandleGraphicsSetPropertiesDictionary);
+            appendDictionary(&dictionary, &i, &HandleGraphicsGetPropertiesDictionary, &sizeHandleGraphicsGetPropertiesDictionary);
+            appendDictionary(&dictionary, &i, &HandleGraphicsSetPropertiesDictionary, &sizeHandleGraphicsSetPropertiesDictionary);
             sizedictionary = i;
         }
 
         if (dictionary)
         {
-            dictionary = SortDictionary(dictionary,sizedictionary);
-            dictionary = RemoveDuplicateDictionary(dictionary,&sizedictionary);
-            ListWords = completionOnDictionary(dictionary,sizedictionary,somechars,sizeArrayReturned);
-            freePointerDictionary(dictionary,sizedictionary);
+            dictionary = SortDictionary(dictionary, sizedictionary);
+            dictionary = RemoveDuplicateDictionary(dictionary, &sizedictionary);
+            ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
+            freePointerDictionary(dictionary, sizedictionary);
         }
         else
         {
@@ -374,14 +380,17 @@ char **completionOnHandleGraphicsProperties(char *somechars, int *sizeArrayRetur
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnDictionary(char **dictionary,int sizedictionary,char *somechars,int *sizearrayreturned)
+char **completionOnDictionary(char **dictionary, int sizedictionary, char *somechars, int *sizearrayreturned)
 {
     char **ListWords = NULL;
 
     if (dictionary)
     {
-        ListWords = completion_generic(dictionary,sizedictionary,somechars,sizearrayreturned);
-        if (ListWords == NULL) *sizearrayreturned = 0;
+        ListWords = completion_generic(dictionary, sizedictionary, somechars, sizearrayreturned);
+        if (ListWords == NULL)
+        {
+            *sizearrayreturned = 0;
+        }
     }
     else
     {

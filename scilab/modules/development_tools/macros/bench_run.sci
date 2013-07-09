@@ -46,7 +46,7 @@ function bench_run(varargin)
 
         module_list = getmodules();
         module_list = gsort(module_list,"lr","i");
-        for k=1:size(module_list,'*')
+        for k=1:size(module_list,"*")
             bench_add_module(module_list(k));
         end
 
@@ -109,7 +109,7 @@ function bench_run(varargin)
             end
         end
     else
-        error(gettext('Number of parameters incorrect.'));
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "bench_run", 0, 3));
     end
 
     // =======================================================
@@ -194,22 +194,22 @@ function bench_run(varargin)
             // Display
             returned_time_str           = sprintf("%4.2f ms",returned_time);
             for j = length(returned_time_str):13
-                printf(' ');
+                printf(" ");
             end
             printf("%s [",returned_time_str);
             for j = length(nb_run_done):7
-                printf(' ');
+                printf(" ");
             end
             printf("%s x]\n",nb_run_done);
 
             // XML print
             xml_str = [ xml_str ; ..
-                "    <bench>"; ..
-                "        <module>"+test_list(i,1)+"</module>"; ..
-                "        <id>"+test_list(i,2)+"</id>"; ..
-                "        <duration>"+strsubst(returned_time_str," ms","")+"</duration>"; ..
-                "        <nb_run>"+nb_run_done+"</nb_run>"; ..
-                "    </bench>" ];
+            "    <bench>"; ..
+            "        <module>"+test_list(i,1)+"</module>"; ..
+            "        <id>"+test_list(i,2)+"</id>"; ..
+            "        <duration>"+strsubst(returned_time_str," ms","")+"</duration>"; ..
+            "        <nb_run>"+nb_run_done+"</nb_run>"; ..
+            "    </bench>" ];
 
         end
 
@@ -220,13 +220,13 @@ function bench_run(varargin)
     xml_file_name = SCI+"/bench_"+getversion()+"_"+date()+".xml";
     ierr = execstr("fd_xml = mopen(xml_file_name,''wt'');","errcatch");
     if ierr == 999 then
-      xml_file_name = SCIHOME + "/bench_" + getversion() + "_" + date() +".xml";
-      ierr = execstr("fd_xml = mopen(xml_file_name,''wt'');","errcatch");
+        xml_file_name = SCIHOME + "/bench_" + getversion() + "_" + date() +".xml";
+        ierr = execstr("fd_xml = mopen(xml_file_name,''wt'');","errcatch");
     end
 
     if ierr == 0 then
-      mputl(xml_str, fd_xml);
-      mclose(fd_xml);
+        mputl(xml_str, fd_xml);
+        mclose(fd_xml);
     end
 
     clearglobal test_list;
@@ -319,17 +319,17 @@ function [returned_time,nb_run_done] = bench_run_onebench(module,test,nb_run)
     bench      = txt([line_start+1:line_end-1]);
 
     // Remove blank lines
-    context(find(context == '' )) = [];
-    bench  (find(bench   == '' )) = [];
+    context(find(context == "" )) = [];
+    bench  (find(bench   == "" )) = [];
 
     tst_str = [ context ;
-                "nb_run = "+nb_run+";";
-                "tic();";
-                "for i = 1:nb_run";
-                bench;
-                "end";
-                "timing = toc();";
-                "returned_time = timing * 1000 / nb_run;"]
+    "nb_run = "+nb_run+";";
+    "tic();";
+    "for i = 1:nb_run";
+    bench;
+    "end";
+    "timing = toc();";
+    "returned_time = timing * 1000 / nb_run;"]
 
     mputl(tst_str,scefile);
     exec(scefile);

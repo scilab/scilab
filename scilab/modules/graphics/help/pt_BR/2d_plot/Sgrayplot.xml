@@ -314,16 +314,13 @@ t = linspace(0,4*%pi,nt);
 show_window(); clf()
 f=gcf();
 f.color_map=jetcolormap(64);
-f.pixmap='on';
 colorbar(-1,1)
 Sgrayplot(x,y,cos(t(1))*z, strf="042", zminmax=[-1,1])
 c=gce(),e=c.children
 xtitle("Olhos de Kaa")
 for i = 1:nt
   e.data(:,3)=matrix(cos(t(i))*z,-1,1);
-  show_pixmap()
 end
-f.pixmap='off';
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

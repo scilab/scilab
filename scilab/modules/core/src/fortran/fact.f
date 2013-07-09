@@ -36,6 +36,8 @@ c
       data num/0/,name/1/,cmt/2/
       data cconc/1/,extrac/3/,rconc/4/
       
+c     fix valgrind unitialized value
+      data psym/0/
       
 c
       iadr(l)=l+l-1

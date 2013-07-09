@@ -16,6 +16,6 @@
 //   ive : vertex index
 //
 function x = optimsimplex_getx ( this , ive )
-  x = this.x ( ive , : )
+    x = this.x ( ive , : )
 endfunction
 

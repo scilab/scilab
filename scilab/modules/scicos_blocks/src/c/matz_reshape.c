@@ -18,25 +18,25 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void matz_reshape(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void matz_reshape(scicos_block *block, int flag)
 {
-	int xu = GetOutPortRows(block,1);
-	int vu = GetOutPortCols(block,1);
+    int xu = GetOutPortRows(block, 1);
+    int vu = GetOutPortCols(block, 1);
 
-	double *u1r = GetRealInPortPtrs(block,1);
-	double *u1i = GetImagInPortPtrs(block,1);
-	double *yr = GetRealOutPortPtrs(block,1);
-	double *yi = GetImagOutPortPtrs(block,1);
+    double *u1r = GetRealInPortPtrs(block, 1);
+    double *u1i = GetImagInPortPtrs(block, 1);
+    double *yr = GetRealOutPortPtrs(block, 1);
+    double *yi = GetImagOutPortPtrs(block, 1);
 
-	int i = 0;
-	for (i=0;i<xu*vu;i++) 
-	{
-		*(yr+i)=*(u1r+i);
-		*(yi+i)=*(u1i+i);
-	}
+    int i = 0;
+    for (i = 0; i < xu * vu; i++)
+    {
+        *(yr + i) = *(u1r + i);
+        *(yi + i) = *(u1i + i);
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

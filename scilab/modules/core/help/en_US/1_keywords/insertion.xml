@@ -68,7 +68,7 @@
                             <term>Real scalars or vectors or matrices</term>
                             <listitem>
                                 <para>In this case the values given as indices should be positive and
-                                    it is only their integer part which taken into account.
+                                     only their integer part are taken into account.
                                 </para>
                                 <itemizedlist>
                                     <listitem>
@@ -328,7 +328,7 @@
                             </para>
                             <itemizedlist>
                                 <listitem>
-                                    <para> a real non negative scalar.
+                                    <para> a real non negative scalar (only its integer part is taken into account).
                                         <literal>l(0)=a</literal> adds an entry on the "left"
                                         of the list. <literal>l(i)=a</literal> sets the <literal>i</literal>
                                         entry of the list <literal>l</literal> to <literal>a</literal>. If
@@ -399,6 +399,7 @@ a([%t %f],1)=33
 a(1:2,$-1)=[2;4]
 a($:-1:1,1)=[8;7]
 a($)=123
+a(1,%pi)=1 //equivalent to a(1,3)=1
 //
 x='test'
 x([4 5])=['4','5']
@@ -411,6 +412,7 @@ b(2)=[1 2] // the numerator
 l=list(1,'qwerw',%s)
 l(1)='Changed'
 l(0)='Added'
+l(%pi)=1 //equivalent to l(3)=1
 l(6)=['one more';'added']
 //
 //

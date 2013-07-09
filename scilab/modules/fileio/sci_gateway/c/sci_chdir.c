@@ -151,8 +151,14 @@ int sci_chdir(char *fname, unsigned long fname_len)
 
             int ierr = scichdirW(expandedPath);
 
-            if (ierr) bOutput[0] = FALSE;
-            else bOutput[0] = TRUE;
+            if (ierr)
+            {
+                bOutput[0] = FALSE;
+            }
+            else
+            {
+                bOutput[0] = TRUE;
+            }
 
             sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, 1, bOutput);
             if (sciErr.iErr)

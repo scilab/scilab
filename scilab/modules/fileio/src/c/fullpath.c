@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -22,6 +22,8 @@
 #include "MALLOC.h"
 #include "machine.h"
 #include "PATH_MAX.h"
+#include "strsubst.h"
+#include "scicurdir.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static unsigned int isDirSeparator(const char c);
@@ -63,20 +65,75 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
 
     rp = realpath(_Path, _FullPath);
     int lenFullPath = 0;
+    lenFullPath = (int)strlen(_FullPath);
     int haveFileSep = ((lenPath > 1) && isDirSeparator(_Path[lenPath - 1]));
     int addFileSep = 0;
 
-    if (!rp)
+    if (rp == NULL)
     {
-        strcpy(_FullPath, _Path);
-        normalizePath(_FullPath);
+        char * tofind;
+        char * toadd;
+        char * _Path_tmp;
+        char * _Path_start;
+        char * _FullPath_start;
+        char* pstWorkingPath = NULL;
+        
+        //if argument is a relative path, add currentdir at start
+        if(_Path[0] != '/')
+        {
+            int ierr = 0;
+            char* pstCurrentPath = scigetcwd(&ierr);
+            //alloc buffer + 2, 1 for '/' and 1 for null termination
+            pstWorkingPath = (char*)MALLOC(sizeof(char) * (lenPath + strlen(pstCurrentPath) + 2));
+            sprintf(pstWorkingPath, "%s/%s", pstCurrentPath, _Path);
+            lenPath = strlen(pstWorkingPath);
+        }
+        else
+        {
+            pstWorkingPath = strdup(_Path);
+        }        
+        
+        _Path_tmp = (char *)MALLOC(sizeof(char) * (lenPath + 1));
+        _Path_start = (char *)MALLOC(sizeof(char) * (lenPath + 1));
+        _FullPath_start = (char *)MALLOC(sizeof(char) * (lenFullPath + 1));
+//First case(1): fullpath(TMPDIR+"/a/b/c"), second case(2): fullpath("a/b/c") or third case(3): fullpath("../a/b")
+        strcpy(_Path_start, pstWorkingPath); // _Path_start=TMPDIR+"/a/b/c" (1) or _Path_start="a/b/c" (2) or _Path_start="../a/b/c" (3)
+        strcpy(_FullPath_start, _FullPath); // _Fullpath_Start=TMPDIR+"/a" (1) or _FullPath_start=SCI+"/a" (2) or _FullPath_start=../SCI+"/a" (3)
+        strtok(_Path_start, "/"); // _Path_start=/tmp  (1) or _Path_start="a" (2) or _Path_start="a/b/c" (3)
+        strtok(_FullPath_start, "/"); // _FullPath_start=/tmp (1) or _FullPath_start=/home (2) and (3)
+        if (strcmp(_Path_start, _FullPath_start) == 0) // For case: fullpath(TMPDIR+"/a/b/c") (1)
+        {
+            strcpy(_FullPath, pstWorkingPath);
+            normalizePath(_FullPath);
+            FREE(_Path_start);
+            _Path_start = NULL;
+            FREE(_FullPath_start);
+            _FullPath_start = NULL;
+            FREE(_Path_tmp);
+            _Path_tmp = NULL;
+        }
+        else if (strcmp(_Path, _FullPath) != 0) // For case: fullpath("a/b/c") (2) or fullpath("../a/b/c") (3)
+        {
+            strcpy(_Path_tmp, pstWorkingPath); //_Path_tmp="a/b/c" (2) or _Path_tmp="../a/b/c" (3)
+            strtok(_Path_tmp, "./"); // _Path_tmp becomes a (2) or ../a (3)
+            toadd=strsub(pstWorkingPath, _Path_tmp, ""); // to add = "/b/c"
+            strcat(_FullPath, toadd); //_FullPath=_Fullpath+toadd
+            FREE(_Path_tmp);
+            _Path_tmp = NULL;
+            FREE(_Path_start);
+            _Path_start = NULL;
+            FREE(_FullPath_start);
+            _FullPath_start = NULL;
+        }
+   
+        FREE(pstWorkingPath);
     }
+    
     lenFullPath = (int)strlen(_FullPath);
     addFileSep = ((lenFullPath > 1) && (!isDirSeparator(_FullPath[lenFullPath - 1])) && haveFileSep);
     if (addFileSep)
     {
         char *bufTmp = (char *)MALLOC(sizeof(char) * (lenFullPath + strlen(DIR_SEPARATOR) + 1));
-
         if (bufTmp)
         {
             sprintf(bufTmp, "%s%s", _FullPath, DIR_SEPARATOR);

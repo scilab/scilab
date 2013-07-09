@@ -32,7 +32,7 @@ int GetUicontrolListboxTop(void* _pvCtx, char *sciObjUID)
     {
         if (listboxTopSize == 0)
         {
-          return sciReturnEmptyMatrix(_pvCtx);
+            return sciReturnEmptyMatrix(_pvCtx);
         }
         else
         {

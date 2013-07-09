@@ -11,10 +11,10 @@
  *
  -->
 <project name="ui_data" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.ui_data.name}"/>
-  <property name="library.title" value="User interface graphical components"/>
-  <description>
-			Build the Scilab ui_data module
-  </description>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.ui_data.name}"/>
+    <property name="library.title" value="User interface graphical components"/>
+    <description>
+        Build the Scilab ui_data module
+    </description>
 </project>

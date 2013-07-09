@@ -46,7 +46,7 @@
             not case sensitive. <literal>GlobalProperty</literal> is
             predominant on all <literal>LineSpec</literal> previously stated.
         </para>
-         
+        
         <para>
             Here is a complete list of the <literal>PropertyName</literal> you
             can specify (using <link linkend="plot">plot</link> or <link linkend="surf">surf</link>) and their available

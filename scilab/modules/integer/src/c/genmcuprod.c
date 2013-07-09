@@ -33,33 +33,34 @@ Type *OUT;\
     }\
 }
 
-int C2F(genmcuprod)(int *typ,int *job,void * in, void* out,int * na,int * m,int * n)
+int C2F(genmcuprod)(int *typ, int *job, void * in, void* out, int * na, int * m, int * n)
 {
-  static int  i, j, mn;
+    static int  i, j, mn;
 
-  mn=(*m)*(*n);
+    mn = (*m) * (*n);
 
-  switch (*typ) {
-  case 1:
-    MCUPROD(integer1);
-    break;
-  case 2:
-    MCUPROD(integer2);
-    break;
-  case 4:
-    MCUPROD(int) ;
-    break;
-  case 11:
-    MCUPROD(unsigned char);
-    break;
-  case 12:
-    MCUPROD(unsigned short);
-    break;
-  case 14:
-    MCUPROD(unsigned int);
-    break;
-  }
-  return 0;
+    switch (*typ)
+    {
+        case 1:
+            MCUPROD(integer1);
+            break;
+        case 2:
+            MCUPROD(integer2);
+            break;
+        case 4:
+            MCUPROD(int) ;
+            break;
+        case 11:
+            MCUPROD(unsigned char);
+            break;
+        case 12:
+            MCUPROD(unsigned short);
+            break;
+        case 14:
+            MCUPROD(unsigned int);
+            break;
+    }
+    return 0;
 }
 
 
@@ -80,31 +81,32 @@ Typein *IN;\
     }\
 }
 
-int C2F(genmcuprodd)(int *typ,int *job,void * in, double *out,int * na,int * m,int * n)
+int C2F(genmcuprodd)(int *typ, int *job, void * in, double *out, int * na, int * m, int * n)
 {
-  static int  i, j, mn;
+    static int  i, j, mn;
 
-  mn=(*m)*(*n);
+    mn = (*m) * (*n);
 
-  switch (*typ) {
-  case 1:
-    MCUPROD_DOUBLE(integer1);
-    break;
-  case 2:
-    MCUPROD_DOUBLE(integer2);
-    break;
-  case 4:
-    MCUPROD_DOUBLE(int) ;
-    break;
-  case 11:
-    MCUPROD_DOUBLE(unsigned char);
-    break;
-  case 12:
-    MCUPROD_DOUBLE(unsigned short);
-    break;
-  case 14:
-    MCUPROD_DOUBLE(unsigned int);
-    break;
-  }
-  return 0;
+    switch (*typ)
+    {
+        case 1:
+            MCUPROD_DOUBLE(integer1);
+            break;
+        case 2:
+            MCUPROD_DOUBLE(integer2);
+            break;
+        case 4:
+            MCUPROD_DOUBLE(int) ;
+            break;
+        case 11:
+            MCUPROD_DOUBLE(unsigned char);
+            break;
+        case 12:
+            MCUPROD_DOUBLE(unsigned short);
+            break;
+        case 14:
+            MCUPROD_DOUBLE(unsigned int);
+            break;
+    }
+    return 0;
 }

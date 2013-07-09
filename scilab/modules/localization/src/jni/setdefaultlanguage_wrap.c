@@ -177,12 +177,16 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
     const SWIG_JavaExceptions_t *except_ptr = java_exceptions;
 
     while (except_ptr->code != code && except_ptr->code)
+    {
         except_ptr++;
+    }
 
     (*jenv)->ExceptionClear(jenv);
     excep = (*jenv)->FindClass(jenv, except_ptr->java_exception);
     if (excep)
+    {
         (*jenv)->ThrowNew(jenv, excep, msg);
+    }
 }
 
 
@@ -208,10 +212,16 @@ extern "C" {
         if (jarg1)
         {
             arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
-            if (!arg1) return ;
+            if (!arg1)
+            {
+                return ;
+            }
         }
         setdefaultlanguage((char const *)arg1);
-        if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        if (arg1)
+        {
+            (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+        }
     }
 
 
@@ -223,7 +233,10 @@ extern "C" {
         (void)jenv;
         (void)jcls;
         result = (char *)getdefaultlanguage();
-        if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+        if (result)
+        {
+            jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+        }
         return jresult;
     }
 

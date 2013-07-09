@@ -9,24 +9,24 @@
 //=============================================================================
 function scilablibrarieslist = dlwGetScilabLibraries()
 
-  scilablibrarieslist = ["blasplus.lib"; ..
-                        "libf2c.lib"; ..
-                        "core.lib"; ..
-                        "core_f.lib"; ..
-                        "lapack.lib"; ..
-                        "libintl.lib"; ..
-                        "intersci.lib"; ..
-                        "output_stream.lib"; ..
-                        "dynamic_link.lib"; ..
-                        "integer.lib"; ..
-                        "optimization_f.lib"; ..
-                        "libjvm.lib"; ..
-                        "scilocalization.lib"; ..
-                        "linpack_f.lib"; ..
-                        "call_scilab.lib"; ..
-                        "time.lib"; ..
-                        "api_scilab.lib"; ..
-                        "scilab_windows.lib"]; 
+    scilablibrarieslist = ["blasplus.lib"; ..
+    "libf2c.lib"; ..
+    "core.lib"; ..
+    "core_f.lib"; ..
+    "lapack.lib"; ..
+    "libintl.lib"; ..
+    "intersci.lib"; ..
+    "output_stream.lib"; ..
+    "dynamic_link.lib"; ..
+    "integer.lib"; ..
+    "optimization_f.lib"; ..
+    "libjvm.lib"; ..
+    "scilocalization.lib"; ..
+    "linpack_f.lib"; ..
+    "call_scilab.lib"; ..
+    "time.lib"; ..
+    "api_scilab.lib"; ..
+    "scilab_windows.lib"];
 
 endfunction
 //=============================================================================

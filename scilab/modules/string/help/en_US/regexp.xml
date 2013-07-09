@@ -43,9 +43,9 @@ xml:id="regexp" xml:lang="en">
             <varlistentry>
                 <term>pattern</term>
                 <listitem>
-                <para>
-                    a character string (under the rules of regular expression).
-                </para>
+                    <para>
+                        a character string (under the rules of regular expression).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

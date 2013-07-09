@@ -209,73 +209,73 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
         mainFrame.setContentPane(panelFrame);
 
         cancelButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    OpenSourceFileOnKeywordAction.windowAlreadyExist = false;
-                    mainFrame.dispose();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                OpenSourceFileOnKeywordAction.windowAlreadyExist = false;
+                mainFrame.dispose();
+            }
+        });
 
         okButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    OpenSourceFileOnKeywordAction.windowAlreadyExist = false;
-                    mainFrame.dispose();
-                    openSource((String) comboComplete.getEditor().getItem());
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                OpenSourceFileOnKeywordAction.windowAlreadyExist = false;
+                mainFrame.dispose();
+                openSource((String) comboComplete.getEditor().getItem());
+            }
+        });
 
         comboComplete.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
 
-                private String old = "";
+            private String old = "";
 
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    int code = e.getKeyCode();
-                    if (code == KeyEvent.VK_ENTER) {
-                        if (comboComplete.getSelectedIndex() == -1 && comboComplete.getItemCount() > 0) {
-                            comboComplete.setSelectedIndex(0);
-                        }
-                        comboComplete.hidePopup();
-                        okButton.requestFocus();
-                    } else if (code == KeyEvent.VK_ESCAPE) {
-                        comboComplete.hidePopup();
-                    } else if (code != KeyEvent.VK_UP && code != KeyEvent.VK_DOWN) {
-                        updateComboComplete(old);
-                        comboComplete.setPopupVisible(true);
+            @Override
+            public void keyReleased(KeyEvent e) {
+                int code = e.getKeyCode();
+                if (code == KeyEvent.VK_ENTER) {
+                    if (comboComplete.getSelectedIndex() == -1 && comboComplete.getItemCount() > 0) {
+                        comboComplete.setSelectedIndex(0);
                     }
+                    comboComplete.hidePopup();
+                    okButton.requestFocus();
+                } else if (code == KeyEvent.VK_ESCAPE) {
+                    comboComplete.hidePopup();
+                } else if (code != KeyEvent.VK_UP && code != KeyEvent.VK_DOWN) {
+                    updateComboComplete(old);
+                    comboComplete.setPopupVisible(true);
                 }
+            }
 
-                @Override
-                public void keyPressed(KeyEvent arg0) {
-                    old = (String) comboComplete.getEditor().getItem();
-                }
+            @Override
+            public void keyPressed(KeyEvent arg0) {
+                old = (String) comboComplete.getEditor().getItem();
+            }
 
-                @Override
-                public void keyTyped(KeyEvent arg0) { }
-            });
+            @Override
+            public void keyTyped(KeyEvent arg0) { }
+        });
 
         mainFrame.addWindowListener(new WindowListener() {
-                @Override
-                public void windowClosed(WindowEvent arg0) { }
-                @Override
-                public void windowDeiconified(WindowEvent arg0) { }
-                @Override
-                public void windowActivated(WindowEvent arg0) { }
+            @Override
+            public void windowClosed(WindowEvent arg0) { }
+            @Override
+            public void windowDeiconified(WindowEvent arg0) { }
+            @Override
+            public void windowActivated(WindowEvent arg0) { }
 
-                @Override
-                public void windowClosing(WindowEvent arg0) {
-                    OpenSourceFileOnKeywordAction.windowAlreadyExist = false;
-                    mainFrame.dispose();
-                }
+            @Override
+            public void windowClosing(WindowEvent arg0) {
+                OpenSourceFileOnKeywordAction.windowAlreadyExist = false;
+                mainFrame.dispose();
+            }
 
-                @Override
-                public void windowDeactivated(WindowEvent arg0) { }
-                @Override
-                public void windowIconified(WindowEvent arg0) { };
-                @Override
-                public void windowOpened(WindowEvent arg0) { }
-            });
+            @Override
+            public void windowDeactivated(WindowEvent arg0) { }
+            @Override
+            public void windowIconified(WindowEvent arg0) { };
+            @Override
+            public void windowOpened(WindowEvent arg0) { }
+        });
 
         mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         mainFrame.setTitle(SciNotesMessages.OPEN_SOURCE);
@@ -306,7 +306,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
             int len = name.length();
             if (len != 0) {
                 if (len == 1) {
-                    bound = new String(new char[]{(char) (name.charAt(0) + 1)});
+                    bound = new String(new char[] {(char) (name.charAt(0) + 1)});
                 } else {
                     bound = name.substring(0, len - 1);
                     bound += (char) (name.charAt(len - 1) + 1);

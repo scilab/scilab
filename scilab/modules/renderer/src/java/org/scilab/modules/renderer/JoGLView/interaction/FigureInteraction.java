@@ -133,8 +133,8 @@ public abstract class FigureInteraction {
     protected Point bound(Point point) {
         Dimension dimension = getDrawerVisitor().getCanvas().getDimension();
         return new Point(
-                Math.max(1, Math.min(point.x, dimension.width)),
-                Math.max(1, Math.min(point.y, dimension.height))
-        );
+                   Math.max(1, Math.min(point.x, dimension.width)),
+                   Math.max(1, Math.min(point.y, dimension.height))
+               );
     }
 }

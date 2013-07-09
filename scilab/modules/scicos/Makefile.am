@@ -11,29 +11,14 @@
 modulename=scicos
 DISABLE_HELP_CLEAN=yes
 
-libsciscicos_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
-
-
-include $(top_srcdir)/Makefile.incl.am
-
-# Build modelica stuff
-include $(srcdir)/Makefile.modelica.am
-
-
-if XCOS
-# Code not factorized with the one on the bottom since sundials must be
-# compiled first
-pkglib_LTLIBRARIES = libscisundials.la libsciscicos.la
-noinst_LTLIBRARIES = libsciscicos-algo.la
+#### Source listing ######
 
 SCICOS_C_SOURCES = src/c/tree.c \
 src/c/scicos_malloc.c \
 src/c/import.c \
-src/c/slider.c \
 src/c/scicos.c \
 src/c/scicos_free.c \
 src/c/sciblk2.c \
-src/c/scicosclip.c \
 src/c/sciblk4.c \
 src/c/ezxml.c \
 src/c/il_state.c \
@@ -43,7 +28,8 @@ src/c/var2sci.c \
 src/c/copyvarfromlistentry.c \
 src/c/MlistGetFieldNumber.c \
 src/c/extractblklist.c \
-src/c/lsodar.c
+src/c/lsodar.c \
+src/c/ddaskr.c
 
 SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \
 src/fortran/vvtosci.f \
@@ -58,6 +44,8 @@ src/fortran/list2vars.f \
 src/fortran/ftree4.f \
 src/fortran/scitoi.f \
 src/fortran/scifunc.f
+
+NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_buildouttb.c \
@@ -93,7 +81,6 @@ sci_gateway/c/sci_sig2data.c \
 sci_gateway/c/sci_var2vec.c \
 sci_gateway/c/sci_vec2var.c
 
-
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_ctree.f \
 sci_gateway/fortran/sci_f_curblock.f \
 sci_gateway/fortran/sci_f_debug_count.f \
@@ -105,12 +92,25 @@ sci_gateway/fortran/sci_f_tree4.f \
 sci_gateway/fortran/sci_f_var2vec.f \
 sci_gateway/fortran/sci_f_vec2var.f
 
-#CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
+#### Multi-libraries handling ######
 
-libsciscicos_la_CPPFLAGS= -I$(srcdir)/includes/ \
+noinst_LTLIBRARIES = libsciscicos-algo.la
+if XCOS
+pkglib_LTLIBRARIES = libscisundials.la \
+                     libsciscicos-cli.la
+if GUI
+pkglib_LTLIBRARIES += libsciscicos.la
+endif
+endif
+
+libsciscicos_algo_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
+libsciscicos_cli_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
+libsciscicos_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
+
+if XCOS
+libsciscicos_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/modules/dynamic_link/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
@@ -123,22 +123,40 @@ libsciscicos_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/sundials/ \
 			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/ida/ \
 			$(AM_CPPFLAGS)
+else
+libsciscicos_algo_la_CPPFLAGS= -I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/scicos/includes/ \
+			$(AM_CPPFLAGS)
+endif
+libsciscicos_cli_la_CPPFLAGS = $(libsciscicos_algo_la_CPPFLAGS)
+libsciscicos_la_CPPFLAGS = $(libsciscicos_algo_la_CPPFLAGS)
 
-
+if XCOS
 libsciscicos_algo_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES)
+libsciscicos_cli_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libsciscicos_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libsciscicos_algo_la_CPPFLAGS = $(libsciscicos_la_CPPFLAGS)
+else
+libsciscicos_algo_la_SOURCES = $(NO_SCICOS_C_SOURCES)
+libsciscicos_cli_la_SOURCES =
+libsciscicos_la_SOURCES =
+endif
+
+libsciscicos_cli_la_LIBADD = libsciscicos-algo.la
+libsciscicos_la_LIBADD = libsciscicos-algo.la
+if XCOS
+libsciscicos_cli_la_LIBADD += libscisundials.la \
+    $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks-cli.la
+if GUI
+libsciscicos_la_LIBADD += libscisundials.la \
+    $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
+endif
+endif
+
 
 # For the code check (splint)
 CHECK_SRC= $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciscicos_la_CPPFLAGS)
-
-libsciscicos_la_LIBADD = libsciscicos-algo.la libscisundials.la \
-	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la 
-
-if GUI
-libsciscicos_la_LIBADD += $(top_builddir)/modules/graphics/libscigraphics.la 
-endif
 
 #### scicos : Conf files ####
 libsciscicos_la_rootdir = $(mydatadir)
@@ -226,23 +244,10 @@ $(AM_CPPFLAGS)
 
 libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
 
-else
+.NOTPARALLEL: libscisundials.la libsciscicos-algo.la
 
-pkglib_LTLIBRARIES = libsciscicos.la
-NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
+include $(top_srcdir)/Makefile.incl.am
 
-libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)
-
-libsciscicos_la_CPPFLAGS= -I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--I$(top_srcdir)/modules/scicos/includes/ \
-$(AM_CPPFLAGS)
-
-#### scicos : init scripts ####
-libsciscicos_la_etcdir = $(mydatadir)/etc
-libsciscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
-
-endif
-
-.NOTPARALLEL: libscisundials.la libsciscicos.la
+# Build modelica stuff
+include $(srcdir)/Makefile.modelica.am
 

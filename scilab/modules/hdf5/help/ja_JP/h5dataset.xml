@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5dataset" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>h5dataset</refname>
+        
+        <refpurpose>データセットを作成し, データを書き込む</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            h5dataset(obj, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  
+            
+            h5dataset(filename, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>obj</term>
+                
+                <listitem>
+                    
+                    <para>H5Object</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>name</term>
+                
+                <listitem>
+                    
+                    <para>新規データセットへのパスを指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>sourceInfo</term>
+                
+                <listitem>
+                    
+                    <para>5 x n のdouble行列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>sourceType</term>
+                
+                <listitem>
+                    
+                    <para>ソースの型を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>data</term>
+                
+                <listitem>
+                    
+                    <para>Scilabデータ</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>targetInfo</term>
+                
+                <listitem>
+                    
+                    <para>6 x n のdoubleの行列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>targetType</term>
+                
+                <listitem>
+                    
+                    <para>目標の型を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>filename</term>
+                
+                <listitem>
+                    
+                    <para>ファイル名を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            引数として指定されたScilabデータに基づき,
+            
+            名前を指定して(まだ存在しない場合に)新規にデータセットを作成します.
+            
+        </para>
+        
+        <para>
+            
+            ターゲットのHDF5型は,
+            
+            <ulink url="http://www.hdfgroup.org/HDF5/doc/RM/PredefDTypes.html">HDF5マニュアル</ulink>で利用可能なリストの中から選択できます.
+            
+            このHDF5型の例は"H5T_MIPS_U32" または "H5T_STD_B64BE"ですが, 
+            
+            "MIPS_U32" または "STD_B64BE" のような短縮形も使用可能です.
+            
+        </para>
+        
+        <para>
+            
+            ソース情報はデータを取得する方法に関する情報を指定します.
+            
+            これは 5xn の行列です.ただし,nはデータの次元数です.
+            
+            行は以下の情報を指定します:
+            
+        </para>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                1行目: データの次元. 
+                
+            </member>
+            
+            <member>
+                
+                2行目: hyperslabのstart. 
+                
+            </member>
+            
+            <member>
+                
+                3行目: hyperslabのカウント.
+                
+            </member>
+            
+            <member>
+                
+                4行目: hyperslabのstride.
+                
+            </member>
+            
+            <member>
+                
+                5行目: hyperslabのblock.
+                
+            </member>
+            
+        </simplelist>
+        
+        <para>
+            
+            
+            
+            hyperslab選択に関する詳細については, 
+            
+            <link linkend="h5write">h5write</link>を参照ください.
+            
+        </para>
+        
+        <para>targetInfo行列は 6xn の double 行列です. 最初の行は
+            
+            ターゲットのデータセットの次元,
+            
+            2行目は次元の最大値を指定します.
+            
+            1行目と2行目が等しくない場合,
+            
+            データセットは分割されます.
+            
+            3から6行目はhyperslabのstart, count, stride, block を指定します.
+            
+        </para>
+        
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+// HDF5ファイルを新規に作成
+a = h5open(TMPDIR + "/test.h5", "w")
+
+// データ
+x = uint32(1:100);
+y = uint32(1:9);
+
+// データセットを作成
+// x はC-行列として見えます (行優先)
+h5dataset(a, "My_Dataset", [10 10 ; 2 1 ; 4 1 ; 2 1 ; 1 9], x, [7 12 ; 9 14 ; 3 3 ; 1 1 ; 1 1 ; 4 9])
+h5dump(a, "My_Dataset");
+
+// 既存のデータセットの次元を拡張子,yデータを追加
+h5dataset(a, "My_Dataset", [9 1 ; 1 1 ; 1 1 ; 1 1 ; 9 1], y, [9 12 ; 9 14 ; 1 1 ; 1 1 ; 1 1 ; 9 1])
+h5dump(a, "My_Dataset");
+
+// yデータを置換
+h5dataset(a, "My_Dataset", [9 1 ; 1 1 ; 1 1 ; 1 1 ; 9 1], uint32(11:19), [9 12 ; 9 14 ; 1 1 ; 1 1 ; 1 1 ; 9 1])
+h5dump(a, "My_Dataset");
+
+// リソースを解放
+h5close(a)
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5group">h5group</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5attr">h5attr</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5write">h5write</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5writeattr">h5writeattr</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>HDF5モジュールが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

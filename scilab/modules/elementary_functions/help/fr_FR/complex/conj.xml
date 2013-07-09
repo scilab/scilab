@@ -14,7 +14,7 @@
             <varlistentry>
                 <term>x,y</term>
                 <listitem>
-                    <para>vecteur ou matrice (réelle ou complexe)</para>
+                    <para>vecteur ou matrice (réelle ou complexe, stockage plein ou creux)</para>
                 </listitem>
             </varlistentry>
         </variablelist>

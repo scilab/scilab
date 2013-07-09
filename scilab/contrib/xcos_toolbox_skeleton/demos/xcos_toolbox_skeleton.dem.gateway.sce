@@ -3,9 +3,9 @@
 
 function subdemolist = demo_gateway()
 
-  demopath = get_absolute_file_path("xcos_toolbox_skeleton.dem.gateway.sce");
-  subdemolist = ["All Sum functions overview", "allSum.dem.sce"]; // add demos here
-  subdemolist(:,2) = demopath + subdemolist(:,2);
+    demopath = get_absolute_file_path("xcos_toolbox_skeleton.dem.gateway.sce");
+    subdemolist = ["All Sum functions overview", "allSum.dem.sce"]; // add demos here
+    subdemolist(:,2) = demopath + subdemolist(:,2);
 
 endfunction
 

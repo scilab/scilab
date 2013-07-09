@@ -75,7 +75,7 @@ assert_checkequal(b,43);
 // c не существует
 
 ]]></programlisting>
-       <programlisting role="example"><![CDATA[
+        <programlisting role="example"><![CDATA[
 
 // при наличии нескольких вызовов функции
 function foo1()

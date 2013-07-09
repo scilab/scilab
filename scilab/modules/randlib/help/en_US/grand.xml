@@ -3,7 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Jean-Philippe Chancelier and Bruno Pincon
  * Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
- * 
+ * Copyright (C) 2013 - Samuel GOUGEON : extension to hypermatrices
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -36,12 +37,13 @@
             Y = grand(m, n, "uin", Low, High)
             Y = grand(m, n, "lgi")
             
+            Y = grand(m, n, o,..,"..",...)
             Y = grand(X, ...)
             
-            Y = grand(n,  "mn", Mean, Cov)
-            Y = grand(n,  "markov", P, x0)
-            Y = grand(n,  "mul", nb, P)
-            Y = grand(n,  "prm", vect)
+            Y = grand(n, "mn", Mean, Cov)
+            Y = grand(n, "markov", P, x0)
+            Y = grand(n, "mul", nb, P)
+            Y = grand(n, "prm", vect)
             
             S = grand("getgen")
             grand("setgen", gen)
@@ -65,10 +67,10 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>m, n</term>
+                <term>m, n, o</term>
                 <listitem>
                     <para>
-                        integers, size of the wanted matrix <varname>Y</varname>.
+                        integers, size of the wanted matrix / hypermatrix <varname>Y</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -76,7 +78,7 @@
                 <term>X</term>
                 <listitem>
                     <para>
-                        a matrix whom only the dimensions (say <varname>m</varname>-by-<varname>n</varname>)
+                        a matrix or hypermatrix whom only the dimensions (say <varname>m</varname>-by-<varname>n</varname>)
                         are used.
                     </para>
                 </listitem>
@@ -85,7 +87,7 @@
                 <term>Y</term>
                 <listitem>
                     <para>
-                        a <varname>m</varname>-by-<varname>n</varname> matrix of doubles, with random entries.
+                        depending on the input, a matrix or hypermatrix of doubles, with random entries.
                     </para>
                 </listitem>
             </varlistentry>
@@ -127,11 +129,18 @@
              ]]></programlisting>
         </para>
         <para>
-            produce a <varname>m</varname>-by-<varname>n</varname> matrix
-            with random entries.
+            produce a <varname>m</varname>-by-<varname>n</varname> matrix with random entries.
+            
+            All these calling sequences can be extended to create a random hypermatrix with more than
+            2 dimensions specified as integers listed before the type of statistical distribution:
         </para>
         <para>
-            The calling sequence:
+            <programlisting role="no-scilab-exec"><![CDATA[
+                Y = grand(m, n, o, ..., "..", ...)
+            ]]></programlisting>
+        </para>
+        <para>
+            The sizes of the expected random vector, matrix or hypermatrix can alternatively be specified with
         </para>
         <para>
             <programlisting role="no-scilab-exec"><![CDATA[
@@ -139,9 +148,8 @@
             ]]></programlisting>
         </para>
         <para>
-            where <varname>X</varname> is a <varname>m</varname>-by-<varname>n</varname> matrix,
-            produce the same effect.
-            In this case, only the size of <varname>X</varname> is used.
+            where <literal>X</literal> of sizes <literal>m</literal>-by-<literal>n</literal>...
+            is a matrix or an hypermatrix only used as template.
         </para>
         <para>
             The calling sequences:
@@ -329,9 +337,9 @@
             <varlistentry>
                 <term>multivariate gaussian (multivariate normal)</term>
                 <listitem>
-                    <para>
+                    <para>   
                         <code>Y = grand(n, "mn", Mean, Cov)</code>
-                        generates multivariate normal random
+                        generates multivariate normal random         
                         variates; <varname>Mean</varname> must be a <literal>m x 1</literal>
                         column vector and <varname>Cov</varname> a <varname>m</varname>-by-<varname>m</varname>
                         symmetric positive definite matrix  (<varname>Y</varname> is then
@@ -413,6 +421,11 @@
                         <varname>n</varname> random permutations of the column
                         vector (<literal>m x 1</literal>)
                         <varname>vect</varname>.
+                        Due to the stack structure, <varname>vect</varname> should not and cannot be a row vector.
+                        This feature covers Matlab's <code>randperm()</code> function,
+                        because <code>randperm(n)</code> is equivalent to <code>grand(1,'prm',(1:n)')</code>
+                        and <code>randperm(n, k)</code> can be obtained through
+                        <code>grand(1,'prm',(1:n)'); ans(1:k)</code>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -445,7 +458,7 @@
                         <varname>Low</varname> and <varname>High</varname>
                         (included). <varname>High</varname> and
                         <varname>Low</varname> must be integers such that
-                        <latex><![CDATA[(\textrm{High}-\textrm{Low}+1) < 2\,147\,483\,561]]></latex>.
+                        <literal>(High-Low+1) &lt; 2,147,483,561</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -730,22 +743,22 @@
                     <variablelist>
                         <varlistentry>
                             <term>I = -1</term>
-                            <listitem>
-                                <para>sets the state to its initial seed</para>
+                            <listitem>  
+                                <para>sets the state to its initial seed</para> 
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>I = 0</term>
                             <listitem>
-                                <para>sets the state to its last (previous) seed (i.e. to the beginning  of the current segment)</para>
+                                <para>sets the state to its last (previous) seed (i.e. to the beginning  of the current segment)</para> 
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>I = 1</term>
-                            <listitem>
-                                <para>
-                                    sets the state to a new seed <literal>W</literal> values from its last seed (i.e. to the beginning
-                                    of the next segment) and resets the current segment parameters.
+                            <listitem>  
+                                <para>     
+                                    sets the state to a new seed <literal>W</literal> values from its last seed (i.e. to the beginning          
+                                    of the next segment) and resets the current segment parameters.    
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -895,6 +908,32 @@ grand(10,1,"uin",1,365)
         <programlisting role="example"><![CDATA[ 
 grand(12,"prm",(1:7)')
  ]]></programlisting>
+        <para>
+            In the following example, we generate a <varname>10</varname>-by-<varname>10</varname>-by-<varname>10</varname>
+            hypermatrix of random numbers from the "normal" distribution and plot the associated histograms.
+            Showing the first and last layers.
+        </para>
+        <programlisting role="example"><![CDATA[ 
+// Returns a 400-by-800-by-10 hypermatrix of random doubles,
+// with normal distribution, average 0 and standard deviation 1.
+// Showing the first and last layers.
+R = grand(10,10,10,"nor",0,1);
+subplot(1,2,1)
+hist3d(R(:,:,1));
+xtitle("Layer 1");
+subplot(1,2,2)
+hist3d(R(:,:,10));
+xtitle("Layer 10");
+ ]]></programlisting>
+        <scilab:image localized="true">
+            R = grand(10,10,10,"nor",0,1);
+            subplot(1,2,1)
+            hist3d(R(:,:,1));
+            xtitle("Layer 1");
+            subplot(1,2,2)
+            hist3d(R(:,:,10));
+            xtitle("Layer 10");
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Get predictible or less predictible numbers</title>

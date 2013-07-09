@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifndef __SCICOS_EVALHERMITE_H__
 #define __SCICOS_EVALHERMITE_H__
 
@@ -42,4 +42,4 @@
 int scicos_evalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
 
 #endif /* __SCICOS_EVALHERMITE_H__ */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

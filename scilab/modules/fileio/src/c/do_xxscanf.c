@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -76,12 +76,16 @@ int do_xxscanf(char *fname, FILE * fp, char *format, int *nargs, char *strv, int
     {
         /* scanf */
         while (*currentchar != '%' && *currentchar != '\0')
+        {
             currentchar++;
+        }
         if (*currentchar == '%' && *(currentchar + 1) == '%')
         {
             currentchar = currentchar + 2;
             while (*currentchar != '%' && *currentchar != '\0')
+            {
                 currentchar++;
+            }
         }
 
         if (*currentchar == 0)
@@ -93,7 +97,9 @@ int do_xxscanf(char *fname, FILE * fp, char *format, int *nargs, char *strv, int
         p1 = currentchar - 1;
 
         while (isdigit(((int)*currentchar)))
+        {
             currentchar++;
+        }
 
         width_flag = 0;
 
@@ -139,7 +145,9 @@ int do_xxscanf(char *fname, FILE * fp, char *format, int *nargs, char *strv, int
             char *currentchar1 = currentchar--;
 
             while (*currentchar1 != '\0' && *currentchar1 != ']')
+            {
                 currentchar1++;
+            }
 
             if (*currentchar1 == '\0')
             {
@@ -151,7 +159,9 @@ int do_xxscanf(char *fname, FILE * fp, char *format, int *nargs, char *strv, int
             {
                 currentchar1++;
                 while (*currentchar1 != '\0' && *currentchar1 != ']')
+                {
                     currentchar1++;
+                }
 
                 if (*currentchar1 == '\0')
                 {
@@ -178,142 +188,156 @@ int do_xxscanf(char *fname, FILE * fp, char *format, int *nargs, char *strv, int
 
             switch (directive)
             {
-            case ']':
-                if (width_flag == 0)
-                    str_width_flag = 1;
+                case ']':
+                    if (width_flag == 0)
+                    {
+                        str_width_flag = 1;
+                    }
 
-                if (width_flag == 1 && width_val > MAX_STR - 1)
-                {
-                    Scierror(998, _("%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"), fname, width_val, MAX_STR - 1);
-                    return RET_BUG;
-                }
+                    if (width_flag == 1 && width_val > MAX_STR - 1)
+                    {
+                        Scierror(998, _("%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"), fname, width_val, MAX_STR - 1);
+                        return RET_BUG;
+                    }
 
-                if ((buf[num_conversion].c = MALLOC(MAX_STR)) == NULL)
-                    return MEM_LACK;
-                ptrtab[num_conversion] = buf[num_conversion].c;
-                type[num_conversion] = SF_S;
-                break;
+                    if ((buf[num_conversion].c = MALLOC(MAX_STR)) == NULL)
+                    {
+                        return MEM_LACK;
+                    }
+                    ptrtab[num_conversion] = buf[num_conversion].c;
+                    type[num_conversion] = SF_S;
+                    break;
 
-            case 's':
-                if (l_flag + h_flag)
-                {
-                    Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
-                    return RET_BUG;
-                }
+                case 's':
+                    if (l_flag + h_flag)
+                    {
+                        Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
+                        return RET_BUG;
+                    }
 
-                if (width_flag == 0)
-                    str_width_flag = 1;
-                if (width_flag == 1 && width_val > MAX_STR - 1)
-                {
-                    Scierror(998, _("%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"), fname, width_val, MAX_STR - 1);
-                    return RET_BUG;
-                }
+                    if (width_flag == 0)
+                    {
+                        str_width_flag = 1;
+                    }
+                    if (width_flag == 1 && width_val > MAX_STR - 1)
+                    {
+                        Scierror(998, _("%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"), fname, width_val, MAX_STR - 1);
+                        return RET_BUG;
+                    }
 
-                if ((buf[num_conversion].c = MALLOC(MAX_STR)) == NULL)
-                    return MEM_LACK;
+                    if ((buf[num_conversion].c = MALLOC(MAX_STR)) == NULL)
+                    {
+                        return MEM_LACK;
+                    }
 
-                ptrtab[num_conversion] = buf[num_conversion].c;
-                type[num_conversion] = SF_S;
-                break;
+                    ptrtab[num_conversion] = buf[num_conversion].c;
+                    type[num_conversion] = SF_S;
+                    break;
 
-            case 'c':
-                if (l_flag + h_flag)
-                {
-                    Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
-                    return RET_BUG;
-                }
+                case 'c':
+                    if (l_flag + h_flag)
+                    {
+                        Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
+                        return RET_BUG;
+                    }
 
-                if (width_flag == 1)
-                    nc[num_conversion] = width_val;
-                else
-                    nc[num_conversion] = 1;
+                    if (width_flag == 1)
+                    {
+                        nc[num_conversion] = width_val;
+                    }
+                    else
+                    {
+                        nc[num_conversion] = 1;
+                    }
 
-                if (width_flag == 1 && width_val > MAX_STR - 1)
-                {
-                    Scierror(998, _("%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"), fname, width_val, MAX_STR - 1);
-                    return RET_BUG;
-                }
+                    if (width_flag == 1 && width_val > MAX_STR - 1)
+                    {
+                        Scierror(998, _("%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"), fname, width_val, MAX_STR - 1);
+                        return RET_BUG;
+                    }
 
-                if ((buf[num_conversion].c = MALLOC(MAX_STR)) == NULL)
-                    return MEM_LACK;
+                    if ((buf[num_conversion].c = MALLOC(MAX_STR)) == NULL)
+                    {
+                        return MEM_LACK;
+                    }
 
-                ptrtab[num_conversion] = buf[num_conversion].c;
-                type[num_conversion] = SF_C;
-                break;
+                    ptrtab[num_conversion] = buf[num_conversion].c;
+                    type[num_conversion] = SF_C;
+                    break;
 
-            case 'o':
-            case 'u':
-            case 'x':
-            case 'X':
-                if (l_flag)
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].lui;
-                    type[num_conversion] = SF_LUI;
-                }
-                else if (h_flag)
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].sui;
-                    type[num_conversion] = SF_SUI;
-                }
-                else
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].ui;
-                    type[num_conversion] = SF_UI;
-                }
-                break;
+                case 'o':
+                case 'u':
+                case 'x':
+                case 'X':
+                    if (l_flag)
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].lui;
+                        type[num_conversion] = SF_LUI;
+                    }
+                    else if (h_flag)
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].sui;
+                        type[num_conversion] = SF_SUI;
+                    }
+                    else
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].ui;
+                        type[num_conversion] = SF_UI;
+                    }
+                    break;
 
-            case 'D':
-                ptrtab[num_conversion] = &buf[num_conversion].li;
-                type[num_conversion] = SF_LI;
-                break;
-
-            case 'n':
-                n_directive_count++;
-
-            case 'i':
-            case 'd':
-                if (l_flag)
-                {
+                case 'D':
                     ptrtab[num_conversion] = &buf[num_conversion].li;
                     type[num_conversion] = SF_LI;
-                }
-                else if (h_flag)
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].si;
-                    type[num_conversion] = SF_SI;
-                }
-                else
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].i;
-                    type[num_conversion] = SF_I;
-                }
-                break;
+                    break;
 
-            case 'e':
-            case 'f':
-            case 'g':
-            case 'E':
-            case 'G':
-                if (h_flag)
-                {
+                case 'n':
+                    n_directive_count++;
+
+                case 'i':
+                case 'd':
+                    if (l_flag)
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].li;
+                        type[num_conversion] = SF_LI;
+                    }
+                    else if (h_flag)
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].si;
+                        type[num_conversion] = SF_SI;
+                    }
+                    else
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].i;
+                        type[num_conversion] = SF_I;
+                    }
+                    break;
+
+                case 'e':
+                case 'f':
+                case 'g':
+                case 'E':
+                case 'G':
+                    if (h_flag)
+                    {
+                        Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
+                        return RET_BUG;
+                    }
+                    else if (l_flag)
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].lf;
+                        type[num_conversion] = SF_LF;
+                    }
+                    else
+                    {
+                        ptrtab[num_conversion] = &buf[num_conversion].f;
+                        type[num_conversion] = SF_F;
+                    }
+                    break;
+
+                default:
                     Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
                     return RET_BUG;
-                }
-                else if (l_flag)
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].lf;
-                    type[num_conversion] = SF_LF;
-                }
-                else
-                {
-                    ptrtab[num_conversion] = &buf[num_conversion].f;
-                    type[num_conversion] = SF_F;
-                }
-                break;
-
-            default:
-                Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
-                return RET_BUG;
             }
             *currentchar = backupcurrrentchar;
         }

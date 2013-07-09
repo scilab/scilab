@@ -34,7 +34,7 @@
                     <para>
                         Des raccourcis peuvent être aussi utilisés: <literal>"r"</literal> pour <literal>"roots"</literal> et <literal>"c"</literal> pour <literal>"coeff"</literal>.
                     </para>
-
+                    
                 </listitem>
             </varlistentry>
         </variablelist>

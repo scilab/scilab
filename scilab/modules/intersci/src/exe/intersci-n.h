@@ -109,37 +109,38 @@ typedef int IVAR; /* variable number */
 /* VAR struct: information for FORTRAN and/or SCILAB variable */
 
 
-typedef struct var {
-  char *name;           /* variable name */
-  int  vpos;            /* variable is stored in variables[vpos-1] */
-  int type;             /* SCILAB type */
-  int length;           /* number of el in the variable */
-  IVAR el[MAXEL];       /* list of el IVAR (variable associated with,
+typedef struct var
+{
+    char *name;           /* variable name */
+    int  vpos;            /* variable is stored in variables[vpos-1] */
+    int type;             /* SCILAB type */
+    int length;           /* number of el in the variable */
+    IVAR el[MAXEL];       /* list of el IVAR (variable associated with,
 		                            typically dimensions) */
-  int for_type;         /* FORTRAN type */
-  char fexternal[MAXNAM]; /* name of external function when type is
+    int for_type;         /* FORTRAN type */
+    char fexternal[MAXNAM]; /* name of external function when type is
 			      external */
-  IVAR equal;           /* alias for variable  */
-  int nfor_name;        /* number of for_name */
-  int kp_state;         /* for pass dealing **/
-  char *for_name[MAXARG]; /* list of for_name names (FORTRAN name
+    IVAR equal;           /* alias for variable  */
+    int nfor_name;        /* number of for_name */
+    int kp_state;         /* for pass dealing **/
+    char *for_name[MAXARG]; /* list of for_name names (FORTRAN name
 			   in generated FORTRAN code) */
-  char *C_name[MAXARG]; /* list of C_name : i.e when a for_name is m1*n1
+    char *C_name[MAXARG]; /* list of C_name : i.e when a for_name is m1*n1
 			 * it cannot be used at C level then C_name is set to
 			 * m1n1 and one will have to properly set m1n1=m1*n1
 			 */
 
-  int for_name_orig[MAXARG]; /* list of stack_position of for_name occurences */
-  char *list_name;      /* name of the list of which the variable is an element */
-  int list_el;          /* element number in the previous list
+    int for_name_orig[MAXARG]; /* list of stack_position of for_name occurences */
+    char *list_name;      /* name of the list of which the variable is an element */
+    int list_el;          /* element number in the previous list
 			 0 : means that variable is not in a list */
-  int opt_type;         /* type of optional variable */
-  char *opt_name;       /* name or value default for optional variable */
-  int present;          /* 1 if the variable is really present in the
+    int opt_type;         /* type of optional variable */
+    char *opt_name;       /* name or value default for optional variable */
+    int present;          /* 1 if the variable is really present in the
 			   description file
 		           0 otherwise used for list elements which might
 			   be not really present */
-  int stack_position;   /* position of the variable in the stack
+    int stack_position;   /* position of the variable in the stack
 			   1 is the first position :
 			   the position is : the position in the scilab
 			   calling list or the position in the stack for
@@ -147,33 +148,35 @@ typedef struct var {
 			   for a variable in a list : it is the position
 			   of the list in the stack
 			   */
-  int out_position ;    /*
+    int out_position ;    /*
 			   The position of the variable in the
 			   returned arguments
 			   0 if the variable is not returned
 			   */
-  int is_sciarg ;          /* set to one if variable is a scilab
+    int is_sciarg ;          /* set to one if variable is a scilab
 			      argument of the interfaced function */
 
 } VAR, *VARPTR;
 
 /* BASFUN struct: information for SCILAB function */
 
-typedef struct basfun {
-  char *name; /* function name */
-  int nin; /* number of arguments */
-  int maxOpt ; /* number of potential optional arguments in function */
-  int NewMaxOpt; /* number of new style optional arguments in function */
-  IVAR in[MAXARG]; /* list of argument IVAR */
-  IVAR out; /* output IVAR : i.e type of output */
+typedef struct basfun
+{
+    char *name; /* function name */
+    int nin; /* number of arguments */
+    int maxOpt ; /* number of potential optional arguments in function */
+    int NewMaxOpt; /* number of new style optional arguments in function */
+    IVAR in[MAXARG]; /* list of argument IVAR */
+    IVAR out; /* output IVAR : i.e type of output */
 } BASFUN, *BASFUNPTR;
 
 /* FORSUB struct: information for FORTRAN subroutine */
 
-typedef struct forsub {
-  char *name; /* subroutine name */
-  int narg; /* number of arguments */
-  IVAR arg[MAXARG]; /* list of argument IVAR */
+typedef struct forsub
+{
+    char *name; /* subroutine name */
+    int narg; /* number of arguments */
+    IVAR arg[MAXARG]; /* list of argument IVAR */
 } FORSUB, *FORSUBPTR;
 
 /* memory allocators */
@@ -194,10 +197,10 @@ char *SGetForType (int type);
 char *SGetForTypeAbrev (VARPTR var);
 char *SGetForTypeStack (VARPTR var);
 char *SGetForTypeBConvert (VARPTR var);
-void AddForName (IVAR ivar, char *name,char *cname,IVAR ivar1);
+void AddForName (IVAR ivar, char *name, char *cname, IVAR ivar1);
 void ChangeForName1 (VARPTR var, char *name);
 void Copyright (void);
-char *Forname2Int (VARPTR,int);
+char *Forname2Int (VARPTR, int);
 void GenFundef (char *file, int interf);
 int GetBasType (char *sname);
 int GetForType (char *type);
@@ -209,8 +212,8 @@ IVAR GetVar (char *name, int p);
 void OptVar ();
 int ParseLine (char *s, char **words);
 int ParseScilabLine (char *s, char **words);
-int ReadListElement (FILE *f, char *varlistname, IVAR iivar, int nel,int);
-void ReadListFile (char *listname, char *varlistname, IVAR ivar,int);
+int ReadListElement (FILE *f, char *varlistname, IVAR iivar, int nel, int);
+void ReadListFile (char *listname, char *varlistname, IVAR ivar, int);
 int ReadFunction (FILE *f);
 int TypeToBas ();
 void WriteArgCheck (FILE *f, int i);
@@ -224,26 +227,26 @@ void WriteFortranCall (FILE *f);
 void WriteFunctionCode (FILE *f);
 void WriteHeader (FILE *f, char *fname0, char *fname);
 void WriteMainHeader (FILE *f, char *fname);
-void WriteListAnalysis (FILE *f, int i,char *);
+void WriteListAnalysis (FILE *f, int i, char *);
 void WriteOutput (FILE *f);
 void WriteVariable (FILE *f, VARPTR var, IVAR ivar, int insidelist, int nel);
 void WriteVariableOutput (FILE *f, VARPTR var,  int convert, int insidelist, int nel);
-void AddForName1 (IVAR ivar, char *name,char *cname, IVAR ivar1);
+void AddForName1 (IVAR ivar, char *name, char *cname, IVAR ivar1);
 void ForNameClean (void);
 void InitDeclare  (void);
 void ResetDeclare (void);
-void WriteMain  (FILE *f,char *file);
-void FCprintf(FILE*,char *fmt,...);
-void Fprintf(FILE*,int,char *fmt,...);
+void WriteMain  (FILE *f, char *file);
+void FCprintf(FILE*, char *fmt, ...);
+void Fprintf(FILE*, int, char *fmt, ...);
 void white  (FILE *f, int ind);
 void AddDeclare (int type, char *declaration);
 void InitDeclare (void);
 void ResetDeclare (void);
 void WriteDeclaration  (FILE*f);
-void WriteCallRestCheck (FILE *f, VARPTR var,char *name, int iel, int flag);
+void WriteCallRestCheck (FILE *f, VARPTR var, char *name, int iel, int flag);
 int CreatePredefVar (char *name);
 void Check (FILE *f,  VARPTR var,  int nel);
-void CheckSquare (FILE *f,  VARPTR var, char *str,char *str1);
+void CheckSquare (FILE *f,  VARPTR var, char *str, char *str1);
 void CheckOptSquare (FILE *f,  VARPTR var, char *str);
 void CheckOptDim (FILE *f,  VARPTR var,  int nel);
 void OptvarGetSize (char *optvar, char *size, char *data);
@@ -278,7 +281,7 @@ extern IVAR GetExistOutVar  (void);
 extern void AddForName  (IVAR ivar, char *name, char *cname, IVAR ivar1);
 extern void AddForName1  (IVAR ivar, char *name, char *cname, IVAR ivar1);
 extern void ForNameClean  (void);
-extern void ChangeForName2  (VARPTR var, char *format,...);
+extern void ChangeForName2  (VARPTR var, char *format, ...);
 extern void ChangeForName1  (VARPTR var, char *name);
 extern int GetBasType  (char *sname);
 extern char *SGetSciType  (int type);
@@ -329,7 +332,7 @@ extern void WriteCrossCheck  (FILE *f);
 extern void WriteCrossCheckExternal (FILE *f);
 extern void WriteEqualCheck  (FILE *f);
 extern void WriteListAnalysis  (FILE *f, int i, char *list_type);
-extern void AddDeclare1 (int type,char *format,...);
+extern void AddDeclare1 (int type, char *format, ...);
 
 extern void WriteFortranCall  (FILE *f);
 extern void WriteOutput  (FILE *f);
@@ -389,7 +392,7 @@ extern void OutANY  (FILE *f, VARPTR var, int insidelist, int nel);
 extern void WriteVariableOutput  (FILE *f, VARPTR var, int convert, int insidelist, int nel);
 void OptMATRIX  ( FILE *f, VARPTR var);
 void OptOpointer  ( FILE *f, VARPTR var);
-void GetDim  (char *str,IVAR ivar) ;
+void GetDim  (char *str, IVAR ivar) ;
 
 
 

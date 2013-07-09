@@ -56,7 +56,7 @@ public final class Console extends GraphicObject {
         }
 
         return me;
-        
+
     }
 
     /**
@@ -108,7 +108,7 @@ public final class Console extends GraphicObject {
     public void accept(Visitor visitor) {
 
     }
-    
+
     /**
      * Returns the enum associated to a property name
      * @param propertyName the property name

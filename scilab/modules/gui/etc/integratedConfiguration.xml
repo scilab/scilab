@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Scilab>
-  <!-- Console default configuration -->
-  <Window height="600" uuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881" width="800" x="0" y="0" state="0">
-    <DockingPortNode>
-      <SplitNode dockingRegion="west" orientation="horizontal" percentage="0.27132487" region="left">
+    <!-- Console default configuration -->
+    <Window height="600" uuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881" width="800" x="0" y="0" state="0">
         <DockingPortNode>
-          <DockableNode dockableId="3b649047-6a71-4998-bd8e-00d367a4793d"/>
-        </DockingPortNode>
-        <DockingPortNode>
-          <SplitNode dockingRegion="east" orientation="horizontal" percentage="0.65228426" region="left">
-            <DockingPortNode>
-              <DockableNode dockableId="00000000-0000-0000-0000-000000000000"/>
-            </DockingPortNode>
-            <DockingPortNode>
-              <SplitNode dockingRegion="north" orientation="vertical" percentage="0.5" region="left">
+            <SplitNode dockingRegion="west" orientation="horizontal" percentage="0.27132487" region="left">
                 <DockingPortNode>
-                  <DockableNode dockableId="3b649047-6a71-4998-bd8e-00d367a4793c"/>
+                    <DockableNode dockableId="3b649047-6a71-4998-bd8e-00d367a4793d"/>
                 </DockingPortNode>
                 <DockingPortNode>
-                  <DockableNode dockableId="856207f6-0a60-47a0-b9f4-232feedd4bf4"/>
+                    <SplitNode dockingRegion="east" orientation="horizontal" percentage="0.65228426" region="left">
+                        <DockingPortNode>
+                            <DockableNode dockableId="00000000-0000-0000-0000-000000000000"/>
+                        </DockingPortNode>
+                        <DockingPortNode>
+                            <SplitNode dockingRegion="north" orientation="vertical" percentage="0.5" region="left">
+                                <DockingPortNode>
+                                    <DockableNode dockableId="3b649047-6a71-4998-bd8e-00d367a4793c"/>
+                                </DockingPortNode>
+                                <DockingPortNode>
+                                    <DockableNode dockableId="856207f6-0a60-47a0-b9f4-232feedd4bf4"/>
+                                </DockingPortNode>
+                            </SplitNode>
+                        </DockingPortNode>
+                    </SplitNode>
                 </DockingPortNode>
-              </SplitNode>
-            </DockingPortNode>
-          </SplitNode>
+            </SplitNode>
         </DockingPortNode>
-      </SplitNode>
-    </DockingPortNode>
-  </Window>
-  <Console factory="org.scilab.modules.core.ConsoleTabFactory" height="769" load="Console" uuid="00000000-0000-0000-0000-000000000000" width="576" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
-  <VariableBrowser depends="00000000-0000-0000-0000-000000000000" factory="org.scilab.modules.ui_data.tabfactory.VariableBrowserTabFactory" height="383" load="" uuid="3b649047-6a71-4998-bd8e-00d367a4793c" width="308" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
-  <CommandHistory depends="00000000-0000-0000-0000-000000000000" factory="org.scilab.modules.history_browser.CommandHistoryTabFactory" height="383" load="" uuid="856207f6-0a60-47a0-b9f4-232feedd4bf4" width="308" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
-  <FileBrowser depends="00000000-0000-0000-0000-000000000000" factory="org.scilab.modules.ui_data.tabfactory.FileBrowserTabFactory" height="769" load="" uuid="3b649047-6a71-4998-bd8e-00d367a4793d" width="329" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
-  <!-- Xcos default configuration -->
-  <Window height="500" uuid="xcos-palette-default-window" width="500" x="0" y="0" state="0">
-    <DockingPortNode>
-      <DockableNode dockableId="org.scilab.modules.xcos.palette.model"/>
-    </DockingPortNode>
-  </Window>
-  <Xcos factory="org.scilab.modules.xcos.Xcos$XcosTabFactory" height="382" load="Xcos" uuid="org.scilab.modules.xcos.palette.model" width="498" winuuid="xcos-palette-default-window"/>
-  <Window height="500" uuid="xcos-default-window" width="600" x="501" y="0" state="0">
-    <DockingPortNode>
-      <DockableNode dockableId="xcos-default-tab"/>
-    </DockingPortNode>
-  </Window>
-  <Xcos factory="org.scilab.modules.xcos.Xcos$XcosTabFactory" height="382" load="Xcos" uuid="xcos-default-tab" width="574" winuuid="xcos-default-window"/>
-  <HelpBrowser factory="org.scilab.modules.gui.tabfactory.HelpBrowserTabFactory" height="645" load="" uuid="d1ef5062-533e-4aee-b12a-66740820d6d1" width="1068" winuuid="584a15f5-8692-469f-9369-33980b55e9a3"/>
-  <Window state="0" uuid="584a15f5-8692-469f-9369-33980b55e9a3" height="750" width="900" x="100" y="100">
-    <DockingPortNode>
-      <DockableNode dockableId="d1ef5062-533e-4aee-b12a-66740820d6d1"/>
-    </DockingPortNode>
-  </Window>
+    </Window>
+    <Console factory="org.scilab.modules.core.ConsoleTabFactory" height="769" load="Console" uuid="00000000-0000-0000-0000-000000000000" width="576" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
+    <VariableBrowser depends="00000000-0000-0000-0000-000000000000" factory="org.scilab.modules.ui_data.tabfactory.VariableBrowserTabFactory" height="383" load="" uuid="3b649047-6a71-4998-bd8e-00d367a4793c" width="308" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
+    <CommandHistory depends="00000000-0000-0000-0000-000000000000" factory="org.scilab.modules.history_browser.CommandHistoryTabFactory" height="383" load="" uuid="856207f6-0a60-47a0-b9f4-232feedd4bf4" width="308" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
+    <FileBrowser depends="00000000-0000-0000-0000-000000000000" factory="org.scilab.modules.ui_data.tabfactory.FileBrowserTabFactory" height="769" load="" uuid="3b649047-6a71-4998-bd8e-00d367a4793d" width="329" winuuid="5171ff0a-e5e6-4ea9-8525-8d9a5434b881"/>
+    <!-- Xcos default configuration -->
+    <Window height="500" uuid="xcos-palette-default-window" width="500" x="0" y="0" state="0">
+        <DockingPortNode>
+            <DockableNode dockableId="org.scilab.modules.xcos.palette.model"/>
+        </DockingPortNode>
+    </Window>
+    <Xcos factory="org.scilab.modules.xcos.Xcos$XcosTabFactory" height="382" load="Xcos" uuid="org.scilab.modules.xcos.palette.model" width="498" winuuid="xcos-palette-default-window"/>
+    <Window height="500" uuid="xcos-default-window" width="600" x="501" y="0" state="0">
+        <DockingPortNode>
+            <DockableNode dockableId="xcos-default-tab"/>
+        </DockingPortNode>
+    </Window>
+    <Xcos factory="org.scilab.modules.xcos.Xcos$XcosTabFactory" height="382" load="Xcos" uuid="xcos-default-tab" width="574" winuuid="xcos-default-window"/>
+    <HelpBrowser factory="org.scilab.modules.gui.tabfactory.HelpBrowserTabFactory" height="645" load="" uuid="d1ef5062-533e-4aee-b12a-66740820d6d1" width="1068" winuuid="584a15f5-8692-469f-9369-33980b55e9a3"/>
+    <Window state="0" uuid="584a15f5-8692-469f-9369-33980b55e9a3" height="750" width="900" x="100" y="100">
+        <DockingPortNode>
+            <DockableNode dockableId="d1ef5062-533e-4aee-b12a-66740820d6d1"/>
+        </DockingPortNode>
+    </Window>
 </Scilab>

@@ -18,6 +18,7 @@ src/fortran/intgschur.f \
 src/fortran/intdgesv3.f \
 src/fortran/intdgesv4.f \
 src/fortran/DGELSY1.f \
+src/fortran/ZGELSY1.f \
 src/fortran/intozgschur.f \
 src/fortran/intdpotrf.f \
 src/fortran/intdoldsvd.f \

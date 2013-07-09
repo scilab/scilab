@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -38,7 +38,7 @@ class TextSpriteDrawer extends TextObjectSpriteDrawer implements TextureDrawer {
         super(colorMap, textObject);
         setAlignmentFactor(computeAlignmentFactor(textObject));
         Appearance appearance = computeAppearance(colorMap, textObject);
-        
+
         setAppearance(appearance);
         setThickness((int) Math.ceil(appearance.getLineWidth()));
     }
@@ -92,14 +92,14 @@ class TextSpriteDrawer extends TextObjectSpriteDrawer implements TextureDrawer {
      * Returns the margin modified by the scale factor.
      */
     public int getMargin() {
-        return (int)(scaleFactor*(double)super.getMargin());
+        return (int)(scaleFactor * (double)super.getMargin());
     }
 
     /**
      * Returns the space width modified by the scale factor.
      */
     public int getSpaceWidth() {
-        return (int)(scaleFactor*(double)super.getSpaceWidth());
+        return (int)(scaleFactor * (double)super.getSpaceWidth());
     }
 
 }

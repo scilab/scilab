@@ -31,21 +31,21 @@ public class ScilabGUIUtilities {
     public static void toFront(final JFrame window) {
         WindowFocusListener listener = new WindowFocusListener() {
 
-                public void windowGainedFocus(WindowEvent e) {
-                    window.setAlwaysOnTop(true);
-                }
+            public void windowGainedFocus(WindowEvent e) {
+                window.setAlwaysOnTop(true);
+            }
 
-                public void windowLostFocus(WindowEvent e) {
-                    window.setAlwaysOnTop(false);
-                    window.removeWindowFocusListener(this);
-                }
-            };
+            public void windowLostFocus(WindowEvent e) {
+                window.setAlwaysOnTop(false);
+                window.removeWindowFocusListener(this);
+            }
+        };
         window.addWindowFocusListener(listener);
         window.toFront();
         SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    window.requestFocus();
-                }
-            });
+            public void run() {
+                window.requestFocus();
+            }
+        });
     }
 }

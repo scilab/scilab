@@ -112,7 +112,10 @@ double getCurrentDateAsUnixTimeConvention(void)
     dValue = (double)t;
 #endif
 
-    if (dValue < 0.) dValue = 0.;
+    if (dValue < 0.)
+    {
+        dValue = 0.;
+    }
     return dValue;
 }
 /*--------------------------------------------------------------------------*/
@@ -134,7 +137,10 @@ double * getConvertedDateAsDoubleVector(double dDate, int *iErr)
         milliseconds = dDate - (double)instantT;
         if (milliseconds > 0)
         {
-            if (milliseconds > 999) milliseconds = (double)999;
+            if (milliseconds > 999)
+            {
+                milliseconds = (double)999;
+            }
         }
         else
         {
@@ -180,7 +186,10 @@ double *getConvertedDateAsMatrixOfDouble(double *dDates, int nbElements, int *iE
 
         double *dResTmp = NULL;
 
-        for (k = 0; k < lenResults; k++) dResults[k] = 0;
+        for (k = 0; k < lenResults; k++)
+        {
+            dResults[k] = 0;
+        }
 
         *iErr = 0;
         for (k = 0; k < nbElements; k++)

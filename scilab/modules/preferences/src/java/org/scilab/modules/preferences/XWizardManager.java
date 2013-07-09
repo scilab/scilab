@@ -47,7 +47,7 @@ public final class XWizardManager extends XCommonManager {
 
     /** Exclusive activity flag between all XCommonManager descendants.*/
     public static boolean active = false;
-    
+
     /** Display dialog and wait for events.
      *
      */
@@ -56,7 +56,7 @@ public final class XWizardManager extends XCommonManager {
         XConfigManager.active = false;
         printTimeStamp("XWizardManager launched");
         System.out.println(" |  No active manager (" + XConfigManager.active + ", " + XWizardManager.active + ").");
-   	
+
         reloadTransformer(SCILAB_WIZARD_XSL);
         printTimeStamp("XSL loaded");
 
@@ -101,9 +101,9 @@ public final class XWizardManager extends XCommonManager {
         if (generixEvent(actions, source)) {
             return true;
         }
-        
-        if (actions.length==0) {
-//C            System.out.println("No actions processed!");
+
+        if (actions.length == 0) {
+            //C            System.out.println("No actions processed!");
             return false;
         }
         Node action = actions[0];
@@ -181,7 +181,7 @@ public final class XWizardManager extends XCommonManager {
                 Juigetfile.uiputfile(mask, desc);
                 String selection[] = Juigetfile.getSelection();
                 if (selection.length > 0) {
-                	CURRENT_WIZARD_FILE = selection[0];
+                    CURRENT_WIZARD_FILE = selection[0];
                 }
             }
             if (CURRENT_WIZARD_FILE != NAV) {

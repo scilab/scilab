@@ -22,20 +22,20 @@ import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObje
  * @author Manuel JULIACHS
  */
 public abstract class Imageplot extends ClippableContouredObject {
-	// TBD
-	// Data -> Data Model
+    // TBD
+    // Data -> Data Model
     /** Grayplot properties names */
-    private enum ImageplotProperty { SCALE, TRANSLATE };	
-	// Methods: to be done
-	
+    private enum ImageplotProperty { SCALE, TRANSLATE };
+    // Methods: to be done
+
     private Double[] scale = {1.0, 1.0};
     private Double[] translate = {0.5, 0.5};
-    
-	/** Constructor */
-	public Imageplot() {
-		super();
-	}
-	
+
+    /** Constructor */
+    public Imageplot() {
+        super();
+    }
+
     /**
      * Returns the enum associated to a property name
      * @param propertyName the property name
@@ -43,12 +43,12 @@ public abstract class Imageplot extends ClippableContouredObject {
      */
     public Object getPropertyFromName(int propertyName) {
         switch (propertyName) {
-        case __GO_MATPLOT_SCALE__ :
-            return ImageplotProperty.SCALE;
-        case __GO_MATPLOT_TRANSLATE__ :
-            return ImageplotProperty.TRANSLATE;
-        default :
-            return super.getPropertyFromName(propertyName);
+            case __GO_MATPLOT_SCALE__ :
+                return ImageplotProperty.SCALE;
+            case __GO_MATPLOT_TRANSLATE__ :
+                return ImageplotProperty.TRANSLATE;
+            default :
+                return super.getPropertyFromName(propertyName);
         }
     }
 
@@ -63,7 +63,7 @@ public abstract class Imageplot extends ClippableContouredObject {
         } else if (property == ImageplotProperty.SCALE) {
             return getScale();
         } else {
-            return super.getProperty(property); 
+            return super.getProperty(property);
         }
     }
 
@@ -92,7 +92,7 @@ public abstract class Imageplot extends ClippableContouredObject {
     public void setScale(Double[] scale) {
         this.scale = scale;
     }
-    
+
     public Double[] getTranslate() {
         return translate;
     }

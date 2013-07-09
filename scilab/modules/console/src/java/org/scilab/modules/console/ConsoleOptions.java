@@ -30,11 +30,13 @@ public class ConsoleOptions {
     public static final String COLORSPATH = "//colors/body/desktop-colors";
     public static final String CONSOLEFONTPATH = "//fonts/body/fonts/item[@xconf-uid=\"console-font\"]";
     public static final String FONTPATH = "//fonts/body/fonts";
+    public static final String LATEXPATH = "//fonts/body/fonts";
     public static final String DISPLAYPATH = "//console/body/display";
     public static final String KEYMAPPATH = "//general/shortcuts/body/actions/action-folder[@xconf-uid=\"console\"]/action";
 
     private static ConsoleOptions.ConsoleColor color;
     private static ConsoleOptions.ConsoleFont font;
+    private static ConsoleOptions.LaTeXFont latex;
     private static ConsoleOptions.ConsoleDisplay display;
 
     private static Document doc;
@@ -109,6 +111,19 @@ public class ConsoleOptions {
         }
     }
 
+    @XConfAttribute
+    public static class LaTeXFont {
+
+        public int size;
+
+        private LaTeXFont() { }
+
+        @XConfAttribute(tag = "fonts", attributes = {"latex"})
+        private void set(double size) {
+            this.size = (int) size;
+        }
+    }
+
     public static void invalidate(ConsoleConfiguration.Conf conf) {
         if (conf.font) {
             font = null;
@@ -120,6 +135,10 @@ public class ConsoleOptions {
         }
         if (conf.display) {
             display = null;
+            doc = null;
+        }
+        if (conf.latex) {
+            latex = null;
             doc = null;
         }
     }
@@ -144,6 +163,17 @@ public class ConsoleOptions {
         }
 
         return font;
+    }
+
+    public static final ConsoleOptions.LaTeXFont getLaTeXFont() {
+        if (latex == null) {
+            if (doc == null) {
+                doc = XConfiguration.getXConfigurationDocument();
+            }
+            latex = XConfiguration.get(ConsoleOptions.LaTeXFont.class, doc, LATEXPATH)[0];
+        }
+
+        return latex;
     }
 
     public static final ConsoleOptions.ConsoleColor getConsoleColor() {

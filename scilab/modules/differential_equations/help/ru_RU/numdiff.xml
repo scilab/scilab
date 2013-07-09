@@ -26,16 +26,17 @@
                 <term>fun</term>
                 <listitem>
                     <para>
-                      внешняя функция или подпрограмма, функция Scilab'а или список. См.
-                      ниже последовательность вызова, см. также <link linkend="external">external</link> о подробностях о внешних
-                      функциях.
+                        внешняя функция или подпрограмма, функция Scilab'а или список. См.
+                        ниже последовательность вызова, см. также <link linkend="external">external</link> о подробностях о внешних
+                        функциях.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>вектор, аргумент функции <varname>fun</varname>.
+                    <para>
+                        вектор, аргумент функции <varname>fun</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,8 +44,8 @@
                 <term>dx</term>
                 <listitem>
                     <para>
-                      вектор, шаг конечной разности. Значение по умолчанию равно
-                      <code>dx=sqrt(%eps)*(1+1d-3*abs(x))</code>.
+                        вектор, шаг конечной разности. Значение по умолчанию равно
+                        <code>dx=sqrt(%eps)*(1+1d-3*abs(x))</code>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -67,16 +68,16 @@
 g(i,j) = (df_i)/(dx_j)
  ]]></programlisting>
         <para>
-          используя методы конечной разницы. Использует формулу порядка 1.
+            используя методы конечной разницы. Использует формулу порядка 1.
         </para>
         <para>
-          Без параметров функция последовательность вызова <varname>fun</varname>
-          <code>y=fun(x)</code>, и <function>numdiff</function> может быть вызвана в виде
-          <code>g=numdiff(fun,x)</code>. Иначе последовательность вызова <varname>fun</varname>
-          должна быть <literal>y = fun(x, param_1, pararm_2, ..., param_q)</literal>.
-          Если параметры <literal>param_1, param_2, ..., param_q</literal> существуют, то
-          <function>numdiff</function> может быть вызвана следующим образом:
-          <literal>g=numdiff(list(fun, param_1, param_2, ..., param_q), x)</literal>.
+            Без параметров функция последовательность вызова <varname>fun</varname>
+            <code>y=fun(x)</code>, и <function>numdiff</function> может быть вызвана в виде
+            <code>g=numdiff(fun,x)</code>. Иначе последовательность вызова <varname>fun</varname>
+            должна быть <literal>y = fun(x, param_1, pararm_2, ..., param_q)</literal>.
+            Если параметры <literal>param_1, param_2, ..., param_q</literal> существуют, то
+            <function>numdiff</function> может быть вызвана следующим образом:
+            <literal>g=numdiff(list(fun, param_1, param_2, ..., param_q), x)</literal>.
         </para>
         <para>
             См. <link linkend="derivative">derivative</link> относительно проблем числовой точности и сравнение между двумя алгоритмами.

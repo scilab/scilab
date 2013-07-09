@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2013-03-10 14:23+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -126,8 +126,8 @@ msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s：输入参数的类型错误。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
-msgstr "%s：第%d个输入参数的值错误：应该为1、2或3。\n"
+msgid "%s: Wrong value for input argument #%d: 0,1 or 2 expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -508,19 +508,15 @@ msgstr "无空间用来分配 Scilab 栈。\n"
 msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
+"If a graphic feature has been used, this might be caused by the system "
+"graphic drivers.\n"
+"Please try to update them and try again.\n"
 "Please report a bug on %s with:\n"
 "* a sample code which reproduces the issue\n"
 "* the result of [a, b] = getdebuginfo()\n"
 "* the following information:\n"
 "%s %s\n"
 msgstr ""
-"糟糕。Scilab检测到一个致命错误。\n"
-"你的实例可能即将崩溃。\n"
-"请按以下内容提交关于%s的bug：\n"
-"* 可再现此问题的样例代码\n"
-"* 结果之 [a, b] = getdebuginfo()\n"
-"* 一下信息:\n"
-"%s %s\n"
 
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
@@ -1004,6 +1000,10 @@ msgstr "开始执行："
 msgid "  loading initial environment"
 msgstr "  正在载入初始环境"
 
+#, c-format
+msgid "Failed to exec %s:"
+msgstr ""
+
 msgid "&File"
 msgstr "文件(&F)"
 
@@ -1025,11 +1025,29 @@ msgstr "&?"
 msgid "&Toolboxes"
 msgstr "&工具箱"
 
-msgid "Introduction"
-msgstr "介绍"
+msgid "Introduction: Getting started with Scilab"
+msgstr ""
 
-msgid "Getting started with Scilab"
-msgstr "开始使用Scilab"
+msgid "Scilab objects"
+msgstr ""
+
+msgid "Operations and numerical primitives"
+msgstr ""
+
+msgid "Online definition of function"
+msgstr ""
+
+msgid "Optimization and simulation"
+msgstr ""
+
+msgid "Systems: definition and analysis"
+msgstr ""
+
+msgid "Linear algebra"
+msgstr ""
+
+msgid "Call an external routine"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
@@ -1090,6 +1108,24 @@ msgstr "%s：输入参数的数目出错：至少应该输入 %d 个。\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为定义的变量。\n"
+
+msgid "Scilab Version: "
+msgstr ""
+
+msgid "Operating System: "
+msgstr ""
+
+msgid "Java version :"
+msgstr ""
+
+msgid "Java runtime information :"
+msgstr ""
+
+msgid "Java vm information :"
+msgstr ""
+
+msgid "Vendor specification: "
+msgstr ""
 
 #, c-format
 msgid "%s called at line %s of %s"

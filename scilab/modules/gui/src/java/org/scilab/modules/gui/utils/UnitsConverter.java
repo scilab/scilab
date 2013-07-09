@@ -49,19 +49,19 @@ public final class UnitsConverter {
         if (style.compareTo(__GO_UI_POINTS_UNITS__) == 0) {
             return UicontrolUnits.POINTS;
         }
-        
+
         if (style.compareTo(__GO_UI_NORMALIZED_UNITS__) == 0) {
             return UicontrolUnits.NORMALIZED;
         }
-        
+
         if (style.compareTo(__GO_UI_INCHES_UNITS__) == 0) {
             return UicontrolUnits.INCHES;
         }
-        
+
         if (style.compareTo(__GO_UI_CENTIMETERS_UNITS__) == 0) {
             return UicontrolUnits.CENTIMETERS;
         }
-        
+
         if (style.compareTo(__GO_UI_PIXELS_UNITS__) == 0) {
             return UicontrolUnits.PIXELS;
         }

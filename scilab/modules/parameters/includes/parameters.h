@@ -14,13 +14,15 @@
 
 #include "api_scilab.h"
 
-enum type_check {
-  CHECK_NONE, 
-  CHECK_SIZE, 
-  CHECK_MIN, 
-  CHECK_MAX, 
-  CHECK_BOTH, 
-  CHECK_VALUES};
+enum type_check
+{
+    CHECK_NONE,
+    CHECK_SIZE,
+    CHECK_MIN,
+    CHECK_MAX,
+    CHECK_BOTH,
+    CHECK_VALUES
+};
 
 /**
  * Get a pointer to an existing plist
@@ -64,7 +66,7 @@ int hasPartialLabelInPList(void* _pvCtx, int * _piAddress, const char * _pstLabe
  * @param[in] check a type of checking in the value returned in '_piValue'
  * @return a SciErr structure
  */
-SciErr getIntInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, int * _piValue, int * _piFound, 
+SciErr getIntInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, int * _piValue, int * _piFound,
                      int _iDefaultValue, int _iLog, enum type_check check, ...);
 
 /**
@@ -78,7 +80,7 @@ SciErr getIntInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, int
  * @param[in] check a type of checking in the value returned in '_pdblValue'
  * @return a SciErr structure
  */
-SciErr getDoubleInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, double * _pdblValue, int * _piFound, 
+SciErr getDoubleInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, double * _pdblValue, int * _piFound,
                         double _dblDefaultValue, int _iLog, enum type_check check, ...);
 
 /**
@@ -92,7 +94,7 @@ SciErr getDoubleInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
  * @param[in] check a type of checking in the value returned in '_pstValue'
  * @return a SciErr structure
  */
-SciErr getStringInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, char ** _pstValue, int * _piFound, 
+SciErr getStringInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, char ** _pstValue, int * _piFound,
                         const char * _pstDefaultValue, int _iLog, enum type_check check, ...);
 
 /**
@@ -108,7 +110,7 @@ SciErr getStringInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
  * @param[in] check a type of checking in the value returned in '_piValue'
  * @return a SciErr structure
  */
-SciErr getColVectorOfIntInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, int * _piValue, int * _piFound, 
+SciErr getColVectorOfIntInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, int * _piValue, int * _piFound,
                                 int _iDefaultValue, int _iDefaultSize, int * _piSize, int _iLog, enum type_check check, ...);
 
 /**
@@ -124,7 +126,7 @@ SciErr getColVectorOfIntInPList(void* _pvCtx, int * _piAddress, const char * _ps
  * @param[in] check a type of checking in the value returned in '_pdblValue'
  * @return a SciErr structure
  */
-SciErr getColVectorOfDoubleInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, double * _pdblValue, int * _piFound, 
+SciErr getColVectorOfDoubleInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, double * _pdblValue, int * _piFound,
                                    double _dblDefaultValue, int _iDefaultSize, int * _piSize, int _iLog, enum type_check check, ...);
 
 /**

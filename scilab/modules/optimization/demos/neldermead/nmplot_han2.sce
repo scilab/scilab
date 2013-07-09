@@ -12,7 +12,7 @@
 
 
 function demo_nmplot_2()
-    filename = 'nmplot_han2.sce';
+    filename = "nmplot_han2.sce";
     dname = get_absolute_file_path(filename);
 
     mprintf(_("Illustrates the 2nd counter example given by Han et al.\n"));
@@ -21,7 +21,7 @@ function demo_nmplot_2()
     // han2 --
     //   Compute the cost function from the Han Phd Thesis
     //   which exhibits a failure of the NM method.
-    // Reference 
+    // Reference
     //   Algorithms in Unconstrained Optimization
     //   Han, Lixing
     //   2000
@@ -43,8 +43,8 @@ function demo_nmplot_2()
 
 
     coords0 = [
-    0.    0.5  
-    0.   -0.5  
+    0.    0.5
+    0.   -0.5
     1.    0.];
 
     mprintf(_("Creating nmplot object ...\n"));
@@ -80,11 +80,11 @@ function demo_nmplot_2()
     // Plot
     //
     mprintf(_("Plotting contour (please wait) ...\n"));
-    xmin = -0.2 ; 
-    xmax = 1.2 ; 
-    ymin = -1.5 ; 
-    ymax = 1.5 ; 
-    nx = 50 ; 
+    xmin = -0.2 ;
+    xmax = 1.2 ;
+    ymin = -1.5 ;
+    ymax = 1.5 ;
+    nx = 50 ;
     ny = 50;
     scf();
     xset("fpf"," ")
@@ -108,4 +108,5 @@ clear demo_nmplot_2;
 
 
 
-
+
+

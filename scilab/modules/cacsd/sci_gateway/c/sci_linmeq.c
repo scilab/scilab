@@ -590,7 +590,6 @@ int sci_linmeq(char *fname, unsigned long fname_len)
                 }
             }
         }
-        NM = M;
     }
     else if (TASK == 2)
     {
@@ -603,7 +602,6 @@ int sci_linmeq(char *fname, unsigned long fname_len)
                 NDWORK = Max(NDWORK, 2 * (N * N + N));
             }
         }
-        NM = N;
     }
 
     if (TASK != 3)
@@ -623,7 +621,6 @@ int sci_linmeq(char *fname, unsigned long fname_len)
 
         MXMN = Min(P, N);
         NDWORK = Max(1, 4 * N + MXMN);
-        NM = N;
     }
 
     // Allocate variable dimension local arrays.
@@ -1180,17 +1177,17 @@ int sci_linmeq(char *fname, unsigned long fname_len)
                 if (C2F(lsame)(&DICO, "C"))
                 {
                     //     .        Matrix is not stable (cont)
-                    Scierror(999, _("%s: Wrong value for argument %d: eigenvalues must have negative real parts.\n"), fname, 1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: eigenvalues must have negative real parts.\n"), fname, 1);
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong value for argument %d: eigenvalues modulus must be less than one.\n"), fname, 1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: eigenvalues modulus must be less than one.\n"), fname, 1);
                 }
             }
             else if (INFO == 4 || INFO == 5)
             {
                 //     .        not a schur form
-                Scierror(999, _("%s: Wrong value for argument %d: eigenvalues modulus must be less than one.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong value for input argument #%d: eigenvalues modulus must be less than one.\n"), fname, 1);
             }
             else if (INFO == 6)
             {

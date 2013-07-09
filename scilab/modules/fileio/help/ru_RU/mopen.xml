@@ -137,7 +137,7 @@
                         открывает файл для добавления записи. Создаёт
                         файл если он не существует.
                     </para>
-                 </listitem>
+                </listitem>
             </varlistentry>
             <varlistentry>
                 <term>r+</term>
@@ -157,7 +157,7 @@
                         Если файл существует, то его содержимое будет
                         уничтожено.
                     </para>
-                 </listitem>
+                </listitem>
             </varlistentry>
             <varlistentry>
                 <term>a+</term>

@@ -43,81 +43,84 @@
 
 
 #define OLE_HEADER_FAT_SECTOR_COUNT_LIMIT 109
-struct OLE_header {
-		unsigned int minor_version;
-		unsigned int dll_version;
-		unsigned int byte_order;
-		unsigned int sector_shift;
-		unsigned int sector_size;
-		unsigned int mini_sector_shift;
-		unsigned int mini_sector_size;
-		unsigned int fat_sector_count;
-		unsigned int directory_stream_start_sector;
-		unsigned int mini_cutoff_size;
-		unsigned int mini_fat_start;
-		unsigned int mini_fat_sector_count;
-		unsigned int dif_start_sector;
-		unsigned int dif_sector_count;
-		unsigned int FAT[OLE_HEADER_FAT_SECTOR_COUNT_LIMIT];
+struct OLE_header
+{
+    unsigned int minor_version;
+    unsigned int dll_version;
+    unsigned int byte_order;
+    unsigned int sector_shift;
+    unsigned int sector_size;
+    unsigned int mini_sector_shift;
+    unsigned int mini_sector_size;
+    unsigned int fat_sector_count;
+    unsigned int directory_stream_start_sector;
+    unsigned int mini_cutoff_size;
+    unsigned int mini_fat_start;
+    unsigned int mini_fat_sector_count;
+    unsigned int dif_start_sector;
+    unsigned int dif_sector_count;
+    unsigned int FAT[OLE_HEADER_FAT_SECTOR_COUNT_LIMIT];
 };
 
 #define OLE_DIRECTORY_ELEMENT_NAME_SIZE 64
 #define OLE_DIRECTORY_CLASS_SIZE 16
 #define OLE_DIRECTORY_TIMESTAMPS_SIZE 16
-struct OLE_directory_entry {
-	char element_name[OLE_DIRECTORY_ELEMENT_NAME_SIZE];
-	int element_name_byte_count;
+struct OLE_directory_entry
+{
+    char element_name[OLE_DIRECTORY_ELEMENT_NAME_SIZE];
+    int element_name_byte_count;
 
-	char element_type;
-	char element_colour;
+    char element_type;
+    char element_colour;
 
-	unsigned int left_child;
-	unsigned int right_child;
-	unsigned int root;
+    unsigned int left_child;
+    unsigned int right_child;
+    unsigned int root;
 
-	unsigned char class[OLE_DIRECTORY_CLASS_SIZE];
-	unsigned int userflags;
-	unsigned char timestamps[OLE_DIRECTORY_TIMESTAMPS_SIZE];
-	unsigned int start_sector;
-	unsigned int stream_size;
+    unsigned char class[OLE_DIRECTORY_CLASS_SIZE];
+    unsigned int userflags;
+    unsigned char timestamps[OLE_DIRECTORY_TIMESTAMPS_SIZE];
+    unsigned int start_sector;
+    unsigned int stream_size;
 };
 
 
 
 #define OLE_HEADER_BLOCK_SIZE 512
-struct OLE_object {
+struct OLE_object
+{
 
-	int error;
-	size_t file_size;
-	int last_sector;
-	size_t last_chain_size;
+    int error;
+    size_t file_size;
+    int last_sector;
+    size_t last_chain_size;
 
-	FILE *f;
-	unsigned char *FAT;
-	unsigned char *FAT_limit; /** Added to prevent segment violations **/
-	unsigned char *miniFAT;
-	unsigned char *miniFAT_limit; /** Added to prevent segment violations **/
-	unsigned char header_block[OLE_HEADER_BLOCK_SIZE];
-	unsigned char *ministream;
-	unsigned char *properties;
+    FILE *f;
+    unsigned char *FAT;
+    unsigned char *FAT_limit; /** Added to prevent segment violations **/
+    unsigned char *miniFAT;
+    unsigned char *miniFAT_limit; /** Added to prevent segment violations **/
+    unsigned char header_block[OLE_HEADER_BLOCK_SIZE];
+    unsigned char *ministream;
+    unsigned char *properties;
 
-	struct OLE_header header;
+    struct OLE_header header;
 
-  /* End user configurable parameters:*/
-	int debug;
-	int verbose;
-	int quiet;
-	int save_unknown_streams;
+    /* End user configurable parameters:*/
+    int debug;
+    int verbose;
+    int quiet;
+    int save_unknown_streams;
 
-	int save_streams;
-	int save_mini_streams;
-	int save_normal_streams;
+    int save_streams;
+    int save_mini_streams;
+    int save_normal_streams;
 
-	int decode_streams;
-	int decode_mini_streams;
-	int decode_normal_streams;
+    int decode_streams;
+    int decode_mini_streams;
+    int decode_normal_streams;
 
-	int (*filename_report_fn)(char *);
+    int (*filename_report_fn)(char *);
 
 };
 

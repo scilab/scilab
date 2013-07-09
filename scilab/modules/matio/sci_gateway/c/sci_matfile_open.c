@@ -140,19 +140,21 @@ int sci_matfile_open(char *fname, unsigned long fname_len)
         option = MAT_ACC_RDONLY;
     }
 
-    /* Try to open the file (as a Matlab 5 file) */
-    matfile = Mat_Open(filename, option);
+    if (option == MAT_ACC_RDWR)
+    {
+        /* create a Matlab 5 file */
+        matfile = Mat_CreateVer(filename, NULL, 0);
+    }
+    else
+    {
+        /* Try to open the file (as a Matlab 5 file) */
+        matfile = Mat_Open(filename, option);
+    }
 
     if (matfile == NULL) /* Opening failed */
     {
-        /* Try to open the file (as a Matlab 4 file) */
-        matfile = Mat_Open(filename, option | MAT_FT_MAT4);
-
-        if (matfile == NULL) /* Opening failed */
-        {
-            /* Function returns -1 */
-            fileIndex = -1;
-        }
+        /* Function returns -1 */
+        fileIndex = -1;
     }
 
     if (matfile != NULL) /* Opening succeed */

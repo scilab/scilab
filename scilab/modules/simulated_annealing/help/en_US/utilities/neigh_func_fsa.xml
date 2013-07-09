@@ -39,7 +39,7 @@
             <varlistentry>
                 <term>param</term>
                 <listitem>
-                    <para>a vector with the same size than x_current. A normalisation
+                    <para>a vector with the same size than x_current. A normalization
                         vector which allows to distort the shape of the neighborhood. This
                         parameter allows to take into account the differences of interval of
                         variation between variables. By default, this parameter is set to a
@@ -74,7 +74,7 @@ x_current = 1;
 x_neigh = neigh_func_fsa(x_current,10,[])
  ]]></programlisting>
     </refsection>
-
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

@@ -11,7 +11,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function demo_mckinnon2()
-    filename = 'nmplot_mckinnon.sce';
+    filename = "nmplot_mckinnon.sce";
     dname = get_absolute_file_path(filename);
 
     mprintf(_("Defining McKinnon function...\n"));
@@ -34,7 +34,7 @@ function demo_mckinnon2()
     //  algorithm to "converge" to a point which is not the minimizer
     //  of the function F.
     //
-    //  Sample parameter values which cause problems for Nelder-Mead 
+    //  Sample parameter values which cause problems for Nelder-Mead
     //  include:
     //
     //    TAU = 1, THETA = 15, PHI =  10;
@@ -45,9 +45,9 @@ function demo_mckinnon2()
     //
     //    X1 = (0,0),
     //    X2 = (1,1),
-    //    X3 = (A,B), 
+    //    X3 = (A,B),
     //
-    //  where 
+    //  where
     //
     //    A = (1+sqrt(33))/8 =  0.84307...
     //    B = (1-sqrt(33))/8 = -0.59307...
@@ -82,7 +82,7 @@ function demo_mckinnon2()
     function [ f , index ] = mckinnon3 ( x , index )
 
         if ( length ( x ) ~= 2 )
-            error (_('Error: function expects a two dimensional input\n'));
+            error (_("Error: function expects a two dimensional input\n"));
         end
 
         tau = 3.0;
@@ -147,11 +147,11 @@ function demo_mckinnon2()
     // Plot
     //
     mprintf(_("Plot contour (please wait) ...\n"));
-    xmin = -0.2; 
-    xmax = 1.2 ; 
-    ymin = -2.0 ; 
-    ymax = 2.0 ; 
-    nx = 50 ; 
+    xmin = -0.2;
+    xmax = 1.2 ;
+    ymin = -2.0 ;
+    ymax = 2.0 ;
+    nx = 50 ;
     ny = 50;
     xdata=linspace(xmin,xmax,nx);
     ydata=linspace(ymin,ymax,ny);
@@ -165,15 +165,15 @@ function demo_mckinnon2()
     nmplot_simplexhistory ( nm );
     drawnow();
     subplot(2,2,2)
-    mytitle = _("Function Value Average"); 
+    mytitle = _("Function Value Average");
     myxlabel = _("Iterations");
     nmplot_historyplot ( nm , fbarfn, mytitle , myxlabel );
     subplot(2,2,3)
-    mytitle = _("Minimum Function Value") ; 
+    mytitle = _("Minimum Function Value") ;
     myxlabel = _("Iterations");
     nmplot_historyplot ( nm , foptfn, mytitle , myxlabel );
     subplot(2,2,4)
-    mytitle = _("Maximum Oriented length") ; 
+    mytitle = _("Maximum Oriented length") ;
     myxlabel = _("Iterations") ;
     nmplot_historyplot ( nm , sigmafn, mytitle , myxlabel );
     demo_viewCode(filename);

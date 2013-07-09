@@ -15,13 +15,13 @@
 #include "gw_polynomials.h"
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intptriu)(int *job,int *id);
+extern int C2F(intptriu)(int *job, int *id);
 /*--------------------------------------------------------------------------*/
-int sci_ptriu(char *fname,unsigned long fname_len)
+int sci_ptriu(char *fname, unsigned long fname_len)
 {
-	static int id[6];
-	int job=1;
-	C2F(intptriu)(&job,id);
-	return 0;
+    static int id[6];
+    int job = 1;
+    C2F(intptriu)(&job, id);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

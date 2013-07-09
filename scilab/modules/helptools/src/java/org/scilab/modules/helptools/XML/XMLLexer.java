@@ -88,8 +88,9 @@ public final class XMLLexer {
         while (i < l) {
             int count = packed.charAt(i++);
             int value = packed.charAt(i++);
-            do result[j++] = value;
-            while (--count > 0);
+            do {
+                result[j++] = value;
+            } while (--count > 0);
         }
         return j;
     }
@@ -244,8 +245,9 @@ public final class XMLLexer {
         while (i < 132) {
             int  count = packed.charAt(i++);
             char value = packed.charAt(i++);
-            do map[j++] = value;
-            while (--count > 0);
+            do {
+                map[j++] = value;
+            } while (--count > 0);
         }
         return map;
     }
@@ -312,8 +314,9 @@ public final class XMLLexer {
         zzAtEOF = true;            /* indicate end of file */
         zzEndRead = zzStartRead;  /* invalidate buffer    */
 
-        if (zzReader != null)
+        if (zzReader != null) {
             zzReader.close();
+        }
     }
 
 
@@ -424,8 +427,9 @@ public final class XMLLexer {
      *                This number must not be greater than yylength()!
      */
     public void yypushback(int number)  {
-        if ( number > yylength() )
+        if ( number > yylength() ) {
             zzScanError(ZZ_PUSHBACK_2BIG);
+        }
 
         zzMarkedPos -= number;
     }
@@ -465,9 +469,9 @@ public final class XMLLexer {
             zzForAction: {
                 while (true) {
 
-                    if (zzCurrentPosL < zzEndReadL)
+                    if (zzCurrentPosL < zzEndReadL) {
                         zzInput = zzBufferL[zzCurrentPosL++];
-                    else if (zzAtEOF) {
+                    } else if (zzAtEOF) {
                         zzInput = YYEOF;
                         break zzForAction;
                     } else {
@@ -1267,7 +1271,9 @@ public final class XMLLexer {
                     if ( zzIsFinal ) {
                         zzAction = zzState;
                         zzMarkedPosL = zzCurrentPosL;
-                        if ( zzNoLookAhead ) break zzForAction;
+                        if ( zzNoLookAhead ) {
+                            break zzForAction;
+                        }
                     }
 
                 }
@@ -1277,7 +1283,8 @@ public final class XMLLexer {
             zzMarkedPos = zzMarkedPosL;
 
             switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
-                case 15 : {
+                case 15 :
+                {
                     yypushback(1);
                     yybegin(YYINITIAL);
                 }

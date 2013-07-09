@@ -116,7 +116,7 @@ void  numberandsize(const mxArray  *ptr, int *number, int *size);
 bool mexIsGlobal(const mxArray *ptr);
 
 /**
- * Unreference objects in a struct or cell 
+ * Unreference objects in a struct or cell
  * @param ptr
  * @return
  */

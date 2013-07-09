@@ -75,12 +75,10 @@ int readInt(FILE* _pF, int _iEndian)
     fread(&val, sizeof(int), 1, _pF);
     if (_iEndian == BIG_ENDIAN)
     {
-        printf("readInt : %i -> %i\n", val, swap_int(val));
         return swap_int(val);
     }
     else
     {
-        printf("readInt : %i -> %i\n", val, val);
         return val;
     }
 }

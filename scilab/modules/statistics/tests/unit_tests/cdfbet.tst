@@ -9,6 +9,8 @@
 // Tests for beta distribution
 // =============================================================================
 
+// Run with test_run('statistics','cdfbet',['no_check_error_output']);
+
 prec = 1.e-5;
 
 A  = 2;
@@ -46,3 +48,21 @@ assert_checkalmostequal(A1(2:$-1), A(2:$-1));
 
 B1 = cdfbet('B',p,q,x,y,A);
 assert_checkalmostequal(B1(2:$-1), B(2:$-1));
+
+// IEEE support
+// See http://bugzilla.scilab.org/show_bug.cgi?id=7296
+X        = 0;
+Y        = 1;
+A        = 1;
+B        = 1;
+
+X        = %nan; // X NaN
+[P,Q]    = cdfbet("PQ", X, Y, A, B);
+assert_checkequal(P, %nan);
+assert_checkequal(Q, %nan);
+
+X        = 1;
+Y        = %nan; // Y NaN
+[P,Q]    = cdfbet("PQ", X, Y, A, B);
+assert_checkequal(P, %nan);
+assert_checkequal(Q, %nan);

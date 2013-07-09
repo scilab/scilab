@@ -18,7 +18,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[v,err]=intg(a,b,f [,ea [,er])</synopsis>
+        <synopsis>[v,err [,ierr]]=intg(a,b,f [,ea [,er])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -63,6 +63,12 @@
                     <para>estimated absolute error on the result.</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>ierr</term>
+                <listitem>
+                    <para>error flag number (= 0 if no error occured).</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -104,6 +110,53 @@
                 f(double *x)
             </literal>
             .
+        </para>
+    </refsection>
+    <refsection>
+        <title>Known Limitation</title>
+        <para>
+            Like all the integrators, <literal>intg</literal> is subject to spike missing.
+        </para>
+        <para>
+            A flat function with a spike will be seen as a fully flat function
+            if the spike is stiff enough.
+        </para>
+        <para>
+            This cannot be bypassed, it is easy to understand why when we know how the integrator operates.
+            Indeed, <literal>intg</literal> uses the 21-point Gauss-Kronrod rule,
+            so if there is a spike in-between two consecutive integration points,
+            then it will go undetected, the function will be considered smooth.
+        </para>
+        <para>
+            However, a warning message will be issued if the function is considered very smooth.
+            The user will then be suggested to reduce the integration interval,
+            should he think that spikes were missed.
+        </para>
+        <para>
+            The following graphs illustrate that phenomenon.
+        </para>
+        <scilab:image localized="true">
+            x = 0:.1:22;
+            y = zeros(1,221); y(1) = 3; y(96) = 1;
+            plot(x, y);
+            xtitle("Spike missed");
+        </scilab:image>
+        <para>
+            Being in-between the 9th and 10th integration points,
+            that spike is not detected and
+            <literal>intg</literal> considers the function flat.
+            In the next image, the spike is large enough to be covered by the integration points.
+        </para>
+        <scilab:image localized="true">
+            x = 0:21;
+            y = zeros(1,22); y(1) = 3; y(10) = 1;
+            plot(x, y);
+            xtitle("Spike detected");
+        </scilab:image>
+        <para>
+            If the user wants to display the computed solution even if the solver has encountered an error,
+            he should add the third output argument <literal>ierr</literal>, that will transform the
+            errors into warnings. This is mostly used in the case of rounding errors.
         </para>
     </refsection>
     <refsection>
@@ -189,6 +242,6 @@ abs(exact-I)
         <para>The associated routines can be found in SCI/modules/differential_equations/src/fortran directory
             :
         </para>
-        <para>dqag0.f and dqags.f from quadpack</para>
+        <para>dqags.f and dqagse.f from quadpack</para>
     </refsection>
 </refentry>

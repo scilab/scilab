@@ -2,11 +2,11 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET , Cong WU
 * Copyright (C) DIGITEO - 2010 - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -48,24 +48,24 @@ int sci_strcat(char *fname, unsigned long fname_len)
 
     switch (Rhs)
     {
-    case 3:
+        case 3:
         {
             sci_strcat_three_rhs(fname);
         }
         break;
-    case 2:
+        case 2:
         {
             sci_strcat_two_rhs(fname);
         }
         break;
-    case 1:
+        case 1:
         {
             sci_strcat_one_rhs(fname);
         }
         break;
-    default:
-        /* nothing */
-        break;
+        default:
+            /* nothing */
+            break;
     }
     return 0;
 }
@@ -119,7 +119,9 @@ static int sci_strcat_three_rhs(char *fname)
 
         GetRhsVar(3, STRING_DATATYPE, &Row_Three, &Col_Three, &l3);
         if (Row_Three * Col_Three != 0)
+        {
             typ = cstk(l3)[0];
+        }
         if (typ != COL && typ != ROW)
         {
             freeArrayOfString(Input_String_One, mn);
@@ -130,7 +132,7 @@ static int sci_strcat_three_rhs(char *fname)
 
     switch (typ)
     {
-    case STAR:
+        case STAR:
         {
             int nchars = 0;
             int one = 1;
@@ -139,7 +141,9 @@ static int sci_strcat_three_rhs(char *fname)
 
             /* just return one string */
             for (i = 0; i < mn; i++)
+            {
                 nchars += (int)strlen(Input_String_One[i]);
+            }
             nchars += (mn - 1) * (int)strlen(Input_String_Two);
 
             CreateVar(Rhs + 1, STRING_DATATYPE, &one, &nchars, &l3);
@@ -149,16 +153,20 @@ static int sci_strcat_three_rhs(char *fname)
                 int j = 0;
 
                 for (j = 0; j < (int)strlen(Input_String_One[i]); j++)
+                {
                     *cstk(l3 + k++) = Input_String_One[i][j];
+                }
                 if (i != mn - 1)
                     for (j = 0; j < (int)strlen(Input_String_Two); j++)
+                    {
                         *cstk(l3 + k++) = Input_String_Two[j];
+                    }
             }
             freeArrayOfString(Input_String_One, mn);
             LhsVar(1) = Rhs + 1;
         }
         break;
-    case COL:
+        case COL:
         {
             char **Output_String = NULL;
             int nchars = 0;
@@ -179,7 +187,9 @@ static int sci_strcat_three_rhs(char *fname)
                 /* length of row i */
                 nchars = 0;
                 for (j = 0; j < Col_One; j++)
+                {
                     nchars += (int)strlen(Input_String_One[i + Row_One * j]);
+                }
                 nchars += (Col_One - 1) * (int)strlen(Input_String_Two);
 
                 Output_String[i] = (char *)MALLOC((nchars + 1) * sizeof(char));
@@ -207,7 +217,7 @@ static int sci_strcat_three_rhs(char *fname)
         }
         break;
 
-    case ROW:
+        case ROW:
         {
             int j = 0;
             int one = 1;
@@ -290,7 +300,7 @@ static int sci_strcat_three_rhs(char *fname)
         }
         break;
 
-    default:
+        default:
         {
             freeArrayOfString(Input_String_One, mn);
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 3, "c", "r");
@@ -509,7 +519,9 @@ static int sci_strcat_one_rhs(char *fname)
                 FREE(lengths);
                 lengths = NULL;
                 if (Input_String_One)
+                {
                     freeArrayOfString(Input_String_One, mn);
+                }
 
                 LhsVar(1) = Rhs + 1;
                 PutLhsVar();
@@ -599,7 +611,9 @@ static int *lengthEachString(int rhspos, int *sizeArrayReturned)
         il = iadr(l1);
 
         if (*istk(il) < 0)
+        {
             il = iadr(*istk(il + 1));
+        }
 
         /* get dimensions */
         m = getNumberOfLines(il);   /* row */
@@ -609,7 +623,9 @@ static int *lengthEachString(int rhspos, int *sizeArrayReturned)
 
         StringsLength = (int *)MALLOC(sizeof(int) * mn);
         if (StringsLength == NULL)
+        {
             return NULL;
+        }
 
         *sizeArrayReturned = mn;
 

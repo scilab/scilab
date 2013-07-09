@@ -18,19 +18,19 @@
 //
 function [ this , isfeasible ] = optimbase_isinnonlincons ( this , x )
     isfeasible = %t
-      if ( this.nbineqconst > 0) then
-        if ( this.withderivatives ) then 
-          [ this , f , g , c , gc , index ] = optimbase_function ( this , x , 2 );
+    if ( this.nbineqconst > 0) then
+        if ( this.withderivatives ) then
+            [ this , f , g , c , gc , index ] = optimbase_function ( this , x , 2 );
         else
-          [ this , f , c , index ] = optimbase_function ( this , x , 5 );
+            [ this , f , c , index ] = optimbase_function ( this , x , 5 );
         end
         for ic = 1 : this.nbineqconst
-          if ( c ( ic ) < 0.0 ) then
-            this = optimbase_log ( this , sprintf ( "Inequality constraint #%d/%d is not satisfied for x", ...
-              ic , this.nbineqconst ) )
-            isfeasible = %f
-            break
-          end
+            if ( c ( ic ) < 0.0 ) then
+                this = optimbase_log ( this , sprintf ( "Inequality constraint #%d/%d is not satisfied for x", ...
+                ic , this.nbineqconst ) )
+                isfeasible = %f
+                break
+            end
         end
-      end
+    end
 endfunction

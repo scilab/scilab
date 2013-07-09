@@ -13,7 +13,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="chart">
     <refnamediv>
         <refname>chart</refname>
-        <refpurpose>Nichols chart</refpurpose>
+        <refpurpose>
+            Nichols chart. <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -90,6 +92,10 @@
         <para>
             <literal>[-(1:10) , -(20:10:160)]</literal>
         </para>
+        <para>
+            <warning>This function is obsolete.</warning>
+            It is better to use <link linkend="nicholschart">nicholschart</link> instead of <literal>chart</literal>.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -115,6 +121,21 @@ chart(list(1,0));
             <member>
                 <link linkend="black">black</link>
             </member>
+            <member>
+                <link linkend="nicholschart">nicholschart</link>
+            </member>
         </simplelist>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Function tagged as obsolete. Will be removed in 5.5.1. Please use <link linkend="nicholschart">nicholschart</link> instead.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
+

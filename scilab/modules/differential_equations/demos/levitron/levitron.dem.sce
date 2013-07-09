@@ -23,7 +23,7 @@ exec SCI/modules/differential_equations/demos/levitron/levitron_gui.sci;
 // c=C/(m*R^2)    normalized polar  moment of inertia of the top
 // Mc=(M*Me)/(4*%pi*m*g*R^4),   normalized magnetic moment of the top
 
-//R=34.7d-3 
+//R=34.7d-3
 //m=0.02135
 //A=1.32d-6
 //C=2.20d-6
@@ -31,9 +31,9 @@ exec SCI/modules/differential_equations/demos/levitron/levitron_gui.sci;
 
 a=0.089;
 c=0.139;
-Mc=8.2;  
+Mc=8.2;
 //
-%h=poly(0,'h');
+%h=poly(0,"h");
 Ph=(3*Mc*%h*(2*%h^2-3))^2-(1+%h^2)^7;
 rPh=roots(Ph);
 rPh=real(rPh(find(abs(imag(rPh))<0.00001& real(rPh)>0)));
@@ -51,17 +51,17 @@ dPhi=Omega_T-dPsi*cos(Theta);
 
 
 q0=[0;    //X
-    0;    //Y
-    h;    //Z
-    Theta;
-    Phi;  
-    Psi];  
+0;    //Y
+h;    //Z
+Theta;
+Phi;
+Psi];
 p0=[0;    //X'
-    0;    //Y'
-    0;    //Z'
-    a*dTheta; 
-    dPsi*(a*sin(Theta)^2+c*cos(Theta)^2)+c*dPhi*cos(Theta)
-    c*(dPhi+dPsi*cos(Theta))]
+0;    //Y'
+0;    //Z'
+a*dTheta;
+dPsi*(a*sin(Theta)^2+c*cos(Theta)^2)+c*dPhi*cos(Theta)
+c*(dPhi+dPsi*cos(Theta))]
 
 scf(100001);clf()
 demo_viewCode("levitron.dem.sce");

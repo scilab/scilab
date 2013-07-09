@@ -2,11 +2,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -25,12 +25,12 @@
 * @param[in] replacement_string
 * @return substituted string matrix
 */
-STRING_IMPEXP char **strsubst(char **strings_input,int strings_dim,char *string_to_search,char *replacement_string);
-STRING_IMPEXP char **strsubst_reg(char **strings_input,int strings_dim,char *string_to_search,char *replacement_string, int *ierr);
+STRING_IMPEXP char **strsubst(char **strings_input, int strings_dim, char *string_to_search, char *replacement_string);
+STRING_IMPEXP char **strsubst_reg(char **strings_input, int strings_dim, char *string_to_search, char *replacement_string, int *ierr);
 
 /**
 * substitute a character string by another in a character string
-* @param[in] string 
+* @param[in] string
 * @param[in] string to search in input_string
 * @param[in] replacement_string
 * @param[out] error returned by pcre_private

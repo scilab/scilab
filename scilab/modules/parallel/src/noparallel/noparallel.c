@@ -19,7 +19,7 @@
 /*--------------------------------------------------------------------------*/
 int gw_parallel(void)
 {
-    Scierror(999,_("%s: %s module is not installed.\n"), "Scilab", "parallel");
+    Scierror(999, _("%s: %s module is not installed.\n"), "Scilab", "parallel");
     return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dawson" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>dawson</refname>
+        
+        <refpurpose>Dawson (スケーリングされた虚数の誤差) 関数を計算.</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>y = dawson(x)</synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>x</term>
+                
+                <listitem>
+                    
+                    <para>ベクトルまたは行列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>y</term>
+                
+                <listitem>
+                    
+                    <para>(xと同じ大きさ)ベクトルまたは行列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            <literal>dawson</literal> はスケーリングされた虚数の誤差関数を計算します:
+            
+        </para>
+        
+        <para>
+            
+            <latex>
+                
+                \mathrm{Dawson}(z) = \frac{\sqrt{\pi}}{2} e^{-z^2} \mathrm{erfi}(z)
+                
+            </latex>
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+x = [0.1, 1, 1+2*%i,-1+2*%i,1e-4+2e-4*%i,0+2*%i];
+dawson(x)
+dawson(-x)
+ ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>アルゴリズム</title>
+        
+        <para>
+            
+            この関数は <ulink url="http://ab-initio.mit.edu/Faddeeva">Faddeevaパッケージ</ulink> ライブラリにもとづいています.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="erf">erf</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="erfc">erfc</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="calerf">calerf</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>関数dawsonが追加されました</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

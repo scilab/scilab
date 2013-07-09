@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5read" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>h5read</refname>
+        
+        <refpurpose>HDF5データセットのデータを読み込む</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            h5read(obj [, name, [, start, count [, stride [, block]]]])
+            
+            h5read(filename, name [, start, count [, stride [, block]])
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>obj</term>
+                
+                <listitem>
+                    
+                    <para>H5Object</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>name</term>
+                
+                <listitem>
+                    
+                    <para>新規データセットへのパスを指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>start</term>
+                
+                <listitem>
+                    
+                    <para>hyperslabのstartを保持するdouble行ベクトル</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>count</term>
+                
+                <listitem>
+                    
+                    <para>hyperslabのcountを保持するdouble行ベクトル</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>stride</term>
+                
+                <listitem>
+                    
+                    <para>hyperslabのstrideを保持するdouble行ベクトル</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>block</term>
+                
+                <listitem>
+                    
+                    <para>>hyperslabのblockを保持するdouble行ベクトル</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>filename</term>
+                
+                <listitem>
+                    
+                    <para>ファイル名を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            オプションのhyperslabセレクションに基づきデータセットの内容を読み込みます.
+            
+        </para>
+        
+        <para>データにhyperslabセレクションを作成できます.</para>
+        
+        <para>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata fileref="../images/hyperslab_selection.png" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+        </para>
+        
+        <para>引数 start, count, stride および block の大きさはデータの次元数と等しい必要があります:
+            
+            <simplelist type="inline">
+                
+                <member>
+                    
+                    start: セレクションを開始するデータ内の座標を指定. 
+                    
+                </member>
+                
+                <member>
+                    
+                    count: 各次元における選択されたブロックの数を指定. 
+                    
+                </member>
+                
+                <member>
+                    
+                    stride: 各次元において連続した2つのブロックの間のシフト量を指定します. 
+                    
+                    strideは対応するブロックの次元より大きくする必要があることに注意してください.
+                    
+                </member>
+                
+                <member>
+                    
+                    block: ブロックの次元を指定. 
+                    
+                </member>
+                
+            </simplelist>
+            
+        </para>
+        
+        <para>各次元において,stride および block はデフォルトで 1に設定されています.</para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+x = int8(matrix(1:80, 10, 8));
+save(TMPDIR + "/x.sod", "x"); // SODファイルはHDF5ファイル
+
+// 作成したファイルをオープン
+a = h5open(TMPDIR + "/x.sod");
+
+// データセット 'x'からデータを読み込む
+dx = h5read(a, "/x")
+
+// ここで,一部を選択
+dx1 = h5read(a, "/x", [3 4], [5 3])
+
+// ...これは以下と等価
+dx(3:(3+5-1),4:(4+3-1))
+
+// 処理を完了し, 全リソースを解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5readattr">h5readattr</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5write">h5write</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5dataset">h5dataset</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>HDF5モジュールが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

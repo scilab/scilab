@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="prefs_SciNotes" scilab:needs-examples="no" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>SciNotes preferences</refname>
+        
+        <refpurpose>SciNotes 一般設定</refpurpose>
+        
+    </refnamediv>
+    
+    <refsection id="prefs_SciNotes_Editor">
+        
+        <title>Editor</title>
+        
+        <para>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata fileref="../images/scinotes/editor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+        </para>
+        
+        <para>
+            
+            SciNotes はデフォルトのScilabコードエディタです. 
+            
+            システム依存のコマンドまたはScilabマクロ名により
+            
+            外部エディタを使用できます,
+            
+        </para>
+        
+        <para>
+            
+            <itemizedlist>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">SciNotesを使用</emphasis>: 
+                        
+                        エディタまたは編集のようなコマンドで
+                        
+                        SciNotesを使用する場合はチェックしてください.
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">外部エディタ</emphasis>: 
+                        
+                        外部システムエディタを使用する場合はこのラジオボタンを
+                        
+                        チェックしてください.
+                        
+                        "/usr/bin/gedit"のように入力できます.
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">Scilabコマンド</emphasis>: 
+                        
+                        Scilabマクロ経由でコール可能な
+                        
+                        エディタを使用する場合はこのラジオボタンをチェックしてください.
+                        
+                        このマクロは,エディタコマンドと同種の引数をとります.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </itemizedlist>
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection id="prefs_SciNotes_General_Settings">
+        
+        <title>SciNotes一般設定</title>
+        
+        <para>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata fileref="../images/scinotes/scinotes_general_settings.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+        </para>
+        
+        <para>
+            
+            <itemizedlist>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">
+                            
+                            起動時に前のセッションを回復する
+                        </emphasis>
+                        :
+                        
+                        Scilab終了前と同じになるように前のScilabセッションを
+                        
+                        回復する場合はこのボックスをクリックしてください.
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">ファイルの終端に復改を追加</emphasis>: 
+                        
+                        ファイルの終端に(もしない場合に)
+                        
+                        CRを自動的に追加する場合はこのボックスをチェックしてください,
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">表示する直近に開かれたファイルの数</emphasis>: 直近に開かれたセクションに表示するファイルの数を変更する場合はこの値を修正してください.
+                        
+                        
+                        
+                        
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">ファイルエンコーディングのデフォルト値</emphasis>: ファイル保存時に使用するエンコーディングのデフォルト値を変更します.
+                        
+                        Scilabはこれらのエンコーディングのみを実行時に処理するため,
+                        
+                        これ以外のエンコーディングは考慮されません.
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">デフォルトの行末</emphasis>: 
+                        
+                        ファイル保存時に使用する行末文字のデフォルト値を変更します.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </itemizedlist>
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="scinotes">scinotes</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="editor">editor</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="edit">edit</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+</refentry>
+

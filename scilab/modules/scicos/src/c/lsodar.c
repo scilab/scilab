@@ -176,7 +176,7 @@ int LSodarInit (void * lsodar_mem, LSRhsFn f, realtype t0, N_Vector y)
  *
  * =============================
  *
- * LSodarReInit re-initializes LSODAR's memory for a problem,
+ * LSodarReInit reinitializes LSODAR's memory for a problem,
  * assuming it has already been allocated in a prior LSodarInit call.
  * All problem specification inputs are checked for errors.
  * If any error occurs during initialization, it is reported to the file whose file pointer is errfp.
@@ -222,7 +222,7 @@ int LSodarReInit (void * lsodar_mem, realtype tOld, N_Vector y)
  * It MUST be called before the first call to LSodar.
  */
 
-int LSodarSStolerances(void * lsodar_mem, realtype reltol, realtype abstol)
+int LSodarSStolerances (void * lsodar_mem, realtype reltol, realtype abstol)
 {
     LSodarMem ls_mem;
 

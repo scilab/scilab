@@ -15,6 +15,9 @@ package org.scilab.modules.scinotes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,16 +34,16 @@ public class SciNotesAutosave implements ActionListener {
 
     static {
         Scilab.registerFinalHook(new Runnable() {
-                public void run() {
-                    for (File f : toRemove) {
-                        if (f.exists()) {
-                            try {
-                                f.delete();
-                            } catch (Exception e) { }
-                        }
+            public void run() {
+                for (File f : toRemove) {
+                    if (f.exists()) {
+                        try {
+                            f.delete();
+                        } catch (Exception e) { }
                     }
                 }
-            });
+            }
+        });
     }
 
     private Timer timer;
@@ -75,6 +78,8 @@ public class SciNotesAutosave implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         SciNotesOptions.Autosave as = SciNotesOptions.getSciNotesAutosave();
         if (as.autoSave) {
+            boolean saved = false;
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HHmmss");
             for (SciNotes ed : SciNotes.getSciNotesList()) {
                 int n = ed.getTabPane().getTabCount();
                 for (int i = 0; i < n; i++) {
@@ -82,7 +87,7 @@ public class SciNotesAutosave implements ActionListener {
                     if (sep.getName() != null && !sep.getName().isEmpty() && !sep.checkExternalModif() && ((ScilabDocument) sep.getDocument()).isContentModified() && ((ScilabDocument) sep.getDocument()).isContentModifiedSinceBackup()) {
                         String name = sep.getName();
                         if (as.appendFilename) {
-                            name += as.appendWith;
+                            name += as.appendWith.replaceAll("%date", dateFormat.format(new Date()));
                         } else {
                             int dotpos = name.lastIndexOf('.');
                             if (dotpos != -1) {
@@ -95,8 +100,10 @@ public class SciNotesAutosave implements ActionListener {
                             file = new File(as.singleDirectory, filename);
                         }
                         boolean identic = new File(sep.getName()).equals(file);
-
                         boolean success = SaveFile.doSave(sep, i, file, ed.getEditorKit(), false, true);
+                        if (!saved) {
+                            saved = true;
+                        }
                         if (!success) {
                             ed.getInfoBar().setText(String.format(SciNotesMessages.AUTOSAVE_ERROR, filename));
                             return;
@@ -113,7 +120,9 @@ public class SciNotesAutosave implements ActionListener {
                         }
                     }
                 }
-                ed.getInfoBar().setText(SciNotesMessages.AUTOSAVE_FINISHED);
+                if (saved) {
+                    ed.getInfoBar().setText(SciNotesMessages.AUTOSAVE_FINISHED);
+                }
             }
         }
     }

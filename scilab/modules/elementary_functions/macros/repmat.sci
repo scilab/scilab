@@ -20,7 +20,7 @@ function B = repmat(A,varargin)
         if typeof(varargin(1)) <> "constant" then
             error(msprintf(_("%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"), "repmat", 2))
         end
-        if size(varargin(1),'*')<>1 & isempty(find(size(varargin(1))==1)) then
+        if size(varargin(1),"*")<>1 & isempty(find(size(varargin(1))==1)) then
             error(msprintf(_("%s: Wrong size for input argument #%d: A real scalar or vector expected.\n"), "repmat", 2))
         end
     else
@@ -39,18 +39,18 @@ function B = repmat(A,varargin)
             B=rlist(repmat(A.num,varargin(:)),repmat(A.den,varargin(:)),A.dt)
             return
         elseif typeof(A)<>"hypermat" then
-            execstr('B=%'+typeof(A)+"_repmat(A,varargin(:))")
+            execstr("B=%"+typeof(A)+"_repmat(A,varargin(:))")
             return
         end
     end
 
     if narg==1 then
-        if size(varargin(1),'*')==1 then
+        if size(varargin(1),"*")==1 then
             siz=list(varargin(1),varargin(1))
         else //convert array into list
             tmp=varargin(1)
             siz=list();
-            for i=1:size(tmp,'*'),siz(i)=tmp(i); end
+            for i=1:size(tmp,"*"),siz(i)=tmp(i); end
         end
     else
         siz=list();
@@ -71,7 +71,7 @@ function B = repmat(A,varargin)
         nd=nd-1
     end
     sizA=size(A)
-    nda=size(sizA,'*')
+    nda=size(sizA,"*")
 
     if and(sizA==1) then //scalar case
 
@@ -99,7 +99,7 @@ function B = repmat(A,varargin)
             I(i)=ind;
         end
 
-        if typeof(A) == 'hypermat' | (size(varargin(1),"*") <> 1 & size(varargin(1)) <3) then // Works if A is hypermat but not for int8,int16 matrix
+        if typeof(A) == "hypermat" | (size(varargin(1),"*") <> 1 & size(varargin(1)) <3) then // Works if A is hypermat but not for int8,int16 matrix
             B=A(I(:));
         else // Works for int8, int16... matrix but not for hypermat
             if rhs ==2 then
@@ -113,7 +113,7 @@ function B = repmat(A,varargin)
                         for i=1:size(varargin(1),2)
                             varargin(i)=varargin_temp(1)(i);
                         end
-                    else 
+                    else
                         error(msprintf(_("%s: Wrong size for input argument #%d: a vector expected.\n"),"repmat",2));
                     end
                 end

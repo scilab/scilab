@@ -22,7 +22,7 @@ import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
 /**
  * Class to create SciNotes instances
- * 
+ *
  * @author Calixte DENIZET
  */
 public class VariableBrowserTab {
@@ -34,32 +34,32 @@ public class VariableBrowserTab {
      */
     public static SwingScilabTab getVariableBrowserInstance() {
         final SwingScilabTab varbrowser = ScilabVariableBrowser
-                .createVarBrowserTab();
+                                          .createVarBrowserTab();
         ScilabTabFactory.getInstance().addToCache(varbrowser);
 
         ClosingOperationsManager.registerClosingOperation(varbrowser,
-                new ClosingOperationsManager.ClosingOperation() {
+        new ClosingOperationsManager.ClosingOperation() {
 
-                    @Override
-                    public int canClose() {
-                        return 1;
-                    }
+            @Override
+            public int canClose() {
+                return 1;
+            }
 
-                    @Override
-                    public void destroy() {
-                        ScilabVariableBrowser.closeVariableBrowser();
-                    }
+            @Override
+            public void destroy() {
+                ScilabVariableBrowser.closeVariableBrowser();
+            }
 
-                    @Override
-                    public String askForClosing(final List<SwingScilabTab> list) {
-                        return null;
-                    }
+            @Override
+            public String askForClosing(final List<SwingScilabTab> list) {
+                return null;
+            }
 
-                    @Override
-                    public void updateDependencies(List<SwingScilabTab> list,
-                            ListIterator<SwingScilabTab> it) {
-                    }
-                });
+            @Override
+            public void updateDependencies(List<SwingScilabTab> list,
+            ListIterator<SwingScilabTab> it) {
+            }
+        });
 
         ClosingOperationsManager.addDependencyWithRoot(varbrowser);
 

@@ -14,7 +14,7 @@
  -->
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="tclsci">
-<!--
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -30,18 +30,18 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-
-<PRIMITIVE gatewayId="40" primitiveId="1" primitiveName="TCL_DoOneEvent" />
-<PRIMITIVE gatewayId="40" primitiveId="2" primitiveName="TCL_EvalStr" />
-<PRIMITIVE gatewayId="40" primitiveId="3" primitiveName="TCL_GetVar" />
-<PRIMITIVE gatewayId="40" primitiveId="4" primitiveName="TCL_SetVar" />
-<PRIMITIVE gatewayId="40" primitiveId="5" primitiveName="opentk" />
-<PRIMITIVE gatewayId="40" primitiveId="6" primitiveName="TCL_GetVersion" />
-<PRIMITIVE gatewayId="40" primitiveId="7" primitiveName="TCL_UnsetVar" />
-<PRIMITIVE gatewayId="40" primitiveId="8" primitiveName="TCL_ExistVar" />
-<PRIMITIVE gatewayId="40" primitiveId="9" primitiveName="TCL_UpVar" />
-<PRIMITIVE gatewayId="40" primitiveId="10" primitiveName="TCL_DeleteInterp" />
-<PRIMITIVE gatewayId="40" primitiveId="11" primitiveName="TCL_ExistInterp" />
-<PRIMITIVE gatewayId="40" primitiveId="12" primitiveName="TCL_ExistArray" />
-<PRIMITIVE gatewayId="40" primitiveId="13" primitiveName="TCL_EvalFile" />
+    
+    <PRIMITIVE gatewayId="40" primitiveId="1" primitiveName="TCL_DoOneEvent" />
+    <PRIMITIVE gatewayId="40" primitiveId="2" primitiveName="TCL_EvalStr" />
+    <PRIMITIVE gatewayId="40" primitiveId="3" primitiveName="TCL_GetVar" />
+    <PRIMITIVE gatewayId="40" primitiveId="4" primitiveName="TCL_SetVar" />
+    <PRIMITIVE gatewayId="40" primitiveId="5" primitiveName="opentk" />
+    <PRIMITIVE gatewayId="40" primitiveId="6" primitiveName="TCL_GetVersion" />
+    <PRIMITIVE gatewayId="40" primitiveId="7" primitiveName="TCL_UnsetVar" />
+    <PRIMITIVE gatewayId="40" primitiveId="8" primitiveName="TCL_ExistVar" />
+    <PRIMITIVE gatewayId="40" primitiveId="9" primitiveName="TCL_UpVar" />
+    <PRIMITIVE gatewayId="40" primitiveId="10" primitiveName="TCL_DeleteInterp" />
+    <PRIMITIVE gatewayId="40" primitiveId="11" primitiveName="TCL_ExistInterp" />
+    <PRIMITIVE gatewayId="40" primitiveId="12" primitiveName="TCL_ExistArray" />
+    <PRIMITIVE gatewayId="40" primitiveId="13" primitiveName="TCL_EvalFile" />
 </GATEWAY>

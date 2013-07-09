@@ -10,7 +10,7 @@
 function demo_log()
 
     exec("SCI/modules/graphics/demos/cmplxfunc/MacCmplx.sci", -1);
-    
+
     R     = 4;
     e     = 0.001;
     theta = 30;

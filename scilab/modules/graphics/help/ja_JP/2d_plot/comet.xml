@@ -186,7 +186,9 @@ clf();comet(linspace(-2,4,500),(%s-3)/(%s^3+2*%s^2+1))
         <revhistory>
             <revision>
                 <revnumber>5.3.2</revnumber>
-                <revremark>関数 <function>comet</function> が導入されました.</revremark>
+                <revremark>
+                    関数 <function>comet</function> が導入されました.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

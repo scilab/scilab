@@ -322,7 +322,7 @@ public class AxesDrawer {
     }
 
     /**
-     * Compute zone where the axes is draw. In normalised window coordinate.
+     * Compute zone where the axes is draw. In normalized window coordinate.
      * @param axes the given {@see axes}.
      * @return the zone where the axes is draw.
      */

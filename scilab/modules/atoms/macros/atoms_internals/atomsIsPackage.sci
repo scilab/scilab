@@ -56,7 +56,7 @@ function result = atomsIsPackage(packages)
         if isempty(version) & isfield(allpackages,name) then
             result(i) = %T;
 
-        // 2nd case : Check a specific version
+            // 2nd case : Check a specific version
         elseif isfield(allpackages,name) then
 
             // A packaging version is mentionned
@@ -69,7 +69,7 @@ function result = atomsIsPackage(packages)
                 if isfield(allpackages(name),version) then
                     result(i) = %T;
 
-                // ... second try if it's not the case
+                    // ... second try if it's not the case
                 else
                     // Loop on this packages versions
                     package_versions          = allpackages(name);

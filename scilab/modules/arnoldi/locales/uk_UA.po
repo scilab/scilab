@@ -7,15 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-19 17:07+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-18 04:34+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: uk\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s: помилковий тип аргументу %d: мало бути використано ціле число.\n"
 
 #, c-format
 msgid "%s: the computation is already terminated\n"
@@ -33,6 +37,12 @@ msgid ""
 msgstr ""
 "%s: помилкова розмірність вхідного параметра %s: мала бути матриця "
 "розмірності %dx%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати рядок з одного "
+"символу.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -240,12 +250,6 @@ msgstr "%s: помилка у %s: інформація = %d \n"
 #, c-format
 msgid "%s: Error with %s: unknown mode returned.\n"
 msgstr "%s: помилка у %s: повернуто невідомий режим.\n"
-
-#, c-format
-msgid ""
-"%s: A - sigma * B is not inversible, try with a different value of sigma.\n"
-msgstr ""
-"%s: A - sigma * B є виродженою матрицею. Спробуйте з іншим значенням sigma.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"

@@ -1204,7 +1204,7 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="chart">chart</link>
+                    <link linkend="nicholschart">nicholschart</link>
                 </term>
                 <listitem>
                     <para>Nichols chart</para>
@@ -1212,7 +1212,7 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image localized="true">chart();</scilab:image>
+                        <scilab:image localized="true">nicholschart();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>

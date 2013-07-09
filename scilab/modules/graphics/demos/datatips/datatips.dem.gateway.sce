@@ -9,8 +9,8 @@
 demopath = get_absolute_file_path("datatips.dem.gateway.sce");
 
 subdemolist=[
-    _("2D curves")              , "datatip1.sce";
-    _("3D curve")               , "datatip2.sce"];
+_("2D curves")              , "datatip1.sce";
+_("3D curve")               , "datatip2.sce"];
 
 
 subdemolist(:,2) = demopath + subdemolist(:,2);

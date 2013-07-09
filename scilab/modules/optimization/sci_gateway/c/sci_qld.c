@@ -202,7 +202,10 @@ int sci_qld(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        for (k = 0; k < n; k++)(lb)[k] = -C2F(dlamch)("o", 1L);
+        for (k = 0; k < n; k++)
+        {
+            (lb)[k] = -C2F(dlamch)("o", 1L);
+        }
         next = next + 1;
     }
     else if (nbis * unbis != n) //CheckLength
@@ -239,7 +242,10 @@ int sci_qld(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        for (k = 0; k < n; k++)(ub)[k] = C2F(dlamch)("o", 1L);
+        for (k = 0; k < n; k++)
+        {
+            (ub)[k] = C2F(dlamch)("o", 1L);
+        }
         next = next + 1;
     }
     else if (nbis * unbis != n)//CheckLength
@@ -356,12 +362,15 @@ int sci_qld(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    (iwar)[0] = 1; /*Cholesky factorisation required*/
+    (iwar)[0] = 1; /*Cholesky factorization required*/
 
     /* Change the sign of C*/
     for (k = 0; k < n; k++)
     {
-        for (l = 0; l < m; l++)(C)[k * m + l] = -(C)[k * m + l];
+        for (l = 0; l < m; l++)
+        {
+            (C)[k * m + l] = -(C)[k * m + l];
+        }
     }
 
     iout = 0;
@@ -384,13 +393,21 @@ int sci_qld(char *fname, unsigned long fname_len)
         ReturnArguments(pvApiCtx);
     }
     else if (ifail == 1)
+    {
         Scierror(24, _("%s: Too many iterations (more than %d).\n"), fname, 40 * (n + m));
+    }
     else if (ifail == 2)
+    {
         Scierror(24, _("%s: Accuracy insufficient to satisfy convergence criterion.\n"), fname);
+    }
     else if (ifail == 5)
+    {
         Scierror(999, _("%s: Length of working array is too short.\n"), fname);
+    }
     else if (ifail > 10)
+    {
         Scierror(999, _("%s: The constraints are inconsistent.\n"), fname);
+    }
     else
     {
     }

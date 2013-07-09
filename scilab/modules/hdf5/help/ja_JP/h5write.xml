@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5write" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>h5write</refname>
+        
+        <refpurpose>データセットを作成(存在しない場合)し, データを書き込む</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            h5write(obj, name, data [, targetType], [, start, count [, stride [, block]]])
+            
+            h5write(filename, name, data [, targetType], [, start, count [, stride [, block]]])
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>obj</term>
+                
+                <listitem>
+                    
+                    <para>H5Object</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>name</term>
+                
+                <listitem>
+                    
+                    <para>データセットへのパスを指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>data</term>
+                
+                <listitem>
+                    
+                    <para>Scilabデータ</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>targetType</term>
+                
+                <listitem>
+                    
+                    <para>目標型を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>start</term>
+                
+                <listitem>
+                    
+                    <para>hyperslabのstartを保持するdouble行ベクトル</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>count</term>
+                
+                <listitem>
+                    
+                    <para>hyperslabのcountを保持するdouble行ベクトル</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>stride</term>
+                
+                <listitem>
+                    
+                    <para>hyperslabのstrideを保持するdouble行ベクトル</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>block</term>
+                
+                <listitem>
+                    
+                    <para>hyperslabのblockを保持するdouble行ベクトル</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>filename</term>
+                
+                <listitem>
+                    
+                    <para>ファイル名を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            引数として指定されたScilabデータに基づき,新たに名前付きのデータセットを作成(作成済みでない場合)します.
+            
+        </para>
+        
+        <para>
+            
+            ターゲットのHDF5型は, <ulink url="http://www.hdfgroup.org/HDF5/doc/RM/PredefDTypes.html">HDF5マニュアル</ulink>で
+            
+            利用可能なリストから選択できます.
+            
+            この HDF5 型の例は,"H5T_MIPS_U32" または "H5T_STD_B64BE"ですが, 短縮形 "MIPS_U32" または "STD_B64BE"
+            
+            も使用できます.
+            
+        </para>
+        
+        <para>データ上にhyperslabセレクションを作成できます.</para>
+        
+        <para>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata fileref="../images/hyperslab_selection.png" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+        </para>
+        
+        <para>引数 start, count, stride および block はデータの次元数に等しい大きさとする必要があります:
+            
+            <simplelist type="inline">
+                
+                <member>
+                    
+                    start: セレクションを開始するデータ内の座標を指定. 
+                    
+                </member>
+                
+                <member>
+                    
+                    count: 各次元で選択されたブロックの数. 
+                    
+                </member>
+                
+                <member>
+                    
+                    stride: 各次元において連続する2つのブロック間のシフト量を指定. 
+                    
+                </member>
+                
+                <member>
+                    
+                    block: ブロックの次元を指定. 
+                    
+                </member>
+                
+            </simplelist>
+            
+            デフォルトで各次元のstrideとblockは1に設定されています.
+            
+        </para>
+        
+        <para>
+            
+            目標の型が "H5T_STD_REF_OBJ"の場合,data行列は
+            
+            グループまたはデータセットの絶対パスを保持する文字列行列とする必要があります.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+x = matrix(1:20, 4, 5);
+save(TMPDIR + "/x.sod", "x"); // SODファイルはHDF5ファイルです
+
+// 作成されたファイルをオープン
+a = h5open(TMPDIR + "/x.sod");
+
+// "y"という名前の新規データセットを追加
+y = uint32(matrix(10:30, 7, 3));
+h5write(a, "y", y);
+
+// MIPS形式でデータセット"z"を追加
+h5write(a, "z", y, "H5T_MIPS_U32");
+
+// ここでhyperslabセレクションを作成
+x = uint32(matrix(1:(11*17), 11, 17));
+h5write(a, "t", x, [1 2], [2 4], [5 3], [3 2]);
+
+// 全てokかどうか確認
+x, a("/t").data'
+
+// 処理を完了し, 全リソースを解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5group">h5group</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5attr">h5attr</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>HDF5モジュールが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

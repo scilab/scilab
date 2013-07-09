@@ -19,43 +19,43 @@
 // See the file ../license.txt
 //
 function  ok=xml2modelica(xmlfile,Flati)
-// Generate the Modelica model file Flati with 
-// the xml file given by the initialization interface.
-// Interface to the external tool xml2modelica.exe
-// if <name> is the basename of filemo this function produces
-// - the flat Modelica model file in outpath+name+'fi.mo'
+    // Generate the Modelica model file Flati with
+    // the xml file given by the initialization interface.
+    // Interface to the external tool xml2modelica.exe
+    // if <name> is the basename of filemo this function produces
+    // - the flat Modelica model file in outpath+name+'fi.mo'
 
-//Scilab interface  with external tool xml2modelica
+    //Scilab interface  with external tool xml2modelica
 
-  XML2MODELICA_FILENAME = 'XML2Modelica';
-  if getos() == 'Windows' then
-    XML2MODELICA_FILENAME = XML2MODELICA_FILENAME + '.exe'; 
-  end
+    XML2MODELICA_FILENAME = "XML2Modelica";
+    if getos() == "Windows" then
+        XML2MODELICA_FILENAME = XML2MODELICA_FILENAME + ".exe";
+    end
 
-  tmpdir = pathconvert(TMPDIR, %t, %t);  //for error log and  shell scripts
-  xmlfile = pathconvert(xmlfile, %f, %t);  
-  Flati = pathconvert(Flati, %f, %t);
+    tmpdir = pathconvert(TMPDIR, %t, %t);  //for error log and  shell scripts
+    xmlfile = pathconvert(xmlfile, %f, %t);
+    Flati = pathconvert(Flati, %f, %t);
 
-  exe = '""' + pathconvert(XML2MODELICA_FILENAME, %f, %t) + '"" ';
-  in = '""' + xmlfile + '""';
-  out = '-o ""' + Flati + '""';
-  option = '-init';  // generates a flat modelica file for the initialization
-  Errfile = ' > ""' + tmpdir + 'ixml2modelica.err""';
-  instr = strcat([exe in option out Errfile], ' ');
+    exe = """" + pathconvert(XML2MODELICA_FILENAME, %f, %t) + """ ";
+    in = """" + xmlfile + """";
+    out = "-o """ + Flati + """";
+    option = "-init";  // generates a flat modelica file for the initialization
+    Errfile = " > """ + tmpdir + "ixml2modelica.err""";
+    instr = strcat([exe in option out Errfile], " ");
 
-  if getos() == 'Windows' then, 
-    mputl(instr, tmpdir + 'igenx.bat');
-    instr = tmpdir + 'igenx.bat';
-  end
-  
-  if execstr('unix_s(instr)','errcatch') == 0 then
-    mprintf('%s\n', ' xml->Modelica : ' + Flati);
-    ok = %t;
-  else 
-    messagebox([_('-------XML to Modelica error:-------');
-		mgetl(Errfile);], 'error', 'modal');	    
-    ok = %f;
-    return
-  end
+    if getos() == "Windows" then,
+        mputl(instr, tmpdir + "igenx.bat");
+        instr = tmpdir + "igenx.bat";
+    end
+
+    if execstr("unix_s(instr)","errcatch") == 0 then
+        mprintf("%s\n", " xml->Modelica : " + Flati);
+        ok = %t;
+    else
+        messagebox([_("-------XML to Modelica error:-------");
+        mgetl(Errfile);], "error", "modal");
+        ok = %f;
+        return
+    end
 endfunction
 

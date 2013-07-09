@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA -
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -44,32 +44,33 @@ Type *DY;\
 
 int C2F(genmmax)(int *typ, int *job, int *m, int *n, int *dx, int *incx, int *dy, int *dk, int *incy)
 {
-  static int ix, iy, l, k, kk, *DK;
+    static int ix, iy, l, k, kk, *DK;
 
-  DK=--dk;
-  ix = *incx;
-  iy = *incy;
+    DK = --dk;
+    ix = *incx;
+    iy = *incy;
 
-  switch (*typ) {
-  case 1:
-    MMAX(integer1);
-    break;
-  case 2:
-    MMAX(integer2);
-    break;
-  case 4:
-    MMAX(int) ;
-    break;
-  case 11:
-    MMAX(unsigned char);
-    break;
-  case 12:
-    MMAX(unsigned short);
-    break;
-  case 14:
-    MMAX(unsigned int);
-    break;
-  }
-  return 0;
+    switch (*typ)
+    {
+        case 1:
+            MMAX(integer1);
+            break;
+        case 2:
+            MMAX(integer2);
+            break;
+        case 4:
+            MMAX(int) ;
+            break;
+        case 11:
+            MMAX(unsigned char);
+            break;
+        case 12:
+            MMAX(unsigned short);
+            break;
+        case 14:
+            MMAX(unsigned int);
+            break;
+    }
+    return 0;
 }
 

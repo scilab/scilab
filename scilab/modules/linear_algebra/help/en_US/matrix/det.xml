@@ -27,7 +27,7 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>real or complex square matrix, polynomial or rational matrix.</para>
+                    <para>real or complex square matrix (full or sparse), polynomial or rational matrix</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -47,7 +47,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>det(X)</literal> ( <literal>m*10^e</literal> is the determinant of the square matrix <literal>X</literal>.
+            <literal>det(X)</literal> ( <literal>m*10^e</literal> ) is the determinant of the square matrix <literal>X</literal>.
         </para>
         <para>
             For polynomial matrix <literal>det(X)</literal> is equivalent to <literal>determ(X)</literal>.
@@ -61,6 +61,9 @@
         <para>
             det computations are based on the Lapack routines
             DGETRF for  real matrices and  ZGETRF for the complex case.
+        </para>
+        <para>
+            Concerning sparse matrices, the determinant is obtained from LU factorization of umfpack library.
         </para>
     </refsection>
     <refsection>

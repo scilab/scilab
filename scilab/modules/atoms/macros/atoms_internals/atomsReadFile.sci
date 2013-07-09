@@ -14,9 +14,9 @@
 // Reading function file line to line
 
 function tab = atomsReadFile(nom)
-  // We verify the presence of the file before
-  // We must verify we have the read acces
-  fd = mopen(nom,"r")
-  [n, tab] = mfscanf(-1, fd, '%80[^\n]\n')
-  mclose(fd)
+    // We verify the presence of the file before
+    // We must verify we have the read acces
+    fd = mopen(nom,"r")
+    [n, tab] = mfscanf(-1, fd, "%80[^\n]\n")
+    mclose(fd)
 endfunction

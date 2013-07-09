@@ -9,60 +9,59 @@
 
 function uiDumpTree(tree, b)
 
-	[lhs,rhs]=argn(0);
+    [lhs,rhs]=argn(0);
 
-	//Input arguments checking
-	if rhs <= 0 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "uiDumpTree",1,2));
-		return;
-	end
+    //Input arguments checking
+    if rhs <= 0 | rhs > 2 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "uiDumpTree",1,2));
+        return;
+    end
 
-	// Check 1st input : tree
-	if rhs >= 1 then
-		if (typeof(tree) == 'Tree') then
-			myTree = tree;
-			myB = %F;
-		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiDumpTree",1));
-			return;
-		end
-		// Check 2nd input : b
-		if rhs == 2 then
-			if (type(b) == 4) then
-				myB = b;
-			else
-				error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean expected.\n"), "uiDumpTree",2));
-				return;
-			end
-		end
-	end
+    // Check 1st input : tree
+    if rhs >= 1 then
+        if (typeof(tree) == "uitree") then
+            myTree = tree;
+            myB = %F;
+        else
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiDumpTree",1));
+            return;
+        end
+        // Check 2nd input : b
+        if rhs == 2 then
+            if (type(b) == 4) then
+                myB = b;
+            else
+                error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean expected.\n"), "uiDumpTree",2));
+                return;
+            end
+        end
+    end
 
-	// Printing the tree
-	function prettyPrint(myTree, myB, indentation)
-		
-		mprintf(indentation);
-			mprintf('|_./ ');
-			mprintf(myTree(2).label + '\n');
+    // Printing the tree
+    function prettyPrint(myTree, myB, indentation)
 
-			indentation = indentation + "| ";
+        mprintf(indentation);
+        mprintf("|_./ ");
+        mprintf(myTree(2).label + "\n");
 
-		if myB then
-	  		mprintf(indentation);
-				mprintf('`- ' + myTree(2).icon + '\n');
-	  		mprintf(indentation);
-				mprintf('`- ' + myTree(2).callback + '\n');
-		end
+        indentation = indentation + "| ";
 
-		for childIndex = 3:size(myTree)
-			prettyPrint(myTree(childIndex), myB, indentation);
-		end
+        if myB then
+            mprintf(indentation);
+            mprintf("`- " + myTree(2).icon + "\n");
+            mprintf(indentation);
+            mprintf("`- " + myTree(2).callback + "\n");
+        end
 
-	endfunction
+        for childIndex = 3:size(myTree)
+            prettyPrint(myTree(childIndex), myB, indentation);
+        end
 
-	prettyPrint(myTree, myB, "");
+    endfunction
+
+    prettyPrint(myTree, myB, "");
 
 endfunction
-
 
 
 

@@ -99,41 +99,15 @@
         <title>Description</title>
         <para>
             One event is generated  <emphasis role="bold">Delay</emphasis>  after an event enters the unique
-            input event port. Block may also generate an initial output event.
+            input event port. The initial output event is also defined through parameters.
             The event date of that block is computed by the formula :
         </para>
         <para>
+            <latex>t_i = t_{init} + i * T_{delay}</latex>
         </para>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/EVTDLY_c_img2_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-        </para>
-        <para>
-            where 
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/EVTDLY_c_img3_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            the date of initial output event, 
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/EVTDLY_c_img4_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            the delay and 
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/EVTDLY_c_img5_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            and internal integer discrete counter.
-            
+            where <latex>t_{init}</latex>is the date of initial output event, <latex>T_{delay}</latex>
+            the delay and <latex>i</latex> the event occurrence.
         </para>
     </refsection>
     <refsection id="Dialogbox_EVTDLY_c">
@@ -161,7 +135,7 @@
                     <emphasis role="bold">Date of initial output event</emphasis>
                 </para>
                 <para>
-                    scalar. If<emphasis role="bold">Auto-exec&gt;=0 </emphasis> block initially generates an output event at date<emphasis role="bold">Auto-exec</emphasis> .
+                    scalar. If negative the block will never emit any output event (eg. disabled).
                 </para>
                 <para> Properties : Type 'vec' of size 1</para>
             </listitem>

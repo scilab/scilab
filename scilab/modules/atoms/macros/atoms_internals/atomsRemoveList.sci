@@ -143,7 +143,7 @@ function remList = atomsRemoveList(packages,section)
             for k=1:size(sections,"*")
                 if atomsIsInstalled([package_names(i) this_package_versions(j)],sections(k)) ..
                     & isempty(find(remList(:,3)+" - "+remList(:,4)+" - "+remList(:,5) == package_names(i)+" - "+this_package_versions(j)+" - "+sections(k))) then
-                        remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) sections(k) ];
+                    remList = [ remList ; "-" "U" package_names(i) this_package_versions(j) sections(k) ];
                 end
             end
 

@@ -30,7 +30,7 @@ c
       nn = nt - inc
       jc = ks/n
 c
-c sin, cos values are re-initialized each lim steps
+c sin, cos values are reinitialized each lim steps
 c
       lim = 32
       klim = lim*jc

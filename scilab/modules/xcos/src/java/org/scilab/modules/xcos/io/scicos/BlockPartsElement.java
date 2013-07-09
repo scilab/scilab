@@ -21,7 +21,7 @@ import org.scilab.modules.xcos.block.BasicBlock;
 /**
  * Abstract class which provide commons method for any class that works with
  * block element.
- * 
+ *
  * This class is intentionally package protected.
  */
 abstract class BlockPartsElement extends AbstractElement<BasicBlock> {
@@ -42,7 +42,7 @@ abstract class BlockPartsElement extends AbstractElement<BasicBlock> {
 
     /**
      * Set the current port size.
-     * 
+     *
      * @param in
      *            the input port vector size
      * @param out
@@ -89,11 +89,11 @@ abstract class BlockPartsElement extends AbstractElement<BasicBlock> {
 
     /**
      * Allocate the port with the right size.
-     * 
+     *
      * This method doesn't use introspection and thus only support
      * {@link ScilabString} and {@link ScilabDouble} class type. With an
      * unsupported class argument, this method return a ScilabDouble instance.
-     * 
+     *
      * @param element
      *            the current working element
      * @param klass
@@ -102,7 +102,7 @@ abstract class BlockPartsElement extends AbstractElement<BasicBlock> {
      *            the size use for the allocation
      */
     protected void addSizedPortVector(ScilabMList element,
-            Class<? extends ScilabType> klass, int size) {
+                                      Class <? extends ScilabType > klass, int size) {
         ScilabType data;
 
         if (klass == ScilabString.class) {
@@ -116,9 +116,9 @@ abstract class BlockPartsElement extends AbstractElement<BasicBlock> {
 
     /**
      * Return a new {@link ScilabType} instance.
-     * 
+     *
      * If size == 0, then an empty ScilabDouble instance is returned.
-     * 
+     *
      * @param size
      *            the size of the instance
      * @return the new instance
@@ -133,7 +133,7 @@ abstract class BlockPartsElement extends AbstractElement<BasicBlock> {
 
     /**
      * Return a new {@link ScilabDouble} instance.
-     * 
+     *
      * @param size
      *            the size of the instance
      * @return the new instance

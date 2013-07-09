@@ -18,24 +18,27 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void bit_set_16(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void bit_set_16(scicos_block *block, int flag)
 {
-  int n = 0, m = 0, i = 0;
-  short *opar = NULL;
-  short *u = NULL,*y = NULL;
+    int n = 0, m = 0, i = 0;
+    short *opar = NULL;
+    short *u = NULL, *y = NULL;
 
-  opar=Getint16OparPtrs(block,1);
-  u=Getint16InPortPtrs(block,1);
-  y=Getint16OutPortPtrs(block,1);
-  n=GetInPortCols(block,1);
-  m=GetInPortRows(block,1);
+    opar = Getint16OparPtrs(block, 1);
+    u = Getint16InPortPtrs(block, 1);
+    y = Getint16OutPortPtrs(block, 1);
+    n = GetInPortCols(block, 1);
+    m = GetInPortRows(block, 1);
 
-  for (i=0;i<m*n;i++) *(y+i)=((*(u+i))|(*opar));
+    for (i = 0; i < m * n; i++)
+    {
+        *(y + i) = ((*(u + i)) | (*opar));
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

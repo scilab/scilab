@@ -25,37 +25,37 @@
 #include "dynlib_scicos_blocks.h"
 #include "dmmul.h"
 /*--------------------------------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void gainblk(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void gainblk(scicos_block *block, int flag)
 {
     int i = 0;
 
     double *u = NULL;
     double *y = NULL;
-    int nu = 0,ny = 0,my = 0;
+    int nu = 0, ny = 0, my = 0;
     double *rpar = NULL;
     int nrpar = 0;
 
-    nu=GetInPortRows(block,1);
-    ny=GetOutPortRows(block,1);
-    my=GetOutPortCols(block,1);
+    nu = GetInPortRows(block, 1);
+    ny = GetOutPortRows(block, 1);
+    my = GetOutPortCols(block, 1);
 
-    u=GetRealInPortPtrs(block,1);
-    y=GetRealOutPortPtrs(block,1);
+    u = GetRealInPortPtrs(block, 1);
+    y = GetRealOutPortPtrs(block, 1);
 
-    nrpar=GetNrpar(block);
+    nrpar = GetNrpar(block);
 
-    rpar=GetRparPtrs(block);
+    rpar = GetRparPtrs(block);
 
-    if (nrpar==1)
+    if (nrpar == 1)
     {
-        for (i=0;i<nu*my;++i)
+        for (i = 0; i < nu * my; ++i)
         {
-            y[i]=rpar[0]*u[i];
+            y[i] = rpar[0] * u[i];
         }
     }
     else
     {
-        dmmul(rpar,&ny,u,&nu,y,&ny,&ny,&nu,&my);
+        dmmul(rpar, &ny, u, &nu, y, &ny, &ny, &nu, &my);
     }
 }
 /*--------------------------------------------------------------------------*/

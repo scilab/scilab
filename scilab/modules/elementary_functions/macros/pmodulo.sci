@@ -3,7 +3,7 @@
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2013 - Samuel GOUGEON
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -28,13 +28,13 @@ function i = pmodulo(n, m)
     end
 
     m = abs(m)  // else returns i<0 for m<0 : http://bugzilla.scilab.org/12373
-    if size(n,'*') == 1 then
+    if size(n,"*") == 1 then
         i = zeros(m);
         k = find(m == 0)
         i(k) = n - floor(n ./ m(k)) .* m(k);
         k = find(m~=0);
         i(k) = n-floor(n./m(k)).*m(k);
-    elseif size(m,'*') == 1 then
+    elseif size(m,"*") == 1 then
         i = zeros(n);
         if m == 0 then
             i = n - floor(n ./ m) .* m;
@@ -42,7 +42,7 @@ function i = pmodulo(n, m)
             i = n-floor(n./m).*m;
         end
     else
-        if or(size(n)<>size(m)) then 
+        if or(size(n)<>size(m)) then
             error(msprintf(gettext("%s: Wrong size for input arguments: Same size expected.\n"),"pmodulo"));
         end
         i = zeros(n);

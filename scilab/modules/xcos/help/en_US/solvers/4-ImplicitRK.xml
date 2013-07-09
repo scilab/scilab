@@ -35,7 +35,7 @@
             A drawback of that is the unpredictable computation time. With <emphasis>Runge-Kutta</emphasis>, we do not adapt to the complexity of the problem, but we guarantee a stable computation time.
         </para>
         <para>
-            This method being explicit, it can be used on stiff problems.
+            This method being implicit, it can be used on stiff problems.
         </para>
         <para>
             It is an enhancement of the backward Euler method, which approximates 
@@ -205,7 +205,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.zcos");
       scs_m.props.tf = 5000;
 
-      // Select the solver Runge-Kutta and set the precision
+      // Select the solver implicit RK and set the precision
       scs_m.props.tol(2) = 10^-10;
       scs_m.props.tol(6) = 7;
       scs_m.props.tol(7) = 10^-2;
@@ -265,10 +265,16 @@ Time for implicit Runge-Kutta:
                 <link linkend="CVode">CVode</link>
             </member>
             <member>
+                <link linkend="IDA">IDA</link>
+            </member>
+            <member>
                 <link linkend="RK">Runge-Kutta 4(5)</link>
             </member>
             <member>
                 <link linkend="DoPri">Dormand-Prince 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
             </member>
             <member>
                 <link linkend="Comparisons">Comparisons</link>

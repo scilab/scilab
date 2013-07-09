@@ -8,11 +8,11 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //=============================================================================
 function dlwGenerateCleaner(fd, makename)
-  make_command = dlwGetMakefileCmdCleaner(makename);
-  mfprintf(fd,"if fileinfo(''%s'') <> [] then\n", makename);
-  mfprintf(fd,"  unix_s(''%s'');\n", make_command);
-  mfprintf(fd,"  mdelete(''%s'');\n", makename);
-  mfprintf(fd,"end\n");
-  mfprintf(fd,"// ------------------------------------------------------\n");
+    make_command = dlwGetMakefileCmdCleaner(makename);
+    mfprintf(fd,"if fileinfo(''%s'') <> [] then\n", makename);
+    mfprintf(fd,"  unix_s(''%s'');\n", make_command);
+    mfprintf(fd,"  mdelete(''%s'');\n", makename);
+    mfprintf(fd,"end\n");
+    mfprintf(fd,"// ------------------------------------------------------\n");
 endfunction
 //=============================================================================

@@ -123,16 +123,27 @@ C***FIRST EXECUTABLE STATEMENT  XERRWD
 C
 C  Write the message.
 C
-      WRITE (LUNIT,10)  MSG
- 10   FORMAT(1X,A)
-      IF (NI .EQ. 1) WRITE (LUNIT, 20) I1
- 20   FORMAT(6X,'In above message,  I1 =',I10)
-      IF (NI .EQ. 2) WRITE (LUNIT, 30) I1,I2
+      CALL msgstxt(MSG)
+      IF (NI .EQ. 1) THEN
+         WRITE (MSG, '(I10)') I1
+         MSG = 'In above message,  I1 ='//MSG
+         CALL msgstxt(MSG)
+      ENDIF
+      IF (NI .EQ. 2) THEN
+         WRITE (MSG, 30) I1, I2
  30   FORMAT(6X,'In above message,  I1 =',I10,3X,'I2 =',I10)
-      IF (NR .EQ. 1) WRITE (LUNIT, 40) R1
- 40   FORMAT(6X,'In above message,  R1 =',D21.13)
-      IF (NR .EQ. 2) WRITE (LUNIT, 50) R1,R2
- 50   FORMAT(6X,'In above,  R1 =',D21.13,3X,'R2 =',D21.13)
+         CALL msgstxt(MSG)
+      ENDIF
+      IF (NR .EQ. 1) THEN
+         WRITE (MSG, '(D21.13)') R1
+         MSG = 'In above message,  I1 ='//MSG
+         CALL msgstxt(MSG)
+      ENDIF
+      IF (NR .EQ. 2) THEN
+         WRITE (MSG, 50) R1, R2
+ 50   FORMAT(6X,'In above message,  R1 =',D21.13,3X,'R2 =',D21.13)
+         CALL msgstxt(MSG)
+      ENDIF
 C
 C  Abort the run if LEVEL = 2.
 C

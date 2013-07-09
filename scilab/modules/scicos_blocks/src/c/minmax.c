@@ -18,145 +18,151 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include <stdlib.h>
 #include "core_math.h"
 #include "scicos_block.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void minmax(scicos_block *block,int flag)
-{ 
-	/*ipar[0]=1 -> min,  ipar[0]=2 -> max */
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void minmax(scicos_block *block, int flag)
+{
+    /*ipar[0]=1 -> min,  ipar[0]=2 -> max */
 
-	int i = 0;
-	double maxmin = 0.;
-	int phase = get_phase_simulation();
+    int i = 0;
+    double maxmin = 0.;
+    int phase = get_phase_simulation();
 
-	if (flag == 1) 
-	{
-		if(block->nin==1)
-		{
-			if((block->ng==0)||(phase==1))
-			{
-				maxmin=block->inptr[0][0];
-				for (i=1;i<block->insz[0];++i)
-				{
-					if(block->ipar[0]==1)
-					{
-						if(block->inptr[0][i]<maxmin)  maxmin=block->inptr[0][i];
-					} 
-					else 
-					{
-						if(block->inptr[0][i]>maxmin)  maxmin=block->inptr[0][i];
-					}
-				}
-			}
-			else
-			{
-				maxmin=block->inptr[0][block->mode[0]-1];
-			}
-			block->outptr[0][0]=maxmin;
+    if (flag == 1)
+    {
+        if (block->nin == 1)
+        {
+            if ((block->ng == 0) || (phase == 1))
+            {
+                maxmin = block->inptr[0][0];
+                for (i = 1; i < block->insz[0]; ++i)
+                {
+                    if (block->ipar[0] == 1)
+                    {
+                        if (block->inptr[0][i] < maxmin)
+                        {
+                            maxmin = block->inptr[0][i];
+                        }
+                    }
+                    else
+                    {
+                        if (block->inptr[0][i] > maxmin)
+                        {
+                            maxmin = block->inptr[0][i];
+                        }
+                    }
+                }
+            }
+            else
+            {
+                maxmin = block->inptr[0][block->mode[0] - 1];
+            }
+            block->outptr[0][0] = maxmin;
 
-		}
-		else if (block->nin==2)
-		{
-			for (i=0;i<block->insz[0];++i)
-			{
-				if((block->ng==0)||(phase==1))
-				{
-					if(block->ipar[0]==1)
-					{
-						block->outptr[0][i]=Min(block->inptr[0][i],block->inptr[1][i]);
-					} 
-					else 
-					{
-						block->outptr[0][i]=Max(block->inptr[0][i],block->inptr[1][i]);
-					}
-				}
-				else
-				{
-					block->outptr[0][i]=block->inptr[block->mode[0]-1][i];
-				}
-			}
-		}
-	}
-	else if(flag == 9)
-	{
-		if(block->nin==1)
-		{
+        }
+        else if (block->nin == 2)
+        {
+            for (i = 0; i < block->insz[0]; ++i)
+            {
+                if ((block->ng == 0) || (phase == 1))
+                {
+                    if (block->ipar[0] == 1)
+                    {
+                        block->outptr[0][i] = Min(block->inptr[0][i], block->inptr[1][i]);
+                    }
+                    else
+                    {
+                        block->outptr[0][i] = Max(block->inptr[0][i], block->inptr[1][i]);
+                    }
+                }
+                else
+                {
+                    block->outptr[0][i] = block->inptr[block->mode[0] - 1][i];
+                }
+            }
+        }
+    }
+    else if (flag == 9)
+    {
+        if (block->nin == 1)
+        {
 
-			if (phase==2)
-			{
-				for (i=0;i<block->insz[0];++i)
-				{
-					if(i!=block->mode[0]-1)
-					{
-						block->g[i]=block->inptr[0][i]-block->inptr[0][block->mode[0]-1];
-					}
-					else
-					{
-						block->g[i]=1.0;
-					}
-				}
-			}
-			else if (phase==1)
-			{
-				maxmin=block->inptr[0][0];
-				block->mode[0]=1;
-				for (i=1;i<block->insz[0];++i)
-				{
-					if(block->ipar[0]==1)
-					{
-						if(block->inptr[0][i]<maxmin) 
-						{
-							maxmin=block->inptr[0][i];
-							block->mode[0]=i+1;
-						}
-					}
-					else 
-					{
-						if(block->inptr[0][i]>maxmin) 
-						{
-							maxmin=block->inptr[0][i];
-							block->mode[0]=i+1;
-						}
-					}
-				}
-			}
-		}
-		else if(block->nin==2)
-		{
-			for (i=0;i<block->insz[0];++i)
-			{
-				block->g[i]=block->inptr[0][i]-block->inptr[1][i];
-				if(phase==1)
-				{
-					if(block->ipar[0]==1)
-					{
-						if(block->g[i]>0) 
-						{
-							block->mode[i]=2;
-						}
-						else
-						{
-							block->mode[i]=1;
-						}
-					}
-					else
-					{
-						if(block->g[i]<0) 
-						{
-							block->mode[i]=2;
-						}
-						else
-						{
-							block->mode[i]=1;
-						}
-					}
-				}
-			}
-		}
-	}
+            if (phase == 2)
+            {
+                for (i = 0; i < block->insz[0]; ++i)
+                {
+                    if (i != block->mode[0] - 1)
+                    {
+                        block->g[i] = block->inptr[0][i] - block->inptr[0][block->mode[0] - 1];
+                    }
+                    else
+                    {
+                        block->g[i] = 1.0;
+                    }
+                }
+            }
+            else if (phase == 1)
+            {
+                maxmin = block->inptr[0][0];
+                block->mode[0] = 1;
+                for (i = 1; i < block->insz[0]; ++i)
+                {
+                    if (block->ipar[0] == 1)
+                    {
+                        if (block->inptr[0][i] < maxmin)
+                        {
+                            maxmin = block->inptr[0][i];
+                            block->mode[0] = i + 1;
+                        }
+                    }
+                    else
+                    {
+                        if (block->inptr[0][i] > maxmin)
+                        {
+                            maxmin = block->inptr[0][i];
+                            block->mode[0] = i + 1;
+                        }
+                    }
+                }
+            }
+        }
+        else if (block->nin == 2)
+        {
+            for (i = 0; i < block->insz[0]; ++i)
+            {
+                block->g[i] = block->inptr[0][i] - block->inptr[1][i];
+                if (phase == 1)
+                {
+                    if (block->ipar[0] == 1)
+                    {
+                        if (block->g[i] > 0)
+                        {
+                            block->mode[i] = 2;
+                        }
+                        else
+                        {
+                            block->mode[i] = 1;
+                        }
+                    }
+                    else
+                    {
+                        if (block->g[i] < 0)
+                        {
+                            block->mode[i] = 2;
+                        }
+                        else
+                        {
+                            block->mode[i] = 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

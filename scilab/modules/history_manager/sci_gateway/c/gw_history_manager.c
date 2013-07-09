@@ -24,32 +24,32 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{sci_loadhistory,"loadhistory"},
-	{sci_savehistory,"savehistory"},
-	{sci_gethistory,"gethistory"},
-	{sci_resethistory,"resethistory"},
-	{sci_displayhistory,"displayhistory"},
-	{sci_addhistory,"addhistory"},
-	{sci_saveconsecutivecommands,"saveconsecutivecommands"},
-	{sci_saveafterncommands,"saveafterncommands"},
-	{sci_gethistoryfile,"gethistoryfile"},
-	{sci_sethistoryfile,"sethistoryfile"},
-	{sci_removelinehistory,"removelinehistory"},
-	{sci_historysize,"historysize"},
-	{sci_historymanager,"historymanager"}
+    {sci_loadhistory, "loadhistory"},
+    {sci_savehistory, "savehistory"},
+    {sci_gethistory, "gethistory"},
+    {sci_resethistory, "resethistory"},
+    {sci_displayhistory, "displayhistory"},
+    {sci_addhistory, "addhistory"},
+    {sci_saveconsecutivecommands, "saveconsecutivecommands"},
+    {sci_saveafterncommands, "saveafterncommands"},
+    {sci_gethistoryfile, "gethistoryfile"},
+    {sci_sethistoryfile, "sethistoryfile"},
+    {sci_removelinehistory, "removelinehistory"},
+    {sci_historysize, "historysize"},
+    {sci_historymanager, "historymanager"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_history_manager(void)
 {
-	Rhs = Max(0, Rhs);
+    Rhs = Max(0, Rhs);
 
-    if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-	}
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
 
-	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

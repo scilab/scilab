@@ -28,7 +28,7 @@ c
          return
       endif 
       il=iadr(lstk(top))
-      if(istk(il).eq.1.or.istk(il).eq.2) return
+      if(istk(il).eq.1.or.istk(il).eq.2.or.istk(il).eq.4) return
       if(istk(il).ne.5.and.istk(il).ne.6) then
          call funnam(ids(1,pt+1),'full',iadr(lstk(top)))
          fun=-1
@@ -56,7 +56,7 @@ c
 *     precision) together with enough security for the other computations
 *      30000 x 30000 = 900 000 000 < 2 147 483 647 = 2^31-1 
 *
-      if ( dble(m)*dble(n) .gt. 900000000 ) then 
+      if ( dble(m)*dble(n) .gt. 900000000 ) then
          buf='not enough memory'
          call error(9999)
          return

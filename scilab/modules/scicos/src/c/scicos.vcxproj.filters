@@ -59,6 +59,9 @@
     <ClCompile Include="lsodar.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ddaskr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_buildouttb.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -167,12 +170,6 @@
     <ClCompile Include="scicos_malloc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scicosclip.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="slider.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -215,6 +212,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lsodar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ddaskr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scicos-def.h">

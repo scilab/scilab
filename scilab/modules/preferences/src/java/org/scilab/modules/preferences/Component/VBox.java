@@ -60,7 +60,7 @@ public class VBox extends Panel implements XComponent {
     */
     public void add(Component child, Object constraints, int index) {
         if (child instanceof JComponent) {
-	    ((JComponent) child).setAlignmentX(LEFT_ALIGNMENT);
+            ((JComponent) child).setAlignmentX(LEFT_ALIGNMENT);
             ((JComponent)child).setAlignmentY(TOP_ALIGNMENT);
         }
         super.add(child, constraints, index);
@@ -71,7 +71,7 @@ public class VBox extends Panel implements XComponent {
     */
     public void add(Component child, Object constraints) {
         if (child instanceof JComponent) {
-	    ((JComponent) child).setAlignmentX(LEFT_ALIGNMENT);
+            ((JComponent) child).setAlignmentX(LEFT_ALIGNMENT);
             ((JComponent) child).setAlignmentY(TOP_ALIGNMENT);
         }
         super.add(child, constraints);
@@ -93,7 +93,7 @@ public class VBox extends Panel implements XComponent {
         }
     }
 
-    
+
     /** Developer serialization method.
     *
     * @return equivalent signature.

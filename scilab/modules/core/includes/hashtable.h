@@ -2,23 +2,23 @@
 /*
 * Copyright (c) 2002, Christopher Clark
 * All rights reserved.
-* 
+*
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions
 * are met:
-* 
+*
 * * Redistributions of source code must retain the above copyright
 * notice, this list of conditions and the following disclaimer.
-* 
+*
 * * Redistributions in binary form must reproduce the above copyright
 * notice, this list of conditions and the following disclaimer in the
 * documentation and/or other materials provided with the distribution.
-* 
+*
 * * Neither the name of the original author; nor the names of any contributors
 * may be used to endorse or promote products derived from this software
 * without specific prior written permission.
-* 
-* 
+*
+*
 * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -51,7 +51,7 @@ struct hashtable;
  *      v = (struct some_value *)   MALLOC(sizeof(struct some_value));
  *
  *      (initialise k and v to suitable values)
- * 
+ *
  *      if (! hashtable_insert(h,k,v) )
  *      {     exit(-1);               }
  *
@@ -65,7 +65,7 @@ struct hashtable;
 
 /* Macros may be used to define type-safe(r) hashtable access functions, with
  * methods specialized to take known key and value types as parameters.
- * 
+ *
  * Example:
  *
  * Insert this at the start of your file:
@@ -95,7 +95,7 @@ struct hashtable;
 
 /*****************************************************************************
  * create_hashtable
-   
+
  * @name                    create_hashtable
  * @param   minsize         minimum initial size of hashtable
  * @param   hashfunction    function for hashing keys
@@ -106,11 +106,11 @@ struct hashtable;
 struct hashtable *
 create_hashtable(unsigned int minsize,
                  unsigned int (*hashfunction) (void*),
-                 int (*key_eq_fn) (void*,void*));
+                 int (*key_eq_fn) (void*, void*));
 
 /*****************************************************************************
  * hashtable_insert
-   
+
  * @name        hashtable_insert
  * @param   h   the hashtable to insert into
  * @param   k   the key - hashtable claims ownership and will free on removal
@@ -137,7 +137,7 @@ int fnname (struct hashtable *h, keytype *k, valuetype *v) \
 
 /*****************************************************************************
  * hashtable_search
-   
+
  * @name        hashtable_search
  * @param   h   the hashtable to search
  * @param   k   the key to search for  - does not claim ownership
@@ -155,7 +155,7 @@ valuetype * fnname (struct hashtable *h, keytype *k) \
 
 /*****************************************************************************
  * hashtable_remove
-   
+
  * @name        hashtable_remove
  * @param   h   the hashtable to remove the item from
  * @param   k   the key to search for  - does not claim ownership
@@ -174,7 +174,7 @@ valuetype * fnname (struct hashtable *h, keytype *k) \
 
 /*****************************************************************************
  * hashtable_count
-   
+
  * @name        hashtable_count
  * @param   h   the hashtable
  * @return      the number of items stored in the hashtable
@@ -184,7 +184,7 @@ unsigned int hashtable_count(struct hashtable *h);
 
 /*****************************************************************************
  * hashtable_destroy
-   
+
  * @name        hashtable_destroy
  * @param   h   the hashtable
  * @param       free_values     whether to call 'free' on the remaining values

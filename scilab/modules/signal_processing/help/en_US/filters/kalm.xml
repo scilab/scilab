@@ -56,10 +56,14 @@
             <varname>g</varname>, <varname>h</varname> which are based on the state space model:
         </para>
         <para> 
-            <literal>x(k+1)=<varname>f</varname>*x(k)+<varname>g</varname>*u(k)+v(k)</literal>
+            <literal>
+                x(k+1)=<varname>f</varname>*x(k)+<varname>g</varname>*u(k)+v(k)
+            </literal>
         </para>
         <para>
-            <literal>y(k)=<varname>h</varname>*x(k)+w(k)</literal>
+            <literal>
+                y(k)=<varname>h</varname>*x(k)+w(k)
+            </literal>
         </para>
         <para>
             with <literal>v(k)</literal> (resp. <literal>w(k)</literal>) is the process noise (resp. the observation noise) 
@@ -75,37 +79,59 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    Innovation (output error): <literal>E=<varname>y</varname>-<varname>h</varname>*<varname>x0</varname></literal>
+                    Innovation (output error): 
+                    <literal>
+                        E=<varname>y</varname>-<varname>h</varname>*<varname>x0</varname>
+                    </literal>
                 </para>
-            </listitem>    
+            </listitem>
+            
             <listitem>
                 <para>
-                    Output Error covariance: <literal>S=<varname>h</varname>*<varname>p0</varname>*<varname>h</varname>'+<varname>r</varname></literal>
+                    Output Error covariance: 
+                    <literal>
+                        S=<varname>h</varname>*<varname>p0</varname>*<varname>h</varname>'+<varname>r</varname>
+                    </literal>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    Kalman gain: <literal>K=<varname>p0</varname>*<varname>h</varname>'*S^-1</literal>
+                    Kalman gain: 
+                    <literal>
+                        K=<varname>p0</varname>*<varname>h</varname>'*S^-1
+                    </literal>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    Correction of state estimation: <literal><varname>x</varname>=<varname>x0</varname>+K*E</literal>
+                    Correction of state estimation: 
+                    <literal>
+                        <varname>x</varname>=<varname>x0</varname>+K*E
+                    </literal>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    Correction of estimation of error covariance: <literal><varname>p</varname>=<varname>p0</varname>-K*<varname>h</varname>*<varname>p0</varname></literal>
+                    Correction of estimation of error covariance: 
+                    <literal>
+                        <varname>p</varname>=<varname>p0</varname>-K*<varname>h</varname>*<varname>p0</varname>
+                    </literal>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    State prediction: <literal><varname>x1</varname>=<varname>f</varname>*<varname>x</varname></literal>
+                    State prediction: 
+                    <literal>
+                        <varname>x1</varname>=<varname>f</varname>*<varname>x</varname>
+                    </literal>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    Error covariance prediction: <literal><varname>p1</varname>=<varname>f</varname>*<varname>p</varname>*<varname>f</varname>'+<varname>g</varname>*<varname>q</varname>*<varname>g</varname>'</literal>
+                    Error covariance prediction: 
+                    <literal>
+                        <varname>p1</varname>=<varname>f</varname>*<varname>p</varname>*<varname>f</varname>'+<varname>g</varname>*<varname>q</varname>*<varname>g</varname>'
+                    </literal>
                 </para>
             </listitem>
         </itemizedlist>

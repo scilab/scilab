@@ -49,15 +49,15 @@ public abstract class Uibar extends GraphicObject {
      * @return the property enum
      */
     public Object getPropertyFromName(int propertyName) {
-        switch(propertyName) {
-        case __GO_UI_MESSAGE__ :
-            return UibarProperty.MESSAGE;
-        case __GO_UI_MESSAGE_SIZE__ :
-            return UibarProperty.MESSAGE_SIZE;
-        case __GO_UI_VALUE__ :
-            return UibarProperty.VALUE;
-        default :
-            return  super.getPropertyFromName(propertyName);
+        switch (propertyName) {
+            case __GO_UI_MESSAGE__ :
+                return UibarProperty.MESSAGE;
+            case __GO_UI_MESSAGE_SIZE__ :
+                return UibarProperty.MESSAGE_SIZE;
+            case __GO_UI_VALUE__ :
+                return UibarProperty.VALUE;
+            default :
+                return  super.getPropertyFromName(propertyName);
         }
     }
 
@@ -75,7 +75,7 @@ public abstract class Uibar extends GraphicObject {
         } else if (property == UibarProperty.VALUE) {
             propertyValue = getValue();
         } else {
-            propertyValue = super.getProperty(property); 
+            propertyValue = super.getProperty(property);
         }
         return propertyValue;
     }
@@ -100,7 +100,7 @@ public abstract class Uibar extends GraphicObject {
 
     /**
      * Get the uibar message
-     * @return the message 
+     * @return the message
      */
     public String[] getMessage() {
         return this.message;
@@ -116,7 +116,7 @@ public abstract class Uibar extends GraphicObject {
 
     /**
      * Get the uibar value
-     * @return the value 
+     * @return the value
      */
     public Integer getValue() {
         return this.value;

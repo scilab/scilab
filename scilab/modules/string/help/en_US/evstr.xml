@@ -97,19 +97,19 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example">
-a = 1; b = 2;
-Z = ['a', 'b'] ;
-evstr(Z)
-
-Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
-evstr(Z)
-           
-evstr('NaN'), evstr('Inf')
-
-//The two return values version
-[H, ierr] = evstr(Z) // no error
-Z = ['a', 'b', 'c'] ;// the variable c is undefined
-[H, ierr] = evstr(Z) // error 4: Undefined variable: c
+            a = 1; b = 2;
+            Z = ['a', 'b'] ;
+            evstr(Z)
+            
+            Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+            evstr(Z)
+            
+            evstr('NaN'), evstr('Inf')
+            
+            //The two return values version
+            [H, ierr] = evstr(Z) // no error
+            Z = ['a', 'b', 'c'] ;// the variable c is undefined
+            [H, ierr] = evstr(Z) // error 4: Undefined variable: c
         </programlisting>
     </refsection>
     <refsection role="see also">

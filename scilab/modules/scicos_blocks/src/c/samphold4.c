@@ -18,23 +18,25 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "scicos_block.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void samphold4(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void samphold4(scicos_block *block, int flag)
 {
-	/* c     Copyright INRIA
+    /* c     Copyright INRIA
 
-	Scicos block simulator
-	returns sample and hold  of the input */
+    Scicos block simulator
+    returns sample and hold  of the input */
 
 
-	if (flag ==1)
-	{
-		int i = 0;
-		for (i=0;i<block->insz[0];i++) 
-			block->outptr[0][i]=block->inptr[0][i];
-	}
+    if (flag == 1)
+    {
+        int i = 0;
+        for (i = 0; i < block->insz[0]; i++)
+        {
+            block->outptr[0][i] = block->inptr[0][i];
+        }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

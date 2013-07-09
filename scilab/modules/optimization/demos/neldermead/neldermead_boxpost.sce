@@ -12,14 +12,14 @@
 
 //
 // nmplot_boxpost.sce --
-//   Show that the Box algorithm is able to reproduce the 
+//   Show that the Box algorithm is able to reproduce the
 //   numerical experiment presented in Richardson and Kuester's paper.
 //   Rosenbrock's Post Office
 //
 
 function demo_boxpost()
 
-    filename = 'neldermead_boxpost.sce';
+    filename = "neldermead_boxpost.sce";
     dname = get_absolute_file_path(filename);
 
     mprintf(_("Illustrates Box'' algorithm on Rosenbrock''s Post Office Problem.\n"));
@@ -50,7 +50,7 @@ function demo_boxpost()
 
     //
     // fpostoffice --
-    //   Computes the Post Office cost function and 
+    //   Computes the Post Office cost function and
     //   inequality constraints.
     //
     // Arguments
@@ -148,7 +148,7 @@ function demo_boxpost()
     m = messagebox(_("View Code?"), "Question", "question", [_("Yes") _("No")], "modal")
     if(m == 1)
         editor ( dname + filename, "readonly" );
-    end 
+    end
 endfunction
 
 demo_boxpost();
@@ -161,4 +161,5 @@ clear demo_boxpost;
 
 
 
-
+
+

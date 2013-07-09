@@ -169,7 +169,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         "switching to implicit Solver"])
         solver = 100 ; //** Magic number
         tolerances(6) = solver ; //** save Magic number solver type
-    elseif (%cpr.sim.xptr($)-1==size(%cpr.state.x,"*")) & (solver==100 & size(%cpr.state.x,"*")<>0) then
+    elseif (%cpr.sim.xptr($)-1==size(%cpr.state.x,"*")) & ((or (solver == [100 101 102])) & size(%cpr.state.x,"*")<>0) then
         message(["Diagram has been compiled for explicit solver"
         "switching to explicit Solver"])
         solver = 0 ; //** Magic number
@@ -353,7 +353,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         if kfun<>0 then //** block error
             path = corinv(kfun);
             //** get error cmd for the block
-            get_errorcmd(path,gettext("Simulation problem"),str_err);
+            execstr(get_errorcmd(path,gettext("Simulation problem"),str_err));
         else //** simulator error
             message(["Simulation problem:";str_err])
             //scf(curwin);

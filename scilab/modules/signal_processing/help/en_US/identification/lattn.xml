@@ -57,26 +57,26 @@
             the following system (normal equations), i.e. identifies
             the AR part (poles) of a vector ARMA(n,p) process,
         </para>
-            <latex>
-                \begin{eqnarray}
-                \begin{pmatrix}
-                I&amp;-A_1&amp;\cdots&amp;-A_n
-                \end{pmatrix}
-                \ast
-                \begin{pmatrix}
-                R_{p+1}&amp;R_{p+2}&amp;\cdots&amp;R_{p+n} \\
-                R_p&amp;R_{p+1}&amp;\cdots&amp;R_{p+n-1} \\
-                R_{p+n-1}&amp;R_p&amp;\cdots&amp;R_{p+n-2} \\
-                \vdots&amp;\vdots&amp;\cdots&amp;\vdots \\
-                R_{p+1-n}&amp;R_{p+2-n}&amp;\cdots&amp;R_p
-                \end{pmatrix}
-                = 0
-                \end{eqnarray}
-            </latex>
+        <latex>
+            \begin{eqnarray}
+            \begin{pmatrix}
+            I&amp;-A_1&amp;\cdots&amp;-A_n
+            \end{pmatrix}
+            \ast
+            \begin{pmatrix}
+            R_{p+1}&amp;R_{p+2}&amp;\cdots&amp;R_{p+n} \\
+            R_p&amp;R_{p+1}&amp;\cdots&amp;R_{p+n-1} \\
+            R_{p+n-1}&amp;R_p&amp;\cdots&amp;R_{p+n-2} \\
+            \vdots&amp;\vdots&amp;\cdots&amp;\vdots \\
+            R_{p+1-n}&amp;R_{p+2-n}&amp;\cdots&amp;R_p
+            \end{pmatrix}
+            = 0
+            \end{eqnarray}
+        </latex>
         <para>
-
+            
         </para>
-
+        
         <para>
             where {<literal>Rk;k=1,nlag</literal>} is the sequence of empirical covariances.
         </para>

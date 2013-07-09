@@ -25,39 +25,39 @@ using namespace std ;
 class CommandLine
 {
 public:
-	/**
-	* Constructor CommandLine
-	*/
-	CommandLine(void);
+    /**
+    * Constructor CommandLine
+    */
+    CommandLine(void);
 
-	/**
-	* Constructor CommandLine
-	* @param line_ : a string
-	*/
-	CommandLine(std::string line_);
+    /**
+    * Constructor CommandLine
+    * @param line_ : a string
+    */
+    CommandLine(std::string line_);
 
-	/**
-	* Destructor CommandLine
-	*/
-	~CommandLine();
+    /**
+    * Destructor CommandLine
+    */
+    ~CommandLine();
 
-	/**
-	* get command line
-	* @return a string
-	*/
-	std::string get(void);
+    /**
+    * get command line
+    * @return a string
+    */
+    std::string get(void);
 
-	/**
-	* set command line
-	* @param line_ : a string
-	* @return TRUE or FALSE
-	*/
-	BOOL set(std::string line_);
+    /**
+    * set command line
+    * @param line_ : a string
+    * @return TRUE or FALSE
+    */
+    BOOL set(std::string line_);
 
 protected:
 
 private:
-	std::string Command;
+    std::string Command;
 };
 /*------------------------------------------------------------------------*/
 #endif /* __COMMANDLINE_H__ */

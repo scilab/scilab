@@ -1,0 +1,6 @@
+LIBRARY    elementary_functions.dll
+
+
+EXPORTS
+;
+vfinite_

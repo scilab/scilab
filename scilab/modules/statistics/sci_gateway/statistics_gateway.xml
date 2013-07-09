@@ -2,8 +2,8 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="statistics">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -19,8 +19,8 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-
-<!--
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA Allan CORNET
  * Copyright (C) 2007 - INRIA Sylvestre LEDRU
@@ -32,18 +32,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!-- =================== -->
-
-<PRIMITIVE gatewayId="37" primitiveId="1" primitiveName="cdfbet" />
-<PRIMITIVE gatewayId="37" primitiveId="2" primitiveName="cdfbin" />
-<PRIMITIVE gatewayId="37" primitiveId="3" primitiveName="cdfchi" />
-<PRIMITIVE gatewayId="37" primitiveId="4" primitiveName="cdfchn" />
-<PRIMITIVE gatewayId="37" primitiveId="5" primitiveName="cdff" />
-<PRIMITIVE gatewayId="37" primitiveId="6" primitiveName="cdffnc" />
-<PRIMITIVE gatewayId="37" primitiveId="7" primitiveName="cdfgam" />
-<PRIMITIVE gatewayId="37" primitiveId="8" primitiveName="cdfnbn" />
-<PRIMITIVE gatewayId="37" primitiveId="9" primitiveName="cdfnor" />
-<PRIMITIVE gatewayId="37" primitiveId="10" primitiveName="cdfpoi" />
-<PRIMITIVE gatewayId="37" primitiveId="11" primitiveName="cdft" />
+    
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="37" primitiveId="1" primitiveName="cdfbet" />
+    <PRIMITIVE gatewayId="37" primitiveId="2" primitiveName="cdfbin" />
+    <PRIMITIVE gatewayId="37" primitiveId="3" primitiveName="cdfchi" />
+    <PRIMITIVE gatewayId="37" primitiveId="4" primitiveName="cdfchn" />
+    <PRIMITIVE gatewayId="37" primitiveId="5" primitiveName="cdff" />
+    <PRIMITIVE gatewayId="37" primitiveId="6" primitiveName="cdffnc" />
+    <PRIMITIVE gatewayId="37" primitiveId="7" primitiveName="cdfgam" />
+    <PRIMITIVE gatewayId="37" primitiveId="8" primitiveName="cdfnbn" />
+    <PRIMITIVE gatewayId="37" primitiveId="9" primitiveName="cdfnor" />
+    <PRIMITIVE gatewayId="37" primitiveId="10" primitiveName="cdfpoi" />
+    <PRIMITIVE gatewayId="37" primitiveId="11" primitiveName="cdft" />
 </GATEWAY>

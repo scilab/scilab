@@ -26,6 +26,6 @@
  * @param iw
  * @return
  */
-INTEGER_IMPEXP int C2F(gencusum)(int *typ,int *n, void *in, void *out, int *iw);
-INTEGER_IMPEXP int C2F(gencusumasdouble)(int *typ,int *n, void *in, double * out, int *iw);
+INTEGER_IMPEXP int C2F(gencusum)(int *typ, int *n, void *in, void *out, int *iw);
+INTEGER_IMPEXP int C2F(gencusumasdouble)(int *typ, int *n, void *in, double * out, int *iw);
 #endif /* __GENCUSUM_H__ */

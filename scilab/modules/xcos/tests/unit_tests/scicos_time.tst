@@ -5,5 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 t=scicos_time();
 if t <> 0 then pause,end

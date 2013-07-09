@@ -151,8 +151,14 @@ int sci_getscicosvars(char *fname, unsigned long fname_len)
         i = 0;
         for (j = 0; j < nentries; j++)
         {
-            if (j == nentries - 1) sciprint("\"%s\" ", entry[j]);
-            else sciprint("\"%s\", ", entry[j]);
+            if (j == nentries - 1)
+            {
+                sciprint("\"%s\" ", entry[j]);
+            }
+            else
+            {
+                sciprint("\"%s\", ", entry[j]);
+            }
             i++;
             if (i == 6)
             {
@@ -193,7 +199,10 @@ int sci_getscicosvars(char *fname, unsigned long fname_len)
         Scierror(999, _("%s : No more memory.\n"), fname);
         return 0;
     }
-    else strcpy(dyn_char[0], "scicosvar");
+    else
+    {
+        strcpy(dyn_char[0], "scicosvar");
+    }
 
     /*Check string matrix  */
     for (j = 0; j < m1 * n1; j++)
@@ -201,9 +210,13 @@ int sci_getscicosvars(char *fname, unsigned long fname_len)
         sz_str = il_str[5 + j] - il_str[4 + j]; /* store the length of str */
         /*get current position in the istk*/
         if (j == 0)
+        {
             ptr_pos = 5 + m1 * n1;
+        }
         else
+        {
             ptr_pos += il_str[5 + j - 1] - il_str[4 + j - 1];
+        }
         l_str = &il_str[ptr_pos]; /* get ptr of rsh 1 */
         /* codetoascii convertion */
         C2F(cha1).buf[0] = ' ';
@@ -222,7 +235,10 @@ int sci_getscicosvars(char *fname, unsigned long fname_len)
                     Scierror(999, _("%s : No more memory.\n"), fname);
                     return 0;
                 }
-                else strcpy(dyn_char[j + 1], entry[i]);
+                else
+                {
+                    strcpy(dyn_char[j + 1], entry[i]);
+                }
 
                 ierr = FALSE;
                 break;
@@ -238,7 +254,10 @@ int sci_getscicosvars(char *fname, unsigned long fname_len)
     }
 
     /* store dyn_char on stack*/
-    if (n1 * m1 > 1) str2sci(dyn_char, 1, n1 * m1 + 1);
+    if (n1 * m1 > 1)
+    {
+        str2sci(dyn_char, 1, n1 * m1 + 1);
+    }
 
     /* return asked array */
     for (j = 0; j < m1 * n1; j++)
@@ -246,9 +265,13 @@ int sci_getscicosvars(char *fname, unsigned long fname_len)
         sz_str = il_str[5 + j] - il_str[4 + j]; /* store the length of str */
         /*get current position in the istk of the string*/
         if (j == 0)
+        {
             ptr_pos = 5 + m1 * n1;
+        }
         else
+        {
             ptr_pos += il_str[5 + j - 1] - il_str[4 + j - 1];
+        }
         l_str = &il_str[ptr_pos]; /* get ptr of rsh 1 */
         /* codetoascii convertion */
         C2F(cha1).buf[0] = ' ';
@@ -259,21 +282,33 @@ int sci_getscicosvars(char *fname, unsigned long fname_len)
         * entries that can be retrieve by il_state_save global variable
         *****************************************************************/
         if (strcmp(C2F(cha1).buf, "x") == 0)          /* retrieve continuous state */
+        {
             ierr = CopyVarFromlistentry(j + 2, get_il_state(), 2);
+        }
         else if (strcmp(C2F(cha1).buf, "z") == 0)     /* retrieve discrete state */
+        {
             ierr = CopyVarFromlistentry(j + 2, get_il_state(), 3);
+        }
         else if (strcmp(C2F(cha1).buf, "oz") == 0)    /* retrieve object discrete state */
+        {
             ierr = CopyVarFromlistentry(j + 2, get_il_state(), 4);
+        }
         else if (strcmp(C2F(cha1).buf, "outtb") == 0) /* retrieve outtb */
+        {
             ierr = CopyVarFromlistentry(j + 2, get_il_state(), 9);
+        }
         else if (strcmp(C2F(cha1).buf, "tevts") == 0) /* retrieve tevts */
+        {
             ierr = CopyVarFromlistentry(j + 2, get_il_state(), 6);
+        }
 
         /***************************************************************
         * entries that can be retrieve by il_sim_save global variable
         ***************************************************************/
         if (strcmp(C2F(cha1).buf, "opar") == 0)          /* retrieve object parameters */
+        {
             ierr = CopyVarFromlistentry(j + 2, get_il_sim(), 15);
+        }
 
         /*************************************************
         * int variables coming from import structure
@@ -343,7 +378,10 @@ int sci_getscicosvars(char *fname, unsigned long fname_len)
                 CreateVar(j + 2, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &nv, &mv, &l_tmp); /* Create int32 variable at the top+j+1 pos in the stack */
                 il_tmp = (int *) istk(l_tmp);      /* Store value of address of istk(l_tmp) in il_tmp */
                 ptr_int = (int *) ptr;             /* cast void* ptr to int* ptr */
-                for (i = 0; i < nv * mv; i++) il_tmp[i] = ptr_int[i]; /* copy returned array in istk */
+                for (i = 0; i < nv * mv; i++)
+                {
+                    il_tmp[i] = ptr_int[i];    /* copy returned array in istk */
+                }
             }
         }
 
@@ -369,7 +407,10 @@ int sci_getscicosvars(char *fname, unsigned long fname_len)
             {
                 ptr_dd = (double *) ptr;
                 CreateVar(j + 2, MATRIX_OF_DOUBLE_DATATYPE, &nv, &mv, &l_tmp); /* Create double variable at the top+j+1 addr. of the stack */
-                for (i = 0; i < nv * mv; i++) *stk(l_tmp + i) = ptr_dd[i]; /* copy returned array in istk */
+                for (i = 0; i < nv * mv; i++)
+                {
+                    *stk(l_tmp + i) = ptr_dd[i];    /* copy returned array in istk */
+                }
             }
         }
 

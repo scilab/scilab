@@ -16,23 +16,23 @@ import org.scilab.modules.graph.ScilabGraph;
 
 /**
  * Common class for multi-selection dependent actions.
- * 
+ *
  * Children of this class will be activated when there something selected. If
  * not, the action will be disabled.
  */
 public abstract class OneSelectionDependantAction extends DefaultAction {
-	/**
-	 * Default constructor
-	 * 
-	 * @param scilabGraph
-	 *            the associated graph
-	 */
-	public OneSelectionDependantAction(ScilabGraph scilabGraph) {
-		super(scilabGraph);
+    /**
+     * Default constructor
+     *
+     * @param scilabGraph
+     *            the associated graph
+     */
+    public OneSelectionDependantAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
 
-		if (scilabGraph != null) {
-			SelectedNumberOfCellsConstraint constraint = new SelectedNumberOfCellsConstraint(1);
-			constraint.install(this, scilabGraph);
-		}
-	}
+        if (scilabGraph != null) {
+            SelectedNumberOfCellsConstraint constraint = new SelectedNumberOfCellsConstraint(1);
+            constraint.install(this, scilabGraph);
+        }
+    }
 }

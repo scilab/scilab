@@ -140,7 +140,7 @@ z = cos(x')*cos(y);
 C = splin2d(x, y, z, "periodic");
 
 // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
-m = 80; // discretisation parameter of the evaluation grid
+m = 80; // discretization parameter of the evaluation grid
 xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
 [XX,YY] = ndgrid(xx,yy);
 zz1 = interp2d(XX,YY, x, y, C, "C0");

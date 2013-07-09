@@ -150,76 +150,76 @@ public abstract class GraphicObject implements Cloneable {
      */
     public static Type getTypeFromName(int typeName) {
         switch (typeName) {
-        case __GO_ARC__ :
-            return Type.ARC;
-        case __GO_AXES__ :
-            return Type.AXES;
-        case __GO_AXESMODEL__ :
-            return Type.AXESMODEL;
-        case __GO_AXIS__ :
-            return Type.AXIS;
-        case __GO_CHAMP__ :
-            return Type.CHAMP;
-        case __GO_COMPOUND__ :
-            return Type.COMPOUND;
-        case __GO_FAC3D__ :
-            return Type.FAC3D;
-        case __GO_FEC__ :
-            return Type.FEC;
-        case __GO_FIGURE__ :
-            return Type.FIGURE;
-        case __GO_FIGUREMODEL__ :
-            return Type.FIGUREMODEL;
-        case __GO_GRAYPLOT__ :
-            return Type.GRAYPLOT;
-        case __GO_LABEL__ :
-            return Type.LABEL;
-        case __GO_LEGEND__ :
-            return Type.LEGEND;
-        case __GO_MATPLOT__ :
-            return Type.MATPLOT;
-        case __GO_PLOT3D__ :
-            return Type.PLOT3D;
-        case __GO_POLYLINE__ :
-            return Type.POLYLINE;
-        case __GO_RECTANGLE__ :
-            return Type.RECTANGLE;
-        case __GO_SEGS__ :
-            return Type.SEGS;
-        case __GO_TEXT__ :
-            return Type.TEXT;
-        case __GO_UI_CHECKBOX__ :
-            return Type.CHECKBOX;
-        case __GO_UI_EDIT__ :
-            return Type.EDIT;
-        case __GO_UI_FRAME__ :
-            return Type.FRAME;
-        case __GO_UI_IMAGE__ :
-            return Type.IMAGE;
-        case __GO_UI_LISTBOX__ :
-            return Type.LISTBOX;
-        case __GO_UI_POPUPMENU__ :
-            return Type.POPUPMENU;
-        case __GO_UI_PUSHBUTTON__ :
-            return Type.PUSHBUTTON;
-        case __GO_UI_RADIOBUTTON__ :
-            return Type.RADIOBUTTON;
-        case __GO_UI_SLIDER__ :
-            return Type.SLIDER;
-        case __GO_UI_TABLE__ :
-            return Type.TABLE;
-        case __GO_UI_TEXT__ :
-            return Type.UITEXT;
-        case __GO_UIMENU__ :
-            return Type.UIMENU;
-        case __GO_UICONTEXTMENU__ :
-            return Type.UICONTEXTMENU;
-        case __GO_PROGRESSIONBAR__ :
-            return Type.PROGRESSIONBAR;
-        case __GO_WAITBAR__ :
-            return Type.WAITBAR;
-        default :
-            return Type.UNKNOWNOBJECT;
+            case __GO_ARC__ :
+                return Type.ARC;
+            case __GO_AXES__ :
+                return Type.AXES;
+            case __GO_AXESMODEL__ :
+                return Type.AXESMODEL;
+            case __GO_AXIS__ :
+                return Type.AXIS;
+            case __GO_CHAMP__ :
+                return Type.CHAMP;
+            case __GO_COMPOUND__ :
+                return Type.COMPOUND;
+            case __GO_FAC3D__ :
+                return Type.FAC3D;
+            case __GO_FEC__ :
+                return Type.FEC;
+            case __GO_FIGURE__ :
+                return Type.FIGURE;
+            case __GO_FIGUREMODEL__ :
+                return Type.FIGUREMODEL;
+            case __GO_GRAYPLOT__ :
+                return Type.GRAYPLOT;
+            case __GO_LABEL__ :
+                return Type.LABEL;
+            case __GO_LEGEND__ :
+                return Type.LEGEND;
+            case __GO_MATPLOT__ :
+                return Type.MATPLOT;
+            case __GO_PLOT3D__ :
+                return Type.PLOT3D;
+            case __GO_POLYLINE__ :
+                return Type.POLYLINE;
+            case __GO_RECTANGLE__ :
+                return Type.RECTANGLE;
+            case __GO_SEGS__ :
+                return Type.SEGS;
+            case __GO_TEXT__ :
+                return Type.TEXT;
+            case __GO_UI_CHECKBOX__ :
+                return Type.CHECKBOX;
+            case __GO_UI_EDIT__ :
+                return Type.EDIT;
+            case __GO_UI_FRAME__ :
+                return Type.FRAME;
+            case __GO_UI_IMAGE__ :
+                return Type.IMAGE;
+            case __GO_UI_LISTBOX__ :
+                return Type.LISTBOX;
+            case __GO_UI_POPUPMENU__ :
+                return Type.POPUPMENU;
+            case __GO_UI_PUSHBUTTON__ :
+                return Type.PUSHBUTTON;
+            case __GO_UI_RADIOBUTTON__ :
+                return Type.RADIOBUTTON;
+            case __GO_UI_SLIDER__ :
+                return Type.SLIDER;
+            case __GO_UI_TABLE__ :
+                return Type.TABLE;
+            case __GO_UI_TEXT__ :
+                return Type.UITEXT;
+            case __GO_UIMENU__ :
+                return Type.UIMENU;
+            case __GO_UICONTEXTMENU__ :
+                return Type.UICONTEXTMENU;
+            case __GO_PROGRESSIONBAR__ :
+                return Type.PROGRESSIONBAR;
+            case __GO_WAITBAR__ :
+                return Type.WAITBAR;
+            default :
+                return Type.UNKNOWNOBJECT;
         }
     }
 
@@ -230,47 +230,47 @@ public abstract class GraphicObject implements Cloneable {
      */
     public Object getPropertyFromName(int propertyName) {
         switch (propertyName) {
-        case __GO_PARENT__ :
-            return  GraphicObjectPropertyType.PARENT;
-        case __GO_CHILDREN__ :
-            return GraphicObjectPropertyType.CHILDREN;
-        case __GO_CHILDREN_COUNT__ :
-            return GraphicObjectPropertyType.CHILDREN_COUNT;
-        case __GO_HIDDEN__ :
-            return GraphicObjectPropertyType.HIDDEN;
-        case __GO_VISIBLE__ :
-            return GraphicObjectPropertyType.VISIBLE;
-        case __GO_USER_DATA__ :
-            return GraphicObjectPropertyType.USERDATA;
-        case __GO_USER_DATA_SIZE__ :
-            return GraphicObjectPropertyType.USERDATASIZE;
-        case __GO_REFERENCED__ :
-            return GraphicObjectPropertyType.REFERENCED;
-        case __GO_VALID__ :
-            return GraphicObjectPropertyType.VALID;
-        case __GO_PARENT_FIGURE__ :
-            return GraphicObjectPropertyType.PARENT_FIGURE;
-        case __GO_PARENT_AXES__ :
-            return GraphicObjectPropertyType.PARENT_AXES;
-        case __GO_HAS_LEGEND_CHILD__ :
-            return GraphicObjectPropertyType.HASLEGENDCHILD;
-        case __GO_LEGEND_CHILD__ :
-            return GraphicObjectPropertyType.LEGENDCHILD;
-        case __GO_SELECTED_CHILD__ :
-            return GraphicObjectPropertyType.SELECTEDCHILD;
-        case __GO_TYPE__ :
-            return GraphicObjectPropertyType.TYPE;
-        case __GO_DATA_MODEL__ :
-            return GraphicObjectPropertyType.DATA;
-        case __GO_TAG__ :
-            return GraphicObjectPropertyType.TAG;
-        case __GO_CALLBACK__ :
-            return GraphicObjectPropertyType.CALLBACK;
-        case __GO_CALLBACKTYPE__ :
-            return GraphicObjectPropertyType.CALLBACKTYPE;
-        default:
-            //System.err.println("[ERROR] Unknown Property : "+propertyName+" !!!!!!!!!!");
-            return GraphicObjectPropertyType.UNKNOWNPROPERTY;
+            case __GO_PARENT__ :
+                return  GraphicObjectPropertyType.PARENT;
+            case __GO_CHILDREN__ :
+                return GraphicObjectPropertyType.CHILDREN;
+            case __GO_CHILDREN_COUNT__ :
+                return GraphicObjectPropertyType.CHILDREN_COUNT;
+            case __GO_HIDDEN__ :
+                return GraphicObjectPropertyType.HIDDEN;
+            case __GO_VISIBLE__ :
+                return GraphicObjectPropertyType.VISIBLE;
+            case __GO_USER_DATA__ :
+                return GraphicObjectPropertyType.USERDATA;
+            case __GO_USER_DATA_SIZE__ :
+                return GraphicObjectPropertyType.USERDATASIZE;
+            case __GO_REFERENCED__ :
+                return GraphicObjectPropertyType.REFERENCED;
+            case __GO_VALID__ :
+                return GraphicObjectPropertyType.VALID;
+            case __GO_PARENT_FIGURE__ :
+                return GraphicObjectPropertyType.PARENT_FIGURE;
+            case __GO_PARENT_AXES__ :
+                return GraphicObjectPropertyType.PARENT_AXES;
+            case __GO_HAS_LEGEND_CHILD__ :
+                return GraphicObjectPropertyType.HASLEGENDCHILD;
+            case __GO_LEGEND_CHILD__ :
+                return GraphicObjectPropertyType.LEGENDCHILD;
+            case __GO_SELECTED_CHILD__ :
+                return GraphicObjectPropertyType.SELECTEDCHILD;
+            case __GO_TYPE__ :
+                return GraphicObjectPropertyType.TYPE;
+            case __GO_DATA_MODEL__ :
+                return GraphicObjectPropertyType.DATA;
+            case __GO_TAG__ :
+                return GraphicObjectPropertyType.TAG;
+            case __GO_CALLBACK__ :
+                return GraphicObjectPropertyType.CALLBACK;
+            case __GO_CALLBACKTYPE__ :
+                return GraphicObjectPropertyType.CALLBACKTYPE;
+            default:
+                //System.err.println("[ERROR] Unknown Property : "+propertyName+" !!!!!!!!!!");
+                return GraphicObjectPropertyType.UNKNOWNPROPERTY;
         }
     }
 
@@ -286,46 +286,46 @@ public abstract class GraphicObject implements Cloneable {
 
         GraphicObjectPropertyType p = (GraphicObjectPropertyType) property;
         switch (p) {
-        case PARENT:
-            return getParent();
-        case CHILDREN:
-            return getChildren();
-        case CHILDREN_COUNT:
-            return children.size();
-        case VALID:
-            return isValid();
-        case HIDDEN:
-            return isHidden();
-        case VISIBLE:
-            return getVisible();
-        case USERDATA:
-            return getUserData();
-        case USERDATASIZE:
-            return getUserDataSize();
-        case PARENT_FIGURE:
-            return getParentFigure();
-        case PARENT_AXES:
-            return getParentAxes();
-        case HASLEGENDCHILD:
-            return getHasLegendChild();
-        case LEGENDCHILD:
-            return getLegendChild();
-        case SELECTEDCHILD:
-            return getSelectedChild();
-        case TYPE:
-            return getType();
-        case DATA:
-            return getIdentifier();
-        case TAG:
-            return getTag();
-        case CALLBACK:
-            return getCallbackString();
-        case CALLBACKTYPE:
-            return getCallbackType();
-        case UNKNOWNPROPERTY:
-            return null;
-        default:
-            return null;
+            case PARENT:
+                return getParent();
+            case CHILDREN:
+                return getChildren();
+            case CHILDREN_COUNT:
+                return children.size();
+            case VALID:
+                return isValid();
+            case HIDDEN:
+                return isHidden();
+            case VISIBLE:
+                return getVisible();
+            case USERDATA:
+                return getUserData();
+            case USERDATASIZE:
+                return getUserDataSize();
+            case PARENT_FIGURE:
+                return getParentFigure();
+            case PARENT_AXES:
+                return getParentAxes();
+            case HASLEGENDCHILD:
+                return getHasLegendChild();
+            case LEGENDCHILD:
+                return getLegendChild();
+            case SELECTEDCHILD:
+                return getSelectedChild();
+            case TYPE:
+                return getType();
+            case DATA:
+                return getIdentifier();
+            case TAG:
+                return getTag();
+            case CALLBACK:
+                return getCallbackString();
+            case CALLBACKTYPE:
+                return getCallbackType();
+            case UNKNOWNPROPERTY:
+                return null;
+            default:
+                return null;
         }
     }
 
@@ -342,44 +342,44 @@ public abstract class GraphicObject implements Cloneable {
 
         GraphicObjectPropertyType p = (GraphicObjectPropertyType) property;
         switch (p) {
-        case PARENT:
-            setParent((String) value);
-            break;
-        case CHILDREN:
-            setChildren((String[]) value);
-            break;
-        case VALID:
-            setValid((Boolean) value);
-            break;
-        case HIDDEN:
-            setHidden((Boolean) value);
-            break;
-        case VISIBLE:
-            setVisible((Boolean) value);
-            break;
-        case USERDATA:
-            setUserData((Integer[]) value);
-            break;
-        case USERDATASIZE:
-            return UpdateStatus.Fail;
-        case SELECTEDCHILD:
-            setSelectedChild((String) value);
-            break;
-        case DATA:
-            return UpdateStatus.Success;
-        case TAG:
-            setTag((String) value);
-            break;
-        case CALLBACK:
-            setCallbackString((String) value);
-            break;
-        case CALLBACKTYPE:
-            setCallbackType((Integer) value);
-            break;
-        case UNKNOWNPROPERTY:
-            return UpdateStatus.Fail;
-        default:
-            return UpdateStatus.Success;
+            case PARENT:
+                setParent((String) value);
+                break;
+            case CHILDREN:
+                setChildren((String[]) value);
+                break;
+            case VALID:
+                setValid((Boolean) value);
+                break;
+            case HIDDEN:
+                setHidden((Boolean) value);
+                break;
+            case VISIBLE:
+                setVisible((Boolean) value);
+                break;
+            case USERDATA:
+                setUserData((Integer[]) value);
+                break;
+            case USERDATASIZE:
+                return UpdateStatus.Fail;
+            case SELECTEDCHILD:
+                setSelectedChild((String) value);
+                break;
+            case DATA:
+                return UpdateStatus.Success;
+            case TAG:
+                setTag((String) value);
+                break;
+            case CALLBACK:
+                setCallbackString((String) value);
+                break;
+            case CALLBACKTYPE:
+                setCallbackType((Integer) value);
+                break;
+            case UNKNOWNPROPERTY:
+                return UpdateStatus.Fail;
+            default:
+                return UpdateStatus.Success;
         }
 
         return UpdateStatus.Success;
@@ -425,7 +425,7 @@ public abstract class GraphicObject implements Cloneable {
      * @param child the identifier of the added child.
      */
     public void addChild(String child) {
-	children.add(0, child);
+        children.add(0, child);
     }
 
     /**

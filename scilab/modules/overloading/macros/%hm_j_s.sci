@@ -9,7 +9,7 @@
 
 function M1=%hm_j_s(M1,M2)
 
-    if size(M2,'*')<>1 then
+    if size(M2,"*")<>1 then
         error(msprintf(_("%s: Inconsistent element-wise operation.\n"),"%hm_j_s"));
     else
         M1(:) = M1(:) .^ M2

@@ -217,7 +217,10 @@ static int sci_diary_one_rhs(char *fname)
         int IDs_size = 0;
         int ierr = 0;
         double * IDs = getInputArgumentOneIDs(fname, &IDs_size, &ierr);
-        if (ierr) return 0;
+        if (ierr)
+        {
+            return 0;
+        }
 
         // diary([])
         // diary(0)
@@ -238,7 +241,10 @@ static int sci_diary_one_rhs(char *fname)
         int ierr = 0;
         int sizewcFilenames = 0;
         wchar_t ** wcFilenames = getInputArgumentOneFilenames(fname, &sizewcFilenames, &ierr);
-        if (ierr) return 0;
+        if (ierr)
+        {
+            return 0;
+        }
 
         if (sizewcFilenames == 1)
         {
@@ -333,7 +339,10 @@ static int sci_diary_two_rhs(char *fname)
         return 0;
     }
 
-    if (ierr) return 0;
+    if (ierr)
+    {
+        return 0;
+    }
 
     if (wcArgumentTwo)
     {
@@ -525,7 +534,10 @@ static int sci_diary_three_rhs(char *fname)
     int ierr = 0;
     int size_ArgThree = 0;
     wchar_t **wcArgumentThree = getInputArgumentThree(fname, &size_ArgThree, &ierr);
-    if (ierr) return 0;
+    if (ierr)
+    {
+        return 0;
+    }
 
     if (wcArgumentThree)
     {
@@ -547,12 +559,18 @@ static int sci_diary_three_rhs(char *fname)
             else if (wcscmp(wcArgumentThree[i], DIARY_THIRD_ARG_PREFIX_UNIX_EPOCH) == 0)
             {
                 iPrefixMode = PREFIX_TIME_FORMAT_UNIX_EPOCH;
-                if (iPrefixIoModeFilter == PREFIX_FILTER_NONE) iPrefixIoModeFilter = PREFIX_FILTER_INPUT_AND_OUTPUT;
+                if (iPrefixIoModeFilter == PREFIX_FILTER_NONE)
+                {
+                    iPrefixIoModeFilter = PREFIX_FILTER_INPUT_AND_OUTPUT;
+                }
             }
             else if (wcscmp(wcArgumentThree[i], DIARY_THIRD_ARG_PREFIX_DEFAULT) == 0)
             {
                 iPrefixMode = PREFIX_TIME_FORMAT_ISO_8601;
-                if (iPrefixIoModeFilter == PREFIX_FILTER_NONE) iPrefixIoModeFilter = PREFIX_FILTER_INPUT_AND_OUTPUT;
+                if (iPrefixIoModeFilter == PREFIX_FILTER_NONE)
+                {
+                    iPrefixIoModeFilter = PREFIX_FILTER_INPUT_AND_OUTPUT;
+                }
             }
             else if (wcscmp(wcArgumentThree[i], DIARY_THIRD_ARG_PREFIX_ONLY_COMMANDS) == 0)
             {
@@ -576,7 +594,10 @@ static int sci_diary_three_rhs(char *fname)
         freeArrayOfWideString(wcArgumentThree, size_ArgThree);
 
         wchar_t *wcArgumentTwo = getInputArgumentTwo(fname, &ierr);
-        if (ierr) return 0;
+        if (ierr)
+        {
+            return 0;
+        }
         if (wcArgumentTwo)
         {
             int *piAddressVarOne = NULL;
@@ -1038,7 +1059,10 @@ static int CloseByFilenames(char *fname)
     int ierr = 0;
 
     wcFilenames = getInputArgumentOneFilenames(fname, &dIDs_size, &ierr);
-    if (ierr) return 0;
+    if (ierr)
+    {
+        return 0;
+    }
 
     ierr = checkExistByFilenames(fname, wcFilenames, dIDs_size);
     if (ierr)
@@ -1077,10 +1101,16 @@ static int CloseByIds(char *fname)
         PutLhsVar();
         return 0;
     }
-    else if (ierr) return 0;
+    else if (ierr)
+    {
+        return 0;
+    }
 
     ierr = checkExistByIDs(fname, dIDs, dIDs_size);
-    if (ierr) return 0;
+    if (ierr)
+    {
+        return 0;
+    }
 
     for (int i = 0; i < dIDs_size; i++)
     {
@@ -1101,7 +1131,10 @@ static int PauseByFilenames(char *fname)
     int ierr = 0;
 
     wcFilenames = getInputArgumentOneFilenames(fname, &dIDs_size, &ierr);
-    if (ierr) return 0;
+    if (ierr)
+    {
+        return 0;
+    }
 
     ierr = checkExistByFilenames(fname, wcFilenames, dIDs_size);
     if (ierr)
@@ -1140,10 +1173,16 @@ static int PauseByIds(char *fname)
         PutLhsVar();
         return 0;
     }
-    else if (ierr) return 0;
+    else if (ierr)
+    {
+        return 0;
+    }
 
     ierr = checkExistByIDs(fname, dIDs, dIDs_size);
-    if (ierr) return 0;
+    if (ierr)
+    {
+        return 0;
+    }
 
     for (int i = 0; i < dIDs_size; i++)
     {
@@ -1165,7 +1204,10 @@ static int ResumeByFilenames(char *fname)
     int dIDs_size = 0;
     int ierr = 0;
     wcFilenames = getInputArgumentOneFilenames(fname, &dIDs_size, &ierr);
-    if (ierr) return 0;
+    if (ierr)
+    {
+        return 0;
+    }
 
     ierr = checkExistByFilenames(fname, wcFilenames, dIDs_size);
     if (ierr)
@@ -1205,10 +1247,16 @@ static int ResumeByIds(char *fname)
         PutLhsVar();
         return 0;
     }
-    else if (ierr) return 0;
+    else if (ierr)
+    {
+        return 0;
+    }
 
     ierr = checkExistByIDs(fname, dIDs, dIDs_size);
-    if (ierr) return 0;
+    if (ierr)
+    {
+        return 0;
+    }
 
     for (int i = 0; i < dIDs_size; i++)
     {
@@ -1230,7 +1278,10 @@ static int ExistByFilenames(char *fname)
     int dIDs_size = 0;
     int ierr = 0;
     wcFilenames = getInputArgumentOneFilenames(fname, &dIDs_size, &ierr);
-    if (ierr) return 0;
+    if (ierr)
+    {
+        return 0;
+    }
 
     int *resultExist = (int*)MALLOC(sizeof(int) * dIDs_size);
     if (resultExist == NULL)
@@ -1277,7 +1328,10 @@ static int ExistByIds(char *fname)
     int ierr = 0;
 
     dIDs = getInputArgumentOneIDs(fname, &dIDs_size, &ierr);
-    if (ierr) return 0;
+    if (ierr)
+    {
+        return 0;
+    }
 
     int *resultExist = (int*)MALLOC(sizeof(int) * dIDs_size);
     if (resultExist == NULL)
@@ -1327,7 +1381,10 @@ static int AppendByFilenames(char *fname,
     int ierr = 0;
 
     wcFilenames = getInputArgumentOneFilenames(fname, &dIDs_size, &ierr);
-    if (ierr) return 0;
+    if (ierr)
+    {
+        return 0;
+    }
 
     if (dIDs_size == 1)
     {
@@ -1354,7 +1411,10 @@ static int AppendByFilenames(char *fname,
         diarySetFilterMode((int)dID, filterMode);
         diarySetPrefixMode((int)dID, prefixMode);
         diarySetPrefixIoModeFilter((int)dID, prefixModeFilter);
-        if (suspended) diaryPause((int)dID);
+        if (suspended)
+        {
+            diaryPause((int)dID);
+        }
 
         sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dID);
         if (sciErr.iErr)
@@ -1403,7 +1463,10 @@ static int NewByFilenames(char *fname,
     int ierr = 0;
 
     wcFilenames = getInputArgumentOneFilenames(fname, &dIDs_size, &ierr);
-    if (ierr) return 0;
+    if (ierr)
+    {
+        return 0;
+    }
 
     if (dIDs_size == 1)
     {
@@ -1430,7 +1493,10 @@ static int NewByFilenames(char *fname,
         diarySetFilterMode((int)dID, filterMode);
         diarySetPrefixMode((int)dID, prefixMode);
         diarySetPrefixIoModeFilter((int)dID, prefixModeFilter);
-        if (suspended) diaryPause((int)dID);
+        if (suspended)
+        {
+            diaryPause((int)dID);
+        }
 
         SciErr sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 1, 1, &dID);
         LhsVar(1) = Rhs + 1;

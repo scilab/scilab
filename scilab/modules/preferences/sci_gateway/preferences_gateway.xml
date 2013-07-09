@@ -2,8 +2,8 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="preferences">
-  <!-- =================== -->
-  <!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -21,8 +21,8 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-  <!-- =================== -->
-  <PRIMITIVE gatewayId="69" primitiveId="1" primitiveName="addModulePreferences" />
-  <PRIMITIVE gatewayId="69" primitiveId="2" primitiveName="removeModulePreferences" />
-  <PRIMITIVE gatewayId="69" primitiveId="3" primitiveName="preferences" />
+    <!-- =================== -->
+    <PRIMITIVE gatewayId="69" primitiveId="1" primitiveName="addModulePreferences" />
+    <PRIMITIVE gatewayId="69" primitiveId="2" primitiveName="removeModulePreferences" />
+    <PRIMITIVE gatewayId="69" primitiveId="3" primitiveName="preferences" />
 </GATEWAY>

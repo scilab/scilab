@@ -16,7 +16,7 @@
 function this = optimbase_checkx0 ( this )
     [ this , isfeasible ] = optimbase_isfeasible ( this , this.x0 )
     if ( isfeasible <> 1 ) then
-       error(sprintf ( gettext("%s: Initial guess is not feasible."),"optimbase_checkx0") )
+        error(sprintf ( gettext("%s: Initial guess is not feasible."),"optimbase_checkx0") )
     end
 endfunction
 

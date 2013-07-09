@@ -28,6 +28,7 @@
                 <solver code="6" description="RK45 - Runge-Kutta 4(5)"/>
                 <solver code="7" description="Implicit RK45 - Runge-Kutta 4(5) - FIXED-POINT"/>
                 <solver code="100" description="Sundials/IDA"/>
+                <solver code="101" description="DDaskr - BDF"/>
                 <!-- Available trace values lists from scicos -->        
                 <trace code="0" description="_(No trace nor debug printing)"/>
                 <trace code="1" description="_(Light Simulation trace (Discrete and Continuous part switches))"/>

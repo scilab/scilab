@@ -154,7 +154,9 @@ public class ScilabEditorKit extends DefaultEditorKit {
         InputStreamReader inReader = new InputStreamReader(fis, decoder);
         BufferedReader bufReader = new BufferedReader(inReader);
         try {
-            while (bufReader.read(cbuf) != -1);
+            while (bufReader.read(cbuf) != -1) {
+                ;
+            }
             fis.close();
             inReader.close();
             bufReader.close();

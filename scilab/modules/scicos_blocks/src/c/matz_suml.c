@@ -18,34 +18,34 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void matz_suml(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void matz_suml(scicos_block *block, int flag)
 {
-	int mu = GetInPortRows(block,1);
-	int nu = GetInPortCols(block,1);
-	double *ur = GetRealInPortPtrs(block,1);
-	double *ui = GetImagInPortPtrs(block,1);
-	double *yr = GetRealOutPortPtrs(block,1);
-	double *yi = GetImagOutPortPtrs(block,1);
+    int mu = GetInPortRows(block, 1);
+    int nu = GetInPortCols(block, 1);
+    double *ur = GetRealInPortPtrs(block, 1);
+    double *ui = GetImagInPortPtrs(block, 1);
+    double *yr = GetRealOutPortPtrs(block, 1);
+    double *yi = GetImagOutPortPtrs(block, 1);
 
-	int j = 0;
+    int j = 0;
 
-	for(j=0;j<mu;j++)
-	{
-		double dr = 0.;
-		double di = 0.;
-		int i = 0;
-		for (i=0;i<nu;i++)
-		{
-			int ij=j+i*mu;
-			dr+=*(ur+ij);
-			di+=*(ui+ij);
-		}
-		*(yr+j)=dr;
-		*(yi+j)=di;
-	}
+    for (j = 0; j < mu; j++)
+    {
+        double dr = 0.;
+        double di = 0.;
+        int i = 0;
+        for (i = 0; i < nu; i++)
+        {
+            int ij = j + i * mu;
+            dr += *(ur + ij);
+            di += *(ui + ij);
+        }
+        *(yr + j) = dr;
+        *(yi + j) = di;
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

@@ -63,9 +63,9 @@
     <refsection>
         <title>Description</title>
         <para>
-          Given <varname>x</varname> and <varname>y</varname> two positive integers, this function returns the decimal
+            Given <varname>x</varname> and <varname>y</varname> two positive integers, this function returns the decimal
             number <varname>z</varname> whose the binary form is the OR of the binary representations
-              of <varname>x</varname> and <varname>y</varname>.
+            of <varname>x</varname> and <varname>y</varname>.
         </para>
         <para>
             <varname>x</varname>, <varname>y</varname>, <varname>z</varname> have the same size.

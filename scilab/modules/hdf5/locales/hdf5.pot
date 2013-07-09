@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-04-16 17:44+0100\n"
+"Revision-Date: 2013-06-25 16:31+0100\n"
 
 # File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 101
 #, c-format
@@ -306,9 +306,16 @@ msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_h5attr.cpp, line: 142
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 156
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 69
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 123
+# File: sci_gateway/cpp/sci_is_hdf5_file.cpp, line: 48
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 85
+# File: src/cpp/import_from_hdf5_v1.cpp, line: 77
+# File: src/cpp/import_from_hdf5_v1.cpp, line: 110
+# File: src/cpp/listvar_in_hdf5_v1.cpp, line: 78
 #, c-format
-msgid ""
-"%s: Invalid dimension for input argument #%d: a single String expected.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
@@ -348,6 +355,7 @@ msgstr ""
 # File: sci_gateway/cpp/sci_h5mount.cpp, line: 65
 # File: sci_gateway/cpp/sci_h5mount.cpp, line: 111
 # File: sci_gateway/cpp/sci_h5umount.cpp, line: 58
+# File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 140
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A H5Object expected.\n"
 msgstr ""
@@ -368,7 +376,7 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_h5dataset.cpp, line: 145
 #, c-format
-msgid "%s: Bad dimensions for input argument #%d: five rows expected.\n"
+msgid "%s: Wrogn size for input argument #%d: five row vector expected.\n"
 msgstr ""
 
 #
@@ -381,13 +389,13 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_h5dataset.cpp, line: 205
 #, c-format
-msgid "%s: Bad dimensions for input argument #%d: six rows expected.\n"
+msgid "%s: Wrong size for input argument #%d: six row vector expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_h5dataset.cpp, line: 211
 #, c-format
-msgid "%s: Bad dimensions for input argument #%d: %d columns expected.\n"
+msgid "%s: Wrong size for input argument #%d: %d column vector expected.\n"
 msgstr ""
 
 #
@@ -404,13 +412,13 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_h5delete.cpp, line: 60
 #, c-format
-msgid "%s: Invalid input argument #%d: a H5Object expected.\n"
+msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_h5exists.cpp, line: 119
 #, c-format
-msgid "%s: Invalid dimension for argument #%d: a single String expected.\n"
+msgid "%s: Wrong size for argument #%d: A string expected.\n"
 msgstr ""
 
 #
@@ -444,25 +452,34 @@ msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_h5label.cpp, line: 135
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 175
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 211
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 211
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a row of doubles expected.\n"
+msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_h5label.cpp, line: 149
-# File: sci_gateway/cpp/sci_h5label.cpp, line: 188
 # File: sci_gateway/cpp/sci_h5read.cpp, line: 157
 # File: sci_gateway/cpp/sci_h5read.cpp, line: 195
 # File: sci_gateway/cpp/sci_h5write.cpp, line: 188
 #, c-format
 msgid ""
-"%s: Bad dimensions for input argument #%d: a row or a column expected.\n"
+"%s: Wrong size for input argument #%d: Real row or column vector expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_h5label.cpp, line: 173
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a row of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 188
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row or column vector expected.\n"
 msgstr ""
 
 #
@@ -530,16 +547,7 @@ msgstr ""
 # File: sci_gateway/cpp/sci_h5read.cpp, line: 205
 # File: sci_gateway/cpp/sci_h5write.cpp, line: 200
 #, c-format
-msgid ""
-"%s: Bad dimensions for input argument #%d: the same size are expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_h5read.cpp, line: 175
-# File: sci_gateway/cpp/sci_h5read.cpp, line: 211
-# File: sci_gateway/cpp/sci_h5write.cpp, line: 211
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A row of doubles expected.\n"
+msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
 msgstr ""
 
 #
@@ -562,27 +570,8 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_h5write.cpp, line: 156
-#, c-format
-msgid ""
-"%s: Invalid dimension for input argument #%d: a single string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 69
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 123
-# File: sci_gateway/cpp/sci_is_hdf5_file.cpp, line: 48
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 81
-# File: src/cpp/import_from_hdf5_v1.cpp, line: 77
-# File: src/cpp/import_from_hdf5_v1.cpp, line: 110
-# File: src/cpp/listvar_in_hdf5_v1.cpp, line: 78
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-
-#
 # File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 78
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 89
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 93
 # File: src/cpp/import_from_hdf5_v1.cpp, line: 88
 # File: src/cpp/listvar_in_hdf5_v1.cpp, line: 88
 #, c-format
@@ -591,14 +580,14 @@ msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 94
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 106
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 110
 #, c-format
 msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
 msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 260
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 305
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 311
 # File: src/cpp/import_from_hdf5_v1.cpp, line: 247
 # File: src/cpp/listvar_in_hdf5_v1.cpp, line: 281
 #, c-format
@@ -608,25 +597,19 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 45
 #, c-format
-msgid "%s: Wrong number of input argument: More than %d expected.\n"
+msgid "%s: Wrong number of input arguments: More than %d expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 64
 #, c-format
-msgid "%s: Wrong type for input argument #%i: A string or a double expected.\n"
+msgid "%s: Wrong type for input argument #%d: A string or a double expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 72
 #, c-format
 msgid "%s: Only one field can be requested.\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 140
-#, c-format
-msgid "%s: Wrong type for input argument #%i: A H5Object expected.\n"
 msgstr ""
 
 #
@@ -726,13 +709,13 @@ msgstr ""
 # File: src/cpp/H5GroupsList.cpp, line: 71
 # File: src/cpp/H5LinksList.cpp, line: 51
 #, c-format
-msgid "Invalid index %u: must be between 0 and %u."
+msgid "Invalid index %d: must be between 0 and %d."
 msgstr ""
 
 #
 # File: src/cpp/H5AttributesList.cpp, line: 84
 #, c-format
-msgid "Cannot open attribute at position %u."
+msgid "Cannot open attribute at position %d."
 msgstr ""
 
 #
@@ -757,7 +740,7 @@ msgstr ""
 #
 # File: src/cpp/H5BasicData.hxx, line: 199
 # File: src/cpp/H5Dataset.cpp, line: 387
-msgid "Invalid dimensions."
+msgid "Wrong dimensions."
 msgstr ""
 
 #
@@ -875,7 +858,7 @@ msgstr ""
 
 #
 # File: src/cpp/H5Dataset.cpp, line: 395
-msgid "Cannot modify maximaum dimensions."
+msgid "Cannot modify maximum dimensions."
 msgstr ""
 
 #
@@ -1300,7 +1283,7 @@ msgstr ""
 
 #
 # File: src/cpp/H5Object.cpp, line: 237
-msgid "Cannot retrieve informations about the object"
+msgid "Cannot retrieve information about the object"
 msgstr ""
 
 #

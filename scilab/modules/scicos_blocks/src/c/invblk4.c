@@ -18,37 +18,46 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "scicos_block.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void invblk4(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void invblk4(scicos_block *block, int flag)
 {
-  /* Copyright INRIA
-     
-  Scicos block simulator
-  Outputs the inverse of the input */
-  
-  int i = 0;
-  double ww = 0.;
-  if (flag == 6){
-    for(i=0;i< block->insz[0];i++){
-      ww=block->inptr[0][i];
-      if (ww != 0.0)
-	block->outptr[0][i]=1.0/ww;
+    /* Copyright INRIA
+
+    Scicos block simulator
+    Outputs the inverse of the input */
+
+    int i = 0;
+    double ww = 0.;
+    if (flag == 6)
+    {
+        for (i = 0; i < block->insz[0]; i++)
+        {
+            ww = block->inptr[0][i];
+            if (ww != 0.0)
+            {
+                block->outptr[0][i] = 1.0 / ww;
+            }
+        }
     }
-  }
-  if (flag == 1){
-    for(i=0;i< block->insz[0];i++){
-      ww=block->inptr[0][i];
-      if (ww != 0.0)
-	block->outptr[0][i]=1.0/ww;
-      else{
-	set_block_error(-2);
-	return;
-      }
+    if (flag == 1)
+    {
+        for (i = 0; i < block->insz[0]; i++)
+        {
+            ww = block->inptr[0][i];
+            if (ww != 0.0)
+            {
+                block->outptr[0][i] = 1.0 / ww;
+            }
+            else
+            {
+                set_block_error(-2);
+                return;
+            }
+        }
     }
-  } 
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

@@ -23,51 +23,51 @@
 //    "init", "iter", "done"
 // Notes:
 //   The algorithm is the following.
-//   At initialization of the algorithm, create an empty 
+//   At initialization of the algorithm, create an empty
 //   graphic plot, retrieve the handle, and store a special
 //   key "optimplotfx" in the user_data field of the handle.
-//   When the plot is to update, this key is searched so that the 
+//   When the plot is to update, this key is searched so that the
 //   correct plot can be update (and not another).
 //
 function optimplotx ( x , optimValues , state )
-  if ( state == "init" ) then
-    // Initialize
-    opfvh = scf();
-    nbvar = length(x)
-    bar ( 1:nbvar , x );
-    gg = gce();
-    gg.children.background = 9;
-    opfvh.user_data = "optimplotx";
-    opfvh.children.x_label.text = msprintf ( "Number of variables: %d" , nbvar );
-    opfvh.children.y_label.text = "Current point";
-    opfvh.children.title.text = msprintf ( "Current Point" );
-  else
-    opfvh = findobj ( "user_data" , "optimplotx" );
-    nbvar = length(x)
-    gg = opfvh.children.children;
-    for ivar = 1:nbvar
-      gg.children.data(ivar,2) = x(ivar);
+    if ( state == "init" ) then
+        // Initialize
+        opfvh = scf();
+        nbvar = length(x)
+        bar ( 1:nbvar , x );
+        gg = gce();
+        gg.children.background = 9;
+        opfvh.user_data = "optimplotx";
+        opfvh.children.x_label.text = msprintf ( "Number of variables: %d" , nbvar );
+        opfvh.children.y_label.text = "Current point";
+        opfvh.children.title.text = msprintf ( "Current Point" );
+    else
+        opfvh = findobj ( "user_data" , "optimplotx" );
+        nbvar = length(x)
+        gg = opfvh.children.children;
+        for ivar = 1:nbvar
+            gg.children.data(ivar,2) = x(ivar);
+        end
+        xmin = 0;
+        ymin = min(x);
+        xmax = nbvar+1;
+        ymax = max(x);
+        // A small trick, for a nicer display
+        if ( ( ymin > 0.0 ) & ( ymax > 0.0 ) ) then
+            ymin = 0.0
+        elseif ( ( ymin < 0.0 ) & ( ymax < 0.0 ) ) then
+            ymax = 0.0
+        end
+        if ( ymax > 0 ) then
+            ymax = ymax * 1.1
+        end
+        if ( ymin < 0 ) then
+            ymin = ymin * 1.1
+        end
+        opfvh.children.data_bounds = [
+        xmin ymin
+        xmax ymax
+        ];
     end
-    xmin = 0;
-    ymin = min(x);
-    xmax = nbvar+1;
-    ymax = max(x);
-    // A small trick, for a nicer display 
-    if ( ( ymin > 0.0 ) & ( ymax > 0.0 ) ) then
-      ymin = 0.0
-    elseif ( ( ymin < 0.0 ) & ( ymax < 0.0 ) ) then
-      ymax = 0.0
-    end
-    if ( ymax > 0 ) then
-      ymax = ymax * 1.1
-    end
-    if ( ymin < 0 ) then
-      ymin = ymin * 1.1
-    end
-    opfvh.children.data_bounds = [
-      xmin ymin
-      xmax ymax
-    ];
-  end
 endfunction
 

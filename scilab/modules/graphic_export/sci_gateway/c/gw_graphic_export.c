@@ -46,24 +46,24 @@ int gw_graphic_export(void)
 {
     Rhs = Max(0, Rhs);
 
-    if(pvApiCtx == NULL)
+    if (pvApiCtx == NULL)
     {
         pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
     }
 
-    pvApiCtx->pstName = (char*)Tab[Fin-1].name;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
 
     if ( getScilabMode() != SCILAB_NWNI )
     {
         if (!loadedDep)
         {
             loadOnUseClassPath("graphics");
-            loadedDep=TRUE;
+            loadedDep = TRUE;
         }
-        if (!loadedDepVectorialExport && (strcmp(Tab[Fin-1].name, "xs2eps")==0
-                                          || strcmp(Tab[Fin-1].name, "xs2pdf")==0
-                                          || strcmp(Tab[Fin-1].name, "xs2svg")==0
-                                          || strcmp(Tab[Fin-1].name, "xs2ps")==0))
+        if (!loadedDepVectorialExport && (strcmp(Tab[Fin - 1].name, "xs2eps") == 0
+                                          || strcmp(Tab[Fin - 1].name, "xs2pdf") == 0
+                                          || strcmp(Tab[Fin - 1].name, "xs2svg") == 0
+                                          || strcmp(Tab[Fin - 1].name, "xs2ps") == 0))
         {
             loadOnUseClassPath("pdf_ps_eps_graphic_export");
             loadedDepVectorialExport = TRUE;
@@ -73,7 +73,7 @@ int gw_graphic_export(void)
     }
     else
     {
-        Scierror(999,_("Scilab graphic module disabled -nogui or -nwni mode.\n"));
+        Scierror(999, _("Scilab graphic module disabled -nogui or -nwni mode.\n"));
     }
     return 0;
 }

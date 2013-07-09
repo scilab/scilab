@@ -12,146 +12,146 @@
 
 function demo_gui()
 
-  global demolist; // Demos list is defined in scilab.start
-  global demolistlock;
-  if isempty(demolist) then
-    if isempty(demolistlock) then
-      demolistlock = %t;
-      // we load scilab demos only when it is required
-      modules = getmodules();
-      for i=1:size(modules,"*")
-        if isfile("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce") then
-          exec("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce",-1);
+    global demolist; // Demos list is defined in scilab.start
+    global demolistlock;
+    if isempty(demolist) then
+        if isempty(demolistlock) then
+            demolistlock = %t;
+            // we load scilab demos only when it is required
+            modules = getmodules();
+            for i=1:size(modules,"*")
+                if isfile("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce") then
+                    exec("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce",-1);
+                end
+            end
+            clear demolistlock;
+            clearglobal demolistlock;
         end
-      end
-      clear demolistlock;
-      clearglobal demolistlock;
     end
-  end
 
-  // Figure creation
-  // =========================================================================
+    // Figure creation
+    // =========================================================================
 
-  demo_fig     = figure(100000);
-  demo_fig.tag = "scilab_demo_fig";
+    demo_fig     = figure(100000);
+    demo_fig.tag = "scilab_demo_fig";
 
-  // Parameters
-  // =========================================================================
+    // Parameters
+    // =========================================================================
 
-  demo_fig.userdata = struct();
-  demo_fig.userdata.frame_w  = 200;   // Frame width
-  demo_fig.userdata.frame_h  = 450;   // Frame height
+    demo_fig.userdata = struct();
+    demo_fig.userdata.frame_w  = 200;   // Frame width
+    demo_fig.userdata.frame_h  = 450;   // Frame height
 
-  demo_fig.userdata.margin_x = 15;    // Horizontal margin between each elements
-  demo_fig.userdata.margin_y = 15;    // Vertical margin between each elements
+    demo_fig.userdata.margin_x = 15;    // Horizontal margin between each elements
+    demo_fig.userdata.margin_y = 15;    // Vertical margin between each elements
 
-  demo_fig.userdata.frame_number = 1;      // Frame number
+    demo_fig.userdata.frame_number = 1;      // Frame number
 
-  demo_fig.userdata.subdemolist = [];
+    demo_fig.userdata.subdemolist = [];
 
 
-  axes_w     = (demo_fig.userdata.frame_number+1)*demo_fig.userdata.margin_x + ..
-               demo_fig.userdata.frame_number*demo_fig.userdata.frame_w; // axes width
-  axes_h     = 3*demo_fig.userdata.margin_y + demo_fig.userdata.frame_h; // axes height
+    axes_w     = (demo_fig.userdata.frame_number+1)*demo_fig.userdata.margin_x + ..
+    demo_fig.userdata.frame_number*demo_fig.userdata.frame_w; // axes width
+    axes_h     = 3*demo_fig.userdata.margin_y + demo_fig.userdata.frame_h; // axes height
 
-  // Remove Scilab graphics menus & toolbar
+    // Remove Scilab graphics menus & toolbar
 
-  delmenu(demo_fig.figure_id, gettext("&File"));
-  delmenu(demo_fig.figure_id, gettext("&Tools"));
-  delmenu(demo_fig.figure_id, gettext("&Edit"));
-  delmenu(demo_fig.figure_id, gettext("&?"));
-  toolbar(demo_fig.figure_id, "off");
-  demo_fig.visible = "off"; // to be sure that no plot can appear in the plot
+    delmenu(demo_fig.figure_id, gettext("&File"));
+    delmenu(demo_fig.figure_id, gettext("&Tools"));
+    delmenu(demo_fig.figure_id, gettext("&Edit"));
+    delmenu(demo_fig.figure_id, gettext("&?"));
+    toolbar(demo_fig.figure_id, "off");
+    demo_fig.visible = "off"; // to be sure that no plot can appear in the plot
 
-  // Add the new one
+    // Add the new one
 
-  h = uimenu( "parent", demo_fig,      ..
-              "label" , gettext("File"));
+    h = uimenu( "parent", demo_fig,      ..
+    "label" , gettext("File"));
 
-  lst_vars_locals = ["%h_delete";
-                     "demo_fig";
-                     "get_figure_handle";
-                     "subdemolist";
-                     "demolistlock";
-                     "delete_frame";
-                     "resize_gui";
-                     "demo_gui_update";
-                     "create_frame";
-                     "demo_gui"];
+    lst_vars_locals = ["%h_delete";
+    "demo_fig";
+    "get_figure_handle";
+    "subdemolist";
+    "demolistlock";
+    "delete_frame";
+    "resize_gui";
+    "demo_gui_update";
+    "create_frame";
+    "demo_gui"];
 
-  clear_vars_str = strcat("clear " + lst_vars_locals, ";") + ";";
+    clear_vars_str = strcat("clear " + lst_vars_locals, ";") + ";";
 
-  callback_close_str = "demo_fig=get_figure_handle(100000);delete(demo_fig);";
-  callback_close_str = callback_close_str + clear_vars_str + "clearglobal demolistlock;";
+    callback_close_str = "demo_fig=get_figure_handle(100000);delete(demo_fig);";
+    callback_close_str = callback_close_str + clear_vars_str + "clearglobal demolistlock;";
 
-  uimenu( "parent"  , h,         ..
-          "label"   , gettext("Close"),  ..
-          "callback"  , callback_close_str, ..
-          "tag"     , "close_menu");
+    uimenu( "parent"  , h,         ..
+    "label"   , gettext("Close"),  ..
+    "callback"  , callback_close_str, ..
+    "tag"     , "close_menu");
 
-  // Background, Resize, title ...
+    // Background, Resize, title ...
 
-  demo_fig.background    = -2;
-  demo_fig.axes_size     = [axes_w axes_h];
-  demo_fig.figure_name   = gettext("Demos");
+    demo_fig.background    = -2;
+    demo_fig.axes_size     = [axes_w axes_h];
+    demo_fig.figure_name   = gettext("Demos");
 
-  // Frame creation
+    // Frame creation
 
-  create_frame(demo_fig,1,"Demos",demolist);
+    create_frame(demo_fig,1,"Demos",demolist);
 
-  demo_fig.axes_size     = [axes_w axes_h];
+    demo_fig.axes_size     = [axes_w axes_h];
 
-  demo_fig.resizefcn = "resize_demo_gui";
+    demo_fig.resizefcn = "resize_demo_gui";
 
 endfunction
 
 function create_frame(my_fig_handle,fr_position,fr_title,fr_items)
 
-  // my_fig_handle : Handle de la figure englobante
-  // fr_position   : position de la frame à créer
-  // fr_position   : titre de la frame à créer
-  // fr_items    : liste des items de la listbox
+    // my_fig_handle : Handle de la figure englobante
+    // fr_position   : position de la frame Ã  crÃ©er
+    // fr_position   : titre de la frame Ã  crÃ©er
+    // fr_items    : liste des items de la listbox
 
-  // Parameters
-  // =========================================================================
+    // Parameters
+    // =========================================================================
 
-  frame_w    = my_fig_handle.userdata.frame_w;   // Frame width
-  frame_h    = my_fig_handle.userdata.frame_h;   // Frame height
+    frame_w    = my_fig_handle.userdata.frame_w;   // Frame width
+    frame_h    = my_fig_handle.userdata.frame_h;   // Frame height
 
-  margin_x   = my_fig_handle.userdata.margin_x;    // Horizontal margin between each elements
-  margin_y   = my_fig_handle.userdata.margin_y;    // Vertical margin between each elements
+    margin_x   = my_fig_handle.userdata.margin_x;    // Horizontal margin between each elements
+    margin_y   = my_fig_handle.userdata.margin_y;    // Vertical margin between each elements
 
-  // =========================================================================
-
-
-  // if no item, no display
-  if fr_items == []  then
-    my_visible = "off";
-  else
-    my_visible = "on";
-  end
-
-  axes_h = my_fig_handle.axes_size(2);
+    // =========================================================================
 
 
-  if fr_position <> 1 then
-    this_frame_w   = frame_w;
-    this_frame_h   = frame_h;
-    this_frame_pos_x = (margin_x+(fr_position-1)*(margin_x+frame_w));
-    this_frame_pos_y = axes_h-(margin_y+frame_h);
-  else
-    this_frame_w   = frame_w;
-    this_frame_h   = frame_h - 150 ;
-    this_frame_pos_x = (margin_x+(fr_position-1)*(margin_x+frame_w));
-    this_frame_pos_y = axes_h-(margin_y+frame_h)+150;
-  end
+    // if no item, no display
+    if fr_items == []  then
+        my_visible = "off";
+    else
+        my_visible = "on";
+    end
 
-  // frame
-  curFrame = findobj("tag", "frame_"+string(fr_position));
-  if ~isempty(curFrame) then
-      delete_frame(my_fig_handle, fr_position);
-  end
-  uicontrol( ...
+    axes_h = my_fig_handle.axes_size(2);
+
+
+    if fr_position <> 1 then
+        this_frame_w   = frame_w;
+        this_frame_h   = frame_h;
+        this_frame_pos_x = (margin_x+(fr_position-1)*(margin_x+frame_w));
+        this_frame_pos_y = axes_h-(margin_y+frame_h);
+    else
+        this_frame_w   = frame_w;
+        this_frame_h   = frame_h - 150 ;
+        this_frame_pos_x = (margin_x+(fr_position-1)*(margin_x+frame_w));
+        this_frame_pos_y = axes_h-(margin_y+frame_h)+150;
+    end
+
+    // frame
+    curFrame = findobj("tag", "frame_"+string(fr_position));
+    if ~isempty(curFrame) then
+        delete_frame(my_fig_handle, fr_position);
+    end
+    uicontrol( ...
     "parent"        , my_fig_handle,...
     "relief"        , "groove",...
     "style"         , "frame",...
@@ -162,8 +162,8 @@ function create_frame(my_fig_handle,fr_position,fr_title,fr_items)
     "visible"       , my_visible, ...
     "tag"         , "frame_"+string(fr_position));
 
-  // Frame title
-  uicontrol( ...
+    // Frame title
+    uicontrol( ...
     "parent"        , my_fig_handle,...
     "style"         , "text",...
     "string"        , " "+gettext(fr_title),...
@@ -177,8 +177,8 @@ function create_frame(my_fig_handle,fr_position,fr_title,fr_items)
     "visible"       , my_visible, ...
     "tag"         , "title_frame_"+string(fr_position));
 
-  // List Box
-  uicontrol( ...
+    // List Box
+    uicontrol( ...
     "parent"        , my_fig_handle,...
     "style"         , "listbox",...
     "string"        , " "+strcat(fr_items(:,1),"| "),...
@@ -193,115 +193,115 @@ function create_frame(my_fig_handle,fr_position,fr_title,fr_items)
     "user_data"       , fr_items, ...
     "tag"         , "listbox_"+string(fr_position));
 
-  // Logo Scilab
-  // =========================================================================
+    // Logo Scilab
+    // =========================================================================
 
-  if fr_position == 1 then
+    if fr_position == 1 then
 
-    uicontrol( ...
-      "parent"        , my_fig_handle,...
-      "style"         , "image",...
-      "string"        , SCI+"/modules/demo_tools/images/logo_scilab.png",...
-      "units"         , "pixels",...
-      "position"      , [ (margin_x+(fr_position-1)*(margin_x+frame_w)) axes_h-(margin_y+frame_h) frame_w 150],...
-      "background"      , [1 1 1], ...
-      "tag"         , "scilab_logo", ...
-      "horizontalalignment" , "center", ...
-      "verticalalignment"   , "middle" ...
-    );
+        uicontrol( ...
+        "parent"        , my_fig_handle,...
+        "style"         , "image",...
+        "string"        , SCI+"/modules/demo_tools/images/logo_scilab.png",...
+        "units"         , "pixels",...
+        "position"      , [ (margin_x+(fr_position-1)*(margin_x+frame_w)) axes_h-(margin_y+frame_h) frame_w 150],...
+        "background"      , [1 1 1], ...
+        "tag"         , "scilab_logo", ...
+        "horizontalalignment" , "center", ...
+        "verticalalignment"   , "middle" ...
+        );
 
-  end
+    end
 
 
 endfunction
 
 function script_path = demo_gui_update()
 
-  my_counter = 0;
+    my_counter = 0;
 
-  global subdemolist;
-  
-  my_selframe   = get(gcbo,"tag");
+    global subdemolist;
 
-  // Suppression d'une figure précédemment dessinée, si figure il y a ...
-  all_figs = winsid();
-  all_figs = all_figs(all_figs >= 100001); // All Scilab graphic windows opened for demos
-  for fig_index = 1:size(all_figs, "*")
-    fig_to_del = get_figure_handle(all_figs(fig_index));
-    if ~isempty(fig_to_del) then
-      delete(fig_to_del);
+    my_selframe   = get(gcbo,"tag");
+
+    // Suppression d'une figure prÃ©cÃ©demment dessinÃ©e, si figure il y a ...
+    all_figs = winsid();
+    all_figs = all_figs(all_figs >= 100001); // All Scilab graphic windows opened for demos
+    for fig_index = 1:size(all_figs, "*")
+        fig_to_del = get_figure_handle(all_figs(fig_index));
+        if ~isempty(fig_to_del) then
+            delete(fig_to_del);
+        end
     end
-  end
 
-  // Handle de la figure
-  demo_fig    = gcbo.parent;
-  
-  // Frame sur laquelle on a cliqué
-  my_selframe_num = msscanf(my_selframe,"listbox_%d");
+    // Handle de la figure
+    demo_fig    = gcbo.parent;
 
-  // Récupération de la liste des démos
-  my_index = get(findobj("tag",my_selframe), "value"  );
-  my_data  = get(findobj("tag",my_selframe), "user_data");
+    // Frame sur laquelle on a cliquÃ©
+    my_selframe_num = msscanf(my_selframe,"listbox_%d");
 
-  script_path = my_data(my_index(1,1),2);
+    // RÃ©cupÃ©ration de la liste des dÃ©mos
+    my_index = get(findobj("tag",my_selframe), "value"  );
+    my_data  = get(findobj("tag",my_selframe), "user_data");
 
-  if grep(script_path,"dem.gateway.sce") == 1 then
+    script_path = my_data(my_index(1,1),2);
 
-    // On est dans le cas ou une nouvelle frame va être affichée
+    if grep(script_path,"dem.gateway.sce") == 1 then
 
-    // Mise à jour du nombre de frame
-    demo_fig.userdata.frame_number  = my_selframe_num+1;
-    resize_gui(demo_fig, demo_fig.userdata.frame_number);
-    previous_demolist    = demo_fig.userdata.subdemolist;
+        // On est dans le cas ou une nouvelle frame va Ãªtre affichÃ©e
 
-    mode(-1);
-    exec(script_path,-1); // This script erases subdemolist variable if needed
+        // Mise Ã  jour du nombre de frame
+        demo_fig.userdata.frame_number  = my_selframe_num+1;
+        resize_gui(demo_fig, demo_fig.userdata.frame_number);
+        previous_demolist    = demo_fig.userdata.subdemolist;
 
-    // Create a temporary variable for userdata
-    // because mixing handles and structs can lead to problems
-    ud = demo_fig.userdata;
-    ud.subdemolist = subdemolist;
-    demo_fig.userdata = ud;
-    clearglobal subdemolist
+        mode(-1);
+        exec(script_path,-1); // This script erases subdemolist variable if needed
 
-    create_frame(demo_fig,my_selframe_num+1,my_data(my_index(1,1),1), demo_fig.userdata.subdemolist);
-    demo_fig.userdata.subdemolist = previous_demolist;
+        // Create a temporary variable for userdata
+        // because mixing handles and structs can lead to problems
+        ud = demo_fig.userdata;
+        ud.subdemolist = subdemolist;
+        demo_fig.userdata = ud;
+        clearglobal subdemolist
 
-  else
-    // Mise à jour du nombre de frame
-    demo_fig.userdata.frame_number  = my_selframe_num;
-    resize_gui(demo_fig, demo_fig.userdata.frame_number);
-  end
+        create_frame(demo_fig,my_selframe_num+1,my_data(my_index(1,1),1), demo_fig.userdata.subdemolist);
+        demo_fig.userdata.subdemolist = previous_demolist;
+
+    else
+        // Mise Ã  jour du nombre de frame
+        demo_fig.userdata.frame_number  = my_selframe_num;
+        resize_gui(demo_fig, demo_fig.userdata.frame_number);
+    end
 
 endfunction
 
 function resize_gui(my_fig_handle,frame_number)
 
-  // Parameters
-  // =========================================================================
+    // Parameters
+    // =========================================================================
 
-  frame_w    = my_fig_handle.userdata.frame_w;   // Frame width
-  frame_h    = my_fig_handle.userdata.frame_h;   // Frame height
+    frame_w    = my_fig_handle.userdata.frame_w;   // Frame width
+    frame_h    = my_fig_handle.userdata.frame_h;   // Frame height
 
-  margin_x   = my_fig_handle.userdata.margin_x;    // Horizontal margin between each elements
-  margin_y   = my_fig_handle.userdata.margin_y;    // Vertical margin between each elements
+    margin_x   = my_fig_handle.userdata.margin_x;    // Horizontal margin between each elements
+    margin_y   = my_fig_handle.userdata.margin_y;    // Vertical margin between each elements
 
-  // =========================================================================
+    // =========================================================================
 
-  axes_w           = (frame_number+1)*margin_x + frame_number*frame_w; // axes width
-  my_fig_handle.axes_size(1) = axes_w;
+    axes_w           = (frame_number+1)*margin_x + frame_number*frame_w; // axes width
+    my_fig_handle.axes_size(1) = axes_w;
 
-  for i=(frame_number+1):10
+    for i=(frame_number+1):10
 
-    my_frame         = findobj("tag", "frame_"    +string(i));
-    my_frame_title     = findobj("tag", "title_frame_"+string(i));
-    my_listbox       = findobj("tag", "listbox_"  +string(i));
+        my_frame         = findobj("tag", "frame_"    +string(i));
+        my_frame_title     = findobj("tag", "title_frame_"+string(i));
+        my_listbox       = findobj("tag", "listbox_"  +string(i));
 
-    if my_frame <> [] then
-      delete_frame(my_fig_handle,i);
+        if my_frame <> [] then
+            delete_frame(my_fig_handle,i);
+        end
+
     end
-
-  end
 
 endfunction
 

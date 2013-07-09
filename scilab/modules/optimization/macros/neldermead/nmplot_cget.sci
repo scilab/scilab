@@ -15,16 +15,16 @@
 //   If the key is unknown, generates an error.
 //
 function value = nmplot_cget (this,key)
-  select key
-  case "-simplexfn" then
-    value = this.simplexfn;
-  case "-fbarfn" then
-    value = this.fbarfn;
-  case "-foptfn" then
-    value = this.foptfn;
-  case "-sigmafn" then
-    value = this.sigmafn;
-  else
-    this.nmbase = neldermead_configure ( this.nmbase , key , value )
-  end
+    select key
+    case "-simplexfn" then
+        value = this.simplexfn;
+    case "-fbarfn" then
+        value = this.fbarfn;
+    case "-foptfn" then
+        value = this.foptfn;
+    case "-sigmafn" then
+        value = this.sigmafn;
+    else
+        this.nmbase = neldermead_configure ( this.nmbase , key , value )
+    end
 endfunction

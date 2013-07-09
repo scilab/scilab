@@ -91,9 +91,9 @@
 		<File RelativePath=".\ddasrt.f"/>
 		<File RelativePath=".\ddassl.f"/>
 		<File RelativePath=".\dgbsl.f"/>
-		<File RelativePath=".\dqag0.f"/>
 		<File RelativePath=".\dqags.f"/>
-		<File RelativePath=".\epsalg.f"/>
+		<File RelativePath=".\dqagse.f"/>
+		<File RelativePath=".\dqelg.f"/>
 		<File RelativePath=".\ewset.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\Ex-bvode.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\Ex-dasrt.f"/>
@@ -121,11 +121,11 @@
 		<File RelativePath=".\lsodi.f"/>
 		<File RelativePath=".\lsrgk.f"/>
 		<File RelativePath=".\odeint.f"/>
-		<File RelativePath=".\order.f"/>
+		<File RelativePath=".\dqpsrt.f"/>
 		<File RelativePath=".\prepj.f"/>
 		<File RelativePath=".\prepji.f"/>
 		<File RelativePath=".\prja.f"/>
-		<File RelativePath=".\quarul.f"/>
+		<File RelativePath=".\dqk21.f"/>
 		<File RelativePath=".\rchek.f"/>
 		<File RelativePath=".\rchek2.f"/>
 		<File RelativePath=".\rkf45.f"/>

@@ -32,59 +32,59 @@ public class SciNotesTabFactory extends AbstractScilabTabFactory {
     public static final String APPLICATION = "SciNotes";
     public static final String PACKAGE = "SciNotes";
     public static final String CLASS = "org.scilab.modules.scinotes.tabfactory.SciNotesTabFactory";
-    
+
     private static SciNotesTabFactory instance;
 
     /**
      * Default constructor
      */
     public SciNotesTabFactory() {
-	if (instance == null) {
-	    instance = this;
-	}
+        if (instance == null) {
+            instance = this;
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     public SwingScilabTab getTab(String uuid) {
-	return SciNotesTab.getEditorInstance(uuid);
+        return SciNotesTab.getEditorInstance(uuid);
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public String getPackage() {
-	return PACKAGE;
+        return PACKAGE;
     }
 
     /**
      * {@inheritDoc}
      */
     public String getClassName() {
-	return CLASS;
+        return CLASS;
     }
 
     /**
      * {@inheritDoc}
      */
     public String getApplication() {
-	return APPLICATION;
+        return APPLICATION;
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean isAValidUUID(String uuid) {
-	return ConfigSciNotesManager.getEditorsUUID().contains(uuid);
+        return ConfigSciNotesManager.getEditorsUUID().contains(uuid);
     }
 
     /**
      * @return an instance of this factory
      */
     public static SciNotesTabFactory getInstance() {
-	new SciNotesTabFactory();
-	
-	return instance;
+        new SciNotesTabFactory();
+
+        return instance;
     }
 }
