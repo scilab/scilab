@@ -327,6 +327,8 @@ Bug fixes
 
 * Bug #10287 fixed - Added an error message for complex expression as input argument of integrate function.
 
+* Bug #10305 fixed - Comparison of lists with empty items returned an error message.
+
 * Bug #10596 fixed - exit(xxx) from Scilab was failing.
 
 * Bug #10818 fixed - The following help pages have been added: hom, %e, %t, %f, %z and %s.
