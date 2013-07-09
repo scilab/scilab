@@ -3,8 +3,6 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-FUNCTIONS_C_SOURCES =
-
 GATEWAY_C_SOURCES = \
 sci_gateway/c/gw_functions.c
 
@@ -40,19 +38,12 @@ $(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscifunctions.la
-noinst_LTLIBRARIES = libscifunctions-algo.la
 
-
-libscifunctions_algo_la_SOURCES = $(FUNCTIONS_C_SOURCES)
 libscifunctions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscifunctions_algo_la_CPPFLAGS = $(libscifunctions_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifunctions_la_CPPFLAGS)
-
-libscifunctions_la_LIBADD = \
-libscifunctions-algo.la
 
 #### Target ######
 modulename=functions

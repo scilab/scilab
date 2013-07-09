@@ -132,22 +132,17 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifunctions_la_etcdir)" \
 	"$(DESTDIR)$(libscifunctions_la_rootdir)" \
 	"$(DESTDIR)$(libscifunctions_la_sci_gatewaydir)"
-LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
-libscifunctions_algo_la_LIBADD =
-am__objects_1 =
-am_libscifunctions_algo_la_OBJECTS = $(am__objects_1)
-libscifunctions_algo_la_OBJECTS =  \
-	$(am_libscifunctions_algo_la_OBJECTS)
-libscifunctions_la_DEPENDENCIES = libscifunctions-algo.la
-am__objects_2 = libscifunctions_la-gw_functions.lo
-am__objects_3 = libscifunctions_la-sci_exec.lo \
+LTLIBRARIES = $(pkglib_LTLIBRARIES)
+libscifunctions_la_LIBADD =
+am__objects_1 = libscifunctions_la-gw_functions.lo
+am__objects_2 = libscifunctions_la-sci_exec.lo \
 	libscifunctions_la-sci_functionlist.lo \
 	libscifunctions_la-sci_whereis.lo \
 	libscifunctions_la-sci_execstr.lo \
 	libscifunctions_la-sci_getCurrentThreadId.lo \
 	libscifunctions_la-sci_getThreads.lo \
 	libscifunctions_la-sci_macrovar.lo
-am_libscifunctions_la_OBJECTS = $(am__objects_2) $(am__objects_3)
+am_libscifunctions_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscifunctions_la_OBJECTS = $(am_libscifunctions_la_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -171,10 +166,8 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscifunctions_algo_la_SOURCES) \
-	$(libscifunctions_la_SOURCES)
-DIST_SOURCES = $(libscifunctions_algo_la_SOURCES) \
-	$(libscifunctions_la_SOURCES)
+SOURCES = $(libscifunctions_la_SOURCES)
+DIST_SOURCES = $(libscifunctions_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -450,7 +443,6 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-FUNCTIONS_C_SOURCES = 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/gw_functions.c
 
@@ -486,17 +478,11 @@ $(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscifunctions.la
-noinst_LTLIBRARIES = libscifunctions-algo.la
-libscifunctions_algo_la_SOURCES = $(FUNCTIONS_C_SOURCES)
 libscifunctions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscifunctions_algo_la_CPPFLAGS = $(libscifunctions_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifunctions_la_CPPFLAGS)
-libscifunctions_la_LIBADD = \
-libscifunctions-algo.la
-
 
 #### Target ######
 modulename = functions
@@ -620,15 +606,6 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-
-clean-noinstLTLIBRARIES:
-	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
-	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
-	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
-	  test "$$dir" != "$$p" || dir=.; \
-	  echo "rm -f \"$${dir}/so_locations\""; \
-	  rm -f "$${dir}/so_locations"; \
-	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	@list='$(pkglib_LTLIBRARIES)'; test -n "$(pkglibdir)" || list=; \
@@ -661,8 +638,6 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libscifunctions-algo.la: $(libscifunctions_algo_la_OBJECTS) $(libscifunctions_algo_la_DEPENDENCIES) $(EXTRA_libscifunctions_algo_la_DEPENDENCIES) 
-	$(LINK)  $(libscifunctions_algo_la_OBJECTS) $(libscifunctions_algo_la_LIBADD) $(LIBS)
 libscifunctions.la: $(libscifunctions_la_OBJECTS) $(libscifunctions_la_DEPENDENCIES) $(EXTRA_libscifunctions_la_DEPENDENCIES) 
 	$(CXXLINK) -rpath $(pkglibdir) $(libscifunctions_la_OBJECTS) $(libscifunctions_la_LIBADD) $(LIBS)
 
@@ -971,7 +946,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1048,14 +1023,14 @@ uninstall-am: uninstall-libscifunctions_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
-	distclean distclean-compile distclean-generic \
-	distclean-libtool distclean-local distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libscifunctions_la_etcDATA \
+	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libscifunctions_la_etcDATA \
 	install-libscifunctions_la_rootDATA \
 	install-libscifunctions_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
