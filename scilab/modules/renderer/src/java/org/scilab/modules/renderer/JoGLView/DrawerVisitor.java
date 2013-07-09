@@ -65,6 +65,7 @@ import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
 
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.nio.ByteBuffer;
@@ -576,6 +577,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (fac3d.getSurfaceMode()) {
                     DefaultGeometry geometry = new DefaultGeometry();
                     geometry.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
+                    geometry.setNormals(dataManager.getNormalBuffer(fac3d.getIdentifier()));
                     geometry.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
 
                     geometry.setPolygonOffsetMode(true);
@@ -659,6 +661,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     geometry.setPolygonOffsetMode(true);
 
                     geometry.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
+                    geometry.setNormals(dataManager.getNormalBuffer(plot3d.getIdentifier()));
                     geometry.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
                     /* Back-facing triangles */
                     if (plot3d.getHiddenColor() > 0) {
@@ -695,7 +698,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         appearance.setLineColor(ColorFactory.createColor(colorMap, plot3d.getLineColor()));
                         appearance.setLineWidth(plot3d.getLineThickness().floatValue());
                     }
-
                     drawingTools.draw(geometry, appearance);
                 }
 
