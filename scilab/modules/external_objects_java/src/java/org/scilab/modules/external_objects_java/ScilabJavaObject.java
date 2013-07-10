@@ -357,17 +357,41 @@ public class ScilabJavaObject {
             }
 
             Class clazz = arraySJO[id].clazz;
-            for (int i = 0; i < fieldPath.length; i++) {
+            final boolean isClass = arraySJO[id].object == clazz;
+
+            if (fieldPath.length == 0) {
+                return getFieldsAndMethods(clazz, isClass);
+            }
+
+            if (isClass) {
+                // We have a class object
                 try {
-                    Field f = clazz.getDeclaredField(fieldPath[i]);
-                    clazz = f.getType();
+                    Field f = clazz.getField(fieldPath[0]);
+                    int modifiers = f.getModifiers();
+                    if (Modifier.isPublic(modifiers) && Modifier.isStatic(modifiers)) {
+                        clazz = f.getType();
+                    } else {
+                        return new String[0];
+                    }
                 } catch (Exception e) {
                     return new String[0];
                 }
             }
 
-            return getFieldsAndMethods(clazz);
+            for (int i = (isClass ? 1 : 0); i < fieldPath.length; i++) {
+                try {
+                    Field f = clazz.getField(fieldPath[i]);
+                    if (Modifier.isPublic(f.getModifiers())) {
+                        clazz = f.getType();
+                    } else {
+                        return new String[0];
+                    }
+                } catch (Exception e) {
+                    return new String[0];
+                }
+            }
 
+            return getFieldsAndMethods(clazz, false);
         } else {
             return new String[0];
         }
@@ -378,22 +402,28 @@ public class ScilabJavaObject {
      * @param clazz the base class
      * @return names
      */
-    private static final String[] getFieldsAndMethods(final Class clazz) {
+    private static final String[] getFieldsAndMethods(final Class clazz, final boolean staticOnly) {
         if (clazz.isArray()) {
             return new String[] {"length"};
         }
 
         try {
-            final Field[] f = clazz.getDeclaredFields();
-            final Method[] m = clazz.getDeclaredMethods();
+            final Field[] fs = clazz.getFields();
+            final Method[] ms = clazz.getMethods();
 
             Set<String> set = new TreeSet<String>();
-            for (int i = 0; i < f.length; i++) {
-                set.add(f[i].getName());
+            for (Field f : fs) {
+                final int modifiers = f.getModifiers();
+                if (Modifier.isPublic(modifiers) && (!staticOnly || Modifier.isStatic(modifiers))) {
+                    set.add(f.getName());
+                }
             }
 
-            for (int i = 0; i < m.length; i++) {
-                set.add(m[i].getName());
+            for (Method m : ms) {
+                final int modifiers = m.getModifiers();
+                if (Modifier.isPublic(modifiers) && (!staticOnly || Modifier.isStatic(modifiers))) {
+                    set.add(m.getName());
+                }
             }
 
             return set.toArray(new String[set.size()]);
@@ -442,7 +472,9 @@ public class ScilabJavaObject {
             final Field[] f = arraySJO[id].clazz.getFields();
             final String[] sf = new String[f.length];
             for (int i = 0; i < f.length; i++) {
-                sf[i] = f[i].getName();
+                if (Modifier.isPublic(f[i].getModifiers())) {
+                    sf[i] = f[i].getName();
+                }
             }
             return sf;
         } else {
