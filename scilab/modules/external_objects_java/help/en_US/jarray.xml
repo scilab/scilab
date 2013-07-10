@@ -45,6 +45,9 @@
         <para>
             Creates a multidimensional array n_1x...xn_p of elements with type className. An array element can be accessed in using classical Scilab notations but take care that the index must stay between 0 and n_i (like in Java).
         </para>
+        <para>
+            The className can be one of the primitive datatypes: double, int, boolean, short, long, float, char and byte.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

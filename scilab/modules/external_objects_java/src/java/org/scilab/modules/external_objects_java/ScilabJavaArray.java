@@ -27,7 +27,8 @@ import java.util.logging.Level;
 @SuppressWarnings("serial")
 public final class ScilabJavaArray {
 
-    private static final Map<Class, Class> mappings = new HashMap<Class, Class>();
+    private static final Map<Class, Class> mappings = new HashMap<Class, Class>(8);
+    private static final Map<String, Class> baseType = new HashMap<String, Class>(8);
 
     static {
         mappings.put(Double.class, double.class);
@@ -38,6 +39,15 @@ public final class ScilabJavaArray {
         mappings.put(Character.class, char.class);
         mappings.put(Long.class, long.class);
         mappings.put(Float.class, float.class);
+
+        baseType.put("double", double.class);
+        baseType.put("int", int.class);
+        baseType.put("boolean", boolean.class);
+        baseType.put("short", short.class);
+        baseType.put("long", long.class);
+        baseType.put("float", float.class);
+        baseType.put("char", char.class);
+        baseType.put("byte", byte.class);
     }
 
     /**
@@ -64,15 +74,18 @@ public final class ScilabJavaArray {
             ScilabJavaObject.logger.log(Level.INFO, "Array creation: base class is \'" + className + "\' with dims=" + buf.toString());
         }
 
-        try {
-            int id = ScilabClassLoader.loadJavaClass(className, false);
-            if (id == 0) {
-                cl = (Class) ScilabJavaObject.arraySJO[id].object;
-            } else {
-                cl = Class.forName(className);
+        cl = baseType.get(className);
+        if (cl == null) {
+            try {
+                int id = ScilabClassLoader.loadJavaClass(className, false);
+                if (id == 0) {
+                    cl = (Class) ScilabJavaObject.arraySJO[id].object;
+                } else {
+                    cl = Class.forName(className);
+                }
+            } catch (ClassNotFoundException e) {
+                throw new ScilabJavaException("Cannot find the class " + className);
             }
-        } catch (ClassNotFoundException e) {
-            throw new ScilabJavaException("Cannot find the class " + className);
         }
 
         return new ScilabJavaObject(Array.newInstance(cl, dims)).id;
