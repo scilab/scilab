@@ -34,15 +34,10 @@ AC_ARG_WITH(docbook,
 	fi
 
 
-	# Saxon XSLT Processor
+	# Saxon XSLT Processor, as the JVM implementation is unable to parse the docbook xsl files
 	AC_JAVA_CHECK_PACKAGE([saxon],[com.icl.saxon.Loader],[Saxon XSLT Processor])
 	SAXON=$PACKAGE_JAR_FILE
 	AC_SUBST(SAXON)
-
-    # JLaTeXMath FOP
-    AC_JAVA_CHECK_PACKAGE([jlatexmath-fop],[org.scilab.forge.jlatexmath.fop.JLaTeXMathObj],[LaTex Rendering - FOP plugin])
-    JLATEXMATH_FOP=$PACKAGE_JAR_FILE
-    AC_SUBST(JLATEXMATH_FOP)
 
 AC_SUBST(DOCBOOK_ROOT)
 
