@@ -571,6 +571,10 @@ public class ScilabJavaObject {
                     return new ScilabJavaObject(Array.getLength(arraySJO[id].object), int.class).id;
                 }
 
+                if (arraySJO[id].object == arraySJO[id].clazz && fieldName.equals("class")) {
+                    return new ScilabJavaObject(arraySJO[id].object, arraySJO[id].object.getClass()).id;
+                }
+
                 final Field f = arraySJO[id].clazz.getField(fieldName);
                 if (Modifier.isPublic(f.getModifiers())) {
                     final Class cl = f.getType();
@@ -642,6 +646,10 @@ public class ScilabJavaObject {
                     } else {
                         return -1;
                     }
+                }
+
+                if (arraySJO[id].object == arraySJO[id].clazz && fieldName.equals("class")) {
+                    return 1;
                 }
 
                 Field f = arraySJO[id].clazz.getField(fieldName);
