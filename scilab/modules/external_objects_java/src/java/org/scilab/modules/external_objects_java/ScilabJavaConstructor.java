@@ -51,6 +51,10 @@ public class ScilabJavaConstructor {
         for (int i = 0; i < nbargs; i++) {
             argsO[i] = ScilabJavaObject.arraySJO[args[i]].object;
             cls[i] = ScilabJavaObject.arraySJO[args[i]].clazz;
+
+            if (argsO[i] != null && argsO[i] == cls[i]) {
+                cls[i] = argsO[i].getClass();
+            }
         }
 
         try {
@@ -62,6 +66,12 @@ public class ScilabJavaConstructor {
                 _args = (Object[]) info[1];
             } else {
                 _args = argsO;
+            }
+
+            if (!constructor.isAccessible()) {
+                try {
+                    constructor.setAccessible(true);
+                } catch (SecurityException e) { }
             }
 
             if (Component.class.isAssignableFrom(clazz)) {
