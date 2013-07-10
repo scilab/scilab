@@ -185,6 +185,8 @@ Bug fixes
 
 * Bug #5616 fixed - typeof(uiCreateTree(...)) returned "Tree" instead of "uitree".
 
+* Bug #5694 fixed - numdiff() help page clarified.
+
 * Bug #5779 fixed - xnumb number format was too small (+ unit test added).
 
 * Bug #6168 fixed - Help for zpbutt, zpch1, zpch2 and zpell were unclear.
