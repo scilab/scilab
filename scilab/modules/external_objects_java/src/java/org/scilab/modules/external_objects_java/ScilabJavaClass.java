@@ -23,7 +23,7 @@ import java.util.logging.Level;
 @SuppressWarnings("serial")
 public class ScilabJavaClass extends ScilabJavaObject {
 
-    protected ScilabJavaConstructor sjc = null;
+    protected ScilabJavaConstructor sjc;
     protected URL classURL;
 
     /**

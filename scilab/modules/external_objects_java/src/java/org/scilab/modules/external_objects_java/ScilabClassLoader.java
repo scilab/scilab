@@ -87,8 +87,6 @@ public class ScilabClassLoader {
                 retId = sjc.id;
             }
         } catch (Exception e) {
-            System.err.println(e);
-            e.printStackTrace();
             throw new ScilabJavaException("Cannot find the class " + name + ". Check the name or if the classpath contains it.");
         }
 

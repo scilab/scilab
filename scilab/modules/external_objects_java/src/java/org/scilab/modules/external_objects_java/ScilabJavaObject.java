@@ -45,8 +45,8 @@ import java.util.logging.SimpleFormatter;
 public class ScilabJavaObject {
 
     private static final int INITIALCAPACITY = 1024;
-    private static final Map<Class, Integer> unwrappableType = new HashMap<Class, Integer>(35);
-    private static final Map<Class, Integer> listBaseType = new HashMap<Class, Integer>(35);
+    private static final Map<Class, Integer> unwrappableType = new HashMap<Class, Integer>(51);
+    private static final Map<Class, Integer> listBaseType = new HashMap<Class, Integer>(9);
     private static final Class[] returnType = new Class[1];
 
     static final Map<Class, Class> primTypes = new HashMap<Class, Class>(8);
@@ -692,7 +692,12 @@ public class ScilabJavaObject {
             }
 
             if (arraySJO[id] != null) {
-                return new ScilabJavaObject(arraySJO[id].methods.get(methName).invoke(arraySJO[id].object, returnType, args), returnType[0]).id;
+                Object ret = arraySJO[id].methods.get(methName).invoke(arraySJO[id].object, returnType, args);
+                if (ret == null && returnType[0] == Void.TYPE) {
+                    return -1;
+                } else {
+                    return new ScilabJavaObject(ret, returnType[0]).id;
+                }
             }
             throw new ScilabJavaException("Invalid Java object");
         } else {
