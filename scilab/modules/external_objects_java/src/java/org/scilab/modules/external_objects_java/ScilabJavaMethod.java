@@ -75,23 +75,32 @@ public class ScilabJavaMethod {
      */
     protected Object call(final Object obj, final Class[] returnType, final Object[] args, final Class[] argsClass) throws ScilabJavaException {
         try {
-            final Method meth = FunctionArguments.findMethod(name, clazz.getMethods(), argsClass, args);
+            final Object[] info = FunctionArguments.findMethod(name, clazz.getMethods(), argsClass, args);
+            final Method meth = (Method) info[0];
             final Class returned = meth.getReturnType();
             Object ret = null;
+            final Object[] _args;
+
+            if (info.length == 2) {
+                // Method with variable arguments, so they have been modified and are the second element of the returned array
+                _args = (Object[]) info[1];
+            } else {
+                _args = args;
+            }
 
             if (Modifier.isStatic(meth.getModifiers())) {
-                ret = meth.invoke(null, args);
+                ret = meth.invoke(null, _args);
             } else {
                 if (Component.class.isAssignableFrom(obj.getClass())) {
                     if (returned == Void.TYPE) {
                         if (SwingUtilities.isEventDispatchThread()) {
-                            ret = meth.invoke(obj, args);
+                            ret = meth.invoke(obj, _args);
                         } else {
                             SwingUtilities.invokeLater(new Runnable() {
 
                                 public void run() {
                                     try {
-                                        meth.invoke(obj, args);
+                                        meth.invoke(obj, _args);
                                     } catch (Exception e) {
                                         System.err.println(e);
                                     }
@@ -100,13 +109,13 @@ public class ScilabJavaMethod {
                         }
                     } else {
                         if (SwingUtilities.isEventDispatchThread()) {
-                            ret = meth.invoke(obj, args);
+                            ret = meth.invoke(obj, _args);
                         } else {
                             final Object[] ref = new Object[1];
                             SwingUtilities.invokeAndWait(new Runnable() {
                                 public void run() {
                                     try {
-                                        ref[0] = meth.invoke(obj, args);
+                                        ref[0] = meth.invoke(obj, _args);
                                     } catch (Exception e) {
                                         System.err.println(e);
                                     }
@@ -117,7 +126,7 @@ public class ScilabJavaMethod {
                         }
                     }
                 } else {
-                    ret = meth.invoke(obj, args);
+                    ret = meth.invoke(obj, _args);
                 }
             }
 
@@ -135,6 +144,7 @@ public class ScilabJavaMethod {
         } catch (IllegalArgumentException e) {
             throw new ScilabJavaException("Illegal argument in the method " + name + ": \n" + e.getMessage());
         } catch (NullPointerException e) {
+            e.printStackTrace();
             throw new ScilabJavaException("The method " + name + " is called on a null object.");
         } catch (ExceptionInInitializerError e) {
             throw new ScilabJavaException("Initializer error with method " + name + ":\n" + e.getMessage());
@@ -142,8 +152,6 @@ public class ScilabJavaMethod {
             throw new ScilabJavaException("An exception has been thrown in calling the method " + name + ":\n" + e.getCause().toString());
         } catch (NoSuchMethodException e) {
             throw new ScilabJavaException("No method " + name + " in the class " + clazz.getName() + " or bad arguments type.");
-        } catch (FunctionArguments.TooManyMethodsException e) {
-            throw new ScilabJavaException("Too many possible methods named " + name + " in the class " + clazz.getName() + ".");
         } catch (InterruptedException e) {
             throw new ScilabJavaException("EDT has been interrupted...");
         }

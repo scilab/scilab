@@ -54,17 +54,26 @@ public class ScilabJavaConstructor {
         }
 
         try {
-            final Constructor constructor = FunctionArguments.findConstructor(clazz.getConstructors(), cls, argsO);
+            final Object[] info = FunctionArguments.findConstructor(clazz.getConstructors(), cls, argsO);
+            final Constructor constructor = (Constructor) info[0];
+            final Object[] _args;
+            if (info.length == 2) {
+                // Constructor with variable arguments, so they have been modified and are the second element of the returned array
+                _args = (Object[]) info[1];
+            } else {
+                _args = argsO;
+            }
+
             if (Component.class.isAssignableFrom(clazz)) {
                 if (SwingUtilities.isEventDispatchThread()) {
-                    return constructor.newInstance(argsO);
+                    return constructor.newInstance(_args);
                 } else {
                     final Object[] ref = new Object[1];
                     SwingUtilities.invokeAndWait(new Runnable() {
 
                         public void run() {
                             try {
-                                ref[0] = constructor.newInstance(argsO);
+                                ref[0] = constructor.newInstance(_args);
                             } catch (Exception e) {
                                 System.err.println(e);
                             }
@@ -75,7 +84,7 @@ public class ScilabJavaConstructor {
                 }
             }
 
-            return constructor.newInstance(argsO);
+            return constructor.newInstance(_args);
         } catch (IllegalAccessException e) {
             throw new ScilabJavaException("Illegal access to the constructor of class " + clazz.getName() + ".");
         } catch (IllegalArgumentException e) {
@@ -88,8 +97,6 @@ public class ScilabJavaConstructor {
             throw new ScilabJavaException("An exception has been thrown in calling the constructor of class " + clazz.getName() + ":\n" + e.getMessage());
         } catch (NoSuchMethodException e) {
             throw new ScilabJavaException("No such constructor in the class " + clazz.getName() + ".");
-        } catch (FunctionArguments.TooManyMethodsException e) {
-            throw new ScilabJavaException("Too many possible constructors in the class " + clazz.getName() + ".");
         } catch (InterruptedException e) {
             throw new ScilabJavaException("EDT has been interrupted...");
         }
