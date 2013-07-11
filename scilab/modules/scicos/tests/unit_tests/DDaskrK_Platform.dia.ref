@@ -15,7 +15,7 @@ function messagebox(msg, msg_title)
  disp(msg);
 endfunction
 funcprot(prot);
-Info = scicos_simulate(scs_m, list(), 'nw');
+Info = scicos_simulate(scs_m, list(),'nw');
 --------------------------------------------\
  Main Modelica : TMPDIR/DDaskr_Platform_test_im.mo
 
@@ -46,7 +46,7 @@ Info = scicos_simulate(scs_m, list(), 'nw');
 !                                                         !
 !                                                         !
 !                                                         !
-!Generated files path: TMPDIR/         !
+!Generated files path: TMPDIR/          !
 !                                                         !
 !                                                         !
    Generate a loader file

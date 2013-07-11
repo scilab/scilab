@@ -272,7 +272,8 @@ static int synchro_nev(ScicosImport *scs_imp, int kf, int *ierr);
 /*--------------------------------------------------------------------------*/
 extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
 extern int C2F(dcopy)(int *, double *, int *, double *, int *);
-extern int C2F(dgesv)(int *size, int *nColsB, double *A, int *lead_dim_A, int *ipivots, double *B, int *lead_dim_B, int *info);
+extern int C2F(dgefa)(double *A, int *lead_dim_A, int *n, int *ipivots, int *info);
+extern int C2F(dgesl)(double *A, int *lead_dim_A, int *n, int *ipivots, double *B, int *job);
 extern int C2F(msgs)();
 extern int C2F(getscsmax)();
 extern int C2F(makescicosimport)();
@@ -2100,7 +2101,7 @@ static void cossimdaskr(double *told)
     void *dae_mem = NULL;
     UserData data = NULL;
     IDAMem copy_IDA_mem = NULL;
-    int maxnj = 0, maxnit = 0;
+    int maxnj = 0, maxnit = 0, maxnh = 0;
     /*-------------------- Analytical Jacobian memory allocation ----------*/
     int  Jn = 0, Jnx = 0, Jno = 0, Jni = 0, Jactaille = 0;
     double uround = 0.;
@@ -2122,6 +2123,7 @@ static void cossimdaskr(double *told)
     int (* DAEGetRootInfo) (void*, int*);
     int (* DAESStolerances) (void*, realtype, realtype);
     int (* DAEGetConsistentIC) (void*, N_Vector, N_Vector);
+    int (* DAESetMaxNumSteps) (void*, int*);
     int (* DAESetMaxNumJacsIC) (void*, int);
     int (* DAESetMaxNumItersIC) (void*, int);
     int (* DAESetMaxNumStepsIC) (void*, int);
@@ -2142,6 +2144,7 @@ static void cossimdaskr(double *told)
             DAESetStopTime = &IDASetStopTime;
             DAEGetRootInfo = &IDAGetRootInfo;
             DAESStolerances = &IDASStolerances;
+            DAESetMaxNumSteps = &IDASetMaxNumSteps;
             DAEGetConsistentIC = &IDAGetConsistentIC;
             DAESetMaxNumJacsIC = &IDASetMaxNumJacsIC;
             DAESetMaxNumItersIC = &IDASetMaxNumItersIC;
@@ -2160,6 +2163,7 @@ static void cossimdaskr(double *told)
             DAESetStopTime = &DDaskrSetStopTime;
             DAEGetRootInfo = &DDaskrGetRootInfo;
             DAESStolerances = &DDaskrSStolerances;
+            DAESetMaxNumSteps = &DDaskrSetMaxNumSteps;
             DAEGetConsistentIC = &DDaskrGetConsistentIC;
             DAESetMaxNumJacsIC = &DDaskrSetMaxNumJacsIC;
             DAESetMaxNumItersIC = &DDaskrSetMaxNumItersIC;
@@ -2768,6 +2772,10 @@ static void cossimdaskr(double *told)
         }
 
         maxnit = 10; /* setting the maximum number of Newton iterations in any attempt to solve CIC */
+        if (C2F(cmsolver).solver == 102)
+        {
+            maxnit = 15;    /* By default, the Krylov max iterations should be 15 */
+        }
         flag = DAESetMaxNumItersIC(dae_mem, maxnit);
         if (check_flag(&flag, "IDASetMaxNumItersIC", 1))
         {
@@ -2777,10 +2785,8 @@ static void cossimdaskr(double *told)
         }
 
         /* setting the maximum number of steps in an integration interval */
-        if (solver == IDA_BDF_Newton)
-        {
-            flag = IDASetMaxNumSteps(dae_mem, 2000);
-        }
+        maxnh = 2000;
+        flag = DAESetMaxNumSteps(dae_mem, maxnh);
         if (check_flag(&flag, "IDASetMaxNumSteps", 1))
         {
             *ierr = 200 + (-flag);
@@ -4367,13 +4373,13 @@ static void grblkddaskr(int *nequations, realtype *tOld, realtype *actual, int *
 }/* grblkddaskr */
 /*--------------------------------------------------------------------------*/
 /* jacpsol */
-static void jacpsol(realtype *res, int *ires, int *nequations, realtype *tOld, realtype *actual, realtype *actualP,
+static void jacpsol(realtype *res, int *ires, int *neq, realtype *tOld, realtype *actual, realtype *actualP,
                     realtype *rewt, realtype *savr, realtype *wk, realtype *h, realtype *cj, realtype *wp, int *iwp,
                     int *ier, double *dummy1, int *dummy2)
 {
     /* Here, we compute the system preconditioner matrix P, which is actually the jacobian matrix,
-       so P(i,j) = dres(i)/dactual(j) + cj*dres(i)/dactualP(j). */
-    int i = 0, j = 0, nrow = 0;
+       so P(i,j) = dres(i)/dactual(j) + cj*dres(i)/dactualP(j), and we LU-decompose it. */
+    int i = 0, j = 0, nrow = 0, info = 0;
     realtype tx = 0, del = 0, delinv = 0, ysave = 0, ypsave = 0;
     realtype * e = NULL;
 
@@ -4381,9 +4387,9 @@ static void jacpsol(realtype *res, int *ires, int *nequations, realtype *tOld, r
 
     /* Work array used to evaluate res(*tOld, actual + small_increment, actualP + small_increment).
        savr already contains res(*tOld, actual, actualP). */
-    e = (realtype *) calloc(*nequations, sizeof(realtype));
+    e = (realtype *) calloc(*neq, sizeof(realtype));
 
-    for (i = 0; i < *nequations; ++i)
+    for (i = 0; i < *neq; ++i)
     {
         del =  max (SQuround * max(fabs(actual[i]), fabs(*h * actualP[i])), 1. / rewt[i]);
         del *= (*h * actualP[i] >= 0) ? 1 : -1;
@@ -4399,7 +4405,7 @@ static void jacpsol(realtype *res, int *ires, int *nequations, realtype *tOld, r
         if (*ires == 0)
         {
             delinv = 1. / del;
-            for (j = 0; j < *nequations; ++j)
+            for (j = 0; j < *neq; ++j)
             {
                 wp[nrow + j] = (e[j] - savr[j]) * delinv;
                 /* NaN test */
@@ -4408,10 +4414,8 @@ static void jacpsol(realtype *res, int *ires, int *nequations, realtype *tOld, r
                     sciprint(_("\nWarning: The preconditioner evaluation function returns a NaN at index #%d."), nrow + j);
                     *ier = -1;
                 }
-                iwp[nrow + j] = i + 1;
-                iwp[nrow + j + *nequations * *nequations] = j + 1;
             }
-            nrow       += *nequations;
+            nrow       += *neq;
             actual[i]  =  ysave;
             actualP[i] =  ypsave;
         }
@@ -4423,44 +4427,41 @@ static void jacpsol(realtype *res, int *ires, int *nequations, realtype *tOld, r
             return;
         }
     }
+
+    /* Proceed to LU factorization of P. */
+    C2F(dgefa) (wp, neq, neq, iwp, &info);
+    if (info != 0)
+    {
+        sciprint(_("\nError: Failed to factor the preconditioner."));
+        *ier = -1;
+    }
+
     free(e);
 }/* jacpsol */
 /*--------------------------------------------------------------------------*/
 /* psol */
-static void psol(int *nequations, realtype *tOld, realtype *actual, realtype *actualP,
+static void psol(int *neq, realtype *tOld, realtype *actual, realtype *actualP,
                  realtype *savr, realtype *wk, realtype *cj, realtype *wght, realtype *wp,
                  int *iwp, realtype *b, realtype *eplin, int *ier, double *dummy1, int *dummy2)
 {
     /* This function "applies" the inverse of the preconditioner to 'b' (computes P^-1*b).
-       It is done by solving P*x = b using the Lapack routine 'dgesv'. */
-    int i = 0, nColB = 1, info = 0;
-    int * ipiv = NULL;
+       It is done by solving P*x = b using the linpack routine 'dgesl'. */
+    int i = 0, job = 0;
 
-    ipiv = (int *) malloc(*nequations * sizeof(int));
+    C2F(dgesl) (wp, neq, neq, iwp, b, &job);
 
-    C2F(dgesv) (nequations, &nColB, wp, nequations, ipiv, b, nequations, &info);
-
-    if (info == 0)
+    /* NaN test */
+    for (i = 0; i < *neq; ++i)
     {
-        /* NaN test */
-        for (i = 0; i < *nequations; ++i)
+        if (b[i] - b[i] != 0)
         {
-            if (b[i] - b[i] != 0)
-            {
-                sciprint(_("\nWarning: The preconditioner application function returns a NaN at index #%d."), i);
-                *ier = -1;
-            }
+            sciprint(_("\nWarning: The preconditioner application function returns a NaN at index #%d."), i);
+            /* Indicate a recoverable error, meaning that the step will be retried with the same step size
+               but with a call to 'jacpsol' to update necessary data, unless the Jacobian data is current,
+               in which case the step will be retried with a smaller step size. */
+            *ier = 1;
         }
     }
-    else
-    {
-        sciprint(_("\nError: The preconditioner application function failed to compute the solution of P*x = b."));
-        *ier = -1;
-    }
-
-    free (ipiv);
-    return;
-
 }/* psol */
 /*--------------------------------------------------------------------------*/
 /* Subroutine addevs */
