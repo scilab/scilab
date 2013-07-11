@@ -283,6 +283,9 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
         for i = 1:length(%cpr.sim.funs)
             if type(%cpr.sim.funs(i)) <> 13 then
                 if find(%cpr.sim.funs(i)(1) == Ignore) <> [] then
+                    if (%cpr.sim.funs(i)(1) == "bplatform2") then
+                        %cpr.sim.funtyp(i) = 4; // BPLATFORM block has function type 5, so need to set it to 4, like the trash block.
+                    end
                     %cpr.sim.funs(i)(1) = "trash";
                 end
             end

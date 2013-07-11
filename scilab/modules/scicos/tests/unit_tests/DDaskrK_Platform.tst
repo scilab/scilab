@@ -9,8 +9,8 @@
 // <-- XCOS TEST -->
 
 // Import diagram
-loadScicos();
-loadXcosLibs();
+loadXcosLibs
+loadScicos
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/DDaskr_Platform_test.zcos"));
 
 // Redefining messagebox() to avoid popup
@@ -20,7 +20,7 @@ function messagebox(msg, msg_title)
  disp(msg);
 endfunction
 funcprot(prot);
-Info = scicos_simulate(scs_m, list(), 'nw');
+Info = scicos_simulate(scs_m, list(),'nw');
 
 // looking for the CLOCK_f/EVTDLY_f to update period
 for path_1=1:length(scs_m.objs)
