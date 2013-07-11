@@ -138,6 +138,9 @@ public class EntityPicker {
             }
         }
 
+        datax = toLogScale(datax, curAxes.getXAxisLogFlag());
+        datay = toLogScale(datay, curAxes.getYAxisLogFlag());
+
         double[] oldPoint = null;
         if (needTransform) {
             oldPoint = transformPoint(curAxes, datax[0], datay[0], 0.0);
@@ -208,6 +211,9 @@ public class EntityPicker {
                 datay[i] += y_shift[i];
             }
         }
+
+        datax = toLogScale(datax, curAxes.getXAxisLogFlag());
+        datay = toLogScale(datay, curAxes.getYAxisLogFlag());
 
         Integer size = CommonHandler.getMarkSize(uid);
         Integer unit = CommonHandler.getMarkSizeUnit(uid);
@@ -523,6 +529,30 @@ public class EntityPicker {
             }
         }
         return null;
+    }
+
+    double[] toLogScale(double[] data, boolean logScale) {
+
+        if (logScale) {
+            double[] temp = new double[data.length];
+            for (int i = 0; i < data.length; i++) {
+                temp[i] = Math.log10(data[i]);
+            }
+            return temp;
+        }
+        return data;
+    }
+
+    double[] toInverseLogScale(double[] data, boolean logScale) {
+
+        if (logScale) {
+            double[] temp = new double[data.length];
+            for (int i = 0; i < data.length; i++) {
+                temp[i] = Math.pow(10., data[i]);
+            }
+            return temp;
+        }
+        return data;
     }
 }
 
