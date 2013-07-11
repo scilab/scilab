@@ -265,6 +265,8 @@ Bug fixes
 
 * Bug #8778 fixed - Call_ScilabOpen, TerminateScilab can not be called more
                     than 80 times in a loop.
+                    
+* Bug #8779 fixed - gsort() did not preserve order of equal elements, in lexicographic sort.
 
 * Bug #8820 fixed - Squeeze did not return a matrix when the number of dimensions
                     of the result was less or equal to 2.
