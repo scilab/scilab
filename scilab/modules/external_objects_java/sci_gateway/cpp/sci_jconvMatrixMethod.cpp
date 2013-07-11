@@ -25,9 +25,6 @@ using namespace org_modules_external_objects;
 
 int sci_jconvMatrixMethod(char * fname, unsigned long fname_len)
 {
-    SciErr sciErr;
-    int * addr = 0;
-    int val = 0;
     int envId;
     char * type = 0;
 
