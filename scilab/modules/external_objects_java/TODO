@@ -1,18 +1,8 @@
-jarray                   - Tests are failing
 jinvoke_db
 jnull
-junwraprem
-junwrap
-jvoid
 jwrapinchar
-new
 
 In the help pages, add the matching types <=> java
-update of the examples to match the current behavior
 
 Add ecj into the thirdparty
 
-Check example of jinvoke
-
-Remove the reference to the timestamp
-update the license header

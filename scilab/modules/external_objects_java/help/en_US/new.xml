@@ -49,14 +49,11 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-               jimport java.util.Date;
-               jimport java.lang.System;
-
-               t = System.currentTimeMillis();
-               s = Date.new(t);
-               d = s.toString()
-
-               jremove Date System t s;
+        jimport java.lang.String;
+        myString=String.new("The Java Interaction Mechanism in Scilab (JIMS) provides a native-level interface between the two Virtual Machines.")
+        myString.concat(" foo")
+        myString.contains("Scilab") // True
+        myString.contains("Matrix") // False
       ]]></programlisting>
     </refsection>
     <refsection role="see also">

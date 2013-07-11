@@ -50,14 +50,10 @@
             When <literal>jimport("java.lang.String")</literal>, a mlist named String is created on the Scilab stack. The created mlist has a type equals to _JClass and can be used to instantiate new objects in using something like <literal>str = String.new("A Scilab String");</literal>. It is possible to call the static methods (if exist) of the class
         </para>
         <programlisting role="example"><![CDATA[
-               jautoUnwrap(%f);
-               jimport java.lang.System;
-               jimport java.util.Date;
-               System.err.println("A message print in the Scilab console");
-               l = System.currentTimeMillis(); //Working with the object is necessary
-               d = Date.new(l)
-               jremove(l,d);
-               jautoUnwrap(%t);
+               jimport java.lang.Math;
+               x=Math.random();
+               disp(x);
+               jremove Math x;
       ]]></programlisting>
         <para>
             To avoid confusion with already existing Scilab variables, the second argument isAClassReturned can be used

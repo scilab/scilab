@@ -55,17 +55,17 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-               jautoUnwrap(%f)
-               jimport java.util.Date;
+               jimport java.io.File;
                jimport java.lang.System;
 
-               t = System.currentTimeMillis();
-               s = jnewInstance(Date, t);
-               str = jnewInstance("java.lang.String", "Hello");
-               d = s.toString()
+               a = System.getProperty("java.io.tmpdir");
+               s = jnewInstance(File, a);
+               s.exists() // true
 
-               jremove Date System t s str;
-               jautoUnwrap(%t)
+               str = jnewInstance("java.lang.String", "Hello");
+               b = str.substring(1, 4)
+
+               jremove Date System s str b a;
       ]]></programlisting>
     </refsection>
     <refsection role="see also">

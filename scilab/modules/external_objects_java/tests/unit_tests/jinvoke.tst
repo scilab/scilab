@@ -4,11 +4,22 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 jimport java.io.File;
 jimport java.lang.System;
+jimport java.awt.Color;
+
 a = System.getProperty("java.io.tmpdir");
 s = jnewInstance(File, a);
-assert_checktrue(s.exists());
+assert_checktrue(jinvoke(s,"exists"));
+
 str = jnewInstance("java.lang.String", "Hello");
-assert_checkequal(str.substring(1, 4),"ell");
-jremove Date System s str b a;
+assert_checkequal(jinvoke(str,"substring",1, 4), "ell");
+
+assert_checktrue(length(jinvoke(System, "getProperty", "java.version")) > 5);
+
+c = jinvoke(Color, "decode", "123456");
+cb = jinvoke(c, "brighter");
+assert_checkequal(jgetclassname(cb), "java.awt.Color");
+
+jremove System s str b a;

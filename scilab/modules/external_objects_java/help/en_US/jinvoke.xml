@@ -60,12 +60,16 @@
         <programlisting role="example"><![CDATA[
                jimport java.lang.System;
                jimport java.awt.Color;
+               jimport java.lang.String;
 
                // Non-static methods
                jinvoke("Hello World !!", "length");
+               str = String.new("Hello");
+               jinvoke(str,"substring",1, 4)
+
 
                // Static method
-               T = jinvoke(System, "currentTimeMillis");
+               T = jinvoke(System, "getProperty", "java.version");
 
                // Combine
                c = jinvoke(Color, "decode", "123456");
