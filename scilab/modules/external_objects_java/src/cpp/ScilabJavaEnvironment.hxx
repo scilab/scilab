@@ -1,6 +1,5 @@
 /*
- * PIMS ( http://forge.scilab.org/index.php/p/pims ) - This file is part of PIMS
- * Copyright (C) 2010 - Baozeng Ding
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.

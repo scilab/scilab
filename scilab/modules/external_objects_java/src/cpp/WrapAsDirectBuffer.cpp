@@ -1,5 +1,5 @@
 /*
- * JIMS ( http://forge.scilab.org/index.php/p/JIMS/ ) - This file is a part of JIMS
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
  *
  * This file must be used under the terms of the CeCILL.

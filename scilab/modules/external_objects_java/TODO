@@ -1,6 +1,4 @@
-jallowClassReloading
 jarray                   - Tests are failing
-jconvMatrixMethod
 jinvoke_db
 jnull
 junwraprem
@@ -15,3 +13,6 @@ update of the examples to match the current behavior
 Add ecj into the thirdparty
 
 Check example of jinvoke
+
+Remove the reference to the timestamp
+update the license header
