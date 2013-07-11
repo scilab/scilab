@@ -18,6 +18,7 @@
 
 #include "FieldsGetter.hxx"
 #include "XMLFieldsGetter.hxx"
+#include "XMLDocument.hxx"
 #include "xmlObjects.h"
 
 extern "C"
@@ -28,11 +29,8 @@ extern "C"
 #endif
 }
 
-using namespace org_modules_xml;
-
 namespace org_modules_completion
 {
-
 /**
  * @file
  * @author Calixte DENIZET <calixte.denizet@scilab.org>
@@ -50,7 +48,7 @@ public :
 
     virtual const char ** getFieldsName(const std::string & typeName, int * mlist, char ** fieldPath, const int fieldPathLen, int * fieldsSize) const;
 
-    static const char ** getFieldsName(const XMLDocument * doc, char ** fieldPath, const int fieldPathLen, int * fieldsSize);
+    static const char ** getFieldsName(const org_modules_xml::XMLDocument * doc, char ** fieldPath, const int fieldPathLen, int * fieldsSize);
 };
 }
 

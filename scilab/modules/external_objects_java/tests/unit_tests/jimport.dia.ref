@@ -1,4 +1,4 @@
-javaclasspath("/usr/share/java/libintl.jar"); 
+javaclasspath(SCI + "/modules/external_objects_java\tests\libintl.jar");
 jimport("gnu.gettext.GettextResource");
 GettextResource
  GettextResource  =

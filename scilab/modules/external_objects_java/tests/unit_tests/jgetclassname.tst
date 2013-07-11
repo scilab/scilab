@@ -8,27 +8,24 @@
 //  are also available at
 //  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
+// to ignore java exceptions in last test
+//<-- NO CHECK ERROR OUTPUT -->
 //
 // <-- JVM MANDATORY -->
 //
 
 s = jwrap("Hello World !");
-if jgetclassname(s) <> "java.lang.String" then pause, end
+assert_checkequal(jgetclassname(s), "java.lang.String");
 jremove s;
 
-if jgetclassname("toto") <> "java.lang.String" then pause, end
-
-if jgetclassname(1) <> "double" then pause, end
-
-if jgetclassname(%t) <> "boolean" then pause, end
-
-if jgetclassname(int8(2)) <> "int" then pause, end
-
-if jgetclassname(int16(2)) <> "short" then pause, end
-
-if jgetclassname(int32(2)) <> "int" then pause, end
+assert_checkequal(jgetclassname("toto"), "java.lang.String");
+assert_checkequal(jgetclassname(1), "double");
+assert_checkequal(jgetclassname(%t), "boolean");
+assert_checkequal(jgetclassname(int8(2)), "int");
+assert_checkequal(jgetclassname(int16(2)), "short");
+assert_checkequal(jgetclassname(int32(2)), "int");
 
 s = scf();
-if execstr("jgetclassname(s)", "errcatch") <> 999, end
+assert_checkequal(execstr("jgetclassname(s)", "errcatch"), 999);
 
 

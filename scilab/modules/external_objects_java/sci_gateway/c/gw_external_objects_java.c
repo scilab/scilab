@@ -14,6 +14,8 @@
 #include "api_scilab.h"
 #include "callFunctionFromGateway.h"
 #include "MALLOC.h"
+#include "loadOnUseClassPath.h"
+
 /*--------------------------------------------------------------------------*/
 /*  interface function */
 /*--------------------------------------------------------------------------*/
@@ -45,14 +47,22 @@ static gw_generic_table Tab[] =
     {sci_jconvMatrixMethod, "jconvMatrixMethod"}
 };
 
+static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 int gw_external_objects_java(void)
 {
+
     Rhs = Max(0, Rhs);
 
     if (pvApiCtx == NULL)
     {
         pvApiCtx = (StrCtx *) MALLOC(sizeof(StrCtx));
+    }
+
+    if (!loadedDep)
+    {
+        loadOnUseClassPath("external_objects_java");
+        loadedDep = TRUE;
     }
 
     pvApiCtx->pstName = (char *)Tab[Fin - 1].name;

@@ -11,6 +11,11 @@
  *
  */
 
+extern "C"
+{
+#include "api_scilab.h"
+}
+
 #include "FieldsManager.hxx"
 #include "XMLFieldsGetter.hxx"
 #include "XMLDocFieldsGetter.hxx"
@@ -20,12 +25,6 @@
 #include "XMLListFieldsGetter.hxx"
 #include "XMLSetFieldsGetter.hxx"
 
-extern "C"
-{
-#include "api_scilab.h"
-#include "MALLOC.h"
-#include "xml_mlist.h"
-}
 
 using namespace org_modules_xml;
 

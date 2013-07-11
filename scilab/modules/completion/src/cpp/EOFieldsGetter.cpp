@@ -46,7 +46,7 @@ const char ** EOFieldsGetter::getFieldsName(const std::string & typeName, int * 
         return 0;
     }
 
-    *fieldsSize = fields.size();
+    *fieldsSize = (int)fields.size();
     ret = (const char **)MALLOC(sizeof(char *) **fieldsSize);
 
     for (int i = 0; i < *fieldsSize; i++)

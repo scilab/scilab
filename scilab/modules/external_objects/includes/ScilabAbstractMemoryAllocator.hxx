@@ -13,15 +13,15 @@
 #ifndef __SCILABABSTRACTMEMORYALLOCATOR_H__
 #define __SCILABABSTRACTMEMORYALLOCATOR_H__
 
+extern "C"
+{
+#include "api_scilab.h"
+}
 #include "ScilabAbstractEnvironmentWrapper.hxx"
 #include "ScilabAbstractEnvironmentException.hxx"
 
 #include <iostream>
 
-extern "C"
-{
-#include "api_scilab.h"
-}
 namespace org_modules_external_objects
 {
 
@@ -42,144 +42,144 @@ class ScilabStackAllocator
 
 public:
 
-    ScilabStackAllocator(void * _pvApiCtx, int _position) : pvApiCtx(_pvApiCtx), position(_position) { }
+    ScilabStackAllocator(void * pvCtx, int _position) : pvCtx(pvCtx), position(_position) { }
 
     ~ScilabStackAllocator() { }
 
 protected:
 
     int position;
-    void * pvApiCtx;
+    void * pvCtx;
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, double * ptr)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, double * ptr)
     {
-        SciErr err = createMatrixOfDouble(pvApiCtx, position, rows, cols, ptr);
+        SciErr err = createMatrixOfDouble(pvCtx, position, rows, cols, ptr);
         checkError(err);
     }
 
-    inline static double * alloc(void * pvApiCtx, const int position, const int rows, const int cols, double * ptr)
+    inline static double * alloc(void * pvCtx, const int position, const int rows, const int cols, double * ptr)
     {
         double * _ptr = 0;
-        SciErr err = allocMatrixOfDouble(pvApiCtx, position, rows, cols, &_ptr);
+        SciErr err = allocMatrixOfDouble(pvCtx, position, rows, cols, &_ptr);
         checkError(err);
 
         return _ptr;
     }
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, float * ptr)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, float * ptr)
     {
-        double * _ptr = alloc(pvApiCtx, position, rows, cols, (double *)0);
+        double * _ptr = alloc(pvCtx, position, rows, cols, (double *)0);
         for (int i = 0; i < rows * cols; i++)
         {
             _ptr[i] = static_cast<double>(ptr[i]);
         }
     }
 
-    inline static float * alloc(void * pvApiCtx, const int position, const int rows, const int cols, float * ptr)
+    inline static float * alloc(void * pvCtx, const int position, const int rows, const int cols, float * ptr)
     {
-        return (float *)alloc(pvApiCtx, position, rows, cols, (double *)0);
+        return (float *)alloc(pvCtx, position, rows, cols, (double *)0);
     }
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, double * re, double * im)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, double * re, double * im)
     {
-        SciErr err = createComplexMatrixOfDouble(pvApiCtx, position, rows, cols, re, im);
+        SciErr err = createComplexMatrixOfDouble(pvCtx, position, rows, cols, re, im);
         checkError(err);
     }
 
-    inline static ComplexDataPointers alloc(void * pvApiCtx, const int position, const int rows, const int cols, double * re, double * im)
+    inline static ComplexDataPointers alloc(void * pvCtx, const int position, const int rows, const int cols, double * re, double * im)
     {
         double * _re = 0, * _im = 0;
-        SciErr err = allocComplexMatrixOfDouble(pvApiCtx, position, rows, cols, &_re, &_im);
+        SciErr err = allocComplexMatrixOfDouble(pvCtx, position, rows, cols, &_re, &_im);
         checkError(err);
 
         return ComplexDataPointers(_re, _im);
     }
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, char * ptr)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, char * ptr)
     {
-        SciErr err = createMatrixOfInteger8(pvApiCtx, position, rows, cols, ptr);
+        SciErr err = createMatrixOfInteger8(pvCtx, position, rows, cols, ptr);
         checkError(err);
     }
 
-    inline static char * alloc(void * pvApiCtx, const int position, const int rows, const int cols, char * ptr)
+    inline static char * alloc(void * pvCtx, const int position, const int rows, const int cols, char * ptr)
     {
         char * _ptr = 0;
-        SciErr err = allocMatrixOfInteger8(pvApiCtx, position, rows, cols, &_ptr);
+        SciErr err = allocMatrixOfInteger8(pvCtx, position, rows, cols, &_ptr);
         checkError(err);
 
         return _ptr;
     }
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, unsigned char * ptr)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, unsigned char * ptr)
     {
-        SciErr err = createMatrixOfUnsignedInteger8(pvApiCtx, position, rows, cols, ptr);
+        SciErr err = createMatrixOfUnsignedInteger8(pvCtx, position, rows, cols, ptr);
         checkError(err);
     }
 
-    inline static unsigned char * alloc(void * pvApiCtx, const int position, const int rows, const int cols, unsigned char * ptr)
+    inline static unsigned char * alloc(void * pvCtx, const int position, const int rows, const int cols, unsigned char * ptr)
     {
         unsigned char * _ptr = 0;
-        SciErr err = allocMatrixOfUnsignedInteger8(pvApiCtx, position, rows, cols, &_ptr);
+        SciErr err = allocMatrixOfUnsignedInteger8(pvCtx, position, rows, cols, &_ptr);
         checkError(err);
 
         return _ptr;
     }
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, short * ptr)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, short * ptr)
     {
-        SciErr err = createMatrixOfInteger16(pvApiCtx, position, rows, cols, ptr);
+        SciErr err = createMatrixOfInteger16(pvCtx, position, rows, cols, ptr);
         checkError(err);
     }
 
-    inline static short * alloc(void * pvApiCtx, const int position, const int rows, const int cols, short * ptr)
+    inline static short * alloc(void * pvCtx, const int position, const int rows, const int cols, short * ptr)
     {
         short * _ptr = 0;
-        SciErr err = allocMatrixOfInteger16(pvApiCtx, position, rows, cols, &_ptr);
+        SciErr err = allocMatrixOfInteger16(pvCtx, position, rows, cols, &_ptr);
         checkError(err);
 
         return _ptr;
     }
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, unsigned short * ptr)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, unsigned short * ptr)
     {
-        SciErr err = createMatrixOfUnsignedInteger16(pvApiCtx, position, rows, cols, ptr);
+        SciErr err = createMatrixOfUnsignedInteger16(pvCtx, position, rows, cols, ptr);
         checkError(err);
     }
 
-    inline static unsigned short * alloc(void * pvApiCtx, const int position, const int rows, const int cols, unsigned short * ptr)
+    inline static unsigned short * alloc(void * pvCtx, const int position, const int rows, const int cols, unsigned short * ptr)
     {
         unsigned short * _ptr = 0;
-        SciErr err = allocMatrixOfUnsignedInteger16(pvApiCtx, position, rows, cols, &_ptr);
+        SciErr err = allocMatrixOfUnsignedInteger16(pvCtx, position, rows, cols, &_ptr);
         checkError(err);
 
         return _ptr;
     }
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, int * ptr)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, int * ptr)
     {
-        SciErr err = createMatrixOfInteger32(pvApiCtx, position, rows, cols, ptr);
+        SciErr err = createMatrixOfInteger32(pvCtx, position, rows, cols, ptr);
         checkError(err);
     }
 
-    inline static int * alloc(void * pvApiCtx, const int position, const int rows, const int cols, int * ptr)
+    inline static int * alloc(void * pvCtx, const int position, const int rows, const int cols, int * ptr)
     {
         int * _ptr = 0;
-        SciErr err = allocMatrixOfInteger32(pvApiCtx, position, rows, cols, &_ptr);
+        SciErr err = allocMatrixOfInteger32(pvCtx, position, rows, cols, &_ptr);
         checkError(err);
 
         return _ptr;
     }
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, unsigned int * ptr)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, unsigned int * ptr)
     {
-        SciErr err = createMatrixOfUnsignedInteger32(pvApiCtx, position, rows, cols, ptr);
+        SciErr err = createMatrixOfUnsignedInteger32(pvCtx, position, rows, cols, ptr);
         checkError(err);
     }
 
-    inline static unsigned int * alloc(void * pvApiCtx, const int position, const int rows, const int cols, unsigned int * ptr)
+    inline static unsigned int * alloc(void * pvCtx, const int position, const int rows, const int cols, unsigned int * ptr)
     {
         unsigned int * _ptr = 0;
-        SciErr err = allocMatrixOfUnsignedInteger32(pvApiCtx, position, rows, cols, &_ptr);
+        SciErr err = allocMatrixOfUnsignedInteger32(pvCtx, position, rows, cols, &_ptr);
         checkError(err);
 
         return _ptr;
@@ -187,31 +187,31 @@ protected:
 
 #ifdef __SCILAB_INT64__
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, long long * ptr)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, long long * ptr)
     {
-        SciErr err = createMatrixOfInteger64(pvApiCtx, position, rows, cols, ptr);
+        SciErr err = createMatrixOfInteger64(pvCtx, position, rows, cols, ptr);
         checkError(err);
     }
 
-    inline static long long * alloc(void * pvApiCtx, const int position, const int rows, const int cols, long long * ptr)
+    inline static long long * alloc(void * pvCtx, const int position, const int rows, const int cols, long long * ptr)
     {
         long long * _ptr = 0;
-        SciErr err = allocMatrixOfInteger64(pvApiCtx, position, rows, cols, &_ptr);
+        SciErr err = allocMatrixOfInteger64(pvCtx, position, rows, cols, &_ptr);
         checkError(err);
 
         return _ptr;
     }
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, unsigned long long * ptr)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, unsigned long long * ptr)
     {
-        SciErr err = createMatrixOfUnsignedIntege64(pvApiCtx, position, rows, cols, ptr);
+        SciErr err = createMatrixOfUnsignedIntege64(pvCtx, position, rows, cols, ptr);
         checkError(err);
     }
 
-    inline static unsigned long long * alloc(void * pvApiCtx, const int position, const int rows, const int cols, unsigned long long * ptr)
+    inline static unsigned long long * alloc(void * pvCtx, const int position, const int rows, const int cols, unsigned long long * ptr)
     {
         unsigned long long * _ptr = 0;
-        SciErr err = allocMatrixOfUnsignedInteger64(pvApiCtx, position, rows, cols, &_ptr);
+        SciErr err = allocMatrixOfUnsignedInteger64(pvCtx, position, rows, cols, &_ptr);
         checkError(err);
 
         return_ ptr;
@@ -219,57 +219,57 @@ protected:
 
 #else
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, long long * ptr)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, long long * ptr)
     {
-        int * dataPtr = alloc(pvApiCtx, position, rows, cols, (int *)0);
+        int * dataPtr = alloc(pvCtx, position, rows, cols, (int *)0);
         for (int i = 0; i < rows * cols; i++)
         {
             dataPtr[i] = static_cast<int>(ptr[i]);
         }
     }
 
-    inline static long long * alloc(void * pvApiCtx, const int position, const int rows, const int cols, long long * ptr)
+    inline static long long * alloc(void * pvCtx, const int position, const int rows, const int cols, long long * ptr)
     {
-        return (long long *)alloc(pvApiCtx, position, rows, cols, (int *)0);
+        return (long long *)alloc(pvCtx, position, rows, cols, (int *)0);
     }
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, unsigned long long * ptr)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, unsigned long long * ptr)
     {
-        unsigned int * dataPtr = alloc(pvApiCtx, position, rows, cols, (unsigned int *)0);
+        unsigned int * dataPtr = alloc(pvCtx, position, rows, cols, (unsigned int *)0);
         for (int i = 0; i < rows * cols; i++)
         {
             dataPtr[i] = static_cast<unsigned int>(ptr[i]);
         }
     }
 
-    inline static unsigned long long * alloc(void * pvApiCtx, const int position, const int rows, const int cols, unsigned long long * ptr)
+    inline static unsigned long long * alloc(void * pvCtx, const int position, const int rows, const int cols, unsigned long long * ptr)
     {
-        return (unsigned long long *)alloc(pvApiCtx, position, rows, cols, (unsigned int *)0);
+        return (unsigned long long *)alloc(pvCtx, position, rows, cols, (unsigned int *)0);
     }
 
 #endif
 
-    inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, char ** ptr)
+    inline static void create(void * pvCtx, const int position, const int rows, const int cols, char ** ptr)
     {
-        SciErr err = createMatrixOfString(pvApiCtx, position, rows, cols, const_cast<const char * const *>(ptr));
+        SciErr err = createMatrixOfString(pvCtx, position, rows, cols, const_cast<const char * const *>(ptr));
         checkError(err);
     }
 
-    inline static char ** alloc(void * pvApiCtx, const int position, const int rows, const int cols, char ** ptr)
+    inline static char ** alloc(void * pvCtx, const int position, const int rows, const int cols, char ** ptr)
     {
         throw ScilabAbstractEnvironmentException("Invalid operation: cannot allocate a matrix of String");
     }
 
-    inline static void createBool(void * pvApiCtx, const int position, const int rows, const int cols, int * ptr)
+    inline static void createBool(void * pvCtx, const int position, const int rows, const int cols, int * ptr)
     {
-        SciErr err = createMatrixOfBoolean(pvApiCtx, position, rows, cols, ptr);
+        SciErr err = createMatrixOfBoolean(pvCtx, position, rows, cols, ptr);
         checkError(err);
     }
 
-    inline static int * allocBool(void * pvApiCtx, const int position, const int rows, const int cols, int * ptr)
+    inline static int * allocBool(void * pvCtx, const int position, const int rows, const int cols, int * ptr)
     {
         int * _ptr = 0;
-        SciErr err = allocMatrixOfBoolean(pvApiCtx, position, rows, cols, &_ptr);
+        SciErr err = allocMatrixOfBoolean(pvCtx, position, rows, cols, &_ptr);
         checkError(err);
 
         return _ptr;
@@ -294,7 +294,7 @@ class ScilabSingleTypeStackAllocator : public ScilabStackAllocator
 
 public:
 
-    ScilabSingleTypeStackAllocator(void * _pvApiCtx, int _position) : ScilabStackAllocator(_pvApiCtx, _position) { }
+    ScilabSingleTypeStackAllocator(void * _pvCtx, int _position) : ScilabStackAllocator(_pvCtx, _position) { }
 
     ~ScilabSingleTypeStackAllocator() { }
 
@@ -302,18 +302,18 @@ public:
     {
         if (!rows || !cols)
         {
-            createEmptyMatrix(pvApiCtx, position);
+            createEmptyMatrix(pvCtx, position);
             return 0;
         }
 
         if (dataPtr)
         {
-            create(pvApiCtx, position, rows, cols, dataPtr);
+            create(pvCtx, position, rows, cols, dataPtr);
             return 0;
         }
         else
         {
-            return alloc(pvApiCtx, position, rows, cols, dataPtr);
+            return alloc(pvCtx, position, rows, cols, dataPtr);
         }
     }
 };
@@ -335,7 +335,7 @@ class ScilabComplexStackAllocator : public ScilabStackAllocator
 
 public:
 
-    ScilabComplexStackAllocator(void * _pvApiCtx, int _position) : ScilabStackAllocator(_pvApiCtx, _position) { }
+    ScilabComplexStackAllocator(void * _pvCtx, int _position) : ScilabStackAllocator(_pvCtx, _position) { }
 
     ~ScilabComplexStackAllocator() { }
 
@@ -343,18 +343,18 @@ public:
     {
         if (!rows || !cols)
         {
-            createEmptyMatrix(pvApiCtx, position);
+            createEmptyMatrix(pvCtx, position);
             return ComplexDataPointers();
         }
 
         if (realPtr && imagPtr)
         {
-            create(pvApiCtx, position, rows, cols, realPtr, imagPtr);
+            create(pvCtx, position, rows, cols, realPtr, imagPtr);
             return ComplexDataPointers();
         }
         else
         {
-            return alloc(pvApiCtx, position, rows, cols, realPtr, imagPtr);
+            return alloc(pvCtx, position, rows, cols, realPtr, imagPtr);
         }
     }
 };
@@ -364,7 +364,7 @@ class ScilabBooleanStackAllocator : public ScilabSingleTypeStackAllocator<int>
 
 public:
 
-    ScilabBooleanStackAllocator(void * _pvApiCtx, int _position) : ScilabSingleTypeStackAllocator<int>(_pvApiCtx, _position) { }
+    ScilabBooleanStackAllocator(void * _pvCtx, int _position) : ScilabSingleTypeStackAllocator<int>(_pvCtx, _position) { }
 
     ~ScilabBooleanStackAllocator() { }
 
@@ -372,18 +372,18 @@ public:
     {
         if (!rows || !cols)
         {
-            createEmptyMatrix(pvApiCtx, position);
+            createEmptyMatrix(pvCtx, position);
             return 0;
         }
 
         if (dataPtr)
         {
-            createBool(pvApiCtx, position, rows, cols, dataPtr);
+            createBool(pvCtx, position, rows, cols, dataPtr);
             return 0;
         }
         else
         {
-            return allocBool(pvApiCtx, position, rows, cols, dataPtr);
+            return allocBool(pvCtx, position, rows, cols, dataPtr);
         }
     }
 
@@ -392,14 +392,14 @@ public:
     {
         if (!rows || !cols)
         {
-            createEmptyMatrix(pvApiCtx, position);
+            createEmptyMatrix(pvCtx, position);
             return 0;
         }
 
         if (dataPtr)
         {
             int * ptr = 0;
-            allocBool(pvApiCtx, position, rows, cols, ptr);
+            allocBool(pvCtx, position, rows, cols, ptr);
             for (int i = 0; i < rows * cols; i++)
             {
                 ptr[i] = static_cast<int>(dataPtr[i]);

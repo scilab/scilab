@@ -12,18 +12,15 @@
 
 #include <cstring>
 
+extern "C"
+{
+#include "api_scilab.h"
+}
+
 #include "FieldsManager.hxx"
 #include "XMLDocFieldsGetter.hxx"
 #include "XMLElemFieldsGetter.hxx"
 
-extern "C"
-{
-#include "api_scilab.h"
-#include "MALLOC.h"
-#include "xml_mlist.h"
-}
-
-using namespace org_modules_xml;
 
 namespace org_modules_completion
 {
@@ -31,12 +28,12 @@ namespace org_modules_completion
 const char ** XMLDocFieldsGetter::getFieldsName(const std::string & typeName, int * mlist, char ** fieldPath, const int fieldPathLen, int * fieldsSize) const
 {
     int id = getXMLObjectId(mlist, pvApiCtx);
-    XMLDocument * doc = XMLObject::getFromId<XMLDocument>(id);
+    org_modules_xml::XMLDocument * doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(id);
 
     return getFieldsName(doc, fieldPath + 1, fieldPathLen - 1, fieldsSize);
 }
 
-const char ** XMLDocFieldsGetter::getFieldsName(const XMLDocument * doc, char ** fieldPath, const int fieldPathLen, int * fieldsSize)
+const char ** XMLDocFieldsGetter::getFieldsName(const org_modules_xml::XMLDocument * doc, char ** fieldPath, const int fieldPathLen, int * fieldsSize)
 {
     if (!doc)
     {

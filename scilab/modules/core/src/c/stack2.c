@@ -4044,13 +4044,17 @@ static int intersci_push(void)
 {
     int i;
     intersci_list *loc;
-    intersci_state *new;
+    intersci_state *new = NULL;
 
-    new = MALLOC(Nbvars * sizeof(intersci_state));
-    if (new == 0)
+    if (Nbvars)
     {
-        return 0;
+        new = MALLOC(Nbvars * sizeof(intersci_state));
+        if (new == 0)
+        {
+            return 0;
+        }
     }
+
     loc = MALLOC(sizeof(intersci_list));
     if (loc == NULL)
     {
@@ -4088,8 +4092,15 @@ static void intersci_pop(void)
         C2F(intersci).lhsvar[i] = loc->state[i].lhsvar;
     }
     L_intersci = loc->next;
-    FREE(loc->state);
-    FREE(loc);
+    if (loc->state)
+    {
+        FREE(loc->state);
+    }
+
+    if (loc)
+    {
+        FREE(loc);
+    }
 }
 
 /*

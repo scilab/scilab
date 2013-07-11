@@ -3119,12 +3119,22 @@ static void updateCommunListOffset(void* _pvCtx, int _iVar, const char* _pstName
     {
         int iLocalVar = _iVar - Top + Rhs;
         iMaxDepth = getDepthList(iLocalVar);
+        if (iMaxDepth == 0)
+        {
+            return;
+        }
+
         piParent = (int**)MALLOC(sizeof(int*) * iMaxDepth);
         getListAdressses(iLocalVar, piParent);
     }
     else
     {
         iMaxDepth = getDepthNamedList(_pstName);
+        if (iMaxDepth == 0)
+        {
+            return;
+        }
+
         piParent = (int**)MALLOC(sizeof(int*) * iMaxDepth);
         getNamedListAdressses(_pstName, piParent);
     }

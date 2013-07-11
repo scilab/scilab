@@ -203,7 +203,7 @@ public:
      */
     virtual std::vector<std::string> getCompletion(int id, char ** fieldPath, const int fieldPathLen)
     {
-        std::vector<std::string>();
+        return std::vector<std::string>();
     }
 
     /**

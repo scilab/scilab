@@ -21,12 +21,6 @@
 #include "OptionsHelper.hxx"
 #include "dynlib_external_objects_scilab.h"
 
-extern "C" {
-#include "api_scilab.h"
-#include "stack-c.h"
-#include "localization.h"
-}
-
 namespace org_modules_external_objects
 {
 class EXTERNAL_OBJECTS_SCILAB_IMPEXP ScilabObjects

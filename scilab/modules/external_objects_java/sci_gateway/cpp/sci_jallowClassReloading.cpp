@@ -11,13 +11,13 @@
  *
  */
 
-#include "ScilabJavaEnvironment.hxx"
-#include "ScilabGateway.hxx"
-
 extern "C" {
 #include "Scierror.h"
 #include "gw_external_objects_java.h"
 }
+
+#include "ScilabJavaEnvironment.hxx"
+#include "ScilabGateway.hxx"
 
 using namespace org_scilab_modules_external_objects_java;
 using namespace org_modules_external_objects;

@@ -93,7 +93,7 @@ char ** FieldsManager::getFieldPath(const char * _str, int * len)
 {
     std::vector<std::string> v;
     std::string str(_str);
-    int pos = str.length();
+    int pos = (int)str.length();
     const char symbs[27] = "+-*/\\([ ^,;={&|])}:\"\'><~@\t";
     char ** ret = 0;
 
@@ -127,7 +127,7 @@ char ** FieldsManager::getFieldPath(const char * _str, int * len)
 
 finish :
 
-    *len = v.size();
+    *len = (int)v.size();
     ret = (char **) malloc(sizeof(char *) **len);
     for (int i = 0; i < *len; i++)
     {

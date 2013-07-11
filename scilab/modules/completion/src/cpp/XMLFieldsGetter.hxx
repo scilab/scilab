@@ -43,7 +43,10 @@ public :
 
     virtual ~XMLFieldsGetter() { }
 
-    virtual const char ** getFieldsName(const std::string & typeName, int * mlist, char ** fieldPath, const int fieldPathLen, int * fieldsSize) const { }
+    virtual const char ** getFieldsName(const std::string & typeName, int * mlist, char ** fieldPath, const int fieldPathLen, int * fieldsSize) const
+    {
+        return NULL;
+    }
 
     /**
      * Initialization

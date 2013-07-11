@@ -14,6 +14,7 @@
 #define __XMLNODELIST_HXX__
 
 #include "XMLList.hxx"
+#include "dynlib_xml_scilab.h"
 #include "xml.h"
 
 namespace org_modules_xml
@@ -27,7 +28,7 @@ class XMLDocument;
  *
  * Class to wrap the list of the children of a node
  */
-class XMLNodeList: public XMLList
+class XML_SCILAB_IMPEXP XMLNodeList: public XMLList
 {
 
     const XMLDocument & doc;

@@ -14,6 +14,7 @@
 #define __XMLELEMENT_HXX__
 
 #include <string>
+#include "dynlib_xml_scilab.h"
 #include "XMLRemovable.hxx"
 
 #include "xml.h"
@@ -33,7 +34,7 @@ class XMLAttr;
  * Class to wrap a xmlNode
  * @see http://xmlsoft.org/html/libxml-tree.html#xmlNode
  */
-class XMLElement: public XMLObject, public XMLRemovable
+class XML_SCILAB_IMPEXP XMLElement: public XMLObject, public XMLRemovable
 {
     xmlNode *node;
     const XMLDocument & doc;

@@ -10,15 +10,14 @@
  *
  */
 
-#include "FieldsManager.hxx"
-#include "XMLNsFieldsGetter.hxx"
-
 extern "C"
 {
 #include "api_scilab.h"
-#include "MALLOC.h"
-#include "xml_mlist.h"
 }
+
+#include "FieldsManager.hxx"
+#include "XMLNsFieldsGetter.hxx"
+
 
 using namespace org_modules_xml;
 
