@@ -62,6 +62,7 @@ public class ScilabJavaObject {
 
     static boolean debug;
     static Logger logger;
+    static FileHandler handler;
 
     protected static int currentCapacity = INITIALCAPACITY;
     protected static ScilabJavaObject[] arraySJO = new ScilabJavaObject[currentCapacity];
@@ -206,15 +207,19 @@ public class ScilabJavaObject {
      * @param filename the log file
      */
     public static final void enableTrace(String filename) throws ScilabJavaException {
+        if (debug) {
+            disableTrace();
+        }
+
         debug = true;
         logger = Logger.getLogger("JIMS");
 
         try {
-            FileHandler fh = new FileHandler(filename, true);
-            logger.addHandler(fh);
+            handler = new FileHandler(filename, true);
+            logger.addHandler(handler);
             logger.setLevel(Level.ALL);
             SimpleFormatter formatter = new SimpleFormatter();
-            fh.setFormatter(formatter);
+            handler.setFormatter(formatter);
         } catch (SecurityException e) {
             debug = false;
             throw new ScilabJavaException("A security exception has been thrown:\n" + e);
@@ -234,8 +239,11 @@ public class ScilabJavaObject {
      * Disable trace
      */
     public static final void disableTrace() {
-        if (debug) {
-            logger.removeHandler(logger.getHandlers()[0]);
+        if (debug && logger != null && handler != null) {
+            logger.removeHandler(handler);
+            handler.flush();
+            handler.close();
+            handler = null;
             debug = false;
         }
     }
