@@ -14,6 +14,7 @@ package org.scilab.modules.external_objects_java;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.nio.Buffer;
@@ -30,6 +31,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.MethodDescriptor;
+import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.logging.FileHandler;
@@ -426,6 +432,28 @@ public class ScilabJavaObject {
                 }
             }
 
+            // Append beans properties (and remove accessor methods)
+            try {
+                final BeanInfo info = Introspector.getBeanInfo(clazz);
+
+                final PropertyDescriptor[] properties = info.getPropertyDescriptors();
+                if (properties != null) {
+                    for (PropertyDescriptor p : properties) {
+                        set.add(p.getName());
+
+                        final Method getter = p.getReadMethod();
+                        final Method setter = p.getWriteMethod();
+                        if (getter != null) {
+                            set.remove(getter.getName());
+                        }
+                        if (setter != null) {
+                            set.remove(setter.getName());
+                        }
+                    }
+                }
+            } catch (IntrospectionException e) {
+            }
+
             return set.toArray(new String[set.size()]);
         } catch (Exception e) {
             return new String[0];
@@ -519,32 +547,37 @@ public class ScilabJavaObject {
                     throw new ScilabJavaException("Invalid Java object");
                 }
 
-                f = arraySJO[id].clazz.getField(fieldName);
-                if (Modifier.isPublic(f.getModifiers())) {
+                try  {
+                    f = arraySJO[id].clazz.getField(fieldName);
+
+                    // standard field access
                     try {
                         f.set(arraySJO[id].object, arraySJO[idarg].object);
                     } catch (IllegalArgumentException e) {
                         if (f != null && f.getType() == int.class && arraySJO[idarg].clazz == double.class
                                 && ((Double) arraySJO[idarg].object).intValue() == ((Double) arraySJO[idarg].object).doubleValue()) {
                             f.set(arraySJO[id].object, ((Double) arraySJO[idarg].object).intValue());
+                            return;
                         } else {
                             throw e;
                         }
                     }
-                } else {
-                    String setter = "set" + Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
-                    if (arraySJO[id].methods.containsKey(setter)) {
-                        arraySJO[id].methods.get(setter).invoke(arraySJO[id].object, returnType, new int[] {idarg});
-                    } else {
-                        throw new ScilabJavaException("No method " + setter + " in object " + getClassName(id));
-                    }
+                } catch (NoSuchFieldException e) {
                 }
-            } catch (NoSuchFieldException e) {
-                throw new ScilabJavaException("No field " + fieldName + " in object " + getClassName(id));
+
+                // lookup for a bean property
+                final PropertyDescriptor p = lookupBeanProperty(id, fieldName);
+                final Method method  = p.getWriteMethod();
+                if (method == null) {
+                    throw new ScilabJavaException("Cannot read the property " + fieldName + " in object " + getClassName(id));
+                }
+                method.invoke(arraySJO[id].object, arraySJO[idarg].object);
             } catch (IllegalArgumentException e) {
                 throw new ScilabJavaException("Bad argument value for field " + fieldName + " in object " + getClassName(id));
             } catch (IllegalAccessException e) {
                 throw new ScilabJavaException("Cannot access to the field " + fieldName + " in object " + getClassName(id));
+            } catch (InvocationTargetException e) {
+                throw new ScilabJavaException("Exception occurs on write access to the property " + fieldName + " in object " + getClassName(id));
             }
         } else {
             throw new ScilabJavaException("null is not an object");
@@ -575,8 +608,8 @@ public class ScilabJavaObject {
                     return new ScilabJavaObject(arraySJO[id].object, arraySJO[id].object.getClass()).id;
                 }
 
-                final Field f = arraySJO[id].clazz.getField(fieldName);
-                if (Modifier.isPublic(f.getModifiers())) {
+                try {
+                    final Field f = arraySJO[id].clazz.getField(fieldName);
                     final Class cl = f.getType();
                     if (cl == int.class) {
                         return new ScilabJavaObject(f.getInt(arraySJO[id].object), int.class).id;
@@ -597,25 +630,41 @@ public class ScilabJavaObject {
                     }
 
                     return new ScilabJavaObject(f.get(arraySJO[id].object)).id;
-                } else {
-                    final String fieldStr = Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
-                    final String getter = "get" + fieldStr;
-                    final String iser = "is" + fieldStr;
-
-                    if (arraySJO[id].methods.containsKey(getter)) {
-                        return new ScilabJavaObject(arraySJO[id].methods.get(getter).invoke(arraySJO[id].object, returnType, new int[] {}), returnType[0]).id;
-                    } else if (Boolean.class.equals(f.getClass()) && arraySJO[id].methods.containsKey(iser)) {
-                        return new ScilabJavaObject(arraySJO[id].methods.get(iser).invoke(arraySJO[id].object, returnType, new int[] {}), returnType[0]).id;
-                    } else {
-                        throw new ScilabJavaException("No method " + getter + " in object " + getClassName(id));
-                    }
+                } catch (NoSuchFieldException e) {
                 }
-            } catch (NoSuchFieldException e) {
-                throw new ScilabJavaException("No field " + fieldName + " in object " + getClassName(id));
+
+                // lookup for a bean property
+                final PropertyDescriptor p = lookupBeanProperty(id, fieldName);
+                final Method method  = p.getReadMethod();
+                if (method == null) {
+                    throw new ScilabJavaException("Cannot read the field or property " + fieldName + " in object " + getClassName(id));
+                }
+                final Object retValue = method.invoke(arraySJO[id].object);
+                final Class cl = retValue.getClass();
+                if (cl == int.class) {
+                    return new ScilabJavaObject(retValue, int.class).id;
+                } else if (cl == double.class) {
+                    return new ScilabJavaObject(retValue, double.class).id;
+                } else if (cl == boolean.class) {
+                    return new ScilabJavaObject(retValue, boolean.class).id;
+                } else if (cl == short.class) {
+                    return new ScilabJavaObject(retValue, short.class).id;
+                } else if (cl == char.class) {
+                    return new ScilabJavaObject(retValue, char.class).id;
+                } else if (cl == float.class) {
+                    return new ScilabJavaObject(retValue, float.class).id;
+                } else if (cl == byte.class) {
+                    return new ScilabJavaObject(retValue, byte.class).id;
+                } else if (cl == long.class) {
+                    return new ScilabJavaObject(retValue, long.class).id;
+                }
+                return new ScilabJavaObject(retValue).id;
             } catch (IllegalArgumentException e) {
                 throw new ScilabJavaException("Bad argument value for field " + fieldName + " in object " + getClassName(id));
             } catch (IllegalAccessException e) {
                 throw new ScilabJavaException("Cannot access to the field " + fieldName + " in object " + getClassName(id));
+            } catch (InvocationTargetException e) {
+                throw new ScilabJavaException("Exception occurs on read access to the property " + fieldName + " in object " + getClassName(id));
             }
         } else {
             throw new ScilabJavaException("null is not an object");
@@ -652,28 +701,45 @@ public class ScilabJavaObject {
                     return 1;
                 }
 
-                Field f = arraySJO[id].clazz.getField(fieldName);
-                if (Modifier.isPublic(f.getModifiers())) {
+                try {
+                    Field f = arraySJO[id].clazz.getField(fieldName);
                     return 1;
-                } else {
-                    final String fieldStr = Character.toUpperCase(fieldName.charAt(0)) + fieldName.substring(1);
-                    final String getter = "get" + fieldStr;
-                    final String iser = "is" + fieldStr;
-                    final String setter = "set" + fieldStr;
-                    if (arraySJO[id].methods.containsKey(setter) && (arraySJO[id].methods.containsKey(getter) || Boolean.class.equals(f.getClass()) && arraySJO[id].methods.containsKey(iser))) {
-                        return 1;
-                    } else {
-                        return -1;
-                    }
+                } catch (NoSuchFieldException e) {
                 }
-            } catch (NoSuchFieldException e) {
-                return -1;
+
+                // lookup for a bean property
+                lookupBeanProperty(id, fieldName);
+                return 1;
             } catch (IllegalArgumentException e) {
+                return -1;
+            } catch (ScilabJavaException e) {
                 return -1;
             }
         }
 
         return -1;
+    }
+
+    private static final PropertyDescriptor lookupBeanProperty(int id, String fieldName) throws ScilabJavaException {
+        final BeanInfo info;
+        try {
+            info = Introspector.getBeanInfo(arraySJO[id].clazz);
+        } catch (IntrospectionException e) {
+            throw new ScilabJavaException("Unable to get properties of object " + getClassName(id));
+        }
+
+        final PropertyDescriptor[] properties = info.getPropertyDescriptors();
+        if (properties == null) {
+            throw new ScilabJavaException("No property " + fieldName + " in object " + getClassName(id));
+        }
+
+        for (PropertyDescriptor p : properties) {
+            if (fieldName.equals(p.getName())) {
+                return p;
+            }
+        }
+
+        throw new ScilabJavaException("No property " + fieldName + " in object " + getClassName(id));
     }
 
     /**
