@@ -15,6 +15,7 @@
 #include "ScilabGateway.hxx"
 
 extern "C" {
+#include "warningmode.h"
 #include "Scierror.h"
 #include "gw_external_objects_java.h"
 }
@@ -32,6 +33,12 @@ int sci_jconvMatrixMethod(char * fname, unsigned long fname_len)
 
     CheckInputArgument(pvApiCtx, 0, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
+    if (getWarningMode())
+    {
+        sciprint(_("%s: Function %s is obsolete.\n"), _("Warning"), fname);
+        sciprint(_("%s: Please see documentation for more details.\n"), _("Warning"));
+        sciprint(_("%s: This function will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.0.0");
+    }
 
     envId = ScilabJavaEnvironment::start();
     JavaOptionsSetter setter = ScilabJavaEnvironment::getInstance().getOptionsHelper().getSetter(JavaOptionsSetter::METHODOFCONV);

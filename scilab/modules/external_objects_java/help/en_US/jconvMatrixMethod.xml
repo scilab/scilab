@@ -15,7 +15,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jconvMatrixMethod">
     <refnamediv>
         <refname>jconvMatrixMethod</refname>
-        <refpurpose>Set the way to convert matrices</refpurpose>
+        <refpurpose>
+            Set the way to convert matrices <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -38,6 +40,11 @@
     <refsection>
         <title>Description</title>
         <para>
+            <warning>
+                This function is obsolete and will be removed in Scilab 6.0.0, use preferabily the <link linkend="jautoTranspose">jautoTranspose</link> function.
+            </warning>
+        </para>
+        <para>
             In Scilab a matrix such as <literal>[1 2 3;4 5 6]</literal> is stored <literal>[1 4 2 5 3 6]</literal> (column by column). In Java the same matrix is stored as <literal>[-&gt;[1 2 3] -&gt;[4 5 6]]</literal> (array of pointers).
         </para>
         <para>
@@ -47,7 +54,7 @@
             When method is 'rc' (row-column), the array <literal>[1 4 2 5 3 6]</literal> is passed as <literal>[1 2 3 4 5 6]</literal> and converted into <literal>[-&gt;[1 2 3] -&gt;[4 5 6]]</literal>.
         </para>
         <para>
-            By default the method is set to 'cr'.
+            By default, the method is set to 'cr'.
         </para>
     </refsection>
     <refsection>
@@ -56,5 +63,13 @@
                jconvMatrixMethod()
                jconvMatrixMethod("cr")
       ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="jautoTranspose">jautoTranspose</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>
