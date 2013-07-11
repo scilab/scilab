@@ -69,7 +69,6 @@ class EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP ScilabJavaEnvironment : public ScilabA
     //    PythonVariablesScope & scope;
     bool traceEnabled;
     bool isInit;
-    std::ofstream * file;
     ScilabStream & scilabStream;
     JavaOptionsHelper & helper;
     ScilabGatewayOptions & gwOptions;

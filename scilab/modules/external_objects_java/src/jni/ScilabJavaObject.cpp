@@ -116,6 +116,7 @@ ScilabJavaObject::ScilabJavaObject(JavaVM * jvm_)
     /* Methods ID set to NULL */
     jintinvokejintintjstringjava_lang_StringjintArray_intintID = NULL;
     jintextractjintintjintArray_intintID = NULL;
+    voidinsertjintintjintArray_intintjintintID = NULL;
     voidinitScilabJavaObjectID = NULL;
     voidgarbageCollectID = NULL;
     jstringgetRepresentationjintintID = NULL;
@@ -191,6 +192,7 @@ ScilabJavaObject::ScilabJavaObject(JavaVM * jvm_, jobject JObj)
     /* Methods ID set to NULL */
     jintinvokejintintjstringjava_lang_StringjintArray_intintID = NULL;
     jintextractjintintjintArray_intintID = NULL;
+    voidinsertjintintjintArray_intintjintintID = NULL;
     voidinitScilabJavaObjectID = NULL;
     voidgarbageCollectID = NULL;
     jstringgetRepresentationjintintID = NULL;
@@ -346,6 +348,43 @@ int ScilabJavaObject::extract (JavaVM * jvm_, int id, int const* args, int argsS
     }
     return res;
 
+}
+
+void ScilabJavaObject::insert (JavaVM * jvm_, int id, int const* keys, int keysSize, int value)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = curEnv->FindClass( className().c_str() );
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    jmethodID voidinsertjintintjintArray_intintjintintID = curEnv->GetStaticMethodID(cls, "insert", "(I[II)V" ) ;
+    if (voidinsertjintintjintArray_intintjintintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "insert");
+    }
+
+    jintArray keys_ = curEnv->NewIntArray( keysSize ) ;
+
+    if (keys_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( keys_, 0, keysSize, (jint*)(keys) ) ;
+
+
+    curEnv->CallStaticVoidMethod(cls, voidinsertjintintjintArray_intintjintintID , id, keys_, value);
+    curEnv->DeleteLocalRef(keys_);
+    curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
 }
 
 void ScilabJavaObject::initScilabJavaObject (JavaVM * jvm_)

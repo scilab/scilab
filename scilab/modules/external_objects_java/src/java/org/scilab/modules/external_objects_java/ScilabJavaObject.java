@@ -856,6 +856,109 @@ public class ScilabJavaObject {
 
     /**
      * @param id the Java Object id
+     * @param keys an array containing the id of the arguments
+     * @param value the id of the value
+     */
+    public static final void insert(final int id, final int[] keys, final int value) throws ScilabJavaException {
+        if (id > 0) {
+            if (debug) {
+                StringBuffer buf = new StringBuffer();
+                buf.append("(");
+                if (keys.length > 0) {
+                    int i = 0;
+                    for (; i < keys.length - 1; i++) {
+                        buf.append(Integer.toString(keys[i]));
+                        buf.append(",");
+                    }
+                    buf.append(Integer.toString(keys[i]));
+                }
+                buf.append(")");
+                logger.log(Level.INFO, "Insert in object id=" + id + " with arguments id=" + buf.toString() + " and the value id=" + value);
+            }
+
+            if (arraySJO[id] != null) {
+                Object o = arraySJO[id].object;
+                for (int i = 0; i < keys.length - 1; i++) {
+                    Object a = keys[i] == 0 ? null : arraySJO[keys[i]].object;
+                    if (o instanceof Map) {
+                        o = ((Map) o).get(a);
+                    } else if (o instanceof List) {
+                        List l = (List) o;
+                        int pos = -1;
+                        if (a instanceof Double) {
+                            pos = ((Double) a).intValue();
+                        } else if (a instanceof Integer) {
+                            pos = ((Integer) a).intValue();
+                        } else {
+                            pos = l.indexOf(a);
+                        }
+                        if (pos >= 0 || pos < l.size()) {
+                            o = l.get(pos);
+                        } else {
+                            throw new ScilabJavaException("Cannot get object at position " + (i + 1));
+                        }
+                    } else if (o.getClass().isArray()) {
+                        int pos = -1;
+                        if (a instanceof Double) {
+                            pos = ((Double) a).intValue();
+                        } else if (a instanceof Integer) {
+                            pos = ((Integer) a).intValue();
+                        }
+
+                        o = ScilabJavaArray.get(o, new int[] {pos});
+                    } else {
+                        throw new ScilabJavaException("Invalid field " + (a == null ? "null" : a.toString()));
+                    }
+                }
+
+                if (o == null) {
+                    return;
+                }
+
+                int last = keys[keys.length - 1];
+                Object a = last == 0 ? null : arraySJO[last].object;
+                if (o instanceof Map) {
+                    ((Map) o).put(a, arraySJO[value].object);
+                } else if (o instanceof List) {
+                    List l = (List) o;
+                    int pos = -1;
+                    if (a instanceof Double) {
+                        pos = ((Double) a).intValue();
+                    } else if (a instanceof Integer) {
+                        pos = ((Integer) a).intValue();
+                    } else {
+                        pos = l.indexOf(a);
+                    }
+                    if (pos >= 0 || pos < l.size()) {
+                        l.set(pos, arraySJO[value].object);
+                    } else if (pos < 0) {
+                        l.add(0, arraySJO[value].object);
+                    } else {
+                        l.add(arraySJO[value].object);
+                    }
+                } else if (o.getClass().isArray()) {
+                    int pos = -1;
+                    if (a instanceof Double) {
+                        pos = ((Double) a).intValue();
+                    } else if (a instanceof Integer) {
+                        pos = ((Integer) a).intValue();
+                    }
+
+                    ScilabJavaArray.set(o, new int[] {pos}, arraySJO[value].object);
+                } else {
+                    throw new ScilabJavaException("Invalid field " + (a == null ? "null" : a.toString()));
+                }
+
+                return;
+            }
+            throw new ScilabJavaException("Invalid Java object");
+        } else {
+            throw new ScilabJavaException("null is not an object");
+        }
+    }
+
+    /**
+     * @param id the Java Object id
      * @param className the target class name
      * @return the id of the cast result
      */

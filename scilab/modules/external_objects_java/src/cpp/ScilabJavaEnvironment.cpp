@@ -46,41 +46,23 @@ ScilabJavaEnvironment::ScilabJavaEnvironment() :
     wrapper(*new ScilabJavaEnvironmentWrapper(helper)),
     traceEnabled(false),
     isInit(false),
-    scilabStream(*new ScilabStream()),
-    file(0) { }
+    scilabStream(*new ScilabStream()) { }
 
-//    ScilabJavaEnvironment::ScilabJavaEnvironment() {}
 ScilabJavaEnvironment::~ScilabJavaEnvironment()
 {
     //    delete &scope;
     delete &helper;
     delete &gwOptions;
     delete &wrapper;
-
-    if (file)
-    {
-        file->flush();
-        file->close();
-        delete file;
-        file = 0;
-    }
 }
 
 int ScilabJavaEnvironment::start()
 {
-    /*    if (!usable)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Due to Java interpreter limitations, Scilab must be restarted"));
-            }*/
-
     if (envId == -1)
     {
         instance = new ScilabJavaEnvironment();
         envId = ScilabEnvironments::registerScilabEnvironment(instance);
         instance->Initialize();
-        /*        ScilabJavaOStream::initJavaStreams();
-                ScilabJavaOStream::setStdOutStream(&instance->scilabStream);
-                ScilabJavaOStream::setStdErrStream(&instance->scilabStream);*/
         instance->helper.setUseLastName(true);
         instance->helper.setNewAllowed(true);
         instance->enabletrace((std::string(getTMPDIR()) + std::string("/eo_java.log")).c_str());
@@ -177,99 +159,24 @@ int ScilabJavaEnvironment::extract(int id, int * args, int argsSize)
 
 void ScilabJavaEnvironment::insert(int id, int * args, int argsSize)
 {
-    /*
-        PyObject * obj = scope.getObject(id);
-        if (!obj)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid object with id %d"), id);
-        }
-
-        if (argsSize != 2)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot insert more than one element in a dictionary"));
-        }
-
-        PyObject * key = scope.getObject(args[0]);
-        if (!obj)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid key object"));
-        }
-
-        PyObject * value = scope.getObject(args[1]);
-        if (!value)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid value object"));
-        }
-
-        if (PyDict_Check(obj))
-        {
-            PyDict_SetItem(obj, key, value);
-
-            writeLog("insert", "success.");
-
-            return;
-        }
-        else
-        {
-            if (!PyString_Check(key))
-            {
-                throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid key object: A string expected"));
-            }
-
-            int ret = PyObject_SetAttr(obj, key, value);
-            if (ret == -1)
-            {
-                if (PyErr_Occurred())
-                {
-                    PyObject *type, *value, *traceback;
-                    PyErr_Fetch(&type, &value, &traceback);
-                    PyErr_NormalizeException(&type, &value, &traceback);
-                    PyErr_Clear();
-
-                    throw ScilabJavaException(__LINE__, __FILE__, type, value, traceback, gettext("Cannot evaluate the code"));
-                }
-                throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot set the attribute."));
-            }
-
-            writeLog("insert", "success.");
-
-            return;
-        }
-    */
-    throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot insert in Java object"));
+    JavaVM * vm = getScilabJavaVM();
+    ScilabJavaObject::insert(vm, id, args, argsSize - 1, args[argsSize - 1]);
 }
 
-void ScilabJavaEnvironment::garbagecollect() { }
+void ScilabJavaEnvironment::garbagecollect()
+{
+    JavaVM *vm = getScilabJavaVM();
+    ScilabJavaObject::garbageCollect(vm);
+}
 
 void ScilabJavaEnvironment::addtoclasspath(const char * path)
 {
-    /*
-        PyObject * syspath = PySys_GetObject(const_cast<char *>("path"));
-        PyObject * _path = PyString_FromString(path);
-        PyList_Append(syspath, _path);
-    */
+    // Useless: we already have javaclasspath
 }
 
 void ScilabJavaEnvironment::getclasspath(const ScilabStringStackAllocator & allocator)
 {
-    /*
-        PyObject * syspath = PySys_GetObject(const_cast<char *>("path"));
-        int size = PyList_Size(syspath);
-        char ** arr = new char*[size];
-
-        for (int i = 0; i < size; i++)
-        {
-            PyObject * item = PyList_GetItem(syspath, i);
-            arr[i] = strdup(PyString_AsString(item));
-        }
-
-        allocator.allocate(size, 1, arr);
-        for (int i = 0; i < size; i++)
-        {
-            free(arr[i]);
-        }
-        delete arr;
-    */
+    // Useless: we already have javaclasspath
 }
 
 void ScilabJavaEnvironment::addNamedVariable(int id, const char * varName)

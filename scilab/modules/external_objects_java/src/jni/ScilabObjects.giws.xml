@@ -24,6 +24,12 @@
             <param type="int[]" name="args" />
         </method>
         
+        <method name="insert" returnType="void" modifier="static">
+            <param type="int" name="id" />
+            <param type="int[]" name="keys" />
+            <param type="int" name="value" />
+        </method>
+        
         <method name="initScilabJavaObject" returnType="void" modifier="static" />
         
         <method name="garbageCollect" returnType="void" modifier="static" />
