@@ -120,31 +120,18 @@ const std::string & ScilabJavaEnvironment::getEnvironmentName()
 
 void ScilabJavaEnvironment::getEnvironmentInfos(const ScilabStringStackAllocator & allocator)
 {
+    JavaVM * vm = getScilabJavaVM();
+    int len;
+    char ** info = ScilabJavaObject::getInfos(vm, &len);
 
-    /*
-        std::vector<char *> version = breakInLines(std::string(Py_GetVersion()));
-        std::vector<char *> platform = breakInLines(std::string(Py_GetPlatform()));
-        std::vector<char *> copyright = breakInLines(std::string(Py_GetCopyright()));
-        std::vector<char *> compiler = breakInLines(std::string(Py_GetCompiler()));
-        std::vector<char *> buildInfo = breakInLines(std::string(Py_GetBuildInfo()));
+    allocator.allocate(len, 1, info);
 
-        int nbRows = version.size() + platform.size() + copyright.size() + compiler.size() + buildInfo.size();
+    for (int i = 0; i < len; i++)
+    {
+        delete[] info[i];
+    }
 
-        std::vector<char *> all(nbRows, const_cast<char* >(""));
-        all[0] = const_cast<char* >("Version");
-        all[version.size()] = const_cast<char* >("Platform");
-        all[version.size() + platform.size()] = const_cast<char* >("Copyright");
-        all[version.size() + platform.size() + copyright.size()] = const_cast<char* >("Compiler");
-        all[version.size() + platform.size() + copyright.size() + compiler.size()] = const_cast<char* >("Build info");
-
-        all.insert(all.end(), version.begin(), version.end());
-        all.insert(all.end(), platform.begin(), platform.end());
-        all.insert(all.end(), copyright.begin(), copyright.end());
-        all.insert(all.end(), compiler.begin(), compiler.end());
-        all.insert(all.end(), buildInfo.begin(), buildInfo.end());
-
-        allocator.allocate(nbRows, 2, &(all[0]));
-    */
+    delete[] info;
 }
 
 int ScilabJavaEnvironment::extract(int id, int * args, int argsSize)

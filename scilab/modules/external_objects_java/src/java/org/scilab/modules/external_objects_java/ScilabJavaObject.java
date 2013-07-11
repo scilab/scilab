@@ -12,6 +12,8 @@
 
 package org.scilab.modules.external_objects_java;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -268,6 +270,28 @@ public class ScilabJavaObject {
     @Override
     protected ScilabJavaObject clone() {
         return new ScilabJavaObject(object, clazz);
+    }
+
+    /**
+     * Get info as returned by java -version
+     * @return version
+     */
+    public static final String[] getInfos() {
+        try {
+            Class c = Class.forName("sun.misc.Version");
+            Method m = c.getMethod("print", new Class[] { PrintStream.class });
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            PrintStream out = new PrintStream(baos);
+            m.invoke(null, out);
+            out.flush();
+            String[] ret = baos.toString().split("\n");
+            out.close();
+            baos.close();
+
+            return ret;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**

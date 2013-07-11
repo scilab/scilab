@@ -120,6 +120,9 @@
     <ClCompile Include="sci_gateway\cpp\sci_jconvMatrixMethod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_jgetinfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cpp\JavaOptionsHelper.hxx">

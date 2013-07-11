@@ -44,7 +44,8 @@ static gw_generic_table Tab[] =
     {sci_jautoUnwrap, "jautoUnwrap"},
     {sci_jautoTranspose, "jautoTranspose"},
     {sci_jinvoke, "jinvoke"},
-    {sci_jconvMatrixMethod, "jconvMatrixMethod"}
+    {sci_jconvMatrixMethod, "jconvMatrixMethod"},
+    {sci_jgetinfo, "jgetinfo"}
 };
 
 static BOOL loadedDep = FALSE;

@@ -53,4 +53,5 @@
     <PRIMITIVE gatewayId="72" primitiveId="22" primitiveName="jautoTranspose" />
     <PRIMITIVE gatewayId="72" primitiveId="23" primitiveName="jinvoke" />
     <PRIMITIVE gatewayId="72" primitiveId="24" primitiveName="jconvMatrixMethod" />
+    <PRIMITIVE gatewayId="72" primitiveId="25" primitiveName="jgetinfo" />
 </GATEWAY>

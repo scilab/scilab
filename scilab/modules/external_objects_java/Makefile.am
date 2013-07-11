@@ -65,7 +65,8 @@ sci_gateway/cpp/sci_jallowClassReloading.cpp \
 sci_gateway/cpp/sci_jwrapinfloat.cpp \
 sci_gateway/cpp/sci_jsetfield.cpp \
 sci_gateway/cpp/sci_jautoTranspose.cpp \
-sci_gateway/cpp/sci_jconvMatrixMethod.cpp
+sci_gateway/cpp/sci_jconvMatrixMethod.cpp \
+sci_gateway/cpp/sci_jgetinfo.cpp
 
 GIWS_WRAPPERS = src/jni/ScilabObjects.giws.xml
 

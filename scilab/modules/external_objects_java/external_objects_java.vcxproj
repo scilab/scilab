@@ -210,6 +210,7 @@
     <ClCompile Include="sci_gateway\cpp\sci_jgetclassname.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jgetfield.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jgetfields.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jgetinfo.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jgetmethods.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jimport.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jinvoke.cpp" />

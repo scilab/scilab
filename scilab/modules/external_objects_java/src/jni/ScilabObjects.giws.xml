@@ -30,6 +30,8 @@
             <param type="int" name="value" />
         </method>
         
+        <method name="getInfos" returnType="String[]" modifier="static"/>
+        
         <method name="initScilabJavaObject" returnType="void" modifier="static" />
         
         <method name="garbageCollect" returnType="void" modifier="static" />
