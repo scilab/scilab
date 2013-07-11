@@ -307,4 +307,20 @@ public class CommonHandler {
 
         return (Integer)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_BACKGROUND__);
     }
+
+    public  static double logScale(Double value, boolean logScale) {
+
+        if (logScale) {
+            return Math.log10(value);
+        }
+        return value;
+    }
+
+    public static double InverseLogScale(Double value, boolean logScale) {
+
+        if (logScale) {
+            return Math.pow(10., value);
+        }
+        return value;
+    }
 }

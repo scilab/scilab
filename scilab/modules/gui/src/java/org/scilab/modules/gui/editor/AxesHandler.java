@@ -34,7 +34,7 @@ import org.scilab.modules.gui.editor.PolylineHandler;
 */
 public class AxesHandler {
 
-    public enum axisTo { __X__, __Y__, __Z__ };
+    public enum axisTo { __X__, __Y__, __Z__, __TITLE__ };
 
     private static String[] searchAxes(String uid) {
         return (new ObjectSearcher()).search(uid, GraphicObjectProperties.__GO_AXES__);
@@ -251,7 +251,7 @@ public class AxesHandler {
         GraphicController.getController().setGraphicObjectRelationship(cloneUID, yLabelUID);
         GraphicController.getController().setGraphicObjectRelationship(cloneUID, zLabelUID);
         GraphicController.getController().setGraphicObjectRelationship(cloneUID, titleUID);
-		
+
         //Set the correct position to the labels/title in the new Axes
 
         GraphicController.getController().setProperty(xLabelUID, GraphicObjectProperties.__GO_AUTO_POSITION__, true);

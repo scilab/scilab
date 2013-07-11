@@ -16,6 +16,7 @@ package org.scilab.modules.gui.editor;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.editor.AxesHandler;
+import org.scilab.modules.gui.editor.CommonHandler;
 
 import org.scilab.modules.renderer.CallRenderer;
 import org.scilab.modules.graphic_objects.axes.Axes;
@@ -32,6 +33,8 @@ import java.lang.Math;
 */
 public class LabelHandler {
 
+    static AxesHandler.axisTo axis;
+    static String axes;
 
     /**
      * Set the text of label x, y or z.
@@ -55,6 +58,9 @@ public class LabelHandler {
                 break;
             case __Z__:
                 label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                break;
+            case __TITLE__:
+                label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_TITLE__);
                 break;
             default:
                 return null;
@@ -86,6 +92,9 @@ public class LabelHandler {
             case __Z__:
                 label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
                 break;
+            case __TITLE__:
+                label = (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_TITLE__);
+                break;
             default:
                 return null;
         }
@@ -94,5 +103,150 @@ public class LabelHandler {
             return text[0];
         }
         return null;
+    }
+
+    /**
+    * Given a figure, a initial mouse position and a final mouse position, it gets the clicked label and moves it to the final position
+    * PS: It is not a free move, it slides the label over the current axis
+    *
+    * @param figure The figure to drag the label
+    * @param pos The initial click position
+    * @param nextPos The final click position
+    * @param update Control if need update the label / Axes, false if the mouse still pressed/dragging, true otherwise
+    */
+    public static void dragLabel(String figure, Integer[] pos, Integer[] nextPos, boolean update) {
+
+
+        if (update) {
+            axis = EntityPicker.pickLabel(figure, pos);
+            axes = AxesHandler.clickedAxes(figure, pos);
+        }
+        if (axes == null || axis == null)
+            return;
+
+        String label = null;
+        Axes ax = AxesHandler.getAxesFromUid(axes);
+        boolean scale;
+        Double[] labelPos;
+        double[] pixBotton  = { 0., 0., 0.}, pixTop = { 0., 0., 0.};
+        Double[] bounds = ax.getDataBounds();
+        Double  width, height, length, delta, min, max, temp;
+        int flag;
+
+        switch (axis) {
+            case __X__:
+                label = ax.getXAxisLabel();
+                scale = ax.getXAxisLogFlag();
+                break;
+            case __Y__:
+                label = ax.getYAxisLabel();
+                scale = ax.getYAxisLogFlag();
+                break;
+            case __Z__:
+                label = ax.getZAxisLabel();
+                scale = ax.getZAxisLogFlag();
+                break;
+            case __TITLE__:
+                return;
+            default:
+                return;
+        }
+
+        labelPos  = (Double[])GraphicController.getController().getProperty(label, GraphicObjectProperties.__GO_POSITION__);
+
+        switch (axis) {
+            case __X__:
+                pixBotton[0] = bounds[0];
+                pixBotton[1] = labelPos[1];
+                pixBotton[2] = labelPos[2];
+                pixTop[0] = bounds[1];
+                pixTop[1] = labelPos[1];
+                pixTop[2] = labelPos[2];
+                min = bounds[0];
+                max = bounds[1];
+                break;
+            case __Y__:
+                pixBotton[0] = labelPos[0];
+                pixBotton[1] = bounds[2];
+                pixBotton[2] = labelPos[2];
+                pixTop[0] = labelPos[0];
+                pixTop[1] = bounds[3];
+                pixTop[2] = labelPos[2];
+                min = bounds[2];
+                max = bounds[3];
+                break;
+            case __Z__:
+                pixBotton[0] = labelPos[0];
+                pixBotton[1] = labelPos[1];
+                pixBotton[2] = bounds[4];
+                pixTop[0] = labelPos[0];
+                pixTop[1] = labelPos[1];
+                pixTop[2] = bounds[5];
+                min = bounds[4];
+                max = bounds[5];
+                break;
+            default:
+                return;
+        }
+
+        pixBotton = AxesDrawer.computePixelFrom3dCoordinates(ax, pixBotton);
+        pixTop = AxesDrawer.computePixelFrom3dCoordinates(ax, pixTop);
+
+        width = Math.abs(pixBotton[0] - pixTop[0]);
+        height = Math.abs(pixTop[1] - pixBotton[1]);
+
+        if (width > height) {
+            length = width;
+            delta = 1.0 * (nextPos[0] - pos[0]);
+            if (pixTop[0] >= pixBotton[0]) {
+                flag = 1;
+            } else {
+                flag = -1;
+            }
+        } else {
+            length = height;
+            delta = 1.0 * (nextPos[1] - pos[1]);
+            if (pixTop[1] > pixBotton[1]) {
+                flag = 1;
+            } else {
+                flag = -1;
+            }
+        }
+
+        switch (axis) {
+            case __X__:
+                temp = CommonHandler.logScale(labelPos[0], scale) +
+                       (delta * ((CommonHandler.logScale(max, scale) - CommonHandler.logScale(min, scale)) / length) * flag);
+                labelPos[0] = CommonHandler.InverseLogScale(temp, scale);
+                if (labelPos[0] < min) {
+                    labelPos[0] = min;
+                } else if (labelPos[0] > max) {
+                    labelPos[0] = max;
+                }
+                break;
+            case __Y__:
+                temp = CommonHandler.logScale(labelPos[1], scale) +
+                       (delta * ((CommonHandler.logScale(max, scale) - CommonHandler.logScale(min, scale)) / length) * flag);
+                labelPos[1] = CommonHandler.InverseLogScale(temp, scale);
+                if (labelPos[1] < min) {
+                    labelPos[1] = min;
+                } else if (labelPos[1] > max) {
+                    labelPos[1] = max;
+                }
+                break;
+            case __Z__:
+                temp = CommonHandler.logScale(labelPos[2], scale) +
+                       (delta * ((CommonHandler.logScale(max, scale) - CommonHandler.logScale(min, scale)) / length) * flag);
+                labelPos[2] = CommonHandler.InverseLogScale(temp, scale);
+                if (labelPos[2] < min) {
+                    labelPos[2] = min;
+                } else if (labelPos[2] > max) {
+                    labelPos[2] = max;
+                }
+                break;
+            default:
+                return;
+        }
+        GraphicController.getController().setProperty(label, GraphicObjectProperties.__GO_POSITION__, labelPos);
     }
 }

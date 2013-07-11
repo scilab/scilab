@@ -58,8 +58,8 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     DatatipManagerMode datatipManagerMode;
     String lastDatatip = null;
     Integer[] lastClick = new Integer[2];
-    boolean changeOrientation = false; 
-    
+    boolean changeOrientation = false;
+
 
     Editor editor;
     boolean isInRotation = false;
@@ -74,11 +74,11 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
 
     public void onExit() {
         EditorManager.deleteEditor(editor.getFigureUid());
-	DatatipManager.deleteDatatipManager(windowUid);
+        DatatipManager.deleteDatatipManager(windowUid);
     }
 
     public void keyPressed(KeyEvent arg0) {
-	
+
         editor.onKeyPressed(arg0);
 
         if (datatipManagerMode.isEnabled()) {
@@ -106,7 +106,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
 
     public void mouseEntered(MouseEvent arg0) {
         Component canvas = (Component)arg0.getComponent();
-		canvas.requestFocusInWindow();
+        canvas.requestFocusInWindow();
     }
 
     public void mouseExited(MouseEvent arg0) {
@@ -118,10 +118,10 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
      * @param arg0 MouseEvent
      */
     public void mousePressed(MouseEvent arg0) {
-        
+
         if (arg0.getButton() == 1) {
 
-                isLeftButtonPressed = true;
+            isLeftButtonPressed = true;
 
             if (!datatipManagerMode.isEnabled()) {
                 editor.onLeftMouseDown(arg0);
@@ -155,6 +155,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
      * @param arg0 MouseEvent
      */
     public void mouseReleased(MouseEvent arg0) {
+
         if (!datatipManagerMode.isEnabled()) {
 
             if (arg0.getButton() == 3) {
@@ -173,6 +174,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
         isInRotation = false;
         isLeftButtonPressed = false;
         changeOrientation = false;
+        editor.setUpdateDrag(true);
     }
 
     /**
@@ -186,6 +188,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
 
             if (isLeftButtonPressed) {
                 editor.onMouseDragged(arg0);
+
             } else {
                 isInRotation = true;
             }
@@ -197,6 +200,7 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
                 DatatipDrag.dragDatatip(datatipManagerMode.getSelectedTip(), arg0.getX(), arg0.getY());
             }
         }
+        editor.setUpdateDrag(false);
     }
 
     public void mouseMoved(MouseEvent arg0) {

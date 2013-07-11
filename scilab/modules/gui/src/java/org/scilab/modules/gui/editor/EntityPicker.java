@@ -367,7 +367,7 @@ public class EntityPicker {
      * @param pos The position (x, y).
      * @return The picked axis label or null.
      */
-    public AxesHandler.axisTo pickLabel(String figure, Integer[] pos) {
+    public static AxesHandler.axisTo pickLabel(String figure, Integer[] pos) {
 
         String axes = AxesHandler.clickedAxes(figure, pos);
         if (axes == null) {
@@ -380,9 +380,15 @@ public class EntityPicker {
         double[] coord;
         String[] label = {  (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LABEL__),
                             (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__),
-                            (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__)
+                            (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__),
+                            (String)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_TITLE__)
                          };
-        for (Integer i = 0; i < 3; i++) {
+
+        boolean[] logScale = {  (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__),
+                                (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__)
+                             };
+
+        for (Integer i = 0; i < 4; i++) {
             corners = (Double[])GraphicController.getController().getProperty(label[i], GraphicObjectProperties.__GO_CORNERS__);
             radAngle = (Double)GraphicController.getController().getProperty(label[i], GraphicObjectProperties.__GO_FONT_ANGLE__);
             rotate = ((int)((radAngle * 2) / Math.PI)) % 2;
@@ -393,6 +399,10 @@ public class EntityPicker {
             point[1] = pos[1];
             point[2] = 1.0;
             coord = CallRenderer.get2dViewFromPixelCoordinates(axes, point);
+
+            coord[0] = CommonHandler.InverseLogScale(coord[0], logScale[0]);
+            coord[1] = CommonHandler.InverseLogScale(coord[1], logScale[1]);
+
             if ((coord[0] >= corners[0] && coord[0] <= corners[6]) || (coord[0] <= corners[0] && coord[0] >= corners[6])) {
                 if ((coord[1] >= corners[1] && coord[1] <= corners[4]) || (coord[1] <= corners[1] && coord[1] >= corners[4])) {
                     switch (i) {
@@ -402,6 +412,8 @@ public class EntityPicker {
                             return AxesHandler.axisTo.__Y__;
                         case 2:
                             return AxesHandler.axisTo.__Z__;
+                        case 3:
+                            return AxesHandler.axisTo.__TITLE__;
                     }
                 }
             }
@@ -414,7 +426,7 @@ public class EntityPicker {
     *
     * @param vec The corners points vector(should be 4 points x 3 coord, arranged sequentially)
     */
-    private Double[] rotateCorners(Double[] vec) {
+    private static Double[] rotateCorners(Double[] vec) {
 
         Integer length = vec.length;
         Double[] newVec = new Double[length];

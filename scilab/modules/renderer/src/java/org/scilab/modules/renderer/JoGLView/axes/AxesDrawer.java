@@ -40,6 +40,7 @@ import org.scilab.modules.renderer.JoGLView.label.LabelPositioner;
 import org.scilab.modules.renderer.JoGLView.label.TitlePositioner;
 import org.scilab.modules.renderer.JoGLView.label.YAxisLabelPositioner;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
+import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
 import java.awt.Dimension;
 import java.awt.geom.Rectangle2D;
@@ -797,6 +798,41 @@ public class AxesDrawer {
         }
 
         return coords2dView;
+    }
+
+    /**
+     * Computes and returns the pixel coordinates from a point's coordinates expressed in the current
+     * 3d view coordinate frame, using the given Axes. The returned pixel coordinates are expressed
+     * in the AWT's 2d coordinate frame.
+     * @param axes the given Axes.
+     * @param coordinates the 3d view coordinates (3-element array: x, y, z).
+     * @returns the pixel coordinates (2-element array: x, y).
+     */
+    public static double[] computePixelFrom3dCoordinates(Axes axes, double[] coordinates) {
+        DrawerVisitor currentVisitor;
+        AxesDrawer axesDrawer;
+        Transformation projection;
+        Transformation projection2d;
+        double height = 0.;
+
+        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
+
+        Vector3d point = new Vector3d(coordinates);
+        point = ScaleUtils.applyLogScale(point, logFlags);
+
+        if (currentVisitor != null) {
+            axesDrawer = currentVisitor.getAxesDrawer();
+            Integer[] size = currentVisitor.getFigure().getAxesSize();
+            Dimension canvasDimension = new Dimension(size[0], size[1]);
+            height = (double) size[1];
+
+            projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, false);
+
+            point = projection.project(point);
+        }
+
+        return new double[] {point.getX(), height - point.getY(), point.getZ()};
     }
 
     /**

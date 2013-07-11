@@ -74,6 +74,7 @@ public class Editor {
     DataEditor dataEditor;
     boolean dataModifyEnabled = false;
     boolean dataEditEnabled = false;
+    boolean updateDrag = true;
     EditorHistory editorHistory;
 
     Component dialogComponent;
@@ -114,6 +115,10 @@ public class Editor {
      */
     public boolean isDataModifyEnabled() {
         return dataModifyEnabled;
+    }
+
+    public void setUpdateDrag(boolean state) {
+        updateDrag = state;
     }
 
     /**
@@ -215,6 +220,8 @@ public class Editor {
                     } else if (selectedType == SelectionType.POLYLINE) {
                         PolylineHandler.getInstance().dragPolyline(objUID, dragClick, newClick);
                     }
+                } else {
+                    LabelHandler.dragLabel(figureUid, dragClick, newClick, updateDrag);
                 }
             } else {
                 dataEditor.onDrag(dragClick, newClick);
