@@ -476,3 +476,5 @@ Bug fixes
                      backup filename.
 
 * Bug #12715 fixed - Variable cross in pspect and cspect has been renamed because of conflicts with cross function.
+
+* Bug #12736 fixed - In SciNotes, the Completion window appeared only in first tab.
