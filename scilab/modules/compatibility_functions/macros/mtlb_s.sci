@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function y=mtlb_s(a,b)
-    // Emulation function for Matlab substraction
+    // Emulation function for Matlab subtraction
 
     if a==[] | b==[] then
         y=[];

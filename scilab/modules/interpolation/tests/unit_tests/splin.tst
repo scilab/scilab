@@ -27,7 +27,7 @@ a = 0;
 b = 1;
 // nb of interpolation  points
 n = 10;
-// discretisation for evaluation
+// discretization for evaluation
 m = 800;
 // abscissae of interpolation points
 x = linspace(a,b,n)';

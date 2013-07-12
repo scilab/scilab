@@ -43,7 +43,7 @@
  *      is outside scilab memory. In order to avoid problem with scilab
  *      pointer coming from other usage I manage in this interface a
  *      linked list of all the valid pointers onto "umfpack numerical
- *      factorisation handle" and the same for the Choleski factorizations.
+ *      factorization handle" and the same for the Choleski factorizations.
  *      These 2 lists are called
  *
  *         ListNumeric

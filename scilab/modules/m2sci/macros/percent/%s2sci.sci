@@ -9,7 +9,7 @@
 
 function [tree]=%s2sci(tree)
     // M2SCI function
-    // Conversion function for Matlab substraction
+    // Conversion function for Matlab subtraction
     // Input: tree = Matlab operation tree
     // Output: tree = Scilab equivalent for tree
     // Emulation function: mtlb_s()
@@ -29,7 +29,7 @@ function [tree]=%s2sci(tree)
     if size(tree.operands)==2 then
         [A,B]=getoperands(tree)
 
-        // Matlab and Scilab substraction do not match for Strings
+        // Matlab and Scilab subtraction do not match for Strings
         if or(A.vtype==[String,Unknown]) then
             A=convert2double(A)
         end

@@ -291,6 +291,7 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
             iSize *= _piDims[i];
         }
 
+        FREE(dims);
     }
     else
     {

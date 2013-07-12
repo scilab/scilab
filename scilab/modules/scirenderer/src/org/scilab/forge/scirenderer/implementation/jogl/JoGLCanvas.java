@@ -254,7 +254,7 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
 
         boolean needFlip;
         try {
-            needFlip = !((GLContextImpl) context).offscreenImageNeedsVerticalFlip();
+            needFlip = !autoDrawable.isGLOriented();
         } catch (GLException e) {
             needFlip = false;
         }

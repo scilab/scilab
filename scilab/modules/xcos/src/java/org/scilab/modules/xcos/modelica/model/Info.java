@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
+ * Copyright (C) 2011-2013 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,7 +14,6 @@
 package org.scilab.modules.xcos.modelica.model;
 
 import java.math.BigInteger;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -22,56 +22,78 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * Specify the size of all the parameters, state, inputs or outputs.
+ *
+ * <p>
+ * Java class for Info complex type.
+ *
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
+ *
+ * <pre>
+ * &lt;complexType name="Info">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="number_of_integer_parameters" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
+ *         &lt;element name="number_of_real_parameters" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
+ *         &lt;element name="number_of_string_parameters" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
+ *         &lt;element name="number_of_discrete_variables" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
+ *         &lt;element name="number_of_continuous_variables" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
+ *         &lt;element name="number_of_continuous_unknowns" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
+ *         &lt;element name="number_of_continuous_states" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
+ *         &lt;element name="number_of_inputs" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
+ *         &lt;element name="number_of_outputs" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
+ *         &lt;element name="number_of_modes" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
+ *         &lt;element name="number_of_zero_crossings" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Info", propOrder = { "numberOfIntegerParameters",
-                                      "numberOfRealParameters", "numberOfStringParameters",
-                                      "numberOfDiscreteVariables", "numberOfContinuousVariables",
-                                      "numberOfContinuousUnknowns", "numberOfContinuousStates",
-                                      "numberOfInputs", "numberOfOutputs", "numberOfModes",
+@XmlType(name = "Info", propOrder = { "numberOfIntegerParameters", "numberOfRealParameters", "numberOfStringParameters", "numberOfDiscreteVariables",
+                                      "numberOfContinuousVariables", "numberOfContinuousUnknowns", "numberOfContinuousStates", "numberOfInputs", "numberOfOutputs", "numberOfModes",
                                       "numberOfZeroCrossings"
                                     })
-public final class Info {
+public class Info {
 
     @XmlElement(name = "number_of_integer_parameters")
     @XmlSchemaType(name = "nonNegativeInteger")
-    private BigInteger numberOfIntegerParameters;
+    protected BigInteger numberOfIntegerParameters;
     @XmlElement(name = "number_of_real_parameters")
     @XmlSchemaType(name = "nonNegativeInteger")
-    private BigInteger numberOfRealParameters;
+    protected BigInteger numberOfRealParameters;
     @XmlElement(name = "number_of_string_parameters")
     @XmlSchemaType(name = "nonNegativeInteger")
-    private BigInteger numberOfStringParameters;
+    protected BigInteger numberOfStringParameters;
     @XmlElement(name = "number_of_discrete_variables")
     @XmlSchemaType(name = "nonNegativeInteger")
-    private BigInteger numberOfDiscreteVariables;
+    protected BigInteger numberOfDiscreteVariables;
     @XmlElement(name = "number_of_continuous_variables")
     @XmlSchemaType(name = "nonNegativeInteger")
-    private BigInteger numberOfContinuousVariables;
+    protected BigInteger numberOfContinuousVariables;
     @XmlElement(name = "number_of_continuous_unknowns")
     @XmlSchemaType(name = "nonNegativeInteger")
-    private BigInteger numberOfContinuousUnknowns;
+    protected BigInteger numberOfContinuousUnknowns;
     @XmlElement(name = "number_of_continuous_states")
     @XmlSchemaType(name = "nonNegativeInteger")
-    private BigInteger numberOfContinuousStates;
+    protected BigInteger numberOfContinuousStates;
     @XmlElement(name = "number_of_inputs")
     @XmlSchemaType(name = "nonNegativeInteger")
-    private BigInteger numberOfInputs;
+    protected BigInteger numberOfInputs;
     @XmlElement(name = "number_of_outputs")
     @XmlSchemaType(name = "nonNegativeInteger")
-    private BigInteger numberOfOutputs;
+    protected BigInteger numberOfOutputs;
     @XmlElement(name = "number_of_modes")
     @XmlSchemaType(name = "nonNegativeInteger")
-    private BigInteger numberOfModes;
+    protected BigInteger numberOfModes;
     @XmlElement(name = "number_of_zero_crossings")
     @XmlSchemaType(name = "nonNegativeInteger")
-    private BigInteger numberOfZeroCrossings;
-
-    /**
-     * Default constructor
-     */
-    public Info() {
-    }
+    protected BigInteger numberOfZeroCrossings;
 
     /**
      * Gets the value of the numberOfIntegerParameters property.
@@ -91,7 +113,7 @@ public final class Info {
      *
      */
     public void setNumberOfIntegerParameters(BigInteger value) {
-        numberOfIntegerParameters = value;
+        this.numberOfIntegerParameters = value;
     }
 
     /**
@@ -112,7 +134,7 @@ public final class Info {
      *
      */
     public void setNumberOfRealParameters(BigInteger value) {
-        numberOfRealParameters = value;
+        this.numberOfRealParameters = value;
     }
 
     /**
@@ -133,7 +155,7 @@ public final class Info {
      *
      */
     public void setNumberOfStringParameters(BigInteger value) {
-        numberOfStringParameters = value;
+        this.numberOfStringParameters = value;
     }
 
     /**
@@ -154,7 +176,7 @@ public final class Info {
      *
      */
     public void setNumberOfDiscreteVariables(BigInteger value) {
-        numberOfDiscreteVariables = value;
+        this.numberOfDiscreteVariables = value;
     }
 
     /**
@@ -175,7 +197,7 @@ public final class Info {
      *
      */
     public void setNumberOfContinuousVariables(BigInteger value) {
-        numberOfContinuousVariables = value;
+        this.numberOfContinuousVariables = value;
     }
 
     /**
@@ -196,7 +218,7 @@ public final class Info {
      *
      */
     public void setNumberOfContinuousUnknowns(BigInteger value) {
-        numberOfContinuousUnknowns = value;
+        this.numberOfContinuousUnknowns = value;
     }
 
     /**
@@ -217,7 +239,7 @@ public final class Info {
      *
      */
     public void setNumberOfContinuousStates(BigInteger value) {
-        numberOfContinuousStates = value;
+        this.numberOfContinuousStates = value;
     }
 
     /**
@@ -238,7 +260,7 @@ public final class Info {
      *
      */
     public void setNumberOfInputs(BigInteger value) {
-        numberOfInputs = value;
+        this.numberOfInputs = value;
     }
 
     /**
@@ -259,7 +281,7 @@ public final class Info {
      *
      */
     public void setNumberOfOutputs(BigInteger value) {
-        numberOfOutputs = value;
+        this.numberOfOutputs = value;
     }
 
     /**
@@ -280,7 +302,7 @@ public final class Info {
      *
      */
     public void setNumberOfModes(BigInteger value) {
-        numberOfModes = value;
+        this.numberOfModes = value;
     }
 
     /**
@@ -301,7 +323,7 @@ public final class Info {
      *
      */
     public void setNumberOfZeroCrossings(BigInteger value) {
-        numberOfZeroCrossings = value;
+        this.numberOfZeroCrossings = value;
     }
 
 }

@@ -425,7 +425,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
 
     if(~cholB & matB & iparam(7) == 1)
         if(issparse(%_B) & ~Breal)
-            error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparse matrices.\n"), "eigs"));
+            error(msprintf(gettext("%s: Impossible to use the Cholesky factorization with complex sparse matrices.\n"), "eigs"));
         else
             if(issparse(%_B))
                 [R, P] = spchol(%_B);
@@ -878,7 +878,7 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
     end
     if(~cholB & matB & iparam(7) == 1)
         if(issparse(%_B) & ~Breal)
-            error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparse matrices.\n"), "eigs"));
+            error(msprintf(gettext("%s: Impossible to use the Cholesky factorization with complex sparse matrices.\n"), "eigs"));
         else
             if(issparse(%_B))
                 [R,P] = spchol(%_B);

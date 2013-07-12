@@ -588,7 +588,6 @@ int sci_linmeq(char *fname, void* pvApiCtx)
                 }
             }
         }
-        NM = M;
     }
     else if (TASK == 2)
     {
@@ -601,7 +600,6 @@ int sci_linmeq(char *fname, void* pvApiCtx)
                 NDWORK = Max(NDWORK, 2 * (N * N + N));
             }
         }
-        NM = N;
     }
 
     if (TASK != 3)
@@ -621,7 +619,6 @@ int sci_linmeq(char *fname, void* pvApiCtx)
 
         MXMN = Min(P, N);
         NDWORK = Max(1, 4 * N + MXMN);
-        NM = N;
     }
 
     // Allocate variable dimension local arrays.

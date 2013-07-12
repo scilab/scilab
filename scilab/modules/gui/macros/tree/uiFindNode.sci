@@ -19,17 +19,17 @@ function nodeList = uiFindNode(tree, node, value)
 
     // Check 1st and 2nd inputs : tree & (node or property)
     if rhs >= 2 then
-        if (typeof(tree) == "Tree") then
+        if (typeof(tree) == "uitree") then
             myTree = tree;
             isNode = %F;
             isPosition = %F;
             isProperty = %F;
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiFindNode",1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiFindNode",1));
             return;
         end
 
-        if (typeof(node) == "Tree") then
+        if (typeof(node) == "uitree") then
             myNode = node;
             isNode = %T;
 
@@ -39,7 +39,7 @@ function nodeList = uiFindNode(tree, node, value)
                 isPosition = %T;
             end
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree or String expected.\n"), "uiFindNode",2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree or String expected.\n"), "uiFindNode",2));
             return;
         end
 

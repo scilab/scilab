@@ -137,7 +137,7 @@ int sci_umf_lusolve(char* fname, void* pvApiCtx)
         return 1;
     }
 
-    /*  get some parameters of the factorisation (for some checking) */
+    /*  get some parameters of the factorization (for some checking) */
     if ( it_flag == 0 )
     {
         umfpack_di_get_lunz(&lnz, &unz, &n, &n_col, &nz_udiag, Numeric);
@@ -150,13 +150,13 @@ int sci_umf_lusolve(char* fname, void* pvApiCtx)
 
     if ( n != n_col )
     {
-        Scierror(999, _("%s: An error occurred: %s.\n"), fname, _("This is not a factorisation of a square matrix"));
+        Scierror(999, _("%s: An error occurred: %s.\n"), fname, _("This is not a factorization of a square matrix"));
         return 1;
     }
 
     if ( nz_udiag < n )
     {
-        Scierror(999, _("%s: An error occurred: %s.\n"), fname, _("This is a factorisation of a singular matrix"));
+        Scierror(999, _("%s: An error occurred: %s.\n"), fname, _("This is a factorization of a singular matrix"));
         return 1;
     }
 

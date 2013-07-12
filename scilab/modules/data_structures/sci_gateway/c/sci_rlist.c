@@ -11,14 +11,26 @@
  */
 
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_data_structures1.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(rattyp)(); /* fortran */
 extern int C2F(mtlist)(); /* fortran */
 /*--------------------------------------------------------------------------*/
-int sci_rlist(char *fname, unsigned long fname_len)
+int sci_rlist(char *fname, void* pvApiCtx)
 {
-    C2F(mtlist)(C2F(rattyp));
-    return 0;
+    if (nbInputArgument(pvApiCtx) == 2)
+    {
+        callOverloadFunction(pvApiCtx, 0, fname, (unsigned int)strlen(fname));
+        return 0;
+    }
+    else
+    {
+        C2F(mtlist)(C2F(rattyp));
+        return 0;
+    }
+
+
 }
 /*--------------------------------------------------------------------------*/

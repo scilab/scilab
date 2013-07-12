@@ -105,13 +105,13 @@ public class ScilabGraphUtilsTest {
     public void checkSampleTEX() throws ParseException {
         Assume.assumeTrue(!GraphicsEnvironment.isHeadless());
 
-        Icon valid = ScilabGraphUtils.getTexIcon(SAMPLE_LATEX);
+        Icon valid = ScilabGraphUtils.getTexIcon(SAMPLE_LATEX, 16);
 
         assert valid != null;
 
         Icon invalid = null;
         try {
-            invalid = ScilabGraphUtils.getTexIcon(SAMPLE_LATEX + "$");
+            invalid = ScilabGraphUtils.getTexIcon(SAMPLE_LATEX + "$", 16);
         } catch (ParseException e) {
             assert invalid == null;
             return;

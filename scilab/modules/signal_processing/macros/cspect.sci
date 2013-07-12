@@ -38,30 +38,30 @@ function [sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
     if rhs==4 then,
         //cspect(nlags,ntp,wtype,x)
         [w,cwp]=window(wtype,2*nlags-1);
-        cross=%f; //autocorrelation
+        crossFlag=%f; //autocorrelation
     elseif rhs==5 then
         //cspect(nlags,ntp,wtype,x,wpar) or cspect(nlags,ntp,wtype,x,y)
         if wtype=="kr" then //cspect(nlags,ntp,'kr',x,wpar)
             wpar=y;
             [w,cwp]=window(wtype,2*nlags-1,wpar);
-            cross=%f; //autocorrelation
+            crossFlag=%f; //autocorrelation
         elseif wtype=="ch" then  //cspect(nlags,ntp,'ch',x,wpar)
             wpar=y;
             [w,cwp]=window(wtype,2*nlags-1,wpar);
-            cross=%f; //autocorrelation
+            crossFlag=%f; //autocorrelation
         else,//cspect(nlags,ntp,wtype,x,y)
-            cross=%t;//cross correlation
+            crossFlag=%t;//cross correlation
             [w,cwp]=window(wtype,2*nlags-1);
         end,
     else,//cspect(nlags,ntp,wtype,x,y,wpar)
         [w,cwp]=window(wtype,2*nlags-1,wpar);
-        cross=%t;//cross correlation
+        crossFlag=%t;//cross correlation
     end,
 
 
     //Make x and y row vectors
     x=matrix(x,1,-1);
-    if cross then
+    if crossFlag then
         y=matrix(y,1,-1);
         if size(x,"*")<>size(y,"*") then
             error(msprintf(gettext("%s: Arguments #%d and #%d must have the same sizes.\n"),"pspect",4,5));
@@ -73,7 +73,7 @@ function [sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
         nsects=int(x/(3*nlags));
         xlen=int(x/nsects);
         ss=zeros(1,2*nlags);
-        if cross then,
+        if crossFlag then,
             for k=1:nsects
                 xk=getx(xlen,1+(k-1)*xlen);
                 yk=gety(xlen,1+(k-1)*xlen);
@@ -90,7 +90,7 @@ function [sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)
             re=[re(nlags:-1:1) re(2:nlags)];
         end
     else // Signal data given in x and y if cross-correlation
-        if cross then
+        if crossFlag then
             [re1,me]=corr(x,y,nlags);
             [re2,me]=corr(y,x,nlags);
             re=[re1(nlags:-1:1) re2(2:nlags)];

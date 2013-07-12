@@ -11,7 +11,7 @@ function demo_conv2()
     //blur filter example
     function H=gaussian2d(radius,sigma)
         x=linspace(-1,1,10)*radius
-        H=exp(-(ones(x')*x^2+(x')^2*ones(x))/(2*sigma^2))/(2*%pi*sigma^2);
+        H=exp(-(ones(x')*x.^2+(x').^2*ones(x))/(2*sigma.^2))/(2*%pi*sigma.^2);
     endfunction
 
     load(get_absolute_file_path("conv2.dem.sce")+"image.dat")

@@ -184,10 +184,12 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                         nav.update((ScilabDocument) getDocument());
                     }
                 }
+                ((ScilabCaret) getCaret()).setMustAdjustVisibility(true);
             }
 
             public void focusLost(FocusEvent e) {
                 ((ScilabDocument) getDocument()).setFocused(false);
+                ((ScilabCaret) getCaret()).setMustAdjustVisibility(false);
             }
         });
 
@@ -290,6 +292,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
 
         addKeyListener(this);
         setTransferHandler(new CopyAsHTMLAction.HTMLTransferHandler());
+
+        ((ScilabCaret) getCaret()).setMustAdjustVisibility(false);
     }
 
     public void enableColorization(boolean b) {

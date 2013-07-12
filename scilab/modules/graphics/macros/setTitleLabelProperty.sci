@@ -80,9 +80,7 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
             if (size(PropertyValue,"*")==3)
                 titlelabel.font_foreground = addcolor(PropertyValue);
             else
-                warning(msprintf(gettext("%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"),"setTitleLabelProperty",2));
-                ResetFigureDDM(current_figure, cur_draw_mode);
-                return;
+                titlelabel.font_foreground = PropertyValue;
             end
 
         else
@@ -117,9 +115,8 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
                 titlelabel.fill_mode = "on"
                 titlelabel.foreground = addcolor(PropertyValue);
             else
-                warning(msprintf(gettext("%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"),"setTitleLabelProperty",2));
-                ResetFigureDDM(current_figure, cur_draw_mode);
-                return;
+                titlelabel.fill_mode = "on"
+                titlelabel.foreground = PropertyValue;
             end
         else
             warning(msprintf(gettext("%s: Wrong type for input argument #%d: Vector or index in the colormap expected.\n"),"setTitleLabelProperty",2));
@@ -154,9 +151,8 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
                 titlelabel.fill_mode = "on"
                 titlelabel.background = addcolor(PropertyValue);
             else
-                warning(msprintf(gettext("%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"),"setTitleLabelProperty",2));
-                ResetFigureDDM(current_figure, cur_draw_mode);
-                return;
+                titlelabel.fill_mode = "on"
+                titlelabel.background = PropertyValue;
             end
         else
             warning(msprintf(gettext("%s: Wrong type for input argument #%d: Vector or index in the colormap expected.\n"),"setTitleLabelProperty",2));

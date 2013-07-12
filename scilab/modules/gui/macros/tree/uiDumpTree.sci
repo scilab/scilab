@@ -19,11 +19,11 @@ function uiDumpTree(tree, b)
 
     // Check 1st input : tree
     if rhs >= 1 then
-        if (typeof(tree) == "Tree") then
+        if (typeof(tree) == "uitree") then
             myTree = tree;
             myB = %F;
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiDumpTree",1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiDumpTree",1));
             return;
         end
         // Check 2nd input : b
@@ -62,7 +62,6 @@ function uiDumpTree(tree, b)
     prettyPrint(myTree, myB, "");
 
 endfunction
-
 
 
 

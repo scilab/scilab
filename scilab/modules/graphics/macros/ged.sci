@@ -1508,7 +1508,6 @@ function ged_eventhandler(win,x,y,ibut)
     global ged_handle;ged_handle=[]
     ged_handle=ged_getobject([x,y])
 
-
     if ged_handle~=[] then
         if  or(ibut==[0 3 10]) then //left button --> edit properties
             tkged()
@@ -1518,9 +1517,7 @@ function ged_eventhandler(win,x,y,ibut)
             while %t then
                 rep=xgetmouse([%t %t])
                 if rep(3)>0 then break,end
-
                 move(ged_handle,rep(1:2)-pos)
-                show_pixmap()
                 pos=rep(1:2)
             end
         end
@@ -2409,7 +2406,7 @@ function ged_move_entity()
     cur_ax=gca(),sca(ax)
     [xc,yc]=xchange(xc,yc,"i2f");pos=[xc,yc]
     if r==[] return,end
-    f=gcf();pix=f.pixmap;f.pixmap="on"
+    drawlater();
     rep(3)=-1
     select r.type
     case "Rectangle" then
@@ -2417,35 +2414,35 @@ function ged_move_entity()
             rep=xgetmouse([%t %t])
             r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
             pos=rep(1:2)
-            show_pixmap()
+            drawnow();
         end
     case "Segs" then //Segment
         while rep(3)==-1 do
             rep=xgetmouse([%t %t])
             r.data=r.data+ones(2,1)*(rep(1:2)-pos)
             pos=rep(1:2)
-            show_pixmap()
+            drawnow();
         end
     case "Polyline" then //Polyline
         while rep(3)==-1 do
             rep=xgetmouse([%t %t])
             r.data(:,1:2)=r.data(:,1:2)+ones(r.data(:,1))*(rep(1:2)-pos)
             pos=rep(1:2)
-            show_pixmap()
+            drawnow();
         end
     case "Arc" then //Circle
         while rep(3)==-1 do
             rep=xgetmouse([%t %t])
             r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
             pos=rep(1:2)
-            show_pixmap()
+            drawnow();
         end
     case "Text" then
         while rep(3)==-1 do
             rep=xgetmouse([%t %t])
             r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
             pos=rep(1:2)
-            show_pixmap()
+            drawnow();
         end
     case "Label" then
         while rep(3)==-1 do
@@ -2453,12 +2450,11 @@ function ged_move_entity()
             r.position= r.position+(rep(1:2)-pos)
             r.auto_position = "off"
             pos=rep(1:2)
-            show_pixmap()
+            drawnow();
         end
 
     end
     sca(cur_ax)
-    f.pixmap=stripblanks(pix)
 endfunction
 
 function ged_copy_entity()

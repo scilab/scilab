@@ -40,9 +40,6 @@
             <member>
                 <link linkend="figure_properties">figure_properties</link>
             </member>
-            <member>
-                <link linkend="show_pixmap">show_pixmap</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>

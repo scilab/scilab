@@ -86,7 +86,7 @@ M = mlist(['V','name','value'],['a','b','c'],[1 2 3]);
 M1=getfield(1,M);
 assert_checkequal(typeof(M),M1(1));
 
-// rational, state-space
+// rational, state-space, uitree
 assert_checkequal(typeof(1/poly(0,"s")),"rational");
 A=[0,1;0,0];B=[1;1];C=[1,1];
 S1=syslin('c',A,B,C);
@@ -96,6 +96,10 @@ assert_checkequal(typeof(S2),"state-space");
 S3=syslin(1,A,B,C);
 assert_checkequal(typeof(S3),"state-space");
 assert_checkequal(typeof(tf2ss(1/poly(0,"s"))),"state-space");
+l1 = uiCreateNode("CONST_m","default","");
+assert_checkequal(typeof(l1),"uitree");
+tree = uiCreateTree(l1);
+assert_checkequal(typeof(tree),"uitree");
 
 // hypermat
 assert_checkequal(typeof(hypermat([2 3 2 2],1:24)),"hypermat");

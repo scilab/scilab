@@ -239,7 +239,7 @@ function [cpr,ok]=c_pass3(scs_m,cpr)
         %scicos_solver=100
     end
 
-    if %scicos_solver==100 then xc0=[xc0;xcd0],end
+    if (or (%scicos_solver == [100 101 102])) then xc0=[xc0;xcd0],end
 
     nb=size(clkptr,"*")-1;
     iz0=zeros(nb,1);

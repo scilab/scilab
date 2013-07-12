@@ -71,7 +71,7 @@ void C2F(texmacsin)(char buffer[], int *buf_size, int *len_line, int *eof, long 
         {
             if (getWarningMode())
             {
-                fprintf(stdout, _("Please install texmacs ATOMS module: atomsInstall('texmacs')\n\n"), _("Warning"));
+                fprintf(stdout, _("%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n\n"), _("Warning"));
             }
 
         }

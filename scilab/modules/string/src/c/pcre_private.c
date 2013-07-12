@@ -861,8 +861,6 @@ SKIP_DATA:
                     //to retrieve backref count and values
                     if (count > 0 && _pstCapturedString != NULL && _piCapturedStringCount != NULL)
                     {
-                        int iBackrefmax = 0;
-                        int iNameCount = 0;
                         int i = 0;
                         int iErr = 0;
 

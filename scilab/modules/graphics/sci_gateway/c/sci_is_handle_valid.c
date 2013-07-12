@@ -45,7 +45,7 @@ int sci_is_handle_valid(char *fname, void *pvApiCtx)
     /* Get handles matrix */
     if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of handle expected.\n"), fname, 1);
+        Scierror(200, _("%s: Wrong type for input argument #%d: Matrix of handle expected.\n"), fname, 1);
         return  -1;
     }
 
@@ -61,7 +61,7 @@ int sci_is_handle_valid(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 1);
+        Scierror(200, _("%s: Wrong type for input argument #%d: Matrix of handle expected.\n"), fname, 1);
         return 1;
     }
 

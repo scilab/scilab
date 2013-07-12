@@ -81,7 +81,7 @@ function [K1] = condestsp(A, arg2, arg3)
     end
 
     factor_inside = %f  // when LUp is given (after the following tests
-    // this var is set to %t if the factorisation
+    // this var is set to %t if the factorization
     // is computed inside this function)
     if rhs == 1 then
         LUp = umf_lufact(A) ; factor_inside = %t ; t = 2

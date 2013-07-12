@@ -19,16 +19,16 @@ function childrenNode = uiGetChildrenNode(tree, node)
 
     // Check 1st and 2nd inputs : tree & (node or position)
     if rhs == 2 then
-        if (typeof(tree) == "Tree") then
+        if (typeof(tree) == "uitree") then
             myTree = tree;
             isNode = %F;
             isPosition = %F;
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiGetChildrenNode",1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiGetChildrenNode",1));
             return;
         end
 
-        if (typeof(node) == "Tree") then
+        if (typeof(node) == "uitree") then
             myNode = node;
             isNode = %T;
 
@@ -37,7 +37,7 @@ function childrenNode = uiGetChildrenNode(tree, node)
             isPosition = %T;
 
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree or String expected.\n"), "uiGetChildrenNode",2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree or String expected.\n"), "uiGetChildrenNode",2));
             return;
         end
     end

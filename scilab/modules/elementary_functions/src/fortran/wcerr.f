@@ -27,7 +27,7 @@ c     n        : size of matrix a
 c
 c     ndng     : degree of pade approximant
 c
-c     m        :  the factor of normalisation is 2**(-m)
+c     m        :  the factor of normalization is 2**(-m)
 c
 c     maxc     : maximum admissible for m
 c

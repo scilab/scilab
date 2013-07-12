@@ -50,7 +50,7 @@ int intsplin2d(char *fname, void *pvApiCtx)
     int lz = 0, ns = 0, mc = 0, nc = 0, lc = 0, lp = 0, lq = 0, lr = 0;
     int spline_type = 0, *str_spline_type = NULL;
     int one = 1;
-    double *x = NULL, *y = NULL, *C = NULL;
+    double *x = NULL, *y = NULL;
     int i = 0;
 
     CheckRhs(minrhs, maxrhs);
@@ -114,7 +114,6 @@ int intsplin2d(char *fname, void *pvApiCtx)
     mc = 16 * (nx - 1) * (ny - 1);
     nc = 1;
     CreateVar( Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &mc,  &nc, &lc);
-    C = stk(lc);
     /* memory for work arrays  */
     CreateVar( Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &nx, &ny, &lp);
     CreateVar( Rhs + 3, MATRIX_OF_DOUBLE_DATATYPE, &nx, &ny, &lq);

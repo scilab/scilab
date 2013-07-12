@@ -32,7 +32,6 @@ function [blocks] = anim_pen(blocks,flag)
         set("figure_style","new")
         H=scf(win)
         clf(H)
-        H.pixmap="on"
         Axe=H.children
         Axe.data_bounds=rpar(4:7)
         Axe.isoview="on"
@@ -59,6 +58,7 @@ function [blocks] = anim_pen(blocks,flag)
         Axe=H.children
         x=blocks.inptr(1)(1)
         theta=blocks.inptr(2)(1)
+        drawlater();
         XY=Axe.children(4).data'+ [cos(phi)*(x-xold);sin(phi)*(x-xold)]*ones(1,5)
         Axe.children(4).data=XY'
 
@@ -70,7 +70,7 @@ function [blocks] = anim_pen(blocks,flag)
         x1=x*cos(phi);y1=x*sin(phi)
         XY=[x1,x1+plen*sin(theta);y1,y1+plen*cos(theta)]
         Axe.children(1).data=XY'
+        drawnow();
         blocks.z=x
-        show_pixmap()
     end
 endfunction ///\withPrompt{}

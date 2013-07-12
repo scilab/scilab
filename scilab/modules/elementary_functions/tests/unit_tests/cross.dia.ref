@@ -50,3 +50,6 @@ errmsg5=msprintf(_("%s: Wrong size for input argument #%d: A matrix of size 1x3 
 assert_checkerror("cross([1;2;3;4],[1;2;3;4])", errmsg5);
 errmsg6=msprintf(_("%s: Wrong size for input arguments: Same sizes expected.\n"), "cross");
 assert_checkerror("cross(A,[2;3])",errmsg6);
+A = rand(2,3);
+errmsg = msprintf(_("%s: Wrong size for input argument #%d: A matrix of size 1x3 or 3xN expected.\n"), "cross", 1);
+assert_checkerror("cross(A,A)", errmsg);

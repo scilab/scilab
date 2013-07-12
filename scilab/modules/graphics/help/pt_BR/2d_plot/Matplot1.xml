@@ -69,11 +69,9 @@ n=100;
 
 clf();
 f=gcf();//obtendo o manipulador da figura corrente
-f.pixmap='on';//modo de buffer duplo
 ax=gca();//obtendo o manipulador dos eixos corrente
 ax.data_bounds=[0,0;10,10];//ajustando the data_bounds
 ax.box='on'; //desenhando uma caixa
-show_pixmap()
 for k=-n:n,
   a=ones(n,n);
   a= 3*tril(a,k)+ 2*a;
@@ -81,10 +79,8 @@ for k=-n:n,
   k1= 3*(k+100)/200;
   if k>-n then delete(gce()),end
   Matplot1(a,[k1,2,k1+7,9])
-  show_pixmap() //enviando o buffer duplo para a tela
   sleep(8);
 end
-f.pixmap='off';
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

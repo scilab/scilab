@@ -14,7 +14,7 @@
     <refnamediv>
         <refname>freeAllocatedMatrixOfString</refname>
         <refpurpose>
-            Free memory allocated by freeAllocatedMatrixOfString function.
+            Free memory allocated by getAllocatedMatrixOfString function.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

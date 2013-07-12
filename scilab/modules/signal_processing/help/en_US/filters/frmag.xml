@@ -71,7 +71,7 @@
             one or two vectors of coefficients, one or two polynomials,
             or a single output discrete transfer function.
         </para>
-        <para> the frequency discretisation is given by
+        <para> the frequency discretization is given by
             <literal>fr=linspace(0,1/2,npts)</literal>.
         </para>
     </refsection>

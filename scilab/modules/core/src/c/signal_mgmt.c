@@ -414,7 +414,7 @@ void base_error_init(void)
 {
     struct sigaction act;
 
-    int sig, j;
+    int j;
 
     struct sigaction ToSuspend;
 

@@ -53,9 +53,8 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     end
     //
     [a,b,c,d]=sl(2:5);
-    if type(d)==2&degree(d)>0 then
-        d=coeff(d,0);
-        warning(msprintf(gettext("%s: Direct feedthrough set to its zero degree coefficient.\n"),"csim"));
+    if degree(d)>0 then
+        error(msprintf(gettext("%s: Wrong type for argument %d: a proper system expected\n"),"csim",1));
     end
     [ma,mb]=size(b);
     //
@@ -64,19 +63,17 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     //
     select type(u)
     case 10 then //input given by its type (step or impuls)
-        if mb<>1 then error(95,1);end;
+        if mb<>1 then 
+          error(msprintf(gettext("Wrong type for argument %d: SIMO expected.\n"),"csim",1));
+        end;
         if part(u,1)=="i" then
-            //impuse response
+            //impulse response
             imp=1;
-            if norm(d,1)<>0 then
-                warning(msprintf(gettext("%s: Direct feedthrough set to zero.\n"),"csim"));
-                d=0*d;
-            end;
+            dt(dt==0)=%eps^2; 
         elseif part(u,1)=="s" then
             step=1
             if norm(d,1)<>0 then
-                warning(msprintf(gettext("%s: Direct feedthrough set to zero.\n"),"csim"));
-                d=0*d;
+              dt(dt==0)=%eps^2; 
             end;
         else
             error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"csim",1,"""step"",""impuls"""))
@@ -154,7 +151,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
             else
                 atol=tol(1);rtol=tol(2);
             end
-            xkk=ode("adams",x0(kk),dt(1),dt,rtol,atol,%sim2);
+            xkk=ode("adams",x0(kk),0,dt,rtol,atol,%sim2);
             if size(xkk,2)<>size(x,2) then
                 error(msprintf(_("%s: Simulation failed before final time is reached.\n"),"csim"))
             end
@@ -163,6 +160,6 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         end;
         k=k+n
     end;
-    if imp==0 & step==0 then y=c*x+d*ut, else y=c*x,end
+    y=c*x+d*ut
     if lhs==2 then x=v1*v2*x,end
 endfunction

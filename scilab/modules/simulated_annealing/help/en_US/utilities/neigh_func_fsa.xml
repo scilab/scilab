@@ -39,7 +39,7 @@
             <varlistentry>
                 <term>param</term>
                 <listitem>
-                    <para>a vector with the same size than x_current. A normalisation
+                    <para>a vector with the same size than x_current. A normalization
                         vector which allows to distort the shape of the neighborhood. This
                         parameter allows to take into account the differences of interval of
                         variation between variables. By default, this parameter is set to a

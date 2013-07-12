@@ -11,7 +11,7 @@ _("Kalman Filter")                        , "kalman.dem.sce"            ; ..
 _("Discrete Kalman Filter")               , "discrete_kalman.dem.sce"   ; ..
 _("Cont.Plant-Hybrid Observer")           , "cont_sys_disc_cont.dem.sce" ; ..
 _("Temperature Controller")               , "temp_controller.dem.sce"    ; ..
-_("Inverted Pendulum")                    , "inverted_pendulum.dem.sce"  ; ..
+_("Inverted pendulum")                    , "inverted_pendulum.dem.sce"  ; ..
 _("Lorentz butterfly")                    , "lorentz.dem.sce"            ; ..
 ];
 

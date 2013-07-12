@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-06-12 11:17+0100\n"
+"Revision-Date: 2013-06-25 16:31+0100\n"
 
 # File: sci_gateway/c/sci_buildouttb.c, line: 95
 #, c-format
@@ -628,28 +628,28 @@ msgid "%s: error %d. A type of a scilab object has changed.\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 510
+# File: src/c/scicos.c, line: 509
 msgid "type 1 function not allowed for scilab blocks\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 515
+# File: src/c/scicos.c, line: 514
 msgid "type 2 function not allowed for scilab blocks\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 538
-# File: src/c/scicos.c, line: 3884
+# File: src/c/scicos.c, line: 537
+# File: src/c/scicos.c, line: 3883
 msgid "Undefined Function type\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 558
+# File: src/c/scicos.c, line: 557
 msgid "Function not found\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 932
+# File: src/c/scicos.c, line: 931
 #, c-format
 msgid ""
 "\n"
@@ -658,7 +658,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 941
+# File: src/c/scicos.c, line: 940
 #, c-format
 msgid ""
 "\n"
@@ -667,7 +667,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 949
+# File: src/c/scicos.c, line: 948
 #, c-format
 msgid ""
 "\n"
@@ -676,19 +676,19 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1769
+# File: src/c/scicos.c, line: 1768
 #, c-format
 msgid "****SUNDIALS.Cvode from: %f to %f hot= %d  \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1835
+# File: src/c/scicos.c, line: 1834
 #, c-format
 msgid "****SUNDIALS.Cvode reached: %f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1844
+# File: src/c/scicos.c, line: 1843
 #, c-format
 msgid ""
 "****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
@@ -696,59 +696,59 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1887
-# File: src/c/scicos.c, line: 3225
+# File: src/c/scicos.c, line: 1886
+# File: src/c/scicos.c, line: 3224
 #, c-format
 msgid "root found at t=: %f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2009
-# File: src/c/scicos.c, line: 3391
+# File: src/c/scicos.c, line: 2008
+# File: src/c/scicos.c, line: 3390
 #, c-format
 msgid "Event: %d activated at t=%f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2014
+# File: src/c/scicos.c, line: 2013
 #, c-format
 msgid "mode of block %d=%d, "
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2017
+# File: src/c/scicos.c, line: 2016
 msgid "**mod**\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2023
+# File: src/c/scicos.c, line: 2022
 msgid "End of activation\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3014
+# File: src/c/scicos.c, line: 3013
 msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3018
+# File: src/c/scicos.c, line: 3017
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3113
+# File: src/c/scicos.c, line: 3112
 #, c-format
 msgid "****daskr from: %f to %f hot= %d  \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3166
+# File: src/c/scicos.c, line: 3165
 #, c-format
 msgid "****SUNDIALS.Ida reached: %f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3175
+# File: src/c/scicos.c, line: 3174
 #, c-format
 msgid ""
 "**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and "
@@ -756,47 +756,47 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3397
+# File: src/c/scicos.c, line: 3396
 msgid "End of activation"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3498
+# File: src/c/scicos.c, line: 3497
 #, c-format
 msgid "block %d is called "
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3499
+# File: src/c/scicos.c, line: 3498
 #, c-format
 msgid "with flag %d "
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3500
+# File: src/c/scicos.c, line: 3499
 #, c-format
 msgid "at time %f \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3506
+# File: src/c/scicos.c, line: 3505
 msgid "Entering the block \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3922
+# File: src/c/scicos.c, line: 3921
 #, c-format
 msgid "Leaving block %d \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3976
+# File: src/c/scicos.c, line: 3975
 msgid "Error in the Debug block \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4006
-# File: src/c/scicos.c, line: 4079
+# File: src/c/scicos.c, line: 4005
+# File: src/c/scicos.c, line: 4078
 #, c-format
 msgid ""
 "\n"
@@ -804,8 +804,8 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4041
-# File: src/c/scicos.c, line: 4113
+# File: src/c/scicos.c, line: 4040
+# File: src/c/scicos.c, line: 4112
 #, c-format
 msgid ""
 "\n"
@@ -813,7 +813,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4230
+# File: src/c/scicos.c, line: 4229
 #, c-format
 msgid ""
 "\n"
@@ -821,7 +821,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4274
+# File: src/c/scicos.c, line: 4273
 #, c-format
 msgid ""
 "\n"
@@ -829,41 +829,41 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4275
+# File: src/c/scicos.c, line: 4274
 msgid ""
 "\n"
 "         (already programmed) event. There may be an error in"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4276
+# File: src/c/scicos.c, line: 4275
 msgid ""
 "\n"
 "         your model. Please check your model\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6234
+# File: src/c/scicos.c, line: 6233
 msgid ""
 "\n"
 " error in Jacobian"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6335
-# File: src/c/scicos.c, line: 6461
+# File: src/c/scicos.c, line: 6334
+# File: src/c/scicos.c, line: 6460
 #, c-format
 msgid "Error: Cannot find file '%s'.\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6493
+# File: src/c/scicos.c, line: 6492
 #, c-format
 msgid "Error: cannot write to  '%s'  \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6646
+# File: src/c/scicos.c, line: 6645
 #, c-format
 msgid ""
 "\n"
@@ -871,7 +871,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6782
+# File: src/c/scicos.c, line: 6781
 #, c-format
 msgid ""
 "\n"
@@ -879,18 +879,12 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6783
+# File: src/c/scicos.c, line: 6782
 msgid ""
 "\n"
 " The residual function returns NAN/Inf. \n"
 " Please verify your model:\n"
 " some functions might be called with illegal inputs."
-msgstr ""
-
-#
-# File: src/c/slider.c, line: 75
-#, c-format
-msgid "Slider t=%10.3f, flag=%d \n"
 msgstr ""
 
 # File: macros/scicos_auto/lincos.sci, line: 87
@@ -1174,8 +1168,7 @@ msgstr ""
 msgid ""
 "No continuous-time state. Thresholds are ignored; this \n"
 "may be OK if you don't generate external events with them.\n"
-"If you want to reactivate the thresholds, the you need\n"
-"\n"
+"If you want to reactivate the thresholds, then you need\n"
 "to include a block with continuous-time state in your diagram.\n"
 "   You can for example include DUMMY CLSS block (linear palette)."
 msgstr ""
@@ -1440,7 +1433,7 @@ msgstr ""
 
 #
 # File: macros/scicos_scicos/link_olibs.sci, line: 64
-msgid "Can not loaded dynamic library: "
+msgid "Cannot load dynamic library: "
 msgstr ""
 
 #

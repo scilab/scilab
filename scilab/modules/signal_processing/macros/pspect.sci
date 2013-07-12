@@ -46,30 +46,30 @@ function [sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
     if rhs==4 then,
         //pspect(sec_step,sec_leng,wtype,x)
         w=window(wtype,sec_leng);
-        cross=%f; //autocorrelation
+        crossFlag=%f; //autocorrelation
     elseif rhs==5 then,
         //pspect(sec_step,sec_leng,wtype,x,y) or pspect(sec_step,sec_leng,wtype,x,wpar)
         if wtype=="kr" then,//pspect(sec_step,sec_leng,'kr',x,wpar)
             wpar=y;
             w=window(wtype,sec_leng,wpar);cwp=[];
-            cross=%f; //autocorrelation
+            crossFlag=%f; //autocorrelation
         elseif wtype=="ch" then,//pspect(sec_step,sec_leng,'ch',x,wpar)
             wpar=y;
             [w,cwp]=window(wtype,sec_leng,wpar);
-            cross=%f; //autocorrelation
+            crossFlag=%f; //autocorrelation
         else,//pspect(sec_step,sec_leng,wtype,x,y)
             w=window(wtype,sec_leng);cwp=[];
-            cross=%t; //cross-correlation
+            crossFlag=%t; //cross-correlation
         end,
     else //pspect(sec_step,sec_leng,wtype,x,y,wpar)
         [w,cwp]=window(wtype,sec_leng,wpar);
-        cross=%t; //cross-correlation
+        crossFlag=%t; //cross-correlation
     end,
     wpower=w*w';//the window energy
 
     //Make x and y row vectors
     x=matrix(x,1,-1);
-    if cross then
+    if crossFlag then
         y=matrix(y,1,-1);
         if size(x,"*")<>size(y,"*") then
             error(msprintf(gettext("%s: Arguments #%d and #%d must have the same sizes.\n"),"pspect",4,5));
@@ -84,7 +84,7 @@ function [sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
         nsecs=int((x-sec_leng+sec_step)/sec_step);//x  contains the number of points of the signals
         ovrlp=sec_leng-sec_step;
         xd=[0*ones(1,sec_step) getx(ovrlp,1)];
-        if cross then
+        if crossFlag then
             yd=[0*ones(1,sec_step) gety(ovrlp,1)];
         end
         for k=1:nsecs
@@ -92,7 +92,7 @@ function [sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
             xd(ovrlp+1:sec_leng)=getx(sec_step,sec_leng+(k-1)*sec_step+1);
             xw=w.*(xd-(sum(xd)/sec_leng));
             fx=fft(xw,-1);
-            if cross then
+            if crossFlag then
                 yd(1:ovrlp)=yd(sec_step+1:sec_leng);
                 yd(ovrlp+1:sec_leng)=gety(sec_step,sec_leng+(k-1)*sec_step+1);
                 yw=w.*(yd-(sum(yd)/sec_leng));
@@ -111,7 +111,7 @@ function [sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
             xd=x(indd);
             xe=w.*(xd-(sum(xd)/sec_leng));
             fx=fft(xe,-1);
-            if cross then
+            if crossFlag then
                 yd=y(indd);
                 ye=w.*(yd-(sum(yd)/sec_leng));
                 sm=sm+fx.*conj(fft(ye,-1));

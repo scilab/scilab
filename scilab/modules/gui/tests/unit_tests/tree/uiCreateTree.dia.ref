@@ -13,7 +13,7 @@ leaf11 = uiCreateNode('leaf 1.1', 'iconLeaf1.1', 'callbackLeaf1.1')
  
        leaf11(1)
  
- Tree   
+ uitree   
  
        leaf11(2)
  
@@ -26,7 +26,7 @@ leaf12 = uiCreateNode('leaf 1.2', 'iconLeaf1.2', 'callbackLeaf1.2')
  
        leaf12(1)
  
- Tree   
+ uitree   
  
        leaf12(2)
  
@@ -39,7 +39,7 @@ leaf31 = uiCreateNode('leaf 3.1', 'iconLeaf3.1', 'callbackLeaf3.1')
  
        leaf31(1)
  
- Tree   
+ uitree   
  
        leaf31(2)
  
@@ -52,7 +52,7 @@ leaf32 = uiCreateNode('leaf 3.2', 'iconLeaf3.2', 'callbackLeaf3.2')
  
        leaf32(1)
  
- Tree   
+ uitree   
  
        leaf32(2)
  
@@ -65,7 +65,7 @@ node1 = uiCreateNode('Node 1', 'iconNode1', 'callbackNode1')
  
        node1(1)
  
- Tree   
+ uitree   
  
        node1(2)
  
@@ -78,7 +78,7 @@ node2 = uiCreateNode('Node 2', 'iconNode2', 'callbackNode2')
  
        node2(1)
  
- Tree   
+ uitree   
  
        node2(2)
  
@@ -91,7 +91,7 @@ node3 = uiCreateNode('Node 3', 'iconNode3', 'callbackNode3')
  
        node3(1)
  
- Tree   
+ uitree   
  
        node3(2)
  
@@ -104,7 +104,7 @@ root = uiCreateNode('Root', 'iconRoot', 'callbackRoot')
  
        root(1)
  
- Tree   
+ uitree   
  
        root(2)
  
@@ -128,7 +128,7 @@ treeOnlyNode1 = uiCreateTree(node1)
  
        treeOnlyNode1(1)
  
- Tree   
+ uitree   
  
        treeOnlyNode1(2)
  
@@ -141,7 +141,7 @@ treeNode1 = uiCreateTree(node1, leaf11,leaf12)
  
        treeNode1(1)
  
- Tree   
+ uitree   
  
        treeNode1(2)
  
@@ -154,7 +154,7 @@ treeNode1 = uiCreateTree(node1, leaf11,leaf12)
  
         treeNode1(3)(1)
  
- Tree   
+ uitree   
  
         treeNode1(3)(2)
  
@@ -167,7 +167,7 @@ treeNode3 = uiCreateTree(node3, leaf31,leaf32)
  
        treeNode3(1)
  
- Tree   
+ uitree   
  
        treeNode3(2)
  
@@ -180,7 +180,7 @@ treeNode3 = uiCreateTree(node3, leaf31,leaf32)
  
         treeNode3(3)(1)
  
- Tree   
+ uitree   
  
         treeNode3(3)(2)
  
@@ -193,7 +193,7 @@ treeRoot = uiCreateTree(root, node1,node2,node3)
  
        treeRoot(1)
  
- Tree   
+ uitree   
  
        treeRoot(2)
  
@@ -206,7 +206,7 @@ treeRoot = uiCreateTree(root, node1,node2,node3)
  
         treeRoot(3)(1)
  
- Tree   
+ uitree   
  
         treeRoot(3)(2)
  

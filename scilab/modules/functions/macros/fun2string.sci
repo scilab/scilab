@@ -1064,7 +1064,7 @@ function [stk,txt,top]=_r2sci()
 endfunction
 
 function [stk,txt,top]=_s2sci()
-    // Generates code for substraction and sign change -
+    // Generates code for subtraction and sign change -
     // Author Serge Steer
     txt=[]
     s2=stk(top)

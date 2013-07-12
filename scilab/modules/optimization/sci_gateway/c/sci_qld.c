@@ -363,7 +363,7 @@ int sci_qld(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    (iwar)[0] = 1; /*Cholesky factorisation required*/
+    (iwar)[0] = 1; /*Cholesky factorization required*/
 
     /* Change the sign of C*/
     for (k = 0; k < n; k++)

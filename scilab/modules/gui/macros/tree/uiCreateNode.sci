@@ -52,6 +52,6 @@ function myNode = uiCreateNode(label, icon, callback)
 
     // Creation of the node
     node = struct("label",myLabel,"icon",myIcon,"callback",myCallback)
-    myNode = tlist("Tree", node)
+    myNode = tlist("uitree", node)
 
 endfunction

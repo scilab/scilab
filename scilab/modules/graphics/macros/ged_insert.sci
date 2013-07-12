@@ -39,7 +39,7 @@ function ged_insert(k,win)
 
     [k,xc,yc]=ged_click()
 
-    pix=f.pixmap; f.pixmap="on"
+    drawlater();
     default_axes = gca(); // get the default axes where we start
     rep(3)=-1
     select k
@@ -51,14 +51,13 @@ function ged_insert(k,win)
         sca(axes);  // I change axes and therefore change the scale
         [xc,yc] = xchange(xc,yc,"i2f"); // in the new scale I recompute the corresponding pixel values
         xpoly([xc;xc],[yc;yc])
-        show_pixmap()
+        drawnow();
         r=gce();r.foreground=-1;
         r.clip_state="off";
         xinfo(mess2)
         while rep(3)==-1 do
             rep=xgetmouse(0,[%t %t])
             r.data=[xc,yc;rep(1),rep(2)]
-            show_pixmap()
             xinfo(mess2)
         end
     case 2 then //Polyline (stroken line)
@@ -67,7 +66,7 @@ function ged_insert(k,win)
         sca(axes);
         [xc,yc] = xchange(xc,yc,"i2f");
         xpoly([xc;xc],[yc;yc])
-        show_pixmap()
+        drawnow();
         r=gce();r.foreground=-1;
         r.data(:,3)=0.;
         r.clip_state="off";
@@ -77,7 +76,6 @@ function ged_insert(k,win)
             while rep(3)==-1 do
                 rep=xgetmouse(0)
                 r.data($,:)= [rep(1),rep(2),0]
-                show_pixmap()
                 xinfo(mess1)
             end
             if or(rep(3)==[2 5 -100]) then break,end
@@ -89,7 +87,7 @@ function ged_insert(k,win)
         sca(axes);
         [xc,yc] = xchange(xc,yc,"i2f");
         xpoly([xc;xc],[yc;yc])
-        show_pixmap()
+        drawnow();
         r=gce();r.foreground=-1;
         r.data(:,3)=0.;
         r.polyline_style = 4;
@@ -100,7 +98,6 @@ function ged_insert(k,win)
         while rep(3)==-1 do
             rep=xgetmouse(0,[%t %t])
             r.data($,:)= [rep(1),rep(2),0]
-            show_pixmap()
             xinfo(mess2)
         end
         //   case 4 // Double Arrow
@@ -125,14 +122,12 @@ function ged_insert(k,win)
         //     r2.clip_state='off';
         //
         //     xinfo(mess2)
-        //     show_pixmap()
         //     while rep(3)==-1 do
         //       rep=xgetmouse(0,[%t %t])
         //       drawlater();
         //       r1.data($,:)= [rep(1),rep(2),0]
         //       r2.data(1,:)= [rep(1),rep(2),0]
         //       drawnow();
-        //       show_pixmap()
         //       xinfo(mess2)
         //     end
 
@@ -144,21 +139,20 @@ function ged_insert(k,win)
             // get the position of the text
             xstring( xc, yc, text ) ;
         end
-        show_pixmap() ;
+        drawnow();
     case 5 then //Rectangle
         axes = get_insertion_axes(job,f,default_axes,xc,yc)
         [xc,yc] = xchange(xc,yc,"f2i");
         sca(axes);
         [xc,yc] = xchange(xc,yc,"i2f");
         xrect(xc,yc,0,0)
-        show_pixmap()
+        drawnow();
         r=gce();r.foreground=-1;
         r.clip_state="off";
         xinfo(mess2)
         while rep(3)==-1 do
             rep=xgetmouse(0,[%t %t])
             r.data=[min(xc,rep(1)),max(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
-            show_pixmap()
             xinfo(mess2)
         end
     case 6 then //Circle
@@ -167,14 +161,13 @@ function ged_insert(k,win)
         sca(axes);
         [xc,yc] = xchange(xc,yc,"i2f");
         xarc(xc,yc,0,0,0,64*360)
-        show_pixmap()
+        drawnow();
         r=gce();r.foreground=-1;
         r.clip_state="off";
         xinfo(mess2)
         while rep(3)==-1 do
             rep=xgetmouse(0,[%t %t])
             r.data=[min(xc,rep(1)),max(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,64*360]
-            show_pixmap()
             xinfo(mess2)
         end
     end

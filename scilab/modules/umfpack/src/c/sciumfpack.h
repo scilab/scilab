@@ -54,7 +54,7 @@ struct _CellAdr
     CellAdr *next;
 };
 
-typedef struct  /* a type to handle a choleski factorisation */
+typedef struct  /* a type to handle a choleski factorization */
 {
     int * p;      /* for the permutation    */
     void * C;     /* for the factor (lower) */

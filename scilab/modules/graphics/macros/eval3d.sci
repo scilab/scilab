@@ -7,7 +7,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [z]=eval3d(fun,x,y)
-    //Etant donnes une discretisation des abscisses (x) et des ordonnees (y)
+    //Etant donnee une discretisation des abscisses (x) et des ordonnees (y)
     //  eval3d(fun,x [,y]) retourne la matrice [fun(x(i),y(j))] des valeurs de la
     //  fonction decrite par la macro fun aux points (x(i),y(j)).
     //Attention fun doit savoir gerer des arguments x et y vectoriels.

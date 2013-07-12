@@ -28,7 +28,7 @@ function ok=Compute_cic(method,Nunknowns)
 
     tolerances=scs_m.props.tol
     solver=tolerances(6)
-    solver=100;
+    if (and (solver <> [100 101 102])) then solver=100; end
     tolerances(6)=solver
     Atol=tolerances(1)
     Rtol=tolerances(2)

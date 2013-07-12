@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-22 14:17+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-13 14:13+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -41,11 +41,11 @@ msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数#%dの型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさに誤りがあります: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -128,8 +128,8 @@ msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: 入力引数の型が間違っています.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 1,2 または 3 を指定してください.\n"
+msgid "%s: Wrong value for input argument #%d: 0,1 or 2 expected.\n"
+msgstr "%s: 引数 #%d の値が間違っています:  0,1または2を指定してください.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -561,18 +561,23 @@ msgstr "Scilabスタックを確保するためのメモリが不足していま
 msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
+"If a graphic feature has been used, this might be caused by the system "
+"graphic drivers.\n"
+"Please try to update them and try again.\n"
 "Please report a bug on %s with:\n"
 "* a sample code which reproduces the issue\n"
 "* the result of [a, b] = getdebuginfo()\n"
 "* the following information:\n"
 "%s %s\n"
 msgstr ""
-"致命的なエラーがScilabにより検出されました.\n"
-"このインスタンスはもうすぐクラッシュすると思われます.\n"
-"以下のバグレポート %s に送信してください:\n"
-"* a sample code which reproduces the issue\n"
-"* the result of [a, b] = getdebuginfo()\n"
-"* the following information:\n"
+"致命的なエラーが Scilab により検出されました.\n"
+"おそらくこのインスタンスはまもなくクラッシュします.\n"
+"特定のグラフィック機能が使用されていた場合, システムグラフィックドライバにより\n"
+"発生した可能性があります. アップグレード後に, 再度試してみてください.\n"
+"以下の通り, %s のバグを報告してください:\n"
+"* この問題を再現するサンプルコード\n"
+"* [a, b] = getdebuginfo() の結果\n"
+"* 以下の情報:\n"
 "%s %s\n"
 
 #, c-format
@@ -1127,6 +1132,10 @@ msgstr "スタートアップを実行中:"
 msgid "  loading initial environment"
 msgstr "  初期環境をロードしています"
 
+#, c-format
+msgid "Failed to exec %s:"
+msgstr "%s の実行に失敗しました:"
+
 #
 # File: etc/scilab.start, line: 175
 msgid "&File"
@@ -1170,11 +1179,29 @@ msgstr "その他(&?)"
 msgid "&Toolboxes"
 msgstr "ツールボックス(&T)"
 
-msgid "Introduction"
-msgstr "導入"
+msgid "Introduction: Getting started with Scilab"
+msgstr "導入: Scilab入門"
 
-msgid "Getting started with Scilab"
-msgstr "Scilab入門"
+msgid "Scilab objects"
+msgstr "Scilabオブジェクト"
+
+msgid "Operations and numerical primitives"
+msgstr "処理と数値プリミティブ"
+
+msgid "Online definition of function"
+msgstr "関数のオンライン定義"
+
+msgid "Optimization and simulation"
+msgstr "最適化とシミュレーション"
+
+msgid "Systems: definition and analysis"
+msgstr "システム: 定義と解析"
+
+msgid "Linear algebra"
+msgstr "線形代数"
+
+msgid "Call an external routine"
+msgstr "外部ルーチンをコール"
 
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
@@ -1245,6 +1272,24 @@ msgstr "%s: 入力引数の数が正しくありません: %d 個以上の引数
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 定義済みの変数を指定してください.\n"
+
+msgid "Scilab Version: "
+msgstr "Scilabバージョン: "
+
+msgid "Operating System: "
+msgstr "オペレーティングシステム: "
+
+msgid "Java version :"
+msgstr "Javaバージョン:"
+
+msgid "Java runtime information :"
+msgstr "Javaランタイム情報:"
+
+msgid "Java vm information :"
+msgstr "Java vm情報:"
+
+msgid "Vendor specification: "
+msgstr "ベンダ仕様: "
 
 #, c-format
 msgid "%s called at line %s of %s"

@@ -25,6 +25,7 @@ extern "C"
 #include "h5_readDataFromFile.h"
 #include "h5_attributeConstants.h"
 #include "expandPathVariable.h"
+#include "stdlib.h"
 }
 
 #include "import_from_hdf5_v1.hxx"
@@ -348,12 +349,14 @@ static bool import_double(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAd
 
             if (iRet)
             {
+                FREE(piDims);
                 return false;
             }
         }
         else if (iDims > 2)
         {
             //hypermatrix
+            FREE(piDims);
             return false;
         }
     }
@@ -401,6 +404,7 @@ static bool import_double(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAd
         return false;
     }
 
+    FREE(piDims);
     if (pdblReal)
     {
         FREE(pdblReal);
@@ -443,6 +447,7 @@ static bool import_string(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAd
     iRet = readStringMatrix(_iDatasetId, pstData);
     if (iRet)
     {
+        FREE(piDims);
         return false;
     }
 
@@ -458,9 +463,20 @@ static bool import_string(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAd
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(piDims);
+        for (int i = 0 ; i < iSize ; i++)
+        {
+            free(pstData[i]);
+        }
+        FREE(pstData);
         return false;
     }
 
+    FREE(piDims);
+    for (int i = 0 ; i < iSize ; i++)
+    {
+        free(pstData[i]);
+    }
     FREE(pstData);
 
     return true;
@@ -707,6 +723,8 @@ static bool import_boolean(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
         iRet = readBooleanMatrix(_iDatasetId, piData);
         if (iRet)
         {
+            FREE(piData);
+            FREE(piDims);
             return false;
         }
     }
@@ -723,9 +741,15 @@ static bool import_boolean(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(piDims);
+        if (piData)
+        {
+            FREE(piData);
+        }
         return false;
     }
 
+    FREE(piDims);
     if (piData)
     {
         FREE(piData);

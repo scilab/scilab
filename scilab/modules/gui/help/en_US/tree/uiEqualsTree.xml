@@ -15,7 +15,7 @@
             <varlistentry>
                 <term>tree1, tree2</term>
                 <listitem>
-                    <para>are of type Tree</para>
+                    <para>are of type uitree</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -34,7 +34,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Compare two trees structures.
+            Compare two uitree structures.
         </para>
     </refsection>
     <refsection>
