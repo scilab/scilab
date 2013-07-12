@@ -46,7 +46,7 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES 167
+#define NB_PROPERTIES 168
 
 /**
  * list of all property names and associated functions in scilab
@@ -220,7 +220,8 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
     {"tip_orientation", get_tip_orientation_property},
     {"tip_3component", get_tip_3component_property},
     {"tip_auto_orientation", get_tip_auto_orientation_property},
-    {"tip_interp_mode", get_tip_interp_mode_property}
+    {"tip_interp_mode", get_tip_interp_mode_property},
+    {"tip_box_mode", get_tip_box_mode_property}
 };
 
 /*--------------------------------------------------------------------------*/

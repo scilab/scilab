@@ -25,6 +25,8 @@ public class Datatip extends Text {
 
     /** Stores the data that will be shown(tip)*/
     Double[] tipData;
+    /** false = datatip text box is hidden*/
+    Boolean tipBoxMode;
     /** false = display only (X, Y), true = display (X, Y, Z)*/
     Boolean use3component;
     /** false = no interpolation between point segments*/
@@ -37,7 +39,7 @@ public class Datatip extends Text {
     Boolean autoOrientation;
 
 
-    enum DatatipObjectProperty { TIP_DATA, TIP_ORIENTATION, TIP_AUTOORIENTATION, TIP_3COMPONENT, TIP_INTERP_MODE, TIP_DISPLAY_FNC };
+    enum DatatipObjectProperty { TIP_DATA, TIP_BOX_MODE, TIP_ORIENTATION, TIP_AUTOORIENTATION, TIP_3COMPONENT, TIP_INTERP_MODE, TIP_DISPLAY_FNC };
     enum TipOrientation { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT;
 
                           /**
@@ -72,6 +74,7 @@ public class Datatip extends Text {
         autoOrientation = true;
         setOrientationAsEnum(TipOrientation.TOP_RIGHT);
         tipTextFormat = new DecimalFormat("#.####");
+        tipBoxMode = true;
         interpMode = true;
         displayFnc = null;
         setBox(true);
@@ -99,6 +102,8 @@ public class Datatip extends Text {
         switch (propertyName) {
             case __GO_DATATIP_DATA__:
                 return DatatipObjectProperty.TIP_DATA;
+            case __GO_DATATIP_BOX_MODE__:
+                return DatatipObjectProperty.TIP_BOX_MODE;
             case __GO_DATATIP_ORIENTATION__:
                 return DatatipObjectProperty.TIP_ORIENTATION;
             case __GO_DATATIP_3COMPONENT__:
@@ -120,6 +125,8 @@ public class Datatip extends Text {
     public Object getProperty(Object property) {
         if (property == DatatipObjectProperty.TIP_DATA) {
             return getTipData();
+        } else if (property == DatatipObjectProperty.TIP_BOX_MODE) {
+            return getTipBoxMode();
         } else if (property == DatatipObjectProperty.TIP_ORIENTATION) {
             return getOrientation();
         } else if (property == DatatipObjectProperty.TIP_3COMPONENT) {
@@ -143,6 +150,8 @@ public class Datatip extends Text {
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == DatatipObjectProperty.TIP_DATA) {
             setTipData((Double[]) value);
+        } else if (property == DatatipObjectProperty.TIP_BOX_MODE) {
+            setTipBoxMode((Boolean) value);
         } else if (property == DatatipObjectProperty.TIP_ORIENTATION) {
             setOrientation((Integer) value);
         } else if (property == DatatipObjectProperty.TIP_3COMPONENT) {
@@ -258,6 +267,10 @@ public class Datatip extends Text {
         setTextArrayDimensions(dim);
         setTextStrings(textArray);
     }
+    
+    public Boolean getTipBoxMode() {
+        return tipBoxMode;
+    }
 
     public Boolean getInterpMode() {
         return interpMode;
@@ -265,6 +278,11 @@ public class Datatip extends Text {
     
     public String getDisplayFunction() {
         return displayFnc;
+    }
+    
+    public void setTipBoxMode(Boolean mode) {
+        tipBoxMode = mode;
+        setBox(tipBoxMode);
     }
 
     public void setInterpMode(Boolean mode) {
