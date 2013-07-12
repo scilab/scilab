@@ -74,4 +74,5 @@
     <PRIMITIVE gatewayId="25" primitiveId="41" primitiveName="datatipRemove" />
     <PRIMITIVE gatewayId="25" primitiveId="42" primitiveName="plotbrowser" />
     <PRIMITIVE gatewayId="25" primitiveId="43" primitiveName="datatipManagerMode" />
+    <PRIMITIVE gatewayId="25" primitiveId="44" primitiveName="datatipToggle" />
 </GATEWAY>
