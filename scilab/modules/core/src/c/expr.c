@@ -582,7 +582,6 @@ L86:
     /* *call* allops(not) */
     return 0;
 L87:
-    kount = C2F(recu).pstk[C2F(recu).pt - 1];
     --C2F(recu).pt;
     /* next two lines to handle a+~b and a*~b,... */
     if (C2F(recu).rstk[C2F(recu).pt - 1] == 115)

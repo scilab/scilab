@@ -36,8 +36,8 @@ struct rWork_t
 };
 
 // Derivative computation and Root functions
-typedef int (*LSRhsFn) (int * neq, realtype * t, realtype * y, realtype * rwork);
-typedef int (*LSRootFn) (int * neq, realtype * t, realtype * y, int * ng, realtype * rwork);
+typedef void (*LSRhsFn) (int * neq, realtype * t, realtype * y, realtype * rwork);
+typedef void (*LSRootFn) (int * neq, realtype * t, realtype * y, int * ng, realtype * rwork);
 typedef void (*LSErrHandlerFn) (int error_code, const char *module, const char *function, char *msg, void *user_data);
 
 // LSodar problem memory structure
@@ -75,7 +75,7 @@ int LSodarInit (void * lsodar_mem, LSRhsFn f, realtype t0, N_Vector y);
 int LSodarReInit (void * lsodar_mem, realtype tOld, N_Vector y);
 
 // Specifying the tolerances
-int LSodarSStolerances(void *cvode_mem, realtype reltol, realtype abstol);
+int LSodarSStolerances (void * lsodar_mem, realtype reltol, realtype abstol);
 
 // Initializing the root-finding problem
 int LSodarRootInit (void * lsodar_mem, int ng, LSRootFn g);

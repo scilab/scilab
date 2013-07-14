@@ -80,7 +80,7 @@ function [Sl1,right,left]=ss2ss(Sl,T,F,G,flag)
             // then output injection
             // Sl1= [ A+GC +BF+G*D*F, (B+GD,-G)]
             // 	[ C+D*F   	, (D   , 0)]
-            // this is a generalisation of the case 4
+            // this is a generalization of the case 4
             // We have then the following property
             // Sl1 equiv left*sysdiag(sys*right,eye(p,p)))
             //

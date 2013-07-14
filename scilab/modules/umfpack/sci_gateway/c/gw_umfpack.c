@@ -29,7 +29,7 @@
  *         [C_ptr] = taucs_chfact(A)        : factorize A (C_ptr is a pointer to the cholesky factors)
  *             [x] = taucs_chsolve(C_ptr,b) : solve Ax=b
  *                   taucs_chdel(C_ptr)     : free the memory used by the factorization
- *    [OK, n, cnz] = taucs_chinfo(C_ptr)    : info on the cholesky factorisation
+ *    [OK, n, cnz] = taucs_chinfo(C_ptr)    : info on the cholesky factorization
  *           [C,p] = taucs_chget(C_ptr)     : getting C and p  (P'AP = C'C)
  *
  *

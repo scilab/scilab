@@ -8,15 +8,21 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>exists(name [,where])</synopsis>
+        <synopsis>ve = exists(name [,where])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
+                <term>ve</term>
+                <listitem>
+                    <para>une matrice de même taille que <varname>name</varname> dont les éléments prennent comme valeur 0 ou 1</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>name</term>
                 <listitem>
-                    <para>chaîne de caractères</para>
+                    <para>matrice de chaînes de caractères</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -69,9 +75,9 @@ a12=[];foo(1)
 
 function level1()
   function level2()
-    disp(exists("a","all"));
-    disp(exists("a","local"));
-    disp(exists("a","nolocal"));
+    disp(exists(["a", "b"],"all"));
+    disp(exists(["a", "b"],"local"));
+    disp(exists(["a", "b"],"nolocal"));
   endfunction
   level2()
 endfunction

@@ -63,7 +63,7 @@
             DGETRF for  real matrices and  ZGETRF for the complex case.
         </para>
         <para>
-            Concerning sparse matrices, the determinant is obtained from LU factorisation of umfpack library.
+            Concerning sparse matrices, the determinant is obtained from LU factorization of umfpack library.
         </para>
     </refsection>
     <refsection>

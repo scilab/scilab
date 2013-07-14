@@ -67,6 +67,9 @@
             For complex, real, integer, polynomial matrix
             <function>string</function> output is managed by <link linkend="format">format</link> function (see examples).
         </para>
+        <para>
+            Note that string([]) returns [].
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

@@ -34,7 +34,7 @@ c     num    : tableau contenant les coefficients (matriciels) du polynome
 c              matriciel numerateur N. Si N=somme(Nk*z**k) alors num
 c              est la matrice bloc : num=[N ,N ,....N       ]
 c                                          0  1      dgnum+1
-c              num est modifie par l'execution ( normalisation par l
+c              num est modifie par l'execution (normalisation par le
 c              coefficient de plus haut degre de D D(dgden+1) )
 c     inum   : nombre de ligne du tableau num dans le programme appelant
 c     dgnum  : degre du polynome matriciel numerateur

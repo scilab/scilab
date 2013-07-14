@@ -36,11 +36,11 @@ function block=TBX_SUM_sim(block,flag)
     case 5 // Ending
         verboseMessage("Calling with flag Ending(5)")
 
-    case 6 // Re-Initialisation
-        verboseMessage("Calling with flag ReInitialization(6)")
+    case 6 // Reinitialization
+        verboseMessage("Calling with flag Reinitialization(6)")
 
-    case 9 // ZeroCrossing
-        verboseMessage("Calling with flag ZeroCrossing(9)")
+    case 9 // Zero-Crossing
+        verboseMessage("Calling with flag Zero-Crossing(9)")
 
     else // Unknown flag
         verboseMessage("Calling with unknonw flag("+string(flag)+")")

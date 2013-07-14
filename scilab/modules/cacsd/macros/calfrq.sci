@@ -14,7 +14,7 @@ function [frq,bnds,splitf]=calfrq(h,fmin,fmax)
     eps=1.d-14   //minimum absolute lower frequency
     k=0.001;     // Minimum relative prediction error in the nyquist plan
     epss=0.002   // minimum frequency distance with a singularity
-    nptmax=5000  //maximum number of discretisation points
+    nptmax=5000  //maximum number of discretization points
     tol=0.01     // Tolerance for testing pure imaginary numbers
 
     // Check inputs

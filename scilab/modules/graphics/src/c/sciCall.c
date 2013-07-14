@@ -74,9 +74,7 @@ void Objrect (double* x         ,
 {
     char* newObjUID = NULL;
     char* psubwinUID = NULL;
-    char* pFigureUID = NULL;
 
-    pFigureUID = (char*)getCurrentFigure();
     psubwinUID = (char*)getCurrentSubWin();
 
     /* check if the auto_clear property is on and then erase everything */
@@ -143,7 +141,6 @@ void Objpoly (double  * x     ,
               int       mark  ,
               long    * hdl)
 {
-    char * pfigureUID = NULL;
     char * psubwinUID = NULL;
     char * pobjUID = NULL;
 
@@ -304,9 +301,7 @@ void Objstring(char            ** fname      ,
 {
     char * psubwinUID = NULL;
     char * pobjUID = NULL;
-    char * pfigureUID = NULL;
 
-    pfigureUID = (char*)getCurrentFigure();
     psubwinUID = (char*)getCurrentSubWin();
 
     checkRedrawing();
@@ -435,7 +430,6 @@ void Objplot3d (char    * fname ,
 
     char *psubwinUID = NULL;
     char *pobjUID = NULL;
-    char *parentFigureUID = NULL;
 
     double drect[6];
     double rotationAngles[2];
@@ -446,8 +440,6 @@ void Objplot3d (char    * fname ,
     char * legz = NULL;
     char* labelId = NULL;
     /*   char * buff = NULL; */
-    int flag_x = 1;
-    int flag_y = 1;
     int dimvectx = -1;
     int dimvecty = -1;
     int view = 0;
@@ -478,7 +470,6 @@ void Objplot3d (char    * fname ,
      * Force SubWindow properties according to arguments
      * ================================================= */
 
-    parentFigureUID = (char*)getCurrentFigure();
     psubwinUID = (char*)getCurrentSubWin();
 
     checkRedrawing();
@@ -780,7 +771,6 @@ void Objplot3d (char    * fname ,
                 return;
             }
 
-            flag_x = monotony;
         }
 
         if (*isfac == 1)
@@ -810,8 +800,6 @@ void Objplot3d (char    * fname ,
                 Scierror(999, _("%s: y vector is not monotonous.\n"), "Objplot3d");
                 return;
             }
-
-            flag_y = monotony;
         }
 
         pNewSurfaceUID = ConstructSurface(psubwinUID, typeof3d,

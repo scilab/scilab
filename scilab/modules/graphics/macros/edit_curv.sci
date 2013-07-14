@@ -174,9 +174,9 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
             return
 
         case "Undo" then
-            if hdl<>[] then draw(hdl),end //erase
+            if hdl<>[] then hdl.visible = "on";end //erase
             x=xs;y=ys
-            if x<>[] then hdl.data=[x y];draw(hdl);end
+            if x<>[] then hdl.data=[x y];hdl.visible = "on";end
 
         case "Size" then
             while %t
@@ -246,7 +246,7 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
         case "edit" then
             npt=prod(size(x))
             if npt<>0 then
-                dist=((x-ones(npt,1)*c1(1))/dx)^2+((y-ones(npt,1)*c1(2))/dy)^2
+                dist=((x-ones(npt,1)*c1(1))/dx).^2+((y-ones(npt,1)*c1(2))/dy).^2
                 [m,k]=min(dist);m=sqrt(m)
             else
                 m=3*eps
@@ -336,7 +336,7 @@ function [x,y] = addpt(c1,x,y)
                 pp=pp(:,i)
                 x=x([1:k k:npt]);x(k+1)=pp(1);
                 y=y([1:k k:npt]);y(k+1)=pp(2);
-                hdl;drawlater();hdl.data=[x y];draw(hdl)
+                hdl;drawlater();hdl.data=[x y];hdl.visible = "on"; drawnow();
                 return
             end
         end
@@ -352,13 +352,12 @@ function [x,y] = addpt(c1,x,y)
         x(npt+1)=c1(1)
         y(npt+1)=c1(2)
     end
-    hdl;drawlater();hdl.data=[x y];draw(hdl)
+    hdl;drawlater();hdl.data=[x y];hdl.visible = "on"; drawnow();
 endfunction
 
 function [x,y]=movept(x,y)
     //on bouge un point existant
     hdl;
-    //** f;f.pixmap='on';
     rep(3)=-1
     while rep(3)==-1 do
         rep = xgetmouse();
@@ -367,10 +366,8 @@ function [x,y]=movept(x,y)
         if mody==0 then c2(2)=y(k);end
         x(k)=c2(1);y(k)=c2(2)
         hdl.data=[x,y];
-        //** show_pixmap();
         drawnow()
     end
-    //** f.pixmap='off';
 endfunction
 
 

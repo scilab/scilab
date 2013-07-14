@@ -445,7 +445,6 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_clear_pixmap.c, line: 34
 # File: sci_gateway/c/sci_draw.c, line: 35
-# File: sci_gateway/c/sci_show_pixmap.c, line: 36
 #, c-format
 msgid "%s: Function %s is obsolete.\n"
 msgstr ""
@@ -457,15 +456,11 @@ msgstr ""
 # File: sci_gateway/c/sci_draw.c, line: 35
 # File: sci_gateway/c/sci_draw.c, line: 36
 # File: sci_gateway/c/sci_draw.c, line: 37
-# File: sci_gateway/c/sci_show_pixmap.c, line: 36
-# File: sci_gateway/c/sci_show_pixmap.c, line: 37
-# File: sci_gateway/c/sci_show_pixmap.c, line: 38
 msgid "Warning"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_clear_pixmap.c, line: 35
-# File: sci_gateway/c/sci_show_pixmap.c, line: 37
 #, c-format
 msgid "%s: Please use %s instead.\n"
 msgstr ""
@@ -473,7 +468,6 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_clear_pixmap.c, line: 36
 # File: sci_gateway/c/sci_draw.c, line: 37
-# File: sci_gateway/c/sci_show_pixmap.c, line: 38
 #, c-format
 msgid ""
 "%s: This function will be permanently removed in Scilab %s\n"

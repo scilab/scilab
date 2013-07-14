@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) Scilab Enterprises - 2012 - Paul Bignier
+ * Copyright (C) Scilab Enterprises - 2013 - Paul Bignier
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,17 +9,17 @@
  * The terms are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="IDA">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="DDaskr">
     <refnamediv>
-        <refname>IDA</refname>
+        <refname>DDaskr</refname>
         <refpurpose>
-            <emphasis>IDA</emphasis> (short for Implicit Differential Algebraic solver) is a numerical solver providing an efficient and stable method to solve Differential Algebraic Equations (DAEs) Initial Value Problems.
+            <emphasis>DDaskr</emphasis> (short for Double-precision Differential Algebraic equations system Solver with Krylov method and Rootfinding) is a numerical solver providing an efficient and stable method to solve Differential Algebraic Equations systems (DAEs) Initial Value Problems.
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            Called by <link linkend="xcos">xcos</link>, <emphasis>IDA</emphasis> (short for Implicit Differential Algebraic solver) is a numerical solver providing an efficient and stable method to solve Initial Value Problems of the form:
+            Called by <link linkend="xcos">xcos</link>, <emphasis>DDaskr</emphasis> (short for Double-precision Differential Algebraic equations system Solver with Krylov method and Rootfinding) is a numerical solver providing an efficient and stable method to solve Initial Value Problems of the form:
         </para>
         <para>
             <latex>
@@ -30,7 +30,7 @@
         </para>
         <para>
         </para>
-        Before solving the problem, <emphasis>IDA</emphasis> runs an implemented routine to find consistent values for 
+        Before solving the problem, <emphasis>DDaskr</emphasis> runs an implemented routine to find consistent values for 
         <emphasis>
             y<subscript>0</subscript>
         </emphasis>
@@ -48,7 +48,7 @@
             <emphasis>
                 yPrime<subscript>0</subscript>
             </emphasis>
-            , <emphasis>IDA</emphasis> approximates 
+            , <emphasis>DDaskr</emphasis> approximates
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
@@ -89,29 +89,47 @@
             </latex>
         </para>
         <para>
-            To apply <emphasis>Newton</emphasis> iterations to it, we rewrite it into:
+            Its solving is done through a Newton method, but with either <emphasis role="bold">direct</emphasis> or preconditioned GMRes <emphasis role="bold">Krylov</emphasis> iterations.
         </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Direct</emphasis> iteration: start by rewriting the system into:
+                </para>
+                <para>
+                    <latex>
+                        J \left[y_{n(m+1)}-y_{n(m)} \right] = -G(y_{n(m)})
+                    </latex>
+                </para>
+                <para>
+                    &#160; with <emphasis>J</emphasis> an approximation of the Jacobian:
+                </para>
+                <para>
+                    &#160; <latex>
+                        J = \frac{\partial{G}}{\partial{y}} = \frac{\partial{F}}{\partial{y}}+\alpha\frac{\partial{F}}{\partial{\dot{y}}}, \hspace{4 mm} \alpha = \frac{\alpha_{n,0}}{h_n},
+                    </latex>
+                </para>
+                <para>
+                    &#160; <emphasis>&#x3B1;</emphasis> changes whenever the step size or the method order varies.
+                </para>
+                <para>
+                    Then, an implemented direct dense solver is used and we go on to the next step.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">GMRes Krylov</emphasis> method: first, precondition the system by applying the Jacobian matrix mentioned above.
+                </para>
+                <para>
+                    Secondly, compute the next Krylov space basis and update the Hessenberg matrix.
+                </para>
+                <para>
+                    Test for convergence for the first time. If it doesn't pass, calculate the residual, which will lead to a new potential solution, and iterate until that residual satisfies convergence.
+                </para>
+            </listitem>
+        </itemizedlist>
         <para>
-            <latex>
-                J \left[y_{n(m+1)}-y_{n(m)} \right] = -G(y_{n(m)})
-            </latex>
-        </para>
-        <para>
-            &#160; with <emphasis>J</emphasis> an approximation of the Jacobian:
-        </para>
-        <para>
-            &#160; <latex>
-                J = \frac{\partial{G}}{\partial{y}} = \frac{\partial{F}}{\partial{y}}+\alpha\frac{\partial{F}}{\partial{\dot{y}}}, \hspace{4 mm} \alpha = \frac{\alpha_{n,0}}{h_n},
-            </latex>
-        </para>
-        <para>
-            &#160; <emphasis>&#x3B1;</emphasis> changes whenever the step size or the method order varies.
-        </para>
-        <para>
-            An implemented direct dense solver is used and we go on to the next step.
-        </para>
-        <para>
-            <emphasis>IDA</emphasis> uses the history array to control the local error 
+            <emphasis>DDaskr</emphasis> uses the history array to control the local error
             <emphasis>
                 y<subscript>n(m)</subscript> - y<subscript>n(0)</subscript>
             </emphasis>
@@ -128,31 +146,35 @@
             Following the criticality of the event (its effect on the continuous problem), we either relaunch the solver with different start and final times as if nothing happened, or, if the system has been modified, we need to "cold-restart" the problem by reinitializing it anew and relaunching the solver.
         </para>
         <para>
-            Averagely, <emphasis>IDA</emphasis> accepts tolerances up to 10<superscript>-11</superscript>. Beyond that, it returns a <emphasis>Too much accuracy</emphasis> requested error.
+            Averagely, <emphasis>DDaskr</emphasis> accepts tolerances up to 10<superscript>-11</superscript>. Beyond that, it returns a <emphasis>Too much accuracy</emphasis> requested error.
+        </para>
+        <para>
+            As of now, <emphasis>DDaskr</emphasis> can only be applied on systems where the root functions are punctually 0, and not 0-flat.
         </para>
     </refsection>
-    <refsection id="Example_IDA">
+    <refsection id="Example_DDaskr">
         <title>Example</title>
         <para>
-            The 'Modelica Generic' block returns its continuous states, we can evaluate them with <emphasis>IDA</emphasis> by running the example:
+            The 'Modelica Generic' block returns its continuous states, we can evaluate them with <emphasis>DDaskr</emphasis> by running the example:
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/IDA_Example.zcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/DAE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../examples/solvers/IDA_Example.zcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../examples/solvers/DAE_Example.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
 loadScicos();
 loadXcosLibs();
-importXcosDiagram(SCI + "/modules/xcos/examples/solvers/IDA_Example.zcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/solvers/DAE_Example.zcos");
 // Redefining messagebox() to avoid popup
 function messagebox(msg, title)
  disp(title);
  disp(msg);
 endfunction
+scs_m.props.tol(6) = 101;
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
@@ -167,6 +189,9 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
                 <link linkend="CVode">CVode</link>
             </member>
             <member>
+                <link linkend="IDA">IDA</link>
+            </member>
+            <member>
                 <link linkend="RK">Runge-Kutta 4(5)</link>
             </member>
             <member>
@@ -177,6 +202,9 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
             </member>
             <member>
                 <link linkend="Comparisons">Comparisons</link>
+            </member>
+            <member>
+                <link linkend="daskr">daskr</link>
             </member>
             <member>
                 <link linkend="ode">ode</link>
@@ -198,7 +226,19 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
     <refsection>
         <title>Bibliography</title>
         <para>
+            <ulink url="http://www.netlib.org/ode/">Netlib storage</ulink>, documentation inside of the code.
+        </para>
+        <para>
             <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Sundials Documentation</ulink>
         </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>DDaskr solver added</revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

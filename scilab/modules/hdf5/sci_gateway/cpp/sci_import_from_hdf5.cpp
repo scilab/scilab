@@ -26,6 +26,7 @@ extern "C"
 #include "h5_attributeConstants.h"
 #include "intmacr2tree.h"
 #include "expandPathVariable.h"
+#include "stdlib.h"
 }
 
 #include "import_from_hdf5_v1.hxx"
@@ -463,10 +464,20 @@ static bool import_string(int _iDatasetId, int _iItemPos, int *_piAddress, char 
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(piDims);
+        for (int i = 0 ; i < iSize ; i++)
+        {
+            free(pstData[i]);
+        }
+        FREE(pstData);
         return false;
     }
 
     FREE(piDims);
+    for (int i = 0 ; i < iSize ; i++)
+    {
+        free(pstData[i]);
+    }
     FREE(pstData);
 
     return true;

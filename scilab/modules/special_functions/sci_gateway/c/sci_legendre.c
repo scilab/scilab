@@ -42,13 +42,13 @@ int sci_legendre(char *fname, unsigned long fname_len)
     *      n and m may not be both vectors
     *
     *      norm_flag : optionnal. When it is present and equal to "norm"
-    *                  it is a normalised version which is computed
+    *                  it is a normalized version which is computed
     *    AUTHOR
     *       Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
     */
     int it = 0, lc = 0, mM = 0, nM = 0, m1 = 0, m2 = 0, mN = 0, nN = 0;
     int n1 = 0, n2 = 0, mx = 0, nx = 0, mnx = 0, ms = 0, ns = 0;
-    int M_is_scalar = 0, N_is_scalar = 0, normalised = 0, MNp1 = 0, *ipqa = NULL;
+    int M_is_scalar = 0, N_is_scalar = 0, normalized = 0, MNp1 = 0, *ipqa = NULL;
     double xx = 0., dnu1 = 0.;
     int id = 0, ierror = 0, i = 0, j = 0, nudiff = 0;
 
@@ -185,16 +185,16 @@ int sci_legendre(char *fname, unsigned long fname_len)
 
         if ( strcmp(lschar, "norm") == 0)
         {
-            normalised = 1;
+            normalized = 1;
         }
         else
         {
-            normalised = 0;
+            normalized = 0;
         }
     }
     else
     {
-        normalised = 0;
+        normalized = 0;
     }
 
     MNp1 = Max (n2 - n1, m2 - m1) + 1;
@@ -202,7 +202,7 @@ int sci_legendre(char *fname, unsigned long fname_len)
     allocMatrixOfDouble(pvApiCtx, nbInputArg + 1, MNp1, mnx, &pdblPQA);
     piPQA = (int*)MALLOC(MNp1 * mnx * sizeof(int));
 
-    if ( normalised )
+    if ( normalized )
     {
         id = 4;
     }

@@ -56,7 +56,7 @@ public final class ScilabGraphUtils extends mxUtils {
     /**
      * Cache for the generated latex icons
      */
-    private static Map<String, TeXIcon> generatedLatexIcons = new WeakHashMap<String, TeXIcon>();
+    private static Map<Float, Map<String, TeXIcon>> generatedLatexIcons = new WeakHashMap<Float, Map<String, TeXIcon>>();
 
     /**
      * Table conversion between escaped/unescaped HTML symbols
@@ -143,15 +143,21 @@ public final class ScilabGraphUtils extends mxUtils {
      * @throws ParseException
      *             when the text is not a valid formula
      */
-    public static Icon getTexIcon(String text) throws ParseException {
+    public static Icon getTexIcon(String text, float size) throws ParseException {
         TeXIcon icon;
         String escapedText = SupportedLabelType.Latex.escape(text);
 
-        icon = generatedLatexIcons.get(escapedText);
+        Map<String, TeXIcon> iconMap = generatedLatexIcons.get(size);
+        if (iconMap == null) {
+            iconMap = new WeakHashMap<String, TeXIcon>();
+            generatedLatexIcons.put(size, iconMap);
+        }
+
+        icon = iconMap.get(escapedText);
         if (icon == null) {
             TeXFormula tex = new TeXFormula(escapedText);
-            icon = tex.createTeXIcon(TeXConstants.STYLE_DISPLAY, 20);
-            generatedLatexIcons.put(escapedText, icon);
+            icon = tex.createTeXIcon(TeXConstants.STYLE_DISPLAY, size);
+            iconMap.put(escapedText, icon);
         }
         return icon;
     }

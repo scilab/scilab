@@ -171,7 +171,7 @@ function [ok,tt,dep_ut]=genfunc2(tt,inp,out,nci,nco,nx,nz,nrp,type_)
         t1=[t1;"- discrete state z (size:"+string(nz)+")"]
     end
     if t1<>[] then
-        t1=["You may also re-initialize:";
+        t1=["You may also reinitialize:";
         t1]
     end
     while %t do

@@ -49,7 +49,7 @@ int sci_xget(char *fname, unsigned long fname_len)
     double* l2 = NULL;
     char* l3 = NULL;
 
-    int flagx = 0, m1 = 0, m2 = 0, n2 = 0, i = 0;
+    int m1 = 0, m2 = 0, n2 = 0, i = 0;
     int one = 1;
 
     BOOL keyFound = FALSE;
@@ -118,11 +118,6 @@ int sci_xget(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        flagx = (int)  * (l2);
-    }
-    else
-    {
-        flagx = 0;
     }
 
     if (strcmp(l1, "fpf") == 0 || strcmp(l1, "auto clear") == 0)

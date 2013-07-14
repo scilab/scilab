@@ -17,15 +17,21 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>isdef(name [,where])</synopsis>
+        <synopsis>ve = isdef(name [,where])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
+                <term>ve</term>
+                <listitem>
+                    <para>a matrix with the same size as <varname>name</varname> with boolean values</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>name</term>
                 <listitem>
-                    <para>a character string</para>
+                    <para>a matrix of character strings</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -65,16 +71,16 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-A=1;
-isdef('A')
-clear A
-isdef('A')
+A=1; B=2; C=3; D=4;
+isdef(['A', 'B'; 'C', 'D'])
+clear A, B, C, D;
+isdef(['A', 'B'; 'C', 'D'])
 
 function level1()
   function level2()
-    disp(isdef("a","all"));
-    disp(isdef("a","local"));
-    disp(isdef("a","nolocal"));
+    disp(isdef(["a", "b"],"all"));
+    disp(isdef(["a", "b"],"local"));
+    disp(isdef(["a", "b"],"nolocal"));
   endfunction
   level2()
 endfunction

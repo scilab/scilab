@@ -325,7 +325,7 @@ int getscicosvarsfromimport(char *what, void **v, int *nv, int *mv)
 /*int *mv; size 1 of the imported data */
 {
     /*variable declaration*/
-    int nx, nz, noz, nmod, nblk, nlnk, nsubs, nevts, ng;
+    int nx, nmod, nblk, nlnk, nsubs, nevts, ng;
     int niord, noord, ncord, nordptr, nzord, nelem;
 
     /*test if scicosim is running*/
@@ -337,10 +337,6 @@ int getscicosvarsfromimport(char *what, void **v, int *nv, int *mv)
 
     /* retrieve length of x register */
     nx = (int) scicos_imp.nx[0];
-    /* retrieve length of z register */
-    nz = (int) scicos_imp.nz[0];
-    /* retrieve length of oz register */
-    noz = (int) scicos_imp.noz[0];
     /* retrieve number of block */
     nmod = (int) scicos_imp.nmod[0];
     /* retrieve number of block */
@@ -914,7 +910,7 @@ int C2F(getsciblockbylabel)(int*kfun, int label[], int *n)
     int k, i, i0, nblk, n1;
     if (scicos_imp.x == (double *)NULL)
     {
-        return(2); /* undefined import table scicos is not running */
+        return (2); /* undefined import table scicos is not running */
     }
     nblk = (int)(scicos_imp.nblk);
 
@@ -947,7 +943,7 @@ int C2F(getscilabel)(int *kfun, int label[], int *n)
 
     if (scicos_imp.x == (double *)NULL)
     {
-        return(2); /* undefined import table scicos is not running */
+        return (2); /* undefined import table scicos is not running */
     }
     k = *kfun;
     *n = (int)(scicos_imp.izptr[k] - scicos_imp.izptr[k - 1]);
@@ -960,12 +956,12 @@ int C2F(getscilabel)(int *kfun, int label[], int *n)
             *(y++) = *(u++);
         }
     }
-    return(0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 int C2F(getcurblock)()
 {
-    return(C2F(curblk).kfun);
+    return (C2F(curblk).kfun);
 }
 /*--------------------------------------------------------------------------*/
 /* used in fscope
@@ -991,7 +987,7 @@ void C2F(getouttb)(int *nsize, int *nvec, double *outtc)
     outtb_el *outtb_elem;       /*to store ptr of outtb_elem structure */
 
     /*auxiliary variable*/
-    int j, sz, lnk, pos;
+    int j, lnk, pos;
 
     /*get outtbptr from import struct.*/
     outtbptr = scicos_imp.outtbptr;
@@ -1028,7 +1024,6 @@ void C2F(getouttb)(int *nsize, int *nvec, double *outtc)
         /*complex data type*/
         else if (outtbtyp == SCSCOMPLEX_N)
         {
-            sz = outtbsz[2 * lnk] + outtbsz[(2 * lnk) + 1];
             outtbdptr = (SCSCOMPLEX_COP *)outtbptr[lnk];
             outtc[j] =  (double)outtbdptr[pos];
             /*outtc[j+1] =  (double)outtbdptr[pos+sz];*/

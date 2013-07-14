@@ -98,12 +98,17 @@ SciNotes
 Xcos
 ====
 
-* Update Sundials to lastest "2.5.0", keeping our modifications
+* Updated Sundials to lastest "2.5.0", keeping our modifications
 
-* Added a new DAE solver : DDaskr (BDF / Newton), which includes rootfinding.
+* Added a new DAE solver : DDaskr, using BDF methods with direct Newton and preconditioned Krylov linear solvers, which includes rootfinding.
+
+* In the Modelica initialization GUI, inputs (eg. sensor) were not handled.
 
 * Bug #7350 fixed - The superblock I/O ports numbering was not updated
                     when a new port was dropped.
+
+* Bug #11518 fixed - CLR block-text was displayed out of the bounding box 
+                     when zooming.
 
 * Bug #12359 fixed - Xcos files has been converted to zcos to gain some space.
 
@@ -151,9 +156,11 @@ Bug fixes
 
 * Bug #2267 fixed - Wrong error message when ticks locations and labels did not have the same sizes.
 
+* Bug #2416 fixed - Particular case (string([]) returns []) has been added in the string help page.
+
 * Bug #3928 fixed - An error was returned when a matrix was flipped along the third dimension.
 
-* Bug #4042 fixed - squeeze returned an hypermatrix instead of a matrix when at least one 
+* Bug #4042 fixed - squeeze returned an hypermatrix instead of a matrix when at least one
                     dimension was equal to 1.
 
 * Bug #4085 fixed - help page of num2cell added.
@@ -221,6 +228,8 @@ Bug fixes
 
 * Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
+* Bug #7960 fixed - plzr() could not produce pole zero plot for a simple transfer function.
+
 * Bug #8098 fixed - cumsum could not be applied to rational matrices.
 
 * Bug #8162 fixed - Area of stability of plzr was wrong for continuous systems (+unit test added).
@@ -272,6 +281,8 @@ Bug fixes
 
 * Bug #9004 fixed - bitcmp function called with one input argument returned an error.
 
+* Bug #9020 fixed - exists function did not accept matrix as first input argument.
+
 * Bug #9059 fixed - tbx_build_macros and genlib do not stop on error.
 
 * Bug #9109 fixed - nfreq tagged as obsolete.
@@ -310,7 +321,7 @@ Bug fixes
 
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
-                     
+
 * Bug #10866 fixed - det() was not equivalent to detr() for rational matrices.
 
 * Bug #10906 fixed - Typo in help page of cls2dls.
@@ -368,6 +379,8 @@ Bug fixes
 * Bug #12415 fixed - PATH environment variable grew when using call_scilab in a loop.
 
 * Bug #12426 fixed - By using addErrorMessage, random string error could be displayed.
+
+* Bug #12433 fixed - show_pixmap function has been removed in Scilab files.
 
 * Bug #12443 fixed - Document behavior of mopen() in text file mode
                      on Windows.
