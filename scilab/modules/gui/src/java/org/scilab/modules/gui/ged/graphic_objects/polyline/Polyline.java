@@ -11,8 +11,6 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects.polyline;
 
-import java.awt.Dimension;
-
 /**
 * Properties of the polyline.
 * Last child.

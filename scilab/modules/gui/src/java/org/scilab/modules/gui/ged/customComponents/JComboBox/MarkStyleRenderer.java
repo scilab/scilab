@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.gui.ged.componentRenderer.JComboBox;
+package org.scilab.modules.gui.ged.customComponents.JComboBox;
 
 import java.awt.Color;
 import java.awt.Component;

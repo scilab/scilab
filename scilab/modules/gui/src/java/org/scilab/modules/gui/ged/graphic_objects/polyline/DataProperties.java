@@ -11,11 +11,8 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects.polyline;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Insets;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.WindowAdapter;
@@ -48,10 +45,11 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class DataProperties extends BaseProperties {
-    protected static JToggleButton bDataProperties;
+    private ContentLayout layout = new ContentLayout();
+    private static JToggleButton bDataProperties;
     private JLabel lDataProperties;
     private JSeparator sDataProperties;
-    protected static JPanel pDataProperties;
+    private static JPanel pDataProperties;
     private JToggleButton bClipBox;
     private JLabel lClipBox;
     private JTextField cClipBox;
@@ -84,22 +82,41 @@ public class DataProperties extends BaseProperties {
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of polyline.
     */
-    public DataProperties(String objectID){
+    public DataProperties(String objectID) {
         super(objectID);
-        dataPropertiesComponents();
-        initDataProperties(objectID);
+        insertBase();
+        components();
+        dataDialog();
+        values(objectID);
     }
 
     /**
-    * It has all the components of the section Data Properties.
+    * Insert show/hide button, title and main JPanel of group.
     */
-    public void dataPropertiesComponents() {
-        ContentLayout layout = new ContentLayout();
+    private void insertBase() {
+	int position = 2; //second group
 
         bDataProperties = new JToggleButton();
         lDataProperties = new JLabel();
         sDataProperties = new JSeparator();
         pDataProperties = new JPanel();
+
+        //Positioning JPanel Data Properties.
+        layout.addHeader(this, pDataProperties, bDataProperties, lDataProperties,
+                         sDataProperties, MessagesGED.data_properties, position);
+        bDataProperties.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                pDataProperties.setVisible(!bDataProperties.isSelected());
+                HidePolyline.checkAllButtons();
+            }
+        });
+    }
+
+    /**
+    * It has all the components of the section Data Properties.
+    */
+    private void components() {
         bClipBox = new JToggleButton();
         lClipBox = new JLabel();
         cClipBox = new JTextField();
@@ -127,125 +144,128 @@ public class DataProperties extends BaseProperties {
         delete = new JButton();
         refresh = new JButton();
         ok = new JButton();
+        int ROW = 0;
 
-
-        //Components of the header: Data Properties.
-        bDataProperties.addActionListener(new ActionListener() {
+        //Components of the property: Clip State.
+        layout.addJLabel(pDataProperties, lClipState, MessagesGED.clip_state, 1, ROW, 0);
+        layout.addJComboBox(pDataProperties, cClipState,
+                new String[] {MessagesGED.off, MessagesGED.clipgrf, MessagesGED.on},
+                2, ROW);
+        cClipState.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                bDataPropertiesActionPerformed(evt);
+                GraphicController.getController().setProperty(
+                        currentpolyline, GraphicObjectProperties.__GO_CLIP_STATE__,
+                        cClipState.getSelectedIndex());
             }
         });
-        layout.addSHbutton(this, bDataProperties, 0, 3);
-
-        layout.addSectionTitle(this, lDataProperties, MessagesGED.data_properties, 3);
-
-        layout.addSeparator(this, sDataProperties, 4);
-
-        pDataProperties.setLayout(new GridBagLayout());
-
+        ROW++;
 
         //Components of the property: Clip Box.
+        layout.addInnerPanel(pDataProperties, pClipBox, bClipBox, lClipBox, cClipBox, MessagesGED.clip_box, ROW);
+        ROW=ROW+2;
         bClipBox.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                bClipBoxActionPerformed(evt);
+                pClipBox.setVisible(!bClipBox.isSelected());
+                HidePolyline.checkAllButtons();
             }
         });
-        layout.addSHbutton(pDataProperties, bClipBox, 0, 0);
-
-        bClipBox.setSelected(true);
-
-        layout.addJLabel(pDataProperties, lClipBox, MessagesGED.clip_box, 1, 0, 0);
-
-        layout.addJTextField(pDataProperties, cClipBox, false, 2, 0, 4);
-
-        pClipBox.setLayout(new GridBagLayout());
-
-        pClipBox.setVisible(false);
-
-        layout.addJLabel(pClipBox, lClipBoxUpper, MessagesGED.upper_left, 0, 0, 0);
-
+        int rowClipBox = 0;
+        //Clip Box Upper
+        layout.addJLabel(pClipBox, lClipBoxUpper, MessagesGED.upper_left, 0, rowClipBox, 0);
+        layout.addJTextField(pClipBox, cClipBoxUpper, true, 1, rowClipBox++, 4);
         cClipBoxUpper.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cClipBoxUpperActionPerformed(evt);
+                updateClipBox();
             }
         });
         cClipBoxUpper.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cClipBoxUpperFocusLost(evt);
+                updateClipBox();
             }
         });
-        layout.addJTextField(pClipBox, cClipBoxUpper, true, 1, 0, 4);
-
-        layout.addJLabel(pClipBox, lClipBoxPoint, MessagesGED.point, 0, 1, 0);
-
+        //Clip Box Point
+        layout.addJLabel(pClipBox, lClipBoxPoint, MessagesGED.point, 0, rowClipBox, 0);
+        layout.addJTextField(pClipBox, cClipBoxPoint, true, 1, rowClipBox++, 4);
         cClipBoxPoint.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cClipBoxPointActionPerformed(evt);
+                updateClipBox();
             }
         });
         cClipBoxPoint.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cClipBoxPointFocusLost(evt);
+                updateClipBox();
             }
         });
-        layout.addJTextField(pClipBox, cClipBoxPoint, true, 1, 1, 4);
-
-        layout.addJLabel(pClipBox, lClipBoxWidth, MessagesGED.width, 0, 2, 0);
-
+        //Clip Box Width
+        layout.addJLabel(pClipBox, lClipBoxWidth, MessagesGED.width, 0, rowClipBox, 0);
+        layout.addJTextField(pClipBox, cClipBoxWidth, true, 1, rowClipBox++, 4);
         cClipBoxWidth.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cClipBoxWidthActionPerformed(evt);
+                updateClipBox();
             }
         });
         cClipBoxWidth.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cClipBoxWidthFocusLost(evt);
+                updateClipBox();
             }
         });
-        layout.addJTextField(pClipBox, cClipBoxWidth, true, 1, 2, 4);
-
-        layout.addJLabel(pClipBox, lClipBoxHeight, MessagesGED.height, 0, 3, 0);
-
+        //Clip Box Height
+        layout.addJLabel(pClipBox, lClipBoxHeight, MessagesGED.height, 0, rowClipBox, 0);
+        layout.addJTextField(pClipBox, cClipBoxHeight, true, 1, rowClipBox, 4);
         cClipBoxHeight.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cClipBoxHeightActionPerformed(evt);
+                updateClipBox();
             }
         });
         cClipBoxHeight.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cClipBoxHeightFocusLost(evt);
+                updateClipBox();
             }
         });
-        layout.addJTextField(pClipBox, cClipBoxHeight, true, 1, 3, 4);
-
-        //Positioning JPanel Clip Box.
-        gbc = new GridBagConstraints();
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.weightx = 0.1;
-        pDataProperties.add(pClipBox, gbc);
-
-
-        //Components of the property: Clip State.
-        layout.addJLabel(pDataProperties, lClipState, MessagesGED.clip_state, 1, 2, 0);
-
-        cClipState.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                cClipStateActionPerformed(evt);
-            }
-        });
-        layout.addJComboBox(
-                pDataProperties,
-                cClipState,
-                new String[] { MessagesGED.off, MessagesGED.clipgrf, MessagesGED.on },
-                2, 2);
-
 
         //Components of the property: Data.
-        layout.addJLabel(pDataProperties, lData, MessagesGED.data, 1, 3, 0);
+        layout.addJLabel(pDataProperties, lData, MessagesGED.data, 1, ROW, 0);
+        layout.addDataField(pDataProperties, pData, bData, cData, 2, ROW, currentpolyline);
+        bData.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateDataTable();
+                dataTableDialog.setVisible(true);
+            }
+        });
+        ROW++;
 
+        //Components of the property: Tag.
+        layout.addJLabel(pDataProperties, lTag, MessagesGED.tag, 1, ROW, 0);
+        layout.addJTextField(pDataProperties, cTag, true, 2, ROW, 4);
+        cTag.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateTag();
+            }
+        });
+        cTag.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateTag();
+            }
+        });
+    }
+
+    /**
+     * Implement Data Editor.
+     */
+    private void dataDialog() {
         layout.addDataDialog(dataTableDialog, dataScroll, dataTable, append, delete, refresh, ok, currentpolyline);
         dataTableDialog.addWindowListener(new WindowAdapter() {
             @Override
@@ -258,76 +278,31 @@ public class DataProperties extends BaseProperties {
             }
         });
         dataTable.getModel().addTableModelListener(new TableModelListener() { 
+            @Override
             public void tableChanged(TableModelEvent evt) {
                 dataTableEvent(evt);
             }
         });
         refresh.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                refreshActionPerformed(evt);
-            }
-
-            /**
-            * Implement the action on the REFRESH button.
-            */
-            private void refreshActionPerformed(ActionEvent evt) {
                 updateDataTable();
             }
         });
         ok.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                okActionPerformed(evt);
-            }
-
-            /**
-            * Implement the action on the OK button.
-            */
-            public void okActionPerformed(ActionEvent evt) {
                 updateDataTable();
                 dataTableDialog.dispose();
             }
         });
-
-        layout.addDataField(pDataProperties, pData, bData, cData, 2, 3, currentpolyline);
-        bData.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                bDataActionPerformed(evt);
-            }
-        });
-
-        //Components of the property: Tag.
-        layout.addJLabel(pDataProperties, lTag, MessagesGED.tag, 1, 4, 0);
-
-        cTag.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                cTagActionPerformed(evt);
-            }
-        });
-        cTag.addFocusListener(new FocusAdapter() {
-            public void focusLost(FocusEvent evt) {
-                cTagFocusLost(evt);
-            }
-        });
-        layout.addJTextField(pDataProperties, cTag, true, 2, 4, 4);
-
-
-        //Positioning JPanel Data Properties.
-        gbc = new GridBagConstraints();
-        gbc.gridx = 1;
-        gbc.gridy = 5;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.anchor = GridBagConstraints.LINE_START;
-        gbc.weightx = 0.1;
-        gbc.insets = new Insets(0, 0, 12, 0);
-        add(pDataProperties, gbc);
     }
 
     /**
-    * Loads the current properties of the section Data Properties.
-    *
+    * Loads the current properties of group: Data Properties.
     * @param objectID Enters the identification of polyline.
     */
-    public void initDataProperties(String objectID) {
+    private void values(String objectID) {
         if (objectID != null) {
             currentpolyline = objectID;
 
@@ -341,48 +316,22 @@ public class DataProperties extends BaseProperties {
             titleClipBox();
 
             // Get the current status of the property: Clip State
-            cClipState.setSelectedIndex( (Integer) GraphicController.getController()
-                                .getProperty(currentpolyline, GraphicObjectProperties.__GO_CLIP_STATE__) );
+            cClipState.setSelectedIndex((Integer) GraphicController.getController()
+                                .getProperty(currentpolyline, GraphicObjectProperties.__GO_CLIP_STATE__));
 
             // Get the current status of the property: Data
             updateDataTable();
 
             // Get the current status of the property: Tag
-            cTag.setText( (String) GraphicController.getController()
-                                .getProperty(currentpolyline, GraphicObjectProperties.__GO_TAG__) );
-        }
-    }
-
-    /**
-    * Implement the action button to show/hide.
-    */
-    private void bDataPropertiesActionPerformed(ActionEvent evt) {
-        if (bDataProperties.isSelected()) {
-            pDataProperties.setVisible(false);
-            HidePolyline.checkAllButtons();
-        } else {
-            pDataProperties.setVisible(true);
-            HidePolyline.checkAllButtons();
-        }
-    }
-
-    /**
-    * Implement the action button to show/hide.
-    */
-    private void bClipBoxActionPerformed(ActionEvent evt) {
-        if (bClipBox.isSelected()) {
-            pClipBox.setVisible(false);
-            HidePolyline.checkAllButtons();
-        } else {
-            pClipBox.setVisible(true);
-            HidePolyline.checkAllButtons();
+            cTag.setText((String) GraphicController.getController()
+                                .getProperty(currentpolyline, GraphicObjectProperties.__GO_TAG__));
         }
     }
 
     /**
     * Inserts the current situation of the clip box.
     */
-    public void titleClipBox(){
+    public void titleClipBox() {
         String titleUpper = cClipBoxUpper.getText();
         String titlePoint = cClipBoxPoint.getText();
         String titleWidth = cClipBoxWidth.getText();
@@ -408,92 +357,6 @@ public class DataProperties extends BaseProperties {
     }
 
     /**
-    * Updates the property: Clip Box Upper-left.
-    * @param evt ActionEvent.
-    */
-    private void cClipBoxUpperActionPerformed(ActionEvent evt) {
-        updateClipBox();
-    }
-
-    /**
-    * Updates the property: Clip Box Upper-left.
-    * @param evt FocusEvent.
-    */
-    private void cClipBoxUpperFocusLost(FocusEvent evt) {
-        updateClipBox();
-    }
-
-    /**
-    * Updates the property: Clip Box Point.
-    * @param evt ActionEvent.
-    */
-    private void cClipBoxPointActionPerformed(ActionEvent evt) {
-        updateClipBox();
-    }
-
-    /**
-    * Updates the property: Clip Box Point.
-    * @param evt FocusEvent.
-    */
-    private void cClipBoxPointFocusLost(FocusEvent evt) {
-        updateClipBox();
-    }
-
-    /**
-    * Updates the property: Clip Box Width.
-    * @param evt ActionEvent.
-    */
-    private void cClipBoxWidthActionPerformed(ActionEvent evt) {
-        updateClipBox();
-    }
-
-    /**
-    * Updates the property: Clip Box Width.
-    * @param evt FocusEvent.
-    */
-    private void cClipBoxWidthFocusLost(FocusEvent evt) {
-        updateClipBox();
-    }
-
-    /**
-    * Updates the property: Clip Box Height.
-    * @param evt ActionEvent.
-    */
-    private void cClipBoxHeightActionPerformed(ActionEvent evt) {
-        updateClipBox();
-    }
-
-    /**
-    * Updates the property: Clip Box Height.
-    * @param evt FocusEvent.
-    */
-    private void cClipBoxHeightFocusLost(FocusEvent evt) {
-        updateClipBox();
-    }
-
-    /**
-    * Updates the property: Clip State.
-    *
-    * @param evt ActionEvent.
-    */
-    private void cClipStateActionPerformed(ActionEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_CLIP_STATE__,
-                cClipState.getSelectedIndex()
-                );
-    }
-
-    /**
-    * Implement the action button to open a data table.
-    *
-    * @param evt ActionEvent.
-    */
-    private void bDataActionPerformed(ActionEvent evt) {
-        updateDataTable();
-        dataTableDialog.setVisible(true);
-    }
-
-    /**
     * Get all data from a polyline.
     */
     public Object[][] getData() {
@@ -514,8 +377,8 @@ public class DataProperties extends BaseProperties {
     */
     private boolean is3D(Object[][] data) {
         boolean is3D = false;
-        for (int i=0; i<data.length; i++){
-            if((Double)data[i][2] != 0.0){
+        for (int i=0; i<data.length; i++) {
+            if ((Double) data[i][2] != 0.0) {
                 is3D = true;
             }
         }
@@ -528,8 +391,8 @@ public class DataProperties extends BaseProperties {
     private void updateDataTable() {
         DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
         Object[][] data = getData();
-        if(data.length!=0) {
-            if(is3D(data)){
+        if (data.length != 0) {
+            if (is3D(data)) {
                 tableModel.setDataVector(data, new String [] {"X", "Y", "Z"});
                 cData.setText(data.length + "x3");
             } else {
@@ -541,17 +404,18 @@ public class DataProperties extends BaseProperties {
 
     /**
     * Assigns the table changes.
+    * @param evt TableModelEvent.
     */
     private void dataTableEvent(TableModelEvent evt) {
-        if(dataTable.getSelectedRow()!=-1) {
+        if(dataTable.getSelectedRow() != -1) {
             if (dataTable.getRowCount() <= dataTable.getSelectedRow()) {
                 return;
             }
             Object xValue = dataTable.getValueAt(dataTable.getSelectedRow(), 0);
             Object yValue = dataTable.getValueAt(dataTable.getSelectedRow(), 1);
-            if (xValue == null){
+            if (xValue == null) {
                    xValue = 0.0;
-               } else if(yValue == null) {
+               } else if (yValue == null) {
                    yValue = 0.0;
                }
                PolylineData.setPointValue(currentpolyline, dataTable.getSelectedRow(), (Double)xValue, (Double)yValue, 0.0);
@@ -569,20 +433,19 @@ public class DataProperties extends BaseProperties {
     }
 
     /**
-    * Updates the property: Tag.
-    *
-    * @param evt ActionEvent.
+    * Get Status of Main Jpanel.
+    * @return visibility
     */
-    private void cTagActionPerformed(ActionEvent evt) {
-        updateTag();
+    public static boolean getStatus() {
+        return pDataProperties.isVisible();
     }
 
     /**
-    * Updates the property: Tag.
-    *
-    * @param evt FocusEvent.
+    * Set Visibility of Property Group.
+    * @param visible boolean
     */
-    private void cTagFocusLost(FocusEvent evt) {
-        updateTag();
+    public static void setVisibility(boolean visible) {
+        pDataProperties.setVisible(visible);
+        bDataProperties.setSelected(!visible);
     }
 }

@@ -21,17 +21,10 @@ import org.scilab.modules.gui.ged.actions.ShowHide;
 public class HidePolyline {
     public HidePolyline(boolean hide) {
         try {
-            BaseProperties.pBaseProperties.setVisible(!hide);
-            BaseProperties.bBaseProperties.setSelected(hide);
-
-            DataProperties.pDataProperties.setVisible(!hide);
-            DataProperties.bDataProperties.setSelected(hide);
-
-            Position.pPosition.setVisible(!hide);
-            Position.bPosition.setSelected(hide);
-
-            Style.pStyle.setVisible(!hide);
-            Style.bStyle.setSelected(hide);
+            BaseProperties.setVisibility(!hide);
+            DataProperties.setVisibility(!hide);
+            Position.setVisibility(!hide);
+            Style.setVisibility(!hide);
         } catch (NullPointerException nexcC) { }
     }
 
@@ -40,11 +33,10 @@ public class HidePolyline {
      * Updates the button's icon in the toolbar
      */
     public static void checkAllButtons() {
-        boolean BP, DP, PS, SA;
-        BP = BaseProperties.pBaseProperties.isVisible();
-        DP = DataProperties.pDataProperties.isVisible();
-        PS = Position.pPosition.isVisible();
-        SA = Style.pStyle.isVisible();
+        boolean BP = BaseProperties.getStatus();
+        boolean DP = DataProperties.getStatus();
+        boolean PS = Position.getStatus();
+        boolean SA = Style.getStatus();
         if (BP && DP && PS && SA) {
             ShowHide.click = false;
             ShowHide.toggleButton();

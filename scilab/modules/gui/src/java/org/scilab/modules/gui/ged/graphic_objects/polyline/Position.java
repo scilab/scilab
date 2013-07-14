@@ -11,11 +11,8 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects.polyline;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Insets;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -45,6 +42,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Position extends DataProperties {
+    private ContentLayout layout = new ContentLayout();
     protected static JToggleButton bPosition;
     private JLabel lPosition;
     private JSeparator sPosition;
@@ -73,22 +71,41 @@ public class Position extends DataProperties {
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of polyline.
     */
-    public Position(String objectID){
+    public Position(String objectID) {
         super(objectID);
-        positionComponents();
-        initPosition(objectID);
+        insertBase();
+        components();
+        shiftDialog();
+        values(objectID);
     }
 
     /**
-    * It has all the components of the section Position.
+    * Insert show/hide button, title and main JPanel of group.
     */
-    public void positionComponents() {
-        ContentLayout layout = new ContentLayout();
+    private void insertBase() {
+	int position = 3; //third group
 
         bPosition = new JToggleButton();
         lPosition = new JLabel();
         sPosition = new JSeparator();
         pPosition = new JPanel();
+
+        //Positioning JPanel Data Properties.
+        layout.addHeader(this, pPosition, bPosition, lPosition,
+                         sPosition, MessagesGED.position, position);
+        bPosition.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                pPosition.setVisible(!bPosition.isSelected());
+                HidePolyline.checkAllButtons();
+            }
+        });
+    }
+
+    /**
+    * It has all the components of the section Position.
+    */
+    private void components() {
         lMarkSizeUnit = new JLabel();
         cMarkSizeUnit = new JComboBox();
         lShiftX = new JLabel();
@@ -108,34 +125,63 @@ public class Position extends DataProperties {
         shiftTable = new JTable();
         refresh = new JButton();
         ok = new JButton();
-
-        //Components of the header: Position.
-        bPosition.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                bPositionActionPerformed(evt);
-            }
-        });
-        layout.addSHbutton(this, bPosition, 0, 6);
-
-        layout.addSectionTitle(this, lPosition, MessagesGED.position, 6);
-
-        layout.addSeparator(this, sPosition, 7);
-
-        pPosition.setLayout(new GridBagLayout());
+        int ROW = 0;
 
         //Components of the property: Mark Size Unit.
-        layout.addJLabel(pPosition, lMarkSizeUnit, MessagesGED.mark_size_unit, 0, 0, 16);
-
+        layout.addJLabel(pPosition, lMarkSizeUnit, MessagesGED.mark_size_unit, 0, ROW, LEFTMARGIN);
+        layout.addJComboBox(pPosition, cMarkSizeUnit,
+                new String[] {MessagesGED.point, MessagesGED.tabulated},
+                1, ROW);
+        ROW++;
         cMarkSizeUnit.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cMarkSizeUnitActionPerformed(evt);
+                GraphicController.getController().setProperty(
+                        currentpolyline, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__,
+                        cMarkSizeUnit.getSelectedIndex());
             }
         });
-        layout.addJComboBox(pPosition, cMarkSizeUnit,
-                new String[] { MessagesGED.point, MessagesGED.tabulated },
-                1, 0);
 
-        //Shift Dialog
+        //Components of the property: X Shift.
+        layout.addJLabel(pPosition, lShiftX, MessagesGED.x_shift, 0, ROW, LEFTMARGIN);
+        layout.addDataField(pPosition, pShiftX, bShiftX, cShiftX, 1, ROW, currentpolyline);
+        bShiftX.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateShiftTable(0);
+                shiftDialog.setVisible(true);
+            }
+        });
+        ROW++;
+
+        //Components of the property: Y Shift.
+        layout.addJLabel(pPosition, lShiftY, MessagesGED.y_shift, 0, ROW, LEFTMARGIN);
+        layout.addDataField(pPosition, pShiftY, bShiftY, cShiftY, 1, ROW, currentpolyline);
+        bShiftY.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateShiftTable(1);
+                shiftDialog.setVisible(true);
+            }
+        });
+        ROW++;
+
+        //Components of the property: Z Shift.
+        layout.addJLabel(pPosition, lShiftZ, MessagesGED.z_shift, 0, ROW, LEFTMARGIN);
+        layout.addDataField(pPosition, pShiftZ, bShiftZ, cShiftZ, 1, ROW, currentpolyline);
+        bShiftZ.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateShiftTable(2);
+                shiftDialog.setVisible(true);
+            }
+        });
+    }
+
+    /**
+     * Implement Shift Editor
+     */
+    private void shiftDialog() {
         layout.addShiftDialog(shiftDialog, shiftScroll, shiftTable, refresh, ok);
         shiftDialog.addWindowListener(new WindowAdapter() {
             @Override
@@ -149,16 +195,9 @@ public class Position extends DataProperties {
                 updateShiftTable(2);
             }
         });
-
         refresh.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                refreshActionPerformed(evt);
-            }
-
-            /**
-            * Implement the action on the REFRESH button.
-            */
-            private void refreshActionPerformed(ActionEvent evt) {
                 String axis = shiftTable.getColumnName(0);
                 if ("X".equals(axis)) {
                     updateShiftTable(0);
@@ -170,77 +209,33 @@ public class Position extends DataProperties {
             }
         });
         ok.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                okActionPerformed(evt);
-            }
-
-            /**
-            * Implement the action on the OK button.
-            */
-            public void okActionPerformed(ActionEvent evt) {
                 updateShiftTable(0);
                 updateShiftTable(1);
                 updateShiftTable(2);
                 shiftDialog.dispose();
             }
         });
-
         shiftTable.getModel().addTableModelListener(new TableModelListener() { 
+            @Override
             public void tableChanged(TableModelEvent evt) {
                 shiftTableEvent(evt);
             }
         });
-
-        //Components of the property: X Shift.
-        layout.addJLabel(pPosition, lShiftX, MessagesGED.x_shift, 0, 1, 16);
-        layout.addDataField(pPosition, pShiftX, bShiftX, cShiftX, 1, 1, currentpolyline);
-        bShiftX.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                bShiftXActionPerformed(evt);
-            }
-        });
-
-        //Components of the property: Y Shift.
-        layout.addJLabel(pPosition, lShiftY, MessagesGED.y_shift, 0, 2, 16);
-        layout.addDataField(pPosition, pShiftY, bShiftY, cShiftY, 1, 2, currentpolyline);
-        bShiftY.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                bShiftYActionPerformed(evt);
-            }
-        });
-
-        //Components of the property: Z Shift.
-        layout.addJLabel(pPosition, lShiftZ, MessagesGED.z_shift, 0, 3, 16);
-        layout.addDataField(pPosition, pShiftZ, bShiftZ, cShiftZ, 1, 3, currentpolyline);
-        bShiftZ.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                bShiftZActionPerformed(evt);
-            }
-        });
-
-        //Positioning JPanel - Position
-        gbc = new GridBagConstraints();
-        gbc.gridx = 1;
-        gbc.gridy = 8;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.anchor = GridBagConstraints.LINE_START;
-        gbc.weightx = 0.1;
-        gbc.insets = new Insets(0, 0, 12, 0);
-        add(pPosition, gbc);
     }
 
     /**
-    * Loads the current properties of the section Data Properties.
-    *
+    * Loads the current properties of group: Position.
     * @param objectID Enters the identification of polyline.
     */
-    public void initPosition(String objectID) {
+    private void values(String objectID) {
         if (objectID != null) {
             currentpolyline = objectID;
 
             //Get the current status of the property: Mark Size Unit
-            cMarkSizeUnit.setSelectedIndex( (Integer) GraphicController.getController()
-                                .getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__) );
+            cMarkSizeUnit.setSelectedIndex((Integer) GraphicController.getController()
+                                .getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__));
 
             //Get the current status of the property: Shift
             updateShiftTable(0);
@@ -250,64 +245,13 @@ public class Position extends DataProperties {
     }
 
     /**
-    * Implement the action button to show/hide.
-    */
-    private void bPositionActionPerformed(ActionEvent evt) {
-        if (bPosition.isSelected()) {
-            pPosition.setVisible(false);
-            HidePolyline.checkAllButtons();
-        } else {
-            pPosition.setVisible(true);
-            HidePolyline.checkAllButtons();
-        }
-    }
-
-    /**
-    * Updates the property: Mark Size Unit.
-    *
-    * @param evt ActionEvent.
-    */
-    private void cMarkSizeUnitActionPerformed(ActionEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__,
-                cMarkSizeUnit.getSelectedIndex()
-                );
-    }
-
-    /**
-    * Updates the property: X Shift.
-    * @param evt ActionEvent.
-    */
-    private void bShiftXActionPerformed(ActionEvent evt) {
-        updateShiftTable(0);
-        shiftDialog.setVisible(true);
-    }
-
-    /**
-    * Updates the property: Y Shift.
-    * @param evt ActionEvent.
-    */
-    private void bShiftYActionPerformed(ActionEvent evt) {
-        updateShiftTable(1);
-        shiftDialog.setVisible(true);
-    }
-
-    /**
-    * Updates the property: Z Shift.
-    * @param evt ActionEvent.
-    */
-    private void bShiftZActionPerformed(ActionEvent evt) {
-        updateShiftTable(2);
-        shiftDialog.setVisible(true);
-    }
-
-    /**
     * Assigns the table changes.
+    * @param evt TableModelEvent.
     */
     private void shiftTableEvent(TableModelEvent evt) {
-        if(shiftTable.getSelectedRow()!=-1) {
+        if (shiftTable.getSelectedRow() != -1) {
             Object shiftValue = shiftTable.getValueAt(shiftTable.getSelectedRow(), 1);
-            if (shiftValue == null){
+            if (shiftValue == null) {
                 shiftValue = 0.0;
             }
             //set shift value here - not implemented yet
@@ -318,37 +262,37 @@ public class Position extends DataProperties {
     * Updates the shift table.
     * @param axis 0 to X - 1 to Y - 2 to Z
     */
-    public void updateShiftTable(int axis){
+    public final void updateShiftTable(int axis) {
         Object[][] data;
         DefaultTableModel tableModel = (DefaultTableModel) shiftTable.getModel();
         switch(axis) {
             case 0:
-                if (PolylineData.isXShiftSet(currentpolyline)==0){
-                    data = getShift(0,true);
+                if (PolylineData.isXShiftSet(currentpolyline) == 0) {
+                    data = getShift(0, true);
                     cShiftX.setText("null");
                 } else {
-                    data = getShift(0,false);
-                    cShiftX.setText("1x" +data.length);
+                    data = getShift(0, false);
+                    cShiftX.setText("1x" + data.length);
                 }
                 tableModel.setDataVector(data, new String [] {"X", MessagesGED.x_shift});
                 break;
             case 1:
-                if (PolylineData.isYShiftSet(currentpolyline)==0){
-                    data = getShift(1,true);
+                if (PolylineData.isYShiftSet(currentpolyline) == 0) {
+                    data = getShift(1, true);
                     cShiftY.setText("null");
                 } else {
-                    data = getShift(1,false);
-                    cShiftY.setText("1x" +data.length);
+                    data = getShift(1, false);
+                    cShiftY.setText("1x" + data.length);
                 }
                 tableModel.setDataVector(data, new String [] {"Y", MessagesGED.y_shift});
                 break;
             case 2:
-                if (PolylineData.isZShiftSet(currentpolyline)==0){
-                    data = getShift(2,true);
+                if (PolylineData.isZShiftSet(currentpolyline) == 0) {
+                    data = getShift(2, true);
                     cShiftZ.setText("null");
                 } else {
-                    data = getShift(2,false);
-                    cShiftZ.setText("1x" +data.length);
+                    data = getShift(2, false);
+                    cShiftZ.setText("1x" + data.length);
                 }
                 tableModel.setDataVector(data, new String [] {"Z", MessagesGED.z_shift});
                 break;
@@ -357,13 +301,13 @@ public class Position extends DataProperties {
 
     /**
     * Get all data from a polyline.
-    *
     * @param axis 0 to X - 1 to Y - 2 to Z
     * @param isNull use TRUE when SHIFT is null
     * @return [data][shift]
     */
     public Object[][] getShift(int axis, boolean isNull) {
-        double[] point = null, shift = null;
+        double[] point = null;
+        double[] shift = null;
         switch(axis) {
             case 0:
                 point = (double[]) PolylineData.getDataX(currentpolyline);
@@ -376,7 +320,7 @@ public class Position extends DataProperties {
                 break;
         }
         Object[][] data = new Object[point.length][2];
-        if(!isNull) {
+        if (!isNull) {
             switch(axis) {
                 case 0:
                     shift = (double[]) PolylineData.getShiftX(currentpolyline);
@@ -399,5 +343,22 @@ public class Position extends DataProperties {
             }
         }
         return data;
+    }
+
+    /**
+    * Get Status of Main Jpanel.
+    * @return visibility
+    */
+    public static boolean getStatus() {
+        return pPosition.isVisible();
+    }
+
+    /**
+    * Set Visibility of Property Group.
+    * @param visible boolean
+    */
+    public static void setVisibility(boolean visible) {
+        pPosition.setVisible(visible);
+        bPosition.setSelected(!visible);
     }
 }

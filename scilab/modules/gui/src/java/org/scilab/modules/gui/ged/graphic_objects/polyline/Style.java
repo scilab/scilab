@@ -17,9 +17,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
 import javax.swing.Box;
 import javax.swing.Box.Filler;
@@ -41,7 +38,7 @@ import org.scilab.modules.gui.editor.EditorManager;
 import org.scilab.modules.gui.ged.ColorMapHandler;
 import org.scilab.modules.gui.ged.ContentLayout;
 import org.scilab.modules.gui.ged.MessagesGED;
-import org.scilab.modules.gui.ged.componentRenderer.JComboBox.MarkStyleRenderer;
+import org.scilab.modules.gui.ged.customComponents.JComboBox.MarkStyleRenderer;
 import org.scilab.modules.gui.ged.graphic_objects.contouredObject.MarkStyle;
 
 /**
@@ -50,10 +47,11 @@ import org.scilab.modules.gui.ged.graphic_objects.contouredObject.MarkStyle;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class Style extends Position {
-    protected static JToggleButton bStyle;
+    private ContentLayout layout = new ContentLayout();
+    private static JToggleButton bStyle;
     private JLabel lStyle;
     private JSeparator sStyle;
-    protected static JPanel pStyle;
+    private static JPanel pStyle;
 
     private JLabel lArrowSize;
     private JTextField cArrowSize;
@@ -64,16 +62,16 @@ public class Style extends Position {
     private JLabel lBackColor;
     private JPanel pBackColor;
     private JButton bBackColor;
-    protected static JLabel cBackColor;
-    protected static JDialog backcolorDialog;
+    private static JLabel cBackColor;
+    private static JDialog backcolorDialog;
     private static JColorChooser chooserBack;
     private static JButton okBack;
 
     private JLabel lForeColor;
     private JPanel pForeColor;
     private JButton bForeColor;
-    protected static JLabel cForeColor;
-    protected static JDialog forecolorDialog;
+    private static JLabel cForeColor;
+    private static JDialog forecolorDialog;
     private static JColorChooser chooserFore;
     private static JButton okFore;
 
@@ -89,16 +87,16 @@ public class Style extends Position {
     private JLabel lMarkBackground;
     private JPanel pMarkBackground;
     private JButton bMarkBackground;
-    protected static JLabel cMarkBackground;
-    protected static JDialog markBackgroundDialog;
+    private static JLabel cMarkBackground;
+    private static JDialog markBackgroundDialog;
     private static JColorChooser chooserMarkBackground;
     private static JButton okMarkBackground;
 
     private JLabel lMarkForeground;
     private JPanel pMarkForeground;
     private JButton bMarkForeground;
-    protected static JLabel cMarkForeground;
-    protected static JDialog markForegroundDialog;
+    private static JLabel cMarkForeground;
+    private static JDialog markForegroundDialog;
     private static JColorChooser chooserMarkForeground;
     private static JButton okMarkForeground;
     private final MarkStyleRenderer markStyleRenderer = new MarkStyleRenderer();
@@ -109,7 +107,7 @@ public class Style extends Position {
     private JLabel lMarkStyle;
     private JComboBox cMarkStyle;
 
-    protected String parentFigure = (String) GraphicController.getController()
+    private String parentFigure = (String) GraphicController.getController()
                                 .getProperty(currentpolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
     private Filler fillerVERTICAL;
@@ -120,8 +118,9 @@ public class Style extends Position {
     */
     public Style(String objectID) {
         super(objectID);
-        styleComponents();
-        initPropertiesStyle(objectID);
+        insertBase();
+        components();
+        values(objectID);
         dialogBackgroundColor();
         dialogForegroundColor();
         dialogMarkBackground();
@@ -129,15 +128,32 @@ public class Style extends Position {
     }
 
     /**
-    * It has all the components of the section Style/Appeareance.
+    * Insert show/hide button, title and main JPanel of group.
     */
-    public void styleComponents() {
-        ContentLayout layout = new ContentLayout();
+    private void insertBase() {
+	int position = 4; //fourth group
 
         bStyle = new JToggleButton();
         lStyle = new JLabel();
         sStyle = new JSeparator();
         pStyle = new JPanel();
+
+        //Positioning JPanel Data Properties.
+        layout.addHeader(this, pStyle, bStyle, lStyle,
+                         sStyle, MessagesGED.style_appearance, position);
+        bStyle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                pStyle.setVisible(!bStyle.isSelected());
+                HidePolyline.checkAllButtons();
+            }
+        });
+    }
+
+    /**
+    * It has all the components of the section Style/Appeareance.
+    */
+    public final void components() {
         lArrowSize = new JLabel();
         cArrowSize = new JTextField();
         lBarWidth = new JLabel();
@@ -168,204 +184,189 @@ public class Style extends Position {
         cMarkSize = new JTextField();
         lMarkStyle = new JLabel();
         cMarkStyle = new JComboBox(MarkStyle.values());
-        fillerVERTICAL = new Box.Filler(new Dimension(1, 1), new java.awt.Dimension(1, 1), new java.awt.Dimension(1, 32767));
-
-        //Components of the header: Style/Appeareance.
-        bStyle.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                bStyleActionPerformed(evt);
-            }
-        });
-        layout.addSHbutton(this, bStyle, 0, 9);
-
-        layout.addSectionTitle(this, lStyle, MessagesGED.style_appearance, 9);
-
-        layout.addSeparator(this, sStyle, 10);
-
-        pStyle.setLayout(new GridBagLayout());
+        fillerVERTICAL = new Box.Filler(new Dimension(1, 1), new Dimension(1, 1), new Dimension(1, 32767));
+        int ROW = 0;
 
         //Components of the property: Arrow Size Factor.
-        layout.addJLabel(pStyle, lArrowSize, MessagesGED.arrow_size_factor, 1, 0, 16);
-
-        layout.addJTextField(pStyle, cArrowSize, true, 2, 0, 4);
+        layout.addJLabel(pStyle, lArrowSize, MessagesGED.arrow_size_factor, 0, ROW, LEFTMARGIN);
+        layout.addJTextField(pStyle, cArrowSize, true, 1, ROW, 4);
         cArrowSize.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cArrowSizeActionPerformed(evt);
+                setArrowSize(cArrowSize.getText());
             }
         });
         cArrowSize.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cArrowSizeFocusLost(evt);
+                setArrowSize(cArrowSize.getText());
             }
         });
+        ROW++;
 
         //Components of the property: Bar Width.
-        layout.addJLabel(pStyle, lBarWidth, MessagesGED.bar_width, 1, 1, 16);
-
-        layout.addJTextField(pStyle, cBarWidth, true, 2, 1, 4);
+        layout.addJLabel(pStyle, lBarWidth, MessagesGED.bar_width, 0, ROW, LEFTMARGIN);
+        layout.addJTextField(pStyle, cBarWidth, true, 1, ROW, 4);
         cBarWidth.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cBarWidthActionPerformed(evt);
+                setBarWidth(cBarWidth.getText());
             }
         });
         cBarWidth.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cBarWidthFocusLost(evt);
+                setBarWidth(cBarWidth.getText());
             }
         });
+        ROW++;
 
         //Components of the property: Background Color.
-        layout.addJLabel(pStyle, lBackColor, MessagesGED.background_color, 1, 2, 16);
-
-        layout.addColorField(pStyle, pBackColor, bBackColor, cBackColor, 2, 2);
+        layout.addJLabel(pStyle, lBackColor, MessagesGED.background_color, 0, ROW, LEFTMARGIN);
+        layout.addColorField(pStyle, pBackColor, bBackColor, cBackColor, 1, ROW);
         bBackColor.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                bBackColorActionPerformed(evt);
+                backcolorDialog.setVisible(true);
             }
         });
+        ROW++;
 
         //Components of the property: Foreground Color.
-        layout.addJLabel(pStyle, lForeColor, MessagesGED.foreground_color, 1, 3, 16);
-
-        layout.addColorField(pStyle, pForeColor, bForeColor, cForeColor, 2, 3);
+        layout.addJLabel(pStyle, lForeColor, MessagesGED.foreground_color, 0, ROW, LEFTMARGIN);
+        layout.addColorField(pStyle, pForeColor, bForeColor, cForeColor, 1, ROW);
         bForeColor.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                bForeColorActionPerformed(evt);
+                forecolorDialog.setVisible(true);
             }
         });
+        ROW++;
 
         //Components of the property: Line Style.
-        layout.addJLabel(pStyle, lLine, MessagesGED.line_style, 1, 4, 16);
-
+        layout.addJLabel(pStyle, lLine, MessagesGED.line_style, 0, ROW, LEFTMARGIN);
         layout.addJComboBox(pStyle, cLine,
                 new String[] { MessagesGED.dash, MessagesGED.dash_dot,
                     MessagesGED.longdash_dot, MessagesGED.bigdash_dot,
                     MessagesGED.bigdash_longdash, MessagesGED.dot,
                     MessagesGED.double_dot }
-                , 2, 4);
+                , 1, ROW);
         cLine.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cLineActionPerformed(evt);
+                GraphicController.getController().setProperty(
+                    currentpolyline, GraphicObjectProperties.__GO_LINE_STYLE__,
+                    cLine.getSelectedIndex() + 1);
             }
         });
+        ROW++;
 
         //Components of the property: Polyline Style.
-        layout.addJLabel(pStyle, lPolyline, MessagesGED.polyline_style, 1, 5, 16);
-
+        layout.addJLabel(pStyle, lPolyline, MessagesGED.polyline_style, 0, ROW, LEFTMARGIN);
         layout.addJComboBox(pStyle, cPolyline,
                 new String[] { MessagesGED.interpolated, MessagesGED.staircase, MessagesGED.barplot,
                     MessagesGED.bar, MessagesGED.arrowed, MessagesGED.filled }
-                , 2, 5);
+                , 1, ROW);
         cPolyline.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cPolylineActionPerformed(evt);
+                GraphicController.getController().setProperty(
+                    currentpolyline, GraphicObjectProperties.__GO_POLYLINE_STYLE__,
+                    cPolyline.getSelectedIndex());
             }
         });
+        ROW++;
 
         //Components of the property: Thickness.
-        layout.addJLabel(pStyle, lThickness, MessagesGED.thickness, 1, 6, 16);
-
-        layout.addJTextField(pStyle, cThickness, true, 2, 6, 4);
+        layout.addJLabel(pStyle, lThickness, MessagesGED.thickness, 0, ROW, LEFTMARGIN);
+        layout.addJTextField(pStyle, cThickness, true, 1, ROW, 4);
         cThickness.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cThicknessActionPerformed(evt);
+                setThickness(cThickness.getText());
             }
         });
         cThickness.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cThicknessFocusLost(evt);
+                setThickness(cThickness.getText());
             }
         });
+        ROW++;
 
         //Components of the property: Mark Background.
-        layout.addJLabel(pStyle, lMarkBackground, MessagesGED.mark_background, 1, 7, 16);
-
-        layout.addColorField(pStyle, pMarkBackground, bMarkBackground, cMarkBackground, 2, 7);
+        layout.addJLabel(pStyle, lMarkBackground, MessagesGED.mark_background, 0, ROW, LEFTMARGIN);
+        layout.addColorField(pStyle, pMarkBackground, bMarkBackground, cMarkBackground, 1, ROW);
         bMarkBackground.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                bMarkBackgroundActionPerformed(evt);
+                markBackgroundDialog.setVisible(true);
             }
         });
+        ROW++;
 
         //Components of the property: Mark Foreground.
-        layout.addJLabel(pStyle, lMarkForeground, MessagesGED.mark_foreground, 1, 8, 16);
-
-        layout.addColorField(pStyle, pMarkForeground, bMarkForeground, cMarkForeground, 2, 8);
+        layout.addJLabel(pStyle, lMarkForeground, MessagesGED.mark_foreground, 0, ROW, LEFTMARGIN);
+        layout.addColorField(pStyle, pMarkForeground, bMarkForeground, cMarkForeground, 1, ROW);
         bMarkForeground.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                bMarkForegroundActionPerformed(evt);
+                markForegroundDialog.setVisible(true);
             }
         });
+        ROW++;
 
         //Components of the property: Mark Size.
-        layout.addJLabel(pStyle, lMarkSize, MessagesGED.mark_size, 1, 9, 16);
-
-        layout.addJTextField(pStyle, cMarkSize, true, 2, 9, 4);
+        layout.addJLabel(pStyle, lMarkSize, MessagesGED.mark_size, 0, ROW, LEFTMARGIN);
+        layout.addJTextField(pStyle, cMarkSize, true, 1, ROW, 4);
         cMarkSize.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cMarkSizeActionPerformed(evt);
+                setMarkSize(cMarkSize.getText());
             }
         });
         cMarkSize.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cMarkSizeFocusLost(evt);
+                setMarkSize(cMarkSize.getText());
             }
         });
+        ROW++;
 
         //Components of the property: Mark Style.
-        layout.addJLabel(pStyle, lMarkStyle, MessagesGED.mark_style, 1, 10, 16);
-
+        layout.addJLabel(pStyle, lMarkStyle, MessagesGED.mark_style, 0, ROW, LEFTMARGIN);
+        layout.addJComboBox(pStyle, cMarkStyle, null, 1, ROW);
         cMarkStyle.setRenderer(markStyleRenderer);
-        cMarkStyle.setPreferredSize(new Dimension(5, 20));
-        gbc = new GridBagConstraints();
-        gbc.anchor = GridBagConstraints.LINE_START;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 2;
-        gbc.gridy = 10;
-        gbc.ipadx = 70;
-        gbc.weightx = 0.1;
-        gbc.insets = new Insets(0, 4, 5, 0);
-        pStyle.add(cMarkStyle, gbc);
         cMarkStyle.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cMarkStyleActionPerformed(evt);
+                boolean markMode = getMarkMode();// Get the current status of the mark_mode
+                if(!markMode) //If mark_mode is off
+                    setMarkMode(!getMarkMode());
+                GraphicController.getController().setProperty(
+                    currentpolyline, GraphicObjectProperties.__GO_MARK_STYLE__, cMarkStyle.getSelectedIndex());
             }
         });
+        ROW++;
 
-        //Positioning JPanel.
-        gbc = new GridBagConstraints();
-        gbc.gridx = 1;
-        gbc.gridy = 11;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.anchor = GridBagConstraints.LINE_START;
-        gbc.weightx = 0.1;
-        gbc.insets = new Insets(0, 0, 12, 0);
-        add(pStyle, gbc);
-
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 12;
-        gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.weighty = 0.1;
-        add(fillerVERTICAL, gbc);
+        //Filler Vertical
+        layout.addFiller(this, fillerVERTICAL, ROW);
    }
 
     /**
     * Loads the current properties of the section Style/Appearance.
-    *
     * @param objectID Enters the identification of polyline.
     */
-    public void initPropertiesStyle(String objectID) {
+    public final void values(String objectID) {
         if (objectID != null) {
             currentpolyline = objectID;
 
             // Get the current status of the property: Arrow Size Factor
-            cArrowSize.setText( Double.toString((Double) GraphicController.getController()
+            cArrowSize.setText(Double.toString((Double) GraphicController.getController()
                     .getProperty(currentpolyline, GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__)));
 
             // Get the current status of the property: Bar Width
-            cBarWidth.setText( Double.toString((Double) GraphicController.getController()
+            cBarWidth.setText(Double.toString((Double) GraphicController.getController()
                     .getProperty(currentpolyline, GraphicObjectProperties.__GO_BAR_WIDTH__)));
 
             // Get the current status of the property: Background Color
@@ -376,10 +377,11 @@ public class Style extends Position {
 
             // Get the current status of the property: Foreground Color
             Integer scilabForegroundColor;
-            if ((Boolean)GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__) == false) {
-    		scilabForegroundColor = EditorManager.getFromUid(parentFigure).getOriColor();
+            if ((Boolean) GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__)) {
+            	scilabForegroundColor = (Integer) GraphicController.getController()
+                        .getProperty(currentpolyline, GraphicObjectProperties.__GO_LINE_COLOR__);
             } else {
-            	scilabForegroundColor = (Integer) GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_LINE_COLOR__);
+                scilabForegroundColor = EditorManager.getFromUid(parentFigure).getOriColor();
             }
             Double[] rgbForegroundColor = ColorMapHandler.getRGBcolor(parentFigure, scilabForegroundColor);
             cForeColor.setBackground(new Color(rgbForegroundColor[0].intValue(), rgbForegroundColor[1].intValue(), rgbForegroundColor[2].intValue()));
@@ -387,7 +389,7 @@ public class Style extends Position {
             // Get the current status of the property: Line Style
             int currentLineStyle = (Integer) GraphicController.getController()
                     .getProperty(currentpolyline, GraphicObjectProperties.__GO_LINE_STYLE__);
-            cLine.setSelectedIndex(currentLineStyle-1);
+            cLine.setSelectedIndex(currentLineStyle - 1);
 
             // Get the current status of the property: Polyline Style
             int currentPolylineStyle = (Integer) GraphicController.getController()
@@ -395,7 +397,7 @@ public class Style extends Position {
             cPolyline.setSelectedIndex(currentPolylineStyle);
 
             // Get the current status of the property: Thickness
-            cThickness.setText( Double.toString((Double) GraphicController.getController()
+            cThickness.setText(Double.toString((Double) GraphicController.getController()
                     .getProperty(currentpolyline, GraphicObjectProperties.__GO_LINE_THICKNESS__)));
 
             // Get the current status of the property: Mark Background Color
@@ -408,10 +410,11 @@ public class Style extends Position {
 
             // Get the current status of the property: Mark Foreground Color
             Integer scilabMarkForeground;
-            if ((Boolean)GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__) == true) {
+            if ((Boolean)GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__)) {
     		scilabMarkForeground = EditorManager.getFromUid(parentFigure).getOriColor();
             } else {
-            	scilabMarkForeground = (Integer) GraphicController.getController().getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
+            	scilabMarkForeground = (Integer) GraphicController.getController()
+                        .getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
             }
             Double[] rgbMarkForeground = ColorMapHandler.getRGBcolor(parentFigure, scilabMarkForeground);
             Color markForegroundCOLOR = new Color(rgbMarkForeground[0].intValue(), rgbMarkForeground[1].intValue(), rgbMarkForeground[2].intValue());
@@ -419,13 +422,13 @@ public class Style extends Position {
             markStyleRenderer.setMarkForeground(markForegroundCOLOR);
 
             // Get the current status of the property: Mark Size
-            cMarkSize.setText( Integer.toString((Integer) GraphicController.getController()
+            cMarkSize.setText(Integer.toString((Integer) GraphicController.getController()
                     .getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_SIZE__)));
 
             // Get the current status of the property: Mark Style
             int currentMarkStyle = (Integer) GraphicController.getController()
                     .getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_STYLE__);
-            if (getMarkMode()) //If mark_mode is on
+            if(getMarkMode())
                 cMarkStyle.setSelectedIndex(currentMarkStyle);
         }
     }
@@ -433,12 +436,10 @@ public class Style extends Position {
     /**
     * JDialog - Selection of background colors.
     */
-    public void dialogBackgroundColor() {
+    public final void dialogBackgroundColor() {
         backcolorDialog = new JDialog();
         chooserBack = new JColorChooser();
         okBack = new JButton();
-        ContentLayout layout = new ContentLayout();
-
         layout.addColorDialog(backcolorDialog, chooserBack, okBack, cBackColor,
                 parentFigure, "polyline.Style", "setBackgroungColor", this);
     }
@@ -446,12 +447,10 @@ public class Style extends Position {
     /**
     * JDialog - Selection of foreground colors.
     */
-    public void dialogForegroundColor() {
+    public final void dialogForegroundColor() {
         forecolorDialog = new JDialog();
         chooserFore = new JColorChooser();
         okFore = new JButton();
-        ContentLayout layout = new ContentLayout();
-
         layout.addColorDialog(forecolorDialog, chooserFore, okFore, cForeColor,
                 parentFigure, "polyline.Style", "setForegroundColor", this);
     }
@@ -459,12 +458,10 @@ public class Style extends Position {
     /**
     * JDialog - Selection of mark background colors.
     */
-    public void dialogMarkBackground() {
+    public final void dialogMarkBackground() {
         markBackgroundDialog = new JDialog();
         chooserMarkBackground = new JColorChooser();
         okMarkBackground = new JButton();
-        ContentLayout layout = new ContentLayout();
-
         layout.addColorDialog(markBackgroundDialog, chooserMarkBackground, okMarkBackground,
                 cMarkBackground, parentFigure, "polyline.Style", "setMarkBackground", this);
     }
@@ -472,44 +469,12 @@ public class Style extends Position {
     /**
     * JDialog - Selection of mark foreground colors.
     */
-    public void dialogMarkForeground() {
+    public final void dialogMarkForeground() {
         markForegroundDialog = new JDialog();
         chooserMarkForeground = new JColorChooser();
         okMarkForeground = new JButton();
-        ContentLayout layout = new ContentLayout();
-
         layout.addColorDialog(markForegroundDialog, chooserMarkForeground, okMarkForeground,
                 cMarkForeground, parentFigure, "polyline.Style", "setMarkForeground", this);
-    }
-
-    /**
-    * Implement the action button to show/hide.
-    * @param evt ActionEvent. 
-    */
-    private void bStyleActionPerformed(ActionEvent evt) {
-        if (bStyle.isSelected()) {
-            pStyle.setVisible(false);
-            HidePolyline.checkAllButtons();
-        } else {
-            pStyle.setVisible(true);
-            HidePolyline.checkAllButtons();
-        }
-    }
-
-    /**
-    * Updates the property: Arrow Size Factor.
-    * @param evt ActionEvent.
-    */
-    private void cArrowSizeActionPerformed(ActionEvent evt) {
-        setArrowSize(cArrowSize.getText());
-    }
-
-    /**
-    * Updates the property: Arrow Size Factor.
-    * @param evt FocusEvent.
-    */
-    private void cArrowSizeFocusLost(FocusEvent evt) {
-        setArrowSize(cArrowSize.getText());
     }
 
     /**
@@ -528,22 +493,6 @@ public class Style extends Position {
     }
 
     /**
-    * Updates the property: Bar Width.
-    * @param evt ActionEvent.
-    */
-    private void cBarWidthActionPerformed(ActionEvent evt) {
-        setBarWidth(cBarWidth.getText());
-    }
-
-    /**
-    * Updates the property: Bar Width.
-    * @param evt FocusEvent.
-    */
-    private void cBarWidthFocusLost(FocusEvent evt) {
-        setBarWidth(cBarWidth.getText());
-    }
-
-    /**
     * Set Bar Width.
     * @param width Bar Width.
     */
@@ -556,58 +505,6 @@ public class Style extends Position {
         } catch (NumberFormatException e) {
             cBarWidth.setText("0.0");
         }
-    }
-
-    /**
-    * Updates the property: Background Color.
-    * @param evt ActionEvent.
-    */
-    private void bBackColorActionPerformed(ActionEvent evt) {
-        backcolorDialog.setVisible(true);
-    }
-
-    /**
-    * Updates the property: Foreground Color.
-    * @param evt ActionEvent.
-    */
-    private void bForeColorActionPerformed(ActionEvent evt) {
-        forecolorDialog.setVisible(true);
-    }
-
-    /**
-    * Updates the property: Line Style.
-    * @param evt ActionEvent.
-    */
-    private void cLineActionPerformed(ActionEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_LINE_STYLE__,
-                cLine.getSelectedIndex()+1);
-    }
-
-    /**
-    * Updates the property: Polyline Style.
-    * @param evt ActionEvent.
-    */
-    private void cPolylineActionPerformed(ActionEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_POLYLINE_STYLE__,
-                cPolyline.getSelectedIndex());
-    }
-
-    /**
-    * Updates the property: Thickness.
-    * @param evt ActionEvent.
-    */
-    private void cThicknessActionPerformed(ActionEvent evt) {
-        setThickness(cThickness.getText());
-    }
-
-    /**
-    * Updates the property: Thickness.
-    * @param evt FocusEvent.
-    */
-    private void cThicknessFocusLost(FocusEvent evt) {
-        setThickness(cThickness.getText());
     }
 
     /**
@@ -626,38 +523,6 @@ public class Style extends Position {
     }
 
     /**
-    * Updates the property: Mark Background Color.
-    * @param evt ActionEvent.
-    */
-    private void bMarkBackgroundActionPerformed(ActionEvent evt) {
-        markBackgroundDialog.setVisible(true);
-    }
-
-    /**
-    * Updates the property: Mark Foreground Color.
-    * @param evt ActionEvent.
-    */
-    private void bMarkForegroundActionPerformed(ActionEvent evt) {
-        markForegroundDialog.setVisible(true);
-    }
-
-    /**
-    * Updates the property: Mark Size.
-    * @param evt ActionEvent.
-    */
-    private void cMarkSizeActionPerformed(ActionEvent evt) {
-        setMarkSize(cMarkSize.getText());
-    }
-
-    /**
-    * Updates the property: Mark Size.
-    * @param evt FocusEvent.
-    */
-    private void cMarkSizeFocusLost(FocusEvent evt) {
-        setMarkSize(cMarkSize.getText());
-    }
-
-    /**
     * Set Mark Size.
     * @param size mark size.
     */
@@ -673,23 +538,7 @@ public class Style extends Position {
     }
 
     /**
-    * Updates the property: Mark Style.
-    * @param evt ActionEvent.
-    */
-    private void cMarkStyleActionPerformed(ActionEvent evt) {
-        // Get the current status of the mark_mode
-        boolean markMode = getMarkMode();
-        //If mark_mode is off
-        if (!markMode) {
-            setMarkMode(true);
-        }
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_MARK_STYLE__, cMarkStyle.getSelectedIndex());
-    }
-
-    /**
     * Change the color of the object.
-    *
     * @param scilabColor index of the color map.
     */
     public void setBackgroungColor(int scilabColor) {
@@ -699,7 +548,6 @@ public class Style extends Position {
     
     /**
     * Change the color of the object.
-    *
     * @param scilabColor index of the color map.
     */
     public void setForegroundColor(int scilabColor) {
@@ -713,7 +561,6 @@ public class Style extends Position {
 
     /**
     * Change the color of the object.
-    *
     * @param scilabColor index of the color map.
     */
     public void setMarkBackground(int scilabColor) {
@@ -725,7 +572,6 @@ public class Style extends Position {
 
     /**
     * Change the color of the object.
-    *
     * @param scilabColor index of the color map.
     */
     public void setMarkForeground(int scilabColor) {
@@ -737,5 +583,22 @@ public class Style extends Position {
     	}
         //update color of graphics in MarkStyle ComboBox
         markStyleRenderer.setMarkForeground(chooserMarkForeground.getColor());
+    }
+
+    /**
+    * Get Status of Main Jpanel.
+    * @return visibility
+    */
+    public static boolean getStatus() {
+        return pStyle.isVisible();
+    }
+
+    /**
+    * Set Visibility of Property Group.
+    * @param visible boolean
+    */
+    public static void setVisibility(boolean visible) {
+        pStyle.setVisible(visible);
+        bStyle.setSelected(!visible);
     }
 }

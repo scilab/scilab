@@ -11,13 +11,9 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects.polyline;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Insets;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,8 +32,9 @@ import org.scilab.modules.gui.ged.MessagesGED;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class BaseProperties extends ContentLayout {
-    protected static JToggleButton bBaseProperties;
-    protected static JPanel pBaseProperties;
+    private ContentLayout layout = new ContentLayout();
+    private static JToggleButton bBaseProperties;
+    private static JPanel pBaseProperties;
     private JSeparator sBaseProperties;
     private JLabel lBaseProperties;
     private JComboBox cVisible;
@@ -51,26 +48,45 @@ public class BaseProperties extends ContentLayout {
     private JLabel lMarkMode;
     private JComboBox cMarkMode;
     protected String currentpolyline = null;
+    protected int LEFTMARGIN = 16;
 
     /**
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of polyline.
     */
     public BaseProperties(String objectID){
-        basePropertiesComponents();
-        initPropertiesBase(objectID);
+        insertBase();
+        components();
+        values(objectID);
     }
 
     /**
-    * It has all the components of the section Base Properties.
+    * Insert show/hide button, title and main JPanel of group.
     */
-    public void basePropertiesComponents() {
-        ContentLayout layout = new ContentLayout();
+    private void insertBase() {
+	int position = 1; //first group -top
 
         bBaseProperties = new JToggleButton();
         lBaseProperties = new JLabel();
         sBaseProperties = new JSeparator();
         pBaseProperties = new JPanel();
+
+        //Positioning JPanel Base Properties.
+        layout.addHeader(this, pBaseProperties, bBaseProperties, lBaseProperties,
+                         sBaseProperties, MessagesGED.base_properties, position);
+        bBaseProperties.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                pBaseProperties.setVisible(!bBaseProperties.isSelected());
+                HidePolyline.checkAllButtons();
+            }
+        });
+    }
+
+    /**
+    * It has all the components of the section Base Properties.
+    */
+    private void components() {
         lClosed = new JLabel();
         cClosed = new JComboBox();
         lFillMode = new JLabel();
@@ -81,196 +97,108 @@ public class BaseProperties extends ContentLayout {
         cMarkMode = new JComboBox();
         lVisible = new JLabel();
         cVisible = new JComboBox();
-
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
-
-        //Components of the header: Base Properties.
-        bBaseProperties.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                bBasePropertiesActionPerformed(evt);
-            }
-        });
-        layout.addSHbutton(this, bBaseProperties, 0, 0);
-
-        layout.addSectionTitle(this, lBaseProperties, MessagesGED.base_properties, 0);
-
-        layout.addSeparator(this, sBaseProperties, 1);
-
-        pBaseProperties.setLayout(new GridBagLayout());
+        int ROW = 0;
 
         //Components of the property: Closed.
-        layout.addJLabel(pBaseProperties, lClosed, MessagesGED.closed, 0, 0, 16);
-
-        cClosed.setModel(new DefaultComboBoxModel());
+        layout.addJLabel(pBaseProperties, lClosed, MessagesGED.closed, 0, ROW, LEFTMARGIN);
+        layout.addJComboBox(pBaseProperties, cClosed, messageOffOn, 1, ROW);
         cClosed.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cClosedActionPerformed(evt);
+                GraphicController.getController().setProperty(
+                        currentpolyline, GraphicObjectProperties.__GO_CLOSED__,
+                        cClosed.getSelectedIndex() == 0 ? false : true);
             }
         });
-        layout.addJComboBox(pBaseProperties, cClosed, messageOffOn, 1, 0);
+        ROW++;
 
         //Components of the property: Fill Mode.
-        layout.addJLabel(pBaseProperties, lFillMode, MessagesGED.fill_mode, 0, 1, 16);
-
+        layout.addJLabel(pBaseProperties, lFillMode, MessagesGED.fill_mode, 0, ROW, LEFTMARGIN);
+        layout.addJComboBox(pBaseProperties, cFillMode, messageOffOn, 1, ROW);
         cFillMode.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cFillModeActionPerformed(evt);
+                GraphicController.getController().setProperty(
+                    currentpolyline, GraphicObjectProperties.__GO_FILL_MODE__,
+                    cFillMode.getSelectedIndex() == 0 ? false : true);
             }
         });
-        layout.addJComboBox(pBaseProperties, cFillMode, messageOffOn, 1, 1);
+        ROW++;
 
         //Components of the property: Line Mode.
-        layout.addJLabel(pBaseProperties, lLineMode, MessagesGED.line_mode, 0, 2, 16);
-
+        layout.addJLabel(pBaseProperties, lLineMode, MessagesGED.line_mode, 0, ROW, LEFTMARGIN);
+        layout.addJComboBox(pBaseProperties, cLineMode, messageOffOn, 1, ROW);
         cLineMode.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cLineModeActionPerformed(evt);
+                GraphicController.getController().setProperty(
+                    currentpolyline, GraphicObjectProperties.__GO_LINE_MODE__,
+                    cLineMode.getSelectedIndex() == 0 ? false : true);
             }
         });
-        layout.addJComboBox(pBaseProperties, cLineMode, messageOffOn, 1, 2);
+        ROW++;
 
         //Components of the property: Mark Mode.
-        layout.addJLabel(pBaseProperties, lMarkMode, MessagesGED.mark_mode, 0, 3, 16);
-
+        layout.addJLabel(pBaseProperties, lMarkMode, MessagesGED.mark_mode, 0, ROW, LEFTMARGIN);
+        layout.addJComboBox(pBaseProperties, cMarkMode, messageOffOn, 1, ROW);
         cMarkMode.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cMarkModeActionPerformed(evt);
+                GraphicController.getController().setProperty(
+                    currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__,
+                    getMarkMode());
             }
         });
-        layout.addJComboBox(pBaseProperties, cMarkMode, messageOffOn, 1, 3);
+        ROW++;
 
         //Components of the property: Visible.
-        layout.addJLabel(pBaseProperties, lVisible, MessagesGED.visible, 0, 4, 16);
-
+        layout.addJLabel(pBaseProperties, lVisible, MessagesGED.visible, 0, ROW, LEFTMARGIN);
+        layout.addJComboBox(pBaseProperties, cVisible, messageOffOn, 1, ROW);
         cVisible.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cVisibleActionPerformed(evt);
+                GraphicController.getController().setProperty(
+                        currentpolyline, GraphicObjectProperties.__GO_VISIBLE__,
+                        cVisible.getSelectedIndex() == 0 ? false : true);
             }
         });
-        layout.addJComboBox(pBaseProperties, cVisible, messageOffOn, 1, 4);
-
-        //Positioning JPanel Base Properties.
-        gbc = new GridBagConstraints();
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-        gbc.weightx = 0.1;
-        gbc.insets = new Insets(0, 0, 12, 0);
-        add(pBaseProperties, gbc);
     }
 
     /**
-    * Loads the current properties of the section Base Properties.
-    *
+    * Loads the current properties of group: Base Properties.
     * @param objectID Enters the identification of polyline.
     */
-    public void initPropertiesBase(String objectID) {
+    private void values(String objectID) {
         if (objectID != null) {
             currentpolyline = objectID;
+            boolean enable;
 
             // Get the current status of the property: Closed
-            boolean isClosed = (Boolean) GraphicController.getController()
+            enable = (Boolean) GraphicController.getController()
                                 .getProperty(currentpolyline, GraphicObjectProperties.__GO_CLOSED__);
-            if (isClosed) {
-                cClosed.setSelectedIndex(1);
-            } else {
-                cClosed.setSelectedIndex(0);
-            }
+            cClosed.setSelectedIndex(enable?1:0);
 
             // Get the current status of the property: Fill Mode
-            boolean fillmode = (Boolean) GraphicController.getController()
+            enable = (Boolean) GraphicController.getController()
                                 .getProperty(currentpolyline, GraphicObjectProperties.__GO_FILL_MODE__);
-            if (fillmode) {
-                cFillMode.setSelectedIndex(1);
-            } else {
-                cFillMode.setSelectedIndex(0);
-            }
+            cFillMode.setSelectedIndex(enable?1:0);
 
             // Get the current status of the property: Line Mode
-            boolean linemode = (Boolean) GraphicController.getController()
+            enable = (Boolean) GraphicController.getController()
                                 .getProperty(currentpolyline, GraphicObjectProperties.__GO_LINE_MODE__);
-            if (linemode) {
-                cLineMode.setSelectedIndex(1);
-            } else {
-                cLineMode.setSelectedIndex(0);
-            }
+            cLineMode.setSelectedIndex(enable?1:0);
 
             // Get the current status of the property: Mark Mode
-            boolean markmode = (Boolean) GraphicController.getController()
+            enable = (Boolean) GraphicController.getController()
                                 .getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__);
-            if (markmode) {
-                cMarkMode.setSelectedIndex(1);
-            } else {
-                cMarkMode.setSelectedIndex(0);
-            }
+            cMarkMode.setSelectedIndex(enable?1:0);
 
             // Get the current status of the property: Visible
-            boolean isVisible = (Boolean) GraphicController.getController()
+            enable = (Boolean) GraphicController.getController()
                                 .getProperty(currentpolyline, GraphicObjectProperties.__GO_VISIBLE__);
-            if (isVisible) {
-                cVisible.setSelectedIndex(1);
-            } else {
-                cVisible.setSelectedIndex(0);
-            }
+            cVisible.setSelectedIndex(enable?1:0);
         }
-    }
-
-    /**
-    * Implement the action button to show/hide.
-    */
-    private void bBasePropertiesActionPerformed(ActionEvent evt) {
-        if (bBaseProperties.isSelected()) {
-            pBaseProperties.setVisible(false);
-            HidePolyline.checkAllButtons();
-        } else {
-            pBaseProperties.setVisible(true);
-            HidePolyline.checkAllButtons();
-        }
-    }
-
-    /**
-    * Updates the property: Closed.
-    * @param evt ActionEvent.
-    */
-    private void cClosedActionPerformed(ActionEvent evt) {
-        GraphicController.getController().setProperty
-                (currentpolyline, GraphicObjectProperties.__GO_CLOSED__,
-                cClosed.getSelectedIndex() == 0 ? false : true
-                );
-    }
-
-    /**
-    * Updates the property: Fill Mode.
-    * @param evt ActionEvent.
-    */
-    private void cFillModeActionPerformed(ActionEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_FILL_MODE__,
-                cFillMode.getSelectedIndex() == 0 ? false : true
-                );
-    }
-
-    /**
-    * Updates the property: Line Mode.
-    * @param evt ActionEvent.
-    */
-    private void cLineModeActionPerformed(ActionEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_LINE_MODE__,
-                cLineMode.getSelectedIndex() == 0 ? false : true
-                );
-    }
-
-    /**
-    * Updates the property: Mark Mode.
-    * @param evt ActionEvent.
-    */
-    private void cMarkModeActionPerformed(ActionEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__,
-                getMarkMode()
-                );
     }
 
     /**
@@ -286,21 +214,26 @@ public class BaseProperties extends ContentLayout {
     * @param boolean
     */
     public void setMarkMode(boolean enable) {
-        cMarkMode.setSelectedIndex(enable==false?0:1);
+        cMarkMode.setSelectedIndex(enable?1:0);
         GraphicController.getController().setProperty(
                 currentpolyline, GraphicObjectProperties.__GO_MARK_MODE__,
-                enable
-                );
+                enable);
     }
 
     /**
-    * Updates the property: Visible.
-    * @param evt ActionEvent.
+    * Get Status of Main Jpanel.
+    * @return visibility
     */
-    private void cVisibleActionPerformed(ActionEvent evt) {
-        GraphicController.getController().setProperty(
-                currentpolyline, GraphicObjectProperties.__GO_VISIBLE__,
-                cVisible.getSelectedIndex() == 0 ? false : true
-                );
+    public static boolean getStatus() {
+        return pBaseProperties.isVisible();
+    }
+
+    /**
+    * Set Visibility of Property Group.
+    * @param visible boolean
+    */
+    public static void setVisibility(boolean visible) {
+        pBaseProperties.setVisible(visible);
+        bBaseProperties.setSelected(!visible);
     }
 }
