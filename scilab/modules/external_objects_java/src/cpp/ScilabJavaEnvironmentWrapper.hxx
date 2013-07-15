@@ -406,149 +406,149 @@ private:
         }
     }
 
-    inline const jmethodID getSingleMethod(const char x) const
+    inline const jmethodID getSingleMethod(const char * x) const
     {
         return unwrapByteID_;
     }
-    inline const jmethodID getSingleMethod(const short x) const
+    inline const jmethodID getSingleMethod(const short * x) const
     {
         return unwrapShortID_;
     }
-    inline const jmethodID getSingleMethod(const unsigned short x) const
+    inline const jmethodID getSingleMethod(const unsigned short * x) const
     {
         return unwrapShortID_;
     }
-    inline const jmethodID getSingleMethod(const int x) const
+    inline const jmethodID getSingleMethod(const int * x) const
     {
         return unwrapIntID_;
     }
-    inline const jmethodID getSingleMethod(const long long x) const
+    inline const jmethodID getSingleMethod(const long long * x) const
     {
         return unwrapLongID_;
     }
-    inline const jmethodID getSingleMethod(const double x) const
+    inline const jmethodID getSingleMethod(const double * x) const
     {
         return unwrapDoubleID_;
     }
-    inline const jmethodID getSingleMethod(const bool x) const
+    inline const jmethodID getSingleMethod(const bool * x) const
     {
         return unwrapBooleanID_;
     }
-    inline const jmethodID getSingleMethod(const float x) const
+    inline const jmethodID getSingleMethod(const float * x) const
     {
         return unwrapFloatID_;
     }
 
-    inline const jmethodID getRowMethod(const char x) const
+    inline const jmethodID getRowMethod(const char * x) const
     {
         return unwrapRowByteID_;
     }
-    inline const jmethodID getRowMethod(const short x) const
+    inline const jmethodID getRowMethod(const short * x) const
     {
         return unwrapRowShortID_;
     }
-    inline const jmethodID getRowMethod(const unsigned short x) const
+    inline const jmethodID getRowMethod(const unsigned short * x) const
     {
         return unwrapRowShortID_;
     }
-    inline const jmethodID getRowMethod(const int x) const
+    inline const jmethodID getRowMethod(const int * x) const
     {
         return unwrapRowIntID_;
     }
-    inline const jmethodID getRowMethod(const long long x) const
+    inline const jmethodID getRowMethod(const long long * x) const
     {
         return unwrapRowLongID_;
     }
-    inline const jmethodID getRowMethod(const double x) const
+    inline const jmethodID getRowMethod(const double * x) const
     {
         return unwrapRowDoubleID_;
     }
-    inline const jmethodID getRowMethod(const bool x) const
+    inline const jmethodID getRowMethod(const bool * x) const
     {
         return unwrapRowBooleanID_;
     }
-    inline const jmethodID getRowMethod(const float x) const
+    inline const jmethodID getRowMethod(const float * x) const
     {
         return unwrapRowFloatID_;
     }
 
-    inline const jmethodID getMatMethod(const char x) const
+    inline const jmethodID getMatMethod(const char * x) const
     {
         return unwrapMatByteID_;
     }
-    inline const jmethodID getMatMethod(const short x) const
+    inline const jmethodID getMatMethod(const short * x) const
     {
         return unwrapMatShortID_;
     }
-    inline const jmethodID getMatMethod(const unsigned short x) const
+    inline const jmethodID getMatMethod(const unsigned short * x) const
     {
         return unwrapMatShortID_;
     }
-    inline const jmethodID getMatMethod(const int x) const
+    inline const jmethodID getMatMethod(const int * x) const
     {
         return unwrapMatIntID_;
     }
-    inline const jmethodID getMatMethod(const long long x) const
+    inline const jmethodID getMatMethod(const long long * x) const
     {
         return unwrapMatLongID_;
     }
-    inline const jmethodID getMatMethod(const double x) const
+    inline const jmethodID getMatMethod(const double * x) const
     {
         return unwrapMatDoubleID_;
     }
-    inline const jmethodID getMatMethod(const bool x) const
+    inline const jmethodID getMatMethod(const bool * x) const
     {
         return unwrapMatBooleanID_;
     }
-    inline const jmethodID getMatMethod(const float x) const
+    inline const jmethodID getMatMethod(const float * x) const
     {
         return unwrapMatFloatID_;
     }
 
     template <typename T>
-    inline T CallStatic(JNIEnv * env_, const char x, int javaID) const
+    inline T CallStatic(JNIEnv * env_, const char * x, int javaID) const
     {
         return static_cast<T>(env_->CallStaticByteMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
     }
 
     template <typename T>
-    inline T CallStatic(JNIEnv * env_, const short x, int javaID) const
+    inline T CallStatic(JNIEnv * env_, const short * x, int javaID) const
     {
         return static_cast<T>(env_->CallStaticShortMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
     }
 
     template <typename T>
-    inline T CallStatic(JNIEnv * env_, const unsigned short x, int javaID) const
+    inline T CallStatic(JNIEnv * env_, const unsigned short * x, int javaID) const
     {
         return static_cast<T>(env_->CallStaticShortMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
     }
 
     template <typename T>
-    inline T CallStatic(JNIEnv * env_, const int x, int javaID) const
+    inline T CallStatic(JNIEnv * env_, const int * x, int javaID) const
     {
         return static_cast<T>(env_->CallStaticIntMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
     }
 
     template <typename T>
-    inline T CallStatic(JNIEnv * env_, const long long x, int javaID) const
+    inline T CallStatic(JNIEnv * env_, const long long * x, int javaID) const
     {
         return static_cast<T>(env_->CallStaticLongMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
     }
 
     template <typename T>
-    inline T CallStatic(JNIEnv * env_, const double x, int javaID) const
+    inline T CallStatic(JNIEnv * env_, const double * x, int javaID) const
     {
         return static_cast<T>(env_->CallStaticDoubleMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
     }
 
     template <typename T>
-    inline T CallStatic(JNIEnv * env_, const bool x, int javaID) const
+    inline T CallStatic(JNIEnv * env_, const bool * x, int javaID) const
     {
         return static_cast<T>(env_->CallStaticBooleanMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
     }
 
     template <typename T>
-    inline T CallStatic(JNIEnv * env_, const float x, int javaID) const
+    inline T CallStatic(JNIEnv * env_, const float * x, int javaID) const
     {
         return static_cast<T>(env_->CallStaticFloatMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
     }
@@ -563,13 +563,12 @@ private:
     inline void unwrapSingle(JavaVM * jvm_, const int javaID, const W & allocator, const bool mustAlloc = true) const
     {
         JNIEnv * curEnv = NULL;
-        U foo;
-        U* addr = &foo;
+        U* addr = 0;
 
 
         jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 
-        T res = CallStatic<T>(curEnv, (V) * addr, javaID);
+        T res = CallStatic<T>(curEnv, (V *)addr, javaID);
         if (curEnv->ExceptionCheck())
         {
             throw GiwsException::JniCallMethodException(curEnv);
@@ -598,12 +597,11 @@ private:
         jint lenRow;
         jboolean isCopy = JNI_FALSE;
         JNIEnv * curEnv = NULL;
-        U foo;
-        U* addr = &foo;
+        U* addr = 0;
 
         jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 
-        jobjectArray res = static_cast<jobjectArray>(curEnv->CallStaticObjectMethod(ScilabJavaObjectClass_, getRowMethod((V) * addr), javaID));
+        jobjectArray res = static_cast<jobjectArray>(curEnv->CallStaticObjectMethod(ScilabJavaObjectClass_, getRowMethod((V *)addr), javaID));
         if (curEnv->ExceptionCheck())
         {
             curEnv->DeleteLocalRef(res);
@@ -669,12 +667,11 @@ private:
         jboolean isCopy = JNI_FALSE;
         jarray oneDim;
         JNIEnv * curEnv = NULL;
-        U foo;
-        U* addr = &foo;
+        U* addr = 0;
 
         jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 
-        jobjectArray res = static_cast<jobjectArray>(curEnv->CallStaticObjectMethod(ScilabJavaObjectClass_, getMatMethod((V) * addr), javaID));
+        jobjectArray res = static_cast<jobjectArray>(curEnv->CallStaticObjectMethod(ScilabJavaObjectClass_, getMatMethod((V *)addr), javaID));
         if (curEnv->ExceptionCheck())
         {
             throw GiwsException::JniCallMethodException(curEnv);
