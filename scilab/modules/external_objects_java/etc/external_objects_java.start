@@ -10,4 +10,5 @@
 // TODO : make this '72' more dynamic (with a funptr)
 intppty(72);
 jvoid = evoid;
+jnull = enull;
 //load("SCI/modules/external_objects_java/macros/lib");

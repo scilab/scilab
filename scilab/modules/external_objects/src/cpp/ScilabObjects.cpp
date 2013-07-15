@@ -264,6 +264,7 @@ bool ScilabObjects::unwrap(int idObj, int pos, const int envId, void * pvApiCtx)
 {
     if (idObj == 0)
     {
+        // id == 0 <==> null object plugged on empty matrix
         if (createEmptyMatrix(pvApiCtx, pos))
         {
             throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot create data"));
@@ -285,6 +286,7 @@ bool ScilabObjects::unwrap(int idObj, int pos, const int envId, void * pvApiCtx)
             {
                 throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot create data"));
             }
+            break;
         case SingleDouble:
             wrapper.unwrapdouble(idObj, ScilabDoubleStackAllocator(pvApiCtx, pos));
             break;
@@ -636,22 +638,29 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
             int type = getMListType(addr, pvApiCtx);
             int eId = getEnvironmentId(addr, pvApiCtx);
 
-            if (eId != envId)
+            if (type == EXTERNAL_INVALID)
             {
                 removeTemporaryVars(envId, tmpvars);
-                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Incompatible External Objects"));
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("External object expected"));
+            }
+
+            err = getMatrixOfInteger32InList(pvApiCtx, addr, EXTERNAL_OBJ_ID_POSITION, &row, &col, &id);
+            if (err.iErr)
+            {
+                removeTemporaryVars(envId, tmpvars);
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+            }
+
+            if (eId != envId && id != 0)
+            {
+                removeTemporaryVars(envId, tmpvars);
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Incompatible External object"));
             }
 
             if (isClass)
             {
                 if (type == EXTERNAL_CLASS)
                 {
-                    err = getMatrixOfInteger32InList(pvApiCtx, addr, EXTERNAL_OBJ_ID_POSITION, &row, &col, &id);
-                    if (err.iErr)
-                    {
-                        removeTemporaryVars(envId, tmpvars);
-                        throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
-                    }
                     return *id;
                 }
                 else
@@ -663,22 +672,11 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
 
             if (type == EXTERNAL_OBJECT || type == EXTERNAL_CLASS)
             {
-                err = getMatrixOfInteger32InList(pvApiCtx, addr, EXTERNAL_OBJ_ID_POSITION, &row, &col, &id);
-                if (err.iErr)
-                {
-                    removeTemporaryVars(envId, tmpvars);
-                    throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
-                }
                 return *id;
             }
             else if (type == EXTERNAL_VOID)
             {
                 return -1;
-            }
-            else
-            {
-                removeTemporaryVars(envId, tmpvars);
-                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("External object expected"));
             }
 
             break;

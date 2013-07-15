@@ -74,6 +74,7 @@ public:
     {
         if (row == 0 || col == 0)
         {
+            // Empty matrix is plugged on null object
             return 0;
         }
         else if (row == 1 && col == 1)
@@ -92,6 +93,7 @@ public:
     {
         if (row == 0 || col == 0)
         {
+            // Empty matrix is plugged on null object
             return 0;
         }
         else if (row == 1 && col == 1)
@@ -110,6 +112,7 @@ public:
     {
         if (row == 0 || col == 0)
         {
+            // Empty matrix is plugged on null object
             return 0;
         }
         else if (row == 1 && col == 1)
@@ -128,6 +131,7 @@ public:
     {
         if (row == 0 || col == 0)
         {
+            // Empty matrix is plugged on null object
             return 0;
         }
         else if (row == 1 && col == 1)

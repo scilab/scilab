@@ -1671,6 +1671,12 @@ public class ScilabJavaObject {
      * @return the identifier of the unwrappable type or -1 if nothing
      */
     public static final int isUnwrappable(final int id) {
+        if (id == 0) {
+            System.out.println("unwrappable=0");
+            // Null object
+            return 1;
+        }
+
         Integer t = unwrappableType.get(arraySJO[id].clazz);
         if (t != null) {
             return t;
