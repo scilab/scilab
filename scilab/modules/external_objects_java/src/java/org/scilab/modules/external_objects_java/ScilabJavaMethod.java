@@ -13,13 +13,16 @@
 package org.scilab.modules.external_objects_java;
 
 import java.awt.Component;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.MethodDescriptor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.SwingUtilities;
 
@@ -29,23 +32,7 @@ import javax.swing.SwingUtilities;
  * @author Calixte DENIZET
  */
 @SuppressWarnings("serial")
-public class ScilabJavaMethod {
-
-    protected Class<?> clazz;
-    protected String name;
-
-    //We keep in memory the map between class and accessible methods
-    protected static Map<Class, Map<String, ScilabJavaMethod>> methsInClass = new HashMap<Class, Map<String, ScilabJavaMethod>>();
-
-    /**
-     * Constructor
-     * @param clazz the class where the method belongs to
-     * @param name the method name
-     */
-    public ScilabJavaMethod(Class clazz, String name) {
-        this.clazz = clazz;
-        this.name = name;
-    }
+public final class ScilabJavaMethod {
 
     /**
      * @param obj the object where invoking method
@@ -53,7 +40,7 @@ public class ScilabJavaMethod {
      * @param args the ids of arguments
      * @return the resulting object
      */
-    public Object invoke(Object obj, Class[] returnType, int[] args) throws ScilabJavaException {
+    public static Object invoke(String name, Class clazz, Object obj, Class[] returnType, int[] args) throws ScilabJavaException {
         int nbargs = args.length;
         Class[] cl = new Class[nbargs];
         Object[] argsO = new Object[nbargs];
@@ -67,7 +54,7 @@ public class ScilabJavaMethod {
             }
         }
 
-        return call(obj, returnType, argsO, cl);
+        return call(name, clazz, obj, returnType, argsO, cl);
     }
 
     /**
@@ -77,9 +64,19 @@ public class ScilabJavaMethod {
      * @param argsClass the Class of the arguments
      * @return the resulting object
      */
-    protected Object call(final Object obj, final Class[] returnType, final Object[] args, final Class[] argsClass) throws ScilabJavaException {
+    public static Object call(final String name, final Class clazz, final Object obj, final Class[] returnType, final Object[] args, final Class[] argsClass) throws ScilabJavaException {
+        MethodDescriptor[] mdesc = null;
         try {
-            final Object[] info = FunctionArguments.findMethod(name, clazz.getMethods(), argsClass, args);
+            mdesc = Introspector.getBeanInfo(clazz).getMethodDescriptors();
+            if (mdesc == null) {
+                throw new ScilabJavaException("No method " + name + " in the class " + clazz.getName() + " or bad arguments type.");
+            }
+        } catch (IntrospectionException e) {
+            throw new ScilabJavaException("Impossible to get method names on the class " + clazz.getName());
+        }
+
+        try {
+            final Object[] info = FunctionArguments.findMethod(name, mdesc, argsClass, args);
             final Method meth = (Method) info[0];
             final Class returned = meth.getReturnType();
             Object ret = null;
@@ -164,33 +161,5 @@ public class ScilabJavaMethod {
         } catch (InterruptedException e) {
             throw new ScilabJavaException("EDT has been interrupted...");
         }
-    }
-
-    /**
-     * @param clazz the class where to search methods
-     * @return the method belonging to clazz
-     */
-    public static Map<String, ScilabJavaMethod> getMethods(Class clazz) {
-        Map<String, ScilabJavaMethod> hm = methsInClass.get(clazz);
-
-        if (hm != null) {
-            return hm;
-        }
-
-        hm = new HashMap<String, ScilabJavaMethod>();
-        Method[] meth = clazz.getMethods();
-
-        for (int i = 0; i < meth.length; i++) {
-            int modif = meth[i].getModifiers();
-            if (Modifier.isPublic(modif)) {
-                String name = meth[i].getName();
-                if (!hm.containsKey(name)) {
-                    hm.put(name, new ScilabJavaMethod(clazz, name));
-                }
-            }
-        }
-        methsInClass.put(clazz, hm);
-
-        return hm;
     }
 }

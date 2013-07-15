@@ -67,7 +67,6 @@ public class ScilabClassLoader {
                         retId = clone.id;
                     } else {
                         Class cl = new URLClassLoader(new URL[] {url}, null).loadClass(name);
-                        ScilabJavaMethod.methsInClass.remove(sjc.clazz);
                         ScilabJavaObject.removeScilabJavaObject(id);
                         sjc = new ScilabJavaClass(cl);
                         sjc.setURL(url);

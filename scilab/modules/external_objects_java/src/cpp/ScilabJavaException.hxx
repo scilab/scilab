@@ -26,13 +26,10 @@ class ScilabJavaException : public std::exception
     std::string message;
     std::string file;
     int line;
-    //    PyObject * type;
-    //    PyObject * value;
-    //    PyObject * traceback;
 
 public:
 
-    ScilabJavaException(const int _line, const char * _file, const char * _message, ...) //: message(""), file(_file), line(_line), type(0), value(0), traceback(0)
+    ScilabJavaException(const int _line, const char * _file, const char * _message, ...) : message(""), file(_file), line(_line)
     {
         char str[BUFFER_SIZE];
         va_list args;
@@ -43,55 +40,18 @@ public:
 
         message = getDescription(std::string(str));
     }
-    /*
-        ScilabJavaException(const int _line, const char * _file, std::string _message, ...) : message(""), file(_file), line(_line), type(0), value(0), traceback(0)
-        {
-            char str[BUFFER_SIZE];
-            va_list args;
 
-            va_start(args, _message);
-            vsnprintf(str, BUFFER_SIZE, _message.c_str(), args);
-            va_end(args);
+    ScilabJavaException(const int _line, const char * _file, std::string _message, ...) : message(""), file(_file), line(_line)
+    {
+        char str[BUFFER_SIZE];
+        va_list args;
 
-            message = getDescription(std::string(str));
-        }
-    */
-    /*    ScilabJavaException(PyObject * _type, PyObject * _value, PyObject * _traceback, const char * _message, ...) : message(""), file(""), line(-1), type(_type), value(_value), traceback(_traceback)
-        {
-            char str[BUFFER_SIZE];
-            va_list args;
+        va_start(args, _message);
+        vsnprintf(str, BUFFER_SIZE, _message.c_str(), args);
+        va_end(args);
 
-            va_start(args, _message);
-            vsnprintf(str, BUFFER_SIZE, _message, args);
-            va_end(args);
-
-            message = getDescription(std::string(str));
-        }
-
-        ScilabJavaException(const int _line, const char * _file, PyObject * _type, PyObject * _value, PyObject * _traceback, const char * _message, ...) : message(""), file(_file), line(_line), type(_type), value(_value), traceback(_traceback)
-        {
-            char str[BUFFER_SIZE];
-            va_list args;
-
-            va_start(args, _message);
-            vsnprintf(str, BUFFER_SIZE, _message, args);
-            va_end(args);
-
-            message = getDescription(std::string(str));
-        }
-
-        ScilabJavaException(const int _line, const char * _file, PyObject * _type, PyObject * _value, PyObject * _traceback, std::string _message, ...) : message(""), file(_file), line(_line), type(_type), value(_value), traceback(_traceback)
-        {
-            char str[BUFFER_SIZE];
-            va_list args;
-
-            va_start(args, _message);
-            vsnprintf(str, BUFFER_SIZE, _message.c_str(), args);
-            va_end(args);
-
-            message = getDescription(std::string(str));
-        }
-    */
+        message = getDescription(std::string(str));
+    }
 
     ~ScilabJavaException() throw() { }
 
@@ -100,46 +60,7 @@ public:
         std::ostringstream os;
 
         os << m << std::endl;
-        /*
-                if (traceback || type || value)
-                {
-                    os << gettext("Java interpreter threw an exception:") << std::endl;
 
-                    if (traceback)
-                    {
-                        PyTracebackObject * tb = reinterpret_cast<PyTracebackObject *>(traceback);
-                        int err = 0;
-
-                        os << gettext("Traceback:") << std::endl;
-
-                        while (tb && err == 0)
-                        {
-                            os << "  " << gettext("File") << " " << PyString_AsString(tb->tb_frame->f_code->co_filename)
-                               << ", " << gettext("line") << " " << tb->tb_lineno << ", " << gettext("in") << " "
-                               << PyString_AsString(tb->tb_frame->f_code->co_name) << std::endl;
-                            tb = tb->tb_next;
-                            err = PyErr_CheckSignals();
-                        }
-
-                        Py_DECREF(traceback);
-                    }
-
-                    if (type)
-                    {
-                        os << reinterpret_cast<PyTypeObject *>(type)->tp_name << ": ";
-                        Py_DECREF(type);
-                    }
-
-                    if (value)
-                    {
-                        PyObject * _value = PyObject_Str(value);
-                        os << PyString_AsString(_value) << std::endl;
-                        Py_DECREF(_value);
-                        Py_DECREF(value);
-                    }
-
-            }
-        */
 #if defined(EODEBUG)
 
         if (line != -1)

@@ -12,10 +12,12 @@
 
 package org.scilab.modules.external_objects_java;
 
+import java.beans.MethodDescriptor;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
-import java.lang.reflect.Method;
-import java.lang.reflect.Constructor;
 
 /**
  * A constructor wrapper
@@ -51,15 +53,16 @@ public final class FunctionArguments {
      * @param args the arguments
      * @return a valid method wrapped in an array or a method and the modified args (variable args) wrapped in an array
      */
-    public static final Object[] findMethod(String name, Method[] functions, Class[] argsClass, Object[] args) throws NoSuchMethodException {
+    public static final Object[] findMethod(String name, MethodDescriptor[] descriptors, Class[] argsClass, Object[] args) throws NoSuchMethodException {
         String internName = name.intern();
         Method better = null;
         boolean mustConv = false;
         boolean isVarArgs = false;
         long sqd = Long.MAX_VALUE;
         boolean[] refBools = new boolean[2];
-        for (Method f : functions) {
-            if (f.getName() == internName) {
+        for (MethodDescriptor desc : descriptors) {
+            if (desc.getName() == internName) {
+                Method f = desc.getMethod();
                 Class[] types = f.getParameterTypes();
                 refBools[0] = false;
                 refBools[1] = false;
@@ -122,20 +125,22 @@ public final class FunctionArguments {
         long sqd = Long.MAX_VALUE;
         boolean[] refBools = new boolean[2];
         for (Constructor f : functions) {
-            Class[] types = f.getParameterTypes();
-            refBools[0] = false;
-            refBools[1] = false;
-            long d = compareClassArgs(types, argsClass, args, refBools);
-            if (d != Long.MIN_VALUE && d < sqd) {
-                // The constructor is valid and the distance is lesser than the previous found one.
-                sqd = d;
-                better = f;
-                mustConv = refBools[0];
-                isVarArgs = refBools[1];
-            }
+            if (Modifier.isPublic(f.getModifiers())) {
+                Class[] types = f.getParameterTypes();
+                refBools[0] = false;
+                refBools[1] = false;
+                long d = compareClassArgs(types, argsClass, args, refBools);
+                if (d != Long.MIN_VALUE && d < sqd) {
+                    // The constructor is valid and the distance is lesser than the previous found one.
+                    sqd = d;
+                    better = f;
+                    mustConv = refBools[0];
+                    isVarArgs = refBools[1];
+                }
 
-            if (d == 0) {
-                break;
+                if (d == 0) {
+                    break;
+                }
             }
         }
 
@@ -218,7 +223,7 @@ public final class FunctionArguments {
      * @param B another class
      * @return the distance
      */
-    private static final long dist(Class A, Class B) {
+    private static final long dist(Class<?> A, Class<?> B) {
         if (B == null) {
             return 0;
         }

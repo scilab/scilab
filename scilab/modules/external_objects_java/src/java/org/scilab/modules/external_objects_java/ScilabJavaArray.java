@@ -24,7 +24,7 @@ import java.util.logging.Level;
  *
  * @author Calixte DENIZET
  */
-@SuppressWarnings("serial")
+@SuppressWarnings(value = {"unchecked", "serial"})
 public final class ScilabJavaArray {
 
     private static final Map<Class, Class> mappings = new HashMap<Class, Class>(8);

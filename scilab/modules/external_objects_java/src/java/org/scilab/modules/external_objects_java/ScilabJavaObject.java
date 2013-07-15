@@ -47,7 +47,7 @@ import java.util.logging.SimpleFormatter;
  * Main class to communicate with Scilab via jni interface generated with Giws.
  * @autor Calixte DENIZET
  */
-@SuppressWarnings("serial")
+@SuppressWarnings(value = {"unchecked", "serial"})
 public class ScilabJavaObject {
 
     private static final int INITIALCAPACITY = 1024;
@@ -142,7 +142,6 @@ public class ScilabJavaObject {
         arraySJO[0] = new ScilabJavaObject(null, null);
     }
 
-    protected Map<String, ScilabJavaMethod> methods;
     protected Object object;
     protected Class clazz;
     protected int id;
@@ -188,8 +187,6 @@ public class ScilabJavaObject {
                     logger.log(Level.INFO, "Scope copy");
                 }
             }
-
-            this.methods = ScilabJavaMethod.getMethods(clazz);
         } else {
             if (debug) {
                 logger.log(Level.INFO, "Object creation with id=0");
@@ -481,7 +478,16 @@ public class ScilabJavaObject {
             if (arraySJO[id] == null) {
                 throw new ScilabJavaException("Invalid Java object");
             }
-            return arraySJO[id].methods.keySet().toArray(new String[0]);
+
+            final Method[] ms = arraySJO[id].clazz.getMethods();
+            Set<String> set = new TreeSet<String>();
+            for (Method m : ms) {
+                if (Modifier.isPublic(m.getModifiers())) {
+                    set.add(m.getName());
+                }
+            }
+
+            return set.toArray(new String[set.size()]);
         } else {
             return new String[0];
         }
@@ -562,8 +568,7 @@ public class ScilabJavaObject {
                     try {
                         f.set(arraySJO[id].object, arraySJO[idarg].object);
                     } catch (IllegalArgumentException e) {
-                        if (f != null && f.getType() == int.class && arraySJO[idarg].clazz == double.class
-                                && ((Double) arraySJO[idarg].object).intValue() == ((Double) arraySJO[idarg].object).doubleValue()) {
+                        if (f != null && f.getType() == int.class && (arraySJO[idarg].clazz == double.class || arraySJO[idarg].clazz == Double.class) && ((Double) arraySJO[idarg].object).intValue() == ((Double) arraySJO[idarg].object).doubleValue()) {
                             f.set(arraySJO[id].object, ((Double) arraySJO[idarg].object).intValue());
                             return;
                         } else {
@@ -693,7 +698,7 @@ public class ScilabJavaObject {
                 logger.log(Level.INFO, "Get field type of \'" + fieldName + "\' in object id=" + id);
             }
 
-            if (arraySJO[id].methods.containsKey(fieldName)) {
+            if (isValidMethod(id, fieldName)) {
                 return 0;
             }
             try {
@@ -726,6 +731,28 @@ public class ScilabJavaObject {
         }
 
         return -1;
+    }
+
+    private static final boolean isValidMethod(int id, String methName) {
+        final BeanInfo info;
+        try {
+            info = Introspector.getBeanInfo(arraySJO[id].clazz);
+        } catch (IntrospectionException e) {
+            return false;
+        }
+
+        final MethodDescriptor[] methods = info.getMethodDescriptors();
+        if (methods == null) {
+            return false;
+        }
+
+        for (MethodDescriptor m : methods) {
+            if (methName.equals(m.getName())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private static final PropertyDescriptor lookupBeanProperty(int id, String fieldName) throws ScilabJavaException {
@@ -774,7 +801,7 @@ public class ScilabJavaObject {
             }
 
             if (arraySJO[id] != null) {
-                Object ret = arraySJO[id].methods.get(methName).invoke(arraySJO[id].object, returnType, args);
+                Object ret = ScilabJavaMethod.invoke(methName, arraySJO[id].clazz, arraySJO[id].object, returnType, args);
                 if (ret == null && returnType[0] == Void.TYPE) {
                     return -1;
                 } else {
@@ -1025,7 +1052,6 @@ public class ScilabJavaObject {
             if (arraySJO[id] instanceof ScilabJavaClass) {
                 ScilabClassLoader.removeID(id);
             }
-            arraySJO[id].methods = null;
             arraySJO[id] = null;
         }
     }
