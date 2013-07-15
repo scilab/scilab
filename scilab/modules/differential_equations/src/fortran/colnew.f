@@ -476,14 +476,17 @@ C
       EXTERNAL FSUB, DFSUB, GSUB, DGSUB, GUESS
 C
       common/iercol/iero
+c
+      CHARACTER ALFA*(63)
+      CHARACTER ALFB*(63)
+      CHARACTER BUF*(4096)
+      COMMON/CHA1/ ALFA,ALFB,BUF
 C     this subroutine can be called either COLNEW or COLSYS
 C
       ENTRY      COLSYS (NCOMP, M, ALEFT, ARIGHT, ZETA, IPAR, LTOL,
      1                   TOL, FIXPNT, ISPACE, FSPACE, IFLAG,
      2                   FSUB, DFSUB, GSUB, DGSUB, GUESS)
 
-
-      CHARACTER BUF*(29)
 C
 C*********************************************************************
 C
@@ -503,13 +506,11 @@ C
       IF ( IPAR(7) .LE. 0 )  THEN
 c		   replaces write(6 ...) by basout bug 2598
 c      WRITE(6,99)
-        OUT = 6
         WRITE(BUF,99)
-        CALL BASOUT(io,OUT,BUF)
+        CALL MSGS(117, 0)
       ENDIF
   99  FORMAT(29H VERSION *COLNEW* OF COLSYS .)
 C
-      IOUT = 6
       PRECIS = 1.D0
    10 PRECIS = PRECIS / 2.D0
       PRECP1 = PRECIS + 1.D0
@@ -563,17 +564,35 @@ C...  print the input data for checking.
 C
       IF ( IPRINT .GT. -1 )                         GO TO 80
       IF ( NONLIN .GT. 0 )                          GO TO 60
-      WRITE (IOUT,260) NCOMP, (M(IP), IP=1,NCOMP)
+      WRITE (BUF,260) NCOMP
+      CALL MSGS(117, 0)
+      WRITE (BUF,261) (M(IP), IP=1,NCOMP)
+      CALL MSGS(117, 0)
       GO TO 70
-   60 WRITE (IOUT,270) NCOMP, (M(IP), IP=1,NCOMP)
-   70 WRITE (IOUT,280) (ZETA(IP), IP=1,MSTAR)
-      IF ( NFXPNT .GT. 0 )
-     1   WRITE (IOUT,340) NFXPNT, (FIXPNT(IP), IP=1,NFXPNT)
-      WRITE (IOUT,290) K
-      WRITE (IOUT,300) (LTOL(IP), IP=1,NTOL)
-      WRITE (IOUT,310) (TOL(IP), IP=1,NTOL)
-      IF (IGUESS .GE. 2) WRITE (IOUT,320)
-      IF (IREAD .EQ. 2) WRITE (IOUT,330)
+   60 WRITE (BUF,270) NCOMP
+      CALL MSGS(117, 0)
+      WRITE (BUF,271) (M(IP), IP=1, NCOMP)
+      CALL MSGS(117, 0)
+   70 WRITE (BUF,280) (ZETA(IP), IP=1,MSTAR)
+      CALL MSGS(117, 0)
+      IF ( NFXPNT .GT. 0 ) THEN
+        WRITE (BUF,340) NFXPNT, (FIXPNT(IP), IP=1,NFXPNT)
+        CALL MSGS(117, 0)
+      ENDIF
+      WRITE (BUF,290) K
+      CALL MSGS(117, 0)
+      WRITE (BUF,300) (LTOL(IP), IP=1,NTOL)
+      CALL MSGS(117, 0)
+      WRITE (BUF,310) (TOL(IP), IP=1,NTOL)
+      CALL MSGS(117, 0)
+      IF (IGUESS .GE. 2) THEN
+       WRITE (BUF,320)
+       CALL MSGS(117, 0)
+      ENDIF
+      IF (IREAD .EQ. 2) THEN
+       WRITE (BUF,330)
+       CALL MSGS(117, 0)
+      ENDIF
    80 CONTINUE
 C
 C...  check for correctness of data
@@ -624,11 +643,17 @@ C
      1(2*MSTAR-NREC) * 2*MSTAR
       NMAXF = (NDIMF - NFIXF) / NSIZEF
       NMAXI = (NDIMI - NFIXI) / NSIZEI
-      IF ( IPRINT .LT. 1 )  WRITE(IOUT,350) NMAXF, NMAXI
+      IF ( IPRINT .LT. 1 )  THEN
+       WRITE(BUF,350) NMAXF, NMAXI
+       CALL MSGS(117, 0)
+      ENDIF
       NMAX = MIN0( NMAXF, NMAXI )
       IF ( NMAX .LT. N )                            RETURN
       IF ( NMAX .LT. NFXPNT+1 )                     RETURN
-      IF (NMAX .LT. 2*NFXPNT+2 .AND. IPRINT .LT. 1)  WRITE(IOUT,360)
+      IF (NMAX .LT. 2*NFXPNT+2 .AND. IPRINT .LT. 1) THEN
+       WRITE(BUF,360)
+       CALL MSGS(117, 0)
+      ENDIF
 C
 C...  generate pointers to break up  fspace  and  ispace .
 C
@@ -731,23 +756,23 @@ C
   258 FSPACE( IC+I ) = COEF(I)
       RETURN
 C----------------------------------------------------------------------
-  260 FORMAT(/// 37H THE NUMBER OF (LINEAR) DIFF EQNS IS , I3/ 1X,
-     1       16HTHEIR ORDERS ARE, 20I3)
-  270 FORMAT(/// 40H THE NUMBER OF (NONLINEAR) DIFF EQNS IS , I3/ 1X,
-     1       16HTHEIR ORDERS ARE, 20I3)
-  280 FORMAT(27H SIDE CONDITION POINTS ZETA, 8F10.6, 4( / 27X, 8F10.6))
+  260 FORMAT(37H THE NUMBER OF (LINEAR) DIFF EQNS IS , I3)
+  261 FORMAT(17H THEIR ORDERS ARE, 20I3)
+  270 FORMAT(40H THE NUMBER OF (NONLINEAR) DIFF EQNS IS , I3)
+  271 FORMAT(17H THEIR ORDERS ARE, 20I3)
+  280 FORMAT(27H SIDE CONDITION POINTS ZETA, 8F10.6, 4( 27X, 8F10.6))
   290 FORMAT(37H NUMBER OF COLLOC PTS PER INTERVAL IS, I3)
   300 FORMAT(39H COMPONENTS OF Z REQUIRING TOLERANCES -,8(7X,I2,1X),
-     1       4(/38X,8I10))
+     1       4(38X,8I10))
   310 FORMAT(33H CORRESPONDING ERROR TOLERANCES -,6X,8D10.2,
-     1       4(/39X,8D10.2))
+     1       4(39X,8D10.2))
   320 FORMAT(44H INITIAL MESH(ES) AND Z,DMZ PROVIDED BY USER)
   330 FORMAT(27H NO ADAPTIVE MESH SELECTION)
   340 FORMAT(10H THERE ARE ,I5,27H FIXED POINTS IN THE MESH - ,
-     1       10(6F10.6/))
+     1       10(6F10.6))
   350 FORMAT(44H THE MAXIMUM NUMBER OF SUBINTERVALS IS MIN (, I4,
      1       23H (ALLOWED FROM FSPACE),,I4, 24H (ALLOWED FROM ISPACE) ))
-  360 FORMAT(/53H INSUFFICIENT SPACE TO DOUBLE MESH FOR ERROR ESTIMATE)
+  360 FORMAT(53H INSUFFICIENT SPACE TO DOUBLE MESH FOR ERROR ESTIMATE)
       END
       SUBROUTINE CONTRL (XI, XIOLD, Z, DMZ, RHS, DELZ, DELDMZ,
      1           DQZ, DQDMZ, G, W, V, VALSTR, SLOPE, SCALE, DSCALE,
@@ -822,6 +847,11 @@ C
       EXTERNAL FSUB, DFSUB, GSUB, DGSUB, GUESS
 C
       common/iercol/iero
+c
+      CHARACTER ALFA*(63)
+      CHARACTER ALFB*(63)
+      CHARACTER BUF*(4096)
+      COMMON/CHA1/ ALFA,ALFB,BUF
 C...  constants for control of nonlinear iteration
 C
       RELMIN = 1.D-3
@@ -863,9 +893,15 @@ C...       check for a singular matrix
 C
            IF ( MSING .EQ. 0 )                      GO TO 400
    30      IF ( MSING .LT. 0 )                      GO TO 40
-           IF ( IPRINT .LT. 1 )  WRITE (IOUT,495)
+           IF ( IPRINT .LT. 1 )  THEN
+            WRITE (BUF,495)
+            CALL MSGS(117, 0)
+           ENDIF
            GO TO 460
-   40      IF ( IPRINT .LT. 1 )  WRITE (IOUT,490)
+   40      IF ( IPRINT .LT. 1 )  THEN
+            WRITE (BUF,490)
+            CALL MSGS(117, 0)
+           ENDIF
            IFLAG = 0
            RETURN
 C
@@ -894,15 +930,24 @@ C
      2          FSUB, DFSUB, GSUB, DGSUB, GUESS )
            if (iero.gt.0) return
 C
-           IF ( IPRINT .LT. 0 )  WRITE(IOUT,530)
-           IF ( IPRINT .LT. 0 )  WRITE (IOUT,510) ITER, RNOLD
+           IF ( IPRINT .LT. 0 )  THEN
+            WRITE(BUF,530)
+            CALL MSGS(117, 0)
+           ENDIF
+           IF ( IPRINT .LT. 0 )  THEN
+            WRITE (BUF,510) ITER, RNOLD
+            CALL MSGS(117, 0)
+           ENDIF
            GO TO 70
 C
 C...       solve for the next iterate .
 C...       the value of ifreez determines whether this is a full
 C...       newton step (=0) or a fixed jacobian iteration (=1).
 C
-   60      IF ( IPRINT .LT. 0 )  WRITE (IOUT,510) ITER, RNORM
+   60      IF ( IPRINT .LT. 0 )  THEN
+            WRITE (BUF,510) ITER, RNORM
+            CALL MSGS(117, 0)
+           ENDIF
            RNOLD = RNORM
            CALL LSYSLV (MSING, XI, XIOLD, Z, DMZ, DELZ, DELDMZ, G,
      1          W, V, RHS, DUMMY, INTEGS, IPVTG, IPVTW, RNORM,
@@ -961,13 +1006,22 @@ C
 C
 C...       convergence obtained
 C
-           IF ( IPRINT .LT. 1 )  WRITE (IOUT,560) ITER
+           IF ( IPRINT .LT. 1 )  THEN
+            WRITE (BUF,560) ITER
+            CALL MSGS(117, 0)
+           ENDIF
            GO TO 400
 C
 C...      convergence of fixed jacobian iteration failed.
 C
-  130      IF ( IPRINT .LT. 0 )  WRITE (IOUT,510) ITER, RNORM
-           IF ( IPRINT .LT. 0 )  WRITE (IOUT,540)
+  130      IF ( IPRINT .LT. 0 )  THEN
+            WRITE (BUF,510) ITER, RNORM
+            CALL MSGS(117, 0)
+           ENDIF
+           IF ( IPRINT .LT. 0 )  THEN
+            WRITE (BUF,540)
+            CALL MSGS(117, 0)
+           ENDIF
            ICONV = 0
            RELAX = RSTART
            DO 140 I = 1, NZ
@@ -990,7 +1044,10 @@ C...       no previous convergence has been obtained. proceed
 C...       with the damped newton method.
 C...       evaluate rhs and find the first newton correction.
 C
-  160      IF(IPRINT .LT. 0)  WRITE (IOUT,500)
+  160      IF(IPRINT .LT. 0)  THEN
+            WRITE (BUF,500)
+            CALL MSGS(117, 0)
+           ENDIF
            CALL LSYSLV (MSING, XI, XIOLD, Z, DMZ, DELZ, DELDMZ, G,
      1          W, V, RHS, DQDMZ, INTEGS, IPVTG, IPVTW, RNOLD, 1,
      2          FSUB, DFSUB, GSUB, DGSUB, GUESS )
@@ -1091,11 +1148,17 @@ C
            ANORM = DSQRT(ANORM / DBLE(NZ+NDMZ))
            ANFIX = DSQRT(ANFIX / DBLE(NZ+NDMZ))
            IF ( ICOR .EQ. 1 )                         GO TO 280
-           IF (IPRINT .LT. 0)  WRITE (IOUT,520) ITER, RELAX, ANORM,
+           IF (IPRINT .LT. 0)  THEN
+            WRITE (BUF,520) ITER, RELAX, ANORM,
      1           ANFIX, RNOLD, RNORM
+            CALL MSGS(117, 0)
+           ENDIF
            GO TO 290
-  280      IF (IPRINT .LT. 0) WRITE (IOUT,550) RELAX, ANORM, ANFIX,
+  280      IF (IPRINT .LT. 0) THEN
+            WRITE (BUF,550) RELAX, ANORM, ANFIX,
      1           RNOLD, RNORM
+            CALL MSGS(117, 0)
+           ENDIF
   290      ICOR = 0
 C
 C...       check for monotonic decrease in  delz and deldmz.
@@ -1151,7 +1214,10 @@ C
 C
 C...       convergence obtained
 C
-           IF ( IPRINT .LT. 1 )  WRITE (IOUT,560) ITER
+           IF ( IPRINT .LT. 1 )  THEN
+            WRITE (BUF,560) ITER
+            CALL MSGS(117, 0)
+           ENDIF
 C
 C...       since convergence obtained, update  z and dmz  with term
 C...       from the fixed jacobian iteration.
@@ -1163,7 +1229,10 @@ C
              DMZ(I) = DMZ(I)  +  DQDMZ(I)
   380      CONTINUE
   390      IF ( (ANFIX .LT. PRECIS .OR. RNORM .LT. PRECIS)
-     1          .AND. IPRINT .LT. 1 )  WRITE (IOUT,560) ITER
+     1          .AND. IPRINT .LT. 1 )  THEN
+            WRITE (BUF,560) ITER
+            CALL MSGS(117, 0)
+           ENDIF
            ICONV = 1
            IF ( ICARE .EQ. (-1) )  ICARE = 0
 C
@@ -1172,8 +1241,10 @@ C...       solution components   z  at the meshpoints.
 C
   400      IF ( IPRINT .GE. 0 )                     GO TO 420
            DO 410 J = 1, MSTAR
-             WRITE(IOUT,610) J
-  410      WRITE(IOUT,620) (Z(LJ), LJ = J, NZ, MSTAR)
+             WRITE(BUF,610) J
+             CALL MSGS(117, 0)
+  410      WRITE(BUF,620) (Z(LJ), LJ = J, NZ, MSTAR)
+           CALL MSGS(117, 0)
 C
 C...       check for error tolerance satisfaction
 C
@@ -1186,9 +1257,15 @@ C
 C
 C...       diagnostics for failure of nonlinear iteration.
 C
-  430      IF ( IPRINT .LT. 1 )  WRITE (IOUT,570) ITER
+  430      IF ( IPRINT .LT. 1 )  THEN
+            WRITE (BUF,570) ITER
+            CALL MSGS(117, 0)
+           ENDIF
            GO TO 450
-  440      IF( IPRINT .LT. 1 )  WRITE(IOUT,580) RELAX, RELMIN
+  440      IF( IPRINT .LT. 1 )  THEN
+            WRITE(BUF,580) RELAX, RELMIN
+            CALL MSGS(117, 0)
+           ENDIF
   450      IFLAG = -2
            NOCONV = NOCONV + 1
            IF ( ICARE .EQ. 2 .AND. NOCONV .GT. 1 )  RETURN
@@ -1217,31 +1294,37 @@ C
            IF ( N .LE. NMAX )                       GO TO 480
            N = N / 2
            IFLAG = -1
-           IF ( ICONV .EQ. 0 .AND. IPRINT .LT. 1 )  WRITE (IOUT,590)
-           IF ( ICONV .EQ. 1 .AND. IPRINT .LT. 1 )  WRITE (IOUT,600)
+           IF ( ICONV .EQ. 0 .AND. IPRINT .LT. 1 )  THEN
+            WRITE (BUF,590)
+            CALL MSGS(117, 0)
+           ENDIF
+           IF ( ICONV .EQ. 1 .AND. IPRINT .LT. 1 )  THEN
+            WRITE (BUF,600)
+            CALL MSGS(117, 0)
+           ENDIF
            RETURN
   480      IF ( ICONV .EQ. 0 )  IMESH = 1
            IF ( ICARE .EQ. 1 )  ICONV = 0
       GO TO 20
 C     ---------------------------------------------------------------
-  490 FORMAT(//35H THE GLOBAL BVP-MATRIX IS SINGULAR )
-  495 FORMAT(//40H A LOCAL ELIMINATION MATRIX IS SINGULAR )
-  500 FORMAT(/30H FULL DAMPED NEWTON ITERATION,)
+  490 FORMAT(35H THE GLOBAL BVP-MATRIX IS SINGULAR )
+  495 FORMAT(40H A LOCAL ELIMINATION MATRIX IS SINGULAR )
+  500 FORMAT(30H FULL DAMPED NEWTON ITERATION,)
   510 FORMAT(13H ITERATION = , I3, 15H  NORM (RHS) = , D10.2)
-  520 FORMAT(13H ITERATION = ,I3,22H  RELAXATION FACTOR = ,D10.2
-     1       /33H NORM OF SCALED RHS CHANGES FROM ,D10.2,3H TO,D10.2
-     2       /33H NORM   OF   RHS  CHANGES  FROM  ,D10.2,3H TO,D10.2,
+  520 FORMAT(13H ITERATION = ,I3,22H  RELAXATION FACTOR = ,D10.2,
+     1       33H NORM OF SCALED RHS CHANGES FROM ,D10.2,3H TO,D10.2,
+     2       33H NORM   OF   RHS  CHANGES  FROM  ,D10.2,3H TO,D10.2,
      2       D10.2)
-  530 FORMAT(/27H FIXED JACOBIAN ITERATIONS,)
-  540 FORMAT(/35H SWITCH TO DAMPED NEWTON ITERATION,)
-  550 FORMAT(40H RELAXATION FACTOR CORRECTED TO RELAX = , D10.2
-     1       /33H NORM OF SCALED RHS CHANGES FROM ,D10.2,3H TO,D10.2
-     2       /33H NORM   OF   RHS  CHANGES  FROM  ,D10.2,3H TO,D10.2
-     2       ,D10.2)
-  560 FORMAT(/18H CONVERGENCE AFTER , I3,11H ITERATIONS /)
-  570 FORMAT(/22H NO CONVERGENCE AFTER , I3, 11H ITERATIONS/)
-  580 FORMAT(/37H NO CONVERGENCE.  RELAXATION FACTOR =,D10.3
-     1       ,24H IS TOO SMALL (LESS THAN, D10.3, 1H)/)
+  530 FORMAT(27H FIXED JACOBIAN ITERATIONS,)
+  540 FORMAT(35H SWITCH TO DAMPED NEWTON ITERATION,)
+  550 FORMAT(40H RELAXATION FACTOR CORRECTED TO RELAX = , D10.2,
+     1       33H NORM OF SCALED RHS CHANGES FROM ,D10.2,3H TO,D10.2,
+     2       33H NORM   OF   RHS  CHANGES  FROM  ,D10.2,3H TO,D10.2,
+     2       D10.2)
+  560 FORMAT(18H CONVERGENCE AFTER , I3,11H ITERATIONS )
+  570 FORMAT(22H NO CONVERGENCE AFTER , I3, 11H ITERATIONS)
+  580 FORMAT(37H NO CONVERGENCE.  RELAXATION FACTOR =,D10.3
+     1       ,24H IS TOO SMALL (LESS THAN, D10.3, 1H))
   590 FORMAT(18H  (NO CONVERGENCE) )
   600 FORMAT(50H  (PROBABLY TOLERANCES TOO STRINGENT, OR NMAX TOO
      1       ,6HSMALL) )
@@ -1394,9 +1477,16 @@ C
       COMMON /COLBAS/ B(28), ACOL(28,7), ASAVE(28,4)
       COMMON /COLEST/ TOL(40), WGTMSH(40), WGTERR(40), TOLIN(40),
      1                ROOT(40), JTOL(40), LTOL(40), NTOL
+c
+      CHARACTER ALFA*(63)
+      CHARACTER ALFB*(63)
+      CHARACTER BUF*(4096)
+      COMMON/CHA1/ ALFA,ALFB,BUF
+C
 C
       NFXP1 = NFXPNT +1
       GO TO (180, 100, 50, 20, 10), MODE
+
 C
 C...  mode=5   set mshlmt=1 so that no mesh selection is performed
 C
@@ -1409,7 +1499,10 @@ C
 C...  iguess=2, 3 or 4.
 C
       NOLDP1 = NOLD + 1
-      IF (IPRINT .LT. 1)  WRITE(IOUT,360) NOLD, (XIOLD(I), I=1,NOLDP1)
+      IF (IPRINT .LT. 1)  THEN
+       WRITE(BUF,360) NOLD, (XIOLD(I), I=1,NOLDP1)
+       CALL MSGS(117, 0)
+      ENDIF
       IF ( IGUESS .NE. 3 )                          GO TO 40
 C
 C...  if iread ( ipar(8) ) .ge. 1 and iguess ( ipar(9) ) .eq. 3
@@ -1479,7 +1572,10 @@ C
       IF ( MODE .EQ. 2 )                            GO TO 110
       N = NMAX / 2
       GO TO 220
-  110 IF ( IPRINT .LT. 1 )  WRITE(IOUT,370)
+  110 IF ( IPRINT .LT. 1 ) THEN
+        WRITE(BUF,370)
+        CALL MSGS(117, 0)
+      ENDIF
       N = N2
       RETURN
 C
@@ -1597,7 +1693,10 @@ C
 C...  naccum=expected n to achieve .1x user requested tolerances
 C
       NACCUM = ACCUM(NOLD+1) + 1.D0
-      IF ( IPRINT .LT. 0 )  WRITE(IOUT,350) DEGEQU, NACCUM
+      IF ( IPRINT .LT. 0 )  THEN
+       WRITE(BUF,350) DEGEQU, NACCUM
+       CALL MSGS(117, 0)
+      ENDIF
 C
 C...  decide if mesh selection is worthwhile (otherwise, halve)
 C
@@ -1675,17 +1774,20 @@ C
       MODE = 1
   320 CONTINUE
       NP1 = N + 1
-      IF ( IPRINT .LT. 1 )  WRITE(IOUT,340) N, (XI(I),I=1,NP1)
+      IF ( IPRINT .LT. 1 )  THEN
+       WRITE(BUF,340) N, (XI(I),I=1,NP1)
+       CALL MSGS(117, 0)
+      ENDIF
       NZ   = MSTAR * (N + 1)
       NDMZ = KD * N
       RETURN
 C----------------------------------------------------------------
-  340 FORMAT(/17H THE NEW MESH (OF,I5,16H SUBINTERVALS), ,100(/8F12.6))
-  350 FORMAT(/21H MESH SELECTION INFO,/30H DEGREE OF EQUIDISTRIBUTION =
+  340 FORMAT(17H THE NEW MESH (OF,I5,16H SUBINTERVALS), ,100(8F12.6))
+  350 FORMAT(21H MESH SELECTION INFO,30H DEGREE OF EQUIDISTRIBUTION =
      1       , F8.5, 28H PREDICTION FOR REQUIRED N = , I8)
-  360 FORMAT(/20H THE FORMER MESH (OF,I5,15H SUBINTERVALS),,
-     1       100(/8F12.6))
-  370 FORMAT (/23H  EXPECTED N TOO LARGE  )
+  360 FORMAT(20H THE FORMER MESH (OF,I5,15H SUBINTERVALS),,
+     1       100(8F12.6))
+  370 FORMAT (23H  EXPECTED N TOO LARGE  )
       END
       SUBROUTINE CONSTS (K, RHO, COEF)
 C
@@ -1875,6 +1977,11 @@ C
       COMMON /COLEST/ TOL(40), WGTMSH(40), WGTERR(40), TOLIN(40),
      1                ROOT(40), JTOL(40), LTOL(40), NTOL
 C
+      CHARACTER ALFA*(63)
+      CHARACTER ALFB*(63)
+      CHARACTER BUF*(4096)
+      COMMON /CHA1/ ALFA, ALFB, BUF
+C
 C...  error estimates are to be generated and tested
 C...  to see if the tolerance requirements are satisfied.
 C
@@ -1939,17 +2046,19 @@ C
    50      CONTINUE
    60 CONTINUE
       IF ( IPRINT .GE. 0 )                          RETURN
-      WRITE(IOUT,130)
+      WRITE(BUF,130)
+      CALL MSGS(117, 0)
       LJ = 1
       DO 70 J = 1,NCOMP
            MJ = LJ - 1 + M(J)
-           WRITE(IOUT,120) J, (ERREST(L), L= LJ, MJ)
+           WRITE(BUF,120) J, (ERREST(L), L= LJ, MJ)
+           CALL MSGS(117, 0)
            LJ = MJ + 1
    70 CONTINUE
       RETURN
 C--------------------------------------------------------------
   120 FORMAT (3H U(, I2, 3H) -,4D12.4)
-  130 FORMAT (/26H THE ESTIMATED ERRORS ARE,)
+  130 FORMAT (26H THE ESTIMATED ERRORS ARE,)
       END
 C---------------------------------------------------------------------
 C                            p a r t  3
@@ -2705,6 +2814,11 @@ C      IMPLICIT REAL*8 (A-H,O-Z)
 C
       COMMON /COLOUT/ PRECIS, IOUT, IPRINT
 C
+      CHARACTER ALFA*(63)
+      CHARACTER ALFB*(63)
+      CHARACTER BUF*(4096)
+      COMMON /CHA1/ ALFA, ALFB, BUF
+C
       GO TO (10, 30, 80, 90), MODE
 C
 C...  mode = 1 , retrieve  z( u(x) )  directly for x = xi(i).
@@ -2722,7 +2836,10 @@ C
    30 CONTINUE
       IF ( X .GE. XI(1)-PRECIS .AND. X .LE. XI(N+1)+PRECIS )
      1                                              GO TO 40
-      IF (IPRINT .LT. 1)  WRITE(IOUT,900) X, XI(1), XI(N+1)
+      IF (IPRINT .LT. 1)  THEN
+       WRITE(BUF,900) X, XI(1), XI(N+1)
+       CALL MSGS(117, 0)
+      ENDIF
       IF ( X .LT. XI(1) )  X = XI(1)
       IF ( X .GT. XI(N+1) )  X = XI(N+1)
    40 IF ( I .GT. N .OR. I .LT. 1 )  I = (N+1) / 2
@@ -2790,7 +2907,7 @@ C
       RETURN
 C--------------------------------------------------------------------
   900 FORMAT(37H ****** DOMAIN ERROR IN APPROX ******
-     1       /4H X =,D20.10, 10H   ALEFT =,D20.10,
+     1       4H X =,D20.10, 10H   ALEFT =,D20.10,
      2       11H   ARIGHT =,D20.10)
       END
       SUBROUTINE RKBAS (S, COEF, K, M, RKB, DM, MODE)
