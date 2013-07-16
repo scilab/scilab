@@ -79,17 +79,17 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
     assert_typereal ( x0 , "x0" , 2 );
     //
     // Prepare the data structure to pass to the output function
-    fmsdata = tlist(["T_FMINSEARCH" 
-    "Display" 
-    "OutputFcn" 
-    "PlotFcns" 
+    fmsdata = tlist(["T_FMINSEARCH"
+    "Display"
+    "OutputFcn"
+    "PlotFcns"
     ]);
     fmsdata.Display = Display
     fmsdata.OutputFcn = OutputFcn
     fmsdata.PlotFcns = PlotFcns
     // Prepare the data structure to pass to the cost function
-    fmsfundata = tlist(["T_FMINSEARCH" 
-    "Fun" 
+    fmsfundata = tlist(["T_FMINSEARCH"
+    "Fun"
     ]);
     fmsfundata.Fun = fun
     // Perform Optimization
@@ -142,7 +142,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
         " and F(X) satisfies the convergence criteria using OPTIONS.TolFun of",...
         string(TolFun));
     case "userstop" then
-         msg = sprintf("%s\n%s\n%s", "Optimization terminated:",...
+        msg = sprintf("%s\n%s\n%s", "Optimization terminated:",...
         " ",...
         " User Stop");
         exitflag = -1;
@@ -155,7 +155,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
     "funcCount" ,[],...
     "iterations" ,[],...
     "message" , []);
-    output.algorithm = 'Nelder-Mead simplex direct search';
+    output.algorithm = "Nelder-Mead simplex direct search";
     output.funcCount = neldermead_get(nm,"-funevals");
     output.iterations = neldermead_get(nm,"-iterations");
     output.message = msg;
@@ -182,13 +182,13 @@ endfunction
 //    * iteration : the number of iterations performed
 //    * funccount : the number of function evaluations
 //    * step : the type of step in the previous iteration
-//  fmsdata : this is a tlist which contains specific data of the 
+//  fmsdata : this is a tlist which contains specific data of the
 //    fminsearch algorithm
 //    * Display : what to display
 //    * OutputFcn : the array of output functions
 //
 function stop = fminsearch_outputfun ( state , data , fmsdata )
-    // 
+    //
     // Compute procedure
     //
     select data.step
@@ -214,7 +214,7 @@ function stop = fminsearch_outputfun ( state , data , fmsdata )
         errmsg = msprintf(gettext("%s: Unknown step %s"), "fminsearch", data.step)
         error(errmsg)
     end
-    // 
+    //
     // Display a message
     //
     if ( fmsdata.Display == "iter" ) then

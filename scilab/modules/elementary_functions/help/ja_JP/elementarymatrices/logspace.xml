@@ -42,11 +42,11 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>10^d1</literal> および
-            <literal>10^d2</literal>の間に指数的に等しい間隔にとった
+            <latex>10^{d1}</latex> および
+            <latex>10^{d2}</latex>の間に指数的に等しい間隔にとった
             <literal>n</literal>個の点からなる行ベクトルを返します.
-            <literal>d2=%pi</literal> の場合,
-            <literal>10^d1</literal> および <literal>pi</literal>の間の
+            <latex>d2=\pi</latex> の場合,
+            <latex>10^{d1}</latex> および <latex>\pi</latex>の間の
             点となります.
         </para>
     </refsection>

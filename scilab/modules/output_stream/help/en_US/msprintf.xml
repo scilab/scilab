@@ -68,6 +68,8 @@
 msprintf('%5.3f %5.3f',123,0.732)
 msprintf('%5.3f\n%5.3f',123,0.732)
 msprintf('--%s-\n-%d--',"hello",3)
+msprintf('%e ', [1;2;3])
+msprintf('%d %d\n', [1, 2; 3, 4])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

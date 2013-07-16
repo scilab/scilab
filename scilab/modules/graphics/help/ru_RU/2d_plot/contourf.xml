@@ -65,10 +65,10 @@ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                                 <para>
                                     <note>
-                                    Заметьте, что уровни <literal>zmin</literal>
-                                    и <literal>zmax</literal> не  рисуются
-                                    (вообще, они сводятся в точку), но их можно
-                                    добавить следующим образом:
+                                        Заметьте, что уровни <literal>zmin</literal>
+                                        и <literal>zmax</literal> не  рисуются
+                                        (вообще, они сводятся в точку), но их можно
+                                        добавить следующим образом:
                                     </note>
                                 </para>
                                 <programlisting role="no-scilab-exec"><![CDATA[ 

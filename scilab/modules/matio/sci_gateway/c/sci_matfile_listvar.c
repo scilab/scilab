@@ -82,7 +82,7 @@ int sci_matfile_listvar(char *fname, unsigned long fname_len)
     /* Back to the beginning of the file */
     if (Mat_Rewind(matfile) != 0)
     {
-        Scierror(999, _("%s: Could not rewind the file %s.\n"), "matfile_listvar", matfile->filename);
+        Scierror(999, _("%s: Could not rewind the file %s.\n"), "matfile_listvar", Mat_GetFilename(matfile));
         return FALSE;
     }
 
@@ -98,14 +98,14 @@ int sci_matfile_listvar(char *fname, unsigned long fname_len)
         }
         varnames[nbvar - 1] = strdup(matvar->name);
         varclasses = (double*) REALLOC(varclasses, nbvar * sizeof(double));
-        if (varnames == NULL)
+        if (varclasses  == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
             return FALSE;
         }
         varclasses[nbvar - 1] = (double) matvar->class_type;
         vartypes = (double*) REALLOC(vartypes, nbvar * sizeof(double));
-        if (varnames == NULL)
+        if (vartypes == NULL)
         {
             Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
             return FALSE;
@@ -133,6 +133,18 @@ int sci_matfile_listvar(char *fname, unsigned long fname_len)
     if (Lhs >= 2)
     {
         sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 2, nbRow, nbCol, varclasses);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+        LhsVar(2) = Rhs + 2;
+    }
+
+    /* Return the variable types */
+    if (Lhs >= 3)
+    {
+        sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 3, nbRow, nbCol, vartypes);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);

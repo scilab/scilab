@@ -581,7 +581,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
             bar_width = mget( 1, "dl", fd ) ; // bar_width
         end
 
-
         clip_state     = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // clip_state
 
         if clip_state=="on" then
@@ -630,8 +629,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
             end
             set(h,"bar_width",bar_width);
         end
-
-        set(h,"datatips",datatips),
 
         if clip_state =="" then clip_state="clipgrf",end
         if clip_state=="on" then set(h,"clip_box",clip_box),end
@@ -1337,7 +1334,6 @@ function [h,immediate_drawing] = load_graphichandle(fd)
         end
         set(h,"clip_state",clip_state);
         load_user_data(fd) // user_data
-
     case "Axis"
         if is_higher_than([3 1 0 0]) then
 

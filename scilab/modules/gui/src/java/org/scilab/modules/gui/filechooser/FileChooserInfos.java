@@ -14,7 +14,7 @@ package org.scilab.modules.gui.filechooser;
 
 
 /**
- * This class is to manage FileChooser informations
+ * This class is to manage FileChooser information
  * @author Sylvestre KOUMAR
  *
  */

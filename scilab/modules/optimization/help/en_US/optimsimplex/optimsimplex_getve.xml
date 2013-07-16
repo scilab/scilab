@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_getve" xml:lang="en">
+    <refnamediv>
+        <refname>optimsimplex_getve</refname>
+        <refpurpose>Gets the vertex at the given index.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            vertex = optimsimplex_getve(opt, ive)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Argument</title>
+        <variablelist>
+            <varlistentry>
+                <term>opt </term>
+                <listitem>
+                    <para>The current simplex object of TSIMPLEX type (tlist).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ive </term>
+                <listitem>
+                    <para>An integer, the vertex index.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>vertex </term>
+                <listitem>
+                    <para>A tlist, the vertex at given index.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>optimsimplex_getve</literal> function returns the vertex at given index, 
+            as a tlist, with fields n, x and fv.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[ 
+    simplex = [
+3.  0.  0.
+4. 1.  0.
+5. 0.  2.
+];
+s1 = optimsimplex_new ();
+s1 = optimsimplex_setall ( s1 , simplex );
+ ve1 = optimsimplex_getve ( s1 , 1 );
+ ve2 = optimsimplex_getve ( s1 , 2 );
+ ve3 = optimsimplex_getve ( s1 , 3 );
+ disp(ve1)
+ disp(ve2)
+ disp(ve3)
+    s1 = optimsimplex_destroy(s1);
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optimsimplex_setve">optimsimplex_setve</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

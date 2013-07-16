@@ -30,7 +30,7 @@ function demo_polarplot()
 
     clf, polarplot(t/4+%pi/2,sin(t/10))
     title(gettext("Still a single quadrant...")), show_window(my_handle)
-    input(nextMessage,"s"); 
+    input(nextMessage,"s");
 
     if is_handle_valid(my_handle) == %f then
         return
@@ -96,7 +96,7 @@ function demo_polarplot()
 
     if is_handle_valid(my_handle) == %f then
         return
-    end    
+    end
 
     // with negative radii:
     r = sin(t/10)-0.5;
@@ -149,7 +149,7 @@ function demo_polarplot()
         return
     end
 
-    clf, t= 0:.01:2*%pi; 
+    clf, t= 0:.01:2*%pi;
     polarplot([sin(2*t') sin(4*t')],[cos(4*t') cos(2*t')],[1,2])
     title(gettext("Several curves may be plotted at the same time"))
     show_window(my_handle)

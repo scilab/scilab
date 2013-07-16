@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -16,10 +16,10 @@
 
 typedef struct
 {
-  int curElement ; /**< the number of the current element in the stack the first one is the name.
+    int curElement ; /**< the number of the current element in the stack the first one is the name.
                         vary from 1 to nbElements */
-  int nbElements ; /**< the number of element which will be inserted in the list. */
-  int stackPointer ; /**< use to differentiate returned list. Not useful for now. */
+    int nbElements ; /**< the number of element which will be inserted in the list. */
+    int stackPointer ; /**< use to differentiate returned list. Not useful for now. */
 } returnedList ;
 
 /**

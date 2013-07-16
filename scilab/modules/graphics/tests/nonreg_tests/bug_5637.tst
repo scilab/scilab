@@ -18,13 +18,11 @@
 sigma = sqrt(2);
 
 function p = f( x , mu , sigma )
-  p = exp ( -0.5 * (log(x) - mu)^2/sigma^2 ) ./ ( sigma * x * sqrt(2*%pi) )
+  p = exp ( -0.5 * (log(x) - mu).^2/sigma.^2 ) ./ ( sigma * x * sqrt(2*%pi) )
 endfunction
 
 x = linspace ( 200 , 400 , 1000 );
 
 p = f( x , 300.0 , 30.0 );
 
-ierr = execstr('plot ( x , p );','errcatch');
-
-if ierr~=0 then pause; end;
+assert_checkfalse(execstr('plot ( x , p );','errcatch') <> 0);

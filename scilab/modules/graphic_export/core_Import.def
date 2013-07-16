@@ -16,3 +16,5 @@ checklhs_
 freeArrayOfString
 callFunctionFromGateway
 getScilabMode
+MyHeapAlloc
+MyHeapFree

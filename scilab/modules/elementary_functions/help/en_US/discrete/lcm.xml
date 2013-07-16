@@ -26,7 +26,7 @@
                 <term>p</term>
                 <listitem>
                     <para>
-                        a polynomial row vector <literal>p = [p1, ..., pn]</literal> or
+                        a polynomial row vector <literal>p = [p1, ..., pn]</literal> (type equal to 2) or
                         an integer row vector (type equal to 8).
                     </para>
                 </listitem>
@@ -34,7 +34,7 @@
             <varlistentry>
                 <term>fact</term>
                 <listitem>
-                    <para>a polynomial vector or an integer vector (type equal to 8).</para>
+                    <para>a polynomial vector or an integer vector.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -48,13 +48,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>pp=lcm(p)</code> computes the lcm <varname>pp</varname> of polynomial vector <varname>p</varname>.
+            <code>pp = lcm(p)</code> computes the lcm <varname>pp</varname> of polynomial vector <varname>p</varname>.
         </para>
         <para>
-            <code>[pp, fact]=lcm(p)</code> computes in addition the vector <varname>fact</varname> such that:
+            <code>[pp, fact] = lcm(p)</code> computes in addition the vector <varname>fact</varname> such that:
         </para>
         <para>
-            <code>p.*fact=pp*ones(p)</code>.
+            <code>p.*fact = pp*ones(p)</code>.
         </para>
     </refsection>
     <refsection>

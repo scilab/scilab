@@ -1,12 +1,15 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2009 - Allan CORNET
+// Copyright (C) Scilab Enterprises - 2013 - Antoine ELIAS
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- CLI SHELL MODE -->
-
+//
+// <-- WINDOWS ONLY -->
+//
 // <-- Non-regression test for bug 4467 -->
 //
 // <-- Bugzilla URL -->
@@ -15,9 +18,24 @@
 // <-- Short Description -->
 // getshortpathname , getlongpathname do not manage matrix of strings
 
-if getos() == 'Windows' then
+function res = is8Dot3Disable()
+//0 : NTFS creates short file names. This setting enables applications that cannot process long file names and computers that use differentcode pages to find the files.
+//1 : NTFS does not create short file names. Although this setting increases file performance, applications that cannot process long file names, and computers that use different code pages, might not be able to find the files.
+//2 : NTFS sets the 8.3 naming convention creation on a per volume basis.
+//3 : NTFS disables 8dot3 name creation on all volumes except the system volume.
 
-[r1,b1] = getshortpathname([TMPDIR,SCI;SCI,TMPDIR]);
+    if find(winqueryreg('name', 'HKEY_LOCAL_MACHINE', 'SYSTEM\CurrentControlSet\Control\FileSystem') == 'NtfsDisable8dot3NameCreation') then
+        res = winqueryreg('HKEY_LOCAL_MACHINE', 'SYSTEM\CurrentControlSet\Control\FileSystem', 'NtfsDisable8dot3NameCreation');
+    else
+        res = 0;
+    end
+
+    if res <> 1 then
+        res = 0;
+    end
+endfunction
+
+[r1,b1] = getshortpathname([TMPDIR,getenv("PROGRAMFILES");getenv("PROGRAMFILES"),TMPDIR]);
 if size(r1,'*') <> 4 then pause,end
 if ~and(b1 == %t) then pause,end
 
@@ -25,7 +43,13 @@ if ~and(b1 == %t) then pause,end
 if size(r2,'*') <> 4 then pause,end
 if ~and(b2 == %t) then pause,end
 
-if ~and(r1<>r2) then pause,end
+//depends of windows configuration
+//http://technet.microsoft.com/en-us/library/cc778996(v=ws.10).aspx
+if is8Dot3Disable() then
+    if ~and(r1 == r2) then pause,end
+else
+    if ~and(r1 <> r2) then pause,end
+end
 if ~and(b1 == b2) then pause,end
 
 [r3,b3] = getshortpathname(["/My_tmp/file_1";"/My_tmp/file_2"]);
@@ -46,5 +70,3 @@ if ~and(b5 == [%t;%f]) then pause,end
 [r6,b6] =getlongpathname([SCI;"/My_tmp/file_2"]);
 if size(r6,'*') <> 2 then pause,end
 if ~and(b6 == [%t;%f]) then pause,end
-
-end

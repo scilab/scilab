@@ -81,6 +81,9 @@
             Cette fonction suppose qu'elle est monotone et renvoie arbitrairement une des deux valeurs.
         </para>
         <para>
+            Il arrive dans certains cas que les degrés de liberté ne soient pas des entiers. Scilab affiche alors un avertissement.
+        </para>
+        <para>
             Tiré de la bibliothèque DCDFLIB: Library of Fortran Routines for Cumulative Distribution
             Functions, Inverses, and Other Parameters (February, 1994)
             Barry W. Brown, James Lovato and Kathy Russell. The University of

@@ -136,7 +136,7 @@ LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscilinear_algebra_algo_la_LIBADD =
 am__objects_1 = intdggbal.lo intzgeqpf4.lo intzgehrd.lo intzgesvd1.lo \
 	intzfschur.lo intzgesvd2.lo intdgges.lo intgschur.lo \
-	intdgesv3.lo intdgesv4.lo DGELSY1.lo intozgschur.lo \
+	intdgesv3.lo intdgesv4.lo DGELSY1.lo ZGELSY1.lo intozgschur.lo \
 	intdpotrf.lo intdoldsvd.lo intdgecon.lo zoldqr.lo intzgetrf.lo \
 	intoschur.lo complexify.lo intzgebal.lo intzgetri.lo \
 	intzggbal.lo intdgees0.lo intdgees1.lo intogschur.lo \
@@ -387,6 +387,7 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCIRENDERER_CP = @SCIRENDERER_CP@
 SCI_CFLAGS = @SCI_CFLAGS@
 SCI_CXXFLAGS = @SCI_CXXFLAGS@
 SCI_FFLAGS = @SCI_FFLAGS@
@@ -493,6 +494,7 @@ src/fortran/intgschur.f \
 src/fortran/intdgesv3.f \
 src/fortran/intdgesv4.f \
 src/fortran/DGELSY1.f \
+src/fortran/ZGELSY1.f \
 src/fortran/intozgschur.f \
 src/fortran/intdpotrf.f \
 src/fortran/intdoldsvd.f \
@@ -564,7 +566,6 @@ sci_gateway/c/sci_zheev.c
 GATEWAY_FORTRAN_SOURCES = 
 libscilinear_algebra_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/dynamic_link/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes/ \
@@ -1028,6 +1029,9 @@ intdgesv4.lo: src/fortran/intdgesv4.f
 
 DGELSY1.lo: src/fortran/DGELSY1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o DGELSY1.lo `test -f 'src/fortran/DGELSY1.f' || echo '$(srcdir)/'`src/fortran/DGELSY1.f
+
+ZGELSY1.lo: src/fortran/ZGELSY1.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ZGELSY1.lo `test -f 'src/fortran/ZGELSY1.f' || echo '$(srcdir)/'`src/fortran/ZGELSY1.f
 
 intozgschur.lo: src/fortran/intozgschur.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intozgschur.lo `test -f 'src/fortran/intozgschur.f' || echo '$(srcdir)/'`src/fortran/intozgschur.f

@@ -26,7 +26,7 @@
     <button icon="data_modify" tooltiptext="Toggle curve data modify">
         <callback instruction="useeditor([SCILAB_FIGURE_ID])" type="-2"/>
     </button>
-     
+
     <separator/>
     <!-- Help -->
     <button icon="help-browser" tooltiptext="Help Browser">

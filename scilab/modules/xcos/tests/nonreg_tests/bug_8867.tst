@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // Exception are produced when deleting non-connected links.
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8867.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8867.zcos");
 
 // Delete all the links
 

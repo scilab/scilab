@@ -3,7 +3,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
- * Copyright (C) 2011 - DIGITEO - Allan CORNET 
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -63,7 +63,7 @@
         
         <para>履歴ファイルを読み込みます.</para>
         
-        <para>デフォルトで,履歴ファイル名は SCIHOME+'/.history.scilab' です.</para>
+        <para>デフォルトで,履歴ファイル名は SCIHOME/history です.</para>
         
         <para>デフォルトで, loadhistory は(読込時間を減らすために)
             
@@ -75,7 +75,7 @@
             
             この値を修正するには,
             
-            <link linkend="historysize">historysize(value)</link> 
+            <link linkend="historysize">historysize(value)</link>
             
             を参照してください.
             

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Sylvestre Koumar
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xs2jpg" xml:lang="ru">
+    <refnamediv>
+        <refname>xs2jpg</refname>
+        <refpurpose>экспорт графиков в JPG</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            xs2jpg(win_num, file_name [, compression_quality])
+            xs2jpg(fig, file_name [, compression_quality])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>win_num</term>
+                <listitem>
+                    <para>
+                        целое число, идентификатор графического 
+                        окна для экспорта.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fig</term>
+                <listitem>
+                    <para>
+                        дескриптор графического окна для экспорта.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>file_name</term>
+                <listitem>
+                    <para>
+                        строковое значение, имя экспортируемого файла.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>compression_quality</term>
+                <listitem>
+                    <para>
+                        вещественный скаляр, число между 0 и 1 (наилучшее качество). По умолчанию качество сжатия установлено в 0,95.
+                    </para>
+                    <note>
+                        Аргумент появился в Scilab 5.3.2.
+                    </note>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>xs2jpg</function> экспортирует отображение графического окна в JPG-файл.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+scf(0);
+plot2d();
+// экспорт в JPG// экспорт в 
+xs2jpg(0,'foo.jpg');
+xs2jpg(gcf(),'foo.jpg');
+xs2jpg(0,'foo_0.jpg', 0); // плохое качество
+xs2jpg(gcf(),'foo_1.jpg', 1); // наилучшее качество
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="toprint">toprint</link>
+            </member>
+            <member>
+                <link linkend="printfigure">printfigure</link>
+            </member>
+            <member>
+                <link linkend="xs2bmp">xs2bmp</link>
+            </member>
+            <member>
+                <link linkend="xs2gif">xs2gif</link>
+            </member>
+            <member>
+                <link linkend="xs2png">xs2png</link>
+            </member>
+            <member>
+                <link linkend="xs2ppm">xs2ppm</link>
+            </member>
+            <member>
+                <link linkend="xs2eps">xs2eps</link>
+            </member>
+            <member>
+                <link linkend="xs2pdf">xs2pdf</link>
+            </member>
+            <member>
+                <link linkend="xs2svg">xs2svg</link>
+            </member>
+            <member>
+                <link linkend="xs2ps">xs2ps</link>
+            </member>
+            <member>
+                <link linkend="xs2emf">xs2emf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

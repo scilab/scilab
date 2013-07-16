@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="slash">
+    <refnamediv>
+        <refname>slash</refname>
+        <refpurpose>(/) right division and feed back</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Right division: <code>X=A/B</code> is the solution of <code>X*B=A</code>.
+        </para>
+        <para>
+            The slash (right division) and backslash (left division) operators are linked by the following equation:
+            <code>B/A=(A'\B')'</code>.
+        </para>
+        <para>
+            In the case where <literal>A</literal> is square, the 
+            solution <literal>X</literal> can be computed either from LU 
+            factorization or from a linear least squares solver. If the 
+            condition number of <literal>A</literal> is smaller than 
+            <code>1/(10*%eps)</code> (i.e. if <literal>A</literal> is 
+            well conditioned), the LU factorization with row pivoting is 
+            used. If not (i.e. if <literal>A</literal> is poorly 
+            conditioned), then <literal>X</literal> is the minimum-norm 
+            solution which minimizes <literal>||A*X-B||</literal> using 
+            a complete orthogonal factorization of <literal>A</literal> 
+            (i.e. <literal>X</literal> is the solution of a linear least 
+            squares problem).
+        </para>
+        <para>
+            <code>A./B</code> is the element-wise right division, i.e. 
+            the matrix with entries <literal>A(i,j)/B(i,j)</literal>.
+            If <literal>B</literal> is scalar (1x1 matrix) this 
+            operation is the same as <code>A./B*ones(A)</code>. Same 
+            convention if <literal>A</literal> is a scalar.
+        </para>
+        <para>
+            <note>
+                Remark that <code>123./B</code> is interpreted as 
+                <code>(123.)/B</code>. In this cases dot is part of the  
+                number not of the operator.
+            </note>
+        </para>
+        <para>
+            System feed back.  <code>S = G/.K</code> evaluates
+            <code>S = G*(eye() + K*G)^(-1)</code> this operator avoid 
+            simplification problem.
+        </para>
+        <para>
+            <note>
+                Remark that <code>G/.5</code> is interpreted as 
+                <code>G/(.5)</code>. In such cases dot is part of the 
+                number, not of the operator.
+            </note>
+        </para>
+        <para>
+            Comment <code>//</code> comments a line i.e. lines which 
+            begin by <code>//</code> are ignored by the interpreter.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=[3.,-24.,30.];
+B=[
+   9.   -36.    30.
+  -36.   192.  -180.
+   30.  -180.   180.
+];
+x=a/B
+x*B-a // close to zero
+
+a=4 / 2; // Should be 2
+a=2 ./ [2,4]; //     1.    0.5
+// Comments are good. They help to understand code
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
+            <member>
+                <link linkend="backslash">backslash</link>
+            </member>
+            <member>
+                <link linkend="comments">comments</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    The threshold level for conditioning in slash increased.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
+</refentry>

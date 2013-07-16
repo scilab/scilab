@@ -130,9 +130,13 @@ char *getCWD()
     str = scigetcwd(&err);
 
     if (err)
+    {
         return NULL;
+    }
     else
+    {
         return str;
+    }
 }
 
 /*--------------------------------------------------------------------------*/

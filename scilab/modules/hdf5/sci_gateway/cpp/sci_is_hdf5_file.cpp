@@ -31,10 +31,10 @@ int sci_is_hdf5_file(char *fname, unsigned long fname_len)
     SciErr sciErr;
     int *piAddr     = NULL;
     char* pstFile   = NULL;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-
-    CheckRhs(1, 1);
-    CheckLhs(1, 4);
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 4);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
@@ -52,15 +52,16 @@ int sci_is_hdf5_file(char *fname, unsigned long fname_len)
     char* pstFileName = expandPathVariable(pstFile);
     if (isHDF5File(pstFileName))
     {
-        createScalarBoolean(pvApiCtx, Rhs + 1, 1);
+        createScalarBoolean(pvApiCtx, nbIn + 1, 1);
     }
     else
     {
-        createScalarBoolean(pvApiCtx, Rhs + 1, 0);
+        createScalarBoolean(pvApiCtx, nbIn + 1, 0);
     }
 
     FREE(pstFileName);
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    FREE(pstFile);
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }

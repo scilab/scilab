@@ -22,7 +22,7 @@ import org.scilab.modules.ui_data.filebrowser.ScilabFileBrowser;
 
 /**
  * Class to create File Browser instances
- * 
+ *
  * @author Calixte DENIZET
  */
 public class FileBrowserTab {
@@ -34,32 +34,32 @@ public class FileBrowserTab {
      */
     public static SwingScilabTab getFileBrowserInstance() {
         final SwingScilabTab filebrowser = ScilabFileBrowser
-                .createFileBrowserTab();
+                                           .createFileBrowserTab();
         ScilabTabFactory.getInstance().addToCache(filebrowser);
 
         ClosingOperationsManager.registerClosingOperation(filebrowser,
-                new ClosingOperationsManager.ClosingOperation() {
+        new ClosingOperationsManager.ClosingOperation() {
 
-                    @Override
-                    public int canClose() {
-                        return 1;
-                    }
+            @Override
+            public int canClose() {
+                return 1;
+            }
 
-                    @Override
-                    public void destroy() {
-                        ScilabFileBrowser.closeFileBrowser();
-                    }
+            @Override
+            public void destroy() {
+                ScilabFileBrowser.closeFileBrowser();
+            }
 
-                    @Override
-                    public String askForClosing(final List<SwingScilabTab> list) {
-                        return null;
-                    }
+            @Override
+            public String askForClosing(final List<SwingScilabTab> list) {
+                return null;
+            }
 
-                    @Override
-                    public void updateDependencies(List<SwingScilabTab> list,
-                            ListIterator<SwingScilabTab> it) {
-                    }
-                });
+            @Override
+            public void updateDependencies(List<SwingScilabTab> list,
+            ListIterator<SwingScilabTab> it) {
+            }
+        });
 
         ClosingOperationsManager.addDependencyWithRoot(filebrowser);
 

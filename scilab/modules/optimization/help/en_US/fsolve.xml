@@ -214,6 +214,24 @@ plot(x,feuler(x))
 a=gca();
 a.grid=[5 5];
  ]]></programlisting>
+        <scilab:image>
+            function F=feuler(x,r)
+            F=x-r-dt*(x^2-x^3);
+            endfunction
+            function J=dFdx(x)
+            J=1-dt*(2*x-3*x^2);
+            endfunction
+            
+            r = 0.04257794928862307 ;
+            dt = 10;
+            
+            [x,v,info]=fsolve(r,list(feuler,r),dFdx);
+            [x,v,info]=fsolve(1,list(feuler,r),dFdx);
+            x=linspace(0,1,1000);
+            plot(x,feuler(x))
+            a=gca();
+            a.grid=[5 5];
+        </scilab:image>
         <para>So, each time you use fsolve, be sure to check the termination indicator and the residual value to see if fsolve has converged.</para>
     </refsection>
     <refsection role="see also">

@@ -218,7 +218,7 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>xgrid();</scilab:image>
+                        <scilab:image>x=[0:0.1:2*%pi]'; plot2d(sin(x));xgrid(5)</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>
@@ -1198,13 +1198,13 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>hallchart();</scilab:image>
+                        <scilab:image localized="true">hallchart();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="chart">chart</link>
+                    <link linkend="nicholschart">nicholschart</link>
                 </term>
                 <listitem>
                     <para>Nichols chart</para>
@@ -1212,7 +1212,7 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>chart();</scilab:image>
+                        <scilab:image localized="true">nicholschart();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>
@@ -1226,7 +1226,7 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>s=poly(0,'s');
+                        <scilab:image localized="true">s=poly(0,'s');
                             sl=syslin('c',5*(1+s)/(.1*s^4+s^3+15*s^2+3*s+1))
                             clf();black(sl,0.01,10);
                         </scilab:image>
@@ -1243,7 +1243,7 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>evans();</scilab:image>
+                        <scilab:image localized="true">evans();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>
@@ -1257,7 +1257,7 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>sgrid();</scilab:image>
+                        <scilab:image localized="true">sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>
@@ -1271,10 +1271,10 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>s=poly(0,'s');
+                        <scilab:image localized="true">s=poly(0,'s');
                             n=[1+s   2+3*s+4*s^2        5; 0        1-s             s];
                             d=[1+3*s   5-s^3           s+1;1+s     1+s+s^2      3*s-1];
-                            h=syslin('c',n./d); 
+                            h=syslin('c',n./d);
                             plzr(h);
                         </scilab:image>
                     </para>
@@ -1290,7 +1290,7 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>zgrid();</scilab:image>
+                        <scilab:image localized="true">zgrid();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>

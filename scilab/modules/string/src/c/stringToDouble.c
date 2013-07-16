@@ -46,21 +46,23 @@ static char* replace_D_By_E(const char* _pst)
     do
     {
         pstFind = strchr(pstFind, 'D');
-        if(pstFind)
+        if (pstFind)
         {
             pstFind[0] = 'E';
         }
-    }while(pstFind);
+    }
+    while (pstFind);
 
     pstFind = pstReturn;
     do
     {
         pstFind = strchr(pstFind, 'd');
-        if(pstFind)
+        if (pstFind)
         {
             pstFind[0] = 'e';
         }
-    }while(pstFind);
+    }
+    while (pstFind);
 
     return pstReturn;
 }

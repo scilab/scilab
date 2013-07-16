@@ -360,21 +360,21 @@
             </emphasis>
             à 0.5 s dans le sous-menu <emphasis>Configurer</emphasis> du menu
             <emphasis>Simulation</emphasis>.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/integer_pal/fr_FR/SHIFT_fr_FR.xcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.xcos");
+            <scilab:image localized="true"><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
         </para>
@@ -385,7 +385,7 @@ xcos_simulate(scs_m, 4);
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../examples/integer_pal/fr_FR/SHIFT_internal_fr_FR.xcos" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../examples/integer_pal/fr_FR/SHIFT_internal_fr_FR.zcos" align="center" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </para>

@@ -167,6 +167,9 @@
     <add as="STEP_FUNCTION" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/STEP_FUNCTION.svg"/>
     </add>
+    <add as="STEP" extend="Icon">
+        <add as="image" value="$SCILAB/modules/xcos/images/blocks/STEP_FUNCTION.svg"/>
+    </add>
     <add as="PULSE_SC" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/PULSE_SC.svg"/>
     </add>
@@ -586,7 +589,7 @@
         <add as="displayedLabel" value="N(z,p)&lt;BR&gt;&lt;HR&gt;D(z,p)"/>
     </add>
     <add as="DLR" extend="blockWithLabel">
-        <add as="displayedLabel" value="num(z)&lt;BR&gt;&lt;HR&gt;den(z)"/>
+        <add as="displayedLabel" value="$\frac{%s}{%s}$"/>
     </add>
     <add as="DLR_f" extend="DLR"/>
     <add as="DLSS" extend="blockWithLabel">
@@ -642,7 +645,7 @@
     </add>
     <add as="M_freq" extend="blockWithLabel">
         <add as="displayedLabel" value="Multiple&lt;BR&gt;         frequency"/>
-         
+        
     </add>
     <add as="ANDBLK" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/ANDBLK.svg"/>

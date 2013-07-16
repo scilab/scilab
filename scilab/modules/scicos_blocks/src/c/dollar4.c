@@ -18,23 +18,28 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "scicos_block.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void dollar4(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void dollar4(scicos_block *block, int flag)
 {
-  /* c     Copyright INRIA
-     
-  Scicos block simulator
-  Ouputs delayed input */
-  
-  int i = 0;
-  for(i=0;i< block->insz[0];i++){
-    if (flag ==1 || flag ==6 || flag ==4)
-      block->outptr[0][i]=block->z[i];
-    else if (flag == 2)
-      block->z[i]=block->inptr[0][i];
-  }
+    /* c     Copyright INRIA
+
+    Scicos block simulator
+    Ouputs delayed input */
+
+    int i = 0;
+    for (i = 0; i < block->insz[0]; i++)
+    {
+        if (flag == 1 || flag == 6 || flag == 4)
+        {
+            block->outptr[0][i] = block->z[i];
+        }
+        else if (flag == 2)
+        {
+            block->z[i] = block->inptr[0][i];
+        }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

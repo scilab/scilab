@@ -19,6 +19,9 @@
             Scilab主ウインドウにデータを書き込む
         </refpurpose>
     </refnamediv>
+    <refnamediv xml:id="printf">
+        <refname>printf</refname>
+    </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>mprintf(format,a1,...,an);</synopsis>

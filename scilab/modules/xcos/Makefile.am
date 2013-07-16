@@ -69,15 +69,13 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_xcosAddToolsMenu.cpp \
 	sci_gateway/cpp/sci_xcosUpdateBlock.cpp \
 	sci_gateway/cpp/sci_loadXcos.cpp \
-	sci_gateway/cpp/sci_xcosSimulationStarted.cpp \
-	sci_gateway/cpp/sci_xcosPalGenerateAllIcons.cpp
+	sci_gateway/cpp/sci_xcosSimulationStarted.cpp
 
 libscixcos_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/jni/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/commons/src/jni/ \

@@ -8,20 +8,20 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function reset_profiling(funname)
-//reset profiling data in bytecode
-  nsiz=6
-  execstr('code=bytecode('+funname+')')
-  lc=1
-  lc = lc + nsiz*double(code(lc)) + 1
-  lc = lc + nsiz*double(code(lc)) + 1
-  long=code(lc)
-  lc = lc+1
-  c=code(lc:$)
-  c1=bytecodewalk(c,25,resetprof)
-  code=[code(1:lc-2) int32(size(c1,'*')) c1]
-  execstr(funname+' = resume(bytecode(code))')
+    //reset profiling data in bytecode
+    nsiz=6
+    execstr("code=bytecode("+funname+")")
+    lc=1
+    lc = lc + nsiz*double(code(lc)) + 1
+    lc = lc + nsiz*double(code(lc)) + 1
+    long=code(lc)
+    lc = lc+1
+    c=code(lc:$)
+    c1=bytecodewalk(c,25,resetprof)
+    code=[code(1:lc-2) int32(size(c1,"*")) c1]
+    execstr(funname+" = resume(bytecode(code))")
 endfunction
 function [c,l]=resetprof(l)
-//reset profiling data in bytecode
-  c=int32([25 0 0]);l=l+3;
+    //reset profiling data in bytecode
+    c=int32([25 0 0]);l=l+3;
 endfunction

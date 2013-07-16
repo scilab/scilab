@@ -13,7 +13,7 @@
 //   Prints the given message.
 //
 function this = neldermead_log ( this , msg )
-  // Delegate to optimbase
-  this.optbase = optimbase_log ( this.optbase , msg )
+    // Delegate to optimbase
+    this.optbase = optimbase_log ( this.optbase , msg )
 endfunction
 

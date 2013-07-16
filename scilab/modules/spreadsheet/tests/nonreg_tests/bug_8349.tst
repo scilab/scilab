@@ -20,37 +20,37 @@ m = m*(1+%i);
 filename=TMPDIR+"/test.txt";
 write_csv(m,filename);
 b=mgetl(filename);
-assert_checkequal(b, ["7+7i,-2-2i,9+9i";"1+1i,-8-8i,2+2i";"1+1i,-6-6i,0+0i"]);
+assert_checkequal(b, ["7+7i,-2-2i,9+9i";"1+1i,-8-8i,2+2i";"1+1i,-6-6i,0"]);
 b=csvRead(filename);
 assert_checkequal(b,m);
 
 write_csv([ 1  %nan*(1+%i)],filename);
 b=mgetl(filename);
-assert_checkequal(b,"1+0i,Nan+Nani");
+assert_checkequal(b,"1,Nan+Nani");
 b=csvRead(filename);
 assert_checkequal(b, [1  %nan*(1+%i)]);
 
 write_csv([ 1.1  %nan*(1+%i)],filename);
 b=mgetl(filename);
-assert_checkequal(b,"1.1000000000000001+0i,Nan+Nani");
+assert_checkequal(b,"1.1000000000000001,Nan+Nani");
 b=csvRead(filename);
 assert_checkequal(b, [1.1  %nan*(1+%i)]);
 
 
 write_csv([ 1  %inf*(1+%i)],filename)
 b=mgetl(filename);
-assert_checkequal(b,"1+0i,Inf+Infi");
+assert_checkequal(b,"1,Inf+Infi");
 b=csvRead(filename);
 assert_checkequal(b, [1  %inf*(1+%i)]);
 
 write_csv([ 1.1  %inf*(1+%i)],filename)
 b=mgetl(filename);
-assert_checkequal(b,"1.1000000000000001+0i,Inf+Infi");
+assert_checkequal(b,"1.1000000000000001,Inf+Infi");
 b=csvRead(filename);
 assert_checkequal(b, [1.1  %inf*(1+%i)]);
 
-write_csv([ 1.1  1+%i*%inf],filename) 
+write_csv([ 1.1  1+%i*%inf],filename)
 b=mgetl(filename);
-assert_checkequal(b,"1.1000000000000001+0i,Nan+Infi");
+assert_checkequal(b,"1.1000000000000001,Nan+Infi");
 b=csvRead(filename);
 assert_checkequal(b, [ 1.1  1+%i*%inf]);

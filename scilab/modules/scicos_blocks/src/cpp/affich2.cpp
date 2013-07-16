@@ -12,8 +12,9 @@
 
 #include <math.h>
 #include <stdio.h>
-#include "AfficheBlock.hxx"
-#include "GiwsException.hxx"
+#include <string.h>
+
+#include "Helpers.hxx"
 
 extern "C"
 {
@@ -23,7 +24,6 @@ extern "C"
 #include "scicos_block4.h"
 #include "scicos.h"
 #include "core_math.h"
-#include "getScilabJavaVM.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -82,17 +82,8 @@ SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag)
                 }
             }
 
-            try
-            {
-                AfficheBlock::setValue(getScilabJavaVM(), block->label, pstValue, iRowsIn, iColsIn);
-            }
-            catch (const GiwsException::JniException & exception)
-            {
-                /*
-                 * put a simulation error message.
-                 */
-                Coserror(exception.whatStr().c_str());
-            }
+            AfficheBlock_setValue(block->label, pstValue, iRowsIn, iColsIn);
+
             break;
 
         case Initialization:       //init
@@ -113,20 +104,19 @@ SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag)
                 }
             }
 
-            try
+            if (AfficheBlock_setValue(block->label, pstValue, iRowsIn, iColsIn) == 0)
             {
-                AfficheBlock::setValue(getScilabJavaVM(), block->label, pstValue, iRowsIn, iColsIn);
+                // storing the allocated area on the block work field.
+                block->work[0] = pstValue;
             }
-            catch (const GiwsException::JniException & exception)
+            else
             {
-                /*
-                 * put a simulation error message.
-                 */
-                Coserror(exception.whatStr().c_str());
+                for (i = 0; i < iRowsIn; i++)
+                {
+                    FREE(pstValue[i]);
+                }
+                FREE(pstValue);
             }
-
-            // storing the allocated area on the block work field.
-            block->work[0] = pstValue;
             break;
 
         case Ending:

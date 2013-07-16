@@ -1,37 +1,37 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#ifndef STACK1_H 
-#define STACK1_H 
+#ifndef STACK1_H
+#define STACK1_H
 
 #if defined(__SCILAB_TOOLBOX__) && !defined(__INTERNAL_API_SCILAB__) && !defined(__USE_DEPRECATED_STACK_FUNCTIONS__) && !defined(__MEX_INCLUDE__)
-    #error Using stack1.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack1.h API will be removed after Scilab 6.0. You can define __USE_DEPRECATED_STACK_FUNCTIONS__ to bypass this error.
+#error Using stack1.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack1.h API will be removed after Scilab 6.0. You can define __USE_DEPRECATED_STACK_FUNCTIONS__ to bypass this error.
 #endif
 
 #include "machine.h"
 #include "scisparse.h" /* SciSparse */
 
-typedef  void (*S_fp)(char *,int *);
+typedef  void (*S_fp)(char *, int *);
 
 extern int C2F(ogettype)(int *lw);
 
 
 /** used in stack1.c : defined elsewhere */
 
-extern  int C2F(cvname)(int *,char *,int *, unsigned long int);
-extern int C2F(icopy)(int *,int *,int *,int *,int *);
-extern int C2F(dcopy)(int *,double *,int *,double *,int *);
-extern int C2F(scidcopy)(int *,double *,int *,double *,int *);
-extern int C2F(unsfdcopy)(int *,double *,int *,double *,int *);
-extern int C2F(rcopy)(int *,float *,int *,float *,int *);
+extern  int C2F(cvname)(int *, char *, int *, unsigned long int);
+extern int C2F(icopy)(int *, int *, int *, int *, int *);
+extern int C2F(dcopy)(int *, double *, int *, double *, int *);
+extern int C2F(scidcopy)(int *, double *, int *, double *, int *);
+extern int C2F(unsfdcopy)(int *, double *, int *, double *, int *);
+extern int C2F(rcopy)(int *, float *, int *, float *, int *);
 extern int C2F(stackg)(int *);
 
 /* calelm */
@@ -49,7 +49,7 @@ extern int C2F(stackc2i)(int *n, int *sl1, int *il1);
 /* stack1.c */
 
 int C2F(getwsmat)(char *fname, int *topk, int *lw, int *m, int *n, int *ilr, int *ilrd, unsigned long fname_len);
-int C2F(getlistwsmat)(char *fname, int *topk, int *spos,int*lnum, int *m, int *n, int *ilr, int *ilrd, unsigned long fname_len);
+int C2F(getlistwsmat)(char *fname, int *topk, int *spos, int*lnum, int *m, int *n, int *ilr, int *ilrd, unsigned long fname_len);
 
 char * get_fname ( char *fname,   unsigned long fname_len);
 int cre_smat_from_str (char *fname,  int *lw, int * m, int * n, char **Str,    unsigned long fname_len);
@@ -136,11 +136,11 @@ int C2F(crestringi)(char *fname, int *stlw, int *nchar, int *ilrs, unsigned long
 int C2F(getlistsimat)(char *fname, int *topk, int *spos, int *lnum, int *m, int *n, int *i__, int *j, int *lr, int *nlr, unsigned long fname_len);
 
 
-int C2F(getsimati)(char *fname, int *topk, int *spos, int *lw, int *m, int *n, int *i, int *j, int *lr, int *nlr,int *inlist,int *nel, unsigned long fname_len);
+int C2F(getsimati)(char *fname, int *topk, int *spos, int *lw, int *m, int *n, int *i, int *j, int *lr, int *nlr, int *inlist, int *nel, unsigned long fname_len);
 int C2F(getonepoly)(char *fname, int *topk, int *lw, int *it, int *md, char *name__, int *namel, int *lr, int *lc, unsigned long fname_len, unsigned long name_len);
 
 int C2F(getlistpointer)(char *fname, int *topk, int *spos, int *lnum, int *lr, unsigned long fname_len);
- int C2F(getpointer)(char *fname, int *topk, int *lw, int *lr, unsigned long fname_len);
+int C2F(getpointer)(char *fname, int *topk, int *lw, int *lr, unsigned long fname_len);
 
 
 
@@ -151,14 +151,14 @@ int C2F(credata) (char *fname, int *lw, int m, unsigned long fname_len);
 
 int cre_listsmat_from_str(char *fname, int *lw, int *numi, int *stlw, int *m, int *n, char **Str, long unsigned int fname_len);
 
-int cre_sparse_from_ptr (char *fname,int * lw,int *m, int *n,SciSparse *Str, unsigned long fname_len );
+int cre_sparse_from_ptr (char *fname, int * lw, int *m, int *n, SciSparse *Str, unsigned long fname_len );
 
-int cre_listsparse_from_ptr(char *fname,int * lw,int * numi,int * stlw,int *  m,int * n, SciSparse *M, unsigned long fname_len );
+int cre_listsparse_from_ptr(char *fname, int * lw, int * numi, int * stlw, int *  m, int * n, SciSparse *M, unsigned long fname_len );
 
 
 
 /**********************************************************************
- * INT MATRICES 
+ * INT MATRICES
  **********************************************************************/
 int C2F(getlistimat) (char *fname, int *topk, int *spos, int *lnum, int *it, int *m, int *n, int *lr, long unsigned int fname_len);
 
@@ -167,10 +167,10 @@ int C2F(getimat) (char *fname, int *topk, int *lw, int *it, int *m, int *n, int 
 int C2F(listcreimat) (char *fname, int *lw, int *numi, int *stlw, int *it, int *m, int *n, int *lrs, long unsigned int fname_len);
 
 int C2F(creimat) (char *fname, int *lw, int *it, int *m, int *n, int *lr, long unsigned int fname_len);
-int C2F(creimati)(char *fname,int *stlw,int *it,int *m,int *n,int *lr,int *flagx,unsigned long fname_len);
+int C2F(creimati)(char *fname, int *stlw, int *it, int *m, int *n, int *lr, int *flagx, unsigned long fname_len);
 
 /**********************************************************************
- * HANDLE MATRICES 
+ * HANDLE MATRICES
  **********************************************************************/
 int C2F(getlisthmat)(char *fname, int *topk, int *spos, int *lnum, int *m, int *n, int *lr, unsigned long fname_len);
 int C2F(gethmat)(char *fname, int *topk, int *lw, int *m, int *n, int *lr, unsigned long fname_len);
@@ -179,4 +179,4 @@ int C2F(gethmat)(char *fname, int *topk, int *lw, int *m, int *n, int *lr, unsig
 int C2F(listcrehmat)(char *fname, int *lw, int *numi, int *stlw, int *m, int *n, int *lrs, unsigned long fname_len);
 int C2F(crehmat)(char *fname, int *lw, int *m, int *n, int *lr, unsigned long fname_len);
 
-#endif 
+#endif

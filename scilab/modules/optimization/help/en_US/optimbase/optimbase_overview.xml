@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_overview" xml:lang="en">
+    <refnamediv>
+        <refname>overview</refname>
+        <refpurpose>An overview of the Optimbase toolbox.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Purpose</title>
+        <para>
+            The goal of this component is to provide a building block for optimization methods.
+            The goal is to provide a building block for a large class of specialized optimization 
+            methods. This component manages
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>the number of variables,</para>
+            </listitem>
+            <listitem>
+                <para>the minimum and maximum bounds,</para>
+            </listitem>
+            <listitem>
+                <para>the number of non linear inequality constraints,</para>
+            </listitem>
+            <listitem>
+                <para>the cost function,</para>
+            </listitem>
+            <listitem>
+                <para>the logging system,</para>
+            </listitem>
+            <listitem>
+                <para>various termination criteria,</para>
+            </listitem>
+            <listitem>
+                <para>etc...</para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            This toolboxes is designed with Oriented Object ideas in mind.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Features</title>
+        <para>
+            The following is a list of features the Optimbase tollbox currently provides:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>Manage cost function</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>optionnal additional argument,</para>
+                    </listitem>
+                    <listitem>
+                        <para>direct communication of the task to perform: cost function or inequality 
+                            constraints.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>Manage various termination criteria, including</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>maximum number of iterations,</para>
+                    </listitem>
+                    <listitem>
+                        <para>tolerance on function value (relative or absolute),</para>
+                    </listitem>
+                    <listitem>
+                        <para>tolerance on x (relative or absolute),</para>
+                    </listitem>
+                    <listitem>
+                        <para>maximum number of evaluations of cost function.</para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>Manage the history of the convergence, including</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>history of function values,</para>
+                    </listitem>
+                    <listitem>
+                        <para>history of optimim point.</para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>Provide query features for</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>the status of the optimization process,</para>
+                    </listitem>
+                    <listitem>
+                        <para>the number of iterations,</para>
+                    </listitem>
+                    <listitem>
+                        <para>the number of function evaluations,</para>
+                        <listitem>
+                            <para>function value at initial point,</para>
+                        </listitem>
+                        <listitem>
+                            <para>function value at optimal point,</para>
+                        </listitem>
+                        <listitem>
+                            <para>the optimum parameters,</para>
+                        </listitem>
+                    </listitem>
+                    <listitem>
+                        <para>etc...</para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This set of commands allows to manage an abstract optimization
+            method. The goal is to provide a building block for a large class of
+            specialized optimization methods. This component manages the number of
+            variables, the minimum and maximum bounds, the number of non linear
+            inequality constraints, the logging system, various termination criteria,
+            the cost function, etc...
+        </para>
+        <para>The optimization problem to solve is the following</para>
+        <programlisting role="no-scilab-exec">
+            min f(x)
+            l_i &lt;= x_i &lt;= h_i, i = 1,n
+            g_i(x) &gt;= 0, i = 1,nbineq
+        </programlisting>
+        <para>where</para>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>number of variables</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nbineq</term>
+                <listitem>
+                    <para>number of inequality constraints</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <para>
+            In the following example, ones searches to solve f(x) = 0 thanks dichotomy method.
+            An optimization object is created and configured (number of variables, initial point, 
+            maximum number of iterations, ...). The <literal>-verbose</literal> option is enabled so that 
+            messages are generated during the algorithm, are printed.
+        </para>
+        <programlisting role="example">
+            <![CDATA[ 
+    function [f, index] = fun(x, index)
+        f = 2*x - 4;
+    endfunction
+
+    a = -5;
+    b = 5;
+    x0 = (a+b)/2;
+
+    // Creation of the object
+    opt = optimbase_new();
+
+    // Configures the object
+    opt = optimbase_configure(opt,"-numberofvariables",2);
+    opt = optimbase_configure(opt, "-x0", x0);
+    opt = optimbase_configure(opt, "-tolxrelative", 10*%eps);
+    opt = optimbase_configure(opt, "-maxiter", 30);
+    opt = optimbase_configure(opt, "-function", fun);
+    opt = optimbase_configure(opt,"-verbose",1);
+
+
+    function x = Dicho(opt,a, b)
+        xk = optimbase_cget(opt, "-x0");
+        [opt, fx0, index] = optimbase_function (opt , xk , 1);
+        opt = optimbase_set ( opt , "-xopt" , xk );
+        opt = optimbase_set ( opt , "-fopt" , fx0 );
+        terminate = %f;
+        while ~terminate
+            [opt, f, index] = optimbase_function(opt, xk, 1);
+            [opt, g, index] = optimbase_function(opt, a, 1);
+            if g*f <= 0 then
+                b = xk;
+            else
+                a = xk;
+            end
+            x = (a + b)/2;
+            opt = optimbase_incriter(opt);
+            [opt, terminate, status] = optimbase_terminate(opt, optimbase_get(opt, "-fopt"), f, xk, x);
+            opt = optimbase_set ( opt , "-xopt" , x );
+            opt = optimbase_set ( opt , "-fopt" , f );
+            xk = x;
+        end
+endfunction
+
+x = Dicho(opt,a,b)
+ ]]>
+        </programlisting>
+    </refsection>
+</refentry>

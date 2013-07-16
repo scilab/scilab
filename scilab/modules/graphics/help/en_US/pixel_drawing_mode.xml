@@ -24,12 +24,12 @@
             specifies a bitwise operation applied on any figure pixel
             between the incoming color and the already existing color
             on the figure. The result of this operation will be the new pixel color.
-
-
+            
+            
             <literal>src</literal> is the incoming color of the pixel.
             <literal>prv</literal> is the previous color of the pixel (which is already drawn).
             <literal>res</literal> is the resulting color of the pixel (which will be drawn).
-
+            
             Possible values for <literal>pixel_drawing_mode</literal> are:
         </para>
         <informaltable border="1">

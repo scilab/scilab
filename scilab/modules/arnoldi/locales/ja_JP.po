@@ -7,15 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-17 13:56+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-20 06:56+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: ja\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s: 引数 %d の型が間違っています:  実数を指定してください.\n"
 
 #, c-format
 msgid "%s: the computation is already terminated\n"
@@ -29,6 +33,10 @@ msgstr "%s: 入力引数 %s の大きさが間違っています: 大きさ %d �
 msgid ""
 "%s: Wrong size for input argument %s: A matrix of size %dx%d expected.\n"
 msgstr "%s: 入力引数 %s の大きさが間違っています: 大きさ %dx%d の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -200,11 +208,6 @@ msgid "%s: Error with %s: unknown mode returned.\n"
 msgstr "%s: エラー %s: 未知のモードが返されました.\n"
 
 #, c-format
-msgid ""
-"%s: A - sigma * B is not inversible, try with a different value of sigma.\n"
-msgstr "%s: A - sigma * B が可逆ではありません, sigma の値を変えてみてください.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: メモリ割当エラー.\n"
 
@@ -235,14 +238,6 @@ msgid ""
 msgstr ""
 "%s: 入力引数の型が間違っています:  Aが行列の場合,  tol, maxiter, ncv, resid, cholB を指定した opt "
 "を使用してください"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument: Use opts with tol, maxiter, ncv, resid, "
-"cholB, issym, isreal"
-msgstr ""
-"%s: 入力引数の型が間違っています: tol, maxiter, ncv, resid, cholB, issym, isreal を指定した "
-"opts を使用してください."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -279,9 +274,9 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 複素問題の場�
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: B must be symmetric or hermitian, "
-"definite, semi positive.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: B は対称またはエルミート, 正定, 半正定としてください.\n"
+"%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
+"upper triangular.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  opts.cholB が真の場合, B には上三角行列を指定します.\n"
 
 #, c-format
 msgid ""

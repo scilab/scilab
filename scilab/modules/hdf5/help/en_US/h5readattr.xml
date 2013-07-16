@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5readattr" xml:lang="en">
+    <refnamediv>
+        <refname>h5readattr</refname>
+        <refpurpose>Read the data of an HDF5 attribute</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            h5readattr(obj [, location], name)
+            h5readattr(filename, location, name)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>obj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>a string giving the path to the attribute name</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>location</term>
+                <listitem>
+                    <para>a string giving the path to the group or the dataset containing the attribute</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>a string giving the filename</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Read the content of an attribute.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x = int8(matrix(1:80, 10, 8));
+save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
+
+// Open the created file
+a = h5open(TMPDIR + "/x.sod");
+
+// Read an attribute of the root group
+scilab_version = h5readattr(a, "/", "SCILAB_scilab_version")
+
+// and another one
+sod_version = h5readattr(a.root, "SCILAB_sod_version")
+
+// and one from a dataset
+scilab_class = h5readattr(a.root.x, "SCILAB_Class")
+
+// We have finished so we free all the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5read">h5read</link>
+            </member>
+            <member>
+                <link linkend="h5writeattr">h5writeattr</link>
+            </member>
+            <member>
+                <link linkend="h5attr">h5attr</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HDF5 module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

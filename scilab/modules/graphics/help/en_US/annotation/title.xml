@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Farid Belahcene
- * 
+ * Copyright (C) 2013 - Samuel GOUGEON
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -82,15 +82,15 @@
                         index (relative to the current colormap). 
                     </para>
                     <para>
-                        <literal>fontname :</literal> seven differents fonts are available :
-                        "Courrier", "Symbol", "Times", "Times Italic", "Times Bold", "User
-                        defined". The font_size property is an index in [0 6] which is
-                        associated to the previous font names. 
+                        <literal>fontname :</literal> ten differents font names are available 
+                        (case unsensitive string or related id number):
+                        "courrier" | 0, "symbol" | 1, "times" | 2, "times italic" | 3, 
+                        "times bold" | 4, "times bold italic" | 5, "helvetica" | 6, 
+                        "helvetica italic" | 7, "helvetica bold" | 8, "helvetica bold italic" | 9.
                     </para>
                     <para>
-                        <literal>fontsize :</literal> the fontsize property is used to select the
-                        type of size of the title. Its value should be an integer in between 0
-                        and 5 which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
+                        <literal>fontsize :</literal> the fontsize property is used to specify 
+                        the size of the font. It must be an integer >= 0.
                     </para>
                     <para>
                         <literal>position :</literal> this 2d vector allows you to place manually

@@ -32,7 +32,7 @@
 #include "initConsoleMode.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
-#include "UpdateBrowseVar.h"
+#include "BrowseVarManager.h"
 #include "scicurdir.h"
 #include "FileBrowserChDir.h"
 #include "InitializeJVM.h"
@@ -121,9 +121,19 @@ static void getCommandLine(void)
     }
     else
     {
-        /* Call Term Management for NW and NWNI to get a string */
-        __CommandLine = getCmdLine();
-
+#ifndef _MSC_VER
+        if (!isatty(fileno(stdin)))
+#else
+        if (!isatty(fileno(stdin)) && (fileno(stdin) != -2))
+#endif
+        {
+            __CommandLine = strdup("");
+        }
+        else
+        {
+            /* Call Term Management for NW and NWNI to get a string */
+            __CommandLine = getCmdLine();
+        }
     }
 }
 
@@ -231,10 +241,10 @@ void C2F(eventloopprompt) (char *buffer, int *buf_size, int *len_line, int *eof)
         {
             /* read a line into the buffer, but not too
              * big */
-            *eof = (fgets(__CommandLine, *buf_size, stdin) == NULL);
-            *len_line = (int)strlen(__CommandLine);
+            *eof = (fgets(buffer, *buf_size, stdin) == NULL);
+            *len_line = (int)strlen(buffer);
             /* remove newline character if there */
-            if (__CommandLine[*len_line - 1] == '\n')
+            if (buffer[*len_line - 1] == '\n')
             {
                 (*len_line)--;
             }
@@ -271,7 +281,7 @@ void C2F(eventloopprompt) (char *buffer, int *buf_size, int *len_line, int *eof)
 
                 int err = 0;
 
-                UpdateBrowseVar(TRUE);
+                UpdateBrowseVar();
                 cwd = scigetcwd(&err);
                 if (cwd)
                 {

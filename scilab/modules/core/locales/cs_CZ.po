@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:12+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-20 20:05+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16681)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -33,6 +33,19 @@ msgid " results may be inaccurate. rcond = %s1\n"
 msgstr " výsledky mohou být nepřesné. rcond = %s1\n"
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Žádná další paměť.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván jeden řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván jeden řetězec.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
@@ -47,10 +60,6 @@ msgstr "%s: Špatný typ argumentu %d: Očekáván reálný skalár.\n"
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
 msgstr "%s: Špatná velikost argumentu %d: Očekáván reálný skalár.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Žádná další paměť.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
@@ -125,8 +134,8 @@ msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: Špatný typ vstupních argumentů.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekávána 1,2 nebo 3.\n"
+msgid "%s: Wrong value for input argument #%d: 0,1 or 2 expected.\n"
+msgstr "%s: Špatné hodnoty vstupního argumentu #%d: Očekávána 0,1 nebo 2.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -365,8 +374,8 @@ msgid "Aborting current computation\n"
 msgstr "Ruším současné počítání\n"
 
 #, c-format
-msgid "Error: Not a valid gateway ID %d.\n"
-msgstr "Chyba: %d není platné ID brány.\n"
+msgid "Error: Not a valid gateway ID %d. Should be between %d and %d.\n"
+msgstr "Chyba: %d není platné ID brány. Mělo by být mezi %d a %d.\n"
 
 msgid "The SCI environment variable is not set.\n"
 msgstr "Proměnná prostředí SCI není nastavena.\n"
@@ -396,11 +405,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for "
-"element wise operation \n"
+"Warning: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" "
+"for element wise operation \n"
 msgstr ""
-"%s: \"%d.%s ...\" bylo vyloženo jako \"%d.0%s ...\". Použijte \"%d .%s ...\" "
-"pro operaci zaměřenou na prvky \n"
+"Varování:  \"%d.%s ...\" je vyhodnocováno jako \"%d.0%s ...\". Použijte \"%d "
+".%s ...\" pro operaci s prvky \n"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "Proměnná prostředí SCI není určena.\n"
@@ -529,17 +538,23 @@ msgstr "Žádné místo pro přidělení zásobníku Scilab.\n"
 msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
+"If a graphic feature has been used, this might be caused by the system "
+"graphic drivers.\n"
+"Please try to update them and try again.\n"
 "Please report a bug on %s with:\n"
 "* a sample code which reproduces the issue\n"
 "* the result of [a, b] = getdebuginfo()\n"
 "* the following information:\n"
 "%s %s\n"
 msgstr ""
-"Jejda. Scilab zjistil závažnou chybu.\n"
-"Vaše instance pravděpodobně brzy spadne.\n"
-"Prosím nahlaste tuto chybu na %s spolu s:\n"
-"* ukázkou kódu, který chybu znovu způsobí\n"
-"* výsledkem [a, b] = getdebuginfo()\n"
+"Ouha. Scilab zjistil závažnou chybu.\n"
+"Vaše instance se pravděpodobně brzo zhroutí.\n"
+"Pokud byla použita grafická funkce, může být tento problém způsoben "
+"grafickými ovladači v systému.\n"
+"Zkuste je prosím aktualizovat a pak operaci zkusit znovu.\n"
+"Chybu prosím nahlaste na %s spolu s:\n"
+"* příkladem kódu, který problém způsobil\n"
+"* výsledek [a, b] = getdebuginfo()\n"
 "* následujícími informacemi:\n"
 "%s %s\n"
 
@@ -656,34 +671,34 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána řetězcová matice.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekávána řetězcová matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: List expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván seznam.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván seznam.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána polynomická matice.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekávána polynomická matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván polynom.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván polynom.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d: Očekávána fungující matice celých čísel.\n"
+"%s: Špatný typ argumentu #%d: Očekávána fungující matice celých čísel.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d (List element: %d): Row vector expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d (Prvek seznamu: %d): Očekáván řádkový vektor.\n"
+"%s: Špatný typ argumentu #%d (Prvek seznamu: %d): Očekáván řádkový vektor.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Row vector expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván řádkový vektor.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván řádkový vektor.\n"
 
 #, c-format
 msgid "%s: argument %d >(%d) should be a column vector.\n"
@@ -691,7 +706,7 @@ msgstr "%s: argument %d > (%d) by měl být sloupcový vektor.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Column vector expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván sloupcový vektor.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván sloupcový vektor.\n"
 
 #, c-format
 msgid ""
@@ -1050,6 +1065,10 @@ msgstr "Provedení spuštění:"
 msgid "  loading initial environment"
 msgstr "  načítání úvodního prostředí"
 
+#, c-format
+msgid "Failed to exec %s:"
+msgstr "Nelze spustit %s:"
+
 msgid "&File"
 msgstr "&Soubor"
 
@@ -1071,11 +1090,29 @@ msgstr "&?"
 msgid "&Toolboxes"
 msgstr "&Panely nástrojů"
 
-msgid "Introduction"
-msgstr "Úvod"
+msgid "Introduction: Getting started with Scilab"
+msgstr "Úvod: Začínáme se Scilab"
 
-msgid "Getting started with Scilab"
-msgstr "Začínáme se Scilabem"
+msgid "Scilab objects"
+msgstr "Objekty Scilab"
+
+msgid "Operations and numerical primitives"
+msgstr "Operace a číselná primitiva"
+
+msgid "Online definition of function"
+msgstr "Online definice funkce"
+
+msgid "Optimization and simulation"
+msgstr "Optimalizace a simulace"
+
+msgid "Systems: definition and analysis"
+msgstr "Systémy: definice a analýza"
+
+msgid "Linear algebra"
+msgstr "Lineární algebra"
+
+msgid "Call an external routine"
+msgstr "Volání externí rutiny"
 
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
@@ -1138,6 +1175,24 @@ msgstr "%s: Špatný počet vstupních argumentů: Očekávány alespoň %d.\n"
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekávána definovaná proměnná.\n"
+
+msgid "Scilab Version: "
+msgstr "Verze Scilab: "
+
+msgid "Operating System: "
+msgstr "Operační systém: "
+
+msgid "Java version :"
+msgstr "Verze Java :"
+
+msgid "Java runtime information :"
+msgstr "Informace  o spuštění Java :"
+
+msgid "Java vm information :"
+msgstr "Informace o Java vm :"
+
+msgid "Vendor specification: "
+msgstr "Specifikace dodavatele: "
 
 #, c-format
 msgid "%s called at line %s of %s"

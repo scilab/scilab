@@ -45,8 +45,8 @@ sld=dscr(sl,0.1);
 assert_checkalmostequal ( sld.dt , 0.1 , %eps );
 computed = sld.A;
 expected = expm(sl.A*0.1);
-assert_checkalmostequal ( computed , expected , %eps );
+assert_checkalmostequal ( computed , expected , 1.e3 * %eps );
 computed = sld.B;
 expected = sl.A\(sld.A-eye())*sl.B;
-assert_checkalmostequal ( computed , expected , 1.e5 * %eps );
+assert_checkalmostequal ( computed , expected , 2.e5 * %eps );
 

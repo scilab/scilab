@@ -89,7 +89,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
             error(msprintf(gettext("%s: Unable to load block from ""%s"": hdf5 file expected.\n"), "xcosPalAddBlock", block));
         end
 
-        if exists("scs_m", 'l') == 0 then
+        if exists("scs_m", "l") == 0 then
             error(msprintf(gettext("%s: Unable to load block from ""%s"": no `scs_m'' variable found.\n"), "xcosPalAddBlock", block));
         end
     elseif typeof(block) == "string" & exists(block) <> 0 & typeof(evstr(block)) == "function" then
@@ -98,11 +98,11 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
         error(msprintf(gettext("%s: Wrong type for input argument ""%s"": function as string or Block type or full path string expected.\n"), "xcosPalAddBlock", "block"));
     end
 
-    // at this point we can assert that `scs_m' is a full path string to a 
+    // at this point we can assert that `scs_m' is a full path string to a
     // block reference instance.
 
     // now handle pal_block_img argument
-    if ~exists("pal_block_img", 'l') | isempty(pal_block_img) then
+    if ~exists("pal_block_img", "l") | isempty(pal_block_img) then
         // block icon by default
         pal_block_img = TMPDIR + "/" + scs_m.gui + ".gif";
         if isfile(pal_block_img) then
@@ -119,7 +119,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
         end
 
         valid_ext = ["png" "jpg" "gif" "PNG" "JPG" "JPEG" "GIF"];
-        ext = strrchr(pal_block_img, '.');
+        ext = strrchr(pal_block_img, ".");
         if isempty(strstr(emptystr(valid_ext) + ext, valid_ext)) then
             error(msprintf(gettext("%s: Wrong value for input argument ""%s"": A valid file format (png, jpg, gif) expected.\n"), "xcosPalAddBlock", "pal_block_img"));
         end
@@ -130,7 +130,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
 
 
     // now handle style argument
-    if ~exists("style", 'l') | isempty(style) then
+    if ~exists("style", "l") | isempty(style) then
         // style by default
         block_img = TMPDIR + "/" + scs_m.gui + ".svg";
         // protect drive letter
@@ -149,7 +149,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
         elseif typeof(style) == "st" then
             formattedStyle = "";
             fields = fieldnames(style);
-            fieldsSize = size(fields, '*');
+            fieldsSize = size(fields, "*");
             for i=1:fieldsSize
                 formattedStyle = formattedStyle + fields(i);
                 fieldValue = getfield(fields(i), style);

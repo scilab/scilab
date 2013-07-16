@@ -8,12 +8,12 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function T = temp_law_default(T, step_mean, step_var, temp_stage, n,param)
-if (~isdef('param','local')) then
-  param = []; // First create the empty var param
-end
+    if (~isdef("param","local")) then
+        param = []; // First create the empty var param
+    end
 
-[Beta,err]   = get_param(param,'beta',0);
-[_alpha,err] = get_param(param,'alpha',0.9);
+    [Beta,err]   = get_param(param,"beta",0);
+    [_alpha,err] = get_param(param,"alpha",0.9);
 
-T = _alpha*T;
+    T = _alpha*T;
 endfunction

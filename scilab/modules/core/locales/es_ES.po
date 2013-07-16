@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2013-01-26 04:09+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: es\n"
 
 #, c-format
@@ -38,6 +38,18 @@ msgid " results may be inaccurate. rcond = %s1\n"
 msgstr " los resultados pueden ser inexactos. rcond = %s1\n"
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hay más memoria.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
@@ -55,10 +67,6 @@ msgstr ""
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto para argumento %d: Se esperaba un escalar real.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: No hay más memoria.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
@@ -139,9 +147,8 @@ msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: Tipo incorrecto de los argumentos de entrada.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
+msgid "%s: Wrong value for input argument #%d: 0,1 or 2 expected.\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba 1, 2 ó 3.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -398,8 +405,8 @@ msgid "Aborting current computation\n"
 msgstr "Cancelando el cálculo actual\n"
 
 #, c-format
-msgid "Error: Not a valid gateway ID %d.\n"
-msgstr "Error: %d no es un identificador válido de puerta de enlace.\n"
+msgid "Error: Not a valid gateway ID %d. Should be between %d and %d.\n"
+msgstr ""
 
 msgid "The SCI environment variable is not set.\n"
 msgstr "La variable del entorno SCI no está definida.\n"
@@ -429,8 +436,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for "
-"element wise operation \n"
+"Warning: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" "
+"for element wise operation \n"
 msgstr ""
 
 msgid "SCI environment variable not defined.\n"
@@ -559,19 +566,15 @@ msgstr "No hay espacio para colocar la pila de Scilab.\n"
 msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
+"If a graphic feature has been used, this might be caused by the system "
+"graphic drivers.\n"
+"Please try to update them and try again.\n"
 "Please report a bug on %s with:\n"
 "* a sample code which reproduces the issue\n"
 "* the result of [a, b] = getdebuginfo()\n"
 "* the following information:\n"
 "%s %s\n"
 msgstr ""
-"Ops. Scilab ha detectado un error fatal.\n"
-"Su instancia probablemente fallará pronto.\n"
-"Por favor, informe del error en %s con:\n"
-"* un código de ejemplo que repita el problema\n"
-"* el resultado de [a, b] = getdebuginfo()\n"
-"* la siguiente información:\n"
-"%s %s\n"
 
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
@@ -1117,6 +1120,10 @@ msgstr "Ejecucion de inicio:"
 msgid "  loading initial environment"
 msgstr "  cargando entorno inicial"
 
+#, c-format
+msgid "Failed to exec %s:"
+msgstr ""
+
 msgid "&File"
 msgstr "Archivo"
 
@@ -1138,11 +1145,29 @@ msgstr "&?"
 msgid "&Toolboxes"
 msgstr "Herramien&tas"
 
-msgid "Introduction"
-msgstr "Introducción"
+msgid "Introduction: Getting started with Scilab"
+msgstr ""
 
-msgid "Getting started with Scilab"
-msgstr "Empezando con Scilab"
+msgid "Scilab objects"
+msgstr ""
+
+msgid "Operations and numerical primitives"
+msgstr ""
+
+msgid "Online definition of function"
+msgstr ""
+
+msgid "Optimization and simulation"
+msgstr ""
+
+msgid "Systems: definition and analysis"
+msgstr ""
+
+msgid "Linear algebra"
+msgstr ""
+
+msgid "Call an external routine"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
@@ -1212,6 +1237,24 @@ msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba una variable "
 "definida.\n"
+
+msgid "Scilab Version: "
+msgstr ""
+
+msgid "Operating System: "
+msgstr ""
+
+msgid "Java version :"
+msgstr ""
+
+msgid "Java runtime information :"
+msgstr ""
+
+msgid "Java vm information :"
+msgstr ""
+
+msgid "Vendor specification: "
+msgstr ""
 
 #, c-format
 msgid "%s called at line %s of %s"

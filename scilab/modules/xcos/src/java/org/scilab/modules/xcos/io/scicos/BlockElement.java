@@ -144,7 +144,7 @@ public final class BlockElement extends AbstractElement<BasicBlock> {
         fillDocStructure(data.get(field), block);
 
         /*
-         * Set state dependent informations.
+         * Set state dependent information.
          */
         block.setOrdering(ordering);
         ordering++;
@@ -260,14 +260,14 @@ public final class BlockElement extends AbstractElement<BasicBlock> {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
-        // the third field must contains all the informations needed to compile
+        // the third field must contains all the information needed to compile
         // the block
         field++;
         if (!(data.get(field) instanceof ScilabMList)) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
-        // the fourth field must contains all the informations needed to
+        // the fourth field must contains all the information needed to
         // represent
         // the block
         field++;

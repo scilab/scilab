@@ -19,17 +19,17 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(scilist)(); /* fortran */
 /*--------------------------------------------------------------------------*/
-int sci_scimlist(char *fname,unsigned long fname_len)
+int sci_scimlist(char *fname, unsigned long fname_len)
 {
     if (Rhs >= 1)
     {
-        #define RLIST_FIELDNAME "r" 
+#define RLIST_FIELDNAME "r"
         SciErr sciErr;
         int *piAddressVarOne = NULL;
 
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -62,7 +62,7 @@ int sci_scimlist(char *fname,unsigned long fname_len)
             }
         }
     }
-	C2F(scilist)(fname,fname_len);
-	return 0;
+    C2F(scilist)(fname, fname_len);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

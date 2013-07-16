@@ -7,15 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2010-04-03 02:03+0000\n"
-"PO-Revision-Date: 2012-08-17 02:03+0000\n"
-"Last-Translator: Marcos Cardinot <mcardinot@gmail.com>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2012-10-29 12:06+0000\n"
+"Last-Translator: Henrique Andrade <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: pt_BR\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: the computation is already terminated\n"
@@ -35,54 +39,47 @@ msgstr ""
 "%dx%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Não foi possível ler o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
 msgstr ""
-"%s: Dimensão incorreta para o argumento de entrada #%d: Esperava-se uma matriz quadrada.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
 "square matrix expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: Esperava-se uma matriz completa ou esparsa.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
 msgstr ""
-"%s: Dimensão incorreta para o argumento de entrada #%d: B deve ter o mesmo tamanho que A.\n"
 
 #, c-format
-msgid "%s: Wrong dimension for input argument #%d: A scalar expected.\n"
-msgstr "%s: Dimensão incorreta para o argumento de entrada #%d: Esperava-se um escalar.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: k deve ser um inteiro positivo.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: k must be in the range 1 to N.\n"
+"%s: Wrong value for input argument #%d: k must be in the range 1 to N.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: k must be in the range 1 to N.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a scalar expected \n"
-msgstr "%s: Tipo incorreto para o argumento de entrada #%d: Esperava-se um escalar. \n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s: Uso incorreto do argumento de entrada #%d: Valor sigma não reconhecido.\n"
-" Sigma deve ser um dos '%s', '%s', '%s', '%s' ou '%s'.\n"
 
 #, c-format
 msgid ""
@@ -90,9 +87,6 @@ msgid ""
 " Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n"
 " "
 msgstr ""
-"%s: Uso incorreto do argumento de entrada #%d: Valor sigma não reconhecido.\n"
-" Sigma deve ser um dos '%s', '%s', '%s', '%s', '%s' ou '%s'.\n"
-" "
 
 #, c-format
 msgid "%s: Invalid sigma value for complex or non symmetric problem.\n"
@@ -133,6 +127,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
 msgstr ""
 
 #, c-format
@@ -187,8 +190,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: B must be symmetric or hermitian, "
-"definite, semi positive.\n"
+"%s: Error with input argument #%d: B is not positive definite. Try with "
+"sigma='SM' or sigma=scalar.\n"
 msgstr ""
 
 #, c-format
@@ -230,12 +233,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument: Use opts with tol, maxiter, ncv, resid, "
-"cholB, issym, isreal"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
@@ -268,8 +265,18 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
+"upper triangular.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Impossible to use the Cholesky factorisation with complex sparse "
 "matrices.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error with %s: info = %d.\n"
 msgstr ""
 
 #, c-format
@@ -288,27 +295,26 @@ msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be in the range 1 to N - 2.\n"
 msgstr ""
-"%s: Impossível usar a fatoração de Cholesky com matrizes complexas "
-"esparsas.\n"
 
 #, c-format
-msgid "%s: Error with %s: info = %d.\n"
-msgstr "%s: Erro com %s: info = %d.\n"
+msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Impossible to invert complex sparse matrix.\n"
-msgstr "%s: Impossível inverter a matriz complexa esparsa.\n"
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of %s, %s, %s, %s or %s.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: n deve ser inteiro e positivo.\n"
 
 #, c-format
-msgid "%s: Wrong dimension for input argument(s) #%d: a string expected.\n"
-msgstr "%s: Tipo incorreto para argumento(s) de entrada #%d: Esperava-se uma string.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
+" Sigma must be one of %s, %s, %s, %s, %s or %s.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -338,9 +344,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: n does not match rows number of "
 "matrix A.\n"
 msgstr ""
-"%s: Tipo incorreto para argumentos de entrada #%d: n não coincide com número de linhas da "
-"matriz A.\n"
 
 #, c-format
 msgid "%s: Wrong type or value for input arguments.\n"
-msgstr "%s: Tipo ou valor incorreto para argumentos de entrada.\n"
+msgstr ""

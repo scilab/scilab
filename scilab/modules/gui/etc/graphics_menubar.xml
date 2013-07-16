@@ -240,7 +240,7 @@
                 <callback instruction="openged([SCILAB_FIGURE_ID])" type="-2"/>
             </submenu>
         </submenu>
-        
+
     </menu>
     
     <!--

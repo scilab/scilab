@@ -22,146 +22,146 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  * @author Manuel JULIACHS
  */
 public abstract class ClippableTextObject extends TextObject {
-	/** ClippableTextObject properties names */
-	private enum ClippableTextObjectProperty { CLIPPROPERTY };
-	
-	/** Clipping state */
-	private ClippableProperty clipProperty;
+    /** ClippableTextObject properties names */
+    private enum ClippableTextObjectProperty { CLIPPROPERTY };
 
-	/**  Constructor */
-	public ClippableTextObject() {
-		clipProperty = new ClippableProperty();
-	}
+    /** Clipping state */
+    private ClippableProperty clipProperty;
 
-	/**
-	 * Returns the enum associated to a property name
-	 * @param propertyName the property name
-	 * @return the property enum
-	 */
-	public Object getPropertyFromName(int propertyName) {
-	    switch (propertyName) {
-	    case __GO_CLIP_PROPERTY__ :
-			return ClippableTextObjectProperty.CLIPPROPERTY;
-	    case __GO_CLIP_STATE__ :
-			return ClippablePropertyType.CLIPSTATE;
-	    case __GO_CLIP_BOX__ :
-			return ClippablePropertyType.CLIPBOX;
-	    case __GO_CLIP_BOX_SET__ :
-			return ClippablePropertyType.CLIPBOXSET;
-		default :
-			return super.getPropertyFromName(propertyName);
-		}
-	}
+    /**  Constructor */
+    public ClippableTextObject() {
+        clipProperty = new ClippableProperty();
+    }
 
-	/**
-	 * Fast property get method
-	 * @param property the property to get
-	 * @return the property value
-	 */
-	public Object getProperty(Object property) {
-		if (property == ClippableTextObjectProperty.CLIPPROPERTY) {
-			return getClipProperty();
-		} else if (property == ClippablePropertyType.CLIPSTATE) {
-			return getClipState();
-		} else if (property == ClippablePropertyType.CLIPBOX) {
-			return getClipBox();
-		} else if (property == ClippablePropertyType.CLIPBOXSET) {
-			return getClipBoxSet();
-		} else {
-			return super.getProperty(property);	
-		}
-	}
+    /**
+     * Returns the enum associated to a property name
+     * @param propertyName the property name
+     * @return the property enum
+     */
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+            case __GO_CLIP_PROPERTY__ :
+                return ClippableTextObjectProperty.CLIPPROPERTY;
+            case __GO_CLIP_STATE__ :
+                return ClippablePropertyType.CLIPSTATE;
+            case __GO_CLIP_BOX__ :
+                return ClippablePropertyType.CLIPBOX;
+            case __GO_CLIP_BOX_SET__ :
+                return ClippablePropertyType.CLIPBOXSET;
+            default :
+                return super.getPropertyFromName(propertyName);
+        }
+    }
 
-	/**
-	 * Fast property set method
-	 * @param property the property to set
-	 * @param value the property value
-	 * @return true if the property has been set, false otherwise
-	 */
-	public UpdateStatus setProperty(Object property, Object value) {
-		if (property == ClippableTextObjectProperty.CLIPPROPERTY) {
-			setClipProperty((ClippableProperty) value);
-		} else if (property == ClippablePropertyType.CLIPSTATE) {
-			setClipState((Integer) value);
-		} else if (property == ClippablePropertyType.CLIPBOX) {
-			setClipBox((Double[]) value);
-		} else if (property == ClippablePropertyType.CLIPBOXSET) {
-			setClipBoxSet((Boolean) value);
-		} else {
-			return super.setProperty(property, value);
-		}
+    /**
+     * Fast property get method
+     * @param property the property to get
+     * @return the property value
+     */
+    public Object getProperty(Object property) {
+        if (property == ClippableTextObjectProperty.CLIPPROPERTY) {
+            return getClipProperty();
+        } else if (property == ClippablePropertyType.CLIPSTATE) {
+            return getClipState();
+        } else if (property == ClippablePropertyType.CLIPBOX) {
+            return getClipBox();
+        } else if (property == ClippablePropertyType.CLIPBOXSET) {
+            return getClipBoxSet();
+        } else {
+            return super.getProperty(property);
+        }
+    }
 
-		return UpdateStatus.Success;
-	}
+    /**
+     * Fast property set method
+     * @param property the property to set
+     * @param value the property value
+     * @return true if the property has been set, false otherwise
+     */
+    public UpdateStatus setProperty(Object property, Object value) {
+        if (property == ClippableTextObjectProperty.CLIPPROPERTY) {
+            setClipProperty((ClippableProperty) value);
+        } else if (property == ClippablePropertyType.CLIPSTATE) {
+            setClipState((Integer) value);
+        } else if (property == ClippablePropertyType.CLIPBOX) {
+            setClipBox((Double[]) value);
+        } else if (property == ClippablePropertyType.CLIPBOXSET) {
+            setClipBoxSet((Boolean) value);
+        } else {
+            return super.setProperty(property, value);
+        }
 
-	/**
-	 * @return the clipProperty
-	 */
-	public ClippableProperty getClipProperty() {
-		return clipProperty;
-	}
+        return UpdateStatus.Success;
+    }
 
-	/**
-	 * @param clipProperty the clipProperty to set
-	 */
-	public void setClipProperty(ClippableProperty clipProperty) {
-		this.clipProperty = clipProperty;
-	}
+    /**
+     * @return the clipProperty
+     */
+    public ClippableProperty getClipProperty() {
+        return clipProperty;
+    }
 
-	/**
-	 * @return the clipBox
-	 */
-	public Double[] getClipBox() {
-		return clipProperty.getClipBox();
-	}
+    /**
+     * @param clipProperty the clipProperty to set
+     */
+    public void setClipProperty(ClippableProperty clipProperty) {
+        this.clipProperty = clipProperty;
+    }
 
-	/**
-	 * @param clipBox the clipBox to set
-	 */
-	public void setClipBox(Double[] clipBox) {
-		clipProperty.setClipBox(clipBox);
-	}
+    /**
+     * @return the clipBox
+     */
+    public Double[] getClipBox() {
+        return clipProperty.getClipBox();
+    }
 
-	/**
-	 * @return the clipState
-	 */
-	public Integer getClipState() {
-		return getClipStateAsEnum().ordinal();
-	}
+    /**
+     * @param clipBox the clipBox to set
+     */
+    public void setClipBox(Double[] clipBox) {
+        clipProperty.setClipBox(clipBox);
+    }
 
-	/**
-	 * @return the clipState
-	 */
-	public ClipStateType getClipStateAsEnum() {
-		return clipProperty.getClipState();
-	}
+    /**
+     * @return the clipState
+     */
+    public Integer getClipState() {
+        return getClipStateAsEnum().ordinal();
+    }
 
-	/**
-	 * @param clipState the clipState to set
-	 */
-	public void setClipState(Integer clipState) {
-		setClipStateAsEnum(ClipStateType.intToEnum(clipState));
-	}
+    /**
+     * @return the clipState
+     */
+    public ClipStateType getClipStateAsEnum() {
+        return clipProperty.getClipState();
+    }
 
-	/**
-	 * @param clipState the clipState to set
-	 */
-	public void setClipStateAsEnum(ClipStateType clipState) {
-		clipProperty.setClipState(clipState);
-	}
+    /**
+     * @param clipState the clipState to set
+     */
+    public void setClipState(Integer clipState) {
+        setClipStateAsEnum(ClipStateType.intToEnum(clipState));
+    }
 
-	/**
-	 * @return the clipBoxSet
-	 */
-	public Boolean getClipBoxSet() {
-		return clipProperty.getClipBoxSet();
-	}
+    /**
+     * @param clipState the clipState to set
+     */
+    public void setClipStateAsEnum(ClipStateType clipState) {
+        clipProperty.setClipState(clipState);
+    }
 
-	/**
-	 * @param clipBoxSet the clipBoxSet to set
-	 */
-	public void setClipBoxSet(Boolean clipBoxSet) {
-		clipProperty.setClipBoxSet(clipBoxSet);
-	}
+    /**
+     * @return the clipBoxSet
+     */
+    public Boolean getClipBoxSet() {
+        return clipProperty.getClipBoxSet();
+    }
+
+    /**
+     * @param clipBoxSet the clipBoxSet to set
+     */
+    public void setClipBoxSet(Boolean clipBoxSet) {
+        clipProperty.setClipBoxSet(clipBoxSet);
+    }
 
 }

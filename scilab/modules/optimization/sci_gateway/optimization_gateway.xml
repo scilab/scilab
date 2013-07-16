@@ -13,8 +13,8 @@
  -->
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="optimization">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -29,13 +29,13 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
-
-<PRIMITIVE gatewayId="11" primitiveId="1" primitiveName="optim" />
-<PRIMITIVE gatewayId="11" primitiveId="2" primitiveName="semidef" />
-<PRIMITIVE gatewayId="11" primitiveId="3" primitiveName="fsolve" />
-<PRIMITIVE gatewayId="11" primitiveId="4" primitiveName="lsqrsolve" />
-<PRIMITIVE gatewayId="11" primitiveId="5" primitiveName="qld" />
-<PRIMITIVE gatewayId="11" primitiveId="6" primitiveName="qp_solve" />
-<PRIMITIVE gatewayId="11" primitiveId="7" primitiveName="readmps" />
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="11" primitiveId="1" primitiveName="optim" />
+    <PRIMITIVE gatewayId="11" primitiveId="2" primitiveName="semidef" />
+    <PRIMITIVE gatewayId="11" primitiveId="3" primitiveName="fsolve" />
+    <PRIMITIVE gatewayId="11" primitiveId="4" primitiveName="lsqrsolve" />
+    <PRIMITIVE gatewayId="11" primitiveId="5" primitiveName="qld" />
+    <PRIMITIVE gatewayId="11" primitiveId="6" primitiveName="qp_solve" />
+    <PRIMITIVE gatewayId="11" primitiveId="7" primitiveName="readmps" />
 </GATEWAY>

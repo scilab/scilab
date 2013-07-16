@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-06-25 16:31+0100\n"
 
 # File: sci_gateway/c/sci_addinter.c, line: 46
 # File: sci_gateway/c/sci_addinter.c, line: 58
@@ -50,7 +50,7 @@ msgid "%s : second argument must be a unique id of a shared library.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_c_link.c, line: 100
+# File: sci_gateway/c/sci_c_link.c, line: 111
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -96,19 +96,19 @@ msgid "Unique dynamic library name expected."
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_link.c, line: 114
+# File: sci_gateway/c/sci_link.c, line: 120
 #, c-format
 msgid "%s: Wrong type for input argument. Strings vector expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_link.c, line: 120
+# File: sci_gateway/c/sci_link.c, line: 126
 #, c-format
 msgid "%s: Wrong type for input argument. Strings expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_link.c, line: 136
+# File: sci_gateway/c/sci_link.c, line: 142
 #, c-format
 msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
@@ -120,95 +120,95 @@ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: src/c/addinter.c, line: 210
+# File: src/c/addinter.c, line: 223
 #, c-format
 msgid "Error: Not a valid internal routine number %d.\n"
 msgstr ""
 
 #
-# File: src/c/addinter.c, line: 237
+# File: src/c/addinter.c, line: 252
 #, c-format
 msgid "Interface %s not linked.\n"
 msgstr ""
 
 #
-# File: src/c/dl_genErrorMessage.c, line: 24
+# File: src/c/dl_genErrorMessage.c, line: 25
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
 msgstr ""
 
 #
-# File: src/c/dl_genErrorMessage.c, line: 28
+# File: src/c/dl_genErrorMessage.c, line: 29
 #, c-format
 msgid "%s: Cannot open shared files. Max entry %d reached.\n"
 msgstr ""
 
 #
-# File: src/c/dl_genErrorMessage.c, line: 32
+# File: src/c/dl_genErrorMessage.c, line: 33
 #, c-format
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr ""
 
 #
-# File: src/c/dl_genErrorMessage.c, line: 36
+# File: src/c/dl_genErrorMessage.c, line: 37
 #, c-format
 msgid "%s: Already loaded from library %s\n"
 msgstr ""
 
 #
-# File: src/c/dl_genErrorMessage.c, line: 39
+# File: src/c/dl_genErrorMessage.c, line: 40
 #, c-format
 msgid "%s: problem with one of the entry point.\n"
 msgstr ""
 
 #
-# File: src/c/dl_genErrorMessage.c, line: 42
+# File: src/c/dl_genErrorMessage.c, line: 43
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 117
+# File: src/c/dynamic_link.c, line: 119
 #, c-format
 msgid "%s: can not to load a x86 dll in a x64 environment.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 126
+# File: src/c/dynamic_link.c, line: 128
 #, c-format
 msgid "%s: can not load a x64 dll in a x86 environment.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 139
+# File: src/c/dynamic_link.c, line: 141
 #, c-format
 msgid "%s: The file %s does not exist in PATH environment.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 146
+# File: src/c/dynamic_link.c, line: 148
 #, c-format
 msgid "Link failed for dynamic library '%s'.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 147
+# File: src/c/dynamic_link.c, line: 149
 #, c-format
 msgid "An error occurred: %s\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 157
+# File: src/c/dynamic_link.c, line: 159
 msgid "Shared archive loaded.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 158
+# File: src/c/dynamic_link.c, line: 160
 msgid "Link done.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 324
+# File: src/c/dynamic_link.c, line: 350
 #, c-format
 msgid ""
 "Number of entry points %d.\n"
@@ -216,47 +216,98 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 341
+# File: src/c/dynamic_link.c, line: 372
 #, c-format
 msgid "] : %d library.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 345
+# File: src/c/dynamic_link.c, line: 376
 #, c-format
 msgid "] : %d libraries.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 351
+# File: src/c/dynamic_link.c, line: 384
 #, c-format
 msgid "Entry point %s in shared library %d.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 406
+# File: src/c/dynamic_link.c, line: 445
 #, c-format
 msgid "Cannot open shared files max entry %d reached.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 438
+# File: src/c/dynamic_link.c, line: 484
 #, c-format
 msgid "Entry name %s.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 447
+# File: src/c/dynamic_link.c, line: 495
 #, c-format
 msgid "%s is not an entry point.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 453
+# File: src/c/dynamic_link.c, line: 504
 #, c-format
 msgid "Linking %s.\n"
 msgstr ""
 
+# File: demos/call_c.sce, line: 19
+msgid "C Function to call in scilab.\n"
+msgstr ""
+
+#
+# File: demos/call_c.sce, line: 31
+msgid "Call ilib_for_link to build C function.\n"
+msgstr ""
+
+#
+# File: demos/call_c.sce, line: 42
+msgid "Call C function. Z = X+Y"
+msgstr ""
+
+#
+# File: demos/call_c.sce, line: 44
+# File: demos/call_fortran.sce, line: 44
+#, c-format
+msgid "with X = %d"
+msgstr ""
+
+#
+# File: demos/call_c.sce, line: 46
+# File: demos/call_fortran.sce, line: 46
+#, c-format
+msgid "with Y = %d"
+msgstr ""
+
+#
+# File: demos/call_c.sce, line: 51
+# File: demos/call_fortran.sce, line: 51
+#, c-format
+msgid "result Z = %d"
+msgstr ""
+
+#
+# File: demos/call_fortran.sce, line: 18
+msgid "Fortran subroutine to call in scilab.\n"
+msgstr ""
+
+#
+# File: demos/call_fortran.sce, line: 30
+msgid "Call ilib_for_link to build fortran subroutine.\n"
+msgstr ""
+
+#
+# File: demos/call_fortran.sce, line: 42
+msgid "Call Fortran subroutine. Z = X+Y"
+msgstr ""
+
+#
 # File: demos/dynamic_link.dem.gateway.sce, line: 9
 msgid "Dynamic link"
 msgstr ""
@@ -269,6 +320,15 @@ msgstr ""
 #
 # File: demos/dynamic_link.dem.gateway.sce, line: 12
 msgid "Call a Fortran subroutine"
+msgstr ""
+
+#
+# File: macros/G_make.sci, line: 15
+# File: macros/ilib_build.sci, line: 23
+# File: macros/ilib_mex_build.sci, line: 15
+# File: macros/windows/dlwMake.sci, line: 13
+#, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
 msgstr ""
 
 #
@@ -286,8 +346,23 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #
+# File: macros/configure_msvc.sci, line: 35
+msgid "Microsoft Visual Studio C x86 Compiler not found."
+msgstr ""
+
+#
 # File: macros/detectmsifort64tools.sci, line: 37
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
+msgstr ""
+
+#
+# File: macros/detectmsvc64tools.sci, line: 60
+msgid "Microsoft Visual Studio C 2008 or more x64 Compiler not installed."
+msgstr ""
+
+#
+# File: macros/detectmsvc64tools.sci, line: 70
+msgid "Microsoft Visual Studio C 2008 or more Compiler not found."
 msgstr ""
 
 #
@@ -328,13 +403,6 @@ msgstr ""
 msgid ""
 "Due to the multivendors nature of the Unix world, the function "
 "'haveacompiler' is only supported under Windows."
-msgstr ""
-
-#
-# File: macros/ilib_build.sci, line: 23
-# File: macros/ilib_mex_build.sci, line: 15
-#, c-format
-msgid "%s: A Fortran or C compiler is required.\n"
 msgstr ""
 
 #
@@ -431,7 +499,7 @@ msgid "A Fortran or C compiler is required."
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 109
+# File: macros/ilib_compile.sci, line: 108
 #, c-format
 msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
@@ -439,39 +507,39 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 137
+# File: macros/ilib_compile.sci, line: 136
 #, c-format
 msgid "%s: Build command: %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 138
+# File: macros/ilib_compile.sci, line: 137
 # File: macros/ilib_gen_Make_unix.sci, line: 236
 #, c-format
 msgid "Output: %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 139
+# File: macros/ilib_compile.sci, line: 138
 # File: macros/ilib_gen_Make_unix.sci, line: 238
 #, c-format
 msgid "stderr: %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 143
+# File: macros/ilib_compile.sci, line: 142
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 145
+# File: macros/ilib_compile.sci, line: 144
 #, c-format
 msgid "%s: The command was:\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 154
+# File: macros/ilib_compile.sci, line: 153
 #, c-format
 msgid ""
 "%s: Warning: No error code returned by the compilation but the error output "
@@ -479,7 +547,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 163
+# File: macros/ilib_compile.sci, line: 162
 #, c-format
 msgid "%s: Could not find the built library '%s'.\n"
 msgstr ""
@@ -667,4 +735,15 @@ msgstr ""
 # File: macros/windows/dlwGenerateMakefile.sci, line: 22
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+
+#
+# File: macros/windows/dlwGenerateMakefile.sci, line: 261
+msgid "not found."
+msgstr ""
+
+#
+# File: macros/windows/dlwMake.sci, line: 24
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected."
 msgstr ""

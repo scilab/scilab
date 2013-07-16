@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-08-24 14:21+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-03-19 17:17+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: uk\n"
 
 msgid "Exception thrown in file"
@@ -26,7 +26,7 @@ msgstr "у рядку"
 
 #, c-format
 msgid "%s: An error occurred: %s"
-msgstr ""
+msgstr "%s: трапилася помилка: %s"
 
 #, c-format
 msgid "Invalid environment: identifier %d is invalid"
@@ -34,6 +34,10 @@ msgstr "Некоректне середовище: ідентифікатор %d
 
 msgid "Invalid environment"
 msgstr "Некоректне середовище"
+
+#, c-format
+msgid "Invalid variable name: %s"
+msgstr "Некоректна назва змінної: %s"
 
 msgid "Cannot allocate memory"
 msgstr "Не вдалося розподілити пам’ять"

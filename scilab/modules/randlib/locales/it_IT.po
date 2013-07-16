@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-09-28 04:04+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: it\n"
 
 #, c-format
@@ -40,28 +40,8 @@ msgstr ""
 "opzione \"%s\".\n"
 
 #, c-format
-msgid "%s: Wrong type for second input argument: Scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso è di tipo sbagliato: era atteso uno "
-"scalare.\n"
-
-#, c-format
-msgid "%s: Wrong type for third input argument: Scalar expected.\n"
-msgstr ""
-"%s: Il terzo argomento in ingresso è di tipo sbagliato: era atteso uno "
-"scalare.\n"
-
-#, c-format
-msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
-msgstr ""
-"%s: Il quarto argomento in ingresso è di tipo sbagliato: era atteso uno "
-"scalare.\n"
-
-#, c-format
-msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
-msgstr ""
-"%s: Il quinto argomento in ingresso è di tipo sbagliato: era atteso uno "
-"scalare.\n"
 
 #, c-format
 msgid ""
@@ -80,10 +60,8 @@ msgstr ""
 "di %d o %d valori per '\"%s\".\n"
 
 #, c-format
-msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso ha una dimensione sbagliata era atteso "
-"%dx%d.\n"
 
 #, c-format
 msgid ""
@@ -120,48 +98,41 @@ msgid "%s: The %s option affects only the %s generator\n"
 msgstr "%s: L'opzione %s riguarda solo il generatore %s\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: %d, %d or %d expected.\n"
+msgid "%s: Wrong value for input argument #%d: %d, %d or %d expected.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso ha un valore sbagliato: era atteso %d, "
-"%d o %d.\n"
 
 #, c-format
 msgid "The %s option affects only the %s generator\n"
 msgstr "L'opzione %s riguarda solo il generatore %s\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso ha un valore sbagliato: deve essere tra "
-"%d e %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: Must be > %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso ha un valore sbagliato: deve essere > "
-"%d.\n"
 
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Questa informazione riguarda solo il generatore clcg4\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or "
-"'%s' expected.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso ha un valore sbagliato: era atteso "
-"\"%s\", \"%s\", \"%s\", \"%s\", \"%s\" o\"%s\".\n"
 
 #, c-format
-msgid "%s Wrong value for first input argument %s.\n"
-msgstr "%s: Il primo argomento in ingresso %s ha un valore sbagliato.\n"
+msgid "%s Wrong value for input argument #%d: '%s' is unknown.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Il primo argomento in ingresso è di tipo sbagliato: era atteso uno "
-"scalare.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
+msgstr ""
 
 msgid "Missing A and B for beta law\n"
 msgstr "Mancano A e B per la legge Beta\n"
@@ -184,11 +155,9 @@ msgstr "I gradi di libertà non sono positivi\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "deviate.\n"
 msgstr ""
-"%s: Il primo argomento in ingresso ha un valore sbagliato: deve essere il "
-"numero della devianza casuale.\n"
 
 msgid "Missing N and P for MULtinomial law\n"
 msgstr "Mancano N e P per la legge Multinomiale\n"
@@ -216,8 +185,8 @@ msgstr "P(%d) > 1\n"
 msgid "Sum of P(i) > 1\n"
 msgstr "Somma di P(i) > 1\n"
 
-msgid "Missing shape and scale for Gamma law\n"
-msgstr "Mancano la forma e la scala per la legge Gamma\n"
+msgid "Missing shape and rate for Gamma law\n"
+msgstr ""
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
@@ -274,11 +243,9 @@ msgstr "Mancano N e P per la legge Binomiale\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "simulation.\n"
 msgstr ""
-"%s: Il primo argomento in ingresso ha un valore sbagliato: deve essere il "
-"numero della simulazione casuale.\n"
 
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr "Mancano Mean e Cov per la legge Normale Multivariata\n"
@@ -309,10 +276,9 @@ msgstr "%s: Mancano la matrice P e X0 per la catena di Markov\n"
 
 #, c-format
 msgid ""
-"%s: Wrong second input argument: Square matrix or row vector expected.\n"
+"%s: Wrong type for input argument #%d: Square matrix or row vector "
+"expected.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso è sbagliato: era attesa una matrice "
-"quadrata o un vettore riga.\n"
 
 msgid "X0 is empty\n"
 msgstr "X0è vuoto\n"
@@ -405,16 +371,15 @@ msgstr ""
 "                                             s4 in [1, 2147483322]"
 
 #, c-format
+msgid "WARNING: %s\n"
+msgstr ""
+
+#, c-format
 msgid ""
-"\n"
-"=> be aware that you have may lost synchronization\n"
+"be aware that you have may lost synchronization\n"
 "    between the virtual gen %d and the others !\n"
 "    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
 msgstr ""
-"\n"
-"=> attenzione potrebbe non esserci più sincronizzazione\n"
-"    fra il gen virtuale %d e gli altri !\n"
-"    usare grand(\"setall\", s1, s2, s3, s4) per recuperarla."
 
 msgid ""
 "\n"
@@ -476,6 +441,30 @@ msgstr "Teoria"
 msgid "Simulation of a discrete random variable"
 msgstr "Simulazione di una variabile casuale discreta"
 
+msgid "Simulation of a discrete uniform random variable"
+msgstr ""
+
+msgid "Simulation of a Erlang random variable"
+msgstr ""
+
+msgid "macro histplot : Histogram plot"
+msgstr ""
+
+msgid "Classes"
+msgstr ""
+
+msgid "p must be < 1"
+msgstr ""
+
+msgid "Simulation of a geometric random variable"
+msgstr ""
+
+msgid "Simulation of a hyper geometric random variable"
+msgstr ""
+
+msgid "Simulation of a poisson random variable"
+msgstr ""
+
 msgid "Random"
 msgstr "Casuale"
 
@@ -505,3 +494,6 @@ msgstr "Variabile casuale iper-geometrica"
 
 msgid "Erlang random variable"
 msgstr "Variabile casuale di Erlang"
+
+msgid "Simulation of a Weibull random variable"
+msgstr ""

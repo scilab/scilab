@@ -221,11 +221,11 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         mainFrame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
         mainFrame.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    closeWindow();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                closeWindow();
+            }
+        });
         mainFrame.setTitle(SciNotesMessages.SEARCHINFILES);
         mainFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("system-search", "32x32")).getImage());
 
@@ -250,11 +250,11 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         comboWordPattern.setEditable(true);
         comboWordPattern.getEditor().addActionListener(new ActionListener() {
 
-                public void actionPerformed(ActionEvent e) {
-                    updateCombos();
-                    startSearch();
-                }
-            });
+            public void actionPerformed(ActionEvent e) {
+                updateCombos();
+                startSearch();
+            }
+        });
         ((JTextField) comboWordPattern.getEditor().getEditorComponent()).setColumns(32);
         NORMALCOLOR = ((JTextField) comboWordPattern.getEditor().getEditorComponent()).getForeground();
 
@@ -377,244 +377,244 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         mainFrame.setContentPane(panelFrame);
 
         mainFrame.addWindowListener(new WindowListener() {
-                @Override
-                public void windowClosed(WindowEvent arg0) { }
-                @Override
-                public void windowDeiconified(WindowEvent arg0) { }
-                @Override
-                public void windowActivated(WindowEvent arg0) { }
+            @Override
+            public void windowClosed(WindowEvent arg0) { }
+            @Override
+            public void windowDeiconified(WindowEvent arg0) { }
+            @Override
+            public void windowActivated(WindowEvent arg0) { }
 
-                @Override
-                public void windowClosing(WindowEvent arg0) {
-                    closeWindow();
-                }
+            @Override
+            public void windowClosing(WindowEvent arg0) {
+                closeWindow();
+            }
 
-                @Override
-                public void windowDeactivated(WindowEvent arg0) { }
-                @Override
-                public void windowIconified(WindowEvent arg0) { };
-                @Override
-                public void windowOpened(WindowEvent arg0) { }
-            });
+            @Override
+            public void windowDeactivated(WindowEvent arg0) { }
+            @Override
+            public void windowIconified(WindowEvent arg0) { };
+            @Override
+            public void windowOpened(WindowEvent arg0) { }
+        });
 
         checkWordCase.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ConfigSciNotesManager.saveCaseSensitive(checkWordCase.isSelected());
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigSciNotesManager.saveCaseSensitive(checkWordCase.isSelected());
+            }
+        });
 
         checkFileCase.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ConfigSciNotesManager.saveFileCase(checkFileCase.isSelected());
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigSciNotesManager.saveFileCase(checkFileCase.isSelected());
+            }
+        });
 
         checkWhole.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ConfigSciNotesManager.saveWholeWord(checkWhole.isSelected());
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigSciNotesManager.saveWholeWord(checkWhole.isSelected());
+            }
+        });
 
         checkRecursive.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ConfigSciNotesManager.saveRecursive(checkRecursive.isSelected());
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigSciNotesManager.saveRecursive(checkRecursive.isSelected());
+            }
+        });
 
         checkRegular.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ConfigSciNotesManager.saveRegularExpression(checkRegular.isSelected());
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigSciNotesManager.saveRegularExpression(checkRegular.isSelected());
+            }
+        });
 
         checkLineByLine.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ConfigSciNotesManager.saveLineByLine(checkLineByLine.isSelected());
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigSciNotesManager.saveLineByLine(checkLineByLine.isSelected());
+            }
+        });
 
         chooseBaseDirButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
-                    fileChooser.setDialogTitle(SciNotesMessages.CHOOSEBASEDIR);
-                    fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                    fileChooser.setAcceptAllFileFilterUsed(false);
-                    if (fileChooser.showOpenDialog(getEditor()) == JFileChooser.APPROVE_OPTION) {
-                        File path = fileChooser.getSelectedFile();
-                        if (path == null || path.isFile()) {
-                            path = fileChooser.getCurrentDirectory();
-                        }
-                        comboBaseDir.getEditor().setItem(path.toString());
-                        updateFindButtonStatus(true);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
+                fileChooser.setDialogTitle(SciNotesMessages.CHOOSEBASEDIR);
+                fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                fileChooser.setAcceptAllFileFilterUsed(false);
+                if (fileChooser.showOpenDialog(getEditor()) == JFileChooser.APPROVE_OPTION) {
+                    File path = fileChooser.getSelectedFile();
+                    if (path == null || path.isFile()) {
+                        path = fileChooser.getCurrentDirectory();
                     }
+                    comboBaseDir.getEditor().setItem(path.toString());
+                    updateFindButtonStatus(true);
                 }
-            });
+            }
+        });
 
         buttonFind.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    updateCombos();
-                    startSearch();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateCombos();
+                startSearch();
+            }
+        });
 
         buttonStop.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    stopSearch();
-                }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stopSearch();
+            }
 
-            });
+        });
 
         buttonStop.addPropertyChangeListener(new PropertyChangeListener() {
-                @Override
-                public void propertyChange(PropertyChangeEvent e) {
-                    if (mainFrame.isVisible() && e.getPropertyName().equals(SearchFile.SEARCHDONE)) {
-                        boolean newValue = (Boolean) e.getNewValue();
-                        buttonFind.setEnabled(newValue);
-                        buttonStop.setEnabled(!newValue);
-                    } else if (e.getPropertyName().equals(ENABLED)) {
-                        boolean newValue = (Boolean) e.getNewValue();
-                        comboBaseDir.setEnabled(!newValue);
-                        comboFilePattern.setEnabled(!newValue);
-                        chooseBaseDirButton.setEnabled(!newValue);
-                    }
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                if (mainFrame.isVisible() && e.getPropertyName().equals(SearchFile.SEARCHDONE)) {
+                    boolean newValue = (Boolean) e.getNewValue();
+                    buttonFind.setEnabled(newValue);
+                    buttonStop.setEnabled(!newValue);
+                } else if (e.getPropertyName().equals(ENABLED)) {
+                    boolean newValue = (Boolean) e.getNewValue();
+                    comboBaseDir.setEnabled(!newValue);
+                    comboFilePattern.setEnabled(!newValue);
+                    chooseBaseDirButton.setEnabled(!newValue);
                 }
-            });
+            }
+        });
 
         buttonClose.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    closeWindow();
-                }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                closeWindow();
+            }
 
-            });
+        });
 
         comboBaseDir.addItemListener(new ItemListener() {
-                @Override
-                public void itemStateChanged(ItemEvent e) {
-                    updateFindButtonStatus(true);
-                }
-            });
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                updateFindButtonStatus(true);
+            }
+        });
 
         comboBaseDir.addPopupMenuListener(new PopupMenuListener() {
-                @Override
-                public void popupMenuCanceled(PopupMenuEvent e) {
-                    comboBaseDirCanceled = true;
-                }
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+                comboBaseDirCanceled = true;
+            }
 
-                @Override
-                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
 
-                @Override
-                public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
-            });
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
+        });
 
         comboBaseDir.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent e) { }
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                        if (comboBaseDirCanceled) {
-                            comboBaseDirCanceled = false;
-                        } else {
-                            closeWindow();
-                        }
+            @Override
+            public void keyTyped(KeyEvent e) { }
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    if (comboBaseDirCanceled) {
+                        comboBaseDirCanceled = false;
+                    } else {
+                        closeWindow();
                     }
-                    updateFindButtonStatus(true);
                 }
+                updateFindButtonStatus(true);
+            }
 
-                @Override
-                public void keyPressed(KeyEvent e) { }
-            });
+            @Override
+            public void keyPressed(KeyEvent e) { }
+        });
 
         comboFilePattern.addItemListener(new ItemListener() {
-                @Override
-                public void itemStateChanged(ItemEvent e) {
-                    updateFindButtonStatus(false);
-                }
-            });
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                updateFindButtonStatus(false);
+            }
+        });
 
         comboFilePattern.addPopupMenuListener(new PopupMenuListener() {
-                @Override
-                public void popupMenuCanceled(PopupMenuEvent e) {
-                    comboFilePatternCanceled = true;
-                }
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+                comboFilePatternCanceled = true;
+            }
 
-                @Override
-                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
 
-                @Override
-                public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
-            });
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
+        });
 
         comboFilePattern.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent e) { }
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                        if (comboFilePatternCanceled) {
-                            comboFilePatternCanceled = false;
-                        } else {
-                            closeWindow();
-                        }
+            @Override
+            public void keyTyped(KeyEvent e) { }
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    if (comboFilePatternCanceled) {
+                        comboFilePatternCanceled = false;
+                    } else {
+                        closeWindow();
                     }
-                    updateFindButtonStatus(false);
                 }
+                updateFindButtonStatus(false);
+            }
 
-                @Override
-                public void keyPressed(KeyEvent e) { }
-            });
+            @Override
+            public void keyPressed(KeyEvent e) { }
+        });
 
         comboWordPattern.addPopupMenuListener(new PopupMenuListener() {
-                @Override
-                public void popupMenuCanceled(PopupMenuEvent e) {
-                    comboWordPatternCanceled = true;
-                }
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+                comboWordPatternCanceled = true;
+            }
 
-                @Override
-                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
 
-                @Override
-                public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
-            });
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
+        });
 
         comboWordPattern.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent e) { }
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                        if (comboWordPatternCanceled) {
-                            comboWordPatternCanceled = false;
-                        } else {
-                            closeWindow();
-                        }
-                    }
-                    if (checkRegular.isSelected()) {
-                        try {
-                            Pattern.compile((String) comboWordPattern.getEditor().getItem());
-                            ((JTextField) comboWordPattern.getEditor().getEditorComponent()).setForeground(NORMALCOLOR);
-                            buttonFind.setEnabled(true);
-                        } catch (PatternSyntaxException pse) {
-                            ((JTextField) comboWordPattern.getEditor().getEditorComponent()).setForeground(ERRORCOLOR);
-                            buttonFind.setEnabled(false);
-                        }
+            @Override
+            public void keyTyped(KeyEvent e) { }
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    if (comboWordPatternCanceled) {
+                        comboWordPatternCanceled = false;
+                    } else {
+                        closeWindow();
                     }
                 }
+                if (checkRegular.isSelected()) {
+                    try {
+                        Pattern.compile((String) comboWordPattern.getEditor().getItem());
+                        ((JTextField) comboWordPattern.getEditor().getEditorComponent()).setForeground(NORMALCOLOR);
+                        buttonFind.setEnabled(true);
+                    } catch (PatternSyntaxException pse) {
+                        ((JTextField) comboWordPattern.getEditor().getEditorComponent()).setForeground(ERRORCOLOR);
+                        buttonFind.setEnabled(false);
+                    }
+                }
+            }
 
-                @Override
-                public void keyPressed(KeyEvent e) { }
-            });
+            @Override
+            public void keyPressed(KeyEvent e) { }
+        });
 
         mainFrame.pack();
         mainFrame.setResizable(false);

@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -14,7 +14,7 @@
 
 
 #if defined(__SCILAB_TOOLBOX__) && !defined(__INTERNAL_API_SCILAB__) && !defined(__USE_DEPRECATED_STACK_FUNCTIONS__) && !defined(__MEX_INCLUDE__)
-    #error Using stack2.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack2.h API will be removed after Scilab 6.0. You can define __USE_DEPRECATED_STACK_FUNCTIONS__ to bypass this error.
+#error Using stack2.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack2.h API will be removed after Scilab 6.0. You can define __USE_DEPRECATED_STACK_FUNCTIONS__ to bypass this error.
 #endif
 
 #include "machine.h"
@@ -41,30 +41,30 @@ void z2double(double *ptrz, double *ptrsci, int size, int lda);
 
 /* from int */
 
-extern  int C2F(tpconv)(int *,int *,int *,void *, int *,void *, int *);
+extern  int C2F(tpconv)(int *, int *, int *, void *, int *, void *, int *);
 
 /* from system */
 
 extern int C2F(mklist)(int *);
-extern int C2F(mklistt)(int *,int *);
+extern int C2F(mklistt)(int *, int *);
 extern int C2F(funs)(int *);
-extern int C2F(putid)(int *,int *);
+extern int C2F(putid)(int *, int *);
 extern int C2F(allowptr)(int *);
 extern int C2F(ref2val)(void);
 extern int C2F(allops)(void);
-extern int C2F(putfunnam)(char *fname,int *lw, unsigned long);
+extern int C2F(putfunnam)(char *fname, int *lw, unsigned long);
 
 /* from somewhere (maybe stack1.h) */
 
-extern void C2F(setfeval)(char *,int *);
+extern void C2F(setfeval)(char *, int *);
 extern int C2F(fakecresmat2)(int *lw, int *nchar, int *lr);
 /* from stack2.h */
-int C2F(isoptlw)(int *topk,int  *lw, char *namex, unsigned long name_len);
+int C2F(isoptlw)(int *topk, int  *lw, char *namex, unsigned long name_len);
 int C2F(numopt)(void);
 
 int C2F(convert2sci)(int *);
 
-/* 
+/*
  * returns the type of object at position lw in the stack
  * @param lw position
  * @return the type of object at position lw in the stack
@@ -85,7 +85,7 @@ int C2F(putlhsvar)(void);
 
 int C2F(isref)(int *lw);
 int C2F(vartype)(int *number);
-int C2F(elementtype)(int *lnumber,int *number);
+int C2F(elementtype)(int *lnumber, int *number);
 
 /**
  * Create a variable into the Scilab stack
@@ -100,9 +100,9 @@ int C2F(elementtype)(int *lnumber,int *number);
  */
 int C2F(createvar)(int *lw, char *type__, int *m, int *n, int *lr, unsigned long type_len);
 
-int C2F(creatework) (int *number,int *m,int  *lr);
+int C2F(creatework) (int *number, int *m, int  *lr);
 
-int C2F(setworksize) (int *number,int *size);
+int C2F(setworksize) (int *number, int *size);
 
 
 /**
@@ -197,7 +197,7 @@ int C2F(getlistrhscvar)(int *lnumber, int *number, char *type__, int *it, int *m
  * @param iptr the data we want to add into the stack
  * @param type_len length of the char *type__
  */
-int C2F(createvarfromptr)(int *number, char *type__, int *m, int *n,void *iptr, unsigned long type_len);
+int C2F(createvarfromptr)(int *number, char *type__, int *m, int *n, void *iptr, unsigned long type_len);
 
 
 /**
@@ -227,13 +227,13 @@ int C2F(maxvol)(int *lw, char *type__, unsigned long type_len);
 
 int  C2F(createlistvarfromptr) (int *lnumber, int *number, char *typex, int *m, int *n, void *iptr, long unsigned int type_len);
 
-int C2F(createlistcvarfromptr) (int * lnumber,int * number, char * typex,int *it,int * m,int * n, void *iptr, void * iptc, unsigned long ttype_len);
-int C2F(createlistcvarfrom)(int *lnumber, int *number, char *typex, int *it, int *m,int *n,int *lr,int *lc,int *lar,int *lac, unsigned long type_len);
+int C2F(createlistcvarfromptr) (int * lnumber, int * number, char * typex, int *it, int * m, int * n, void *iptr, void * iptc, unsigned long ttype_len);
+int C2F(createlistcvarfrom)(int *lnumber, int *number, char *typex, int *it, int *m, int *n, int *lr, int *lc, int *lar, int *lac, unsigned long type_len);
 
 int C2F(createdata)(int *lw, int n);
 
 char * ArgPosition(int i);
-char * ArgsPosition(int i,int j);
+char * ArgsPosition(int i, int j);
 
 int IsRef(int lw);
 int Ref2val(int from , int to ) ;
@@ -247,24 +247,24 @@ int C2F(createreffromname)(int number, char *name );
 int C2F(createreference)( int number, int pointed );
 int C2F(changetoref)( int number, int pointed );
 
-int check_square(int pos,int m,int n);
-int check_vector(int pos,int m,int n);
-int check_row(int pos,int m,int n);
-int check_col(int pos,int m,int n);
-int check_scalar(int pos,int m,int n);
-int check_dims(int pos,int m,int n,int m1,int n1);
-int check_length(int pos,int m,int n);
-int check_same_dims  (int pos1,int pos2,int m1,int n1,int m2,int n2);
-int check_dim_prop (int pos1,int pos2,int n);
-int check_one_dim  (int pos1,int dim,int val,int valref);
+int check_square(int pos, int m, int n);
+int check_vector(int pos, int m, int n);
+int check_row(int pos, int m, int n);
+int check_col(int pos, int m, int n);
+int check_scalar(int pos, int m, int n);
+int check_dims(int pos, int m, int n, int m1, int n1);
+int check_length(int pos, int m, int n);
+int check_same_dims  (int pos1, int pos2, int m1, int n1, int m2, int n2);
+int check_dim_prop (int pos1, int pos2, int n);
+int check_one_dim  (int pos1, int dim, int val, int valref);
 
-int check_list_square(int lpos,int pos,int m,int n);
-int check_list_vector(int lpos,int pos,int m,int n);
-int check_list_row(int lpos,int pos,int m,int n);
-int check_list_col(int lpos,int pos,int m,int n);
-int check_list_scalar(int lpos,int pos,int m,int n);
-int check_list_one_dim(int lpos,int pos,int dim,int val,int valref);
+int check_list_square(int lpos, int pos, int m, int n);
+int check_list_vector(int lpos, int pos, int m, int n);
+int check_list_row(int lpos, int pos, int m, int n);
+int check_list_col(int lpos, int pos, int m, int n);
+int check_list_scalar(int lpos, int pos, int m, int n);
+int check_list_one_dim(int lpos, int pos, int dim, int val, int valref);
 
-int C2F(overload)(int *lw,char *fname,unsigned long l);
+int C2F(overload)(int *lw, char *fname, unsigned long l);
 
 #endif

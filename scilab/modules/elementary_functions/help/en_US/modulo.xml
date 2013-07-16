@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2013 - Samuel GOUGEON
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -30,13 +31,13 @@
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>real vector or matrix </para>
+                    <para>real or polynomial vector or matrix </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>m</term>
                 <listitem>
-                    <para>real vector or matrix </para>
+                    <para>real or polynomial vector or matrix </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -48,16 +49,15 @@
                 m)
             </code>
             i.e. remainder of <varname>n</varname> divided by
-            <varname>m</varname> (<varname>n</varname> and <varname>m</varname>
-            are integers).
+            <varname>m</varname>.
         </para>
         <para>
             <code>i = n - m .* int (n ./ m)</code>. Here the answer may be negative
             if <varname>n</varname> or <varname>m</varname> are negative.
         </para>
         <para>
-            <function>pmodulo</function> computes <code>i = n - m .* floor (n
-                ./ m)
+            <function>pmodulo</function> computes <code>i = n - |m| .* floor (n
+                ./ |m|)
             </code>
             , the answer is positive or zero.
         </para>
@@ -69,13 +69,25 @@
         </para>
     </refsection>
     <refsection>
+        <title>Remark</title>
+        <para><note>
+                If m and n are vector or matrix type, m and n must have the same dimensions.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-n=[1,2,10,15];m=[2,2,3,5];
+n = [1,2,10,15];
+m = [2,2,3,5];
 modulo(n,m)
 
-modulo(-3,9)
-pmodulo(-3,9)
+modulo(-3, 9)
+modulo(10, -4)
+
+pmodulo(-3, 9)
+pmodulo(10, -6)
+pmodulo(-10, -6)
  ]]></programlisting>
     </refsection>
 </refentry>

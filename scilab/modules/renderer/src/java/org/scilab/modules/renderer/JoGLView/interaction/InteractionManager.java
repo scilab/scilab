@@ -58,29 +58,29 @@ public class InteractionManager implements RubberBoxListener {
         dragZoomRotateInteraction.setEnable(false);
 
         rubberBox.addListener(new RubberBoxListener() {
-			public void rubberBoxEnd() {
-				dragZoomRotateInteraction.setEnable(true);
-				drawerVisitor.removePostRendering(rubberBox);
-			}
-		});
+            public void rubberBoxEnd() {
+                dragZoomRotateInteraction.setEnable(true);
+                drawerVisitor.removePostRendering(rubberBox);
+            }
+        });
         drawerVisitor.addPostRendering(rubberBox);
         rubberBox.setEnable(true);
     }
 
     public double[] startClickRubberBox(double initialRect[]) {
-        final BlockingResult<double []> result = new BlockingResult<double[]>(); 
+        final BlockingResult<double []> result = new BlockingResult<double[]>();
         final PointRubberBox rubberBox;
         if (initialRect.length == 0) {
             rubberBox = new TwoPointsRubberBox(drawerVisitor);
         } else {
             rubberBox = new OnePointRubberBox(drawerVisitor, initialRect);
         }
-        	
+
         dragZoomRotateInteraction.setEnable(false);
         rubberBox.addListener(new RubberBoxListener() {
             @Override
             public void rubberBoxEnd() {
-            	result.setResult(rubberBox.getResults());
+                result.setResult(rubberBox.getResults());
                 dragZoomRotateInteraction.setEnable(true);
                 drawerVisitor.removePostRendering(rubberBox);
             }
@@ -89,17 +89,17 @@ public class InteractionManager implements RubberBoxListener {
         rubberBox.setEnable(true);
         return result.getResult();
     }
-    
+
     public double[] startDragRubberBox() {
-        final BlockingResult<double []> result = new BlockingResult<double []>(); 
+        final BlockingResult<double []> result = new BlockingResult<double []>();
         final DragPointRubberBox rubberBox = new DragPointRubberBox(drawerVisitor);
 
         dragZoomRotateInteraction.setEnable(false);
         rubberBox.addListener(new RubberBoxListener() {
             @Override
             public void rubberBoxEnd() {
-            	result.setResult(rubberBox.getResults());
-            	dragZoomRotateInteraction.setEnable(true);
+                result.setResult(rubberBox.getResults());
+                dragZoomRotateInteraction.setEnable(true);
                 drawerVisitor.removePostRendering(rubberBox);
             }
         });
@@ -107,7 +107,7 @@ public class InteractionManager implements RubberBoxListener {
         rubberBox.setEnable(true);
         return result.getResult();
     }
-    
+
     @Override
     public void rubberBoxEnd() {
         dragZoomRotateInteraction.setEnable(true);

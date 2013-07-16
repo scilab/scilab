@@ -11,8 +11,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            Displays calling tree to instruction which contain <literal>whereami()</literal>. May be
-            used within <literal>pause</literal> levels.
+            Displays calling tree to instruction which contain <code>whereami()</code>. May be
+            used within <function>pause</function> levels.
         </para>
     </refsection>
     <refsection>

@@ -52,7 +52,9 @@
             Use the Scilab graphic objects representation instead (see the
             <link linkend="set">set</link> and <link linkend="get">get</link>
             functions as well as the <link linkend="graphics_entities">graphics
-            entities</link> help page).
+                entities
+            </link>
+            help page).
         </para>
         <para>
             <function>xset</function> is used to set default values of the
@@ -157,8 +159,8 @@
                 <term>xset("font", fontid, fontsize):</term>
                 <listitem>
                     <para>
-                         Set the current font and its current size. Note that
-                         <literal>fontsize</literal> applies to all fonts not
+                        Set the current font and its current size. Note that
+                        <literal>fontsize</literal> applies to all fonts not
                         only <literal>fontid</literal>.
                     </para>
                 </listitem>

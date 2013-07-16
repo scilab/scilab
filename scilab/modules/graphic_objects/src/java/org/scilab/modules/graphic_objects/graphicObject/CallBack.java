@@ -62,7 +62,7 @@ public class CallBack {
      * The command type
      */
     private int commandType;
-    
+
     /**
      * Constructor to be seen by specifics CallBack.
      * @param command the command associated to the ccallback
@@ -74,7 +74,7 @@ public class CallBack {
     /**
      * Constructor to be seen by specifics CallBack.
      * @param command the command associated to the ccallback
-     * @param commandType the command type 
+     * @param commandType the command type
      */
     public CallBack(String command, int commandType) {
         this.command = command;
@@ -87,21 +87,21 @@ public class CallBack {
     public void setCommand(String command) {
         this.command = command;
     }
-    
+
     /**
      * @return the command if it's a Scilab instruction.
      */
     public String getCommand() {
         return command;
     }
-    
+
     /**
      * @param commandType sets the command
      */
     public void setCommandType(int commandType) {
         this.commandType = commandType;
     }
-    
+
     /**
      * @return the command type
      */

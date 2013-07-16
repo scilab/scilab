@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="analyze">
     <refnamediv>
         <refname>analyze</refname>
-        <refpurpose>frequency plot of a sound  signal</refpurpose>
+        <refpurpose>frequency plot of a sound signal</refpurpose>
     </refnamediv>
     <refsection>
         <title>Arguments</title>
@@ -46,5 +46,12 @@ s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
 s(nc/2:nc)=sin(330*t(nc/2:nc));
 analyze(s);
  ]]></programlisting>
+        <scilab:image>
+            t=soundsec(0.5);
+            s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
+            [nr,nc]=size(t);
+            s(nc/2:nc)=sin(330*t(nc/2:nc));
+            analyze(s);
+        </scilab:image>
     </refsection>
 </refentry>

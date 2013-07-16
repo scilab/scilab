@@ -21,7 +21,7 @@
 
 using namespace std;
 
-#define TREE_REF_NAME "Tree"
+#define TREE_REF_NAME "uitree"
 
 bool bParseListItem(void* _pvApiCtx, int *_piCurrentItem, int icountItem, std::vector<std::string> *_pvStructList, std::string _szLevel);
 

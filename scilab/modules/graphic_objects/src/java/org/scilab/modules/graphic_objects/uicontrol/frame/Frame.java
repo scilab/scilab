@@ -22,12 +22,12 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 public class Frame extends Uicontrol {
 
     /**
-	 * Constructor
-	 */
-	public Frame() {
-		super();
-		setStyle(__GO_UI_FRAME__);
+     * Constructor
+     */
+    public Frame() {
+        super();
+        setStyle(__GO_UI_FRAME__);
         setRelief(RIDGE_RELIEF);
-	}
+    }
 
 }

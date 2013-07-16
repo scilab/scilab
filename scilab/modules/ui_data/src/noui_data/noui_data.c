@@ -13,23 +13,23 @@
 #include "noui_data.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "UpdateBrowseVar.h"
+#include "BrowseVarManager.h"
 #include "FileBrowserChDir.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 int gw_ui_data(void)
 {
-        Scierror(999,_("Scilab '%s' module not installed.\n"), "ui_data");
-        return 0;
+    Scierror(999, _("Scilab '%s' module not installed.\n"), "ui_data");
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 void UpdateBrowseVar(BOOL b)
 {
-        return;
+    return;
 }
 /*--------------------------------------------------------------------------*/
 void FileBrowserChDir(char * baseDir)
 {
-        return;
+    return;
 }
 /*--------------------------------------------------------------------------*/

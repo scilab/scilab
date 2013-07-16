@@ -34,30 +34,30 @@ namespace Faddeeva
 {
 
 // compute w(z) = exp(-z^2) erfc(-iz) [ Faddeeva / scaled complex error func ]
-ELEMENTARY_FUNCTIONS_IMPEXP std::complex<double> w(std::complex<double> z, double relerr = 0);
-ELEMENTARY_FUNCTIONS_IMPEXP double w_im(double x); // special-case code for Im[w(x)] of real x
+std::complex<double> w(std::complex<double> z, double relerr = 0);
+double w_im(double x); // special-case code for Im[w(x)] of real x
 
 // Various functions that we can compute with the help of w(z)
 
 // compute erfcx(z) = exp(z^2) erfc(z)
-ELEMENTARY_FUNCTIONS_IMPEXP std::complex<double> erfcx(std::complex<double> z, double relerr = 0);
-ELEMENTARY_FUNCTIONS_IMPEXP double erfcx(double x); // special case for real x
+std::complex<double> erfcx(std::complex<double> z, double relerr = 0);
+double erfcx(double x); // special case for real x
 
 // compute erf(z), the error function of complex arguments
-ELEMENTARY_FUNCTIONS_IMPEXP std::complex<double> erf(std::complex<double> z, double relerr = 0);
-ELEMENTARY_FUNCTIONS_IMPEXP double erf(double x); // special case for real x
+std::complex<double> erf(std::complex<double> z, double relerr = 0);
+double erf(double x); // special case for real x
 
 // compute erfi(z) = -i erf(iz), the imaginary error function
-ELEMENTARY_FUNCTIONS_IMPEXP std::complex<double> erfi(std::complex<double> z, double relerr = 0);
-ELEMENTARY_FUNCTIONS_IMPEXP double erfi(double x); // special case for real x
+std::complex<double> erfi(std::complex<double> z, double relerr = 0);
+double erfi(double x); // special case for real x
 
 // compute erfc(z) = 1 - erf(z), the complementary error function
-ELEMENTARY_FUNCTIONS_IMPEXP std::complex<double> erfc(std::complex<double> z, double relerr = 0);
-ELEMENTARY_FUNCTIONS_IMPEXP double erfc(double x); // special case for real x
+std::complex<double> erfc(std::complex<double> z, double relerr = 0);
+double erfc(double x); // special case for real x
 
 // compute Dawson(z) = sqrt(pi)/2  *  exp(-z^2) * erfi(z)
-ELEMENTARY_FUNCTIONS_IMPEXP std::complex<double> Dawson(std::complex<double> z, double relerr = 0);
-ELEMENTARY_FUNCTIONS_IMPEXP double Dawson(double x); // special case for real x
+std::complex<double> Dawson(std::complex<double> z, double relerr = 0);
+double Dawson(double x); // special case for real x
 
 } // namespace Faddeeva
 

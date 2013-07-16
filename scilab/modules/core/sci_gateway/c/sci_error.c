@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Allan CORNET
  * Copyright (C) 2010-2012 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -32,25 +32,25 @@
 static int error_one_rhs(const char *fname);
 static int error_two_rhs(const char *fname);
 static int error_one_rhs_string(void *_pvCtx,
-    int* _piAddressOne,
-    const char *fname);
+                                int* _piAddressOne,
+                                const char *fname);
 static int error_one_rhs_number(void *_pvCtx,
-    int* _piAddressOne,
-    const char *fname);
+                                int* _piAddressOne,
+                                const char *fname);
 static int error_two_rhs_number_string(void *_pvCtx,
-    int* _piAddressString, int iVarString,
-    int* _piAddressNumber, int iVarNumber,
-    const char *fname);
+                                       int* _piAddressString, int iVarString,
+                                       int* _piAddressNumber, int iVarNumber,
+                                       const char *fname);
 static int error_two_rhs_number_number(void *_pvCtx,
-    int* _piAddressOne,
-    int* _piAddressTwo,
-    const char *fname);
+                                       int* _piAddressOne,
+                                       int* _piAddressTwo,
+                                       const char *fname);
 static char *concatenateStrings(const char **pStrs, int nbElements);
 static void setErrorMessage(const char *fname,
-    int iErrorCode,
-    int iErrorPosition,
-    const char **pMessages,
-    int nbElements);
+                            int iErrorCode,
+                            int iErrorPosition,
+                            const char **pMessages,
+                            int nbElements);
 
 /*--------------------------------------------------------------------------*/
 int C2F(sci_error)(char *fname, unsigned long fname_len)
@@ -74,7 +74,7 @@ static int error_one_rhs(const char *fname)
     SciErr sciErr;
     int *piAddressVarOne = NULL;
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -91,7 +91,7 @@ static int error_one_rhs(const char *fname)
         }
         else
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
         }
     }
 
@@ -105,7 +105,7 @@ static int error_two_rhs(const char *fname)
     int *piAddressVarTwo = NULL;
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -113,7 +113,7 @@ static int error_two_rhs(const char *fname)
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
@@ -139,9 +139,9 @@ static int error_two_rhs(const char *fname)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int error_one_rhs_string(void *_pvCtx, 
-    int* _piAddressOne,
-    const char *fname)
+static int error_one_rhs_string(void *_pvCtx,
+                                int* _piAddressOne,
+                                const char *fname)
 {
     if (isRowVector(_pvCtx, _piAddressOne) || isColumnVector(_pvCtx, _piAddressOne) || isScalar(_pvCtx, _piAddressOne))
     {
@@ -162,21 +162,21 @@ static int error_one_rhs_string(void *_pvCtx,
     }
     else
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
     }
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int error_one_rhs_number(void *_pvCtx,
-    int* _piAddressOne,
-    const char *fname)
+                                int* _piAddressOne,
+                                const char *fname)
 {
     double dValue = 0.;
     int iErrorCode = 0;
 
     if (!isScalar(_pvCtx, _piAddressOne))
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
         return 0;
     }
 
@@ -195,7 +195,7 @@ static int error_one_rhs_number(void *_pvCtx,
 
     if (iErrorCode <= 0)
     {
-        Scierror(999 ,_("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), fname, 1);
+        Scierror(999 , _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), fname, 1);
         return 0;
     }
 
@@ -205,9 +205,9 @@ static int error_one_rhs_number(void *_pvCtx,
 }
 /*--------------------------------------------------------------------------*/
 static int error_two_rhs_number_number(void *_pvCtx,
-    int* _piAddressOne,
-    int* _piAddressTwo,
-    const char *fname)
+                                       int* _piAddressOne,
+                                       int* _piAddressTwo,
+                                       const char *fname)
 {
     double dValue1 = 0.;
     double dValue2 = 0.;
@@ -216,13 +216,13 @@ static int error_two_rhs_number_number(void *_pvCtx,
 
     if (!isScalar(_pvCtx, _piAddressOne))
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
         return 0;
     }
 
     if (!isScalar(_pvCtx, _piAddressTwo))
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
         return 0;
     }
 
@@ -254,13 +254,13 @@ static int error_two_rhs_number_number(void *_pvCtx,
 
     if (iErrorCode <= 0)
     {
-        Scierror(999 ,_("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), fname, 1);
+        Scierror(999 , _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), fname, 1);
         return 0;
     }
 
     if (iErrorPosition <= 0)
     {
-        Scierror(999 ,_("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), fname, 2);
+        Scierror(999 , _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), fname, 2);
         return 0;
     }
 
@@ -269,16 +269,16 @@ static int error_two_rhs_number_number(void *_pvCtx,
 }
 /*--------------------------------------------------------------------------*/
 static int error_two_rhs_number_string(void *_pvCtx,
-    int* _piAddressString, int iVarString,
-    int* _piAddressNumber, int iVarNumber,
-    const char *fname)
+                                       int* _piAddressString, int iVarString,
+                                       int* _piAddressNumber, int iVarNumber,
+                                       const char *fname)
 {
     double dValue = 0.;
     int iErrorCode = 0;
 
     if (!isScalar(_pvCtx, _piAddressNumber))
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, iVarNumber);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, iVarNumber);
         return 0;
     }
 
@@ -297,7 +297,7 @@ static int error_two_rhs_number_string(void *_pvCtx,
 
     if (iErrorCode <= 0)
     {
-        Scierror(999 ,_("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), fname, iVarNumber);
+        Scierror(999 , _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), fname, iVarNumber);
         return 0;
     }
 
@@ -320,16 +320,16 @@ static int error_two_rhs_number_string(void *_pvCtx,
     }
     else
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d.\n"), fname, iVarString);
+        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, iVarString);
     }
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 static void setErrorMessage(const char *fname,
-    int iErrorCode,
-    int iErrorPosition,
-    const char **pMessages,
-    int nbElements)
+                            int iErrorCode,
+                            int iErrorPosition,
+                            const char **pMessages,
+                            int nbElements)
 {
     /* empty Fortran buffer */
     memset(bufferErrorMessage, 0, sizeof(char) * bsiz);
@@ -396,7 +396,10 @@ static char *concatenateStrings(const char **pStrs, int nbElements)
         {
             strcat(concatenatedString, pStrs[i]);
         }
-        if (i < nbElements - 1) strcat(concatenatedString, "\n");
+        if (i < nbElements - 1)
+        {
+            strcat(concatenatedString, "\n");
+        }
     }
     return concatenatedString;
 }

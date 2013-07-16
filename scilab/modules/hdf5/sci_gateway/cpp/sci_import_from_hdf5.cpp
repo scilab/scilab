@@ -26,6 +26,7 @@ extern "C"
 #include "h5_attributeConstants.h"
 #include "intmacr2tree.h"
 #include "expandPathVariable.h"
+#include "stdlib.h"
 }
 
 #include "import_from_hdf5_v1.hxx"
@@ -51,8 +52,8 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
     char* pstFilename = NULL;
     char* pstExpandedFilename = NULL;
     bool bImport = true;
-
-    int iSelectedVar = Rhs - 1;
+    const int nbIn = nbInputArgument(pvApiCtx);
+    int iSelectedVar = nbIn - 1;
 
     CheckInputArgumentAtLeast(pvApiCtx, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
@@ -160,7 +161,7 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
 
     int *piReturn = NULL;
 
-    sciErr = allocMatrixOfBoolean(pvApiCtx, Rhs + 1, 1, 1, &piReturn);
+    sciErr = allocMatrixOfBoolean(pvApiCtx, nbIn + 1, 1, 1, &piReturn);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -176,7 +177,7 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
         piReturn[0] = 0;
     }
 
-    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
     ReturnArguments(pvApiCtx);
 
     //  printf("End gateway !!!\n");
@@ -186,7 +187,7 @@ int sci_import_from_hdf5(char *fname, unsigned long fname_len)
 static bool import_variable(int _iFile, char* _pstVarName)
 {
     int iDataSetId = getDataSetIdFromName(_iFile, _pstVarName);
-    if (iDataSetId == 0)
+    if (iDataSetId <= 0)
     {
         return false;
     }
@@ -328,32 +329,37 @@ static bool import_double(int _iDatasetId, int _iItemPos, int *_piAddress, char 
         return false;
     }
 
-    piDims = (int*)MALLOC(sizeof(int) * iDims);
-    iSize = getDatasetInfo(_iDatasetId, &iComplex, &iDims, piDims);
-
-    if (iDims == 2 && piDims[0] * piDims[1] != 0)
+    if (iDims != 0)
     {
-        if (iComplex)
-        {
-            pdblReal = (double *)MALLOC(iSize * sizeof(double));
-            pdblImg = (double *)MALLOC(iSize * sizeof(double));
-            iRet = readDoubleComplexMatrix(_iDatasetId, pdblReal, pdblImg);
-        }
-        else
-        {
-            pdblReal = (double *)MALLOC(iSize * sizeof(double));
-            iRet = readDoubleMatrix(_iDatasetId, pdblReal);
-        }
+        piDims = (int*)MALLOC(sizeof(int) * iDims);
+        iSize = getDatasetInfo(_iDatasetId, &iComplex, &iDims, piDims);
 
-        if (iRet)
+        if (iDims == 2 && piDims[0] * piDims[1] != 0)
         {
+            if (iComplex)
+            {
+                pdblReal = (double *)MALLOC(iSize * sizeof(double));
+                pdblImg = (double *)MALLOC(iSize * sizeof(double));
+                iRet = readDoubleComplexMatrix(_iDatasetId, pdblReal, pdblImg);
+            }
+            else
+            {
+                pdblReal = (double *)MALLOC(iSize * sizeof(double));
+                iRet = readDoubleMatrix(_iDatasetId, pdblReal);
+            }
+
+            if (iRet)
+            {
+                FREE(piDims);
+                return false;
+            }
+        }
+        else if (iDims > 2)
+        {
+            //hypermatrix
+            FREE(piDims);
             return false;
         }
-    }
-    else if (iDims > 2)
-    {
-        //hypermatrix
-        return false;
     }
     else
     {
@@ -399,6 +405,7 @@ static bool import_double(int _iDatasetId, int _iItemPos, int *_piAddress, char 
         return false;
     }
 
+    FREE(piDims);
     if (pdblReal)
     {
         FREE(pdblReal);
@@ -441,6 +448,7 @@ static bool import_string(int _iDatasetId, int _iItemPos, int *_piAddress, char 
     iRet = readStringMatrix(_iDatasetId, pstData);
     if (iRet)
     {
+        FREE(piDims);
         return false;
     }
 
@@ -456,9 +464,20 @@ static bool import_string(int _iDatasetId, int _iItemPos, int *_piAddress, char 
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(piDims);
+        for (int i = 0 ; i < iSize ; i++)
+        {
+            free(pstData[i]);
+        }
+        FREE(pstData);
         return false;
     }
 
+    FREE(piDims);
+    for (int i = 0 ; i < iSize ; i++)
+    {
+        free(pstData[i]);
+    }
     FREE(pstData);
 
     return true;
@@ -705,6 +724,8 @@ static bool import_boolean(int _iDatasetId, int _iItemPos, int *_piAddress, char
         iRet = readBooleanMatrix(_iDatasetId, piData);
         if (iRet)
         {
+            FREE(piData);
+            FREE(piDims);
             return false;
         }
     }
@@ -721,9 +742,15 @@ static bool import_boolean(int _iDatasetId, int _iItemPos, int *_piAddress, char
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(piDims);
+        if (piData)
+        {
+            FREE(piData);
+        }
         return false;
     }
 
+    FREE(piDims);
     if (piData)
     {
         FREE(piData);

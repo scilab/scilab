@@ -10,7 +10,7 @@
 *
 */
 
-#define H5_USE_16_API
+#define H5_NO_DEPRECATED_SYMBOLS
 
 #ifndef _MSC_VER
 #include <sys/time.h>
@@ -30,7 +30,7 @@
 
 //#define TIME_DEBUG
 
-static herr_t find_attr_by_name(hid_t loc_id, const char *name, void *data)
+static herr_t find_attr_by_name(hid_t loc_id, const char *name, const H5A_info_t *ainfo, void *data)
 {
     return !strcmp(name, (const char *)data);
 }
@@ -41,33 +41,35 @@ Operator function.  Prints the name and type of the object
 being examined.
 
 ************************************************************/
-static herr_t op_func(hid_t loc_id, const char *name, void *operator_data)
+static herr_t op_func(hid_t loc_id, const char *name, const H5L_info_t *info, void *operator_data)
 {
-    H5G_stat_t statbuf;
+    H5O_info_t oinfo;
     herr_t status = 0;
     int *pDataSetId = (int*)operator_data;
+    hid_t obj = H5Oopen(loc_id, name, H5P_DEFAULT);
+    if (obj < 0)
+    {
+        return -1;
+    }
 
     /*
      * Get type of the object and return only datasetId
      * through operator_data.
      */
-    status = H5Gget_objinfo(loc_id, name, 0, &statbuf);
+    status = H5Oget_info(obj, &oinfo);
     if (status < 0)
     {
+        H5Oclose(obj);
         return -1;
     }
 
-    switch (statbuf.type)
+    if (oinfo.type == H5O_TYPE_DATASET)
     {
-        case H5G_GROUP:
-            break;
-        case H5G_DATASET:
-            *pDataSetId = H5Dopen(loc_id, name);
-            break;
-        case H5G_TYPE:
-            break;
-        default:
-            break;
+        *pDataSetId = obj;
+    }
+    else
+    {
+        H5Oclose(obj);
     }
 
     return 0;
@@ -78,10 +80,11 @@ static int readIntAttribute(int _iDatasetId, const char *_pstName)
     hid_t iAttributeId;
     herr_t status;
     int iVal = -1;
+    hsize_t n = 0;
 
-    if (H5Aiterate(_iDatasetId, NULL, find_attr_by_name, (void *)_pstName))
+    if (H5Aiterate(_iDatasetId, H5_INDEX_NAME, H5_ITER_NATIVE, &n, find_attr_by_name, (void *)_pstName) > 0)
     {
-        iAttributeId = H5Aopen_name(_iDatasetId, _pstName);
+        iAttributeId = H5Aopen(_iDatasetId, _pstName, H5P_DEFAULT);
         if (iAttributeId < 0)
         {
             return -1;
@@ -112,12 +115,13 @@ static char* readAttribute(int _iDatasetId, const char *_pstName)
     herr_t status;
     hsize_t dims[1];
     size_t iDim;
+    hsize_t n = 0;
 
     char *pstValue = NULL;
 
-    if (H5Aiterate(_iDatasetId, NULL, find_attr_by_name, (void *)_pstName))
+    if (H5Aiterate(_iDatasetId, H5_INDEX_NAME, H5_ITER_NATIVE, &n, find_attr_by_name, (void *)_pstName) > 0)
     {
-        iAttributeId = H5Aopen_name(_iDatasetId, _pstName);
+        iAttributeId = H5Aopen(_iDatasetId, _pstName, H5P_DEFAULT);
         if (iAttributeId < 0)
         {
             return NULL;
@@ -268,7 +272,7 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
         return -1;
     }
 
-    if (_piDims != 0)
+    if (_piDims != 0 && *_iDims != 0)
     {
         int i = 0;
         hsize_t* dims = (hsize_t*)MALLOC(sizeof(hsize_t) * *_iDims);
@@ -286,6 +290,11 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
             iSize *= _piDims[i];
         }
 
+        FREE(dims);
+    }
+    else
+    {
+        iSize = 0;
     }
 
     H5Sclose(space);
@@ -370,24 +379,31 @@ int getVariableNames(int _iFile, char **pstNameList)
     hsize_t iCount = 0;
     herr_t status = 0;
     int iNbItem = 0;
+    H5O_info_t oinfo;
+    H5G_info_t ginfo;
 
-    status = H5Gget_num_objs(_iFile, &iCount);
+    status = H5Gget_info(_iFile, &ginfo);
     if (status != 0)
     {
         return 0;
     }
 
+    iCount = ginfo.nlinks;
     for (i = 0; i < iCount; i++)
     {
-        if (H5Gget_objtype_by_idx(_iFile, i) == H5G_DATASET)
+        status = H5Oget_info_by_idx(_iFile, "/", H5_INDEX_NAME, H5_ITER_NATIVE, i, &oinfo, H5P_DEFAULT);
+        if (status < 0)
+        {
+            return 0;
+        }
+
+        if (oinfo.type == H5O_TYPE_DATASET)
         {
             if (pstNameList != NULL)
             {
-                int iLen = 0;
-
-                iLen = (int)H5Gget_objname_by_idx(_iFile, i, NULL, iLen);
-                pstNameList[iNbItem] = (char *)MALLOC(sizeof(char) * (iLen + 1));   //null terminated
-                H5Gget_objname_by_idx(_iFile, i, pstNameList[iNbItem], iLen + 1);
+                ssize_t iLen = H5Lget_name_by_idx(_iFile, ".", H5_INDEX_NAME, H5_ITER_INC, i, 0, 0, H5P_DEFAULT) + 1;
+                pstNameList[iNbItem] = (char*)MALLOC(sizeof(char) * iLen);
+                H5Lget_name_by_idx(_iFile, ".", H5_INDEX_NAME, H5_ITER_INC, i, pstNameList[iNbItem], iLen, H5P_DEFAULT);
             }
             iNbItem++;
         }
@@ -397,7 +413,7 @@ int getVariableNames(int _iFile, char **pstNameList)
 
 int getDataSetIdFromName(int _iFile, char *_pstName)
 {
-    return H5Dopen(_iFile, _pstName);
+    return H5Dopen(_iFile, _pstName, H5P_DEFAULT);
 }
 
 void closeDataSet(int _id)
@@ -412,11 +428,12 @@ int getDataSetId(int _iFile)
 {
     herr_t status = 0;
     int iDatasetId = 0;
+    hsize_t idx = 0;
 
     /*
      * Begin iteration.
      */
-    status = H5Giterate(_iFile, "/", NULL, op_func, &iDatasetId);
+    status = H5Literate(_iFile, H5_INDEX_NAME, H5_ITER_NATIVE, &idx, op_func, &iDatasetId);
     if (status < 0)
     {
         return -1;

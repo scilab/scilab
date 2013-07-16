@@ -14,8 +14,8 @@
  -->
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="interpolation">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -30,17 +30,17 @@
  
  Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
-
-<PRIMITIVE gatewayId="19" primitiveId="1" primitiveName="splin" />
-<PRIMITIVE gatewayId="19" primitiveId="2" primitiveName="lsq_splin" />
-<PRIMITIVE gatewayId="19" primitiveId="3" primitiveName="interp" />
-<PRIMITIVE gatewayId="19" primitiveId="4" primitiveName="linear_interpn" />
-<PRIMITIVE gatewayId="19" primitiveId="5" primitiveName="splin2d" />
-<PRIMITIVE gatewayId="19" primitiveId="6" primitiveName="interp2d" />
-<PRIMITIVE gatewayId="19" primitiveId="7" primitiveName="cshep2d" />
-<PRIMITIVE gatewayId="19" primitiveId="8" primitiveName="eval_cshep2d" />
-<PRIMITIVE gatewayId="19" primitiveId="9" primitiveName="splin3d" />
-<PRIMITIVE gatewayId="19" primitiveId="10" primitiveName="interp3d" />
-<PRIMITIVE gatewayId="19" primitiveId="11" primitiveName="bsplin3val" />
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="19" primitiveId="1" primitiveName="splin" />
+    <PRIMITIVE gatewayId="19" primitiveId="2" primitiveName="lsq_splin" />
+    <PRIMITIVE gatewayId="19" primitiveId="3" primitiveName="interp" />
+    <PRIMITIVE gatewayId="19" primitiveId="4" primitiveName="linear_interpn" />
+    <PRIMITIVE gatewayId="19" primitiveId="5" primitiveName="splin2d" />
+    <PRIMITIVE gatewayId="19" primitiveId="6" primitiveName="interp2d" />
+    <PRIMITIVE gatewayId="19" primitiveId="7" primitiveName="cshep2d" />
+    <PRIMITIVE gatewayId="19" primitiveId="8" primitiveName="eval_cshep2d" />
+    <PRIMITIVE gatewayId="19" primitiveId="9" primitiveName="splin3d" />
+    <PRIMITIVE gatewayId="19" primitiveId="10" primitiveName="interp3d" />
+    <PRIMITIVE gatewayId="19" primitiveId="11" primitiveName="bsplin3val" />
 </GATEWAY>

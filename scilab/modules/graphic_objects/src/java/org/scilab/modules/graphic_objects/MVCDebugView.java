@@ -20,11 +20,11 @@ public class MVCDebugView {
     public static void showLogView() {
         GuiLogView.createGuiLogView().show();
     }
-   
+
     public static void showAllObjectsView() {
         FlattenTreeView.create().show();
     }
-    
+
     public static void showGedView() {
         GedTreeView.create().show();
     }

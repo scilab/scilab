@@ -63,7 +63,6 @@ public class Polyline extends ClippableContouredObject {
     /** Bar width */
     private double barWidth;
 
-
     /** Constructor */
     public Polyline() {
         super();

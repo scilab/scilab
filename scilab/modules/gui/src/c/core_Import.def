@@ -33,3 +33,5 @@ stack_
 StoreCommand
 vartype_
 vstk_
+MyHeapAlloc
+MyHeapFree

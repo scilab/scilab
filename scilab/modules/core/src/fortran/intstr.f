@@ -9,8 +9,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine intstr(n,istk,ni,job)
 c!but
-c     converti la representation decimale d'un entier en une chaine 
-c     de caractere scilab
+c     convertit la representation decimale d'un entier en une chaine 
+c     de caracteres scilab
 c!
       parameter (nc=20)
       character*(nc) buf

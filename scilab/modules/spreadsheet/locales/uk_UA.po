@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-15 19:42+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-03-19 18:34+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: uk\n"
 
 #, c-format
@@ -95,16 +95,6 @@ msgstr ""
 "«%s» , «%s», «%s», «%s», «%s» або «%s».\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
-"рядків.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: доступну пам’ять вичерпано.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Four entries expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути чотири записи.\n"
@@ -140,6 +130,12 @@ msgstr "%s: помилкове значення вхідного парамет�
 #, c-format
 msgid "%s: separator and decimal must have different values.\n"
 msgstr "%s: роздільник і десяткове число мають бути різними.\n"
+
+#, c-format
+msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
+msgstr ""
+"%s: решта номерів діапазону рядків або стовпчиків лежить поза межами "
+"доступного діапазону.\n"
 
 #, c-format
 msgid "%s: can not convert data.\n"
@@ -237,6 +233,10 @@ msgid "%s: The file has no Workbook directory.\n"
 msgstr "%s: у файлі не вказано каталогу робочої книги.\n"
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: доступну пам’ять вичерпано.\n"
+
+#, c-format
 msgid "%s: Incorrect or corrupted file.\n"
 msgstr "%s: помилковий або пошкоджений файл.\n"
 
@@ -266,6 +266,9 @@ msgid ""
 msgstr ""
 "%s: виявлено несумісності у стовпчика. У рядку %d виявлено %d стовпчики, "
 "хоча у попередньому їх було %d.\n"
+
+msgid "Warning"
+msgstr "Попередження"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"

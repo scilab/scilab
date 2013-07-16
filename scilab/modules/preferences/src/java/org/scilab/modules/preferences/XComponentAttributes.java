@@ -16,15 +16,15 @@ package org.scilab.modules.preferences;
  * XComponent attributes list
  */
 public final class XComponentAttributes {
-	
-	public static final String BACKGROUND = "background";
-	public static final String FOREGROUND = "foreground";
-	public static final String TOOLTIP = "tooltip";
-	
-	/**
-	 * Constructor
-	 */
-	private XComponentAttributes() {
-	
-	}
+
+    public static final String BACKGROUND = "background";
+    public static final String FOREGROUND = "foreground";
+    public static final String TOOLTIP = "tooltip";
+
+    /**
+     * Constructor
+     */
+    private XComponentAttributes() {
+
+    }
 }

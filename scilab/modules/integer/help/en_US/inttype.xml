@@ -11,84 +11,86 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="inttype">
-  <refnamediv>
-    <refname>inttype</refname>
-    <refpurpose> type integers used in integer data types</refpurpose>
-  </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>[i] = inttype(x)</synopsis>
-  </refsynopsisdiv>
-  <refsection>
-    <title>Arguments</title>
-    <variablelist>
-      <varlistentry>
-        <term>x</term>
-        <listitem>
-	  <para>a matrix of integers (see <function>int8</function>,...).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>i</term>
-        <listitem>
-          <para>an integer.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-  <refsection>
-    <title>Description</title>
-    <para>
-      <code>inttype(x)</code> returns an integer <varname>i</varname> which is the type of the entries
-      of <varname>x</varname> as following:
-    </para>
-    <para>
-      1 
-      :  one byte integer representation;
-    </para>
-    <para>
-      2 
-      :  two bytes integer representation;
-    </para>
-    <para>
-      4 
-      :  four bytes integer representation;
-    </para>
-    <para>
-      11 
-      :  one byte unsigned integer representation;
-    </para>
-    <para>
-      12 
-      :  two bytes unsigned integer representation;
-    </para>
-    <para>
-      14 
-      :  four bytes unsigned integer representation.
-    </para>
-    <para>
-      If type of <varname>x</varname> is <literal>double</literal> then <varname>i</varname> is <literal>0</literal>.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>inttype</refname>
+        <refpurpose> type integers used in integer data types</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[i] = inttype(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        a matrix of integers (see <function>int8</function>,...).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i</term>
+                <listitem>
+                    <para>an integer.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>inttype(x)</code> returns an integer <varname>i</varname> which is the type of the entries
+            of <varname>x</varname> as following:
+        </para>
+        <para>
+            1 
+            :  one byte integer representation;
+        </para>
+        <para>
+            2 
+            :  two bytes integer representation;
+        </para>
+        <para>
+            4 
+            :  four bytes integer representation;
+        </para>
+        <para>
+            11 
+            :  one byte unsigned integer representation;
+        </para>
+        <para>
+            12 
+            :  two bytes unsigned integer representation;
+        </para>
+        <para>
+            14 
+            :  four bytes unsigned integer representation.
+        </para>
+        <para>
+            If type of <varname>x</varname> is <literal>double</literal> then <varname>i</varname> is <literal>0</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 x=uint16(1:10);
 inttype(x)
  ]]></programlisting>
-  </refsection>
-  <refsection role="see also">
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="double">double</link>
-      </member>
-      <member>
-        <link linkend="iconvert">iconvert</link>
-      </member>
-      <member>
-        <link linkend="int8">int8</link>
-      </member>
-    </simplelist>
-  </refsection>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="double">double</link>
+            </member>
+            <member>
+                <link linkend="iconvert">iconvert</link>
+            </member>
+            <member>
+                <link linkend="int8">int8</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

@@ -31,7 +31,9 @@
             <varlistentry>
                 <term>logflag</term>
                 <listitem>
-                    <para>string of size 2 <literal>"xy"</literal>.</para>
+                    <para>
+                        string of size 2 <literal>"xy"</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -41,7 +43,9 @@
         <para>
             <function>xgetech</function> returns the current graphics scale (of
             the current window). The rectangle <literal>[xmin, ymin, xmax,
-            ymax]</literal> given by <varname>frect</varname> is the size of the
+                ymax]
+            </literal>
+            given by <varname>frect</varname> is the size of the
             whole graphics window. The plotting will be made in the region of
             the current graphics window specified by <varname>wrect</varname>.
         </para>

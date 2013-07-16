@@ -18,8 +18,6 @@ namespace org_modules_external_objects
 int ScilabGateway::getEnvironmentName(char * fname, const int envId, void * pvApiCtx)
 {
     SciErr err;
-    int row = 0;
-    int col = 0;
     int * addr = 0;
     int eId = 0;
     std::string envName;

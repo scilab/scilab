@@ -19,7 +19,7 @@
     <refsection>
         <title>Introduction</title>
         <para>
-            Following the type of problem studied, finding out which method to use is not always obvious, only general guidelines can be established. Those are and discussed in this page.
+            Following the type of problem, finding out which method to use is not always obvious, only general guidelines can be established. Those are discussed in this page.
         </para>
         <title>Variable-size and Fixed-size</title>
         <para>
@@ -102,7 +102,7 @@
         </para>
         <title>So how to choose ?</title>
         <para>
-            Because it is not possible to know for sure wether a solver will be efficient for a given system or not, the best way is to run the most probable one on it and to compare their results.
+            Because it is not possible to know for sure whether a solver will be efficient for a given system or not, the best way is to run the most probable one on it and to compare their results.
         </para>
         <para>
             The user should first establish the complexity of his problem (stability / stiffness) and if he desires high precision, rapid simulation, predictable time or an automated program.
@@ -121,22 +121,22 @@
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Examples - ODEs</title>
         <para>
             We will begin with a simple nonstiff example: a Sinus integration.
         </para>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/ODE_Example.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/ODE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
 loadScicos();
 loadXcosLibs();
-importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.zcos");
 scs_m.props.tol(6) = 0;
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
@@ -298,17 +298,17 @@ Time for implicit Runge-Kutta:
         </para>
         <para>
             Next, a basic controller with six continuous states is tested.
-            <link type="scilab" linkend="scilab.xcos/xcos/demos/Controller.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/Controller.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../demos/Controller.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../demos/Controller.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
 loadScicos();
 loadXcosLibs();
-importXcosDiagram(SCI + "/modules/xcos/demos/Controller.xcos");
+importXcosDiagram(SCI + "/modules/xcos/demos/Controller.zcos");
 scs_m.props.tol(6) = 0;
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
@@ -467,17 +467,17 @@ Time for implicit Runge-Kutta:
         </para>
         <para>
             Now, we use Kalman's filter, which contains fifteen continuous states.
-            <link type="scilab" linkend="scilab.xcos/xcos/demos/Kalman.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/Kalman.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../demos/Kalman.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../demos/Kalman.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
 loadScicos();
 loadXcosLibs();
-importXcosDiagram(SCI + "/modules/xcos/demos/Kalman.xcos");
+importXcosDiagram(SCI + "/modules/xcos/demos/Kalman.zcos");
 scs_m.props.tol(6) = 0;
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
@@ -636,6 +636,87 @@ Time for implicit Runge-Kutta:
         </para>
     </refsection>
     <refsection>
+        <title>Examples - DAEs</title>
+        <para>
+            In this section we compare IDA with DDaskr.
+        </para>
+        <para>
+            Example: a bouncing ball.
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../demos/ModelicaBlocks/BouncingBall_Modelica.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.zcos");
+// Redefining messagebox() to avoid popup
+function messagebox(msg, title)
+ disp(title);
+ disp(msg);
+endfunction
+scs_m.props.tol(6) = 100;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            In the following script, we compare the time difference between the solvers by running the example with the three solvers in turn:
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchBouncing.sce">
+                Open the script
+            </link>
+        </para>
+        <para>
+            The Scilab console displays:
+            <screen><![CDATA[
+Time for IDA:
+ 7.5
+
+Time for DDaskr - Newton:
+ 5.4
+
+Time for DDaskr - GMRes:
+ 10.2
+            ]]></screen>
+        </para>
+        <para>
+            This result shows that on a stiff problem, with rootfinding and for same precision required, <emphasis>DDaskr - Newton</emphasis> is fastest.
+        </para>
+        <para>
+            The difference in time is attributed to the powerful implementation of DDaskr and its least error control.
+        </para>
+        <para>
+            GMRes is slower due to the small size of the problem.
+        </para>
+        <para>
+            From the result, we can extract the speed factors:
+        </para>
+        <para>
+            <informaltable border="1">
+                <tr>
+                    <td align="center"> </td>
+                    <td align="center">
+                        <emphasis>IDA</emphasis> 
+                    </td>
+                    <td align="center">
+                        <emphasis>DDaskr G</emphasis> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>DDaskr N</emphasis> 
+                    </td>
+                    <td align="center"> 1.39x </td>
+                    <td align="center"> 1.9x </td>
+                </tr>
+            </informaltable>
+        </para>
+    </refsection>
+    <refsection>
         <title>See Also</title>
         <simplelist type="inline">
             <member>
@@ -655,6 +736,9 @@ Time for implicit Runge-Kutta:
             </member>
             <member>
                 <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
             </member>
             <member>
                 <link linkend="ode">ode</link>

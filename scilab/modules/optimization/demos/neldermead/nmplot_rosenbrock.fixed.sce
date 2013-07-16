@@ -12,7 +12,7 @@
 
 function demo_nmplot_rosen()
 
-    filename = 'nmplot_rosenbrock.fixed.sce';
+    filename = "nmplot_rosenbrock.fixed.sce";
     dname = get_absolute_file_path(filename);
 
     mprintf(_("Illustrates that the fixed-shape Spendley et al. algorithm does NOT perform well on Rosenbrock test case.\n"));
@@ -55,11 +55,11 @@ function demo_nmplot_rosen()
 
     // Plot the contours of the cost function and the simplex history
     mprintf(_("Plotting contour (please wait) ...\n"));
-    xmin = -2.0 ; 
-    xmax = 2.0 ; 
-    ymin = -2.0 ; 
-    ymax = 2.0 ; 
-    nx = 50 ; 
+    xmin = -2.0 ;
+    xmax = 2.0 ;
+    ymin = -2.0 ;
+    ymax = 2.0 ;
+    nx = 50 ;
     ny = 50;
     xdata=linspace(xmin,xmax,nx);
     ydata=linspace(ymin,ymax,ny);
@@ -79,4 +79,5 @@ demo_nmplot_rosen()
 clear demo_nmplot_rosen;
 
 
-
+
+

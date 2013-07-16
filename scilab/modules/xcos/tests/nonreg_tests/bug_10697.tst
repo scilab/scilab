@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // Error report on superblock diagram is not supported.
 
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/batch_simulation.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/batch_simulation.zcos"));
 
 // define a dummy post_xcos_simulate
 clear post_xcos_simulate

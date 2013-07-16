@@ -39,7 +39,11 @@ typedef struct __VAR_INFO__
     int iDims;
     int piDims[2];
 
-    __VAR_INFO__() : iType(0), iSize(0), iDims(0) {}
+    __VAR_INFO__() : iType(0), iSize(0), iDims(0)
+    {
+        memset(pstInfo, 0, sizeof(pstInfo) / sizeof(pstInfo[0]));
+        memset(varName, 0, sizeof(varName) / sizeof(varName[0]));
+    }
 } VarInfo;
 
 static bool read_data(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo);
@@ -64,9 +68,10 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
     int iFile       = 0;
     int iNbItem     = 0;
     VarInfo* pInfo  = NULL;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckRhs(1, 1);
-    CheckLhs(1, 4);
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 4);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
@@ -140,6 +145,7 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
 
             strcpy(pInfo[i].varName, pstVarNameList[i]);
             FREE(pstVarNameList[i]);
+            pInfo[i].iSize = 0;
             b = read_data(iDataSetId, 0, NULL, &pInfo[i]) == false;
             if (b)
             {
@@ -151,17 +157,19 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
                 sciprint("%s\n", pInfo[i].pstInfo);
             }
         }
+
+        FREE(pstVarNameList);
     }
     else
     {
         //no variable returms [] for each Lhs
         for (int i = 0 ; i < Lhs ; i++)
         {
-            createEmptyMatrix(pvApiCtx, Rhs + i + 1);
-            LhsVar(i + 1) = Rhs + i + 1;
+            createEmptyMatrix(pvApiCtx, nbIn + i + 1);
+            AssignOutputVariable(pvApiCtx, i + 1) = nbIn + i + 1;
         }
 
-        PutLhsVar();
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
@@ -174,7 +182,7 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
         pstVarName[i] = pInfo[i].varName;
     }
 
-    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, iNbItem, 1, pstVarName);
+    sciErr = createMatrixOfString(pvApiCtx, nbIn + 1, iNbItem, 1, pstVarName);
     FREE(pstVarName);
     if (sciErr.iErr)
     {
@@ -182,13 +190,13 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    LhsVar(1) = Rhs + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
 
     if (Lhs > 1)
     {
         //2nd Lhs
         double* pdblType;
-        sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, iNbItem, 1, &pdblType);
+        sciErr = allocMatrixOfDouble(pvApiCtx, nbIn + 2, iNbItem, 1, &pdblType);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -200,43 +208,43 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
             pdblType[i] = pInfo[i].iType;
         }
 
-        LhsVar(2) = Rhs + 2;
+        AssignOutputVariable(pvApiCtx, 2) = nbIn + 2;
 
         if (Lhs > 2)
         {
             //3rd Lhs
             int* pList = NULL;
-            sciErr = createList(pvApiCtx, Rhs + 3, iNbItem, &pList);
+            sciErr = createList(pvApiCtx, nbIn + 3, iNbItem, &pList);
             for (int i = 0 ; i < iNbItem ; i++)
             {
                 double* pdblDims = NULL;
-                allocMatrixOfDoubleInList(pvApiCtx, Rhs + 3, pList, i + 1, 1, pInfo[i].iDims, &pdblDims);
+                allocMatrixOfDoubleInList(pvApiCtx, nbIn + 3, pList, i + 1, 1, pInfo[i].iDims, &pdblDims);
                 for (int j = 0 ; j < pInfo[i].iDims ; j++)
                 {
                     pdblDims[j] = pInfo[i].piDims[j];
                 }
             }
 
-            LhsVar(3) = Rhs + 3;
+            AssignOutputVariable(pvApiCtx, 3) = nbIn + 3;
         }
 
         if (Lhs > 3)
         {
             //4th Lhs
             double* pdblSize;
-            sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 4, iNbItem, 1, &pdblSize);
+            sciErr = allocMatrixOfDouble(pvApiCtx, nbIn + 4, iNbItem, 1, &pdblSize);
             for (int i = 0 ; i < iNbItem ; i++)
             {
                 pdblSize[i] = pInfo[i].iSize;
             }
 
-            LhsVar(4) = Rhs + 4;
+            AssignOutputVariable(pvApiCtx, 4) = nbIn + 4;
         }
 
     }
 
     FREE(pInfo);
-    PutLhsVar();
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 
@@ -340,6 +348,10 @@ static bool read_string(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo
         _pInfo->iSize += (int)strlen(pstData[i]) * 4;
     }
 
+    for (int i = 0 ; i < iSize ; i++)
+    {
+        free(pstData[i]);
+    }
     FREE(pstData);
     //always full double size
     _pInfo->iSize += (8 - (_pInfo->iSize % 8));
@@ -572,9 +584,14 @@ static void generateInfo(VarInfo* _pInfo, const char* _pstType)
     {
         sprintf(pstSize, "%d by %d", _pInfo->piDims[0], _pInfo->piDims[1]);
     }
-    else
+    else if (_pInfo->iDims == 1)
     {
         sprintf(pstSize, "%d", _pInfo->piDims[0]);
     }
+    else
+    {
+        pstSize[0] = '\0';
+    }
+
     sprintf(_pInfo->pstInfo, "%-*s%-*s%-*s%-*d", 25, _pInfo->varName, 15, _pstType, 16, pstSize, 10, _pInfo->iSize);
 }

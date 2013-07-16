@@ -19,7 +19,7 @@
 #include "basout.h"
 #include "libinter.h"
 /*--------------------------------------------------------------------------*/
-int C2F(out)(char *str,long int str_len)
+int C2F(out)(char *str, long int str_len)
 {
     static int io;
     C2F(basout)(&io, &C2F(iop).wte, str, (long int)strlen(str));

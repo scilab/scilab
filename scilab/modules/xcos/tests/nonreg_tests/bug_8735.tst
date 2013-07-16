@@ -16,6 +16,6 @@
 // <-- Short Description -->
 // Mixed (Implicit-Explicit) superblocks I/O blocks produced warnings
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8735.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8735.zcos");
 // Open the super-block, check that it does not contains errors
 

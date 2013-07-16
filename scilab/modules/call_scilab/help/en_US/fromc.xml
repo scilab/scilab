@@ -25,7 +25,7 @@
             Returns <literal>%t</literal>Checks if current Scilab is called from an external C program or <literal>%f</literal> if not.
         </para>
     </refsection>
-
+    
     <refsection>
         <title>Example</title>
         <programlisting role="example"><![CDATA[

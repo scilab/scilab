@@ -743,6 +743,17 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 AC_HDF5()
 # The Java detection is done after in this file.
 
+
+#################
+## scirenderer
+#################
+
+AC_ARG_WITH(external-scirenderer,
+    AC_HELP_STRING([--with-external-scirenderer],[Disable the usage of the internal copy of scirenderer. Intended for packaging of Scilab]))
+
+AM_CONDITIONAL(EXTERNAL_SCIRENDERER, test "$with_external_scirenderer" = yes)
+
+
 #################
 ## XCOS
 #################
@@ -853,13 +864,21 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
                 fi
 
+                if test "$with_external_scirenderer" = yes; then
+                   # scirenderer
+                   AC_JAVA_CHECK_PACKAGE([scirenderer],[org.scilab.forge.scirenderer.PackageInfo],[Scilab Renderer])
+                   SCIRENDERER=$PACKAGE_JAR_FILE
+                   SCIRENDERER_CP=$PACKAGE_JAR_FILE
 
-                # scirenderer
-                AC_JAVA_CHECK_PACKAGE([scirenderer],[org.scilab.forge.scirenderer.PackageInfo],[Scilab Renderer])
-                SCIRENDERER=$PACKAGE_JAR_FILE
+                   AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[1.1.0],[PackageInfo.VERSION])
+                 else
+                   echo "Use external version of scirenderer"
+                   # Use the scirenderer in Scilab sources
+                   SCIRENDERER="\${modules.dir}/scirenderer/\${build.jar.dir}/scirenderer.jar"
+                   SCIRENDERER_CP="\$SCILAB/modules/scirenderer/jar/scirenderer.jar"
+                fi
                 AC_SUBST(SCIRENDERER)
-
-                AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[1.0.6],[PackageInfo.VERSION])
+                AC_SUBST(SCIRENDERER_CP)
 
                # Docking system
                 AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
@@ -897,7 +916,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
                    LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
                    LDFLAGS="$LDFLAGS -L/usr/lib/jogl2 -L/usr/lib64/jogl2"               # RedHat
-                   LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
+                   LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/lib/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    AC_CHECK_LIB([jogl_desktop], [glTexParameterf], [JOGL2_LIBS="-ljogl_desktop"],[AC_MSG_WARN([Could not link against -ljogl_desktop. Will try against -ljogl_desktop -lGL])])
                    if test -z "$JOGL2_LIBS"; then # The previous test failed add more options to the LDFLAGS
                        # the space after "jogl" in the following line is on
@@ -906,7 +925,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                        [JOGL2_LIBS="-ljogl_desktop -lGL"],
                        [AC_MSG_ERROR(["libjogl: Library
 missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
-interface for JOGL2 - or libGL (OpenGL library) are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries."])],
+interface for JOGL2 - or libGL (OpenGL library) are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path to the JNI libraries."])],
                        [-lGL])
                    fi
 
@@ -926,10 +945,10 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                    LDFLAGS="$LDFLAGS -L/usr/lib/jni -L/usr/lib64/jni"                   # Debian
                    LDFLAGS="$LDFLAGS -L/usr/lib/java -L/usr/lib64/java"                 # jpackage.org
                    LDFLAGS="$LDFLAGS -L/usr/lib/gluegen2 -L/usr/lib64/gluegen2"         # RedHat
-                   LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
+                   LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/lib/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    symbol="Java_jogamp_common_jvm_JVMUtil_initialize"
                    AC_CHECK_LIB([gluegen2-rt], [$symbol], [GLUEGEN2_RT_LIBS="-lgluegen2-rt"],
-                   [AC_MSG_ERROR([libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
+                   [AC_MSG_ERROR([libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path to the JNI libraries.])],
                    [-ldl])
                    LDFLAGS=$LDFLAGS_save
                 fi
@@ -1025,7 +1044,7 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 JLATEXMATH=$PACKAGE_JAR_FILE
                 AC_SUBST(JLATEXMATH)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[1.0.1],[TeXFormula.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[1.0.2],[TeXFormula.VERSION])
 
                 AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 
@@ -1563,9 +1582,9 @@ MATIO_ENABLE=no
 if test "$with_matio" != no; then
    if test -n "$with_matio_include" -o -n "$with_matio_library" ; then
       MATIO_CFLAGS="$with_matio_include"
-      MATIO_LIBS="$with_matio_library -lm -lz -lmatio"
+      MATIO_LIBS="$with_matio_library -lm -lz -lmatio -lhdf5"
    else
-      PKG_CHECK_MODULES(MATIO, [matio >= 1.3.3])
+      PKG_CHECK_MODULES(MATIO, [matio >= 1.5.0])
    fi
 
    save_CFLAGS="$CFLAGS"
@@ -1574,7 +1593,7 @@ if test "$with_matio" != no; then
    CFLAGS="$CFLAGS $MATIO_CFLAGS"
    LIBS="$LIBS $MATIO_LIBS"
 
-   AC_CHECK_HEADERS([matio.h matioConfig.h], [],
+   AC_CHECK_HEADERS([matio.h], [],
      [AC_MSG_ERROR([Invalid MATIO_CFLAGS returned by pkg-config. Try to define MATIO_CFLAGS.])])
    AC_CHECK_LIB([matio], [Mat_Open], [],
      [AC_MSG_ERROR([Invalid MATIO_LIBS returned by pkg-config. Try to define MATIO_LIBS.])])
@@ -1584,6 +1603,9 @@ if test "$with_matio" != no; then
 
    AC_DEFINE([WITH_MATIO], [], [With the MATIO library])
    MATIO_ENABLE=yes
+
+   AC_SUBST(MATIO_LIBS)
+   AC_SUBST(MATIO_CFLAGS)
 fi
 
 
@@ -1651,7 +1673,7 @@ AC_SUBST(JAVASCI_ENABLE)
 
 
 ##############################################################
-## Enable test a compilation time
+## Enable test at compilation time
 ##############################################################
 
 COMPILATION_TESTS=no
@@ -1665,6 +1687,20 @@ if test COMPILATION_TESTS=yes -a "$JUNIT4" == ""; then
 fi
 
 AM_CONDITIONAL(COMPILATION_TESTS, test "$COMPILATION_TESTS" != "no")
+
+##############################################################
+## Enable the global force link
+##############################################################
+
+AC_ARG_ENABLE(force-full-link,
+    AC_HELP_STRING([--enable-force-full-link],[Forces the explicit link between libscilab and some "on-the-fly" loaded libraries. NOT USE IN PRODUCTION.]))
+
+FORCE_FULL_LINK="no"
+if test "$enable_force_full_link" == "yes"; then
+    FORCE_FULL_LINK="yes"
+fi
+
+AM_CONDITIONAL(FORCE_LINK, test "$FORCE_FULL_LINK" == "yes")
 
 ##############################################################
 ## demo_tools module
@@ -1792,11 +1828,6 @@ AC_SUBST(SCI_FFLAGS)
 AC_SUBST(SCI_LDFLAGS)
 
 AC_CONFIG_FILES([
-libs/MALLOC/Makefile
-libs/dynamiclibrary/Makefile
-libs/doublylinkedlist/Makefile
-libs/hashtable/Makefile
-libs/libst/Makefile
 contrib/Makefile
 desktop/images/icons/Makefile
 desktop/Makefile
@@ -1876,7 +1907,6 @@ modules/preferences/Makefile
 modules/xml/Makefile
 modules/external_objects/Makefile
 modules/Makefile
-libs/Makefile
 Makefile
 scilab.pc
 etc/modules.xml
@@ -1901,18 +1931,6 @@ fi
 
 # This script is used by Xcos in order to regenerate the function/block list
 AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scripts/GenBlocks.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/scicompile.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/compilerDetection.sh $SCI_SRCDIR_FULL/modules/dynamic_link/src/scripts/configure])
-
-
-#MAN_FR MAN_ENG
-#modules/mpi/Makefile
-#for top_builddir in . .. ../.. $ac_auxdir $ac_auxdir/..; do
-#  test -f $top_builddir/configure && break
-#done
-
-
-#if test "$with_mpi" = yes; then
-#AC_CONFIG_FILES([modules/mpi/Makefile])
-#fi
 
 # Generate stack.h
 if test "$IS_64_BITS_CPU" = true -o "$MACOSX" = "1"; then
@@ -2026,7 +2044,7 @@ if test $OPENMP_ENABLE = yes; then
    echo "OpenMP CFLAGS ...... = $OPENMP_CFLAGS"
    echo "OpenMP CXXFLAGS .... = $OPENMP_CXXFLAGS"
    echo "OpenMP LIBS ........ = $OPENMP_LIBS"
-   echo "OpenMP FFLAGS ...... = $OPENMP_LDFLAGS"
+   echo "OpenMP LDFLAGS ..... = $OPENMP_LDFLAGS"
 else
    echo "Not using OpenMP"
 fi
@@ -2072,25 +2090,6 @@ echo "  LAPACK LIBS ........... = $LAPACK_LIBS"
 echo "  LAPACK TYPE ........... = $LAPACK_TYPE"
 echo "  ARPACK LIBS ........... = $ARPACK_LIBS"
 echo ""
-
-#if test "$with_mpi" = yes; then
-#   echo "MPI Configuration:"
-#   echo "  MPI LIBS ........... = $MPILIBS"
-#   echo "  MPI C Compiler ..... = $MPICC"
-#   echo "  MPI C++ Compiler ... = $MPICXX"
-#   echo "  MPI F77 Compiler ... = $MPIF77"
-#else
-#   echo "Not using MPI"
-#fi
-
-#if test "$with_openmpi" != "no"; then
-#   echo "OpenMPI Configuration:"
-#   echo "  OpenMPI LIBS ........... = $OPENMPI_LIBS"
-#   echo "  OpenMPI C Compiler ..... = $OPENMPI_CC"
-#   echo "  OpenMPI F77 Compiler ... = $MPIF77"
-#else
-#   echo "Not using MPI"
-#fi
 
 echo ""
 if test $BUILD_LOCALIZATION_ENABLE != no; then
@@ -2239,7 +2238,7 @@ echo "  VPATH build ......... = Activated"
 fi
 
 echo ""
-echo "Platform informations:"
+echo "Platform information:"
 echo "  host ........... = $host"
 echo "  host_cpu ....... = $host_cpu"
 echo "  host_vendor .... = $host_vendor"

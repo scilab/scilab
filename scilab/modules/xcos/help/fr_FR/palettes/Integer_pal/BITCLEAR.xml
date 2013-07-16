@@ -103,7 +103,7 @@
             peut être résumée par cette expression
         </para>
         <para>
-            <latex><![CDATA[ Sortie=Entrée \wedge Masque]]></latex>
+            <latex scilab:localized="true"><![CDATA[ Sortie=Entrée \wedge Masque]]></latex>
         </para>
         <para>
             i.e. un <literal>ET</literal> bit à bit entre <literal>Entrée</literal> et
@@ -254,20 +254,20 @@
         <title>Exemple</title>
         <para>
             Ci-dessous un cas simple d'utilisation du bloc.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/BITCLEAR_fr_FR.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/BITCLEAR_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
         </para>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/BITCLEAR_fr_FR.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/BITCLEAR_fr_FR.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/integer_pal/fr_FR/BITCLEAR_fr_FR.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/integer_pal/fr_FR/BITCLEAR_fr_FR.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/BITCLEAR_fr_FR.xcos");
+            <scilab:image localized="true"><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/BITCLEAR_fr_FR.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
         </para>

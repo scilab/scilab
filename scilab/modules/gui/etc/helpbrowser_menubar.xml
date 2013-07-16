@@ -3,28 +3,28 @@
 and is replaced by the good key (control for Unix/Windows OS and meta for Mac) -->
 
 <menubar>
-  <menu label="&amp;File">
-    <submenu label="&amp;Close" accelerator="OSSCKEY W">
-      <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.closeHelpBrowser' type="-3"/>
-    </submenu>
-  </menu>
-
-  <menu label="&amp;Tools">
-    <submenu label="&amp;Incremental Search" accelerator="OSSCKEY F">
-      <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.showSearchFieldInHelp' type="-3"/>
-    </submenu>
-    <separator/>
-    <submenu label="In&amp;crease font size" accelerator="OSSCKEY PLUS">
-      <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.increaseFontInHelpViewer' type="-3"/>
-    </submenu>
-    <submenu label="&amp;Decrease font size" accelerator="OSSCKEY MINUS">
-      <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.decreaseFontInHelpViewer' type="-3"/>
-    </submenu>
-  </menu>
-
-  <menu label="&amp;?">
-    <submenu label="&amp;About Scilab..." accelerator="shift F1">
-      <callback instruction='about()' type="0"/>
-    </submenu>
-  </menu>
+    <menu label="&amp;File">
+        <submenu label="&amp;Close" accelerator="OSSCKEY W">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.closeHelpBrowser' type="-3"/>
+        </submenu>
+    </menu>
+    
+    <menu label="&amp;Tools">
+        <submenu label="&amp;Incremental Search" accelerator="OSSCKEY F">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.showSearchFieldInHelp' type="-3"/>
+        </submenu>
+        <separator/>
+        <submenu label="In&amp;crease font size" accelerator="OSSCKEY PLUS">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.increaseFontInHelpViewer' type="-3"/>
+        </submenu>
+        <submenu label="&amp;Decrease font size" accelerator="OSSCKEY MINUS">
+            <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.decreaseFontInHelpViewer' type="-3"/>
+        </submenu>
+    </menu>
+    
+    <menu label="&amp;?">
+        <submenu label="&amp;About Scilab..." accelerator="shift F1">
+            <callback instruction='about()' type="0"/>
+        </submenu>
+    </menu>
 </menubar>

@@ -10,15 +10,15 @@
 
 //
 // optimsimplex_dirmat --
-//   Returns the n x n matrix of simplex directions i.e. 
-//   the matrix of differences of vertices coordinates 
+//   Returns the n x n matrix of simplex directions i.e.
+//   the matrix of differences of vertices coordinates
 //   with respect to the vertex #1.
 // Arguments
 //   <no arg>
 //
 function m = optimsimplex_dirmat ( this )
-  nv = this.nbve;
-  v1 = this.x(1,1:this.n);
-  m(1:this.n,1:nv-1) = (this.x(2:nv,1:this.n) - v1 .*. ones(nv-1,1)).';
+    nv = this.nbve;
+    v1 = this.x(1,1:this.n);
+    m(1:this.n,1:nv-1) = (this.x(2:nv,1:this.n) - v1 .*. ones(nv-1,1)).';
 endfunction
 

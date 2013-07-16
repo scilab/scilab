@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -78,8 +79,8 @@ public class Mark {
     public Mark(Mark mark) {
         mode = mark.mode;
         style = mark.style;
-        markSizeUnit = mark.markSizeUnit;
         size = mark.size;
+        markSizeUnit = mark.markSizeUnit;
         foreground = mark.foreground;
         background = mark.background;
     }
@@ -94,8 +95,13 @@ public class Mark {
     /**
      * @param background the background to set
      */
-    public void setBackground(Integer background) {
-        this.background = background;
+    public UpdateStatus setBackground(Integer background) {
+        if (this.background != background) {
+            this.background = background;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -108,8 +114,13 @@ public class Mark {
     /**
      * @param foreground the foreground to set
      */
-    public void setForeground(Integer foreground) {
-        this.foreground = foreground;
+    public UpdateStatus setForeground(Integer foreground) {
+        if (this.foreground != foreground) {
+            this.foreground = foreground;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -122,8 +133,13 @@ public class Mark {
     /**
      * @param markSizeUnit the markSizeUnit to set
      */
-    public void setMarkSizeUnit(MarkSizeUnitType markSizeUnit) {
-        this.markSizeUnit = markSizeUnit;
+    public UpdateStatus setMarkSizeUnit(MarkSizeUnitType markSizeUnit) {
+        if (this.markSizeUnit != markSizeUnit) {
+            this.markSizeUnit = markSizeUnit;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -179,5 +195,4 @@ public class Mark {
         this.style = style;
         return UpdateStatus.Success;
     }
-
 }

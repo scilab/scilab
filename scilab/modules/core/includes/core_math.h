@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,27 +19,27 @@
 #include <stdlib.h>
 #endif
 
-#ifndef _MSC_VER 
+#ifndef _MSC_VER
 #endif
 
-#ifdef _MSC_VER 
-		#include <float.h>
-		#define finite(x) _finite(x) 
+#ifdef _MSC_VER
+#include <float.h>
+#define finite(x) _finite(x)
 #endif /* _MSC_VER */
 
-#ifdef _MSC_VER 
-	#include <float.h>
-	#define ISNAN(x) _isnan(x)
-#else 
-	#define ISNAN(x) isnan(x)
-#endif 
+#ifdef _MSC_VER
+#include <float.h>
+#define ISNAN(x) _isnan(x)
+#else
+#define ISNAN(x) isnan(x)
+#endif
 
 #define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )
 #ifndef Min
 #define Min(x,y)	(((x)<(y))?(x):(y))
-#endif 
+#endif
 
-#ifndef Max 
+#ifndef Max
 #define Max(x,y)	(((x)>(y))?(x):(y))
 #endif
 
@@ -61,33 +61,33 @@
 #define EPSILON 1.0e-13
 
 
-/** 
-  if we suppose that the x transmited is in the range of integers 
+/**
+  if we suppose that the x transmited is in the range of integers
   we could also use :
   #define inint(x) (( x > 0 ) ? ((int) (x + 0.5)) : ((int) (x - 0.5));
  **/
 
-#define linint(x) ((int)  floor(x + 0.5 )) 
-#define inint(x) ((int) floor(x + 0.5 ))  
+#define linint(x) ((int)  floor(x + 0.5 ))
+#define inint(x) ((int) floor(x + 0.5 ))
 
-#if (defined(sun) && defined(SYSV)) 
+#if (defined(sun) && defined(SYSV))
 #include <ieeefp.h>
 #endif
 
 #if defined(_MSC_VER)
-  #define M_PI 3.14159265358979323846
+#define M_PI 3.14159265358979323846
 #else
-  #if defined(HAVE_VALUES_H)
-    #include <values.h>
-  #else
-    #if defined(HAVE_LIMITS_H)
-     #include <limits.h>
-    #endif
-  #endif
+#if defined(HAVE_VALUES_H)
+#include <values.h>
+#else
+#if defined(HAVE_LIMITS_H)
+#include <limits.h>
+#endif
+#endif
 #endif
 
 #ifndef M_PI
-#define M_PI 3.14159265358979323846 
+#define M_PI 3.14159265358979323846
 #endif
 
 #ifndef HAVE_EXP10

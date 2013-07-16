@@ -10,40 +10,40 @@
 //  calcul trajectoire optimale de rentree d'une navette spatiale
 //  *************************************************************
 
-libn  = ilib_for_link('icsenb','icsenb.o',[],'f')
-nlink = link('./'+libn,['icsenb','icsenf'],'f')
+libn  = ilib_for_link("icsenb","icsenb.o",[],"f")
+nlink = link("./"+libn,["icsenb","icsenf"],"f")
 
-exec('icse.contexte');
+exec("icse.contexte");
 
 t0   = 0.d0;  // instant initial
 tf   = 1.d0;  // instant final
 dtf  = 0;
 ermx = 1.d-6; // test d'arret absolu sur la valeur du second membre dans
-              // la resolution de l'etat
+// la resolution de l'etat
 iu = [0,0,1]; //  iu   :indications sur la structure du controle
-              //    iu(1)=1 si l'etat initial depend du controle constant,0 sinon
-              //    iu(2)=1 si l'etat initial depend du controle variable,0 sinon
-              //    iu(3)=1 si le second membre depend du controle constant,0 sinon
+//    iu(1)=1 si l'etat initial depend du controle constant,0 sinon
+//    iu(2)=1 si l'etat initial depend du controle variable,0 sinon
+//    iu(3)=1 si le second membre depend du controle constant,0 sinon
 nuc  = 1;     // nombre de parametres independants du temps
 nuv  = 1;     // nombre de parametres dependants du temps
 ilin = 0;     // indicateur de linearite :
-              // 0 pour un systeme non affine
-              // 1 pour un systeme affine dont la partie lineaire n'est pas autonome
-              // ilin=2 pour un systeme affine dont la partie lineaire est autonome
+// 0 pour un systeme non affine
+// 1 pour un systeme affine dont la partie lineaire n'est pas autonome
+// ilin=2 pour un systeme affine dont la partie lineaire est autonome
 nti = 150;    //nombre de pas de temps correspondant a dti (premier pas de temps)
 dti = tf/nti;
 ntf = 00;     // nombre de pas de temps correspondant a dtf (second pas de temps)
-              // si l'on utilise un seul pas de temps,on doit prendre ntf=0
+// si l'on utilise un seul pas de temps,on doit prendre ntf=0
 ny   = 4;     // dimension de l'etat a un instant donne
 nea  = 0;     // nombre d'equations algebriques (eventuellement nul)
 itmx = 10;    // nombre maximal d'iterations dans la resolution de
-              // l'equation d'etat discrete a un pas de temps donne
+// l'equation d'etat discrete a un pas de temps donne
 nex = 1;      // nombre d'experiences effectuees
 nob = 3;      // dimension du vecteur des mesures pour une experience donnee
-              // en un instant donne
+// en un instant donne
 ntob  = 1;    // nombre d'instants de mesure pour une experience donnee
 ntobi = 1;    // nombre d'instants de mesure correspondant a dti (premier
-              // pas de temps)
+// pas de temps)
 
 nu=nuc+nuv*(nti+ntf+1); // dimension du vecteur des parametres de controle
 
@@ -53,9 +53,9 @@ uc    = [2500/echtf];
 
 //  uv(1,nuv*(nti+ntf)):controle variable
 //if nuv>0 then uv(1,nuv*(nti+ntf+1))=0; end;
-alpha0 = .20704/.029244; legu = 'alpha initial : ann. cz';     // annulation cz
-alpha0 = 17.391;         legu = 'alpha initial : finesse max'; // finesse maximum
-legu = ' navette americaine .'+legu;
+alpha0 = .20704/.029244; legu = "alpha initial : ann. cz";     // annulation cz
+alpha0 = 17.391;         legu = "alpha initial : finesse max"; // finesse maximum
+legu = " navette americaine ."+legu;
 if nuv>0 then uv=alpha0*ones(1,nuv*(nti+ntf+1)); end;
 
 //  itu(1,nitu)        :tableau de travail entier reserve a
@@ -87,27 +87,27 @@ raddeg = %pi/180;
 //     1.e6      ];      //cpenal              25
 
 dtu=[ 249.9,         ..
-      .078540,       ..
-     -.0061592,      ..
-      .621408e-3,    ..
-     -.207040,       ..
-      .029244,       ..
-       83388,        ..
-     3.9860119e14,   ..
-     6378166,        ..
-     1.2,            ..
-     6700,           ..
-     raddeg,         ..
-     echtf,          ..
-     0,0,0,0,0,0,0,  ..
-     1000,           ..
-     1,              ..
-     1.e5,           ..
-     1,           ..
-     1.e6      ];      //cpenal              25
+.078540,       ..
+-.0061592,      ..
+.621408e-3,    ..
+-.207040,       ..
+.029244,       ..
+83388,        ..
+3.9860119e14,   ..
+6378166,        ..
+1.2,            ..
+6700,           ..
+raddeg,         ..
+echtf,          ..
+0,0,0,0,0,0,0,  ..
+1000,           ..
+1,              ..
+1.e5,           ..
+1,           ..
+1.e6      ];      //cpenal              25
 
 y0=[7803, -1*raddeg, 121920, 0]; // etat initial
-                                 //          (valeur arbitraire si iu(1) ou iu(2) est non nul)
+//          (valeur arbitraire si iu(1) ou iu(2) est non nul)
 
 y0=y0./dtu(1,21:24); // mise a l'echelle de y0
 
@@ -125,20 +125,20 @@ obs(nob,ny) = 0; // matrice d'observation
 //     -5*raddeg,      ..//gamma final  2
 //     24384    ];     ..//zfin         3
 don=[762,            ..
-     -5*raddeg,      ..
-     24384    ];
+-5*raddeg,      ..
+24384    ];
 don   = don./dtu(1,21:23); // mise a l'echelle
-nomf  = 'icsenf';          // noms de subroutines de dynamique
-legfb = ' croissant ';
+nomf  = "icsenf";          // noms de subroutines de dynamique
+legfb = " croissant ";
 
 // changements pour calculer en temps retrograde
 retro = 1;
 if retro>0 then
-  legfb     = ' retrograde ';
-  don1      = don;
-  don       = y0(1,1:3);
-  y0(1,1:3) = don1;
-  nomf      ='icsenb';
+    legfb     = " retrograde ";
+    don1      = don;
+    don       = y0(1,1:3);
+    y0(1,1:3) = don1;
+    nomf      ="icsenb";
 end
 
 nap    = 20;  // nombre d'appels du simulateur
@@ -147,6 +147,6 @@ large  = 100; // taille de nu au dela de laquelle on choisit un optimiseur
 
 // pour les problemes de grande taille (alg='gc' dans l'appel de optim)
 
-exec('icseinit.sce');   
+exec("icseinit.sce");
 
 [co,u,g,itv,dtv]=icse(u,nomf,nap,imp);

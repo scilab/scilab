@@ -18,10 +18,10 @@ function this = optimbase_destroy (this)
         errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "optimbase_destroy", 1);
         error(errmsg)
     end
-  this.historyfopt = [];
-  this.historyxopt = [];
-  if ( this.logstartup ) then
-    this = optimbase_logshutdown ( this );
-  end
+    this.historyfopt = [];
+    this.historyxopt = [];
+    if ( this.logstartup ) then
+        this = optimbase_logshutdown ( this );
+    end
 endfunction
 

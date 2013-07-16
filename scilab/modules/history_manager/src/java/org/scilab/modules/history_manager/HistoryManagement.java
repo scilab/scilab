@@ -57,7 +57,6 @@ public class HistoryManagement {
     /**
     * save history in a file
     * @param filename if NULL saves in default filename
-    * default filename --> SCIHOME/history.scilab
     * @return true or false
     */
     public static boolean writeScilabHistoryToFile(String filename) {
@@ -68,7 +67,6 @@ public class HistoryManagement {
     /**
     * load history from a file
     * @param filename if NULL load from default filename
-    * default filename --> SCIHOME/history.scilab
     * @return true or false
     */
     public static boolean loadScilabHistoryFromFile(String filename) {

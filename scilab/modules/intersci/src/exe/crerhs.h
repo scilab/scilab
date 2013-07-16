@@ -27,9 +27,11 @@ void CreANY(FILE *f, VARPTR var);
 void CreEMPTY  (FILE *f, VARPTR var);
 
 
-typedef  struct  {
-  int type;
-  void  (*fonc)(FILE *f, VARPTR var);} CreRhsTab ;
+typedef  struct
+{
+    int type;
+    void  (*fonc)(FILE *f, VARPTR var);
+} CreRhsTab ;
 
 extern CreRhsTab CRERHSTAB[];
 

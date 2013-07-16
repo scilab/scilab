@@ -14,8 +14,7 @@
 
 AUTOMAKE_OPTIONS = 1.11 dist-zip dist-bzip2
 
-SUBDIRS= libs \
-	modules \
+SUBDIRS= modules \
 	contrib \
 	desktop
 
@@ -32,7 +31,8 @@ changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X  CH
 
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
-bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
+bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli \
+bin/scinotes bin/xcos
 
 if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
@@ -126,6 +126,7 @@ $(top_srcdir)/CHANGES_5.1.X \
 $(top_srcdir)/CHANGES_5.2.X \
 $(top_srcdir)/CHANGES_5.3.X \
 $(top_srcdir)/CHANGES_5.4.X \
+$(top_srcdir)/CHANGES_5.5.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-BSD \
@@ -137,6 +138,7 @@ $(top_srcdir)/RELEASE_NOTES_5.2.X \
 $(top_srcdir)/RELEASE_NOTES_5.3.X \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt \
+$(top_builddir)/license.txt \
 $(top_builddir)/Version.incl
 
 valgrinddir=$(pkgdatadir)/tools/profiling
@@ -262,11 +264,13 @@ if CODE_COVERAGE
 	@if test ! -d $(top_builddir)/coverage/; then \
 		mkdir $(top_builddir)/coverage/; \
 	fi; \
-	touch $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h; \
+	touch $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h; \
 	$(LCOV) --directory $(top_builddir) --capture --ignore-errors source --output-file $(top_builddir)/coverage/scilab-code-coverage.info; \
-	$(GENHTML) -o $(top_builddir)/coverage/results/ --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
+	echo -e "genhtml_hi_limit = 85\ngenhtml_med_limit = 70" > $(top_builddir)/coverage/lcovrc; \
+	$(GENHTML) -o $(top_builddir)/coverage/results/ --config-file $(top_builddir)/coverage/lcovrc --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
+	rm -f $(top_builddir)/coverage/lcovrc; \
 	echo "To open the result: firefox  $(top_builddir)/coverage/results/index.html"; \
-	rm -f $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h
+	rm -f $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h
 #--frames is disable because of : http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=607206
 else
 	@echo "Cannot start the code coverage. Add --enable-code-coverage to the ./configure and 'make clean all'."
@@ -414,10 +418,14 @@ endif
 DOCMASK=scilab_*_help.jar
 DOCIMAGES=scilab_images.jar
 
-# Path to builded files
+# Path to built files
 PATHTOHELPFILES = modules/helptools/jar/
 
-# Path javasci to builded files
+# Path to scirenderer jar
+PATHTOSCIRENDERER = modules/scirenderer/jar/
+SCIRENDERERJAR = scirenderer.jar
+
+# Path javasci to built files
 PATHTOJAVASCIDOC = modules/javasci/javadoc/
 JAVASCI_DIRS = . resources \
 	org/scilab/modules/javasci/ \
@@ -462,6 +470,11 @@ if BUILD_HELP
 			done; \
 	done; \
 	fi
+endif
+if !EXTERNAL_SCIRENDERER
+# Also install scirenderer.jar
+	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)
+	$(INSTALL_DATA) $(top_builddir)/$(PATHTOSCIRENDERER)/$(SCIRENDERERJAR) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)/
 endif
 
 # Pkgconfig directory

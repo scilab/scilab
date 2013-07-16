@@ -111,8 +111,6 @@ public class Legend extends ClippableTextObject {
                 return LegendProperty.LEGENDLOCATION;
             case __GO_POSITION__ :
                 return LegendProperty.POSITION;
-            case __GO_SIZE__ :
-                return LegendProperty.SIZE;
             default :
                 return super.getPropertyFromName(propertyName);
         }

@@ -18,25 +18,25 @@
 //
 function [ this , isfeasible ] = optimbase_isinbounds ( this , x )
     isfeasible = %t
-      [ this , hasbounds ] = optimbase_hasbounds ( this );
-      if ( hasbounds ) then
+    [ this , hasbounds ] = optimbase_hasbounds ( this );
+    if ( hasbounds ) then
         for ix = 1 : this.numberofvariables
-          xmin = this.boundsmin ( ix )
-          xmax = this.boundsmax ( ix )
-          xix = x ( ix )
-          if ( xix < xmin ) then
-            isfeasible = %f
-            this = optimbase_log ( this , sprintf ( "Component #%d/%d of x is lower than min bound %s", ...
-              ix , this.numberofvariables , string(xmin) ) )
-            break
-          end
-          if (xix > xmax) then
-            isfeasible = %f
-            this = optimbase_log ( this , sprintf ( "Component #%d/%d of x is greater than max bound %s", ...
-              ix , this.numberofvariables , string(xmax) ) )
-            break
-          end
+            xmin = this.boundsmin ( ix )
+            xmax = this.boundsmax ( ix )
+            xix = x ( ix )
+            if ( xix < xmin ) then
+                isfeasible = %f
+                this = optimbase_log ( this , sprintf ( "Component #%d/%d of x is lower than min bound %s", ...
+                ix , this.numberofvariables , string(xmin) ) )
+                break
+            end
+            if (xix > xmax) then
+                isfeasible = %f
+                this = optimbase_log ( this , sprintf ( "Component #%d/%d of x is greater than max bound %s", ...
+                ix , this.numberofvariables , string(xmax) ) )
+                break
+            end
         end
-      end
+    end
 endfunction
 

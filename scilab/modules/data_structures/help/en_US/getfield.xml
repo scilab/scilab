@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[x,...]=getfield(i,l)</synopsis>
+        <synopsis>[x,...] = getfield(i,l)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

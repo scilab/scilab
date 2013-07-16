@@ -20,3 +20,6 @@ freeArrayOfString
 isopt_
 numopt_
 SciToF77
+MyHeapAlloc
+MyHeapFree
+

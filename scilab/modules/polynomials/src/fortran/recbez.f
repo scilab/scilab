@@ -91,7 +91,7 @@ c
       n02=n0*(n0+1)
 c     leading dimension of the S matrix 
       ldS=n0+1
-c     leading dimension of the Q matrix of the QR factorisation 
+c     leading dimension of the Q matrix of the QR factorization 
       ldQ=n0+1
 
 c     allocate working arrays

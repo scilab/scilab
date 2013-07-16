@@ -98,9 +98,9 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
     // =========================================================================
 
     if ~isfile(file_in) then
-       error(msprintf(gettext("%s: The file ""%s"" does not exist.\n"), ..
-                              "atomsDESCRIPTIONread", ..
-                              file_in));
+        error(msprintf(gettext("%s: The file ""%s"" does not exist.\n"), ..
+        "atomsDESCRIPTIONread", ..
+        file_in));
     end
 
     lines_in         = mgetl(file_in);
@@ -108,9 +108,9 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
     current_field    = "";
 
     if isempty(lines_in) then
-       error(msprintf(gettext("%s: The file ""%s"" is empty.\n"), ..
-                              "atomsDESCRIPTIONread", ..
-                              file_in));
+        error(msprintf(gettext("%s: The file ""%s"" is empty.\n"), ..
+        "atomsDESCRIPTIONread", ..
+        file_in));
     end
 
     winId = atomsOpenProgressBar(_("Updating Atoms modules database..."), %t)
@@ -135,10 +135,10 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
                 if ~ isempty(missingfield) then
                     atomsCloseProgressBar(winId);
                     error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the %s field\n"), ..
-                        "atomsDESCRIPTIONread",..
-                        file_in,current_toolbox("Toolbox"),..
-                        current_toolbox("Version"),..
-                        missingfield));
+                    "atomsDESCRIPTIONread",..
+                    file_in,current_toolbox("Toolbox"),..
+                    current_toolbox("Version"),..
+                    missingfield));
                 end
 
                 // Register the current toolbox : Check the scilab version
@@ -180,10 +180,10 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
                     if ~ isempty(missingfield) then
                         atomsCloseProgressBar(winId);
                         error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the %s field\n"), ..
-                            "atomsDESCRIPTIONread",..
-                            file_in,current_toolbox("Toolbox"),..
-                            current_toolbox("Version"),..
-                            missingfield));
+                        "atomsDESCRIPTIONread",..
+                        file_in,current_toolbox("Toolbox"),..
+                        current_toolbox("Version"),..
+                        missingfield));
                     end
 
                     // Register the current toolbox : Check the scilab version
@@ -224,7 +224,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
             if isfield(additional,"repository") & ..
                 ( regexp(current_field,"/^(source|binary|windows|linux|macosx|solaris|bsd)(32|64)?Url$/","o")<>[] | current_field=="URL" ) & ..
                 regexp(current_value,"/^(http(s)?|ftp(s)?|file)\:\/\//","o")==[] then
-                    current_value = additional("repository") + current_value;
+                current_value = additional("repository") + current_value;
             end
 
             current_toolbox(current_field) = current_value;
@@ -381,18 +381,18 @@ function field = atomsCheckFields( module )
     field = "";
 
     mandatory = [             ..
-        "Toolbox"           ; ..
-        "Title"             ; ..
-        "Summary"           ; ..
-        "Version"           ; ..
-        "Author"            ; ..
-        "Maintainer"        ; ..
-        "Category"          ; ..
-        "Entity"            ; ..
-        "License"           ; ..
-        "ScilabVersion"     ; ..
-        "Depends"           ; ..
-        "Date"              ];
+    "Toolbox"           ; ..
+    "Title"             ; ..
+    "Summary"           ; ..
+    "Version"           ; ..
+    "Author"            ; ..
+    "Maintainer"        ; ..
+    "Category"          ; ..
+    "Entity"            ; ..
+    "License"           ; ..
+    "ScilabVersion"     ; ..
+    "Depends"           ; ..
+    "Date"              ];
 
     for i=1:size(mandatory,"*")
         if ~ isfield(module,mandatory(i)) then

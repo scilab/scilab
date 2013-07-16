@@ -28,7 +28,7 @@
 #include "getBlasType.h"
 /*--------------------------------------------------------------------------*/
 extern BOOL BuildWithVS8ExpressF2C(void);
-static char ** appendStringStaticDebugInfo(char **listInfo,int *sizeListInfo,char *str);
+static char ** appendStringStaticDebugInfo(char **listInfo, int *sizeListInfo, char *str);
 /*--------------------------------------------------------------------------*/
 char **getStaticDebugInfo_Windows(int *sizeArray)
 {
@@ -37,158 +37,158 @@ char **getStaticDebugInfo_Windows(int *sizeArray)
     char **outputDynamicList = NULL;
     char *str_info = NULL;
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
-        sprintf(str_info,"Version: %s",SCI_VERSION_STRING);
-        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+        sprintf(str_info, "Version: %s", SCI_VERSION_STRING);
+        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
-        sprintf(str_info,"Compilation date: %s",__DATE__);
-        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+        sprintf(str_info, "Compilation date: %s", __DATE__);
+        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
-        sprintf(str_info,"Compilation time: %s",__TIME__);
-        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+        sprintf(str_info, "Compilation time: %s", __TIME__);
+        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
 #ifdef _WIN64
-        sprintf(str_info,"Compiler Architecture: %s","X64");
+        sprintf(str_info, "Compiler Architecture: %s", "X64");
 #else
-        sprintf(str_info,"Compiler Architecture: %s","x86");
+        sprintf(str_info, "Compiler Architecture: %s", "x86");
 #endif
-        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
 
 #ifdef __INTEL_COMPILER
-        sprintf(str_info,"Compiled with %s (%d)","Intel compiler", __INTEL_COMPILER);
+        sprintf(str_info, "Compiled with %s (%d)", "Intel compiler", __INTEL_COMPILER);
 #elif defined _MSC_VER
-        sprintf(str_info,"Compiled with %s (%d)","Microsoft compiler", _MSC_FULL_VER);
+        sprintf(str_info, "Compiled with %s (%d)", "Microsoft compiler", _MSC_FULL_VER);
 #else
-        sprintf(str_info,"Compiled with %s","unknown compiler");
+        sprintf(str_info, "Compiled with %s", "unknown compiler");
 #endif
-        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
     if (BuildWithVS8ExpressF2C())
     {
-        str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+        str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
         if (str_info)
         {
-            sprintf(str_info,"Compiled with %s","F2C");
-            outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+            sprintf(str_info, "Compiled with %s", "F2C");
+            outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
         }
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
         blas_type blasType = getBlasType();
         strcpy(str_info, "BLAS library optimized version: ");
         switch (blasType)
         {
-        default:
-        case BLAS_UNKNOW:
-            strcat(str_info, "Unknown");
-            break;
+            default:
+            case BLAS_UNKNOW:
+                strcat(str_info, "Unknown");
+                break;
 
-        case BLAS_REF:
-            strcat(str_info, "Reference");
-            break;
+            case BLAS_REF:
+                strcat(str_info, "Reference");
+                break;
 
-        case BLAS_ATLAS:
-            strcat(str_info, "Atlas");
-            break;
+            case BLAS_ATLAS:
+                strcat(str_info, "Atlas");
+                break;
 
-        case BLAS_MKL:
-            strcat(str_info, "MKL");
-            break;
+            case BLAS_MKL:
+                strcat(str_info, "MKL");
+                break;
         }
-        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
-        sprintf(str_info,"XML version: %s",LIBXML_DOTTED_VERSION);
-        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+        sprintf(str_info, "XML version: %s", LIBXML_DOTTED_VERSION);
+        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
     if ( with_tk() )
     {
-        str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+        str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
         if (str_info)
         {
-            sprintf(str_info,"Tcl/Tk: %s","Enable");
-            outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+            sprintf(str_info, "Tcl/Tk: %s", "Enable");
+            outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
         }
 
-        str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+        str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
         if (str_info)
         {
-            sprintf(str_info,"TCL version: %s",TCL_PATCH_LEVEL);
-            outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+            sprintf(str_info, "TCL version: %s", TCL_PATCH_LEVEL);
+            outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
         }
 
-        str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+        str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
         if (str_info)
         {
-            sprintf(str_info,"TK version: %s",TK_PATCH_LEVEL);
-            outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+            sprintf(str_info, "TK version: %s", TK_PATCH_LEVEL);
+            outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
         }
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
-        sprintf(str_info,"Path separator: %s",PATH_SEPARATOR);
-        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+        sprintf(str_info, "Path separator: %s", PATH_SEPARATOR);
+        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
-        sprintf(str_info,"Directory separator: %s",DIR_SEPARATOR);
-        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+        sprintf(str_info, "Directory separator: %s", DIR_SEPARATOR);
+        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
-        sprintf(str_info,"PCRE Version: %d.%d", PCRE_MAJOR,PCRE_MINOR);
-        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList,&nb_info,str_info);
+        sprintf(str_info, "PCRE Version: %d.%d", PCRE_MAJOR, PCRE_MINOR);
+        outputDynamicList = appendStringStaticDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
     *sizeArray = nb_info;
     return outputDynamicList;
 }
 /*--------------------------------------------------------------------------*/
-static char ** appendStringStaticDebugInfo(char **listInfo,int *sizeListInfo,char *str)
+static char ** appendStringStaticDebugInfo(char **listInfo, int *sizeListInfo, char *str)
 {
     char ** returnListInfo = NULL;
     if (listInfo)
     {
         (*sizeListInfo)++;
-        returnListInfo = (char**)REALLOC(listInfo,sizeof(char*)*(*sizeListInfo));
+        returnListInfo = (char**)REALLOC(listInfo, sizeof(char*) * (*sizeListInfo));
     }
     else
     {
         (*sizeListInfo) = 1;
-        returnListInfo = (char**)MALLOC(sizeof(char*)*(*sizeListInfo));
+        returnListInfo = (char**)MALLOC(sizeof(char*) * (*sizeListInfo));
     }
 
     if (returnListInfo)

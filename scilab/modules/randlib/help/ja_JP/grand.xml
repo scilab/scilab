@@ -132,15 +132,14 @@
                         <literal>Y=grand(m,n,'bet',A,B)</literal> は
                         パラメータ<literal>A</literal> およびd <literal>B</literal>
                         を指定したベータ分布からランダム変量を生成します.
-                        ベータ分布の密度は (<literal>0 &lt; x &lt; 1</literal>) です:
+                        ベータ分布の密度は <latex><![CDATA[(0 < x < 1)]]></latex> です:
                     </para>
-                    <programlisting role=""><![CDATA[ 
- A-1    B-1
-x   (1-x)   / beta(A,B) 
- ]]></programlisting>
+                    <latex>
+                        \dfrac{x^{A-1}(1-x)^{B-1}}{\beta(A,B)}
+                    </latex>
                     <para>
                         <literal>A</literal> および <literal>B</literal> は
-                        実数で &gt;<literal>10^(-37)</literal>とします.  関係する関数は
+                        実数で <latex><![CDATA[>10^{-37}]]></latex>とします.  関係する関数は
                         : <link linkend="cdfbet">cdfbet</link>です.
                     </para>
                 </listitem>
@@ -239,16 +238,15 @@ x   (1-x)   / beta(A,B)
                 <term>ガンマ分布</term>
                 <listitem>
                     <para>
-                        <literal>Y=grand(m,n,'gam',shape,scale)</literal>
+                        <literal>Y=grand(m,n,'gam',shape,rate)</literal>
                         は,パラメータ<literal>shape</literal> (実数 &gt; 0)および
-                        <literal>scale</literal> (実数 &gt; 0)を指定して
+                        <literal>rate</literal> (実数 &gt; 0)を指定して
                         ガンマ分布に基づくランダム変量を生成します.
                         ガンマの密度は以下となります :
                     </para>
-                    <programlisting role=""><![CDATA[ 
-     shape  (shape-1)   -scale x
-scale       x          e          /  gamma(shape) 
- ]]></programlisting>
+                    <latex>
+                        \dfrac{ \textrm{rate}^{\textrm{shape}} x^{\textrm{shape}-1} e^{-\textrm{rate} x}}{\gamma(\textrm{shape}) }
+                    </latex>
                     <para>
                         関係する関数 : <link linkend="gamma">gamma</link>,
                         <link linkend="cdfgam">cdfgam</link>.
@@ -296,10 +294,7 @@ scale       x          e          /  gamma(shape)
                         幾何分布に基づくランダム変量を生成します:
                         (成功率<literal>p</literal>の)ベルヌーイ試行に1回成功するまでの回数.
                         <literal>p</literal> は
-                        <literal>[pmin,1]</literal> (<literal>pmin = 1.3
-                            10^(-307)
-                        </literal>
-                        )の範囲とします.
+                        <latex>[p_{min},1]</latex> (<latex> p_{min} = 1{,}3\times 10^{-307} </latex>)の範囲とします.
                     </para>
                     <para>
                         <literal>Y</literal> は整数の値を有する正の実数となり,
@@ -398,7 +393,7 @@ scale       x          e          /  gamma(shape)
                         の整数のランダム変量を生成します.
                         <literal>High</literal> および
                         <literal>Low</literal> は
-                        <literal>(High-Low+1) &lt; 2,147,483,561</literal>の
+                        <latex><![CDATA[(\textrm{High}-\textrm{Low}+1) < 2\,147\,483\,561]]></latex>の
                         範囲の整数とする必要があります.
                     </para>
                 </listitem>

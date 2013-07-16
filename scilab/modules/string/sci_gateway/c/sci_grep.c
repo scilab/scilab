@@ -80,7 +80,9 @@ int sci_grep(char *fname, unsigned long fname_len)
 
             GetRhsVar(3, STRING_DATATYPE, &m3, &n3, &l3);
             if (m3 * n3 != 0)
+            {
                 typ = cstk(l3)[0];
+            }
 
             if (typ == 'r')
             {
@@ -168,7 +170,9 @@ static int GREP_NEW(GREPRESULTS * results, char **Inputs_param_one, int mn_one, 
     }
 
     if (results->currentLength > results->sizeArraysMax)
+    {
         results->currentLength = results->sizeArraysMax;
+    }
 
     return GREP_OK;
 }

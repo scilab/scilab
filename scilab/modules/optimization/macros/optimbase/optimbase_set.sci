@@ -20,34 +20,34 @@ function this = optimbase_set ( this , key , value )
         errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "optimbase_set", 3);
         error(errmsg)
     end
-  select key
-  case "-iterations" then
-    this.iterations = value;
-  case "-xopt" then
-    this.xopt = value;
-  case "-fopt" then
-    this.fopt = value;
-  case "-historyxopt" then
-    if ( ~this.storehistory ) then
-      errmsg = msprintf( gettext ( "%s: History disabled ; turn on -storehistory option.") , "optimbase_set" )
-      error(errmsg)
+    select key
+    case "-iterations" then
+        this.iterations = value;
+    case "-xopt" then
+        this.xopt = value;
+    case "-fopt" then
+        this.fopt = value;
+    case "-historyxopt" then
+        if ( ~this.storehistory ) then
+            errmsg = msprintf( gettext ( "%s: History disabled ; turn on -storehistory option.") , "optimbase_set" )
+            error(errmsg)
+        else
+            this.historyxopt = value;
+        end
+    case "-historyfopt" then
+        if ( ~this.storehistory ) then
+            errmsg = msprintf(gettext ( "%s: History disabled ; turn on -storehistory option.") , "optimbase_set" )
+            error(errmsg)
+        else
+            this.historyfopt = value;
+        end
+    case "-fx0" then
+        this.fx0 = value;
+    case "-status" then
+        this.status = value;
     else
-      this.historyxopt = value;
+        errmsg = msprintf(gettext ( "%s: Unknown key %s") , "optimbase_set", key )
+        error(errmsg)
     end
-  case "-historyfopt" then
-    if ( ~this.storehistory ) then
-      errmsg = msprintf(gettext ( "%s: History disabled ; turn on -storehistory option.") , "optimbase_set" )
-      error(errmsg)
-    else
-      this.historyfopt = value;
-    end
-  case "-fx0" then
-    this.fx0 = value;
-  case "-status" then
-    this.status = value;
-  else
-    errmsg = msprintf(gettext ( "%s: Unknown key %s") , "optimbase_set", key )
-    error(errmsg)
-  end
 endfunction
 

@@ -123,9 +123,15 @@ int intab01od(char* fname)
 
     /*     other parameters of AB01OD   */
     JOBU = "N";
-    if (Lhs >= 2)  JOBU = "I";
+    if (Lhs >= 2)
+    {
+        JOBU = "I";
+    }
     JOBV = "N";
-    if (Lhs >= 4)  JOBV = "I";
+    if (Lhs >= 4)
+    {
+        JOBV = "I";
+    }
 
     /*     creating NCONT,U,KSTAIR,V,IWORK,DWORK   */
     un = 1;

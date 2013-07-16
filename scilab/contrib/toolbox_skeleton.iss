@@ -18,6 +18,8 @@ Source: contrib\{#TOOLBOX_SKELETON}\readme.txt; DestDir: {app}\contrib\{#TOOLBOX
 Source: contrib\{#TOOLBOX_SKELETON}\demos\*.*; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\demos; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\etc\toolbox_skeleton.quit; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\etc; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\etc\toolbox_skeleton.start; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\etc; Components: {#COMPN_TOOLBOX_SKELETON}
+Source: contrib\{#TOOLBOX_SKELETON}\etc\toolbox_skeleton_preferences.xml; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\etc; Components: {#COMPN_TOOLBOX_SKELETON}
+Source: contrib\{#TOOLBOX_SKELETON}\etc\toolbox_skeleton_preferences.xsl; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\etc; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\help\builder_help.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\help; Components: {#COMPN_TOOLBOX_SKELETON}
 
 Source: contrib\{#TOOLBOX_SKELETON}\help\en_US\build_help.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\help\en_US; Components: {#COMPN_TOOLBOX_SKELETON}
@@ -80,5 +82,6 @@ Source: contrib\{#XCOS_TOOLBOX_SKELETON}\src\c\builder_c.sce; DestDir: {app}\con
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\src\c\business.h; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\src\c; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\src\c\business_sum.c; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\src\c; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\src\cleaner_src.sce; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\src; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
-Source: contrib\{#XCOS_TOOLBOX_SKELETON}\tests\unit_tests\tbx_sum.tst; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\tests\unit_test; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\tests\unit_tests\tbx_sum.tst; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\tests\unit_tests; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
+Source: contrib\{#XCOS_TOOLBOX_SKELETON}\tests\unit_tests\tbx_sum.dia.ref; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}\tests\unit_tests; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}
 ;--------------------------------------------------------------------------------------------------------------

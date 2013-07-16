@@ -8,14 +8,14 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function x_neigh = neigh_func_fsa(x_current, T, param)
-if ~isdef('param','local') then
-  param = [];
-end
+    if ~isdef("param","local") then
+        param = [];
+    end
 
-[Sigma,err] = get_param(param,'sigma',ones(size(x_current,1),size(x_current,2)));
-[Min,err]   = get_param(param,'min_bound',-%inf*ones(size(x_current,1),size(x_current,2)));
-[Max,err]   = get_param(param,'max_bound',%inf*ones(size(x_current,1),size(x_current,2)));
+    [Sigma,err] = get_param(param,"sigma",ones(size(x_current,1),size(x_current,2)));
+    [Min,err]   = get_param(param,"min_bound",-%inf*ones(size(x_current,1),size(x_current,2)));
+    [Max,err]   = get_param(param,"max_bound",%inf*ones(size(x_current,1),size(x_current,2)));
 
-x_neigh = x_current + T*Sigma.*tan(%pi*(rand(size(x_current,1),size(x_current,2)) - 0.5));
-x_neigh = max(min(x_neigh, Max),Min);
+    x_neigh = x_current + T*Sigma.*tan(%pi*(grand(size(x_current,1),size(x_current,2),"def") - 0.5));
+    x_neigh = max(min(x_neigh, Max),Min);
 endfunction

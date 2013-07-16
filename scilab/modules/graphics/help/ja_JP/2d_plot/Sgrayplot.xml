@@ -272,7 +272,12 @@ _____________
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>Sgrayplot();</scilab:image>
+        <scilab:image>
+            x=-10:10; y=-10:10;m =rand(21,21);
+            clf()
+            xset("colormap",hotcolormap(64))
+            Sgrayplot(x,y,m, strf="011", rect=[-20,-20,20,20])
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>
@@ -300,16 +305,13 @@ t = linspace(0,4*%pi,nt);
 show_window(); clf()
 f=gcf();
 f.color_map=jetcolormap(64);
-f.pixmap='on';
 colorbar(-1,1)
 Sgrayplot(x,y,cos(t(1))*z, strf="042", zminmax=[-1,1])
 c=gce(),e=c.children
 xtitle("Kaa''s eyes")
 for i = 1:nt
   e.data(:,3)=matrix(cos(t(i))*z,-1,1);
-  show_pixmap()
 end
-f.pixmap='off';
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

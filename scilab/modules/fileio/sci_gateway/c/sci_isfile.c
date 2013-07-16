@@ -137,7 +137,7 @@ int sci_isfile(char *fname, unsigned long fname_len)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        freeArrayOfWideString(pStVarOne, m1*n1);
+        freeArrayOfWideString(pStVarOne, m1 * n1);
         FREE(results);
         return 0;
     }
@@ -169,7 +169,7 @@ int sci_isfile(char *fname, unsigned long fname_len)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
-        free(results);
+        FREE(results);
         return 0;
     }
 

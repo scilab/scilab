@@ -141,13 +141,8 @@
             </tr>
             <tr>
                 <td align="left">atan</td>
-                <td align="left">Inverse tangent (radians) of the input</td>
+                <td align="left">2-quadrant and 4-quadrant inverse tangent (radians) of the input</td>
                 <td align="left">y = atan(u)</td>
-            </tr>
-            <tr>
-                <td align="left">atan2</td>
-                <td align="left">Four quadrant inverse tangent (radians) of the input</td>
-                <td align="left">y = atan2(u)</td>
             </tr>
             <tr>
                 <td align="left">sinh</td>

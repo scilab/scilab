@@ -59,7 +59,7 @@ extern CellAdr *ListNumeric;
 int sci_umf_luget(char* fname, unsigned long l)
 {
     /*
-     *  LU_ptr is (a pointer to) a factorisation of A, we have:
+     *  LU_ptr is (a pointer to) a factorization of A, we have:
      *             -1
      *          P R  A Q = L U
      *

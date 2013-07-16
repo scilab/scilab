@@ -279,9 +279,6 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_argn.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clear.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clearglobal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -596,9 +593,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_argn.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clear.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clearglobal.f">

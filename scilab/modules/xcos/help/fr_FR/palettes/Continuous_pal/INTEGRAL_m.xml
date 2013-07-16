@@ -270,32 +270,32 @@
             <para>Cet exemple de modèle montre comment utiliser le port d'état de l'intégrateur.</para>
             <para>Le paramètre de ré-initialisation est mis à 1, La limite haute à 1 et la limite basse à -1.</para>
             <para>
-                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_1_Example.xcos">
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/INTEGRAL_m_1_Example.zcos">
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata align="center" fileref="../../../../examples/continuous_pal/INTEGRAL_m_1_Example.xcos" valign="middle"/>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/INTEGRAL_m_1_Example.zcos" valign="middle"/>
                         </imageobject>
                     </inlinemediaobject>
                 </link>
                 <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_1_Example.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_1_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-             
+            
         </refsection>
         <refsection id="Example_INTEGRAL_m_2">
             <title>Exemple 2</title>
             <para>
-                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.xcos">
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.zcos">
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata align="center" fileref="../../../../examples/continuous_pal/INTEGRAL_m_2_Example.xcos" valign="middle"/>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/INTEGRAL_m_2_Example.zcos" valign="middle"/>
                         </imageobject>
                     </inlinemediaobject>
                 </link>
                 <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>

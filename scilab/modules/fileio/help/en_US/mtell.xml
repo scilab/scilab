@@ -44,7 +44,7 @@
             the named stream <varname>fd</varname>.
         </para>
     </refsection>
-
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
@@ -52,7 +52,7 @@
 testFile=TMPDIR + '/testFile.bin';
 fd = mopen(testFile,'wb');
 
-mput(42,'d'); // Will open fd transparently to write 42
+mput(42,'d'); // Will write 42 in last opened file
 mtell() // Will return 8, the current position in the file descriptor
 
 mput(42+2,'d', fd); // Will open fd transparently to write 42
@@ -64,7 +64,7 @@ mtell(fd) // Will return 0
 mclose(fd);
  ]]></programlisting>
     </refsection>
-
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

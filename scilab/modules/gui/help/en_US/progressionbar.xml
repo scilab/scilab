@@ -56,7 +56,15 @@ for j=0:0.1:1,
   realtime(3*j);
   progressionbar(winId);
 end
-winclose(winId);
+close(winId);
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="waitbar">waitbar</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

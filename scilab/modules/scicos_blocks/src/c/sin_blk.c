@@ -18,20 +18,20 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void sin_blk(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void sin_blk(scicos_block *block, int flag)
 {
-	if(flag==1)
-	{
-		int j = 0;
-		for (j=0;j<block->insz[0];j++) 
-		{
-			block->outptr[0][j]=sin(block->inptr[0][j]);
-		}
-	}
+    if (flag == 1)
+    {
+        int j = 0;
+        for (j = 0; j < block->insz[0]; j++)
+        {
+            block->outptr[0][j] = sin(block->inptr[0][j]);
+        }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

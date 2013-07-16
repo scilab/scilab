@@ -21,21 +21,21 @@ int sci_bug_11093(char *fname)
     checkInputArgument(pvApiCtx, 1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 1;
     }
 
 
-    if(getAllocatedSingleString(pvApiCtx, piAddr, &pstName))
+    if (getAllocatedSingleString(pvApiCtx, piAddr, &pstName))
     {
         return 1;
     }
 
     iRet = isNamedVarExist(pvApiCtx, pstName);
     FREE(pstName);
-    
+
     createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
     LhsVar(1) = Rhs + 1;
     return 0;

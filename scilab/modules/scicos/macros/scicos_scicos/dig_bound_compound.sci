@@ -21,7 +21,7 @@
 //** rotate compound : get dig_bound of a compound
 //**
 //** input : - blk the index of the compound (the i child of axe)
-//**         - 
+//**         -
 //** output : rect
 //**
 //** 25/11/08, Alan
@@ -31,16 +31,16 @@
 //    children list
 // Copyright INRIA
 function [rect]=dig_bound_compound(gh_blk)
-//gh_blk handle on a compound object
+    //gh_blk handle on a compound object
 
-  xmin = 100000;
-  xmax = -xmin;
-  ymin = xmin;
-  ymax = -xmin;
-  C=gh_blk.children
-  for i=1:size(C,'*')
-     select C(i).type
-         case "Rectangle" then
+    xmin = 100000;
+    xmax = -xmin;
+    ymin = xmin;
+    ymax = -xmin;
+    C=gh_blk.children
+    for i=1:size(C,"*")
+        select C(i).type
+        case "Rectangle" then
             //disp('rectangle')
 
             xmin=min(xmin,C(i).data(1));
@@ -48,19 +48,19 @@ function [rect]=dig_bound_compound(gh_blk)
             xmax=max(xmax,C(i).data(3)+C(i).data(1));
             ymax=max(ymax,C(i).data(4)+C(i).data(2));
 
-         case "Text" then
+        case "Text" then
             //disp('text')
 
             //** get bounding box of text with no rotation
             rectstr = stringbox(C(i).text,C(i).data(1),...
-                             C(i).data(2))
+            C(i).data(2))
 
             xmin=min(xmin,rectstr(1,1));
             ymin=min(ymin,rectstr(2,1));
             xmax=max(xmax,rectstr(1,3));
             ymax=max(ymax,rectstr(2,3));
 
-         case "Polyline" then
+        case "Polyline" then
             //disp('polyline')
 
             xmin=min(xmin,min(C(i).data(:,1)));
@@ -68,7 +68,7 @@ function [rect]=dig_bound_compound(gh_blk)
             xmax=max(xmax,max(C(i).data(:,1)));
             ymax=max(ymax,max(C(i).data(:,2)));
 
-         case "Compound" then
+        case "Compound" then
             //disp('compound')
 
             [rectcmpd]=dig_bound_compound(C(i))
@@ -77,7 +77,7 @@ function [rect]=dig_bound_compound(gh_blk)
             xmax=max(xmax,rectcmpd(1,3));
             ymax=max(ymax,rectcmpd(1,4));
 
-         case "Segs" then
+        case "Segs" then
             //disp('Segs')
 
             xmin=min(xmin,min(C(i).data(:,1)));
@@ -85,16 +85,16 @@ function [rect]=dig_bound_compound(gh_blk)
             xmax=max(xmax,max(C(i).data(:,1)));
             ymax=max(ymax,max(C(i).data(:,2)));
 
-         case "Arc" then
+        case "Arc" then
             //disp('Arc')
-	    
+
             xmin=min(xmin,C(i).data(1));
             ymin=min(ymin,C(i).data(2));
             xmax=max(xmax,C(i).data(3)+C(i).data(1));
             ymax=max(ymax,C(i).data(4)+C(i).data(2));
-     end
-  end
+        end
+    end
 
-  rect=[xmin ymin xmax ymax]
+    rect=[xmin ymin xmax ymax]
 
 endfunction

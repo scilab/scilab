@@ -58,6 +58,11 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
      * @see java.awt.event.AWTEventListener#eventDispatched(java.awt.AWTEvent)
      */
     public void eventDispatched(AWTEvent mouseEvent) {
+        // DEBUG
+        //Debug.DEBUG(this.getClass().getSimpleName(),((MouseEvent) mouseEvent).toString());
+        //if (this.axes != null) {
+        //Debug.DEBUG("axes number " + this.axes.getFigureId());
+        //}
         /*
          * Managing Canvas
          * PRESSED

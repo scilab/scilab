@@ -150,13 +150,40 @@ plot(imprep,'b')
 u=ones(1,20);
 stprep=flts(ones(1,20),tf2ss(h));   //Step response
 plot(stprep,'g')
-
+ ]]></programlisting>
+        <scilab:image>
+            sl=syslin('d',1,1,1);u=1:10;
+            y=flts(u,sl);
+            plot2d(y)
+            [y1,x1]=flts(u(1:5),sl);y2=flts(u(6:10),sl,x1);
+            y-[y1,y2]
+            
+            z=poly(0,'z');
+            D=1+z+z^2; p =degree(D);
+            sl=syslin('d',1,1,1,D);
+            y=flts(u,sl);[y1,x1]=flts(u(1:5),sl);
+            y2=flts(u(5-p+1:10),sl,x1);
+            y-[y1,y2]
+            
+            z=poly(0,'z');
+            h=syslin(0.1,(1-2*z)/(z^2+0.3*z+1))
+            imprep=flts(eye(1,20),tf2ss(h));
+            clf();
+            plot(imprep,'b')
+            u=ones(1,20);
+            stprep=flts(ones(1,20),tf2ss(h));
+            plot(stprep,'g')
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // Other examples
-A=[1 2 3;0 2 4;0 0 1];B=[1 0;0 0;0 1];C=eye(3,3);Sys=syslin('d',A,B,C);
+A=[1 2 3;0 2 4;0 0 1];
+B=[1 0;0 0;0 1];
+C=eye(3,3);
+Sys=syslin('d',A,B,C);
 H=ss2tf(Sys); u=[1;-1]*(1:10);
 //
 yh=flts(u,H); ys=flts(u,Sys);
-norm(yh-ys,1)    
+norm(yh-ys,1)
 //hot restart
 [ys1,x]=flts(u(:,1:4),Sys);ys2=flts(u(:,5:10),Sys,x);
 norm([ys1,ys2]-ys,1)

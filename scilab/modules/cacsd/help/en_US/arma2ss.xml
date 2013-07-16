@@ -38,7 +38,7 @@ http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
                 <term>S</term>
                 <listitem>
                     <para>
-                        a discrete time state space data structure (see <link linkend="syslin">syslin</link>. The regular input to ouput
+                        a discrete time state space data structure (see <link linkend="syslin">syslin</link>. The regular input to output
                         transfer.
                     </para>
                 </listitem>
@@ -47,7 +47,7 @@ http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
                 <term>Sn</term>
                 <listitem>
                     <para>
-                        a discrete time state space data structure (see <link linkend="syslin">syslin</link>. The noise input to ouput
+                        a discrete time state space data structure (see <link linkend="syslin">syslin</link>. The noise input to output
                         transfer.
                     </para>
                 </listitem>

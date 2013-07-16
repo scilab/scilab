@@ -18,6 +18,12 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{aaf7c2f6-d447-42e4-896f-f08966ed6b04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\hashtable">
+      <UniqueIdentifier>{8cfe9a5f-aeeb-425a-a3f7-d2392c211599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hashtable">
+      <UniqueIdentifier>{7a0771a5-4d3c-4dfd-a297-2d4fd4f57689}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="banier.c">
@@ -425,9 +431,6 @@
     <ClCompile Include="texmacs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="timer.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tmpdir.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -472,6 +475,21 @@
     </ClCompile>
     <ClCompile Include="sci_tools.c">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getmaxMALLOC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="win_mem_alloc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hashtable\hashtable.c">
+      <Filter>Source Files\hashtable</Filter>
+    </ClCompile>
+    <ClCompile Include="hashtable\hashtable_itr.c">
+      <Filter>Source Files\hashtable</Filter>
+    </ClCompile>
+    <ClCompile Include="hashtable\hashtable_utility.c">
+      <Filter>Source Files\hashtable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -739,9 +757,6 @@
     <ClInclude Include="..\..\includes\Thread_Wrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\timerEvents.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\tmpdir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -789,6 +804,27 @@
     </ClInclude>
     <ClInclude Include="..\..\includes\stackTypeVariable.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\MALLOC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getmaxMALLOC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\win_mem_alloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\hashtable.h">
+      <Filter>Header Files\hashtable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\hashtable_itr.h">
+      <Filter>Header Files\hashtable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\hashtable_private.h">
+      <Filter>Header Files\hashtable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\hashtable_utility.h">
+      <Filter>Header Files\hashtable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

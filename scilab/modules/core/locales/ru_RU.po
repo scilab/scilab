@@ -7,24 +7,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-02-13 14:46+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-13 16:02+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
+"%s: Неверный тип входного аргумента №%d: ожидалось вещественное число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scilab function expected.\n"
@@ -33,6 +33,20 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
 msgstr " результаты могут быть неточны. rcond = %s1\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалась одиночная строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -49,10 +63,6 @@ msgstr "%s: Неверный тип параметра %d: ожидался ве
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
 msgstr "%s: Неверный размер аргумента %d: ожидался вещественный скаляр.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
@@ -130,9 +140,9 @@ msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: Неверный тип входных параметров.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
+msgid "%s: Wrong value for input argument #%d: 0,1 or 2 expected.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: Ожидалось 1, 2 или 3.\n"
+"%s: Неверное значение входного аргумента №%d: ожидалось 0, 1 или 2.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -373,8 +383,9 @@ msgid "Aborting current computation\n"
 msgstr "Прекращение текущего расчёта\n"
 
 #, c-format
-msgid "Error: Not a valid gateway ID %d.\n"
-msgstr "Ошибка: недопустимый идентификатор шлюза %d.\n"
+msgid "Error: Not a valid gateway ID %d. Should be between %d and %d.\n"
+msgstr ""
+"Ошибка: недопустимый идентификатор шлюза %d. Должен быть между %d и %d.\n"
 
 msgid "The SCI environment variable is not set.\n"
 msgstr "Переменная окружения SCI не установлена.\n"
@@ -404,11 +415,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" for "
-"element wise operation \n"
+"Warning: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" "
+"for element wise operation \n"
 msgstr ""
-"%s: \"%d.%s ...\" интерпретируется как \"%d.0%s ...\". Используйте \"%d .%s "
-"...\" для поэлементной операции \n"
+"Warning: \"%d.%s ...\" интерпретируется как \"%d.0%s ...\". Используйте \"%d "
+".%s ...\" для поэлементных операций \n"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "Переменная окружения SCI не задана.\n"
@@ -537,6 +548,9 @@ msgstr "Недостаточно места для размещения стек
 msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
+"If a graphic feature has been used, this might be caused by the system "
+"graphic drivers.\n"
+"Please try to update them and try again.\n"
 "Please report a bug on %s with:\n"
 "* a sample code which reproduces the issue\n"
 "* the result of [a, b] = getdebuginfo()\n"
@@ -544,10 +558,13 @@ msgid ""
 "%s %s\n"
 msgstr ""
 "Ой. Scilab обнаружил критическую ошибку.\n"
-"Ваша программа, вероятно, скоро рухнет.\n"
-"Пожалуйста, сообщите об ошибке в %s и укажите:\n"
-"* пример кода, который воспроизводит проблему\n"
-"* результат команды [a, b] = getdebuginfo()\n"
+"Вероятно программа скоро рухнет.\n"
+"Если использовалась графическая функция, то это могло быть вызвано "
+"графическими драйверами системы.\n"
+"Пожалуйста, попробуйте их обновить и попытайтесь ещё раз.\n"
+"Пожалуйста, сообщите о проблеме на %s с:\n"
+"* примером кода, который вызвал проблему\n"
+"* результат  [a, b] = getdebuginfo()\n"
 "* следующую информацию:\n"
 "%s %s\n"
 
@@ -671,7 +688,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
-msgstr "%s: Неверный тип параметра %d: ожидалась матрица строк.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась матрица строк.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: List expected.\n"
@@ -762,7 +779,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
-msgstr "%s: Неверный тип параметра %d: ожидалась матрица или дескриптор.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась матрица дескрипторов.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -1008,7 +1025,7 @@ msgstr "Не удалось создать %s"
 
 #, c-format
 msgid "Warning: Could not resolve the realpath of %s.\n"
-msgstr ""
+msgstr "Предупреждение: не удалось сопоставить истинный путь %s.\n"
 
 #, c-format
 msgid "Error: Could not create %s: %s\n"
@@ -1071,6 +1088,10 @@ msgstr "Запуск программы:"
 msgid "  loading initial environment"
 msgstr "  загрузка исходного окружения"
 
+#, c-format
+msgid "Failed to exec %s:"
+msgstr "Не удалось выполнить %s:"
+
 msgid "&File"
 msgstr "&Файл"
 
@@ -1092,11 +1113,29 @@ msgstr "&Справка"
 msgid "&Toolboxes"
 msgstr "&Модули"
 
-msgid "Introduction"
-msgstr "Введение"
+msgid "Introduction: Getting started with Scilab"
+msgstr "Введение: начало работы с Scilab"
 
-msgid "Getting started with Scilab"
-msgstr "Запуск при запуске Scilab"
+msgid "Scilab objects"
+msgstr "объекты Scilab"
+
+msgid "Operations and numerical primitives"
+msgstr "Операции и числовые примитивы"
+
+msgid "Online definition of function"
+msgstr "Определение функции налету"
+
+msgid "Optimization and simulation"
+msgstr "Оптимизация и моделирование"
+
+msgid "Systems: definition and analysis"
+msgstr "Системы: определение и анализ"
+
+msgid "Linear algebra"
+msgstr "Линейная алгебра"
+
+msgid "Call an external routine"
+msgstr "Вызов внешней процедуры"
 
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
@@ -1162,6 +1201,24 @@ msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: переменная должна быть "
 "определена.\n"
+
+msgid "Scilab Version: "
+msgstr "Версия Scilab: "
+
+msgid "Operating System: "
+msgstr "Операционная система: "
+
+msgid "Java version :"
+msgstr "Версия Java:"
+
+msgid "Java runtime information :"
+msgstr ""
+
+msgid "Java vm information :"
+msgstr ""
+
+msgid "Vendor specification: "
+msgstr "Спецификация разработчика: "
 
 #, c-format
 msgid "%s called at line %s of %s"

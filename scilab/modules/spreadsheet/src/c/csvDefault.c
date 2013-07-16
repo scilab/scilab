@@ -21,7 +21,11 @@
 #define DEFAULT_CSV_DECIMAL "."
 #define DEFAULT_CSV_PRECISION "%.17lg"
 #define DEFAULT_CSV_COMMENTS_REGEXP ""
+#ifdef _MSC_VER
+#define DEFAULT_CSV_EOL "\r\n"
+#else
 #define DEFAULT_CSV_EOL "\n"
+#endif
 #define CSV_DECIMAL_MODE_1 DEFAULT_CSV_DECIMAL
 #define CSV_DECIMAL_MODE_2 ","
 #define DEFAULT_CSV_CONVERSION "double"

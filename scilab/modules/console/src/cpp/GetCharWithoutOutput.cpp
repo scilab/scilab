@@ -24,5 +24,5 @@ extern "C" {
 using namespace  org_scilab_modules_gui_bridge;
 int GetCharWithoutOutput(void)
 {
-  return CallScilabBridge::getCharWithoutOutput(getScilabJavaVM());
+    return CallScilabBridge::getCharWithoutOutput(getScilabJavaVM());
 }

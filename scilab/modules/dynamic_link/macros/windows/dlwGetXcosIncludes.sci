@@ -10,7 +10,7 @@
 //=============================================================================
 function xcosincludeslist = dlwGetXcosIncludes()
 
-  xcosincludeslist = ["$(SCIDIR)/modules/scicos/includes"; ..
-                      "$(SCIDIR)/modules/scicos_blocks/includes"];
+    xcosincludeslist = ["$(SCIDIR)/modules/scicos/includes"; ..
+    "$(SCIDIR)/modules/scicos_blocks/includes"];
 endfunction
 //=============================================================================

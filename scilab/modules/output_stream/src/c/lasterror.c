@@ -1,16 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - 2010 - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdlib.h>
 #include "MALLOC.h"
@@ -62,16 +62,16 @@ int setInternalLastError(int iErr, char** strErrorMessage, int iNbLines, int iLi
     setInternalLastErrorFunctionName(strFunctionName);
     return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int clearInternalLastError(void)
 {
-    return setInternalLastError(NO_ERROR_VALUE, 
-        NULL, 
-        NO_ERROR_MESSAGE_NB_LINES, 
-        NO_ERROR_LINEPOSITION, 
-        NO_ERROR_FUNCTIONNAME);
+    return setInternalLastError(NO_ERROR_VALUE,
+                                NULL,
+                                NO_ERROR_MESSAGE_NB_LINES,
+                                NO_ERROR_LINEPOSITION,
+                                NO_ERROR_FUNCTIONNAME);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int setInternalLastErrorMessage(char** strErrorMessage, int iNbLines)
 {
     int i = 0;
@@ -87,7 +87,7 @@ int setInternalLastErrorMessage(char** strErrorMessage, int iNbLines)
     }
     return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 const char** getInternalLastErrorMessage(int *iNbLines)
 {
     if (iLastErrorMessageNbLines > 0)
@@ -101,7 +101,7 @@ const char** getInternalLastErrorMessage(int *iNbLines)
         return NULL;
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int appendStringToInternalLastErrorMessage(char *strErrorMessage)
 {
     if (iLastErrorMessageNbLines >= MAX_ERROR_MESSAGE_NB_LINES)
@@ -135,31 +135,31 @@ int appendStringToInternalLastErrorMessage(char *strErrorMessage)
     }
     return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int setInternalLastErrorValue(int iVal)
 {
     int iPrevValue = iLastErrorValue;
     iLastErrorValue = iVal;
     return iPrevValue;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int getInternalLastErrorValue(void)
 {
     return iLastErrorValue;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int setInternalLastErrorLinePosition(int iLinePosition)
 {
     int iPrevLinePosition = iLastErrorLinePostion;
     iLastErrorLinePostion = iLinePosition;
     return iPrevLinePosition;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int getInternalLastErrorLinePosition(void)
 {
     return iLastErrorLinePostion;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int setInternalLastErrorFunctionName(char *strFunctionName)
 {
     if (strFunctionName)
@@ -180,9 +180,9 @@ int setInternalLastErrorFunctionName(char *strFunctionName)
     }
     return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 const char *getInternalLastErrorFunctionName(void)
 {
     return strLastErrorFunctionName;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

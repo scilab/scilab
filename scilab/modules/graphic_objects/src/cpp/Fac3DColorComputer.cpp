@@ -45,7 +45,7 @@ Fac3DColorComputer::Fac3DColorComputer(double* colors, int numColors, int colorF
     this->numGons = numGons;
     this->numVerticesPerGon = numVerticesPerGon;
 
-    if (numColors == numGons*numVerticesPerGon)
+    if (numColors == numGons * numVerticesPerGon)
     {
         perVertex = 1;
         numColorsPerFacet = numVerticesPerGon;
@@ -147,11 +147,11 @@ double Fac3DColorComputer::getFacetColor(int facetIndex, int vertexIndex)
         }
         else if (colorFlag == 3)
         {
-            color = colors[facetIndex*numVerticesPerGon + vertexIndex];
+            color = colors[facetIndex * numVerticesPerGon + vertexIndex];
         }
         else if (colorFlag == 4)
         {
-            color = colors[facetIndex*numVerticesPerGon];
+            color = colors[facetIndex * numVerticesPerGon];
         }
     }
     else if (perVertex == 0)
@@ -261,7 +261,7 @@ double Fac3DColorComputer::computeAverageValue(int facetIndex)
 
     for (i = 0; i < numVerticesPerGon; i++)
     {
-        averageValue += colors[numVerticesPerGon*facetIndex + i];
+        averageValue += colors[numVerticesPerGon * facetIndex + i];
     }
 
     averageValue /= (double) numVerticesPerGon;

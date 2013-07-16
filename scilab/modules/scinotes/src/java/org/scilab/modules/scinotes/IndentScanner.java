@@ -84,8 +84,9 @@ public final class IndentScanner {
         while (i < l) {
             int count = packed.charAt(i++);
             int value = packed.charAt(i++);
-            do result[j++] = value;
-            while (--count > 0);
+            do {
+                result[j++] = value;
+            } while (--count > 0);
         }
         return j;
     }
@@ -269,8 +270,9 @@ public final class IndentScanner {
         while (i < 106) {
             int  count = packed.charAt(i++);
             char value = packed.charAt(i++);
-            do map[j++] = value;
-            while (--count > 0);
+            do {
+                map[j++] = value;
+            } while (--count > 0);
         }
         return map;
     }
@@ -337,8 +339,9 @@ public final class IndentScanner {
         zzAtEOF = true;            /* indicate end of file */
         zzEndRead = zzStartRead;  /* invalidate buffer    */
 
-        if (zzReader != null)
+        if (zzReader != null) {
             zzReader.close();
+        }
     }
 
 
@@ -449,8 +452,9 @@ public final class IndentScanner {
      *                This number must not be greater than yylength()!
      */
     public void yypushback(int number)  {
-        if ( number > yylength() )
+        if ( number > yylength() ) {
             zzScanError(ZZ_PUSHBACK_2BIG);
+        }
 
         zzMarkedPos -= number;
     }
@@ -491,19 +495,20 @@ public final class IndentScanner {
                         zzAtBOL = true;
                         break;
                     case '\r':
-                        if (zzMarkedPosL < zzEndReadL)
+                        if (zzMarkedPosL < zzEndReadL) {
                             zzAtBOL = zzBufferL[zzMarkedPosL] != '\n';
-                        else if (zzAtEOF)
+                        } else if (zzAtEOF) {
                             zzAtBOL = false;
-                        else {
+                        } else {
                             boolean eof = zzRefill();
                             zzMarkedPosL = zzMarkedPos;
                             zzEndReadL = zzEndRead;
                             zzBufferL = zzBuffer;
-                            if (eof)
+                            if (eof) {
                                 zzAtBOL = false;
-                            else
+                            } else {
                                 zzAtBOL = zzBufferL[zzMarkedPosL] != '\n';
+                            }
                         }
                         break;
                     default:
@@ -514,18 +519,19 @@ public final class IndentScanner {
 
             zzCurrentPosL = zzCurrentPos = zzStartRead = zzMarkedPosL;
 
-            if (zzAtBOL)
+            if (zzAtBOL) {
                 zzState = ZZ_LEXSTATE[zzLexicalState + 1];
-            else
+            } else {
                 zzState = ZZ_LEXSTATE[zzLexicalState];
+            }
 
 
             zzForAction: {
                 while (true) {
 
-                    if (zzCurrentPosL < zzEndReadL)
+                    if (zzCurrentPosL < zzEndReadL) {
                         zzInput = zzBufferL[zzCurrentPosL++];
-                    else if (zzAtEOF) {
+                    } else if (zzAtEOF) {
                         zzInput = YYEOF;
                         break zzForAction;
                     } else {
@@ -1860,7 +1866,9 @@ public final class IndentScanner {
                     if ( zzIsFinal ) {
                         zzAction = zzState;
                         zzMarkedPosL = zzCurrentPosL;
-                        if ( zzNoLookAhead ) break zzForAction;
+                        if ( zzNoLookAhead ) {
+                            break zzForAction;
+                        }
                     }
 
                 }
@@ -1870,7 +1878,8 @@ public final class IndentScanner {
             zzMarkedPos = zzMarkedPosL;
 
             switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
-                case 5 : {
+                case 5 :
+                {
                     return 2;
                 }
                 case 7:

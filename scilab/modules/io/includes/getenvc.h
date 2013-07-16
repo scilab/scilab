@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -18,14 +18,14 @@
 #include "machine.h"
 
 /**
- * Retrieve a system variable 
+ * Retrieve a system variable
  * @param[out] ierr the error code
  * @param[in] var the name of the variable
  * @param[out] buf the value of the variable
  * @param[out] buflen  the length of the variable
- * @param[in] iflag 
+ * @param[in] iflag
  */
-IO_IMPEXP void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag);
+IO_IMPEXP void C2F(getenvc)(int *ierr, char *var, char *buf, int *buflen, int *iflag);
 
 /**
 * Searches for a file using environment paths
@@ -33,7 +33,7 @@ IO_IMPEXP void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag
 * @param[in] environment variable where we search
 * @return path found
 */
-IO_IMPEXP char *searchEnv(const char *name,const char *env_var);
+IO_IMPEXP char *searchEnv(const char *name, const char *env_var);
 
 
 #endif /* __GETENVC_H__ */

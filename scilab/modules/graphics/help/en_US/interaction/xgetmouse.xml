@@ -49,12 +49,12 @@
     <refsection>
         <title>Description</title>
         <para>
-          Despite <literal>xclick</literal>, <literal>xgetmouse</literal> does not prevent callback menu to be executed.
+            Despite <literal>xclick</literal>, <literal>xgetmouse</literal> does not prevent callback menu to be executed.
         </para>
         <para>
             If the mouse pointer is located in the current graphics window, <literal>xgetmouse</literal> returns
             in <literal>rep</literal> the current pointer position (x,y) and the value <literal>ibutton</literal>.
-
+            
             The <literal>ibutton</literal> value indicates the event type:
         </para>
         <variablelist>

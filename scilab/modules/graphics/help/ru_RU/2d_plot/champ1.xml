@@ -36,7 +36,7 @@
                         матрица, которая описывает y-составляющую векторного
                         поля. <literal>fy(i,j)</literal> - это y-составляющая
                         векторного поля в точке <literal>(x(i),y(j))</literal>.
-                   </para>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

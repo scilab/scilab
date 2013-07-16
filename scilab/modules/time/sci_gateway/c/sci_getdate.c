@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) DIGITEO - 2012 - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -20,7 +20,7 @@
 #include "localization.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_getdate(char *fname,unsigned long fname_len)
+int sci_getdate(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -35,7 +35,7 @@ int sci_getdate(char *fname,unsigned long fname_len)
 
         if (iErr)
         {
-            Scierror(999,_("%s: An error occurred.\n"), fname);
+            Scierror(999, _("%s: An error occurred.\n"), fname);
             if (dDate)
             {
                 FREE(dDate);
@@ -53,13 +53,13 @@ int sci_getdate(char *fname,unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
         }
         else
         {
-            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
     }
@@ -91,7 +91,7 @@ int sci_getdate(char *fname,unsigned long fname_len)
                 {
                     freeAllocatedSingleString(pStr);
                     pStr = NULL;
-                    Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected.\n"),fname,1,"s");
+                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' expected.\n"), fname, 1, "s");
                     return 0;
                 }
 
@@ -102,7 +102,7 @@ int sci_getdate(char *fname,unsigned long fname_len)
 
                 if (createScalarDouble(pvApiCtx, Rhs + 1, dTime) != 0)
                 {
-                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     return 0;
                 }
             }
@@ -118,7 +118,7 @@ int sci_getdate(char *fname,unsigned long fname_len)
             {
                 if (createEmptyMatrix(pvApiCtx, Rhs + 1) != 0)
                 {
-                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     return 0;
                 }
             }
@@ -144,7 +144,7 @@ int sci_getdate(char *fname,unsigned long fname_len)
                 {
                     if (dValues[i] < 0.)
                     {
-                        Scierror(999,_("%s: Wrong value for input argument #%d: Must be > %d.\n"), fname, 1, 0);
+                        Scierror(999, _("%s: Wrong value for input argument #%d: Must be > %d.\n"), fname, 1, 0);
                         return 0;
                     }
                 }
@@ -154,13 +154,13 @@ int sci_getdate(char *fname,unsigned long fname_len)
                 if (iErr == 2)
                 {
                     FREE(dResults);
-                    Scierror(999,_("%s: An error occurred.\n"), fname);
+                    Scierror(999, _("%s: An error occurred.\n"), fname);
                     return 0;
                 }
 
                 if (dResults == NULL)
                 {
-                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     return 0;
                 }
 
@@ -173,7 +173,7 @@ int sci_getdate(char *fname,unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     return 0;
                 }
             }
@@ -185,7 +185,7 @@ int sci_getdate(char *fname,unsigned long fname_len)
         }
         else
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"), fname, 1, "s");
+            Scierror(999, _("%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"), fname, 1, "s");
             return 0;
         }
     }

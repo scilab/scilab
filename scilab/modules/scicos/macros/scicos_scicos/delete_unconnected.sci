@@ -21,81 +21,81 @@
 
 function scs_m=delete_unconnected(scs_m);
 
-  n = lstsize(scs_m.objs);
+    n = lstsize(scs_m.objs);
 
-  if n==0 then
-    return
-  end ; //** exit point
-  
-  DEL=[];
-  DELL=[]
-  finish=%f
+    if n==0 then
+        return
+    end ; //** exit point
 
-  while ~finish
-    finish = %t
-    for k=1:n  //loop on scs_m objects
-      x = getfield(1,scs_m.objs(k))
-      if x(1)=='Block' then
-        if scs_m.objs(k).gui<>'SUM_f'&scs_m.objs(k).gui<>'SOM_f' then
-          if find(scs_m.objs(k).gui==['IFTHEL_f','ESELECT_f']) then
-            kk=[find(scs_m.objs(k).graphics.pein==0),find(scs_m.objs(k).graphics.pin==0)]
-            if kk<> [] // a synchro block is not active, remove it
-              [scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
-              DEL=[DEL DEL1]
-              DELL=[DELL DELL1]
-              finish=%f
-            end
-          else
-            kk=[find(scs_m.objs(k).graphics.pin==0)]
-            if kk<>[] then // at least one  input port is not connected delete the block
-              if or(getfield(1,scs_m.objs(k).graphics)=="in_implicit") then
-                if or(scs_m.objs(k).graphics.in_implicit(kk)<>"I") then 
-                  [scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
-                  DEL=[DEL DEL1]
-                  DELL=[DELL DELL1]
-                  finish=%f
+    DEL=[];
+    DELL=[]
+    finish=%f
+
+    while ~finish
+        finish = %t
+        for k=1:n  //loop on scs_m objects
+            x = getfield(1,scs_m.objs(k))
+            if x(1)=="Block" then
+                if scs_m.objs(k).gui<>"SUM_f"&scs_m.objs(k).gui<>"SOM_f" then
+                    if find(scs_m.objs(k).gui==["IFTHEL_f","ESELECT_f"]) then
+                        kk=[find(scs_m.objs(k).graphics.pein==0),find(scs_m.objs(k).graphics.pin==0)]
+                        if kk<> [] // a synchro block is not active, remove it
+                            [scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
+                            DEL=[DEL DEL1]
+                            DELL=[DELL DELL1]
+                            finish=%f
+                        end
+                    else
+                        kk=[find(scs_m.objs(k).graphics.pin==0)]
+                        if kk<>[] then // at least one  input port is not connected delete the block
+                            if or(getfield(1,scs_m.objs(k).graphics)=="in_implicit") then
+                                if or(scs_m.objs(k).graphics.in_implicit(kk)<>"I") then
+                                    [scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
+                                    DEL=[DEL DEL1]
+                                    DELL=[DELL DELL1]
+                                    finish=%f
+                                end
+                            else
+                                [scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
+                                DEL=[DEL DEL1]
+                                DELL=[DELL DELL1]
+                                finish=%f
+                            end
+                        end
+                    end
                 end
-              else
-                [scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
-                DEL=[DEL DEL1]
-                DELL=[DELL DELL1]
-                finish=%f
-              end
             end
-          end
         end
-      end
     end
-  end
 
-  //suppress rigth-most deleted elements
-  while getfield(1,scs_m.objs($))=='Deleted' then
-    scs_m.objs($)=null();
-    if lstsize(scs_m.objs)==0 then 
-      break
+    //suppress rigth-most deleted elements
+    while getfield(1,scs_m.objs($))=="Deleted" then
+        scs_m.objs($)=null();
+        if lstsize(scs_m.objs)==0 then
+            break
+        end
     end
-  end
 
-  // Notify by hiliting and message
-  if DEL<>[] then
-    // ind_del are deleted and not relinked blocks/links indexes of DEL
-    if DELL <> [] then
-      deleted = DEL(find(DEL<>DELL));
-    else
-      deleted = DEL;
-    end
-    
-    // Store updated scs_m and retrieve the previous one
-    scs_save = scs_m;
-    scs_m = scs_m_s;
+    // Notify by hiliting and message
+    if DEL<>[] then
+        // ind_del are deleted and not relinked blocks/links indexes of DEL
+        if DELL <> [] then
+            deleted = DEL(find(DEL<>DELL));
+        else
+            deleted = DEL;
+        end
 
-    msg = gettext('Block is ignored because of undefined input(s).');
-    for del=deleted
-      hilite_path([path del], msg);
+        // Store updated scs_m and retrieve the previous one
+        scs_save = scs_m;
+        scs_m = scs_m_s;
+
+        msg = gettext("Block is ignored because of undefined input(s).");
+        for del=deleted
+            hilite_path([path del], msg);
+        end
+
+        // Restore the updated scs_m
+        scs_m = scs_save;
     end
-    
-    // Restore the updated scs_m
-    scs_m = scs_save;
-  end
 endfunction
 

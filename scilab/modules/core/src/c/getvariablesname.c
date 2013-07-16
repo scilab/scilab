@@ -15,8 +15,8 @@
 #include "stackinfo.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-static void SortStrings(char **Strings,int SizeStrings);
-static void RemoveDuplicateStrings(char **Strings,int *SizeStrings);
+static void SortStrings(char **Strings, int SizeStrings);
+static void RemoveDuplicateStrings(char **Strings, int *SizeStrings);
 /*--------------------------------------------------------------------------*/
 char **getVariablesName(int *sizearray, BOOL sorted)
 {
@@ -28,14 +28,17 @@ char **getVariablesName(int *sizearray, BOOL sorted)
     char **globalvariables = NULL;
     int sizeglobalvariables = 0;
 
-    localvariables = getLocalVariablesName(&sizelocalvariables,sorted);
-    globalvariables = getGlobalVariablesName(&sizeglobalvariables,sorted);
+    localvariables = getLocalVariablesName(&sizelocalvariables, sorted);
+    globalvariables = getGlobalVariablesName(&sizeglobalvariables, sorted);
 
     if (localvariables || globalvariables)
     {
         int i = 0;
-        variables = (char **)MALLOC(sizeof(char*)*(sizelocalvariables+sizeglobalvariables+1));
-        for (i = 0; i < sizelocalvariables ; i++) variables[i] = localvariables[i];
+        variables = (char **)MALLOC(sizeof(char*) * (sizelocalvariables + sizeglobalvariables + 1));
+        for (i = 0; i < sizelocalvariables ; i++)
+        {
+            variables[i] = localvariables[i];
+        }
         for (i = sizelocalvariables; i < sizelocalvariables + sizeglobalvariables; i++)
         {
             variables[i] = globalvariables[i - sizelocalvariables];
@@ -54,9 +57,12 @@ char **getVariablesName(int *sizearray, BOOL sorted)
 
     if (variables)
     {
-        *sizearray = sizelocalvariables+sizeglobalvariables;
-        if (sorted) SortStrings(variables,*sizearray);
-        RemoveDuplicateStrings(variables,sizearray);
+        *sizearray = sizelocalvariables + sizeglobalvariables;
+        if (sorted)
+        {
+            SortStrings(variables, *sizearray);
+        }
+        RemoveDuplicateStrings(variables, sizearray);
     }
     else
     {
@@ -65,23 +71,29 @@ char **getVariablesName(int *sizearray, BOOL sorted)
     return variables;
 }
 /*----------------------------------------------------------------------------------*/
-char **getLocalVariablesName(int *sizearray,BOOL sorted)
+char **getLocalVariablesName(int *sizearray, BOOL sorted)
 {
     char **variablesLocal = NULL;
     int Ltotal = 0;
     int Lused = 0;
     int j = 0;
 
-    C2F(getvariablesinfo)(&Ltotal,&Lused);
+    C2F(getvariablesinfo)(&Ltotal, &Lused);
 
     if (Lused > 0)
     {
-        variablesLocal = (char **)MALLOC(sizeof(char*)*(Lused+1));
+        variablesLocal = (char **)MALLOC(sizeof(char*) * (Lused + 1));
         if (variablesLocal)
         {
-            for (j=1;j<Lused+1;++j) variablesLocal[j-1] = getLocalNamefromId(j);
+            for (j = 1; j < Lused + 1; ++j)
+            {
+                variablesLocal[j - 1] = getLocalNamefromId(j);
+            }
             *sizearray = Lused;
-            if (sorted) SortStrings(variablesLocal,*sizearray);
+            if (sorted)
+            {
+                SortStrings(variablesLocal, *sizearray);
+            }
         }
         else
         {
@@ -103,16 +115,22 @@ char **getGlobalVariablesName(int *sizearray, BOOL sorted)
     int Gused = 0;
     int j = 0;
 
-    C2F(getgvariablesinfo)(&Gtotal,&Gused);
+    C2F(getgvariablesinfo)(&Gtotal, &Gused);
 
     if (Gused > 0)
     {
-        variablesGlobal = (char **)MALLOC(sizeof(char*)*(Gused+1));
+        variablesGlobal = (char **)MALLOC(sizeof(char*) * (Gused + 1));
         if (variablesGlobal)
         {
-            for (j=0;j<Gused;++j) variablesGlobal[j] = getGlobalNamefromId(j);
+            for (j = 0; j < Gused; ++j)
+            {
+                variablesGlobal[j] = getGlobalNamefromId(j);
+            }
             *sizearray = Gused;
-            if (sorted) SortStrings(variablesGlobal,*sizearray);
+            if (sorted)
+            {
+                SortStrings(variablesGlobal, *sizearray);
+            }
         }
         else
         {
@@ -127,57 +145,63 @@ char **getGlobalVariablesName(int *sizearray, BOOL sorted)
     return variablesGlobal;
 }
 /*--------------------------------------------------------------------------*/
-static void SortStrings(char **Strings,int SizeStrings)
+static void SortStrings(char **Strings, int SizeStrings)
 {
-    int fin,i;
-    for(fin=SizeStrings-1;fin>0;fin--)
+    int fin, i;
+    for (fin = SizeStrings - 1; fin > 0; fin--)
     {
-        int Sorted=FALSE;
-        for(i=0;i<fin;i++)
+        int Sorted = FALSE;
+        for (i = 0; i < fin; i++)
         {
-            if(strcmp(Strings[i],Strings[i+1])>0)
+            if (strcmp(Strings[i], Strings[i + 1]) > 0)
             {
                 char *StringTmp;
 
                 StringTmp = Strings[i];
 
-                Strings[i] = Strings[i+1];
-                Strings[i+1] = StringTmp;
+                Strings[i] = Strings[i + 1];
+                Strings[i + 1] = StringTmp;
 
-                Sorted=TRUE;
+                Sorted = TRUE;
             }
         }
-        if(!Sorted)break;
+        if (!Sorted)
+        {
+            break;
+        }
     }
 }
 /*--------------------------------------------------------------------------*/
-static void RemoveDuplicateStrings(char **Strings,int *SizeStrings)
+static void RemoveDuplicateStrings(char **Strings, int *SizeStrings)
 {
-    int fin,i;
+    int fin, i;
     int newsize = *SizeStrings;
-    for(fin=*SizeStrings-1;fin>0;fin--)
+    for (fin = *SizeStrings - 1; fin > 0; fin--)
     {
-        int Sorted=FALSE;
-        for(i=0;i<fin;i++)
+        int Sorted = FALSE;
+        for (i = 0; i < fin; i++)
         {
             if (Strings[i])
             {
-                if(strcmp(Strings[i],Strings[i+1]) == 0)
+                if (strcmp(Strings[i], Strings[i + 1]) == 0)
                 {
-                    FREE(Strings[i+1]);
-                    Strings[i+1] = NULL;
-                    Sorted=TRUE;
+                    FREE(Strings[i + 1]);
+                    Strings[i + 1] = NULL;
+                    Sorted = TRUE;
                     newsize--;
                 }
             }
             else
             {
-                Strings[i] = Strings[i+1];
-                Strings[i+1] = NULL;
-                Sorted=TRUE;
+                Strings[i] = Strings[i + 1];
+                Strings[i + 1] = NULL;
+                Sorted = TRUE;
             }
         }
-        if(!Sorted)break;
+        if (!Sorted)
+        {
+            break;
+        }
     }
 
     *SizeStrings = newsize;

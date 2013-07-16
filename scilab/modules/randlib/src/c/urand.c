@@ -1,4 +1,4 @@
-/* 
+/*
  *
  * Copyright (C) 2010 - DIGITEO - Michael Baudin
  * Copyright (C) 2004 - Bruno Pincon
@@ -8,27 +8,27 @@
  *   PURPOSE
  *      the basic rand generator of Scilab : s <- (a*s + c) mod m
  *      with :
- *             m = 2^{31} 
+ *             m = 2^{31}
  *             a = 843314861
  *             c = 453816693
- *      
+ *
  *      s must be in [0,m-1] when user changes seed with set_state_urand
  *      period = m
  *
  *   NOTES
- *      a/ Rewritten (in C) so as to output integers like all the others 
+ *      a/ Rewritten (in C) so as to output integers like all the others
  *         generators (and also to have the same manner to set/get the state)
  *      b/ unsigned int arithmetic must be the classic 32 bits unsigned
  *         arithmetic (ie also is exact modulo 2^32).
- * 
- *   URAND, A UNIVERSAL RANDOM NUMBER GENERATOR 
- *   BY, MICHAEL A. MALCOLM, CLEVE B. MOLER, 
- *   STAN-CS-73-334, JANUARY 1973, 
- *   COMPUTER SCIENCE  DEPARTMENT, 
- *   School of Humanities and Sciences, STANFORD UNIVERSITY, 
+ *
+ *   URAND, A UNIVERSAL RANDOM NUMBER GENERATOR
+ *   BY, MICHAEL A. MALCOLM, CLEVE B. MOLER,
+ *   STAN-CS-73-334, JANUARY 1973,
+ *   COMPUTER SCIENCE  DEPARTMENT,
+ *   School of Humanities and Sciences, STANFORD UNIVERSITY,
  *   ftp://reports.stanford.edu/pub/cstr/reports/cs/tr/73/334/CS-TR-73-334.pdf
- * 
- * 
+ *
+ *
  */
 
 
@@ -44,7 +44,10 @@ unsigned long int urandc(void)
     s = 843314861ul * s + 453816693ul;  /* => on obtient ici un resultat modulo 2^32 */
 
     /* il suffit du test suivant pour obtenir le modulo 2^31 */
-    if (s >= 2147483648ul) s -= 2147483648ul;
+    if (s >= 2147483648ul)
+    {
+        s -= 2147483648ul;
+    }
 
     return ( s );
 }

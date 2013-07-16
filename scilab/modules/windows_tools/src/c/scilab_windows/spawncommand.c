@@ -2,11 +2,11 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
 * Copyright (C) DIGITEO - 2010 - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -35,8 +35,8 @@
 #define CMDLINE_FORMAT_NOTDETACHED "%s /A /C \"%s && echo DOS > %s\""
 #define OUTPUT_CHECK_FILENAME_FORMAT "%s\\DOS.OK"
 /*--------------------------------------------------------------------------*/
-pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnOut = {INVALID_HANDLE_VALUE, NULL,0};
-pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnErr = {INVALID_HANDLE_VALUE, NULL,0};
+pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnOut = {INVALID_HANDLE_VALUE, NULL, 0};
+pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnErr = {INVALID_HANDLE_VALUE, NULL, 0};
 /*--------------------------------------------------------------------------*/
 static int GetNumberOfLines(char *lines);
 static BOOL removeEOL(char *_string);
@@ -85,13 +85,13 @@ int spawncommand(char *command, BOOL DetachProcess)
     CreatePipe(&pipeSpawnOut.pipe, &h, &sa, 0);
 
     /* dupe the write side, make it inheritible, and close the original. */
-    DuplicateHandle(hProcess, h, hProcess, &si.hStdOutput, 
-        0, TRUE, DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
+    DuplicateHandle(hProcess, h, hProcess, &si.hStdOutput,
+                    0, TRUE, DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
 
     /* Same as above, but for the error side. */
     CreatePipe(&pipeSpawnErr.pipe, &h, &sa, 0);
-    DuplicateHandle(hProcess, h, hProcess, &si.hStdError, 
-        0, TRUE, DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
+    DuplicateHandle(hProcess, h, hProcess, &si.hStdError,
+                    0, TRUE, DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
 
     /* base command line */
     GetEnvironmentVariable("ComSpec", shellCmd, PATH_MAX);
@@ -114,34 +114,46 @@ int spawncommand(char *command, BOOL DetachProcess)
         char *TMPDirShort = getshortpathname(TMPDirLong, &bConvert);
 
         sprintf(FileTMPDir, OUTPUT_CHECK_FILENAME_FORMAT, TMPDirLong);
-        FREE(TMPDirLong); TMPDirLong = NULL;
-        FREE(TMPDirShort); TMPDirShort = NULL;
+        FREE(TMPDirLong);
+        TMPDirLong = NULL;
+        FREE(TMPDirShort);
+        TMPDirShort = NULL;
 
-        if (FileExist(FileTMPDir)) DeleteFile(FileTMPDir);
+        if (FileExist(FileTMPDir))
+        {
+            DeleteFile(FileTMPDir);
+        }
 
-        lenCmdLine = (int)(strlen(shellCmd) + strlen(command) + strlen(CMDLINE_FORMAT_NOTDETACHED) + 
-            strlen(FileTMPDir));
-        CmdLine = (char*)MALLOC((lenCmdLine + 1)*sizeof(char));
+        lenCmdLine = (int)(strlen(shellCmd) + strlen(command) + strlen(CMDLINE_FORMAT_NOTDETACHED) +
+                           strlen(FileTMPDir));
+        CmdLine = (char*)MALLOC((lenCmdLine + 1) * sizeof(char));
         sprintf(CmdLine, CMDLINE_FORMAT_NOTDETACHED, shellCmd, command, FileTMPDir);
 
         dwCreationFlags = 0;
     }
 
     ok = CreateProcess(
-        NULL,	    /* Module name. */
-        CmdLine,	    /* Command line. */
-        NULL,	    /* Process handle not inheritable. */
-        NULL,	    /* Thread handle not inheritable. */
-        TRUE,	    /* yes, inherit handles. */
-        dwCreationFlags, /* No console for you. */
-        NULL,	    /* Use parent's environment block. */
-        NULL,	    /* Use parent's starting directory. */
-        &si,	    /* Pointer to STARTUPINFO structure. */
-        &pi);	    /* Pointer to PROCESS_INFORMATION structure. */
+             NULL,	    /* Module name. */
+             CmdLine,	    /* Command line. */
+             NULL,	    /* Process handle not inheritable. */
+             NULL,	    /* Thread handle not inheritable. */
+             TRUE,	    /* yes, inherit handles. */
+             dwCreationFlags, /* No console for you. */
+             NULL,	    /* Use parent's environment block. */
+             NULL,	    /* Use parent's starting directory. */
+             &si,	    /* Pointer to STARTUPINFO structure. */
+             &pi);	    /* Pointer to PROCESS_INFORMATION structure. */
 
-    if (!ok) return 2;
+    if (!ok)
+    {
+        return 2;
+    }
 
-    if (CmdLine) {FREE(CmdLine); CmdLine = NULL;}
+    if (CmdLine)
+    {
+        FREE(CmdLine);
+        CmdLine = NULL;
+    }
 
     /* close our references to the write handles that have now been inherited. */
     CloseHandle(si.hStdOutput);
@@ -157,9 +169,9 @@ int spawncommand(char *command, BOOL DetachProcess)
     /* block waiting for the process to end. */
     WaitForSingleObject(pi.hProcess, INFINITE);
 
-    if ( GetExitCodeProcess(pi.hProcess,&ExitCode) == STILL_ACTIVE )
+    if ( GetExitCodeProcess(pi.hProcess, &ExitCode) == STILL_ACTIVE )
     {
-        TerminateProcess(pi.hProcess,0);
+        TerminateProcess(pi.hProcess, 0);
     }
 
     CloseHandle(pi.hProcess);
@@ -195,19 +207,19 @@ DWORD WINAPI ReadFromPipe (LPVOID args)
     pi->OutputBuffer = (unsigned char*) MALLOC(BUFSIZE);
     op = pi->OutputBuffer;
 
-    while (moreOutput) 
+    while (moreOutput)
     {
-        BOOL bres = ReadFile( pi->pipe, op, BUFSIZE-1, &dwRead, NULL);
+        BOOL bres = ReadFile( pi->pipe, op, BUFSIZE - 1, &dwRead, NULL);
 
         moreOutput = bres || (dwRead != 0);
 
-        if (moreOutput) 
+        if (moreOutput)
         {
             readSoFar += dwRead;
-            pi->OutputBuffer  = (unsigned char*) REALLOC(pi->OutputBuffer , readSoFar+BUFSIZE);
+            pi->OutputBuffer  = (unsigned char*) REALLOC(pi->OutputBuffer , readSoFar + BUFSIZE);
             op = pi->OutputBuffer + readSoFar;
         }
-    } 
+    }
     *op = '\0';
     return 0;
 }
@@ -234,12 +246,15 @@ int GetNumberOfLines(char *lines)
             FREE(buffer);
             buffer = NULL;
         }
-        if (NumberOfLines == 0) NumberOfLines = 1;
+        if (NumberOfLines == 0)
+        {
+            NumberOfLines = 1;
+        }
     }
     return NumberOfLines;
 }
 /*--------------------------------------------------------------------------*/
-char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
+char **CreateOuput(pipeinfo *pipe, BOOL DetachProcess)
 {
     char **OuputStrings = NULL;
     if (pipe)
@@ -263,7 +278,10 @@ char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess)
                             OuputStrings[i] = convertLine(line, DetachProcess);
                             line = strtok(NULL, LF_STR);
                             i++;
-                            if (i > pipe->NumberOfLines) break;
+                            if (i > pipe->NumberOfLines)
+                            {
+                                break;
+                            }
                         }
                     }
                 }
@@ -283,11 +301,20 @@ BOOL DetectDetachProcessInCommandLine(char *command)
         int i = (int)strlen(command);
         for (i = (int)strlen(command) - 1; i >= 0; i--)
         {
-            if (command[i] == BLANK) command[i] = EMPTY_CHAR;
-            else break;
+            if (command[i] == BLANK)
+            {
+                command[i] = EMPTY_CHAR;
+            }
+            else
+            {
+                break;
+            }
         }
         i = (int)strlen(command);
-        if ( (i > 0) && (command[i-1] == '&') ) bOK = TRUE;
+        if ( (i > 0) && (command[i - 1] == '&') )
+        {
+            bOK = TRUE;
+        }
     }
     return bOK;
 }
@@ -313,7 +340,7 @@ BOOL removeNotPrintableCharacters(char *_string)
         int j = 0;
         int len = (int)strlen(_string);
         BOOL bRemove = FALSE;
-        for(j = 0; j < len; j++)
+        for (j = 0; j < len; j++)
         {
             /* remove some no printable characters */
             if (_string[j] == NOTPRINTABLE)
@@ -345,7 +372,7 @@ char *convertLine(char *_string, BOOL DetachProcess)
         }
         else
         {
-            // in -nw mode 
+            // in -nw mode
             // chcp 65001 (to switch cmd to UNICODE)
             // and change font to Lucida (TrueType)
             if ( (DetachProcess) && (!IsValidUTF8(_string)) )
@@ -370,9 +397,9 @@ int CallWindowsShell(char *command)
     wchar_t * wcommand = NULL;
     size_t iCmdSize = 0;
 
-    PROCESS_INFORMATION piProcInfo; 
+    PROCESS_INFORMATION piProcInfo;
     STARTUPINFOW siStartInfo;
-    SECURITY_ATTRIBUTES saAttr; 
+    SECURITY_ATTRIBUTES saAttr;
 
     DWORD ExitCode = 0;
 
@@ -385,14 +412,14 @@ int CallWindowsShell(char *command)
         return 1;
     }
 
-    saAttr.nLength = sizeof(SECURITY_ATTRIBUTES); 
-    saAttr.bInheritHandle = TRUE; 
-    saAttr.lpSecurityDescriptor = NULL; 
+    saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
+    saAttr.bInheritHandle = TRUE;
+    saAttr.lpSecurityDescriptor = NULL;
 
     ZeroMemory( &piProcInfo, sizeof(PROCESS_INFORMATION) );
 
     ZeroMemory( &siStartInfo, sizeof(STARTUPINFO) );
-    siStartInfo.cb = sizeof(STARTUPINFO); 
+    siStartInfo.cb = sizeof(STARTUPINFO);
     siStartInfo.dwFlags      = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
     siStartInfo.wShowWindow  = SW_HIDE;
     siStartInfo.hStdInput = NULL;
@@ -403,7 +430,11 @@ int CallWindowsShell(char *command)
     GetEnvironmentVariableW(L"ComSpec", shellCmd, PATH_MAX);
     TMPDir = getTMPDIRW();
     swprintf(FileTMPDir, PATH_MAX, L"%s\\DOS.OK", TMPDir);
-    if (TMPDir) {FREE(TMPDir); TMPDir = NULL;}
+    if (TMPDir)
+    {
+        FREE(TMPDir);
+        TMPDir = NULL;
+    }
 
     wcommand = to_wide_string(command);
     iCmdSize = (wcslen(shellCmd) + wcslen(wcommand) + wcslen(FileTMPDir) + wcslen(L"%s /a /c \"%s\" && echo DOS>%s") + 1);
@@ -421,16 +452,27 @@ int CallWindowsShell(char *command)
 
         CloseHandle(piProcInfo.hProcess);
 
-        if (CmdLine) {FREE(CmdLine); CmdLine = NULL;}
+        if (CmdLine)
+        {
+            FREE(CmdLine);
+            CmdLine = NULL;
+        }
 
-        if (FileExistW(FileTMPDir)) DeleteFileW(FileTMPDir);
+        if (FileExistW(FileTMPDir))
+        {
+            DeleteFileW(FileTMPDir);
+        }
 
         returnedExitCode = (int)ExitCode;
     }
     else
     {
         CloseHandle(piProcInfo.hProcess);
-        if (CmdLine) {FREE(CmdLine); CmdLine = NULL;}
+        if (CmdLine)
+        {
+            FREE(CmdLine);
+            CmdLine = NULL;
+        }
     }
     return returnedExitCode;
 }

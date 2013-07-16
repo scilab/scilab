@@ -61,24 +61,24 @@ int TriangleMeshData::getPropertyFromName(int propertyName)
 {
     switch (propertyName)
     {
-    case __GO_DATA_MODEL_NUM_VERTICES__ :
-        return NUM_VERTICES;
-    case __GO_DATA_MODEL_NUM_INDICES__ :
-        return NUM_INDICES;
-    case __GO_DATA_MODEL_X__ :
-        return X_COORDINATES;
-    case __GO_DATA_MODEL_Y__ :
-        return Y_COORDINATES;
-    case __GO_DATA_MODEL_Z__ :
-        return Z_COORDINATES;
-    case __GO_DATA_MODEL_COORDINATES__ :
-        return COORDINATES;
-    case __GO_DATA_MODEL_INDICES__ :
-        return INDICES;
-    case __GO_DATA_MODEL_VALUES__ :
-        return VALUES;
-    default :
-        return Data3D::getPropertyFromName(propertyName);
+        case __GO_DATA_MODEL_NUM_VERTICES__ :
+            return NUM_VERTICES;
+        case __GO_DATA_MODEL_NUM_INDICES__ :
+            return NUM_INDICES;
+        case __GO_DATA_MODEL_X__ :
+            return X_COORDINATES;
+        case __GO_DATA_MODEL_Y__ :
+            return Y_COORDINATES;
+        case __GO_DATA_MODEL_Z__ :
+            return Z_COORDINATES;
+        case __GO_DATA_MODEL_COORDINATES__ :
+            return COORDINATES;
+        case __GO_DATA_MODEL_INDICES__ :
+            return INDICES;
+        case __GO_DATA_MODEL_VALUES__ :
+            return VALUES;
+        default :
+            return Data3D::getPropertyFromName(propertyName);
     }
 
 }

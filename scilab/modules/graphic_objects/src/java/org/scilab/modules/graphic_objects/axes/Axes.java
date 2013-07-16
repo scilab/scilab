@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -49,37 +50,37 @@ public class Axes extends GraphicObject {
     /** Axes properties names */
     private enum AxesProperty {
         XAXISVISIBLE, XAXISREVERSE, XAXISGRIDCOLOR, XAXISLABEL, XAXISLOCATION, XAXISLOGFLAG,
-            XAXISTICKS, XAXISAUTOTICKS, XAXISNUMBERTICKS, XAXISTICKSLOCATIONS, XAXISTICKSLABELS, XAXISSUBTICKS,
-            YAXISVISIBLE, YAXISREVERSE, YAXISGRIDCOLOR, YAXISLABEL, YAXISLOCATION, YAXISLOGFLAG,
-            YAXISTICKS, YAXISAUTOTICKS, YAXISNUMBERTICKS, YAXISTICKSLOCATIONS, YAXISTICKSLABELS, YAXISSUBTICKS,
-            ZAXISVISIBLE, ZAXISREVERSE, ZAXISGRIDCOLOR, ZAXISLABEL, ZAXISLOCATION, ZAXISLOGFLAG,
-            ZAXISTICKS, ZAXISAUTOTICKS, ZAXISNUMBERTICKS, ZAXISTICKSLOCATIONS, ZAXISTICKSLABELS, ZAXISSUBTICKS,
-            AUTOSUBTICKS,
-            FONT_STYLE, FONT_SIZE, FONT_COLOR, FONT_FRACTIONAL,
-            GRIDPOSITION, TITLE, AUTOCLEAR, FILLED, BACKGROUND,
-            MARGINS, AXESBOUNDS,
-            HIDDENCOLOR
-            };
+        XAXISTICKS, XAXISAUTOTICKS, XAXISNUMBERTICKS, XAXISTICKSLOCATIONS, XAXISTICKSLABELS, XAXISSUBTICKS,
+        YAXISVISIBLE, YAXISREVERSE, YAXISGRIDCOLOR, YAXISLABEL, YAXISLOCATION, YAXISLOGFLAG,
+        YAXISTICKS, YAXISAUTOTICKS, YAXISNUMBERTICKS, YAXISTICKSLOCATIONS, YAXISTICKSLABELS, YAXISSUBTICKS,
+        ZAXISVISIBLE, ZAXISREVERSE, ZAXISGRIDCOLOR, ZAXISLABEL, ZAXISLOCATION, ZAXISLOGFLAG,
+        ZAXISTICKS, ZAXISAUTOTICKS, ZAXISNUMBERTICKS, ZAXISTICKSLOCATIONS, ZAXISTICKSLABELS, ZAXISSUBTICKS,
+        AUTOSUBTICKS,
+        FONT_STYLE, FONT_SIZE, FONT_COLOR, FONT_FRACTIONAL,
+        GRIDPOSITION, TITLE, AUTOCLEAR, FILLED, BACKGROUND,
+        MARGINS, AXESBOUNDS,
+        HIDDENCOLOR
+    };
 
     /** Specifies the grid position relative to the graphics entities */
     public static enum GridPosition { BACKGROUND, FOREGROUND;
 
-        /**
-         * Converts an integer to the corresponding enum
-         * @param intValue the integer value
-         * @return the grid position enum
-         */
-        public static GridPosition intToEnum(Integer intValue) {
-            switch (intValue) {
+                                      /**
+                                       * Converts an integer to the corresponding enum
+                                       * @param intValue the integer value
+                                       * @return the grid position enum
+                                       */
+    public static GridPosition intToEnum(Integer intValue) {
+        switch (intValue) {
             case 0:
                 return GridPosition.BACKGROUND;
             case 1:
                 return GridPosition.FOREGROUND;
             default:
                 return null;
-            }
         }
-    };
+    }
+                                    };
 
 
     /** 3-element array (properties of the X, Y and Z axes) */
@@ -172,14 +173,11 @@ public class Axes extends GraphicObject {
         }
 
         copy.axes = newAxes;
-
         copy.title = "";
-
         copy.camera = new Camera(this.camera);
         copy.box = new Box(this.box);
 
         double [] newMargins = new double[4];
-
         for (int i = 0; i < this.margins.length; i++) {
             newMargins[i] = this.margins[i];
         }
@@ -187,18 +185,14 @@ public class Axes extends GraphicObject {
         copy.margins = newMargins;
 
         double [] newAxesBounds = new double[4];
-
         for (int i = 0; i < this.axesBounds.length; i++) {
             newAxesBounds[i] = this.axesBounds[i];
         }
 
         copy.axesBounds = newAxesBounds;
-
         copy.line = new Line(this.line);
         copy.mark = new Mark(this.mark);
-
         copy.clipProperty = new ClippableProperty(this.clipProperty);
-
         copy.setValid(true);
 
         return copy;
@@ -216,162 +210,162 @@ public class Axes extends GraphicObject {
      */
     public Object getPropertyFromName(int propertyName) {
         switch (propertyName) {
-        case __GO_X_AXIS_VISIBLE__ :
-            return AxesProperty.XAXISVISIBLE;
-        case __GO_X_AXIS_REVERSE__ :
-            return AxesProperty.XAXISREVERSE;
-        case __GO_X_AXIS_GRID_COLOR__ :
-            return AxesProperty.XAXISGRIDCOLOR;
-        case __GO_X_AXIS_LABEL__ :
-            return AxesProperty.XAXISLABEL;
-        case __GO_X_AXIS_LOCATION__ :
-            return AxesProperty.XAXISLOCATION;
-        case __GO_X_AXIS_LOG_FLAG__ :
-            return AxesProperty.XAXISLOGFLAG;
-        case __GO_X_AXIS_TICKS__ :
-            return AxesProperty.XAXISTICKS;
-        case __GO_X_AXIS_AUTO_TICKS__ :
-            return AxesProperty.XAXISAUTOTICKS;
-        case __GO_X_AXIS_NUMBER_TICKS__ :
-            return AxesProperty.XAXISNUMBERTICKS;
-        case __GO_X_AXIS_TICKS_LOCATIONS__:
-            return AxesProperty.XAXISTICKSLOCATIONS;
-        case __GO_X_AXIS_TICKS_LABELS__ :
-            return AxesProperty.XAXISTICKSLABELS;
-        case __GO_X_AXIS_SUBTICKS__ :
-            return AxesProperty.XAXISSUBTICKS;
-        case __GO_Y_AXIS_VISIBLE__ :
-            return AxesProperty.YAXISVISIBLE;
-        case __GO_Y_AXIS_REVERSE__ :
-            return AxesProperty.YAXISREVERSE;
-        case __GO_Y_AXIS_GRID_COLOR__ :
-            return AxesProperty.YAXISGRIDCOLOR;
-        case __GO_Y_AXIS_LABEL__ :
-            return AxesProperty.YAXISLABEL;
-        case __GO_Y_AXIS_LOCATION__ :
-            return AxesProperty.YAXISLOCATION;
-        case __GO_Y_AXIS_LOG_FLAG__ :
-            return AxesProperty.YAXISLOGFLAG;
-        case __GO_Y_AXIS_TICKS__ :
-            return AxesProperty.YAXISTICKS;
-        case __GO_Y_AXIS_AUTO_TICKS__ :
-            return AxesProperty.YAXISAUTOTICKS;
-        case __GO_Y_AXIS_NUMBER_TICKS__ :
-            return AxesProperty.YAXISNUMBERTICKS;
-        case __GO_Y_AXIS_TICKS_LOCATIONS__ :
-            return AxesProperty.YAXISTICKSLOCATIONS;
-        case __GO_Y_AXIS_TICKS_LABELS__ :
-            return AxesProperty.YAXISTICKSLABELS;
-        case __GO_Y_AXIS_SUBTICKS__ :
-            return AxesProperty.YAXISSUBTICKS;
-        case __GO_Z_AXIS_VISIBLE__ :
-            return AxesProperty.ZAXISVISIBLE;
-        case __GO_Z_AXIS_REVERSE__ :
-            return AxesProperty.ZAXISREVERSE;
-        case __GO_Z_AXIS_GRID_COLOR__ :
-            return AxesProperty.ZAXISGRIDCOLOR;
-        case __GO_Z_AXIS_LABEL__ :
-            return AxesProperty.ZAXISLABEL;
-        case __GO_Z_AXIS_LOCATION__ :
-            return AxesProperty.ZAXISLOCATION;
-        case __GO_Z_AXIS_LOG_FLAG__ :
-            return AxesProperty.ZAXISLOGFLAG;
-        case __GO_Z_AXIS_TICKS__ :
-            return AxesProperty.ZAXISTICKS;
-        case __GO_Z_AXIS_AUTO_TICKS__ :
-            return AxesProperty.ZAXISAUTOTICKS;
-        case __GO_Z_AXIS_NUMBER_TICKS__ :
-            return AxesProperty.ZAXISNUMBERTICKS;
-        case __GO_Z_AXIS_TICKS_LOCATIONS__ :
-            return AxesProperty.ZAXISTICKSLOCATIONS;
-        case __GO_Z_AXIS_TICKS_LABELS__ :
-            return AxesProperty.ZAXISTICKSLABELS;
-        case __GO_Z_AXIS_SUBTICKS__ :
-            return AxesProperty.ZAXISSUBTICKS;
-        case __GO_AUTO_SUBTICKS__ :
-            return AxesProperty.AUTOSUBTICKS;
-        case __GO_FONT_STYLE__ :
-            return AxesProperty.FONT_STYLE;
-        case __GO_FONT_SIZE__ :
-            return AxesProperty.FONT_SIZE;
-        case __GO_FONT_COLOR__ :
-            return AxesProperty.FONT_COLOR;
-        case __GO_FONT_FRACTIONAL__ :
-            return AxesProperty.FONT_FRACTIONAL;
-        case __GO_GRID_POSITION__ :
-            return AxesProperty.GRIDPOSITION;
-        case __GO_TITLE__ :
-            return AxesProperty.TITLE;
-        case __GO_AUTO_CLEAR__ :
-            return AxesProperty.AUTOCLEAR;
-        case __GO_FILLED__ :
-            return AxesProperty.FILLED;
-        case __GO_BACKGROUND__ :
-            return AxesProperty.BACKGROUND;
-        case __GO_VIEW__ :
-            return Camera.CameraProperty.VIEW;
-        case __GO_ISOVIEW__ :
-            return Camera.CameraProperty.ISOVIEW;
-        case __GO_CUBE_SCALING__ :
-            return Camera.CameraProperty.CUBESCALING;
-        case __GO_ROTATION_ANGLES__ :
-            return Camera.CameraProperty.ROTATIONANGLES;
-        case __GO_ROTATION_ANGLES_3D__ :
-            return Camera.CameraProperty.ROTATIONANGLES3D;
-        case __GO_BOX_TYPE__ :
-            return Box.BoxProperty.BOX;
-        case __GO_HIDDEN_AXIS_COLOR__ :
-            return Box.BoxProperty.HIDDENAXISCOLOR;
-        case __GO_TIGHT_LIMITS__ :
-            return Box.BoxProperty.TIGHTLIMITS;
-        case __GO_DATA_BOUNDS__ :
-            return Box.BoxProperty.DATABOUNDS;
-        case __GO_REAL_DATA_BOUNDS__ :
-            return Box.BoxProperty.REALDATABOUNDS;
-        case __GO_ZOOM_ENABLED__ :
-            return Box.BoxProperty.ZOOMENABLED;
-        case __GO_ZOOM_BOX__ :
-            return Box.BoxProperty.ZOOMBOX;
-        case __GO_AUTO_SCALE__ :
-            return Box.BoxProperty.AUTOSCALE;
-        case __GO_FIRST_PLOT__ :
-            return Box.BoxProperty.FIRSTPLOT;
-        case __GO_MARGINS__ :
-            return AxesProperty.MARGINS;
-        case __GO_AXES_BOUNDS__ :
-            return AxesProperty.AXESBOUNDS;
-        case __GO_HIDDEN_COLOR__ :
-            return AxesProperty.HIDDENCOLOR;
-        case __GO_LINE_MODE__ :
-            return LinePropertyType.MODE;
-        case __GO_LINE_STYLE__ :
-            return LinePropertyType.LINESTYLE;
-        case __GO_LINE_THICKNESS__ :
-            return LinePropertyType.THICKNESS;
-        case __GO_LINE_COLOR__ :
-            return LinePropertyType.COLOR;
-        case __GO_MARK_MODE__ :
-            return MarkPropertyType.MODE;
-        case __GO_MARK_STYLE__ :
-            return MarkPropertyType.STYLE;
-        case __GO_MARK_SIZE_UNIT__ :
-            return MarkPropertyType.SIZEUNIT;
-        case __GO_MARK_SIZE__ :
-            return MarkPropertyType.SIZE;
-        case __GO_MARK_FOREGROUND__ :
-            return MarkPropertyType.FOREGROUND;
-        case __GO_MARK_BACKGROUND__ :
-            return MarkPropertyType.BACKGROUND;
-        case __GO_CLIP_STATE__ :
-            return ClippablePropertyType.CLIPSTATE;
-        case __GO_CLIP_BOX__ :
-            return ClippablePropertyType.CLIPBOX;
-        case __GO_CLIP_BOX_SET__ :
-            return ClippablePropertyType.CLIPBOXSET;
-        case __GO_ARC_DRAWING_METHOD__ :
-            return ArcProperty.ARCDRAWINGMETHOD;
-        default :
-            return super.getPropertyFromName(propertyName);
+            case __GO_X_AXIS_VISIBLE__ :
+                return AxesProperty.XAXISVISIBLE;
+            case __GO_X_AXIS_REVERSE__ :
+                return AxesProperty.XAXISREVERSE;
+            case __GO_X_AXIS_GRID_COLOR__ :
+                return AxesProperty.XAXISGRIDCOLOR;
+            case __GO_X_AXIS_LABEL__ :
+                return AxesProperty.XAXISLABEL;
+            case __GO_X_AXIS_LOCATION__ :
+                return AxesProperty.XAXISLOCATION;
+            case __GO_X_AXIS_LOG_FLAG__ :
+                return AxesProperty.XAXISLOGFLAG;
+            case __GO_X_AXIS_TICKS__ :
+                return AxesProperty.XAXISTICKS;
+            case __GO_X_AXIS_AUTO_TICKS__ :
+                return AxesProperty.XAXISAUTOTICKS;
+            case __GO_X_AXIS_NUMBER_TICKS__ :
+                return AxesProperty.XAXISNUMBERTICKS;
+            case __GO_X_AXIS_TICKS_LOCATIONS__:
+                return AxesProperty.XAXISTICKSLOCATIONS;
+            case __GO_X_AXIS_TICKS_LABELS__ :
+                return AxesProperty.XAXISTICKSLABELS;
+            case __GO_X_AXIS_SUBTICKS__ :
+                return AxesProperty.XAXISSUBTICKS;
+            case __GO_Y_AXIS_VISIBLE__ :
+                return AxesProperty.YAXISVISIBLE;
+            case __GO_Y_AXIS_REVERSE__ :
+                return AxesProperty.YAXISREVERSE;
+            case __GO_Y_AXIS_GRID_COLOR__ :
+                return AxesProperty.YAXISGRIDCOLOR;
+            case __GO_Y_AXIS_LABEL__ :
+                return AxesProperty.YAXISLABEL;
+            case __GO_Y_AXIS_LOCATION__ :
+                return AxesProperty.YAXISLOCATION;
+            case __GO_Y_AXIS_LOG_FLAG__ :
+                return AxesProperty.YAXISLOGFLAG;
+            case __GO_Y_AXIS_TICKS__ :
+                return AxesProperty.YAXISTICKS;
+            case __GO_Y_AXIS_AUTO_TICKS__ :
+                return AxesProperty.YAXISAUTOTICKS;
+            case __GO_Y_AXIS_NUMBER_TICKS__ :
+                return AxesProperty.YAXISNUMBERTICKS;
+            case __GO_Y_AXIS_TICKS_LOCATIONS__ :
+                return AxesProperty.YAXISTICKSLOCATIONS;
+            case __GO_Y_AXIS_TICKS_LABELS__ :
+                return AxesProperty.YAXISTICKSLABELS;
+            case __GO_Y_AXIS_SUBTICKS__ :
+                return AxesProperty.YAXISSUBTICKS;
+            case __GO_Z_AXIS_VISIBLE__ :
+                return AxesProperty.ZAXISVISIBLE;
+            case __GO_Z_AXIS_REVERSE__ :
+                return AxesProperty.ZAXISREVERSE;
+            case __GO_Z_AXIS_GRID_COLOR__ :
+                return AxesProperty.ZAXISGRIDCOLOR;
+            case __GO_Z_AXIS_LABEL__ :
+                return AxesProperty.ZAXISLABEL;
+            case __GO_Z_AXIS_LOCATION__ :
+                return AxesProperty.ZAXISLOCATION;
+            case __GO_Z_AXIS_LOG_FLAG__ :
+                return AxesProperty.ZAXISLOGFLAG;
+            case __GO_Z_AXIS_TICKS__ :
+                return AxesProperty.ZAXISTICKS;
+            case __GO_Z_AXIS_AUTO_TICKS__ :
+                return AxesProperty.ZAXISAUTOTICKS;
+            case __GO_Z_AXIS_NUMBER_TICKS__ :
+                return AxesProperty.ZAXISNUMBERTICKS;
+            case __GO_Z_AXIS_TICKS_LOCATIONS__ :
+                return AxesProperty.ZAXISTICKSLOCATIONS;
+            case __GO_Z_AXIS_TICKS_LABELS__ :
+                return AxesProperty.ZAXISTICKSLABELS;
+            case __GO_Z_AXIS_SUBTICKS__ :
+                return AxesProperty.ZAXISSUBTICKS;
+            case __GO_AUTO_SUBTICKS__ :
+                return AxesProperty.AUTOSUBTICKS;
+            case __GO_FONT_STYLE__ :
+                return AxesProperty.FONT_STYLE;
+            case __GO_FONT_SIZE__ :
+                return AxesProperty.FONT_SIZE;
+            case __GO_FONT_COLOR__ :
+                return AxesProperty.FONT_COLOR;
+            case __GO_FONT_FRACTIONAL__ :
+                return AxesProperty.FONT_FRACTIONAL;
+            case __GO_GRID_POSITION__ :
+                return AxesProperty.GRIDPOSITION;
+            case __GO_TITLE__ :
+                return AxesProperty.TITLE;
+            case __GO_AUTO_CLEAR__ :
+                return AxesProperty.AUTOCLEAR;
+            case __GO_FILLED__ :
+                return AxesProperty.FILLED;
+            case __GO_BACKGROUND__ :
+                return AxesProperty.BACKGROUND;
+            case __GO_VIEW__ :
+                return Camera.CameraProperty.VIEW;
+            case __GO_ISOVIEW__ :
+                return Camera.CameraProperty.ISOVIEW;
+            case __GO_CUBE_SCALING__ :
+                return Camera.CameraProperty.CUBESCALING;
+            case __GO_ROTATION_ANGLES__ :
+                return Camera.CameraProperty.ROTATIONANGLES;
+            case __GO_ROTATION_ANGLES_3D__ :
+                return Camera.CameraProperty.ROTATIONANGLES3D;
+            case __GO_BOX_TYPE__ :
+                return Box.BoxProperty.BOX;
+            case __GO_HIDDEN_AXIS_COLOR__ :
+                return Box.BoxProperty.HIDDENAXISCOLOR;
+            case __GO_TIGHT_LIMITS__ :
+                return Box.BoxProperty.TIGHTLIMITS;
+            case __GO_DATA_BOUNDS__ :
+                return Box.BoxProperty.DATABOUNDS;
+            case __GO_REAL_DATA_BOUNDS__ :
+                return Box.BoxProperty.REALDATABOUNDS;
+            case __GO_ZOOM_ENABLED__ :
+                return Box.BoxProperty.ZOOMENABLED;
+            case __GO_ZOOM_BOX__ :
+                return Box.BoxProperty.ZOOMBOX;
+            case __GO_AUTO_SCALE__ :
+                return Box.BoxProperty.AUTOSCALE;
+            case __GO_FIRST_PLOT__ :
+                return Box.BoxProperty.FIRSTPLOT;
+            case __GO_MARGINS__ :
+                return AxesProperty.MARGINS;
+            case __GO_AXES_BOUNDS__ :
+                return AxesProperty.AXESBOUNDS;
+            case __GO_HIDDEN_COLOR__ :
+                return AxesProperty.HIDDENCOLOR;
+            case __GO_LINE_MODE__ :
+                return LinePropertyType.MODE;
+            case __GO_LINE_STYLE__ :
+                return LinePropertyType.LINESTYLE;
+            case __GO_LINE_THICKNESS__ :
+                return LinePropertyType.THICKNESS;
+            case __GO_LINE_COLOR__ :
+                return LinePropertyType.COLOR;
+            case __GO_MARK_MODE__ :
+                return MarkPropertyType.MODE;
+            case __GO_MARK_STYLE__ :
+                return MarkPropertyType.STYLE;
+            case __GO_MARK_SIZE_UNIT__ :
+                return MarkPropertyType.SIZEUNIT;
+            case __GO_MARK_SIZE__ :
+                return MarkPropertyType.SIZE;
+            case __GO_MARK_FOREGROUND__ :
+                return MarkPropertyType.FOREGROUND;
+            case __GO_MARK_BACKGROUND__ :
+                return MarkPropertyType.BACKGROUND;
+            case __GO_CLIP_STATE__ :
+                return ClippablePropertyType.CLIPSTATE;
+            case __GO_CLIP_BOX__ :
+                return ClippablePropertyType.CLIPBOX;
+            case __GO_CLIP_BOX_SET__ :
+                return ClippablePropertyType.CLIPBOXSET;
+            case __GO_ARC_DRAWING_METHOD__ :
+                return ArcProperty.ARCDRAWINGMETHOD;
+            default :
+                return super.getPropertyFromName(propertyName);
         }
     }
 
@@ -381,163 +375,187 @@ public class Axes extends GraphicObject {
      * @return the property value
      */
     public Object getProperty(Object property) {
-        if (property == AxesProperty.XAXISVISIBLE) {
-            return getXAxisVisible();
-        } else if (property == AxesProperty.XAXISREVERSE) {
-            return getXAxisReverse();
-        } else if (property == AxesProperty.XAXISGRIDCOLOR) {
-            return getXAxisGridColor();
-        } else if (property == AxesProperty.XAXISLABEL) {
-            return getXAxisLabel();
-        } else if (property == AxesProperty.XAXISLOCATION) {
-            return getXAxisLocation();
-        } else if (property == AxesProperty.XAXISLOGFLAG) {
-            return getXAxisLogFlag();
-        } else if (property == AxesProperty.XAXISTICKS) {
-            return getXAxisTicks();
-        } else if (property == AxesProperty.XAXISAUTOTICKS) {
-            return getXAxisAutoTicks();
-        } else if (property == AxesProperty.XAXISNUMBERTICKS) {
-            return getXAxisNumberTicks();
-        } else if (property == AxesProperty.XAXISTICKSLOCATIONS) {
-            return getXAxisTicksLocations();
-        } else if (property == AxesProperty.XAXISTICKSLABELS) {
-            return getXAxisTicksLabels();
-        } else if (property == AxesProperty.XAXISSUBTICKS) {
-            return getXAxisSubticks();
-        } else if (property == AxesProperty.YAXISVISIBLE) {
-            return getYAxisVisible();
-        } else if (property == AxesProperty.YAXISREVERSE) {
-            return getYAxisReverse();
-        } else if (property == AxesProperty.YAXISGRIDCOLOR) {
-            return getYAxisGridColor();
-        } else if (property == AxesProperty.YAXISLABEL) {
-            return getYAxisLabel();
-        } else if (property == AxesProperty.YAXISLOCATION) {
-            return getYAxisLocation();
-        } else if (property == AxesProperty.YAXISLOGFLAG) {
-            return getYAxisLogFlag();
-        } else if (property == AxesProperty.YAXISTICKS) {
-            return getYAxisTicks();
-        } else if (property == AxesProperty.YAXISAUTOTICKS) {
-            return getYAxisAutoTicks();
-        } else if (property == AxesProperty.YAXISNUMBERTICKS) {
-            return getYAxisNumberTicks();
-        } else if (property == AxesProperty.YAXISTICKSLOCATIONS) {
-            return getYAxisTicksLocations();
-        } else if (property == AxesProperty.YAXISTICKSLABELS) {
-            return getYAxisTicksLabels();
-        } else if (property == AxesProperty.YAXISSUBTICKS) {
-            return getYAxisSubticks();
-        } else if (property == AxesProperty.ZAXISVISIBLE) {
-            return getZAxisVisible();
-        } else if (property == AxesProperty.ZAXISREVERSE) {
-            return getZAxisReverse();
-        } else if (property == AxesProperty.ZAXISGRIDCOLOR) {
-            return getZAxisGridColor();
-        } else if (property == AxesProperty.ZAXISLABEL) {
-            return getZAxisLabel();
-        } else if (property == AxesProperty.ZAXISLOCATION) {
-            return getZAxisLocation();
-        } else if (property == AxesProperty.ZAXISLOGFLAG) {
-            return getZAxisLogFlag();
-        } else if (property == AxesProperty.ZAXISTICKS) {
-            return getZAxisTicks();
-        } else if (property == AxesProperty.ZAXISAUTOTICKS) {
-            return getZAxisAutoTicks();
-        } else if (property == AxesProperty.ZAXISNUMBERTICKS) {
-            return getZAxisNumberTicks();
-        } else if (property == AxesProperty.ZAXISTICKSLOCATIONS) {
-            return getZAxisTicksLocations();
-        } else if (property == AxesProperty.ZAXISTICKSLABELS) {
-            return getZAxisTicksLabels();
-        } else if (property == AxesProperty.ZAXISSUBTICKS) {
-            return getZAxisSubticks();
-        } else if (property == AxesProperty.AUTOSUBTICKS) {
-            return getAutoSubticks();
-        } else if (property == AxesProperty.FONT_STYLE) {
-            return getFontStyle();
-        } else if (property == AxesProperty.FONT_SIZE) {
-            return getFontSize();
-        } else if (property == AxesProperty.FONT_COLOR) {
-            return getFontColor();
-        } else if (property == AxesProperty.FONT_FRACTIONAL) {
-            return getFontFractional();
-        } else if (property == AxesProperty.GRIDPOSITION) {
-            return getGridPosition();
-        } else if (property == AxesProperty.TITLE) {
-            return getTitle();
-        } else if (property == AxesProperty.AUTOCLEAR) {
-            return getAutoClear();
-        } else if (property == AxesProperty.FILLED) {
-            return getFilled();
-        } else if (property == AxesProperty.BACKGROUND) {
-            return getBackground();
-        } else if (property == Camera.CameraProperty.VIEW) {
-            return getView();
-        } else if (property == Camera.CameraProperty.ISOVIEW) {
-            return getIsoview();
-        } else if (property == Camera.CameraProperty.CUBESCALING) {
-            return getCubeScaling();
-        } else if (property == Camera.CameraProperty.ROTATIONANGLES) {
-            return getRotationAngles();
-        } else if (property == Camera.CameraProperty.ROTATIONANGLES3D) {
-            return getRotationAngles3d();
-        } else if (property == Box.BoxProperty.BOX) {
-            return getBoxType();
-        } else if (property == Box.BoxProperty.HIDDENAXISCOLOR) {
-            return getHiddenAxisColor();
-        } else if (property == Box.BoxProperty.TIGHTLIMITS) {
-            return getTightLimits();
-        } else if (property == Box.BoxProperty.DATABOUNDS) {
-            return getDataBounds();
-        } else if (property == Box.BoxProperty.REALDATABOUNDS) {
-            return getRealDataBounds();
-        } else if (property == Box.BoxProperty.ZOOMENABLED) {
-            return getZoomEnabled();
-        } else if (property == Box.BoxProperty.ZOOMBOX) {
-            return getZoomBox();
-        } else if (property == Box.BoxProperty.AUTOSCALE) {
-            return getAutoScale();
-        } else if (property == Box.BoxProperty.FIRSTPLOT) {
-            return getFirstPlot();
-        } else if (property == AxesProperty.MARGINS) {
-            return getMargins();
-        } else if (property == AxesProperty.AXESBOUNDS) {
-            return getAxesBounds();
-        } else if (property == AxesProperty.HIDDENCOLOR) {
-            return getHiddenColor();
-        } else if (property == LinePropertyType.MODE) {
-            return getLineMode();
-        } else if (property == LinePropertyType.LINESTYLE) {
-            return getLineStyle();
-        } else if (property == LinePropertyType.THICKNESS) {
-            return getLineThickness();
-        } else if (property == LinePropertyType.COLOR) {
-            return getLineColor();
-        } else if (property == MarkPropertyType.MODE) {
-            return getMarkMode();
-        } else if (property == MarkPropertyType.STYLE) {
-            return getMarkStyle();
-        } else if (property == MarkPropertyType.SIZE) {
-            return getMarkSize();
-        } else if (property == MarkPropertyType.SIZEUNIT) {
-            return getMarkSizeUnit();
-        } else if (property == MarkPropertyType.FOREGROUND) {
-            return getMarkForeground();
-        } else if (property == MarkPropertyType.BACKGROUND) {
-            return getMarkBackground();
-        } else if (property == ClippablePropertyType.CLIPSTATE) {
-            return getClipState();
-        } else if (property == ClippablePropertyType.CLIPBOX) {
-            return getClipBox();
-        } else if (property == ClippablePropertyType.CLIPBOXSET) {
-            return getClipBoxSet();
+        if (property instanceof AxesProperty) {
+            AxesProperty ap = (AxesProperty) property;
+            switch (ap) {
+                case XAXISVISIBLE:
+                    return getXAxisVisible();
+                case XAXISREVERSE:
+                    return getXAxisReverse();
+                case XAXISGRIDCOLOR:
+                    return getXAxisGridColor();
+                case XAXISLABEL:
+                    return getXAxisLabel();
+                case XAXISLOCATION:
+                    return getXAxisLocation();
+                case XAXISLOGFLAG:
+                    return getXAxisLogFlag();
+                case XAXISTICKS:
+                    return getXAxisTicks();
+                case XAXISAUTOTICKS:
+                    return getXAxisAutoTicks();
+                case XAXISNUMBERTICKS:
+                    return getXAxisNumberTicks();
+                case XAXISTICKSLOCATIONS:
+                    return getXAxisTicksLocations();
+                case XAXISTICKSLABELS:
+                    return getXAxisTicksLabels();
+                case XAXISSUBTICKS:
+                    return getXAxisSubticks();
+                case YAXISVISIBLE:
+                    return getYAxisVisible();
+                case YAXISREVERSE:
+                    return getYAxisReverse();
+                case YAXISGRIDCOLOR:
+                    return getYAxisGridColor();
+                case YAXISLABEL:
+                    return getYAxisLabel();
+                case YAXISLOCATION:
+                    return getYAxisLocation();
+                case YAXISLOGFLAG:
+                    return getYAxisLogFlag();
+                case YAXISTICKS:
+                    return getYAxisTicks();
+                case YAXISAUTOTICKS:
+                    return getYAxisAutoTicks();
+                case YAXISNUMBERTICKS:
+                    return getYAxisNumberTicks();
+                case YAXISTICKSLOCATIONS:
+                    return getYAxisTicksLocations();
+                case YAXISTICKSLABELS:
+                    return getYAxisTicksLabels();
+                case YAXISSUBTICKS:
+                    return getYAxisSubticks();
+                case ZAXISVISIBLE:
+                    return getZAxisVisible();
+                case ZAXISREVERSE:
+                    return getZAxisReverse();
+                case ZAXISGRIDCOLOR:
+                    return getZAxisGridColor();
+                case ZAXISLABEL:
+                    return getZAxisLabel();
+                case ZAXISLOCATION:
+                    return getZAxisLocation();
+                case ZAXISLOGFLAG:
+                    return getZAxisLogFlag();
+                case ZAXISTICKS:
+                    return getZAxisTicks();
+                case ZAXISAUTOTICKS:
+                    return getZAxisAutoTicks();
+                case ZAXISNUMBERTICKS:
+                    return getZAxisNumberTicks();
+                case ZAXISTICKSLOCATIONS:
+                    return getZAxisTicksLocations();
+                case ZAXISTICKSLABELS:
+                    return getZAxisTicksLabels();
+                case ZAXISSUBTICKS:
+                    return getZAxisSubticks();
+                case AUTOSUBTICKS:
+                    return getAutoSubticks();
+                case FONT_STYLE:
+                    return getFontStyle();
+                case FONT_SIZE:
+                    return getFontSize();
+                case FONT_COLOR:
+                    return getFontColor();
+                case FONT_FRACTIONAL:
+                    return getFontFractional();
+                case GRIDPOSITION:
+                    return getGridPosition();
+                case TITLE:
+                    return getTitle();
+                case AUTOCLEAR:
+                    return getAutoClear();
+                case FILLED:
+                    return getFilled();
+                case BACKGROUND:
+                    return getBackground();
+                case MARGINS:
+                    return getMargins();
+                case AXESBOUNDS:
+                    return getAxesBounds();
+                case HIDDENCOLOR:
+                    return getHiddenColor();
+            }
+        } else if (property instanceof Camera.CameraProperty) {
+            Camera.CameraProperty cp = (Camera.CameraProperty) property;
+            switch (cp) {
+                case VIEW:
+                    return getView();
+                case ISOVIEW:
+                    return getIsoview();
+                case CUBESCALING:
+                    return getCubeScaling();
+                case ROTATIONANGLES:
+                    return getRotationAngles();
+                case ROTATIONANGLES3D:
+                    return getRotationAngles3d();
+            }
+        } else if (property instanceof Box.BoxProperty) {
+            Box.BoxProperty bp = (Box.BoxProperty) property;
+            switch (bp) {
+                case BOX:
+                    return getBoxType();
+                case HIDDENAXISCOLOR:
+                    return getHiddenAxisColor();
+                case TIGHTLIMITS:
+                    return getTightLimits();
+                case DATABOUNDS:
+                    return getDataBounds();
+                case REALDATABOUNDS:
+                    return getRealDataBounds();
+                case ZOOMENABLED:
+                    return getZoomEnabled();
+                case ZOOMBOX:
+                    return getZoomBox();
+                case AUTOSCALE:
+                    return getAutoScale();
+                case FIRSTPLOT:
+                    return getFirstPlot();
+            }
+        } else if (property instanceof LinePropertyType) {
+            LinePropertyType lp = (LinePropertyType) property;
+            switch (lp) {
+                case MODE:
+                    return getLineMode();
+                case LINESTYLE:
+                    return getLineStyle();
+                case THICKNESS:
+                    return getLineThickness();
+                case COLOR:
+                    return getLineColor();
+            }
+        } else if (property instanceof MarkPropertyType) {
+            MarkPropertyType mp = (MarkPropertyType) property;
+            switch (mp) {
+                case MODE:
+                    return getMarkMode();
+                case STYLE:
+                    return getMarkStyle();
+                case SIZE:
+                    return getMarkSize();
+                case SIZEUNIT:
+                    return getMarkSizeUnit();
+                case FOREGROUND:
+                    return getMarkForeground();
+                case BACKGROUND:
+                    return getMarkBackground();
+            }
+        } else if (property instanceof ClippablePropertyType) {
+            ClippablePropertyType cp = (ClippablePropertyType) property;
+            switch (cp) {
+                case CLIPSTATE:
+                    return getClipState();
+                case CLIPBOX:
+                    return getClipBox();
+                case CLIPBOXSET:
+                    return getClipBoxSet();
+            }
         } else if (property == ArcProperty.ARCDRAWINGMETHOD) {
             return getArcDrawingMethod();
-        } else {
-            return super.getProperty(property);
         }
+
+        return super.getProperty(property);
     }
 
     /**
@@ -547,159 +565,181 @@ public class Axes extends GraphicObject {
      * @return true if the property has been set, false otherwise
      */
     public UpdateStatus setProperty(Object property, Object value) {
-        if (property == AxesProperty.XAXISVISIBLE) {
-            setXAxisVisible((Boolean) value);
-        } else if (property == AxesProperty.XAXISREVERSE) {
-            setXAxisReverse((Boolean) value);
-        } else if (property == AxesProperty.XAXISGRIDCOLOR) {
-            setXAxisGridColor((Integer) value);
-        } else if (property == AxesProperty.XAXISLABEL) {
-            setXAxisLabel((String) value);
-        } else if (property == AxesProperty.XAXISLOCATION) {
-            setXAxisLocation((Integer) value);
-        } else if (property == AxesProperty.XAXISLOGFLAG) {
-            setXAxisLogFlag((Boolean) value);
-        } else if (property == AxesProperty.XAXISTICKS) {
-            setXAxisTicks((TicksProperty) value);
-        } else if (property == AxesProperty.XAXISAUTOTICKS) {
-            setXAxisAutoTicks((Boolean) value);
-        } else if (property == AxesProperty.XAXISTICKSLOCATIONS) {
-            setXAxisTicksLocations((Double[]) value);
-        } else if (property == AxesProperty.XAXISTICKSLABELS) {
-            setXAxisTicksLabels((String[]) value);
-        } else if (property == AxesProperty.XAXISSUBTICKS) {
-            setXAxisSubticks((Integer) value);
-        } else if (property == AxesProperty.YAXISVISIBLE) {
-            setYAxisVisible((Boolean) value);
-        } else if (property == AxesProperty.YAXISREVERSE) {
-            setYAxisReverse((Boolean) value);
-        } else if (property == AxesProperty.YAXISGRIDCOLOR) {
-            setYAxisGridColor((Integer) value);
-        } else if (property == AxesProperty.YAXISLABEL) {
-            setYAxisLabel((String) value);
-        } else if (property == AxesProperty.YAXISLOCATION) {
-            setYAxisLocation((Integer) value);
-        } else if (property == AxesProperty.YAXISLOGFLAG) {
-            setYAxisLogFlag((Boolean) value);
-        } else if (property == AxesProperty.YAXISTICKS) {
-            setYAxisTicks((TicksProperty) value);
-        } else if (property == AxesProperty.YAXISAUTOTICKS) {
-            setYAxisAutoTicks((Boolean) value);
-        } else if (property == AxesProperty.YAXISTICKSLOCATIONS) {
-            setYAxisTicksLocations((Double[]) value);
-        } else if (property == AxesProperty.YAXISTICKSLABELS) {
-            setYAxisTicksLabels((String[]) value);
-        } else if (property == AxesProperty.YAXISSUBTICKS) {
-            setYAxisSubticks((Integer) value);
-        } else if (property == AxesProperty.ZAXISVISIBLE) {
-            setZAxisVisible((Boolean) value);
-        } else if (property == AxesProperty.ZAXISREVERSE) {
-            setZAxisReverse((Boolean) value);
-        } else if (property == AxesProperty.ZAXISGRIDCOLOR) {
-            setZAxisGridColor((Integer) value);
-        } else if (property == AxesProperty.ZAXISLABEL) {
-            setZAxisLabel((String) value);
-        } else if (property == AxesProperty.ZAXISLOCATION) {
-            setZAxisLocation((Integer) value);
-        } else if (property == AxesProperty.ZAXISLOGFLAG) {
-            setZAxisLogFlag((Boolean) value);
-        } else if (property == AxesProperty.ZAXISTICKS) {
-            setZAxisTicks((TicksProperty) value);
-        } else if (property == AxesProperty.ZAXISAUTOTICKS) {
-            setZAxisAutoTicks((Boolean) value);
-        } else if (property == AxesProperty.ZAXISTICKSLOCATIONS) {
-            setZAxisTicksLocations((Double[]) value);
-        } else if (property == AxesProperty.ZAXISTICKSLABELS) {
-            setZAxisTicksLabels((String[]) value);
-        } else if (property == AxesProperty.ZAXISSUBTICKS) {
-            setZAxisSubticks((Integer) value);
-        } else if (property == AxesProperty.AUTOSUBTICKS) {
-            setAutoSubticks((Boolean) value);
-        } else if (property == AxesProperty.FONT_STYLE) {
-            setFontStyle((Integer) value);
-        } else if (property == AxesProperty.FONT_SIZE) {
-            setFontSize((Double) value);
-        } else if (property == AxesProperty.FONT_COLOR) {
-            setFontColor((Integer) value);
-        } else if (property == AxesProperty.FONT_FRACTIONAL) {
-            setFontFractional((Boolean) value);
-        } else if (property == AxesProperty.GRIDPOSITION) {
-            setGridPosition((Integer) value);
-        } else if (property == AxesProperty.TITLE) {
-            setTitle((String) value);
-        } else if (property == AxesProperty.AUTOCLEAR) {
-            setAutoClear((Boolean) value);
-        } else if (property == AxesProperty.FILLED) {
-            setFilled((Boolean) value);
-        } else if (property == AxesProperty.BACKGROUND) {
-            setBackground((Integer) value);
-        } else if (property == Camera.CameraProperty.VIEW) {
-            setView((Integer) value);
-        } else if (property == Camera.CameraProperty.ISOVIEW) {
-            setIsoview((Boolean) value);
-        } else if (property == Camera.CameraProperty.CUBESCALING) {
-            setCubeScaling((Boolean) value);
-        } else if (property == Camera.CameraProperty.ROTATIONANGLES) {
-            return setRotationAngles((Double[]) value);
-        } else if (property == Camera.CameraProperty.ROTATIONANGLES3D) {
-            setRotationAngles3d((Double[]) value);
-        } else if (property == Box.BoxProperty.BOX) {
-            setBoxType((Integer) value);
-        } else if (property == Box.BoxProperty.HIDDENAXISCOLOR) {
-            setHiddenAxisColor((Integer) value);
-        } else if (property == Box.BoxProperty.TIGHTLIMITS) {
-            setTightLimits((Boolean) value);
-        } else if (property == Box.BoxProperty.DATABOUNDS) {
-            setDataBounds((Double[]) value);
-        } else if (property == Box.BoxProperty.REALDATABOUNDS) {
-            setRealDataBounds((Double[]) value);
-        } else if (property == Box.BoxProperty.ZOOMENABLED) {
-            setZoomEnabled((Boolean) value);
-        } else if (property == Box.BoxProperty.ZOOMBOX) {
-            setZoomBox((Double[]) value);
-        } else if (property == Box.BoxProperty.AUTOSCALE) {
-            setAutoScale((Boolean) value);
-        } else if (property == Box.BoxProperty.FIRSTPLOT) {
-            setFirstPlot((Boolean) value);
-        } else if (property == AxesProperty.MARGINS) {
-            setMargins((Double[]) value);
-        } else if (property == AxesProperty.AXESBOUNDS) {
-            setAxesBounds((Double[]) value);
-        } else if (property == AxesProperty.HIDDENCOLOR) {
-            setHiddenColor((Integer) value);
-        } else if (property == LinePropertyType.MODE) {
-            return setLineMode((Boolean) value);
-        } else if (property == LinePropertyType.LINESTYLE) {
-            setLineStyle((Integer) value);
-        } else if (property == LinePropertyType.THICKNESS) {
-            setLineThickness((Double) value);
-        } else if (property == LinePropertyType.COLOR) {
-            setLineColor((Integer) value);
-        } else if (property == MarkPropertyType.MODE) {
-            return setMarkMode((Boolean) value);
-        } else if (property == MarkPropertyType.STYLE) {
-            return setMarkStyle((Integer) value);
-        } else if (property == MarkPropertyType.SIZE) {
-            return setMarkSize((Integer) value);
-        } else if (property == MarkPropertyType.SIZEUNIT) {
-            setMarkSizeUnit((Integer) value);
-        } else if (property == MarkPropertyType.FOREGROUND) {
-            setMarkForeground((Integer) value);
-        } else if (property == MarkPropertyType.BACKGROUND) {
-            setMarkBackground((Integer) value);
-        } else if (property == ClippablePropertyType.CLIPSTATE) {
-            setClipState((Integer) value);
-        } else if (property == ClippablePropertyType.CLIPBOX) {
-            setClipBox((Double[]) value);
-        } else if (property == ClippablePropertyType.CLIPBOXSET) {
-            setClipBoxSet((Boolean) value);
+        if (property instanceof AxesProperty) {
+            AxesProperty ap = (AxesProperty) property;
+            switch (ap) {
+                case XAXISVISIBLE:
+                    return setXAxisVisible((Boolean) value);
+                case XAXISREVERSE:
+                    return setXAxisReverse((Boolean) value);
+                case XAXISGRIDCOLOR:
+                    return setXAxisGridColor((Integer) value);
+                case XAXISLABEL:
+                    return setXAxisLabel((String) value);
+                case XAXISLOCATION:
+                    return setXAxisLocation((Integer) value);
+                case XAXISLOGFLAG:
+                    return setXAxisLogFlag((Boolean) value);
+                case XAXISTICKS:
+                    return setXAxisTicks((TicksProperty) value);
+                case XAXISAUTOTICKS:
+                    return setXAxisAutoTicks((Boolean) value);
+                case XAXISTICKSLOCATIONS:
+                    return setXAxisTicksLocations((Double[]) value);
+                case XAXISTICKSLABELS:
+                    return setXAxisTicksLabels((String[]) value);
+                case XAXISSUBTICKS:
+                    return setXAxisSubticks((Integer) value);
+                case YAXISVISIBLE:
+                    return setYAxisVisible((Boolean) value);
+                case YAXISREVERSE:
+                    return setYAxisReverse((Boolean) value);
+                case YAXISGRIDCOLOR:
+                    return setYAxisGridColor((Integer) value);
+                case YAXISLABEL:
+                    return setYAxisLabel((String) value);
+                case YAXISLOCATION:
+                    return setYAxisLocation((Integer) value);
+                case YAXISLOGFLAG:
+                    return setYAxisLogFlag((Boolean) value);
+                case YAXISTICKS:
+                    return setYAxisTicks((TicksProperty) value);
+                case YAXISAUTOTICKS:
+                    return setYAxisAutoTicks((Boolean) value);
+                case YAXISTICKSLOCATIONS:
+                    return setYAxisTicksLocations((Double[]) value);
+                case YAXISTICKSLABELS:
+                    return setYAxisTicksLabels((String[]) value);
+                case YAXISSUBTICKS:
+                    return setYAxisSubticks((Integer) value);
+                case ZAXISVISIBLE:
+                    return setZAxisVisible((Boolean) value);
+                case ZAXISREVERSE:
+                    return setZAxisReverse((Boolean) value);
+                case ZAXISGRIDCOLOR:
+                    return setZAxisGridColor((Integer) value);
+                case ZAXISLABEL:
+                    return setZAxisLabel((String) value);
+                case ZAXISLOCATION:
+                    return setZAxisLocation((Integer) value);
+                case ZAXISLOGFLAG:
+                    return setZAxisLogFlag((Boolean) value);
+                case ZAXISTICKS:
+                    return setZAxisTicks((TicksProperty) value);
+                case ZAXISAUTOTICKS:
+                    return setZAxisAutoTicks((Boolean) value);
+                case ZAXISTICKSLOCATIONS:
+                    return setZAxisTicksLocations((Double[]) value);
+                case ZAXISTICKSLABELS:
+                    return setZAxisTicksLabels((String[]) value);
+                case ZAXISSUBTICKS:
+                    return setZAxisSubticks((Integer) value);
+                case AUTOSUBTICKS:
+                    return setAutoSubticks((Boolean) value);
+                case FONT_STYLE:
+                    return setFontStyle((Integer) value);
+                case FONT_SIZE:
+                    return setFontSize((Double) value);
+                case FONT_COLOR:
+                    return setFontColor((Integer) value);
+                case FONT_FRACTIONAL:
+                    return setFontFractional((Boolean) value);
+                case GRIDPOSITION:
+                    return setGridPosition((Integer) value);
+                case TITLE:
+                    return setTitle((String) value);
+                case AUTOCLEAR:
+                    return setAutoClear((Boolean) value);
+                case FILLED:
+                    return setFilled((Boolean) value);
+                case BACKGROUND:
+                    return setBackground((Integer) value);
+                case MARGINS:
+                    return setMargins((Double[]) value);
+                case AXESBOUNDS:
+                    return setAxesBounds((Double[]) value);
+                case HIDDENCOLOR:
+                    return setHiddenColor((Integer) value);
+            }
+        } else if (property instanceof Camera.CameraProperty) {
+            Camera.CameraProperty cp = (Camera.CameraProperty) property;
+            switch (cp) {
+                case VIEW:
+                    return setView((Integer) value);
+                case ISOVIEW:
+                    return setIsoview((Boolean) value);
+                case CUBESCALING:
+                    return setCubeScaling((Boolean) value);
+                case ROTATIONANGLES:
+                    return setRotationAngles((Double[]) value);
+                case ROTATIONANGLES3D:
+                    return setRotationAngles3d((Double[]) value);
+            }
+        } else if (property instanceof Box.BoxProperty) {
+            Box.BoxProperty bp = (Box.BoxProperty) property;
+            switch (bp) {
+                case BOX:
+                    return setBoxType((Integer) value);
+                case HIDDENAXISCOLOR:
+                    return setHiddenAxisColor((Integer) value);
+                case TIGHTLIMITS:
+                    return setTightLimits((Boolean) value);
+                case DATABOUNDS:
+                    return setDataBounds((Double[]) value);
+                case REALDATABOUNDS:
+                    return setRealDataBounds((Double[]) value);
+                case ZOOMENABLED:
+                    return setZoomEnabled((Boolean) value);
+                case ZOOMBOX:
+                    return setZoomBox((Double[]) value);
+                case AUTOSCALE:
+                    return setAutoScale((Boolean) value);
+                case FIRSTPLOT:
+                    return setFirstPlot((Boolean) value);
+            }
+        } else if (property instanceof LinePropertyType) {
+            LinePropertyType lp = (LinePropertyType) property;
+            switch (lp) {
+                case MODE:
+                    return setLineMode((Boolean) value);
+                case LINESTYLE:
+                    return setLineStyle((Integer) value);
+                case THICKNESS:
+                    return setLineThickness((Double) value);
+                case COLOR:
+                    return setLineColor((Integer) value);
+            }
+        } else if (property instanceof MarkPropertyType) {
+            MarkPropertyType mp = (MarkPropertyType) property;
+            switch (mp) {
+                case MODE:
+                    return setMarkMode((Boolean) value);
+                case STYLE:
+                    return setMarkStyle((Integer) value);
+                case SIZE:
+                    return setMarkSize((Integer) value);
+                case SIZEUNIT:
+                    return setMarkSizeUnit((Integer) value);
+                case FOREGROUND:
+                    return setMarkForeground((Integer) value);
+                case BACKGROUND:
+                    return setMarkBackground((Integer) value);
+            }
+        } else if (property instanceof ClippablePropertyType) {
+            ClippablePropertyType cp = (ClippablePropertyType) property;
+            switch (cp) {
+                case CLIPSTATE:
+                    return setClipState((Integer) value);
+                case CLIPBOX:
+                    return setClipBox((Double[]) value);
+                case CLIPBOXSET:
+                    return setClipBoxSet((Boolean) value);
+            }
         } else if (property == ArcProperty.ARCDRAWINGMETHOD) {
-            setArcDrawingMethod((Integer) value);
-        } else {
-            return super.setProperty(property, value);
+            return setArcDrawingMethod((Integer) value);
         }
 
-        return UpdateStatus.Success;
+        return super.setProperty(property, value);
     }
 
     /**
@@ -712,8 +752,13 @@ public class Axes extends GraphicObject {
     /**
      * @param autoClear the autoClear to set
      */
-    public void setAutoClear(Boolean autoClear) {
-        this.autoClear = autoClear;
+    public UpdateStatus setAutoClear(Boolean autoClear) {
+        if (autoClear != this.autoClear) {
+            this.autoClear = autoClear;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -726,8 +771,10 @@ public class Axes extends GraphicObject {
     /**
      * @param axes the axes to set
      */
-    public void setAxes(AxisProperty[] axes) {
+    public UpdateStatus setAxes(AxisProperty[] axes) {
         this.axes = axes;
+
+        return UpdateStatus.Success;
     }
 
     /**
@@ -740,8 +787,10 @@ public class Axes extends GraphicObject {
     /**
      * @param xAxis the x axis to set
      */
-    public void setXAxis(AxisProperty xAxis) {
+    public UpdateStatus setXAxis(AxisProperty xAxis) {
         axes[0] = xAxis;
+
+        return UpdateStatus.Success;
     }
 
     /**
@@ -754,8 +803,8 @@ public class Axes extends GraphicObject {
     /**
      * @param visible the x axis visible to set
      */
-    public void setXAxisVisible(Boolean visible) {
-        axes[0].setVisible(visible);
+    public UpdateStatus setXAxisVisible(Boolean visible) {
+        return axes[0].setVisible(visible);
     }
 
     /**
@@ -768,8 +817,8 @@ public class Axes extends GraphicObject {
     /**
      * @param reverse the x axis reverse to set
      */
-    public void setXAxisReverse(Boolean reverse) {
-        axes[0].setReverse(reverse);
+    public UpdateStatus setXAxisReverse(Boolean reverse) {
+        return axes[0].setReverse(reverse);
     }
 
     /**
@@ -782,8 +831,8 @@ public class Axes extends GraphicObject {
     /**
      * @param gridColor the x axis grid color to set
      */
-    public void setXAxisGridColor(Integer gridColor) {
-        axes[0].setGridColor(gridColor);
+    public UpdateStatus setXAxisGridColor(Integer gridColor) {
+        return axes[0].setGridColor(gridColor);
     }
 
     /**
@@ -796,8 +845,8 @@ public class Axes extends GraphicObject {
     /**
      * @param label the x axis label to set
      */
-    public void setXAxisLabel(String label) {
-        axes[0].setLabel(label);
+    public UpdateStatus setXAxisLabel(String label) {
+        return axes[0].setLabel(label);
     }
 
     /**
@@ -817,15 +866,15 @@ public class Axes extends GraphicObject {
     /**
      * @param axisLocation the x axis location to set
      */
-    public void setXAxisLocation(Integer axisLocation) {
-        setXAxisLocationAsEnum(AxisLocation.intToEnum(axisLocation));
+    public UpdateStatus setXAxisLocation(Integer axisLocation) {
+        return setXAxisLocationAsEnum(AxisLocation.intToEnum(axisLocation));
     }
 
     /**
      * @param axisLocation the x axis location to set
      */
-    public void setXAxisLocationAsEnum(AxisLocation axisLocation) {
-        axes[0].setAxisLocation(axisLocation);
+    public UpdateStatus setXAxisLocationAsEnum(AxisLocation axisLocation) {
+        return axes[0].setAxisLocation(axisLocation);
     }
 
     /**
@@ -838,8 +887,8 @@ public class Axes extends GraphicObject {
     /**
      * @param logFlag the x axis log flag to set
      */
-    public void setXAxisLogFlag(Boolean logFlag) {
-        axes[0].setLogFlag(logFlag);
+    public UpdateStatus setXAxisLogFlag(Boolean logFlag) {
+        return axes[0].setLogFlag(logFlag);
     }
 
     /**
@@ -852,8 +901,8 @@ public class Axes extends GraphicObject {
     /**
      * @param ticks the x axis ticks to set
      */
-    public void setXAxisTicks(TicksProperty ticks) {
-        axes[0].setTicks(ticks);
+    public UpdateStatus setXAxisTicks(TicksProperty ticks) {
+        return axes[0].setTicks(ticks);
     }
 
     /**
@@ -866,8 +915,8 @@ public class Axes extends GraphicObject {
     /**
      * @param autoTicks the x axis autoticks to set
      */
-    public void setXAxisAutoTicks(Boolean autoTicks) {
-        axes[0].setAutoTicks(autoTicks);
+    public UpdateStatus setXAxisAutoTicks(Boolean autoTicks) {
+        return axes[0].setAutoTicks(autoTicks);
     }
 
     /**
@@ -887,8 +936,8 @@ public class Axes extends GraphicObject {
     /**
      * @param ticksLocations the x axis ticks locations to set
      */
-    public void setXAxisTicksLocations(Double[] ticksLocations) {
-        axes[0].setTicksLocations(ticksLocations);
+    public UpdateStatus setXAxisTicksLocations(Double[] ticksLocations) {
+        return axes[0].setTicksLocations(ticksLocations);
     }
 
     /**
@@ -908,15 +957,15 @@ public class Axes extends GraphicObject {
     /**
      * @param labels the x axis ticks labels to set
      */
-    public void setXAxisTicksLabels(String[] labels) {
-        axes[0].setTicksLabelsStrings(labels);
+    public UpdateStatus setXAxisTicksLabels(String[] labels) {
+        return axes[0].setTicksLabelsStrings(labels);
     }
 
     /**
      * @param labels the x axis ticks labels to set
      */
-    public void setXAxisTicksLabelsAsArrayList(ArrayList<FormattedText> labels) {
-        axes[0].setTicksLabels(labels);
+    public UpdateStatus setXAxisTicksLabelsAsArrayList(ArrayList<FormattedText> labels) {
+        return axes[0].setTicksLabels(labels);
     }
 
     /**
@@ -929,8 +978,8 @@ public class Axes extends GraphicObject {
     /**
      * @param subticks the x axis number of subticks to set
      */
-    public void setXAxisSubticks(Integer subticks) {
-        axes[0].setSubticks(subticks);
+    public UpdateStatus setXAxisSubticks(Integer subticks) {
+        return axes[0].setSubticks(subticks);
     }
 
     /**
@@ -943,8 +992,10 @@ public class Axes extends GraphicObject {
     /**
      * @param yAxis the y axis to set
      */
-    public void setYAxis(AxisProperty yAxis) {
+    public UpdateStatus setYAxis(AxisProperty yAxis) {
         axes[1] = yAxis;
+
+        return UpdateStatus.Success;
     }
 
     /**
@@ -957,8 +1008,8 @@ public class Axes extends GraphicObject {
     /**
      * @param visible the y axis visible to set
      */
-    public void setYAxisVisible(Boolean visible) {
-        axes[1].setVisible(visible);
+    public UpdateStatus setYAxisVisible(Boolean visible) {
+        return axes[1].setVisible(visible);
     }
 
     /**
@@ -971,8 +1022,8 @@ public class Axes extends GraphicObject {
     /**
      * @param reverse the y axis reverse to set
      */
-    public void setYAxisReverse(Boolean reverse) {
-        axes[1].setReverse(reverse);
+    public UpdateStatus setYAxisReverse(Boolean reverse) {
+        return axes[1].setReverse(reverse);
     }
 
     /**
@@ -985,8 +1036,8 @@ public class Axes extends GraphicObject {
     /**
      * @param gridColor the y axis grid color to set
      */
-    public void setYAxisGridColor(Integer gridColor) {
-        axes[1].setGridColor(gridColor);
+    public UpdateStatus setYAxisGridColor(Integer gridColor) {
+        return axes[1].setGridColor(gridColor);
     }
 
     /**
@@ -999,8 +1050,8 @@ public class Axes extends GraphicObject {
     /**
      * @param label the y axis label to set
      */
-    public void setYAxisLabel(String label) {
-        axes[1].setLabel(label);
+    public UpdateStatus setYAxisLabel(String label) {
+        return axes[1].setLabel(label);
     }
 
     /**
@@ -1020,15 +1071,15 @@ public class Axes extends GraphicObject {
     /**
      * @param axisLocation the y axis location to set
      */
-    public void setYAxisLocation(Integer axisLocation) {
-        setYAxisLocationAsEnum(AxisLocation.intToEnum(axisLocation));
+    public UpdateStatus setYAxisLocation(Integer axisLocation) {
+        return setYAxisLocationAsEnum(AxisLocation.intToEnum(axisLocation));
     }
 
     /**
      * @param axisLocation the y axis location to set
      */
-    public void setYAxisLocationAsEnum(AxisLocation axisLocation) {
-        axes[1].setAxisLocation(axisLocation);
+    public UpdateStatus setYAxisLocationAsEnum(AxisLocation axisLocation) {
+        return axes[1].setAxisLocation(axisLocation);
     }
 
     /**
@@ -1041,8 +1092,8 @@ public class Axes extends GraphicObject {
     /**
      * @param logFlag the y axis log flag to set
      */
-    public void setYAxisLogFlag(Boolean logFlag) {
-        axes[1].setLogFlag(logFlag);
+    public UpdateStatus setYAxisLogFlag(Boolean logFlag) {
+        return axes[1].setLogFlag(logFlag);
     }
 
     /**
@@ -1055,8 +1106,8 @@ public class Axes extends GraphicObject {
     /**
      * @param ticks the y axis ticks to set
      */
-    public void setYAxisTicks(TicksProperty ticks) {
-        axes[1].setTicks(ticks);
+    public UpdateStatus setYAxisTicks(TicksProperty ticks) {
+        return axes[1].setTicks(ticks);
     }
 
     /**
@@ -1069,8 +1120,8 @@ public class Axes extends GraphicObject {
     /**
      * @param autoTicks the y axis autoticks to set
      */
-    public void setYAxisAutoTicks(Boolean autoTicks) {
-        axes[1].setAutoTicks(autoTicks);
+    public UpdateStatus setYAxisAutoTicks(Boolean autoTicks) {
+        return axes[1].setAutoTicks(autoTicks);
     }
 
     /**
@@ -1090,8 +1141,8 @@ public class Axes extends GraphicObject {
     /**
      * @param ticksLocations the y axis ticks locations to set
      */
-    public void setYAxisTicksLocations(Double[] ticksLocations) {
-        axes[1].setTicksLocations(ticksLocations);
+    public UpdateStatus setYAxisTicksLocations(Double[] ticksLocations) {
+        return axes[1].setTicksLocations(ticksLocations);
     }
 
     /**
@@ -1111,15 +1162,15 @@ public class Axes extends GraphicObject {
     /**
      * @param labels the y axis ticks labels to set
      */
-    public void setYAxisTicksLabels(String[] labels) {
-        axes[1].setTicksLabelsStrings(labels);
+    public UpdateStatus setYAxisTicksLabels(String[] labels) {
+        return axes[1].setTicksLabelsStrings(labels);
     }
 
     /**
      * @param labels the y axis ticks labels to set
      */
-    public void setYAxisTicksLabelsAsArrayList(ArrayList<FormattedText> labels) {
-        axes[1].setTicksLabels(labels);
+    public UpdateStatus setYAxisTicksLabelsAsArrayList(ArrayList<FormattedText> labels) {
+        return axes[1].setTicksLabels(labels);
     }
 
     /**
@@ -1132,8 +1183,8 @@ public class Axes extends GraphicObject {
     /**
      * @param subticks the y axis number of subticks to set
      */
-    public void setYAxisSubticks(Integer subticks) {
-        axes[1].setSubticks(subticks);
+    public UpdateStatus setYAxisSubticks(Integer subticks) {
+        return axes[1].setSubticks(subticks);
     }
 
     /**
@@ -1146,8 +1197,10 @@ public class Axes extends GraphicObject {
     /**
      * @param zAxis the z axis to set
      */
-    public void setZAxis(AxisProperty zAxis) {
+    public UpdateStatus setZAxis(AxisProperty zAxis) {
         axes[2] = zAxis;
+
+        return UpdateStatus.Success;
     }
 
     /**
@@ -1160,8 +1213,8 @@ public class Axes extends GraphicObject {
     /**
      * @param visible the z axis visible to set
      */
-    public void setZAxisVisible(Boolean visible) {
-        axes[2].setVisible(visible);
+    public UpdateStatus setZAxisVisible(Boolean visible) {
+        return axes[2].setVisible(visible);
     }
 
     /**
@@ -1174,8 +1227,8 @@ public class Axes extends GraphicObject {
     /**
      * @param reverse the z axis reverse to set
      */
-    public void setZAxisReverse(Boolean reverse) {
-        axes[2].setReverse(reverse);
+    public UpdateStatus setZAxisReverse(Boolean reverse) {
+        return axes[2].setReverse(reverse);
     }
 
     /**
@@ -1188,8 +1241,8 @@ public class Axes extends GraphicObject {
     /**
      * @param gridColor the z axis grid color to set
      */
-    public void setZAxisGridColor(Integer gridColor) {
-        axes[2].setGridColor(gridColor);
+    public UpdateStatus setZAxisGridColor(Integer gridColor) {
+        return axes[2].setGridColor(gridColor);
     }
 
     /**
@@ -1202,8 +1255,8 @@ public class Axes extends GraphicObject {
     /**
      * @param label the z axis label to set
      */
-    public void setZAxisLabel(String label) {
-        axes[2].setLabel(label);
+    public UpdateStatus setZAxisLabel(String label) {
+        return axes[2].setLabel(label);
     }
 
     /**
@@ -1223,15 +1276,15 @@ public class Axes extends GraphicObject {
     /**
      * @param axisLocation the z axis location to set
      */
-    public void setZAxisLocation(Integer axisLocation) {
-        setZAxisLocationAsEnum(AxisLocation.intToEnum(axisLocation));
+    public UpdateStatus setZAxisLocation(Integer axisLocation) {
+        return setZAxisLocationAsEnum(AxisLocation.intToEnum(axisLocation));
     }
 
     /**
      * @param axisLocation the z axis location to set
      */
-    public void setZAxisLocationAsEnum(AxisLocation axisLocation) {
-        axes[2].setAxisLocation(axisLocation);
+    public UpdateStatus setZAxisLocationAsEnum(AxisLocation axisLocation) {
+        return axes[2].setAxisLocation(axisLocation);
     }
 
     /**
@@ -1244,8 +1297,8 @@ public class Axes extends GraphicObject {
     /**
      * @param logFlag the z axis log flag to set
      */
-    public void setZAxisLogFlag(Boolean logFlag) {
-        axes[2].setLogFlag(logFlag);
+    public UpdateStatus setZAxisLogFlag(Boolean logFlag) {
+        return axes[2].setLogFlag(logFlag);
     }
 
     /**
@@ -1258,8 +1311,8 @@ public class Axes extends GraphicObject {
     /**
      * @param ticks the z axis ticks to set
      */
-    public void setZAxisTicks(TicksProperty ticks) {
-        axes[2].setTicks(ticks);
+    public UpdateStatus setZAxisTicks(TicksProperty ticks) {
+        return axes[2].setTicks(ticks);
     }
 
     /**
@@ -1272,8 +1325,8 @@ public class Axes extends GraphicObject {
     /**
      * @param autoTicks the z axis autoticks to set
      */
-    public void setZAxisAutoTicks(Boolean autoTicks) {
-        axes[2].setAutoTicks(autoTicks);
+    public UpdateStatus setZAxisAutoTicks(Boolean autoTicks) {
+        return axes[2].setAutoTicks(autoTicks);
     }
 
     /**
@@ -1293,8 +1346,8 @@ public class Axes extends GraphicObject {
     /**
      * @param ticksLocations the z axis ticks locations to set
      */
-    public void setZAxisTicksLocations(Double[] ticksLocations) {
-        axes[2].setTicksLocations(ticksLocations);
+    public UpdateStatus setZAxisTicksLocations(Double[] ticksLocations) {
+        return axes[2].setTicksLocations(ticksLocations);
     }
 
     /**
@@ -1314,15 +1367,15 @@ public class Axes extends GraphicObject {
     /**
      * @param labels the z axis ticks labels to set
      */
-    public void setZAxisTicksLabels(String[] labels) {
-        axes[2].setTicksLabelsStrings(labels);
+    public UpdateStatus setZAxisTicksLabels(String[] labels) {
+        return axes[2].setTicksLabelsStrings(labels);
     }
 
     /**
      * @param labels the z axis ticks labels to set
      */
-    public void setZAxisTicksLabelsAsArrayList(ArrayList<FormattedText> labels) {
-        axes[2].setTicksLabels(labels);
+    public UpdateStatus setZAxisTicksLabelsAsArrayList(ArrayList<FormattedText> labels) {
+        return axes[2].setTicksLabels(labels);
     }
 
     /**
@@ -1335,8 +1388,8 @@ public class Axes extends GraphicObject {
     /**
      * @param subticks the z axis number of subticks to set
      */
-    public void setZAxisSubticks(Integer subticks) {
-        axes[2].setSubticks(subticks);
+    public UpdateStatus setZAxisSubticks(Integer subticks) {
+        return axes[2].setSubticks(subticks);
     }
 
     /**
@@ -1349,8 +1402,13 @@ public class Axes extends GraphicObject {
     /**
      * @param autoSubticks the autosubticks to set
      */
-    public void setAutoSubticks(Boolean autoSubticks) {
-        this.autoSubticks = autoSubticks;
+    public UpdateStatus setAutoSubticks(Boolean autoSubticks) {
+        if (this.autoSubticks != autoSubticks) {
+            this.autoSubticks = autoSubticks;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -1371,10 +1429,16 @@ public class Axes extends GraphicObject {
      * To be corrected.
      * @param fontStyle the ticks labels font style to set
      */
-    public void setFontStyle(Integer fontStyle) {
+    public UpdateStatus setFontStyle(Integer fontStyle) {
+        UpdateStatus status = UpdateStatus.NoChange;
         for (int i = 0; i < axes.length; i++) {
-            axes[i].setFontStyle(fontStyle);
+            UpdateStatus s = axes[i].setFontStyle(fontStyle);
+            if (s == UpdateStatus.Success) {
+                status = UpdateStatus.Success;
+            }
         }
+
+        return status;
     }
 
     /**
@@ -1395,10 +1459,16 @@ public class Axes extends GraphicObject {
      * To be corrected.
      * @param fontSize the ticks labels font size to set
      */
-    public void setFontSize(Double fontSize) {
+    public UpdateStatus setFontSize(Double fontSize) {
+        UpdateStatus status = UpdateStatus.NoChange;
         for (int i = 0; i < axes.length; i++) {
-            axes[i].setFontSize(fontSize);
+            UpdateStatus s = axes[i].setFontSize(fontSize);
+            if (s == UpdateStatus.Success) {
+                status = UpdateStatus.Success;
+            }
         }
+
+        return status;
     }
 
     /**
@@ -1419,10 +1489,16 @@ public class Axes extends GraphicObject {
      * To be corrected.
      * @param fontColor the ticks labels font color to set
      */
-    public void setFontColor(Integer fontColor) {
+    public UpdateStatus setFontColor(Integer fontColor) {
+        UpdateStatus status = UpdateStatus.NoChange;
         for (int i = 0; i < axes.length; i++) {
-            axes[i].setFontColor(fontColor);
+            UpdateStatus s = axes[i].setFontColor(fontColor);
+            if (s == UpdateStatus.Success) {
+                status = UpdateStatus.Success;
+            }
         }
+
+        return status;
     }
 
     /**
@@ -1443,10 +1519,16 @@ public class Axes extends GraphicObject {
      * To be corrected.
      * @param fontFractional the ticks labels font fractional to set
      */
-    public void setFontFractional(Boolean fontFractional) {
+    public UpdateStatus setFontFractional(Boolean fontFractional) {
+        UpdateStatus status = UpdateStatus.NoChange;
         for (int i = 0; i < axes.length; i++) {
-            axes[i].setFontFractional(fontFractional);
+            UpdateStatus s = axes[i].setFontFractional(fontFractional);
+            if (s == UpdateStatus.Success) {
+                status = UpdateStatus.Success;
+            }
         }
+
+        return status;
     }
 
     /**
@@ -1466,11 +1548,18 @@ public class Axes extends GraphicObject {
     /**
      * @param axesBounds the axesBounds to set
      */
-    public void setAxesBounds(Double[] axesBounds) {
-        this.axesBounds[0] = axesBounds[0];
-        this.axesBounds[1] = axesBounds[1];
-        this.axesBounds[2] = axesBounds[2];
-        this.axesBounds[3] = axesBounds[3];
+    public UpdateStatus setAxesBounds(Double[] axesBounds) {
+        if (this.axesBounds[0] != axesBounds[0] || this.axesBounds[1] != axesBounds[1]
+                || this.axesBounds[2] != axesBounds[2] || this.axesBounds[3] != axesBounds[3]) {
+            this.axesBounds[0] = axesBounds[0];
+            this.axesBounds[1] = axesBounds[1];
+            this.axesBounds[2] = axesBounds[2];
+            this.axesBounds[3] = axesBounds[3];
+
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -1483,8 +1572,13 @@ public class Axes extends GraphicObject {
     /**
      * @param hiddenColor the hiddenColor to set
      */
-    public void setHiddenColor(Integer hiddenColor) {
-        this.hiddenColor = hiddenColor;
+    public UpdateStatus setHiddenColor(Integer hiddenColor) {
+        if (this.hiddenColor != hiddenColor) {
+            this.hiddenColor = hiddenColor;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -1519,8 +1613,8 @@ public class Axes extends GraphicObject {
     /**
      * @param lineStyle the line style to set
      */
-    public void setLineStyle(Integer lineStyle) {
-        line.setLineStyle(LineType.fromScilabIndex(lineStyle));
+    public UpdateStatus setLineStyle(Integer lineStyle) {
+        return line.setLineStyle(LineType.fromScilabIndex(lineStyle));
     }
 
     /**
@@ -1533,8 +1627,8 @@ public class Axes extends GraphicObject {
     /**
      * @param lineThickness the line thickness to set
      */
-    public void setLineThickness(Double lineThickness) {
-        line.setThickness(lineThickness);
+    public UpdateStatus setLineThickness(Double lineThickness) {
+        return line.setThickness(lineThickness);
     }
 
     /**
@@ -1603,8 +1697,8 @@ public class Axes extends GraphicObject {
     /**
      * @param markSizeUnit the mark size unit to set
      */
-    public void setMarkSizeUnit(Integer markSizeUnit) {
-        mark.setMarkSizeUnit(MarkSizeUnitType.intToEnum(markSizeUnit));
+    public UpdateStatus setMarkSizeUnit(Integer markSizeUnit) {
+        return mark.setMarkSizeUnit(MarkSizeUnitType.intToEnum(markSizeUnit));
     }
 
     /**
@@ -1617,8 +1711,8 @@ public class Axes extends GraphicObject {
     /**
      * @param markForeground the mark foreground to set
      */
-    public void setMarkForeground(Integer markForeground) {
-        mark.setForeground(markForeground);
+    public UpdateStatus setMarkForeground(Integer markForeground) {
+        return mark.setForeground(markForeground);
     }
 
     /**
@@ -1631,8 +1725,8 @@ public class Axes extends GraphicObject {
     /**
      * @param markBackground the mark background to set
      */
-    public void setMarkBackground(Integer markBackground) {
-        mark.setBackground(markBackground);
+    public UpdateStatus setMarkBackground(Integer markBackground) {
+        return mark.setBackground(markBackground);
     }
 
     /**
@@ -1645,8 +1739,8 @@ public class Axes extends GraphicObject {
     /**
      * @param clipState the clip state to set
      */
-    public void setClipState(Integer clipState) {
-        clipProperty.setClipState(ClipStateType.intToEnum(clipState));
+    public UpdateStatus setClipState(Integer clipState) {
+        return clipProperty.setClipState(ClipStateType.intToEnum(clipState));
     }
 
     /**
@@ -1659,8 +1753,8 @@ public class Axes extends GraphicObject {
     /**
      * @param clipBox the clip box to set
      */
-    public void setClipBox(Double[] clipBox) {
-        clipProperty.setClipBox(clipBox);
+    public UpdateStatus setClipBox(Double[] clipBox) {
+        return clipProperty.setClipBox(clipBox);
     }
 
     /**
@@ -1673,8 +1767,8 @@ public class Axes extends GraphicObject {
     /**
      * @param clipBoxSet the clip box set to set
      */
-    public void setClipBoxSet(Boolean clipBoxSet) {
-        clipProperty.setClipBoxSet(clipBoxSet);
+    public UpdateStatus setClipBoxSet(Boolean clipBoxSet) {
+        return clipProperty.setClipBoxSet(clipBoxSet);
     }
 
     /**
@@ -1687,8 +1781,14 @@ public class Axes extends GraphicObject {
     /**
      * @param arcDrawingMethod the arcDrawingMethod to set
      */
-    public void setArcDrawingMethod(Integer arcDrawingMethod) {
-        this.arcDrawingMethod = ArcDrawingMethod.intToEnum(arcDrawingMethod);
+    public UpdateStatus setArcDrawingMethod(Integer arcDrawingMethod) {
+        ArcDrawingMethod mode = ArcDrawingMethod.intToEnum(arcDrawingMethod);
+        if (this.arcDrawingMethod != mode) {
+            this.arcDrawingMethod = mode;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -1701,8 +1801,10 @@ public class Axes extends GraphicObject {
     /**
      * @param box the box to set
      */
-    public void setBox(Box box) {
+    public UpdateStatus setBox(Box box) {
         this.box = box;
+
+        return UpdateStatus.Success;
     }
 
     /**
@@ -1722,15 +1824,15 @@ public class Axes extends GraphicObject {
     /**
      * @param box the BoxType to set
      */
-    public void setBoxType(Integer box) {
-        setBoxTypeAsEnum(BoxType.intToEnum(box));
+    public UpdateStatus setBoxType(Integer box) {
+        return setBoxTypeAsEnum(BoxType.intToEnum(box));
     }
 
     /**
      * @param box the BoxType to set
      */
-    public void setBoxTypeAsEnum(BoxType box) {
-        this.box.setBox(box);
+    public UpdateStatus setBoxTypeAsEnum(BoxType box) {
+        return this.box.setBox(box);
     }
 
     /**
@@ -1743,8 +1845,8 @@ public class Axes extends GraphicObject {
     /**
      * @param color the hidden axis color to set
      */
-    public void setHiddenAxisColor(Integer color) {
-        box.setHiddenAxisColor(color);
+    public UpdateStatus setHiddenAxisColor(Integer color) {
+        return box.setHiddenAxisColor(color);
     }
 
     /**
@@ -1757,8 +1859,8 @@ public class Axes extends GraphicObject {
     /**
      * @param tightLimits the tightLimits to set
      */
-    public void setTightLimits(Boolean tightLimits) {
-        box.setTightLimits(tightLimits);
+    public UpdateStatus setTightLimits(Boolean tightLimits) {
+        return box.setTightLimits(tightLimits);
     }
 
     /**
@@ -1771,8 +1873,8 @@ public class Axes extends GraphicObject {
     /**
      * @param dataBounds the data bounds to set
      */
-    public void setDataBounds(Double[] dataBounds) {
-        box.setDataBounds(dataBounds);
+    public UpdateStatus setDataBounds(Double[] dataBounds) {
+        return box.setDataBounds(dataBounds);
     }
 
     /**
@@ -1785,8 +1887,8 @@ public class Axes extends GraphicObject {
     /**
      * @param realDataBounds the real data bounds to set
      */
-    public void setRealDataBounds(Double[] realDataBounds) {
-        box.setRealDataBounds(realDataBounds);
+    public UpdateStatus setRealDataBounds(Double[] realDataBounds) {
+        return box.setRealDataBounds(realDataBounds);
     }
 
     /**
@@ -1808,19 +1910,15 @@ public class Axes extends GraphicObject {
     public Double[] getMaximalDisplayedBounds() {
         Double[] bounds = getDataBounds();
 
-        /**
-         * Remove 0 sized bounds
-         */
-        for (int i = 0 ; i < 6 ; i += 2) {
-            if (bounds[i].equals(bounds[i + 1])) {
-                bounds[i]--;
-                bounds[i + 1]++;
-            }
-        }
-
+        boolean eq = bounds[0].equals(bounds[1]);
         if (getXAxisLogFlag()) {
             bounds[0] = Math.log10(bounds[0]);
             bounds[1] = Math.log10(bounds[1]);
+        }
+        if (eq) {
+            // Avoid to have same bounds.
+            bounds[0]--;
+            bounds[1]++;
         }
 
         if (getXAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
@@ -1831,9 +1929,14 @@ public class Axes extends GraphicObject {
             }
         }
 
+        eq = bounds[2].equals(bounds[3]);
         if (getYAxisLogFlag()) {
             bounds[2] = Math.log10(bounds[2]);
             bounds[3] = Math.log10(bounds[3]);
+        }
+        if (eq) {
+            bounds[2]--;
+            bounds[3]++;
         }
 
         if (getYAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
@@ -1844,9 +1947,14 @@ public class Axes extends GraphicObject {
             }
         }
 
+        eq = bounds[4].equals(bounds[5]);
         if (getZAxisLogFlag()) {
             bounds[4] = Math.log10(bounds[4]);
             bounds[5] = Math.log10(bounds[5]);
+        }
+        if (eq) {
+            bounds[4]--;
+            bounds[5]++;
         }
 
         if (getZAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
@@ -1903,8 +2011,8 @@ public class Axes extends GraphicObject {
     /**
      * @param zoomEnabled the zoomEnabled to set
      */
-    public void setZoomEnabled(Boolean zoomEnabled) {
-        box.setZoomEnabled(zoomEnabled);
+    public UpdateStatus setZoomEnabled(Boolean zoomEnabled) {
+        return box.setZoomEnabled(zoomEnabled);
     }
 
     /**
@@ -1917,8 +2025,8 @@ public class Axes extends GraphicObject {
     /**
      * @param zoomBox the zoom box to set
      */
-    public void setZoomBox(Double[] zoomBox) {
-        box.setZoomBox(zoomBox);
+    public UpdateStatus setZoomBox(Double[] zoomBox) {
+        return box.setZoomBox(zoomBox);
     }
 
     /**
@@ -1931,8 +2039,8 @@ public class Axes extends GraphicObject {
     /**
      * @param autoScale the autoscale to set
      */
-    public void setAutoScale(Boolean autoScale) {
-        box.setAutoScale(autoScale);
+    public UpdateStatus setAutoScale(Boolean autoScale) {
+        return box.setAutoScale(autoScale);
     }
 
     /**
@@ -1945,8 +2053,8 @@ public class Axes extends GraphicObject {
     /**
      * @param firstPlot the firstplot to set
      */
-    public void setFirstPlot(Boolean firstPlot) {
-        box.setFirstPlot(firstPlot);
+    public UpdateStatus setFirstPlot(Boolean firstPlot) {
+        return box.setFirstPlot(firstPlot);
     }
 
     /**
@@ -1959,8 +2067,13 @@ public class Axes extends GraphicObject {
     /**
      * @param camera the camera to set
      */
-    public void setCamera(Camera camera) {
-        this.camera = camera;
+    public UpdateStatus setCamera(Camera camera) {
+        if (this.camera.equals(camera)) {
+            this.camera = camera;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -1980,15 +2093,15 @@ public class Axes extends GraphicObject {
     /**
      * @param view the view type to set
      */
-    public void setView(Integer view) {
-        setViewAsEnum(ViewType.intToEnum(view));
+    public UpdateStatus setView(Integer view) {
+        return setViewAsEnum(ViewType.intToEnum(view));
     }
 
     /**
      * @param view the view type to set
      */
-    public void setViewAsEnum(ViewType view) {
-        camera.setView(view);
+    public UpdateStatus setViewAsEnum(ViewType view) {
+        return camera.setView(view);
     }
 
     /**
@@ -2001,8 +2114,8 @@ public class Axes extends GraphicObject {
     /**
      * @param isoview the isoview to set
      */
-    public void setIsoview(Boolean isoview) {
-        camera.setIsoview(isoview);
+    public UpdateStatus setIsoview(Boolean isoview) {
+        return camera.setIsoview(isoview);
     }
 
     /**
@@ -2015,8 +2128,8 @@ public class Axes extends GraphicObject {
     /**
      * @param cubeScaling the cubescaling to set
      */
-    public void setCubeScaling(Boolean cubeScaling) {
-        camera.setCubeScaling(cubeScaling);
+    public UpdateStatus setCubeScaling(Boolean cubeScaling) {
+        return camera.setCubeScaling(cubeScaling);
     }
 
     /**
@@ -2065,8 +2178,8 @@ public class Axes extends GraphicObject {
     /**
      * @param rotationAngles3d the 3d rotation angles to set
      */
-    public void setRotationAngles3d(Double[] rotationAngles3d) {
-        camera.setRotationAngles3d(rotationAngles3d);
+    public UpdateStatus setRotationAngles3d(Double[] rotationAngles3d) {
+        return camera.setRotationAngles3d(rotationAngles3d);
     }
 
     /**
@@ -2079,8 +2192,13 @@ public class Axes extends GraphicObject {
     /**
      * @param filled the filled to set
      */
-    public void setFilled(Boolean filled) {
-        this.filled = filled;
+    public UpdateStatus setFilled(Boolean filled) {
+        if (this.filled != filled) {
+            this.filled = filled;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -2093,8 +2211,13 @@ public class Axes extends GraphicObject {
     /**
      * @param background the background to set
      */
-    public void setBackground(Integer background) {
-        this.background = background;
+    public UpdateStatus setBackground(Integer background) {
+        if (this.background != background) {
+            this.background = background;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -2114,15 +2237,20 @@ public class Axes extends GraphicObject {
     /**
      * @param gridPosition the gridPosition to set
      */
-    public void setGridPosition(Integer gridPosition) {
-        setGridPositionAsEnum(GridPosition.intToEnum(gridPosition));
+    public UpdateStatus setGridPosition(Integer gridPosition) {
+        return setGridPositionAsEnum(GridPosition.intToEnum(gridPosition));
     }
 
     /**
      * @param gridPosition the gridPosition to set
      */
-    public void setGridPositionAsEnum(GridPosition gridPosition) {
-        this.gridPosition = gridPosition;
+    public UpdateStatus setGridPositionAsEnum(GridPosition gridPosition) {
+        if (this.gridPosition != gridPosition) {
+            this.gridPosition = gridPosition;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -2142,11 +2270,17 @@ public class Axes extends GraphicObject {
     /**
      * @param margins the margins to set
      */
-    public void setMargins(Double[] margins) {
-        this.margins[0] = margins[0];
-        this.margins[1] = margins[1];
-        this.margins[2] = margins[2];
-        this.margins[3] = margins[3];
+    public UpdateStatus setMargins(Double[] margins) {
+        if (this.margins[0] != margins[0] || this.margins[1] != margins[1] || this.margins[2] != margins[2] || this.margins[3] != margins[3]) {
+            this.margins[0] = margins[0];
+            this.margins[1] = margins[1];
+            this.margins[2] = margins[2];
+            this.margins[3] = margins[3];
+
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -2159,8 +2293,13 @@ public class Axes extends GraphicObject {
     /**
      * @param title the title to set
      */
-    public void setTitle(String title) {
-        this.title = title;
+    public UpdateStatus setTitle(String title) {
+        if (!this.title.equals(title)) {
+            this.title = title;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -2169,5 +2308,4 @@ public class Axes extends GraphicObject {
     public Integer getType() {
         return GraphicObjectProperties.__GO_AXES__;
     }
-
 }

@@ -16,7 +16,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "GetWindowsVersion.h"
-#include "win_mem_alloc.h" /* MALLOC */
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 #define MSG_DETECT_XP_OR_MORE "Scilab requires Windows XP or more."
 #define MSG_DETECT_UNKNOW "Scilab does not support this unknow version of Windows."
@@ -30,7 +30,7 @@
 #define ARG_NOGUI "-nogui"
 #define LENGTH_BUFFER_SECURITY 64
 /*--------------------------------------------------------------------------*/
-typedef int (*MYPROC1) (HINSTANCE, HINSTANCE ,LPSTR szCmdLine, int iCmdShow);
+typedef int (*MYPROC1) (HINSTANCE, HINSTANCE , LPSTR szCmdLine, int iCmdShow);
 /*--------------------------------------------------------------------------*/
 /* BUG 6934 */
 /* http://bugzilla.scilab.org/show_bug.cgi?id=6934 */
@@ -39,11 +39,11 @@ typedef int (*MYPROC1) (HINSTANCE, HINSTANCE ,LPSTR szCmdLine, int iCmdShow);
 #pragma optimize("g", off)
 #endif
 /*--------------------------------------------------------------------------*/
-int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow)
+int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR szCmdLine, int iCmdShow)
 {
     int iExitCode = 0;
-    HINSTANCE hinstLib = NULL; 
-    BOOL fFreeResult = FALSE, fRunTimeLinkSuccess = FALSE; 
+    HINSTANCE hinstLib = NULL;
+    BOOL fFreeResult = FALSE, fRunTimeLinkSuccess = FALSE;
 
     if (GetWindowsVersion() == OS_ERROR	)
     {
@@ -66,18 +66,18 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 
     hinstLib = LoadLibrary(TEXT(SCILAB_LIBRARY));
     if (hinstLib != NULL)
-    { 
+    {
         MYPROC1 Windows_Main = NULL;
 
         /* launch main */
         Windows_Main = (MYPROC1) GetProcAddress(hinstLib, MAIN_FUNCTION);
-        if (NULL != Windows_Main) 
+        if (NULL != Windows_Main)
         {
 
 #ifndef _DEBUG
             /* catch system errors msgbox (release mode only) */
             /* http://msdn.microsoft.com/en-us/library/ms680621(VS.85).aspx */
-            UINT LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS|SEM_NOALIGNMENTFAULTEXCEPT|SEM_NOGPFAULTERRORBOX );
+            UINT LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT | SEM_NOGPFAULTERRORBOX );
             _try
             {
 #endif
@@ -113,11 +113,11 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
             0, NULL );
 
         lpDisplayBuf = (LPVOID)LocalAlloc(LMEM_ZEROINIT,
-                                         (lstrlen((LPCTSTR)lpMsgBuf) + LENGTH_BUFFER_SECURITY) * sizeof(TCHAR));
+                                          (lstrlen((LPCTSTR)lpMsgBuf) + LENGTH_BUFFER_SECURITY) * sizeof(TCHAR));
         StringCchPrintf((LPTSTR)lpDisplayBuf,
                         LocalSize(lpDisplayBuf) / sizeof(TCHAR),
                         TEXT(MSG_LOAD_LIBRARIES),
-                        dw, lpMsgBuf); 
+                        dw, lpMsgBuf);
 
         MessageBox(NULL, (LPCTSTR)lpDisplayBuf, TEXT(MSG_WARNING), MB_ICONERROR);
 

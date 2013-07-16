@@ -13,15 +13,15 @@
 
 function h=%h_copy(h,ax)
     filename = tempname();
-    save(filename,'h')
+    save(filename,"h")
     if argn(2)<2 then
         load(filename)
     else
         if ax.type=="Axes"  then
-            a=get('current_axes')
-            set('current_axes', ax)
+            a=get("current_axes")
+            set("current_axes", ax)
             load(filename)
-            set('current_axes', a)
+            set("current_axes", a)
         else
             a = gcf()
             scf(ax)

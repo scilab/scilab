@@ -24,7 +24,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Scilab and Matlab additions and substractions work differently
+            Scilab and Matlab additions and subtractions work differently
             when used with empty matrices:
         </para>
         <variablelist>
@@ -65,7 +65,7 @@ a-[] -->[]
         </variablelist>
         <para>
             <code>mtlb_mode(%t)</code>  switches to Matlab evaluation mode for additions and
-            substractions. <code>mtlb_mode(%f)</code>  switches back to Scilab mode.
+            subtractions. <code>mtlb_mode(%f)</code>  switches back to Scilab mode.
         </para>
         <para>
             <code>mtlb_mode()</code> returns the current <varname>mmode</varname>' value (<constant>%t</constant>=Matlab, <constant>%f</constant>=Scilab).

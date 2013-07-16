@@ -92,7 +92,7 @@
     ]]></programlisting>
         <para>
             <scilab:image>
-                clf();sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])
+                sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])
             </scilab:image>
         </para>
         <programlisting role="example"><![CDATA[
@@ -100,7 +100,7 @@
         clf();evans(H,100);sgrid()
         ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
                 clf();evans(H,100);sgrid()
             </scilab:image>

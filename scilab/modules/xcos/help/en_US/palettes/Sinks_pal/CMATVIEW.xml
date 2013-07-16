@@ -235,10 +235,10 @@
     <refsection id="Example_CMATVIEW">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/CMATVIEW_Example.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/CMATVIEW_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/sinks_pal/CMATVIEW_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/sinks_pal/CMATVIEW_Example.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

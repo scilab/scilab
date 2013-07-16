@@ -332,9 +332,10 @@ clf();
 x=1:0.1:10; // Init.
 plot(x,sin(x),'r-.>') // plots a dash-dotted line with a right-pointing triangle centered on each points.
  ]]></programlisting>
-        <scilab:image>
-            x=1:0.1:10;
-            plot(x,sin(x),'r.->')
+        <scilab:image>x=1:0.1:10; // Init.
+            plot(x,sin(x),'r.-&gt;')
+            t=0:%pi/20:2*%pi;
+            plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
         </scilab:image>
         <programlisting role="example"><![CDATA[
 clf();

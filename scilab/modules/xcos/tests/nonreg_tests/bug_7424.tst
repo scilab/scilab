@@ -15,6 +15,6 @@
 // <-- Short Description -->
 // Integer codec can produce a NuulPointerException
 
-importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_7424.xcos");
+importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_7424.zcos");
 // suceed if no exception (checked on stderr).
 

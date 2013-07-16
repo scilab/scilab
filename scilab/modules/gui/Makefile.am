@@ -214,9 +214,7 @@ libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
-			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 			-I$(top_srcdir)/libs/hashtable/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
 			-I$(top_srcdir)/modules/commons/src/jni/ \
 			-I$(top_srcdir)/modules/console/includes/ \
@@ -242,7 +240,6 @@ libscigui_la_CPPFLAGS = \
 
 # Without the GUI module
 libscigui_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
@@ -334,7 +331,9 @@ images/icons/16x16/actions/zoom-original.png \
 images/icons/16x16/actions/zoom-out.png \
 images/icons/16x16/animations/process-working.png \
 images/icons/16x16/apps/accessories-text-editor.png \
+images/icons/16x16/apps/datatips.png \
 images/icons/16x16/apps/help-browser.png \
+images/icons/16x16/apps/rrze_table.png \
 images/icons/16x16/apps/scilab.png \
 images/icons/16x16/apps/utilities-system-monitor.png \
 images/icons/16x16/categories/applications-system.png \
@@ -366,7 +365,6 @@ images/icons/32x32/actions/edit-clear.png \
 images/icons/32x32/actions/tree-diagramm.png \
 images/icons/32x32/actions/tree-diagramm-delete.png \
 images/icons/32x32/apps/accessories-text-editor.png \
-images/icons/32x32/apps/datatips.png \
 images/icons/32x32/apps/graphic-window.png \
 images/icons/32x32/apps/rrze_table.png \
 images/icons/32x32/apps/scilab.png \

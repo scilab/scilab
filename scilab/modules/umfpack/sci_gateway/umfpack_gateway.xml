@@ -2,8 +2,8 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="umfpack">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -22,18 +22,18 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
-
-<PRIMITIVE gatewayId="58" primitiveId="1" primitiveName="umfpack" />
-<PRIMITIVE gatewayId="58" primitiveId="2" primitiveName="umf_lufact" />
-<PRIMITIVE gatewayId="58" primitiveId="3" primitiveName="umf_lusolve" />
-<PRIMITIVE gatewayId="58" primitiveId="4" primitiveName="umf_ludel" />
-<PRIMITIVE gatewayId="58" primitiveId="5" primitiveName="umf_luinfo" />
-<PRIMITIVE gatewayId="58" primitiveId="6" primitiveName="umf_luget" />
-<PRIMITIVE gatewayId="58" primitiveId="7" primitiveName="taucs_chfact" />
-<PRIMITIVE gatewayId="58" primitiveId="8" primitiveName="taucs_chsolve" />
-<PRIMITIVE gatewayId="58" primitiveId="9" primitiveName="taucs_chdel" />
-<PRIMITIVE gatewayId="58" primitiveId="10" primitiveName="taucs_chinfo" />
-<PRIMITIVE gatewayId="58" primitiveId="11" primitiveName="taucs_chget" />
-<PRIMITIVE gatewayId="58" primitiveId="12" primitiveName="res_with_prec" />
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="58" primitiveId="1" primitiveName="umfpack" />
+    <PRIMITIVE gatewayId="58" primitiveId="2" primitiveName="umf_lufact" />
+    <PRIMITIVE gatewayId="58" primitiveId="3" primitiveName="umf_lusolve" />
+    <PRIMITIVE gatewayId="58" primitiveId="4" primitiveName="umf_ludel" />
+    <PRIMITIVE gatewayId="58" primitiveId="5" primitiveName="umf_luinfo" />
+    <PRIMITIVE gatewayId="58" primitiveId="6" primitiveName="umf_luget" />
+    <PRIMITIVE gatewayId="58" primitiveId="7" primitiveName="taucs_chfact" />
+    <PRIMITIVE gatewayId="58" primitiveId="8" primitiveName="taucs_chsolve" />
+    <PRIMITIVE gatewayId="58" primitiveId="9" primitiveName="taucs_chdel" />
+    <PRIMITIVE gatewayId="58" primitiveId="10" primitiveName="taucs_chinfo" />
+    <PRIMITIVE gatewayId="58" primitiveId="11" primitiveName="taucs_chget" />
+    <PRIMITIVE gatewayId="58" primitiveId="12" primitiveName="res_with_prec" />
 </GATEWAY>

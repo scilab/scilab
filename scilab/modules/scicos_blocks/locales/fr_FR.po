@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-08-30 13:50+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: fr\n"
 
 msgid "overflow error"
@@ -434,6 +434,48 @@ msgstr "Valider"
 msgid "Cancel"
 msgstr "Annuler"
 
+msgid "Please give the discretization domain values"
+msgstr ""
+
+#, c-format
+msgid "Please give the %s operator coefficients"
+msgstr ""
+
+msgid "Please give the sign for the variable discriminant"
+msgstr ""
+
+msgid "Please give the discretization method type"
+msgstr ""
+
+msgid "Please give the discretization method degree"
+msgstr ""
+
+msgid "Please give the number of discretization points"
+msgstr ""
+
+#, c-format
+msgid "Please give the initial condition %s"
+msgstr ""
+
+msgid "Please give the boundary conditions"
+msgstr ""
+
+#, c-format
+msgid "The finite element discrtization takes %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The finite differences discrtization takes %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The finite volume discrtization takes %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The code generation, the compilation and link takes %.2f seconds"
+msgstr ""
+
 msgid "Event output port"
 msgstr "Port de sortie de l'évènement"
 
@@ -807,3 +849,7 @@ msgstr "&Édition"
 
 msgid "&?"
 msgstr "&?"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr ""

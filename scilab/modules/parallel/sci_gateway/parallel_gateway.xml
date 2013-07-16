@@ -2,8 +2,8 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="parallel">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -21,7 +21,7 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
-<PRIMITIVE gatewayId="66" primitiveId="1" primitiveName="parallel_run" />
-<PRIMITIVE gatewayId="66" primitiveId="2" primitiveName="parallel_concurrency" />
+    <!-- =================== -->
+    <PRIMITIVE gatewayId="66" primitiveId="1" primitiveName="parallel_run" />
+    <PRIMITIVE gatewayId="66" primitiveId="2" primitiveName="parallel_concurrency" />
 </GATEWAY>

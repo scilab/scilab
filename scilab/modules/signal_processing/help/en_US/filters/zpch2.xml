@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>omegar</term>
                 <listitem>
-                    <para>real : cut-off frequency in Hertz</para>
+                    <para>real : cut-off angular frequency in radians per second</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

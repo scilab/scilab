@@ -18,13 +18,13 @@
 /*--------------------------------------------------------------------------*/
 ARNOLDI_IMPEXP int gw_arnoldi(void);
 /*--------------------------------------------------------------------------*/
-ARNOLDI_IMPEXP int sci_dsaupd(char *fname,unsigned long fname_len);
-ARNOLDI_IMPEXP int sci_dnaupd(char *fname,unsigned long fname_len);
-ARNOLDI_IMPEXP int sci_znaupd(char *fname,unsigned long fname_len);
-ARNOLDI_IMPEXP int sci_dseupd(char *fname,unsigned long fname_len);
-ARNOLDI_IMPEXP int sci_dneupd(char *fname,unsigned long fname_len);
-ARNOLDI_IMPEXP int sci_zneupd(char *fname,unsigned long fname_len);
-ARNOLDI_IMPEXP int sci_eigs(char *fname,unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_dsaupd(char *fname, unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_dnaupd(char *fname, unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_znaupd(char *fname, unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_dseupd(char *fname, unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_dneupd(char *fname, unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_zneupd(char *fname, unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_eigs(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_ARNOLDI_H__ */
 /*--------------------------------------------------------------------------*/

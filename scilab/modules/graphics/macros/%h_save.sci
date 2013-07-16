@@ -290,14 +290,11 @@ function save_graphichandle(h,fd)
         mput(size(h.z_shift,"*"),"sl",fd); mput(h.z_shift,"dl",fd); // z_shift
 
         mput( h.bar_width, "dl", fd ) ; // bar_width
-
         mput(length(h.clip_state),characterFormat,fd); // clip_state
         mput(ascii(h.clip_state),characterFormat,fd);
         if h.clip_state=="on" then
             mput(h.clip_box,"dl",fd) // clip_box
         end
-
-
         user_data=h.user_data;save(fd,user_data) // user_data
 
     case "Plot3d";

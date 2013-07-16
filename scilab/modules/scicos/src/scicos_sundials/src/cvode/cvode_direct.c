@@ -2,7 +2,7 @@
  * -----------------------------------------------------------------
  * $Revision: 1.5 $
  * $Date: 2010/12/01 22:21:04 $
- * ----------------------------------------------------------------- 
+ * -----------------------------------------------------------------
  * Programmer: Radu Serban @ LLNL
  * -----------------------------------------------------------------
  * Copyright (c) 2006, The Regents of the University of California.
@@ -14,7 +14,7 @@
  * -----------------------------------------------------------------
  */
 
-/* 
+/*
  * =================================================================
  * IMPORTED HEADER FILES
  * =================================================================
@@ -27,7 +27,7 @@
 #include "cvode_direct_impl.h"
 #include <sundials/sundials_math.h>
 
-/* 
+/*
  * =================================================================
  * FUNCTION SPECIFIC CONSTANTS
  * =================================================================
@@ -72,41 +72,46 @@
 #define nfeDQ     (cvdls_mem->d_nfeDQ)
 #define last_flag (cvdls_mem->d_last_flag)
 
-/* 
+/*
  * =================================================================
  * EXPORTED FUNCTIONS
  * =================================================================
  */
-              
+
 /*
  * CVDlsSetDenseJacFn specifies the dense Jacobian function.
  */
 int CVDlsSetDenseJacFn(void *cvode_mem, CVDlsDenseJacFn jac)
 {
-  CVodeMem cv_mem;
-  CVDlsMem cvdls_mem;
+    CVodeMem cv_mem;
+    CVDlsMem cvdls_mem;
 
-  /* Return immediately if cvode_mem is NULL */
-  if (cvode_mem == NULL) {
-    CVProcessError(NULL, CVDLS_MEM_NULL, "CVDLS", "CVDlsSetDenseJacFn", MSGD_CVMEM_NULL);
-    return(CVDLS_MEM_NULL);
-  }
-  cv_mem = (CVodeMem) cvode_mem;
+    /* Return immediately if cvode_mem is NULL */
+    if (cvode_mem == NULL)
+    {
+        CVProcessError(NULL, CVDLS_MEM_NULL, "CVDLS", "CVDlsSetDenseJacFn", MSGD_CVMEM_NULL);
+        return(CVDLS_MEM_NULL);
+    }
+    cv_mem = (CVodeMem) cvode_mem;
 
-  if (lmem == NULL) {
-    CVProcessError(cv_mem, CVDLS_LMEM_NULL, "CVDLS", "CVDlsSetDenseJacFn", MSGD_LMEM_NULL);
-    return(CVDLS_LMEM_NULL);
-  }
-  cvdls_mem = (CVDlsMem) lmem;
+    if (lmem == NULL)
+    {
+        CVProcessError(cv_mem, CVDLS_LMEM_NULL, "CVDLS", "CVDlsSetDenseJacFn", MSGD_LMEM_NULL);
+        return(CVDLS_LMEM_NULL);
+    }
+    cvdls_mem = (CVDlsMem) lmem;
 
-  if (jac != NULL) {
-    jacDQ = FALSE;
-    djac = jac;
-  } else {
-    jacDQ = TRUE;
-  }
+    if (jac != NULL)
+    {
+        jacDQ = FALSE;
+        djac = jac;
+    }
+    else
+    {
+        jacDQ = TRUE;
+    }
 
-  return(CVDLS_SUCCESS);
+    return(CVDLS_SUCCESS);
 }
 
 /*
@@ -114,30 +119,35 @@ int CVDlsSetDenseJacFn(void *cvode_mem, CVDlsDenseJacFn jac)
  */
 int CVDlsSetBandJacFn(void *cvode_mem, CVDlsBandJacFn jac)
 {
-  CVodeMem cv_mem;
-  CVDlsMem cvdls_mem;
+    CVodeMem cv_mem;
+    CVDlsMem cvdls_mem;
 
-  /* Return immediately if cvode_mem is NULL */
-  if (cvode_mem == NULL) {
-    CVProcessError(NULL, CVDLS_MEM_NULL, "CVDLS", "CVDlsSetBandJacFn", MSGD_CVMEM_NULL);
-    return(CVDLS_MEM_NULL);
-  }
-  cv_mem = (CVodeMem) cvode_mem;
+    /* Return immediately if cvode_mem is NULL */
+    if (cvode_mem == NULL)
+    {
+        CVProcessError(NULL, CVDLS_MEM_NULL, "CVDLS", "CVDlsSetBandJacFn", MSGD_CVMEM_NULL);
+        return(CVDLS_MEM_NULL);
+    }
+    cv_mem = (CVodeMem) cvode_mem;
 
-  if (lmem == NULL) {
-    CVProcessError(cv_mem, CVDLS_LMEM_NULL, "CVDLS", "CVDlsSetBandJacFn", MSGD_LMEM_NULL);
-    return(CVDLS_LMEM_NULL);
-  }
-  cvdls_mem = (CVDlsMem) lmem;
+    if (lmem == NULL)
+    {
+        CVProcessError(cv_mem, CVDLS_LMEM_NULL, "CVDLS", "CVDlsSetBandJacFn", MSGD_LMEM_NULL);
+        return(CVDLS_LMEM_NULL);
+    }
+    cvdls_mem = (CVDlsMem) lmem;
 
-  if (jac != NULL) {
-    jacDQ = FALSE;
-    bjac = jac;
-  } else {
-    jacDQ = TRUE;
-  }
+    if (jac != NULL)
+    {
+        jacDQ = FALSE;
+        bjac = jac;
+    }
+    else
+    {
+        jacDQ = TRUE;
+    }
 
-  return(CVDLS_SUCCESS);
+    return(CVDLS_SUCCESS);
 }
 
 /*
@@ -146,31 +156,36 @@ int CVDlsSetBandJacFn(void *cvode_mem, CVDlsBandJacFn jac)
  */
 int CVDlsGetWorkSpace(void *cvode_mem, long int *lenrwLS, long int *leniwLS)
 {
-  CVodeMem cv_mem;
-  CVDlsMem cvdls_mem;
+    CVodeMem cv_mem;
+    CVDlsMem cvdls_mem;
 
-  /* Return immediately if cvode_mem is NULL */
-  if (cvode_mem == NULL) {
-    CVProcessError(NULL, CVDLS_MEM_NULL, "CVDLS", "CVDlsGetWorkSpace", MSGD_CVMEM_NULL);
-    return(CVDLS_MEM_NULL);
-  }
-  cv_mem = (CVodeMem) cvode_mem;
+    /* Return immediately if cvode_mem is NULL */
+    if (cvode_mem == NULL)
+    {
+        CVProcessError(NULL, CVDLS_MEM_NULL, "CVDLS", "CVDlsGetWorkSpace", MSGD_CVMEM_NULL);
+        return(CVDLS_MEM_NULL);
+    }
+    cv_mem = (CVodeMem) cvode_mem;
 
-  if (lmem == NULL) {
-    CVProcessError(cv_mem, CVDLS_LMEM_NULL, "CVDLS", "CVDlsGetWorkSpace", MSGD_LMEM_NULL);
-    return(CVDLS_LMEM_NULL);
-  }
-  cvdls_mem = (CVDlsMem) lmem;
+    if (lmem == NULL)
+    {
+        CVProcessError(cv_mem, CVDLS_LMEM_NULL, "CVDLS", "CVDlsGetWorkSpace", MSGD_LMEM_NULL);
+        return(CVDLS_LMEM_NULL);
+    }
+    cvdls_mem = (CVDlsMem) lmem;
 
-  if (mtype == SUNDIALS_DENSE) {
-    *lenrwLS = 2*n*n;
-    *leniwLS = n;
-  } else if (mtype == SUNDIALS_BAND) {
-    *lenrwLS = n*(smu + mu + 2*ml + 2);
-    *leniwLS = n;
-  }
+    if (mtype == SUNDIALS_DENSE)
+    {
+        *lenrwLS = 2 * n * n;
+        *leniwLS = n;
+    }
+    else if (mtype == SUNDIALS_BAND)
+    {
+        *lenrwLS = n * (smu + mu + 2 * ml + 2);
+        *leniwLS = n;
+    }
 
-  return(CVDLS_SUCCESS);
+    return(CVDLS_SUCCESS);
 }
 
 /*
@@ -178,25 +193,27 @@ int CVDlsGetWorkSpace(void *cvode_mem, long int *lenrwLS, long int *leniwLS)
  */
 int CVDlsGetNumJacEvals(void *cvode_mem, long int *njevals)
 {
-  CVodeMem cv_mem;
-  CVDlsMem cvdls_mem;
+    CVodeMem cv_mem;
+    CVDlsMem cvdls_mem;
 
-  /* Return immediately if cvode_mem is NULL */
-  if (cvode_mem == NULL) {
-    CVProcessError(NULL, CVDLS_MEM_NULL, "CVDLS", "CVDlsGetNumJacEvals", MSGD_CVMEM_NULL);
-    return(CVDLS_MEM_NULL);
-  }
-  cv_mem = (CVodeMem) cvode_mem;
+    /* Return immediately if cvode_mem is NULL */
+    if (cvode_mem == NULL)
+    {
+        CVProcessError(NULL, CVDLS_MEM_NULL, "CVDLS", "CVDlsGetNumJacEvals", MSGD_CVMEM_NULL);
+        return(CVDLS_MEM_NULL);
+    }
+    cv_mem = (CVodeMem) cvode_mem;
 
-  if (lmem == NULL) {
-    CVProcessError(cv_mem, CVDLS_LMEM_NULL, "CVDLS", "CVDlsGetNumJacEvals", MSGD_LMEM_NULL);
-    return(CVDLS_LMEM_NULL);
-  }
-  cvdls_mem = (CVDlsMem) lmem;
+    if (lmem == NULL)
+    {
+        CVProcessError(cv_mem, CVDLS_LMEM_NULL, "CVDLS", "CVDlsGetNumJacEvals", MSGD_LMEM_NULL);
+        return(CVDLS_LMEM_NULL);
+    }
+    cvdls_mem = (CVDlsMem) lmem;
 
-  *njevals = nje;
+    *njevals = nje;
 
-  return(CVDLS_SUCCESS);
+    return(CVDLS_SUCCESS);
 }
 
 /*
@@ -205,25 +222,27 @@ int CVDlsGetNumJacEvals(void *cvode_mem, long int *njevals)
  */
 int CVDlsGetNumRhsEvals(void *cvode_mem, long int *nfevalsLS)
 {
-  CVodeMem cv_mem;
-  CVDlsMem cvdls_mem;
+    CVodeMem cv_mem;
+    CVDlsMem cvdls_mem;
 
-  /* Return immediately if cvode_mem is NULL */
-  if (cvode_mem == NULL) {
-    CVProcessError(NULL, CVDLS_MEM_NULL, "CVDLS", "CVDlsGetNumRhsEvals", MSGD_CVMEM_NULL);
-    return(CVDLS_MEM_NULL);
-  }
-  cv_mem = (CVodeMem) cvode_mem;
+    /* Return immediately if cvode_mem is NULL */
+    if (cvode_mem == NULL)
+    {
+        CVProcessError(NULL, CVDLS_MEM_NULL, "CVDLS", "CVDlsGetNumRhsEvals", MSGD_CVMEM_NULL);
+        return(CVDLS_MEM_NULL);
+    }
+    cv_mem = (CVodeMem) cvode_mem;
 
-  if (lmem == NULL) {
-    CVProcessError(cv_mem, CVDLS_LMEM_NULL, "CVDLS", "CVDlsGetNumRhsEvals", MSGD_LMEM_NULL);
-    return(CVDLS_LMEM_NULL);
-  }
-  cvdls_mem = (CVDlsMem) lmem;
+    if (lmem == NULL)
+    {
+        CVProcessError(cv_mem, CVDLS_LMEM_NULL, "CVDLS", "CVDlsGetNumRhsEvals", MSGD_LMEM_NULL);
+        return(CVDLS_LMEM_NULL);
+    }
+    cvdls_mem = (CVDlsMem) lmem;
 
-  *nfevalsLS = nfeDQ;
+    *nfevalsLS = nfeDQ;
 
-  return(CVDLS_SUCCESS);
+    return(CVDLS_SUCCESS);
 }
 
 /*
@@ -232,37 +251,38 @@ int CVDlsGetNumRhsEvals(void *cvode_mem, long int *nfevalsLS)
  */
 char *CVDlsGetReturnFlagName(long int flag)
 {
-  char *name;
+    char *name;
 
-  name = (char *)malloc(30*sizeof(char));
+    name = (char *)malloc(30 * sizeof(char));
 
-  switch(flag) {
-  case CVDLS_SUCCESS:
-    sprintf(name,"CVDLS_SUCCESS");
-    break;   
-  case CVDLS_MEM_NULL:
-    sprintf(name,"CVDLS_MEM_NULL");
-    break;
-  case CVDLS_LMEM_NULL:
-    sprintf(name,"CVDLS_LMEM_NULL");
-    break;
-  case CVDLS_ILL_INPUT:
-    sprintf(name,"CVDLS_ILL_INPUT");
-    break;
-  case CVDLS_MEM_FAIL:
-    sprintf(name,"CVDLS_MEM_FAIL");
-    break;
-  case CVDLS_JACFUNC_UNRECVR:
-    sprintf(name,"CVDLS_JACFUNC_UNRECVR");
-    break;
-  case CVDLS_JACFUNC_RECVR:
-    sprintf(name,"CVDLS_JACFUNC_RECVR");
-    break;
-  default:
-    sprintf(name,"NONE");
-  }
+    switch (flag)
+    {
+        case CVDLS_SUCCESS:
+            sprintf(name, "CVDLS_SUCCESS");
+            break;
+        case CVDLS_MEM_NULL:
+            sprintf(name, "CVDLS_MEM_NULL");
+            break;
+        case CVDLS_LMEM_NULL:
+            sprintf(name, "CVDLS_LMEM_NULL");
+            break;
+        case CVDLS_ILL_INPUT:
+            sprintf(name, "CVDLS_ILL_INPUT");
+            break;
+        case CVDLS_MEM_FAIL:
+            sprintf(name, "CVDLS_MEM_FAIL");
+            break;
+        case CVDLS_JACFUNC_UNRECVR:
+            sprintf(name, "CVDLS_JACFUNC_UNRECVR");
+            break;
+        case CVDLS_JACFUNC_RECVR:
+            sprintf(name, "CVDLS_JACFUNC_RECVR");
+            break;
+        default:
+            sprintf(name, "NONE");
+    }
 
-  return(name);
+    return(name);
 }
 
 /*
@@ -270,28 +290,30 @@ char *CVDlsGetReturnFlagName(long int flag)
  */
 int CVDlsGetLastFlag(void *cvode_mem, long int *flag)
 {
-  CVodeMem cv_mem;
-  CVDlsMem cvdls_mem;
+    CVodeMem cv_mem;
+    CVDlsMem cvdls_mem;
 
-  /* Return immediately if cvode_mem is NULL */
-  if (cvode_mem == NULL) {
-    CVProcessError(NULL, CVDLS_MEM_NULL, "CVDLS", "CVDlsGetLastFlag", MSGD_CVMEM_NULL);
-    return(CVDLS_MEM_NULL);
-  }
-  cv_mem = (CVodeMem) cvode_mem;
+    /* Return immediately if cvode_mem is NULL */
+    if (cvode_mem == NULL)
+    {
+        CVProcessError(NULL, CVDLS_MEM_NULL, "CVDLS", "CVDlsGetLastFlag", MSGD_CVMEM_NULL);
+        return(CVDLS_MEM_NULL);
+    }
+    cv_mem = (CVodeMem) cvode_mem;
 
-  if (lmem == NULL) {
-    CVProcessError(cv_mem, CVDLS_LMEM_NULL, "CVDLS", "CVDlsGetLastFlag", MSGD_LMEM_NULL);
-    return(CVDLS_LMEM_NULL);
-  }
-  cvdls_mem = (CVDlsMem) lmem;
+    if (lmem == NULL)
+    {
+        CVProcessError(cv_mem, CVDLS_LMEM_NULL, "CVDLS", "CVDlsGetLastFlag", MSGD_LMEM_NULL);
+        return(CVDLS_LMEM_NULL);
+    }
+    cvdls_mem = (CVDlsMem) lmem;
 
-  *flag = last_flag;
+    *flag = last_flag;
 
-  return(CVDLS_SUCCESS);
+    return(CVDLS_SUCCESS);
 }
 
-/* 
+/*
  * =================================================================
  * DQ JACOBIAN APPROXIMATIONS
  * =================================================================
@@ -299,80 +321,84 @@ int CVDlsGetLastFlag(void *cvode_mem, long int *flag)
 
 /*
  * -----------------------------------------------------------------
- * cvDlsDenseDQJac 
+ * cvDlsDenseDQJac
  * -----------------------------------------------------------------
  * This routine generates a dense difference quotient approximation to
  * the Jacobian of f(t,y). It assumes that a dense matrix of type
  * DlsMat is stored column-wise, and that elements within each column
  * are contiguous. The address of the jth column of J is obtained via
  * the macro DENSE_COL and this pointer is associated with an N_Vector
- * using the N_VGetArrayPointer/N_VSetArrayPointer functions. 
- * Finally, the actual computation of the jth column of the Jacobian is 
+ * using the N_VGetArrayPointer/N_VSetArrayPointer functions.
+ * Finally, the actual computation of the jth column of the Jacobian is
  * done with a call to N_VLinearSum.
  * -----------------------------------------------------------------
- */ 
+ */
 
 int cvDlsDenseDQJac(long int N, realtype t,
-                    N_Vector y, N_Vector fy, 
+                    N_Vector y, N_Vector fy,
                     DlsMat Jac, void *data,
                     N_Vector tmp1, N_Vector tmp2, N_Vector tmp3)
 {
-  realtype fnorm, minInc, inc, inc_inv, yjsaved, srur;
-  realtype *tmp2_data, *y_data, *ewt_data;
-  N_Vector ftemp, jthCol;
-  long int j;
-  int retval = 0;
+    realtype fnorm, minInc, inc, inc_inv, yjsaved, srur;
+    realtype *tmp2_data, *y_data, *ewt_data;
+    N_Vector ftemp, jthCol;
+    long int j;
+    int retval = 0;
 
-  CVodeMem cv_mem;
-  CVDlsMem cvdls_mem;
+    CVodeMem cv_mem;
+    CVDlsMem cvdls_mem;
 
-  /* data points to cvode_mem */
-  cv_mem = (CVodeMem) data;
-  cvdls_mem = (CVDlsMem) lmem;
+    /* data points to cvode_mem */
+    cv_mem = (CVodeMem) data;
+    cvdls_mem = (CVDlsMem) lmem;
 
-  /* Save pointer to the array in tmp2 */
-  tmp2_data = N_VGetArrayPointer(tmp2);
+    /* Save pointer to the array in tmp2 */
+    tmp2_data = N_VGetArrayPointer(tmp2);
 
-  /* Rename work vectors for readibility */
-  ftemp = tmp1; 
-  jthCol = tmp2;
+    /* Rename work vectors for readibility */
+    ftemp = tmp1;
+    jthCol = tmp2;
 
-  /* Obtain pointers to the data for ewt, y */
-  ewt_data = N_VGetArrayPointer(ewt);
-  y_data   = N_VGetArrayPointer(y);
+    /* Obtain pointers to the data for ewt, y */
+    ewt_data = N_VGetArrayPointer(ewt);
+    y_data   = N_VGetArrayPointer(y);
 
-  /* Set minimum increment based on uround and norm of f */
-  srur = RSqrt(uround);
-  fnorm = N_VWrmsNorm(fy, ewt);
-  minInc = (fnorm != ZERO) ?
-           (MIN_INC_MULT * ABS(h) * uround * N * fnorm) : ONE;
+    /* Set minimum increment based on uround and norm of f */
+    srur = RSqrt(uround);
+    fnorm = N_VWrmsNorm(fy, ewt);
+    minInc = (fnorm != ZERO) ?
+             (MIN_INC_MULT * ABS(h) * uround * N * fnorm) : ONE;
 
-  for (j = 0; j < N; j++) {
+    for (j = 0; j < N; j++)
+    {
 
-    /* Generate the jth col of J(tn,y) */
+        /* Generate the jth col of J(tn,y) */
 
-    N_VSetArrayPointer(DENSE_COL(Jac,j), jthCol);
+        N_VSetArrayPointer(DENSE_COL(Jac, j), jthCol);
 
-    yjsaved = y_data[j];
-    inc = MAX(srur*ABS(yjsaved), minInc/ewt_data[j]);
-    y_data[j] += inc;
+        yjsaved = y_data[j];
+        inc = MAX(srur * ABS(yjsaved), minInc / ewt_data[j]);
+        y_data[j] += inc;
 
-    retval = f(t, y, ftemp, user_data);
-    nfeDQ++;
-    if (retval != 0) break;
-    
-    y_data[j] = yjsaved;
+        retval = f(t, y, ftemp, user_data);
+        nfeDQ++;
+        if (retval != 0)
+        {
+            break;
+        }
 
-    inc_inv = ONE/inc;
-    N_VLinearSum(inc_inv, ftemp, -inc_inv, fy, jthCol);
+        y_data[j] = yjsaved;
 
-    DENSE_COL(Jac,j) = N_VGetArrayPointer(jthCol);
-  }
+        inc_inv = ONE / inc;
+        N_VLinearSum(inc_inv, ftemp, -inc_inv, fy, jthCol);
 
-  /* Restore original array pointer in tmp2 */
-  N_VSetArrayPointer(tmp2_data, tmp2);
+        DENSE_COL(Jac, j) = N_VGetArrayPointer(jthCol);
+    }
 
-  return(retval);
+    /* Restore original array pointer in tmp2 */
+    N_VSetArrayPointer(tmp2_data, tmp2);
+
+    return(retval);
 }
 
 /*
@@ -389,75 +415,83 @@ int cvDlsDenseDQJac(long int N, realtype t,
  */
 
 int cvDlsBandDQJac(long int N, long int mupper, long int mlower,
-                   realtype t, N_Vector y, N_Vector fy, 
+                   realtype t, N_Vector y, N_Vector fy,
                    DlsMat Jac, void *data,
                    N_Vector tmp1, N_Vector tmp2, N_Vector tmp3)
 {
-  N_Vector ftemp, ytemp;
-  realtype fnorm, minInc, inc, inc_inv, srur;
-  realtype *col_j, *ewt_data, *fy_data, *ftemp_data, *y_data, *ytemp_data;
-  long int group, i, j, width, ngroups, i1, i2;
-  int retval = 0;
+    N_Vector ftemp, ytemp;
+    realtype fnorm, minInc, inc, inc_inv, srur;
+    realtype *col_j, *ewt_data, *fy_data, *ftemp_data, *y_data, *ytemp_data;
+    long int group, i, j, width, ngroups, i1, i2;
+    int retval = 0;
 
-  CVodeMem cv_mem;
-  CVDlsMem cvdls_mem;
+    CVodeMem cv_mem;
+    CVDlsMem cvdls_mem;
 
-  /* data points to cvode_mem */
-  cv_mem = (CVodeMem) data;
-  cvdls_mem = (CVDlsMem) lmem;
+    /* data points to cvode_mem */
+    cv_mem = (CVodeMem) data;
+    cvdls_mem = (CVDlsMem) lmem;
 
-  /* Rename work vectors for use as temporary values of y and f */
-  ftemp = tmp1;
-  ytemp = tmp2;
+    /* Rename work vectors for use as temporary values of y and f */
+    ftemp = tmp1;
+    ytemp = tmp2;
 
-  /* Obtain pointers to the data for ewt, fy, ftemp, y, ytemp */
-  ewt_data   = N_VGetArrayPointer(ewt);
-  fy_data    = N_VGetArrayPointer(fy);
-  ftemp_data = N_VGetArrayPointer(ftemp);
-  y_data     = N_VGetArrayPointer(y);
-  ytemp_data = N_VGetArrayPointer(ytemp);
+    /* Obtain pointers to the data for ewt, fy, ftemp, y, ytemp */
+    ewt_data   = N_VGetArrayPointer(ewt);
+    fy_data    = N_VGetArrayPointer(fy);
+    ftemp_data = N_VGetArrayPointer(ftemp);
+    y_data     = N_VGetArrayPointer(y);
+    ytemp_data = N_VGetArrayPointer(ytemp);
 
-  /* Load ytemp with y = predicted y vector */
-  N_VScale(ONE, y, ytemp);
+    /* Load ytemp with y = predicted y vector */
+    N_VScale(ONE, y, ytemp);
 
-  /* Set minimum increment based on uround and norm of f */
-  srur = RSqrt(uround);
-  fnorm = N_VWrmsNorm(fy, ewt);
-  minInc = (fnorm != ZERO) ?
-           (MIN_INC_MULT * ABS(h) * uround * N * fnorm) : ONE;
+    /* Set minimum increment based on uround and norm of f */
+    srur = RSqrt(uround);
+    fnorm = N_VWrmsNorm(fy, ewt);
+    minInc = (fnorm != ZERO) ?
+             (MIN_INC_MULT * ABS(h) * uround * N * fnorm) : ONE;
 
-  /* Set bandwidth and number of column groups for band differencing */
-  width = mlower + mupper + 1;
-  ngroups = MIN(width, N);
+    /* Set bandwidth and number of column groups for band differencing */
+    width = mlower + mupper + 1;
+    ngroups = MIN(width, N);
 
-  /* Loop over column groups. */
-  for (group=1; group <= ngroups; group++) {
-    
-    /* Increment all y_j in group */
-    for(j=group-1; j < N; j+=width) {
-      inc = MAX(srur*ABS(y_data[j]), minInc/ewt_data[j]);
-      ytemp_data[j] += inc;
+    /* Loop over column groups. */
+    for (group = 1; group <= ngroups; group++)
+    {
+
+        /* Increment all y_j in group */
+        for (j = group - 1; j < N; j += width)
+        {
+            inc = MAX(srur * ABS(y_data[j]), minInc / ewt_data[j]);
+            ytemp_data[j] += inc;
+        }
+
+        /* Evaluate f with incremented y */
+
+        retval = f(tn, ytemp, ftemp, user_data);
+        nfeDQ++;
+        if (retval != 0)
+        {
+            break;
+        }
+
+        /* Restore ytemp, then form and load difference quotients */
+        for (j = group - 1; j < N; j += width)
+        {
+            ytemp_data[j] = y_data[j];
+            col_j = BAND_COL(Jac, j);
+            inc = MAX(srur * ABS(y_data[j]), minInc / ewt_data[j]);
+            inc_inv = ONE / inc;
+            i1 = MAX(0, j - mupper);
+            i2 = MIN(j + mlower, N - 1);
+            for (i = i1; i <= i2; i++)
+            {
+                BAND_COL_ELEM(col_j, i, j) = inc_inv * (ftemp_data[i] - fy_data[i]);
+            }
+        }
     }
 
-    /* Evaluate f with incremented y */
-
-    retval = f(tn, ytemp, ftemp, user_data);
-    nfeDQ++;
-    if (retval != 0) break;
-
-    /* Restore ytemp, then form and load difference quotients */
-    for (j=group-1; j < N; j+=width) {
-      ytemp_data[j] = y_data[j];
-      col_j = BAND_COL(Jac,j);
-      inc = MAX(srur*ABS(y_data[j]), minInc/ewt_data[j]);
-      inc_inv = ONE/inc;
-      i1 = MAX(0, j-mupper);
-      i2 = MIN(j+mlower, N-1);
-      for (i=i1; i <= i2; i++)
-        BAND_COL_ELEM(col_j,i,j) = inc_inv * (ftemp_data[i] - fy_data[i]);
-    }
-  }
-  
-  return(retval);
+    return(retval);
 }
 

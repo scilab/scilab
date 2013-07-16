@@ -1,165 +1,165 @@
-<package name="org.scilab.modules.ui_data">
+    <package name="org.scilab.modules.ui_data">
     <object name="EditVar">
         <method name="openVariableEditorDouble" returnType="void" modifier="static">
-          <parameter type="double[][]" name="data"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="double[][]" name="data"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="openVariableEditorBooleanSparse" returnType="void" modifier="static">
-          <parameter type="int[][]" name="data"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="int[][]" name="data"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="openVariableEditorSparse" returnType="void" modifier="static">
-          <parameter type="double[][]" name="data"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="double[][]" name="data"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="openVariableEditorComplexSparse" returnType="void" modifier="static">
-          <parameter type="double[][]" name="realData"/>
-          <parameter type="double[][]" name="complexData"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="double[][]" name="realData"/>
+            <parameter type="double[][]" name="complexData"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="openVariableEditorComplex" returnType="void" modifier="static">
-          <parameter type="double[][]" name="realData"/>
-          <parameter type="double[][]" name="imgData"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="double[][]" name="realData"/>
+            <parameter type="double[][]" name="imgData"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="openVariableEditorString" returnType="void" modifier="static">
-          <parameter type="String[][]" name="data"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="String[][]" name="data"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="openVariableEditorBoolean" returnType="void" modifier="static">
-          <parameter type="int[][]" name="data"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="int[][]" name="data"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="openVariableEditorInteger8" returnType="void" modifier="static">
-          <parameter type="byte[][]" name="data"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="byte[][]" name="data"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="openVariableEditorUInteger8" returnType="void" modifier="static">
-          <parameter type="short[][]" name="data"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="short[][]" name="data"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="openVariableEditorInteger16" returnType="void" modifier="static">
-          <parameter type="short[][]" name="data"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="short[][]" name="data"/>
+            <parameter type="String" name="variableName"/>
         </method>
         
         <method name="openVariableEditorUInteger16" returnType="void" modifier="static">
-          <parameter type="int[][]" name="data"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="int[][]" name="data"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="openVariableEditorInteger32" returnType="void" modifier="static">
-          <parameter type="int[][]" name="data"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="int[][]" name="data"/>
+            <parameter type="String" name="variableName"/>
         </method>
         
         <method name="openVariableEditorUInteger32" returnType="void" modifier="static">
-          <parameter type="long[][]" name="data"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="long[][]" name="data"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="refreshVariableEditorDouble" returnType="void" modifier="static">
-          <parameter type="double[][]" name="data"/>
-	  <parameter type="double[]" name="rowsIndex"/>
-	  <parameter type="double[]" name="colsIndex"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="double[][]" name="data"/>
+            <parameter type="double[]" name="rowsIndex"/>
+            <parameter type="double[]" name="colsIndex"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="refreshVariableEditorBooleanSparse" returnType="void" modifier="static">
-          <parameter type="int[][]" name="data"/>
-	  <parameter type="double[]" name="rowsIndex"/>
-	  <parameter type="double[]" name="colsIndex"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="int[][]" name="data"/>
+            <parameter type="double[]" name="rowsIndex"/>
+            <parameter type="double[]" name="colsIndex"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="refreshVariableEditorSparse" returnType="void" modifier="static">
-          <parameter type="double[][]" name="data"/>
-	  <parameter type="double[]" name="rowsIndex"/>
-	  <parameter type="double[]" name="colsIndex"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="double[][]" name="data"/>
+            <parameter type="double[]" name="rowsIndex"/>
+            <parameter type="double[]" name="colsIndex"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="refreshVariableEditorComplexSparse" returnType="void" modifier="static">
-          <parameter type="double[][]" name="realData"/>
-	  <parameter type="double[][]" name="complexData"/>
-	  <parameter type="double[]" name="rowsIndex"/>
-	  <parameter type="double[]" name="colsIndex"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="double[][]" name="realData"/>
+            <parameter type="double[][]" name="complexData"/>
+            <parameter type="double[]" name="rowsIndex"/>
+            <parameter type="double[]" name="colsIndex"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="refreshVariableEditorComplex" returnType="void" modifier="static">
-          <parameter type="double[][]" name="realData"/>
-          <parameter type="double[][]" name="imgData"/>
-	  <parameter type="double[]" name="rowsIndex"/>
-	  <parameter type="double[]" name="colsIndex"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="double[][]" name="realData"/>
+            <parameter type="double[][]" name="imgData"/>
+            <parameter type="double[]" name="rowsIndex"/>
+            <parameter type="double[]" name="colsIndex"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="refreshVariableEditorString" returnType="void" modifier="static">
-          <parameter type="String[][]" name="data"/>
-          <parameter type="double[]" name="rowsIndex"/>
-	  <parameter type="double[]" name="colsIndex"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="String[][]" name="data"/>
+            <parameter type="double[]" name="rowsIndex"/>
+            <parameter type="double[]" name="colsIndex"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="refreshVariableEditorBoolean" returnType="void" modifier="static">
-          <parameter type="int[][]" name="data"/>
-          <parameter type="double[]" name="rowsIndex"/>
-	  <parameter type="double[]" name="colsIndex"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="int[][]" name="data"/>
+            <parameter type="double[]" name="rowsIndex"/>
+            <parameter type="double[]" name="colsIndex"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="refreshVariableEditorInteger8" returnType="void" modifier="static">
-          <parameter type="byte[][]" name="data"/>
-          <parameter type="double[]" name="rowsIndex"/>
-	  <parameter type="double[]" name="colsIndex"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="byte[][]" name="data"/>
+            <parameter type="double[]" name="rowsIndex"/>
+            <parameter type="double[]" name="colsIndex"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="refreshVariableEditorUInteger8" returnType="void" modifier="static">
-          <parameter type="short[][]" name="data"/>
-          <parameter type="double[]" name="rowsIndex"/>
-	  <parameter type="double[]" name="colsIndex"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="short[][]" name="data"/>
+            <parameter type="double[]" name="rowsIndex"/>
+            <parameter type="double[]" name="colsIndex"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="refreshVariableEditorInteger16" returnType="void" modifier="static">
-          <parameter type="short[][]" name="data"/>
-          <parameter type="double[]" name="rowsIndex"/>
-	  <parameter type="double[]" name="colsIndex"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="short[][]" name="data"/>
+            <parameter type="double[]" name="rowsIndex"/>
+            <parameter type="double[]" name="colsIndex"/>
+            <parameter type="String" name="variableName"/>
         </method>
         
         <method name="refreshVariableEditorUInteger16" returnType="void" modifier="static">
-          <parameter type="int[][]" name="data"/>
-          <parameter type="double[]" name="rowsIndex"/>
-	  <parameter type="double[]" name="colsIndex"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="int[][]" name="data"/>
+            <parameter type="double[]" name="rowsIndex"/>
+            <parameter type="double[]" name="colsIndex"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="refreshVariableEditorInteger32" returnType="void" modifier="static">
-          <parameter type="int[][]" name="data"/>
-          <parameter type="double[]" name="rowsIndex"/>
-	  <parameter type="double[]" name="colsIndex"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="int[][]" name="data"/>
+            <parameter type="double[]" name="rowsIndex"/>
+            <parameter type="double[]" name="colsIndex"/>
+            <parameter type="String" name="variableName"/>
         </method>
         
         <method name="refreshVariableEditorUInteger32" returnType="void" modifier="static">
-          <parameter type="long[][]" name="data"/>
-          <parameter type="double[]" name="rowsIndex"/>
-	  <parameter type="double[]" name="colsIndex"/>
-          <parameter type="String" name="variableName"/>
+            <parameter type="long[][]" name="data"/>
+            <parameter type="double[]" name="rowsIndex"/>
+            <parameter type="double[]" name="colsIndex"/>
+            <parameter type="String" name="variableName"/>
         </method>
-
+        
         <method name="closeVariableEditor" returnType="void" modifier="static"/>
     </object>
 </package>

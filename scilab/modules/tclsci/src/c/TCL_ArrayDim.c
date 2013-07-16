@@ -44,118 +44,118 @@
 **	-> Return all indexes as Vector : nb_columns = 1.
 */
 
-char **TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *nb_lines, int *nb_columns)
+char **TCL_ArrayDim(Tcl_Interp *TCLinterpreter, char *VarName, int *nb_lines, int *nb_columns)
 {
-  char **index_list = NULL;
+    char **index_list = NULL;
 
 
-  if (strcmp(VarName,TCL_ALL_INDEXES) || strcmp(VarName,TCL_NUMERICAL_INDEXES))
+    if (strcmp(VarName, TCL_ALL_INDEXES) || strcmp(VarName, TCL_NUMERICAL_INDEXES))
     {
-      char MyTclCommand[2048];
-      char *StrArrayIndexes=NULL;
-      char *NumArrayIndexes=NULL;
+        char MyTclCommand[2048];
+        char *StrArrayIndexes = NULL;
+        char *NumArrayIndexes = NULL;
 
-      /*
-      ** TCL Array are Hashtable
-      ** Get all keys into TCL_ALL_INDEXES
-      */
-      sprintf(MyTclCommand, "set %s [lsort -dictionary [array names %s *]];", TCL_ALL_INDEXES, VarName);
+        /*
+        ** TCL Array are Hashtable
+        ** Get all keys into TCL_ALL_INDEXES
+        */
+        sprintf(MyTclCommand, "set %s [lsort -dictionary [array names %s *]];", TCL_ALL_INDEXES, VarName);
 
-      if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
-	{
-	  Scierror(999,_("Tcl Error : %s\n"),Tcl_GetStringResult(TCLinterpreter));
-	  return 0;
-	}
-      /*
-      ** Look if keys are like [1-9][0-9]*,[1-9][0-9]*
-      ** And get it into TCL_NUMERICAL_INDEXES
-      */
-      sprintf(MyTclCommand, "set %s [lsort -dictionary [array names %s -regexp {^[1-9][0-9]*,[1-9][0-9]*$}]];", TCL_NUMERICAL_INDEXES, VarName);
+        if ( Tcl_Eval(TCLinterpreter, MyTclCommand) == TCL_ERROR  )
+        {
+            Scierror(999, _("Tcl Error : %s\n"), Tcl_GetStringResult(TCLinterpreter));
+            return 0;
+        }
+        /*
+        ** Look if keys are like [1-9][0-9]*,[1-9][0-9]*
+        ** And get it into TCL_NUMERICAL_INDEXES
+        */
+        sprintf(MyTclCommand, "set %s [lsort -dictionary [array names %s -regexp {^[1-9][0-9]*,[1-9][0-9]*$}]];", TCL_NUMERICAL_INDEXES, VarName);
 
-      if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
-	{
-	  Scierror(999,_("Tcl Error : %s\n"),Tcl_GetStringResult(TCLinterpreter));
-	  return 0;
-	}
+        if ( Tcl_Eval(TCLinterpreter, MyTclCommand) == TCL_ERROR  )
+        {
+            Scierror(999, _("Tcl Error : %s\n"), Tcl_GetStringResult(TCLinterpreter));
+            return 0;
+        }
 
 
-      StrArrayIndexes = (char *) Tcl_GetVar(TCLinterpreter, TCL_ALL_INDEXES, TCL_GLOBAL_ONLY);
-      NumArrayIndexes = (char *) Tcl_GetVar(TCLinterpreter, TCL_NUMERICAL_INDEXES, TCL_GLOBAL_ONLY);
+        StrArrayIndexes = (char *) Tcl_GetVar(TCLinterpreter, TCL_ALL_INDEXES, TCL_GLOBAL_ONLY);
+        NumArrayIndexes = (char *) Tcl_GetVar(TCLinterpreter, TCL_NUMERICAL_INDEXES, TCL_GLOBAL_ONLY);
 
-      if (!StrArrayIndexes)
-	{
-	  return NULL;
-	}
+        if (!StrArrayIndexes)
+        {
+            return NULL;
+        }
 
-      /*
-      ** Look if all indexes are numerical or not
-      */
-      if(strlen(StrArrayIndexes) == strlen(NumArrayIndexes))
-	{
-	  char *current;
-	  char **tmp_list = NULL;
-	  int j , i = 0;
-	  int current_line = 0;
-	  int current_column = 0;
+        /*
+        ** Look if all indexes are numerical or not
+        */
+        if (strlen(StrArrayIndexes) == strlen(NumArrayIndexes))
+        {
+            char *current;
+            char **tmp_list = NULL;
+            int j , i = 0;
+            int current_line = 0;
+            int current_column = 0;
 
-	  current = strtok(StrArrayIndexes, " ");
+            current = strtok(StrArrayIndexes, " ");
 
-	  /*
-	  ** Get all known indexes
-	  */
-	  while (current != NULL)
-	    {
-	      tmp_list = REALLOC(tmp_list, (i + 1) * sizeof(char *));
-	      tmp_list[i] = strdup(current);
-	      sscanf(current, "%d,%d", &current_line, &current_column);
-	      *nb_lines = MAX(*nb_lines, current_line);
-	      *nb_columns = MAX(*nb_columns, current_column);
-	      current = strtok (NULL, " ");
-	      ++i;
-	    }
+            /*
+            ** Get all known indexes
+            */
+            while (current != NULL)
+            {
+                tmp_list = REALLOC(tmp_list, (i + 1) * sizeof(char *));
+                tmp_list[i] = strdup(current);
+                sscanf(current, "%d,%d", &current_line, &current_column);
+                *nb_lines = MAX(*nb_lines, current_line);
+                *nb_columns = MAX(*nb_columns, current_column);
+                current = strtok (NULL, " ");
+                ++i;
+            }
 
-	  /*
-	  ** Create a complete list of NULL and insert only index we found at the right place
-	  */
-	  index_list = MALLOC(*nb_lines * *nb_columns * sizeof(char *));
-	  for (j = 0; j < *nb_lines * *nb_columns ; ++j)
-	    {
-	      index_list[j] = NULL;
-	    }
-	  for (j = 0; j < i ; ++j)
-	    {
-	      sscanf(tmp_list[j], "%d,%d", &current_line, &current_column);
-	      index_list[(current_column - 1) * *nb_lines + current_line - 1] = tmp_list[j];
-	    }
-	  FREE(tmp_list);
-	}
-      else
-	{
-	  /*
-	  ** We found an Hastable...
-	  ** Then return a Vector of index.
-	  */
-	  char *current;
-	  *nb_lines = 0;
-	  *nb_columns = 1;
+            /*
+            ** Create a complete list of NULL and insert only index we found at the right place
+            */
+            index_list = MALLOC(*nb_lines * *nb_columns * sizeof(char *));
+            for (j = 0; j < *nb_lines * *nb_columns ; ++j)
+            {
+                index_list[j] = NULL;
+            }
+            for (j = 0; j < i ; ++j)
+            {
+                sscanf(tmp_list[j], "%d,%d", &current_line, &current_column);
+                index_list[(current_column - 1) * *nb_lines + current_line - 1] = tmp_list[j];
+            }
+            FREE(tmp_list);
+        }
+        else
+        {
+            /*
+            ** We found an Hastable...
+            ** Then return a Vector of index.
+            */
+            char *current;
+            *nb_lines = 0;
+            *nb_columns = 1;
 
-	  current = strtok(StrArrayIndexes, " ");
+            current = strtok(StrArrayIndexes, " ");
 
-	  while (current != NULL)
-	    {
-	      index_list = REALLOC(index_list, (*nb_lines + 1) * sizeof(char *));
-	      index_list[*nb_lines] = strdup(current);
-	      current = strtok (NULL, " ");
-	      ++(*nb_lines);
-	    }
-	}
+            while (current != NULL)
+            {
+                index_list = REALLOC(index_list, (*nb_lines + 1) * sizeof(char *));
+                index_list[*nb_lines] = strdup(current);
+                current = strtok (NULL, " ");
+                ++(*nb_lines);
+            }
+        }
 
-      /*
-      ** Unset temporary TCL Variables
-      */
-      Tcl_UnsetVar(TCLinterpreter, TCL_ALL_INDEXES, TCL_GLOBAL_ONLY);
-      Tcl_UnsetVar(TCLinterpreter, TCL_NUMERICAL_INDEXES, TCL_GLOBAL_ONLY);
+        /*
+        ** Unset temporary TCL Variables
+        */
+        Tcl_UnsetVar(TCLinterpreter, TCL_ALL_INDEXES, TCL_GLOBAL_ONLY);
+        Tcl_UnsetVar(TCLinterpreter, TCL_NUMERICAL_INDEXES, TCL_GLOBAL_ONLY);
     }
- return index_list;
+    return index_list;
 }
 /*--------------------------------------------------------------------------*/

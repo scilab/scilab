@@ -12,22 +12,22 @@
  *
  -->
 <project name="xcos" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.xcos.name}"/>
-  <property name="library.title" value="Modeler and simulator for hybrid systems"/>
-  <description>
-      Build the Scilab xcos module
-  </description>
-  <target name="validate" description="Validate the data">
-    <!-- Validate the demos -->
-    <schemavalidate noNamespaceFile="etc/XcosFile.xsd">
-      <fileset dir="demos" includes="**/*.xcos"/>
-      <fileset dir="examples" includes="**/*.xcos"/>
-      <fileset dir="tests" includes="**/*.xcos"/>
-    </schemavalidate>
-    <!-- Validate the global configuration file -->
-    <schemavalidate noNamespaceFile="etc/XcosConfiguration.xsd" file="etc/xcos.xml"/>
-    <!-- Validate the palette configuration file -->
-    <schemavalidate noNamespaceFile="etc/PaletteConfiguration.xsd" file="etc/palettes.xml"/>
-  </target>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.xcos.name}"/>
+    <property name="library.title" value="Modeler and simulator for hybrid systems"/>
+    <description>
+        Build the Scilab xcos module
+    </description>
+    <target name="validate" description="Validate the data">
+        <!-- Validate the demos -->
+        <schemavalidate noNamespaceFile="etc/XcosFile.xsd">
+            <fileset dir="demos" includes="**/*.xcos"/>
+            <fileset dir="examples" includes="**/*.xcos"/>
+            <fileset dir="tests" includes="**/*.xcos"/>
+        </schemavalidate>
+        <!-- Validate the global configuration file -->
+        <schemavalidate noNamespaceFile="etc/XcosConfiguration.xsd" file="etc/xcos.xml"/>
+        <!-- Validate the palette configuration file -->
+        <schemavalidate noNamespaceFile="etc/PaletteConfiguration.xsd" file="etc/palettes.xml"/>
+    </target>
 </project>

@@ -68,12 +68,12 @@ int TriangleMeshFecData::getPropertyFromName(int propertyName)
 {
     switch (propertyName)
     {
-    case __GO_DATA_MODEL_NUM_INDICES__ :
-        return NUM_INDICES;
-    case __GO_DATA_MODEL_FEC_TRIANGLES__ :
-        return FEC_TRIANGLES;
-    default :
-        return TriangleMeshData::getPropertyFromName(propertyName);
+        case __GO_DATA_MODEL_NUM_INDICES__ :
+            return NUM_INDICES;
+        case __GO_DATA_MODEL_FEC_TRIANGLES__ :
+            return FEC_TRIANGLES;
+        default :
+            return TriangleMeshData::getPropertyFromName(propertyName);
     }
 }
 

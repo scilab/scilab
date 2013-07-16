@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -82,7 +82,7 @@ public final class DebugLevelAction extends SimulationNotRunningAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      */
@@ -92,7 +92,7 @@ public final class DebugLevelAction extends SimulationNotRunningAction {
 
     /**
      * Action !!!
-     * 
+     *
      * @param e
      *            action parameters
      * @see org.scilab.modules.graph.actions.base.DefaultAction#actionPerformed(java.awt.event.ActionEvent)
@@ -106,9 +106,9 @@ public final class DebugLevelAction extends SimulationNotRunningAction {
         if (comp.isEditing()) {
             return;
         }
-        
+
         final DebugLevelDialog dialog = new DebugLevelDialog(
-                graph.getAsComponent(), graph.getScicosParameters());
+            graph.getAsComponent(), graph.getScicosParameters());
 
         dialog.pack();
         dialog.setVisible(true);

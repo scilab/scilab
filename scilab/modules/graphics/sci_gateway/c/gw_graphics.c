@@ -51,7 +51,7 @@ static gw_generic_table Tab[] =
     {sci_xarrows, "xarrows"},
     {sci_drawaxis, "drawaxis"},
     {sci_xchange, "xchange"},
-    {NULL, ""},//show_pixmap
+    {NULL, ""}, // show_pixmap: removed
     {sci_xclick, "xclick"},
     {sci_xdel, "xdel"},
     {sci_xarc, "xfarc"},

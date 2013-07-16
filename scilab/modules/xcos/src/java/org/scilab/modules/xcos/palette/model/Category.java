@@ -33,11 +33,11 @@ import javax.xml.bind.annotation.XmlType;
  * <p>
  * A category can contain any number of child ({@link Palette} or
  * {@link Category}).
- * 
+ *
  * <p>
  * The following schema fragment specifies the expected content contained within
  * this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="Category">
  *   &lt;complexContent>
@@ -49,8 +49,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
@@ -69,25 +69,25 @@ public class Category extends PaletteNode {
 
     /**
      * Gets the value of the node property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list, not a
      * snapshot. Therefore any modification you make to the returned list will
      * be present inside the JAXB object. This is why there is not a
      * <CODE>set</CODE> method for the node property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
-     * 
+     *
      * <pre>
      * getNode().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link PaletteNode }
-     * 
+     *
      * @return the non-null children list.
      */
     public List<PaletteNode> getNode() {
@@ -165,7 +165,7 @@ public class Category extends PaletteNode {
 
     /**
      * Invoked by Marshaller after it has created an instance of this object.
-     * 
+     *
      * @param m
      *            the marshaller
      */
@@ -182,7 +182,7 @@ public class Category extends PaletteNode {
     /**
      * Invoked by Marshaller after it has marshalled all properties of this
      * object.
-     * 
+     *
      * @param m
      *            the marshaller
      */
@@ -192,7 +192,7 @@ public class Category extends PaletteNode {
 
     /**
      * Invoked by Unmarshaller after unmarshalling
-     * 
+     *
      * @param u
      *            the unmarshaller
      * @param parent

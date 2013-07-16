@@ -7,8 +7,8 @@
 
 
 subdemolist = [_("LQV"),                               "lqv.sce"; ..
-               _("Spaceship landing trajectory"),      "navet.sce"; ..
-               _("Computation of optimal parameters"), "seros.sce";];
+_("Spaceship landing trajectory"),      "navet.sce"; ..
+_("Computation of optimal parameters"), "seros.sce";];
 
 subdemolist(:,2) = SCI + "/modules/optimization/demos/icse/" + subdemolist(:,2);
 

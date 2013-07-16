@@ -56,6 +56,6 @@
 #ifndef __VAR2SCI_H__
 #define __VAR2SCI_H__
 
-int var2sci(void *x,int n,int m,int typ_var);
+int var2sci(void *x, int n, int m, int typ_var);
 
 #endif /* __VAR2SCI_H__ */

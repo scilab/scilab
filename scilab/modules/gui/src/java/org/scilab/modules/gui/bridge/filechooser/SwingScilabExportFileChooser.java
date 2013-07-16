@@ -185,7 +185,9 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
             } else {
                 bitmapExport(extensionCombo);
             }
-        } else ; // no file chosen
+        } else {
+            ;    // no file chosen
+        }
     }
 
     /**

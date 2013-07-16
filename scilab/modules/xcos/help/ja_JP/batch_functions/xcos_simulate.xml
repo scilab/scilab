@@ -36,7 +36,7 @@
         <title>説明</title>
         この関数は,xcosダイアグラムをバッチモードでシミュレートする際に
         使用されます.
-        この関数は,<literal>.xcos</literal>ファイルをScilabに読み込むことにより
+        この関数は,<literal>.zcos</literal>ファイルをScilabに読み込むことにより
         得られる<link linkend="scicos_diagram">scs_m 構造体</link>を必要とします
         (<link linkend="importXcosDiagram">importXcosDiagram</link>参照).
         
@@ -76,17 +76,17 @@
     <refsection id="Examples_xcos_simulate">
         <title>例</title>
         <para>
-            <literal>SCI/modules/xcos/demos/batch_simulation.xcos</literal>にある
+            <literal>SCI/modules/xcos/demos/batch_simulation.zcos</literal>にある
             xcosダイアグラム.
             <mediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../demos/batch_simulation.xcos"/>
+                    <imagedata align="center" fileref="../../../demos/batch_simulation.zcos"/>
                 </imageobject>
             </mediaobject>
             このダイアグラムをバッチモードで実行し,
             いくつかのコンテキスト値を変更します.
             <programlisting role="example"><![CDATA[
-      importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.xcos")
+      importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.zcos")
 
       typeof(scs_m) // ダイアグラムのデータ構造体
 
@@ -115,7 +115,7 @@
             pre_xcos_simulate関数を用いた
             このダイアグラムの統計的な解析
             <programlisting role="example"><![CDATA[
-importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.xcos")
+importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.zcos")
 
 typeof(scs_m) //The diagram data structure
 
@@ -156,16 +156,16 @@ function continueSimulation=pre_xcos_simulate(scs_m, needcompile)
       ]]></programlisting>
         </para>
         <para>
-            xcosダイアグラム: <literal>SCI/modules/xcos/demos/Command.xcos</literal>
+            xcosダイアグラム: <literal>SCI/modules/xcos/demos/Command.zcos</literal>
             <mediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../demos/Command.xcos"/>
+                    <imagedata align="center" fileref="../../../demos/Command.zcos"/>
                 </imageobject>
             </mediaobject>
             このダイアグラムをバッチモードでシミュレートし,
             post_xcos_simulateにより伝達関数のボード線図をプロットします,
             <programlisting role="example"><![CDATA[
-importXcosDiagram("SCI/modules/xcos/demos/Command.xcos")
+importXcosDiagram("SCI/modules/xcos/demos/Command.zcos")
 
 // 全てのpre_xcos_simulationを消去;
 clear pre_xcos_simulate;
@@ -205,16 +205,16 @@ xcos_simulate(scs_m, 4);
       ]]></programlisting>
         </para>
         <para>
-            xcosダイアグラム: <literal>SCI/modules/xcos/demos/Command_bode.xcos</literal>
+            xcosダイアグラム: <literal>SCI/modules/xcos/demos/Command_bode.zcos</literal>
             <mediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../demos/Command_bode.xcos"/>
+                    <imagedata align="center" fileref="../../../demos/Command_bode.zcos"/>
                 </imageobject>
             </mediaobject>
             このダイアグラムをバッチモードでシミュレートし,
             post_xcos_simulateにより伝達関数のボード線図をプロットします,
             <programlisting role="example"><![CDATA[
-importXcosDiagram("SCI/modules/xcos/demos/Command_bode.xcos")
+importXcosDiagram("SCI/modules/xcos/demos/Command_bode.zcos")
 
 // post_xcos_simulationを全て消去;
 clear post_xcos_simulate;

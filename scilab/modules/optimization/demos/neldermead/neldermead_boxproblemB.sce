@@ -12,13 +12,13 @@
 
 //
 // nmplot_boxproblemA.sce --
-//   Show that the Box algorithm is able to reproduce the 
+//   Show that the Box algorithm is able to reproduce the
 //   numerical experiment presented in Box's paper.
 //
 
 function demo_boxproblemB()
 
-    filename = 'neldermead_boxproblemB.sce';
+    filename = "neldermead_boxproblemB.sce";
     dname = get_absolute_file_path(filename);
 
     mprintf(_("Illustrates Box'' algorithm on Box problem B.\n"));
@@ -32,15 +32,15 @@ function demo_boxproblemB()
     //
     //  Reference:
     //
-    //   M.J.Box, 
-    //   "A new method of constrained optimization 
+    //   M.J.Box,
+    //   "A new method of constrained optimization
     //   and a comparison with other methods".
     //   The Computer Journal, Volume 8, Number 1, 1965, 42--52
     //   Problem A
     //
     //   Algorithm 454: the complex method for constrained optimization [E4]
     //   Communications of the ACM, Volume 16 ,  Issue 8  (August 1973)
-    //   Pages: 487 - 489   
+    //   Pages: 487 - 489
     //
     //   Richardson and Kuester Results :
     //   F=1.0000
@@ -49,7 +49,7 @@ function demo_boxproblemB()
     //   Iterations : 68
     //
     //
-    // Note 
+    // Note
     //    The maximum bound for the parameter x1
     //    is not indicated in Box's paper, but indicated in "Algo 454".
     //    The maximum bound for x2 is set to 100/sqrt(3) and satisfies the constraint on x2.
@@ -58,7 +58,7 @@ function demo_boxproblemB()
 
     //
     // boxproblemB --
-    //   Computes the Box problem B cost function and 
+    //   Computes the Box problem B cost function and
     //   inequality constraints.
     //
     // Arguments
@@ -169,4 +169,5 @@ clear demo_boxproblemB;
 
 
 
-
+
+

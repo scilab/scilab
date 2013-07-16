@@ -19,8 +19,8 @@ DATA_STRUCTURES_IMPEXP int C2F(stcreate)(int *lw, int *nz, int *sz, int *nf, cha
 
 DATA_STRUCTURES_IMPEXP int sttyp(int *ivt, char *job, int *nf, char *fnames[]);
 
-DATA_STRUCTURES_IMPEXP int creonevoid(int *slw,int *lw);
+DATA_STRUCTURES_IMPEXP int creonevoid(int *slw, int *lw);
 
-DATA_STRUCTURES_IMPEXP int crelistofvoids(int *slw,int *lw,int *nels);
+DATA_STRUCTURES_IMPEXP int crelistofvoids(int *slw, int *lw, int *nels);
 
 #endif /* __STCREATE_H__ */

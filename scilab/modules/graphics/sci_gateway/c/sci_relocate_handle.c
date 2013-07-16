@@ -64,7 +64,7 @@ int sci_relocate_handle(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname,  1);
+        Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname,  1);
         return 1;
     }
 
@@ -81,7 +81,7 @@ int sci_relocate_handle(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname,  2);
+        Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname,  2);
         return 1;
     }
 

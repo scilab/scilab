@@ -945,7 +945,7 @@ function t=fmtchildren(c)
         t="[]"
     else
         if size(c,"*")<10 then
-            t=sci2exp(c.type,0)
+            t=sci2exp(c.type,0);
             if length(t)>70 then t="matrix "+strcat(string(size(c)),"x"),end
         else
             t="matrix "+strcat(string(size(c)),"x")
@@ -958,7 +958,22 @@ function t=fmtuser_data(d)
     td= type(d)
     if or(td==[1 2 3 4 8 10 15]) then
         t=sci2exp(d,0)
-        if length(t)>70 then t=typeof(d)+" "+strcat(string(size(d)),"x"),end
+        if length(t)>70 then
+            if type(d) <> 15 then
+                t=typeof(d)+" "+strcat(string(size(d)),"x");
+            else
+                t=typeof(d)+"(";
+                for i=1:length(d)
+                    if type(d(i)) <> 9 then
+                        t=t+typeof(d(i))+", ";
+                    else
+                        t=t+d(i).type +", ";
+                    end
+                end
+                t=part(t,1:length(t)-2);
+                t=t+")";
+            end
+        end
     elseif or(td==16) then
         t=typeof(d)+" "+strcat(string(size(d)),"x"),
     elseif or(td==17) then

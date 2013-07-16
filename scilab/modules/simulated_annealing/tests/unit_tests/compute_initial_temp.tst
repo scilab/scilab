@@ -14,6 +14,6 @@ deff('y=test_func(x)','y=x^2');
 
 x0 = 10;
 
-T_init = compute_initial_temp(x0, test_func, 0.8, 1000, [])
-
-if (T_init==%nan) | (abs(T_init)==%inf) then pause,end
+T_init = compute_initial_temp(x0, test_func, 0.8, 1000, []);
+assert_checktrue(T_init <> %nan);
+assert_checktrue(abs(T_init) <> %inf);

@@ -40,22 +40,22 @@ public class Segs extends VectField {
      */
     public Object getPropertyFromName(int propertyName) {
         switch (propertyName) {
-        case __GO_SEGS_COLORS__ :
-            return SegsProperty.COLORS;
-        case __GO_MARK_MODE__ :
-            return Mark.MarkPropertyType.MODE;
-        case __GO_MARK_STYLE__ :
-            return Mark.MarkPropertyType.STYLE;
-        case __GO_MARK_SIZE_UNIT__ :
-            return Mark.MarkPropertyType.SIZEUNIT;
-        case __GO_MARK_SIZE__ :
-            return Mark.MarkPropertyType.SIZE;
-        case __GO_MARK_FOREGROUND__ :
-            return Mark.MarkPropertyType.FOREGROUND;
-        case __GO_MARK_BACKGROUND__ :
-            return Mark.MarkPropertyType.BACKGROUND;
-        default :
-            return super.getPropertyFromName(propertyName);
+            case __GO_SEGS_COLORS__ :
+                return SegsProperty.COLORS;
+            case __GO_MARK_MODE__ :
+                return Mark.MarkPropertyType.MODE;
+            case __GO_MARK_STYLE__ :
+                return Mark.MarkPropertyType.STYLE;
+            case __GO_MARK_SIZE_UNIT__ :
+                return Mark.MarkPropertyType.SIZEUNIT;
+            case __GO_MARK_SIZE__ :
+                return Mark.MarkPropertyType.SIZE;
+            case __GO_MARK_FOREGROUND__ :
+                return Mark.MarkPropertyType.FOREGROUND;
+            case __GO_MARK_BACKGROUND__ :
+                return Mark.MarkPropertyType.BACKGROUND;
+            default :
+                return super.getPropertyFromName(propertyName);
         }
     }
 

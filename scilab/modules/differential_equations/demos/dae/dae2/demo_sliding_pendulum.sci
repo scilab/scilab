@@ -51,9 +51,9 @@ function demo_sliding_pendulum()
     for i=1:size(sol,2)
         realtime(i)
         if is_handle_valid(H) then
-          draw_sliding_pendulum(H,sol(2:4,i))
+            draw_sliding_pendulum(H,sol(2:4,i))
         else
-          break;
+            break;
         end
     end
 
@@ -71,15 +71,15 @@ function [res,ires]=pendg(t,y,ydot)
     up=ydot(4:6);
 
     res=[xp-u;
-        (M+m)*up(1)     + m*l*(cos(x(3))*up(3)-sin(x(3))*u(3)^2) + lambda*fx(x(1),x(2)) + k*u(1);
-        (M+m)*(up(2)+g) + m*l*(sin(x(3))*up(3)+cos(x(3))*u(3)^2) + lambda*fy(x(1),x(2)) + k*u(2);
-                        m*l*(cos(x(3))*up(1)+sin(x(3))*up(2))  + m*l^2*up(3) + m*g*sin(x(3));
-        -(fx(x(1),x(2))*u(1)+fy(x(1),x(2))*u(2))];
+    (M+m)*up(1)     + m*l*(cos(x(3))*up(3)-sin(x(3))*u(3)^2) + lambda*fx(x(1),x(2)) + k*u(1);
+    (M+m)*(up(2)+g) + m*l*(sin(x(3))*up(3)+cos(x(3))*u(3)^2) + lambda*fy(x(1),x(2)) + k*u(2);
+    m*l*(cos(x(3))*up(1)+sin(x(3))*up(2))  + m*l^2*up(3) + m*g*sin(x(3));
+    -(fx(x(1),x(2))*u(1)+fy(x(1),x(2))*u(2))];
     ires=0;
 endfunction
 
 function res=fx(x,y)
-  global omega;
+    global omega;
     res=-2*x+omega*sin(omega*x)/3;
 endfunction
 
@@ -99,7 +99,7 @@ function  H=build_sliding_pendulum ()
     clf(f,"reset");
 
     a=gca();
-    f.pixmap='on';
+    f.pixmap="on";
     drawlater()
     f.axes_size = [610,676];
     xmin=-1.5;
@@ -130,24 +130,24 @@ endfunction
 
 
 function  draw_sliding_pendulum (H,state)
-  //draw the pendulum in a given state
-  x = state(1);
-  y = state(2);
-  teta = state(3);
-  
-  // bullet half diameter
-  b = H.children(1);
-  r = b.data(3)/2;
+    //draw the pendulum in a given state
+    x = state(1);
+    y = state(2);
+    teta = state(3);
 
-  xp=x+l*sin(teta); yp=y-l*cos(teta);
-  xp1=x+(l-r)*sin(teta); yp1=y-(l-r)*cos(teta);
-  drawlater()
-  p = H.children(2);p.data=[x, y; xp1, yp1];
-  b = H.children(1); b.data=[xp-r,yp+r,2*r,2*r,0,360*64];
-  drawnow();
-  a=gca();
-  a.title.text='sliding pendulum, ""upside down camel""';
-  a.title.font_size=3;
+    // bullet half diameter
+    b = H.children(1);
+    r = b.data(3)/2;
+
+    xp=x+l*sin(teta); yp=y-l*cos(teta);
+    xp1=x+(l-r)*sin(teta); yp1=y-(l-r)*cos(teta);
+    drawlater()
+    p = H.children(2);p.data=[x, y; xp1, yp1];
+    b = H.children(1); b.data=[xp-r,yp+r,2*r,2*r,0,360*64];
+    drawnow();
+    a=gca();
+    a.title.text="sliding pendulum, ""upside down camel""";
+    a.title.font_size=3;
 endfunction
 
 funcprot(1);

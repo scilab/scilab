@@ -12,8 +12,8 @@
 //warning('off'); // disable warnings
 // ------------------------------------
 
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 // ------------------------------------
 lines(0);
@@ -29,20 +29,20 @@ stacksize(5000000);
 modules=getmodules();
 index=size(modules);
 
-for i=1:index(1) do 
- Directories=[Directories;"SCI/modules/"+modules(i)+"/macros"];
-end  
+for i=1:index(1) do
+    Directories=[Directories;"SCI/modules/"+modules(i)+"/macros"];
+end
 clear modules index i
- 
+
 Dim=size(Directories);
 
 
-for i=1:Dim(1) do 
-  chdir(Directories(i));
-  if isfile('buildmacros.sce') then
-    exec('buildmacros.sce');
-  end
-  chdir(CurrentDirectory);
+for i=1:Dim(1) do
+    chdir(Directories(i));
+    if isfile("buildmacros.sce") then
+        exec("buildmacros.sce");
+    end
+    chdir(CurrentDirectory);
 end
 clear CurrentDirectory Dim Directories
 exit

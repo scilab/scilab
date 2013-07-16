@@ -18,38 +18,41 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void shift_16_LC(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void shift_16_LC(scicos_block *block, int flag)
 {
-	int i = 0;
-	int mu = GetInPortRows(block,1);
-	int nu = GetInPortCols(block,1);
-	short *u = Getint16InPortPtrs(block,1);
-	short *y = Getint16OutPortPtrs(block,1);
-	int *ipar = GetIparPtrs(block);
+    int i = 0;
+    int mu = GetInPortRows(block, 1);
+    int nu = GetInPortCols(block, 1);
+    short *u = Getint16InPortPtrs(block, 1);
+    short *y = Getint16OutPortPtrs(block, 1);
+    int *ipar = GetIparPtrs(block);
 
-	unsigned short k = (unsigned short)pow(2,16-1);
+    unsigned short k = (unsigned short)pow(2, 16 - 1);
 
-	for (i=0;i<mu*nu;i++)
-	{ 
-		int j = 0;
+    for (i = 0; i < mu * nu; i++)
+    {
+        int j = 0;
 
-		short v = u[i];
-		for(j=0;j<ipar[0];j++)
-		{
-			y[i]=v&k;
-			if (y[i]==0)  y[i]=v<<1;
-			else 
-			{
-				y[i]=v<<1;
-				y[i]=(y[i])|(1);
-			}
-			v=y[i];
-		}
-	}
+        short v = u[i];
+        for (j = 0; j < ipar[0]; j++)
+        {
+            y[i] = v & k;
+            if (y[i] == 0)
+            {
+                y[i] = v << 1;
+            }
+            else
+            {
+                y[i] = v << 1;
+                y[i] = (y[i]) | (1);
+            }
+            v = y[i];
+        }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

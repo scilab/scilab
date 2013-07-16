@@ -138,8 +138,8 @@ function packages = atomsGetAvailable(category,nameonly)
             packages = [ packages;packages_list(i)];
         else
             packages = [ packages; ..
-                            emptystr(size(this_package_versions,"*"),1)+packages_list(i), ..
-                            this_package_versions ];
+            emptystr(size(this_package_versions,"*"),1)+packages_list(i), ..
+            this_package_versions ];
         end
     end
 

@@ -169,10 +169,6 @@ contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);
             xset('fpf',' ');
             clf();
             contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8],0*ones(1,m))
-            
-            xset('fpf','');
-            clf();
-            contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);
         </scilab:image>
     </refsection>
     <refsection role="see also">

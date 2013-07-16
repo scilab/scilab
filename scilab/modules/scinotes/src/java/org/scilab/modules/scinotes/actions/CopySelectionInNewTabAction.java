@@ -58,13 +58,13 @@ public final class CopySelectionInNewTabAction extends DefaultAction {
     public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
         final MenuItem menuitem = createMenu(label, null, new CopySelectionInNewTabAction(label, editor), key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    if (editor.getTextPane() != null) {
-                        String selection = editor.getTextPane().getSelectedText();
-                        menuitem.setEnabled(selection != null);
-                    }
+            public void propertyChange(PropertyChangeEvent e) {
+                if (editor.getTextPane() != null) {
+                    String selection = editor.getTextPane().getSelectedText();
+                    menuitem.setEnabled(selection != null);
                 }
-            });
+            }
+        });
 
         return menuitem;
     }

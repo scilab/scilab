@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * Copyright (C) DIGITEO - 2011 - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,20 +31,32 @@ wchar_t ** strings_wcsrchr(const wchar_t **InputStrings, int Dim_InputStrings,
 
     if ( (InputStrings) && (InputChar) )
     {
-        wcOutput_Strings = (wchar_t**)MALLOC(sizeof(wchar_t*)*Dim_InputStrings);
+        wcOutput_Strings = (wchar_t**)MALLOC(sizeof(wchar_t*) * Dim_InputStrings);
         if (wcOutput_Strings)
         {
             int i = 0;
-            for(i = 0;i < Dim_InputStrings; i++)
+            for (i = 0; i < Dim_InputStrings; i++)
             {
                 int c = 0;
                 wchar_t *ptrStr = NULL;
 
-                if (Dim_InputChar == 1) c = InputChar[0][0];
-                else  c = InputChar[i][0];
+                if (Dim_InputChar == 1)
+                {
+                    c = InputChar[0][0];
+                }
+                else
+                {
+                    c = InputChar[i][0];
+                }
 
-                if (do_strchr) ptrStr = wcschr(InputStrings[i], (wchar_t)c);
-                else ptrStr = wcsrchr(InputStrings[i], (wchar_t)c);
+                if (do_strchr)
+                {
+                    ptrStr = wcschr(InputStrings[i], (wchar_t)c);
+                }
+                else
+                {
+                    ptrStr = wcsrchr(InputStrings[i], (wchar_t)c);
+                }
 
                 if (ptrStr)
                 {

@@ -18,14 +18,14 @@ src/cpp/api_string.cpp \
 src/cpp/api_pointer.cpp \
 src/cpp/api_handle.cpp \
 src/cpp/api_error.cpp \
-src/cpp/api_optional.cpp
+src/cpp/api_optional.cpp \
+src/cpp/api_hypermat.cpp
 
 
 libsciapi_scilab_la_CPPFLAGS=-I$(srcdir)/includes/ \
 -I$(srcdir)/src/cpp/ \
 -I$(top_srcdir)/modules/core/includes/ \
 -I$(top_srcdir)/modules/call_scilab/includes/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/string/includes/ \
@@ -71,6 +71,7 @@ includes/api_boolean_sparse.h \
 includes/api_common.h \
 includes/api_error.h \
 includes/api_double.h \
+includes/api_hypermat.h \
 includes/api_int.h \
 includes/api_list.h \
 includes/api_pointer.h \

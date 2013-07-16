@@ -9,7 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [al,be,Z]=gspec(A,B)
-//For backward compatibility
-warning(msprintf(gettext('%s: Obsolete function. Please, replaces ''%s'' by ''%s''.'),'gspec','gspec','spec'));
-[al,be,Z]=spec(A,B)
+    //For backward compatibility
+    warning(msprintf(gettext("%s: Obsolete function. Please replace ''%s'' by ''%s''."),"gspec","gspec","spec"));
+    [al,be,Z]=spec(A,B)
 endfunction

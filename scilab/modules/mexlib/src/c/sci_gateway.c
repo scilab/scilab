@@ -16,23 +16,26 @@
 #include "stack-c.h"
 #include "sci_gateway.h"
 /*-----------------------------------------------------------------------------------*/
-static int callExternalFunction(char *fname, GatefuncS F,BOOL withPutLhsVar);
+static int callExternalFunction(char *fname, GatefuncS F, BOOL withPutLhsVar);
 /*-----------------------------------------------------------------------------------*/
 /** generic scilab interface **/
 int sci_gateway(char *fname, GatefuncS F)
 {
-	return callExternalFunction(fname,F,TRUE);
+    return callExternalFunction(fname, F, TRUE);
 }
 /*-----------------------------------------------------------------------------------*/
 int sci_gateway_without_putlhsvar(char *fname, GatefuncS F)
 {
-	return callExternalFunction(fname,F,FALSE);
+    return callExternalFunction(fname, F, FALSE);
 }
 /*-----------------------------------------------------------------------------------*/
-static int callExternalFunction(char *fname, GatefuncS F,BOOL withPutLhsVar)
+static int callExternalFunction(char *fname, GatefuncS F, BOOL withPutLhsVar)
 {
-	(*F)(fname,(int)strlen(fname));
-	if (withPutLhsVar) PutLhsVar();
-	return 0;
+    (*F)(fname, (int)strlen(fname));
+    if (withPutLhsVar)
+    {
+        PutLhsVar();
+    }
+    return 0;
 }
 /*-----------------------------------------------------------------------------------*/

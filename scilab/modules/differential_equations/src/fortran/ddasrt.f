@@ -128,7 +128,7 @@ C             SUBROUTINE RES(T,Y,YPRIME,DELTA,IRES,RPAR,IPAR)
 C         to define the system of differential/algebraic
 C         equations which is to be solved. For the given values
 C         of T,Y and YPRIME, the subroutine should
-C         return the residual of the defferential/algebraic
+C         return the residual of the differential/algebraic
 C         system
 C             DELTA = F(T,Y,YPRIME)
 C         (DELTA(*) is a vector of length NEQ which is

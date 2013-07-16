@@ -43,7 +43,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="xml"><![CDATA[
-    <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
     <refentry xmlns:scilab="http://www.scilab.org"
               xmlns="http://docbook.org/ns/docbook"
               xmlns:html="http://www.w3.org/1999/xhtml"

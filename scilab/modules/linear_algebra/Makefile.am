@@ -18,6 +18,7 @@ src/fortran/intgschur.f \
 src/fortran/intdgesv3.f \
 src/fortran/intdgesv4.f \
 src/fortran/DGELSY1.f \
+src/fortran/ZGELSY1.f \
 src/fortran/intozgschur.f \
 src/fortran/intdpotrf.f \
 src/fortran/intdoldsvd.f \
@@ -90,7 +91,6 @@ GATEWAY_FORTRAN_SOURCES =
 
 libscilinear_algebra_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/dynamic_link/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes/ \

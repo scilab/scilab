@@ -15,6 +15,6 @@
 //   <no arg>
 //
 function n = optimsimplex_getnbve ( this )
-  n = this.nbve
+    n = this.nbve
 endfunction
 

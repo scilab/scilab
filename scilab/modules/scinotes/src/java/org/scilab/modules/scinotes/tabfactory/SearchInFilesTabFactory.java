@@ -31,62 +31,62 @@ public class SearchInFilesTabFactory extends AbstractScilabTabFactory {
     public static final String APPLICATION = "SearchInFiles";
     public static final String PACKAGE = "SciNotes";
     public static final String CLASS = "org.scilab.modules.scinotes.tabfactory.SearchInFilesTabFactory";
-    
+
     private static SearchInFilesTabFactory instance;
 
     /**
      * Default constructor
      */
     public SearchInFilesTabFactory() {
-	if (instance == null) {
-	    instance = this;
-	}
+        if (instance == null) {
+            instance = this;
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     public SwingScilabTab getTab(String uuid) {
-	String editorUUID = ConfigSciNotesManager.getSearchInFilesState(uuid);
-	SciNotes editor = (SciNotes) ScilabTabFactory.getInstance().getFromCache(editorUUID);
-	
-	return SearchInFilesTab.getSearchInFilesTabInstance(editor, uuid);
+        String editorUUID = ConfigSciNotesManager.getSearchInFilesState(uuid);
+        SciNotes editor = (SciNotes) ScilabTabFactory.getInstance().getFromCache(editorUUID);
+
+        return SearchInFilesTab.getSearchInFilesTabInstance(editor, uuid);
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public String getPackage() {
-	return PACKAGE;
+        return PACKAGE;
     }
 
     /**
      * {@inheritDoc}
      */
     public String getClassName() {
-	return CLASS;
+        return CLASS;
     }
 
     /**
      * {@inheritDoc}
      */
     public String getApplication() {
-	return APPLICATION;
+        return APPLICATION;
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean isAValidUUID(String uuid) {
-	return ConfigSciNotesManager.getSearchInFilesState(uuid) != null;
+        return ConfigSciNotesManager.getSearchInFilesState(uuid) != null;
     }
 
     /**
      * @return an instance of this factory
      */
     public static SearchInFilesTabFactory getInstance() {
-	new SearchInFilesTabFactory();
-	
-	return instance;
+        new SearchInFilesTabFactory();
+
+        return instance;
     }
 }

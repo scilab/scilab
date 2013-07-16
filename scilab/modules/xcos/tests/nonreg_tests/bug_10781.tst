@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // DFlipflop should not report problem in port size or type
 
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_10781.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_10781.zcos"));
 
 // compile and simulate
 xcos_simulate(scs_m, 4);

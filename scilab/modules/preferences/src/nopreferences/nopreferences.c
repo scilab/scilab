@@ -16,7 +16,7 @@
 /*--------------------------------------------------------------------------*/
 int gw_preferences(void)
 {
-    Scierror(999,_("Scilab '%s' module not installed.\n"), "preferences");
+    Scierror(999, _("Scilab '%s' module not installed.\n"), "preferences");
     return 0;
 }
 /*--------------------------------------------------------------------------*/

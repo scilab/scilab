@@ -26,9 +26,9 @@ xml:id="regexp" xml:lang="en">
         <title>Calling Sequence</title>
         <synopsis>
             [start] = regexp(input, pattern, [flag])
-            [start, end] = regexp(input, pattern, [flag])
-            [start, end, match] = regexp(input, pattern, [flag])
-            [start, end, match, foundString] = regexp(input, pattern, [flag])
+            [start, final] = regexp(input, pattern, [flag])
+            [start, final, match] = regexp(input, pattern, [flag])
+            [start, final, match, foundString] = regexp(input, pattern, [flag])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -43,9 +43,9 @@ xml:id="regexp" xml:lang="en">
             <varlistentry>
                 <term>pattern</term>
                 <listitem>
-                <para>
-                    a character string (under the rules of regular expression).
-                </para>
+                    <para>
+                        a character string (under the rules of regular expression).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -59,7 +59,7 @@ xml:id="regexp" xml:lang="en">
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>end</term>
+                <term>final</term>
                 <listitem>
                     <para>
                         the ending index of each substring of

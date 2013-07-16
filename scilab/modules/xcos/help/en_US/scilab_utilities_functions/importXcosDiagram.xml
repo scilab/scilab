@@ -36,7 +36,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example">
-            filename=SCI+"/modules/xcos/demos/demo_Datatype.xcos";
+            filename=SCI+"/modules/xcos/demos/demo_Datatype.zcos";
             [result]=importXcosDiagram(filename)
         </programlisting>
     </refsection>

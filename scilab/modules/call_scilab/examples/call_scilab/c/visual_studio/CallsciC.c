@@ -159,7 +159,10 @@ int main(void)
     example3();
     system("pause");
 
-    if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab\n");
+    if ( TerminateScilab(NULL) == FALSE )
+    {
+        printf("Error : TerminateScilab\n");
+    }
     return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -7,50 +7,50 @@
 
 function demo_fec_example2()
 
-  mode(0);
+    mode(0);
 
-  path=get_absolute_file_path('fec.ex2.dem.sce');
-  exec(path+'fec_demo.sci',-1);
+    path=get_absolute_file_path("fec.ex2.dem.sce");
+    exec(path+"fec_demo.sci",-1);
 
-  curFig             = scf(100001);
-  clf(curFig,"reset");
+    curFig             = scf(100001);
+    clf(curFig,"reset");
 
-  show_window();
+    show_window();
 
-  xset("colormap",jetcolormap(128));
+    xset("colormap",jetcolormap(128));
 
-  drawlater();
-  amdbaR(path+'MESH');
-  meshvisu();
-  xtitle("a mesh");
-  a=gca();
-  a.title.font_size=3;
-  drawnow();
+    drawlater();
+    amdbaR(path+"MESH");
+    meshvisu();
+    xtitle("a mesh");
+    a=gca();
+    a.title.font_size=3;
+    drawnow();
 
-  //xclick();
-  messagebox('click to continue',"modal");
+    //xclick();
+    messagebox("click to continue","modal");
 
-  clf(curFig,"reset");
-  drawlater();
-  emc2C(1,6,path+'MESH.VAL');
-  xtitle("display a fem solution");
-  a=gca(); a.title.font_size=3;
-  drawnow();
-  //xclick();
-  messagebox('click to continue',"modal");
+    clf(curFig,"reset");
+    drawlater();
+    emc2C(1,6,path+"MESH.VAL");
+    xtitle("display a fem solution");
+    a=gca(); a.title.font_size=3;
+    drawnow();
+    //xclick();
+    messagebox("click to continue","modal");
 
-  clf();
-  drawlater();
-  emc2C(1,6,path+'MESH.VAL',[-2,-2,2,2]);
-  emc2V(2,3,6,20,path+'MESH.VAL',[-2,-2,2,2]);
-  xtitle("display a zoom of the solution together with the velocity field");
-  a=gca();
-  a.title.font_size=3;
-  drawnow();
+    clf();
+    drawlater();
+    emc2C(1,6,path+"MESH.VAL",[-2,-2,2,2]);
+    emc2V(2,3,6,20,path+"MESH.VAL",[-2,-2,2,2]);
+    xtitle("display a zoom of the solution together with the velocity field");
+    a=gca();
+    a.title.font_size=3;
+    drawnow();
 
-  mode(-1);
-  demo_viewCode("fec.ex2.dem.sce");
-  
+    mode(-1);
+    demo_viewCode("fec.ex2.dem.sce");
+
 endfunction
 
 demo_fec_example2();

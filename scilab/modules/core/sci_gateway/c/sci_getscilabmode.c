@@ -21,10 +21,8 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getscilabmode)(char *fname, unsigned long fname_len)
 {
-    int n1 = 0, m1 = 0;
     char *output = NULL ;
     int iRet = 0;
-    SciErr sciErr;
 
     CheckInputArgument(pvApiCtx, 0, 0) ;
     CheckOutputArgument(pvApiCtx, 1, 1) ;
@@ -51,7 +49,6 @@ int C2F(sci_getscilabmode)(char *fname, unsigned long fname_len)
     free(output); // Data have been copied into Scilab memory
     if (iRet)
     {
-        freeAllocatedSingleString(output);
         return 1;
     }
 

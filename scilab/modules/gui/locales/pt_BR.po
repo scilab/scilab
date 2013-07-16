@@ -9,19 +9,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: _gui-pt_BR\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-08-17 15:57+0000\n"
-"Last-Translator: Marcos Cardinot <mcardinot@gmail.com>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2012-07-16 15:57+0000\n"
+"Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16335)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: pt_BR\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "O módulo '%s' do Scilab é desabilitado em modo -nogui ou -nwni.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Erro de alocação de memória.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -42,8 +50,16 @@ msgstr ""
 "ou '%s'.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Memória esgotada.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -73,16 +89,14 @@ msgstr ""
 "\"%s\".\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"texto.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
 "real.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -101,16 +115,20 @@ msgstr ""
 "real ou um manipulador \"Figure\".\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
-"matriz de textos.\n"
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"texto.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "de textos.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -145,7 +163,7 @@ msgid "%s: Feature %s is obsolete.\n"
 msgstr ""
 
 msgid "Warning"
-msgstr "Aviso"
+msgstr ""
 
 #, c-format
 msgid "%s: Please use %s instead.\n"
@@ -289,6 +307,10 @@ msgstr ""
 "manipulador gráfico.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Handle expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
 msgstr ""
@@ -374,6 +396,41 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: At least 2 elements expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: First element must be a string.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Tree expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Second element must be a mlist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Label: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Icon: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: callback: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error in the tree parsing.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Ocorreu um erro: %s.\n"
 
@@ -395,10 +452,6 @@ msgstr ""
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: O arquivo %s não existe.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Erro de alocação de memória.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
@@ -458,18 +511,6 @@ msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
 "matriz de textos.\n"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"texto.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
-"matriz de booleanos.\n"
-
 msgid "&File"
 msgstr "&Arquivo"
 
@@ -501,13 +542,13 @@ msgid "&BMP"
 msgstr "&BMP"
 
 msgid "&Vectorial export to..."
-msgstr "Exportação &vetorial para..."
+msgstr ""
 
 msgid "&PDF"
 msgstr "&PDF"
 
 msgid "&PS"
-msgstr "&PS"
+msgstr ""
 
 msgid "&SVG"
 msgstr "&SVG"
@@ -573,7 +614,7 @@ msgid "Stop datatip manager"
 msgstr "Parar gerenciador datatip"
 
 msgid "&MVC"
-msgstr "&MVC"
+msgstr ""
 
 msgid "&Log View (Trace all View notifications)"
 msgstr "Ver &Log (rastrear todas notificações de Visualização)"
@@ -755,6 +796,9 @@ msgstr "Copiar"
 msgid "Paste"
 msgstr "Colar"
 
+msgid "Clear Console"
+msgstr "Limpar console"
+
 msgid "Print..."
 msgstr "Imprimir..."
 
@@ -765,7 +809,7 @@ msgid "Xcos"
 msgstr "Xcos"
 
 msgid "Scilab Preferences"
-msgstr "Preferências do Scilab"
+msgstr ""
 
 msgid "Scilab Demonstrations"
 msgstr "Demonstrações do Scilab"
@@ -786,7 +830,7 @@ msgid "Select a file name"
 msgstr "Selecionar um nome de arquivo"
 
 msgid "Colors"
-msgstr "Cores"
+msgstr ""
 
 msgid "Desktop color"
 msgstr ""
@@ -795,19 +839,19 @@ msgid "Use system color"
 msgstr ""
 
 msgid "Text "
-msgstr "Texto "
+msgstr ""
 
 msgid "Background "
 msgstr ""
 
 msgid "Cursor "
-msgstr "Cursor "
+msgstr ""
 
 msgid "Syntax highlighting colors"
 msgstr ""
 
 msgid "Keyword color "
-msgstr "Cor da palavra chave"
+msgstr ""
 
 msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
 msgstr ""
@@ -822,7 +866,7 @@ msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
 msgstr ""
 
 msgid "Fonts"
-msgstr "Fontes"
+msgstr ""
 
 msgid "Desktop font"
 msgstr ""
@@ -846,7 +890,7 @@ msgid "Custom:"
 msgstr ""
 
 msgid "Web"
-msgstr "Web"
+msgstr ""
 
 msgid "Web browser and mailer"
 msgstr ""
@@ -868,7 +912,7 @@ msgstr ""
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
-msgstr "A propriedade '%s' não existe para este handle.\n"
+msgstr ""
 
 #, c-format
 msgid "No '%s' property for this object.\n"
@@ -876,23 +920,23 @@ msgstr "Não existe a propriedade '%s' para este objeto.\n"
 
 #, c-format
 msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
-msgstr "%s: Tipo incorreto para o pai: Um handle ou 0 eram esperados.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: can not add a menu into the console in this mode.\n"
-msgstr "%s: não é possível adicionar um menu para o console neste modo.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for parent: A handle expected.\n"
-msgstr "%s: Tipo incorreto para o pai: Um handle era esperado.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
-msgstr "%s: Tipo incorreto para o pai: figura ou uimenu eram esperados.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for parent: 0 expected.\n"
-msgstr "%s: Valor incorreto para o pai: 0 era esperado.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1117,7 +1161,7 @@ msgid "Console Background..."
 msgstr "Plano de fundo do Console..."
 
 msgid "No print service found."
-msgstr "Nenhum serviço de impressão encontrado."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1151,14 +1195,11 @@ msgstr ""
 "capacidades gráficas avançadas. Digite \"\"help usecanvas\"\" para maiores "
 "informações.\")"
 
-msgid "Clear Console"
-msgstr "Limpar console"
-
 msgid "Are you sure you want to clear the console ?"
-msgstr "Tem certeza de que deseja limpar o console ?"
+msgstr ""
 
 msgid "Do not show this message again"
-msgstr "Não mostrar essa mensagem novamente"
+msgstr ""
 
 msgid "Clear History"
 msgstr "Limpar o histórico"
@@ -1418,10 +1459,10 @@ msgid "Dialogs"
 msgstr "Diálogos"
 
 msgid "Uicontrols 1"
-msgstr "Uicontrols 1"
+msgstr ""
 
 msgid "Uicontrols 2"
-msgstr "Uicontrols 2"
+msgstr ""
 
 msgid "Uicontrols with LaTeX/MathML"
 msgstr "Uicontrols com LaTeX/MathML"
@@ -1597,9 +1638,6 @@ msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
 "manipulador gráfico ou um número real.\n"
 
-msgid "createPopupItems: found an empty cascading menu."
-msgstr "createPopupItems: encontrado um menu de cascata vazio."
-
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
@@ -1753,235 +1791,3 @@ msgstr "%s: Tipo incorreto para %s: esperava-se um número real.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Tamanho incorreto para %s: esperava-se um número real.\n"
-
-#, c-format
-msgid "Copy Style"
-msgstr "Copiar estilo"
-
-#, c-format
-msgid "Copy the style of the axes"
-msgstr "Copia a formatação dos eixos"
-
-#, c-format
-msgid "Paste Style"
-msgstr "Colar estilo"
-
-#, c-format
-msgid "Paste the style copied to this axes"
-msgstr "Cola a formatação dos eixos"
-
-#, c-format
-msgid "Hide"
-msgstr "Ocultar"
-
-#, c-format
-msgid "Show"
-msgstr "Mostrar"
-
-#, c-format
-msgid "Hide selected object"
-msgstr "Oculta o objeto selecionado"
-
-#, c-format
-msgid "Unhide all"
-msgstr "Reexibir todos"
-
-#, c-format
-msgid "Unhide all objects"
-msgstr "Reexibe todos os objetos"
-
-#, c-format
-msgid "Copy to Clipboard"
-msgstr "Copiar para área de transferência"
-
-#, c-format
-msgid "Copy figure to system clipboard"
-msgstr "Copia a figura para a área de transferência"
-
-#, c-format
-msgid "Legend"
-msgstr "Legenda"
-
-
-#, c-format
-msgid "Copy selected object"
-msgstr "Copia o objeto selecionado"
-
-#, c-format
-msgid "Cut selected object"
-msgstr "Recorta o objeto selecionado"
-
-#, c-format
-msgid "Paste copied object to this figure"
-msgstr "Cola o objeto copiado nesta figura"
-
-#, c-format
-msgid "Delete selected object"
-msgstr "Deleta o objeto selecionado"
-
-#, c-format
-msgid "Clears the figure"
-msgstr "Limpa a figura"
-
-#, c-format
-msgid "Insert a label in X axis"
-msgstr "Inserir etiqueta no eixo X"
-
-#, c-format
-msgid "Insert a label in Y axis"
-msgstr "Inserir etiqueta no eixo Y"
-
-#, c-format
-msgid "Insert a label in Z axis"
-msgstr "Inserir etiqueta no eixo Z"
-
-#, c-format
-msgid "Insert a legend to the selected curve"
-msgstr "Insere uma legenda para a curva selecionada"
-
-#, c-format
-msgid "Remove the legend from the selected curve"
-msgstr "Remove a curva selecionada da legenda"
-
-#, c-format
-msgid "Open Quick Editor"
-msgstr "Abrir editor"
-
-#, c-format
-msgid "Initialize the graphics editor"
-msgstr "Inicializa o editor grafico"
-
-#, c-format
-msgid "Edit curve data"
-msgstr "Editar dados da curva"
-
-#, c-format
-msgid "Enables curve data modify"
-msgstr "Abilita a modificação dos dados da curva"
-
-#, c-format
-msgid "Undo last action"
-msgstr "Desfaz a ultima ação"
-
-#, c-format
-msgid "Redo last undo action"
-msgstr "Refaz a ultima ação desfeita"
-
-#, c-format
-msgid "Label"
-msgstr "Rótulo"
-
-#, c-format
-msgid ""
-"The colormap from source figure seems to be different from the destination figure."
-"\nThis may influence the final appearance from the object."
-"\nDo you want copy the color map too?"
-
-msgstr ""
-"O mapa de cores da figura de origem parece ser diferente da figura de destino."
-"\nIsso pode influenciar a aparência final do objeto."
-"\nVocê deseja copiar o mapa de cores também?"
-
-#, c-format
-msgid "Axes"
-msgstr "Eixos"
-
-#, c-format
-msgid "Figure"
-msgstr "Figura"
-
-#, c-format
-msgid "Surface"
-msgstr "Superfície"
-
-#, c-format
-msgid "Visible"
-msgstr "Visível"
-
-#, c-format
-msgid "Base Properties"
-msgstr "Propriedades de Base"
-
-#, c-format
-msgid "Surface Mode"
-msgstr "Modo Superfície"
-
-#, c-format
-msgid "Text"
-msgstr "Texto"
-
-#, c-format
-msgid "Choose Background Color"
-msgstr "Escolher Cor do Plano de Fundo"
-
-#, c-format
-msgid "Choose Foreground Color"
-msgstr "Escolher Cor do Primeiro Plano"
-
-#, c-format
-msgid "Choose Font Color"
-msgstr "Escolher Cor da Fonte"
-
-#, c-format
-msgid "Style/Appearance"
-msgstr "Estilo/Aparência"
-
-#, c-format
-msgid "Line Style"
-msgstr "Estilo da Linha"
-
-#, c-format
-msgid "Auto Resize"
-msgstr "Redimensionamento Automático"
-
-#, c-format
-msgid "X Position"
-msgstr "Posição X"
-
-#, c-format
-msgid "Y Position"
-msgstr "Posição Y"
-
-#, c-format
-msgid "X Size"
-msgstr "Tamanho X"
-
-#, c-format
-msgid "Y Size"
-msgstr "Tamanho Y"
-
-#, c-format
-msgid "Enter a x position."
-msgstr "Digite uma posição para x."
-
-#, c-format
-msgid "Enter a y position."
-msgstr "Digite uma posição para y."
-
-#, c-format
-msgid "Enter a x size."
-msgstr "Digite um tamanho para x."
-
-#, c-format
-msgid "Enter a y size."
-msgstr "Digite um tamanho para y."
-
-#, c-format
-msgid "Title Page"
-msgstr "Título Principal"
-
-#, c-format
-msgid "Axis Title"
-msgstr "Título do Eixo"
-
-#, c-format
-msgid "Position"
-msgstr "Posição"
-
-#, c-format
-msgid "Axis"
-msgstr "Eixo"
-
-#, c-format
-msgid "Refresh"
-msgstr "Atualizar"

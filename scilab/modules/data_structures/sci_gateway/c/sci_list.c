@@ -15,9 +15,9 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(scilist)(); /* fortran */
 /*--------------------------------------------------------------------------*/
-int sci_scilist(char *fname,unsigned long fname_len)
+int sci_scilist(char *fname, unsigned long fname_len)
 {
-	C2F(scilist)(fname,fname_len);
-	return 0;
+    C2F(scilist)(fname, fname_len);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

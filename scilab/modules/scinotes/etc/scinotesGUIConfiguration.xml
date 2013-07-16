@@ -140,6 +140,9 @@
     
     <RightClickMenu>
         <menuitem action="scinotes-evaluate-selection" label="Evaluate Selection with echo;Evaluate until the caret, with echo"/>
+        <separator/>
+        <menuitem action="scinotes-help-keyword-popup" label="Help on ;Help on selection"/>
+        <separator/>
         <menuitem action="scinotes-selection-new-tab" label="Copy selection in a new tab"/>
         <menuitem action="scinotes-completion" label="Complete"/>
         <separator/>
@@ -155,7 +158,6 @@
         <separator/>
         <menuitem action="scinotes-copy-with-lines" label="Copy as HTML with line number"/>
         <separator/>
-        <menuitem action="scinotes-help-keyword-popup" label="Help on ;Help on selection"/>
         <menuitem action="scinotes-open-source" label="Open function source file"/>
         <menuitem action="scinotes-open-url" label="Open URL"/>
     </RightClickMenu>

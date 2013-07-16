@@ -53,7 +53,7 @@
             <emphasis>
                 [t<subscript>mid</subscript>, t<subscript>hi</subscript>]
             </emphasis>
-            ,following which does the sign change occur in.
+            , following which does the sign change occur in.
         </para>
         <para>
             Since the tolerance depends on the step size, the smaller it is, the more accurate the homing in will be.
@@ -62,17 +62,17 @@
     <refsection>
         <title>Examples and Overhead</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/demos/Threshold_ZeroCrossing.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/Threshold_ZeroCrossing.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../demos/Threshold_ZeroCrossing.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../demos/Threshold_ZeroCrossing.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
 loadScicos();
 loadXcosLibs();
-importXcosDiagram(SCI + "/modules/xcos/demos/Threshold_ZeroCrossing.xcos");
+importXcosDiagram(SCI + "/modules/xcos/demos/Threshold_ZeroCrossing.zcos");
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
@@ -84,7 +84,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       // Import the diagram and set the ending time
       loadScicos();
       loadXcosLibs();
-      importXcosDiagram("SCI/modules/xcos/demos/Threshold_ZeroCrossing.xcos");
+      importXcosDiagram("SCI/modules/xcos/demos/Threshold_ZeroCrossing.zcos");
 
       // Start the timer, launch the simulation and display time
       tic();
@@ -153,6 +153,9 @@ Time without rootfinding:
             </member>
             <member>
                 <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
             </member>
             <member>
                 <link linkend="Comparisons">Comparisons</link>

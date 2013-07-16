@@ -60,22 +60,17 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-      backupstyle='?'
-
       x=[0:0.1:2*%pi]';
       plot2d(x,sin(x))
       replot([-1,-1,10,2])
       ]]></programlisting>
         <scilab:image>
-            backupstyle='?'
-            
             x=[0:0.1:2*%pi]';
             plot2d(x,sin(x))
             replot([-1,-1,10,2])
         </scilab:image>
         
         <programlisting role="example"><![CDATA[
-      backupstyle='?'
       xdel(winsid());
       plot() // plot demo
       f=gcf();

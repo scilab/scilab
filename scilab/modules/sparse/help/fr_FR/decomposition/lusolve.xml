@@ -17,32 +17,38 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>lusolve(hand,b)
-            lusolve(A,b)
+        <synopsis>x=lusolve(hand,b)
+            x=lusolve(A,b)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>b  </term>
+                <term>b</term>
                 <listitem>
                     <para>matrice réelle pleine
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>A  </term>
+                <term>A</term>
                 <listitem>
                     <para>matrice réelle carrée creuse inversible
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>hand  </term>
+                <term>hand</term>
                 <listitem>
                     <para>pointeur vers des facteurs L,U creux déjà calculés (sortie de lufact)
                     </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>matrice réelle pleine</para>
                 </listitem>
             </varlistentry>
         </variablelist>

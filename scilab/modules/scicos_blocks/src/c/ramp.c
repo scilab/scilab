@@ -18,54 +18,54 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void ramp(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void ramp(scicos_block *block, int flag)
 {
-	double dt = 0.;
-	if (flag==1)
-	{
-		dt=get_scicos_time()-block->rpar[1];
-		if (get_phase_simulation()==1) 
-		{
-			if(dt>0) 
-			{
-				block->outptr[0][0]=block->rpar[2]+block->rpar[0]*dt;
-			}
-			else
-			{
-				block->outptr[0][0]=block->rpar[2];
-			}
-		}
-		else
-		{
-			if(block->mode[0]==1) 
-			{
-				block->outptr[0][0]=block->rpar[2]+block->rpar[0]*dt;
-			}
-			else 
-			{
-				block->outptr[0][0]=block->rpar[2];
-			}
-		}
-	} 
-	else if (flag==9)
-	{
-		block->g[0]=get_scicos_time()-(block->rpar[1]);
-		if (get_phase_simulation()==1) 
-		{
-			if (block->g[0]>=0)
-			{
-				block->mode[0]=1;
-			}
-			else
-			{
-				block->mode[0]=2;
-			}
-		}
-	}
+    double dt = 0.;
+    if (flag == 1)
+    {
+        dt = get_scicos_time() - block->rpar[1];
+        if (get_phase_simulation() == 1)
+        {
+            if (dt > 0)
+            {
+                block->outptr[0][0] = block->rpar[2] + block->rpar[0] * dt;
+            }
+            else
+            {
+                block->outptr[0][0] = block->rpar[2];
+            }
+        }
+        else
+        {
+            if (block->mode[0] == 1)
+            {
+                block->outptr[0][0] = block->rpar[2] + block->rpar[0] * dt;
+            }
+            else
+            {
+                block->outptr[0][0] = block->rpar[2];
+            }
+        }
+    }
+    else if (flag == 9)
+    {
+        block->g[0] = get_scicos_time() - (block->rpar[1]);
+        if (get_phase_simulation() == 1)
+        {
+            if (block->g[0] >= 0)
+            {
+                block->mode[0] = 1;
+            }
+            else
+            {
+                block->mode[0] = 2;
+            }
+        }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

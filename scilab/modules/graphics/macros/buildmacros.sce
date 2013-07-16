@@ -7,9 +7,9 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 
-genlib('graphicslib','SCI/modules/graphics/macros',%f,%t);
-genlib('datatipslib','SCI/modules/graphics/macros/datatips',%f,%t);
+genlib("graphicslib","SCI/modules/graphics/macros",%f,%t);
+genlib("datatipslib","SCI/modules/graphics/macros/datatips",%f,%t);

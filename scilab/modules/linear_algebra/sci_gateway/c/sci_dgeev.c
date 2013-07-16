@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Michaël Baudin
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -33,7 +33,7 @@ extern int C2F(dgeev) ();
 //       eigenvalues : matrix of size Nx1 with right eigenvectors, type complex
 //   * With 2 LHS :
 //       [eigenvectors,eigenvalues]=spec(A)
-//     where 
+//     where
 //       eigenvalues : matrix of size NxN with eigenvalues as diagonal terms
 //       eigenvectors : matrix of size NxN with right eigenvectors, type complex
 //
@@ -140,8 +140,8 @@ int sci_dgeev(char *fname, unsigned long fname_len)
     }
     C2F(dgeev) (&JOBVL, &JOBVR, &iCols, pdblRealData, &iCols, pdblEigenvalReal, pdblEigenvalImg,
                 pdblLeftvectors, &iCols, pdblRightvectors, &iCols, pdblWork, &iWorkSize, &INFO);
-//     SUBROUTINE DGEEV( JOBVL, JOBVR, N, A, LDA, WR, WI, VL, LDVL, VR, LDVR, 
-//     $     WORK, INFO )
+    //     SUBROUTINE DGEEV( JOBVL, JOBVR, N, A, LDA, WR, WI, VL, LDVL, VR, LDVR,
+    //     $     WORK, INFO )
     FREE(pdblWork);
     if (INFO != 0)
     {
@@ -156,7 +156,7 @@ int sci_dgeev(char *fname, unsigned long fname_len)
 
         C2F(dcopy) (&iCols, pdblEigenvalReal, &INCX, pdblFinalEigenvaluesReal, &INCY);
         C2F(dcopy) (&iCols, pdblEigenvalImg, &INCX, pdblFinalEigenvaluesImg, &INCY);
-// DCOPY(N,DX,INCX,DY,INCY)
+        // DCOPY(N,DX,INCX,DY,INCY)
     }
     else
     {

@@ -1,0 +1,74 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Bruno JOFRET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- XCOS TEST -->
+
+// post_xcos_simulate test
+loadXcosLibs();
+
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cumsum.zcos"));
+
+function disp_post_simulate(%cpr, scs_m, needcompile)
+    disp("Calling disp_post_simulate");
+endfunction
+
+// Register function
+post_xcos_simulate = list("disp_post_simulate");
+xcos_simulate(scs_m, 4);
+assert_checktrue(isdef('cumsum_r'));
+
+clear('cumsum_r');
+
+// Register function
+clear post_xcos_simulate
+post_xcos_simulate = disp_post_simulate;
+xcos_simulate(scs_m, 4);
+assert_checktrue(isdef('cumsum_r'));
+
+function analyze_post_simulate(%cpr, scs_m, needcompile)
+// Retrieve all objects
+    objs = scs_m.objs;
+
+    links = 0;
+    blocks = 0;
+    other = 0;
+// Count Links and Blocks
+    for i = 1:size(objs)
+        currentType = typeof(objs(i));
+        select (currentType)
+         case "Link"
+          links = links + 1;
+         case "Block"
+          blocks = blocks + 1;
+        else
+            other = other + 1;
+        end
+    end
+
+// Diplay Diagram analisys.
+    disp("Diagram Analysis:")
+    disp("Found "+string(blocks)+" Blocks.")
+    disp("Found "+string(links)+" Links.")
+    disp("Found "+string(other)+" Other component.")
+endfunction
+
+clear('cumsum_r');
+
+// Register function
+clear post_xcos_simulate
+post_xcos_simulate = list("analyze_post_simulate");
+xcos_simulate(scs_m, 4);
+assert_checktrue(isdef('cumsum_r'));
+
+clear('cumsum_r');
+
+// Register function
+clear post_xcos_simulate
+post_xcos_simulate = analyze_post_simulate;
+xcos_simulate(scs_m, 4);
+assert_checktrue(isdef('cumsum_r'));
+

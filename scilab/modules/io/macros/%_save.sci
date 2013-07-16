@@ -47,12 +47,22 @@ function [] = %_save(%__filename__, varargin)
             result = list();
             for %__i__ = definedfields(l)
                 if typeof(l(%__i__)) == "handle" then
-                    result(%__i__) = extractMatrixHandle(l(%__i__));
+                    if ~is_handle_valid(l(%__i__)) then
+                        oldMode = warning("query");
+                        warning("on");
+                        warning(msprintf(gettext("%s: handle no more valid ignored.\n"), "save"));
+                        warning(oldMode);
+                        result(%__i__) = [];
+                    else
+                        result(%__i__) = extractMatrixHandle(l(%__i__));
+                    end
                 elseif isMacro(l(%__i__)) | isCompiledMacro(l(%__i__)) then
                     //build an arbitrary name to the macro
                     result(%__i__) = extractMacro(l(%__i__), "function");
                 elseif isList(l(%__i__)) then
                     result(%__i__) = inspectList(l(%__i__));
+                elseif type(l(%__i__)) == 14 then //library, must not be save
+                    result(%__i__) = [];
                 else
                     result(%__i__) = l(%__i__);
                 end
@@ -87,7 +97,7 @@ function [] = %_save(%__filename__, varargin)
         matrixHandle.values = list();
         for %__i__ = 1:size(h, "*")
             matrixHandle.values($+1) = extractSingleHandle(h(%__i__));
-            if or(fieldnames(matrixHandle.values($))=="user_data") then // TODO Remove after graphic branch merge
+            if or(fieldnames(matrixHandle.values($))=="user_data") then
                 if isList(matrixHandle.values($).user_data) then
                     matrixHandle.values($).user_data = inspectList(matrixHandle.values($).user_data)
                 elseif typeof(matrixHandle.values($).user_data) == "handle" then
@@ -316,7 +326,6 @@ function [] = %_save(%__filename__, varargin)
         "ScilabSingleHandle", ...
         "type", ...
         "visible", ...
-        "children", ...
         "data", ...
         "closed", ...
         "line_mode", ...
@@ -955,10 +964,16 @@ function [] = %_save(%__filename__, varargin)
             //update
             execstr(varargin(%__i__) + " = value");
         elseif typeof(temp) == "handle" then
-            //convert handle to tlist
-            value = extractMatrixHandle(temp);
-            //update
-            execstr(varargin(%__i__) + " = value");
+            if ~is_handle_valid(temp) then // Invalid handle ignored
+                warning(oldMode);
+                warning(msprintf(gettext("%s: handle no more valid ignored.\n"), "save"));
+                warning("off");
+                varargin(%__i__) = null();
+            else //convert handle to tlist
+                value = extractMatrixHandle(temp);
+                //update
+                execstr(varargin(%__i__) + " = value");
+            end
         elseif isMacro(temp) | isCompiledMacro(temp) then
             //convert macro to tlist
             value = extractMacro(temp, varargin(%__i__));

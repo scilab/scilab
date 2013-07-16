@@ -756,10 +756,18 @@ c     Save a matrix of numbers
       integer fd
       character*3 fmti,fmtd
       integer sadr
+      
+      double precision dblNaN
+      
+      integer isanan
+      external isanan
+      
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
+      call returnananfortran(dblNaN)
+      
       fmti='il'//char(0)
       fmtd='dl'//char(0)
 
@@ -780,6 +788,14 @@ c     read matrix elements
       endif
       l=sadr(il+4)
       call mgetnc(fd,istk(il+4),mn,fmtd,ierr)
+      
+c     convert all NaN to Signaling NaN
+      do 10 i = 0, mn-1
+          if(isanan(stk(l+i)).eq.1) then
+              stk(l+i) = dblNaN
+          endif
+10    continue        
+      
 c      call mgetnc(fd,stk(l),mn,fmtd,ierr)
       n=iadr(l+mn)-il
 c      n=4+2*mn
@@ -819,10 +835,17 @@ c     Load a matrix of polynomials
       integer fd
       character*3 fmti,fmtd
       integer sadr
+      double precision dblNaN
+      
+      integer isanan
+      external isanan
+      
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
+      call returnananfortran(dblNaN)
+      
       fmti='il'//char(0)
       fmtd='dl'//char(0)
 
@@ -854,6 +877,14 @@ c     read polynomials coefficients
       endif
       l=sadr(il+9+mn)
       call mgetnc(fd,istk(iadr(l)),mn1,fmtd,ierr)
+      
+c     convert all NaN to Signaling NaN
+      do 10 i = 0, mn1-1
+          if(isanan(stk(l+i)).eq.1) then
+              stk(l+i) = dblNaN
+          endif
+10    continue        
+      
       n=iadr(l+mn1)-il
 c      n=9+mn+2*mn1
       return
@@ -867,7 +898,7 @@ c     Save a matrix of strings
 c
       integer fd
 
-      character*2 fmti,fmtc
+      character*3 fmti,fmtc
 c
 c      iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
@@ -890,7 +921,7 @@ c     Copyright INRIA
 c     Load a matrix of strings
       include 'stack.h'
       integer fd
-      character*2 fmti
+      character*3 fmti
       integer sadr
 c
 c      iadr(l)=l+l-1
@@ -934,7 +965,7 @@ c     Save a matrix of boolean
       include 'stack.h'
 c
       integer fd
-      character*2 fmti
+      character*3 fmti
 c
 c      iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
@@ -955,7 +986,7 @@ c     Copyright INRIA
 c     Load a matrix of boolean
       include 'stack.h'
       integer fd
-      character*2 fmti
+      character*3 fmti
       integer sadr
 c
 c      iadr(l)=l+l-1
@@ -991,7 +1022,7 @@ c     Save  a function
       include 'stack.h'
 c
       integer fd
-      character*2 fmti
+      character*3 fmti
 c
 c      iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
@@ -1016,7 +1047,7 @@ c     Load a function
       include 'stack.h'
 c
       integer fd
-      character*2 fmti
+      character*3 fmti
       integer sadr
 c
 c      iadr(l)=l+l-1
@@ -1073,7 +1104,7 @@ c     Save a compiled function
       include 'stack.h'
 c
       integer fd
-      character*2 fmti
+      character*3 fmti
 c
 c      iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
@@ -1099,7 +1130,7 @@ c     Load a compiled function
 c
       integer fd
       integer sadr
-      character*2 fmti
+      character*3 fmti
 c
 c      iadr(l)=l+l-1
       sadr(l)=(l/2)+1

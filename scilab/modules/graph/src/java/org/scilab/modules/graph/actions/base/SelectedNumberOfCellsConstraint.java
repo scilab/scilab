@@ -23,42 +23,42 @@ import com.mxgraph.view.mxGraphSelectionModel;
  * enable the action.
  */
 public class SelectedNumberOfCellsConstraint extends ActionConstraint {
-	private final int numberOfSelectedCells;
+    private final int numberOfSelectedCells;
 
-	/**
-	 * Default constructor
-	 * 
-	 * @param numberOfSelectedCells
-	 *            The number of selected block needed to enable the action.
-	 */
-	public SelectedNumberOfCellsConstraint(int numberOfSelectedCells) {
-		this.numberOfSelectedCells = numberOfSelectedCells; 
-	}
-	
-	/**
-	 * Install
-	 * @param action the action
-	 * @param scilabGraph the graph
-	 * @see org.scilab.modules.graph.actions.base.ActionConstraint#install(org.scilab.modules.graph.actions.base.DefaultAction,
-	 *      org.scilab.modules.graph.ScilabGraph)
-	 */
-	@Override
-	public void install(DefaultAction action, ScilabGraph scilabGraph) {
-		super.install(action, scilabGraph);
-		
-		scilabGraph.getSelectionModel().addListener(mxEvent.UNDO, this);
-	}
-	
-	/**
-	 * Update the enable state
-	 * @param sender The sender of the event
-	 * @param evt the event
-	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
-	 */
-	public void invoke(Object sender, mxEventObject evt) {
-		mxGraphSelectionModel selection = (mxGraphSelectionModel) sender;
-		Object[] cells = selection.getCells();
-		setEnabled((cells != null) && (cells.length >= numberOfSelectedCells));
-	}
+    /**
+     * Default constructor
+     *
+     * @param numberOfSelectedCells
+     *            The number of selected block needed to enable the action.
+     */
+    public SelectedNumberOfCellsConstraint(int numberOfSelectedCells) {
+        this.numberOfSelectedCells = numberOfSelectedCells;
+    }
+
+    /**
+     * Install
+     * @param action the action
+     * @param scilabGraph the graph
+     * @see org.scilab.modules.graph.actions.base.ActionConstraint#install(org.scilab.modules.graph.actions.base.DefaultAction,
+     *      org.scilab.modules.graph.ScilabGraph)
+     */
+    @Override
+    public void install(DefaultAction action, ScilabGraph scilabGraph) {
+        super.install(action, scilabGraph);
+
+        scilabGraph.getSelectionModel().addListener(mxEvent.UNDO, this);
+    }
+
+    /**
+     * Update the enable state
+     * @param sender The sender of the event
+     * @param evt the event
+     * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object, com.mxgraph.util.mxEventObject)
+     */
+    public void invoke(Object sender, mxEventObject evt) {
+        mxGraphSelectionModel selection = (mxGraphSelectionModel) sender;
+        Object[] cells = selection.getCells();
+        setEnabled((cells != null) && (cells.length >= numberOfSelectedCells));
+    }
 
 }

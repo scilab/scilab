@@ -206,6 +206,6 @@ abs(exact-I)
         <para>Связанные подпрограммы можно найти в директории
             SCI/modules/differential_equations/src/fortran:
         </para>
-        <para>dqag0.f и dqags.f из quadpack</para>
+        <para>dqags.f и dqagse.f из quadpack</para>
     </refsection>
 </refentry>

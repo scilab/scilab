@@ -8,64 +8,97 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-06-25 16:31+0100\n"
 
-# File: sci_gateway/c/sci_beta.c, line: 53
+# File: sci_gateway/c/sci_besselh.c, line: 74
+# File: sci_gateway/c/sci_besselh.c, line: 103
+# File: sci_gateway/c/sci_besseli.c, line: 76
+# File: sci_gateway/c/sci_besselj.c, line: 76
+# File: sci_gateway/c/sci_besselk.c, line: 78
+# File: sci_gateway/c/sci_bessely.c, line: 79
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d or #%d: No complex input argument "
-"expected.\n"
+msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_beta.c, line: 61
+# File: sci_gateway/c/sci_besselh.c, line: 210
+# File: sci_gateway/c/sci_besseli.c, line: 248
+# File: sci_gateway/c/sci_besselj.c, line: 248
+# File: sci_gateway/c/sci_besselk.c, line: 234
+# File: sci_gateway/c/sci_bessely.c, line: 238
+# File: sci_gateway/c/sci_beta.c, line: 101
 #, c-format
-msgid "%s: Wrong value for input arguments: Must be > %d.\n"
+msgid "%s: arguments #%d and #%d have incompatible dimensions.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dlgamma.c, line: 32
-# File: sci_gateway/c/sci_dlgamma.c, line: 40
-# File: sci_gateway/c/sci_gamma.c, line: 32
-# File: sci_gateway/c/sci_gamma.c, line: 40
-# File: sci_gateway/c/sci_lgamma.c, line: 33
-# File: sci_gateway/c/sci_lgamma.c, line: 41
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_legendre.c, line: 59
-#, c-format
-msgid "%s: Wrong type for first input argument.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_legendre.c, line: 68
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_legendre.c, line: 76
-#, c-format
-msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_legendre.c, line: 83
+# File: sci_gateway/c/sci_beta.c, line: 66
+# File: sci_gateway/c/sci_beta.c, line: 88
+# File: sci_gateway/c/sci_legendre.c, line: 144
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_legendre.c, line: 92
+# File: sci_gateway/c/sci_beta.c, line: 109
+#, c-format
+msgid "%s: Wrong value for input arguments: Must be > %d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dlgamma.c, line: 39
+# File: sci_gateway/c/sci_dlgamma.c, line: 47
+# File: sci_gateway/c/sci_gamma.c, line: 38
+# File: sci_gateway/c/sci_gamma.c, line: 46
+# File: sci_gateway/c/sci_lgamma.c, line: 40
+# File: sci_gateway/c/sci_lgamma.c, line: 48
+# File: sci_gateway/cpp/sci_faddeeva.hxx, line: 46
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dlgamma.c, line: 59
+# File: sci_gateway/c/sci_gamma.c, line: 58
+# File: sci_gateway/c/sci_lgamma.c, line: 60
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_dlgamma.c, line: 66
+# File: sci_gateway/c/sci_gamma.c, line: 65
+# File: sci_gateway/c/sci_lgamma.c, line: 67
+#, c-format
+msgid "%s: Wrong type for argument %d: A matrix expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_legendre.c, line: 91
+#, c-format
+msgid "%s: Wrong type for first input argument.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_legendre.c, line: 118
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_legendre.c, line: 129
+#, c-format
+msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_legendre.c, line: 161
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) "
@@ -73,17 +106,35 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_legendre.c, line: 141
+# File: sci_gateway/c/sci_legendre.c, line: 225
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_legendre.c, line: 145
+# File: sci_gateway/c/sci_legendre.c, line: 229
 #, c-format
 msgid "%s: error number %d\n"
 msgstr ""
 
+#
+# File: sci_gateway/cpp/sci_faddeeva.hxx, line: 52
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
+msgstr ""
+
+# File: macros/calerf.sci, line: 32
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#
+# File: macros/calerf.sci, line: 42
+#, c-format
+msgid "%s: Wrong value for argument %d: 0, 1 or 2 expected.\n"
+msgstr ""
+
+#
 # File: macros/erfinv.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"

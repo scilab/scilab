@@ -68,7 +68,7 @@ c            job=2 a contains block diagonal form
 c                  x contains u and xi contain y
 c            job=3: a contains:
 c                      -block diagonal form in the diagonal blocks
-c                      -a factorisation of y in the upper triangular
+c                      -a factorization of y in the upper triangular
 c                   x contains u
 c                   xi dummy
 c  *fail     a logical variable which is false on normal return and

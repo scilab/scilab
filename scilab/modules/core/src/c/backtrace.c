@@ -79,8 +79,6 @@ sci_backtrace_t *sci_backtrace_create(void)
 {
 #if defined(HAVE_GLIBC_BACKTRACE)
 
-    int i, j, l;
-
     sci_backtrace_t *bt = NULL;
 
     /* Create backtrace structure */
@@ -133,6 +131,7 @@ sci_backtrace_t *sci_backtrace_create(void)
         }
 
         Dl_info * infos = (Dl_info *)MALLOC(sizeof(Dl_info));
+        int i;
 
         for (i = 0; i < bt->size; i++)
         {
@@ -226,7 +225,7 @@ sci_backtrace_t *sci_backtrace_destroy(sci_backtrace_t * bt)
 void sci_backtrace_demangle(sci_backtrace_t * bt)
 {
 #if defined(HAVE_GLIBC_BACKTRACE) && defined(HAVE_CPLUS_DEMANGLE)
-    int i, j, l;
+    int i, l;
 
     if (bt != NULL)
     {

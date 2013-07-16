@@ -141,7 +141,7 @@ x = linspace(-l,l,200)';
 y = legendre(5, 0:5, x, "norm");
 clf()
 plot2d(x,y', leg="p5,0@p5,1@p5,2@p5,3@p5,4@p5,5")
-xtitle("the (normalised) associated Legendre functions of degree 5")
+xtitle("the (normalized) associated Legendre functions of degree 5")
 
 // 例3 : 球面調和関数を定義,プロット
 // 3-1 : 関数Ylmを定義

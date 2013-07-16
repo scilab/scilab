@@ -17,7 +17,7 @@
 
 function demo_boxbounds()
 
-    filename = 'neldermead_boxbounds.sce';
+    filename = "neldermead_boxbounds.sce";
     dname = get_absolute_file_path(filename);
 
     mprintf(_("Illustrates Box'' algorithm on a simply bounds-constrained optimization problem.\n"));
@@ -86,11 +86,11 @@ function demo_boxbounds()
     // Plot
     //
     mprintf(_("Plot contour (please wait)...\n"));
-    xmin = 0.5 ; 
-    xmax = 2.1 ; 
-    ymin = 0.5 ; 
-    ymax = 2.1 ; 
-    nx = 50 ; 
+    xmin = 0.5 ;
+    xmax = 2.1 ;
+    ymin = 0.5 ;
+    ymax = 2.1 ;
+    nx = 50 ;
     ny = 50;
     xdata=linspace(xmin,xmax,nx);
     ydata=linspace(ymin,ymax,ny);
@@ -114,4 +114,5 @@ clear demo_boxbounds;
 
 
 
-
+
+

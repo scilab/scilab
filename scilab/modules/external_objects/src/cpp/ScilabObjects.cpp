@@ -32,7 +32,7 @@ void ScilabObjects::initialization(ScilabAbstractEnvironment & env, void * pvApi
     if (!isInit)
     {
         isInit = true;
-        //createNamedEnvironmentObject(EXTERNAL_OBJECT, "enull", 0, 0, pvApiCtx);
+        //createNamedEnvironmentObject(EXTERNAL_VOID, "evoid", 0, 0, pvApiCtx);
     }
 }
 
@@ -673,6 +673,10 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
                 }
                 return *id;
             }
+            else if (type == EXTERNAL_VOID)
+            {
+                return -1;
+            }
             else
             {
                 removeTemporaryVars(envId, tmpvars);
@@ -755,7 +759,7 @@ int ScilabObjects::getMListType(int * mlist, void * pvApiCtx)
 bool ScilabObjects::isValidExternal(int * mlist, void * pvApiCtx)
 {
     int type = getMListType(mlist, pvApiCtx);
-    return type == EXTERNAL_OBJECT || type == EXTERNAL_CLASS || type == EXTERNAL_VOID;
+    return type == EXTERNAL_OBJECT || type == EXTERNAL_CLASS;
 }
 
 bool ScilabObjects::isExternalObj(int * mlist, void * pvApiCtx)
@@ -813,7 +817,6 @@ int ScilabObjects::isPositiveIntegerAtAddress(int * addr, void * pvApiCtx)
 {
     SciErr err;
     int typ = 0, row, col, prec;
-    int * id = 0;
 
     err = getVarDimension(pvApiCtx, addr, &row, &col);
     if (err.iErr)

@@ -1,3 +1,4 @@
 LIBRARY    differential_equations_f.dll
 EXPORTS
 	lsodar_
+    ddaskr_

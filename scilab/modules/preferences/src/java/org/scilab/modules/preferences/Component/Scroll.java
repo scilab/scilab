@@ -44,16 +44,16 @@ public class Scroll extends JScrollPane implements XComponent {
         super(component);
         insideContainer = (Container) component;
         insideContainer.setLayout(new BorderLayout());
-        setMinimumSize(new Dimension(200,200));
+        setMinimumSize(new Dimension(200, 200));
         XConfigManager.setDimension(this, peer);
-	setBorder(BorderFactory.createEmptyBorder());
-	setViewportBorder(BorderFactory.createEmptyBorder());
+        setBorder(BorderFactory.createEmptyBorder());
+        setViewportBorder(BorderFactory.createEmptyBorder());
     }
 
-   /** Define the set of actuators.
-     *
-     * @return array of actuator names.
-     */
+    /** Define the set of actuators.
+      *
+      * @return array of actuator names.
+      */
     public final String [] actuators() {
         String [] actuators = {};
         return actuators;
@@ -84,9 +84,9 @@ public class Scroll extends JScrollPane implements XComponent {
     * @param index : order number in layout.
      */
     public final void add(
-            final Component component,
-            final Object constraints,
-            final int index) {
+        final Component component,
+        final Object constraints,
+        final int index) {
         if (component instanceof XComponent) {
             insideContainer.add(component, constraints, index);
             return;

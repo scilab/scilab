@@ -117,7 +117,9 @@ char **getStaticDebugInfo(int *sizeArray)
         debug_message msg = staticDebug[i];
 
         if (msg.description == NULL)    /* We reach the end of the static list */
+        {
             break;
+        }
 
         if (outputStaticList)
         {

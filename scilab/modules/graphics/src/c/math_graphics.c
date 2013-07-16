@@ -31,12 +31,15 @@ double Mini(const double vect[], int n)
     int i = 0;
     double vmin = LARGEST_REAL;
     for (i = 0 ; i < n ; i++)
+    {
         /*    if (isinf(vect[i])== 0 && isnan(vect[i])==0 && vect[i] < vmin)  */
         if (finite(vect[i]) == 1 && vect[i] < vmin)
         {
             vmin = vect[i];
         }
-    return(vmin);
+    }
+
+    return vmin;
 }
 
 double Maxi(const double vect[], int n)
@@ -44,12 +47,40 @@ double Maxi(const double vect[], int n)
     int i = 0;
     double maxi = - LARGEST_REAL;
     for (i = 0 ; i < n ; i++)
+    {
         /* if (isinf(vect[i])== 0 && isnan(vect[i])==0 && vect[i] > maxi) */
         if (finite(vect[i]) == 1 && vect[i] > maxi)
         {
             maxi = vect[i];
         }
-    return(maxi);
+    }
+
+    return maxi;
+}
+
+void MiniMaxi(const double vect[], int n, double * const min, double * const max)
+{
+    int i = 0;
+    double _min = LARGEST_REAL;
+    double _max = -LARGEST_REAL;
+    for (; i < n ; i++)
+    {
+        /*    if ( isinf(vect[i])== 0 && isnan(vect[i])==0 && vect[i] < vmin)  */
+        if (finite(vect[i]) == 1)
+        {
+            if (vect[i] < _min)
+            {
+                _min = vect[i];
+            }
+            if (vect[i] > _max)
+            {
+                _max = vect[i];
+            }
+        }
+    }
+
+    *min = _min;
+    *max = _max;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -128,9 +159,9 @@ void iNormalize2d(int vect[2])
 BOOL isPointInTriangle(const double point[2], const double a[2],
                        const double b[2], const double c[2])
 {
-    return (  areOnSameSideOfLine(point, a, b, c)
-              && areOnSameSideOfLine(point, b, a, c)
-              && areOnSameSideOfLine(point, c, a, b));
+    return (   areOnSameSideOfLine(point, a, b, c)
+               && areOnSameSideOfLine(point, b, a, c)
+               && areOnSameSideOfLine(point, c, a, b));
 }
 /*----------------------------------------------------------------------------*/
 BOOL areOnSameSideOfLine(const double p1[2], const double p2[2],
@@ -169,9 +200,9 @@ void crossProduct(const double v1[3], const double v2[3], double res[3])
     double v20 = v2[0];
     double v11 = v1[1];
     double v21 = v2[1];
-    res[0] = v11 * v2[2] - v1[2] * v21;
-    res[1] = v1[2] * v20 - v10 * v2[2];
-    res[2] = v10 * v21 - v11 * v20;
+    res[0] = v11 * v2[2] - v1[2] * v21 ;
+    res[1] = v1[2] * v20 - v10 * v2[2] ;
+    res[2] = v10 * v21 - v11 * v20 ;
 }
 /*----------------------------------------------------------------------------*/
 void vectSubstract3D(const double v1[3] , const double v2[3], double res[3])
@@ -197,10 +228,10 @@ void scalarMult3D(const double v[3], double scalar, double res[3])
 /*----------------------------------------------------------------------------*/
 void normalize3D(double vect[3])
 {
-    double norm = NORM_3D(vect);
-    vect[0] /= norm;
-    vect[1] /= norm;
-    vect[2] /= norm;
+    double norm = NORM_3D(vect) ;
+    vect[0] /= norm ;
+    vect[1] /= norm ;
+    vect[2] /= norm ;
 }
 /*----------------------------------------------------------------------------*/
 void setToIdentity(double mat4D[4][4])

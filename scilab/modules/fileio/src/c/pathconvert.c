@@ -63,7 +63,11 @@ wchar_t *pathconvertW(wchar_t* wcpath, BOOL flagtrail, BOOL flagexpand, PathConv
 
         if (convertedPath)
         {
-            if (expandedPath) {FREE(expandedPath); expandedPath = NULL;}
+            if (expandedPath)
+            {
+                FREE(expandedPath);
+                expandedPath = NULL;
+            }
 
             if (flagtrail)
             {
@@ -90,15 +94,21 @@ wchar_t *pathconvertW(wchar_t* wcpath, BOOL flagtrail, BOOL flagexpand, PathConv
                 }
             }
 
-            for(i = 0; i < (int)wcslen(convertedPath); i++)
+            for (i = 0; i < (int)wcslen(convertedPath); i++)
             {
                 if (PTypelocal == WINDOWS_STYLE)
                 {
-                    if (convertedPath[i] == L'/') convertedPath[i] = L'\\';
+                    if (convertedPath[i] == L'/')
+                    {
+                        convertedPath[i] = L'\\';
+                    }
                 }
                 else
                 {
-                    if (convertedPath[i] == L'\\') convertedPath[i] = L'/';
+                    if (convertedPath[i] == L'\\')
+                    {
+                        convertedPath[i] = L'/';
+                    }
                 }
             }
         }
@@ -114,7 +124,7 @@ char *pathconvert(char* path, BOOL flagtrail, BOOL flagexpand, PathConvertType P
         wchar_t *wcpath = to_wide_string(path);
         if (wcpath)
         {
-            wchar_t *wcconvertedPath = pathconvertW(wcpath,flagtrail,flagexpand,PType);
+            wchar_t *wcconvertedPath = pathconvertW(wcpath, flagtrail, flagexpand, PType);
             if (wcconvertedPath)
             {
                 convertedPath = wide_string_to_UTF8(wcconvertedPath);
@@ -152,7 +162,7 @@ static wchar_t *cygwintowindowspath(wchar_t *cygwinpath, BOOL *bConverted)
                 if ( (lenPath > lenBegin) && iswalpha(cygwinpath[lenBegin]) )
                 {
                     if ( (lenPath >= lenBegin + 1) &&
-                        ((cygwinpath[lenBegin + 1]== L'/') || (cygwinpath[lenBegin + 1]== L'\\')) )
+                            ((cygwinpath[lenBegin + 1] == L'/') || (cygwinpath[lenBegin + 1] == L'\\')) )
                     {
                         windowspath[0] = cygwinpath[lenBegin];
                         windowspath[1] = L':';
@@ -160,7 +170,7 @@ static wchar_t *cygwintowindowspath(wchar_t *cygwinpath, BOOL *bConverted)
 
                         if (lenPath > lenBegin + 1)
                         {
-                            wcscat(windowspath,&cygwinpath[lenBegin + 1]);
+                            wcscat(windowspath, &cygwinpath[lenBegin + 1]);
                         }
                         *bConverted	= TRUE;
                     }
@@ -211,8 +221,8 @@ static wchar_t *windowstocygwinpath(wchar_t *windowspath, BOOL *bConverted)
         if (wcscmp(wcdrv, L"") != 0)
         {
             int len = (int)wcslen(CYGWINSTART) + (int)wcslen(wcdrv) +
-                (int)wcslen(wcdir) + (int)wcslen(wcname) +
-                (int)wcslen(wcext) + 3;
+                      (int)wcslen(wcdir) + (int)wcslen(wcname) +
+                      (int)wcslen(wcext) + 3;
 
             cygwinpath = (wchar_t*)MALLOC(sizeof(wchar_t) * len);
             if (cygwinpath)
@@ -249,10 +259,26 @@ static wchar_t *windowstocygwinpath(wchar_t *windowspath, BOOL *bConverted)
             }
         }
 
-        if (wcdrv){FREE(wcdrv);wcdrv = NULL;}
-        if (wcdir){FREE(wcdir);wcdir = NULL;}
-        if (wcname){FREE(wcname);wcname = NULL;}
-        if (wcext){FREE(wcext);wcext =  NULL;}
+        if (wcdrv)
+        {
+            FREE(wcdrv);
+            wcdrv = NULL;
+        }
+        if (wcdir)
+        {
+            FREE(wcdir);
+            wcdir = NULL;
+        }
+        if (wcname)
+        {
+            FREE(wcname);
+            wcname = NULL;
+        }
+        if (wcext)
+        {
+            FREE(wcext);
+            wcext =  NULL;
+        }
     }
     return cygwinpath;
 }

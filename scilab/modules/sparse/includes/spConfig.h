@@ -425,7 +425,7 @@
 #   define  LARGEST_LONG_INTEGER    LONG_MAX
 #else /* NOT defined(__STDC__) */
 
-/* Apple MacOSX */ 
+/* Apple MacOSX */
 
 #ifdef __APPLE__  /* __STDC__ */
 #   include <limits.h>
@@ -438,7 +438,7 @@
 #endif /* NOT defined(__STDC__) */
 
 /* VAX machine constants */
-#if  (defined(vax) && !defined(netbsd)) 
+#if  (defined(vax) && !defined(netbsd))
 #   define  MACHINE_RESOLUTION      6.93889e-18
 #   define  LARGEST_REAL            1.70141e+38
 #   define  SMALLEST_REAL           2.938743e-39
@@ -447,7 +447,7 @@
 #endif
 
 /* MIPS machine constants */
-#if (defined(mips) && !defined(netbsd)) 
+#if (defined(mips) && !defined(netbsd))
 #   define  MACHINE_RESOLUTION      6.93889e-18
 #   define  LARGEST_REAL            1.70141e+38
 #   define  SMALLEST_REAL           2.938743e-39
@@ -469,8 +469,8 @@
 /* IBM machine constants */
 #ifdef aix
 /** The STDC option works on aix on gives the values that i've copied here */
-#   define  MACHINE_RESOLUTION      2.2204460492503131e-16   
-#   define  LARGEST_REAL            1.7976931348623158e+308  
+#   define  MACHINE_RESOLUTION      2.2204460492503131e-16
+#   define  LARGEST_REAL            1.7976931348623158e+308
 #   define  SMALLEST_REAL           2.2250738585072014e-308
 #   define  LARGEST_SHORT_INTEGER   32767
 #   define  LARGEST_LONG_INTEGER    2147483647
@@ -486,7 +486,7 @@
 #   define  LARGEST_LONG_INTEGER    2147483646
 #endif
 /* DEC alpha machine constant*/
-#if (defined(__alpha) && !defined(netbsd)) 
+#if (defined(__alpha) && !defined(netbsd))
 #   include <limits.h>
 #   include <float.h>
 #   define  MACHINE_RESOLUTION      DBL_EPSILON
@@ -513,13 +513,13 @@
 #   define  LARGEST_SHORT_INTEGER   SHRT_MAX
 #   define  LARGEST_LONG_INTEGER    LONG_MAX
 #endif
-#ifdef _MSC_VER 
+#ifdef _MSC_VER
 #   include <limits.h>
 #   include <float.h>
 #   define  MACHINE_RESOLUTION      DBL_EPSILON
 #   define  LARGEST_REAL            DBL_MAX
 #   define  SMALLEST_REAL           DBL_MIN
-/* XXXXX : a v'erifier */ 
+/* XXXXX : a v'erifier */
 #   define  LARGEST_SHORT_INTEGER   32766
 #   define  LARGEST_LONG_INTEGER    2147483646
 #endif

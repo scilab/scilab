@@ -54,7 +54,7 @@ public class GoToSCIAction extends CommonCallBack {
     public static PushButton createButton() {
         PushButton button = ScilabPushButton.createPushButton();
         button.setCallback(new GoToSCIAction());
-	((SwingScilabPushButton) button.getAsSimplePushButton()).setToolTipText(UiDataMessages.SCIFOLDER);
+        ((SwingScilabPushButton) button.getAsSimplePushButton()).setToolTipText(UiDataMessages.SCIFOLDER);
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(FileUtils.getSCIIcon());
 
         return button;

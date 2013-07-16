@@ -25,6 +25,7 @@
 #include "IsAScalar.h"
 #include "freeArrayOfString.h"
 #include "CallClipboard.h"
+#include "FigureList.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -372,12 +373,12 @@ int sci_ClipBoard(char *fname, unsigned long l)
                             if ( strcmp(param2, "EMF") == 0)
                             {
                                 /* @TODO create EMF */
-                                copyFigureToClipBoard(num_win);
+                                copyFigureToClipBoard(getFigureFromIndex(num_win));
                             }
                             else
                             {
                                 /* @TODO create DIB */
-                                copyFigureToClipBoard(num_win);
+                                copyFigureToClipBoard(getFigureFromIndex(num_win));
                             }
 
                             m1 = 0;

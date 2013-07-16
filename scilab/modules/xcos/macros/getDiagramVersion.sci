@@ -11,18 +11,18 @@
 //
 
 function version = getDiagramVersion(diagram)
-// Return the current diagram version
-//
-// Calling Sequence
-//  version = getDiagramVersion(diagram)
-//
-// Parameters
-//  diagram:    the diagram instance
-//  version:    the version of the diagram
-//
-// Example
-//  loadXcosLibs();
-//  version = getDiagramVersion(scicos_diagram())
+    // Return the current diagram version
+    //
+    // Calling Sequence
+    //  version = getDiagramVersion(diagram)
+    //
+    // Parameters
+    //  diagram:    the diagram instance
+    //  version:    the version of the diagram
+    //
+    // Example
+    //  loadXcosLibs();
+    //  version = getDiagramVersion(scicos_diagram())
 
     [lhs,rhs] = argn(0);
     version = get_scicos_version();

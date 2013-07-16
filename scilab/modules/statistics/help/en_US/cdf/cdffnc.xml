@@ -77,9 +77,9 @@
             distribution function.
         </para>
         <para>
-            Computation of other parameters involve a seach for a value that
+            Computation of other parameters involve a search for a value that
             produces  the desired  value  of P.   The search relies  on  the
-            monotinicity of P with the other parameter.
+            monotonicity of P with the other parameter.
         </para>
         <para>
             The computation time  required for this  routine is proportional
@@ -93,6 +93,9 @@
             may be two values that provide a given  CDF value.  This routine
             assumes monotonicity  and will find  an arbitrary one of the two
             values.
+        </para>
+        <para>
+            In certain cases, the degrees of freedom are not integers. Scilab then issues a warning.
         </para>
         <para>
             From DCDFLIB: Library of Fortran Routines for Cumulative Distribution

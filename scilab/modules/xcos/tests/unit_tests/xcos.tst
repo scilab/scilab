@@ -17,11 +17,11 @@ sleep(500);
 if ~isdef('BIGSOM_f') then pause, end
 
 // we launch xcos with an xcos demo file
-xcos(SCI + "/modules/xcos/demos/Simple_Demo.xcos");
+xcos(SCI + "/modules/xcos/demos/Simple_Demo.zcos");
 sleep(500);
 
 // we launch xcos with an xcos demo file with full path resolution
-xcos("SCI/modules/xcos/demos/Simple_Demo.xcos");
+xcos("SCI/modules/xcos/demos/Simple_Demo.zcos");
 sleep(500);
 
 // we launch xcos with cos file

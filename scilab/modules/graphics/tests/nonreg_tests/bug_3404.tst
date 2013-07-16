@@ -23,7 +23,6 @@ a.axes_visible = "on";
 a.log_flags = "lnn";
 
 expectedLocations = 10^(-10:3:2)';
-sleep(200)//Wait for MVC update
 
 // compare the expected locations and the real ones
 assert_checkalmostequal(expectedLocations, a.x_ticks.locations);
