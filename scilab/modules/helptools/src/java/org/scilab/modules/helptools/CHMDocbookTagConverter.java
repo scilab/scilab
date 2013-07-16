@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.xml.sax.SAXException;
-
+import org.scilab.modules.helptools.image.ImageConverter;
 import org.scilab.modules.localization.LocaleToLCID;
 
 /**
@@ -35,23 +35,17 @@ public class CHMDocbookTagConverter extends HTMLDocbookTagConverter {
     private List<String> filesList = new ArrayList<String>();
     private String docWebsite;
 
+
     /**
      * Constructor
      * @param inName the name of the input stream
      * @param outName the output directory
-     * @param primConf the file containing the primitives of Scilab
-     * @param macroConf the file containing the macros of Scilab
-     * @param template the template to use
-     * @param version the version
-     * @param imageDir the image directory (relative to outName)
-     * @param isToolbox is true when compile a toolbox' help
-     * @param urlBase the base url for external link
-     * @param language the language to use ('en_US', 'fr_FR', ...)
+     * @param imgConvert The associated image converter
      */
-    public CHMDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, String docWebsite, boolean isToolbox, String urlBase, String language) throws IOException, SAXException {
-        super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase, language, HTMLDocbookTagConverter.GenerationType.CHM);
+    public CHMDocbookTagConverter(String inName, SciDocMain sciDocMain, ImageConverter imgConvert) throws IOException, SAXException {
+        super(inName, sciDocMain, imgConvert);
         this.outName = new File(outName).getCanonicalPath() + File.separator;
-        this.docWebsite = docWebsite;
+        this.docWebsite = sciDocMain.getConf().getWebSiteURL();
     }
 
     /**

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
+ * Copyright (C) 2013 - Scilab Enterprises - Clement DAVID
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -11,21 +12,21 @@
  */
 package org.scilab.modules.helptools;
 
-import com.sun.java.help.search.Indexer; /* jhall (Java Help) */
-
 import java.io.File;
-import java.io.FilenameFilter;
-import java.io.FileOutputStream;
 import java.io.FileInputStream;
-import java.util.zip.ZipEntry;
-import java.util.jar.JarOutputStream;
-
+import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.jar.JarOutputStream;
+import java.util.zip.ZipEntry;
 
-/**
- * This class manages the build of the Java Help
- */
-public final class BuildJavaHelp {
+import org.scilab.modules.commons.ScilabConstants;
+
+import com.sun.java.help.search.Indexer;
+
+public class JarOnlyConverter extends ContainerConverter {
+
+    private static final String SCI = ScilabConstants.SCI.getPath();
 
     private static final String JAVAHELPSEARCH_DIR = "/JavaHelpSearch/";
     private static final String COULD_NOT_FIND = "buildDoc: Could not find/access to ";
@@ -36,11 +37,107 @@ public final class BuildJavaHelp {
     private static final int JAR_COMPRESSION_LEVEL = 9;
     private static Indexer indexer = new Indexer();
 
+    private final boolean isToolbox;
+    private final String outImages;
+
+    public JarOnlyConverter(SciDocMain sciDocMain) {
+        super(sciDocMain.getOutputDirectory(), sciDocMain.getLanguage());
+
+        isToolbox = sciDocMain.isToolbox();
+
+        /*
+         * Reuse the shared generated images directory from scilab
+         */
+        String images = sciDocMain.getOutputDirectory() + File.separator;
+        if (!isToolbox) {
+            images = ScilabConstants.SCI.getPath() + "/modules/helptools/images";
+            File dir = new File(images);
+            if (!dir.exists()) {
+                dir.mkdir();
+            }
+        }
+        outImages = images;
+    }
+
     /**
-     * Default constructor (must no be used)
+     * Embed the javahelp html files to a jar
      */
-    private BuildJavaHelp() {
-        throw new UnsupportedOperationException();
+    @Override
+    public void convert() {
+        String outputJavaHelp = new String(outputDirectory + JAVAHELPSEARCH_DIR);
+
+        try {
+            /* Purge the directory before launching the index */
+            /* because the JavaHelp Indexer failed when launched twice on the same directory */
+            Helpers.deleteDirectory(outputJavaHelp);
+            File directory = new File(outputJavaHelp);
+            directory.mkdirs();
+
+            String[] args = new String[] {"-nostopwords", "."};
+
+            indexer.compile(args);
+        } catch (Exception e) {
+            System.err.println("buildDoc: Error building search index: " + e.getLocalizedMessage());
+            return;
+        }
+
+        buildJar(outputDirectory, language);
+    }
+
+    /**
+     * Embed the images files to another jar for non-toolboxes
+     */
+    @Override
+    public void install() {
+        /*
+         * Toolboxes images are not in a separate jar.
+         */
+        if (isToolbox) {
+            return;
+        }
+
+        JarOutputStream jarFile = null;
+        FileOutputStream fileOutputStream = null;
+
+        /* Stored into SCI/modules/helptools/jar */
+        String fileName = SCI + "/modules/helptools/jar" + SLASH + "scilab_images" + JAR_EXT;
+        try {
+            fileOutputStream = new FileOutputStream(fileName);
+            jarFile = new JarOutputStream(fileOutputStream);
+            jarFile.setLevel(JAR_COMPRESSION_LEVEL);
+        } catch (java.io.FileNotFoundException e) {
+            System.err.println(COULD_NOT_FIND + fileName + LEFT_PAR + e.getLocalizedMessage() + RIGHT_PAR);
+        } catch (java.io.IOException e) {
+            System.err.println(COULD_NOT_FIND + fileName + LEFT_PAR + e.getLocalizedMessage() + RIGHT_PAR);
+        }
+
+        File[] allFiles = new File(outImages).listFiles();
+        for (int i = 0; i < allFiles.length; i++) {
+            try {
+                File workingFile = allFiles[i];
+                FileInputStream fileInputStream = new FileInputStream(workingFile);
+
+                int length = (int) workingFile.length();
+                byte[] buffer = new byte[length];
+                try {
+                    fileInputStream.read(buffer, 0, length);
+                } catch (java.io.IOException e) {
+                    System.err.println(COULD_NOT_FIND + workingFile + LEFT_PAR + e.getLocalizedMessage() + RIGHT_PAR);
+                }
+                ZipEntry zipEntry = new ZipEntry(workingFile.getName());
+                jarFile.putNextEntry(zipEntry);
+                jarFile.write(buffer, 0, length);
+                fileInputStream.close();
+            } catch (java.io.IOException e) {
+                System.err.println("buildDoc: An error occurs while building the JavaHelp ( " + e.getLocalizedMessage() + RIGHT_PAR);
+            }
+
+        }
+        try {
+            jarFile.close();
+        } catch (java.io.IOException e) {
+            System.err.println("buildDoc: An error occurs while closing the JavaHelp ( " + e.getLocalizedMessage() + RIGHT_PAR);
+        }
     }
 
     /**
@@ -68,53 +165,6 @@ public final class BuildJavaHelp {
         return listFile;
     }
 
-    public static boolean buildJarImages(String inputDirectory, String outputDirectory) {
-        JarOutputStream jarFile = null;
-        FileOutputStream fileOutputStream = null;
-
-        /* Stored into SCI/modules/helptools/jar */
-        String fileName = outputDirectory + SLASH + "scilab_images" + JAR_EXT;
-        try {
-            fileOutputStream = new FileOutputStream(fileName);
-            jarFile = new JarOutputStream(fileOutputStream);
-            jarFile.setLevel(JAR_COMPRESSION_LEVEL);
-        } catch (java.io.FileNotFoundException e) {
-            System.err.println(COULD_NOT_FIND + fileName + LEFT_PAR + e.getLocalizedMessage() + RIGHT_PAR);
-        } catch (java.io.IOException e) {
-            System.err.println(COULD_NOT_FIND + fileName + LEFT_PAR + e.getLocalizedMessage() + RIGHT_PAR);
-        }
-
-        File[] allFiles = new File(inputDirectory).listFiles();
-        for (int i = 0; i < allFiles.length; i++) {
-            try {
-                File workingFile = allFiles[i];
-                FileInputStream fileInputStream = new FileInputStream(workingFile);
-
-                int length = (int) workingFile.length();
-                byte[] buffer = new byte[length];
-                try {
-                    fileInputStream.read(buffer, 0, length);
-                } catch (java.io.IOException e) {
-                    System.err.println(COULD_NOT_FIND + workingFile + LEFT_PAR + e.getLocalizedMessage() + RIGHT_PAR);
-                }
-                ZipEntry zipEntry = new ZipEntry(workingFile.getName());
-                jarFile.putNextEntry(zipEntry);
-                jarFile.write(buffer, 0, length);
-                fileInputStream.close();
-            } catch (java.io.IOException e) {
-                System.err.println("buildDoc: An error occurs while building the JavaHelp ( " + e.getLocalizedMessage() + RIGHT_PAR);
-            }
-
-        }
-        try {
-            jarFile.close();
-        } catch (java.io.IOException e) {
-            System.err.println("buildDoc: An error occurs while closing the JavaHelp ( " + e.getLocalizedMessage() + RIGHT_PAR);
-        }
-
-        return true;
-    }
-
     /**
      * Private method which is trying to build the jar
      *
@@ -122,7 +172,7 @@ public final class BuildJavaHelp {
      * @param language In which language (for the file name)
      * @return The result of the operation
      */
-    private static boolean buildJar(String outputDirectory, String language) {
+    static boolean buildJar(String outputDirectory, String language) {
         String baseName = Helpers.getBaseName(language);
         JarOutputStream jarFile = null;
         FileOutputStream fileOutputStream = null;
@@ -131,7 +181,7 @@ public final class BuildJavaHelp {
         String fileName = outputDirectory + SLASH + baseName + JAR_EXT;
         /* bug 4407 */
         /* we do list of files before to create scilab_xx_XX_help.jar */
-        ArrayList<File> fileList = BuildJavaHelp.buildFileList(new File(outputDirectory), language);
+        ArrayList<File> fileList = buildFileList(new File(outputDirectory), language);
 
         try {
             fileOutputStream = new FileOutputStream(fileName);
@@ -181,36 +231,4 @@ public final class BuildJavaHelp {
         }
         return true;
     }
-
-    /**
-     * After the saxon process, create the Jar
-     *
-     * @param outputDirectory Where the files are available and
-     * @param language In which language (for the file name)
-     * @return The result of the process
-     */
-    public static String buildJavaHelp(String outputDirectory, String language) {
-
-        String outputJavaHelp = new String(outputDirectory + JAVAHELPSEARCH_DIR);
-
-        try {
-            /* Purge the directory before launching the index */
-            /* because the JavaHelp Indexer failed when launched twice on the same directory */
-            Helpers.deleteDirectory(outputJavaHelp);
-            File directory = new File(outputJavaHelp);
-            directory.mkdirs();
-
-            String[] args = new String[] {"-nostopwords", "."};
-
-            indexer.compile(args);
-        } catch (Exception e) {
-            System.err.println("buildDoc: Error building search index: " + e.getLocalizedMessage());
-            return null;
-        }
-
-        BuildJavaHelp.buildJar(outputDirectory, language);
-
-        return outputDirectory;
-    }
-
 }

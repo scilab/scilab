@@ -252,7 +252,7 @@ public class BuildDocObject {
      */
     private String postProcess() {
         if (this.format.equalsIgnoreCase(JH_FORMAT) || format.equalsIgnoreCase(JAVAHELP_FORMAT)) {
-            return BuildJavaHelp.buildJavaHelp(this.outputDirectory, this.language);
+            JarOnlyConverter.buildJar(this.outputDirectory, this.language);
         }
         if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(POSTSCRIPT_FORMAT)) {
             return BuildPDF.buildPDF(this.outputDirectory, this.language, format);
@@ -297,8 +297,6 @@ public class BuildDocObject {
      * @throws TransformerException
      */
     public String process(String sourceDoc, String styleSheet) throws FileNotFoundException, TransformerException {
-        ArrayList<String> args = new ArrayList<String>();
-
         if (!new File(sourceDoc).isFile()) {
             throw new FileNotFoundException("Could not find master document: " + sourceDoc);
         }

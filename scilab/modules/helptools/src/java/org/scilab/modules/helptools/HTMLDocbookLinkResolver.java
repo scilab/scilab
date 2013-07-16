@@ -61,7 +61,6 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
     private boolean getContents;
     private boolean idInRefentry;
     private final File in;
-    private int level;
     private StringBuilder buffer = new StringBuilder(256);
 
     /**

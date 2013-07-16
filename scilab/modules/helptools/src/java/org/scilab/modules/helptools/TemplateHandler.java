@@ -96,6 +96,7 @@ public class TemplateHandler {
                 stringBuilder.append(line);
                 stringBuilder.append("\n");
             }
+            reader.close();
 
             array = stringBuilder.toString().split("(<!--<)|(>-->)");
         } catch (IOException e) {

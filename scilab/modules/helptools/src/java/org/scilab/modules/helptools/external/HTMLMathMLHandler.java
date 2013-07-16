@@ -20,7 +20,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
 
 import org.scilab.modules.helptools.HTMLDocbookTagConverter;
-import org.scilab.modules.helptools.image.ImageConverter;
 
 /**
  * Handle the included SVG code
@@ -31,9 +30,6 @@ public class HTMLMathMLHandler extends ExternalXMLHandler {
     private static final String MATH = "math";
     private static final String BASENAME = "_MathML_";
 
-    private static HTMLMathMLHandler instance;
-
-    private int compt = 1;
     private StringBuilder buffer = new StringBuilder(8192);
     private String baseDir;
     private String outputDir;
@@ -44,29 +40,9 @@ public class HTMLMathMLHandler extends ExternalXMLHandler {
      * Constructor
      * @param baseDir the base directory where to put the generated images
      */
-    private HTMLMathMLHandler(String outputDir, String baseDir) {
+    public HTMLMathMLHandler(String outputDir, String baseDir) {
         this.outputDir = outputDir + File.separator + baseDir;
         this.baseDir = baseDir + "/";
-    }
-
-    public static HTMLMathMLHandler getInstance(String outputDir, String baseDir) {
-        if (instance == null) {
-            instance = new HTMLMathMLHandler(outputDir, baseDir);
-        }
-
-        return instance;
-    }
-
-    public static HTMLMathMLHandler getInstance() {
-        return instance;
-    }
-
-    public static void clean() {
-        instance = null;
-    }
-
-    public void resetCompt() {
-        compt = 1;
     }
 
     /**
@@ -120,7 +96,7 @@ public class HTMLMathMLHandler extends ExternalXMLHandler {
                 baseImagePath = ((HTMLDocbookTagConverter) getConverter()).getBaseImagePath();
             }
 
-            String ret = ImageConverter.getImageByCode(getConverter().getCurrentFileName(), buffer.toString(), attributes, "image/mathml", f, baseDir + f.getName(), baseImagePath, line, language, isLocalized);
+            String ret = getConverter().getImageConverter().getImageByCode(getConverter().getCurrentFileName(), buffer.toString(), attributes, "image/mathml", f, baseDir + f.getName(), baseImagePath, line, language, isLocalized);
             buffer.setLength(0);
 
             return ret;
