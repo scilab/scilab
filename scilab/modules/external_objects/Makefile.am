@@ -57,6 +57,7 @@ EXTERNAL_OBJECTS_CPP_SOURCES = src/cpp/ScilabEnvironments.cpp \
 			       src/cpp/getRepresentation.cpp \
 			       src/cpp/import.cpp \
 			       src/cpp/invoke.cpp \
+			       src/cpp/invoke_asref.cpp \
 			       src/cpp/invoke_lu.cpp \
 			       src/cpp/trace.cpp \
 			       src/cpp/newInstance.cpp \

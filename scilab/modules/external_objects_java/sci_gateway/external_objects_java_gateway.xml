@@ -54,4 +54,5 @@
     <PRIMITIVE gatewayId="72" primitiveId="23" primitiveName="jinvoke" />
     <PRIMITIVE gatewayId="72" primitiveId="24" primitiveName="jconvMatrixMethod" />
     <PRIMITIVE gatewayId="72" primitiveId="25" primitiveName="jgetinfo" />
+    <PRIMITIVE gatewayId="72" primitiveId="26" primitiveName="jinvoke_db" />
 </GATEWAY>

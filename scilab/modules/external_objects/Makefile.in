@@ -172,6 +172,7 @@ am__objects_2 = libsciexternal_objects_algo_la-ScilabEnvironments.lo \
 	libsciexternal_objects_algo_la-getRepresentation.lo \
 	libsciexternal_objects_algo_la-import.lo \
 	libsciexternal_objects_algo_la-invoke.lo \
+	libsciexternal_objects_algo_la-invoke_asref.lo \
 	libsciexternal_objects_algo_la-invoke_lu.lo \
 	libsciexternal_objects_algo_la-trace.lo \
 	libsciexternal_objects_algo_la-newInstance.lo \
@@ -648,6 +649,7 @@ EXTERNAL_OBJECTS_CPP_SOURCES = src/cpp/ScilabEnvironments.cpp \
 			       src/cpp/getRepresentation.cpp \
 			       src/cpp/import.cpp \
 			       src/cpp/invoke.cpp \
+			       src/cpp/invoke_asref.cpp \
 			       src/cpp/invoke_lu.cpp \
 			       src/cpp/trace.cpp \
 			       src/cpp/newInstance.cpp \
@@ -872,6 +874,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_algo_la-getsetOptions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_algo_la-import.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_algo_la-invoke.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_algo_la-invoke_asref.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_algo_la-invoke_lu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_algo_la-invoker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_algo_la-newInstance.Plo@am__quote@
@@ -1164,6 +1167,13 @@ libsciexternal_objects_algo_la-invoke.lo: src/cpp/invoke.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/invoke.cpp' object='libsciexternal_objects_algo_la-invoke.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciexternal_objects_algo_la-invoke.lo `test -f 'src/cpp/invoke.cpp' || echo '$(srcdir)/'`src/cpp/invoke.cpp
+
+libsciexternal_objects_algo_la-invoke_asref.lo: src/cpp/invoke_asref.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciexternal_objects_algo_la-invoke_asref.lo -MD -MP -MF $(DEPDIR)/libsciexternal_objects_algo_la-invoke_asref.Tpo -c -o libsciexternal_objects_algo_la-invoke_asref.lo `test -f 'src/cpp/invoke_asref.cpp' || echo '$(srcdir)/'`src/cpp/invoke_asref.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciexternal_objects_algo_la-invoke_asref.Tpo $(DEPDIR)/libsciexternal_objects_algo_la-invoke_asref.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/invoke_asref.cpp' object='libsciexternal_objects_algo_la-invoke_asref.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciexternal_objects_algo_la-invoke_asref.lo `test -f 'src/cpp/invoke_asref.cpp' || echo '$(srcdir)/'`src/cpp/invoke_asref.cpp
 
 libsciexternal_objects_algo_la-invoke_lu.lo: src/cpp/invoke_lu.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciexternal_objects_algo_la-invoke_lu.lo -MD -MP -MF $(DEPDIR)/libsciexternal_objects_algo_la-invoke_lu.Tpo -c -o libsciexternal_objects_algo_la-invoke_lu.lo `test -f 'src/cpp/invoke_lu.cpp' || echo '$(srcdir)/'`src/cpp/invoke_lu.cpp

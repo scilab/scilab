@@ -42,6 +42,7 @@ EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jautoTranspose(char *fname, unsigned
 EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jinvoke(char *fname, unsigned long fname_len);
 EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jconvMatrixMethod(char *fname, unsigned long fname_len);
 EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jgetinfo(char *fname, unsigned long fname_len);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jinvoke_db(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_EXTERNAL_OBJECTS_H__ */
 /*--------------------------------------------------------------------------*/

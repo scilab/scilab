@@ -12,7 +12,13 @@
 
 package org.scilab.modules.external_objects_java;
 
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.MethodDescriptor;
+import java.beans.PropertyDescriptor;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -21,25 +27,19 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.CharBuffer;
 import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.nio.ShortBuffer;
-import java.nio.ByteOrder;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import java.beans.BeanInfo;
-import java.beans.IntrospectionException;
-import java.beans.Introspector;
-import java.beans.MethodDescriptor;
-import java.beans.PropertyDescriptor;
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -825,14 +825,15 @@ public class ScilabJavaObject {
             }
 
             if (arraySJO[id] != null) {
-                Object ret = ScilabJavaMethod.invoke(methName, arraySJO[id].clazz, arraySJO[id].object, returnType, args);
-                if (ret == null && returnType[0] == Void.TYPE) {
-                    return -1;
-                } else {
-                    return new ScilabJavaObject(ret, returnType[0]).id;
-                }
-            }
-            throw new ScilabJavaException("Invalid Java object");
+		Object ret = ScilabJavaMethod.invoke(methName, arraySJO[id].clazz, arraySJO[id].object, returnType, args);
+		if (ret == null && returnType[0] == Void.TYPE) {
+		    return -1;
+		} else {
+		    return new ScilabJavaObject(ret, returnType[0]).id;
+		}
+            } else {
+		throw new ScilabJavaException("Invalid Java object");
+	    }
         } else {
             throw new ScilabJavaException("null is not an object");
         }
@@ -1411,14 +1412,16 @@ public class ScilabJavaObject {
      * @param id the Java Object id
      * @return the resulting unwrapping
      */
-    public static final double[] unwrapRowDouble(final int id) {
+    public static final Object unwrapRowDouble(final int id) {
         if (arraySJO[id].object instanceof List) {
             return ScilabJavaArray.toDoubleArray((List<Double>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Double[]) {
             return ScilabJavaArray.toPrimitive((Double[]) arraySJO[id].object);
+        } else if (arraySJO[id].object instanceof DoubleBuffer && !((DoubleBuffer) arraySJO[id].object).isDirect()) {
+            return ((DoubleBuffer) arraySJO[id].object).array();
         }
 
-        return (double[]) (arraySJO[id].object);
+        return arraySJO[id].object;
     }
 
     /**
@@ -1446,14 +1449,16 @@ public class ScilabJavaObject {
      * @param id the Java Object id
      * @return the resulting unwrapping
      */
-    public static final int[] unwrapRowInt(final int id) {
+    public static final Object unwrapRowInt(final int id) {
         if (arraySJO[id].object instanceof List) {
             return ScilabJavaArray.toIntArray((List<Integer>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Integer[]) {
             return ScilabJavaArray.toPrimitive((Integer[]) arraySJO[id].object);
+        } else if (arraySJO[id].object instanceof IntBuffer && !((IntBuffer) arraySJO[id].object).isDirect()) {
+            return ((IntBuffer) arraySJO[id].object).array();
         }
 
-        return (int[]) (arraySJO[id].object);
+        return arraySJO[id].object;
     }
 
     /**
@@ -1480,14 +1485,16 @@ public class ScilabJavaObject {
      * @param id the Java Object id
      * @return the resulting unwrapping
      */
-    public static final short[] unwrapRowShort(final int id) {
+    public static final Object unwrapRowShort(final int id) {
         if (arraySJO[id].object instanceof List) {
             return ScilabJavaArray.toShortArray((List<Short>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Short[]) {
             return ScilabJavaArray.toPrimitive((Short[]) arraySJO[id].object);
+        } else if (arraySJO[id].object instanceof ShortBuffer && !((ShortBuffer) arraySJO[id].object).isDirect()) {
+            return ((ShortBuffer) arraySJO[id].object).array();
         }
 
-        return (short[]) (arraySJO[id].object);
+        return arraySJO[id].object;
     }
 
     /**
@@ -1514,14 +1521,16 @@ public class ScilabJavaObject {
      * @param id the Java Object id
      * @return the resulting unwrapping
      */
-    public static final byte[] unwrapRowByte(final int id) {
+    public static final Object unwrapRowByte(final int id) {
         if (arraySJO[id].object instanceof List) {
             return ScilabJavaArray.toByteArray((List<Byte>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Byte[]) {
             return ScilabJavaArray.toPrimitive((Byte[]) arraySJO[id].object);
+        } else if (arraySJO[id].object instanceof ByteBuffer && !((ByteBuffer) arraySJO[id].object).isDirect()) {
+            return ((ByteBuffer) arraySJO[id].object).array();
         }
 
-        return (byte[]) (arraySJO[id].object);
+        return arraySJO[id].object;
     }
 
     /**
@@ -1610,14 +1619,16 @@ public class ScilabJavaObject {
      * @param id the Java Object id
      * @return the resulting unwrapping
      */
-    public static final char[] unwrapRowChar(final int id) {
+    public static final Object unwrapRowChar(final int id) {
         if (arraySJO[id].object instanceof List) {
             return ScilabJavaArray.toCharArray((List<Character>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Character[]) {
             return ScilabJavaArray.toPrimitive((Character[]) arraySJO[id].object);
+        } else if (arraySJO[id].object instanceof CharBuffer && !((CharBuffer) arraySJO[id].object).isDirect()) {
+            return ((CharBuffer) arraySJO[id].object).array();
         }
 
-        return (char[]) (arraySJO[id].object);
+        return arraySJO[id].object;
     }
 
     /**
@@ -1644,14 +1655,16 @@ public class ScilabJavaObject {
      * @param id the Java Object id
      * @return the resulting unwrapping
      */
-    public static final float[] unwrapRowFloat(final int id) {
+    public static final Object unwrapRowFloat(final int id) {
         if (arraySJO[id].object instanceof List) {
             return ScilabJavaArray.toFloatArray((List<Float>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Double[]) {
             return ScilabJavaArray.toPrimitive((Float[]) arraySJO[id].object);
+        } else if (arraySJO[id].object instanceof FloatBuffer && !((FloatBuffer) arraySJO[id].object).isDirect()) {
+            return ((FloatBuffer) arraySJO[id].object).array();
         }
 
-        return (float[]) (arraySJO[id].object);
+        return arraySJO[id].object;
     }
 
     /**
@@ -1678,14 +1691,16 @@ public class ScilabJavaObject {
      * @param id the Java Object id
      * @return the resulting unwrapping
      */
-    public static final long[] unwrapRowLong(final int id) {
+    public static final Object unwrapRowLong(final int id) {
         if (arraySJO[id].object instanceof List) {
             return ScilabJavaArray.toLongArray((List<Long>) arraySJO[id].object);
         } else if (arraySJO[id].object instanceof Long[]) {
             return ScilabJavaArray.toPrimitive((Long[]) arraySJO[id].object);
+        } else if (arraySJO[id].object instanceof LongBuffer && !((LongBuffer) arraySJO[id].object).isDirect()) {
+            return ((LongBuffer) arraySJO[id].object).array();
         }
 
-        return (long[]) (arraySJO[id].object);
+        return arraySJO[id].object;
     }
 
     /**
@@ -1735,6 +1750,31 @@ public class ScilabJavaObject {
 
                 return i;
             }
+        } else if (arraySJO[id].object instanceof Buffer) {
+            if (arraySJO[id].object instanceof DoubleBuffer) {
+                unwrappableType.put(arraySJO[id].clazz, 3);
+                return 3;
+            } else if (arraySJO[id].object instanceof ByteBuffer) {
+                unwrappableType.put(arraySJO[id].clazz, 12);
+                return 12;
+            } else if (arraySJO[id].object instanceof IntBuffer) {
+                unwrappableType.put(arraySJO[id].clazz, 24);
+                return 24;
+            } else if (arraySJO[id].object instanceof CharBuffer) {
+                unwrappableType.put(arraySJO[id].clazz, 21);
+                return 21;
+            } else if (arraySJO[id].object instanceof FloatBuffer) {
+                unwrappableType.put(arraySJO[id].clazz, 36);
+                return 36;
+            } else if (arraySJO[id].object instanceof LongBuffer) {
+                unwrappableType.put(arraySJO[id].clazz, 30);
+                return 30;
+            } else if (arraySJO[id].object instanceof ShortBuffer) {
+                unwrappableType.put(arraySJO[id].clazz, 18);
+                return 18;
+            }
+
+            return -1;
         } else {
             return -1;
         }

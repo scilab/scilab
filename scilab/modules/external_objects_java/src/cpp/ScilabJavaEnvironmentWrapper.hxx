@@ -79,6 +79,14 @@ class ScilabJavaEnvironmentWrapper : public ScilabAbstractEnvironmentWrapper
     jmethodID unwrapRowFloatID_;
     jmethodID unwrapMatFloatID_;
 
+    jmethodID wrapAsDirectByteBufferID_;
+    jmethodID wrapAsDirectDoubleBufferID_;
+    jmethodID wrapAsDirectIntBufferID_;
+    jmethodID wrapAsDirectCharBufferID_;
+    jmethodID wrapAsDirectFloatBufferID_;
+    jmethodID wrapAsDirectLongBufferID_;
+    jmethodID wrapAsDirectShortBufferID_;
+
 public:
 
     ScilabJavaEnvironmentWrapper(JavaOptionsHelper & _helper) : helper(_helper)
@@ -98,28 +106,36 @@ public:
         unwrapMatBooleanID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapMatBoolean", "(I)[[Z");
 
         unwrapByteID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapByte", "(I)B");
-        unwrapRowByteID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowByte", "(I)[B");
+        unwrapRowByteID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowByte", "(I)Ljava/lang/Object;");
         unwrapMatByteID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapMatByte", "(I)[[B");
 
         unwrapShortID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapShort", "(I)S");
-        unwrapRowShortID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowShort", "(I)[S");
+        unwrapRowShortID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowShort", "(I)Ljava/lang/Object;");
         unwrapMatShortID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapMatShort", "(I)[[S");
 
         unwrapIntID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapInt", "(I)I");
-        unwrapRowIntID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowInt", "(I)[I");
+        unwrapRowIntID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowInt", "(I)Ljava/lang/Object;");
         unwrapMatIntID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapMatInt", "(I)[[I");
 
         unwrapLongID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapLong", "(I)J");
-        unwrapRowLongID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowLong", "(I)[J");
+        unwrapRowLongID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowLong", "(I)Ljava/lang/Object;");
         unwrapMatLongID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapMatLong", "(I)[[J");
 
         unwrapDoubleID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapDouble", "(I)D");
-        unwrapRowDoubleID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowDouble", "(I)[D");
+        unwrapRowDoubleID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowDouble", "(I)Ljava/lang/Object;");
         unwrapMatDoubleID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapMatDouble", "(I)[[D");
 
         unwrapFloatID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapFloat", "(I)F");
-        unwrapRowFloatID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowFloat", "(I)[F");
+        unwrapRowFloatID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowFloat", "(I)Ljava/lang/Object;");
         unwrapMatFloatID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapMatFloat", "(I)[[F");
+
+        wrapAsDirectByteBufferID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "wrapAsDirectByteBuffer", "(Ljava/nio/ByteBuffer;)I");
+        wrapAsDirectDoubleBufferID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "wrapAsDirectDoubleBuffer", "(Ljava/nio/ByteBuffer;)I");
+        wrapAsDirectIntBufferID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "wrapAsDirectIntBuffer", "(Ljava/nio/ByteBuffer;)I");
+        wrapAsDirectCharBufferID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "wrapAsDirectCharBuffer", "(Ljava/nio/ByteBuffer;)I");
+        wrapAsDirectFloatBufferID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "wrapAsDirectFloatBuffer", "(Ljava/nio/ByteBuffer;)I");
+        wrapAsDirectLongBufferID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "wrapAsDirectLongBuffer", "(Ljava/nio/ByteBuffer;)I");
+        wrapAsDirectShortBufferID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "wrapAsDirectShortBuffer", "(Ljava/nio/ByteBuffer;)I");
     }
 
     ~ScilabJavaEnvironmentWrapper() { }
@@ -505,6 +521,31 @@ private:
         return unwrapMatFloatID_;
     }
 
+    inline const jmethodID getDBMethod(const char * x) const
+    {
+        return wrapAsDirectByteBufferID_;
+    }
+    inline const jmethodID getDBMethod(const double * x) const
+    {
+        return wrapAsDirectDoubleBufferID_;
+    }
+    inline const jmethodID getDBMethod(const int * x) const
+    {
+        return wrapAsDirectIntBufferID_;
+    }
+    inline const jmethodID getDBMethod(const float * x) const
+    {
+        return wrapAsDirectFloatBufferID_;
+    }
+    inline const jmethodID getDBMethod(const long long * x) const
+    {
+        return wrapAsDirectLongBufferID_;
+    }
+    inline const jmethodID getDBMethod(const short * x) const
+    {
+        return wrapAsDirectShortBufferID_;
+    }
+
     template <typename T>
     inline T CallStatic(JNIEnv * env_, const char * x, int javaID) const
     {
@@ -560,7 +601,7 @@ private:
     }
 
     template <typename T, typename U, typename V, class W>
-    inline void unwrapSingle(JavaVM * jvm_, const int javaID, const W & allocator, const bool mustAlloc = true) const
+    inline void unwrapSingle(JavaVM * jvm_, const int javaID, const W & allocator, const bool mustAlloc = false) const
     {
         JNIEnv * curEnv = NULL;
         U* addr = 0;
@@ -576,12 +617,12 @@ private:
 
         if (mustAlloc)
         {
-            addr = allocator.allocate(1, 1, 0);
+            addr = reinterpret_cast<U *>(allocator.allocate(1, 1, 0));
             *addr = static_cast<U>(res);
         }
         else
         {
-            allocator.allocate(1, 1, reinterpret_cast<U *>(&res));
+            allocator.allocate(1, 1, reinterpret_cast<V *>(&res));
         }
     }
 
@@ -592,62 +633,103 @@ private:
     }
 
     template <typename T, typename U, typename V, class W>
-    inline void unwrapRow(JavaVM * jvm_, const int javaID, const W & allocator, const bool mustAlloc = true) const
+    inline void unwrapRow(JavaVM * jvm_, const int javaID, const W & allocator, const bool mustAlloc = false) const
     {
         jint lenRow;
         jboolean isCopy = JNI_FALSE;
         JNIEnv * curEnv = NULL;
         U* addr = 0;
+        jobject res = 0;
+        jobjectArray array = 0;
+        void * buffer = 0;
 
         jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 
-        jobjectArray res = static_cast<jobjectArray>(curEnv->CallStaticObjectMethod(ScilabJavaObjectClass_, getRowMethod((V *)addr), javaID));
+        res = curEnv->CallStaticObjectMethod(ScilabJavaObjectClass_, getRowMethod((V *)addr), javaID);
         if (curEnv->ExceptionCheck())
         {
             curEnv->DeleteLocalRef(res);
             throw GiwsException::JniCallMethodException(curEnv);
         }
 
-        lenRow = curEnv->GetArrayLength(res);
-
-        if (mustAlloc)
+        buffer = curEnv->GetDirectBufferAddress(res);
+        if (buffer)
         {
-            try
+            const jlong len = curEnv->GetDirectBufferCapacity(res);
+            V * resultsArray = (V *)buffer;
+            if (mustAlloc)
             {
-                addr = allocator.allocate(1, lenRow, 0);
+                try
+                {
+                    addr = reinterpret_cast<U* >(allocator.allocate(1, len, 0));
+                    for (jlong i = 0; i < len; i++)
+                    {
+                        addr[i] = static_cast<U>(resultsArray[i]);
+                    }
+                }
+                catch (const ScilabAbstractEnvironmentException & e)
+                {
+                    curEnv->DeleteLocalRef(res);
+                    throw;
+                }
             }
-            catch (const ScilabAbstractEnvironmentException & e)
+            else
             {
-                curEnv->DeleteLocalRef(res);
-                throw;
-            }
-        }
-
-        T * resultsArray = static_cast<T *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
-
-        if (mustAlloc)
-        {
-            for (int i = 0; i < lenRow; i++)
-            {
-                addr[i] = static_cast<U>(resultsArray[i]);
+                try
+                {
+                    allocator.allocate(1, len, reinterpret_cast<V *>(resultsArray));
+                }
+                catch (const ScilabAbstractEnvironmentException & e)
+                {
+                    curEnv->DeleteLocalRef(res);
+                    throw;
+                }
             }
         }
         else
         {
-            try
-            {
-                allocator.allocate(1, lenRow, reinterpret_cast<U *>(resultsArray));
-            }
-            catch (const ScilabAbstractEnvironmentException & e)
-            {
-                curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
-                curEnv->DeleteLocalRef(res);
-                throw;
-            }
-        }
+            array = static_cast<jobjectArray>(res);
+            lenRow = curEnv->GetArrayLength(array);
 
-        curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
-        curEnv->DeleteLocalRef(res);
+            if (mustAlloc)
+            {
+                try
+                {
+                    addr = reinterpret_cast<U *>(allocator.allocate(1, lenRow, 0));
+                }
+                catch (const ScilabAbstractEnvironmentException & e)
+                {
+                    curEnv->DeleteLocalRef(array);
+                    throw;
+                }
+            }
+
+            T * resultsArray = static_cast<T *>(curEnv->GetPrimitiveArrayCritical(array, &isCopy));
+
+            if (mustAlloc)
+            {
+                for (int i = 0; i < lenRow; i++)
+                {
+                    addr[i] = static_cast<U>(resultsArray[i]);
+                }
+            }
+            else
+            {
+                try
+                {
+                    allocator.allocate(1, lenRow, reinterpret_cast<V *>(resultsArray));
+                }
+                catch (const ScilabAbstractEnvironmentException & e)
+                {
+                    curEnv->ReleasePrimitiveArrayCritical(array, resultsArray, JNI_ABORT);
+                    curEnv->DeleteLocalRef(array);
+                    throw;
+                }
+            }
+
+            curEnv->ReleasePrimitiveArrayCritical(array, resultsArray, JNI_ABORT);
+            curEnv->DeleteLocalRef(array);
+        }
         if (curEnv->ExceptionCheck())
         {
             throw GiwsException::JniCallMethodException(curEnv);
@@ -727,6 +809,24 @@ private:
         {
             throw GiwsException::JniCallMethodException(curEnv);
         }
+    }
+
+    template<typename T>
+    inline int wrapAsDirectBuffer(JavaVM * jvm_, T * data, const int size) const
+    {
+        JNIEnv * curEnv = NULL;
+        jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+
+        jobject dbuffer = curEnv->NewDirectByteBuffer((void*)data, (jlong)(size * sizeof(T)));
+        int id = static_cast<jint>(curEnv->CallStaticIntMethod(ScilabJavaObjectClass_, getDBMethod(data), dbuffer));
+
+        curEnv->DeleteLocalRef(dbuffer);
+        if (curEnv->ExceptionCheck())
+        {
+            throw GiwsException::JniCallMethodException(curEnv);
+        }
+
+        return id;
     }
 };
 }

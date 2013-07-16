@@ -92,6 +92,8 @@ public:
 
     static int invoke(char * fname, const int envId, void * pvApiCtx);
 
+    static int invoke_asref(char * fname, const int envId, void * pvApiCtx);
+
     static int invoke(char * fname, const int envId, ScilabAbstractInvoker & invoker, void * pvApiCtx);
 
     static int invoke_lu(char * fname, const int envId, void * pvApiCtx);

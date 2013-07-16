@@ -15,7 +15,7 @@
 namespace org_modules_external_objects
 {
 
-int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
+int ScilabGateway::invoke_asref(char * fname, const int envId, void * pvApiCtx)
 {
     SciErr err;
     int * tmpvar = 0;
@@ -25,7 +25,6 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
     int * ret = 0;
     char * methName = 0;
     int nbArgs = Rhs - 2;
-    std::vector<int> torem;
 
     if (Rhs < 2)
     {
@@ -68,21 +67,26 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
 
     for (int i = 0; i < Rhs - 2; i++)
     {
-        err = getVarAddressFromPosition(pvApiCtx, i + 3, &addr);
-        if (err.iErr)
-        {
-            delete[] args;
-            ScilabObjects::removeTemporaryVars(envId, tmpvar);
-            delete[] tmpvar;
-            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
-        }
+        char * varName = 0;
 
         try
         {
-            args[i] = ScilabObjects::getArgumentId(addr, tmpvar, false, false, envId, pvApiCtx);
+            char * varName =  ScilabObjects::getSingleString(i + 3, pvApiCtx);
+            err = getVarAddressFromName(pvApiCtx, varName, &addr);
+            if (err.iErr)
+            {
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+            }
+
+            args[i] = ScilabObjects::getArgumentId(addr, tmpvar, true, false, envId, pvApiCtx);
         }
         catch (ScilabAbstractEnvironmentException & e)
         {
+            if (varName)
+            {
+                freeAllocatedSingleString(varName);
+            }
+
             delete[] args;
             ScilabObjects::removeTemporaryVars(envId, tmpvar);
             delete[] tmpvar;
@@ -92,6 +96,11 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
         if (args[i] == VOID_OBJECT)
         {
             nbArgs = 0;
+        }
+
+        if (varName)
+        {
+            freeAllocatedSingleString(varName);
         }
     }
 
@@ -139,7 +148,6 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
 
     if (helper.getAutoUnwrap())
     {
-        torem.reserve(*ret);
         for (int i = 1; i <= *ret; i++)
         {
             if (!ScilabObjects::unwrap(ret[i], Rhs + i, envId, pvApiCtx))
@@ -150,26 +158,20 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
                 }
                 catch (ScilabAbstractEnvironmentException & e)
                 {
-                    if (!torem.empty())
+                    for (int j = 1; j <= *ret; j++)
                     {
-                        env.removeobject(&(torem[0]), torem.size());
+                        env.removeobject(ret[j]);
                     }
-                    env.removeobject(ret + 1, *ret);
                     delete[] ret;
                     throw;
                 }
             }
             else
             {
-                torem.push_back(ret[i]);
+                env.removeobject(ret[i]);
             }
 
             LhsVar(i) = Rhs + i;
-        }
-
-        if (!torem.empty())
-        {
-            env.removeobject(&(torem[0]), torem.size());
         }
     }
     else
@@ -182,7 +184,10 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
             }
             catch (ScilabAbstractEnvironmentException & e)
             {
-                env.removeobject(ret + 1, *ret);
+                for (int j = 1; j <= *ret; j++)
+                {
+                    env.removeobject(ret[j]);
+                }
                 delete[] ret;
                 throw;
             }

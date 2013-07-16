@@ -35,18 +35,33 @@ VariableType ScilabJavaEnvironmentWrapper::isunwrappable(int id) const
 int ScilabJavaEnvironmentWrapper::wrap(double * x, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, 1);
+    }
+
     return wrap(vm, x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(double * x, int xSize, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, xSize);
+    }
+
     return wrap(vm, x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(double * x, int xSize, int xSizeCol, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, xSize * xSizeCol);
+    }
+
     return wrap(vm, x, xSize, xSizeCol);
 }
 
@@ -78,108 +93,198 @@ int ScilabJavaEnvironmentWrapper::wrap(double * re, double * im, int xSize, int 
 int ScilabJavaEnvironmentWrapper::wrap(char * x, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, 1);
+    }
+
     return wrap(vm, (byte *)x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(char * x, int xSize, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, xSize);
+    }
+
     return wrap(vm, (byte *)x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(char * x, int xSize, int xSizeCol, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, xSize * xSizeCol);
+    }
+
     return wrap(vm, (byte *)x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned char * x, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, (char *)x, 1);
+    }
+
     return wrap(vm, (byte *)x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned char * x, int xSize, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, (char *)x, xSize);
+    }
+
     return wrap(vm, (byte *)x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned char * x, int xSize, int xSizeCol, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, (char *)x, xSize * xSizeCol);
+    }
+
     return wrap(vm, (byte *)x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(short * x, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, 1);
+    }
+
     return wrap(vm, x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(short * x, int xSize, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, xSize);
+    }
+
     return wrap(vm, x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(short * x, int xSize, int xSizeCol, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, xSize * xSizeCol);
+    }
+
     return wrap(vm, x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned short * x, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, (short *)x, 1);
+    }
+
     return wrap(vm, (short *)x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned short * x, int xSize, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, (short *)x, xSize);
+    }
+
     return wrap(vm, (short *)x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned short * x, int xSize, int xSizeCol, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, (short *)x, xSize * xSizeCol);
+    }
+
     return wrap(vm, (short *)x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(int * x, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, 1);
+    }
+
     return wrap(vm, x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(int * x, int xSize, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, xSize);
+    }
+
     return wrap(vm, x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(int * x, int xSize, int xSizeCol, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, xSize * xSizeCol);
+    }
+
     return wrap(vm, x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned int * x, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, (int *)x, 1);
+    }
+
     return wrap(vm, (int *)x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned int * x, int xSize, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, (int *)x, xSize);
+    }
+
     return wrap(vm, (int *)x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned int * x, int xSize, int xSizeCol, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, (int *)x, xSize * xSizeCol);
+    }
+
     return wrap(vm, (int *)x, xSize, xSizeCol);
 }
 
@@ -188,36 +293,66 @@ int ScilabJavaEnvironmentWrapper::wrap(unsigned int * x, int xSize, int xSizeCol
 int ScilabJavaEnvironmentWrapper::wrap(long long * x, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, 1);
+    }
+
     return wrap(vm, x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(long long * x, int xSize, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, xSize);
+    }
+
     return wrap(vm, x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(long long * x, int xSize, int xSizeCol, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, xSize * xSizeCol);
+    }
+
     return wrap(vm, x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned long long * x, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, (long long *)x, 1);
+    }
+
     return wrap(vm, (long long *)x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned long long * x, int xSize, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, (long long *)x, xSize);
+    }
+
     return wrap(vm, (long long *)x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned long long * x, int xSize, int xSizeCol, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, (long long *)x, xSize * xSizeCol);
+    }
+
     return wrap(vm, (long long *)x, xSize, xSizeCol);
 }
 
@@ -244,18 +379,33 @@ int ScilabJavaEnvironmentWrapper::wrap(char ** x, int xSize, int xSizeCol, const
 int ScilabJavaEnvironmentWrapper::wrapBool(int * x, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, 1);
+    }
+
     return wrap<int, bool>(vm, x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrapBool(int * x, int xSize, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, xSize);
+    }
+
     return wrap<int, bool>(vm, x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrapBool(int * x, int xSize, int xSizeCol, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
+    if (isRef)
+    {
+        return wrapAsDirectBuffer(vm, x, xSize * xSizeCol);
+    }
+
     return wrap<int, bool>(vm, x, xSize, xSizeCol);
 }
 
@@ -397,13 +547,13 @@ void ScilabJavaEnvironmentWrapper::unwrapmatuint(int id, const ScilabUIntStackAl
 void ScilabJavaEnvironmentWrapper::unwraplong(int id, const ScilabLongStackAllocator & allocator) const
 {
     JavaVM * vm = getScilabJavaVM();
-    unwrapSingle<jlong, long long, long long>(vm, id, allocator, false);
+    unwrapSingle<jlong, int, long long>(vm, id, allocator, true);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowlong(int id, const ScilabLongStackAllocator & allocator) const
 {
     JavaVM * vm = getScilabJavaVM();
-    unwrapRow<jlong, long long, long long>(vm, id, allocator, false);
+    unwrapRow<jlong, int, long long>(vm, id, allocator, true);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatlong(int id, const ScilabLongStackAllocator & allocator) const
@@ -430,13 +580,13 @@ void ScilabJavaEnvironmentWrapper::unwrapmatulong(int id, const ScilabULongStack
 void ScilabJavaEnvironmentWrapper::unwrapboolean(int id, const ScilabBooleanStackAllocator & allocator) const
 {
     JavaVM * vm = getScilabJavaVM();
-    unwrapSingle<jboolean, int, bool>(vm, id, allocator);
+    unwrapSingle<jboolean, int, bool>(vm, id, allocator, true);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowboolean(int id, const ScilabBooleanStackAllocator & allocator) const
 {
     JavaVM * vm = getScilabJavaVM();
-    unwrapRow<jboolean, int, bool>(vm, id, allocator);
+    unwrapRow<jboolean, int, bool>(vm, id, allocator, true);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatboolean(int id, const ScilabBooleanStackAllocator & allocator) const
@@ -587,13 +737,13 @@ void ScilabJavaEnvironmentWrapper::unwrapmatcomplex(int id, const ScilabComplexS
 void ScilabJavaEnvironmentWrapper::unwrapfloat(int id, const ScilabFloatStackAllocator & allocator) const
 {
     JavaVM * vm = getScilabJavaVM();
-    unwrapSingle<jfloat, float, float>(vm, id, allocator, false);
+    unwrapSingle<jfloat, double, float>(vm, id, allocator, true);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowfloat(int id, const ScilabFloatStackAllocator & allocator) const
 {
     JavaVM * vm = getScilabJavaVM();
-    unwrapRow<jfloat, float, float>(vm, id, allocator, false);
+    unwrapRow<jfloat, double, float>(vm, id, allocator, true);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatfloat(int id, const ScilabFloatStackAllocator & allocator) const
