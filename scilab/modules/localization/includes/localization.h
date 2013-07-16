@@ -28,6 +28,7 @@ extern "C" {
 
 
 #define _(String)  gettext(String)/** for console message*/
+#define _d(Domain, String)  dgettext(Domain, String)/** for console message*/
 #define _t(String1,String2,n) ngettext (String1,String2,n)
 
 #else

@@ -22,8 +22,9 @@ static gw_generic_table Tab[] =
     {sci_getlanguage, "getlanguage"},
     {sci_getdefaultlanguage, "getdefaultlanguage"},
     {sci_gettext, "gettext"},
-    {sci_dgettext, "dgettext"},
-    {sci_setdefaultlanguage, "setdefaultlanguage"}
+    {sci_gettext, "dgettext"},
+    {sci_setdefaultlanguage, "setdefaultlanguage"},
+    {sci_addlocalizationdomain, "addlocalizationdomain"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_localization(void)

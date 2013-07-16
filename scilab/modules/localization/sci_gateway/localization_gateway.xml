@@ -36,4 +36,5 @@
     <PRIMITIVE gatewayId="50" primitiveId="4" primitiveName="_" />
     <PRIMITIVE gatewayId="50" primitiveId="5" primitiveName="dgettext" />
     <PRIMITIVE gatewayId="50" primitiveId="6" primitiveName="setdefaultlanguage" />
+    <PRIMITIVE gatewayId="50" primitiveId="7" primitiveName="addlocalizationdomain" />
 </GATEWAY>

@@ -48,6 +48,11 @@ BDF methods with direct and preconditioned Krylov linear solvers, based on ODEPA
  - A user can now plot variables from the variable browser (already available in
   editvar).
 
+* Localization:
+ - Multiple domains in localization managed.
+ - Function addlocalizationdomain added.
+ - Optional parameter added to gettext to manage domains.
+
 * Windows Solution updated to Visual Studio 2012.
 
 * -keepconsole option added for Scilab Windows to facilitate debugging.
