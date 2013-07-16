@@ -382,17 +382,13 @@ VariableType ScilabJavaEnvironment::isunwrappable(int id)
 
 int ScilabJavaEnvironment::compilecode(char * className, char ** code, int size)
 {
-    std::ostringstream os;
-    for (int i = 0; i < size; i++)
-    {
-        os << code[i] << std::endl;
-    }
-    os.flush();
-
     JavaVM *vm = getScilabJavaVM();
     const int ret = ScilabJavaCompiler::compileCode(vm, className, code, size);
 
-    ScilabAutoCleaner::registerVariable(envId, ret);
+    if (ret != 0 && ret != -1)
+    {
+        ScilabAutoCleaner::registerVariable(envId, ret);
+    }
 
     return ret;
 }

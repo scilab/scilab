@@ -13,20 +13,26 @@
 package org.scilab.modules.external_objects_java;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
-import java.net.URLClassLoader;
 import java.net.URI;
+import java.net.URLClassLoader;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ServiceLoader;
 import java.util.logging.Level;
 
 import javax.tools.Diagnostic;
 import javax.tools.DiagnosticCollector;
+import javax.tools.FileObject;
+import javax.tools.ForwardingJavaFileManager;
 import javax.tools.JavaCompiler;
 import javax.tools.JavaFileObject;
 import javax.tools.SimpleJavaFileObject;
@@ -93,30 +99,49 @@ public class ScilabJavaCompiler {
     public static int compileCode(String className, String[] code) throws ScilabJavaException {
         findCompiler();
 
-        if (ScilabJavaObject.debug) {
-            ScilabJavaObject.logger.log(Level.INFO, "Compilation of class \'" + className + "\'");
+        DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
+        StandardJavaFileManager stdFileManager = compiler.getStandardFileManager(null, Locale.getDefault(), null);
+        ClassFileManager manager = new ClassFileManager(stdFileManager);
+        List<SimpleJavaFileObject> compilationUnits = new ArrayList<SimpleJavaFileObject>();
+        boolean isFile = true;
+        SourceString sourceString = null;
+        for (String s : code) {
+            File f = new File(s);
+            if (!f.exists() || !f.canRead()) {
+                isFile = false;
+                break;
+            }
         }
 
-        DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
+        if (isFile) {
+            for (String s : code) {
+                File f = new File(s);
+                compilationUnits.add(new SourceFile(f));
+            }
+        } else {
+            sourceString = new SourceString(className, code);
+            compilationUnits.add(sourceString);
+        }
 
-        SourceString file = new SourceString(className, code);
-        StandardJavaFileManager stdFileManager = compiler.getStandardFileManager(null, Locale.getDefault(), null);
-        Iterable <? extends JavaFileObject > compilationUnits = Arrays.asList(file);
         String[] compileOptions = new String[] {"-d", binpath} ;
         Iterable<String> options = Arrays.asList(compileOptions);
 
-        CompilationTask task = compiler.getTask(null, stdFileManager, diagnostics, options, null, compilationUnits);
-
+        CompilationTask task = compiler.getTask(null, manager, diagnostics, options, null, compilationUnits);
         boolean success = task.call();
-        StringBuffer buf = new StringBuffer();
-        for (Diagnostic diagnostic : diagnostics.getDiagnostics()) {
-            buf.append(diagnostic.toString());
-            buf.append("\n");
-        }
 
         if (success) {
-            return ScilabClassLoader.loadJavaClass(className, true);
+            if (isFile) {
+                return -1;
+            } else {
+                return ScilabClassLoader.loadJavaClass(manager.className, true);
+            }
         } else {
+            StringBuffer buf = new StringBuffer();
+            for (Diagnostic diagnostic : diagnostics.getDiagnostics()) {
+                buf.append(diagnostic.toString());
+                buf.append("\n");
+            }
+
             throw new ScilabJavaException(buf.toString());
         }
     }
@@ -148,7 +173,7 @@ public class ScilabJavaCompiler {
         private final String code;
 
         private SourceString(String className, String[] code) {
-            super(new File(binpath + "/" + className.replace('.', '/') + Kind.SOURCE.extension).toURI(), Kind.SOURCE);
+            super(URI.create("string:///" + className.replace('.', '/') + Kind.SOURCE.extension), Kind.SOURCE);
 
             StringBuffer buf = new StringBuffer();
             for (String str : code) {
@@ -160,6 +185,60 @@ public class ScilabJavaCompiler {
 
         public CharSequence getCharContent(boolean ignoreEncodingErrors) {
             return code;
+        }
+    }
+
+    /**
+     * Inner class to handle String as File
+     */
+    private static class SourceFile extends SimpleJavaFileObject {
+
+        final File f;
+
+        private SourceFile(File f) {
+            super(f.toURI(), Kind.SOURCE);
+            this.f = f;
+        }
+
+        public CharSequence getCharContent(boolean ignoreEncodingErrors) {
+            try {
+                FileReader reader = new FileReader(f);
+                char[] buffer = new char[1024];
+                StringBuffer sb = new StringBuffer();
+                int r;
+
+                while ((r = reader.read(buffer, 0, 1024)) != -1) {
+                    sb.append(buffer, 0, r);
+                }
+
+                reader.close();
+
+                return sb;
+            } catch (Exception e) {
+                return null;
+            }
+        }
+    }
+
+    private static class ClassFileManager extends ForwardingJavaFileManager {
+
+        String className;
+
+        public ClassFileManager(StandardJavaFileManager standardManager) {
+            super(standardManager);
+        }
+
+        @Override
+        public JavaFileObject getJavaFileForOutput(Location location, String className, Kind kind, FileObject sibling) throws IOException {
+            if (sibling instanceof SourceString) {
+                this.className = className;
+            }
+
+            if (ScilabJavaObject.debug) {
+                ScilabJavaObject.logger.log(Level.INFO, "Compilation of class \'" + className + "\'");
+            }
+
+            return super.getJavaFileForOutput(location, className, kind, sibling);
         }
     }
 }
