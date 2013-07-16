@@ -348,10 +348,8 @@ static bool read_string(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo
         _pInfo->iSize += (int)strlen(pstData[i]) * 4;
     }
 
-    for (int i = 0 ; i < iSize ; i++)
-    {
-        free(pstData[i]);
-    }
+
+    freeStringMatrix(_iDatasetId, pstData);
     FREE(pstData);
     //always full double size
     _pInfo->iSize += (8 - (_pInfo->iSize % 8));
