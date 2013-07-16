@@ -27,6 +27,7 @@ public class ColorMap {
 
     private static final float[] BLACK_COLOR = new float[] {0, 0, 0};
     private static final float[] WHITE_COLOR = new float[] {1, 1, 1};
+    private static final float[] LIGHT_GRAY_COLOR = new float[] {0.7f, 0.7f, 0.7f};
 
     /**
      * The data of this ColorMap.
@@ -90,8 +91,9 @@ public class ColorMap {
         if (index > lastScilabIndex) {
             index = lastScilabIndex - index;
         }
-
-        if (index == -1 || index < -2) {
+        if (index == -3) {
+            return LIGHT_GRAY_COLOR;
+        } else if (index == -1 || index < -2) {
             return BLACK_COLOR;
         } else if (index == -2) {
             return WHITE_COLOR;
