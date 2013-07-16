@@ -258,4 +258,11 @@
             <param type="String[]" name="code" />
         </method>
     </object>
+    
+    <object name="ScilabOperations">
+        <method name="add" returnType="int" modifier="static">
+            <param type="int" name="idA" />
+            <param type="int" name="idB" />
+        </method>
+    </object>
 </package>

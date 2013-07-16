@@ -23,6 +23,7 @@
 #include "ScilabJavaObject.hxx"
 #include "ScilabJavaArray.hxx"
 #include "ScilabJavaCompiler.hxx"
+#include "ScilabOperations.hxx"
 #include "NoMoreScilabMemoryException.hxx"
 #include "ScilabAutoCleaner.hxx"
 
@@ -65,7 +66,8 @@ int ScilabJavaEnvironment::start()
         instance->Initialize();
         instance->helper.setUseLastName(true);
         instance->helper.setNewAllowed(true);
-        instance->enabletrace((std::string(getTMPDIR()) + std::string("/eo_java.log")).c_str());
+        //instance->enabletrace((std::string(getTMPDIR()) + std::string("/eo_java.log")).c_str());
+        //instance->enabletrace(std::string("/tmp/eo_java.log").c_str());
     }
 
     return envId;
@@ -233,9 +235,24 @@ int ScilabJavaEnvironment::newinstance(int id, int * args, int argsSize)
 
 int ScilabJavaEnvironment::operation(int idA, int idB, const OperatorsType type)
 {
-    // TODO: plug String concatenation and maybe others things like operations on double, int, ...
+    JavaVM *vm = getScilabJavaVM();
+    int ret;
 
-    return 0;
+    switch (type)
+    {
+        case Add :
+            ret = ScilabOperations::add(vm, idA, idB);
+            break;
+        default :
+            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid operation"));
+    }
+
+    if (ret != 0 && ret != -1)
+    {
+        ScilabAutoCleaner::registerVariable(envId, ret);
+    }
+
+    return ret;
 }
 
 int * ScilabJavaEnvironment::invoke(int id, const char * methodName, int * args, int argsSize)

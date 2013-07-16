@@ -37,7 +37,8 @@ src/jni/ScilabJavaArray.cpp \
 src/jni/ScilabJavaCompiler.cpp \
 src/jni/ScilabJavaClass.cpp \
 src/jni/ScilabJavaObject.cpp \
-src/jni/ScilabClassLoader.cpp
+src/jni/ScilabClassLoader.cpp \
+src/jni/ScilabOperations.cpp
 
 #src/cpp/ScilabObjectsCPP.cpp
 # src/cpp/WrapAsDirectBuffer.cpp

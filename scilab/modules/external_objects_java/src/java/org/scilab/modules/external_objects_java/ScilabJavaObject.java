@@ -1070,7 +1070,7 @@ public class ScilabJavaObject {
     public static final void removeScilabJavaObject(final int id) {
         if (id > 0 && arraySJO[id] != null) {
             if (debug) {
-                logger.log(Level.INFO, "Remove object id=" + id + " (" + java.util.Arrays.deepToString(new Object[] {freePlace.getCurrentFreePlace()})  + ")");
+                logger.log(Level.INFO, "Remove object id=" + id);
             }
             freePlace.addFreePlace(id);
             if (arraySJO[id] instanceof ScilabJavaClass) {
