@@ -76,10 +76,10 @@ public final class GlobalEventWatcher {
      * Disable the global watcher
      */
     public static void disable() {
-		Toolkit.getDefaultToolkit().removeAWTEventListener(GlobalEventWatcher.keyWatcher);
-		Toolkit.getDefaultToolkit().removeAWTEventListener(GlobalEventWatcher.mouseWatcher);
-		activated = false;
-		catchingCallback = false;
+        Toolkit.getDefaultToolkit().removeAWTEventListener(GlobalEventWatcher.keyWatcher);
+        Toolkit.getDefaultToolkit().removeAWTEventListener(GlobalEventWatcher.mouseWatcher);
+        activated = false;
+        catchingCallback = false;
     }
 
     /**
@@ -99,15 +99,15 @@ public final class GlobalEventWatcher {
     }
 
     public static void enableCatchingCallback() {
-        catchingCallback = true;  
+        catchingCallback = true;
     }
 
     public static void disableableCatchingCallback() {
-        catchingCallback = false;  
+        catchingCallback = false;
     }
 
     public static boolean isCatchingCallback() {
-        return catchingCallback;  
+        return catchingCallback;
     }
-    
+
 }

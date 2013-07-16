@@ -29,7 +29,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 public class Legend extends ClippableTextObject {
     /** Legend properties names */
     private enum LegendProperty { LINKS, LINKSCOUNT, LEGENDLOCATION, POSITION , SIZE};
-    
+
     /** Legend location */
     public enum LegendLocation { IN_UPPER_RIGHT, IN_UPPER_LEFT, IN_LOWER_RIGHT, IN_LOWER_LEFT,
                                  OUT_UPPER_RIGHT, OUT_UPPER_LEFT, OUT_LOWER_RIGHT, OUT_LOWER_LEFT,
@@ -69,7 +69,7 @@ public class Legend extends ClippableTextObject {
         }
     }
                                };
-    
+
     /** List of the polylines referred to */
     private ArrayList <String> links;
 
@@ -103,18 +103,18 @@ public class Legend extends ClippableTextObject {
      */
     public Object getPropertyFromName(int propertyName) {
         switch (propertyName) {
-        case __GO_LINKS__ :
-            return LegendProperty.LINKS;
-        case __GO_LINKS_COUNT__ :
-            return LegendProperty.LINKSCOUNT;
-        case __GO_LEGEND_LOCATION__ :
-            return LegendProperty.LEGENDLOCATION;
-        case __GO_POSITION__ :
-            return LegendProperty.POSITION;
-        case __GO_SIZE__ :
-            return LegendProperty.SIZE;
-        default :
-            return super.getPropertyFromName(propertyName);
+            case __GO_LINKS__ :
+                return LegendProperty.LINKS;
+            case __GO_LINKS_COUNT__ :
+                return LegendProperty.LINKSCOUNT;
+            case __GO_LEGEND_LOCATION__ :
+                return LegendProperty.LEGENDLOCATION;
+            case __GO_POSITION__ :
+                return LegendProperty.POSITION;
+            case __GO_SIZE__ :
+                return LegendProperty.SIZE;
+            default :
+                return super.getPropertyFromName(propertyName);
         }
     }
 
@@ -139,7 +139,7 @@ public class Legend extends ClippableTextObject {
         } else if (property == LegendProperty.SIZE) {
             return getSize();
         } else {
-            return super.getProperty(property);    
+            return super.getProperty(property);
         }
     }
 
@@ -263,7 +263,7 @@ public class Legend extends ClippableTextObject {
      * @return the dimensions of the text array
      */
     public Integer[] getValidTextArrayDimensions() {
-        return new Integer[]{getValidLinksCount(), 1};
+        return new Integer[] {getValidLinksCount(), 1};
     }
 
     /**
@@ -278,7 +278,7 @@ public class Legend extends ClippableTextObject {
 
         /* Text strings are stored in reverse order relative to links. */
         for (int i = 0; i < links.size(); i++) {
-            GraphicObject object = (GraphicObject) GraphicController.getController().getObjectFromId(links.get(links.size()-i-1));
+            GraphicObject object = (GraphicObject) GraphicController.getController().getObjectFromId(links.get(links.size() - i - 1));
 
             if (object != null) {
                 validStrings.add(text[i].getText());
@@ -313,7 +313,7 @@ public class Legend extends ClippableTextObject {
         this.position[0] = position[0];
         this.position[1] = position[1];
     }
-    
+
     /**
      * @return the size
      */
@@ -325,9 +325,9 @@ public class Legend extends ClippableTextObject {
         return retSize;
     }
 
-        /**
-     * @param size the size to set
-     */
+    /**
+    * @param size the size to set
+    */
     public void setSize(Double[] size) {
         this.size[0] = size[0];
         this.size[1] = size[1];

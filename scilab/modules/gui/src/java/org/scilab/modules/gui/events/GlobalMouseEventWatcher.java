@@ -33,10 +33,10 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
     private long eventMask;
     private SciTranslator clickTranslator;
     private MouseEvent lastMouse;
-    
-    // Match through Canonical name to have both GLCanvas and GLJPanel wrapper. 
+
+    // Match through Canonical name to have both GLCanvas and GLJPanel wrapper.
     private final String ScilabOpenGLComponentCanonicalName = "org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl";
-    
+
     /**
      * Constructor.
      *
@@ -165,8 +165,8 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
          */
         if (mouseEvent.getID() == MouseEvent.MOUSE_RELEASED && inCanvas
                 && mouseEvent.getSource().getClass().getCanonicalName().contains(ScilabOpenGLComponentCanonicalName)
-                && (clickTranslator.getClickAction() == SciTranslator.UNMANAGED 
-                || clickTranslator.getClickAction() == SciTranslator.MOVED)) {
+                && (clickTranslator.getClickAction() == SciTranslator.UNMANAGED
+                    || clickTranslator.getClickAction() == SciTranslator.MOVED)) {
             clickTranslator.setClickAction(SciTranslator.RELEASED);
             mouseEventFilter(lastMouse, GlobalEventWatcher.getAxesUID(), clickTranslator.getClickAction(), this.isControlDown);
         }

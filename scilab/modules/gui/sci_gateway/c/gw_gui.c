@@ -66,8 +66,8 @@ static gw_generic_table Tab[] =
     {sci_openged, "openged"},
     {sci_datatipcreate, "datatipCreate"},
     {sci_datatipremove, "datatipRemove"},
-    {sci_plotbrowser,"plotbrowser"},
-    {sci_datatip_manager_mode,"datatipManagerMode"}
+    {sci_plotbrowser, "plotbrowser"},
+    {sci_datatip_manager_mode, "datatipManagerMode"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)

@@ -288,46 +288,46 @@ public abstract class GraphicObject implements Cloneable {
 
         GraphicObjectPropertyType p = (GraphicObjectPropertyType) property;
         switch (p) {
-        case PARENT:
-            return getParent();
-        case CHILDREN:
-            return getChildren();
-        case CHILDREN_COUNT:
-            return children.size();
-        case VALID:
-            return isValid();
-        case HIDDEN:
-            return isHidden();
-        case VISIBLE:
-            return getVisible();
-        case USERDATA:
-            return getUserData();
-        case USERDATASIZE:
-            return getUserDataSize();
-        case PARENT_FIGURE:
-            return getParentFigure();
-        case PARENT_AXES:
-            return getParentAxes();
-        case HASLEGENDCHILD:
-            return getHasLegendChild();
-        case LEGENDCHILD:
-            return getLegendChild();
-        case SELECTEDCHILD:
-            return getSelectedChild();
-        case TYPE:
-            return getType();
-        case DATA:
-            return getIdentifier();
-        case TAG:
-            return getTag();
-        case CALLBACK:
-            return getCallbackString();
-        case CALLBACKTYPE:
-            return getCallbackType();
-        case UNKNOWNPROPERTY:
-            return null;
-        default:
-            return null;
+            case PARENT:
+                return getParent();
+            case CHILDREN:
+                return getChildren();
+            case CHILDREN_COUNT:
+                return children.size();
+            case VALID:
+                return isValid();
+            case HIDDEN:
+                return isHidden();
+            case VISIBLE:
+                return getVisible();
+            case USERDATA:
+                return getUserData();
+            case USERDATASIZE:
+                return getUserDataSize();
+            case PARENT_FIGURE:
+                return getParentFigure();
+            case PARENT_AXES:
+                return getParentAxes();
+            case HASLEGENDCHILD:
+                return getHasLegendChild();
+            case LEGENDCHILD:
+                return getLegendChild();
+            case SELECTEDCHILD:
+                return getSelectedChild();
+            case TYPE:
+                return getType();
+            case DATA:
+                return getIdentifier();
+            case TAG:
+                return getTag();
+            case CALLBACK:
+                return getCallbackString();
+            case CALLBACKTYPE:
+                return getCallbackType();
+            case UNKNOWNPROPERTY:
+                return null;
+            default:
+                return null;
         }
     }
 
@@ -344,44 +344,44 @@ public abstract class GraphicObject implements Cloneable {
 
         GraphicObjectPropertyType p = (GraphicObjectPropertyType) property;
         switch (p) {
-        case PARENT:
-            setParent((String) value);
-            break;
-        case CHILDREN:
-            setChildren((String[]) value);
-            break;
-        case VALID:
-            setValid((Boolean) value);
-            break;
-        case HIDDEN:
-            setHidden((Boolean) value);
-            break;
-        case VISIBLE:
-            setVisible((Boolean) value);
-            break;
-        case USERDATA:
-            setUserData((Integer[]) value);
-            break;
-        case USERDATASIZE:
-            return UpdateStatus.Fail;
-        case SELECTEDCHILD:
-            setSelectedChild((String) value);
-            break;
-        case DATA:
-            return UpdateStatus.Success;
-        case TAG:
-            setTag((String) value);
-            break;
-        case CALLBACK:
-            setCallbackString((String) value);
-            break;
-        case CALLBACKTYPE:
-            setCallbackType((Integer) value);
-            break;
-        case UNKNOWNPROPERTY:
-            return UpdateStatus.Fail;
-        default:
-            return UpdateStatus.Success;
+            case PARENT:
+                setParent((String) value);
+                break;
+            case CHILDREN:
+                setChildren((String[]) value);
+                break;
+            case VALID:
+                setValid((Boolean) value);
+                break;
+            case HIDDEN:
+                setHidden((Boolean) value);
+                break;
+            case VISIBLE:
+                setVisible((Boolean) value);
+                break;
+            case USERDATA:
+                setUserData((Integer[]) value);
+                break;
+            case USERDATASIZE:
+                return UpdateStatus.Fail;
+            case SELECTEDCHILD:
+                setSelectedChild((String) value);
+                break;
+            case DATA:
+                return UpdateStatus.Success;
+            case TAG:
+                setTag((String) value);
+                break;
+            case CALLBACK:
+                setCallbackString((String) value);
+                break;
+            case CALLBACKTYPE:
+                setCallbackType((Integer) value);
+                break;
+            case UNKNOWNPROPERTY:
+                return UpdateStatus.Fail;
+            default:
+                return UpdateStatus.Success;
         }
 
         return UpdateStatus.Success;
@@ -427,7 +427,7 @@ public abstract class GraphicObject implements Cloneable {
      * @param child the identifier of the added child.
      */
     public void addChild(String child) {
-	children.add(0, child);
+        children.add(0, child);
     }
 
     /**
