@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -15,6 +16,7 @@
 #include "context.hxx"
 #include "string.hxx"
 #include "bool.hxx"
+#include "double.hxx"
 
 extern "C"
 {
@@ -28,13 +30,6 @@ enum ScopeRange
     NoLocal,
     All,
     UnknownRange
-};
-
-enum PrivateResult
-{
-    VariableFound,
-    VariableNotFound,
-    FunctionFailed
 };
 
 static ScopeRange getScopeFromOption(const wchar_t *_psScope)
@@ -55,92 +50,105 @@ static ScopeRange getScopeFromOption(const wchar_t *_psScope)
     return UnknownRange;
 }
 
-static PrivateResult sci_existsOrIsdef(types::typed_list &in, const char *fname)
+types::Function::ReturnValue sci_existsOrIsdef(types::typed_list &in, int _iRetCount, types::typed_list &out, const char* fname)
 {
+    types::String* pStrIn       = NULL;
+
     if (in.size() != 1 && in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), fname, 1, 2);
-        return FunctionFailed;
+        return types::Function::Error;
     }
 
-    if (!in[0]->isString() || in[0]->getAs<types::String>()->getSize() != 1)
+    if (!in[0]->isString())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, 1);
-        return FunctionFailed;
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        return types::Function::Error;
     }
 
     if (in.size() == 2 && (!in[1]->isString() || in[1]->getAs<types::String>()->getSize() != 1))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), fname, 2);
-        return FunctionFailed;
+        return types::Function::Error;
     }
 
-    const wchar_t *psScope = NULL;
+    const wchar_t *psScope = L"all"; // Default option is "all"
     if (in.size() == 2)
     {
-        psScope = in[1]->getAs<types::String>()->get(0, 0);
+        psScope = in[1]->getAs<types::String>()->get(0);
+    }
+
+    pStrIn  = in[0]->getAs<types::String>();
+    if (strcmp(fname, "exists") == 0)
+    {
+        types::Double* pDblOut = new types::Double(pStrIn->getDims(), pStrIn->getDimsArray());
+        switch (getScopeFromOption(psScope))
+        {
+            case All:
+                for (int i = 0; i < pStrIn->getSize(); i++)
+                {
+                    symbol::Context::getInstance()->get(symbol::Symbol(pStrIn->get(i))) ? pDblOut->set(i, 1) : pDblOut->set(i, 0);
+                }
+                break;
+            case Local:
+                for (int i = 0; i < pStrIn->getSize(); i++)
+                {
+                    symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(pStrIn->get(i))) ? pDblOut->set(i, 1) : pDblOut->set(i, 0);
+                }
+                break;
+            case NoLocal:
+                for (int i = 0; i < pStrIn->getSize(); i++)
+                {
+                    symbol::Context::getInstance()->getAllButCurrentLevel(symbol::Symbol(pStrIn->get(i))) ? pDblOut->set(i, 1) : pDblOut->set(i, 0);
+                }
+                break;
+            default :
+                Scierror(36, _("%s: Wrong input argument %d.\n"), fname, 2);
+                return types::Function::Error;
+        }
+
+        out.push_back(pDblOut);
     }
     else
     {
-        // Default option is "all"
-        psScope = L"all";
+        types::Bool* pBOut = new types::Bool(pStrIn->getDims(), pStrIn->getDimsArray());
+        switch (getScopeFromOption(psScope))
+        {
+            case All:
+                for (int i = 0; i < pStrIn->getSize(); i++)
+                {
+                    symbol::Context::getInstance()->get(symbol::Symbol(pStrIn->get(i))) ? pBOut->set(i, 1) : pBOut->set(i, 0);
+                }
+                break;
+            case Local:
+                for (int i = 0; i < pStrIn->getSize(); i++)
+                {
+                    symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(pStrIn->get(i))) ? pBOut->set(i, 1) : pBOut->set(i, 0);
+                }
+                break;
+            case NoLocal:
+                for (int i = 0; i < pStrIn->getSize(); i++)
+                {
+                    symbol::Context::getInstance()->getAllButCurrentLevel(symbol::Symbol(pStrIn->get(i))) ? pBOut->set(i, 1) : pBOut->set(i, 0);
+                }
+                break;
+            default :
+                Scierror(36, _("%s: Wrong input argument %d.\n"), fname, 2);
+                return types::Function::Error;
+        }
+
+        out.push_back(pBOut);
     }
 
-
-    types::InternalType *pitReturn = NULL;
-    switch (getScopeFromOption(psScope))
-    {
-        case All:
-            pitReturn = symbol::Context::getInstance()->get(symbol::Symbol(in[0]->getAs<types::String>()->get(0, 0)));
-            break;
-        case Local:
-            pitReturn = symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(in[0]->getAs<types::String>()->get(0, 0)));
-            break;
-        case NoLocal:
-            pitReturn = symbol::Context::getInstance()->getAllButCurrentLevel(symbol::Symbol(in[0]->getAs<types::String>()->get(0, 0)));
-            break;
-        default :
-            Scierror(36, _("%s: Wrong input argument %d.\n"), fname, 2);
-            return FunctionFailed;
-    }
-
-
-    if (pitReturn != NULL)
-    {
-        return VariableFound;
-    }
-    else
-    {
-        return VariableNotFound;
-    }
+    return types::Function::OK;
 }
 
 types::Function::ReturnValue sci_exists(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    switch (sci_existsOrIsdef(in, "exists"))
-    {
-        case VariableFound :
-            out.push_back(new types::Double(1.0));
-            return types::Function::OK;
-        case VariableNotFound :
-            out.push_back(new types::Double(0.0));
-            return types::Function::OK;
-        default :
-            return types::Function::Error;
-    }
+    return sci_existsOrIsdef(in, _iRetCount, out, "exists");
 }
 
 types::Function::ReturnValue sci_isdef(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    switch (sci_existsOrIsdef(in, "isdef"))
-    {
-        case VariableFound :
-            out.push_back(new types::Bool(true));
-            return types::Function::OK;
-        case VariableNotFound :
-            out.push_back(new types::Bool(false));
-            return types::Function::OK;
-        default :
-            return types::Function::Error;
-    }
+    return sci_existsOrIsdef(in, _iRetCount, out, "isdef");
 }
