@@ -151,7 +151,7 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
         {
             H5Object & robj = obj->getData(nbIn - 1, index);
             //robj.createOnScilabStack(nbIn + 1, pvApiCtx);
-            robj.toScilab(pvApiCtx, nbIn + 1);
+            robj.toScilab(pvApiCtx, nbIn + 1, 0, 0, H5Options::isReadFlip());
         }
         /*        else if (obj->isReference())
                 {

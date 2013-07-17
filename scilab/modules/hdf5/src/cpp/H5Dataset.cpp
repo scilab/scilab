@@ -10,6 +10,7 @@
  *
  */
 
+#include "H5Options.hxx"
 #include "H5Dataset.hxx"
 #include "H5DataFactory.hxx"
 #include "H5Attribute.hxx"
@@ -135,7 +136,7 @@ void H5Dataset::getAccessibleAttribute(const std::string & _name, const int pos,
     else if (lower == "data")
     {
         const H5Data & data = const_cast<H5Dataset *>(this)->getData();
-        data.toScilab(pvApiCtx, pos);
+        data.toScilab(pvApiCtx, pos, 0, 0, H5Options::isReadFlip());
 
         if (data.mustDelete())
         {

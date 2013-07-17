@@ -117,8 +117,8 @@ void H5ArrayData::printData(std::ostream & os, const unsigned int pos, const uns
     delete &hdata;
 }
 
-void H5ArrayData::toScilab(void * pvApiCtx, const int lhsPosition, int * parentList, const int listPosition) const
+void H5ArrayData::toScilab(void * pvApiCtx, const int lhsPosition, int * parentList, const int listPosition, const bool flip) const
 {
-    H5Object::toScilab(pvApiCtx, lhsPosition, parentList, listPosition);
+    H5Object::toScilab(pvApiCtx, lhsPosition, parentList, listPosition, flip);
 }
 }

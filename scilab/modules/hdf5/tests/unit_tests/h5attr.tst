@@ -37,10 +37,10 @@ assert_checkerror("h5attr(a,""."",a.root.Attributes,int8(2))",msgerr,999);
 
 h5group(a,"Group_1");
 h5attr(a,"/Group_1","New",[5 6]);
-assert_checkequal(a.root.Group_1.New.Data,[5 6]');
+assert_checkequal(a.root.Group_1.New.Data,[5 6]);
 h5write(a,"Group_1/Dset_1",[1 2;3 4]);
 h5attr(a,"Group_1/Dset_1","Second",[7 8]);
-assert_checkequal(a.root.Group_1.Dset_1.Second.Data,[7 8]');
+assert_checkequal(a.root.Group_1.Dset_1.Second.Data,[7 8]);
 
 msgerr = msprintf(gettext("%s: %s\n"), "h5attr", msprintf(gettext("Invalid hdf5 file: %s."),TMPDIR+"/y.sod"));
 assert_checkerror("h5attr(TMPDIR+""/y.sod"",""."",""New"",int8(16))",msgerr,999);
@@ -64,10 +64,10 @@ assert_checkerror("h5writeattr(a,""."",a.root.Attributes,int8(2))",msgerr,999);
 
 h5group(a,"Group_1");
 h5writeattr(a,"/Group_1","New",[5 6]);
-assert_checkequal(a.root.Group_1.New.Data,[5 6]');
+assert_checkequal(a.root.Group_1.New.Data,[5 6]);
 h5write(a,"Group_1/Dset_1",[1 2;3 4]);
 h5writeattr(a,"Group_1/Dset_1","Second",[7 8]);
-assert_checkequal(a.root.Group_1.Dset_1.Second.Data,[7 8]');
+assert_checkequal(a.root.Group_1.Dset_1.Second.Data,[7 8]);
 
 msgerr = msprintf(gettext("%s: %s\n"), "h5writeattr", msprintf(gettext("Invalid hdf5 file: %s."), TMPDIR+"/y.sod"));
 assert_checkerror("h5writeattr(TMPDIR+""/y.sod"",""."",""New"",int8(16))",msgerr,999);
