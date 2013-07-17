@@ -4,23 +4,24 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- ENGLISH IMPOSED -->
+//
 // <-- CLI SHELL MODE -->
 
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): 3 to 5 expected."), "h5ln");
+msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "h5ln", 3, 5);
 assert_checkerror("h5ln()",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #1: A string expected."), "h5ln");
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5ln", 1);
 assert_checkerror("h5ln(42,42,42)",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #2: A string expected."), "h5ln");
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5ln", 2);
 assert_checkerror("h5ln(""42"",42,42)",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #3: A string expected."), "h5ln");
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5ln", 3);
 assert_checkerror("h5ln(""42"",""42"",42)",msgerr,999);
-msgerr = msprintf(gettext("%s: Invalid hdf5 file: %s."), "h5ln","42");
+msgerr = msprintf(gettext("%s: %s\n"), "h5ln", msprintf(gettext("Invalid hdf5 file: %s."), "42"));
 assert_checkerror("h5ln(""42"",""42"",""42"")",msgerr,999);
 
 a = h5open(TMPDIR + "/test.h5");
 h5ln(a,"42","42");
-msgerr = msprintf(gettext("%s: Error in retrieving field content:"), "%H5Object_e");
+msgerr = msprintf(gettext("%s: Error in retrieving field content:\n%s\n"), "%H5Object_e", msprintf(gettext("Invalid name: %s."), "/42"));
+msgerr($+1) = gettext("HDF5 description") + ": " + "too many links.";
 assert_checkerror("a(""/42"")",msgerr,999);
 h5rm(a,"/42");
 
@@ -51,8 +52,7 @@ assert_checkequal(a.root.Datasets,["Hard_Link";"Soft_Link";"External_Link2"]);
 h5rm(a,'/Grp_1/Dset_1');
 assert_checkequal(a.root.Datasets,["Hard_Link";"External_Link2"]);
 assert_checkequal(a.root.Softs,["Soft_Link"]);
-msgerr = msprintf(gettext("%s: Error in retrieving field content:\nInvalid "..
-             +"field: %s"), "%H5Object_e","Soft_Link");
+msgerr = msprintf(gettext("%s: Error in retrieving field content:\n%s\n"), "%H5Object_e", msprintf(gettext("Invalid field: %s"), "Soft_Link"));
 assert_checkerror("a.root.Soft_Link",msgerr,999);
 h5rm(a,'/Hard_Link');
 assert_checkequal(a.root.Datasets,["External_Link2"]);
