@@ -30,7 +30,7 @@
 * added object paramaters/states
 *
 * 20/07/07,  Masoud
-* CVODE (sundials) replaced LSODAR
+* CVODE (Sundials) replaced LSODAR
 * IDA  (Sundials)  replaced DASKR
 */
 /*--------------------------------------------------------------------------*/
@@ -3278,7 +3278,7 @@ L30:
                 }; /* new feature of sundials, detects unmasking */
                 if (flagr == IDA_ROOT_RETURN)
                 {
-                    /*     .        at a least one root has been found */
+                    /*     .        at least one root has been found */
                     hot = 0;
                     if (Discrete_Jump == 0)
                     {
@@ -6244,7 +6244,7 @@ return CI;
 return CJ;
 } */
 /*--------------------------------------------------------------------------*/
-/* Fonction called by the C file produced by Modelicac 1.7.3 and 1.12.1 */
+/* Function called by the C file produced by Modelicac 1.7.3 and 1.12.1 */
 double Get_Jacobian_parameter(void)
 {
     return CJJ;
