@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
@@ -33,7 +33,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlWrite(char *fname, unsigned long fname_len)
+int sci_htmlWrite(char *fname, unsigned long fname_len)
 {
     org_modules_xml::XMLDocument * doc = 0;
     xmlDoc *document = 0;
@@ -64,7 +64,7 @@ int sci_xmlWrite(char *fname, unsigned long fname_len)
     doc = XMLObject::getFromId<org_modules_xml::XMLDocument>(getXMLObjectId(addr, pvApiCtx));
     if (!doc)
     {
-        Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
         return 0;
     }
     document = doc->getRealDocument();
@@ -165,7 +165,7 @@ int sci_xmlWrite(char *fname, unsigned long fname_len)
         expandedPath = strdup((const char *)document->URL);
     }
 
-    if (!doc->saveToFile(expandedPath, indent == 1))
+    if (!doc->saveToHTMLFile(expandedPath, indent == 1))
     {
         Scierror(999, gettext("%s: Cannot write the file: %s\n"), fname, expandedPath);
         FREE(expandedPath);

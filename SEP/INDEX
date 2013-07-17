@@ -124,3 +124,4 @@ SEP #125: New input argument to matfile_open to open Matlab 7.3 files.
 SEP #126: New function unwrap
 SEP #127: jmat tagged as obsolete. New input argument to flipdim to replace jmat.
 SEP #128: nanreglin.
+SEP #129: HTLM parsing functions.

@@ -140,7 +140,8 @@ Scilab
  - ilib_build_jar - Builds Java packages from sources into a JAR file
  - ifftshift - Inverses FFT shift
  - unwrap - Unwraps/unfolds a Y(x) profile
- - getPreferencesValue/setPreferencesValue - get or set values in the preferences file.
+ - getPreferencesValue/setPreferencesValue - Get or set values in the preferences file.
+ - htmlDump/htmlRead/htmlReadStr/htmlWrite - Read and write data from/in HTML files.
 
 * modulo() and pmodulo() now support integers & hypermatrices (See bug #13002).
 

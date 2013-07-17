@@ -98,7 +98,11 @@ static gw_generic_table Tab[] =
     {sci_xmlRemove, "xmlRemove"},
     {sci_xmlSetAttributes, "xmlSetAttributes"},
     {sci_xmlName, "xmlName"},
-    {sci_xmlAppend, "xmlAppend"}
+    {sci_xmlAppend, "xmlAppend"},
+    {sci_htmlRead, "htmlRead"},
+    {sci_htmlReadStr, "htmlReadStr"},
+    {sci_htmlWrite, "htmlWrite"},
+    {sci_htmlDump, "htmlDump"}
 };
 
 /*--------------------------------------------------------------------------*/
