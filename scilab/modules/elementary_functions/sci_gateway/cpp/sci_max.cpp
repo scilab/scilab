@@ -17,6 +17,7 @@
 #include "overload.hxx"
 #include "execvisitor.hxx"
 #include "max.hxx"
+#include "min.hxx"
 
 extern "C"
 {
@@ -25,7 +26,7 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, types::typed_list &out, const char* fname)
 {
     int iCountElem   = in.size();
     int iDims        = 0;
@@ -40,16 +41,27 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
     std::vector<types::InternalType*> inputs;
     std::vector<types::Double*> vectDouble;
 
+    void (*pFuncMinMax)(std::vector<types::Double*> vectIn, int iOrientation, types::Double * pDblIndex, types::Double * pOut);
+
     if (in.size() < 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): At least %d expected.\n"), "max", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): At least %d expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "max", 1, 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
+    }
+
+    if (strcmp(fname, "max") == 0)
+    {
+        pFuncMinMax = &(max);
+    }
+    else
+    {
+        pFuncMinMax = &(min);
     }
 
     /***** get data *****/
@@ -60,7 +72,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
 
         if (iCountElem == 0)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: Non empty list expected.\n"), "max", 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: Non empty list expected.\n"), fname, 1);
             return types::Function::Error;
         }
 
@@ -76,7 +88,9 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
 
     if (inputs[0]->isDouble() == false && inputs[0]->isInt() == false)
     {
-        std::wstring wstFuncName = L"%"  + inputs[0]->getShortTypeStr() + L"_max";
+        wchar_t* wcsMinMax = to_wide_string(fname);
+        std::wstring wstFuncName = L"%"  + inputs[0]->getShortTypeStr() + L"_" + wcsMinMax;
+        FREE(wcsMinMax);
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
     }
 
@@ -112,7 +126,42 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
         piDimsArray = pGT->getDimsArray();
     }
 
-    if (iNbEmptyMatrix == inputs.size())
+    if (inputs.size() == 2 && inputs[1]->isString())
+    {
+        std::wstring wcsOrientation = inputs[1]->getAs<types::String>()->get(0);
+        if (wcsOrientation == L"r")
+        {
+            iOrientation = 1;
+        }
+        else if (wcsOrientation == L"c")
+        {
+            iOrientation = 2;
+        }
+        else if (wcsOrientation == L"m")
+        {
+            // old function was "mtlsel"
+            for (int i = 0; i < iDims; i++)
+            {
+                if (piDimsArray[i] > 1)
+                {
+                    iOrientation = i + 1;
+                    break;
+                }
+            }
+        }
+        else if (wcsOrientation == L"*")
+        {
+            iOrientation = 0;
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: r, c, m or * expected.\n"), fname, 2);
+            return types::Function::Error;
+        }
+        iCountElem = 1;
+    }
+
+    if (iNbEmptyMatrix == iCountElem)
     {
         out.push_back(types::Double::Empty());
         if (_iRetCount == 2)
@@ -123,62 +172,13 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
     }
     else if (iPosFirstEmpty)
     {
-        Scierror(45, _("%s: null matrix (argument # %d).\n"), "max", iPosFirstEmpty);
+        Scierror(45, _("%s: null matrix (argument # %d).\n"), fname, iPosFirstEmpty);
         return types::Function::Error;
-    }
-
-    if (in.size() == 2)
-    {
-        if (in[1]->isString())
-        {
-            std::wstring wcsOrientation = in[1]->getAs<types::String>()->get(0);
-            if (wcsOrientation == L"r")
-            {
-                iOrientation = 1;
-            }
-            else if (wcsOrientation == L"c")
-            {
-                iOrientation = 2;
-            }
-            else if (wcsOrientation == L"m")
-            {
-                // old function was "mtlsel"
-                for (int i = 0; i < iDims; i++)
-                {
-                    if (piDimsArray[i] > 1)
-                    {
-                        iOrientation = i + 1;
-                        break;
-                    }
-                }
-            }
-            else if (wcsOrientation == L"*")
-            {
-                iOrientation = 0;
-            }
-            else
-            {
-                Scierror(999, _("%s: Wrong value for input argument #%d: r, c, m or * expected.\n"), "max", 2);
-                return types::Function::Error;
-            }
-            iCountElem = 1;
-        }
-        //        else if(in[1]->isDouble())
-        //        {
-        //            types::Double* pDbl = in[1]->getAs<types::Double>();
-        //            if(pDbl->isScalar() && in[0]->getAs<types::Double>()->isScalar() == false)
-        //            {
-        //                iOrientation = pDbl->get(0);
-        //                iCountElem = 1;
-        //            }
-        //        }
-
-        inputs = in;
     }
 
     if (iOrientation > iDims)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: value less than or equal to the number of dimension expected.\n"), "max", 2);
+        Scierror(999, _("%s: Wrong value for input argument #%d: value less than or equal to the number of dimension expected.\n"), fname, 2);
         return types::Function::Error;
     }
 
@@ -192,7 +192,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
                 pDbl = inputs[i]->getAs<types::Double>();
                 if (pDbl->isComplex())
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "max", i + 1);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), fname, i + 1);
                     return types::Function::Error;
                 }
 
@@ -297,7 +297,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
             }
             else if (iDims != pDbl->getDims())
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: All arguments must have the same size.\n"), "max", i + 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: All arguments must have the same size.\n"), fname, i + 1);
                 return types::Function::Error;
             }
             else
@@ -307,7 +307,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
                 {
                     if (iCurrentDimsArray[iterDims] != piDimsArray[iterDims])
                     {
-                        Scierror(999, _("%s: Wrong size for input argument #%d: All arguments must have the same size.\n"), "max", i + 1);
+                        Scierror(999, _("%s: Wrong size for input argument #%d: All arguments must have the same size.\n"), fname, i + 1);
                         return types::Function::Error;
                     }
                 }
@@ -317,7 +317,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "max", i + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), fname, i + 1);
             return types::Function::Error;
         }
     }
@@ -370,7 +370,7 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
     }
 
     pDblOut = new types::Double(iSize, iSizes);
-    max(vectDouble, iOrientation, pDblIndex, pDblOut);
+    pFuncMinMax(vectDouble, iOrientation, pDblIndex, pDblOut);
     // if all inputs are integers return an integer
     switch (iLargerInput)
     {
@@ -486,5 +486,15 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
     }
 
     return types::Function::OK;
+}
+/*--------------------------------------------------------------------------*/
+types::Function::ReturnValue sci_min(types::typed_list &in, int _iRetCount, types::typed_list &out)
+{
+    return sci_MinMax(in, _iRetCount, out, "min");
+}
+/*--------------------------------------------------------------------------*/
+types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, types::typed_list &out)
+{
+    return sci_MinMax(in, _iRetCount, out, "max");
 }
 /*--------------------------------------------------------------------------*/

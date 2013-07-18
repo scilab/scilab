@@ -333,7 +333,6 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_log.cpp \
     sci_gateway/cpp/sci_log1p.cpp \
     sci_gateway/cpp/sci_max.cpp \
-    sci_gateway/cpp/sci_min.cpp \
     sci_gateway/cpp/sci_rat.cpp \
     sci_gateway/cpp/sci_triu.cpp \
     sci_gateway/cpp/sci_tril.cpp \

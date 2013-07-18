@@ -289,7 +289,6 @@ am__objects_8 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_log.lo \
 	libscielementary_functions_la-sci_log1p.lo \
 	libscielementary_functions_la-sci_max.lo \
-	libscielementary_functions_la-sci_min.lo \
 	libscielementary_functions_la-sci_rat.lo \
 	libscielementary_functions_la-sci_triu.lo \
 	libscielementary_functions_la-sci_tril.lo \
@@ -943,7 +942,6 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_log.cpp \
     sci_gateway/cpp/sci_log1p.cpp \
     sci_gateway/cpp/sci_max.cpp \
-    sci_gateway/cpp/sci_min.cpp \
     sci_gateway/cpp/sci_rat.cpp \
     sci_gateway/cpp/sci_triu.cpp \
     sci_gateway/cpp/sci_tril.cpp \
@@ -1260,7 +1258,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_log1p.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_matrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_max.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_min.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_nearfloat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_number_properties.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_ones.Plo@am__quote@
@@ -2028,13 +2025,6 @@ libscielementary_functions_la-sci_max.lo: sci_gateway/cpp/sci_max.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_max.cpp' object='libscielementary_functions_la-sci_max.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_max.lo `test -f 'sci_gateway/cpp/sci_max.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_max.cpp
-
-libscielementary_functions_la-sci_min.lo: sci_gateway/cpp/sci_min.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sci_min.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_min.Tpo -c -o libscielementary_functions_la-sci_min.lo `test -f 'sci_gateway/cpp/sci_min.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_min.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscielementary_functions_la-sci_min.Tpo $(DEPDIR)/libscielementary_functions_la-sci_min.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_min.cpp' object='libscielementary_functions_la-sci_min.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_min.lo `test -f 'sci_gateway/cpp/sci_min.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_min.cpp
 
 libscielementary_functions_la-sci_rat.lo: sci_gateway/cpp/sci_rat.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sci_rat.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_rat.Tpo -c -o libscielementary_functions_la-sci_rat.lo `test -f 'sci_gateway/cpp/sci_rat.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_rat.cpp

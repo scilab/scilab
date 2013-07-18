@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -242,7 +242,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\sci_log1p.cpp" />
     <ClCompile Include="..\sci_matrix.cpp" />
     <ClCompile Include="..\sci_max.cpp" />
-    <ClCompile Include="..\sci_min.cpp" />
     <ClCompile Include="..\sci_ones.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>
