@@ -579,4 +579,80 @@ public abstract class DocbookTagConverter extends DefaultHandler implements Conv
 
         return buf;
     }
+
+    /*
+     * All Handled tag method definition, these methods are the implementation of "Docbook 5.0 - subset Scilab"
+     */
+
+    public abstract String handleAnswer(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleBibliomixed(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleBibliomset(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleBook(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleCaption(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleCaution(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleChapter(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleCode(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleCommand(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleConstant(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleEmphasis(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleFirstname(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleFunction(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleImagedata(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleImageobject(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleImportant(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleInfo(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleInformalequation(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleInformaltable(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleInlinemediaobject(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleItemizedlist(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleLatex(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleLink(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleListitem(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleLiteral(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleMediaobject(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleMember(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleNote(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleOption(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleOrderedlist(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handlePara(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handlePart(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleProgramlisting(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handlePubdate(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleQandaentry(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleQandaset(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleQuestion(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefentry(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefnamediv(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefname(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefpurpose(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefsection(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefsynopsisdiv(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleReplaceable(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRevdescription(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRevhistory(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRevision(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRevnumber(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRevremark(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleScreen(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleScreenshot(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleSection(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleSimplelist(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleSubscript(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleSuperscript(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleSurname(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleSynopsis(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTable(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTbody(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTd(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTerm(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTh(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTip(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTitle(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTr(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleUlink(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleVariablelist(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleVarlistentry(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleVarname(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleWarning(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleXref(final Map<String, String> attributes, final String contents) throws SAXException;
 }

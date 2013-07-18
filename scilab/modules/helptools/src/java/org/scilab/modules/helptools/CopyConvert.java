@@ -139,8 +139,9 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             factory.setNamespaceAware(true);
             // We need qNames and xmlns*.
-            factory.setFeature(
-                "http://xml.org/sax/features/namespace-prefixes", true);
+// FIXME: xmlns:db prefix is not handled by the thirdparty's stylesheet (not the right version)
+//            factory.setFeature(
+//                "http://xml.org/sax/features/namespace-prefixes", true);
             factory.setValidating(false);
             //factory.setXIncludeAware(false);
 

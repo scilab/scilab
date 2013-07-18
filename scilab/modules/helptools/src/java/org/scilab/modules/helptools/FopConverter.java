@@ -1,77 +1,46 @@
-/*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
- *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- *
- */
-
 package org.scilab.modules.helptools;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
-
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
 
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.transform.Result;
 import javax.xml.transform.sax.SAXResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.apache.fop.apps.FOPException;
-import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.Fop;
-import org.apache.fop.apps.MimeConstants;
+import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.FormattingResults;
-import org.xml.sax.SAXException;
-
+import org.apache.fop.apps.MimeConstants;
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathElementMapping;
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathXMLHandler;
-
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
+import org.xml.sax.SAXException;
 
-/**
- * This class manages the build of the PDF file
- */
-public final class BuildPDF {
+public class FopConverter extends ContainerConverter {
 
-    /**
-     * Default constructor (must not be used)
-     */
-    private BuildPDF() {
-        throw new UnsupportedOperationException();
+    final Backend format;
+
+    public FopConverter(SciDocMain sciDocMain) {
+        super(sciDocMain.getOutputDirectory(), sciDocMain.getLanguage());
+        this.format = sciDocMain.getFormat();
     }
 
-
-    /**
-     * After the saxon process, create the PDF thanks to fop
-     *
-     * @param outputDirectory Where the files are available and
-     * @param language In which language (for the file name)
-     * @return The result of the process
-     */
-    public static String buildPDF(String outputDirectory, String language, String format) {
-
+    @Override
+    public void convert() throws SAXException, IOException {
         String baseName = Helpers.getBaseName(language);
         /* the following '..' is used because we are in the current working
            directory with all the tmp stuff in it */
-        String fileName = outputDirectory + "/" + baseName;
-        if (format.equalsIgnoreCase("PS")) {
-            fileName += ".ps";
-        } else {
-            fileName += ".pdf";
-        }
+        String fileName = outputDirectory + "/" + baseName + "." + format.name().toLowerCase();
 
         try {
             FopFactory fopFactory = FopFactory.newInstance();
@@ -81,11 +50,18 @@ public final class BuildPDF {
 
             // Step 3: Construct fop with desired output format
             OutputStream out = new BufferedOutputStream(new FileOutputStream(fileName));
-            Fop fop;
-            if (format.equalsIgnoreCase("PS")) {
-                fop = fopFactory.newFop(MimeConstants.MIME_POSTSCRIPT, out);
-            } else {
-                fop = fopFactory.newFop(MimeConstants.MIME_PDF, out);
+            final Fop fop;
+            switch (format) {
+                case PS:
+                    fop = fopFactory.newFop(MimeConstants.MIME_POSTSCRIPT, out);
+                    break;
+                case PDF:
+                    fop = fopFactory.newFop(MimeConstants.MIME_POSTSCRIPT, out);
+                    break;
+
+                default:
+                    out.close();
+                    throw new IOException(String.format("%s is not a supported format.\n", format));
             }
 
             // Step 4: Setup JAXP using identity transformer
@@ -121,7 +97,9 @@ public final class BuildPDF {
         } catch (SAXException e) {
             System.out.println(e.getLocalizedMessage());
         }
+    }
 
-        return fileName;
+    @Override
+    public void install() throws IOException {
     }
 }

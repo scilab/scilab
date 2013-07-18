@@ -434,20 +434,25 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     //  * handle the second pass build (container management or second transform)
     select output_format
     case "javaHelp" then
+        formatDescriptor = output_format;
         output_format_ext = "jar";
         second_pass_format = "jar-only";
     case "web"
+        formatDescriptor = output_format;
         output_format_ext = "html";
         second_pass_format = [];
     case "ps"
+        formatDescriptor = output_format;
         output_format_ext = output_format;
         output_format = "fo"; // ps file is generated on a second pass from fo files
         second_pass_format = "ps";
     case "pdf"
+        formatDescriptor = output_format;
         output_format_ext = output_format;
         output_format = "fo"; // pdf file is generated on a second pass from fo files
         second_pass_format = "pdf";
     else
+        formatDescriptor = output_format;
         output_format_ext = output_format;
         second_pass_format = [];
     end
@@ -457,7 +462,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
     if all_scilab_help then
 
-        mprintf(_("Building the scilab manual file ["+output_format+"]\n"));
+        mprintf(_("Building the scilab manual file [%s]\n"), formatDescriptor);
 
         // Define and create the final output directory if does not exist
         if output_format == "web" then
@@ -539,7 +544,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             this_tree  = contrib_tree(dirs_c(k));
 
-            mprintf(_("\nBuilding the manual file [%s] in %s.\n"),output_format,strsubst(dirs_c(k),SCI_long,"SCI"));
+            mprintf(_("\nBuilding the manual file [%s] in %s.\n"),formatDescriptor,strsubst(dirs_c(k),SCI_long,"SCI"));
 
             // Define and create the final output directory if does not exist
             final_output_dir = pathconvert(dirs_c(k)+"/../../"+output_format_ext,%f,%f);
@@ -630,12 +635,12 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             if nb_dir > 1 then
                 if displaydone == 0 then
-                    mprintf(_("\nBuilding the manual file [%s].\n"),output_format);
+                    mprintf(_("\nBuilding the manual file [%s].\n"),formatDescriptor);
                     displaydone = 1;
                 end
                 mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
             else
-                mprintf(_("\nBuilding the manual file [%s] in %s.\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
+                mprintf(_("\nBuilding the manual file [%s] in %s.\n"),formatDescriptor,strsubst(dirs(k),SCI_long,"SCI"));
             end
 
             // Define and create the final output directory if does not exist
