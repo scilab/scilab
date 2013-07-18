@@ -169,7 +169,7 @@ public class ScilabClipboard {
     * @param object The object to recieve the style
     * @return The new axes pasted
     */
-    public String pasteStyle(String objectUID) {
+    public String pasteStyle(String objectUID, boolean bounds) {
 
         if (!canPasteStyle()) {
             return null;
@@ -179,7 +179,11 @@ public class ScilabClipboard {
         String figureTo = CommonHandler.getParentFigure(objectUID);
         CommonHandler.cloneColorMap(figureFrom, figureTo);
         CommonHandler.cloneBackgroundColor(figureFrom, figureTo);
-        AxesHandler.pasteAxesStyle(newAxes, objectUID);
+        AxesHandler.pasteAxesStyle(newAxes, objectUID, true);
+        if (bounds)
+        {
+            AxesHandler.axesBound(copyStyle, newAxes);
+        }
         return newAxes;
     }
 

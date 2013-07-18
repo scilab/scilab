@@ -811,11 +811,23 @@ public class Editor {
     * Implementes pasteStyle action(callback)
     */
     public void onClickPasteStyle() {
+        boolean flag = true;
+        String axes = AxesHandler.clickedAxes(figureUid, lastClick);
+        if (!AxesHandler.isAxesEmpty(axes)) {
+            String msg =  "The axes which the style was copied is not in CubeView" +
+                          "\nIf you don't copy the data bounds the view angles can appear different" +
+                          "\nDo you want copy the data bounds too?(it can shrink/stretch the current view)";
+            int i = JOptionPane.showConfirmDialog(dialogComponent, Messages.gettext(msg), Messages.gettext("Warning"), JOptionPane.YES_NO_OPTION);
+
+            if (i == JOptionPane.NO_OPTION) {
+                flag = false;
+            }
+        }
 
         Double[] oldColorMap = CommonHandler.getColorMap(figureUid);
         Integer backgroundColor = CommonHandler.getBackground(figureUid);
         String oldAxes = AxesHandler.clickedAxes(figureUid, lastClick);
-        String newAxes = ScilabClipboard.getInstance().pasteStyle(oldAxes);
+        String newAxes = ScilabClipboard.getInstance().pasteStyle(oldAxes, flag);
         editorHistory.addAction(new ActionPasteStyle(newAxes, oldAxes, oldColorMap, backgroundColor));
     }
 

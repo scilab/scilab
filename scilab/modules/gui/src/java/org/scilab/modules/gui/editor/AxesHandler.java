@@ -17,6 +17,7 @@ import java.lang.Math;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.ScilabNativeView;
 
 import org.scilab.modules.gui.editor.ObjectSearcher;
 import org.scilab.modules.gui.editor.PolylineHandler;
@@ -120,8 +121,12 @@ public class AxesHandler {
      */
     public static void axesBound(String axesFrom, String axesTo) {
 
+        if (axesFrom == axesTo) {
+            return;
+        }
+
         Double[] axesFB = (Double[])GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_DATA_BOUNDS__);
-        Double[] axesTB = (Double[])GraphicController.getController().getProperty(axesTo, GraphicObjectProperties.__GO_DATA_BOUNDS__);
+        Double[] axesTB = (Double[])GraphicController.getController().getProperty(axesTo, GraphicObjectProperties.__GO_REAL_DATA_BOUNDS__);
         Double[] newBounds = {0., 0., 0., 0., 0., 0.};
 
         newBounds[0] = Math.min(axesFB[0], axesTB[0]);
@@ -190,6 +195,19 @@ public class AxesHandler {
             }
         }
         return false;
+    }
+
+    public static boolean isAxesEmpty(String axes) {
+
+        Integer childCount = (Integer)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
+        String[] child = (String[])GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_CHILDREN__);
+        for (Integer i = 0; i < childCount; i++) {
+            Integer type = (Integer)GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_TYPE__);
+            if (type != GraphicObjectProperties.__GO_LABEL__) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -334,7 +352,7 @@ public class AxesHandler {
     * @param newAxesUID The uid from the new axes to paste
     * @param axesToUID The uid from the axes to be cut
     */
-    public static void pasteAxesStyle(String newAxesUID, String axesToUID) {
+    public static void pasteAxesStyle(String newAxesUID, String axesToUID, boolean bounds) {
 
         if (newAxesUID == null || axesToUID == null) {
             return;
@@ -342,8 +360,6 @@ public class AxesHandler {
         Axes newAxes = (Axes)GraphicController.getController().getObjectFromId(newAxesUID);
         Axes axesTo = (Axes)GraphicController.getController().getObjectFromId(axesToUID);
 
-        Double[] dataBounds = axesTo.getDataBounds();
-        Double[] realDataBounds = axesTo.getRealDataBounds();
         String[] children = axesTo.getChildren();
         String parentUID = axesTo.getParent();
         String[] titleText = (String[])GraphicController.getController().getProperty(axesTo.getTitle(), GraphicObjectProperties.__GO_TEXT_STRINGS__);
@@ -356,14 +372,19 @@ public class AxesHandler {
         GraphicController.getController().setProperty(newAxes.getYAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__, yLabelText);
         GraphicController.getController().setProperty(newAxes.getZAxisLabel(), GraphicObjectProperties.__GO_TEXT_STRINGS__, zLabelText);
 
-        newAxes.setDataBounds(dataBounds);
-        newAxes.setRealDataBounds(realDataBounds);
+        if (bounds) {
+            Double[] dataBounds = axesTo.getDataBounds();
+            Double[] realDataBounds = axesTo.getRealDataBounds();
+            newAxes.setDataBounds(dataBounds);
+            newAxes.setRealDataBounds(realDataBounds);
+        }
 
         for (Integer i = 0; i < children.length; i++) {
             GraphicController.getController().setGraphicObjectRelationship(newAxesUID, children[i]);
         }
         GraphicController.getController().setGraphicObjectRelationship(parentUID, newAxesUID);
         GraphicController.getController().setGraphicObjectRelationship("", axesToUID);
+        ScilabNativeView.ScilabNativeView__setCurrentSubWin(newAxesUID);
     }
 }
 

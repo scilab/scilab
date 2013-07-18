@@ -53,7 +53,7 @@ public class ActionPasteStyle extends BaseAction {
     public void undo() {
 
         if (exists()) {
-            AxesHandler.pasteAxesStyle(oldAxes, objectUID);
+            AxesHandler.pasteAxesStyle(oldAxes, objectUID, false);
             Double[] tempColorMap = (Double[])GraphicController.getController().getProperty(parentUID, GraphicObjectProperties.__GO_COLORMAP__);
             Integer tempBackground = (Integer)GraphicController.getController().getProperty(parentUID, GraphicObjectProperties.__GO_BACKGROUND__);
             GraphicController.getController().setProperty(parentUID, GraphicObjectProperties.__GO_COLORMAP__, colorMap);
@@ -71,7 +71,7 @@ public class ActionPasteStyle extends BaseAction {
     public void redo() {
 
         if (exists()) {
-            AxesHandler.pasteAxesStyle(objectUID, oldAxes);
+            AxesHandler.pasteAxesStyle(objectUID, oldAxes, false);
             Double[] tempColorMap = (Double[])GraphicController.getController().getProperty(parentUID, GraphicObjectProperties.__GO_COLORMAP__);
             Integer tempBackground = (Integer)GraphicController.getController().getProperty(parentUID, GraphicObjectProperties.__GO_BACKGROUND__);
             GraphicController.getController().setProperty(parentUID, GraphicObjectProperties.__GO_COLORMAP__, colorMap);
