@@ -50,8 +50,9 @@ BDF methods with direct and preconditioned Krylov linear solvers, based on ODEPA
 
 * Localization:
  - Multiple domains in localization managed.
- - Function addlocalizationdomain added.
+ - Function addlocalizationdomain added to add a new domain.
  - Optional parameter added to gettext to manage domains.
+ - tbx_generate_pofile and tbx_build_localization added to create localization files for toolboxes.
 
 * Windows Solution updated to Visual Studio 2012.
 

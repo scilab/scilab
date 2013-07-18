@@ -28,11 +28,13 @@
  * However, for an unknown reason, gettext() is not working. Only
  * dgettext is */
 #define scigettext(String1) dgettext(NAMELOCALIZATIONDOMAIN,String1)
+#define scidgettext(String1, String2) dgettext(String1, String2)
 
 #else
 /* Restore the normal behaviour ... all the string will be in english */
 
 #define scigettext(String) ((const char *) (String))
+#define scidgettext(String1, String2) ((const char *) (String2))
 
 #endif
 

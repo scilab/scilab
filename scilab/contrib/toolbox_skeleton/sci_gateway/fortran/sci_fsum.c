@@ -5,6 +5,8 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "MALLOC.h"
+#include <localization.h>
+
 /* ==================================================================== */
 extern int F2C(fsum)(double *a, double *b, double *c);
 /* ==================================================================== */
@@ -56,7 +58,7 @@ int sci_fsum(char *fname)
 
     if ( iType1 != sci_matrix )
     {
-        Scierror(999, "%s: Wrong type for input argument #%d: A scalar expected.\n", fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 1);
         return 0;
     }
 
@@ -69,7 +71,7 @@ int sci_fsum(char *fname)
 
     if ( iType2 != sci_matrix )
     {
-        Scierror(999, "%s: Wrong type for input argument #%d: A scalar expected.\n", fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 2);
         return 0;
     }
 
@@ -91,12 +93,12 @@ int sci_fsum(char *fname)
     /* check size */
     if ( (m1 != n1) && (n1 != 1) )
     {
-        Scierror(999, "%s: Wrong size for input argument #%d: A scalar expected.\n", fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
         return 0;
     }
     if ( (m2 != n2) && (n2 != 1) )
     {
-        Scierror(999, "%s: Wrong size for input argument #%d: A scalar expected.\n", fname, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
         return 0;
     }
 

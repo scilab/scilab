@@ -6,6 +6,8 @@
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "multiplybypi.h"
+#include <localization.h>
+
 /* ==================================================================== */
 int sci_multiplybypi(char *fname)
 {
