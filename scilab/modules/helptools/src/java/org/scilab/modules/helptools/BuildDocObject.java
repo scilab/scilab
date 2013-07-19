@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
@@ -332,7 +333,22 @@ public class BuildDocObject {
 
         final StreamSource xmlSource = new StreamSource(new File(sourceDocProcessed));
 
-        final TransformerFactory tfactory = TransformerFactory.newInstance();
+        /*
+         * We rely on the saxon implementation to compile xsl files (the default JVM implementation failed).
+         *
+         * Supported version :
+         *  * Saxon-HE 9.5 (and may be 8.x too) which handle xinclude, XSLT-2 and has better performances
+         *  * Saxon 6.5 if on the classpath
+         *  * JVM Apache-xerces as a fallback but may probably fail to compile docbook.xsl
+         */
+        TransformerFactory tfactory;
+        try {
+            tfactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
+        } catch (TransformerFactoryConfigurationError e) {
+            // switch back to the default implementation which may be saxon 6.5 if found on the classpath or the JVM default implementation otherwise
+            tfactory = TransformerFactory.newInstance();
+        }
+
         final Transformer transform = tfactory.newTransformer(new StreamSource(new File(path)));
 
         transform.setParameter("base.dir", this.outputDirectory);

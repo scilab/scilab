@@ -244,6 +244,8 @@ Bug fixes
 
 * Bug #8373 fixed - clear() can now take a matrix of strings argument.
 
+* Bug #8479 fixed - the latest Saxon version was not supported.
+
 * Bug #8511 fixed - sprand used rand and grand functions, and internal state of the random
                     generator was changed.
 
