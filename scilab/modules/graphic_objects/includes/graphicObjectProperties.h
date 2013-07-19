@@ -363,5 +363,7 @@
 #define __GO_DATATIP_INTERP_MODE__          302
 #define __GO_DATATIP_DISPLAY_FNC__          303
 #define __GO_DATATIP_BOX_MODE__          304
+#define __GO_DATATIP_LABEL_MODE__          305
+
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

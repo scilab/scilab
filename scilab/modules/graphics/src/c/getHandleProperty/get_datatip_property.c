@@ -162,3 +162,29 @@ int get_tip_box_mode_property(void* _pvCtx, char* pobjUID)
         return sciReturnString(_pvCtx, "off");
     }
 }
+
+/**
+ * Get the datatip label mode (true or false).
+ */
+int get_tip_label_mode_property(void* _pvCtx, char* pobjUID)
+{
+    int tip_label_mode;
+    int *piTip_label_mode = &tip_label_mode;
+
+    getGraphicObjectProperty(pobjUID, __GO_DATATIP_LABEL_MODE__, jni_bool, (void **)&piTip_label_mode);
+
+    if (piTip_label_mode == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_label_mode");
+        return -1;
+    }
+
+    if (tip_label_mode)
+    {
+        return sciReturnString(_pvCtx, "on");
+    }
+    else
+    {
+        return sciReturnString(_pvCtx, "off");
+    }
+}

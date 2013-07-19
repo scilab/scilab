@@ -750,12 +750,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (datatip.isValid() && datatip.getVisible()) {
             axesDrawer.enableClipping(currentAxes, datatip.getClipProperty());
             try {
-                datatipTextDrawer.draw(drawingTools, colorMap, datatip);
-
                 if (datatip.getMarkMode()) {
                     /* TODO: appearance can be not-null */
                     Texture texture = markManager.getMarkSprite(datatip, colorMap, null);
                     drawingTools.draw(texture, AnchorPosition.CENTER, new Vector3d(datatip.getTipData()));
+                }
+                if (datatip.getTipLabelMode()) {
+                    datatipTextDrawer.draw(drawingTools, colorMap, datatip);
                 }
             } catch (SciRendererException e) {
                 invalidate((Text)datatip, e);

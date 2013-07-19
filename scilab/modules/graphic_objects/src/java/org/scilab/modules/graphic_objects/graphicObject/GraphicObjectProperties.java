@@ -364,5 +364,6 @@ public class GraphicObjectProperties {
     public static final int __GO_DATATIP_INTERP_MODE__ =     302;
     public static final int __GO_DATATIP_DISPLAY_FNC__ =     303;
     public static final int __GO_DATATIP_BOX_MODE__ =     304;
+    public static final int __GO_DATATIP_LABEL_MODE__ =     305;
 
 }

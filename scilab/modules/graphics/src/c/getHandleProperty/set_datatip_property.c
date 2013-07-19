@@ -186,3 +186,27 @@ int set_tip_box_mode_property(void* _pvCtx, char* pobj, void* _pvData, int value
         return SET_PROPERTY_ERROR;
     }
 }
+
+/**
+ * Set the datatip label mode (true or false).
+ */
+int set_tip_label_mode_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
+{
+    BOOL status = FALSE;
+    int label_mode = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tip_label_mode");
+    if (label_mode == NOT_A_BOOLEAN_VALUE)
+    {
+        return SET_PROPERTY_ERROR;
+    }
+    status = setGraphicObjectProperty(pobj, __GO_DATATIP_LABEL_MODE__, &label_mode, jni_bool, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_label_mode");
+        return SET_PROPERTY_ERROR;
+    }
+}
