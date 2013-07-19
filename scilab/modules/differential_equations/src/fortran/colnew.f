@@ -481,9 +481,9 @@ C
       ENTRY      COLSYS (NCOMP, M, ALEFT, ARIGHT, ZETA, IPAR, LTOL,
      1                   TOL, FIXPNT, ISPACE, FSPACE, IFLAG,
      2                   FSUB, DFSUB, GSUB, DGSUB, GUESS)
-
-
-      CHARACTER BUF*(29)
+     
+      
+      CHARACTER BUF*(4096)    
 C
 C*********************************************************************
 C
@@ -501,13 +501,13 @@ C...  specify machine dependent output unit  iout  and compute machine
 C...  dependent constant  precis = 100 * machine unit roundoff
 C
       IF ( IPAR(7) .LE. 0 )  THEN
-c		   replaces write(6 ...) by basout bug 2598
+c		   replaces write(6 ...) by basout bug 2598                  
 c      WRITE(6,99)
         OUT = 6
-        WRITE(BUF,99)
+        WRITE(BUF,*) 99
         CALL BASOUT(io,OUT,BUF)
       ENDIF
-  99  FORMAT(29H VERSION *COLNEW* OF COLSYS .)
+  99  FORMAT(//,33H VERSION *COLNEW* OF COLSYS .    ,//)
 C
       IOUT = 6
       PRECIS = 1.D0
@@ -707,7 +707,7 @@ C
      3     FSPACE(LVALST),FSPACE(LSLOPE),FSPACE(LSCL),FSPACE(LDSCL),
      4     FSPACE(LACCUM),ISPACE(LPVTG),ISPACE(LINTEG),ISPACE(LPVTW),
      5     NFXPNT,FIXPNT,IFLAG,FSUB,DFSUB,GSUB,DGSUB,GUESS )
-      if (iero.gt.0) return
+      if (iero.gt.0) return 
 C
 C...  prepare output
 C
@@ -1761,7 +1761,6 @@ C
       DO 40 I = 1, NTOL
            LTOLI = LTOL(I)
    20      CONTINUE
-           IF ( JCOMP .GT. NCOMP )                  GO TO 30
            IF ( LTOLI .LE. MTOT )                   GO TO 30
            JCOMP = JCOMP + 1
            MTOT = MTOT + M(JCOMP)
@@ -2093,7 +2092,7 @@ C
 C...       case where user provided current approximation
 C
            CALL GUESS (XII, ZVAL, DMVAL)
-           if (iero.gt.0) return
+           if (iero.gt.0) return 
            GO TO 110
 C
 C...       other nonlinear case
@@ -2109,7 +2108,7 @@ C
 C...       find  rhs  boundary value.
 C
   110      CALL GSUB (IZETA, ZVAL, GVAL)
-           if (iero.gt.0) return
+           if (iero.gt.0) return 
            RHS(NDMZ+IZETA) = -GVAL
            RNORM = RNORM + GVAL**2
            IF ( MODE .EQ. 2 )                       GO TO 130
@@ -2136,7 +2135,7 @@ C
 C...         use initial approximation provided by the user.
 C
              CALL GUESS (XCOL, ZVAL, DMZO(IRHS) )
-             if (iero.gt.0) return
+             if (iero.gt.0) return 
              GO TO 170
 C
 C...         find  rhs  values
@@ -2146,7 +2145,7 @@ C
      1            Z, DMZ, K, NCOMP, MMAX, M, MSTAR, 2, DMZO(IRHS), 1)
 C
   170        CALL FSUB (XCOL, ZVAL, F)
-             if (iero.gt.0) return
+             if (iero.gt.0) return 
              DO 180 JJ = 1, NCOMP
                VALUE = DMZO(IRHS) - F(JJ)
                RHS(IRHS) = - VALUE
@@ -2164,7 +2163,7 @@ C
 C...         fill in  rhs  values (and accumulate its norm).
 C
              CALL FSUB (XCOL, ZVAL, F)
-             if (iero.gt.0) return
+             if (iero.gt.0) return 
              DO 195 JJ = 1, NCOMP
                VALUE = DMZ(IRHS) - F(JJ)
                RHS(IRHS) = - VALUE
@@ -2176,7 +2175,7 @@ C
 C...         the linear case
 C
   200        CALL FSUB (XCOL, ZVAL, RHS(IRHS))
-             if (iero.gt.0) return
+             if (iero.gt.0) return 
              IRHS = IRHS + NCOMP
 C
 C...         fill in ncomp rows of  w and v
@@ -2204,7 +2203,7 @@ C
 C...       case where user provided current approximation
 C
            CALL GUESS (ARIGHT, ZVAL, DMVAL)
-           if (iero.gt.0) return
+           if (iero.gt.0) return 
            GO TO 250
 C
 C...       other nonlinear case
@@ -2220,7 +2219,7 @@ C
 C...       find  rhs  boundary value.
 C
   250      CALL GSUB (IZETA, ZVAL, GVAL)
-           if (iero.gt.0) return
+           if (iero.gt.0) return 
            RHS(NDMZ+IZETA) = - GVAL
            RNORM = RNORM + GVAL**2
            IF ( MODE .EQ. 2 )                       GO TO 270
@@ -2374,7 +2373,7 @@ C
 C...  evaluate jacobian dg
 C
       CALL DGSUB (IZETA, ZVAL, DG)
-      if (iero.gt.0) return
+      if (iero.gt.0) return 
 C
 C...  evaluate  dgz = dg * zval  once for a new mesh
 C
@@ -2472,7 +2471,7 @@ C...   id
 C...  for id = 1 to ncomp.
 C
       CALL DFSUB (XCOL, ZVAL, DF)
-      if (iero.gt.0) return
+      if (iero.gt.0) return 
       I0 = (JJ-1) * NCOMP
       I1 = I0 + 1
       I2 = I0 + NCOMP
