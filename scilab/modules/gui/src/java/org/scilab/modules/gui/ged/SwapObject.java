@@ -167,8 +167,10 @@ public class SwapObject {
     */
     private void polyline(String objectID) {
         adjust();
+        Polyline polyline = new Polyline();
+        polyline.initSections(objectID);
         //Load the polyline panel.
-        SwingInspector.pReceive.add(new Polyline(objectID), "");
+        SwingInspector.pReceive.add(polyline, "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.polyline);
         } catch (NullPointerException npe) { }

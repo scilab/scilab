@@ -18,7 +18,7 @@ import org.scilab.modules.gui.ged.actions.ShowHide;
  *
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
-public class HidePolyline {
+public class HidePolyline extends Polyline {
     public HidePolyline(boolean hide) {
         try {
             BaseProperties.setVisibility(!hide);

@@ -33,7 +33,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.gui.ged.ContentLayout;
-
+import org.scilab.modules.gui.ged.graphic_objects.SimpleSection;
 import org.scilab.modules.gui.ged.MessagesGED;
 
 /**
@@ -41,12 +41,17 @@ import org.scilab.modules.gui.ged.MessagesGED;
 *
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Position extends DataProperties {
+public class Position extends Polyline implements SimpleSection {
+    private String currentpolyline;
     private ContentLayout layout = new ContentLayout();
-    protected static JToggleButton bPosition;
+    private int LEFTMARGIN = 16;
+    private int LEFTCOLUMN = 0;
+    private int RIGHTCOLUMN = 1;
+
+    private static JToggleButton bPosition;
     private JLabel lPosition;
     private JSeparator sPosition;
-    protected static JPanel pPosition;
+    private static JPanel pPosition;
     private JLabel lMarkSizeUnit;
     private JComboBox cMarkSizeUnit;
     private JLabel lShiftX;
@@ -72,7 +77,7 @@ public class Position extends DataProperties {
     * @param objectID Enters the identification of polyline.
     */
     public Position(String objectID) {
-        super(objectID);
+        currentpolyline = objectID;
         insertBase();
         components();
         shiftDialog();
@@ -82,17 +87,17 @@ public class Position extends DataProperties {
     /**
     * Insert show/hide button, title and main JPanel of group.
     */
-    private void insertBase() {
-	int position = 3; //third group
-
+    @Override
+    public final void insertBase() {
+        String SECTIONNAME = MessagesGED.position;
+        this.setName(SECTIONNAME);
         bPosition = new JToggleButton();
         lPosition = new JLabel();
         sPosition = new JSeparator();
         pPosition = new JPanel();
 
         //Positioning JPanel Data Properties.
-        layout.addHeader(this, pPosition, bPosition, lPosition,
-                         sPosition, MessagesGED.position, position);
+        layout.addHeader(this, pPosition, bPosition, lPosition, sPosition, SECTIONNAME);
         bPosition.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -105,7 +110,8 @@ public class Position extends DataProperties {
     /**
     * It has all the components of the section Position.
     */
-    private void components() {
+    @Override
+    public final void components() {
         lMarkSizeUnit = new JLabel();
         cMarkSizeUnit = new JComboBox();
         lShiftX = new JLabel();
@@ -128,10 +134,10 @@ public class Position extends DataProperties {
         int ROW = 0;
 
         //Components of the property: Mark Size Unit.
-        layout.addJLabel(pPosition, lMarkSizeUnit, MessagesGED.mark_size_unit, 0, ROW, LEFTMARGIN);
+        layout.addJLabel(pPosition, lMarkSizeUnit, MessagesGED.mark_size_unit, LEFTCOLUMN, ROW, LEFTMARGIN);
         layout.addJComboBox(pPosition, cMarkSizeUnit,
                 new String[] {MessagesGED.point, MessagesGED.tabulated},
-                1, ROW);
+                RIGHTCOLUMN, ROW);
         ROW++;
         cMarkSizeUnit.addActionListener(new ActionListener() {
             @Override
@@ -143,8 +149,8 @@ public class Position extends DataProperties {
         });
 
         //Components of the property: X Shift.
-        layout.addJLabel(pPosition, lShiftX, MessagesGED.x_shift, 0, ROW, LEFTMARGIN);
-        layout.addDataField(pPosition, pShiftX, bShiftX, cShiftX, 1, ROW, currentpolyline);
+        layout.addJLabel(pPosition, lShiftX, MessagesGED.x_shift, LEFTCOLUMN, ROW, LEFTMARGIN);
+        layout.addDataField(pPosition, pShiftX, bShiftX, cShiftX, RIGHTCOLUMN, ROW, currentpolyline);
         bShiftX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -155,8 +161,8 @@ public class Position extends DataProperties {
         ROW++;
 
         //Components of the property: Y Shift.
-        layout.addJLabel(pPosition, lShiftY, MessagesGED.y_shift, 0, ROW, LEFTMARGIN);
-        layout.addDataField(pPosition, pShiftY, bShiftY, cShiftY, 1, ROW, currentpolyline);
+        layout.addJLabel(pPosition, lShiftY, MessagesGED.y_shift, LEFTCOLUMN, ROW, LEFTMARGIN);
+        layout.addDataField(pPosition, pShiftY, bShiftY, cShiftY, RIGHTCOLUMN, ROW, currentpolyline);
         bShiftY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -167,8 +173,8 @@ public class Position extends DataProperties {
         ROW++;
 
         //Components of the property: Z Shift.
-        layout.addJLabel(pPosition, lShiftZ, MessagesGED.z_shift, 0, ROW, LEFTMARGIN);
-        layout.addDataField(pPosition, pShiftZ, bShiftZ, cShiftZ, 1, ROW, currentpolyline);
+        layout.addJLabel(pPosition, lShiftZ, MessagesGED.z_shift, LEFTCOLUMN, ROW, LEFTMARGIN);
+        layout.addDataField(pPosition, pShiftZ, bShiftZ, cShiftZ, RIGHTCOLUMN, ROW, currentpolyline);
         bShiftZ.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -229,7 +235,8 @@ public class Position extends DataProperties {
     * Loads the current properties of group: Position.
     * @param objectID Enters the identification of polyline.
     */
-    private void values(String objectID) {
+    @Override
+    public final void values(String objectID) {
         if (objectID != null) {
             currentpolyline = objectID;
 

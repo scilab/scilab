@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos Cardinot
+ * Copyright (C) 2012 2013 - Marcos Cardinot
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,19 +11,95 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects.polyline;
 
+import java.awt.Dimension;
+import java.util.Arrays;
+import javax.swing.Box.Filler;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.gui.ged.ContentLayout;
+import org.scilab.modules.gui.ged.graphic_objects.SimpleObject;
+
 /**
 * Properties of the polyline.
-* Last child.
-*
-* @author Marcos Cardinot <mcardinot@gmail.com>
+* @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Polyline extends Style {
+public class Polyline extends ContentLayout implements SimpleObject {
+    private String objectID;
+    private ContentLayout layout = new ContentLayout();
+    private String [] sections;
+    private BaseProperties baseProperties;
+    private DataProperties dataProperties;
+    private Position position;
+    private Style style;
+
     /**
-    * Initializes the components of the JPanel.
-    *
+    * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
     * @param objectID Enters the identification of polyline.
     */
-    public Polyline(String objectID) {
-        super(objectID);
+    @Override
+    public final void initSections(String objectID) {
+        setObjectID(objectID);
+        baseProperties = new BaseProperties(objectID);
+        dataProperties = new DataProperties(objectID);
+        position = new Position(objectID);
+        style = new Style(objectID);
+
+        layout.addSectionPanel(this, baseProperties, getPosition(baseProperties.getName()));
+        layout.addSectionPanel(this, dataProperties, getPosition(dataProperties.getName()));
+        layout.addSectionPanel(this, position, getPosition(position.getName()));
+        layout.addSectionPanel(this, style, getPosition(style.getName()));
+        fillerV();
+    }
+
+    /**
+    * Get the position of section for current language (alphabetic order).
+    * @param section Name of section.
+    * @return position
+    */
+    @Override
+    public final int getPosition(String section) {
+        sections = new String[] {
+            baseProperties.getName(),
+            dataProperties.getName(),
+            position.getName(),
+            style.getName()
+        };
+        Arrays.sort(sections);
+        return Arrays.binarySearch(sections, section);
+    }
+
+    /**
+     * Add a vertical filler - makes the jpanels are always on top.
+     */
+    private void fillerV() {
+        Filler filler = new Filler(new Dimension(1, 1), new Dimension(1, 1), new Dimension(1, 32767));
+        layout.addFiller(this, filler, sections.length);
+    }
+
+    /**
+    * Set the Object ID.
+    * @param objectID Enters the identification of object.
+    */
+    @Override
+    public final void setObjectID(String objectID) {
+        this.objectID = objectID;
+    }
+
+    /**
+    * Get the Object ID.
+    * @return Object ID
+    */
+    @Override
+    public final String getObjectID() {
+        return objectID;
+    }
+
+    /**
+    * Get Parent Figure (ID).
+    * @param objectID Enters the identification of object.
+    * @return FigreID
+    */
+    public final String getFigueID(String objectID) {
+        return (String) GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
     }
 }

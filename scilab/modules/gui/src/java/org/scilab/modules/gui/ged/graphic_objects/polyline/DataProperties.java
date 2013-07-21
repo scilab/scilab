@@ -36,7 +36,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.gui.ged.ContentLayout;
-
+import org.scilab.modules.gui.ged.graphic_objects.SimpleSection;
 import org.scilab.modules.gui.ged.MessagesGED;
 
 /**
@@ -44,8 +44,13 @@ import org.scilab.modules.gui.ged.MessagesGED;
 *
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class DataProperties extends BaseProperties {
+public class DataProperties extends Polyline implements SimpleSection {
+    private String currentpolyline;
     private ContentLayout layout = new ContentLayout();
+    private int LEFTMARGIN = 0;
+    private int LEFTCOLUMN = 1;
+    private int RIGHTCOLUMN = 2;
+
     private static JToggleButton bDataProperties;
     private JLabel lDataProperties;
     private JSeparator sDataProperties;
@@ -83,7 +88,7 @@ public class DataProperties extends BaseProperties {
     * @param objectID Enters the identification of polyline.
     */
     public DataProperties(String objectID) {
-        super(objectID);
+        currentpolyline = objectID;
         insertBase();
         components();
         dataDialog();
@@ -93,17 +98,17 @@ public class DataProperties extends BaseProperties {
     /**
     * Insert show/hide button, title and main JPanel of group.
     */
-    private void insertBase() {
-	int position = 2; //second group
-
+    @Override
+    public final void insertBase() {
+        String SECTIONNAME = MessagesGED.data_properties;
+        this.setName(SECTIONNAME);
         bDataProperties = new JToggleButton();
         lDataProperties = new JLabel();
         sDataProperties = new JSeparator();
         pDataProperties = new JPanel();
 
         //Positioning JPanel Data Properties.
-        layout.addHeader(this, pDataProperties, bDataProperties, lDataProperties,
-                         sDataProperties, MessagesGED.data_properties, position);
+        layout.addHeader(this, pDataProperties, bDataProperties, lDataProperties, sDataProperties, SECTIONNAME);
         bDataProperties.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -116,7 +121,8 @@ public class DataProperties extends BaseProperties {
     /**
     * It has all the components of the section Data Properties.
     */
-    private void components() {
+    @Override
+    public final void components() {
         bClipBox = new JToggleButton();
         lClipBox = new JLabel();
         cClipBox = new JTextField();
@@ -147,10 +153,10 @@ public class DataProperties extends BaseProperties {
         int ROW = 0;
 
         //Components of the property: Clip State.
-        layout.addJLabel(pDataProperties, lClipState, MessagesGED.clip_state, 1, ROW, 0);
+        layout.addJLabel(pDataProperties, lClipState, MessagesGED.clip_state, LEFTCOLUMN, ROW, LEFTMARGIN);
         layout.addJComboBox(pDataProperties, cClipState,
                 new String[] {MessagesGED.off, MessagesGED.clipgrf, MessagesGED.on},
-                2, ROW);
+                RIGHTCOLUMN, ROW);
         cClipState.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -172,9 +178,12 @@ public class DataProperties extends BaseProperties {
             }
         });
         int rowClipBox = 0;
+        int LCClipBox = 0; //left column - clip box
+        int RCClipBox = 1; //rigth column - clip box
+        int LMClipBox = 0; //left margin - clip box
         //Clip Box Upper
-        layout.addJLabel(pClipBox, lClipBoxUpper, MessagesGED.upper_left, 0, rowClipBox, 0);
-        layout.addJTextField(pClipBox, cClipBoxUpper, true, 1, rowClipBox++, 4);
+        layout.addJLabel(pClipBox, lClipBoxUpper, MessagesGED.upper_left, LCClipBox, rowClipBox, LMClipBox);
+        layout.addJTextField(pClipBox, cClipBoxUpper, true, RCClipBox, rowClipBox++);
         cClipBoxUpper.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -188,8 +197,8 @@ public class DataProperties extends BaseProperties {
             }
         });
         //Clip Box Point
-        layout.addJLabel(pClipBox, lClipBoxPoint, MessagesGED.point, 0, rowClipBox, 0);
-        layout.addJTextField(pClipBox, cClipBoxPoint, true, 1, rowClipBox++, 4);
+        layout.addJLabel(pClipBox, lClipBoxPoint, MessagesGED.point, LCClipBox, rowClipBox, LMClipBox);
+        layout.addJTextField(pClipBox, cClipBoxPoint, true, RCClipBox, rowClipBox++);
         cClipBoxPoint.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -203,8 +212,8 @@ public class DataProperties extends BaseProperties {
             }
         });
         //Clip Box Width
-        layout.addJLabel(pClipBox, lClipBoxWidth, MessagesGED.width, 0, rowClipBox, 0);
-        layout.addJTextField(pClipBox, cClipBoxWidth, true, 1, rowClipBox++, 4);
+        layout.addJLabel(pClipBox, lClipBoxWidth, MessagesGED.width, LCClipBox, rowClipBox, LMClipBox);
+        layout.addJTextField(pClipBox, cClipBoxWidth, true, RCClipBox, rowClipBox++);
         cClipBoxWidth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -218,8 +227,8 @@ public class DataProperties extends BaseProperties {
             }
         });
         //Clip Box Height
-        layout.addJLabel(pClipBox, lClipBoxHeight, MessagesGED.height, 0, rowClipBox, 0);
-        layout.addJTextField(pClipBox, cClipBoxHeight, true, 1, rowClipBox, 4);
+        layout.addJLabel(pClipBox, lClipBoxHeight, MessagesGED.height, LCClipBox, rowClipBox, LMClipBox);
+        layout.addJTextField(pClipBox, cClipBoxHeight, true, RCClipBox, rowClipBox);
         cClipBoxHeight.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -234,7 +243,7 @@ public class DataProperties extends BaseProperties {
         });
 
         //Components of the property: Data.
-        layout.addJLabel(pDataProperties, lData, MessagesGED.data, 1, ROW, 0);
+        layout.addJLabel(pDataProperties, lData, MessagesGED.data, 1, ROW, LEFTMARGIN);
         layout.addDataField(pDataProperties, pData, bData, cData, 2, ROW, currentpolyline);
         bData.addActionListener(new ActionListener() {
             @Override
@@ -246,8 +255,8 @@ public class DataProperties extends BaseProperties {
         ROW++;
 
         //Components of the property: Tag.
-        layout.addJLabel(pDataProperties, lTag, MessagesGED.tag, 1, ROW, 0);
-        layout.addJTextField(pDataProperties, cTag, true, 2, ROW, 4);
+        layout.addJLabel(pDataProperties, lTag, MessagesGED.tag, LEFTCOLUMN, ROW, LEFTMARGIN);
+        layout.addJTextField(pDataProperties, cTag, true, RIGHTCOLUMN, ROW);
         cTag.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -302,7 +311,8 @@ public class DataProperties extends BaseProperties {
     * Loads the current properties of group: Data Properties.
     * @param objectID Enters the identification of polyline.
     */
-    private void values(String objectID) {
+    @Override
+    public final void values(String objectID) {
         if (objectID != null) {
             currentpolyline = objectID;
 

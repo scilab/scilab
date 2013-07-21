@@ -24,15 +24,21 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 import org.scilab.modules.gui.ged.ContentLayout;
+import org.scilab.modules.gui.ged.graphic_objects.SimpleSection;
 import org.scilab.modules.gui.ged.MessagesGED;
 
 /**
 * Construction and startup of all components of the section: Base Properties.
-*
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class BaseProperties extends ContentLayout {
+public class BaseProperties extends Polyline implements SimpleSection {
+    private static BaseProperties instance;
+    private String currentpolyline;
     private ContentLayout layout = new ContentLayout();
+    private int LEFTMARGIN = 16;
+    private int LEFTCOLUMN = 0;
+    private int RIGHTCOLUMN = 1;
+
     private static JToggleButton bBaseProperties;
     private static JPanel pBaseProperties;
     private JSeparator sBaseProperties;
@@ -47,14 +53,14 @@ public class BaseProperties extends ContentLayout {
     private JComboBox cLineMode;
     private JLabel lMarkMode;
     private JComboBox cMarkMode;
-    protected String currentpolyline = null;
-    protected int LEFTMARGIN = 16;
 
     /**
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of polyline.
     */
-    public BaseProperties(String objectID){
+    public BaseProperties(String objectID) {
+        instance = this;
+        currentpolyline = objectID;
         insertBase();
         components();
         values(objectID);
@@ -63,17 +69,17 @@ public class BaseProperties extends ContentLayout {
     /**
     * Insert show/hide button, title and main JPanel of group.
     */
-    private void insertBase() {
-	int position = 1; //first group -top
-
+    @Override
+    public final void insertBase() {
+        String SECTIONNAME = MessagesGED.base_properties;
+        this.setName(SECTIONNAME);
         bBaseProperties = new JToggleButton();
         lBaseProperties = new JLabel();
         sBaseProperties = new JSeparator();
         pBaseProperties = new JPanel();
 
         //Positioning JPanel Base Properties.
-        layout.addHeader(this, pBaseProperties, bBaseProperties, lBaseProperties,
-                         sBaseProperties, MessagesGED.base_properties, position);
+        layout.addHeader(this, pBaseProperties, bBaseProperties, lBaseProperties, sBaseProperties, SECTIONNAME);
         bBaseProperties.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -86,7 +92,8 @@ public class BaseProperties extends ContentLayout {
     /**
     * It has all the components of the section Base Properties.
     */
-    private void components() {
+    @Override
+    public final void components() {
         lClosed = new JLabel();
         cClosed = new JComboBox();
         lFillMode = new JLabel();
@@ -101,8 +108,8 @@ public class BaseProperties extends ContentLayout {
         int ROW = 0;
 
         //Components of the property: Closed.
-        layout.addJLabel(pBaseProperties, lClosed, MessagesGED.closed, 0, ROW, LEFTMARGIN);
-        layout.addJComboBox(pBaseProperties, cClosed, messageOffOn, 1, ROW);
+        layout.addJLabel(pBaseProperties, lClosed, MessagesGED.closed, LEFTCOLUMN, ROW, LEFTMARGIN);
+        layout.addJComboBox(pBaseProperties, cClosed, messageOffOn, RIGHTCOLUMN, ROW);
         cClosed.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -114,8 +121,8 @@ public class BaseProperties extends ContentLayout {
         ROW++;
 
         //Components of the property: Fill Mode.
-        layout.addJLabel(pBaseProperties, lFillMode, MessagesGED.fill_mode, 0, ROW, LEFTMARGIN);
-        layout.addJComboBox(pBaseProperties, cFillMode, messageOffOn, 1, ROW);
+        layout.addJLabel(pBaseProperties, lFillMode, MessagesGED.fill_mode, LEFTCOLUMN, ROW, LEFTMARGIN);
+        layout.addJComboBox(pBaseProperties, cFillMode, messageOffOn, RIGHTCOLUMN, ROW);
         cFillMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -127,8 +134,8 @@ public class BaseProperties extends ContentLayout {
         ROW++;
 
         //Components of the property: Line Mode.
-        layout.addJLabel(pBaseProperties, lLineMode, MessagesGED.line_mode, 0, ROW, LEFTMARGIN);
-        layout.addJComboBox(pBaseProperties, cLineMode, messageOffOn, 1, ROW);
+        layout.addJLabel(pBaseProperties, lLineMode, MessagesGED.line_mode, LEFTCOLUMN, ROW, LEFTMARGIN);
+        layout.addJComboBox(pBaseProperties, cLineMode, messageOffOn, RIGHTCOLUMN, ROW);
         cLineMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -140,8 +147,8 @@ public class BaseProperties extends ContentLayout {
         ROW++;
 
         //Components of the property: Mark Mode.
-        layout.addJLabel(pBaseProperties, lMarkMode, MessagesGED.mark_mode, 0, ROW, LEFTMARGIN);
-        layout.addJComboBox(pBaseProperties, cMarkMode, messageOffOn, 1, ROW);
+        layout.addJLabel(pBaseProperties, lMarkMode, MessagesGED.mark_mode, LEFTCOLUMN, ROW, LEFTMARGIN);
+        layout.addJComboBox(pBaseProperties, cMarkMode, messageOffOn, RIGHTCOLUMN, ROW);
         cMarkMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -153,8 +160,8 @@ public class BaseProperties extends ContentLayout {
         ROW++;
 
         //Components of the property: Visible.
-        layout.addJLabel(pBaseProperties, lVisible, MessagesGED.visible, 0, ROW, LEFTMARGIN);
-        layout.addJComboBox(pBaseProperties, cVisible, messageOffOn, 1, ROW);
+        layout.addJLabel(pBaseProperties, lVisible, MessagesGED.visible, LEFTCOLUMN, ROW, LEFTMARGIN);
+        layout.addJComboBox(pBaseProperties, cVisible, messageOffOn, RIGHTCOLUMN, ROW);
         cVisible.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -169,7 +176,8 @@ public class BaseProperties extends ContentLayout {
     * Loads the current properties of group: Base Properties.
     * @param objectID Enters the identification of polyline.
     */
-    private void values(String objectID) {
+    @Override
+    public final void values(String objectID) {
         if (objectID != null) {
             currentpolyline = objectID;
             boolean enable;
@@ -199,6 +207,14 @@ public class BaseProperties extends ContentLayout {
                                 .getProperty(currentpolyline, GraphicObjectProperties.__GO_VISIBLE__);
             cVisible.setSelectedIndex(enable?1:0);
         }
+    }
+
+    /**
+    * Get Instance.
+    * @return instance
+    */
+    public static BaseProperties getInstance() {
+        return instance;
     }
 
     /**

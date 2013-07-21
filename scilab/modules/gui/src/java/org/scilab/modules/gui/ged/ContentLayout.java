@@ -48,7 +48,7 @@ import org.scilab.modules.graphic_objects.PolylineData;
 */
 public class ContentLayout extends JPanel {
     private GridBagLayout layout;
-    protected GridBagConstraints gbc;
+    private GridBagConstraints gbc;
     private static String imagepath = System.getenv("SCI") + "/modules/gui/images/icons/";
 
     public ContentLayout() {
@@ -450,7 +450,7 @@ public class ContentLayout extends JPanel {
         panel.add(label, gbc);
     }
 
-    public void addJTextField(JPanel panel, JTextField textField, boolean editable, int column, int row, int insetLeft) {
+    public void addJTextField(JPanel panel, JTextField textField, boolean editable, int column, int row) {
         textField.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         textField.setPreferredSize(new Dimension(5, 20));
         textField.setEditable(editable);
@@ -462,7 +462,7 @@ public class ContentLayout extends JPanel {
         gbc.gridy = row;
         gbc.ipadx = 70;
         gbc.weightx = 0.1;
-        gbc.insets = new Insets(0, insetLeft, 5, 0);
+        gbc.insets = new Insets(0, 4, 5, 0);
         panel.add(textField, gbc);
     }
 
@@ -476,17 +476,16 @@ public class ContentLayout extends JPanel {
     * @param message Title of section
     * @param section Position of section - [1,n] 1=top n=bottom
     */
-    public void addHeader(JPanel mpanel, JPanel spanel, JToggleButton tbutton, JLabel label,
-                           JSeparator separator, String message, int section) {
-        int row = 3 * (section-1);
-        addSHbutton(mpanel, tbutton, 0, row);
-        addSectionTitle(mpanel, label, message, row);
-        addSeparator(mpanel, separator, row+1);
+    public void addHeader(JPanel mpanel, JPanel spanel, JToggleButton tbutton,
+                            JLabel label, JSeparator separator, String message) {
+        addSHbutton(mpanel, tbutton, 0, 0);
+        addSectionTitle(mpanel, label, message, 0);
+        addSeparator(mpanel, separator, 1);
         spanel.setLayout(new GridBagLayout());
 
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
-        gbc.gridy = row+2;
+        gbc.gridy = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         gbc.weightx = 0.1;
@@ -526,16 +525,31 @@ public class ContentLayout extends JPanel {
         ipanel.setVisible(false);
         addSHbutton(gpanel, tbutton, 0, row);
         addJLabel(gpanel, label, message, 1, row, 0);
-        addJTextField(gpanel, field, false, 2, row, 4);
+        addJTextField(gpanel, field, false, 2, row);
         ipanel.setLayout(new GridBagLayout());
 
         //Positioning Inner JPanel.
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
-        gbc.gridy = row+1;
+        gbc.gridy = row + 1;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 0.1;
         gpanel.add(ipanel, gbc);
+    }
+
+    /**
+    * Add JPanel of Section in Main JPanel of Object.
+    * @param mpanel Main JPanel of Object
+    * @param spanel Main Jpanel of Section
+    * @param row Row number
+    */
+    public void addSectionPanel(JPanel mpanel, JPanel spanel, int row) {
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = row;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 0.1;
+        mpanel.add(spanel, gbc);
     }
 }
