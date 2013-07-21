@@ -31,14 +31,10 @@ public class HideLegend {
      * Updates the button's icon in the toolbar
      */
     public static void checkAllButtons() {
-        boolean BP;
-        BP = BaseProperties.pBaseProperties.isVisible();
-        if (BP) {
-            ShowHide.click = false;
-            ShowHide.toggleButton();
-        } else if (!BP) {
-            ShowHide.click = true;
-            ShowHide.toggleButton();
-        }
+        boolean BP = BaseProperties.pBaseProperties.isVisible();
+        if (BP)
+            ShowHide.setStatus(false);
+        else if (!BP)
+            ShowHide.setStatus(true);
     }
 }

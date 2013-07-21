@@ -37,12 +37,10 @@ public class HidePolyline extends Polyline {
         boolean DP = DataProperties.getStatus();
         boolean PS = Position.getStatus();
         boolean SA = Style.getStatus();
-        if (BP && DP && PS && SA) {
-            ShowHide.click = false;
-            ShowHide.toggleButton();
-        } else if (!BP && !DP && !PS && !SA) {
-            ShowHide.click = true;
-            ShowHide.toggleButton();
-        }
+
+        if (BP && DP && PS && SA)
+            ShowHide.setStatus(false);
+        else if (!BP && !DP && !PS && !SA)
+            ShowHide.setStatus(true);
     }
 }

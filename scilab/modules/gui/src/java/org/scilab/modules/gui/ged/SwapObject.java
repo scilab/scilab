@@ -72,8 +72,7 @@ public class SwapObject {
         SwingInspector.pReceive.removeAll();
         SwingInspector.pReceive.repaint();
         //Resets the Show/Hide button.
-        ShowHide.click = true;
-        ShowHide.setIcon(1);
+        ShowHide.setStatus(false);
     }
 
     /**

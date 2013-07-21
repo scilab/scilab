@@ -40,17 +40,13 @@ public class HideFigure {
      * Updates the button's icon in the toolbar
      */
     public static void checkAllButtons() {
-        boolean BP, CO, DP, SA;
-        BP = BaseProperties.pBaseProperties.isVisible();
-        CO = Control.pControl.isVisible();
-        DP = DataProperties.pData.isVisible();
-        SA = Style.pStyle.isVisible();
-        if (BP && CO && DP && SA) {
-            ShowHide.click = false;
-            ShowHide.toggleButton();
-        } else if (!BP && !CO && !DP && !SA) {
-            ShowHide.click = true;
-            ShowHide.toggleButton();
-        }
+        boolean BP = BaseProperties.pBaseProperties.isVisible();
+        boolean CO = Control.pControl.isVisible();
+        boolean DP = DataProperties.pData.isVisible();
+        boolean SA = Style.pStyle.isVisible();
+        if (BP && CO && DP && SA)
+            ShowHide.setStatus(false);
+        else if (!BP && !CO && !DP && !SA)
+            ShowHide.setStatus(true);
     }
 }

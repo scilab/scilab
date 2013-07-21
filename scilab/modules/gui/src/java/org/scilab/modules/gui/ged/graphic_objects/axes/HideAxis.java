@@ -50,17 +50,13 @@ public class HideAxis {
      * Updates the button's icon in the toolbar
      */
     public static void checkAllButtons() {
-        boolean AR, LA, PO, SA;
-        AR = AxisRulers.pAxisRulers.isVisible();
-        LA = Label.pLabel.isVisible();
-        PO = Position.pPosition.isVisible();
-        SA = Style.pStyle.isVisible();
-        if (AR && LA && PO && SA) {
-            ShowHide.click = false;
-            ShowHide.toggleButton();
-        } else if (!AR && !LA && !PO && !SA) {
-            ShowHide.click = true;
-            ShowHide.toggleButton();
-        }
+        boolean AR = AxisRulers.pAxisRulers.isVisible();
+        boolean LA = Label.pLabel.isVisible();
+        boolean PO = Position.pPosition.isVisible();
+        boolean SA = Style.pStyle.isVisible();
+        if (AR && LA && PO && SA)
+            ShowHide.setStatus(false);
+        else if (!AR && !LA && !PO && !SA)
+            ShowHide.setStatus(true);
     }
 }

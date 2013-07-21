@@ -31,7 +31,7 @@ import org.scilab.modules.gui.pushbutton.ScilabPushButton;
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
 public class ShowHide extends CommonCallBack {
-    public static boolean click = true;
+    private static boolean click = true;
     private static PushButton button;
 
     /**
@@ -87,6 +87,23 @@ public class ShowHide extends CommonCallBack {
 
             click = true;
 	}
+    }
+
+    /**
+    * Set the Status of Button.
+    * @return true = clicked
+    */
+    public static void setStatus(boolean clicked) {
+        click = clicked;
+        toggleButton();
+    }
+
+    /**
+    * Get the Status of Button.
+    * @return true = clicked
+    */
+    public static boolean getStatus() {
+        return click;
     }
 
     /**
