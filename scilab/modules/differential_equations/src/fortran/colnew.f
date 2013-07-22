@@ -479,8 +479,9 @@ C
 c
       CHARACTER ALFA*(63)
       CHARACTER ALFB*(63)
+      CHARACTER TMPBUF*(4096)
       CHARACTER BUF*(4096)
-      COMMON/CHA1/ ALFA,ALFB,BUF
+      COMMON /CHA1/ ALFA,ALFB,BUF
 C     this subroutine can be called either COLNEW or COLSYS
 C
       ENTRY      COLSYS (NCOMP, M, ALEFT, ARIGHT, ZETA, IPAR, LTOL,
@@ -504,9 +505,10 @@ C...  specify machine dependent output unit  iout  and compute machine
 C...  dependent constant  precis = 100 * machine unit roundoff
 C
       IF ( IPAR(7) .LE. 0 )  THEN
-c		   replaces write(6 ...) by basout bug 2598
+c           replaces write(6 ...) by basout bug 2598
 c      WRITE(6,99)
-        WRITE(BUF,99)
+        WRITE(TMPBUF,99)
+        BUF=TMPBUF
         CALL MSGS(117, 0)
       ENDIF
   99  FORMAT(29H VERSION *COLNEW* OF COLSYS .)
@@ -564,33 +566,44 @@ C...  print the input data for checking.
 C
       IF ( IPRINT .GT. -1 )                         GO TO 80
       IF ( NONLIN .GT. 0 )                          GO TO 60
-      WRITE (BUF,260) NCOMP
+      WRITE (TMPBUF,260) NCOMP
+      BUF=TMPBUF
       CALL MSGS(117, 0)
-      WRITE (BUF,261) (M(IP), IP=1,NCOMP)
+      WRITE (TMPBUF,261) (M(IP), IP=1,NCOMP)
+      BUF=TMPBUF
       CALL MSGS(117, 0)
       GO TO 70
-   60 WRITE (BUF,270) NCOMP
+   60 WRITE (TMPBUF,270) NCOMP
+      BUF=TMPBUF
       CALL MSGS(117, 0)
-      WRITE (BUF,271) (M(IP), IP=1, NCOMP)
+      WRITE (TMPBUF,271) (M(IP), IP=1, NCOMP)
+      BUF=TMPBUF
       CALL MSGS(117, 0)
-   70 WRITE (BUF,280) (ZETA(IP), IP=1,MSTAR)
+   70 WRITE (TMPBUF,280) (ZETA(IP), IP=1,MSTAR)
+      BUF=TMPBUF
       CALL MSGS(117, 0)
       IF ( NFXPNT .GT. 0 ) THEN
-        WRITE (BUF,340) NFXPNT, (FIXPNT(IP), IP=1,NFXPNT)
+        WRITE (TMPBUF,340) NFXPNT, (FIXPNT(IP), IP=1,NFXPNT)
+        BUF=TMPBUF
         CALL MSGS(117, 0)
       ENDIF
-      WRITE (BUF,290) K
+      WRITE (TMPBUF,290) K
+      BUF=TMPBUF
       CALL MSGS(117, 0)
-      WRITE (BUF,300) (LTOL(IP), IP=1,NTOL)
+      WRITE (TMPBUF,300) (LTOL(IP), IP=1,NTOL)
+      BUF=TMPBUF
       CALL MSGS(117, 0)
-      WRITE (BUF,310) (TOL(IP), IP=1,NTOL)
+      WRITE (TMPBUF,310) (TOL(IP), IP=1,NTOL)
+      BUF=TMPBUF
       CALL MSGS(117, 0)
       IF (IGUESS .GE. 2) THEN
-       WRITE (BUF,320)
+       WRITE (TMPBUF,320)
+       BUF=TMPBUF
        CALL MSGS(117, 0)
       ENDIF
       IF (IREAD .EQ. 2) THEN
-       WRITE (BUF,330)
+       WRITE (TMPBUF,330)
+       BUF=TMPBUF
        CALL MSGS(117, 0)
       ENDIF
    80 CONTINUE
@@ -644,14 +657,16 @@ C
       NMAXF = (NDIMF - NFIXF) / NSIZEF
       NMAXI = (NDIMI - NFIXI) / NSIZEI
       IF ( IPRINT .LT. 1 )  THEN
-       WRITE(BUF,350) NMAXF, NMAXI
+       WRITE(TMPBUF,350) NMAXF, NMAXI
+       BUF=TMPBUF
        CALL MSGS(117, 0)
       ENDIF
       NMAX = MIN0( NMAXF, NMAXI )
       IF ( NMAX .LT. N )                            RETURN
       IF ( NMAX .LT. NFXPNT+1 )                     RETURN
       IF (NMAX .LT. 2*NFXPNT+2 .AND. IPRINT .LT. 1) THEN
-       WRITE(BUF,360)
+       WRITE(TMPBUF,360)
+       BUF=TMPBUF
        CALL MSGS(117, 0)
       ENDIF
 C
@@ -848,10 +863,11 @@ C
 C
       common/iercol/iero
 c
+      CHARACTER TMPBUF*(4096)
       CHARACTER ALFA*(63)
       CHARACTER ALFB*(63)
       CHARACTER BUF*(4096)
-      COMMON/CHA1/ ALFA,ALFB,BUF
+      COMMON /CHA1/ ALFA,ALFB,BUF
 C...  constants for control of nonlinear iteration
 C
       RELMIN = 1.D-3
@@ -894,12 +910,14 @@ C
            IF ( MSING .EQ. 0 )                      GO TO 400
    30      IF ( MSING .LT. 0 )                      GO TO 40
            IF ( IPRINT .LT. 1 )  THEN
-            WRITE (BUF,495)
+            WRITE (TMPBUF,495)
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            GO TO 460
    40      IF ( IPRINT .LT. 1 )  THEN
-            WRITE (BUF,490)
+            WRITE (TMPBUF,490)
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            IFLAG = 0
@@ -931,11 +949,13 @@ C
            if (iero.gt.0) return
 C
            IF ( IPRINT .LT. 0 )  THEN
-            WRITE(BUF,530)
+            WRITE(TMPBUF,530)
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            IF ( IPRINT .LT. 0 )  THEN
-            WRITE (BUF,510) ITER, RNOLD
+            WRITE (TMPBUF,510) ITER, RNOLD
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            GO TO 70
@@ -945,7 +965,8 @@ C...       the value of ifreez determines whether this is a full
 C...       newton step (=0) or a fixed jacobian iteration (=1).
 C
    60      IF ( IPRINT .LT. 0 )  THEN
-            WRITE (BUF,510) ITER, RNORM
+            WRITE (TMPBUF,510) ITER, RNORM
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            RNOLD = RNORM
@@ -1007,7 +1028,8 @@ C
 C...       convergence obtained
 C
            IF ( IPRINT .LT. 1 )  THEN
-            WRITE (BUF,560) ITER
+            WRITE (TMPBUF,560) ITER
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            GO TO 400
@@ -1015,11 +1037,13 @@ C
 C...      convergence of fixed jacobian iteration failed.
 C
   130      IF ( IPRINT .LT. 0 )  THEN
-            WRITE (BUF,510) ITER, RNORM
+            WRITE (TMPBUF,510) ITER, RNORM
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            IF ( IPRINT .LT. 0 )  THEN
-            WRITE (BUF,540)
+            WRITE (TMPBUF,540)
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            ICONV = 0
@@ -1045,7 +1069,8 @@ C...       with the damped newton method.
 C...       evaluate rhs and find the first newton correction.
 C
   160      IF(IPRINT .LT. 0)  THEN
-            WRITE (BUF,500)
+            WRITE (TMPBUF,500)
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            CALL LSYSLV (MSING, XI, XIOLD, Z, DMZ, DELZ, DELDMZ, G,
@@ -1149,14 +1174,16 @@ C
            ANFIX = DSQRT(ANFIX / DBLE(NZ+NDMZ))
            IF ( ICOR .EQ. 1 )                         GO TO 280
            IF (IPRINT .LT. 0)  THEN
-            WRITE (BUF,520) ITER, RELAX, ANORM,
+            WRITE (TMPBUF,520) ITER, RELAX, ANORM,
      1           ANFIX, RNOLD, RNORM
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            GO TO 290
   280      IF (IPRINT .LT. 0) THEN
-            WRITE (BUF,550) RELAX, ANORM, ANFIX,
+            WRITE (TMPBUF,550) RELAX, ANORM, ANFIX,
      1           RNOLD, RNORM
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
   290      ICOR = 0
@@ -1215,7 +1242,8 @@ C
 C...       convergence obtained
 C
            IF ( IPRINT .LT. 1 )  THEN
-            WRITE (BUF,560) ITER
+            WRITE (TMPBUF,560) ITER
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
 C
@@ -1230,7 +1258,8 @@ C
   380      CONTINUE
   390      IF ( (ANFIX .LT. PRECIS .OR. RNORM .LT. PRECIS)
      1          .AND. IPRINT .LT. 1 )  THEN
-            WRITE (BUF,560) ITER
+            WRITE (TMPBUF,560) ITER
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            ICONV = 1
@@ -1241,14 +1270,17 @@ C...       solution components   z  at the meshpoints.
 C
   400      IF ( IPRINT .GE. 0 )                     GO TO 420
            DO 410 J = 1, MSTAR
-             WRITE(BUF,610) J
+             WRITE(TMPBUF,610) J
+             BUF=TMPBUF
              CALL MSGS(117, 0)
 c             WRITE(*,620) (Z(LJ), LJ = J, NZ, MSTAR)
 c            Create and display buffer row by row
 c            Format 620 write one space following by at most 8 double
 c            that's why the increment of iter is multiply by 8
              DO 405 iter = J, NZ, MSTAR*8
-                WRITE(BUF,620) (Z(LJ), LJ = iter, iter+MSTAR*7, MSTAR)
+                WRITE(TMPBUF,620) (Z(LJ), LJ = iter, iter+MSTAR*7, 
+     1              MSTAR)
+                BUF=TMPBUF
   405           CALL MSGS(117, 0)
   410        continue
 C
@@ -1264,12 +1296,14 @@ C
 C...       diagnostics for failure of nonlinear iteration.
 C
   430      IF ( IPRINT .LT. 1 )  THEN
-            WRITE (BUF,570) ITER
+            WRITE (TMPBUF,570) ITER
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            GO TO 450
   440      IF( IPRINT .LT. 1 )  THEN
-            WRITE(BUF,580) RELAX, RELMIN
+            WRITE(TMPBUF,580) RELAX, RELMIN
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
   450      IFLAG = -2
@@ -1301,11 +1335,13 @@ C
            N = N / 2
            IFLAG = -1
            IF ( ICONV .EQ. 0 .AND. IPRINT .LT. 1 )  THEN
-            WRITE (BUF,590)
+            WRITE (TMPBUF,590)
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            IF ( ICONV .EQ. 1 .AND. IPRINT .LT. 1 )  THEN
-            WRITE (BUF,600)
+            WRITE (TMPBUF,600)
+            BUF=TMPBUF
             CALL MSGS(117, 0)
            ENDIF
            RETURN
@@ -1486,6 +1522,7 @@ C
 c
       CHARACTER ALFA*(63)
       CHARACTER ALFB*(63)
+      CHARACTER TMPBUF*(4096)
       CHARACTER BUF*(4096)
       COMMON/CHA1/ ALFA,ALFB,BUF
 C
@@ -1506,7 +1543,8 @@ C...  iguess=2, 3 or 4.
 C
       NOLDP1 = NOLD + 1
       IF (IPRINT .LT. 1)  THEN
-       WRITE(BUF,360) NOLD, (XIOLD(I), I=1,NOLDP1)
+       WRITE(TMPBUF,360) NOLD, (XIOLD(I), I=1,NOLDP1)
+       BUF=TMPBUF
        CALL MSGS(117, 0)
       ENDIF
       IF ( IGUESS .NE. 3 )                          GO TO 40
@@ -1579,7 +1617,8 @@ C
       N = NMAX / 2
       GO TO 220
   110 IF ( IPRINT .LT. 1 ) THEN
-        WRITE(BUF,370)
+        WRITE(TMPBUF,370)
+        BUF=TMPBUF
         CALL MSGS(117, 0)
       ENDIF
       N = N2
@@ -1700,7 +1739,8 @@ C...  naccum=expected n to achieve .1x user requested tolerances
 C
       NACCUM = ACCUM(NOLD+1) + 1.D0
       IF ( IPRINT .LT. 0 )  THEN
-       WRITE(BUF,350) DEGEQU, NACCUM
+       WRITE(TMPBUF,350) DEGEQU, NACCUM
+       BUF=TMPBUF
        CALL MSGS(117, 0)
       ENDIF
 C
@@ -1781,7 +1821,8 @@ C
   320 CONTINUE
       NP1 = N + 1
       IF ( IPRINT .LT. 1 )  THEN
-       WRITE(BUF,340) N, (XI(I),I=1,NP1)
+       WRITE(TMPBUF,340) N, (XI(I),I=1,NP1)
+       BUF=TMPBUF
        CALL MSGS(117, 0)
       ENDIF
       NZ   = MSTAR * (N + 1)
@@ -1986,6 +2027,7 @@ C
       CHARACTER ALFA*(63)
       CHARACTER ALFB*(63)
       CHARACTER BUF*(4096)
+      CHARACTER TMPBUF*(4096)
       COMMON /CHA1/ ALFA, ALFB, BUF
 C
 C...  error estimates are to be generated and tested
@@ -2052,12 +2094,14 @@ C
    50      CONTINUE
    60 CONTINUE
       IF ( IPRINT .GE. 0 )                          RETURN
-      WRITE(BUF,130)
+      WRITE(TMPBUF,130)
+      BUF=TMPBUF
       CALL MSGS(117, 0)
       LJ = 1
       DO 70 J = 1,NCOMP
            MJ = LJ - 1 + M(J)
-           WRITE(BUF,120) J, (ERREST(L), L= LJ, MJ)
+           WRITE(TMPBUF,120) J, (ERREST(L), L= LJ, MJ)
+           BUF=TMPBUF
            CALL MSGS(117, 0)
            LJ = MJ + 1
    70 CONTINUE
@@ -2823,6 +2867,7 @@ C
       CHARACTER ALFA*(63)
       CHARACTER ALFB*(63)
       CHARACTER BUF*(4096)
+      CHARACTER TMPBUF*(4096)
       COMMON /CHA1/ ALFA, ALFB, BUF
 C
       GO TO (10, 30, 80, 90), MODE
@@ -2843,7 +2888,8 @@ C
       IF ( X .GE. XI(1)-PRECIS .AND. X .LE. XI(N+1)+PRECIS )
      1                                              GO TO 40
       IF (IPRINT .LT. 1)  THEN
-       WRITE(BUF,900) X, XI(1), XI(N+1)
+       WRITE(TMPBUF,900) X, XI(1), XI(N+1)
+       BUF=TMPBUF
        CALL MSGS(117, 0)
       ENDIF
       IF ( X .LT. XI(1) )  X = XI(1)
