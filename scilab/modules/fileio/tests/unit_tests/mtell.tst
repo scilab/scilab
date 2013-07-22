@@ -18,6 +18,7 @@ for j=1:100
   for i=1:j
     mput(i,'d');
   end
+  // 'd' is 8 bytes
   if mtell(fd) <> 8 * j then pause, end
   mseek(0);
 end
@@ -33,14 +34,28 @@ end
 
 
 fd = mopen(testFile,'wb');
+// file should be empty
+if mtell(fd) <> 0 then pause, end
+for j=1:100
+  for i=1:j
+    mput(i,'us');
+  end
+  // 'us' is 2 bytes
+  if mtell(fd) <> 2 * j then pause, end
+  mseek(0);
+end
+mclose(fd);
 
+fd = mopen(testFile,'wb');
 // file should be empty
 if mtell(fd) <> 0 then pause, end
 for j=1:100
   for i=1:j
     mput(i,'ul');
   end
-  if mtell(fd) <> 4 * j then pause, end
+  // 'ul' is 8 bytes
+  if mtell(fd) <> 8 * j then pause, end
   mseek(0);
 end
 mclose(fd);
+
