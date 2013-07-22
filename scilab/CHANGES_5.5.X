@@ -228,6 +228,8 @@ Bug fixes
 
 * Bug #7828 fixed - Slight improvements in nicholschart.
 
+* Bug #7848 fixed - The third argument of correl function is now optional.
+
 * Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
 * Bug #7960 fixed - plzr() could not produce pole zero plot for a simple transfer function.
