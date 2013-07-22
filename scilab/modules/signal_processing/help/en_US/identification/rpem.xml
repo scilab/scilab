@@ -241,60 +241,60 @@ plot(c_est(1,:),"color","blue");
 ]]>
         </programlisting>
         <scilab:image>
-nbPoints = 50; // Number of points computed
-
-// Real parameters a,b,c: here, y=u
-a=cat(2,1,zeros(1,nbPoints - 1));
-b=cat(2,1,zeros(1,nbPoints - 1));
-c=zeros(1,nbPoints);
-
-// Generate input signal
-t=linspace(0,50,600);
-w=%pi/3;
-u=cos(w*t);
-
-// Generate output signal
-Arma=armac(a,b,c,1,1,0);
-y=arsimul(Arma,u);
-
-f1=figure("figure_name","figure1","backgroundColor",[1 1 1]);
-subplot(3,1,1);
-plot(t, u, "b+");
-xtitle("Input");
-subplot(3,1,2);
-plot(t, y);
-
-// Arguments of rpem
-phi=zeros(1,nbPoints*3);
-psi=zeros(1,nbPoints*3);
-l=zeros(1,nbPoints*3);
-p=1*eye(nbPoints*3,nbPoints*3);
-theta=[0*a 0*b 0*c];
-w0=list(theta,p,l,phi,psi);
-[w0, v]=rpem(w0,u,y);
-
-// Get estimated parameters:
-a_est=w0(1)(1);
-b_est=w0(1)(nbPoints + 1);
-c_est=w0(1)(2 * nbPoints + 1);
-for i=2:nbPoints
-    a_est=cat(2,a_est,w0(1)(i));
-    b_est=cat(2,b_est,w0(1)(i+nbPoints));
-    c_est=cat(2,c_est,w0(1)(i+2*nbPoints));
-end
-
-// Generate and plot output estimated
-Arma_est=armac(a_est,b_est,c_est,1,1,0);
-y_est=arsimul(Arma_est,u);
-plot(t, y_est,"color","red");
-xtitle("Real output(blue), Estimated output (red)");
-
-// Plot estimated parameters
-subplot(3,1,3);
-xtitle("a,b,c estimated");
-plot(a_est(1,:),"color","red");
-plot(b_est(1,:),"color","green");
-plot(c_est(1,:),"color","blue");
+            nbPoints = 50; // Number of points computed
+            
+            // Real parameters a,b,c: here, y=u
+            a=cat(2,1,zeros(1,nbPoints - 1));
+            b=cat(2,1,zeros(1,nbPoints - 1));
+            c=zeros(1,nbPoints);
+            
+            // Generate input signal
+            t=linspace(0,50,600);
+            w=%pi/3;
+            u=cos(w*t);
+            
+            // Generate output signal
+            Arma=armac(a,b,c,1,1,0);
+            y=arsimul(Arma,u);
+            
+            f1=figure("figure_name","figure1","backgroundColor",[1 1 1]);
+            subplot(3,1,1);
+            plot(t, u, "b+");
+            xtitle("Input");
+            subplot(3,1,2);
+            plot(t, y);
+            
+            // Arguments of rpem
+            phi=zeros(1,nbPoints*3);
+            psi=zeros(1,nbPoints*3);
+            l=zeros(1,nbPoints*3);
+            p=1*eye(nbPoints*3,nbPoints*3);
+            theta=[0*a 0*b 0*c];
+            w0=list(theta,p,l,phi,psi);
+            [w0, v]=rpem(w0,u,y);
+            
+            // Get estimated parameters:
+            a_est=w0(1)(1);
+            b_est=w0(1)(nbPoints + 1);
+            c_est=w0(1)(2 * nbPoints + 1);
+            for i=2:nbPoints
+            a_est=cat(2,a_est,w0(1)(i));
+            b_est=cat(2,b_est,w0(1)(i+nbPoints));
+            c_est=cat(2,c_est,w0(1)(i+2*nbPoints));
+            end
+            
+            // Generate and plot output estimated
+            Arma_est=armac(a_est,b_est,c_est,1,1,0);
+            y_est=arsimul(Arma_est,u);
+            plot(t, y_est,"color","red");
+            xtitle("Real output(blue), Estimated output (red)");
+            
+            // Plot estimated parameters
+            subplot(3,1,3);
+            xtitle("a,b,c estimated");
+            plot(a_est(1,:),"color","red");
+            plot(b_est(1,:),"color","green");
+            plot(c_est(1,:),"color","blue");
         </scilab:image>
     </refsection>
 </refentry>

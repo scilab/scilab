@@ -8,12 +8,12 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function T = temp_law_vfsa(T, step_mean, step_var, temp_stage, n, param)
-if (~isdef('param','local')) then
-  param = []; // First create the empty param var
-end
+    if (~isdef("param","local")) then
+        param = []; // First create the empty param var
+    end
 
-[c,err]         = get_param(param,'c',0.01);
-[dimension,err] = get_param(param,'dimension',3);
+    [c,err]         = get_param(param,"c",0.01);
+    [dimension,err] = get_param(param,"dimension",3);
 
-T = T * (n/(n+1))^(1/dimension);
+    T = T * (n/(n+1))^(1/dimension);
 endfunction

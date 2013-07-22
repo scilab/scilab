@@ -4,33 +4,119 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-function r=Err(x),r=norm(x,1),endfunction
-rand('normal')
 //==========================================================================
-//==============================   det        ==============================
+//==============================   det        ============================== 
 //==========================================================================
-if execstr('det([1 2;3 4;5 6])','errcatch')==0 then bugmes();quit;end
-//Small dimension
+//Small dimension 
 //Real
 A=[1 1; 1 2];
-if Err(det(A)-1)>10*%eps then bugmes();quit;end
+assert_checkalmostequal(det(A), 1);
 [e,m]=det(A);
-if e<>0 |Err(m-1)>10*%eps then bugmes();quit;end
+assert_checkalmostequal(e, 0);
+assert_checkalmostequal(m, 1);
 //Complex
 A=A+%i;
-if Err(det(A)-1-%i)>10*%eps then bugmes();quit;end
+assert_checkalmostequal(real(det(A)), 1);
+assert_checkalmostequal(imag(det(A)), 1);
 [e,m]=det(A);
-if e<>0 |Err(m-1-%i)>10*%eps then bugmes();quit;end
+assert_checkalmostequal(e, 0);
+assert_checkalmostequal(real(m), 1);
+assert_checkalmostequal(imag(m), 1);
+//Sparse
+A=[1 1; 1 2];
+A=sparse(A);
+assert_checkalmostequal(det(A), 1);
+[e,m]=det(A)
+ m  =
+ 
+    1.  
+ e  =
+ 
+    0.  
+assert_checkalmostequal(e, 0);
+assert_checkalmostequal(m, 1);
+//Polynomials
+A=[1+%s 1; 1 2+%s];
+assert_checkequal(det(A), 1+3*%s+%s*%s);
+//Rationals
+A=[1+%s 1/%s; 1 2+%s];
+assert_checkequal(numer(det(A)), -1+2*%s+3*%s^2+%s^3);
+assert_checkequal(denom(det(A)), %s);
+//Sparse complex
+A=[1 1; 1 2];
+A=A+%i;
+A=sparse(A);
+assert_checkalmostequal(real(det(A)), 1);
+assert_checkalmostequal(imag(det(A)), 1);
+[e,m]=det(A);
+assert_checkalmostequal(e, 0);
+assert_checkalmostequal(real(m), 1);
+assert_checkalmostequal(imag(m), 1);
 //Large dimension
 //Real
 v=rand(1,21);
 A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
-if Err(det(A)-prod(v))>400000*%eps then bugmes();quit;end
+assert_checktrue(abs(det(A) - prod(v)) < 1D-7);
 [e,m]=det(A);
-if Err(m*(10^e)-prod(v))>400000*%eps then bugmes();quit;end
+assert_checktrue(abs(m*(10^e) - prod(v)) < 1D-7);
 //Complex
 v=(v+rand(v)*%i)/2;
 A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
-if Err(det(A)-prod(v))>10000*%eps then bugmes();quit;end
+assert_checktrue(abs(det(A) - prod(v)) < 1D-7);
 [e,m]=det(A);
-if Err(m*(10^e)-prod(v))>10000*%eps then bugmes();quit;end
+assert_checktrue(abs(m*(10^e) - prod(v)) < 1D-7);
+//Sparse
+v=rand(1,21);
+v=sparse(v);
+A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
+assert_checktrue(abs(det(A) - prod(v)) < 1D-7);
+[e,m]=det(A);
+assert_checktrue(abs(m*(10^e) - prod(v)) < 1d-7);
+//Polynomials
+v=rand(1,21)
+ v  =
+ 
+ 
+         column 1 to 5
+ 
+    0.5866105    0.0477090    0.9416931    0.9613204    0.5583350  
+ 
+         column  6 to 10
+ 
+    0.5700629    0.3169258    0.9932628    0.8074780    0.8554797  
+ 
+         column 11 to 15
+ 
+    0.5031461    0.0963323    0.7058098    0.8630577    0.0076185  
+ 
+         column 16 to 20
+ 
+    0.8048951    0.5963762    0.1176836    0.8010095    0.5132340  
+ 
+         column 21
+ 
+    0.201091  
+v=v+%s;
+A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
+assert_checktrue(abs(coeff(det(A)-prod(v))) < 1D-7);
+//Rationals
+v=rand(1,21);
+v=v/%s;
+A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
+assert_checktrue(abs(coeff(numer(det(A))-numer(prod(v)))) < 1D-7);
+//Sparse complex
+v=rand(1,21);
+v=(v+rand(v)*%i)/2;
+v=sparse(v);
+A=rand(21,21);
+A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
+A=sparse(A);
+assert_checktrue(abs(det(A) - prod(v)) < 1D-7);
+[e,m]=det(A);
+assert_checktrue(abs(m*(10^e) - prod(v)) < 1d-7);
+//Error messages
+A=[1 1; 1 2];
+errmsg1 = msprintf(_("Wrong type for first argument: Square matrix expected.\n"));
+assert_checkerror("det([1,2;3,4;5,6])", errmsg1, 20);
+errmsg2 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "det", 1);
+assert_checkerror("det(A,1)", errmsg2, 77);

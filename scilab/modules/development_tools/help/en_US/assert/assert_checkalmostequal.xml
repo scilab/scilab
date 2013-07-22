@@ -151,7 +151,7 @@
             In general, the relative tolerance should be
             set to a multiple of the machine precision %eps.
             The relative tolerance should also be chosen with the lowest
-            possible magnitude, that is, we shoud configure
+            possible magnitude, that is, we should configure
             the tolerance as accurately as possible.
             During the process of configuring the relative tolerance, we
             suggest to use the following values, in that order :

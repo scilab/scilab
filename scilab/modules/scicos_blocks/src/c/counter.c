@@ -18,23 +18,33 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void counter(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void counter(scicos_block *block, int flag)
 {
-  double *y = NULL,*z = NULL;
-  int *ipar = NULL;
-  y=GetRealOutPortPtrs(block,1);
-  z=GetDstate(block);
-  ipar=GetIparPtrs(block);
-  if (flag==1)
-    {if (*ipar==1) *y=*z+*(ipar+2);
-     else *y=*(ipar+1)-*z;}
-  else if (flag==2) 
-    {*z=(1+(int)*z)%(*(ipar+1)-*(ipar+2)+1);}
-} 
-/*--------------------------------------------------------------------------*/ 
+    double *y = NULL, *z = NULL;
+    int *ipar = NULL;
+    y = GetRealOutPortPtrs(block, 1);
+    z = GetDstate(block);
+    ipar = GetIparPtrs(block);
+    if (flag == 1)
+    {
+        if (*ipar == 1)
+        {
+            *y = *z + *(ipar + 2);
+        }
+        else
+        {
+            *y = *(ipar + 1) - *z;
+        }
+    }
+    else if (flag == 2)
+    {
+        *z = (1 + (int) * z) % (*(ipar + 1) - * (ipar + 2) + 1);
+    }
+}
+/*--------------------------------------------------------------------------*/

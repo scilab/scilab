@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Scilab Enterprises - 2012 - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.
+ * The terms are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr_FR" xml:id="LSodar">
+    <refnamediv>
+        <refname>LSodar</refname>
+        <refpurpose>
+            <emphasis>LSodar</emphasis> (abréviation de "Livermore Solver for Ordinary Differential equations, with Automatic method switching for stiff and nonstiff problems, and with Root-finding") est un solveur numérique fournissant une méthode efficace et stable pour résoudre des Problèmes à Valeur Initiale d'Equations Différentielles Ordinaires (EDOs).
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Appelé par <link linkend="xcos">xcos</link>, <emphasis>LSodar</emphasis> (abréviation de "Livermore Solver for Ordinary Differential equations, with Automatic method switching for stiff and nonstiff problems, and with Root-finding") est un solveur numérique fournissant une méthode efficace et stable pour résoudre des Problèmes à Valeur Initiale d'Equations Différentielles Ordinaires (EDOs) de la forme :
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                \dot{y} = f(t,y), \hspace{3 mm} y(t_0) = y_0, \hspace{3 mm} y \in R^N
+                \end{eqnarray}
+            </latex>
+        </para>
+        <para>
+            LSodar est similaire à <emphasis>CVode</emphasis> sur de nombreux points:
+            <itemizedlist>
+                <listitem>
+                    Son pas de temps est variable,
+                </listitem>
+                <listitem>
+                    Il est capable d'utiliser les méthodes d'intégration <emphasis>BDF</emphasis> et <emphasis>Adams</emphasis>,
+                </listitem>
+                <listitem>
+                    <emphasis>BDF</emphasis> et <emphasis>Adams</emphasis> étant des méthodes implicites stables, <emphasis>LSodar</emphasis> convient aussi bien à des problèmes raides que non-raides,
+                </listitem>
+                <listitem>
+                    Ils recherchent tous deux des racines sur l'intervalle.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            La principale différence est que <emphasis>LSodar</emphasis> est <emphasis role="bold">automatisé</emphasis>, et choisit lui-même entre <emphasis>BDF</emphasis> et <emphasis>Adams</emphasis>, en vérifiant la raideur du problème à chaque pas.
+        </para>
+        <para>
+            Si le pas est considéré raide, alors <emphasis>BDF</emphasis> (avec ordre max = 5) est utilisé et la méthode de Newton modifiée <emphasis>'Chord'</emphasis> iteration est sélectionnée.
+        </para>
+        <para>
+            Sinon, le programme utilise l'intégration d'<emphasis>Adams</emphasis> (avec ordre max = 12) et des itérations fonctionnelles (<emphasis>Functional</emphasis>).
+        </para>
+        <para>
+            La détection de raideur est effectuée par tentatives de pas et comparaison avec chaque méthode.
+        </para>
+        <para>
+            D'abord, si nous sommes actuellement en mode <emphasis>Adams</emphasis> et l'ordre est supérieur à 5, alors on considère le problème comme non-raide et on poursuit avec <emphasis>Adams</emphasis>.
+        </para>
+        <para>
+            Les vingt premiers pas utilisent la méthode <emphasis>Adams / Functional</emphasis>.
+            Ensuite, <emphasis>LSodar</emphasis> calcule le pas idéal avec chaque méthode. Si le gain est d'au moins <emphasis>ratio = 5</emphasis>, alors la méthode actuelle est changée (<emphasis>Adams / Functional</emphasis> pour <emphasis>BDF / Chord Newton</emphasis> ou vice-versa).
+        </para>
+        <para>
+            Après chaque changement, <emphasis>LSodar</emphasis> passe vingt étapes, puis recommence à calculer les pas à chaque étape.
+        </para>
+        <para>
+            Une telle stratégie implique évidemment un ajout de calculs si la raideur du système est connue, mais est très efficace sur des problèmes qui requièrent une précision différenciée. Par exemple, les problèmes sensibles aux discontinuités.
+        </para>
+        <para>
+            Concernant la précision, les deux méthodes d'intégration/itération étant proches de celles de <emphasis>CVode</emphasis>, les résultats sont très similaires.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/ODE_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.zcos");
+scs_m.props.tol(6) = 0;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            Le bloc intégrale retourne son état continu, on peut l'évaluer avec <emphasis>LSodar</emphasis> en lançant l'exemple :
+        </para>
+        <para>
+            <programlisting language="example"><![CDATA[
+      // Import du diagramme et réglage du temps final
+      loadScicos();
+      loadXcosLibs();
+      importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.zcos");
+      scs_m.props.tf = 5000;
+
+      // Sélection de LSodar
+      scs_m.props.tol(6) = 0;
+
+      // Lancement du chrono, de la simulation et affichage du temps
+      tic();
+      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+      t = toc();
+      disp(t, "Temps pour LSodar :");
+      ]]></programlisting>
+        </para>
+        <para>
+            La console Scilab affiche :
+            <screen><![CDATA[
+Temps pour  LSodar:
+ 9.546
+            ]]></screen>
+        </para>
+        <para>
+            Maintenant, dans le script suivant, on compare la différence de temps entre <emphasis>LSodar</emphasis> et <emphasis>CVode</emphasis> en lançant l'exemple avec les cinq solveurs tour à tour :
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integLSodar.sce">
+                Ouverture du script
+            </link>
+        </para>
+        <para>
+            <screen><![CDATA[
+Temps pour LSodar :
+ 6.115
+
+Temps pour BDF / Newton :
+ 18.894
+
+Temps pour BDF / Functional :
+ 18.382
+
+Temps pour Adams / Newton :
+ 10.368
+
+Temps pour Adams / Functional :
+ 9.815
+            ]]></screen>
+        </para>
+        <para>
+            Ces résultats montrent que pour un problème non-raide, à même précision demandée, <emphasis>LSodar</emphasis> est significativement plus rapide. D'autres tests ont montré la proximité des résultats. En effet, on trouve que l'écart entre les solutions de <emphasis>LSodar</emphasis> et <emphasis>CVode</emphasis> est de l'ordre de la plus haute tolérance ( 
+            <emphasis>
+                y<subscript>lsodar</subscript> - y<subscript>cvode</subscript>
+            </emphasis>
+            &#8776; <emphasis>max(reltol, abstol)</emphasis> ).
+        </para>
+        <para>
+            Les solveurs d'EDO à pas variable ne sont pas appropriés pour des applications temps réel déterministes car le surplus de calcul au passage d'un pas de temps varie au cours de l'application.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Voir Aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="CVode">CVode</link>
+            </member>
+            <member>
+                <link linkend="IDA">IDA</link>
+            </member>
+            <member>
+                <link linkend="RK">Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DoPri">Dormand-Prince 4(5)</link>
+            </member>
+            <member>
+                <link linkend="RKImp">Runge-Kutta Implicite 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
+            </member>
+            <member>
+                <link linkend="Comparisons">Comparaisons</link>
+            </member>
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
+            </member>
+            <member>
+                <link linkend="ode_root">ode_root</link>
+            </member>
+            <member>
+                <link linkend="odedc">odedc</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliographie</title>
+        <para>
+            ACM SIGNUM Newsletter, Volume 15, Parution 4, Décembre 1980, Pages 10-11 <ulink url="http://dl.acm.org/citation.cfm?id=1218052.1218054&amp;coll=DL&amp;dl=GUIDE">LSode - LSodi</ulink>
+        </para>
+        <para>
+            <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Documentation Sundials</ulink>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Histoire</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>LSodar ajouté</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

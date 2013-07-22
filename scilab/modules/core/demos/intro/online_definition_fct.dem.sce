@@ -8,5 +8,5 @@ mode(7)
 //To quit this demo, enter CTRL+C, then type "abort"
 
 //              ON LINE DEFINITION OF FUNCTION
-deff('[x]=fact(n)','if n==0 then x=1,else x=n*fact(n-1),end')
+deff("[x]=fact(n)","if n==0 then x=1,else x=n*fact(n-1),end")
 10+fact(5)

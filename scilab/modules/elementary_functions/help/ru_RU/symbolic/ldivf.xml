@@ -33,9 +33,9 @@
     <refsection>
         <title>Описание</title>
         <para>
-          <code>ldivf('d', 'c')</code> выполняет левое символьное деление (деление справа
-          налево) и возвращает строку <literal>'c\d'</literal>. Выполняются такие
-          простейшие упрощения как <literal>'1\c' = 'c'</literal>.
+            <code>ldivf('d', 'c')</code> выполняет левое символьное деление (деление справа
+            налево) и возвращает строку <literal>'c\d'</literal>. Выполняются такие
+            простейшие упрощения как <literal>'1\c' = 'c'</literal>.
         </para>
     </refsection>
     <refsection>

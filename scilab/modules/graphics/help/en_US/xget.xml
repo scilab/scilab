@@ -50,7 +50,9 @@
             Use the Scilab graphic objects representation instead (see the <link
             linkend="set">set</link> and <link linkend="get">get</link>
             functions as well as the <link linkend="graphics_entities">graphics
-            entities</link> help page).
+                entities
+            </link>
+            help page).
         </para>
         <para>
             This function is used to get values from the graphics context on the
@@ -83,7 +85,9 @@
                 <listitem>
                     <para>
                         Get the clipping zone as a rectangle <literal>rect =
-                        [x,y,w,h]</literal> (Upper-Left point, Width, Height).
+                            [x,y,w,h]
+                        </literal>
+                        (Upper-Left point, Width, Height).
                     </para>
                 </listitem>
             </varlistentry>
@@ -161,7 +165,8 @@
                 <term>color = xget("hidden3d")</term>
                 <listitem>
                     <para>
-                        Get the color number for hidden faces in <function>plot3d</function>.</para>
+                        Get the color number for hidden faces in <function>plot3d</function>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

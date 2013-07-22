@@ -25,8 +25,8 @@
 /**
 *
 */
-void  sciblk2(int *flag, int *nevprt, double *t, double xd[], double x[], int *nx, double z[], int *nz,double tvec[],int *ntvec,double rpar[],int *nrpar,
-			  int ipar[],int *nipar,double *inptr[],int insz[],int *nin,double *outptr[],int outsz[],int *nout);
+void  sciblk2(int *flag, int *nevprt, double *t, double xd[], double x[], int *nx, double z[], int *nz, double tvec[], int *ntvec, double rpar[], int *nrpar,
+              int ipar[], int *nipar, double *inptr[], int insz[], int *nin, double *outptr[], int outsz[], int *nout);
 
 
 #endif /* __SCIBLK2_H__ */

@@ -70,8 +70,8 @@
         </itemizedlist>
     </refsection>
     <refsection>
-      <title>Examples</title>
-      <programlisting role="example"><![CDATA[
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 function Res = min_bd_deb_1(n)
 if ~isdef('n','local') then n = 10; end;
 Res = zeros(n,1);

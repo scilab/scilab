@@ -102,13 +102,15 @@ public final class MenuBarBuilder {
      * @param figureId the figure
      */
     public static void buildFigureMenuBar(String figureId) {
-	boolean isheadless = false;
-	
-	try {
-	    Class clazz = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.gui.SwingView");
-	    Method meth = clazz.getMethod("isHeadless");
-	    isheadless = (Boolean) meth.invoke(null);
-	} catch (Exception e) { System.err.println(e);}
+        boolean isheadless = false;
+
+        try {
+            Class clazz = ClassLoader.getSystemClassLoader().loadClass("org.scilab.modules.gui.SwingView");
+            Method meth = clazz.getMethod("isHeadless");
+            isheadless = (Boolean) meth.invoke(null);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
 
         if (!isheadless) {
             MenuBarBuilder.isParentValid = false;
@@ -217,8 +219,9 @@ public final class MenuBarBuilder {
 
             // delete old menus
             for (String childId : (String []) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_CHILDREN__)) {
-                if (GraphicController.getController().getProperty(childId, GraphicObjectProperties.__GO_TYPE__).equals(__GO_UIMENU__))
+                if (GraphicController.getController().getProperty(childId, GraphicObjectProperties.__GO_TYPE__).equals(__GO_UIMENU__)) {
                     GraphicController.getController().removeRelationShipAndDelete(childId);
+                }
             }
 
             NodeList menus = dom.getElementsByTagName(MENU);

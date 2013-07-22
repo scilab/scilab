@@ -114,7 +114,7 @@ public final class ScilabPrintStream extends PrintStream {
          * {@inheritDoc}
          */
         public void write(int b) throws IOException {
-            CallScilabBridge.display(new String (new byte[]{(byte) b}));
+            CallScilabBridge.display(new String (new byte[] {(byte) b}));
             if (out != null) {
                 out.write(b);
             }

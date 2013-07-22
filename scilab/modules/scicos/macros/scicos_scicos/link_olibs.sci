@@ -42,63 +42,63 @@
 //
 function [ok, libs, for_link] = link_olibs(libs,rpat)
 
-  //** get lhs,rhs nb paramaters
-  [lhs,rhs] = argn(0);
+    //** get lhs,rhs nb paramaters
+    [lhs,rhs] = argn(0);
 
-  //** declare  and set local variables
-  ok = %t;
-  xlibs = [];
-  for_link = [],
+    //** declare  and set local variables
+    ok = %t;
+    xlibs = [];
+    for_link = [],
 
-  //** get out from this function if
-  //   there is nothing to do
-  if ( (libs == '') | (libs == []) ) then return, end
-  
-  for i = 1:size(libs, '*')
-    [_path, _name , _ext] = fileparts(libs(i));
-    dynlibname = _path + _name + getdynlibext();
-    if isfile(dynlibname) then
-      for_link = [for_link; dynlibname];
-      ierr = execstr("link(for_link($))","errcatch");
-      if ierr <> 0 then
-        messagebox(_('Can not loaded dynamic library: ') + for_link($) ,"modal","error");
-        libs = [];
-        for_link = [];
-        ok = %f;
-        return
-      else
-        if getos() == 'Windows' then
-          xlibs = [xlibs; _path + _name + '.lib'];
+    //** get out from this function if
+    //   there is nothing to do
+    if ( (libs == "") | (libs == []) ) then return, end
+
+    for i = 1:size(libs, "*")
+        [_path, _name , _ext] = fileparts(libs(i));
+        dynlibname = _path + _name + getdynlibext();
+        if isfile(dynlibname) then
+            for_link = [for_link; dynlibname];
+            ierr = execstr("link(for_link($))","errcatch");
+            if ierr <> 0 then
+                messagebox(_("Cannot load dynamic library: ") + for_link($) ,"modal","error");
+                libs = [];
+                for_link = [];
+                ok = %f;
+                return
+            else
+                if getos() == "Windows" then
+                    xlibs = [xlibs; _path + _name + ".lib"];
+                else
+                    xlibs = [xlibs; libs(i)];
+                end
+            end
         else
-          xlibs = [xlibs; libs(i)];
+            messagebox([_("Can''t include ") + dynlibname; _("This file does not exist"); lasterror()], "modal", "error");
+            libs = [];
+            for_link = [];
+            ok = %f;
+            return
         end
-      end
-    else
-      messagebox([_('Can''t include ') + dynlibname; _('This file does not exist'); lasterror()], "modal", "error");
-      libs = [];
-      for_link = [];
-      ok = %f;
-      return
     end
-  end
 
-  //** add double quote for include in
-  //   Makefile
-  libs = xlibs;
-  if getos() == 'Windows' then
-    libs = '""' + libs + '""';
-  else
-    libs = '''' + libs + '''';
-   end
+    //** add double quote for include in
+    //   Makefile
+    libs = xlibs;
+    if getos() == "Windows" then
+        libs = """" + libs + """";
+    else
+        libs = "''" + libs + "''";
+    end
 
-  //** return link cmd for for_link
-  if (for_link <> []) then
-    for_link = 'link(""' + for_link + '"");';
-  end
+    //** return link cmd for for_link
+    if (for_link <> []) then
+        for_link = "link(""" + for_link + """);";
+    end
 
-  //** concatenate libs for Makefile
-  if (size(libs,1) <> 1) then
-    libs = strcat(libs,' ');
-  end  
+    //** concatenate libs for Makefile
+    if (size(libs,1) <> 1) then
+        libs = strcat(libs," ");
+    end
 
 endfunction

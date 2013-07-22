@@ -12,13 +12,13 @@
 
 //
 // nmplot_boxproblemA.sce --
-//   Show that the Box algorithm is able to reproduce the 
+//   Show that the Box algorithm is able to reproduce the
 //   numerical experiment presented in Box's paper.
 //
 
 function demo_boxproblemA()
 
-    filename = 'neldermead_boxproblemA.sce';
+    filename = "neldermead_boxproblemA.sce";
     dname = get_absolute_file_path(filename);
 
     mprintf(_("Illustrates Box'' algorithm on Box problem A.\n"));
@@ -33,20 +33,20 @@ function demo_boxproblemA()
     //
     //  Reference:
     //
-    //   M.J. Box, 
-    //   "A new method of constrained optimization 
+    //   M.J. Box,
+    //   "A new method of constrained optimization
     //   and a comparison with other methods".
     //   The Computer Journal, Volume 8, Number 1, 1965, 42--52
     //   Problem A
     //
     //   Algorithm 454: the complex method for constrained optimization [E4]
     //   Communications of the ACM, Volume 16 ,  Issue 8  (August 1973)
-    //   Pages: 487 - 489   
+    //   Pages: 487 - 489
     //
 
     //
     // boxproblemA --
-    //   Computes the Box problem A cost function and 
+    //   Computes the Box problem A cost function and
     //   inequality constraints.
     //
     // Arguments
@@ -204,7 +204,7 @@ function demo_boxproblemA()
     if(m == 1)
         editor ( dname + filename, "readonly" );
     end
-endfunction 
+endfunction
 
 demo_boxproblemA();
 clear demo_boxproblemA;
@@ -214,4 +214,5 @@ clear demo_boxproblemA;
 
 
 
-
+
+

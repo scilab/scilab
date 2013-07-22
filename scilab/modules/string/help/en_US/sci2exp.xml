@@ -115,7 +115,8 @@
                 </para>
             </listitem>
         </itemizedlist>
-    </refsection>  
+    </refsection>
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[

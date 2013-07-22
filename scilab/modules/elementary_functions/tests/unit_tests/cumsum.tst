@@ -103,6 +103,18 @@ for typ=T
 end
 
 //=======================================================================
+//Matrices of rationals
+s=%s;r=1.0 ./[s s+1;s^2 1];
+T=list(list(),list('native'),list('double'));
+for typ=T
+  assert_checkequal(cumsum(r,typ(:)), [1,1+2*s+2*s^2;1+s,1+2*s+3*s^2+s^3]./[s,s^2+s^3;s^2,s^2+s^3]);
+  assert_checkequal(cumsum(r,'*',typ(:)), [1,1+2*s+2*s^2;1+s,1+2*s+3*s^2+s^3]./[s,s^2+s^3;s^2,s^2+s^3]);
+  assert_checkequal(cumsum(r,1,typ(:)), [1,1;1+s,2+s]./[s,1+s;s^2,1+s]);
+  assert_checkequal(cumsum(r,2,typ(:)), [1,1+2*s;1,1+s^2]./[s,s+s^2;s^2,s^2]);
+  assert_checkequal(cumsum(r,3,typ(:)), r);
+end
+
+//=======================================================================
 ///Matrices of boolean
 
 b=[%t %t;%f %t];

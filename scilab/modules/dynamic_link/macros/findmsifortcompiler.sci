@@ -10,36 +10,36 @@
 //=============================================================================
 function ifortCompiler = findmsifortcompiler()
 
-  ifortCompiler = 'unknown'; // unknown
+    ifortCompiler = "unknown"; // unknown
 
-  if getos() == 'Windows' then
-    if getenv('IFORT_COMPILER13','NOK') <> 'NOK' then
-      ifortCompiler = 'ifort13';
-      return
-    end
+    if getos() == "Windows" then
+        if getenv("IFORT_COMPILER13","NOK") <> "NOK" then
+            ifortCompiler = "ifort13";
+            return
+        end
 
-    if getenv('IFORT_COMPILER12','NOK') <> 'NOK' then
-      ifortCompiler = 'ifort12';
-      return
-    end
+        if getenv("IFORT_COMPILER12","NOK") <> "NOK" then
+            ifortCompiler = "ifort12";
+            return
+        end
 
-    if getenv('IFORT_COMPILER11','NOK') <> 'NOK' then
-      ifortCompiler = 'ifort11';
-      return
-    end
+        if getenv("IFORT_COMPILER11","NOK") <> "NOK" then
+            ifortCompiler = "ifort11";
+            return
+        end
 
-    if getenv('IFORT_COMPILER10','NOK') <> 'NOK' then
-      ifortCompiler = 'ifort10';
-      return
-    end
+        if getenv("IFORT_COMPILER10","NOK") <> "NOK" then
+            ifortCompiler = "ifort10";
+            return
+        end
 
-    if getenv('IFORT_COMPILER9','NOK') <> 'NOK' then
-      ifortCompiler = 'ifort9';
-      return
+        if getenv("IFORT_COMPILER9","NOK") <> "NOK" then
+            ifortCompiler = "ifort9";
+            return
+        end
+    else // NOT Windows
+        ifortCompiler = "unknown"; // unknown
     end
-  else // NOT Windows
-    ifortCompiler = 'unknown'; // unknown
-  end
 endfunction
 //=============================================================================
 

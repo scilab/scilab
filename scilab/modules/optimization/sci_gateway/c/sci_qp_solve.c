@@ -17,6 +17,8 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "sciprint.h"
+#include "warningmode.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 /* fortran subroutines */
@@ -43,7 +45,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
     static int m = 0, next = 0;
     static int mbis = 0;
     static int pipo = 0;
-    static int nact = 0, ierr = 0;
+    static int nact = 0;
     int r = 0;
     static int lw = 0,  k = 0;
     static SciSparse Sp;
@@ -66,11 +68,12 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
     int* iact = NULL;
     int* iter = NULL;
     double* crval = NULL;
+    int *ierr = NULL;
 
 
     /*   Check rhs and lhs   */
     CheckInputArgument(pvApiCtx, 5, 5) ;
-    CheckOutputArgument(pvApiCtx, 1, 4) ;
+    CheckOutputArgument(pvApiCtx, 1, 5) ;
 
     /*Warning this interface does not support arguments passed by reference */
 
@@ -270,6 +273,14 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
         return 1;
     }
 
+    sciErr = allocMatrixOfDoubleAsInteger(pvApiCtx, next + 5, un, un, &ierr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
+
 
     r = Min(n, m);
     lw =  2 * n + r * (r + 5) / 2 + 2 * m + 1;
@@ -278,13 +289,13 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
         Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
     }
     /* change the sign of  C and b.*/
-    ierr = 0;
+    *ierr = 0;
     if (!issparse)
     {
         /* linear constraints matrix is stored full */
         C2F(qpgen2)((Q), (p), &n, &n,  (x), (crval), (C),
                     (b), &n, &m, (me), (iact), &nact, (iter), work,
-                    &ierr);
+                    (ierr));
     }
     else
     {
@@ -317,7 +328,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
         C2F(qpgen1sci)((Q), (p), &n, &n,  (x), (crval),
                        ind, ind + m,  R,
                        (b), &m, (me), (iact), &nact, (iter),
-                       work, &ierr);
+                       work, (ierr));
         FREE(work);
         work = NULL;
         FREE(R);
@@ -331,24 +342,47 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
         (iact)[k] = 0;
     }
     /* LhsVar: [x, iact, iter, f] = qp_solve(...) */
-
-    if (ierr == 0)
+    if (Lhs != 5)
+    {
+        if (*ierr == 0)
+        {
+            for (k = 0; k < Lhs; k++)
+            {
+                AssignOutputVariable(pvApiCtx, 1 + k) = next + 1 + k;
+            }
+            ReturnArguments(pvApiCtx);
+        }
+        else if (*ierr == 1)
+        {
+            Scierror(999, _("%s: The minimization problem has no solution.\n"), fname);
+        }
+        else if (*ierr == 2)
+        {
+            Scierror(999, _("%s: Q is not symmetric positive definite.\n"), fname);
+        }
+    }
+    else
     {
         for (k = 0; k < Lhs; k++)
         {
             AssignOutputVariable(pvApiCtx, 1 + k) = next + 1 + k;
         }
+        if (*ierr == 1)
+        {
+            if (getWarningMode())
+            {
+                sciprint(_("\n%s: Warning: The minimization problem has no solution. The results may be inaccurate.\n\n"), fname);
+            }
+        }
+        else if (*ierr == 2)
+        {
+            if (getWarningMode())
+            {
+                sciprint(_("\n%s: Warning: Q is not symmetric positive definite. The results may be inaccurate.\n\n"), fname);
+            }
+        }
         ReturnArguments(pvApiCtx);
-    }
-    else if (ierr == 1)
-    {
-        Scierror(999, _("%s: The minimization problem has no solution.\n"), fname);
-    }
-    else if (ierr == 2)
-    {
-        Scierror(999, _("%s: Q is not symmetric positive definite.\n"), fname);
     }
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-

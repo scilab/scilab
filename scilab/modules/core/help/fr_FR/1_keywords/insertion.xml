@@ -73,9 +73,9 @@
                         <varlistentry>
                             <term>Des scalaires, vecteurs ou matrices</term>
                             <listitem>
-                                <para>Dans ce cas les parties entieres des valeurs données en
-                                    indices doivent être strictement positives. Seule la prtie
-                                    entière est prise e, compte.
+                                <para>Dans ce cas, les valeurs données en
+                                    indices doivent être strictement positives. Seules les parties
+                                    entières sont prises en compte.
                                 </para>
                                 <itemizedlist>
                                     <listitem>
@@ -309,7 +309,7 @@
                             </para>
                             <itemizedlist>
                                 <listitem>
-                                    <para>un scalaire réel positif
+                                    <para>un scalaire réel positif (seule sa partie entière est prise en compte).
                                         <literal>l(0)=a</literal> ajoute un terme "à gauche"
                                         de la liste <literal>l(i)=a</literal> affecte <literal>a</literal> au
                                         terme <literal>i</literal> de la liste <literal>l</literal>. Si
@@ -384,6 +384,7 @@ a([%t %f],1)=33
 a(1:2,$-1)=[2;4]
 a($:-1:1,1)=[8;7]
 a($)=123
+a(1,%pi)=1 //équivalent à a(1,3)=1
 //
 x='test'
 x([4 5])=['4','5']
@@ -396,6 +397,7 @@ b(2)=[1 2] // le numérateur
 l=list(1,'qwerw',%s)
 l(1)='Changed'
 l(0)='Added'
+l(%pi)=1 //équivalent à l(3)=1
 l(6)=['one more';'added']
 //
 //

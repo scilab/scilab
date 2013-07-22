@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2008-2010 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -28,7 +28,7 @@
 #endif
 #include "completeLine.h"
 /*--------------------------------------------------------------------------*/
-static void displayCompletionDictionary(char **dictionary,int sizedictionary, char *namedictionary);
+static void displayCompletionDictionary(char **dictionary, int sizedictionary, char *namedictionary);
 static char **concatenateStrings(int *sizearrayofstring, char *string1,
                                  char *string2, char *string3,
                                  char *string4, char *string5);
@@ -43,7 +43,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
     {
         if (sizedictionaryFiles == 1)
         {
-            char *newline = completeLine(lineBeforeCaret,dictionaryFiles[0],filePattern,defaultPattern,TRUE,lineAfterCaret);
+            char *newline = completeLine(lineBeforeCaret, dictionaryFiles[0], filePattern, defaultPattern, TRUE, lineAfterCaret);
             if (newline)
             {
                 clearCurrentLine();
@@ -56,8 +56,8 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
         {
             char *common = getCommonPart(dictionaryFiles, sizedictionaryFiles);
 
-            displayCompletionDictionary(dictionaryFiles, 
-                sizedictionaryFiles, gettext("File or Directory"));
+            displayCompletionDictionary(dictionaryFiles,
+                                        sizedictionaryFiles, gettext("File or Directory"));
 
             displayPrompt();
             newLine();
@@ -73,12 +73,13 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
                     strcpy(newline, lineBeforeCaret);
                     strcat(newline, lineAfterCaret);
                     copyLine(newline);
-                    FREE(newline); newline = NULL;
+                    FREE(newline);
+                    newline = NULL;
                 }
             }
             else if (common)
             {
-                char *newline = completeLine(lineBeforeCaret,common,filePattern,defaultPattern,TRUE,lineAfterCaret);
+                char *newline = completeLine(lineBeforeCaret, common, filePattern, defaultPattern, TRUE, lineAfterCaret);
                 if (newline)
                 {
                     clearCurrentLine();
@@ -97,7 +98,8 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
                         strcpy(newline, lineBeforeCaret);
                         strcat(newline, lineAfterCaret);
                         copyLine(newline);
-                        FREE(newline); newline = NULL;
+                        FREE(newline);
+                        newline = NULL;
                     }
                 }
                 FREE(common);
@@ -141,8 +143,8 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
             completionDictionaryHandleGraphicsProperties = completionOnHandleGraphicsProperties(defaultPattern, &sizecompletionDictionaryHandleGraphicsProperties);
         }
         numberWordFound = sizecompletionDictionaryFunctions + sizecompletionDictionaryCommandWords +
-            sizecompletionDictionaryMacros + sizecompletionDictionaryVariables +
-            sizecompletionDictionaryHandleGraphicsProperties + sizecompletionDictionaryFields;
+                          sizecompletionDictionaryMacros + sizecompletionDictionaryVariables +
+                          sizecompletionDictionaryHandleGraphicsProperties + sizecompletionDictionaryFields;
 
         if (numberWordFound > 0)
         {
@@ -151,12 +153,30 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                 char **completionDictionary = NULL;
                 char *new_line = NULL;
 
-                if (completionDictionaryFields) completionDictionary = completionDictionaryFields;
-                if (completionDictionaryFunctions) completionDictionary = completionDictionaryFunctions;
-                if (completionDictionaryCommandWords) completionDictionary = completionDictionaryCommandWords;
-                if (completionDictionaryMacros) completionDictionary = completionDictionaryMacros;
-                if (completionDictionaryVariables) completionDictionary = completionDictionaryVariables;
-                if (completionDictionaryHandleGraphicsProperties) completionDictionary = completionDictionaryHandleGraphicsProperties;
+                if (completionDictionaryFields)
+                {
+                    completionDictionary = completionDictionaryFields;
+                }
+                if (completionDictionaryFunctions)
+                {
+                    completionDictionary = completionDictionaryFunctions;
+                }
+                if (completionDictionaryCommandWords)
+                {
+                    completionDictionary = completionDictionaryCommandWords;
+                }
+                if (completionDictionaryMacros)
+                {
+                    completionDictionary = completionDictionaryMacros;
+                }
+                if (completionDictionaryVariables)
+                {
+                    completionDictionary = completionDictionaryVariables;
+                }
+                if (completionDictionaryHandleGraphicsProperties)
+                {
+                    completionDictionary = completionDictionaryHandleGraphicsProperties;
+                }
 
                 new_line = completeLine(lineBeforeCaret, completionDictionary[0], NULL, defaultPattern, FALSE, lineAfterCaret);
                 if (new_line)
@@ -185,7 +205,7 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
 
                     int sizecommonsDictionary = 0;
                     char **commonsDictionary = concatenateStrings(&sizecommonsDictionary, commonFunctions,
-                        commonMacros, commonCommandWords, commonVariables, commonHandleGraphicsProperties);
+                                               commonMacros, commonCommandWords, commonVariables, commonHandleGraphicsProperties);
 
                     if (sizecommonsDictionary > 0)
                     {
@@ -200,10 +220,10 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                         freeArrayOfString(commonsDictionary, sizecommonsDictionary);
                     }
 
-                    displayCompletionDictionary(completionDictionaryFunctions, sizecompletionDictionaryFunctions,(char *)_("Scilab Function"));
-                    displayCompletionDictionary(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords,(char *)_("Scilab Command"));
-                    displayCompletionDictionary(completionDictionaryMacros, sizecompletionDictionaryMacros,(char *)_("Scilab Macro"));
-                    displayCompletionDictionary(completionDictionaryVariables, sizecompletionDictionaryVariables,(char *)_("Scilab Variable"));
+                    displayCompletionDictionary(completionDictionaryFunctions, sizecompletionDictionaryFunctions, (char *)_("Scilab Function"));
+                    displayCompletionDictionary(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords, (char *)_("Scilab Command"));
+                    displayCompletionDictionary(completionDictionaryMacros, sizecompletionDictionaryMacros, (char *)_("Scilab Macro"));
+                    displayCompletionDictionary(completionDictionaryVariables, sizecompletionDictionaryVariables, (char *)_("Scilab Variable"));
                     displayCompletionDictionary(completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties, (char *)_("Graphics handle field"));
                     freeArrayOfString(completionDictionaryFunctions, sizecompletionDictionaryFunctions);
                     freeArrayOfString(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords);
@@ -250,7 +270,7 @@ void TermCompletion(void)
     if (completionDictionaryFiles)
     {
         TermCompletionOnFiles(completionDictionaryFiles, sizecompletionDictionaryFiles,
-            LineBeforeCaret, LineAfterCaret, fileSearchedPattern, SearchedPattern);
+                              LineBeforeCaret, LineAfterCaret, fileSearchedPattern, SearchedPattern);
 
         freeArrayOfString(completionDictionaryFiles, sizecompletionDictionaryFiles);
     }
@@ -259,13 +279,29 @@ void TermCompletion(void)
         TermCompletionOnAll(LineBeforeCaret, LineAfterCaret, SearchedPattern);
     }
 
-    if (LineBeforeCaret) {FREE(LineBeforeCaret); LineBeforeCaret = NULL;}
-    if (LineAfterCaret) {FREE(LineAfterCaret); LineAfterCaret = NULL;}
-    if (fileSearchedPattern) {FREE(fileSearchedPattern); fileSearchedPattern = NULL;}
-    if (SearchedPattern) {FREE(SearchedPattern); SearchedPattern = NULL;}
+    if (LineBeforeCaret)
+    {
+        FREE(LineBeforeCaret);
+        LineBeforeCaret = NULL;
+    }
+    if (LineAfterCaret)
+    {
+        FREE(LineAfterCaret);
+        LineAfterCaret = NULL;
+    }
+    if (fileSearchedPattern)
+    {
+        FREE(fileSearchedPattern);
+        fileSearchedPattern = NULL;
+    }
+    if (SearchedPattern)
+    {
+        FREE(SearchedPattern);
+        SearchedPattern = NULL;
+    }
 }
 /*--------------------------------------------------------------------------*/
-static void displayCompletionDictionary(char **dictionary,int sizedictionary, char *namedictionary)
+static void displayCompletionDictionary(char **dictionary, int sizedictionary, char *namedictionary)
 {
     if (dictionary)
     {
@@ -277,7 +313,7 @@ static void displayCompletionDictionary(char **dictionary,int sizedictionary, ch
         TerminalPrintf(":");
         TerminalPrintf("\n");
 
-        for(i = 0;i < sizedictionary;i++)
+        for (i = 0; i < sizedictionary; i++)
         {
             int newlenLine = lenCurrentLine + (int)strlen(dictionary[i]) + (int)strlen(" ");
             if ( newlenLine >= (getColumnsSize() - 10) )
@@ -305,23 +341,58 @@ static char **concatenateStrings(int *sizearrayofstring, char *string1,
     char **arrayOfString = NULL;
     *sizearrayofstring = 0;
 
-    if (string1) newsize++;
-    if (string2) newsize++;
-    if (string3) newsize++;
-    if (string4) newsize++;
-    if (string5) newsize++;
+    if (string1)
+    {
+        newsize++;
+    }
+    if (string2)
+    {
+        newsize++;
+    }
+    if (string3)
+    {
+        newsize++;
+    }
+    if (string4)
+    {
+        newsize++;
+    }
+    if (string5)
+    {
+        newsize++;
+    }
 
     if (newsize > 0)
     {
-        arrayOfString = (char**)MALLOC(sizeof(char*) *(newsize));
+        arrayOfString = (char**)MALLOC(sizeof(char*) * (newsize));
         if (arrayOfString)
         {
             int i = 0;
-            if (string1) {arrayOfString[i] = string1; i++;}
-            if (string2) {arrayOfString[i] = string2; i++;}
-            if (string3) {arrayOfString[i] = string3; i++;}
-            if (string4) {arrayOfString[i] = string4; i++;}
-            if (string5) {arrayOfString[i] = string5; i++;}
+            if (string1)
+            {
+                arrayOfString[i] = string1;
+                i++;
+            }
+            if (string2)
+            {
+                arrayOfString[i] = string2;
+                i++;
+            }
+            if (string3)
+            {
+                arrayOfString[i] = string3;
+                i++;
+            }
+            if (string4)
+            {
+                arrayOfString[i] = string4;
+                i++;
+            }
+            if (string5)
+            {
+                arrayOfString[i] = string5;
+                i++;
+            }
             *sizearrayofstring = i;
         }
         else

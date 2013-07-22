@@ -4,18 +4,18 @@
 
 function builder_c()
 
-  src_c_path = get_absolute_file_path("builder_c.sce");
+    src_c_path = get_absolute_file_path("builder_c.sce");
 
-  CFLAGS = ilib_include_flag(src_c_path);
+    CFLAGS = ilib_include_flag(src_c_path);
 
-  tbx_build_src(["csum","csub","multiplybypi"],       ..
-                ["csum.c","csub.c","multiplybypi.c"], ..
-                "c",                ..
-                src_c_path,         ..
-                "",                 ..
-                "",                 ..
-                CFLAGS);
-                
+    tbx_build_src(["csum","csub","multiplybypi"],       ..
+    ["csum.c","csub.c","multiplybypi.c"], ..
+    "c",                ..
+    src_c_path,         ..
+    "",                 ..
+    "",                 ..
+    CFLAGS);
+
 endfunction
 
 builder_c();

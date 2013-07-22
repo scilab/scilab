@@ -11,20 +11,20 @@
 // used when calling Matplot without any parameter.
 
 function %_Matplot()
-   ny = 400;
-   nx = 300;
-   M = pmodulo((0:(ny-1))'*ones(1:nx) + ones(ny,1)*(0:nx-1),ceil(max(nx,ny)/3));
-   clf
-   f = gcf();
-   f.color_map = coolcolormap(nx);
-   Matplot(M)
-   a = gca();
-   a.tight_limits = "on";
-   a.isoview = "on";
-   a.title.font_size = 2;
-   Tlab = _("Matplot(M)  with  size(M)=>(%d,%d)\nThe color''s number of pixel(i,j)\n  = rounded value of M(i,j)");
-   Xlab = _("For data-scaled axes, please use Matplot1(..)");
-   Ylab = _("Axes are scaled with M''s indices");
-   xtitle(msprintf(Tlab,ny,nx), Xlab, Ylab); 
+    ny = 400;
+    nx = 300;
+    M = pmodulo((0:(ny-1))'*ones(1:nx) + ones(ny,1)*(0:nx-1),ceil(max(nx,ny)/3));
+    clf
+    f = gcf();
+    f.color_map = coolcolormap(nx);
+    Matplot(M)
+    a = gca();
+    a.tight_limits = "on";
+    a.isoview = "on";
+    a.title.font_size = 2;
+    Tlab = _("Matplot(M)  with  size(M)=>(%d,%d)\nThe color''s number of pixel(i,j)\n  = rounded value of M(i,j)");
+    Xlab = _("For data-scaled axes, please use Matplot1(..)");
+    Ylab = _("Axes are scaled with M''s indices");
+    xtitle(msprintf(Tlab,ny,nx), Xlab, Ylab);
 endfunction
 

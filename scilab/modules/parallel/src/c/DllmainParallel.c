@@ -10,27 +10,27 @@
  *
  */
 
-#include <windows.h> 
-/*--------------------------------------------------------------------------*/ 
+#include <windows.h>
+/*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../../../bin/libintl.lib")
 #ifdef __INTEL_COMPILER
 #pragma comment(lib,"libiomp5md.lib")
 #endif
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
-    switch (reason) 
+    switch (reason)
     {
-    case DLL_PROCESS_ATTACH:
-        break;
-    case DLL_PROCESS_DETACH:
-        break;
-    case DLL_THREAD_ATTACH:
-        break;
-    case DLL_THREAD_DETACH:
-        break;
+        case DLL_PROCESS_ATTACH:
+            break;
+        case DLL_PROCESS_DETACH:
+            break;
+        case DLL_THREAD_ATTACH:
+            break;
+        case DLL_THREAD_DETACH:
+            break;
     }
     return 1;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 

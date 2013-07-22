@@ -54,7 +54,9 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>If <literal>v</literal> is a vector,</term>
+                <term>
+                    If <literal>v</literal> is a vector,
+                </term>
                 <listitem>
                     <itemizedlist>
                         <listitem>

@@ -22,10 +22,10 @@ import org.scilab.modules.graphic_objects.graphicObject.Visitor;
  */
 public class Compound extends GraphicObject {
 
-	/** Constructor */
-	public Compound() {
-		super();
-	}
+    /** Constructor */
+    public Compound() {
+        super();
+    }
 
     @Override
     public void accept(Visitor visitor) {
@@ -33,10 +33,10 @@ public class Compound extends GraphicObject {
     }
 
     /**
-	 * @return Type as String
-	 */
-	public Integer getType() {
-		return GraphicObjectProperties.__GO_COMPOUND__;
-	}
+     * @return Type as String
+     */
+    public Integer getType() {
+        return GraphicObjectProperties.__GO_COMPOUND__;
+    }
 
 }

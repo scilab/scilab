@@ -170,22 +170,22 @@ public class Juigetfile {
 
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
-                    public void run() {
-                        SwingScilabFileChooser ssfc = new SwingScilabFileChooser();
-                        ssfc.setAcceptAllFileFilterUsed(true);
-                        ssfc.addMask(Juigetfile.mask, Juigetfile.description);
-                        ssfc.setInitialDirectory(Juigetfile.initialDirectory);
-                        ssfc.setTitle(Juigetfile.boxtTitle);
-                        ssfc.setMultipleSelection(Juigetfile.multipleSelection);
-                        ssfc.setUiDialogType(Juigetfile.dialogType);
-                        ssfc.displayAndWait();
+                public void run() {
+                    SwingScilabFileChooser ssfc = new SwingScilabFileChooser();
+                    ssfc.setAcceptAllFileFilterUsed(true);
+                    ssfc.addMask(Juigetfile.mask, Juigetfile.description);
+                    ssfc.setInitialDirectory(Juigetfile.initialDirectory);
+                    ssfc.setTitle(Juigetfile.boxtTitle);
+                    ssfc.setMultipleSelection(Juigetfile.multipleSelection);
+                    ssfc.setUiDialogType(Juigetfile.dialogType);
+                    ssfc.displayAndWait();
 
-                        //return the filechooser's information
-                        //they are stocked into FileChooserInfos
-                        FileChooserInfos.getInstance().setMultipleSelection(Juigetfile.multipleSelection);
-                        ssfc.invalidate();
-                    }
-                });
+                    //return the filechooser's information
+                    //they are stocked into FileChooserInfos
+                    FileChooserInfos.getInstance().setMultipleSelection(Juigetfile.multipleSelection);
+                    ssfc.invalidate();
+                }
+            });
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -298,20 +298,20 @@ public class Juigetfile {
 
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
-                    public void run() {
-                        SwingScilabFileChooser ssfc = new SwingScilabFileChooser();
-                        ssfc.setDirectorySelectionOnly();
-                        if (Juigetfile.initialDirectory != null) {
-                            //System.out.println("initialDir = " + Juigetfile.initialDirectory);
-                            ssfc.setInitialDirectory(Juigetfile.initialDirectory);
-                        }
-                        if (Juigetfile.boxtTitle != null) {
-                            ssfc.setTitle(Juigetfile.boxtTitle);
-                        }
-                        ssfc.displayAndWait();
-                        ssfc.invalidate();
+                public void run() {
+                    SwingScilabFileChooser ssfc = new SwingScilabFileChooser();
+                    ssfc.setDirectorySelectionOnly();
+                    if (Juigetfile.initialDirectory != null) {
+                        //System.out.println("initialDir = " + Juigetfile.initialDirectory);
+                        ssfc.setInitialDirectory(Juigetfile.initialDirectory);
                     }
-                });
+                    if (Juigetfile.boxtTitle != null) {
+                        ssfc.setTitle(Juigetfile.boxtTitle);
+                    }
+                    ssfc.displayAndWait();
+                    ssfc.invalidate();
+                }
+            });
 
         } catch (InterruptedException e) {
             e.printStackTrace();

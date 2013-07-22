@@ -1,11 +1,11 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) XXXX-2008 - INRIA
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
@@ -31,11 +31,11 @@ function A=adj2sp(varargin)
     //
     // Get size of the matrix
     if ( rhs == 3 ) then
-      m = max(iadj)
-      n = size(xadj,"*")-1
-      mn = [m,n]
+        m = max(iadj)
+        n = size(xadj,"*")-1
+        mn = [m,n]
     else
-      mn = varargin(4)
+        mn = varargin(4)
     end
     //
     // Check type of arguments

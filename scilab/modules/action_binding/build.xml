@@ -13,10 +13,10 @@
  *
  -->
 <project name="action_binding" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.action_binding.name}"/>
-  <property name="library.title" value="Java-Scilab communication"/>
-  <description>
-	Build the action_binding Scilab module
-  </description>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.action_binding.name}"/>
+    <property name="library.title" value="Java-Scilab communication"/>
+    <description>
+        Build the action_binding Scilab module
+    </description>
 </project>

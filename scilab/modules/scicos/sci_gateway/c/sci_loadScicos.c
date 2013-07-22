@@ -16,10 +16,11 @@
 /*
  * Stub function to load the gateway
  */
-int sci_loadScicos(char *fname, unsigned long fname_len) {
-	CheckRhs(0,1);
-	LhsVar(1) = 0;
-	PutLhsVar();
-	return 0;
+int sci_loadScicos(char *fname, unsigned long fname_len)
+{
+    CheckRhs(0, 1);
+    LhsVar(1) = 0;
+    PutLhsVar();
+    return 0;
 }
 

@@ -69,7 +69,7 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
         newobj.nbve = 0;
         // The coordinates of the vertices, with size nbve x n
         newobj.x = [];
-        // The function values, with size nbve x 1 
+        // The function values, with size nbve x 1
         newobj.fv = [];
         //
         // Take input arguments into account
@@ -94,8 +94,8 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
     //   length : the length of the simplex
     //     If length is a value, that unique length
     //     is used in all directions.
-    //     If length is a vector with n values, each 
-    //     length is used with the corresponding 
+    //     If length is a vector with n values, each
+    //     length is used with the corresponding
     //     direction.
     //
     function newobj = optimsimplex_axes ( x0 , len )
@@ -121,7 +121,7 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
 
     //
     // optimsimplex_spendley --
-    //   Configure the current simplex so that it is computed from Spendley's method, 
+    //   Configure the current simplex so that it is computed from Spendley's method,
     //   i.e. a regular simplex made of k = n+1 vertices.
     // Arguments
     //   x0 : the initial point, as a row vector
@@ -149,8 +149,8 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
 
     //
     // optimsimplex_pfeffer --
-    //   Configure the current simplex so that it is computed from Pfeffer's method, 
-    //   i.e. a relative delta for non-zero values and an absolute delta 
+    //   Configure the current simplex so that it is computed from Pfeffer's method,
+    //   i.e. a relative delta for non-zero values and an absolute delta
     //   for zero values.
     // Arguments
     //   x0 : the initial point, as a row vector
@@ -216,7 +216,7 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
 
     //
     // optimsimplex_oriented --
-    //   Returns an oriented simplex, in sorted order. 
+    //   Returns an oriented simplex, in sorted order.
     //   This simplex may be used, as Kelley suggests
     //   for a restart of Nelder-Mead algorithm.
     // Arguments
@@ -286,7 +286,7 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
 
     function argin = argindefault ( rhs , vararglist , ivar , default )
         // Returns the value of the input argument #ivar.
-        // If this argument was not provided, or was equal to the 
+        // If this argument was not provided, or was equal to the
         // empty matrix, returns the default value.
         if ( rhs < ivar ) then
             argin = default
@@ -308,7 +308,7 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
         errmsg = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "optimsimplex_new", 0,7);
         error(errmsg)
     end
-    if rhs == 0 then 
+    if rhs == 0 then
         newobj = optimsimplex_coords ( )
         return;
     end
@@ -516,7 +516,7 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
             assert_typefunction ( fun , "fun" , 2 );
         end
         newobj = optimsimplex_coords ( coords )
-    end    
+    end
     //
     // Compute function values, if required.
     if ( fun<>[] ) then

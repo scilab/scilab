@@ -28,142 +28,155 @@
 #include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
+int C2F(sci_getmd5) (char *fname, unsigned long fname_len)
 {
-	int m1 = 0, n1 = 0;
+    int m1 = 0, n1 = 0;
 
-	int mn = 0;
-	int i  = 0;
-	
-	char **Input_Matrix  = NULL;
-	char **Output_Matrix = NULL;
+    int mn = 0;
+    int i  = 0;
 
-	Rhs = Max(Rhs, 0);
-	CheckRhs(1,2) ;
-	CheckLhs(1,1) ;
+    char **Input_Matrix  = NULL;
+    char **Output_Matrix = NULL;
 
-	if (Rhs == 1)
-	{
-		if (GetType(1) == sci_strings)
-		{
-			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, &Input_Matrix);
-			mn = m1 * n1;
+    Rhs = Max(Rhs, 0);
+    CheckRhs(1, 2) ;
+    CheckLhs(1, 1) ;
 
-			Output_Matrix = (char**)MALLOC(sizeof(char*)*(mn));
-			if (Output_Matrix)
-			{
-				for (i = 0; i < mn; i++)
-				{
-					FILE *fp = NULL;
-					char *MD5 = NULL;
-					char *real_path = NULL;
+    if (Rhs == 1)
+    {
+        if (GetType(1) == sci_strings)
+        {
+            GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, &Input_Matrix);
+            mn = m1 * n1;
 
-					/* Replaces SCI, ~, HOME, TMPDIR by the real path */
-					real_path = expandPathVariable(Input_Matrix[i]);
+            Output_Matrix = (char**)MALLOC(sizeof(char*) * (mn));
+            if (Output_Matrix)
+            {
+                for (i = 0; i < mn; i++)
+                {
+                    FILE *fp = NULL;
+                    char *MD5 = NULL;
+                    char *real_path = NULL;
 
-					/* bug 4469 */
-					if (isdir(real_path))
-					{
-						Scierror(999,_("%s: The file %s does not exist.\n"), fname, Input_Matrix[i]);
-						freeArrayOfString(Output_Matrix, i);
-						freeArrayOfString(Input_Matrix, mn);
-						FREE(real_path); real_path = NULL;
-						return 0;
-					}
+                    /* Replaces SCI, ~, HOME, TMPDIR by the real path */
+                    real_path = expandPathVariable(Input_Matrix[i]);
 
-					wcfopen(fp, real_path, "rb");
+                    /* bug 4469 */
+                    if (isdir(real_path))
+                    {
+                        Scierror(999, _("%s: The file %s does not exist.\n"), fname, Input_Matrix[i]);
+                        freeArrayOfString(Output_Matrix, i);
+                        freeArrayOfString(Input_Matrix, mn);
+                        FREE(real_path);
+                        real_path = NULL;
+                        return 0;
+                    }
 
-					if (real_path) {FREE(real_path); real_path = NULL;}
+                    wcfopen(fp, real_path, "rb");
 
-					if (fp)
-					{
-						MD5 = md5_file(fp);
-						fclose(fp);
-						Output_Matrix[i] = strdup(MD5);
-						if (MD5) {FREE(MD5);MD5 = NULL;}
-					}
-					else
-					{
-						Scierror(999, _("%s: The file %s does not exist.\n"), fname, Input_Matrix[i]);
-						freeArrayOfString(Output_Matrix,i);
-						freeArrayOfString(Input_Matrix, mn);
-						return 0;
-					}
-				}
+                    if (real_path)
+                    {
+                        FREE(real_path);
+                        real_path = NULL;
+                    }
 
-				CreateVarFromPtr( Rhs+1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, Output_Matrix );
-				LhsVar(1) = Rhs+1 ;
-				PutLhsVar();
-			}
-			else
-			{
-				Scierror(999,_("%s: Memory allocation error.\n"), fname);
-			}
-		}
-		else
-		{
-			Scierror(999,_("%s: Wrong type of input argument #%d: String expected.\n"),fname,1);
-		}
-	}
-	else /* Rhs == 2 */
-	{
-		if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
-		{
-			int m2 = 0, n2 = 0, l2 = 0;
-			char *Param2 = NULL;
+                    if (fp)
+                    {
+                        MD5 = md5_file(fp);
+                        fclose(fp);
+                        Output_Matrix[i] = strdup(MD5);
+                        if (MD5)
+                        {
+                            FREE(MD5);
+                            MD5 = NULL;
+                        }
+                    }
+                    else
+                    {
+                        Scierror(999, _("%s: The file %s does not exist.\n"), fname, Input_Matrix[i]);
+                        freeArrayOfString(Output_Matrix, i);
+                        freeArrayOfString(Input_Matrix, mn);
+                        return 0;
+                    }
+                }
 
-			GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, &Input_Matrix);
-			mn = m1 * n1;
+                CreateVarFromPtr( Rhs + 1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, Output_Matrix );
+                LhsVar(1) = Rhs + 1 ;
+                PutLhsVar();
+            }
+            else
+            {
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            }
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong type of input argument #%d: String expected.\n"), fname, 1);
+        }
+    }
+    else /* Rhs == 2 */
+    {
+        if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
+        {
+            int m2 = 0, n2 = 0, l2 = 0;
+            char *Param2 = NULL;
 
-			GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-			Param2 = cstk(l2);
+            GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, &Input_Matrix);
+            mn = m1 * n1;
 
-			if ( stricmp(Param2, "string") == 0 )
-			{
-				Output_Matrix = (char**)MALLOC(sizeof(char*)*(mn));
+            GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);
+            Param2 = cstk(l2);
 
-				if (Output_Matrix)
-				{
-					for (i = 0; i < mn; i++)
-					{
-						char *MD5 = NULL;
+            if ( stricmp(Param2, "string") == 0 )
+            {
+                Output_Matrix = (char**)MALLOC(sizeof(char*) * (mn));
 
-						MD5 = md5_str(Input_Matrix[i]);
-						Output_Matrix[i] = strdup(MD5);
-						if (MD5) {FREE(MD5);MD5 = NULL;}
+                if (Output_Matrix)
+                {
+                    for (i = 0; i < mn; i++)
+                    {
+                        char *MD5 = NULL;
 
-						if (Output_Matrix[i] == NULL)
-						{
-							freeArrayOfString(Input_Matrix, m1*n1);
-							freeArrayOfString(Output_Matrix,i);
-							Scierror(999,("%s: No more memory.\n"), fname);
-							return 0;
-						}
-					}
+                        MD5 = md5_str(Input_Matrix[i]);
+                        Output_Matrix[i] = strdup(MD5);
+                        if (MD5)
+                        {
+                            FREE(MD5);
+                            MD5 = NULL;
+                        }
 
-					CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, Output_Matrix );
-					LhsVar(1) = Rhs + 1 ;
-					PutLhsVar();
-				}
-				else
-				{
-					Scierror(999,_("%s: Memory allocation error.\n"), fname);
-				}
-			}
-			else
-			{
-				Scierror(999,_("%s: Wrong value for input argument #%d: \"%s\" expected.\n"),fname,2,"string");
-			}
-		}
-		else
-		{
-			Scierror(999,_("%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"),fname,1,2);
-		}
-	}
+                        if (Output_Matrix[i] == NULL)
+                        {
+                            freeArrayOfString(Input_Matrix, m1 * n1);
+                            freeArrayOfString(Output_Matrix, i);
+                            Scierror(999, ("%s: No more memory.\n"), fname);
+                            return 0;
+                        }
+                    }
 
-	freeArrayOfString(Input_Matrix, mn);
-	freeArrayOfString(Output_Matrix, mn);
+                    CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, Output_Matrix );
+                    LhsVar(1) = Rhs + 1 ;
+                    PutLhsVar();
+                }
+                else
+                {
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                }
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d: \"%s\" expected.\n"), fname, 2, "string");
+            }
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"), fname, 1, 2);
+        }
+    }
 
-	return 0;
+    freeArrayOfString(Input_Matrix, mn);
+    freeArrayOfString(Output_Matrix, mn);
+
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

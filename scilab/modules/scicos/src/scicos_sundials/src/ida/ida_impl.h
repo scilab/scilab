@@ -434,6 +434,9 @@ extern "C" {
 
     /* IDASolve error messages */
 
+#define MSG_BAD_INPUT      "One of the arguments is illegal."
+#define MSG_BAD_KRY_INPUT  "One of the Krylov arguments is illegal (jacobian or psol functions)."
+#define MSG_SINGULAR       "The matrix of partial derivatives is singular."
 #define MSG_YRET_NULL      "yret = NULL illegal."
 #define MSG_YPRET_NULL     "ypret = NULL illegal."
 #define MSG_TRET_NULL      "tret = NULL illegal."

@@ -7,7 +7,7 @@
 
 function outStrings = removeTrailingChar(inStrings, trailingChar)
     outStrings = [];
-    for i = 1:size(inStrings, '*')
+    for i = 1:size(inStrings, "*")
         str = inStrings(i);
         if str <> "" then
             l = length(str);
@@ -28,17 +28,17 @@ function res = addPathToEnv(envName, paths)
         pathToAddList = removeTrailingChar(pathToAddList, filesep());
 
         // Retrieve env path list
-        envPaths = getenv(envName, '');
+        envPaths = getenv(envName, "");
         tmpEnvPath = pathconvert(envPaths, %t, %f);
         envPathList = tokens(tmpEnvPath, pathsep());
         envPathList = removeTrailingChar(envPathList, filesep());
-        envPathList(find(envPathList == '')) = [];
+        envPathList(find(envPathList == "")) = [];
 
         // For each path to add to env
-        for i = 1:size(pathToAddList, 'r')
+        for i = 1:size(pathToAddList, "r")
             pathToAdd = pathToAddList(i);
-            lcPathToAdd = convstr(pathToAdd, 'l');
-            lcEnvPathList = convstr(envPathList, 'l');
+            lcPathToAdd = convstr(pathToAdd, "l");
+            lcEnvPathList = convstr(envPathList, "l");
 
             // Add path if do not exist in env path list
             found = find(lcPathToAdd == lcEnvPathList);
@@ -53,7 +53,7 @@ function res = addPathToEnv(envName, paths)
             // Set the new env value
             if ~setenv(envName, envPaths) then
                 errMsg = msprintf("error while setting" ..
-                    + " environment variable ''%s''", envName);
+                + " environment variable ''%s''", envName);
                 error(errMsg);
             end
         end

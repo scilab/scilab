@@ -64,14 +64,14 @@
 Level = exp(-(F_neigh - F_current)/max(T,%eps));
  ]]></programlisting>
     </refsection>
-
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 level = accept_func_default(10,9,10);
  ]]></programlisting>
     </refsection>
-
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

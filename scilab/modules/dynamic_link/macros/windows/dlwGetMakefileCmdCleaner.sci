@@ -9,6 +9,6 @@
 
 //=============================================================================
 function cmdl = dlwGetMakefileCmdCleaner(makename)
-  cmdl = 'nmake /Y /nologo /f ' + makename + ' clean';
+    cmdl = "nmake /Y /nologo /f " + makename + " clean";
 endfunction
 //=============================================================================

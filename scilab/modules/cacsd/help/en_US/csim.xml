@@ -32,7 +32,9 @@
                 <term>t</term>
                 <listitem>
                     <para>
-                        real vector specifying times  with, <literal>t(1)</literal> is the initial  time (<literal>x0=x(t(1))</literal>).
+                        real vector specifying times with,
+                        <literal>t(1)</literal> is the initial time
+                        (<literal>x0=x(t(1))</literal>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -40,7 +42,8 @@
                 <term>sl</term>
                 <listitem>
                     <para>
-                        list (<literal>syslin</literal>)
+                        <literal>syslin</literal> list (SIMO linear system)
+                        in continuous time.
                     </para>
                 </listitem>
             </varlistentry>
@@ -92,12 +95,15 @@
             <literal>inputs=ut(t,parameter1,....,parametern)</literal> (<literal>ut</literal> is a function)
         </para>
         <para>
-            3. the string <literal>"impuls"</literal> for impulse response calculation
-            (here <literal>sl</literal> is assumed SISO without direct feed through and <literal>x0=0</literal>)
+            3. the string <literal>"impuls"</literal> for impulse
+            response calculation (here <literal>sl</literal> must have
+            a single input and <literal>x0=0</literal>). For systems
+            with direct feedthrough, the infinite pulse at t=0 is
+            ignored.
         </para>
         <para>
             4. the string <literal>"step"</literal> for step response calculation 
-            (here <literal>sl</literal> is assumed SISO without direct feed-through and
+            (here <literal>sl</literal>  must have a single input and
             <literal>x0=0</literal>)
         </para>
         <para>
@@ -116,12 +122,12 @@ t=0:0.05:5;
 plot2d([t',t'],[(csim('step',t,tf2ss(s)*w))',0*t'])
 ]]></programlisting>
         <scilab:image>
-            s=poly(0,'s');
-            rand('seed',0);
-            w=ssrand(1,1,3);
-            w('A')=w('A')-2*eye();
-            t=0:0.05:5;
-            plot2d([t',t'],[(csim('step',t,tf2ss(s)*w))',0*t'])
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+plot2d([t',t'],[(csim('step',t,tf2ss(s)*w))',0*t'])
         </scilab:image>
         
         <programlisting role="example"><![CDATA[
@@ -133,12 +139,12 @@ t=0:0.05:5;
 plot2d([t',t'],[(csim('impulse',t,w))',0*t'])
 ]]></programlisting>
         <scilab:image>
-            s=poly(0,'s');
-            rand('seed',0);
-            w=ssrand(1,1,3);
-            w('A')=w('A')-2*eye();
-            t=0:0.05:5;
-            plot2d([t',t'],[(csim('impulse',t,w))',0*t'])
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+plot2d([t',t'],[(csim('impulse',t,w))',0*t'])
         </scilab:image>
         <programlisting role="example"><![CDATA[
 s=poly(0,'s');
@@ -150,13 +156,12 @@ t=0:0.05:5;
 plot2d([t',t'],[(csim('step',t,w))',0*t'])
 ]]></programlisting>
         <scilab:image>
-            s=poly(0,'s');
-            rand('seed',0);
-            w=ssrand(1,1,3);
-            w('A')=w('A')-2*eye();
-            t=0:0.05:5;
-            //step(w) = impulse (s^-1 * w)
-            plot2d([t',t'],[(csim('step',t,w))',0*t'])
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+plot2d([t',t'],[(csim('step',t,w))',0*t'])
         </scilab:image>
         <programlisting role="example"><![CDATA[
 s=poly(0,'s');
@@ -167,12 +172,13 @@ t=0:0.05:5;
 plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
 ]]></programlisting>
         <scilab:image>
-            s=poly(0,'s');
-            rand('seed',0);
-            w=ssrand(1,1,3);
-            w('A')=w('A')-2*eye();
-            t=0:0.05:5;
-            plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
+
         </scilab:image>
         <programlisting role="example"><![CDATA[
 s=poly(0,'s');
@@ -185,13 +191,13 @@ deff('u=timefun(t)','u=abs(sin(t))')
 clf();plot2d([t',t'],[(csim(timefun,t,w))',0*t'])
 ]]></programlisting>
         <scilab:image>
-            s=poly(0,'s');
-            rand('seed',0);
-            w=ssrand(1,1,3);
-            w('A')=w('A')-2*eye();
-            t=0:0.05:5;
-            deff('u=timefun(t)','u=abs(sin(t))')
-            clf();plot2d([t',t'],[(csim(timefun,t,w))',0*t'])
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+deff('u=timefun(t)','u=abs(sin(t))')
+clf();plot2d([t',t'],[(csim(timefun,t,w))',0*t'])
         </scilab:image>
     </refsection>
     <refsection role="see also">

@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
 
@@ -72,27 +72,27 @@ noExecutionContents = ["// =====================================================
 allFunctions = listfiles(mfilesPath + "*.m");
 
 for functionIndex = 1:size(allFunctions, "*")
-  
-  // Conversion test file
-  txt = strsubst(conversionContents, "THEFUNCTIONNAME", fileparts(allFunctions(functionIndex), "fname"));
-  fileName = conversionTestsPath + fileparts(allFunctions(functionIndex), "fname") + ".tst";
-  mprintf("Create file %s\n", fileName);
-  mputl(txt, fileName);
-  
-  // Execution test file
-  txt = strsubst(executionContents, "THEFUNCTIONNAME", fileparts(allFunctions(functionIndex), "fname"));
-  fileName = executionTestsPath + fileparts(allFunctions(functionIndex), "fname") + ".tst";
-  mprintf("Create file %s\n", fileName);
-  mputl(txt, fileName);
-  
+
+    // Conversion test file
+    txt = strsubst(conversionContents, "THEFUNCTIONNAME", fileparts(allFunctions(functionIndex), "fname"));
+    fileName = conversionTestsPath + fileparts(allFunctions(functionIndex), "fname") + ".tst";
+    mprintf("Create file %s\n", fileName);
+    mputl(txt, fileName);
+
+    // Execution test file
+    txt = strsubst(executionContents, "THEFUNCTIONNAME", fileparts(allFunctions(functionIndex), "fname"));
+    fileName = executionTestsPath + fileparts(allFunctions(functionIndex), "fname") + ".tst";
+    mprintf("Create file %s\n", fileName);
+    mputl(txt, fileName);
+
 end
 
 allFunctionsNoExec = listfiles(mfilesNoexecPath + "*.m");
 
 for functionIndex = 1:size(allFunctionsNoExec, "*")
-  // Conversion test file
-  txt = strsubst(noExecutionContents, "THEFUNCTIONNAME", fileparts(allFunctionsNoExec(functionIndex), "fname"));
-  fileName = conversionTestsPath + fileparts(allFunctionsNoExec(functionIndex), "fname") + ".tst";
-  mprintf("Create file %s\n", fileName);
-  mputl(txt, fileName);
+    // Conversion test file
+    txt = strsubst(noExecutionContents, "THEFUNCTIONNAME", fileparts(allFunctionsNoExec(functionIndex), "fname"));
+    fileName = conversionTestsPath + fileparts(allFunctionsNoExec(functionIndex), "fname") + ".tst";
+    mprintf("Create file %s\n", fileName);
+    mputl(txt, fileName);
 end

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:08+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-15 03:49+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -1391,22 +1391,33 @@ msgid ""
 msgstr "%s: %s およびヤコビアンの任意の列の間の角度の余弦の絶対値は最大 %s です.\n"
 
 #, c-format
-msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
-msgstr "%s: %s をコールした際に %s に達したか,もしくは越えました.\n"
+msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr "%s: %s: %sのコール回数が %s に達したまたは超えました.\n"
+
+msgid "Warning"
+msgstr "警告"
 
 #, c-format
 msgid ""
-"%s: %s is too small. No further reduction in the criterion is possible.\n"
-msgstr "%s: %s は小さすぎます. 閾値をこれ以上小さくすることはできません.\n"
+"%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr "%s: %s: %s が小さすぎます. 閾値をこれ以上小さくすることはできません.\n"
 
 #, c-format
 msgid ""
-"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"%s: %s: %s is too small. %s is orthogonal to the columns of the jacobian to "
 "machine precision.\n"
-msgstr "%s: %s は小さすぎます. %s は機械精度のヤコビアンの列に直交しています.\n"
+msgstr "%s: %s: %s が小さすぎます. %s 機械精度でヤコビアンの列に直交します.\n"
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly: 変数名は 5文字未満とする必要があります.\n"
+
+msgid ""
+"Warning: Syntax \"vector ^ scalar\" is obsolete. It will be removed in "
+"Scilab 6.0.\n"
+"  Use \"vector .^ scalar\" instead.\n"
+msgstr ""
+"警告:  構文 \"vector ^ scalar\" は廃止予定です.  この構文は Scilab 6.0 で廃止されます.\n"
+"  代わりに \"vector .^ scalar\"を指定してください.\n"
 
 #
 # File: src/c/sciprint_full.c, line: 96

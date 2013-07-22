@@ -64,6 +64,9 @@
             beta.
         </para>
         <para>
+            In certain cases, the degrees of freedom are not integers. Scilab then issues a warning.
+        </para>
+        <para>
             Computation of other parameters involve a search for a value that
             produces  the desired  value  of P.   The search relies  on  the
             monotonicity of P with the other parameter.

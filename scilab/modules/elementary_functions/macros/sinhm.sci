@@ -8,25 +8,25 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function x=sinhm(a)
-//square matrix hyperbolic sine
+    //square matrix hyperbolic sine
 
-  rhs = argn(2);
+    rhs = argn(2);
 
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"sinhm",1));
-  end
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"sinhm",1));
+    end
 
-  if type(a)<>1 then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"sinhm",1));
-  end
+    if type(a)<>1 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"sinhm",1));
+    end
 
-  [m,n]=size(a)
-  if m<>n then
-   error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"sinhm",1));
-  end
+    [m,n]=size(a)
+    if m<>n then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"sinhm",1));
+    end
 
-  if a==[] then x=[],return,end
+    if a==[] then x=[],return,end
 
-  x=(expm(a)-expm(-a))/2;
+    x=(expm(a)-expm(-a))/2;
 
 endfunction

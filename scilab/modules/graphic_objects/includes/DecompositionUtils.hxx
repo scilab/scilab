@@ -59,7 +59,7 @@ public :
     /**
      * Returns the base-10 logarithm of the input value.
      * @param[in] the input value.
-     * @return the base-10 logarithm of the input value. 
+     * @return the base-10 logarithm of the input value.
      */
     static double getLog10Value(double value);
 

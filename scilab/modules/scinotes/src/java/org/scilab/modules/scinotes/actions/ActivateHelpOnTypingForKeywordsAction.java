@@ -58,10 +58,10 @@ public final class ActivateHelpOnTypingForKeywordsAction extends DefaultCheckAct
         final CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new ActivateHelpOnTypingForKeywordsAction(label, editor), key);
         cb.setChecked(HelpOnTypingManager.isKeywordsActive());
         ((JCheckBoxMenuItem) cb.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    cb.setChecked(HelpOnTypingManager.isKeywordsActive());
-                }
-            });
+            public void propertyChange(PropertyChangeEvent e) {
+                cb.setChecked(HelpOnTypingManager.isKeywordsActive());
+            }
+        });
 
         return cb;
     }

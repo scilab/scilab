@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifndef __COPYVARFROMLISTENTRY_H__
 #define __COPYVARFROMLISTENTRY_H__
 
@@ -34,16 +34,16 @@
 *
 * Output : FALSE if failed, TRUE else.
 *
-* Examples of use 
+* Examples of use
 *
-* 1 -  put the third element of a list given in position lw=1 
+* 1 -  put the third element of a list given in position lw=1
 *      to position lw=2 :
 *
 *  int *il_list;
 *  il_list = (int *) Getdata(1);
 *  CopyVarFromlistentry(2, il_list, 3)
 *
-* 2 - put the second element of a list stored in the fourth element 
+* 2 - put the second element of a list stored in the fourth element
 *     of a list in position lw=1 to position lw=3 :
 *
 *  int *il_list;
@@ -55,4 +55,4 @@
 int CopyVarFromlistentry(int lw, int *header, int i);
 
 #endif /* __COPYVARFROMLISTENTRY_H__ */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

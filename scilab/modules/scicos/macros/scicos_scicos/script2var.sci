@@ -22,59 +22,59 @@
 //
 
 function [%ll,%ierr] = script2var(%txt, %ll)
-//** [%scicos_context, ierr] = script2var(context, %scicos_context)
-//** context is the scs_m.props.context (string array) associated with the current level
-//** %scicos_context  is a struct containing the values defined by the
-//    calling contexts
-//**
-//** 10 Jan 2006
-//local variable names are prefixed with a %  to limit conflicts with
-//variables  defined in %txt instructions
-  %ierr = 0 ; //** init
+    //** [%scicos_context, ierr] = script2var(context, %scicos_context)
+    //** context is the scs_m.props.context (string array) associated with the current level
+    //** %scicos_context  is a struct containing the values defined by the
+    //    calling contexts
+    //**
+    //** 10 Jan 2006
+    //local variable names are prefixed with a %  to limit conflicts with
+    //variables  defined in %txt instructions
+    %ierr = 0 ; //** init
 
-  //next lines checks if variable defined in %ll struct can be evaluated
-  //why ???
-  %mm = fieldnames(%ll)';
-  for %mi=%mm
-    if execstr(%mi+'=%ll(%mi)','errcatch')<>0 then
-      mprintf("%s\n",lasterror())
-      %ierr=1
-      return
+    //next lines checks if variable defined in %ll struct can be evaluated
+    //why ???
+    %mm = fieldnames(%ll)';
+    for %mi=%mm
+        if execstr(%mi+"=%ll(%mi)","errcatch")<>0 then
+            mprintf("%s\n",lasterror())
+            %ierr=1
+            return
+        end
     end
-  end
-  [%ll,%ierr] = getvardef(%txt,%ll)
-  if %ierr<>0 then return, end
+    [%ll,%ierr] = getvardef(%txt,%ll)
+    if %ierr<>0 then return, end
 endfunction
 
 //**--------------------------------------------------------------------------
 function [%ll,%ierr]=getvardef(%txt,%ll)
-//extend and modify the %scicos_context variable (%ll) with the variable
-//defined in the current level scs_m.props.context (%txt) instructions
+    //extend and modify the %scicos_context variable (%ll) with the variable
+    //defined in the current level scs_m.props.context (%txt) instructions
 
-//local variable names are prefixed with a %  to limit conflicts with
-//variables  defined in %txt instructions
+    //local variable names are prefixed with a %  to limit conflicts with
+    //variables  defined in %txt instructions
 
-  %nww='';%ierr=0;  // to make sure %nww and %ierr does not enter the difference
-  if isempty(%txt) then return,end
-  %nww=size(who('get'),'*')
+    %nww="";%ierr=0;  // to make sure %nww and %ierr does not enter the difference
+    if isempty(%txt) then return,end
+    %nww=size(who("get"),"*")
 
-  %ierr=execstr(%txt,'errcatch')
-  if %ierr<>0 then mprintf("%s\n",lasterror()), return,end
-  
-  %mm=who('get')
-  %mm=%mm(1:size(%mm,'*')-%nww)
-  //%mm contains the list of the variables defined by execstr(%txt,'errcatch')
-  for %mi=%mm(:)'
-    clear %v
-    %v=evstr(%mi);
-    
-    if %mi=="scs_m" | typeof(%v)=="scs_m" then
-      mprintf(_("The variable name %s cannot be used as block parameter: ignored"),"scs_m")
-    elseif or(type(%v)==[11 13 14]) then
-        continue
-    else
-      %ll(%mi)=%v;
+    %ierr=execstr(%txt,"errcatch")
+    if %ierr<>0 then mprintf("%s\n",lasterror()), return,end
+
+    %mm=who("get")
+    %mm=%mm(1:size(%mm,"*")-%nww)
+    //%mm contains the list of the variables defined by execstr(%txt,'errcatch')
+    for %mi=%mm(:)'
+        clear %v
+        %v=evstr(%mi);
+
+        if %mi=="scs_m" | typeof(%v)=="scs_m" then
+            mprintf(_("The variable name %s cannot be used as block parameter: ignored"),"scs_m")
+        elseif or(type(%v)==[11 13 14]) then
+            continue
+        else
+            %ll(%mi)=%v;
+        end
     end
-  end
 endfunction
 

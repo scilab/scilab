@@ -14,6 +14,10 @@ package org.scilab.modules.gui.utils;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -324,7 +328,25 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         window.setUUID(localUUID);
 
         if (containsX) {
-            window.setLocation(((Integer) attrs.get("x")).intValue(), ((Integer) attrs.get("y")).intValue());
+            boolean positionned = false;
+            Point p = new Point(((Integer) attrs.get("x")).intValue(), ((Integer) attrs.get("y")).intValue());
+
+            // We check that the coordinates are valid
+            GraphicsDevice[] gds = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
+            if (gds != null) {
+                for (GraphicsDevice gd : gds) {
+                    Rectangle r = gd.getDefaultConfiguration().getBounds();
+                    if (r.contains(p)) {
+                        positionned = true;
+                        window.setLocation(p.x, p.y);
+                        break;
+                    }
+                }
+            }
+
+            if (!positionned) {
+                window.setLocation(DEFAULTX, DEFAULTY);
+            }
         }
 
         window.setSize(((Integer) attrs.get("width")).intValue(), ((Integer) attrs.get("height")).intValue());

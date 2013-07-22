@@ -11,16 +11,16 @@
 // Warning : order !!
 // list of  : filename , module
 
-listmacrostoload = ['listfiles','fileio'
-  '%c_a_c','overloading';
-  'genlib','functions';
-  ];
+listmacrostoload = ["listfiles","fileio"
+"%c_a_c","overloading";
+"genlib","functions";
+];
 
 dim = size(listmacrostoload);
 
 for i = 1:dim(1)
- clear(listmacrostoload(i,1));
- exec(SCI+'/modules/'+listmacrostoload(i,2)+'/macros/'+listmacrostoload(i,1)+'.sci');
+    clear(listmacrostoload(i,1));
+    exec(SCI+"/modules/"+listmacrostoload(i,2)+"/macros/"+listmacrostoload(i,1)+".sci");
 end
 clear i;
 clear dim;

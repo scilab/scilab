@@ -16,9 +16,9 @@ function r = ismatrix(A)
         r = size(A) <> 0;
         return;
     end
-    
+
     s = size(squeeze(A))
     s = length(s(s>0))
     r = s>0 & s<3;
-    
+
 endfunction

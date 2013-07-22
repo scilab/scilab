@@ -17,9 +17,9 @@ c         number_properties("digits") -> number of digits for the mantissa
 c         number_properties("minexp") -> emin
 c         number_properties("maxexp") -> emax
 c         number_properties("huge")   -> max positive float
-c         number_properties("tiny")   -> min positive normalised float 
-c         number_properties("denorm") -> (boolean) true if denormalised number are used
-c         number_properties("tiniest")-> min positive denormalised float 
+c         number_properties("tiny")   -> min positive normalized float 
+c         number_properties("denorm") -> (boolean) true if denormalized number are used
+c         number_properties("tiniest")-> min positive denormalized float 
 c         
 c
       implicit none
@@ -96,7 +96,7 @@ c     2/ go on
          b = dlamch('b')
          tiniest = dlamch('u')
          if ( tiniest/b .ne. 0.d0 ) then
-c     denormalised number are used
+c     denormalized number are used
             do i = 1, int(dlamch('n')) - 1
                tiniest = tiniest / b
             enddo

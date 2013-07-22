@@ -20,10 +20,10 @@
 //
 
 function x=mulf3v(x1,x2,x3)
-  if (x1 == [] | x2 == [] | x3 == [] ) then
-    x='0';
-  else
-    x=mulf3(x1,x2,x3);
-  end
+    if (x1 == [] | x2 == [] | x3 == [] ) then
+        x="0";
+    else
+        x=mulf3(x1,x2,x3);
+    end
 endfunction
 

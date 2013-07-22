@@ -11,10 +11,10 @@
  *
  -->
 <project name="graph" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.graph.name}"/>
-  <property name="library.title" value="Graph drawing"/>
-  <description>
-			Build the Scilab graph module
-  </description>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.graph.name}"/>
+    <property name="library.title" value="Graph drawing"/>
+    <description>
+        Build the Scilab graph module
+    </description>
 </project>

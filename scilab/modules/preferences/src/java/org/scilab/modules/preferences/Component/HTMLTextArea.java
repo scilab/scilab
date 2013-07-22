@@ -49,7 +49,7 @@ public class HTMLTextArea extends JTextPane implements XComponent {
      * @return array of actuator names.
      */
     public final String [] actuators() {
-        return new String[]{};
+        return new String[] {};
     }
 
     /** Constructor.
@@ -62,7 +62,7 @@ public class HTMLTextArea extends JTextPane implements XComponent {
         setOpaque(false);
         setBorder(BorderFactory.createEmptyBorder());
         setEditable(false);
-        setBackground(new java.awt.Color(0,0,0,0));
+        setBackground(new java.awt.Color(0, 0, 0, 0));
 
         setText(dumpNode(peer));
     }

@@ -19,9 +19,9 @@
 // See the file ../license.txt
 //
 //------------------------------------
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 //------------------------------------
-genlib('Integeroplib','SCI/modules/scicos_blocks/macros/IntegerOp',%f,%t);
+genlib("Integeroplib","SCI/modules/scicos_blocks/macros/IntegerOp",%f,%t);
 //------------------------------------

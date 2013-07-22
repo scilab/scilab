@@ -67,31 +67,34 @@
             For complex, real, integer, polynomial matrix
             <function>string</function> output is managed by <link linkend="format">format</link> function (see examples).
         </para>
+        <para>
+            Note that string([]) returns [].
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example">
-string(rand(2, 2))
-
-deff("y = mymacro(x)", "y = x + 1")
-[out, in, text] = string(mymacro)
-x = 123.356;
-disp("Result is " + string(x));
-
-disp("/" + string(~%t) + "/");
-disp("/" + string(%i+1) + "/");
-disp("/" + string(int16(-123)) + "/");
-disp("/" + string(1 + %s + %s^3) + "/");
-
-string(corelib)
-
-v = format();
-disp(string(%pi))
-format(24);
-disp(string(%pi))
-format(v(2))
-
-string(1:4:$)
+            string(rand(2, 2))
+            
+            deff("y = mymacro(x)", "y = x + 1")
+            [out, in, text] = string(mymacro)
+            x = 123.356;
+            disp("Result is " + string(x));
+            
+            disp("/" + string(~%t) + "/");
+            disp("/" + string(%i+1) + "/");
+            disp("/" + string(int16(-123)) + "/");
+            disp("/" + string(1 + %s + %s^3) + "/");
+            
+            string(corelib)
+            
+            v = format();
+            disp(string(%pi))
+            format(24);
+            disp(string(%pi))
+            format(v(2))
+            
+            string(1:4:$)
         </programlisting>
     </refsection>
     <refsection role="see also">

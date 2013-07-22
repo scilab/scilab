@@ -152,7 +152,8 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
     "cscopxy", ...
     "cscopxy3d", ...
     "cmatview", ...
-    "cmat3d"]
+    "cmat3d", ...
+    "bplatform2"]
 
     //** load the scicos function libraries
     //------------------------------------
@@ -272,7 +273,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
         solver = 100
         tolerances(6) = solver
     elseif (%cpr.sim.xptr($) - 1) == size(%cpr.state.x,"*") & ...
-        solver == 100 & size(%cpr.state.x,"*") <> 0 then
+        (or (solver == [100 101 102])) & size(%cpr.state.x,"*") <> 0 then
         warning(msprintf(_("Diagram has been compiled for explicit solver\nswitching to explicit solver.\n")))
         solver = 0
         tolerances(6) = solver
@@ -282,6 +283,9 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
         for i = 1:length(%cpr.sim.funs)
             if type(%cpr.sim.funs(i)) <> 13 then
                 if find(%cpr.sim.funs(i)(1) == Ignore) <> [] then
+                    if (%cpr.sim.funs(i)(1) == "bplatform2") then
+                        %cpr.sim.funtyp(i) = 4; // BPLATFORM block has function type 5, so need to set it to 4, like the trash block.
+                    end
                     %cpr.sim.funs(i)(1) = "trash";
                 end
             end

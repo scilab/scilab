@@ -2,7 +2,7 @@
  * -----------------------------------------------------------------
  * $Revision: 1.2 $
  * $Date: 2006/11/29 00:05:07 $
- * ----------------------------------------------------------------- 
+ * -----------------------------------------------------------------
  * Programmer(s): Scott Cohen, Alan Hindmarsh, Radu Serban, and
  *                Aaron Collier @ LLNL
  * -----------------------------------------------------------------
@@ -37,7 +37,7 @@
  * explicitly cast 1.0 to (realtype).
  *------------------------------------------------------------------
  */
-  
+
 #ifndef _SUNDIALSTYPES_H
 #define _SUNDIALSTYPES_H
 
@@ -52,17 +52,17 @@ extern "C" {
 
 #include <float.h>
 
-/*
- *------------------------------------------------------------------
- * Type realtype
- * Macro RCONST
- * Constants BIG_REAL, SMALL_REAL, and UNIT_ROUNDOFF
- *------------------------------------------------------------------
- */
+    /*
+     *------------------------------------------------------------------
+     * Type realtype
+     * Macro RCONST
+     * Constants BIG_REAL, SMALL_REAL, and UNIT_ROUNDOFF
+     *------------------------------------------------------------------
+     */
 
 #if defined(SUNDIALS_SINGLE_PRECISION)
 
-typedef float realtype;
+    typedef float realtype;
 # define RCONST(x) x##F
 # define BIG_REAL FLT_MAX
 # define SMALL_REAL FLT_MIN
@@ -70,7 +70,7 @@ typedef float realtype;
 
 #elif defined(SUNDIALS_DOUBLE_PRECISION)
 
-typedef double realtype;
+    typedef double realtype;
 # define RCONST(x) x
 # define BIG_REAL DBL_MAX
 # define SMALL_REAL DBL_MIN
@@ -78,7 +78,7 @@ typedef double realtype;
 
 #elif defined(SUNDIALS_EXTENDED_PRECISION)
 
-typedef long double realtype;
+    typedef long double realtype;
 # define RCONST(x) x##L
 # define BIG_REAL LDBL_MAX
 # define SMALL_REAL LDBL_MIN
@@ -86,22 +86,22 @@ typedef long double realtype;
 
 #endif
 
-/*
- *------------------------------------------------------------------
- * Type : booleantype
- *------------------------------------------------------------------
- * Constants : FALSE and TRUE
- *------------------------------------------------------------------
- * ANSI C does not have a built-in boolean data type. Below is the
- * definition for a new type called booleantype. The advantage of
- * using the name booleantype (instead of int) is an increase in
- * code readability. It also allows the programmer to make a
- * distinction between int and boolean data. Variables of type
- * booleantype are intended to have only the two values FALSE and
- * TRUE which are defined below to be equal to 0 and 1,
- * respectively.
- *------------------------------------------------------------------
- */
+    /*
+     *------------------------------------------------------------------
+     * Type : booleantype
+     *------------------------------------------------------------------
+     * Constants : FALSE and TRUE
+     *------------------------------------------------------------------
+     * ANSI C does not have a built-in boolean data type. Below is the
+     * definition for a new type called booleantype. The advantage of
+     * using the name booleantype (instead of int) is an increase in
+     * code readability. It also allows the programmer to make a
+     * distinction between int and boolean data. Variables of type
+     * booleantype are intended to have only the two values FALSE and
+     * TRUE which are defined below to be equal to 0 and 1,
+     * respectively.
+     *------------------------------------------------------------------
+     */
 
 #ifndef booleantype
 #define booleantype int

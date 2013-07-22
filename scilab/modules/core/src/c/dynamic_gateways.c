@@ -15,6 +15,7 @@
 #include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"
 #include "dynamic_parallel.h"
+#include "scilabmode.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 /* special_functions module */
@@ -131,6 +132,7 @@ int gw_dynamic_sound(void)
 /*--------------------------------------------------------------------------*/
 /* scicos module */
 #define SCICOS_MODULE_NAME "scicos"
+#define SCICOS_CLI_MODULE_NAME "scicos-cli"
 static DynLibHandle hScicosLib = NULL;
 static PROC_GATEWAY ptr_gw_scicos = NULL;
 static char* dynlibname_scicos = NULL;
@@ -138,6 +140,15 @@ static char* gatewayname_scicos = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_scicos(void)
 {
+    if (dynlibname_scicos == NULL)
+    {
+        /* Select the cli library if started without gui (at runtime)  */
+        if (getScilabMode() == SCILAB_NWNI)
+        {
+            dynlibname_scicos = buildModuleDynLibraryName(SCICOS_CLI_MODULE_NAME, DYNLIB_NAME_FORMAT_AUTO);
+        }
+    }
+
     return gw_dynamic_generic(SCICOS_MODULE_NAME,
                               &dynlibname_scicos,
                               &gatewayname_scicos,

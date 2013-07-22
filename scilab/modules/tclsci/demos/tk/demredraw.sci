@@ -12,11 +12,11 @@ function demredraw(alpha)
     end
 
     if done&abs(alpha-alpha0)>2 then
-      done              = %f;
-      a                 = gca();
-      a.rotation_angles = [alpha,30];
-      alpha0            = alpha;
-      done              = %t;
+        done              = %f;
+        a                 = gca();
+        a.rotation_angles = [alpha,30];
+        alpha0            = alpha;
+        done              = %t;
     end
 
 endfunction

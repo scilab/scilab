@@ -54,7 +54,7 @@ public class NumericalSpinner extends JSpinner implements XComponent, XChooser, 
      * @return array of actuator names.
      */
     public final String [] actuators() {
-        return new String[]{"length", "increment", "min-value", "max-value", "value", "tooltip", "enable"};
+        return new String[] {"length", "increment", "min-value", "max-value", "value", "tooltip", "enable"};
     }
 
     /** Constructor.

@@ -8,31 +8,31 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function datatipSetSelected(curve_handles,tip_indices)
-//datatip utility function
-//set the selected datatip(s)
+    //datatip utility function
+    //set the selected datatip(s)
 
-  [curve,ind]=datatipGetSelected(curve_handles)
-  //unselect the current datatip if any
-  if ind<>[] then
-    ud=datatipGetStruct(curve);
-    tips=ud.tips.children
-    tip_handle=tips(ind);
-    datatipHilite(tip_handle) //unhilite
-    ud.selected=0
-    datatipSetStruct(curve,ud);
-  end
+    [curve,ind]=datatipGetSelected(curve_handles)
+    //unselect the current datatip if any
+    if ind<>[] then
+        ud=datatipGetStruct(curve);
+        tips=ud.tips.children
+        tip_handle=tips(ind);
+        datatipHilite(tip_handle) //unhilite
+        ud.selected=0
+        datatipSetStruct(curve,ud);
+    end
 
-  //select the new one
-  if tip_indices<>[] then
-    k=tip_indices(1);
-    l=tip_indices(2);
-    curve=curve_handles(k);
-    ud=datatipGetStruct(curve);
-    tips=ud.tips.children
-    tip_handle=tips(l);
-    datatipHilite(tip_handle)  //hilite
-    ud.selected=l
-    datatipSetStruct(curve,ud);
-  end
+    //select the new one
+    if tip_indices<>[] then
+        k=tip_indices(1);
+        l=tip_indices(2);
+        curve=curve_handles(k);
+        ud=datatipGetStruct(curve);
+        tips=ud.tips.children
+        tip_handle=tips(l);
+        datatipHilite(tip_handle)  //hilite
+        ud.selected=l
+        datatipSetStruct(curve,ud);
+    end
 endfunction
 

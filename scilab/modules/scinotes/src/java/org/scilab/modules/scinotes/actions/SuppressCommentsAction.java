@@ -49,11 +49,11 @@ public final class SuppressCommentsAction extends DefaultCheckAction  {
      */
     public void doAction() {
         SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    SciNotes.setSuppressComments(SuppressCommentsAction.this.getState());
-                    ConfigSciNotesManager.saveSuppressComments(SuppressCommentsAction.this.getState());
-                }
-            });
+            public void run() {
+                SciNotes.setSuppressComments(SuppressCommentsAction.this.getState());
+                ConfigSciNotesManager.saveSuppressComments(SuppressCommentsAction.this.getState());
+            }
+        });
     }
 
     /**
@@ -67,10 +67,10 @@ public final class SuppressCommentsAction extends DefaultCheckAction  {
         final CheckBoxMenuItem sca = createCheckBoxMenu(label, null, new SuppressCommentsAction(label, editor), key);
         sca.setChecked(ConfigSciNotesManager.getSuppressComments());
         ((JCheckBoxMenuItem) sca.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    sca.setChecked(ConfigSciNotesManager.getSuppressComments());
-                }
-            });
+            public void propertyChange(PropertyChangeEvent e) {
+                sca.setChecked(ConfigSciNotesManager.getSuppressComments());
+            }
+        });
 
         return sca;
     }

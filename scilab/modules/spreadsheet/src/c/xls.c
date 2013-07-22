@@ -86,12 +86,18 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
 
     *cur_pos = *cur_pos;
     C2F(mseek) (fd, cur_pos, "set", err);
-    if (*err > 0) goto ErrL;
+    if (*err > 0)
+    {
+        goto ErrL;
+    }
 
     /* first record should be a BOF */
     getBOF(fd , BOFData, err);
 
-    if (*err > 0) return;
+    if (*err > 0)
+    {
+        return;
+    }
     if (BOFData[0] < 0) /* not a BOF */
     {
         *err = 2;
@@ -104,18 +110,30 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
     }
 
     C2F(mtell) (fd, &pos, err);
-    if (*err > 0) goto ErrL;
+    if (*err > 0)
+    {
+        goto ErrL;
+    }
     *cur_pos = (int)pos;
 
     while (1)
     {
         C2F(mseek) (fd, cur_pos, "set", err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         /*Enregistrement de l'Opcode et de la Len du tag*/
         C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         C2F(mgetnc) (fd, &Len, &one, typ_ushort, err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         switch (Opcode)
         {
             case 10:/*EOF */
@@ -126,9 +144,15 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                 return;
             case 638: /*RK*/
                 C2F(mgetnc) (fd, (void*)&row, &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd, (void*)&col, &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 // Check col and row are in bounds
                 if ((col >= longueur) || (row >= hauteur))
                 {
@@ -136,16 +160,28 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                     goto ErrL;
                 }
                 C2F(mgetnc) (fd, (void*)&xf , &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd, (void*) &rkvalue , &one, typ_int, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 valeur[col * (hauteur) + row] = NumFromRk2(rkvalue);
                 break;
             case 515: /*Number*/
                 C2F(mgetnc) (fd, (void*)&row, &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd, (void*)&col, &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 // Check col and row are in bounds
                 if ((col >= longueur) || (row >= hauteur))
                 {
@@ -153,17 +189,29 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                     goto ErrL;
                 }
                 C2F(mgetnc) (fd, (void*)&xf , &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd, (void*) &resultat , &one, typ_double, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 valeur[col * (hauteur) + row] = resultat ;
                 break;
 
             case 189: /*MULRK*/
                 C2F(mgetnc) (fd, (void*)&row, &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd,  (void*)&colFirst, &one, typ_short, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 // Check col and row are in bounds
                 if ((colFirst >= longueur) || (row >= hauteur))
                 {
@@ -175,22 +223,37 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                 for (i = 0; i < ncol; i++)
                 {
                     C2F(mgetnc) (fd, (void*) &ixfe, &one, typ_short, err);
-                    if (*err > 0) goto ErrL;
+                    if (*err > 0)
+                    {
+                        goto ErrL;
+                    }
                     C2F(mgetnc) (fd, (void*) &rkvalue, &one, typ_int, err);
-                    if (*err > 0) goto ErrL;
+                    if (*err > 0)
+                    {
+                        goto ErrL;
+                    }
                     valeur[row + (colFirst + i)*hauteur] = NumFromRk2(rkvalue);
                 }
 
                 /*Index of last column*/
                 C2F(mgetnc) (fd, (void*) &colLast, &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 break;
 
             case 253:/*LABELSST*/
                 C2F(mgetnc) (fd, (void*) labelsst1, &three, typ_short, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd, (void*) &indsst , &one, typ_int, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 /*Allocation dans le tableau final*/
                 col = labelsst1[1];
                 row = labelsst1[0];
@@ -204,15 +267,30 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                 break;
             case 512:/* DIMENSIONS*/
                 C2F(mgetnc) (fd, (void*) &f_row, &one, typ_int, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd, (void*) &l_row, &one, typ_int, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd, (void*) &f_col, &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd, (void*) &l_col, &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd, (void*) &notused, &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
 
                 /*Calcul de longueur, hauteur et capacite de la feuille*/
                 hauteur = l_row; /*-f_row;*/
@@ -236,9 +314,15 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                 break;
             case 6:/* FORMULA*/
                 C2F(mgetnc) (fd, (void*) &row, &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 C2F(mgetnc) (fd, (void*) &col, &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 // Check col and row are in bounds
                 if ((col >= longueur) || (row >= hauteur))
                 {
@@ -246,18 +330,30 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                     goto ErrL;
                 }
                 C2F(mgetnc) (fd, (void*) &xf, &one, typ_ushort, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
 
                 C2F(mgetnc) (fd, (void*) &resultat, &one, typ_double, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
 
                 valeur[(col * hauteur + row)] = resultat;
 
                 C2F(mgetnc) (fd, (void*)&optionflag, &one, typ_short, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
 
                 C2F(mgetnc) (fd, (void*) &formula_notused, &one, typ_int, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
 
                 /*Formuled data*/
 
@@ -277,9 +373,13 @@ ErrL:
         FREE(valeur);
         FREE(*chainesind);
         if (*err == 0)
-            *err = 1; /* malloc problem */
+        {
+            *err = 1;    /* malloc problem */
+        }
         else
-            *err = 2; /* read problem */
+        {
+            *err = 2;    /* read problem */
+        }
         return;
     }
 }
@@ -326,7 +426,10 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
 
     /* first record should be a BOF */
     getBOF(fd , BOFData, err);
-    if (*err > 0) return;
+    if (*err > 0)
+    {
+        return;
+    }
 
     if (BOFData[0] < 0) /* not a BOF */
     {
@@ -340,19 +443,31 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     }
 
     C2F(mtell) (fd, &pos, err);
-    if (*err > 0) goto Err2;
+    if (*err > 0)
+    {
+        goto Err2;
+    }
     cur_pos = (int)pos;
 
     /* loops on records till an EOF is found */
     while (1)
     {
         C2F(mseek) (fd, &cur_pos, "set", err);
-        if (*err > 0) goto Err2;
+        if (*err > 0)
+        {
+            goto Err2;
+        }
         /*Enregistrement de l'Opcode et de la Len du tag*/
         C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
-        if (*err > 0) goto Err2;
+        if (*err > 0)
+        {
+            goto Err2;
+        }
         C2F(mgetnc) (fd, &Len, &one, typ_ushort, err);
-        if (*err > 0) goto Err2;
+        if (*err > 0)
+        {
+            goto Err2;
+        }
 
         switch (Opcode)
         {
@@ -361,12 +476,21 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
                 return ;
             case 133: /* Boundsheets */
                 getBoundsheets(fd, Sheetnames, Abspos, nsheets, &cur_pos, err);
-                for (k = 0; k < *nsheets; k++) (*Abspos)[k] += init_pos;
-                if (*err > 0) return;
+                for (k = 0; k < *nsheets; k++)
+                {
+                    (*Abspos)[k] += init_pos;
+                }
+                if (*err > 0)
+                {
+                    return;
+                }
                 break;
             case 252: /* SST= Shared String table*/
                 getSST(fd, Len, BOFData[0], ns, sst, err);
-                if (*err > 0) return;
+                if (*err > 0)
+                {
+                    return;
+                }
                 cur_pos = cur_pos + 4 + Len;
                 break;
             default:
@@ -396,7 +520,9 @@ static double NumFromRk2(long rk)
     }
     if (rk & 0x01)
         /* divide by 100*/
+    {
         num /= 100;
+    }
     return num;
 }
 
@@ -417,52 +543,99 @@ static void getBOF(int *fd , int* Data, int *err)
     int one = 1;
 
     C2F(mgetnc) (fd, (void*)&Opcode, &one, typ_ushort, err);
-    if (*err > 0) return;
+    if (*err > 0)
+    {
+        return;
+    }
     C2F(mgetnc) (fd, (void*)&Len, &one, typ_ushort, err);
-    if (*err > 0) return;
+    if (*err > 0)
+    {
+        return;
+    }
 
     switch (Opcode)
     {
         case 2057:     /*Begin of file, BOF for BIFF5 BIFF7 BIFF8 BIFF8X*/
             C2F(mgetnc) (fd, (void*)&Version, &one, typ_short, err);
-            if (*err > 0) return;
+            if (*err > 0)
+            {
+                return;
+            }
             C2F(mgetnc) (fd, (void*)&DataType, &one, typ_short, err);
-            if (*err > 0) return;
+            if (*err > 0)
+            {
+                return;
+            }
             C2F(mgetnc) (fd, (void*)&Identifier, &one, typ_short, err);
-            if (*err > 0) return;
+            if (*err > 0)
+            {
+                return;
+            }
             C2F(mgetnc) (fd, (void*)&Year, &one, typ_short, err);
-            if (*err > 0) return;
+            if (*err > 0)
+            {
+                return;
+            }
             if (Len == 16)
             {
                 C2F(mgetnc) (fd, (void*)&HistoryFlags, &one, typ_int, err);
-                if (*err > 0) return;
+                if (*err > 0)
+                {
+                    return;
+                }
                 C2F(mgetnc) (fd, (void*)&LowestXlsVersion, &one, typ_int, err);
-                if (*err > 0) return;
+                if (*err > 0)
+                {
+                    return;
+                }
                 BIFF = 8;
-                if (Version != 1536) return;
+                if (Version != 1536)
+                {
+                    return;
+                }
             }
             else
+            {
                 BIFF = 7;
+            }
             break;
         case 1033 : /*Interpr�tation du BIFF4  0409 H*/
             C2F(mgetnc) (fd, (void*)&Version, &one, typ_short, err);
-            if (*err > 0) return;
+            if (*err > 0)
+            {
+                return;
+            }
             C2F(mgetnc) (fd, (void*)&DataType, &one, typ_short, err);
-            if (*err > 0) return;
+            if (*err > 0)
+            {
+                return;
+            }
             BIFF = 4;
             break;
         case 521 : /*Interpr�tation du BIFF3  0209 H*/
             C2F(mgetnc) (fd, (void*)&Version, &one, typ_short, err);
-            if (*err > 0) return;
+            if (*err > 0)
+            {
+                return;
+            }
             C2F(mgetnc) (fd, (void*)&DataType, &one, typ_short, err);
-            if (*err > 0) return;
+            if (*err > 0)
+            {
+                return;
+            }
             BIFF = 3;
             break;
         case 9 : /*Interpr�tation du BIFF2  0009 H*/
             C2F(mgetnc) (fd, (void*)&Version, &one, typ_short, err);
-            if (*err > 0) return;
+            if (*err > 0)
+            {
+                return;
+            }
             C2F(mgetnc) (fd, (void*)&DataType, &one, typ_short, err);
-            if (*err > 0) return;
+            if (*err > 0)
+            {
+                return;
+            }
             BIFF = 2;
             break;
         default:
@@ -495,20 +668,35 @@ static void getSST(int *fd, short Len, int BIFF, int *ns, char ***sst, int *err)
     {
         /*Total number of strings in the workbook*/
         C2F(mgetnc) (fd, (void*)&ntot, &one, typ_int, err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         C2F(mgetnc) (fd, (void*)&nm, &one, typ_int, err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         *ns = nm;
         count += 8;
         if (nm != 0)
         {
-            if ( (*sst = (char **)MALLOC(nm * sizeof(char*))) == NULL)  goto ErrL;
-            for (i = 0; i < nm; i++) (*sst)[i] = NULL;
+            if ( (*sst = (char **)MALLOC(nm * sizeof(char*))) == NULL)
+            {
+                goto ErrL;
+            }
+            for (i = 0; i < nm; i++)
+            {
+                (*sst)[i] = NULL;
+            }
             for (i = 0; i < nm; i++) /* LOOP ON STRINGS */
             {
                 *err = i; /*for debug*/
                 getString(fd, &count, &Len, 1, &((*sst)[i]), err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 /*printf("i=%d, %s\n",i,(*sst)[i]);*/
             }
         }
@@ -518,14 +706,21 @@ ErrL:
     if (*sst != NULL)
     {
         for (i = 0; i < nm; i++)
-            if ( (*sst)[i] != NULL ) FREE((*sst)[i]);
+            if ( (*sst)[i] != NULL )
+            {
+                FREE((*sst)[i]);
+            }
         FREE(*sst);
     }
 
     if (*err == 0)
-        *err = 3; /* malloc problem */
+    {
+        *err = 3;    /* malloc problem */
+    }
     else
-        *err = 4; /* read problem */
+    {
+        *err = 4;    /* read problem */
+    }
 }
 
 static void getString(int *fd, short *PosInRecord, short *RecordLen, int flag, char **str, int *err)
@@ -549,9 +744,15 @@ static void getString(int *fd, short *PosInRecord, short *RecordLen, int flag, c
         /*check for continue tag */
         /*lecture de l'Opcode et de la RecordLen du tag*/
         C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
-        if ((*err > 0) || (Opcode != 60)) goto ErrL;
+        if ((*err > 0) || (Opcode != 60))
+        {
+            goto ErrL;
+        }
         C2F(mgetnc) (fd, RecordLen, &one, typ_ushort, err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         *PosInRecord = 0;
     }
 
@@ -559,19 +760,28 @@ static void getString(int *fd, short *PosInRecord, short *RecordLen, int flag, c
     if (flag)   /* getString called by getSST */
     {
         C2F(mgetnc) (fd, (void*)&ln, &one, typ_short, err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         *PosInRecord += 2;
     }
     else   /* getString called by getBoundsheets */
     {
         C2F(mgetnc) (fd, (void*)&ln, &one, typ_char, err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         *PosInRecord += 1;
     }
 
     /*get the encoding options */
     C2F(mgetnc) (fd, (void*)&OptionFlag, &one, typ_char, err);
-    if (*err > 0) goto ErrL;
+    if (*err > 0)
+    {
+        goto ErrL;
+    }
     *PosInRecord += 1;
 
     UTFEncoding = (OptionFlag & 0x01) == 1;
@@ -582,13 +792,19 @@ static void getString(int *fd, short *PosInRecord, short *RecordLen, int flag, c
     {
         C2F(mgetnc) (fd, (void*)&rt, &one, typ_short, err);
         *PosInRecord += 2;
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
     }
 
     if (extendedString)  /* extendedString */
     {
         C2F(mgetnc) (fd, (void*)&sz, &one, typ_int, err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         *PosInRecord += 4;
     }
 
@@ -596,14 +812,20 @@ static void getString(int *fd, short *PosInRecord, short *RecordLen, int flag, c
     BytesToBeRead = (UTFEncoding) ? ln * 2 : ln;
 
 
-    if ((*str = (char*) MALLOC((BytesToBeRead + 1) * sizeof(char))) == NULL)  goto ErrL;
+    if ((*str = (char*) MALLOC((BytesToBeRead + 1) * sizeof(char))) == NULL)
+    {
+        goto ErrL;
+    }
     /* read the bytes */
 
     if (!flag || (*PosInRecord + BytesToBeRead <= *RecordLen))
     {
         /* all bytes are in the same record */
         C2F(mgetnc) (fd, (void*)*str, &BytesToBeRead, typ_char, err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         *PosInRecord += (short)BytesToBeRead;
     }
     else  /* char stream contains at least one "continue" */
@@ -613,20 +835,32 @@ static void getString(int *fd, short *PosInRecord, short *RecordLen, int flag, c
         /* read bytes before the "continue"  */
         /* according to documentation  bytesRead should be strictly positive */
         C2F(mgetnc) (fd, (void*)(*str + strindex), &bytesRead, typ_char, err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         strindex += bytesRead;
         *PosInRecord += (short)bytesRead;
         while (BytesToBeRead - bytesRead > 0)
         {
             /*"continue" tag assumed, verify */
             C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
-            if ((*err > 0) || (Opcode != 60)) goto ErrL;
+            if ((*err > 0) || (Opcode != 60))
+            {
+                goto ErrL;
+            }
             C2F(mgetnc) (fd, RecordLen, &one, typ_ushort, err);
-            if (*err > 0) goto ErrL;
+            if (*err > 0)
+            {
+                goto ErrL;
+            }
             *PosInRecord = 0;
             /* encoding option may change !!!! */
             C2F(mgetnc) (fd, (void*)&OptionFlag, &one, typ_char, err);
-            if (*err > 0) goto ErrL;
+            if (*err > 0)
+            {
+                goto ErrL;
+            }
             *PosInRecord += 1;
 
             if ((!UTFEncoding && (OptionFlag == 0)) || (UTFEncoding && (OptionFlag != 0)))
@@ -634,7 +868,10 @@ static void getString(int *fd, short *PosInRecord, short *RecordLen, int flag, c
                 /*string encoding does not change */
                 l1 = Min(BytesToBeRead - bytesRead, *RecordLen - *PosInRecord);
                 C2F(mgetnc) (fd, (void*)(*str + strindex), &l1, typ_char, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 bytesRead += l1;
                 strindex += l1;
                 *PosInRecord += (short)l1;
@@ -647,7 +884,10 @@ static void getString(int *fd, short *PosInRecord, short *RecordLen, int flag, c
                 for (j = 0; j < l1; j++)
                 {
                     C2F(mgetnc) (fd, (void*)(*str + strindex), &one, typ_char, err);
-                    if (*err > 0) goto ErrL;
+                    if (*err > 0)
+                    {
+                        goto ErrL;
+                    }
                     (*str)[strindex + 1] = '\0';
                     strindex += 2;
                     *PosInRecord += 2;
@@ -661,7 +901,10 @@ static void getString(int *fd, short *PosInRecord, short *RecordLen, int flag, c
                 char *str1 = *str;
                 strindex = 0;
                 str = (char**) MALLOC((2 * BytesToBeRead + 1) * sizeof(char*));
-                if (str == NULL)  goto ErrL;
+                if (str == NULL)
+                {
+                    goto ErrL;
+                }
                 for (j = 0; j < bytesRead; j++)
                 {
                     (*str)[strindex] = str1[j];
@@ -674,7 +917,10 @@ static void getString(int *fd, short *PosInRecord, short *RecordLen, int flag, c
                 /* read following two bytes characters */
                 l1 = Min((BytesToBeRead - bytesRead) * 2, *RecordLen - *PosInRecord);
                 C2F(mgetnc) (fd, (void*)(*str + strindex), &l1, typ_char, err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
                 bytesRead += l1;
                 strindex += l1;
                 *PosInRecord += (short)l1;
@@ -722,7 +968,9 @@ ErrL:
         *err = 3; /* malloc problem */
     }
     else
-        *err = 4; /* read problem */
+    {
+        *err = 4;    /* read problem */
+    }
 }
 
 static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nsheets, int *cur_pos, int *err)
@@ -748,17 +996,32 @@ static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nshe
     while (1)
     {
         C2F(mseek) (fd, cur_pos, "set", err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         C2F(mgetnc) (fd, &Len, &one, typ_ushort, err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         if (Opcode == 133)
         {
             C2F(mgetnc) (fd, (void*)&abspos, &one, typ_int, err);
-            if (*err > 0) goto ErrL;
+            if (*err > 0)
+            {
+                goto ErrL;
+            }
             C2F(mgetnc) (fd, (void*)&visibility, &one, typ_char, err);
-            if (*err > 0) goto ErrL;
+            if (*err > 0)
+            {
+                goto ErrL;
+            }
             C2F(mgetnc) (fd, (void*)&sheettype, &one, typ_char, err);
             if (sheettype == 0) /* worksheet */
             {
@@ -767,14 +1030,22 @@ static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nshe
             *cur_pos = *cur_pos + 4 + Len;
         }
         else
+        {
             break;
+        }
 
     }
 
     *nsheets = ns;
     /*alloc the Sheetnames ans Abspos arrays */
-    if ( (*Sheetnames = (char **)MALLOC(ns * sizeof(char*))) == NULL)  goto ErrL;
-    if ( (*Abspos = (int *)MALLOC(ns * sizeof(int))) == NULL)  goto ErrL;
+    if ( (*Sheetnames = (char **)MALLOC(ns * sizeof(char*))) == NULL)
+    {
+        goto ErrL;
+    }
+    if ( (*Abspos = (int *)MALLOC(ns * sizeof(int))) == NULL)
+    {
+        goto ErrL;
+    }
 
     /* rescan boundsheet sequence to get the data */
     *cur_pos = pos;
@@ -782,15 +1053,24 @@ static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nshe
     while (1)
     {
         C2F(mseek) (fd, cur_pos, "set", err);
-        if (*err > 0) goto ErrL;
+        if (*err > 0)
+        {
+            goto ErrL;
+        }
         C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
         C2F(mgetnc) (fd, &Len, &one, typ_ushort, err);
         if (Opcode == 133)
         {
             C2F(mgetnc) (fd, (void*)&abspos, &one, typ_int, err);
-            if (*err > 0) goto ErrL;
+            if (*err > 0)
+            {
+                goto ErrL;
+            }
             C2F(mgetnc) (fd, (void*)&visibility, &one, typ_char, err);
-            if (*err > 0) goto ErrL;
+            if (*err > 0)
+            {
+                goto ErrL;
+            }
             C2F(mgetnc) (fd, (void*)&sheettype, &one, typ_char, err);
             if (sheettype == 0) /* worksheet */
             {
@@ -798,12 +1078,17 @@ static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nshe
                 i++;
                 (*Abspos)[i] = abspos;
                 getString(fd, &count, (short *) &Len, 0, &((*Sheetnames)[i]), err);
-                if (*err > 0) goto ErrL;
+                if (*err > 0)
+                {
+                    goto ErrL;
+                }
             }
             *cur_pos = *cur_pos + 4 + Len;
         }
         else
+        {
             break;
+        }
 
     }
     return;
@@ -811,14 +1096,21 @@ ErrL:
     if (*Sheetnames != NULL)
     {
         for (i = 0; i < ns; i++)
-            if ( (*Sheetnames)[i] != NULL ) FREE((*Sheetnames)[i]);
+            if ( (*Sheetnames)[i] != NULL )
+            {
+                FREE((*Sheetnames)[i]);
+            }
         FREE(*Sheetnames);
     }
     FREE(*Abspos);
     if (*err == 0)
-        *err = 3; /* malloc problem */
+    {
+        *err = 3;    /* malloc problem */
+    }
     else
-        *err = 4; /* read problem */
+    {
+        *err = 4;    /* read problem */
+    }
 }
 
 /**

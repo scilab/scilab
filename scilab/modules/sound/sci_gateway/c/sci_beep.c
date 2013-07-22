@@ -41,7 +41,10 @@ int sci_beep(char *fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) == 0)
     {
-        if (beepON) doBeep();
+        if (beepON)
+        {
+            doBeep();
+        }
     }
     else
     {

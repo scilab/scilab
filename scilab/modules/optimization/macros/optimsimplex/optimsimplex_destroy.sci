@@ -13,7 +13,7 @@
 //   Destroy the given object.
 //
 function this = optimsimplex_destroy (this)
-  this.x = [];
-  this.fv = [];
+    this.x = [];
+    this.fv = [];
 endfunction
 

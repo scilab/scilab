@@ -4,10 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NOT FIXED -->
 // <-- CLI SHELL MODE -->
 //
-// <-- NO CHECK ERROR OUTPUT --> 
+// <-- NO CHECK ERROR OUTPUT -->
 //
 // <-- Non-regression test for bug 8462 -->
 //
@@ -53,12 +52,13 @@ endfunction
 
 o = 1; // nombre d'équations différentielles
 m = [2]; // ordre des équations différentielles du système (ici, 1 équations d'ordre 2)
-zeta = [L0 L]; // points liés aux conditions aux limites dans l'ordre des valeurs 
+zeta = [L0 L]; // points liés aux conditions aux limites dans l'ordre des valeurs
 nx = 11;
 x = linspace(L0,L,nx); // points de discrétisation
 
-
-ltol = 4;
+//as stated in the doc :
+// 1 <= ltol(1) < ltol(2) < ... < ltol(ntol) <= M where M is sum(m)
+ltol = m;
 tol = 1e-14;
 
 function [z,lhs]=ystart(x)

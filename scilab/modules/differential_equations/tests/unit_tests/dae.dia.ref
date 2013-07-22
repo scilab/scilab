@@ -153,7 +153,7 @@ deff('s=gr2(t,y,yd)','s=y(1)')
 //           Hot Restart
 [yy,nn,hotd]=dae("root",[y0,y0d],t0,t,rtol,atol,'res2','jac2',ng,'gr2');
 t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(1:2,qq);y0d1=yy(2:3,qq);
-%DAEOPTIONS=list([],0,[],[],[],0,0);deff('s=gr2(t,y,yd)','s=y(1)')
+%DAEOPTIONS=list([],0,[],[],[],0,0);
 [yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,rtol,atol,'res2','jac2',ng,'gr2',hotd);
 if abs(nn(1)-162.57763)>0.004 then bugmes();quit;end
 //same with C code
@@ -291,7 +291,7 @@ ccode=['#include <math.h>'
        '  res[46]=1.0;'
        '  res[47]=8.0;'
        '  res[48]=-10.0+*cj;'
-       '  res[49]=0.0;'                                              
+       '  res[49]=0.0;'
        '}'];
 mputl(ccode,'band.c'); //create the C file of myjac
 ilib_for_link(['myres','myjac'],'band.c','','c');//compile

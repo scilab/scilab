@@ -18,24 +18,24 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 extern int C2F(mtran)();
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void matztran_m(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void matztran_m(scicos_block *block, int flag)
 {
-  int nu = GetInPortRows(block,1);
-  int mu = GetInPortCols(block,1);
+    int nu = GetInPortRows(block, 1);
+    int mu = GetInPortCols(block, 1);
 
-  double *ur = GetRealInPortPtrs(block,1);
-  double *ui = GetImagInPortPtrs(block,1);
-  double *yr = GetRealOutPortPtrs(block,1);
-  double *yi = GetImagOutPortPtrs(block,1);
-  C2F(mtran)(ur,&nu,yr,&mu,&nu,&mu);
-  C2F(mtran)(ui,&nu,yi,&mu,&nu,&mu);
+    double *ur = GetRealInPortPtrs(block, 1);
+    double *ui = GetImagInPortPtrs(block, 1);
+    double *yr = GetRealOutPortPtrs(block, 1);
+    double *yi = GetImagOutPortPtrs(block, 1);
+    C2F(mtran)(ur, &nu, yr, &mu, &nu, &mu);
+    C2F(mtran)(ui, &nu, yi, &mu, &nu, &mu);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 

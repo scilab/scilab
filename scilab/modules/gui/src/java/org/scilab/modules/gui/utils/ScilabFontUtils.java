@@ -60,7 +60,7 @@ public final class ScilabFontUtils {
             }
         }
 
-        return new String[][]{mono.toArray(new String[0]), notMono.toArray(new String[0])};
+        return new String[][] {mono.toArray(new String[0]), notMono.toArray(new String[0])};
     }
 
     /**
@@ -78,7 +78,7 @@ public final class ScilabFontUtils {
             }
         }
 
-        return new String[][]{all.toArray(new String[0]), notAll.toArray(new String[0])};
+        return new String[][] {all.toArray(new String[0]), notAll.toArray(new String[0])};
     }
 
     /**
@@ -94,7 +94,7 @@ public final class ScilabFontUtils {
      * @return true if each glyph has the same width in different styles
      */
     public static boolean isAllStylesSameWidths(Font font) {
-        int[] style = new int[]{Font.PLAIN, Font.BOLD, Font.ITALIC, Font.BOLD | Font.ITALIC};
+        int[] style = new int[] {Font.PLAIN, Font.BOLD, Font.ITALIC, Font.BOLD | Font.ITALIC};
         FontMetrics fm = g2d.getFontMetrics(font.deriveFont(style[0]));
         int[] widths = fm.getWidths();
 

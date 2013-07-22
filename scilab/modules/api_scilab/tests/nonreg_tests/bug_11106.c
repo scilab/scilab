@@ -13,20 +13,21 @@ int sci_bug_11106(char *fname)
 
     getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 
-    if(isStringType(pvApiCtx, piAddr))
-    {//named check
+    if (isStringType(pvApiCtx, piAddr))
+    {
+        //named check
         char* pstVar = NULL;
         getAllocatedSingleString(pvApiCtx, piAddr, &pstVar);
 
-        if(isNamedListType(pvApiCtx, pstVar))
+        if (isNamedListType(pvApiCtx, pstVar))
         {
             sprintf(pstRet, "%s", "isNamedList");
         }
-        else if(isNamedTListType(pvApiCtx, pstVar))
+        else if (isNamedTListType(pvApiCtx, pstVar))
         {
             sprintf(pstRet, "%s", "isNamedTList");
         }
-        else if(isNamedMListType(pvApiCtx, pstVar))
+        else if (isNamedMListType(pvApiCtx, pstVar))
         {
             sprintf(pstRet, "%s", "isNamedMList");
         }
@@ -38,15 +39,15 @@ int sci_bug_11106(char *fname)
     }
     else
     {
-        if(isListType(pvApiCtx, piAddr))
+        if (isListType(pvApiCtx, piAddr))
         {
             sprintf(pstRet, "%s", "isList");
         }
-        else if(isTListType(pvApiCtx, piAddr))
+        else if (isTListType(pvApiCtx, piAddr))
         {
             sprintf(pstRet, "%s", "isTList");
         }
-        else if(isMListType(pvApiCtx, piAddr))
+        else if (isMListType(pvApiCtx, piAddr))
         {
             sprintf(pstRet, "%s", "isMList");
         }

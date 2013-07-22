@@ -12,8 +12,8 @@
 function demo_spectral()
 
     // generate white data
-    rand('normal');
-    rand('seed', 0);
+    rand("normal");
+    rand("seed", 0);
     x = rand(1:1024-33+1);
 
     // make low-pass filter with eqfir
@@ -42,36 +42,36 @@ function demo_spectral()
     clf(my_handle, "reset");
 
     plot2d(fr', log(hf2)');
-    xtitle(_('Data spectrum'), _('frequency'), _('magnitude'));
+    xtitle(_("Data spectrum"), _("frequency"), _("magnitude"));
     halt(_("Press Return to continue ... \n"));
 
     if is_handle_valid(my_handle) == %f then
         return
     end
-    
+
     // pspect example
-    [sm1] = pspect(100, 200, 'tr', y);
+    [sm1] = pspect(100, 200, "tr", y);
     smsize = max(size(sm1));
     fr = (1:smsize)/smsize;
     clf(my_handle, "reset");
     plot2d(fr', log(sm1)');
-    xtitle(_('Spectral estimation'), _('frequency'), _('spectral power'));
+    xtitle(_("Spectral estimation"), _("frequency"), _("spectral power"));
     halt(_("Press Return to continue ... \n"));
-    
+
     if is_handle_valid(my_handle) == %f then
         return
     end
-    
+
     // cspect example
-    [sm2] = cspect(100, 200, 'tr', y);
+    [sm2] = cspect(100, 200, "tr", y);
     smsize = max(size(sm2));
     fr = (1:smsize)/smsize;
     clf(my_handle, "reset");
-    demo_viewCode('spect.dem.sce');
+    demo_viewCode("spect.dem.sce");
     plot2d(fr', log(sm2)');
-    xtitle(['Spectral estimation ; periodogram method'], ' ' , ' ')
+    xtitle(["Spectral estimation ; periodogram method"], " " , " ")
 
- 
+
 endfunction
 
 demo_spectral()

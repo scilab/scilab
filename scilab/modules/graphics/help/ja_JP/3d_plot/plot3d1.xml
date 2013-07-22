@@ -289,18 +289,18 @@
     </refsection>
     <refsection>
         <title>例</title>
-
+        
         <programlisting role="example"><![CDATA[
 // z=f(x,y) によりプロットする
 t=[0:0.3:2*%pi]';
 z=sin(t)*cos(t');
 plot3d1(t,t,z)
  ]]></programlisting>
-<scilab:image>
-t=[0:0.3:2*%pi]';
-z=sin(t)*cos(t');
-plot3d1(t,t,z)
-</scilab:image>
+        <scilab:image>
+            t=[0:0.3:2*%pi]';
+            z=sin(t)*cos(t');
+            plot3d1(t,t,z)
+        </scilab:image>
         <programlisting role="example"><![CDATA[
 // genfac3d により計算された小平面を用いて同様にプロット
 t=[0:0.3:2*%pi]';
@@ -308,12 +308,12 @@ z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
 plot3d1(xx,yy,zz)
  ]]></programlisting>
-<scilab:image>
-t=[0:0.3:2*%pi]';
-z=sin(t)*cos(t');
-[xx,yy,zz]=genfac3d(t,t,z);
-plot3d1(xx,yy,zz)
-</scilab:image>
+        <scilab:image>
+            t=[0:0.3:2*%pi]';
+            z=sin(t)*cos(t');
+            [xx,yy,zz]=genfac3d(t,t,z);
+            plot3d1(xx,yy,zz)
+        </scilab:image>
         <programlisting role="example"><![CDATA[
 // 複数のプロット 
 t=[0:0.3:2*%pi]';
@@ -321,27 +321,27 @@ z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
 plot3d1([xx xx],[yy yy],[zz 4+zz])
  ]]></programlisting>
-<scilab:image>
-t=[0:0.3:2*%pi]';
-z=sin(t)*cos(t');
-[xx,yy,zz]=genfac3d(t,t,z);
-plot3d1([xx xx],[yy yy],[zz 4+zz])
-</scilab:image>
+        <scilab:image>
+            t=[0:0.3:2*%pi]';
+            z=sin(t)*cos(t');
+            [xx,yy,zz]=genfac3d(t,t,z);
+            plot3d1([xx xx],[yy yy],[zz 4+zz])
+        </scilab:image>
         <programlisting role="example"><![CDATA[
 // 視点とキャプションを指定してプロット
 plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
  ]]></programlisting>
-<scilab:image>
-plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
-</scilab:image>
-
+        <scilab:image>
+            plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
+        </scilab:image>
+        
         <programlisting role="example"><![CDATA[
 // グリッドを指定せずにプロット 
 plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[-2,2,3])
  ]]></programlisting>
-<scilab:image>
-plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[-2,2,3])
-</scilab:image>
+        <scilab:image>
+            plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[-2,2,3])
+        </scilab:image>
         <programlisting role="example"><![CDATA[
 // eval3dp により計算される小平面により球をプロット
 deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";..
@@ -355,14 +355,14 @@ e.color_flag=1;
 scf(2);
 plot3d1(xx,yy,zz) // 2つのグラフィックは同じ
  ]]></programlisting>
-<scilab:image>
-deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";..
-"y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";..
-"z=r*sin(alp)+orig(3)*ones(tet)"]);
-r=1; orig=[0 0 0];
-[xx,yy,zz]=eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20));
-plot3d(xx,yy,zz)
-</scilab:image>
+        <scilab:image>
+            deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";..
+            "y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";..
+            "z=r*sin(alp)+orig(3)*ones(tet)"]);
+            r=1; orig=[0 0 0];
+            [xx,yy,zz]=eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20));
+            plot3d(xx,yy,zz)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

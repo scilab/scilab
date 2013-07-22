@@ -34,34 +34,34 @@ static int c__1 = 1;
     }                                           \
 }
 /*--------------------------------------------------------------------------*/
-int C2F(genmcusum)(int *typ,int *job,void * in, void *out,int * na,int * m,int * n)
+int C2F(genmcusum)(int *typ, int *job, void * in, void *out, int * na, int * m, int * n)
 {
-  int i = 0, j = 0, mn = 0;
+    int i = 0, j = 0, mn = 0;
 
-  mn = (*m) * (*n);
+    mn = (*m) * (*n);
 
-  switch (*typ)
-  {
-  case 1:
-    MCUSUM(integer1);
-    break;
-  case 2:
-    MCUSUM(integer2);
-    break;
-  case 4:
-    MCUSUM(int) ;
-    break;
-  case 11:
-    MCUSUM(unsigned char);
-    break;
-  case 12:
-    MCUSUM(unsigned short);
-    break;
-  case 14:
-    MCUSUM(unsigned int);
-    break;
-  }
-  return 0;
+    switch (*typ)
+    {
+        case 1:
+            MCUSUM(integer1);
+            break;
+        case 2:
+            MCUSUM(integer2);
+            break;
+        case 4:
+            MCUSUM(int) ;
+            break;
+        case 11:
+            MCUSUM(unsigned char);
+            break;
+        case 12:
+            MCUSUM(unsigned short);
+            break;
+        case 14:
+            MCUSUM(unsigned int);
+            break;
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 #define MCUSUM_DOUBLE(Type) {                       \
@@ -81,33 +81,33 @@ int C2F(genmcusum)(int *typ,int *job,void * in, void *out,int * na,int * m,int *
     }\
 }
 /*--------------------------------------------------------------------------*/
-int C2F(genmcusumd)(int *typ,int *job,void * in, double *out,int * na,int * m,int * n)
+int C2F(genmcusumd)(int *typ, int *job, void * in, double *out, int * na, int * m, int * n)
 {
-  int i = 0, j = 0, mn = 0;
+    int i = 0, j = 0, mn = 0;
 
-  mn = (*m) * (*n);
+    mn = (*m) * (*n);
 
-  switch (*typ)
-  {
-  case 1:
-    MCUSUM_DOUBLE(integer1);
-    break;
-  case 2:
-    MCUSUM_DOUBLE(integer2);
-    break;
-  case 4:
-    MCUSUM_DOUBLE(int) ;
-    break;
-  case 11:
-    MCUSUM_DOUBLE(unsigned char);
-    break;
-  case 12:
-    MCUSUM_DOUBLE(unsigned short);
-    break;
-  case 14:
-    MCUSUM_DOUBLE(unsigned int);
-    break;
-  }
-  return 0;
+    switch (*typ)
+    {
+        case 1:
+            MCUSUM_DOUBLE(integer1);
+            break;
+        case 2:
+            MCUSUM_DOUBLE(integer2);
+            break;
+        case 4:
+            MCUSUM_DOUBLE(int) ;
+            break;
+        case 11:
+            MCUSUM_DOUBLE(unsigned char);
+            break;
+        case 12:
+            MCUSUM_DOUBLE(unsigned short);
+            break;
+        case 14:
+            MCUSUM_DOUBLE(unsigned int);
+            break;
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

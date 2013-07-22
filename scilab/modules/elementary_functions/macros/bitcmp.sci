@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Farid BELAHCENE
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -61,13 +61,13 @@ function y = bitcmp(x,n)
     end
 
     // check n value
-    
-        select inttype(x)
-        case 0  then nmax = 52;
-        case 11 then nmax = 8;
-        case 12 then nmax = 16;
-        case 14 then nmax = 32;
-        end
+
+    select inttype(x)
+    case 0  then nmax = 52;
+    case 11 then nmax = 8;
+    case 12 then nmax = 16;
+    case 14 then nmax = 32;
+    end
 
     if rhs>1 then
 

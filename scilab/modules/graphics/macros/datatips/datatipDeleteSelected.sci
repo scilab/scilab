@@ -8,12 +8,12 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function datatipDeleteSelected(curve_handles)
-//datatip utility function
-//set the selected datatip(s)
+    //datatip utility function
+    //set the selected datatip(s)
 
-  [curve,ind]=datatipGetSelected(curve_handles)
-  if ind<>[] then
-    datatipRemove(curve,ind)
-  end
+    [curve,ind]=datatipGetSelected(curve_handles)
+    if ind<>[] then
+        datatipRemove(curve,ind)
+    end
 endfunction
 

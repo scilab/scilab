@@ -127,7 +127,7 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="..\..\sci_gateway\fortran\matpow.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\matrc.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\matrdiv.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\matsubst.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\matsubt.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\mattr.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\mattrc.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\matxpow.f"/>

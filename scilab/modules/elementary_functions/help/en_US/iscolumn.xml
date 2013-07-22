@@ -39,7 +39,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>iscolumn(<varname>x</varname>)</literal> returns true if <varname>x</varname>
+            <literal>
+                iscolumn(<varname>x</varname>)
+            </literal>
+            returns true if <varname>x</varname>
             is a column vector. Scalars are considered as columns. Note that <literal>iscolumn([])</literal>
             returns false.
         </para>

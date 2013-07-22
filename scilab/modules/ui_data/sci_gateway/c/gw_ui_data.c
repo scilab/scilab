@@ -22,7 +22,7 @@
 /*--------------------------------------------------------------------------*/
 /*static BOOL loadedDep = FALSE;*/
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+static gw_generic_table Tab[] =
 {
     {sci_editvar, "editvar"},
     {sci_browsevar, "browsevar"},
@@ -37,23 +37,23 @@ int gw_ui_data(void)
 
     if ( getScilabMode() == SCILAB_NWNI)
     {
-        Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "ui_data");
+        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "ui_data");
         return 0;
     }
 
-/*      if (!loadedDep)
-        {
-        loadOnUseClassPath("ui_data");
-        loadedDep = TRUE;
-        }
-*/
+    /*      if (!loadedDep)
+            {
+            loadOnUseClassPath("ui_data");
+            loadedDep = TRUE;
+            }
+    */
 
-    if(pvApiCtx == NULL)
+    if (pvApiCtx == NULL)
     {
         pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
     }
 
-    pvApiCtx->pstName = (char*)Tab[Fin-1].name;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
     callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }

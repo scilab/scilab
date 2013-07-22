@@ -16,8 +16,8 @@
 /*--------------------------------------------------------------------------*/
 PARALLEL_IMPEXP int gw_parallel(void);
 /*--------------------------------------------------------------------------*/
-int sci_parallel_run(char *fname,unsigned long fname_len);
-int sci_parallel_concurrency(char *fname,unsigned long fname_len);
+int sci_parallel_run(char *fname, unsigned long fname_len);
+int sci_parallel_concurrency(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_PARALLEL_H__ */
 /*--------------------------------------------------------------------------*/

@@ -46,7 +46,7 @@ int sci_saveafterncommands(char *fname, unsigned long fname_len)
             }
 
             GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-            num = (int)*stk(l1);
+            num = (int) * stk(l1);
             setAfterHowManyLinesScilabHistoryIsSaved(num);
             LhsVar(1) = 0;
         }

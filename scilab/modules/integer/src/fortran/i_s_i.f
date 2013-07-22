@@ -8,7 +8,7 @@ c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine i_s_i
-c     substraction
+c     subtraction
       include 'stack.h'
       
 Cc (DLL Intel Fortran)

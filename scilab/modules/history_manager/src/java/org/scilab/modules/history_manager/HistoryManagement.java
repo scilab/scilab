@@ -9,20 +9,20 @@
 package org.scilab.modules.history_manager;
 
 
- /**
-   * All Scilab history management used in Java console
-   * @author Vincent COUVERT
-   * @author Allan CORNET
-   * @copyright INRIA
-   */
+/**
+  * All Scilab history management used in Java console
+  * @author Vincent COUVERT
+  * @author Allan CORNET
+  * @copyright INRIA
+  */
 public class HistoryManagement {
 
-  /**
-    * Constructor
-    */
-  protected HistoryManagement() {
-    throw new UnsupportedOperationException();
-  }
+    /**
+      * Constructor
+      */
+    protected HistoryManagement() {
+        throw new UnsupportedOperationException();
+    }
 
     /**
     * add a line to History manager
@@ -30,9 +30,9 @@ public class HistoryManagement {
     * line isn't added if it is the same as previous (false)
     * @return true or false
     */
-public static boolean appendLineToScilabHistory(String line) {
-    return HistoryManagementJNI.appendLineToScilabHistory(line);
-  }
+    public static boolean appendLineToScilabHistory(String line) {
+        return HistoryManagementJNI.appendLineToScilabHistory(line);
+    }
 
 
     /**
@@ -41,17 +41,17 @@ public static boolean appendLineToScilabHistory(String line) {
     * @param numberoflines size of the array of string
     * @return true or false
     */
-public static boolean appendLinesToScilabHistory(String[] lines, int numberoflines) {
-    return HistoryManagementJNI.appendLinesToScilabHistory(lines, numberoflines);
-  }
+    public static boolean appendLinesToScilabHistory(String[] lines, int numberoflines) {
+        return HistoryManagementJNI.appendLinesToScilabHistory(lines, numberoflines);
+    }
 
 
     /**
     * Display history
     */
-public static void displayScilabHistory() {
-    HistoryManagementJNI.displayScilabHistory();
-  }
+    public static void displayScilabHistory() {
+        HistoryManagementJNI.displayScilabHistory();
+    }
 
 
     /**
@@ -59,9 +59,9 @@ public static void displayScilabHistory() {
     * @param filename if NULL saves in default filename
     * @return true or false
     */
-public static boolean writeScilabHistoryToFile(String filename) {
-    return HistoryManagementJNI.writeScilabHistoryToFile(filename);
-  }
+    public static boolean writeScilabHistoryToFile(String filename) {
+        return HistoryManagementJNI.writeScilabHistoryToFile(filename);
+    }
 
 
     /**
@@ -69,9 +69,9 @@ public static boolean writeScilabHistoryToFile(String filename) {
     * @param filename if NULL load from default filename
     * @return true or false
     */
-public static boolean loadScilabHistoryFromFile(String filename) {
-    return HistoryManagementJNI.loadScilabHistoryFromFile(filename);
-  }
+    public static boolean loadScilabHistoryFromFile(String filename) {
+        return HistoryManagementJNI.loadScilabHistoryFromFile(filename);
+    }
 
 
     /**
@@ -79,44 +79,44 @@ public static boolean loadScilabHistoryFromFile(String filename) {
     * @param filename of history
     * @return true or false
     */
-public static boolean setFilenameScilabHistory(String filename) {
-    return HistoryManagementJNI.setFilenameScilabHistory(filename);
-  }
+    public static boolean setFilenameScilabHistory(String filename) {
+        return HistoryManagementJNI.setFilenameScilabHistory(filename);
+    }
 
 
     /**
     * get filename of history
     * @return a filename
     */
-public static String getFilenameScilabHistory() {
-    return HistoryManagementJNI.getFilenameScilabHistory();
-  }
+    public static String getFilenameScilabHistory() {
+        return HistoryManagementJNI.getFilenameScilabHistory();
+    }
 
 
     /**
     * set default filename of history
     * @return true or false
     */
-public static boolean setDefaultFilenameScilabHistory() {
-    return HistoryManagementJNI.setDefaultFilenameScilabHistory();
-  }
+    public static boolean setDefaultFilenameScilabHistory() {
+        return HistoryManagementJNI.setDefaultFilenameScilabHistory();
+    }
 
 
     /**
     * reset history manager
     */
-public static void resetScilabHistory() {
-    HistoryManagementJNI.resetScilabHistory();
-  }
+    public static void resetScilabHistory() {
+        HistoryManagementJNI.resetScilabHistory();
+    }
 
 
     /**
     * Get all lines in history
     * @return an array of strings
     */
-public static String[] getAllLinesOfScilabHistory() {
-    return HistoryManagementJNI.getAllLinesOfScilabHistory();
-  }
+    public static String[] getAllLinesOfScilabHistory() {
+        return HistoryManagementJNI.getAllLinesOfScilabHistory();
+    }
 
 
     /**
@@ -124,9 +124,9 @@ public static String[] getAllLinesOfScilabHistory() {
     * size of array returned by getAllLinesOfScilabHistory
     * @return int
     */
-public static int getSizeAllLinesOfScilabHistory() {
-    return HistoryManagementJNI.getSizeAllLinesOfScilabHistory();
-  }
+    public static int getSizeAllLinesOfScilabHistory() {
+        return HistoryManagementJNI.getSizeAllLinesOfScilabHistory();
+    }
 
 
     /**
@@ -134,27 +134,27 @@ public static int getSizeAllLinesOfScilabHistory() {
     * @param token (a string)
     * @return true or false
     */
-public static boolean setSearchedTokenInScilabHistory(String token) {
-    return HistoryManagementJNI.setSearchedTokenInScilabHistory(token);
-  }
+    public static boolean setSearchedTokenInScilabHistory(String token) {
+        return HistoryManagementJNI.setSearchedTokenInScilabHistory(token);
+    }
 
 
     /**
     * reset search in history
     * @return true or false
     */
-public static boolean resetSearchedTokenInScilabHistory() {
-    return HistoryManagementJNI.resetSearchedTokenInScilabHistory();
-  }
+    public static boolean resetSearchedTokenInScilabHistory() {
+        return HistoryManagementJNI.resetSearchedTokenInScilabHistory();
+    }
 
 
     /**
     * get token searched in history
     * @return token (a string)
     */
-public static String getSearchedTokenInScilabHistory() {
-    return HistoryManagementJNI.getSearchedTokenInScilabHistory();
-  }
+    public static String getSearchedTokenInScilabHistory() {
+        return HistoryManagementJNI.getSearchedTokenInScilabHistory();
+    }
 
 
     /**
@@ -162,9 +162,9 @@ public static String getSearchedTokenInScilabHistory() {
     * @return a line or NULL
     * after an appendLine iterator go to end
     */
-public static String getPreviousLineInScilabHistory() {
-    return HistoryManagementJNI.getPreviousLineInScilabHistory();
-  }
+    public static String getPreviousLineInScilabHistory() {
+        return HistoryManagementJNI.getPreviousLineInScilabHistory();
+    }
 
 
     /**
@@ -172,36 +172,36 @@ public static String getPreviousLineInScilabHistory() {
     * @return a line or NULL
     * after an appendLine iterator go to end
     */
-public static String getNextLineInScilabHistory() {
-    return HistoryManagementJNI.getNextLineInScilabHistory();
-  }
+    public static String getNextLineInScilabHistory() {
+        return HistoryManagementJNI.getNextLineInScilabHistory();
+    }
 
 
     /**
     * Get numbers of lines in history
     * @return number of lines
     */
-public static int getNumberOfLinesInScilabHistory() {
-    return HistoryManagementJNI.getNumberOfLinesInScilabHistory();
-  }
+    public static int getNumberOfLinesInScilabHistory() {
+        return HistoryManagementJNI.getNumberOfLinesInScilabHistory();
+    }
 
 
     /**
     * set consecutive duplicate lines are added
     * @param doit (true or false)
     */
-public static void setSaveConsecutiveDuplicateLinesInScilabHistory(boolean doit) {
-    HistoryManagementJNI.setSaveConsecutiveDuplicateLinesInScilabHistory(doit);
-  }
+    public static void setSaveConsecutiveDuplicateLinesInScilabHistory(boolean doit) {
+        HistoryManagementJNI.setSaveConsecutiveDuplicateLinesInScilabHistory(doit);
+    }
 
 
     /**
     * indicate if consecutive duplicate lines are added
     * @return true or false
     */
-public static boolean getSaveConsecutiveDuplicateLinesInScilabHistory() {
-    return HistoryManagementJNI.getSaveConsecutiveDuplicateLinesInScilabHistory();
-  }
+    public static boolean getSaveConsecutiveDuplicateLinesInScilabHistory() {
+        return HistoryManagementJNI.getSaveConsecutiveDuplicateLinesInScilabHistory();
+    }
 
 
     /**
@@ -209,9 +209,9 @@ public static boolean getSaveConsecutiveDuplicateLinesInScilabHistory() {
     * @param num number between 0 and Max
     * default value is 0 (disabled)
     */
-public static void setAfterHowManyLinesScilabHistoryIsSaved(int num) {
-    HistoryManagementJNI.setAfterHowManyLinesScilabHistoryIsSaved(num);
-  }
+    public static void setAfterHowManyLinesScilabHistoryIsSaved(int num) {
+        HistoryManagementJNI.setAfterHowManyLinesScilabHistoryIsSaved(num);
+    }
 
 
     /**
@@ -219,9 +219,9 @@ public static void setAfterHowManyLinesScilabHistoryIsSaved(int num) {
     * @return number between 0 and Max
     * default value is 0 (disabled)
     */
-public static int getAfterHowManyLinesScilabHistoryIsSaved() {
-    return HistoryManagementJNI.getAfterHowManyLinesScilabHistoryIsSaved();
-  }
+    public static int getAfterHowManyLinesScilabHistoryIsSaved() {
+        return HistoryManagementJNI.getAfterHowManyLinesScilabHistoryIsSaved();
+    }
 
 
     /**
@@ -229,9 +229,9 @@ public static int getAfterHowManyLinesScilabHistoryIsSaved() {
     * @param N the number of the line to get
     * @return the Nth Line
     */
-public static String getNthLineInScilabHistory(int N) {
-    return HistoryManagementJNI.getNthLineInScilabHistory(N);
-  }
+    public static String getNthLineInScilabHistory(int N) {
+        return HistoryManagementJNI.getNthLineInScilabHistory(N);
+    }
 
 
     /**
@@ -239,53 +239,53 @@ public static String getNthLineInScilabHistory(int N) {
     * @param N the number of the line to delete
     * @return true or false
     */
-public static boolean deleteNthLineScilabHistory(int N) {
-    return HistoryManagementJNI.deleteNthLineScilabHistory(N);
-  }
+    public static boolean deleteNthLineScilabHistory(int N) {
+        return HistoryManagementJNI.deleteNthLineScilabHistory(N);
+    }
 
 
     /**
     * get number of lines of history
     * @return a number >= 0
     */
-public static int getSizeScilabHistory() {
-    return HistoryManagementJNI.getSizeScilabHistory();
-  }
+    public static int getSizeScilabHistory() {
+        return HistoryManagementJNI.getSizeScilabHistory();
+    }
 
 
     /**
     * get history manager state
     * @return true or false
     */
-public static boolean historyIsEnabled() {
-    return HistoryManagementJNI.historyIsEnabled();
-  }
+    public static boolean historyIsEnabled() {
+        return HistoryManagementJNI.historyIsEnabled();
+    }
 
 
     /**
     * set the number of max lines
     * @return true or false
     */
-public static boolean setSizeMaxScilabHistory(int nbLinesMax) {
-    return HistoryManagementJNI.setSizeMaxScilabHistory(nbLinesMax);
-  }
+    public static boolean setSizeMaxScilabHistory(int nbLinesMax) {
+        return HistoryManagementJNI.setSizeMaxScilabHistory(nbLinesMax);
+    }
 
 
     /**
     * terminate the history manager
     * @return true or false
     */
-public static boolean InitializeHistoryManager() {
-    return HistoryManagementJNI.InitializeHistoryManager();
-  }
+    public static boolean InitializeHistoryManager() {
+        return HistoryManagementJNI.InitializeHistoryManager();
+    }
 
 
     /**
     * terminate the history manager
     * @return true or false
     */
-public static boolean TerminateHistoryManager() {
-    return HistoryManagementJNI.TerminateHistoryManager();
-  }
+    public static boolean TerminateHistoryManager() {
+        return HistoryManagementJNI.TerminateHistoryManager();
+    }
 
 }

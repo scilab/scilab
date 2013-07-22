@@ -831,6 +831,12 @@ function status = test_single(_module, _testPath, _testName)
                 txt(txt==msg) = [];
                 if isempty(txt) then
                     deletefile(tmp_err);
+                else // Remove messages due to warning message from library
+                    toRemove = grep(txt, ": no version information available (required by ");
+                    txt(toRemove) = [];
+                    if isempty(txt) then
+                        deletefile(tmp_err);
+                    end
                 end
             end
         end

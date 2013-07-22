@@ -15,6 +15,6 @@
 
 int gw_action_binding()
 {
-	Scierror(999,_("Scilab '%s' module not installed.\n"), "action_binding");
-	return 0;
+    Scierror(999, _("Scilab '%s' module not installed.\n"), "action_binding");
+    return 0;
 }

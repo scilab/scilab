@@ -72,7 +72,7 @@ function versions = atomsGetVersions(name,min_version,max_version,min_version_in
     // Check if it's a Atoms package
     // =========================================================================
     if ~isfield(allpackages, name) then
-      error(msprintf(gettext("%s: Wrong value for input argument #%d: ""%s"" must be an available atoms package name.\n"), "atomsGetVersions",1, name));
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: ""%s"" must be an available atoms package name.\n"), "atomsGetVersions",1, name));
     end
 
     // Get versions

@@ -9,14 +9,14 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function x= fix(x)
-  //x1=x(:)
-  //y=sign(x1).*floor(abs(x1))
-  //x(:)=y;
-  
-  rhs = argn(2);
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"fix", 1));
-  end
-  
-  x = int(x);
+    //x1=x(:)
+    //y=sign(x1).*floor(abs(x1))
+    //x(:)=y;
+
+    rhs = argn(2);
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"fix", 1));
+    end
+
+    x = int(x);
 endfunction

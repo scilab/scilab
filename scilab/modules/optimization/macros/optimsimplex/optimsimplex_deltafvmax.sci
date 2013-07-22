@@ -12,8 +12,8 @@
 // optimsimplex_deltafvmax --
 //   Returns the difference of function
 //   value between the high and the low vertices.
-//   It is expected that the vertex #1 is associated with 
-//   the smallest function value and that the vertex #nbve 
+//   It is expected that the vertex #1 is associated with
+//   the smallest function value and that the vertex #nbve
 //   is associated with the highest function value.
 // Arguments
 //   <no arg>
@@ -22,6 +22,6 @@
 //   is greater than the low.
 //
 function dfm = optimsimplex_deltafvmax ( this )
-  dfm = this.fv(this.nbve) - this.fv(1)
+    dfm = this.fv(this.nbve) - this.fv(1)
 endfunction
 

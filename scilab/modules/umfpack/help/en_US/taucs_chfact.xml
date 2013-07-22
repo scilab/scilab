@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="taucs_chfact" xml:lang="en">
     <refnamediv>
         <refname>taucs_chfact</refname>
-        <refpurpose>cholesky factorisation of a sparse s.p.d. matrix</refpurpose>
+        <refpurpose>cholesky factorization of a sparse s.p.d. matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -42,7 +42,7 @@
             the factor C which then may take more memory than the initial matrix
             A).
         </para>
-        <para>When such a factorisation have been computed, a linear system must
+        <para>When such a factorization have been computed, a linear system must
             be solved with <link linkend="taucs_chsolve">taucs_chsolve</link>. <emphasis role="bold">To free the memory used by the Cholesky factors, use 
                 <link linkend="taucs_chdel">taucs_chdel</link>(C_ptr)
             </emphasis>
@@ -96,7 +96,7 @@ taucs_chdel(Cp)
 // Example #2 a real example
 // first load a sparse matrix
 [A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
-// compute the factorisation
+// compute the factorization
 Cp = taucs_chfact(A); 
 b = rand(size(A,1),1); // a random rhs
 // use taucs_chsolve for solving Ax=b

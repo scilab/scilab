@@ -22,7 +22,7 @@ void setdefaultlanguage(char * lang)
 
 #ifdef _MSC_VER
     char *savedLanguage = getLanguagePreferences();
-    if(strcmp(lang, savedLanguage))
+    if (strcmp(lang, savedLanguage))
     {
         if (setlanguage(lang))
         {

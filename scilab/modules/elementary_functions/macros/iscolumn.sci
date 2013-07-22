@@ -12,7 +12,7 @@ function r = iscolumn(v)
     if rhs<>1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"iscolumn", 1));
     end
-    
+
     s = size(v)
     r = s(1)>=1 & length(find(s(2:$)>1))==0
 endfunction

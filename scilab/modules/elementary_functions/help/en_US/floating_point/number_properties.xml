@@ -48,7 +48,7 @@ sign * m * b^e
         <para>
             <latex>$d_i$</latex> the digits are in <literal>[0, b-1]</literal>
             and <literal>e</literal> in <literal>[emin, emax]</literal>, the number is
-            said "normalised" if <latex>$d_1 \neq 0$</latex>. The following may be
+            said "normalized" if <latex>$d_1 \neq 0$</latex>. The following may be
             gotten:
         </para>
         <variablelist>
@@ -83,7 +83,7 @@ sign * m * b^e
                 <term>prop = "tiny"</term>
                 <listitem>
                     <para>
-                        then <literal>pr</literal> is the min positive normalised
+                        then <literal>pr</literal> is the min positive normalized
                         float of <literal>F</literal>
                     </para>
                 </listitem>
@@ -92,7 +92,7 @@ sign * m * b^e
                 <term>prop = "denorm"</term>
                 <listitem>
                     <para>
-                        then <literal>pr</literal> is a boolean (%t if denormalised
+                        then <literal>pr</literal> is a boolean (%t if denormalized
                         numbers are used)
                     </para>
                 </listitem>
@@ -102,7 +102,7 @@ sign * m * b^e
                 <listitem>
                     <para>
                         then if denorm = %t, <literal>pr</literal> is the min positive
-                        denormalised number else <literal>pr</literal> = tiny
+                        denormalized number else <literal>pr</literal> = tiny
                     </para>
                 </listitem>
             </varlistentry>

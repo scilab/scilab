@@ -128,7 +128,7 @@ int sci_strtod(char *fname, unsigned long fname_len)
 
     if (iLhs == 2)
     {
-        OutputStrings = (char **)MALLOC(sizeof(char*)*iRowsiCols);
+        OutputStrings = (char **)MALLOC(sizeof(char*) * iRowsiCols);
         if (OutputStrings == NULL)
         {
             freeAllocatedMatrixOfString(iRows, iCols, Input_StringMatrix_1);
@@ -152,7 +152,6 @@ int sci_strtod(char *fname, unsigned long fname_len)
     {
         //Double part
         char *stopstring = NULL;
-        int iLen = (int)strlen(Input_StringMatrix_1[x]);
         int iSign = 0;
 
         if (Input_SingleString_1[0] == ',')

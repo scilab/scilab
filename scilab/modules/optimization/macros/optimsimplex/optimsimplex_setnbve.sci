@@ -15,6 +15,6 @@
 //   nbve : the number of vertices
 //
 function this = optimsimplex_setnbve ( this , nbve )
-  this.nbve = nbve;
+    this.nbve = nbve;
 endfunction
 

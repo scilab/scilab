@@ -374,9 +374,6 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
                 <link linkend="axes_properties">axes_properties</link>
             </member>
             <member>
-                <link linkend="show_pixmap">show_pixmap</link>
-            </member>
-            <member>
                 <link linkend="clear_pixmap">clear_pixmap</link>
             </member>
             <member/>

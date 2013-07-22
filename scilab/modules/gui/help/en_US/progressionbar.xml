@@ -62,9 +62,9 @@ close(winId);
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
-           <member>
-               <link linkend="waitbar">waitbar</link>
-           </member>
+            <member>
+                <link linkend="waitbar">waitbar</link>
+            </member>
         </simplelist>
     </refsection>
 </refentry>

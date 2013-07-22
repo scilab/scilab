@@ -64,14 +64,14 @@
 Level = 1 / (1 + exp(-(F_current - F_neigh)/max(T,%eps)));
  ]]></programlisting>
     </refsection>
-
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 level = accept_func_vfsa(10, 9, 10)
  ]]></programlisting>
     </refsection>
-
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

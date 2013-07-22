@@ -8,8 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 
-genlib('modules_managerlib','SCI/modules/modules_manager/macros',%f,%t);
+genlib("modules_managerlib","SCI/modules/modules_manager/macros",%f,%t);

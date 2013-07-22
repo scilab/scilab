@@ -36,22 +36,32 @@
                     <para>Если вещественная часть не равна нулю:</para>
                     <itemizedlist>
                         <listitem>
-                            <para><literal>+1</literal>, если вещественная часть элемента положительна</para>
+                            <para>
+                                <literal>+1</literal>, если вещественная часть элемента положительна
+                            </para>
                         </listitem>
                         <listitem>
-                            <para><literal>-1</literal>, если вещественная часть элемента отрицательна</para>
+                            <para>
+                                <literal>-1</literal>, если вещественная часть элемента отрицательна
+                            </para>
                         </listitem>
                     </itemizedlist>
                     <para>Если вещественная часть равна нулю:</para>
                     <itemizedlist>
                         <listitem>
-                            <para><literal>+1</literal>, если мнимая часть элемента положительна</para>
+                            <para>
+                                <literal>+1</literal>, если мнимая часть элемента положительна
+                            </para>
                         </listitem>
                         <listitem>
-                            <para><literal>-1</literal>, если мнимая часть элемента отрицательна</para>
+                            <para>
+                                <literal>-1</literal>, если мнимая часть элемента отрицательна
+                            </para>
                         </listitem>
                     </itemizedlist>
-                    <para>если элемент равен нулю, то возвращается <constant>%nan</constant></para>
+                    <para>
+                        если элемент равен нулю, то возвращается <constant>%nan</constant>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>

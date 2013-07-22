@@ -38,7 +38,7 @@ else
 end
 
 if strcmp(opname,'+') OPNAME=upper('addition');
-elseif strcmp(opname,'-') OPNAME=upper('substraction');
+elseif strcmp(opname,'-') OPNAME=upper('subtraction');
 elseif strcmp(opname,'*') OPNAME=upper('multiplication');
 elseif strcmp(opname,'.*') OPNAME=upper('dot_multiplication');
 elseif strcmp(opname,'/') OPNAME=upper('right_division');

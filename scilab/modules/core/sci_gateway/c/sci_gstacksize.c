@@ -68,7 +68,7 @@ int C2F(sci_gstacksize) (char *fname, unsigned long fname_len)
     }
 
     /* setting the stack size moves the memory, which is not allowed in concurernt context */
-    return dynParallelConcurrency()? dynParallelForbidden(fname) : sci_gstacksizeOneRhs(fname);
+    return dynParallelConcurrency() ? dynParallelForbidden(fname) : sci_gstacksizeOneRhs(fname);
 }
 
 /*--------------------------------------------------------------------------*/
@@ -83,7 +83,9 @@ static int sci_gstacksizeNoRhs(char *fname)
 
     C2F(getgstackinfo) (&total, &used);
     if (total == (MIN_GSTACKSIZE - 1))
+    {
         total = MIN_GSTACKSIZE;
+    }
     paramoutINT[0] = total;
     paramoutINT[1] = used;
 
@@ -113,7 +115,7 @@ static int sci_gstacksizeOneRhs(char *fname)
         GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
         if ((m1 == 1) && (n1 == 1))
         {
-            unsigned long NEWMEMSTACKSIZE = (unsigned long)*stk(l1);
+            unsigned long NEWMEMSTACKSIZE = (unsigned long) * stk(l1);
 
             /* add 1 for alignment problems */
             if (is_a_valid_size_for_scilab_stack(NEWMEMSTACKSIZE + 1))

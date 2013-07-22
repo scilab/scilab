@@ -44,7 +44,7 @@
                         или матрица беззнаковых целых чисел (<literal>uint8</literal>, <literal>uint16</literal> или <literal>uint32</literal>) размером <literal>m</literal> на <literal>n</literal>. Должна содержать положительные целые значения.
                         Входная <varname>bitnum</varname> должна быть в диапазоне 1, 2, ..., <literal>bitmax</literal>
                         где <literal>bitmax</literal> - максимальное количество битов в <varname>x</varname>.
-                          <varname>bitnum</varname> должна содержать положительные целые значения.
+                        <varname>bitnum</varname> должна содержать положительные целые значения.
                     </para>
                 </listitem>
             </varlistentry>

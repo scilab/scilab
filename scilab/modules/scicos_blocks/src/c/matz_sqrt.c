@@ -18,34 +18,34 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "machine.h"
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 extern int C2F(wsqrt)();
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void matz_sqrt(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void matz_sqrt(scicos_block *block, int flag)
 {
-	if (flag==1)
-	{
-		int i = 0;
+    if (flag == 1)
+    {
+        int i = 0;
 
-		int mu = GetInPortRows(block,1);
-		int nu = GetInPortCols(block,1);
+        int mu = GetInPortRows(block, 1);
+        int nu = GetInPortCols(block, 1);
 
-		double *ur = GetRealInPortPtrs(block,1);
-		double *ui = GetImagInPortPtrs(block,1);
-		double *yr = GetRealOutPortPtrs(block,1);
-		double *yi = GetImagOutPortPtrs(block,1);
+        double *ur = GetRealInPortPtrs(block, 1);
+        double *ui = GetImagInPortPtrs(block, 1);
+        double *yr = GetRealOutPortPtrs(block, 1);
+        double *yi = GetImagOutPortPtrs(block, 1);
 
-		for(i=0;i<mu*nu;i++)  
-		{
-			double inpr = ur[i];
-			double inpi = ui[i];
-			C2F(wsqrt)(&inpr,&inpi,&yr[i],&yi[i]);
-		}
-	}
+        for (i = 0; i < mu * nu; i++)
+        {
+            double inpr = ur[i];
+            double inpi = ui[i];
+            C2F(wsqrt)(&inpr, &inpi, &yr[i], &yi[i]);
+        }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

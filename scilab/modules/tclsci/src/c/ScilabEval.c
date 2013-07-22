@@ -49,7 +49,10 @@ int TCL_EvalScilabCmd(ClientData clientData, Tcl_Interp * theinterp, int objc, C
 
         sciprint_full(msg, argv[1]);
 
-        while (argv[++argc]) sciprint(" %s", argv[argc]);
+        while (argv[++argc])
+        {
+            sciprint(" %s", argv[argc]);
+        }
         sciprint("\n");
 
     }
@@ -97,12 +100,18 @@ int TCL_EvalScilabCmd(ClientData clientData, Tcl_Interp * theinterp, int objc, C
             }
             // TODO : Scilab is supposed to be busy there. Add mutex lock...
             // C2F(tksynchro)(&C2F(recu).paus);
-            if (ierr != 0) return TCL_ERROR;
+            if (ierr != 0)
+            {
+                return TCL_ERROR;
+            }
         }
         else if (strncmp(command, "flush", 5) == 0)
         {
             /* flush */
-            if (C2F(iop).ddt == -1) sciprint(_(" Flushing starts for queued commands.\n"));
+            if (C2F(iop).ddt == -1)
+            {
+                sciprint(_(" Flushing starts for queued commands.\n"));
+            }
             while (ismenu() && ncomm < arbitrary_max_queued_callbacks - 1)
             {
                 ncomm++;
@@ -153,9 +162,15 @@ int TCL_EvalScilabCmd(ClientData clientData, Tcl_Interp * theinterp, int objc, C
                 FREE(comm[nc]);
                 // TODO : Scilab is supposed to be busy there. Add mutex lock...
                 // C2F(tksynchro)(&C2F(recu).paus);
-                if (ierr != 0) return TCL_ERROR;
+                if (ierr != 0)
+                {
+                    return TCL_ERROR;
+                }
             }
-            if (C2F(iop).ddt == -1) sciprint(_("Flushing ends\n"));
+            if (C2F(iop).ddt == -1)
+            {
+                sciprint(_("Flushing ends\n"));
+            }
         }
         else
         {

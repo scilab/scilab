@@ -55,10 +55,10 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
 
         while %t do
             [ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "READC_f" );
-              " "; gettext("Read from C binary file")], [gettext("Time Record Selection"); gettext("Outputs Record Selection"); ..
-              gettext("Input File Name"); gettext("Input Format"); gettext("Record Size"); gettext("Buffer Size"); ..
-              gettext("Initial Record Index"); gettext("Swap Mode (0:No, 1:Yes)")], ..
-              list("vec", -1, "vec", -1, "str", 1, "str", 1, "vec", 1, "vec", 1,"vec", 1, "vec", 1), exprs);
+            " "; gettext("Read from C binary file")], [gettext("Time Record Selection"); gettext("Outputs Record Selection"); ..
+            gettext("Input File Name"); gettext("Input Format"); gettext("Record Size"); gettext("Buffer Size"); ..
+            gettext("Initial Record Index"); gettext("Swap Mode (0:No, 1:Yes)")], ..
+            list("vec", -1, "vec", -1, "str", 1, "str", 1, "vec", 1, "vec", 1,"vec", 1, "vec", 1), exprs);
 
             if ~ok then
                 break
@@ -73,58 +73,58 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
 
             if prod(size( tmask1 )) > 1 then
                 block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter."), gettext("Time Record Selection")), ..
-                  gettext("Must be a scalar or an empty matrix."))
+                gettext("Must be a scalar or an empty matrix."))
 
             elseif and(frmt1 <> fmts) then
                 block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %s."), gettext("Input Format"), frmt1), ..
-                  gettext("Valid formats are: " + strcat(fmts,', ')));
+                gettext("Valid formats are: " + strcat(fmts,", ")));
 
             elseif alreadyran & fname1 <> fname then
                 block_parameter_error(msprintf(gettext("You cannot modify ''%s'' when running"), gettext("Input File Name")), ..
-                  gettext("End current simulation first."));
+                gettext("End current simulation first."));
 
             elseif N <> ipar(6) & alreadyran then
                 block_parameter_error(msprintf(gettext("You cannot modify ''%s'' when running."), gettext("Buffer Size")), ..
-                  gettext("End current simulation first"));
+                gettext("End current simulation first"));
 
             elseif alreadyran & size(tmask1) <> size(tmask) then
                 block_parameter_error(msprintf(gettext("You cannot modify ''%s'' when running."), gettext("Time Record Selection")), ..
-                  gettext("End current simulation first."));
+                gettext("End current simulation first."));
 
             elseif fname1 == "" then
                 block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter."), gettext("Input File Name")), ..
-                  gettext("You must provide a file name."));
-             elseif M < 1 then
+                gettext("You must provide a file name."));
+            elseif M < 1 then
                 block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Record Size"), M), ..
-                  gettext("Strictly positive integer expected."));
+                gettext("Strictly positive integer expected."));
 
             elseif tmask1 ~= [] & (tmask1 < 1 | tmask1 > M) then
-              block_parameter_error(msprintf(gettext("Wrong value for  ''%s'' parameter: %d."), gettext("Time Record Selection"), tmask1), ..
+                block_parameter_error(msprintf(gettext("Wrong value for  ''%s'' parameter: %d."), gettext("Time Record Selection"), tmask1), ..
                 msprintf(gettext("Must be in the interval %s."), gettext("[1, Record Size = ") + string (M)+"]"));
 
             elseif nout == 0 then
                 block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Outputs Record Selection"), nout), ..
-                  gettext("Strictly positive integer expected."));
+                gettext("Strictly positive integer expected."));
 
             elseif nout > M then
-              block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Outputs Record Selection"), nout), ..
+                block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Outputs Record Selection"), nout), ..
                 msprintf(gettext("Must be in the interval %s."), gettext("[1, Record Size = ") + string (M)+"]"));
 
             elseif max(outmask) > M | min(outmask) < 1 then
-              block_parameter_error(msprintf(gettext("Wrong value for indexes in ''%s'' parameter: %s."), gettext("Outputs Record Selection"),  strcat(string(outmask(:))," ")), ..
+                block_parameter_error(msprintf(gettext("Wrong value for indexes in ''%s'' parameter: %s."), gettext("Outputs Record Selection"),  strcat(string(outmask(:))," ")), ..
                 msprintf(gettext("Must be in the interval %s."), gettext("[1, Record Size = ") + string (M)+"]"));
 
             elseif N < 1 then
                 block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Buffer Size"), N), ..
-                  gettext("Strictly positive integer expected."));
+                gettext("Strictly positive integer expected."));
 
             elseif swap <> 0 & swap <> 1 then
                 block_parameter_error(msprintf(gettext("Wrong value for  ''%s'' parameter: %d."), gettext("Swap Mode"), swap), ..
-                  msprintf(gettext("Must be in the interval %s."), "[0, 1]"));
+                msprintf(gettext("Must be in the interval %s."), "[0, 1]"));
 
             elseif offset < 1 then
                 block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Initial Record Index"), offset), ..
-                  gettext("Strictly positive integer expected."));
+                gettext("Strictly positive integer expected."));
 
             else
 
@@ -153,17 +153,17 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
                     end
 
                     ipar = [ ...
-                        length(fname1); ...
-                        _str2code(frmt1); ...
-                        ievt; ...
-                        N; ...
-                        M; ...
-                        swap; ...
-                        offset; ...
-                        _str2code(fname1); ...
-                        tmask1; ...
-                        outmask(:) ...
-                        ];
+                    length(fname1); ...
+                    _str2code(frmt1); ...
+                    ievt; ...
+                    N; ...
+                    M; ...
+                    swap; ...
+                    offset; ...
+                    _str2code(fname1); ...
+                    tmask1; ...
+                    outmask(:) ...
+                    ];
 
                     if prod(size(dstate)) <> (N*M) + 3 then
                         dstate = [-1; -1; lunit; zeros(N*M, 1)]
@@ -198,9 +198,9 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
         nout = size(outmask,"*")
 
         ipar = [ ...
-            length(fname); _str2code(frmt); ievt; N; M; ...
-            swap;offset; _str2code(fname); tmask; outmask ...
-            ];
+        length(fname); _str2code(frmt); ievt; N; M; ...
+        swap;offset; _str2code(fname); tmask; outmask ...
+        ];
 
         model = scicos_model()
         model.sim = list("readc",2)
@@ -209,24 +209,24 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
         model.evtout = []
         model.dstate = [1; 1; lunit; zeros(N*M,1)]
         model.ipar = [ ...
-          length(fname); _str2code(frmt); ievt; N; M; ...
-          swap; offset;_str2code(fname); ...
-          tmask; outmask ...
-          ];
+        length(fname); _str2code(frmt); ievt; N; M; ...
+        swap; offset;_str2code(fname); ...
+        tmask; outmask ...
+        ];
 
         model.blocktype = "d"
         model.firing = -1
         model.dep_ut = [%f %f]
 
         exprs = [ ...
-            "[]"; sci2exp(outmask); fname; frmt; string(M); ...
-            string(N); string(offset);string(swap) ...
-            ];
+        "[]"; sci2exp(outmask); fname; frmt; string(M); ...
+        string(N); string(offset);string(swap) ...
+        ];
 
         gr_i = [ ...
-            "txt=[""read from"";""C binary file""];"; ...
-            "xstringb(orig(1),orig(2),txt,sz(1),sz(2),""fill"")" ...
-            ];
+        "txt=[""read from"";""C binary file""];"; ...
+        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),""fill"")" ...
+        ];
 
         x = standard_define([4 2],model,exprs,gr_i)
     end

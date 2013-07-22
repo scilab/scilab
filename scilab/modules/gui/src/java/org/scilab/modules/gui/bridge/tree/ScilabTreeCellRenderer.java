@@ -30,8 +30,8 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
  */
 public class ScilabTreeCellRenderer extends DefaultTreeCellRenderer {
 
-	private static final int IMAGE_SIZE = 25;
-	
+    private static final int IMAGE_SIZE = 25;
+
     /**
      * Images
      */
@@ -45,7 +45,7 @@ public class ScilabTreeCellRenderer extends DefaultTreeCellRenderer {
     public static Image myNewScilab = scilab.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_DEFAULT);
 
     public static Icon iconPlus = new ImageIcon(myNewPlus);
-    public static Icon iconMinus = new ImageIcon(myNewMinus);        
+    public static Icon iconMinus = new ImageIcon(myNewMinus);
     public static Icon iconScilab = new ImageIcon(myNewScilab);
 
     public static Image defaut = toolkit.getImage("");
@@ -59,11 +59,11 @@ public class ScilabTreeCellRenderer extends DefaultTreeCellRenderer {
      * Default Constructor
      */
     public ScilabTreeCellRenderer() {
-	super();
+        super();
     }
 
     /**
-     * Get tree renderer 
+     * Get tree renderer
      * @param tree we want to display
      * @param value of the node
      * @param sel is selected
@@ -74,57 +74,57 @@ public class ScilabTreeCellRenderer extends DefaultTreeCellRenderer {
      * @return component renderer
      */
     @Override
-    public Component getTreeCellRendererComponent(JTree tree, Object value, 
-    											  boolean sel, boolean expanded, boolean leaf, 
-    											  int row, boolean hasFocus) {
+    public Component getTreeCellRendererComponent(JTree tree, Object value,
+            boolean sel, boolean expanded, boolean leaf,
+            int row, boolean hasFocus) {
 
-	SwingScilabTree node = (SwingScilabTree) value;	
+        SwingScilabTree node = (SwingScilabTree) value;
 
-	// Case of leaf
-	if (leaf) {
-	    // Test the kind of selected component in the tree 
-	    if (node instanceof SwingScilabTree) {
-		// Set icon for the type of leaf
-		if (node.getIcon() != null) {
-		    if (node.getIcon() == iconDefaut) {				
-			this.setLeafIcon(iconScilab);
-		    } else {	
-			this.setLeafIcon(node.getIcon());
-		    }
-		} else {				
-		    this.setLeafIcon(null);
-		}
-	    }
-	}
+        // Case of leaf
+        if (leaf) {
+            // Test the kind of selected component in the tree
+            if (node instanceof SwingScilabTree) {
+                // Set icon for the type of leaf
+                if (node.getIcon() != null) {
+                    if (node.getIcon() == iconDefaut) {
+                        this.setLeafIcon(iconScilab);
+                    } else {
+                        this.setLeafIcon(node.getIcon());
+                    }
+                } else {
+                    this.setLeafIcon(null);
+                }
+            }
+        }
 
-	// Case of node
-	if (expanded) {
-	    // Node is opened
-	    if (node.getIcon() != null) {
-		if (node.getIcon() == iconDefaut) {
-		    this.setOpenIcon(iconMinus);
-		} else {
-		    this.setOpenIcon(node.getIcon());
-		}
-	    } else {
-		this.setOpenIcon(null);
-	    }				
-	} else {
-	    // Node is closed
-	    if (node.getIcon() != null) {
-		if (node.getIcon() == iconDefaut) {
-		    this.setClosedIcon(iconPlus);
-		} else {
-		    this.setClosedIcon(node.getIcon());
-		}
-	    } else {
-		this.setClosedIcon(null);
-	    }
-	}
+        // Case of node
+        if (expanded) {
+            // Node is opened
+            if (node.getIcon() != null) {
+                if (node.getIcon() == iconDefaut) {
+                    this.setOpenIcon(iconMinus);
+                } else {
+                    this.setOpenIcon(node.getIcon());
+                }
+            } else {
+                this.setOpenIcon(null);
+            }
+        } else {
+            // Node is closed
+            if (node.getIcon() != null) {
+                if (node.getIcon() == iconDefaut) {
+                    this.setClosedIcon(iconPlus);
+                } else {
+                    this.setClosedIcon(node.getIcon());
+                }
+            } else {
+                this.setClosedIcon(null);
+            }
+        }
 
-	// Calling super class
-	super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
-	return this;
+        // Calling super class
+        super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+        return this;
     }
 
 }

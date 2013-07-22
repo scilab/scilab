@@ -51,9 +51,9 @@
                         <literal>key1=value1, key2=value2, ...</literal>,
                         где <literal>key1</literal>, <literal>key2, ...</literal>
                         может быть одним из следующих: <varname>strf</varname>,
-                         <varname>rect</varname>, <varname>nax</varname>,
-                         <varname>zminmax</varname>, <varname>colminmax</varname>,
-                         <varname>mesh</varname>, <varname>colout</varname>
+                        <varname>rect</varname>, <varname>nax</varname>,
+                        <varname>zminmax</varname>, <varname>colminmax</varname>,
+                        <varname>mesh</varname>, <varname>colout</varname>
                         (о первых трёх см. <link linkend="plot2d">plot2d</link>, а
                         о последних четырёх см. <link linkend="fec">fec</link>).
                     </para>

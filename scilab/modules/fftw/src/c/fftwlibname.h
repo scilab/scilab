@@ -15,6 +15,7 @@
 
 void setfftwlibname(char *libname);
 char *getfftwlibname(void);
+void freefftwlibname(void);
 
 #endif /*__FFTWLIBNAME_H__ */
 /*--------------------------------------------------------------------------*/

@@ -10,20 +10,20 @@
 
 function ret = ilib_include_flag(path_strings)
 
-  if type(path_strings) <> 10 then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "ilib_include_flag", 1));
-  end
-
-  ret = "";
-
-  for path = path_strings
-    if ~isdir(fullpath(path)) then
-      error(msprintf(gettext("%s: Failed to add include path : %s"), "ilib_include_flag", path));
+    if type(path_strings) <> 10 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "ilib_include_flag", 1));
     end
-    if (getos() == "Windows") then
-      ret = ret + " -I""" + pathconvert(fullpath(path), %f) + """";
-    else
-      ret = ret + " -I" + pathconvert(fullpath(path), %f);
+
+    ret = "";
+
+    for path = path_strings
+        if ~isdir(fullpath(path)) then
+            error(msprintf(gettext("%s: Failed to add include path : %s"), "ilib_include_flag", path));
+        end
+        if (getos() == "Windows") then
+            ret = ret + " -I""" + pathconvert(fullpath(path), %f) + """";
+        else
+            ret = ret + " -I" + pathconvert(fullpath(path), %f);
+        end
     end
-  end
 endfunction

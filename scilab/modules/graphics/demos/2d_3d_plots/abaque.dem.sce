@@ -6,17 +6,17 @@
 
 function demo_abaque()
 
-  my_handle             = scf(100001);
-  clf(my_handle,"reset");
-  // DEMO START
-  my_plot_desc          = "chart";
-  if is_handle_valid(my_handle) then
-    my_handle.figure_name = my_plot_desc;
-    chart();
-    xtitle(my_plot_desc," "," "," ");
-  end
-  demo_viewCode("abaque.dem.sce");
-  // DEMO END
+    my_handle             = scf(100001);
+    clf(my_handle,"reset");
+    // DEMO START
+    my_plot_desc          = "chart";
+    if is_handle_valid(my_handle) then
+        my_handle.figure_name = my_plot_desc;
+        chart();
+        xtitle(my_plot_desc," "," "," ");
+    end
+    demo_viewCode("abaque.dem.sce");
+    // DEMO END
 
 endfunction
 

@@ -2,14 +2,14 @@
 
 function builder_gateway()
 
-  sci_gateway_dir = get_absolute_file_path("builder_gateway.sce");
-  languages       = ["fortran" "c" "cpp"];
+    sci_gateway_dir = get_absolute_file_path("builder_gateway.sce");
+    languages       = ["fortran" "c" "cpp"];
 
-  tbx_builder_gateway_lang(languages,sci_gateway_dir);
-  tbx_build_gateway_loader(languages,sci_gateway_dir);
-  tbx_build_gateway_clean(languages,sci_gateway_dir);
+    tbx_builder_gateway_lang(languages,sci_gateway_dir);
+    tbx_build_gateway_loader(languages,sci_gateway_dir);
+    tbx_build_gateway_clean(languages,sci_gateway_dir);
 
-endfunction 
+endfunction
 
 builder_gateway()
 clear builder_gateway; // remove builder_gateway on stack

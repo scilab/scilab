@@ -126,7 +126,7 @@ public class FileBrowserRowSorter extends RowSorter<TableModel> {
     /**
      * {@inheritDoc}
      */
-    public void setSortKeys(List<? extends RowSorter.SortKey> keys) {
+    public void setSortKeys(List <? extends RowSorter.SortKey > keys) {
         this.sortKeys = Collections.unmodifiableList(new ArrayList<SortKey>(keys));
         fireSortOrderChanged();
     }

@@ -11,12 +11,12 @@
 
 function delete_frame(my_fig_handle,fr_position)
 
-  my_frame         = findobj("tag", "frame_"    +string(fr_position));
-  my_frame_title     = findobj("tag", "title_frame_"+string(fr_position));
-  my_listbox       = findobj("tag", "listbox_"  +string(fr_position));
+    my_frame         = findobj("tag", "frame_"    +string(fr_position));
+    my_frame_title     = findobj("tag", "title_frame_"+string(fr_position));
+    my_listbox       = findobj("tag", "listbox_"  +string(fr_position));
 
-  delete(my_frame);
-  delete(my_frame_title);
-  delete(my_listbox);
+    delete(my_frame);
+    delete(my_frame_title);
+    delete(my_listbox);
 
 endfunction

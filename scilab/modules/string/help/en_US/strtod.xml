@@ -76,7 +76,8 @@
                 </para>
             </listitem>
         </itemizedlist>
-    </refsection> 
+    </refsection>
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
@@ -91,7 +92,9 @@ strtod(['123.556This is a sample real','888.666 here'])
         <revhistory>
             <revision>
                 <revnumber>5.4.1</revnumber>
-                <revremark>If <varname>str</varname> does not contain any numerical value then <varname>d</varname> equals <literal>Nan</literal> instead of <literal>0</literal> in previous versions.</revremark>
+                <revremark>
+                    If <varname>str</varname> does not contain any numerical value then <varname>d</varname> equals <literal>Nan</literal> instead of <literal>0</literal> in previous versions.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

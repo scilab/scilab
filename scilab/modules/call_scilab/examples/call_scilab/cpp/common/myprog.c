@@ -31,7 +31,9 @@ static int my_plot()
      * y(i)=f(x(i))
      */
     for ( i = 0; i < m * n ; i++)
+    {
         *stk(ly + i) = f(*stk(lx + i));
+    }
     /*
      * plot(x,y);
      */
@@ -51,12 +53,16 @@ static int my_job()
     WriteMatrix("b", &mb, &nb, b);
 
     if ( SendScilabJob("A,b,x=0\\b;") == 27)
+    {
         fprintf(stdout, "division by zero...\n");
+    }
     else
     {
         GetMatrixptr("x", &m, &n, &lp);
         for ( i = 0 ; i < m * n ; i++)
+        {
             fprintf(stdout, "x[%d] = %5.2f\n", i, *stk(i + lp));
+        }
     }
 
     if ( SendScilabJob("A,b,x=A\\b;") != 0)
@@ -67,7 +73,9 @@ static int my_job()
     {
         GetMatrixptr("x", &m, &n, &lp);
         for ( i = 0 ; i < m * n ; i++)
+        {
             fprintf(stdout, "x[%d] = %5.2f\n", i, *stk(i + lp));
+        }
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -94,12 +102,18 @@ int main(void)
 int MAIN__(void)
 #endif
 {
-    if ( StartScilab(NULL, NULL, NULL) == FALSE ) printf("Error : StartScilab \n");
+    if ( StartScilab(NULL, NULL, NULL) == FALSE )
+    {
+        printf("Error : StartScilab \n");
+    }
     my_ode_job();
     my_job();
     my_plot() ;
     cc_test();
-    if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab \n");
+    if ( TerminateScilab(NULL) == FALSE )
+    {
+        printf("Error : TerminateScilab \n");
+    }
     return 0;
 }
 /*--------------------------------------------------------------------------*/

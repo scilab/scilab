@@ -85,7 +85,7 @@ function  draw_sliding_pendulum (H,state)
     b = H.children(1); b.data=[xp-r,yp+r,2*r,2*r,0,360*64];
     drawnow();
     a=gca();
-    a.title.text='sliding pendulum, parabola';
+    a.title.text="sliding pendulum, parabola";
     a.title.font_size=3;
 endfunction
 

@@ -13,9 +13,9 @@
 #ifndef __ZEBSV_H__
 #define __ZEBSV_H__
 
-int zbeshv(double *xr, double *xi, int *nx, 
-    double *alpha, int *na, int *kode, int *k, double 
-    *yr, double *yi, double *wr, double *wi, int *ierr);
+int zbeshv(double *xr, double *xi, int *nx,
+           double *alpha, int *na, int *kode, int *k, double
+           *yr, double *yi, double *wr, double *wi, int *ierr);
 
 #endif /* __ZEBSV_H__ */
 /*--------------------------------------------------------------------------*/

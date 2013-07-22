@@ -64,7 +64,9 @@
                 <listitem>
                     <para>
                         прямоугольник, определяемый как <literal>[x_min, y_max,
-                        width, height]</literal>, где <literal>x_min</literal> и
+                            width, height]
+                        </literal>
+                        ,где <literal>x_min</literal> и
                         <literal>y_max</literal> - координаты начального угла,
                         <literal>width</literal> - ширина и
                         <literal>height</literal> - высота.

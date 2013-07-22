@@ -2,11 +2,11 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA
 * Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -58,7 +58,10 @@ int C2F(msgstore)(char *str, int *n)
     char *msg = NULL;
     char *msgTmp = NULL;
 
-    if (str == NULL) return 1;
+    if (str == NULL)
+    {
+        return 1;
+    }
     msg = strdup(str);
     if (msg)
     {
@@ -78,7 +81,10 @@ int C2F(msgstore)(char *str, int *n)
         for (i = 0; i < nbLines; i++)
         {
             iRes = appendStringToInternalLastErrorMessage(multilines[i]);
-            if (iRes) break;
+            if (iRes)
+            {
+                break;
+            }
         }
         freeArrayOfString(multilines, nbLines);
         multilines = NULL;
@@ -119,7 +125,7 @@ static char **splitErrorMessage(const char *msg, int *nbLines)
 
     *nbLines = 0;
 
-    if (msg == NULL) 
+    if (msg == NULL)
     {
         return NULL;
     }
@@ -127,10 +133,10 @@ static char **splitErrorMessage(const char *msg, int *nbLines)
     pos = str;
     currentPos = str;
 
-    while( pos = strstr( pos, separator ) ) 
+    while ( pos = strstr( pos, separator ) )
     {
         memset( pos, '\0', sizeSeparator );
-        if ( pos == str || ( pos != str && !*(pos-1) ) )
+        if ( pos == str || ( pos != str && !*(pos - 1) ) )
         {
             ++nbEmptyField;
         }
@@ -142,8 +148,8 @@ static char **splitErrorMessage(const char *msg, int *nbLines)
         ++nbEmptyField;
     }
 
-    sizeSplit = (nbSep + 1) - (removeEmptyField?nbEmptyField:0);
-    if (!sizeSplit) 
+    sizeSplit = (nbSep + 1) - (removeEmptyField ? nbEmptyField : 0);
+    if (!sizeSplit)
     {
         if (str)
         {
@@ -154,7 +160,7 @@ static char **splitErrorMessage(const char *msg, int *nbLines)
     }
 
     currentSplit = (char **)MALLOC( (sizeSplit) * sizeof(char*) );
-    if (!currentSplit) 
+    if (!currentSplit)
     {
         if (str)
         {
@@ -164,14 +170,17 @@ static char **splitErrorMessage(const char *msg, int *nbLines)
         return NULL;
     }
     pos = str;
-    while( currentSep < sizeSplit ) 
+    while ( currentSep < sizeSplit )
     {
         if ( !( removeEmptyField && !*pos ) )
         {
             currentSplit[currentSep++] = strdup(pos);
         }
 
-        while( *pos++ );
+        while ( *pos++ )
+        {
+            ;
+        }
         pos += sizeSeparator - 1;
     }
 

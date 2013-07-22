@@ -166,7 +166,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
     // utiliser pour la generation de code
 
     if xptr($)==1 & zcptr($)>1 then
-        mess=msprintf(_("No continuous-time state. Thresholds are ignored; this \nmay be OK if you don''t generate external events with them.\nIf you want to reactivate the thresholds, the you need\n\nto include a block with continuous-time state in your diagram.\n   You can for example include DUMMY CLSS block (linear palette)."))
+        mess=msprintf(_("No continuous-time state. Thresholds are ignored; this \nmay be OK if you don''t generate external events with them.\nIf you want to reactivate the thresholds, then you need\nto include a block with continuous-time state in your diagram.\n   You can for example include DUMMY CLSS block (linear palette)."))
         messagebox(mess,"modal","error");
     end
 
@@ -197,7 +197,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
         warning(_("Diagram contains implicit blocks, compiling for implicit Solver."))
         %scicos_solver=100
     end
-    if %scicos_solver==100 then xc0=[xc0;xcd0],end
+    if (or (%scicos_solver == [100 101 102])) then xc0=[xc0;xcd0],end
     state=scicos_state()
     state.x=xc0
     state.z=xd0

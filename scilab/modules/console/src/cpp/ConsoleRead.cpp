@@ -20,8 +20,12 @@ static char *line = NULL;
 /*--------------------------------------------------------------------------*/
 char *ConsoleRead(void)
 {
-	if (line) {delete line; line = NULL;}
-	line = CallScilabBridge::readLine(getScilabJavaVM());
-	return line;
+    if (line)
+    {
+        delete line;
+        line = NULL;
+    }
+    line = CallScilabBridge::readLine(getScilabJavaVM());
+    return line;
 }
 /*--------------------------------------------------------------------------*/

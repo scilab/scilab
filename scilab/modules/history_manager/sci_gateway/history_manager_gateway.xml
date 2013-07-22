@@ -12,8 +12,8 @@
  -->
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="history_manager">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -28,18 +28,18 @@
 
  Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
-  <PRIMITIVE gatewayId="55" primitiveId="1" primitiveName="loadhistory" />
-  <PRIMITIVE gatewayId="55" primitiveId="2" primitiveName="savehistory" />
-  <PRIMITIVE gatewayId="55" primitiveId="3" primitiveName="gethistory" />
-  <PRIMITIVE gatewayId="55" primitiveId="4" primitiveName="resethistory" />
-  <PRIMITIVE gatewayId="55" primitiveId="5" primitiveName="displayhistory" />
-  <PRIMITIVE gatewayId="55" primitiveId="6" primitiveName="addhistory" />
-  <PRIMITIVE gatewayId="55" primitiveId="7" primitiveName="saveconsecutivecommands" />
-  <PRIMITIVE gatewayId="55" primitiveId="8" primitiveName="saveafterncommands" />
-  <PRIMITIVE gatewayId="55" primitiveId="9" primitiveName="gethistoryfile" />
-  <PRIMITIVE gatewayId="55" primitiveId="10" primitiveName="sethistoryfile" />
-  <PRIMITIVE gatewayId="55" primitiveId="11" primitiveName="removelinehistory" />
-  <PRIMITIVE gatewayId="55" primitiveId="12" primitiveName="historysize" />
-  <PRIMITIVE gatewayId="55" primitiveId="13" primitiveName="historymanager" />
+    <!-- =================== -->
+    <PRIMITIVE gatewayId="55" primitiveId="1" primitiveName="loadhistory" />
+    <PRIMITIVE gatewayId="55" primitiveId="2" primitiveName="savehistory" />
+    <PRIMITIVE gatewayId="55" primitiveId="3" primitiveName="gethistory" />
+    <PRIMITIVE gatewayId="55" primitiveId="4" primitiveName="resethistory" />
+    <PRIMITIVE gatewayId="55" primitiveId="5" primitiveName="displayhistory" />
+    <PRIMITIVE gatewayId="55" primitiveId="6" primitiveName="addhistory" />
+    <PRIMITIVE gatewayId="55" primitiveId="7" primitiveName="saveconsecutivecommands" />
+    <PRIMITIVE gatewayId="55" primitiveId="8" primitiveName="saveafterncommands" />
+    <PRIMITIVE gatewayId="55" primitiveId="9" primitiveName="gethistoryfile" />
+    <PRIMITIVE gatewayId="55" primitiveId="10" primitiveName="sethistoryfile" />
+    <PRIMITIVE gatewayId="55" primitiveId="11" primitiveName="removelinehistory" />
+    <PRIMITIVE gatewayId="55" primitiveId="12" primitiveName="historysize" />
+    <PRIMITIVE gatewayId="55" primitiveId="13" primitiveName="historymanager" />
 </GATEWAY>

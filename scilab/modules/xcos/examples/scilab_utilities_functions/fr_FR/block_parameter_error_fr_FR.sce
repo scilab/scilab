@@ -17,9 +17,9 @@ ok = %f;
 while ~ok do
     // Entrée du paramètre
     [Datatype] = x_mdialog( ..
-        "Entrée de paramètre", ..
-        "Type de données (3:int32, 4:int16, 5:int8, ...) ?", ..
-        "3" ..
+    "Entrée de paramètre", ..
+    "Type de données (3:int32, 4:int16, 5:int8, ...) ?", ..
+    "3" ..
     );
 
     if isempty(Datatype) then // Annuler ou OK ?
@@ -32,8 +32,8 @@ while ~ok do
     // Tester le paramètre 'Data Type et afficher une boîte d'erreur si nécessaire
     if Datatype < 3 | Datatype > 8 then
         block_parameter_error( ..
-            msprintf("Valeur erronée pour le paramètre ''Type de données'' : %d.", Datatype), ..
-            msprintf("Doit être dans l''intervalle %s.", "[3, 8]") ..
+        msprintf("Valeur erronée pour le paramètre ''Type de données'' : %d.", Datatype), ..
+        msprintf("Doit être dans l''intervalle %s.", "[3, 8]") ..
         );
         ok = %f;
 

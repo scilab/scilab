@@ -30,186 +30,190 @@ static char strR[MAXNAM];
 static char strc[MAXNAM];
 static char strit[MAXNAM];
 
-void OutCOLUMN(FILE *f,VARPTR var,int insidelist,int nel)
+void OutCOLUMN(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  strcpy(str2,"un");
-  AddDeclare1(DEC_INT,"un=1");
-  strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
-  OutCommon(f,var,insidelist,nel);
+    strcpy(str2, "un");
+    AddDeclare1(DEC_INT, "un=1");
+    strcpy(str1, Forname2Int(variables[var->el[0] - 1], 0));
+    OutCommon(f, var, insidelist, nel);
 }
 
-void OutROW(FILE *f,VARPTR var,int insidelist,int nel)
+void OutROW(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  strcpy(str1,"un");
-  AddDeclare1(DEC_INT,"un=1");
-  strcpy(str2,Forname2Int(variables[var->el[0]-1],0));
-  OutCommon(f,var,insidelist,nel);
+    strcpy(str1, "un");
+    AddDeclare1(DEC_INT, "un=1");
+    strcpy(str2, Forname2Int(variables[var->el[0] - 1], 0));
+    OutCommon(f, var, insidelist, nel);
 }
 
-void OutVECTOR(FILE *f,VARPTR var,int insidelist,int nel)
+void OutVECTOR(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  strcpy(str1,"un");
-  AddDeclare1(DEC_INT,"un=1");
-  strcpy(str2,Forname2Int(variables[var->el[0]-1],0));
-  OutCommon(f,var,insidelist,nel);
+    strcpy(str1, "un");
+    AddDeclare1(DEC_INT, "un=1");
+    strcpy(str2, Forname2Int(variables[var->el[0] - 1], 0));
+    OutCommon(f, var, insidelist, nel);
 }
 
-void OutMATRIX(FILE *f,VARPTR var,int insidelist,int nel)
+void OutMATRIX(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
-  strcpy(str2,Forname2Int(variables[var->el[1]-1],0));
-  OutCommon(f,var,insidelist,nel);
+    strcpy(str1, Forname2Int(variables[var->el[0] - 1], 0));
+    strcpy(str2, Forname2Int(variables[var->el[1] - 1], 0));
+    OutCommon(f, var, insidelist, nel);
 }
 
-void OutSCALAR(FILE *f,VARPTR var,int insidelist,int nel)
+void OutSCALAR(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  strcpy(str1,"un");
-  strcpy(str2,"un");
-  AddDeclare1(DEC_INT,"un=1");
-  OutCommon(f,var,insidelist,nel);
+    strcpy(str1, "un");
+    strcpy(str2, "un");
+    AddDeclare1(DEC_INT, "un=1");
+    OutCommon(f, var, insidelist, nel);
 }
 
-void OutCommon(FILE *f,VARPTR var,int insidelist,int nel)
+void OutCommon(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  int i1= var->stack_position;
-  if (var->list_el ==0 )
-    sprintf(str3,"l%d",i1);
-  else
-    sprintf(str3,"l%de%d",i1,var->list_el);
-  if ( insidelist != 0)
+    int i1 = var->stack_position;
+    if (var->list_el == 0 )
     {
-      /** var is inside a list **/
-      int iout = GetExistOutVar();
-      VARPTR vout = variables[iout -1];
-      AddDeclare(DEC_INT,"lrs");
-      Fprintf(f,indent,"CreateListVarFrom(%d,%d,\"%s\",&%s,&%s,&lrs,&%s);\n",
-	      vout->stack_position,nel,SGetForTypeAbrev(var),
-	      (str1[0] == '&' ) ? str1+1: str1,
-	      (str2[0] == '&' ) ? str2+1: str2,
-	      str3);
+        sprintf(str3, "l%d", i1);
     }
-  else
+    else
     {
-      /* var is not outputed inside a list but var can be a list
-	 element */
-      if ( var->list_el != 0)
-	{
-	  AddDeclare(DEC_INT,"lrs");
-	  Fprintf(f,indent,"CreateVarFrom(%d,\"%s\",&%s,&%s,&lrs,&%s);\n",
-		  icre,SGetForTypeAbrev(var),
-		  (str1[0] == '&' ) ? str1+1: str1,
-		  (str2[0] == '&' ) ? str2+1: str2,
-		  str3);
-	  Fprintf(f,indent,"LhsVar(%d)=%d;\n",var->out_position,icre);
-	  icre++;
-	}
+        sprintf(str3, "l%de%d", i1, var->list_el);
+    }
+    if ( insidelist != 0)
+    {
+        /** var is inside a list **/
+        int iout = GetExistOutVar();
+        VARPTR vout = variables[iout - 1];
+        AddDeclare(DEC_INT, "lrs");
+        Fprintf(f, indent, "CreateListVarFrom(%d,%d,\"%s\",&%s,&%s,&lrs,&%s);\n",
+                vout->stack_position, nel, SGetForTypeAbrev(var),
+                (str1[0] == '&' ) ? str1 + 1 : str1,
+                (str2[0] == '&' ) ? str2 + 1 : str2,
+                str3);
+    }
+    else
+    {
+        /* var is not outputed inside a list but var can be a list
+        element */
+        if ( var->list_el != 0)
+        {
+            AddDeclare(DEC_INT, "lrs");
+            Fprintf(f, indent, "CreateVarFrom(%d,\"%s\",&%s,&%s,&lrs,&%s);\n",
+                    icre, SGetForTypeAbrev(var),
+                    (str1[0] == '&' ) ? str1 + 1 : str1,
+                    (str2[0] == '&' ) ? str2 + 1 : str2,
+                    str3);
+            Fprintf(f, indent, "LhsVar(%d)=%d;\n", var->out_position, icre);
+            icre++;
+        }
     }
 }
 
 
 
-void OutBMATRIX(FILE *f,VARPTR var,int insidelist,int nel)
+void OutBMATRIX(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
-  strcpy(str2,Forname2Int(variables[var->el[1]-1],0));
-  OutCommon(f,var,insidelist,nel);
+    strcpy(str1, Forname2Int(variables[var->el[0] - 1], 0));
+    strcpy(str2, Forname2Int(variables[var->el[1] - 1], 0));
+    OutCommon(f, var, insidelist, nel);
 }
 
 
-void OutSTRING(FILE *f,VARPTR var,int insidelist,int nel)
+void OutSTRING(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
-  AddDeclare1(DEC_INT,"n%d",var->stack_position);
-  sprintf(str2,"&n%d",var->stack_position);
-  OutCommon(f,var,insidelist,nel);
+    strcpy(str1, Forname2Int(variables[var->el[0] - 1], 0));
+    AddDeclare1(DEC_INT, "n%d", var->stack_position);
+    sprintf(str2, "&n%d", var->stack_position);
+    OutCommon(f, var, insidelist, nel);
 }
 
 
-void OutLIST(FILE *f,VARPTR var,int insidelist,int nel)
+void OutLIST(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  if ( insidelist != 0)
+    if ( insidelist != 0)
     {
-      printf("can't output an argument of type list if the global\n");
-      printf("output is a list\n");
-      exit(1);
+        printf("can't output an argument of type list if the global\n");
+        printf("output is a list\n");
+        exit(1);
     }
-  else
+    else
     {
-      int k;
-      VARPTR var1;
-      /** var is a list output ==> backconversion of its arguments **/
-      for (k = 0; k < nVariable ; k++)
-	{
-	  var1 = variables[k];
-	  if ((var1->list_el != 0) &&
-	      (strcmp(var1->list_name,var->name) == 0) &&
-	      var1->present)
-	    {
-	      OutLISTarg(f,var,var1,insidelist,nel);
-	    }
-	}
+        int k;
+        VARPTR var1;
+        /** var is a list output ==> backconversion of its arguments **/
+        for (k = 0; k < nVariable ; k++)
+        {
+            var1 = variables[k];
+            if ((var1->list_el != 0) &&
+                    (strcmp(var1->list_name, var->name) == 0) &&
+                    var1->present)
+            {
+                OutLISTarg(f, var, var1, insidelist, nel);
+            }
+        }
     }
 }
 
 /* performs back conversion of list arguments */
 
-void OutLISTarg(FILE *f,VARPTR var,VARPTR var1,int insidelist,int nel)
+void OutLISTarg(FILE *f, VARPTR var, VARPTR var1, int insidelist, int nel)
 {
-  switch ( var1->type)
+    switch ( var1->type)
     {
-    case BMATRIX :
-      /* nothing to do */
-      break;
-    case ROW :
-    case VECTOR:
-      if ( var1->for_type != DOUBLE )
-	{
-	  strcpy(str1,"un");
-	  AddDeclare1(DEC_INT,"un=1");
-	  strcpy(str2,Forname2Int(variables[var1->el[0]-1],0));
-	  Fprintf(f,indent,"ConvertData(\"%s\",%s*%s,l%de%d);\n",
-		  SGetForTypeAbrev(var1),str1,str2,
-		  var1->stack_position,  var1->list_el);
-	}
-      break;
-    case COLUMN:
-      strcpy(str2,"un");
-      AddDeclare1(DEC_INT,"un=1");
-      strcpy(str1,Forname2Int(variables[var1->el[0]-1],0));
-      Fprintf(f,indent,"ConvertData(\"%s\",%s*%s,l%de%d);\n",
-	      SGetForTypeAbrev(var1),str1,str2,
-	      var1->stack_position,  var1->list_el);
-      break;
-    case MATRIX :
+        case BMATRIX :
+            /* nothing to do */
+            break;
+        case ROW :
+        case VECTOR:
+            if ( var1->for_type != DOUBLE )
+            {
+                strcpy(str1, "un");
+                AddDeclare1(DEC_INT, "un=1");
+                strcpy(str2, Forname2Int(variables[var1->el[0] - 1], 0));
+                Fprintf(f, indent, "ConvertData(\"%s\",%s*%s,l%de%d);\n",
+                        SGetForTypeAbrev(var1), str1, str2,
+                        var1->stack_position,  var1->list_el);
+            }
+            break;
+        case COLUMN:
+            strcpy(str2, "un");
+            AddDeclare1(DEC_INT, "un=1");
+            strcpy(str1, Forname2Int(variables[var1->el[0] - 1], 0));
+            Fprintf(f, indent, "ConvertData(\"%s\",%s*%s,l%de%d);\n",
+                    SGetForTypeAbrev(var1), str1, str2,
+                    var1->stack_position,  var1->list_el);
+            break;
+        case MATRIX :
 
-      if ( var1->for_type != DOUBLE )
-	{
-	  strcpy(str1,Forname2Int(variables[var1->el[0]-1],0));
-	  strcpy(str2,Forname2Int(variables[var1->el[1]-1],0));
-	  Fprintf(f,indent,"ConvertData(\"%s\",%s*%s,l%de%d);\n",
-		  SGetForTypeAbrev(var1),str1,str2,
-		  var1->stack_position,  var1->list_el);
-	}
-      break;
-    case SCALAR :
-      if ( var1->for_type != DOUBLE )
-	{
-	  strcpy(str2,"un");
-	  strcpy(str1,"un");
-	  AddDeclare1(DEC_INT,"un=1");
-	  Fprintf(f,indent,"ConvertData(\"%s\",%s*%s,l%de%d);\n",
-		  SGetForTypeAbrev(var1),str1,str2,
-		  var1->stack_position,  var1->list_el);
-	}
-      break;
-    case STRING:
-      strcpy(str1,Forname2Int(variables[var1->el[0]-1],0));
-      Fprintf(f,indent,"ConvertData(\"c\",%s,l%de%d);\n",
-	      str1,var1->stack_position,var1->list_el);
-      break;
-    default:
-      printf("OutLIST : List output : unfinished\n");
-      break;
+            if ( var1->for_type != DOUBLE )
+            {
+                strcpy(str1, Forname2Int(variables[var1->el[0] - 1], 0));
+                strcpy(str2, Forname2Int(variables[var1->el[1] - 1], 0));
+                Fprintf(f, indent, "ConvertData(\"%s\",%s*%s,l%de%d);\n",
+                        SGetForTypeAbrev(var1), str1, str2,
+                        var1->stack_position,  var1->list_el);
+            }
+            break;
+        case SCALAR :
+            if ( var1->for_type != DOUBLE )
+            {
+                strcpy(str2, "un");
+                strcpy(str1, "un");
+                AddDeclare1(DEC_INT, "un=1");
+                Fprintf(f, indent, "ConvertData(\"%s\",%s*%s,l%de%d);\n",
+                        SGetForTypeAbrev(var1), str1, str2,
+                        var1->stack_position,  var1->list_el);
+            }
+            break;
+        case STRING:
+            strcpy(str1, Forname2Int(variables[var1->el[0] - 1], 0));
+            Fprintf(f, indent, "ConvertData(\"c\",%s,l%de%d);\n",
+                    str1, var1->stack_position, var1->list_el);
+            break;
+        default:
+            printf("OutLIST : List output : unfinished\n");
+            break;
     }
 }
 
@@ -222,38 +226,38 @@ void OutLISTarg(FILE *f,VARPTR var,VARPTR var1,int insidelist,int nel)
  ***********************************************/
 
 
-void OutSPARSE(FILE *f,VARPTR var,int insidelist,int nel)
+void OutSPARSE(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  int i1= var->stack_position;
-  strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
-  strcpy(str2,Forname2Int(variables[var->el[1]-1],0));
-  if (var->list_el ==0 )
+    int i1 = var->stack_position;
+    strcpy(str1, Forname2Int(variables[var->el[0] - 1], 0));
+    strcpy(str2, Forname2Int(variables[var->el[1] - 1], 0));
+    if (var->list_el == 0 )
     {
-      sprintf(str5,"%d",i1);
+        sprintf(str5, "%d", i1);
     }
-  else
+    else
     {
-      sprintf(str5,"%de%d",i1,var->list_el);
+        sprintf(str5, "%de%d", i1, var->list_el);
     }
-  if ( insidelist != 0)
+    if ( insidelist != 0)
     {
-      /** var is inside a list **/
-      int iout = GetExistOutVar();
-      VARPTR vout = variables[iout -1];
-      Fprintf(f,indent,"CreateListVarFromPtr(%d,%d,\"s\",&%s,&%s,&S%s);\n",
-	      vout->stack_position,nel,str1,str2,str5);
+        /** var is inside a list **/
+        int iout = GetExistOutVar();
+        VARPTR vout = variables[iout - 1];
+        Fprintf(f, indent, "CreateListVarFromPtr(%d,%d,\"s\",&%s,&%s,&S%s);\n",
+                vout->stack_position, nel, str1, str2, str5);
     }
-  else
+    else
     {
-      /* var is not outputed inside a list but var can be a list
-	 element */
-      if ( var->list_el != 0)
-	{
-	  Fprintf(f,indent,"CreateVarFromPtr(%d,\"s\",&%s,&%s,&S%s);\n",
-		  icre,str1,str2,str5);
-	  Fprintf(f,indent,"LhsVar(%d)=%d;\n",var->out_position,icre);
-	  icre++;
-	}
+        /* var is not outputed inside a list but var can be a list
+        element */
+        if ( var->list_el != 0)
+        {
+            Fprintf(f, indent, "CreateVarFromPtr(%d,\"s\",&%s,&%s,&S%s);\n",
+                    icre, str1, str2, str5);
+            Fprintf(f, indent, "LhsVar(%d)=%d;\n", var->out_position, icre);
+            icre++;
+        }
     }
 }
 
@@ -261,161 +265,165 @@ void OutSPARSE(FILE *f,VARPTR var,int insidelist,int nel)
  * Complex Matrix OK
  ***********************************************/
 
-void OutIMATRIX(FILE *f,VARPTR var,int insidelist,int nel)
+void OutIMATRIX(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  int i1= var->stack_position;
-  strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
-  strcpy(str2,Forname2Int(variables[var->el[1]-1],0));
-  strcpy(str3,Forname2Int(variables[var->el[2]-1],0));
-  if (var->list_el ==0 )
+    int i1 = var->stack_position;
+    strcpy(str1, Forname2Int(variables[var->el[0] - 1], 0));
+    strcpy(str2, Forname2Int(variables[var->el[1] - 1], 0));
+    strcpy(str3, Forname2Int(variables[var->el[2] - 1], 0));
+    if (var->list_el == 0 )
     {
-      sprintf(str4,"lr%d",i1);
-      sprintf(str5,"lc%d",i1);
+        sprintf(str4, "lr%d", i1);
+        sprintf(str5, "lc%d", i1);
     }
-  else
+    else
     {
-      sprintf(str4,"lr%de%d",i1,var->list_el);
-      sprintf(str5,"lc%de%d",i1,var->list_el);
+        sprintf(str4, "lr%de%d", i1, var->list_el);
+        sprintf(str5, "lc%de%d", i1, var->list_el);
     }
-  if ( insidelist != 0)
+    if ( insidelist != 0)
     {
-      /** var is inside a list **/
-      int iout = GetExistOutVar();
-      VARPTR vout = variables[iout -1];
-      AddDeclare(DEC_INT,"lrs");
-      Fprintf(f,indent,"CreateListCVar(%d,%d,\"%s\",%s,%s,%s,&lrs,&lcs,%s,%s);\n",
-	      vout->stack_position,nel,SGetForTypeAbrev(var),
-	      str3,str1,str2,str4,str5);
+        /** var is inside a list **/
+        int iout = GetExistOutVar();
+        VARPTR vout = variables[iout - 1];
+        AddDeclare(DEC_INT, "lrs");
+        Fprintf(f, indent, "CreateListCVar(%d,%d,\"%s\",%s,%s,%s,&lrs,&lcs,%s,%s);\n",
+                vout->stack_position, nel, SGetForTypeAbrev(var),
+                str3, str1, str2, str4, str5);
     }
-  else
+    else
     {
-      /* var is not outputed inside a list but var can be a list
-	 element */
-      if ( var->list_el != 0)
-	{
-	  AddDeclare(DEC_INT,"lrs");
-	  Fprintf(f,indent,"CreateCVarFrom(%d,\"%s\",%s,%s,%s,&lrs,&lcs,%s,%s);\n",
-		  icre,SGetForTypeAbrev(var),
-		  str3,str1,str2,str4,str5);
-	  Fprintf(f,indent,"LhsVar(%d)=%d;\n",var->out_position,icre);
-	  icre++;
-	}
+        /* var is not outputed inside a list but var can be a list
+        element */
+        if ( var->list_el != 0)
+        {
+            AddDeclare(DEC_INT, "lrs");
+            Fprintf(f, indent, "CreateCVarFrom(%d,\"%s\",%s,%s,%s,&lrs,&lcs,%s,%s);\n",
+                    icre, SGetForTypeAbrev(var),
+                    str3, str1, str2, str4, str5);
+            Fprintf(f, indent, "LhsVar(%d)=%d;\n", var->out_position, icre);
+            icre++;
+        }
     }
 }
 
 
 
-void OutPOLYNOM(FILE *f,VARPTR var,int insidelist,int nel)
+void OutPOLYNOM(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
-  if ( insidelist != 0)
+    strcpy(str1, Forname2Int(variables[var->el[0] - 1], 0));
+    if ( insidelist != 0)
     {
-      AddDeclare(DEC_LOGICAL,"listcreopoly");
-      Fprintf(f,indent,"if(.not.listcreopoly(fname,top,%d,lw,0,%s,name%s,namel%s,lrs,lcs)) return\n",nel,str1,str,str);
+        AddDeclare(DEC_LOGICAL, "listcreopoly");
+        Fprintf(f, indent, "if(.not.listcreopoly(fname,top,%d,lw,0,%s,name%s,namel%s,lrs,lcs)) return\n", nel, str1, str, str);
     }
-  else
+    else
     {
-      AddDeclare(DEC_LOGICAL,"creonepoly");
-      Fprintf(f,indent,"if(.not.creonepoly(fname,top,0,%s,name%s,namel%s,lrs,lcs)) return\n",str1,str,str);
+        AddDeclare(DEC_LOGICAL, "creonepoly");
+        Fprintf(f, indent, "if(.not.creonepoly(fname,top,0,%s,name%s,namel%s,lrs,lcs)) return\n", str1, str, str);
     }
-  switch (var->for_type) {
-  case INT:
-    Fprintf(f,indent,"call int2db(%s,stk(%s),-1,stk(lrs),-1)\n",
-	    str1,str);
-    break;
-  case DOUBLE:
-    Fprintf(f,indent,"call dcopy(%s,stk(%s),1,stk(lrs),1)\n",
-	    str1,str);
-    break;
-  case REAL:
-    Fprintf(f,indent,"call rea2db(%s,stk(%s),-1,stk(lrs),-1)\n",
-	    str1,str);
-    break;
-  }
-}
-
-
-void OutPOINTER(FILE *f,VARPTR var,int insidelist,int nel)
-{
-  if ( insidelist != 0)
+    switch (var->for_type)
     {
-      printf(" %s in output list : not implemented ;",SGetSciType(var->type));
-    }
-  else
-    {
-
+        case INT:
+            Fprintf(f, indent, "call int2db(%s,stk(%s),-1,stk(lrs),-1)\n",
+                    str1, str);
+            break;
+        case DOUBLE:
+            Fprintf(f, indent, "call dcopy(%s,stk(%s),1,stk(lrs),1)\n",
+                    str1, str);
+            break;
+        case REAL:
+            Fprintf(f, indent, "call rea2db(%s,stk(%s),-1,stk(lrs),-1)\n",
+                    str1, str);
+            break;
     }
 }
 
 
-void OutSTRINGMAT(FILE *f,VARPTR var,int insidelist,int nel)
+void OutPOINTER(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  strcpy(str1,Forname2Int(variables[var->el[0]-1],0));
-  strcpy(str2,Forname2Int(variables[var->el[1]-1],0));
-  sprintf(str,"lr%d",var->stack_position);
-  if ( insidelist != 0)
+    if ( insidelist != 0)
     {
-      int iout = GetExistOutVar();
-      VARPTR vout = variables[iout -1];
-      Fprintf(f,indent,"CreateListVarFromPtr(%d,%d,\"S\",&%s,&%s,Str%d);\n",
-	      vout->stack_position,nel,
-	      (str1[0] == '&' ) ? str1+1: str1,
-	      (str2[0] == '&' ) ? str2+1: str2,
-	      var->stack_position);
+        printf(" %s in output list : not implemented ;", SGetSciType(var->type));
     }
-  else
+    else
     {
-      Fprintf(f,indent,"CreateVarFromPtr(%d, \"S\",&%s,&%s,Str%d);\n",
-	      icre,
-	      (str1[0] == '&' ) ? str1+1: str1,
-	      (str2[0] == '&' ) ? str2+1: str2,
-	      var->stack_position);
-      Fprintf(f,indent,"FreeRhsSVar(Str%d);\n",var->stack_position);
-      icre++;
+
+    }
+}
+
+
+void OutSTRINGMAT(FILE *f, VARPTR var, int insidelist, int nel)
+{
+    strcpy(str1, Forname2Int(variables[var->el[0] - 1], 0));
+    strcpy(str2, Forname2Int(variables[var->el[1] - 1], 0));
+    sprintf(str, "lr%d", var->stack_position);
+    if ( insidelist != 0)
+    {
+        int iout = GetExistOutVar();
+        VARPTR vout = variables[iout - 1];
+        Fprintf(f, indent, "CreateListVarFromPtr(%d,%d,\"S\",&%s,&%s,Str%d);\n",
+                vout->stack_position, nel,
+                (str1[0] == '&' ) ? str1 + 1 : str1,
+                (str2[0] == '&' ) ? str2 + 1 : str2,
+                var->stack_position);
+    }
+    else
+    {
+        Fprintf(f, indent, "CreateVarFromPtr(%d, \"S\",&%s,&%s,Str%d);\n",
+                icre,
+                (str1[0] == '&' ) ? str1 + 1 : str1,
+                (str2[0] == '&' ) ? str2 + 1 : str2,
+                var->stack_position);
+        Fprintf(f, indent, "FreeRhsSVar(Str%d);\n", var->stack_position);
+        icre++;
     }
 }
 
 
 
-void OutANY(FILE *f,VARPTR var,int insidelist,int nel)
+void OutANY(FILE *f, VARPTR var, int insidelist, int nel)
 {
-  printf("output variable \"%s\" cannot have type\n",
-	 var->name);
-  printf("  \"WORK\", \"LIST\", \"TLIST\", \"SEQUENCE\" or \"ANY\"\n");
-  exit(1);
+    printf("output variable \"%s\" cannot have type\n",
+           var->name);
+    printf("  \"WORK\", \"LIST\", \"TLIST\", \"SEQUENCE\" or \"ANY\"\n");
+    exit(1);
 }
 
-typedef  struct  {
-  int type;
-  void  (*fonc)(FILE *f,VARPTR var,int insidelist,int nel);} OutRhsTab ;
+typedef  struct
+{
+    int type;
+    void  (*fonc)(FILE *f, VARPTR var, int insidelist, int nel);
+} OutRhsTab ;
 
 
 
 
-OutRhsTab OUTRHSTAB[] = {
-  {DIMFOREXT,OutANY},
-  {COLUMN,OutCOLUMN},
-  {LIST,OutLIST},
-  {TLIST,OutANY},
-  {MATRIX,OutMATRIX},
-  {POLYNOM,OutPOLYNOM},
-  {ROW,OutROW},
-  {SCALAR,OutSCALAR},
-  {SEQUENCE,OutANY},
-  {STRING,OutSTRING},
-  {WORK,OutVECTOR},
-  {EMPTY,OutANY},
-  {ANY,OutANY},
-  {VECTOR,OutVECTOR},
-  {STRINGMAT,OutSTRINGMAT},
-  {SCIMPOINTER,OutPOINTER},
-  {IMATRIX,OutIMATRIX},
-  {SCISMPOINTER,OutPOINTER},
-  {SCILPOINTER,OutPOINTER},
-  {BMATRIX,OutBMATRIX},
-  {SCIBPOINTER,OutPOINTER},
-  {SCIOPOINTER,OutPOINTER},
-  {SPARSE,OutSPARSE}
+OutRhsTab OUTRHSTAB[] =
+{
+    {DIMFOREXT, OutANY},
+    {COLUMN, OutCOLUMN},
+    {LIST, OutLIST},
+    {TLIST, OutANY},
+    {MATRIX, OutMATRIX},
+    {POLYNOM, OutPOLYNOM},
+    {ROW, OutROW},
+    {SCALAR, OutSCALAR},
+    {SEQUENCE, OutANY},
+    {STRING, OutSTRING},
+    {WORK, OutVECTOR},
+    {EMPTY, OutANY},
+    {ANY, OutANY},
+    {VECTOR, OutVECTOR},
+    {STRINGMAT, OutSTRINGMAT},
+    {SCIMPOINTER, OutPOINTER},
+    {IMATRIX, OutIMATRIX},
+    {SCISMPOINTER, OutPOINTER},
+    {SCILPOINTER, OutPOINTER},
+    {BMATRIX, OutBMATRIX},
+    {SCIBPOINTER, OutPOINTER},
+    {SCIOPOINTER, OutPOINTER},
+    {SPARSE, OutSPARSE}
 };
 
 
@@ -427,24 +435,24 @@ OutRhsTab OUTRHSTAB[] = {
  * Convert ==> 1 if the variable has an output convertion to be done
  ***********************************************/
 
-void WriteVariableOutput(FILE *f,VARPTR var,int convert,int insidelist,int nel)
+void WriteVariableOutput(FILE *f, VARPTR var, int convert, int insidelist, int nel)
 {
-  if ( var->list_name != (char *) 0 )
+    if ( var->list_name != (char *) 0 )
     {
-      /* variable is a list member */
-      int nel1= var->list_el;
-      sprintf(strR,"%de%d",var->stack_position,nel1);
-      sprintf(str,"lr%de%d",var->stack_position,nel1);
-      sprintf(strc,"lc%de%d",var->stack_position,nel1);
-      sprintf(strit,"it%de%d",var->stack_position,nel1);
+        /* variable is a list member */
+        int nel1 = var->list_el;
+        sprintf(strR, "%de%d", var->stack_position, nel1);
+        sprintf(str, "lr%de%d", var->stack_position, nel1);
+        sprintf(strc, "lc%de%d", var->stack_position, nel1);
+        sprintf(strit, "it%de%d", var->stack_position, nel1);
     }
-  else
+    else
     {
-      sprintf(strR,"%d",var->stack_position);
-      sprintf(str,"lr%d",var->stack_position);
-      sprintf(strc,"lc%d",var->stack_position);
-      sprintf(strit,"it%d",var->stack_position);
+        sprintf(strR, "%d", var->stack_position);
+        sprintf(str, "lr%d", var->stack_position);
+        sprintf(strc, "lc%d", var->stack_position);
+        sprintf(strit, "it%d", var->stack_position);
     }
-  (*(OUTRHSTAB[var->type].fonc))(f,var,insidelist,nel);
+    (*(OUTRHSTAB[var->type].fonc))(f, var, insidelist, nel);
 }
 

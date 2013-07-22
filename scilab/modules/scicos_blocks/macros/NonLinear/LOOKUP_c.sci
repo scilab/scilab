@@ -395,7 +395,7 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
                     a.data_bounds=[xmn1,ymn1;xmx1,ymx1];
                 end
             end
-            //drawnow();//show_pixmap();
+            //drawnow();
             //-------------------------------------------------------------------
         case "Autoscale" then
             [rpar,ipar]=AutoScale(a,xy,ipar,rpar)
@@ -617,24 +617,18 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             if (~HIT)&(btn==0 | btn==3) then    // add point
                 xy=[xy;xc,yc];
                 [xtt,k2]=gsort(xy(:,1),"r","i");xy=xy(k2,:)
-                f.pixmap="on";
                 drawlater();
                 points.data=xy;
                 [rpar,ipar]=drawSplin(a,xy,ipar,rpar);
-                show_pixmap();
                 drawnow()
-                f.pixmap="off";
             end
 
             if (HIT)&(btn==2 | btn==5) then  //   remove point
-                f.pixmap="on";
                 xy(k,:)=[];
                 drawlater();
                 points.data=xy;
                 [rpar,ipar]=drawSplin(a,xy,ipar,rpar);
-                show_pixmap();
                 drawnow()
-                f.pixmap="off";
             end
 
             if (HIT)&(btn==0) then             // move point
@@ -649,13 +643,10 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
                 if mok then
                     xy(k,:)=[xt,yt];
                     [xy]=cleandata(xy)
-                    f.pixmap="on";
                     drawlater();
                     points.data=xy;
                     [rpar,ipar]=AutoScale(a,xy,ipar,rpar)
-                    show_pixmap();
                     drawnow()
-                    f.pixmap="off";
                 end
             end
 
@@ -729,7 +720,6 @@ function [xyt,orpar,oipar]=movept(a,xy,iipar,irpar,k)
         drawlater();
         points.data=xyt;
         [orpar,oipar]=drawSplin(a,xyt,oipar,orpar);
-        show_pixmap();
         drawnow()
     end
 
@@ -893,7 +883,6 @@ function  [orpar,oipar]=AutoScale(a,xy,inipar,inrpar)
     [orpar,oipar]=drawSplin(a,xy,oipar,orpar);
     rectx=findrect(a);
     a.data_bounds=rectx;
-    show_pixmap();
     drawnow()
 endfunction
 //============================

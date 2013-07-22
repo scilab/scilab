@@ -98,17 +98,17 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example">
-a = 1; b = 2;
-Z = ['a', 'b'] ;
-evstr(Z)
-Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
-evstr(Z)
-           
-evstr('NaN'), evstr('Inf')
-//Вариант с двумя возвращаемыми значениями
-[H, ierr] = evstr(Z) // ошибки нет
-Z = ['a', 'b', 'c'] ;// переменная c не определена
-[H, ierr] = evstr(Z) // error 4: Неизвестная переменная: c
+            a = 1; b = 2;
+            Z = ['a', 'b'] ;
+            evstr(Z)
+            Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+            evstr(Z)
+            
+            evstr('NaN'), evstr('Inf')
+            //Вариант с двумя возвращаемыми значениями
+            [H, ierr] = evstr(Z) // ошибки нет
+            Z = ['a', 'b', 'c'] ;// переменная c не определена
+            [H, ierr] = evstr(Z) // error 4: Неизвестная переменная: c
         </programlisting>
     </refsection>
     <refsection role="see also">

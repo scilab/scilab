@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="graphic_objects">
-  <!-- =================== -->
-  <!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -20,6 +20,6 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-  <!-- =================== -->
-  <PRIMITIVE gatewayId="69" primitiveId="1" primitiveName="graphicfunction"/>
+    <!-- =================== -->
+    <PRIMITIVE gatewayId="69" primitiveId="1" primitiveName="graphicfunction"/>
 </GATEWAY>

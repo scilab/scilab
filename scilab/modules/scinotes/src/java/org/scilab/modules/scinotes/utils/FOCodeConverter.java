@@ -26,20 +26,20 @@ import org.scilab.modules.scinotes.ScilabEditorPane;
 public class FOCodeConverter extends HTMLCodeConverter {
 
     private static final String ENTETE = "<?xml version=\"1.0\"?>\n"
-        + "<root xmlns=\"http://www.w3.org/1999/XSL/Format\">\n"
-        + "<layout-master-set>\n"
-        + "<simple-page-master master-name=\"content\"\n"
-        + "margin-right=\"MRin\"\n"
-        + "margin-left=\"MLin\"\n"
-        + "margin-bottom=\"MBin\"\n"
-        + "margin-top=\"MTin\"\n"
-        + "page-width=\"PWin\"\n"
-        + "page-height=\"PHin\">\n"
-        + "<region-body/>\n"
-        + "</simple-page-master>\n"
-        + "</layout-master-set>\n"
-        + "<page-sequence master-reference=\"content\">\n"
-        + "<flow flow-name=\"xsl-region-body\">";
+                                         + "<root xmlns=\"http://www.w3.org/1999/XSL/Format\">\n"
+                                         + "<layout-master-set>\n"
+                                         + "<simple-page-master master-name=\"content\"\n"
+                                         + "margin-right=\"MRin\"\n"
+                                         + "margin-left=\"MLin\"\n"
+                                         + "margin-bottom=\"MBin\"\n"
+                                         + "margin-top=\"MTin\"\n"
+                                         + "page-width=\"PWin\"\n"
+                                         + "page-height=\"PHin\">\n"
+                                         + "<region-body/>\n"
+                                         + "</simple-page-master>\n"
+                                         + "</layout-master-set>\n"
+                                         + "<page-sequence master-reference=\"content\">\n"
+                                         + "<flow flow-name=\"xsl-region-body\">";
 
     private static final String END = "</flow></page-sequence></root>";
 

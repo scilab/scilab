@@ -9,15 +9,15 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
- 
+
 <package name="org.scilab.modules.graphic_export">
-  <object name="FileExporter">
-    <method name="fileExport" returnType="String" modifier="static">
-      <parameter name="figureUID" type="String"/>
-      <parameter name="fileName" type="String"/>
-      <parameter name="fileType" type="int"/>
-      <parameter name="jpegCompressionQuality" type="float"/>
-      <parameter name="orientation" type="int"/>
-    </method>
-  </object>
+    <object name="FileExporter">
+        <method name="fileExport" returnType="String" modifier="static">
+            <parameter name="figureUID" type="String"/>
+            <parameter name="fileName" type="String"/>
+            <parameter name="fileType" type="int"/>
+            <parameter name="jpegCompressionQuality" type="float"/>
+            <parameter name="orientation" type="int"/>
+        </method>
+    </object>
 </package>

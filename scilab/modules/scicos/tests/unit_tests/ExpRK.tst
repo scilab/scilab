@@ -7,14 +7,11 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-
-// Execute with exec("SCI/modules/scicos/tests/unit_tests/ExpRK.tst");
-//  or test_run('scicos', 'ExpRK', ['no_check_error_output']);
+// <-- XCOS TEST -->
 
 // Import diagram
-loadScicos();
-loadXcosLibs();
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/RK_test.zcos"));
+Info = scicos_simulate(scs_m, list(), 'nw');
 
 for i=2:4  // 'max step size' = 10^-i, precision
 
@@ -24,13 +21,13 @@ for i=2:4  // 'max step size' = 10^-i, precision
 
  // Modify solver and 'max step size' + run ExpRK + save results
  scs_m.props.tol(7) = 5*10^(-i); scs_m.props.tol(6) = 6;     // 'max step size' + solver
- try scicos_simulate(scs_m); catch disp(lasterror()); end;   // ExpRK
+ try scicos_simulate(scs_m, Info, 'nw'); catch disp(lasterror()); end;   // ExpRK
  rkval = res.values;   // Results
  time = res.time;      // Time
 
  // Modify solver and 'max step size' + run CVode + save results
  scs_m.props.tol(7) = 0; scs_m.props.tol(6) = 1;
- try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end;
+ try scicos_simulate(scs_m, Info, 'nw'); catch disp(lasterror()); end;
  cvval = res.values;
 
  // Compare results

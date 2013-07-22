@@ -9,13 +9,13 @@
 
 function demo_pendg2()
 
-  exec(SCI+"/modules/differential_equations/demos/dae/dae2/pendg.sci");
-  exec(SCI+"/modules/differential_equations/demos/dae/dae2/pendc1.sci");
-  exec(SCI+"/modules/differential_equations/demos/dae/dae2/demo_sliding_pendulum.sci");
+    exec(SCI+"/modules/differential_equations/demos/dae/dae2/pendg.sci");
+    exec(SCI+"/modules/differential_equations/demos/dae/dae2/pendc1.sci");
+    exec(SCI+"/modules/differential_equations/demos/dae/dae2/demo_sliding_pendulum.sci");
 
-  demo_sliding_pendulum()
-  
-endfunction 
+    demo_sliding_pendulum()
+
+endfunction
 
 demo_pendg2();
 clear demo_pendg2;

@@ -60,7 +60,7 @@
     <ClCompile Include="..\..\sci_gateway\fortran\matrdiv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\matsubst.c">
+    <ClCompile Include="..\..\sci_gateway\fortran\matsubt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\mattr.c">
@@ -125,7 +125,7 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\matrdiv.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\matsubst.f">
+    <f2c_rule Include="..\..\sci_gateway\fortran\matsubt.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\mattr.f">

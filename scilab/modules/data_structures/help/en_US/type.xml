@@ -193,7 +193,8 @@
             <note>
                 Please note that, for some variables, <function>type</function> will return <literal>tlist</literal>
                 or <literal>mlist</literal> due to the internal data structure. This is the case of
-                <emphasis role="italic">rational</emphasis> and <emphasis role="italic">state-space</emphasis> matrices, <emphasis role="italic">hypermat</emphasis> and <emphasis role="italic">struct</emphasis>. Please considering the use of
+                <emphasis role="italic">rational</emphasis> and <emphasis role="italic">state-space</emphasis> matrices,
+ <emphasis role="italic">uitree</emphasis>, <emphasis role="italic">hypermat</emphasis> and <emphasis role="italic">struct</emphasis>. Please considering the use of
                 <link linkend="typeof">typeof</link> instead.
             </note>
         </para>

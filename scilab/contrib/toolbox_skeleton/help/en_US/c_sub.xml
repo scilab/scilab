@@ -6,7 +6,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:scilab="http://www.scilab.org" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="c_sub" xml:lang="en">
     <refnamediv>
         <refname>c_sub</refname>
-        <refpurpose>substraction from C</refpurpose>
+        <refpurpose>subtraction from C</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -37,7 +37,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Do a substraction.</para>
+        <para>Do a subtraction.</para>
         <para>Add here a paragraph of the function description </para>
         <para>
             LaTeX can also be used to render equation: In this case, the rendering should <latex>$x-y$</latex>

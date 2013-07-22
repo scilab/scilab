@@ -98,14 +98,14 @@ public final class ScilabSpecialTextUtilities {
         if (!loadedLaTeX) {
             if (loadJLM == null) {
                 loadJLM = new Thread(new Runnable() {
-                        /* Create a thread in the background to avoid a lag in the loading of jar */
-                        public void run() {
-                            LoadClassPath.loadOnUse("graphics_latex_textrendering");
-                            LaTeXCompiler.compilePartial("", 0);
-                            loadedLaTeX = true;
-                            loadJLM = null;
-                        }
-                    });
+                    /* Create a thread in the background to avoid a lag in the loading of jar */
+                    public void run() {
+                        LoadClassPath.loadOnUse("graphics_latex_textrendering");
+                        LaTeXCompiler.compilePartial("", 0);
+                        loadedLaTeX = true;
+                        loadJLM = null;
+                    }
+                });
                 loadJLM.setPriority(Thread.MIN_PRIORITY);
                 loadJLM.start();
             }
@@ -175,6 +175,7 @@ public final class ScilabSpecialTextUtilities {
          * @return the Icon
          */
         static Icon compile(String str, int fontSize) {
+            TeXFormula.setDefaultDPI();
             Icon icon = null;
             try {
                 TeXFormula formula = new TeXFormula(str);

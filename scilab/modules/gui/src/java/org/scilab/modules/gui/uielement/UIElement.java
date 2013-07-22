@@ -3,11 +3,11 @@
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -32,105 +32,105 @@ import org.scilab.modules.gui.utils.Size;
  */
 public interface UIElement {
 
-	/**
-	 * Associate the Tool bar to the UIElement
-	 * @param toolBarToAdd - the Tool bar.
-	 */
-	void addToolBar(ToolBar toolBarToAdd);
+    /**
+     * Associate the Tool bar to the UIElement
+     * @param toolBarToAdd - the Tool bar.
+     */
+    void addToolBar(ToolBar toolBarToAdd);
 
-	/**
-	 * Associate the Menu bar to the UIElement
-	 * @param menuBarToAdd - the Menu bar.
-	 */
-	void addMenuBar(MenuBar menuBarToAdd);
-	
-	/**
-	 * Associate the InfoBar to the UIElement
-	 * @param infoBarToAdd - the Infobar.
-	 */
-	void addInfoBar(TextBox infoBarToAdd);
-	
-//	public abstract void resize();
-//
-//	public abstract void focus();
-//
-	
-	/**
-	 * Gets the size of an UIElement (width and height)
-	 * @return the size of the UIElement
-	 */
-	Size getDims();
+    /**
+     * Associate the Menu bar to the UIElement
+     * @param menuBarToAdd - the Menu bar.
+     */
+    void addMenuBar(MenuBar menuBarToAdd);
 
-	/**
-	 * Sets the size of an UIElement (width and height)
-	 * @param newSize the size we want to set to the UIElement
-	 */
-	void setDims(Size newSize);
+    /**
+     * Associate the InfoBar to the UIElement
+     * @param infoBarToAdd - the Infobar.
+     */
+    void addInfoBar(TextBox infoBarToAdd);
 
-	/**
-	 * Gets the position of an UIElement (X-coordinate and Y-corrdinate)
-	 * @return the position of the UIElement
-	 */
-	Position getPosition();
+    //	public abstract void resize();
+    //
+    //	public abstract void focus();
+    //
 
-	/**
-	 * Sets the position of an UIElement (X-coordinate and Y-corrdinate)
-	 * @param newPosition the position we want to set to the UIElement
-	 */
-	void setPosition(Position newPosition);
+    /**
+     * Gets the size of an UIElement (width and height)
+     * @return the size of the UIElement
+     */
+    Size getDims();
 
-	/**
-	 * Gets the visibility status of an UIElement
-	 * @return the visibility status of the UIElement (true if the UIElement is visible, false if not)
-	 */
-	boolean isVisible();
+    /**
+     * Sets the size of an UIElement (width and height)
+     * @param newSize the size we want to set to the UIElement
+     */
+    void setDims(Size newSize);
 
-	/**
-	 * Sets the visibility status of an UIElement
-	 * @param newVisibleState the visibility status we want to set for the UIElement
-	 * 			(true if the UIElement is visible, false if not)
-	 */
-	void setVisible(boolean newVisibleState);
+    /**
+     * Gets the position of an UIElement (X-coordinate and Y-corrdinate)
+     * @return the position of the UIElement
+     */
+    Position getPosition();
 
-	/**
-	 * Draws an UIElement
-	 */
-	void draw();
+    /**
+     * Sets the position of an UIElement (X-coordinate and Y-corrdinate)
+     * @param newPosition the position we want to set to the UIElement
+     */
+    void setPosition(Position newPosition);
 
-//	public abstract Layout getForegroundLayout();
-//
-//	public abstract void setForegroundLayout(Layout newLayout);
-//
-//	public abstract Layout getBackgroundLayout();
-//
-//	public abstract void setBackgroundLayout(Layout newLayout);
-//
-//	public abstract Layout getTextLayout();
-//
-//	public abstract void setTextLayout(Layout newLayout);
-	
-	/**
-	 * To set the Background color of the element.
-	 * @param color the Color
-	 */
-	//void setBackground(Color color);
-	
-	/**
-	 * Get the menubar in the UIElementMapper
-	 * @return the MenuBar of the UIElement
-	 */
-	MenuBar getMenuBar();
-	
-	
-	/**
-	 * Get the toolbar in the UIElementMapper
-	 * @return the ToolBar of the UIElement
-	 */
-	ToolBar getToolBar();
+    /**
+     * Gets the visibility status of an UIElement
+     * @return the visibility status of the UIElement (true if the UIElement is visible, false if not)
+     */
+    boolean isVisible();
 
-	/**
-	 * Get the InfoBar in the UIElementMapper
-	 * @return the InfoBar of the UIElement
-	 */
-	TextBox getInfoBar();
+    /**
+     * Sets the visibility status of an UIElement
+     * @param newVisibleState the visibility status we want to set for the UIElement
+     * 			(true if the UIElement is visible, false if not)
+     */
+    void setVisible(boolean newVisibleState);
+
+    /**
+     * Draws an UIElement
+     */
+    void draw();
+
+    //	public abstract Layout getForegroundLayout();
+    //
+    //	public abstract void setForegroundLayout(Layout newLayout);
+    //
+    //	public abstract Layout getBackgroundLayout();
+    //
+    //	public abstract void setBackgroundLayout(Layout newLayout);
+    //
+    //	public abstract Layout getTextLayout();
+    //
+    //	public abstract void setTextLayout(Layout newLayout);
+
+    /**
+     * To set the Background color of the element.
+     * @param color the Color
+     */
+    //void setBackground(Color color);
+
+    /**
+     * Get the menubar in the UIElementMapper
+     * @return the MenuBar of the UIElement
+     */
+    MenuBar getMenuBar();
+
+
+    /**
+     * Get the toolbar in the UIElementMapper
+     * @return the ToolBar of the UIElement
+     */
+    ToolBar getToolBar();
+
+    /**
+     * Get the InfoBar in the UIElementMapper
+     * @return the InfoBar of the UIElement
+     */
+    TextBox getInfoBar();
 }

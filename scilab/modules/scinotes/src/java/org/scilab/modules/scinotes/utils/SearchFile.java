@@ -306,16 +306,16 @@ public class SearchFile extends SwingScilabTab {
         updateUI();
 
         CommonCallBack callback = new CommonCallBack(null) {
-                @Override
-                public void callBack() {
-                    ClosingOperationsManager.startClosingOperation((SwingScilabTab) SearchFile.this);
-                }
+            @Override
+            public void callBack() {
+                ClosingOperationsManager.startClosingOperation((SwingScilabTab) SearchFile.this);
+            }
 
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    callBack();
-                }
-            };
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                callBack();
+            }
+        };
 
         setCallback(callback);
         MenuBar menubar = ScilabMenuBar.createMenuBar();
@@ -376,53 +376,53 @@ public class SearchFile extends SwingScilabTab {
         files.setRoot();
         final JTree tree = new JTree(files.toDefaultMutableTreeNode());
         MouseListener ml = new MouseAdapter() {
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    int row = tree.getRowForLocation(e.getX(), e.getY());
-                    if (row != -1) {
-                        if (e.getClickCount() == 2) {
-                            validNode(editor, p, tree.getPathForRow(row));
-                        }
+            @Override
+            public void mousePressed(MouseEvent e) {
+                int row = tree.getRowForLocation(e.getX(), e.getY());
+                if (row != -1) {
+                    if (e.getClickCount() == 2) {
+                        validNode(editor, p, tree.getPathForRow(row));
                     }
                 }
-            };
+            }
+        };
         tree.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "toggle");
         tree.addKeyListener(new KeyAdapter() {
-                public void keyTyped(KeyEvent e) {
-                    if (e.getKeyChar() == '\n') {
-                        int row = tree.getMinSelectionRow();
-                        if (row != -1) {
-                            validNode(editor, p, tree.getPathForRow(row));
-                        }
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == '\n') {
+                    int row = tree.getMinSelectionRow();
+                    if (row != -1) {
+                        validNode(editor, p, tree.getPathForRow(row));
+                    }
+                }
+            }
+        });
+        tree.addMouseListener(ml);
+        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
+            @Override
+            public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected,
+            boolean expanded, boolean leaf, int row, boolean hasFocus) {
+                super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
+                DefaultMutableTreeNode mtn = (DefaultMutableTreeNode) value;
+                SearchManager.Iconable pos = (SearchManager.Iconable) mtn.getUserObject();
+                this.setIcon(pos.getIcon());
+                return this;
+            }
+        };
+        if (statusbar != null) {
+            tree.addTreeSelectionListener(new TreeSelectionListener() {
+                @Override
+                public void valueChanged(TreeSelectionEvent e) {
+                    TreePath path = e.getNewLeadSelectionPath();
+                    Object userObj = ((DefaultMutableTreeNode) path.getLastPathComponent()).getUserObject();
+                    if (userObj instanceof SearchManager.MatchingPositions) {
+                        statusbar.setText(((SearchManager.MatchingPositions) userObj).getFileName());
+                    } else if (userObj instanceof SearchManager.Line) {
+                        userObj = ((DefaultMutableTreeNode) ((DefaultMutableTreeNode) path.getLastPathComponent()).getParent()).getUserObject();
+                        statusbar.setText(((SearchManager.MatchingPositions) userObj).getFileName());
                     }
                 }
             });
-        tree.addMouseListener(ml);
-        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer() {
-                @Override
-                public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected,
-                                                              boolean expanded, boolean leaf, int row, boolean hasFocus) {
-                    super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
-                    DefaultMutableTreeNode mtn = (DefaultMutableTreeNode) value;
-                    SearchManager.Iconable pos = (SearchManager.Iconable) mtn.getUserObject();
-                    this.setIcon(pos.getIcon());
-                    return this;
-                }
-            };
-        if (statusbar != null) {
-            tree.addTreeSelectionListener(new TreeSelectionListener() {
-                    @Override
-                    public void valueChanged(TreeSelectionEvent e) {
-                        TreePath path = e.getNewLeadSelectionPath();
-                        Object userObj = ((DefaultMutableTreeNode) path.getLastPathComponent()).getUserObject();
-                        if (userObj instanceof SearchManager.MatchingPositions) {
-                            statusbar.setText(((SearchManager.MatchingPositions) userObj).getFileName());
-                        } else if (userObj instanceof SearchManager.Line) {
-                            userObj = ((DefaultMutableTreeNode) ((DefaultMutableTreeNode) path.getLastPathComponent()).getParent()).getUserObject();
-                            statusbar.setText(((SearchManager.MatchingPositions) userObj).getFileName());
-                        }
-                    }
-                });
         }
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setCellRenderer(renderer);
@@ -446,9 +446,9 @@ public class SearchFile extends SwingScilabTab {
      * @return a key, can be used to stop the search
      */
     public static Object getSearchResultsWindow(JComponent component, SciNotes editor, String base,
-                                                boolean recursive, boolean ignoreCR,
-                                                String filePattern, boolean fileCaseSensitive,
-                                                String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
+            boolean recursive, boolean ignoreCR,
+            String filePattern, boolean fileCaseSensitive,
+            String wordPattern, boolean wordCaseSensitive, boolean wholeWord, boolean regexp) {
         MyBackgroundSearch searcher = new MyBackgroundSearch(component, editor, base, recursive, ignoreCR, filePattern, fileCaseSensitive, wordPattern, wordCaseSensitive, wholeWord, regexp);
         searcher.start();
         return searcher;
@@ -508,14 +508,14 @@ public class SearchFile extends SwingScilabTab {
                 final ScilabEditorPane sep = editor.getTextPane();
                 if (sep.getName().equals(fileName)) {
                     SwingUtilities.invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                sep.highlightWords(pat, fline);
-                                if (ln != 0) {
-                                    sep.scrollTextToLineNumber(ln, false, false, true);
-                                }
+                        @Override
+                        public void run() {
+                            sep.highlightWords(pat, fline);
+                            if (ln != 0) {
+                                sep.scrollTextToLineNumber(ln, false, false, true);
                             }
-                        });
+                        }
+                    });
                 }
             }
         }
@@ -614,15 +614,15 @@ public class SearchFile extends SwingScilabTab {
             sf.setMyBackgroundSearch(this);
 
             SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        sf.getJTree().addSelectionRow(0);
-                        sf.getJTree().requestFocus();
-                        long time = getElapsedTime();
+                @Override
+                public void run() {
+                    sf.getJTree().addSelectionRow(0);
+                    sf.getJTree().requestFocus();
+                    long time = getElapsedTime();
 
-                        sf.getInfoBar().setText(String.format(SciNotesMessages.ELAPSEDTIME, ((double) time) / 1000));
-                    }
-                });
+                    sf.getInfoBar().setText(String.format(SciNotesMessages.ELAPSEDTIME, ((double) time) / 1000));
+                }
+            });
 
             if (component != null) {
                 component.firePropertyChange(SEARCHDONE, false, true);

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2011-09-01 09:49+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-18 04:35+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -55,9 +55,8 @@ msgid ""
 msgstr "%s: 入力引数 #%d の値が間違っています:　コレスキー分解への有効な参照を指定してください."
 
 #, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr "%s: メモリ不足です: スタックサイズを %d ワード分増やしてください.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid ""
@@ -68,6 +67,12 @@ msgstr "%s: 入力引数 #%d の値が間違っています:コレスキー分�
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: not compatible with the Cholesky "
+"factorisation.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: コレスキー分解と互換性がありません.\n"
 
 #, c-format
 msgid ""

@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="uiInsertNode">
     <refnamediv>
         <refname>uiInsertNode</refname>
-        <refpurpose>Insertion in a Tree </refpurpose>
+        <refpurpose>Insertion in a uitree </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -15,7 +15,7 @@
             <varlistentry>
                 <term>tree</term>
                 <listitem>
-                    <para>Tree were we do the insertion</para>
+                    <para>uitree where we do the insertion</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -44,7 +44,7 @@
             <varlistentry>
                 <term>insertTree</term>
                 <listitem>
-                    <para>a Tree with the node inserted</para>
+                    <para>an uitree with the node inserted</para>
                 </listitem>
             </varlistentry>
         </variablelist>

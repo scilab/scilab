@@ -21,7 +21,8 @@
 #endif
 #include "fullpath.h"
 /*--------------------------------------------------------------------------*/
-typedef struct {
+typedef struct
+{
     FILE *ftformat;
     int ftswap; /* swap status for each file */
     int ftmode; /* mode for each file */
@@ -39,7 +40,7 @@ FILE *GetFileOpenedInScilab(int Id)
 {
     int fd1 = 0;
 
-    fd1 = (Id != -1) ?  Min(Max(Id,0),GetMaximumFileOpenedInScilab()-1) : CurFile ;
+    fd1 = (Id != -1) ?  Min(Max(Id, 0), GetMaximumFileOpenedInScilab() - 1) : CurFile ;
 
     if ( fd1 != -1 )
     {
@@ -60,26 +61,35 @@ int GetPreviousFileId(void)
 /*--------------------------------------------------------------------------*/
 void SetCurrentFileId(int Id)
 {
-    if (Id == -1) PreviousFile = -1;
-    else PreviousFile = CurFile;
+    if (Id == -1)
+    {
+        PreviousFile = -1;
+    }
+    else
+    {
+        PreviousFile = CurFile;
+    }
 
     CurFile = Id;
 }
 /*--------------------------------------------------------------------------*/
-void SetFileOpenedInScilab(int Id,FILE *fptr)
+void SetFileOpenedInScilab(int Id, FILE *fptr)
 {
-    ScilabFileList[Id].ftformat=fptr;
+    ScilabFileList[Id].ftformat = fptr;
 }
 /*--------------------------------------------------------------------------*/
 int GetSwapStatus(int Id)
 {
     int fd1;
-    fd1 = (Id != -1) ?  Min(Max(Id,0),GetMaximumFileOpenedInScilab()-1) : GetCurrentFileId() ;
-    if ( fd1 != -1 ) return(ScilabFileList[fd1].ftswap);
+    fd1 = (Id != -1) ?  Min(Max(Id, 0), GetMaximumFileOpenedInScilab() - 1) : GetCurrentFileId() ;
+    if ( fd1 != -1 )
+    {
+        return(ScilabFileList[fd1].ftswap);
+    }
     return(0);
 }
 /*--------------------------------------------------------------------------*/
-void SetSwapStatus(int Id,int newswap)
+void SetSwapStatus(int Id, int newswap)
 {
     ScilabFileList[Id].ftswap =  newswap;
 }
@@ -94,7 +104,7 @@ int GetFileModeOpenedInScilab(int Id)
     return ScilabFileList[Id].ftmode;
 }
 /*--------------------------------------------------------------------------*/
-void SetFileModeOpenedInScilab(int Id,int mode)
+void SetFileModeOpenedInScilab(int Id, int mode)
 {
     ScilabFileList[Id].ftmode = mode;
 }
@@ -116,20 +126,21 @@ char *GetFileTypeOpenedInScilabAsString(int Id)
     char *ret = NULL;
     switch (GetFileTypeOpenedInScilab(Id))
     {
-    case 1:
-        ret = strdup("F");
-        break;
-    case 2:
-        ret = strdup("C");
-        break;
-    case 0: default:
-        ret = strdup("Error");
-        break;
+        case 1:
+            ret = strdup("F");
+            break;
+        case 2:
+            ret = strdup("C");
+            break;
+        case 0:
+        default:
+            ret = strdup("Error");
+            break;
     }
     return ret;
 }
 /*--------------------------------------------------------------------------*/
-void SetFileTypeOpenedInScilab(int Id,int Type)
+void SetFileTypeOpenedInScilab(int Id, int Type)
 {
     ScilabFileList[Id].fttype = Type;
 }
@@ -138,7 +149,7 @@ char* GetFileNameOpenedInScilab(int Id)
 {
     if (GetFileTypeOpenedInScilab(Id) == 1) // Fortran file
     {
-        /* A exception for Id 5 and 6 */ 
+        /* A exception for Id 5 and 6 */
         /* no name */
         if ((Id != 5) && (Id != 6))
         {
@@ -147,35 +158,35 @@ char* GetFileNameOpenedInScilab(int Id)
     }
     else
     {
-        if (GetFileOpenedInScilab(Id) != NULL) return ScilabFileList[Id].ftname;
+        if (GetFileOpenedInScilab(Id) != NULL)
+        {
+            return ScilabFileList[Id].ftname;
+        }
     }
     return NULL;
 }
 /*--------------------------------------------------------------------------*/
-BOOL SetFileNameOpenedInScilab(int Id,char *name)
+BOOL SetFileNameOpenedInScilab(int Id, char *name)
 {
-    BOOL bOK=FALSE;
-    char *ptrName=NULL;
-    char fullpath[PATH_MAX*4];
+    BOOL bOK = FALSE;
+    char *ptrName = NULL;
+    char fullpath[PATH_MAX * 4];
 
     /* A exception for Id 5 and 6 */
     /* no filename */
-    if ( strcmp(name,"") == 0 )
+    if ( name[0] == '\0' )
     {
-        ptrName = strdup(name);
-        if (ptrName)
-        {
-            bOK=TRUE;
-        }
+        ptrName = "";
+        bOK = TRUE;
     }
     else
     {
-        if( get_full_path( fullpath, name, PATH_MAX*4 ) != NULL )
+        if ( get_full_path( fullpath, name, PATH_MAX * 4 ) != NULL )
         {
             ptrName = strdup(fullpath);
             if (ptrName)
             {
-                bOK=TRUE;
+                bOK = TRUE;
             }
         }
         else
@@ -183,7 +194,7 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
             ptrName = strdup(name);
             if (ptrName)
             {
-                bOK=TRUE;
+                bOK = TRUE;
             }
         }
     }
@@ -194,7 +205,12 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 BOOL FreeFileNameOpenedInScilab(int Id)
 {
     char *ptr = ScilabFileList[Id].ftname;
-    if (ptr) { FREE(ptr);  ptr = NULL; return TRUE;}
+    if (ptr && ptr[0])
+    {
+        FREE(ptr);
+        ptr = NULL;
+        return TRUE;
+    }
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
@@ -216,7 +232,7 @@ BOOL InitializeScilabFilesList(void)
             initializedScilabFile.ftswap = 0;
             initializedScilabFile.fttype = 0;
 
-            for (i=0; i < CurrentMaxFiles; i++)
+            for (i = 0; i < CurrentMaxFiles; i++)
             {
                 scilabfile *ptrScilabFile = &ScilabFileList[i];
                 memcpy(ptrScilabFile, &initializedScilabFile, sizeof(scilabfile));
@@ -232,7 +248,7 @@ BOOL TerminateScilabFilesList(void)
     if (ScilabFileList)
     {
         FREE(ScilabFileList);
-        ScilabFileList=NULL;
+        ScilabFileList = NULL;
         return TRUE;
     }
     return FALSE;
@@ -245,21 +261,21 @@ BOOL ExtendScilabFilesList(int NewSize)
         if (NewSize > CurrentMaxFiles)
         {
 
-            scilabfile *ScilabFileListTmp=NULL;
-            ScilabFileListTmp=(scilabfile *)REALLOC(ScilabFileList,NewSize*sizeof(scilabfile));
+            scilabfile *ScilabFileListTmp = NULL;
+            ScilabFileListTmp = (scilabfile *)REALLOC(ScilabFileList, NewSize * sizeof(scilabfile));
             if (ScilabFileListTmp)
             {
-                int i=0;
-                ScilabFileList=ScilabFileListTmp;
-                for (i=CurrentMaxFiles;i<NewSize;i++)
+                int i = 0;
+                ScilabFileList = ScilabFileListTmp;
+                for (i = CurrentMaxFiles; i < NewSize; i++)
                 {
-                    ScilabFileList[i].ftformat=NULL;
-                    ScilabFileList[i].ftmode=0;
-                    ScilabFileList[i].ftname=NULL;
-                    ScilabFileList[i].ftswap=0;
-                    ScilabFileList[i].fttype=0;
+                    ScilabFileList[i].ftformat = NULL;
+                    ScilabFileList[i].ftmode = 0;
+                    ScilabFileList[i].ftname = NULL;
+                    ScilabFileList[i].ftswap = 0;
+                    ScilabFileList[i].fttype = 0;
                 }
-                CurrentMaxFiles=NewSize;
+                CurrentMaxFiles = NewSize;
                 return TRUE;
             }
         }
@@ -271,7 +287,7 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 {
     if (ScilabFileList)
     {
-        char fullpath[PATH_MAX*4];
+        char fullpath[PATH_MAX * 4];
         int i = 0;
 
         if ((strcmp(filename, "") == 0) || (filename == NULL))
@@ -279,17 +295,20 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
             return FALSE;
         }
 
-        if( get_full_path( fullpath, filename, PATH_MAX*4 ) == NULL )
+        if ( get_full_path( fullpath, filename, PATH_MAX * 4 ) == NULL )
         {
             /* if we are a problem */
-            strcpy(fullpath,filename);
+            strcpy(fullpath, filename);
         }
 
-        for (i=0;i<CurrentMaxFiles;i++)
+        for (i = 0; i < CurrentMaxFiles; i++)
         {
             if ( (ScilabFileList[i].ftformat) && ScilabFileList[i].ftname)
             {
-                if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return TRUE;
+                if (strcmp(ScilabFileList[i].ftname, fullpath) == 0)
+                {
+                    return TRUE;
+                }
             }
         }
     }
@@ -300,19 +319,22 @@ int GetIdFromFilename(char *filename)
 {
     if (ScilabFileList)
     {
-        char fullpath[PATH_MAX*4];
-        int i=0;
-        if( get_full_path( fullpath, filename, PATH_MAX*4 ) == NULL )
+        char fullpath[PATH_MAX * 4];
+        int i = 0;
+        if ( get_full_path( fullpath, filename, PATH_MAX * 4 ) == NULL )
         {
             /* if we are a problem */
-            strcpy(fullpath,filename);
+            strcpy(fullpath, filename);
         }
 
         for (i = 0; i < CurrentMaxFiles; i++)
         {
             if ( (ScilabFileList[i].ftformat) && ScilabFileList[i].ftname)
             {
-                if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return i;
+                if (strcmp(ScilabFileList[i].ftname, fullpath) == 0)
+                {
+                    return i;
+                }
             }
         }
     }
@@ -325,7 +347,7 @@ double *GetFilesIdUsed(int *sizeArrayReturned)
     double* ArrayIdUsed = NULL;
     *sizeArrayReturned = GetNumberOfIdsUsed();
 
-    ArrayIdUsed = (double*)MALLOC(sizeof(double)*(*sizeArrayReturned));
+    ArrayIdUsed = (double*)MALLOC(sizeof(double) * (*sizeArrayReturned));
     if (ArrayIdUsed == NULL)
     {
         *sizeArrayReturned = 0;
@@ -351,7 +373,7 @@ double *GetSwapsUsed(int *sizeArrayReturned)
 
     *sizeArrayReturned = GetNumberOfIdsUsed();
 
-    ArraySwapUsed = (double*)MALLOC(sizeof(double)*(*sizeArrayReturned));
+    ArraySwapUsed = (double*)MALLOC(sizeof(double) * (*sizeArrayReturned));
     if (ArraySwapUsed == NULL)
     {
         *sizeArrayReturned = 0;
@@ -377,7 +399,7 @@ double *GetModesUsed(int *sizeArrayReturned)
 
     *sizeArrayReturned = GetNumberOfIdsUsed();
 
-    ArrayModeUsed = (double*)MALLOC(sizeof(double)*(*sizeArrayReturned));
+    ArrayModeUsed = (double*)MALLOC(sizeof(double) * (*sizeArrayReturned));
     if (ArrayModeUsed == NULL)
     {
         *sizeArrayReturned = 0;
@@ -403,7 +425,7 @@ int *GetTypesUsed(int *sizeArrayReturned)
 
     *sizeArrayReturned = GetNumberOfIdsUsed();
 
-    ArrayTypeUsed = (int*)MALLOC(sizeof(int)*(*sizeArrayReturned));
+    ArrayTypeUsed = (int*)MALLOC(sizeof(int) * (*sizeArrayReturned));
     if (ArrayTypeUsed == NULL)
     {
         *sizeArrayReturned = 0;

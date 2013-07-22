@@ -24,7 +24,7 @@
 
 /**
 * Get number of Field from the name of MList
-* 
+*
 */
 int MlistGetFieldNumber(int *ptr, const char *string);
 

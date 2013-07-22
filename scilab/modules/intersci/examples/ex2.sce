@@ -14,10 +14,10 @@
 //  Making object files
 //  Interface file '/tmp/ex2fi.o'
 //  User's files ['/tmp/ex2f.o']
-files=G_make(['/tmp/ex2fi.o','/tmp/ex2f.o'],'ex2.dll');
+files=G_make(["/tmp/ex2fi.o","/tmp/ex2f.o"],"ex2.dll");
 //2-Link object files .o with addinter
 //addinter(files,'intex2',intex2_funs);
-exec('ex2fi.sce');
+exec("ex2fi.sce");
 //Run Scilab functions:
 a=1:20;b=1:10;
 d=som(a=1:20,b=1:10);

@@ -217,7 +217,7 @@ extern "C" {
                     isReal = (*jenv)->GetArrayLength(jenv, infos) == 2;
                     js = (jstring)(*jenv)->GetObjectArrayElement(jenv, infos, 0);
                     polyVarName = (char*)(*jenv)->GetStringUTFChars(jenv, js, 0);
-                 
+
                     if (isReal)
                     {
                         // Get the matrix rows

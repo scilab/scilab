@@ -65,20 +65,30 @@ int ReadFunction(FILE *f)
     {
         removeEOL(s);
         /* ignoring comments */
-        if (s[0] == '/' && s[1] == '/' ) continue;
+        if (s[0] == '/' && s[1] == '/' )
+        {
+            continue;
+        }
 
         /* analysis of one line */
         if (line1 != 1)
+        {
             nwords = ParseLine(s, words);
+        }
         else
+        {
             nwords = ParseScilabLine(s, words);
+        }
         /* empty definition at end of file */
         if (line1 == 1 && nwords == 0)
         {
             return 0;
         }
         /* end of description */
-        if (words[0][0] == '*') return(1);
+        if (words[0][0] == '*')
+        {
+            return(1);
+        }
         if (line1 == 1)
         {
             /* SCILAB function description */
@@ -401,9 +411,18 @@ int ParseScilabLine(char *s, char *words[])
     int inopt1 = 0; /* {  } */
     int inopt2 = 0; /* [  ] */
     int i = 0;
-    if (*s == ' ' || *s == '\t') inword = 0;
-    if (*s == '{') inopt1 = 1;
-    if (*s == '[') inopt2 = 1;
+    if (*s == ' ' || *s == '\t')
+    {
+        inword = 0;
+    }
+    if (*s == '{')
+    {
+        inopt1 = 1;
+    }
+    if (*s == '[')
+    {
+        inopt2 = 1;
+    }
     while (*s)
     {
         if (inopt1)
@@ -464,8 +483,14 @@ int ParseScilabLine(char *s, char *words[])
                 /* beginning of a word */
                 i = 0;
                 inword = 1;
-                if (*s == '{') inopt1 = 1;
-                if (*s == '[') inopt2 = 1;
+                if (*s == '{')
+                {
+                    inopt1 = 1;
+                }
+                if (*s == '[')
+                {
+                    inopt2 = 1;
+                }
             }
         }
     }
@@ -480,7 +505,10 @@ int ParseLine(char *s, char *words[])
     int nwords = 0;
     int inword = 1;
     int i = 0;
-    if (*s == ' ' || *s == '\t') inword = 0;
+    if (*s == ' ' || *s == '\t')
+    {
+        inword = 0;
+    }
     while (*s)
     {
         if (inword)

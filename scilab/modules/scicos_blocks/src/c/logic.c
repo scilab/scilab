@@ -18,46 +18,54 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void logic(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void logic(scicos_block *block, int flag)
 {
-    char *u = NULL,*y = NULL;
-    char inp,num;
-    int i  = 0,nin = 0,nout = 0,mo = 0;
+    char *u = NULL, *y = NULL;
+    char inp, num;
+    int i  = 0, nin = 0, nout = 0, mo = 0;
     char *opar = NULL;
-    nin=GetNin(block);
-    nout=GetNout(block);
-    opar=Getint8OparPtrs(block,1);
-    mo=GetOparSize(block,1,1);
-    if (flag==1) {
-	num=0;
-	for (i=0;i<nin;i++)
-	{
-	    u=Getint8InPortPtrs(block,i+1);
-	    inp=*u;
-	    if (inp>0) inp=1;
-	    else inp=0;
-	    inp=inp<<i;
-	    num=num+inp;
-	}
-	for (i=0;i<nout;i++)
-	{
-	    y=Getint8OutPortPtrs(block,i+1);
-	    *y=*(opar+num+i*mo);
-	}
+    nin = GetNin(block);
+    nout = GetNout(block);
+    opar = Getint8OparPtrs(block, 1);
+    mo = GetOparSize(block, 1, 1);
+    if (flag == 1)
+    {
+        num = 0;
+        for (i = 0; i < nin; i++)
+        {
+            u = Getint8InPortPtrs(block, i + 1);
+            inp = *u;
+            if (inp > 0)
+            {
+                inp = 1;
+            }
+            else
+            {
+                inp = 0;
+            }
+            inp = inp << i;
+            num = num + inp;
+        }
+        for (i = 0; i < nout; i++)
+        {
+            y = Getint8OutPortPtrs(block, i + 1);
+            *y = *(opar + num + i * mo);
+        }
     }
-    if (flag==6) {
-	u=Getint8InPortPtrs(block,1);
-       	for (i=0;i<nout;i++)
-	{
-	    y=Getint8OutPortPtrs(block,i+1);
-	    *y=*u;
-	}
+    if (flag == 6)
+    {
+        u = Getint8InPortPtrs(block, 1);
+        for (i = 0; i < nout; i++)
+        {
+            y = Getint8OutPortPtrs(block, i + 1);
+            *y = *u;
+        }
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

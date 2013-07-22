@@ -16,6 +16,6 @@
 //   ive : vertex index
 //
 function this = optimsimplex_setx ( this , ive , x )
-  this.x ( ive , 1:this.n ) = x(1:this.n);
+    this.x ( ive , 1:this.n ) = x(1:this.n);
 endfunction
 

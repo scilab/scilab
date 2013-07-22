@@ -112,8 +112,8 @@ function tree_out = atomsDESCRIPTIONaddField( tree_in , package_name , package_v
         end
 
 
-    // 2nd case : All versions of a package are concerned
-    // -------------------------------------------------------------------------
+        // 2nd case : All versions of a package are concerned
+        // -------------------------------------------------------------------------
 
     elseif  package_version == "*" then
 
@@ -134,8 +134,8 @@ function tree_out = atomsDESCRIPTIONaddField( tree_in , package_name , package_v
         packages_out(package_name) = package_versions_struct;
 
 
-    // 3rd case : Specific version of a package
-    // -------------------------------------------------------------------------
+        // 3rd case : Specific version of a package
+        // -------------------------------------------------------------------------
 
     else
 

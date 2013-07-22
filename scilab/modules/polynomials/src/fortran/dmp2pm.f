@@ -10,7 +10,7 @@ C/MEMBR ADD NAME=DMP2PM,SSI=0
 c     Copyright INRIA
       subroutine dmp2pm(mp,d,nl,pm,deg,m,n)
 c!but
-c Le sous programme dmptopm converti la  matrice de polynomes
+c Le sous programme dmptopm convertit la matrice de polynomes
 c definie par mp,d,nl en un polynome matriciel pm
 c!liste d'appel
 c     double precision mp(*),pm(m,n*(deg+1))

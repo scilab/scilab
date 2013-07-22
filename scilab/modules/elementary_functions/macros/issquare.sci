@@ -20,5 +20,5 @@ function r = issquare(v)
     s = size(squeeze(v))
     s = s(s>0)   // to reject [ ]
     r = length(unique(s))==1;
-    
+
 endfunction

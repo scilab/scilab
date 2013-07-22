@@ -9,141 +9,141 @@
 package org.scilab.modules.completion;
 
 
- /** 
-   * @author Allan CORNET
-   * @copyright INRIA 2007
-   */
+/**
+  * @author Allan CORNET
+  * @copyright INRIA 2007
+  */
 public class Completion {
 
- /**
-   * Constructor
-   */
- protected Completion() {
-    throw new UnsupportedOperationException();
- }
-  
-/**
-* completion function on all types for scilab
-* @param[in] somechars first characters of a word
-* @return an array of chars 
-*/
-public static String[] searchAllDictionaries(String somechars) {
-    return CompletionJNI.searchAllDictionaries(somechars);
-  }
+    /**
+      * Constructor
+      */
+    protected Completion() {
+        throw new UnsupportedOperationException();
+    }
 
-  
-/**
-* completion function on Functions for scilab
-* @param[in] somechars first characters of a word
-* @return an array of chars 
-*/
-public static String[] searchFunctionsDictionary(String somechars) {
-    return CompletionJNI.searchFunctionsDictionary(somechars);
-  }
+    /**
+    * completion function on all types for scilab
+    * @param[in] somechars first characters of a word
+    * @return an array of chars
+    */
+    public static String[] searchAllDictionaries(String somechars) {
+        return CompletionJNI.searchAllDictionaries(somechars);
+    }
 
-  
-/**
-* completion function on command words for scilab
-* @param[in] somechars first characters of a word
-* @return an array of chars 
-*/
-public static String[] searchCommandsDictionary(String somechars) {
-    return CompletionJNI.searchCommandsDictionary(somechars);
-  }
 
-  
-/**
-* completion function on Macros in libraries for scilab
-* @param[in] somechars first characters of a word
-* @return an array of chars 
-*/
-public static String[] searchMacrosDictionary(String somechars) {
-    return CompletionJNI.searchMacrosDictionary(somechars);
-  }
+    /**
+    * completion function on Functions for scilab
+    * @param[in] somechars first characters of a word
+    * @return an array of chars
+    */
+    public static String[] searchFunctionsDictionary(String somechars) {
+        return CompletionJNI.searchFunctionsDictionary(somechars);
+    }
 
-  
-/**
-* completion function on Variables for scilab
-* @param[in] somechars first characters of a word
-* @return an array of chars 
-*/
-public static String[] searchVariablesDictionary(String somechars) {
-    return CompletionJNI.searchVariablesDictionary(somechars);
-  }
 
-  
-/**
-* completion function on files for scilab
-* @param[in] somechars first characters of a word
-* @return an array of chars 
-*/
-public static String[] searchFilesDictionary(String somechars) {
-    return CompletionJNI.searchFilesDictionary(somechars);
-  }
+    /**
+    * completion function on command words for scilab
+    * @param[in] somechars first characters of a word
+    * @return an array of chars
+    */
+    public static String[] searchCommandsDictionary(String somechars) {
+        return CompletionJNI.searchCommandsDictionary(somechars);
+    }
 
-  
-/**
-* completion function on files for scilab
-* @param[in] the line before the caret
-* @param[in] the part
-* @return an array of chars 
-*/
-public static String[] searchFieldsDictionary(String lineBeforeCaret, String pattern) {
-    return CompletionJNI.searchFieldsDictionary(lineBeforeCaret, pattern);
-  }
 
-  
-/**
-* completion handle graphics properties for scilab
-* @param[in] somechars first characters of a word
-* @return an array of chars 
-*/
-public static String[] searchHandleGraphicsPropertiesDictionary(String somechars) {
-    return CompletionJNI.searchHandleGraphicsPropertiesDictionary(somechars);
-  }
+    /**
+    * completion function on Macros in libraries for scilab
+    * @param[in] somechars first characters of a word
+    * @return an array of chars
+    */
+    public static String[] searchMacrosDictionary(String somechars) {
+        return CompletionJNI.searchMacrosDictionary(somechars);
+    }
 
-  
-/**
-* pre parsing current line to search with completion
-* @param[in] current line
-* @return word to find with completion
-*/
-public static String getPartLevel(String line) {
-    return CompletionJNI.getPartLevel(line);
-  }
 
-  
-/**
-* pre parsing current line to search with completion (file)
-* @param[in] current line
-* @return word to find with completion
-*/
-public static String getFilePartLevel(String line) {
-    return CompletionJNI.getFilePartLevel(line);
-  }
+    /**
+    * completion function on Variables for scilab
+    * @param[in] somechars first characters of a word
+    * @return an array of chars
+    */
+    public static String[] searchVariablesDictionary(String somechars) {
+        return CompletionJNI.searchVariablesDictionary(somechars);
+    }
 
-  
-/**
-* Get common part to a array
-* @param[in] string array
-* @param[in] size of string array
-* @return common part
-*/
-public static String getCommonPart(String[] dictionnary, int sizeDictionnary) {
-    return CompletionJNI.getCommonPart(dictionnary, sizeDictionnary);
-  }
 
-  
-/**
-* complete line
-* @param[in] current line (before caret)
-* @param[in] line to add
-* @param[in] type of line to add
-* @param[in] line after caret
-* @return modified line 
-*/
-public static String completelineforjava(String currentLine, String stringToAdd, boolean isFile, String postCaretLine) {
-    return CompletionJNI.completelineforjava(currentLine, stringToAdd, isFile, postCaretLine);
-  }
+    /**
+    * completion function on files for scilab
+    * @param[in] somechars first characters of a word
+    * @return an array of chars
+    */
+    public static String[] searchFilesDictionary(String somechars) {
+        return CompletionJNI.searchFilesDictionary(somechars);
+    }
+
+
+    /**
+    * completion function on files for scilab
+    * @param[in] the line before the caret
+    * @param[in] the part
+    * @return an array of chars
+    */
+    public static String[] searchFieldsDictionary(String lineBeforeCaret, String pattern) {
+        return CompletionJNI.searchFieldsDictionary(lineBeforeCaret, pattern);
+    }
+
+
+    /**
+    * completion handle graphics properties for scilab
+    * @param[in] somechars first characters of a word
+    * @return an array of chars
+    */
+    public static String[] searchHandleGraphicsPropertiesDictionary(String somechars) {
+        return CompletionJNI.searchHandleGraphicsPropertiesDictionary(somechars);
+    }
+
+
+    /**
+    * pre parsing current line to search with completion
+    * @param[in] current line
+    * @return word to find with completion
+    */
+    public static String getPartLevel(String line) {
+        return CompletionJNI.getPartLevel(line);
+    }
+
+
+    /**
+    * pre parsing current line to search with completion (file)
+    * @param[in] current line
+    * @return word to find with completion
+    */
+    public static String getFilePartLevel(String line) {
+        return CompletionJNI.getFilePartLevel(line);
+    }
+
+
+    /**
+    * Get common part to a array
+    * @param[in] string array
+    * @param[in] size of string array
+    * @return common part
+    */
+    public static String getCommonPart(String[] dictionnary, int sizeDictionnary) {
+        return CompletionJNI.getCommonPart(dictionnary, sizeDictionnary);
+    }
+
+
+    /**
+    * complete line
+    * @param[in] current line (before caret)
+    * @param[in] line to add
+    * @param[in] type of line to add
+    * @param[in] line after caret
+    * @return modified line
+    */
+    public static String completelineforjava(String currentLine, String stringToAdd, boolean isFile, String postCaretLine) {
+        return CompletionJNI.completelineforjava(currentLine, stringToAdd, isFile, postCaretLine);
+    }
 
 }

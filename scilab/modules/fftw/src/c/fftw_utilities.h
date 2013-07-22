@@ -28,11 +28,12 @@ typedef struct guru_dim_st
     fftw_iodim *howmany_dims;
 } guru_dim_struct;
 
-enum Plan_Type {
-    C2C_PLAN=0,
-    R2C_PLAN=1,
-    C2R_PLAN=2,
-    R2R_PLAN=3
+enum Plan_Type
+{
+    C2C_PLAN = 0,
+    R2C_PLAN = 1,
+    C2R_PLAN = 2,
+    R2R_PLAN = 3
 };
 
 /* definition of a FFTW_Plan structure type */
@@ -50,22 +51,22 @@ typedef struct fftw_plan_st
 
 /* prototypes of utilities functions */
 fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
-    double *ri, double *ii,
-    double *ro, double *io,
-    unsigned flags, int isn, fftw_r2r_kind *kind,int *errflag);
+                      double *ri, double *ii,
+                      double *ro, double *io,
+                      unsigned flags, int isn, fftw_r2r_kind *kind, int *errflag);
 
 int FreeFFTWPlan(FFTW_Plan_struct *Sci_Plan);
 
 int CheckGuruDims(guru_dim_struct *gdim1, guru_dim_struct *gdim2);
 int CheckKindArray(fftw_r2r_kind *kind1, fftw_r2r_kind *kind2, int rank);
 
-void ExecuteFFTWPlan(enum Plan_Type type, const fftw_plan p, double *ri, double *ii,double *ro, double *io);
+void ExecuteFFTWPlan(enum Plan_Type type, const fftw_plan p, double *ri, double *ii, double *ro, double *io);
 
-int is_real(double *Ar,double *Ai, int ndims, int *dims);
-int check_array_symmetry(double *Ar,double *Ai, guru_dim_struct gdim);
-int complete_array(double *Ar,double *Ai, guru_dim_struct gdim);
-int dct_scale_array(double *Ar,double *Ai, guru_dim_struct gdim, int isn);
-int dst_scale_array(double *Ar,double *Ai, guru_dim_struct gdim, int isn);
+int is_real(double *Ar, double *Ai, int ndims, int *dims);
+int check_array_symmetry(double *Ar, double *Ai, guru_dim_struct gdim);
+int complete_array(double *Ar, double *Ai, guru_dim_struct gdim);
+int dct_scale_array(double *Ar, double *Ai, guru_dim_struct gdim, int isn);
+int dst_scale_array(double *Ar, double *Ai, guru_dim_struct gdim, int isn);
 
 unsigned int getCurrentFftwFlags(void);
 void setCurrentFftwFlags(unsigned int newFftwFlags);

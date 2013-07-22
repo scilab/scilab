@@ -78,7 +78,7 @@ start_debug_kdbg() {
 }
 
 start_profiling() {
-    VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=12 --demangle=yes --leak-check=full --show-reachable=yes --smc-check=all --db-attach=yes --gen-suppressions=all -v --trace-redir=yes --show-below-main=yes --track-origins=yes --suppressions=$SCI/tools/profiling/valgrind.supp $SCILAB_VALGRIND_OPT"
+    VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=12 --demangle=yes --leak-check=full --show-reachable=yes --smc-check=all --db-attach=yes --gen-suppressions=all --show-below-main=yes --track-origins=yes --suppressions=$SCI/tools/profiling/valgrind.supp $SCILAB_VALGRIND_OPT"
     if test -n "$DEVENV"; then
         echo "Running profiling of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
         "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
@@ -751,6 +751,9 @@ check_macosx_version()
 
 # . is used by the dynamic link. The build lib are copied into the PWD
 SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/:.
+if test -d $SCI/lib/thirdparty; then
+    SCILIB=$SCI/lib/thirdparty:$SCILIB;
+fi
 LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
 
 case $OS in

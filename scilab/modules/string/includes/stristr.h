@@ -22,7 +22,7 @@
 * @param[in] string to search
 * @return result
 */
-STRING_IMPEXP char *stristr(const char *psz,const char *tofind);
+STRING_IMPEXP char *stristr(const char *psz, const char *tofind);
 
 #endif /* __STRISTR_H__ */
 /*--------------------------------------------------------------------------*/

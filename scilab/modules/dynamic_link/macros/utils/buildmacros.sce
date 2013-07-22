@@ -7,9 +7,9 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //==============================================================================
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 //==============================================================================
-genlib('dynamic_link_utilslib', 'SCI/modules/dynamic_link/macros/utils', %f, %t);
+genlib("dynamic_link_utilslib", "SCI/modules/dynamic_link/macros/utils", %f, %t);
 //==============================================================================

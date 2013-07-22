@@ -10,49 +10,49 @@
 
 function y = flipdim(x, dim)
 
-  // FLIPDIM function
-  // Given x, a scalar/vector/matix of reals and an integer dim, this function flips the x components  along the dimension number dim (x and y have the same size). 
-  // -Inputs :
-  //  x : a scalar/vector/array of reals
-  //  dim : a positive integer
-  // -Output :
-  //  y : a scalar/vector/array of reals
-  //
-  // F.Belahcene
+    // FLIPDIM function
+    // Given x, a scalar/vector/matix of reals and an integer dim, this function flips the x components  along the dimension number dim (x and y have the same size).
+    // -Inputs :
+    //  x : a scalar/vector/array of reals
+    //  dim : a positive integer
+    // -Output :
+    //  y : a scalar/vector/array of reals
+    //
+    // F.Belahcene
 
-  rhs = argn(2);
-  if rhs <> 2 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"flipdim", 2));
-  end
+    rhs = argn(2);
+    if rhs <> 2 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"flipdim", 2));
+    end
 
-  if size(dim,"*")<>1 then
-    error(msprintf(gettext("%s: Wrong size for input argument #%d: A positive integer expected.\n"),"flipdim",2));
-  elseif type(dim)<>8 & (type(dim)<>1 | dim<1) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: A positive integer expected.\n"),"flipdim",2));
-  end
+    if size(dim,"*")<>1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: A positive integer expected.\n"),"flipdim",2));
+    elseif type(dim)<>8 & (type(dim)<>1 | dim<1) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A positive integer expected.\n"),"flipdim",2));
+    end
 
-  if ndims(x)==2 & type(x)<>1 then
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: Real matrix expected.\n"),"flipdim",1));
-  elseif ndims(x)>2 & type(x.entries)<>1
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: Real matrix expected.\n"),"flipdim",1));
-  end
+    if ndims(x)==2 & type(x)<>1 then
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: Real matrix expected.\n"),"flipdim",1));
+    elseif ndims(x)>2 & type(x.entries)<>1
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: Real matrix expected.\n"),"flipdim",1));
+    end
 
-  dim = floor(dim);
+    dim = floor(dim);
 
-  if dim > ndims(x)
-    y = x;
-    return
-  end
+    if dim > ndims(x)
+        y = x;
+        return
+    end
 
-  l = list();
-  for k = 1:dim - 1
-    l(k) = eye();
-  end
-  l(dim) = $:-1:1
-  for k = dim + 1:ndims(x)
-    l(k) = eye();
-  end
+    l = list();
+    for k = 1:dim - 1
+        l(k) = eye();
+    end
+    l(dim) = $:-1:1
+    for k = dim + 1:ndims(x)
+        l(k) = eye();
+    end
 
-  y = x(l(:));
+    y = x(l(:));
 
 endfunction
