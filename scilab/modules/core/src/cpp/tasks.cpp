@@ -16,7 +16,6 @@
 #include "visitor.hxx"
 #include "printvisitor.hxx"
 #include "execvisitor.hxx"
-#include "JITvisitor.hxx"
 #include "timedvisitor.hxx"
 #include "debugvisitor.hxx"
 #include "stepvisitor.hxx"
@@ -27,12 +26,16 @@
 //Needed as both llvm and scilab has #define ...
 #undef ID
 #undef LT
+#undef TRY
+#undef CATCH
+#undef END
 
-#include "llvm/Constants.h"
-#include "llvm/DerivedTypes.h"
-#include "llvm/IRBuilder.h"
-#include "llvm/LLVMContext.h"
-#include "llvm/Module.h"
+#include "JITvisitor.hxx"
+#include "llvm/IR/Constants.h"
+#include "llvm/IR/DerivedTypes.h"
+#include "llvm/IR/IRBuilder.h"
+#include "llvm/IR/LLVMContext.h"
+#include "llvm/IR/Module.h"
 #include "llvm/Analysis/Verifier.h"
 #include <cstdio>
 #include <string>
