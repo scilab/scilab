@@ -176,7 +176,7 @@ std::vector<InternalType*>	List::extract(typed_list* _pArgs)
             break;
         }
         InternalType* pIT = (*m_plData)[idx - 1];
-        outList.push_back(pIT->clone());
+        outList.push_back(pIT);
     }
 
     for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
@@ -247,6 +247,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
         }
 
         InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert()->clone();
+        pInsert->IncreaseRef();
         if (idx > m_plData->size())
         {
             //try to insert after the last index, increase list size and assign value
@@ -292,6 +293,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
         }
 
         (*m_plData)[idx - 1] = _pSource->clone();
+        (*m_plData)[idx - 1]->IncreaseRef();
     }
 
     m_iSize = (int)m_plData->size();

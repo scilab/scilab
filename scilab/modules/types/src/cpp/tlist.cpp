@@ -173,6 +173,7 @@ bool TList::set(const int _iIndex, InternalType* _pIT)
     }
 
     (*m_plData)[_iIndex] = _pIT->clone();
+    (*m_plData)[_iIndex]->IncreaseRef();
     return true;
 }
 
