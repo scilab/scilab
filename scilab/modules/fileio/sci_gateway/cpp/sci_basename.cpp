@@ -37,11 +37,23 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
         return Function::Error;
     }
 
+    if (_iRetCount != 1)
+    {
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "basename", 1);
+        return Function::Error;
+    }
+
     if (in.size() > 2)
     {
-        if (in[2]->isBool() == false && in[2]->getAs<types::Bool>()->getSize() != 1)
+        if (in[2]->isBool() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "basename", 3);
+            return Function::Error;
+        }
+
+        if (in[2]->getAs<types::Bool>()->getSize() != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar boolean expected.\n"), "basename", 3);
             return Function::Error;
         }
 
@@ -50,9 +62,15 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 
     if (in.size() > 1)
     {
-        if (in[1]->isBool() == false && in[1]->getAs<types::Bool>()->getSize() != 1)
+        if (in[1]->isBool() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "basename", 2);
+            return Function::Error;
+        }
+
+        if (in[1]->getAs<types::Bool>()->getSize() != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar boolean expected.\n"), "basename", 2);
             return Function::Error;
         }
 
