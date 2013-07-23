@@ -2136,9 +2136,12 @@ public class CallScilabBridge {
     public static void setToolbarVisible(String parentUID, boolean status) {
         SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
         if (parentTab != null) {
-            parentTab.getToolBar().getAsSimpleToolBar().setVisible(status);
-            BarUpdater.updateBars(parentTab.getParentWindowId(), parentTab.getMenuBar(),
-                                  parentTab.getToolBar(), parentTab.getInfoBar(), parentTab.getName(), parentTab.getWindowIcon());
+            boolean oldStatus = parentTab.getToolBar().getAsSimpleToolBar().isVisible();
+            if (oldStatus != status) {
+                parentTab.getToolBar().getAsSimpleToolBar().setVisible(status);
+                BarUpdater.updateBars(parentTab.getParentWindowId(), parentTab.getMenuBar(),
+                                      parentTab.getToolBar(), parentTab.getInfoBar(), parentTab.getName(), parentTab.getWindowIcon());
+            }
         }
     }
 
