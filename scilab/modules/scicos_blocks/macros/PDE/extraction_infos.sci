@@ -57,7 +57,7 @@ function [a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,CI,
     //          - CLb_exp, CLa_exp (String) :  expressions des conditions aux limites resp en a et en b       //
     //          - oper (vecteur des entiers) : code les op�rateurs selectionnes de 1 � 7                      //
     //          - ai, bi (String) : avec i=1:7 : expressions des coefficients des differents operateurs       //
-    //          - mesures (vecteur des doubles) : renvoi la liste des points de mesures                       //
+    //          - mesures (vecteur des doubles) : renvoie la liste des points de mesures                       //
     //          - k (entier) : renvoie le nombre de port d'entree regulier du bloc EDP                        //
     //--------------------------------------------------------------------------------------------------------//
 

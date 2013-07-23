@@ -163,7 +163,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         choix = []
     end
 
-    //** switch appropriate solver
+    //** switch to appropriate solver
     if %cpr.sim.xptr($)-1<size(%cpr.state.x,"*") & solver<100 then
         warning(["Diagram has been compiled for implicit solver"
         "switching to implicit Solver"])

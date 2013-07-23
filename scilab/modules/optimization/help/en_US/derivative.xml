@@ -312,6 +312,21 @@ Relative error with numdiff: 7.140672e-006
         <title>See Also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="interp">interp</link>
+            </member>
+            <member>
+                <link linkend="interp2d">interp2d</link>
+            </member>
+            <member>
+                <link linkend="splin">splin</link>
+            </member>
+            <member>
+                <link linkend="eval_cshep2d">eval_cshep2d</link>
+            </member>
+            <member>
+                <link linkend="diff">diff</link>
+            </member>
+            <member>
                 <link linkend="numdiff">numdiff</link>
             </member>
             <member>

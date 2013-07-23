@@ -17,4 +17,4 @@ execstr("exists(4)", "errcatch");
 
 msg = lasterror();
 
-if msg<> msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"), "exists", 1) then pause; end
+if msg<> msprintf(gettext("%s: Wrong type for argument #%d: Matrix of strings expected.\n"), "exists", 1) then pause; end

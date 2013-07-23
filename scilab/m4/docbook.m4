@@ -25,25 +25,28 @@ AC_ARG_WITH(docbook,
 		)
 
 	for dir in $with_docbook $SCI_SRCDIR_FULL/thirdparty/docbook/ /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /usr/share/xml/docbook/stylesheet/nwalsh/current/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/ /usr/share/sgml/docbook/xsl-stylesheets-*/ /usr/share/sgml/docbook/xsl-stylesheets /usr/share/sgml/docbook/xsl-ns-stylesheets-*/; do
-		if test -r "$dir/javahelp/javahelp.xsl" -a "$DOCBOOK_ROOT" = ""; then
+		if test -r "$dir/fo/docbook.xsl" -a "$DOCBOOK_ROOT" = ""; then
 			DOCBOOK_ROOT=$dir
         fi
 	done
 	if test -z "$DOCBOOK_ROOT"; then
 		AC_MSG_ERROR([Could not find the Docbook root directory. If you have installed it on your system and we haven't been able to find it. Please report a bug])
 	fi
+	AC_SUBST(DOCBOOK_ROOT)
 
 
-	# Saxon XSLT Processor
-	AC_JAVA_CHECK_PACKAGE([saxon],[com.icl.saxon.Loader],[Saxon XSLT Processor])
+	# Saxon XSLT Processor, as the JVM implementation is unable to parse the docbook xsl files
+	# check Saxon-HE 9.5 first then fallback to Saxon-6.5
+	AC_JAVA_CHECK_PACKAGE([saxon9he],[net.sf.saxon.Version],[Saxon XSLT Processor],"yes")
 	SAXON=$PACKAGE_JAR_FILE
+	if test -z "$SAXON"; then
+		AC_JAVA_CHECK_PACKAGE([saxon],[net.sf.saxon.Version],[Saxon XSLT Processor],"yes")
+		SAXON=$PACKAGE_JAR_FILE
+	fi
+	if test -z "$SAXON"; then
+		AC_JAVA_CHECK_PACKAGE([saxon],[com.icl.saxon.Loader],[Saxon XSLT Processor])
+		SAXON=$PACKAGE_JAR_FILE
+	fi
 	AC_SUBST(SAXON)
-
-    # JLaTeXMath FOP
-    AC_JAVA_CHECK_PACKAGE([jlatexmath-fop],[org.scilab.forge.jlatexmath.fop.JLaTeXMathObj],[LaTex Rendering - FOP plugin])
-    JLATEXMATH_FOP=$PACKAGE_JAR_FILE
-    AC_SUBST(JLATEXMATH_FOP)
-
-AC_SUBST(DOCBOOK_ROOT)
 
 ])

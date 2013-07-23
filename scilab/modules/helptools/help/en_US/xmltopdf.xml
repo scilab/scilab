@@ -65,7 +65,8 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example">
+            <![CDATA[ 
 // example_1/
 // `-- help
 //     |-- en_US
@@ -81,7 +82,9 @@
 //         |-- example_1_function_2.xml
 //         `-- example_1_function_3.xml
 
-my_module_path = pathconvert(SCI+'/modules/helptools/examples/example_1',%f,%f)
+tmpPath = TMPDIR + "/examples";
+copyfile("SCI/modules/helptools/examples", tmpPath);
+my_module_path = pathconvert(tmpPath + "/example_1",%f,%f);
 
 // Build the french help
 // =============================================================================
@@ -100,7 +103,8 @@ my_english_pdf        = xmltopdf(my_english_help_dir,my_english_help_title,'en_U
 my_chinese_help_dir   = my_module_path+'/help/zh_TW';
 my_chinese_help_title = 'Example 1 [zh_TW]';
 my_chinese_pdf        = xmltopdf(my_chinese_help_dir,my_chinese_help_title,'zh_TW')
- ]]></programlisting>
+ ]]>
+        </programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

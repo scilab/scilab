@@ -464,19 +464,13 @@ static bool import_string(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAd
     {
         printError(&sciErr, 0);
         FREE(piDims);
-        for (int i = 0 ; i < iSize ; i++)
-        {
-            free(pstData[i]);
-        }
+        freeStringMatrix(_iDatasetId, pstData);
         FREE(pstData);
         return false;
     }
 
     FREE(piDims);
-    for (int i = 0 ; i < iSize ; i++)
-    {
-        free(pstData[i]);
-    }
+    freeStringMatrix(_iDatasetId, pstData);
     FREE(pstData);
 
     return true;

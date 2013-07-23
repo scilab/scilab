@@ -185,6 +185,8 @@ Bug fixes
 
 * Bug #5616 fixed - typeof(uiCreateTree(...)) returned "Tree" instead of "uitree".
 
+* Bug #5694 fixed - numdiff() help page clarified.
+
 * Bug #5779 fixed - xnumb number format was too small (+ unit test added).
 
 * Bug #6168 fixed - Help for zpbutt, zpch1, zpch2 and zpell were unclear.
@@ -242,6 +244,12 @@ Bug fixes
 
 * Bug #8373 fixed - clear() can now take a matrix of strings argument.
 
+* Bug #8462 fixed - bvodeS() could make Scilab unstable.
+
+* Bug #8470 fixed - bvode() displayed some output in terminal window and not in Scilab console.
+
+* Bug #8479 fixed - the latest Saxon version was not supported.
+
 * Bug #8511 fixed - sprand used rand and grand functions, and internal state of the random
                     generator was changed.
 
@@ -261,6 +269,8 @@ Bug fixes
 
 * Bug #8778 fixed - Call_ScilabOpen, TerminateScilab can not be called more
                     than 80 times in a loop.
+                    
+* Bug #8779 fixed - gsort() did not preserve order of equal elements, in lexicographic sort.
 
 * Bug #8820 fixed - Squeeze did not return a matrix when the number of dimensions
                     of the result was less or equal to 2.
@@ -476,3 +486,5 @@ Bug fixes
                      backup filename.
 
 * Bug #12715 fixed - Variable cross in pspect and cspect has been renamed because of conflicts with cross function.
+
+* Bug #12736 fixed - In SciNotes, the Completion window appeared only in first tab.

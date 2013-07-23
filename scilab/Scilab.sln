@@ -141,6 +141,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos", "modules\scicos\sr
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D} = {DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}
 		{566E524B-D327-4416-A865-9C83503FAB7B} = {566E524B-D327-4416-A865-9C83503FAB7B}
 		{2F7B6080-8D84-43A7-A967-13FC8AA83DEB} = {2F7B6080-8D84-43A7-A967-13FC8AA83DEB}
+		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
 	EndProjectSection
 EndProject
 Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "scicos_f", "modules\scicos\src\fortran\scicos_f.vfproj", "{566E524B-D327-4416-A865-9C83503FAB7B}"
@@ -590,6 +591,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_gw", "modules\core\sci_gateway\cpp\core_gw.vcxproj", "{3E933EB6-D427-4828-9B30-B6B9987491F6}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos-cli", "modules\scicos\src\c\cli\scicos-cli.vcxproj", "{A1CE241B-0FA7-488D-B737-1A1BC0F6A85E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos_blocks-cli", "modules\scicos_blocks\src\c\cli\scicos_blocks-cli.vcxproj", "{424A5578-BA28-435F-8313-8D85886A3539}"
 EndProject

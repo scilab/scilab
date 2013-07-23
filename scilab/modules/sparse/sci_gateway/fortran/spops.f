@@ -1164,7 +1164,7 @@ c     .     reshape to column vector via spmat (reshape is named matrix in scila
 *** le bug etait du au fait que  stk(l2) (remplace par stk(lr)) est remanie 
 *** (via une permutation) et donc pb si arg2 est passe par reference
 
-*** il faudrait peut utiliser spreshape maintenant
+*** il faudrait peut-être utiliser spreshape maintenant
                call dspmat(m2,n2,stk(lr),nel2,istk(irc2),m2*n2
      $              ,istk(ircr),istk(iw))  
             else

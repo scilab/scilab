@@ -50,7 +50,7 @@ function [x,y,typ]=SourceP(job,arg1,arg2)
         graphics=arg1.graphics;exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,P0,T0,H0,option_temperature,exprs]=scicos_getvalue("Paramètres du puit",..
+            [ok,P0,T0,H0,option_temperature,exprs]=scicos_getvalue("Paramètres du puits",..
             ["Pression de la source : P0 (Pa)";..
             "Temperature de la source : T0 (K)";..
             "Enthalpie spécifique de la source : H0 (J/kg)";..

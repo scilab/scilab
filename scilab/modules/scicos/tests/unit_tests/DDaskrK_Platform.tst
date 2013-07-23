@@ -9,8 +9,6 @@
 // <-- XCOS TEST -->
 
 // Import diagram
-loadXcosLibs
-loadScicos
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/DDaskr_Platform_test.zcos"));
 
 // Redefining messagebox() to avoid popup

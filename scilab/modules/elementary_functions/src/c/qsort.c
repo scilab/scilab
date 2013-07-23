@@ -1,8 +1,8 @@
 /*
- * See Copyright below
- * Copyright (c) 1992, 1993
- * The Regents of the University of California.  All rights reserved.
- */
+* See Copyright below
+* Copyright (c) 1992, 1993
+* The Regents of the University of California.  All rights reserved.
+*/
 
 #include <stdlib.h>
 #include <string.h>
@@ -21,45 +21,45 @@
 /*--------------------------------------------------------------------------*/
 /*	$NetBSD: qsort.c,v 1.5 1995/12/28 08:52:36 thorpej Exp $	*/
 /*-
- * Copyright (c) 1992, 1993
- *	The Regents of the University of California.  All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. All advertising materials mentioning features or use of this software
- *    must display the following acknowledgement:
- *	This product includes software developed by the University of
- *	California, Berkeley and its contributors.
- * 4. Neither the name of the University nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
- *
- *  Modified for Scilab Jean-Philippe Chancelier  to keep a permutation index
- *  Modified for Scilab by Serge Steer to make it stable when permutation index is computed.
- */
+* Copyright (c) 1992, 1993
+*	The Regents of the University of California.  All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+* 1. Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+* 2. Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the
+*    documentation and/or other materials provided with the distribution.
+* 3. All advertising materials mentioning features or use of this software
+*    must display the following acknowledgement:
+*	This product includes software developed by the University of
+*	California, Berkeley and its contributors.
+* 4. Neither the name of the University nor the names of its contributors
+*    may be used to endorse or promote products derived from this software
+*    without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+* ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+* ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+* FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+* OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+* HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+* LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+* OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+* SUCH DAMAGE.
+*
+*  Modified for Scilab Jean-Philippe Chancelier  to keep a permutation index
+*  Modified for Scilab by Serge Steer to make it stable when permutation index is computed.
+*/
 /*--------------------------------------------------------------------------*/
 /*
- * Qsort routine from Bentley & McIlroy's "Engineering a Sort Function".
- * Software---Practice and Experience, 23(11):1249-1265
- */
+* Qsort routine from Bentley & McIlroy's "Engineering a Sort Function".
+* Software---Practice and Experience, 23(11):1249-1265
+*/
 /*--------------------------------------------------------------------------*/
 void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)(), int (*swapcode)(), int (*lswapcodeind)())
 {
@@ -84,12 +84,13 @@ loop:
     /*Determine the pivot */
     pm = a + (n / 2) * es;/* Small arrays, middle element */
     tabm = tab + (n / 2) * es1 ;
+
+    pn = a + (n - 1) * es;
+    tabn = tab + (n - 1) * es1;
     if (n > 7)
     {
         pl = a;
         tabl = tab;
-        pn = a + (n - 1) * es;
-        tabn = tab + (n - 1) * es1;
         if (n > 40)  /* Big arrays, pseudomedian of 9 */
         {
             dind = (n / 8) * es1;
@@ -102,20 +103,25 @@ loop:
     }
     /* Put it at the first position */
     /* Partionning */
-    swapind(tab, tabm);
-    swap(a, pm);
+    if (cmp(pn, a, tabn, tab, flag))
+    {
+        swapind(tab, tabm);
+        swap(a, pm);
+    }
 
     /* pointers on data array */
     pa = pb = a + es;/* pa and pb start from the beginning of the array */
     pc = pd = a + (n - 1) * es;/* pc and pd start from the end of the array */
+
     /* similar pointers for index array */
     taba = tabb = tab + es1;
     tabc = tabd = tab + (n - 1) * es1;
+
     /* here we have
-      |a  |pa                            | pc|
-      |a  |pb                            | pd|
-      |*a |                ?             | ? |
-     */
+    |a  |pa                            | pc|
+    |a  |pb                            | pd|
+    |*a |                ?             | ? |
+    */
     for (;;)
     {
         /* increase the pointer pb while it points on values lesser  than the pivot (pointer a) */
@@ -155,16 +161,16 @@ loop:
         {
             /* here we have
             |a      |pa      |pc|pb     pd|      $|
-             |   =*a |    <*a |       >*a  | =*a  $|
-                */
+            |   =*a |    <*a |       >*a  | =*a  $|
+            */
             /* partition is done */
             break;
         }
         /*here
-          pc  points on a value lesser than the pivot
-          and
-          pb points on a value greater than the pivot
-          swap the values
+        pc  points on a value lesser than the pivot
+        and
+        pb points on a value greater than the pivot
+        swap the values
         */
         swapind(tabb, tabc);
         tabb += es1;
@@ -175,8 +181,8 @@ loop:
         pb += es;
         pc -= es;
         /* here we have
-         |a      |pa      |pb       pc|       pd|      $|
-         |   =*a |    <*a |     ?     |    >*a  | =*a  $|
+        |a      |pa      |pb       pc|       pd|      $|
+        |   =*a |    <*a |     ?     |    >*a  | =*a  $|
         */
     }
 

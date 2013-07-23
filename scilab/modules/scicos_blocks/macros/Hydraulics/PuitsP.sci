@@ -33,10 +33,10 @@ function [x,y,typ]=PuitsP(job,arg1,arg2)
         else
             x1=0;x2=arg1.graphics.sz(1)
         end
-        //  standard_draw(arg1,%f,puit_draw_ports)
+        //  standard_draw(arg1,%f,puits_draw_ports)
         standard_draw(arg1,%f)
     case "getinputs" then
-        // [x,y,typ]=puit_inputs(arg1)
+        // [x,y,typ]=puits_inputs(arg1)
         [x,y,typ]=standard_inputs(arg1)
     case "getoutputs" then
         x=[];y=[];typ=[];
@@ -48,7 +48,7 @@ function [x,y,typ]=PuitsP(job,arg1,arg2)
         graphics=arg1.graphics;exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,P0,T0,H0,option_temperature,exprs]=scicos_getvalue("Paramètres du puit", ..
+            [ok,P0,T0,H0,option_temperature,exprs]=scicos_getvalue("Paramètres du puits", ..
             ["Pression de la source : P0 (Pa)";..
             "Temperature de la source : T0 (K)";..
             "Enthalpie spécifique de la source : H0 (J/kg)";..
