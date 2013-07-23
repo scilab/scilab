@@ -433,6 +433,7 @@ libsciscicos_blocks_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 	 		-I$(top_srcdir)/modules/scicos/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/operations/includes/ \
 			$(AM_CPPFLAGS)
 
 libsciscicos_blocks_la_CPPFLAGS= -I$(srcdir)/src/jni/ \

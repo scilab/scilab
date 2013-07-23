@@ -1037,7 +1037,15 @@
     </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\scicos_blocks.iss" />
-    <None Include="..\..\locales\scicos_blocks.pot" />
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Import</Filter>
+    </None>
+    <None Include="..\..\locales\scicos_blocks.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="polynomials_f_Import.def">
+      <Filter>Libraries Dependencies\Import</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="scicos_blocks.rc">

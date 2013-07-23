@@ -272,6 +272,9 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "special_functions_f", "modu
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "differential_equations", "modules\differential_equations\src\c\differential_equations.vcxproj", "{F0190B5D-FB21-47A2-99AC-06627CDD0F8A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
+	EndProjectSection
 EndProject
 Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "differential_equations_f", "modules\differential_equations\src\fortran\differential_equations_f.vfproj", "{28E4E9CA-3EEC-43EE-9F15-56259C6677B8}"
 	ProjectSection(ProjectDependencies) = postProject
