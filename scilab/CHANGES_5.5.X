@@ -1,4 +1,4 @@
-                    Changes between version 5.4.1 and 5.5.0
+                    Changes between version 5.4.X and 5.5.0
                     =======================================
 
 New features
@@ -102,8 +102,13 @@ Xcos
 
 * Added a new DAE solver : DDaskr, using BDF methods with direct Newton and preconditioned Krylov linear solvers, which includes rootfinding.
 
+* In the Modelica initialization GUI, inputs (eg. sensor) were not handled.
+
 * Bug #7350 fixed - The superblock I/O ports numbering was not updated
                     when a new port was dropped.
+
+* Bug #11518 fixed - CLR block-text was displayed out of the bounding box 
+                     when zooming.
 
 * Bug #12359 fixed - Xcos files has been converted to zcos to gain some space.
 
@@ -180,6 +185,8 @@ Bug fixes
 
 * Bug #5616 fixed - typeof(uiCreateTree(...)) returned "Tree" instead of "uitree".
 
+* Bug #5694 fixed - numdiff() help page clarified.
+
 * Bug #5779 fixed - xnumb number format was too small (+ unit test added).
 
 * Bug #6168 fixed - Help for zpbutt, zpch1, zpch2 and zpell were unclear.
@@ -237,6 +244,12 @@ Bug fixes
 
 * Bug #8373 fixed - clear() can now take a matrix of strings argument.
 
+* Bug #8462 fixed - bvodeS() could make Scilab unstable.
+
+* Bug #8470 fixed - bvode() displayed some output in terminal window and not in Scilab console.
+
+* Bug #8479 fixed - the latest Saxon version was not supported.
+
 * Bug #8511 fixed - sprand used rand and grand functions, and internal state of the random
                     generator was changed.
 
@@ -256,6 +269,8 @@ Bug fixes
 
 * Bug #8778 fixed - Call_ScilabOpen, TerminateScilab can not be called more
                     than 80 times in a loop.
+                    
+* Bug #8779 fixed - gsort() did not preserve order of equal elements, in lexicographic sort.
 
 * Bug #8820 fixed - Squeeze did not return a matrix when the number of dimensions
                     of the result was less or equal to 2.
@@ -275,6 +290,8 @@ Bug fixes
                     binary files.
 
 * Bug #9004 fixed - bitcmp function called with one input argument returned an error.
+
+* Bug #9020 fixed - exists function did not accept matrix as first input argument.
 
 * Bug #9059 fixed - tbx_build_macros and genlib do not stop on error.
 
@@ -469,3 +486,5 @@ Bug fixes
                      backup filename.
 
 * Bug #12715 fixed - Variable cross in pspect and cspect has been renamed because of conflicts with cross function.
+
+* Bug #12736 fixed - In SciNotes, the Completion window appeared only in first tab.

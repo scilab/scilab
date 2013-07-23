@@ -63,7 +63,7 @@ function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
         ypsave = ydot(i);
         y(i) = y(i) + del;
         ydot(i) = ydot(i) + cj*del;
-        [e ires]=res1(tx, y, ydot);
+        [e ires] = res1(tx, y, ydot);
         if ires < 0 then
             ires = -1;
             return;

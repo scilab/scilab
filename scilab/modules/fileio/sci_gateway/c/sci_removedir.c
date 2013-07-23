@@ -21,6 +21,8 @@
 #include "expandPathVariable.h"
 #include "localization.h"
 #include "PATH_MAX.h"
+#include "warningmode.h"
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 int sci_removedir(char *fname, unsigned long l)
 {
@@ -43,6 +45,13 @@ int sci_removedir(char *fname, unsigned long l)
             if ( isdir(expandedpath) )
             {
                 bOK = removedir(expandedpath);
+            }
+            else
+            {
+                if (getWarningMode())
+                {
+                    sciprint(_("%s: Warning: Directory '%s' doesn't exists.\n"), fname, expandedpath);
+                }
             }
 
             FREE(expandedpath);

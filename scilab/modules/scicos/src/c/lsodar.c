@@ -186,7 +186,6 @@ int LSodarInit (void * lsodar_mem, LSRhsFn f, realtype t0, N_Vector y)
 int LSodarReInit (void * lsodar_mem, realtype tOld, N_Vector y)
 {
     LSodarMem ls_mem;
-    double rwork0, rwork5;
 
     /* Check the input arguments */
 

@@ -21,10 +21,10 @@
 
 function [flag_type,rdnom,DF_type,Code]=translate(CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,..
     type_meth,degre,a,b,N,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,a7,b7,nom,mesures)
-    // Cette fonction contient les différents algrithme de discritisation spaciale, ainnsi que la        //
+    // Cette fonction contient les différents algrithme de discretisation spaciale, ainnsi que la        //
     // génération du code du bloc EDP. Elle est appelée par la fonction graphic du bloc EDP.Sci          //
     // Sorties:                                                                                          //
-    //    - flag_type (Entier) : renvoi le type des équations générées, ( 1 pour l'explicite,            //
+    //    - flag_type (Entier) : renvoie le type des équations générées, ( 1 pour l'explicite,            //
     //      2 pour l'implicite)                                                                          //
     //    - rdnom (String) : renvoie le nom du bloc plus "_explicite" si le bloc est explicite,          //
     //      "_implicite" si le bloc est implicite                                                        //
@@ -43,7 +43,7 @@ function [flag_type,rdnom,DF_type,Code]=translate(CI,CI1,CLa_type,CLa_exp,CLb_ty
     //    - ai, bi (String) : avec i=1:7 : expressions des coefficients des differents operateurs        //
     //    - nom (String) : correspond au nom du bloc a generer choisis par l'utilisateur dans la fenêtre //
     //      SCILAB "GIVE US BLOCK's NAME"                                                                //
-    //    - mesures (vecteur des doubles) : renvoi la liste des points de mesures                        //
+    //    - mesures (vecteur des doubles) : renvoie la liste des points de mesures                        //
     //---------------------------------------------------------------------------------------------------//
     DF_type=[];
     // fonction principale

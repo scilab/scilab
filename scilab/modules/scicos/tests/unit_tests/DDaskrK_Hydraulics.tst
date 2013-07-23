@@ -18,6 +18,7 @@ function messagebox(msg, msg_title)
  disp(msg);
 endfunction
 funcprot(prot);
+Info = scicos_simulate(scs_m, list(), 'nw');
 
 // looking for the CLOCK_f/EVTDLY_f to update period
 for path_1=1:length(scs_m.objs)
@@ -37,16 +38,16 @@ end
 scs_m.objs(path_1).model.rpar.objs(path_2).graphics.exprs = [string(5*(10^-3));"0"];
 
 // Modify solver + run DDaskr + save results
-scs_m.props.tol(6) = 101;       // Solver
+scs_m.props.tol(6) = 102;       // Solver
 //scs_m.props.tol(1) = 1.0e-10; // abstol
 //scs_m.props.tol(2) = 1.0e-10; // reltol
-scicos_simulate(scs_m, 'nw');   // DDaskr
+scicos_simulate(scs_m, Info, 'nw');   // DDaskr
 ddaskrval = res.values;         // Results
 time = res.time;                // Time
 
 // Modify solver + run IDA + save results
 scs_m.props.tol(6) = 100;       // Solver
-scicos_simulate(scs_m, 'nw');   // IDA
+scicos_simulate(scs_m, Info, 'nw');   // IDA
 idaval = res.values;            // Results
 
 // Compare results

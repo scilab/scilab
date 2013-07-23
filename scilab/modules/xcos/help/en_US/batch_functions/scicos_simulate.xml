@@ -45,7 +45,7 @@
             <varlistentry>
                 <term>Info</term>: A list. It must be set to <literal>list()</literal> at
                 the first call, then use output <literal>Info</literal> as
-                input <literal>Info </literal>for the next
+                input <literal>Info</literal> for the next
                 calls. <literal>Info</literal> contains compilation and
                 simulation information and is used to avoid recompilation when
                 not needed.

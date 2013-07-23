@@ -9,8 +9,6 @@
 // <-- XCOS TEST -->
 
 // Import diagram
-loadScicos();
-loadXcosLibs();
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/DDaskr_Platform_test.zcos"));
 
 // Redefining messagebox() to avoid popup
@@ -20,6 +18,7 @@ function messagebox(msg, msg_title)
  disp(msg);
 endfunction
 funcprot(prot);
+Info = scicos_simulate(scs_m, list(),'nw');
 
 // looking for the CLOCK_f/EVTDLY_f to update period
 for path_1=1:length(scs_m.objs)
@@ -42,13 +41,13 @@ for i=1:2  // 'max step size' = 10^-i, precision
 
     // Modify solver + run DDaskr + save results
     scs_m.props.tol(6) = 102;     // Solver
-    scicos_simulate(scs_m, 'nw'); // DDaskr
+    scicos_simulate(scs_m, Info, 'nw'); // DDaskr
     ddaskrval = res.values;       // Results
     time = res.time;              // Time
 
     // Modify solver + run IDA + save results
     scs_m.props.tol(6) = 100;     // Solver
-    scicos_simulate(scs_m, 'nw'); // IDA
+    scicos_simulate(scs_m, Info, 'nw'); // IDA
     idaval = res.values;          // Results
 
     // Compare results

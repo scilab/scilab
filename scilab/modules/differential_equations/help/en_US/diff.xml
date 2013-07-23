@@ -99,6 +99,18 @@ norm(dy-cos(t(1:$-1)),%inf)
         <title>See Also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="interp">interp</link>
+            </member>
+            <member>
+                <link linkend="interp2d">interp2d</link>
+            </member>
+            <member>
+                <link linkend="splin">splin</link>
+            </member>
+            <member>
+                <link linkend="eval_cshep2d">eval_cshep2d</link>
+            </member>
+            <member>
                 <link linkend="derivative">derivative</link>
             </member>
             <member>
