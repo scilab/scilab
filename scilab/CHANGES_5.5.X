@@ -271,7 +271,7 @@ Bug fixes
 
 * Bug #8778 fixed - Call_ScilabOpen, TerminateScilab can not be called more
                     than 80 times in a loop.
-                    
+
 * Bug #8779 fixed - gsort() did not preserve order of equal elements, in lexicographic sort.
 
 * Bug #8820 fixed - Squeeze did not return a matrix when the number of dimensions
@@ -495,4 +495,4 @@ Bug fixes
 
 * Bug #12736 fixed - In SciNotes, the Completion window appeared only in first tab.
 
-* Bug #12758 fixed - Focus issue on plot3d command.
+* Bug #12758 fixed - Focus issue with plot3d() fixed.
