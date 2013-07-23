@@ -15,7 +15,9 @@
 // <-- Short Description -->
 // clear(["A","B"]) returned a non standard error message
 
+// No error issued since bug #8373 fix.
+
 ierr = execstr("clear([""A"",""B""])", "errcatch");
-assert_checkequal(ierr, 999);
-msg_ref = msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"), "clear", 1);
-assert_checkerror ("clear([""A"",""B""])", msg_ref);
+assert_checkequal(ierr, 0);
+ierr = execstr("clear([""A"",""B""])", "errcatch");
+assert_checktrue(isempty(lasterror()));

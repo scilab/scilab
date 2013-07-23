@@ -59,8 +59,8 @@ for i=1:3  // 'max step size' = 10^-i, precision
     stdeviation = st_deviation(compa);
 
     // Verifying closeness of the results
-    assert_checktrue(maxi <= 10^-(i+3));
-    assert_checktrue(mea <= 10^-(i+3));
-    assert_checktrue(stdeviation <= 10^-(i+3));
+    assert_checktrue(maxi <= 5*10^-(i+3));
+    assert_checktrue(mea <= 5*10^-(i+3));
+    assert_checktrue(stdeviation <= 5*10^-(i+3));
 
 end

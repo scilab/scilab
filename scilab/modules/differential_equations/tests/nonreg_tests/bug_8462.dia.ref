@@ -4,10 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-//
 // <-- CLI SHELL MODE -->
 //
-// <-- NO CHECK ERROR OUTPUT --> 
+// <-- NO CHECK ERROR OUTPUT -->
 //
 // <-- Non-regression test for bug 8462 -->
 //
@@ -45,10 +44,12 @@ g=g'
 endfunction
 o = 1; // nombre d'équations différentielles
 m = [2]; // ordre des équations différentielles du système (ici, 1 équations d'ordre 2)
-zeta = [L0 L]; // points liés aux conditions aux limites dans l'ordre des valeurs 
+zeta = [L0 L]; // points liés aux conditions aux limites dans l'ordre des valeurs
 nx = 11;
 x = linspace(L0,L,nx); // points de discrétisation
-ltol = 4;
+//as stated in the doc :
+// 1 <= ltol(1) < ltol(2) < ... < ltol(ntol) <= M where M is sum(m)
+ltol = m;
 tol = 1e-14;
 function [z,lhs]=ystart(x)
 z = zeros(2,1);
@@ -58,4 +59,14 @@ lhs(1)= 0;
 endfunction
 ierr = 0;
 ierr = execstr("z = bvodeS(x,m,o,L0,L,fsub,gsub,zeta,ltol=ltol,tol=tol,ystart=ystart)", "errcatch");
+ VERSION *COLNEW* OF COLSYS .
+ THE NUMBER OF (NONLINEAR) DIFF EQNS IS   1
+ THEIR ORDERS ARE  2
+ SIDE CONDITION POINTS ZETA  0.000000  0.002000
+ NUMBER OF COLLOC PTS PER INTERVAL IS  3
+ COMPONENTS OF Z REQUIRING TOLERANCES -        2
+ CORRESPONDING ERROR TOLERANCES -        0.10D-13
+ THE MAXIMUM NUMBER OF SUBINTERVALS IS MIN ( 515 (ALLOWED FROM FSPACE), 624 (ALLOWED FROM ISPACE) )
+ THE NEW MESH (OF    5 SUBINTERVALS),     0.000000    0.000400    0.000800    0.001200    0.001600    0.002000
+ FULL DAMPED NEWTON ITERATION,
 if ierr <> 98 then bugmes();quit;end
