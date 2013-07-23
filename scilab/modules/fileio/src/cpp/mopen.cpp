@@ -84,9 +84,5 @@ int mopen(wchar_t* _pstFilename, wchar_t* _pstMode, int _iSwap, int* _piID)
     *_piID = FileManager::addFile(pFile);
     return MOPEN_NO_ERROR;
 }
-
-void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int *error)
-{
-}
 /*--------------------------------------------------------------------------*/
 

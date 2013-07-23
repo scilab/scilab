@@ -36,9 +36,9 @@
 #define NegInfString "-Inf"
 /*--------------------------------------------------------------------------*/
 #if _MSC_VER
-#define READ_ONLY_TEXT_MODE "rt"
+#define READ_ONLY_TEXT_MODE L"rt"
 #else
-#define READ_ONLY_TEXT_MODE "r"
+#define READ_ONLY_TEXT_MODE L"r"
 #endif
 /*--------------------------------------------------------------------------*/
 #define NB_FORMAT_SUPPORTED 7
@@ -75,7 +75,6 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
     int f_swap = 0;
     double res = 0.0;
     int errMOPEN = MOPEN_INVALID_STATUS;
-    double dErrClose = 0.;
     int errMGETL = MGETL_ERROR;
     int i = 0;
     int nbLinesTextDetected = 0;
@@ -88,6 +87,7 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
     char **lines = NULL;
     int nblines = 0;
     double *dValues = NULL;
+	wchar_t* filenameW = NULL;
 
     if ((filename == NULL) || (format == NULL) || (separator == NULL))
     {
@@ -109,7 +109,9 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
         return resultFscanfMat;
     }
 
-    C2F(mopen)(&fd, filename, READ_ONLY_TEXT_MODE, &f_swap, &res, &errMOPEN);
+    filenameW = to_wide_string(filename);
+    errMOPEN = mopen(filenameW, READ_ONLY_TEXT_MODE, f_swap, &fd);
+    FREE(filenameW);
     if (errMOPEN != MOPEN_NO_ERROR)
     {
         resultFscanfMat = (fscanfMatResult*)(MALLOC(sizeof(fscanfMatResult)));
@@ -135,7 +137,7 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
 
     freeArrayOfWideString(pwsLines, nblines);
 
-    C2F(mclose)(&fd, &dErrClose);
+    mclose(fd);
     if (errMGETL != MGETL_NO_ERROR)
     {
         resultFscanfMat = (fscanfMatResult*)(MALLOC(sizeof(fscanfMatResult)));

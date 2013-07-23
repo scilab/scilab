@@ -205,10 +205,16 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
         pwstFirstOutput = NULL;
 
         int iLoop = 1;
+        int iFirstArg = 1;
+        if (wcscmp(_pwstName, L"mfprintf") == 0)
+        {
+            iFirstArg = 2;
+        }
+
         if (in.size() > 1)
         {
-            iLoop = in[1]->getAs<GenericType>()->getRows();
-            for (int i = 2 ; i < in.size() ; i++)
+            iLoop = in[iFirstArg]->getAs<GenericType>()->getRows();
+            for (int i = iFirstArg + 1 ; i < in.size() ; i++)
             {
                 iLoop = Min(iLoop, in[i]->getAs<GenericType>()->getRows());
             }

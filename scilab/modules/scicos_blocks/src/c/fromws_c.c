@@ -86,6 +86,7 @@ typedef struct
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
 {
+#if 0
     double t = 0., y1 = 0., y2 = 0., t1 = 0., t2 = 0., r = 0.;
     double *spline = NULL, *A_d = NULL, *A_sd = NULL, *qdy = NULL;
     /* double  a,b,c,*y;*/
@@ -1483,6 +1484,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
         fromws_c(block, 4);
     }
     /*************************************************************************/
+#endif
 }
 /*--------------------------------------------------------------------------*/
 static int Ishm(int *fd, int *Ytype, int *nPoints, int *my, int *ny, int *YsubType)

@@ -104,6 +104,7 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block, int flag)
 * Author A.Layec - initial rev. 18/09/07
 */
 {
+#if 0
     /* for mopen */
     int fd;
     char *status;
@@ -1781,5 +1782,6 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block, int flag)
             ptr->loop++;
         }
     }
+#endif
 }
 /*--------------------------------------------------------------------------*/
