@@ -267,16 +267,9 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
     {
         //special cazse to insert at the first position
         InternalType* pInsert = NULL;
-        if (_pSource->isListInsert())
-        {
-            pInsert = _pSource->getAs<ListInsert>()->getInsert();
-        }
-        else
-        {
-            pInsert = _pSource;
-        }
-
-        m_plData->insert(m_plData->begin(), pInsert->clone());
+        pInsert = _pSource->clone();
+        pInsert->IncreaseRef();
+        m_plData->insert(m_plData->begin(), pInsert);
     }
     else
     {
