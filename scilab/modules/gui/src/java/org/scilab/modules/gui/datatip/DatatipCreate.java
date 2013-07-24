@@ -50,6 +50,11 @@ public class DatatipCreate {
 
         String polylineUid = ep.pick(figureUid, coordIntX, coordIntY);
         double[] graphicCoord = DatatipCommon.getTransformedPosition(figureUid, new Integer[] {coordIntX, coordIntY});
+        String axes = (String)GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_PARENT_AXES__);
+
+        if (!DatatipCommon.defaultView(axes)) {
+            graphicCoord = CallRenderer.get2dViewCoordinates(axes, graphicCoord);
+        }
         String newDatatip = datatipProperties(graphicCoord, polylineUid);
         return newDatatip;
     }

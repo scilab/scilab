@@ -90,14 +90,18 @@ public class PolylineHandler {
     */
     public void dragPolyline(String polyline, Integer[] position, Integer[] nextPosition) {
 
-        String axes = (new ObjectSearcher()).searchParent(polyline, GraphicObjectProperties.__GO_AXES__);
+        String axes = (String) GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
         if (polyline != null && axes != null) {
             double[] pos0 = { position[0] * 1.0, position[1] * 1.0};
             double[] pos1 = { nextPosition[0] * 1.0, nextPosition[1] * 1.0 };
             double[] coord0 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos0);
             double[] coord1 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos1);
             double[] coordDiff = {coord1[0] - coord0[0], coord1[1] - coord0[1]};
-            PolylineData.translatePolyline(polyline, coordDiff[0], coordDiff[1], 0.0);
+            boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__),
+                                                (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__),
+                                                (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__)
+                                               };
+            PolylineData.translatePolyline(polyline, coordDiff[0], coordDiff[1], 0.0, logFlags[0] ? 1 : 0, logFlags[1] ? 1 : 0, logFlags[2] ? 1 : 0);
             GraphicController.getController().setProperty(polyline, GraphicObjectProperties.__GO_DATA_MODEL__, polyline);
         }
     }

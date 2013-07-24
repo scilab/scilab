@@ -77,6 +77,7 @@ public class ScilabCommons {
         return ScilabCommonsJNI.getformatwidth();
     }
 
+
     /**
       * returns the Scilab version major number
       * @return version major

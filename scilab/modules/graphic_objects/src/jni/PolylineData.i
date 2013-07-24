@@ -55,7 +55,8 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include"MALLOC.h"
+#include "MALLOC.h"
+#include "math.h"
 
 /*help funtion*/
 int getDataSize_(char * uid)
@@ -173,7 +174,7 @@ char * createPolylineData(char * uidFrom, char *uidTo)
 	
 }
 
-BOOL translatePolyline(char *uid, double x, double y, double z)
+BOOL translatePolyline(char *uid, double x, double y, double z, int flagX, int flagY, int flagZ)
 {
     double *datax = NULL;
     double *datay = NULL;
@@ -184,34 +185,53 @@ BOOL translatePolyline(char *uid, double x, double y, double z)
     {
         datax = getDataX(uid);
         if (datax == NULL) return FALSE;
-        for (i = 0; i < getDataSize_(uid); ++i)
-        {
-            datax[i]+= x;
+        if (flagX) {
+            for (i = 0; i < getDataSize_(uid); ++i)
+            {
+                datax[i] = pow(10.,log10(datax[i]) + x);
+            }
+        } else {
+            for (i = 0; i < getDataSize_(uid); ++i)
+            {
+                datax[i] = pow(10.,log10(datax[i]) + x);
+            }
         }
     }
     if (y != 0.0)
     {
         datay = getDataY(uid);
         if (datay == NULL) return FALSE;
-        for (i = 0; i < getDataSize_(uid); ++i)
-        {
-            datay[i]+= y;
+        if (flagY) {
+            for (i = 0; i < getDataSize_(uid); ++i)
+            {
+                datay[i] = pow(10.,log10(datay[i]) + y);
+            }
+        } else {
+            for (i = 0; i < getDataSize_(uid); ++i)
+            {
+                datay[i] = pow(10.,log10(datay[i]) + y);
+            }
         }
     }
 	if (z != 0 && isZCoordSet(uid))
 	{
-		dataz = getDataZ(uid);
-        if (dataz == NULL) return FALSE;
-        for (i = 0; i < getDataSize_(uid); ++i)
-        {
-            dataz[i]+= z;
+        if (flagZ) {
+            for (i = 0; i < getDataSize_(uid); ++i)
+            {
+                dataz[i] = pow(10.,log10(dataz[i]) + z);
+            }
+        } else {
+            for (i = 0; i < getDataSize_(uid); ++i)
+            {
+                dataz[i] = pow(10.,log10(dataz[i]) + z);
+            }
         }
 	}
 
 	return TRUE;
 }
 
-BOOL translatePoint(char * uid, int index, double x, double y, double z)
+BOOL translatePoint(char * uid, int index, double x, double y, double z, int flagX, int flagY, int flagZ)
 {
     double *datax = NULL;
     double *datay = NULL;
@@ -226,13 +246,26 @@ BOOL translatePoint(char * uid, int index, double x, double y, double z)
 		datay = getDataY(uid);
 		if (datay == NULL) return FALSE;
 
-		datax[index] += x;
-		datay[index] += y;
+    if (flagX) {
+		    datax[index] = pow(10.,log10(datax[index]) + x);
+    } else {
+        datax[index] += x;
+    }
+
+    if (flagY) {
+		    datay[index] = pow(10.,log10(datay[index]) + y);
+    } else {
+        datay[index] += y;
+    }
 
 		if (z != 0 && isZCoordSet(uid))
 		{
 			dataz = getDataZ(uid);
-			dataz[index] += z;
+      if (flagZ) {
+		      dataz[index] = pow(10.,log10(dataz[index]) + z);
+      } else {
+          dataz[index] += z;
+      }
 		}
 	}
 	/*update*/
@@ -366,8 +399,8 @@ int isXShiftSet(char * uid);
 int isYShiftSet(char * uid);
 int isZShiftSet(char * uid);
 char * createPolylineData(char * uidFrom, char *uidTo);
-int translatePolyline(char *uid, double x, double y, double z);
-int translatePoint(char * uid, int index, double x, double y, double z);
+int translatePolyline(char *uid, double x, double y, double z,  int flagX, int flagY, int flagZ);
+int translatePoint(char * uid, int index, double x, double y, double z,  int flagX, int flagY, int flagZ);
 int setPointValue(char * uid, int index, double x, double y, double z);
 int insertPoint(char * uid, int index, double x, double y, double z);
 int removePoint(char * uid, int index);

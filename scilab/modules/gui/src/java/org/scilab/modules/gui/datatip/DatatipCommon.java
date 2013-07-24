@@ -166,6 +166,16 @@ public class DatatipCommon {
         return CallRenderer.get2dViewFromPixelCoordinates(axes, position);
     }
 
+    /**
+     * Checks if the axes is in default view (2d view).
+     *
+     * @return true if is in default view, false otherwise.
+     */
+    public static boolean defaultView(String axes) {
+        Double rot[] = (Double[])GraphicController.getController().getProperty(axes, __GO_ROTATION_ANGLES__);
+        return (rot[0] == 0.0 && rot[1] == 270.0);
+    }
+
     static double[] toLogScale(double[] data, boolean logScale) {
 
         if (logScale) {
