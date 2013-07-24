@@ -115,29 +115,31 @@ public class PaletteManagerMouseListener implements MouseListener {
         create.setCallback(new CommonCallBack(XcosMessages.CREATE) {
             @Override
             public void callBack() {
+                String name = JOptionPane.showInputDialog(XcosMessages.ASK_FOR_A_NAME, XcosMessages.DEFAULT_CATEGORY_NAME);
+                if (name == null || name.isEmpty()) {
+                    return;
+                }
+
                 Category nonModifiedRoot = currentNode.getParent();
                 final Category c = new Category();
                 c.setEnable(true);
-                c.setName(XcosMessages.DEFAULT_CATEGORY_NAME);
+                c.setName(name);
 
                 if (currentNode instanceof Category) {
                     ((Category) currentNode).getNode().add(c);
                     c.setParent((Category) currentNode);
-                    if (path != null) {
-                        path.pathByAddingChild(c);
-                    } else {
-                        nonModifiedRoot = (Category) currentNode;
-                    }
+
+                    PaletteNode.refreshView(currentNode, c);
                 } else if (currentNode instanceof Palette) {
                     final int index = nonModifiedRoot.getIndex(currentNode);
+
                     nonModifiedRoot.getNode().set(index, c);
                     c.getNode().add(currentNode);
                     currentNode.setParent(c);
                     c.setParent(nonModifiedRoot);
-                    path.getParentPath().pathByAddingChild(c);
-                }
 
-                PaletteNode.refreshView(c);
+                    PaletteNode.refreshView(nonModifiedRoot, currentNode);
+                }
             }
         });
 
@@ -167,7 +169,7 @@ public class PaletteManagerMouseListener implements MouseListener {
                 try {
                     final PaletteNode currentNode = (PaletteNode) path.getLastPathComponent();
 
-                    final String s = JOptionPane.showInputDialog(Messages.gettext("Enter a name"), currentNode.getName());
+                    final String s = JOptionPane.showInputDialog(XcosMessages.ASK_FOR_A_NAME, currentNode.getName());
                     if (s == null || s.isEmpty()) {
                         return;
                     }

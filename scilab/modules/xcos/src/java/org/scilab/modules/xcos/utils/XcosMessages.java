@@ -68,6 +68,7 @@ public final class XcosMessages {
     public static final String CREATE_CATEGORY = Messages.gettext("Create a category");
     public static final String ADDTO_CATEGORY = Messages.gettext("Add to a new category");
     public static final String DEFAULT_CATEGORY_NAME = Messages.gettext("Category");
+    public static final String ASK_FOR_A_NAME = Messages.gettext("Enter a name");
 
     public static final String DUMP = Messages.gettext("Dump");
     public static final String VIEW_IN_SCICOS = Messages.gettext("View in Scicos");
