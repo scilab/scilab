@@ -53,7 +53,7 @@ public final class XcosMessages {
     /* Edit Menu */
     public static final String EDIT = Messages.gettext("Edit");
     public static final String BLOCK_PARAMETERS = Messages.gettext("Block Parameters") + DOTS;
-    public static final String REGION_TO_SUPERBLOCK = Messages.gettext("Region to superblock");
+    public static final String REGION_TO_SUPERBLOCK = Messages.gettext("Selection to superblock");
     public static final String SUPERBLOCK_MASK = Messages.gettext("Superblock mask");
     public static final String CREATE = Messages.gettext("Create");
     public static final String RENAME = Messages.gettext("Rename");

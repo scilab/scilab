@@ -107,6 +107,9 @@ Xcos
 * Bug #7350 fixed - The superblock I/O ports numbering was not updated
                     when a new port was dropped.
 
+* Bug #8570 fixed - "Region to superblock" has been renamed to 
+                    "Selection to superblock".
+
 * Bug #11518 fixed - CLR block-text was displayed out of the bounding box 
                      when zooming.
 
