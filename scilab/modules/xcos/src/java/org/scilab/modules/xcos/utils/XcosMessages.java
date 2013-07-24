@@ -56,6 +56,7 @@ public final class XcosMessages {
     public static final String REGION_TO_SUPERBLOCK = Messages.gettext("Region to superblock");
     public static final String SUPERBLOCK_MASK = Messages.gettext("Superblock mask");
     public static final String CREATE = Messages.gettext("Create");
+    public static final String RENAME = Messages.gettext("Rename");
     public static final String REMOVE = Messages.gettext("Remove");
     public static final String CUSTOMIZE = Messages.gettext("Customize") + DOTS;
     public static final String SAVE_BLOCK_GUI = Messages.gettext("Save block GUI");
