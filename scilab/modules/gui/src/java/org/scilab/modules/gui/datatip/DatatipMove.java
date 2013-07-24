@@ -19,6 +19,7 @@ import org.scilab.modules.gui.datatip.DatatipOrientation;
 import org.scilab.modules.renderer.CallRenderer;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.gui.editor.CommonHandler;
 
 
 /**
@@ -70,14 +71,24 @@ public class DatatipMove {
             Double[] newPos;
             if (useInterp) {
                 pos[0] += dir;
-                double[] c2d = DatatipCommon.getTransformedPosition(figure, pos);
+                double[] c2d = DatatipCommon.getTransformedPositionInViewScale(figure, pos);
                 seg = DatatipCommon.getSegment(c2d[0], parentPolyline);
                 newPos = DatatipCommon.Interpolate(c2d[0], seg);
             } else {
-                double[] c2d = DatatipCommon.getTransformedPosition(figure, pos);
+                double[] c2d = DatatipCommon.getTransformedPositionInViewScale(figure, pos);
                 seg = DatatipCommon.getSegment(c2d[0], parentPolyline, seg_offset);
                 newPos = new Double[] {seg.x0, seg.y0, 0.0};
             }
+
+            String axes = (String)GraphicController.getController().getProperty(parentPolyline, __GO_PARENT_AXES__);
+            boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, __GO_X_AXIS_LOG_FLAG__),
+                                                (Boolean)GraphicController.getController().getProperty(axes, __GO_Y_AXIS_LOG_FLAG__),
+                                                (Boolean)GraphicController.getController().getProperty(axes, __GO_Z_AXIS_LOG_FLAG__)
+                                               };
+
+            newPos[0] = CommonHandler.InverseLogScale(newPos[0], logFlags[0]);
+            newPos[1] = CommonHandler.InverseLogScale(newPos[1], logFlags[1]);
+            newPos[2] = CommonHandler.InverseLogScale(newPos[2], logFlags[2]);
 
             GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_DATA__, newPos);
 
@@ -101,6 +112,7 @@ public class DatatipMove {
         for (int i = 0 ; i < graphCoordDouble.length ; i++) {
             graphCoordDouble[i] = markerPosition[i];
         }
+
         String axes = (String)GraphicController.getController().getProperty(datatipUid, __GO_PARENT_AXES__);
         if (axes != null) {
             double[] pixelCoordinates = CallRenderer.getPixelFrom2dViewCoordinates(axes, graphCoordDouble);

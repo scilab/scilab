@@ -183,4 +183,16 @@ public class DatatipTextDrawer extends TextManager {
         /* Set the computed coordinates */
         datatip.setCorners(coordinates);
     }
+
+    /**
+     * Calculates the anchor point from datatip (Used to draw the datatip mark)
+     * @param datatip the given datatip
+     * @return Vector3d the anchor point position
+     */
+    public static Vector3d calculateAnchorPoint(Datatip datatip) {
+
+        Axes axes = (Axes) GraphicController.getController().getObjectFromId(datatip.getParentAxes());
+        boolean[] logFlags = new boolean[] {axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
+        return ScaleUtils.applyLogScale(new Vector3d(datatip.getTipData()), logFlags);
+    }
 }

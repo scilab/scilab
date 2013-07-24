@@ -493,7 +493,7 @@ public class EntityPicker {
 
         curAxes = AxesHandler.getAxesFromUid(axes);
         String[] datatips = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_DATATIP__);
-
+        boolean[] logFlags = {  curAxes.getXAxisLogFlag(), curAxes.getYAxisLogFlag(), curAxes.getZAxisLogFlag()};
 
         if (datatips != null) {
 
@@ -509,7 +509,10 @@ public class EntityPicker {
             for (int i = 0; i < datatips.length; ++i) {
 
                 Double[] tip_pos = (Double[])GraphicController.getController().getProperty(datatips[i], GraphicObjectProperties.__GO_DATATIP_DATA__);
-                double point[] = {tip_pos[0], tip_pos[1], tip_pos[2]};
+                double point[] = new double[3];
+                point[0] = CommonHandler.logScale(tip_pos[0], logFlags[0]);
+                point[1] = CommonHandler.logScale(tip_pos[1], logFlags[1]);
+                point[2] = CommonHandler.logScale(tip_pos[2], logFlags[2]);
 
 
                 if (needTransform) {

@@ -19,6 +19,7 @@ import org.scilab.modules.gui.datatip.DatatipOrientation;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.gui.editor.CommonHandler;
 
 /**
  * Drag a datatip along a polyline
@@ -41,7 +42,7 @@ public class DatatipDrag {
         if (parentPolyline != null) {
             Integer pos[] = {endX, endY};
             String figure = (String)GraphicController.getController().getProperty(datatipUid, __GO_PARENT_FIGURE__);
-            double[] c2d = DatatipCommon.getTransformedPosition(figure, pos);
+            double[] c2d = DatatipCommon.getTransformedPositionInViewScale(figure, pos);
 
             DatatipCommon.Segment seg = DatatipCommon.getSegment(c2d[0], parentPolyline);
 
@@ -52,6 +53,17 @@ public class DatatipDrag {
             } else {
                 newPos = new Double[] {seg.x0, seg.y0, 0.0};
             }
+
+            String axes = (String)GraphicController.getController().getProperty(parentPolyline, __GO_PARENT_AXES__);
+            boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, __GO_X_AXIS_LOG_FLAG__),
+                                                (Boolean)GraphicController.getController().getProperty(axes, __GO_Y_AXIS_LOG_FLAG__),
+                                                (Boolean)GraphicController.getController().getProperty(axes, __GO_Z_AXIS_LOG_FLAG__)
+                                               };
+
+            newPos[0] = CommonHandler.InverseLogScale(newPos[0], logFlags[0]);
+            newPos[1] = CommonHandler.InverseLogScale(newPos[1], logFlags[1]);
+            newPos[2] = CommonHandler.InverseLogScale(newPos[2], logFlags[2]);
+
             GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_DATA__, newPos);
 
             Boolean AutoOrientation = (Boolean)GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__);
