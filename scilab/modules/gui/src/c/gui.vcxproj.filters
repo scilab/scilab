@@ -407,6 +407,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipcreate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipmove.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipremove.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -420,6 +423,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\DatatipDelete.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\DatatipDrag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\DatatipManager.cpp">
@@ -897,6 +903,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\DatatipDelete.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\DatatipDrag.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\DatatipManager.hxx">

@@ -136,7 +136,8 @@ src/jni/StartGED.cpp \
 src/jni/StartPlotBrowser.cpp \
 src/jni/DatatipManager.cpp \
 src/jni/DatatipCreate.cpp \
-src/jni/DatatipDelete.cpp
+src/jni/DatatipDelete.cpp \
+src/jni/DatatipDrag.cpp
 
 GIWS_WRAPPERS = \
 src/jni/SwingView.giws.xml \
@@ -208,7 +209,8 @@ sci_gateway/cpp/sci_datatipcreate.cpp \
 sci_gateway/cpp/sci_datatipremove.cpp \
 sci_gateway/cpp/sci_plotbrowser.cpp \
 sci_gateway/cpp/sci_datatip_manager_mode.cpp \
-sci_gateway/cpp/sci_datatip_toggle.cpp
+sci_gateway/cpp/sci_datatip_toggle.cpp \
+sci_gateway/cpp/sci_datatipmove.cpp
 
 libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \

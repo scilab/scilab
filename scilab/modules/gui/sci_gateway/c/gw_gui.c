@@ -68,7 +68,8 @@ static gw_generic_table Tab[] =
     {sci_datatipremove, "datatipRemove"},
     {sci_plotbrowser, "plotbrowser"},
     {sci_datatip_manager_mode, "datatipManagerMode"},
-    {sci_datatip_toggle, "datatipToggle"}
+    {sci_datatip_toggle, "datatipToggle"},
+    {sci_datatipmove, "datatipMove"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)
