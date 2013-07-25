@@ -498,3 +498,5 @@ Bug fixes
 * Bug #12736 fixed - In SciNotes, the Completion window appeared only in first tab.
 
 * Bug #12758 fixed - Focus issue with plot3d() fixed.
+
+* Bug #12747 fixed - legendre() now accepts the -1 and 1 values for the third argument.
