@@ -35,37 +35,37 @@ assert_checkfalse(execstr("nthroot(-2, %nan)", "errcatch") == 0);
 lasterror(execstr("10000","errcatch") == 0)
  ans  =
  
- nthroot: If x is negative, then n must be odd integers   
+ nthroot: If x is negative, then n must contain odd integers only.   
 assert_checkfalse(execstr("nthroot(-2, %eps)", "errcatch") == 0);
 lasterror(execstr("10000","errcatch") == 0)
  ans  =
  
- nthroot: If x is negative, then n must be odd integers   
+ nthroot: If x is negative, then n must contain odd integers only.   
 assert_checkfalse(execstr("nthroot(-3, 6)",     "errcatch") == 0);
 lasterror(execstr("10000","errcatch") == 0)
  ans  =
  
- nthroot: If x is negative, then n must be odd integers   
+ nthroot: If x is negative, then n must contain odd integers only.   
 assert_checkfalse(execstr("nthroot(-3, 0)",     "errcatch") == 0);
 lasterror(execstr("10000","errcatch") == 0)
  ans  =
  
- nthroot: If x is negative, then n must be odd integers   
+ nthroot: If x is negative, then n must contain odd integers only.   
 assert_checkfalse(execstr("nthroot(-%inf, -2)", "errcatch") == 0);
 lasterror(execstr("10000","errcatch") == 0)
  ans  =
  
- nthroot: If x is negative, then n must be odd integers   
+ nthroot: If x is negative, then n must contain odd integers only.   
 assert_checkfalse(execstr("nthroot(-2, -2)",     "errcatch") == 0);
 lasterror(execstr("10000","errcatch") == 0)
  ans  =
  
- nthroot: If x is negative, then n must be odd integers   
+ nthroot: If x is negative, then n must contain odd integers only.   
 assert_checkfalse(execstr("nthroot(-2, 2)",      "errcatch") == 0);
 lasterror(execstr("10000","errcatch") == 0)
  ans  =
  
- nthroot: If x is negative, then n must be odd integers   
+ nthroot: If x is negative, then n must contain odd integers only.   
 assert_checktrue(nthroot(3, []) == 3);
 // 2. Singular Values
 // ==================

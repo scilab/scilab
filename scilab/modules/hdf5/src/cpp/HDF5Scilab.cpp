@@ -399,7 +399,7 @@ void HDF5Scilab::createLink(H5Object & parent, const std::string & name, H5Objec
     {
         if (hard)
         {
-            throw H5Exception(__LINE__, __FILE__, _("Cannot create a hard link to an external object: %s."), name.c_str());
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create a hard link to the external object: %s."), name.c_str());
         }
         createLink(parent, name, targetObject);
     }

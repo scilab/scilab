@@ -137,7 +137,7 @@ int sci_gsort(char *fname, unsigned long fname_len)
             if (getWarningMode())
             {
                 sciprint(_("WARNING: %s\n"), _("This usage of the third argument of gsort is obsolete."));
-                sciprint(_("WARNING: %s\n"), _("It will be more strict in Scilab 6."));
+                sciprint(_("WARNING: %s\n"), _("It will no more be available in Scilab 6."));
                 sciprint(_("WARNING: %s\n"), _("Please use 'd' or 'i' instead."));
             }
         }

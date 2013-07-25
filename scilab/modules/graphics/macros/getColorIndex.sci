@@ -73,7 +73,7 @@ function opt1 = getColorIndex(ColorString)
     str = part(str,i:length(str));
 
     if (size(opt1,"*") > 1)  // unreachable case normally
-        warning(msprintf(gettext("%s:  Wrong number of input argument: %d expected.\n"),"getColorIndex",1));
+        warning(msprintf(gettext("%s:  Wrong number of input arguments: %d expected.\n"),"getColorIndex",1));
         return;
     end
 

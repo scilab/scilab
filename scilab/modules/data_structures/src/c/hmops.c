@@ -822,7 +822,7 @@ int C2F(intehm)()
         ier = create_index_vector(i, dec + i, &mn, H.dims[i - 1], &ind_max);
         if ( ier == 0  ||  ind_max > H.dims[i - 1] )
         {
-            Scierror(999, _("%s: Bad index #%d in hypermatrix extraction. "), "hmops", i);
+            Scierror(999, _("%s: Invalid index #%d in hypermatrix extraction. "), "hmops", i);
             return 0;
         }
         if ( mn == 0 )   /* the vector index is [] => we return an empty matrix */
@@ -1055,7 +1055,7 @@ int C2F(intihm)()
             }
             else   /* B have at least 2 elts */
             {
-                Scierror(999, _("%s: Bad hypermatrix insertion.\n"), "hmops");
+                Scierror(999, _("%s: Invalid hypermatrix insertion.\n"), "hmops");
                 return 0;
             }
         }

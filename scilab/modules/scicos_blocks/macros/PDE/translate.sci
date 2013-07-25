@@ -84,7 +84,7 @@ function [flag_type,rdnom,DF_type,Code]=translate(CI,CI1,CLa_type,CLa_exp,CLb_ty
 
         [equations,impl_type]=gen_code_FEM(A,B1,B2,C1,C2,C3,F3,oper,N,a,b,..
         b1,b2,b3,b4,b5,b6,b7,vbc,kbc);
-        mprintf(_("The finite element discretization takes %.2f seconds"),timer());
+        mprintf(_("The finite element discretization took %.2f seconds"),timer());
         // FDM
     elseif (type_meth == 1) then
         //dans les différences finies on génère de l'implicite
@@ -103,7 +103,7 @@ function [flag_type,rdnom,DF_type,Code]=translate(CI,CI1,CLa_type,CLa_exp,CLb_ty
         // génération des équations
         [equations,impl_type,Nfictif]=gen_code_FDM(a1,b1,a2,b2,a3,b3,a4,b4,..
         a5,b5,a6,b6,a7,b7,a,b,N,oper,vbc,kbc,DF_type,h)
-        mprintf(_("The finite differences discretization takes %.2f seconds"),timer());
+        mprintf(_("The finite differences discretization took %.2f seconds"),timer());
 
         // FVM
     else
@@ -117,7 +117,7 @@ function [flag_type,rdnom,DF_type,Code]=translate(CI,CI1,CLa_type,CLa_exp,CLb_ty
 
         [equations,flag_type,impl_type]=gen_code_FVM(a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,..
         a7,b7,N,oper,vbc,xn,xc);
-        mprintf(_("The finite volume discretization takes %.2f seconds"),timer());
+        mprintf(_("The finite volume discretization took %.2f seconds"),timer());
     end
     // Assemblage de code
     if (flag_type == 1) then
@@ -128,7 +128,7 @@ function [flag_type,rdnom,DF_type,Code]=translate(CI,CI1,CLa_type,CLa_exp,CLb_ty
 
     Code=code_generation(rdnom,equations,eq_pts_mes,flag_type,h,CI,CI1,a, ...
     Nfictif,N,impl_type,type_meth,oper);
-    mprintf(_("The code generation, the compilation and link takes %.2f seconds"),timer());
+    mprintf(_("The code generation, the compilation and link took %.2f seconds"),timer());
 
 endfunction
 

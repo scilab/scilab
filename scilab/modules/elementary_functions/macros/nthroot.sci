@@ -50,7 +50,7 @@ function y = nthroot(x,n)
     elseif (isnan(n) & or(x >= 0)) then
         y(find(x>=0)) = %nan;
     elseif (or (or(x(:)<0) & (or(n~=fix(n)) | reste==0 | reste==%f))) then
-        error(msprintf(gettext("%s: If x is negative, then n must be odd integers\n"),"nthroot"));
+        error(msprintf(gettext("%s: If x is negative, then n must contain odd integers only.\n"),"nthroot"));
         // If n ~=0 and n ~= %nan
     elseif (or(n~=0) & ~isnan(n)) then
         // If x = 0 and n is negative and n i~= %nan

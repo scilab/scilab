@@ -9,7 +9,7 @@
 function r=%s_b_s(varargin)
     //a:b:c where a and b are double
     if round(varargin(1))<>varargin(1)|round(varargin(2))<>varargin(2) then
-        error(msprintf(_("%s: Wrong type for input argument #%d and #%d: integer values expected.\n"),"%s_b_s",1,2));
+        error(msprintf(_("%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"),"%s_b_s",1,2));
     end
     select type(varargin(3))
     case 8 then
