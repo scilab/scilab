@@ -4,10 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
-
 // <-- Non-regression test for bug 3089 -->
 //
 // <-- Bugzilla URL -->
@@ -15,24 +13,17 @@
 //
 // <-- Short Description -->
 // chdir seems to have problems with directory names containing nordic characters like æ ø and å.
-
 newdir = TMPDIR + filesep() +'æøå_dir';
 r = removedir(newdir);
-if r <> %f then pause,end
-
+removedir: Warning: Directory 'TMPDIR\æøå_dir' doesn't exists.
+if r <> %f then bugmes();quit;end
 r = mkdir(newdir);
-if r <> 1 then pause,end
-
+if r <> 1 then bugmes();quit;end
 r = cd(newdir);
-if r == [] then pause,end
-
+if r == [] then bugmes();quit;end
 r = chdir(newdir);
-if r <> %t then pause,end
-
+if r <> %t then bugmes();quit;end
 r = chdir(TMPDIR);
-if r <> %t then pause,end
-
+if r <> %t then bugmes();quit;end
 r = removedir(newdir);
-if r <> %t then pause,end
-
-
+if r <> %t then bugmes();quit;end
