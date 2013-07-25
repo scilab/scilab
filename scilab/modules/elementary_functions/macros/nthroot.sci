@@ -17,13 +17,17 @@ function y = nthroot(x,n)
     end
 
     // If x or n are not real
-    if ((typeof(x) <> "constant" | ~isreal(x)) | (typeof(n) <> "constant" | ~isreal(n))) then
-        error(msprintf(gettext("%s: Wrong type for input argument(s) #%d: Real arguments expected.\n"),"nthroot", 2));
+    if typeof(x) <> "constant" | ~isreal(x)  then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real scalar or matrix expected.\n"),"nthroot", 1));
+    end
+    
+    if typeof(n) <> "constant" | ~isreal(n) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real scalar or matrix expected.\n"),"nthroot", 2));
     end
 
     // If n is a vector which size is different from x's
     if (size(n,"*")>1 & size(n,"*")<>size(x,"*")) then
-        error(msprintf(gettext("%s: Wrong size for input argument(s) #%d: vectors should have same size.\n"),"nthroot", 2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d and #%d: Same sizes expected.\n"),"nthroot", 1, 2));
     end
 
     reste = modulo(n,2);
