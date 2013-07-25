@@ -223,7 +223,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
             // process URLs
             if isfield(additional,"repository") & ..
                 ( regexp(current_field,"/^(source|binary|windows|linux|macosx|solaris|bsd)(32|64)?Url$/","o")<>[] | current_field=="URL" ) & ..
-                regexp(current_value,"/^(http(s)?|ftp(s)?|file)\:\/\//","o")==[] then
+                regexp(current_value,"/^(https?|ftps?|file):\/\//","o")==[] then
                 current_value = additional("repository") + current_value;
             end
 
