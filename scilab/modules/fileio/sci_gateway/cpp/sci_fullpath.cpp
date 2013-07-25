@@ -29,7 +29,7 @@ Function::ReturnValue sci_fullpath(typed_list &in, int _iRetCount, typed_list &o
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "fullpath" , 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "fullpath" , 1);
         return Function::Error;
     }
 
