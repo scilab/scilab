@@ -1073,7 +1073,7 @@ int C2F(intihm)()
             }
             if ( iconf >= B.dimsize  ||  B.dims[iconf] != mn )
             {
-                Scierror(999, _("%s: Bad hypermatrix insertion.\n"), "hmops");
+                Scierror(999, _("%s: Invalid hypermatrix insertion.\n"), "hmops");
                 return 0;
             }
             iconf++;
@@ -1083,7 +1083,7 @@ int C2F(intihm)()
     /* to finish the conformity test */
     if ( !B_is_scalar &&  ntot != B.size )
     {
-        Scierror(999, _("%s: Bad hypermatrix insertion.\n"), "hmops");
+        Scierror(999, _("%s: Invalid hypermatrix insertion.\n"), "hmops");
         return 0;
     }
 
