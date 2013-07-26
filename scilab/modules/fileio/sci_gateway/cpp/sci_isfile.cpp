@@ -33,7 +33,7 @@ Function::ReturnValue sci_isfile(typed_list &in, int _iRetCount, typed_list &out
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "isfile" , 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "isfile" , 1);
         return Function::Error;
     }
 
