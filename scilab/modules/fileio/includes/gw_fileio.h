@@ -26,6 +26,7 @@ C_GATEWAY_PROTOTYPE(sci_fprintfMat);
 C_GATEWAY_PROTOTYPE(sci_getURL);
 C_GATEWAY_PROTOTYPE(sci_movefile);
 C_GATEWAY_PROTOTYPE(sci_splitURL);
+C_GATEWAY_PROTOTYPE(sci_tempname);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FILEIO_H__ */
 /*--------------------------------------------------------------------------*/
