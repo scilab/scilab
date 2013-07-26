@@ -27,9 +27,6 @@ csvWrite(stringOut, fileOut);
 stringIn = mgetl(fileOut);
 info = fileinfo(fileOut);
 fd = mopen(fileOut, "rb");
-data_read = mget(info(1), "c", fd)
- data_read  =
- 
-    49.    44.    49.    10.    49.    44.    49.    10.  
+data_read = mget(info(1), "c", fd);
 mclose(fd);
 assert_checkequal(data_read, ref);

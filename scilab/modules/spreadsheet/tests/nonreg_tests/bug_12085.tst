@@ -32,7 +32,7 @@ stringIn = mgetl(fileOut);
 
 info = fileinfo(fileOut);
 fd = mopen(fileOut, "rb");
-data_read = mget(info(1), "c", fd)
+data_read = mget(info(1), "c", fd);
 mclose(fd);
 
 assert_checkequal(data_read, ref);
