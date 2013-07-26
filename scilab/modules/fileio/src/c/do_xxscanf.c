@@ -54,7 +54,7 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
     int width_flag = 0;
     int width_val = 0;
     int ignore_flag = 0;
-    int str_width_flag = 0;
+    int str_flag = 0;
     int num_conversion = -1;
     void *ptrtab[MAXSCAN];
     wchar_t sformat[MAX_STR];
@@ -81,10 +81,7 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
         if (*currentchar == L'%' && *(currentchar + 1) == L'%')
         {
             currentchar = currentchar + 2;
-            while (*currentchar != L'%' && *currentchar != L'\0')
-            {
-                currentchar++;
-            }
+            continue;
         }
 
         if (*currentchar == 0)
@@ -105,7 +102,6 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
         if (p1 + 1 != currentchar)
         {
             wchar_t w = *currentchar;
-
             *currentchar = L'\0';
             width_flag = 1;
             swscanf(p1 + 1, L"%d", &width_val);
@@ -188,10 +184,7 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
             switch (directive)
             {
                 case L']':
-                    if (width_flag == 0)
-                    {
-                        str_width_flag = 1;
-                    }
+                    str_flag = 1;
 
                     if (width_flag == 1 && width_val > MAX_STR - 1)
                     {
@@ -199,7 +192,7 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
                         return DO_XXPRINTF_RET_BUG;
                     }
 
-                    if ((buf[num_conversion].c = MALLOC(MAX_STR)) == NULL)
+                    if ((buf[num_conversion].c = (wchar_t*)MALLOC(MAX_STR * sizeof(wchar_t))) == NULL)
                     {
                         return DO_XXPRINTF_MEM_LACK;
                     }
@@ -214,17 +207,14 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
                         return DO_XXPRINTF_RET_BUG;
                     }
 
-                    if (width_flag == 0)
-                    {
-                        str_width_flag = 1;
-                    }
+                    str_flag = 1;
                     if (width_flag == 1 && width_val > MAX_STR - 1)
                     {
                         Scierror(998, _("%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"), fname, width_val, MAX_STR - 1);
                         return DO_XXPRINTF_RET_BUG;
                     }
 
-                    if ((buf[num_conversion].c = (wchar_t*)MALLOC(MAX_STR)) == NULL)
+                    if ((buf[num_conversion].c = (wchar_t*)MALLOC(MAX_STR * sizeof(wchar_t))) == NULL)
                     {
                         return DO_XXPRINTF_MEM_LACK;
                     }
@@ -234,6 +224,7 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
                     break;
 
                 case L'c':
+                    str_flag = 1;
                     if (l_flag + h_flag)
                     {
                         Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
@@ -255,7 +246,7 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
                         return DO_XXPRINTF_RET_BUG;
                     }
 
-                    if ((buf[num_conversion].c = (wchar_t*)MALLOC(MAX_STR)) == NULL)
+                    if ((buf[num_conversion].c = (wchar_t*)MALLOC(MAX_STR * sizeof(wchar_t))) == NULL)
                     {
                         return DO_XXPRINTF_MEM_LACK;
                     }
@@ -342,7 +333,8 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
         }
     }
 
-    if ( str_width_flag == 1)
+    // replace %s by %ls
+    if (str_flag)
     {
         wchar_t *f1 = format;
         wchar_t *f2 = sformat;
@@ -357,6 +349,11 @@ int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *
                 bFirst = 1;
             }
             *f2++ = *f1++;
+            while (isdigit(((int)*f1)))
+            {
+                *f2++ = *f1++;
+            }
+
             if (bFirst && ( *(f1) == L's'  || *(f1) == L'[' || *(f1) == L'c'))
             {
                 bFirst = 0;
