@@ -19,8 +19,6 @@ tab_ref = [
 "프로그램",
 "תוכנית"];
 
-disp("toto")
-
 lang_name = ["Simplified Chinese",
         "Cyrillic",
         "Japanese",
