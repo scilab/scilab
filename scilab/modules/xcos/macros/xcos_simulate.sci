@@ -390,17 +390,17 @@ function %cpr = xcos_simulate(scs_m, needcompile)
     //and call '[names(1), names(2), ...] = resume(names(1), names(2), ...)' to save the variable into Scilab
     if ~isempty(Names) then
         for i=1:size(Names, "c")
-            execstr("NamesIval = "+Names(i)+"_val;");
+            execstr("NamesIval  = "+Names(i)+"_val;");
             execstr("NamesIvalt = "+Names(i)+"_valt;");
             // If input is a matrix, use function matrix() to reshape the saved values
             // Check condition using time vector, if we have more values than time stamps, split it
             if (size(NamesIval, "r") > size(NamesIvalt, "r")) then
-                nRows =  size(NamesIvalt, "r");
+                nRows  = size(NamesIvalt, "r");
                 nCols  = size(NamesIval, "c");
                 nCols2 = size(NamesIval, "r") / nRows;
                 NamesIval = matrix(NamesIval, nCols, nCols2, nRows);
             end
-            ierr = execstr(Names(i)+" = struct(''values'', NamesIval,''time'',NamesIvalt)", "errcatch");
+            ierr = execstr(Names(i)+" = struct(''values'', NamesIval, ''time'', NamesIvalt)", "errcatch");
             if ierr <> 0 then
                 str_err = split_lasterror(lasterror());
                 message(["Simulation problem" ; "Unable to resume To Workspace Variable {"+Names(i)+"}:" ; str_err]);
@@ -409,7 +409,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
             if i == 1 then
                 Resume_line_args = Names(1);
             else
-                Resume_line_args   = Resume_line_args + ", " + Names(i);  // Concatenate the variable names up to the last one
+                Resume_line_args = Resume_line_args + ", " + Names(i);  // Concatenate the variable names up to the last one
             end
         end
         Resume_line = "[" + Resume_line_args + "] = resume(" + Resume_line_args + ");";  // Build the message
