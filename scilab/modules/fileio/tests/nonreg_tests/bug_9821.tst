@@ -13,4 +13,6 @@
 // <-- Short Description -->
 // getrelativename does not manage matrix of strings
 
-assert_checkequal(getrelativefilename([SCI+'/bin',SCI+'/bin'], [SCI+'/ACKNOWLEDGMENTS',SCI+'/ACKNOWLEDGMENTS']),["../ACKNOWLEDGMENTS", "../ACKNOWLEDGMENTS"]);
+computed = getrelativefilename([SCI+'/bin',SCI+'/bin'], [SCI+'/ACKNOWLEDGMENTS',SCI+'/ACKNOWLEDGMENTS']);
+expected = pathconvert(["../ACKNOWLEDGMENTS", "../ACKNOWLEDGMENTS"], %f);
+assert_checkequal(computed,expected);
