@@ -5,7 +5,7 @@
 
 // ODE definition
 
-function demo_ode_lorentz()
+function demo_ode_lorenz()
 
     function ydot=lorenz(t,y)
         x    = y(1);
@@ -33,8 +33,8 @@ function demo_ode_lorentz()
 
     my_handle = scf(100001);
     clf(my_handle,"reset");
-    demo_viewCode("ode_lorentz.dem.sce");
-    title(_("Lorentz differential equation"))
+    demo_viewCode("ode_lorenz.dem.sce");
+    title(_("Lorenz differential equation"))
 
     function h = poly3d(x,y,z)
         xpoly(x,y);h=gce();h.data(:,3)=z
@@ -78,5 +78,5 @@ function demo_ode_lorentz()
     end
 endfunction
 
-demo_ode_lorentz();
-clear demo_ode_lorentz;
+demo_ode_lorenz();
+clear demo_ode_lorenz;
