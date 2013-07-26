@@ -20,8 +20,10 @@
 int sci_realtimeinit(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
-    int m1 = 0, n1 = 0;
+    int m1 = 0;
+    int n1 = 0;
     int * p1_in_address = NULL;
+    int iType = 0;
     double * pDblReal = NULL;
     double zer = 0.0;
 
@@ -29,15 +31,38 @@ int sci_realtimeinit(char *fname, void* pvApiCtx)
     CheckLhs(1, 1);
 
     /*  checking variable scale */
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getVarType(pvApiCtx, p1_in_address, &iType);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (iType != sci_matrix)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
+        return 1;
+    }
 
     if (isScalar(pvApiCtx, p1_in_address) == 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
-        return 0;
+        return 1;
     }
 
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
     sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
     /* cross variable size checking */
     C2F(realtimeinit)(&zer, pDblReal);
@@ -50,22 +75,48 @@ int sci_realtimeinit(char *fname, void* pvApiCtx)
 int sci_realtime(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
-    int m1 = 0, n1 = 0;
+    int m1 = 0;
+    int n1 = 0;
     int * p1_in_address = NULL;
+    int iType = 0;
     double * pDblReal = NULL;
 
     CheckRhs(1, 1);
     CheckLhs(1, 1);
 
     /*  checking variable t */
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getVarType(pvApiCtx, p1_in_address, &iType);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (iType != sci_matrix)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
+        return 1;
+    }
+
     if (isScalar(pvApiCtx, p1_in_address) == 0)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
-        return 0;
+        return 1;
     }
 
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
     sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
 
     /* cross variable size checking */
     C2F(realtime)(pDblReal);
