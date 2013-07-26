@@ -76,4 +76,5 @@
     <PRIMITIVE gatewayId="25" primitiveId="43" primitiveName="datatipManagerMode" />
     <PRIMITIVE gatewayId="25" primitiveId="44" primitiveName="datatipToggle" />
     <PRIMITIVE gatewayId="25" primitiveId="45" primitiveName="datatipMove" />
+    <PRIMITIVE gatewayId="25" primitiveId="46" primitiveName="datatipSetStyle" />
 </GATEWAY>

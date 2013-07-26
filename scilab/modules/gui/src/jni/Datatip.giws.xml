@@ -42,4 +42,14 @@
             <parameter name="endY" type="int"/>
         </method>
     </object>
+    <object name="DatatipSetStyle">
+        <method name="datatipSetStyle" returnType="void" modifier="static">
+            <parameter name="polylineUID" type="String"/>
+            <parameter name="t" type="int"/>
+            <parameter name="boxed" type="boolean"/>
+            <parameter name="labeled" type="boolean"/>
+        </method>
+        <method name="datatipSetStyleWindow" returnType="int" modifier="static">
+        </method>
+    </object>
 </package>
