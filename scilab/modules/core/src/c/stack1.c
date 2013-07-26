@@ -2911,11 +2911,11 @@ static int C2F(getpointeri) (char *fname, int *topk, int *spos, int *lw, int *lr
         /* used to be sci_lufact_pointer before Scilab 5.2 */
         sciprint("----%d\n", *istk(il));
         if (*inlistx)
-            Scierror(197, _("%s: Wrong type for element %d of argument #%d: Boxed pointer expected.\n"), get_fname(fname, fname_len),
+            Scierror(197, _("%s: Wrong type for element %d of argument #%d: Pointer expected.\n"), get_fname(fname, fname_len),
                      *nel, Rhs + (*spos - *topk));
         else
         {
-            Scierror(198, _("%s: Wrong type for argument #%d: Boxed pointer expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
+            Scierror(198, _("%s: Wrong type for argument #%d: Pointer expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
         }
         return FALSE;
     }

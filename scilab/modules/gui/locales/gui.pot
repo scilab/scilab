@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-25 15:36+0100\n"
+"Revision-Date: 2013-07-26 14:48+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 73
 #, c-format
@@ -1999,7 +1999,6 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 72
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 152
-#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -2010,7 +2009,6 @@ msgstr ""
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 73
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 153
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 163
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -2308,7 +2306,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/tabfactory/ScilabTabFactory.java, line: 40
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -2316,13 +2313,11 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 54
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 55
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -2414,7 +2409,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 82
-#, c-format
 msgid "All %s files"
 msgstr ""
 
@@ -2851,11 +2845,14 @@ msgstr ""
 #
 # File: macros/tree/uiCreateTree.sci, line: 29
 #, c-format
-msgid "%s: Wrong type for input arguments from #%d: uitree expected.\n"
+msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 
 #
 # File: macros/tree/uiDeleteNode.sci, line: 39
+# File: macros/tree/uiFindNode.sci, line: 42
+# File: macros/tree/uiGetChildrenNode.sci, line: 40
+# File: macros/tree/uiGetParentNode.sci, line: 40
 # File: macros/tree/uiInsertNode.sci, line: 39
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or uitree expected.\n"
@@ -2896,14 +2893,6 @@ msgstr ""
 # File: macros/tree/uiDumpTree.sci, line: 34
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
-msgstr ""
-
-#
-# File: macros/tree/uiFindNode.sci, line: 42
-# File: macros/tree/uiGetChildrenNode.sci, line: 40
-# File: macros/tree/uiGetParentNode.sci, line: 40
-#, c-format
-msgid "%s: Wrong type for input argument #%d: uitree or String expected.\n"
 msgstr ""
 
 #

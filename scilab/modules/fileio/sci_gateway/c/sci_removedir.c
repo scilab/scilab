@@ -50,7 +50,7 @@ int sci_removedir(char *fname, unsigned long l)
             {
                 if (getWarningMode())
                 {
-                    sciprint(_("%s: Warning: Directory '%s' doesn't exists.\n"), fname, expandedpath);
+                    sciprint(_("%s: Warning: Directory '%s' does not exist.\n"), fname, expandedpath);
                 }
             }
 

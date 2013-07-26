@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-25 15:36+0100\n"
+"Revision-Date: 2013-07-26 14:55+0100\n"
 
 # File: sci_gateway/c/sci_base2dec.c, line: 41
 # File: sci_gateway/c/sci_base2dec.c, line: 54
@@ -161,6 +161,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_gsort.c, line: 140
+# File: sci_gateway/c/sci_gsort.c, line: 177
 msgid "It will no more be available in Scilab 6."
 msgstr ""
 
@@ -180,11 +181,6 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_gsort.c, line: 176
 msgid "This usage of the second argument of gsort is obsolete."
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_gsort.c, line: 177
-msgid "It will be more strict in Scilab 6."
 msgstr ""
 
 #
@@ -869,19 +865,20 @@ msgstr ""
 
 #
 # File: macros/nthroot.sci, line: 21
-#, c-format
-msgid "%s: Wrong type for input argument(s) #%d: Real arguments expected.\n"
-msgstr ""
-
-#
-# File: macros/nthroot.sci, line: 26
+# File: macros/nthroot.sci, line: 25
 #, c-format
 msgid ""
-"%s: Wrong size for input argument(s) #%d: vectors should have same size.\n"
+"%s: Wrong type for input argument #%d: Real scalar or matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/nthroot.sci, line: 53
+# File: macros/nthroot.sci, line: 30
+#, c-format
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#
+# File: macros/nthroot.sci, line: 57
 #, c-format
 msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr ""
