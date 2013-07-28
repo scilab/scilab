@@ -180,5 +180,11 @@ int get_grid_position_property(void* _pvCtx, char* pobjUID);
 int get_anti_aliasing_property(void* _pvCtx, char* pobjUID);
 int get_tag_property(void* _pvCtx, char* pobjUID);
 int get_UID(void* _pvCtx, char *pobjUID);
+int get_ambient_color_property(void* _pvCtx, char* pobjUID);
+int get_diffuse_color_property(void* _pvCtx, char* pobjUID);
+int get_specular_color_property(void* _pvCtx, char* pobjUID);
+int get_lighting_property(void* _pvCtx, char* pobjUID);
+int get_color_material_property(void* _pvCtx, char* pobjUID);
+int get_material_shinines_property(void* _pvCtx, char* pobjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

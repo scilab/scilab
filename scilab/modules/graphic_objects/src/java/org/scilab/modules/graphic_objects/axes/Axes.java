@@ -34,6 +34,9 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
+import org.scilab.modules.graphic_objects.lighting.ColorTriplet;
+import org.scilab.modules.graphic_objects.lighting.Light;
+import org.scilab.modules.graphic_objects.lighting.Light.LightProperty;
 
 import java.util.ArrayList;
 
@@ -140,6 +143,9 @@ public class Axes extends GraphicObject {
     /** Default ClippableProperty */
     private ClippableProperty clipProperty;
 
+    /** light properties */
+    private Light light;
+
 
     /** Constructor */
     public Axes() {
@@ -161,6 +167,7 @@ public class Axes extends GraphicObject {
         mark = new Mark();
         arcDrawingMethod = ArcDrawingMethod.LINES;
         clipProperty = new ClippableProperty();
+        light = new Light();
     }
 
     public Axes clone() {
@@ -193,6 +200,7 @@ public class Axes extends GraphicObject {
         copy.line = new Line(this.line);
         copy.mark = new Mark(this.mark);
         copy.clipProperty = new ClippableProperty(this.clipProperty);
+        copy.light = new Light(this.light);
         copy.setValid(true);
 
         return copy;
@@ -364,6 +372,14 @@ public class Axes extends GraphicObject {
                 return ClippablePropertyType.CLIPBOXSET;
             case __GO_ARC_DRAWING_METHOD__ :
                 return ArcProperty.ARCDRAWINGMETHOD;
+            case __GO_AMBIENTCOLOR__ :
+                return ColorTriplet.ColorTripletProperty.AMBIENTCOLOR;
+            case __GO_DIFFUSECOLOR__ :
+                return ColorTriplet.ColorTripletProperty.DIFFUSECOLOR;
+            case __GO_SPECULARCOLOR__ :
+                return ColorTriplet.ColorTripletProperty.SPECULARCOLOR;
+            case __GO_LIGHTING__ :
+                return LightProperty.ENABLED;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -553,6 +569,18 @@ public class Axes extends GraphicObject {
             }
         } else if (property == ArcProperty.ARCDRAWINGMETHOD) {
             return getArcDrawingMethod();
+        }else if (property instanceof ColorTriplet.ColorTripletProperty) {
+            ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
+            switch (cp) {
+                case AMBIENTCOLOR:
+                    return getLightAmbientColor();
+                case DIFFUSECOLOR:
+                    return getLightDiffuseColor();
+                case SPECULARCOLOR:
+                    return getLightSpecularColor();
+            }
+        } else if (property == LightProperty.ENABLED) {
+            return isLightEnabled();
         }
 
         return super.getProperty(property);
@@ -737,6 +765,18 @@ public class Axes extends GraphicObject {
             }
         } else if (property == ArcProperty.ARCDRAWINGMETHOD) {
             return setArcDrawingMethod((Integer) value);
+        } else if (property == LightProperty.ENABLED) {
+            return setLightEnabled((Boolean) value);
+        } else if (property instanceof ColorTriplet.ColorTripletProperty) {
+            ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
+            switch (cp) {
+                case AMBIENTCOLOR:
+                    return setLightAmbientColor((Double[])value);
+                case DIFFUSECOLOR:
+                    return setLightDiffuseColor((Double[])value);
+                case SPECULARCOLOR:
+                    return setLightSpecularColor((Double[])value);
+            }
         }
 
         return super.setProperty(property, value);
@@ -2300,6 +2340,62 @@ public class Axes extends GraphicObject {
         }
 
         return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @return the light's ambient color.
+     */
+    public Double[] getLightAmbientColor() {
+        return light.getAmbientColor();
+    }
+
+    /**
+     * @param color the new light's ambient color.
+     */
+    public UpdateStatus setLightAmbientColor(Double[] color) {
+        return light.setAmbientColor(color);
+    }
+
+    /**
+     * @return the light's difuse color.
+     */
+    public Double[] getLightDiffuseColor() {
+        return light.getDiffuseColor();
+    }
+
+    /**
+     * @param color the new light's diffuse color.
+     */
+    public UpdateStatus setLightDiffuseColor(Double[] color) {
+        return light.setDiffuseColor(color);
+    }
+
+    /**
+     * @return the light's specular color.
+     */
+    public Double[] getLightSpecularColor() {
+        return light.getSpecularColor();
+    }
+
+    /**
+     * @param color the new light's specular color.
+     */
+    public UpdateStatus setLightSpecularColor(Double[] color) {
+        return light.setSpecularColor(color);
+    }
+
+    /**
+     * @return true if lighting is enabled.
+     */
+    public Boolean isLightEnabled() {
+        return light.isEnabled();
+    }
+
+    /**
+     * @param status lighting status (on/off).
+     */
+    public UpdateStatus setLightEnabled(Boolean status) {
+        return light.setEnabled(status);
     }
 
     /**

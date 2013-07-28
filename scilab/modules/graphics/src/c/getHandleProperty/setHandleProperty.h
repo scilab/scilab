@@ -180,5 +180,11 @@ int set_color_range_property(void* _pvCtx, char* pobj, void* _pvData, int valueT
 int set_grid_position_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_anti_aliasing_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_tag_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_ambient_color_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_diffuse_color_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_specular_color_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_color_material_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_material_shinines_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_lighting_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */
