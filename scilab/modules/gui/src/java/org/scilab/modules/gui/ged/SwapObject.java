@@ -11,8 +11,6 @@
  */
 package org.scilab.modules.gui.ged;
 
-import java.awt.Dimension;
-import javax.swing.JPanel;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.editor.AxesHandler;
@@ -124,8 +122,9 @@ public class SwapObject {
     */
     private void axes(String axesID) {
         adjust();
-        //Load the Axes panel.
-        SwingInspector.pReceive.add(new Axes(axesID), "");
+        Axes axes = new Axes();
+        axes.initSections(axesID);
+        SwingInspector.pReceive.add(axes, "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.axes);
         } catch (NullPointerException npe) { }

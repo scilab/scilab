@@ -58,6 +58,15 @@ public class MessagesGED {
     public static final String text = Messages.gettext("Text");
     public static final String surface_mode = Messages.gettext("Surface Mode");
 
+    public static final String box = Messages.gettext("Box");
+    public static final String hidden_axis_color = Messages.gettext("Hidden Axis Color");
+
+    public static final String camera = Messages.gettext("Camera");
+    public static final String alpha = Messages.gettext("Alpha");
+    public static final String theta = Messages.gettext("Theta");
+
+    public static final String ticks = Messages.gettext("Ticks");
+
     //ColorDialog
     public static final String choose_background_color = Messages.gettext("Choose Background Color");
     public static final String choose_foreground_color = Messages.gettext("Choose Foreground Color");
@@ -181,6 +190,7 @@ public class MessagesGED {
     public static final String width = Messages.gettext("Width");
     public static final String height = Messages.gettext("Height");
     public static final String margins = Messages.gettext("Margins");
+    public static final String rotation_angles = Messages.gettext("Rotation Angles");
     public static final String tabulated = Messages.gettext("Tabulated");
     public static final String x_shift = Messages.gettext("X Shift");
     public static final String y_shift = Messages.gettext("Y Shift");

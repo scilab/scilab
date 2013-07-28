@@ -639,19 +639,22 @@ public class ContentLayout extends JPanel {
         fieldPanel.setPreferredSize(new Dimension(5, 20));
         fieldPanel.setLayout(new GridBagLayout());
 
+        check1.setIconTextGap(0);
         check1.setText("X");
         gbc = new GridBagConstraints();
-        gbc.insets = new Insets(0, 0, 0, 10);
+        gbc.insets = new Insets(0, 0, 4, 6);
         fieldPanel.add(check1, gbc);
 
+        check2.setIconTextGap(0);
         check2.setText("Y");
         gbc = new GridBagConstraints();
-        gbc.insets = new Insets(0, 0, 0, 10);
+        gbc.insets = new Insets(0, 0, 4, 6);
         fieldPanel.add(check2, gbc);
 
+        check3.setIconTextGap(0);
         check3.setText("Z");
         gbc = new GridBagConstraints();
-        gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.insets = new Insets(0, 0, 4, 0);
         fieldPanel.add(check3, gbc);
 
         gbc = new GridBagConstraints();

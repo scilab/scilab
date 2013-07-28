@@ -16,7 +16,7 @@ import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.ged.MessagesGED;
 import org.scilab.modules.gui.ged.SwingInspector;
-import org.scilab.modules.gui.ged.graphic_objects.axes.HideAxis;
+import org.scilab.modules.gui.ged.graphic_objects.axes.HideAxes;
 import org.scilab.modules.gui.ged.graphic_objects.figure.HideFigure;
 import org.scilab.modules.gui.ged.graphic_objects.legend.HideLegend;
 import org.scilab.modules.gui.ged.graphic_objects.polyline.HidePolyline;
@@ -112,7 +112,7 @@ public class ShowHide extends CommonCallBack {
      * @param hide Boolean.
      */
     public static void action(boolean hide) {
-        new HideAxis(hide);
+        new HideAxes(hide);
         new HideFigure(hide);
         new HideGrayplot(hide);
         new HideLegend(hide);

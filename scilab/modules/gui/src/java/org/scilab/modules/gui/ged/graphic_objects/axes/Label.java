@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos CARDINOT
+ * Copyright (C) 2013 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,490 +11,259 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects.axes;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
-import org.scilab.modules.gui.ged.SwingInspector;
-import org.scilab.modules.gui.ged.MessagesGED;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.gui.ged.ContentLayout;
+
+import org.scilab.modules.gui.ged.MessagesGED;
+import org.scilab.modules.gui.ged.graphic_objects.SimpleSection;
 
 /**
 * Construction and startup of all components of the section: Label.
-*
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Label extends AxisRulers {
-    //Header - Label
-    protected static JToggleButton bLabel;
-    protected JLabel lLabel;
-    protected static JPanel pLabel;
-    protected JSeparator sLabel;
-    //Components of the property: Title Page
-    protected JLabel lTitlePage;
-    protected JTextField cTitlePage;
-    //Components of the property: Axis Title
-    protected static JToggleButton bAxisTitle;
-    protected JLabel lAxisTitle;
-    protected JLabel cAxisTitle;
-    protected static JPanel pAxisTitle;
-    protected JLabel lTitleX;
-    protected JTextField cTitleX;
-    protected JLabel lTitleY;
-    protected JTextField cTitleY;
-    protected JLabel lTitleZ;
-    protected JTextField cTitleZ;
+public class Label extends Axes implements SimpleSection {
+    private String currentAxes;
+    private ContentLayout layout = new ContentLayout();
+
+    private static JToggleButton bLabel;
+    private JLabel lLabel;
+    private JSeparator sLabel;
+    private static JPanel pLabel;
+    private JTextField cTitle;
+    private JLabel lTitle;
+    private JTextField cXLabel;
+    private JTextField cYLabel;
+    private JTextField cZLabel;
+    private JLabel lXLabel;
+    private JLabel lYLabel;
+    private JLabel lZLabel;
 
     /**
     * Initializes the properties and the icons of the buttons.
-    *
-    * @param objectID Enters the identification of Axes.
+    * @param objectID Enters the identification of figure.
     */
     public Label(String objectID) {
-        super(objectID);
-        position();
-        setIconsLabel();
-        initPropertiesLabel(objectID);
+        constructComponents();
+        initMainPanel();
+        initComponents();
+        loadProperties(objectID);
     }
 
     /**
-    * It has all the components of the section Label.
+    * Construct the Components.
     */
     @Override
-    public void labelComponents() {
-        //Header
+    public final void constructComponents() {
         bLabel = new JToggleButton();
         lLabel = new JLabel();
         sLabel = new JSeparator();
         pLabel = new JPanel();
-        //Title Page
-        lTitlePage = new JLabel();
-        cTitlePage = new JTextField();
-        //Axis Title
-        bAxisTitle = new JToggleButton();
-        lAxisTitle = new JLabel();
-        cAxisTitle = new JLabel();
-        pAxisTitle = new JPanel();
-        lTitleX = new JLabel();
-        cTitleX = new JTextField();
-        lTitleY = new JLabel();
-        cTitleY = new JTextField();
-        lTitleZ = new JLabel();
-        cTitleZ = new JTextField();
+        lTitle = new JLabel();
+        cTitle = new JTextField();
+        lXLabel = new JLabel();
+        cXLabel = new JTextField();
+        lYLabel = new JLabel();
+        cYLabel = new JTextField();
+        lZLabel = new JLabel();
+        cZLabel = new JTextField();
+    }
 
-        //Components of the header: Axis Rulers
-        bLabel.setBorder(null);
-        bLabel.setBorderPainted(false);
-        bLabel.setContentAreaFilled(false);
-        bLabel.setMaximumSize(new Dimension(16, 16));
-        bLabel.setMinimumSize(new Dimension(16, 16));
-        bLabel.setPreferredSize(new Dimension(16, 16));
+    /**
+    * Insert show/hide button, title and main JPanel of section.
+    */
+    @Override
+    public final void initMainPanel() {
+        String SECTIONNAME = MessagesGED.label;
+        this.setName(SECTIONNAME);
+        layout.addHeader(this, pLabel, bLabel, lLabel, sLabel, SECTIONNAME);
         bLabel.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                bLabelActionPerformed(evt);
+                pLabel.setVisible(!bLabel.isSelected());
+                HideAxes.checkAllButtons();
             }
         });
-
-        lLabel.setText(MessagesGED.label);
-
-        sLabel.setPreferredSize(new Dimension(50, 2));
-
-        //Components of the property: Title Page.
-        lTitlePage.setBackground(new Color(255, 255, 255));
-        lTitlePage.setText(" " + MessagesGED.title_page);
-        lTitlePage.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lTitlePage.setOpaque(true);
-        lTitlePage.setPreferredSize(new Dimension(70, 20));
-
-        cTitlePage.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cTitlePage.setPreferredSize(new Dimension(70, 20));
-        cTitlePage.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                cTitlePageActionPerformed(evt);
-            }
-        });
-        cTitlePage.addFocusListener(new FocusAdapter() {
-            public void focusLost(FocusEvent evt) {
-                cTitlePageFocusLost(evt);
-            }
-        });
-
-        //Components of the property: Axis Title.
-        bAxisTitle.setSelected(true);
-        bAxisTitle.setBorder(null);
-        bAxisTitle.setBorderPainted(false);
-        bAxisTitle.setContentAreaFilled(false);
-        bAxisTitle.setMaximumSize(new Dimension(16, 16));
-        bAxisTitle.setMinimumSize(new Dimension(16, 16));
-        bAxisTitle.setPreferredSize(new Dimension(16, 16));
-        bAxisTitle.setRolloverEnabled(false);
-        bAxisTitle.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                bAxisTitleActionPerformed(evt);
-            }
-        });
-
-        lAxisTitle.setBackground(new Color(255, 255, 255));
-        lAxisTitle.setText(" " + MessagesGED.axis_title);
-        lAxisTitle.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lAxisTitle.setOpaque(true);
-        lAxisTitle.setPreferredSize(new Dimension(70, 20));
-
-        cAxisTitle.setBackground(new Color(255, 255, 255));
-        cAxisTitle.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cAxisTitle.setOpaque(true);
-        cAxisTitle.setPreferredSize(new Dimension(70, 20));
-
-        pAxisTitle.setVisible(false);
-
-        lTitleX.setBackground(new Color(255, 255, 255));
-        lTitleX.setText(" X");
-        lTitleX.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lTitleX.setOpaque(true);
-        lTitleX.setPreferredSize(new Dimension(70, 20));
-
-        cTitleX.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cTitleX.setPreferredSize(new Dimension(70, 20));
-        cTitleX.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                cTitleXActionPerformed(evt);
-            }
-        });
-        cTitleX.addFocusListener(new FocusAdapter() {
-            public void focusLost(FocusEvent evt) {
-                cTitleXFocusLost(evt);
-            }
-        });
-
-        lTitleY.setBackground(new Color(255, 255, 255));
-        lTitleY.setText(" Y");
-        lTitleY.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lTitleY.setOpaque(true);
-        lTitleY.setPreferredSize(new Dimension(70, 20));
-
-        cTitleY.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cTitleY.setPreferredSize(new Dimension(70, 20));
-        cTitleY.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                cTitleYActionPerformed(evt);
-            }
-        });
-        cTitleY.addFocusListener(new FocusAdapter() {
-            public void focusLost(FocusEvent evt) {
-                cTitleYFocusLost(evt);
-            }
-        });
-
-        lTitleZ.setBackground(new Color(255, 255, 255));
-        lTitleZ.setText(" Z");
-        lTitleZ.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lTitleZ.setOpaque(true);
-        lTitleZ.setPreferredSize(new Dimension(70, 20));
-
-        cTitleZ.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cTitleZ.setPreferredSize(new Dimension(70, 20));
-        cTitleZ.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                cTitleZActionPerformed(evt);
-            }
-        });
-        cTitleZ.addFocusListener(new FocusAdapter() {
-            public void focusLost(FocusEvent evt) {
-                cTitleZFocusLost(evt);
-            }
-        });
-
-        //Positioning the components of the property: Axis Title.
-        GroupLayout pAxisTitleLayout = new GroupLayout(pAxisTitle);
-        pAxisTitle.setLayout(pAxisTitleLayout);
-        pAxisTitleLayout.setHorizontalGroup(
-            pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pAxisTitleLayout.createSequentialGroup()
-                .addComponent(lTitleX, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cTitleX, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-            .addGroup(pAxisTitleLayout.createSequentialGroup()
-                .addComponent(lTitleY, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cTitleY, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-            .addGroup(pAxisTitleLayout.createSequentialGroup()
-                .addComponent(lTitleZ, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cTitleZ, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-        );
-        pAxisTitleLayout.setVerticalGroup(
-            pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pAxisTitleLayout.createSequentialGroup()
-                .addGroup(pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lTitleX, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cTitleX, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lTitleY, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cTitleY, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pAxisTitleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lTitleZ, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cTitleZ, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-        );
     }
 
     /**
-    * Positioning all the components of the Label.
+    * Initialize the Components.
     */
-    private void position() {
-        //Positioning all components.
-        GroupLayout pLabelLayout = new GroupLayout(pLabel);
-        pLabel.setLayout(pLabelLayout);
-        pLabelLayout.setHorizontalGroup(
-            pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pLabelLayout.createSequentialGroup()
-                .addComponent(bAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(lAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-            .addGroup(pLabelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pLabelLayout.createSequentialGroup()
-                        .addComponent(lTitlePage, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cTitlePage, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addComponent(pAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)))
-        );
-        pLabelLayout.setVerticalGroup(
-            pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pLabelLayout.createSequentialGroup()
-                .addGroup(pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lTitlePage, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cTitlePage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(pLabelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pLabelLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(bAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lAxisTitle, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cAxisTitle, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addComponent(pAxisTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        );
+    @Override
+    public final void initComponents() {
+        int ROW = 0;
+        int LEFTMARGIN = 16; //to inner components
+        int COLUMN = 0; //first column
+
+        //Components of the property: Title
+        layout.addLabelTextField(pLabel, lTitle, MessagesGED.title,
+                                 cTitle, true, LEFTMARGIN, COLUMN, ROW++);
+        cTitle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateTitle();
+            }
+        });
+        cTitle.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateTitle();
+            }
+        });
+
+        //Components of the property: X Label
+        layout.addLabelTextField(pLabel, lXLabel, MessagesGED.x_label,
+                                 cXLabel, true, LEFTMARGIN, COLUMN, ROW++);
+        cXLabel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateLabel(0);
+            }
+        });
+        cXLabel.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateLabel(0);
+            }
+        });
+
+        //Components of the property: Y Label
+        layout.addLabelTextField(pLabel, lYLabel, MessagesGED.y_label,
+                                 cYLabel, true, LEFTMARGIN, COLUMN, ROW++);
+        cYLabel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateLabel(1);
+            }
+        });
+        cYLabel.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateLabel(1);
+            }
+        });
+
+        //Components of the property: Z Label
+        layout.addLabelTextField(pLabel, lZLabel, MessagesGED.z_label,
+                                 cZLabel, true, LEFTMARGIN, COLUMN, ROW++);
+        cZLabel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateLabel(2);
+            }
+        });
+        cZLabel.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateLabel(2);
+            }
+        });
     }
 
     /**
-    * Loads the current properties of the section Label.
-    *
-    * @param axesID Enters the identification of Axes.
+    * Loads the current properties of the section.
+    * @param objectID Enters the identification of axis.
     */
-    private void initPropertiesLabel(String axesID) {
-        if (axesID != null) {
-            currentaxes = axesID;
-            /** Get the current status of the property: Title Page */
-            String titlePage = (String) GraphicController.getController()
-                    .getProperty(currentaxes, GraphicObjectProperties.__GO_TITLE__);
+    @Override
+    public final void loadProperties(String objectID) {
+        if (objectID != null) {
+            currentAxes = objectID;
 
-            String[] textTitlePage = (String[])GraphicController.getController()
-                    .getProperty(titlePage, GraphicObjectProperties.__GO_TEXT_STRINGS__);
-            cTitlePage.setText(textTitlePage[0]);
+            // Get the current status of the property: Title
+            String titleID = (String) GraphicController.getController()
+                                .getProperty(currentAxes, GraphicObjectProperties.__GO_TITLE__);
+            String[] title = (String[]) GraphicController.getController()
+                    .getProperty(titleID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+            cTitle.setText(title[0]);
 
-            /** Get the current status of the property: Axis Title */
-            String axisTitleX = (String) GraphicController.getController()
-                    .getProperty(currentaxes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+            // Get the current status of the property: X Label
+            String labelID = (String) GraphicController.getController()
+                    .getProperty(currentAxes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+            String[] label = (String[]) GraphicController.getController()
+                    .getProperty(labelID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+            cXLabel.setText(label[0]);
 
-            String[] textTitleX = (String[])GraphicController.getController()
-                    .getProperty(axisTitleX, GraphicObjectProperties.__GO_TEXT_STRINGS__);
-            cTitleX.setText(textTitleX[0]);
+            // Get the current status of the property: Y Label
+            labelID = (String) GraphicController.getController()
+                    .getProperty(currentAxes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+            label = (String[]) GraphicController.getController()
+                    .getProperty(labelID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+            cYLabel.setText(label[0]);
 
-            String axisTitleY = (String) GraphicController.getController()
-                    .getProperty(currentaxes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
-
-            String[] textTitleY = (String[])GraphicController.getController()
-                    .getProperty(axisTitleY, GraphicObjectProperties.__GO_TEXT_STRINGS__);
-            cTitleY.setText(textTitleY[0]);
-
-            String axisTitleZ = (String) GraphicController.getController()
-                    .getProperty(currentaxes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
-
-            String[] textTitleZ = (String[])GraphicController.getController()
-                    .getProperty(axisTitleZ, GraphicObjectProperties.__GO_TEXT_STRINGS__);
-            cTitleZ.setText(textTitleZ[0]);
-
-            titleAxis();
+            // Get the current status of the property: Z Label
+            labelID = (String) GraphicController.getController()
+                    .getProperty(currentAxes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+            label = (String[]) GraphicController.getController()
+                    .getProperty(labelID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+            cZLabel.setText(label[0]);
         }
     }
 
+
     /**
-    * Insert the icons on buttons.
+    * Updates the property: Title.
     */
-    private final void setIconsLabel() {
-        bLabel.setIcon(new ImageIcon(SwingInspector.icon_collapse));
-        bLabel.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
-        bAxisTitle.setIcon(new ImageIcon(SwingInspector.icon_collapse));
-        bAxisTitle.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
+    private void updateTitle() {
+        String titleID = (String) GraphicController.getController()
+                .getProperty(currentAxes, GraphicObjectProperties.__GO_TITLE__);
+        String[] text = new String[] {cTitle.getText()};
+        GraphicController.getController()
+                .setProperty(titleID, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
     }
 
     /**
-    * Implement the action button to show/hide.
-    *
-    * @param evt ActionEvent.
+    * Updates the property: Label.
+    * @param axis x=0  y=1  z=2
     */
-    private void bLabelActionPerformed(ActionEvent evt) {
-        if (bLabel.isSelected()) {
-            pLabel.setVisible(false);
-            HideAxis.checkAllButtons();
-        } else {
-            pLabel.setVisible(true);
-            HideAxis.checkAllButtons();
-        }
-    }
-
-    /**
-    * Implement the action button to show/hide.
-    *
-    * @param evt ActionEvent.
-    */
-    private void bAxisTitleActionPerformed(ActionEvent evt) {
-        if (bAxisTitle.isSelected()) {
-            pAxisTitle.setVisible(false);
-        } else {
-            pAxisTitle.setVisible(true);
-        }
-    }
-
-    /**
-    * Inserts the current state of functionality: AXIS TITLE in main label.
-    */
-    public void titleAxis() {
-        String titleAxisX = cTitleX.getText();
-        String titleAxisY = cTitleY.getText();
-        String titleAxisZ = cTitleZ.getText();
-        String titleAxis = titleAxisX + " , " + titleAxisY + " , " + titleAxisZ;
-        cAxisTitle.setText(" [" + titleAxis + "]");
-    }
-
-    /**
-    * Updates the property: Title Axis.
-    * x:0  y:1  z:2
-    */
-    private void axisTitle(int axis) {
+    private void updateLabel(int axis) {
         String[] text = new String[1];
         String axisLabel = null;
         switch (axis){
             case 0:
                 axisLabel = (String) GraphicController.getController()
-                         .getProperty(currentaxes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
-                text[0] = cTitleX.getText();
+                         .getProperty(currentAxes, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                text[0] = cXLabel.getText();
                 break;
             case 1:
                 axisLabel = (String) GraphicController.getController()
-                         .getProperty(currentaxes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
-                text[0] = cTitleY.getText();
+                         .getProperty(currentAxes, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                text[0] = cYLabel.getText();
                 break;
             case 2:
                 axisLabel = (String) GraphicController.getController()
-                         .getProperty(currentaxes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
-                text[0] = cTitleZ.getText();
+                         .getProperty(currentAxes, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                text[0] = cZLabel.getText();
                 break;
         }
         GraphicController.getController()
                 .setProperty(axisLabel, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
-        titleAxis();
     }
 
     /**
-    * Updates the property: x Title Axis.
-    *
-    * @param evt ActionEvent.
+    * Get Status of Main Jpanel.
+    * @return visibility
     */
-    private void cTitleXActionPerformed(ActionEvent evt) {
-        axisTitle(0);
+    public static boolean getStatus() {
+        return pLabel.isVisible();
     }
 
     /**
-    * Updates the property: x Title Axis.
-    *
-    * @param evt FocusEvent.
+    * Set Visibility of Property Group.
+    * @param visible boolean
     */
-    private void cTitleXFocusLost(FocusEvent evt) {
-        axisTitle(0);
-    }
-
-    /**
-    * Updates the property: y Title Axis.
-    *
-    * @param evt ActionEvent.
-    */
-    private void cTitleYActionPerformed(ActionEvent evt) {
-        axisTitle(1);
-    }
-
-    /**
-    * Updates the property: y Title Axis.
-    *
-    * @param evt FocusEvent.
-    */
-    private void cTitleYFocusLost(FocusEvent evt) {
-        axisTitle(1);
-    }
-
-    /**
-    * Updates the property: z Title Axis.
-    *
-    * @param evt ActionEvent.
-    */
-    private void cTitleZActionPerformed(ActionEvent evt) {
-        axisTitle(2);
-    }
-
-    /**
-    * Updates the property: z Title Axis.
-    *
-    * @param evt FocusEvent.
-    */
-    private void cTitleZFocusLost(FocusEvent evt) {
-        axisTitle(2);
-    }
-
-    /**
-    * Updates the property: Title Page.
-    */
-    private void TitlePage() {
-        String titlePage = (String) GraphicController.getController()
-                .getProperty(currentaxes, GraphicObjectProperties.__GO_TITLE__);
-        String[] text = new String[1];
-        text[0] = cTitlePage.getText();
-        GraphicController.getController()
-                .setProperty(titlePage, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
-    }
-
-    /**
-    * Updates the property: Title Page.
-    *
-    * @param evt ActionEvent.
-    */
-    private void cTitlePageActionPerformed(ActionEvent evt) {
-        TitlePage();
-    }
-
-    /**
-    * Updates the property: Title Page.
-    *
-    * @param evt FocusEvent.
-    */
-    private void cTitlePageFocusLost(FocusEvent evt) {
-        TitlePage();
+    public static void setVisibility(boolean visible) {
+        pLabel.setVisible(visible);
+        bLabel.setSelected(!visible);
     }
 }
