@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos CARDINOT
+ * Copyright (C) 2012 2013 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,17 +11,11 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects.figure;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,416 +25,523 @@ import javax.swing.JToggleButton;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.gui.ged.ContentLayout;
 
-import org.scilab.modules.gui.ged.SwingInspector;
 import org.scilab.modules.gui.ged.MessagesGED;
+import org.scilab.modules.gui.ged.graphic_objects.SimpleSection;
 
 /**
 * Construction and startup of all components of the section: Control.
-*
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Control extends BaseProperties {
-    protected static JToggleButton bControl;
-    protected static JPanel pControl;
-    protected JLabel lControl;
-    protected JSeparator sControl;
-    protected JComboBox cAutoResize;
-    protected JLabel lAutoResize;
-    protected JLabel lxposition;
-    protected JTextField cxposition;
-    protected JLabel lyposition;
-    protected JTextField cyposition;
-    protected JTextField cxsize;
-    protected JLabel lxsize;
-    protected JTextField cysize;
-    protected JLabel lysize;
+public class Control extends Figure implements SimpleSection {
+    private String currentFigure;
+    private ContentLayout layout = new ContentLayout();
 
+    private static JToggleButton bControl;
+    private JLabel lControl;
+    private JSeparator sControl;
+    private static JPanel pControl;
+    private JToggleButton bAxesSize;
+    private JLabel lAxesSize;
+    private JTextField cAxesSize;
+    private JPanel pAxesSize;
+    private JLabel lAxesSizeX;
+    private JTextField cAxesSizeX;
+    private JLabel lAxesSizeY;
+    private JTextField cAxesSizeY;
+    private JLabel lCloseRequestFcn;
+    private JTextField cCloseRequestFcn;
+    private JLabel lEventHandler;
+    private JComboBox cEventHandler;
+    private JToggleButton bFigurePosition;
+    private JLabel lFigurePosition;
+    private JTextField cFigurePosition;
+    private JPanel pFigurePosition;
+    private JLabel lFigurePositionX;
+    private JTextField cFigurePositionX;
+    private JLabel lFigurePositionY;
+    private JTextField cFigurePositionY;
+    private JToggleButton bFigureSize;
+    private JLabel lFigureSize;
+    private JTextField cFigureSize;
+    private JPanel pFigureSize;
+    private JLabel lFigureSizeX;
+    private JTextField cFigureSizeX;
+    private JLabel lFigureSizeY;
+    private JTextField cFigureSizeY;
+    private JLabel lResizeFcn;
+    private JTextField cResizeFcn;
+    private JToggleButton bViewport;
+    private JLabel lViewport;
+    private JTextField cViewport;
+    private JLabel lViewportX;
+    private JTextField cViewportX;
+    private JLabel lViewportY;
+    private JTextField cViewportY;
+    private JPanel pViewport;
 
     /**
-    * Receives and passes the objectID to the parent class.
-    * @param objectID Enters the identification of Figure.
+    * Initializes the properties and the icons of the buttons.
+    * @param objectID Enters the identification of figure.
     */
     public Control(String objectID) {
-        super(objectID);
-        position();
-        setIconsControl();
-        initPropertiesControl(objectID);
+        constructComponents();
+        initMainPanel();
+        initComponents();
+        loadProperties(objectID);
     }
 
     /**
-    * It has all the components of the section Control.
+    * Construct the Components.
     */
     @Override
-    public void controlComponents() {
+    public final void constructComponents() {
         bControl = new JToggleButton();
         lControl = new JLabel();
         sControl = new JSeparator();
         pControl = new JPanel();
-        lAutoResize = new JLabel();
-        cAutoResize = new JComboBox();
-        lxposition = new JLabel();
-        cxposition = new JTextField();
-        lyposition = new JLabel();
-        cyposition = new JTextField();
-        lxsize = new JLabel();
-        cxsize = new JTextField();
-        lysize = new JLabel();
-        cysize = new JTextField();
 
-        //Components of the header: Control.
-        pControl.setAlignmentX(0.0F);
-        pControl.setAlignmentY(0.0F);
+        bAxesSize = new JToggleButton();
+        lAxesSize = new JLabel();
+        cAxesSize = new JTextField();
+        pAxesSize = new JPanel();
+        lAxesSizeX = new JLabel();
+        cAxesSizeX = new JTextField();
+        lAxesSizeY = new JLabel();
+        cAxesSizeY = new JTextField();
+        lCloseRequestFcn = new JLabel();
+        cCloseRequestFcn = new JTextField();
+        cEventHandler = new JComboBox();
+        lEventHandler = new JLabel();
+        bFigurePosition = new JToggleButton();
+        lFigurePosition = new JLabel();
+        cFigurePosition = new JTextField();
+        pFigurePosition = new JPanel();
+        lFigurePositionX = new JLabel();
+        cFigurePositionX = new JTextField();
+        lFigurePositionY = new JLabel();
+        cFigurePositionY = new JTextField();
+        bFigureSize = new JToggleButton();
+        lFigureSize = new JLabel();
+        cFigureSize = new JTextField();
+        pFigureSize = new JPanel();
+        lFigureSizeX = new JLabel();
+        cFigureSizeX = new JTextField();
+        lFigureSizeY = new JLabel();
+        cFigureSizeY = new JTextField();
+        lResizeFcn = new JLabel();
+        cResizeFcn = new JTextField();
+        bViewport = new JToggleButton();
+        lViewport = new JLabel();
+        cViewport = new JTextField();
+        pViewport = new JPanel();
+        lViewportX = new JLabel();
+        cViewportX = new JTextField();
+        lViewportY = new JLabel();
+        cViewportY = new JTextField();
+    }
 
-        bControl.setBorder(null);
-        bControl.setBorderPainted(false);
-        bControl.setContentAreaFilled(false);
-        bControl.setMaximumSize(new Dimension(16, 16));
-        bControl.setMinimumSize(new Dimension(16, 16));
-        bControl.setPreferredSize(new Dimension(16, 16));
+    /**
+    * Insert show/hide button, title and main JPanel of section.
+    */
+    @Override
+    public final void initMainPanel() {
+        String SECTIONNAME = MessagesGED.control;
+        this.setName(SECTIONNAME);
+
+        layout.addHeader(this, pControl, bControl, lControl, sControl, SECTIONNAME);
         bControl.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                bControlActionPerformed(evt);
+                pControl.setVisible(!bControl.isSelected());
+                HideFigure.checkAllButtons();
             }
         });
+    }
 
-        lControl.setText(MessagesGED.control);
+    /**
+    * Initialize the Components.
+    */
+    @Override
+    public final void initComponents() {
+        int ROW = 0;
+        int LEFTMARGIN = 0; //to components
+        int COLUMN = 1; //first column
+        int LEFTMARGINIP = 0; //left margin - inner panel
+        int COLUMNIP = 0; //left column - inner panel
 
-        sControl.setPreferredSize(new Dimension(50, 2));
-
-        //Components of the property: Auto Resize.
-        lAutoResize.setBackground(new Color(255, 255, 255));
-        lAutoResize.setText(" " + MessagesGED.auto_resize);
-        lAutoResize.setAlignmentX(0.5F);
-        lAutoResize.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lAutoResize.setOpaque(true);
-        lAutoResize.setPreferredSize(new Dimension(70, 20));
-
-        cAutoResize.setModel(new DefaultComboBoxModel(new String[] {MessagesGED.off, MessagesGED.on}));
-        cAutoResize.setBorder(null);
-        cAutoResize.setEditor(null);
-        cAutoResize.setPreferredSize(new Dimension(70, 20));
-        cAutoResize.addActionListener(new ActionListener() {
+        //Components of the property: Axes Size.
+        ROW = layout.addInnerPanel(pControl, pAxesSize, bAxesSize, lAxesSize, cAxesSize, MessagesGED.axes_size, ROW);
+        bAxesSize.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cAutoResizeActionPerformed(evt);
+                pAxesSize.setVisible(!bAxesSize.isSelected());
+                HideFigure.checkAllButtons();
             }
         });
-
-	//Components of the property: Position X.
-        lxposition.setBackground(new Color(255, 255, 255));
-        lxposition.setText(" " + MessagesGED.x_position);
-        lxposition.setAlignmentX(0.5F);
-        lxposition.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lxposition.setOpaque(true);
-        lxposition.setPreferredSize(new Dimension(70, 20));
-
-        cxposition.setToolTipText(MessagesGED.x_position_tooltip);
-        cxposition.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cxposition.setPreferredSize(new Dimension(70, 20));
-        cxposition.addActionListener(new ActionListener() {
+        int rowAxesSize = 0;
+        //Axes Size - X
+        layout.addLabelTextField(pAxesSize, lAxesSizeX, "X", cAxesSizeX, true, LEFTMARGINIP, COLUMNIP, rowAxesSize++);
+        cAxesSizeX.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cxpositionActionPerformed(evt);
+                updateAxesSize();
             }
         });
-        cxposition.addFocusListener(new FocusAdapter() {
+        cAxesSizeX.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cxpositionFocusLost(evt);
+                updateAxesSize();
             }
         });
-
-        //Components of the property: Position Y.
-        lyposition.setBackground(new Color(255, 255, 255));
-        lyposition.setText(" " + MessagesGED.y_position);
-        lyposition.setAlignmentX(0.5F);
-        lyposition.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lyposition.setOpaque(true);
-        lyposition.setPreferredSize(new Dimension(70, 20));
-
-        cyposition.setToolTipText(MessagesGED.y_position_tooltip);
-        cyposition.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cyposition.setPreferredSize(new Dimension(70, 20));
-        cyposition.addActionListener(new ActionListener() {
+        //Axes Size - Y
+        layout.addLabelTextField(pAxesSize, lAxesSizeY, "Y", cAxesSizeY, true, LEFTMARGINIP, COLUMNIP, rowAxesSize++);
+        cAxesSizeY.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cypositionActionPerformed(evt);
+                updateAxesSize();
             }
         });
-        cyposition.addFocusListener(new FocusAdapter() {
+        cAxesSizeY.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cypositionFocusLost(evt);
+                updateAxesSize();
             }
         });
 
-	//Components of the property: Size X.
-        lxsize.setBackground(new Color(255, 255, 255));
-        lxsize.setText(" " + MessagesGED.x_size);
-        lxsize.setAlignmentX(0.5F);
-        lxsize.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lxsize.setOpaque(true);
-        lxsize.setPreferredSize(new Dimension(70, 20));
-
-        cxsize.setToolTipText(MessagesGED.x_size_tooltip);
-        cxsize.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cxsize.setPreferredSize(new Dimension(70, 20));
-        cxsize.addActionListener(new ActionListener() {
+        //Components of the property: CloseRequestFcn.
+        layout.addLabelTextField(pControl, lCloseRequestFcn, MessagesGED.close_request_fcn,
+                                 cCloseRequestFcn, true, LEFTMARGIN, COLUMN, ROW++);
+        cCloseRequestFcn.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cxsizeActionPerformed(evt);
+                updateCloseRequestFcn();
             }
         });
-        cxsize.addFocusListener(new FocusAdapter() {
+        cCloseRequestFcn.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cxsizeFocusLost(evt);
+                updateCloseRequestFcn();
             }
         });
 
-	//Components of the property: Size Y.
-        lysize.setBackground(new Color(255, 255, 255));
-        lysize.setText(" " + MessagesGED.y_size);
-        lysize.setAlignmentX(0.5F);
-        lysize.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lysize.setOpaque(true);
-        lysize.setPreferredSize(new Dimension(70, 20));
-
-        cysize.setToolTipText(MessagesGED.y_size_tooltip);
-        cysize.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cysize.setPreferredSize(new Dimension(70, 20));
-        cysize.addActionListener(new ActionListener() {
+        //Components of the property: Event Handler.
+        layout.addLabelComboBox(pControl, lEventHandler, MessagesGED.event_handler,
+                                 cEventHandler, new String[] {MessagesGED.off, MessagesGED.function},
+                                 LEFTMARGIN, COLUMN, ROW++);
+        cEventHandler.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cysizeActionPerformed(evt);
+                //not implemented yet
             }
         });
-        cysize.addFocusListener(new FocusAdapter() {
+
+        //Components of the property: Figure Position.
+        ROW = layout.addInnerPanel(pControl, pFigurePosition, bFigurePosition,
+                                   lFigurePosition, cFigurePosition, MessagesGED.figure_position, ROW);
+        bFigurePosition.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                pFigurePosition.setVisible(!bFigurePosition.isSelected());
+                HideFigure.checkAllButtons();
+            }
+        });
+
+        int rowFigurePosition = 0;
+        //Figure Position - X
+        layout.addLabelTextField(pFigurePosition, lFigurePositionX, "X",
+                                 cFigurePositionX, true, LEFTMARGINIP, COLUMNIP, rowFigurePosition++);
+        cFigurePositionX.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateFigurePosition();
+            }
+        });
+        cFigurePositionX.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cysizeFocusLost(evt);
+                updateFigurePosition();
+            }
+        });
+        //Figure Position - Y
+        layout.addLabelTextField(pFigurePosition, lFigurePositionY, "Y",
+                                 cFigurePositionY, true, LEFTMARGINIP, COLUMNIP, rowFigurePosition++);
+        cFigurePositionY.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateFigurePosition();
+            }
+        });
+        cFigurePositionY.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateFigurePosition();
+            }
+        });
+
+        //Components of the property: Figure Size.
+        ROW = layout.addInnerPanel(pControl, pFigureSize, bFigureSize,
+                                   lFigureSize, cFigureSize, MessagesGED.figure_size, ROW);
+        bFigureSize.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                pFigureSize.setVisible(!bFigureSize.isSelected());
+                HideFigure.checkAllButtons();
+            }
+        });
+        int rowFigureSize = 0;
+        //Figure Size - X
+        layout.addLabelTextField(pFigureSize, lFigureSizeX, "X",
+                                 cFigureSizeX, true, LEFTMARGINIP, COLUMNIP, rowFigureSize++);
+        cFigureSizeX.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateFigureSize();
+            }
+        });
+        cFigureSizeX.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateFigureSize();
+            }
+        });
+        //Figure Size - Y
+        layout.addLabelTextField(pFigureSize, lFigureSizeY, "Y",
+                                 cFigureSizeY, true, LEFTMARGINIP, COLUMNIP, rowFigureSize++);
+        cFigureSizeY.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateFigureSize();
+            }
+        });
+        cFigureSizeY.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateFigureSize();
+            }
+        });
+
+        //Components of the property: ResizeFcn.
+        layout.addLabelTextField(pControl, lResizeFcn, MessagesGED.resize_fcn,
+                                 cResizeFcn, true, LEFTMARGIN, COLUMN, ROW++);
+        cResizeFcn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateResizeFcn();
+            }
+        });
+        cResizeFcn.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateResizeFcn();
+            }
+        });
+
+        //Components of the property: Viewport.
+        ROW = layout.addInnerPanel(pControl, pViewport, bViewport, lViewport, cViewport, MessagesGED.viewport, ROW);
+        bViewport.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                pViewport.setVisible(!bViewport.isSelected());
+                HideFigure.checkAllButtons();
+            }
+        });
+        int rowViewport = 0;
+        //Viewport - X
+        layout.addLabelTextField(pViewport, lViewportX, "X",
+                                 cViewportX, true, LEFTMARGINIP, COLUMNIP, rowViewport++);
+        cViewportX.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateViewport();
+            }
+        });
+        cViewportX.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateViewport();
+            }
+        });
+        //Viewport - Y
+        layout.addLabelTextField(pViewport, lViewportY, "Y",
+                                 cViewportY, true, LEFTMARGINIP, COLUMNIP, rowViewport++);
+        cViewportY.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateViewport();
+            }
+        });
+        cViewportY.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateViewport();
             }
         });
    }
 
     /**
-    * Positioning all the components of the Control.
-    */
-    private void position() {
-        GroupLayout pControlLayout = new GroupLayout(pControl);
-        pControl.setLayout(pControlLayout);
-        pControlLayout.setHorizontalGroup(
-            pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pControlLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pControlLayout.createSequentialGroup()
-                        .addComponent(lysize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cysize, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
-        );
-        pControlLayout.setVerticalGroup(
-            pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pControlLayout.createSequentialGroup()
-                .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cAutoResize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cxposition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cyposition, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cxsize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pControlLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lysize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cysize, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-        );
-    }
-
-    /**
-    * Loads the current properties of the section Control.
-    *
+    * Loads the current properties of the section.
     * @param objectID Enters the identification of Figure.
     */
-    public void initPropertiesControl(String objectID) {
+    @Override
+    public final void loadProperties(String objectID) {
         if (objectID != null) {
-            currentfigure = objectID;
-            /** Get the current status of the property: Auto Resize */
-            boolean isAutoResize = (Boolean) GraphicController.getController()
-                    .getProperty(currentfigure, GraphicObjectProperties.__GO_AUTORESIZE__);
-            if (isAutoResize) {
-                cAutoResize.setSelectedIndex(1);
-            } else {
-		cAutoResize.setSelectedIndex(0);
-            }
-            /** Get the current status of the property: Position */
-            Integer[] currentPosition = (Integer[]) GraphicController.getController()
-                        .getProperty(currentfigure, GraphicObjectProperties.__GO_POSITION__);
-            String currentXposition;
-            currentXposition = currentPosition[0].toString();
-            cxposition.setText(currentXposition);
-            String currentYposition;
-            currentYposition = currentPosition[1].toString();
-            cyposition.setText(currentXposition);
-            /** Get the current status of the property: Size */
-            Integer[] currentSize = (Integer[]) GraphicController.getController()
-                    .getProperty(currentfigure, GraphicObjectProperties.__GO_SIZE__);
-            String currentXsize;
-            currentXsize = currentSize[0].toString();
-            cxsize.setText(currentXsize);
-            String currentYsize;
-            currentYsize = currentSize[1].toString();
-            cysize.setText(currentXsize);
+            currentFigure = objectID;
+
+            //Get the current status of the property: Axes Size
+            Integer[] currentAxesSize = (Integer []) GraphicController.getController()
+                    .getProperty(currentFigure, GraphicObjectProperties.__GO_AXES_SIZE__);
+            cAxesSizeX.setText(currentAxesSize[0].toString());
+            cAxesSizeY.setText(currentAxesSize[1].toString());
+            titleAxesSize();
+
+            //Get the current status of the property: CloseRequestFcn
+            cCloseRequestFcn.setText((String) GraphicController.getController()
+                                .getProperty(currentFigure, GraphicObjectProperties.__GO_CLOSEREQUESTFCN__));
+
+            //Get the current status of the property: Event Handle
+            //not implemented yet.
+
+            //Get the current status of the property: Figure Position
+            Integer[] currentFigurePosition = (Integer []) GraphicController.getController()
+                    .getProperty(currentFigure, GraphicObjectProperties.__GO_POSITION__);
+            cFigurePositionX.setText(currentFigurePosition[0].toString());
+            cFigurePositionY.setText(currentFigurePosition[1].toString());
+            titleFigurePosition();
+
+            //Get the current status of the property: Figure Size
+            Integer[] currentFigureSize = (Integer []) GraphicController.getController()
+                    .getProperty(currentFigure, GraphicObjectProperties.__GO_SIZE__);
+            cFigureSizeX.setText(currentFigureSize[0].toString());
+            cFigureSizeY.setText(currentFigureSize[1].toString());
+            titleFigureSize();
+
+            //Get the current status of the property: ResizeFcn
+            cResizeFcn.setText((String) GraphicController.getController()
+                                .getProperty(currentFigure, GraphicObjectProperties.__GO_RESIZEFCN__));
+
+            //Get the current status of the property: Viewport
+            Integer[] currentViewport = (Integer []) GraphicController.getController()
+                    .getProperty(currentFigure, GraphicObjectProperties.__GO_VIEWPORT__);
+            cViewportX.setText(currentViewport[0].toString());
+            cViewportY.setText(currentViewport[1].toString());
+            titleViewport();
         }
     }
 
     /**
-    * Insert the icons on buttons.
+    * Updates the property: Axes Size.
     */
-    private void setIconsControl() {
-        bControl.setIcon(new ImageIcon(SwingInspector.icon_collapse));
-        bControl.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
-    }
-
-    /**
-    * Implement the action button to show/hide.
-    *
-    * @param evt ActionEvent.
-    */
-    private void bControlActionPerformed(ActionEvent evt) {
-        if (bControl.isSelected()) {
-            pControl.setVisible(false);
-            HideFigure.checkAllButtons();
-        } else {
-            pControl.setVisible(true);
-            HideFigure.checkAllButtons();
-        }
-    }
-
-    /**
-    * Updates the property: Auto Resize.
-    *
-    * @param evt ActionEvent.
-    */
-    private void cAutoResizeActionPerformed(ActionEvent evt) {
-        boolean setAutoResize = true;
-        if (cAutoResize.getSelectedIndex() == 0) {
-            setAutoResize = false;
-        }
+    private void updateAxesSize() {
+        Integer[] setPosition = new Integer[] {
+            Integer.parseInt(cAxesSizeX.getText()),
+            Integer.parseInt(cAxesSizeY.getText())
+        };
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_AUTORESIZE__, setAutoResize);
+                .setProperty(currentFigure, GraphicObjectProperties.__GO_AXES_SIZE__, setPosition);
+        titleAxesSize();
     }
 
     /**
-    * Updates the property: Position.
+    * Inserts the current situation of the axes size.
     */
-    private void updatePosition() {
-        int setXposition = Integer.parseInt(cxposition.getText());
-        int setYposition = Integer.parseInt(cyposition.getText());
-        Integer[] setPosition = new Integer[2];
-        setPosition[0] = setXposition;
-        setPosition[1] = setYposition;
+    public void titleAxesSize() {
+        cAxesSize.setText(" [" + cAxesSizeX.getText() + " , " + cAxesSizeY.getText() + "]");
+    }
+
+    /**
+    * Updates the property: CloseRequestFcn.
+    */
+    private void updateCloseRequestFcn() {
+        GraphicController.getController().setProperty(
+                currentFigure, GraphicObjectProperties.__GO_CLOSEREQUESTFCN__,
+                cCloseRequestFcn.getText());
+    }
+
+    /**
+    * Updates the property: Figure Position.
+    */
+    private void updateFigurePosition() {
+        Integer[] setPosition = new Integer[] {
+            Integer.parseInt(cFigurePositionX.getText()),
+            Integer.parseInt(cFigurePositionY.getText())
+        };
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_POSITION__, setPosition);
+                .setProperty(currentFigure, GraphicObjectProperties.__GO_POSITION__, setPosition);
+        titleFigurePosition();
     }
 
     /**
-    * Updates the property: xPosition.
-    *
-    * @param evt ActionEvent.
+    * Inserts the current situation of the Figure Position.
     */
-    private void cxpositionActionPerformed(ActionEvent evt) {
-        updatePosition();
+    public void titleFigurePosition() {
+        cFigurePosition.setText(" [" + cFigurePositionX.getText() + " , " + cFigurePositionY.getText() + "]");
     }
 
     /**
-    * Updates the property: xPosition.
-    *
-    * @param evt FocusEvent.
+    * Updates the property: Figure Size.
     */
-    private void cxpositionFocusLost(FocusEvent evt) {
-        updatePosition();
-    }
-
-    /**
-    * Updates the property: yPosition.
-    *
-    * @param evt ActionEvent.
-    */
-    private void cypositionActionPerformed(ActionEvent evt) {
-        updatePosition();
-    }
-
-    /**
-    * Updates the property: yPosition.
-    *
-    * @param evt FocusEvent.
-    */
-    private void cypositionFocusLost(FocusEvent evt) {
-        updatePosition();
-    }
-
-    /**
-    * Updates the property: Size.
-    */
-    private void updateSize() {
-        int setXsize = Integer.parseInt(cxsize.getText());
-        int setYsize = Integer.parseInt(cysize.getText());
-        Integer[] setSize = new Integer[2];
-        setSize[0] = setXsize;
-        setSize[1] = setYsize;
+    private void updateFigureSize() {
+        Integer[] setPosition = new Integer[] {
+            Integer.parseInt(cFigureSizeX.getText()),
+            Integer.parseInt(cFigureSizeY.getText())
+        };
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_SIZE__, setSize);
+                .setProperty(currentFigure, GraphicObjectProperties.__GO_SIZE__, setPosition);
+        titleFigureSize();
     }
 
     /**
-    * Updates the property: xSize.
-    *
-    * @param evt ActionEvent.
+    * Inserts the current situation of the Figure Size.
     */
-    private void cxsizeActionPerformed(ActionEvent evt) {
-        updateSize();
+    public final void titleFigureSize() {
+        cFigureSize.setText(" [" + cFigureSizeX.getText() + " , " + cFigureSizeY.getText() + "]");
     }
 
     /**
-    * Updates the property: xSize.
-    *
-    * @param evt FocusEvent.
+    * Updates the property: ResizeFcn.
     */
-    private void cxsizeFocusLost(FocusEvent evt) {
-        updateSize();
+    private void updateResizeFcn() {
+        GraphicController.getController().setProperty(
+                currentFigure, GraphicObjectProperties.__GO_RESIZEFCN__,
+                cResizeFcn.getText());
     }
 
     /**
-    * Updates the property: ySize.
-    *
-    * @param evt ActionEvent.
+    * Updates the property: Viewport.
     */
-    private void cysizeActionPerformed(ActionEvent evt) {
-        updateSize();
+    private void updateViewport() {
+        Integer[] setPosition = new Integer[] {
+            Integer.parseInt(cViewportX.getText()),
+            Integer.parseInt(cViewportY.getText())
+        };
+        GraphicController.getController()
+                .setProperty(currentFigure, GraphicObjectProperties.__GO_VIEWPORT__, setPosition);
+        titleViewport();
     }
 
     /**
-    * Updates the property: ySize.
-    *
-    * @param evt FocusEvent.
+    * Inserts the current situation of the viewport.
     */
-    private void cysizeFocusLost(FocusEvent evt) {
-        updateSize();
+    public final void titleViewport() {
+        cViewport.setText(" [" + cViewportX.getText() + " , " + cViewportY.getText() + "]");
+    }
+
+    /**
+    * Get Status of Main Jpanel.
+    * @return visibility
+    */
+    public static boolean getStatus() {
+        return pControl.isVisible();
+    }
+
+    /**
+    * Set Visibility of Property Group.
+    * @param visible boolean
+    */
+    public static void setVisibility(boolean visible) {
+        pControl.setVisible(visible);
+        bControl.setSelected(!visible);
     }
 }

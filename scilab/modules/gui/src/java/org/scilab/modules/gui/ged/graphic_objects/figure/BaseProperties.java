@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos CARDINOT
+ * Copyright (C) 2012 2013 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,179 +11,217 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects.figure;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JToggleButton;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
-import org.scilab.modules.gui.ged.SwingInspector;
+import org.scilab.modules.gui.ged.ContentLayout;
 import org.scilab.modules.gui.ged.MessagesGED;
+import org.scilab.modules.gui.ged.graphic_objects.SimpleSection;
 
 /**
 * Construction and startup of all components of the section: Base Properties.
-*
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class BaseProperties extends Roof {
-    protected static JToggleButton bBaseProperties;
-    protected static JPanel pBaseProperties;
-    protected JLabel lBaseProperties;
-    protected JSeparator sBaseProperties;
-    protected JComboBox cVisible;
-    private JLabel lVisible;
+public class BaseProperties extends Figure implements SimpleSection {
+    private String currentFigure;
+    private ContentLayout layout = new ContentLayout();
 
-    protected String currentfigure = null;
+    private static JToggleButton bBaseProperties;
+    private static JPanel pBaseProperties;
+    private JLabel lBaseProperties;
+    private JSeparator sBaseProperties;
+    private JLabel lAliasing;
+    private JComboBox cAliasing;
+    private JLabel lResize;
+    private JComboBox cResize;
+    private JLabel lImmediateDrawing;
+    private JComboBox cImmediateDrawing;
+    private JLabel lPixmap;
+    private JComboBox cPixmap;
+    private JLabel lVisible;
+    private JComboBox cVisible;
 
     /**
     * Initializes the properties and the icons of the buttons.
-    *
     * @param objectID Enters the identification of Figure.
     */
     public BaseProperties(String objectID) {
-        position();
-        setIconsBaseProperties();
-        initPropertiesBase(objectID);
+        constructComponents();
+        initMainPanel();
+        initComponents();
+        loadProperties(objectID);
     }
 
     /**
-    * It has all the components of the section Base Properties.
+    * Construct the Components.
     */
     @Override
-    public void basePropertiesComponents() {
-        pBaseProperties = new JPanel();
+    public final void constructComponents() {
         bBaseProperties = new JToggleButton();
         lBaseProperties = new JLabel();
         sBaseProperties = new JSeparator();
+        pBaseProperties = new JPanel();
+
+        lAliasing = new JLabel();
+        cAliasing = new JComboBox();
+        lResize = new JLabel();
+        cResize = new JComboBox();
+        lImmediateDrawing = new JLabel();
+        cImmediateDrawing = new JComboBox();
+        lPixmap = new JLabel();
+        cPixmap = new JComboBox();
         lVisible = new JLabel();
         cVisible = new JComboBox();
+    }
 
-        //Components of the header: Base Properties.
-        pBaseProperties.setAlignmentX(0.0F);
-        pBaseProperties.setAlignmentY(0.0F);
-
-        bBaseProperties.setBorder(null);
-        bBaseProperties.setBorderPainted(false);
-        bBaseProperties.setContentAreaFilled(false);
-        bBaseProperties.setMaximumSize(new Dimension(16, 16));
-        bBaseProperties.setMinimumSize(new Dimension(16, 16));
-        bBaseProperties.setPreferredSize(new Dimension(16, 16));
-        bBaseProperties.setRolloverEnabled(false);
+    /**
+    * Insert show/hide button, title and main JPanel of section.
+    */
+    @Override
+    public final void initMainPanel() {
+        String SECTIONNAME = MessagesGED.base_properties;
+        this.setName(SECTIONNAME);
+        layout.addHeader(this, pBaseProperties, bBaseProperties, lBaseProperties, sBaseProperties, SECTIONNAME);
         bBaseProperties.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                bBasePropertiesActionPerformed(evt);
+                pBaseProperties.setVisible(!bBaseProperties.isSelected());
+                HideFigure.checkAllButtons();
+            }
+        });
+    }
+
+    /**
+    * Initialize the Components.
+    */
+    @Override
+    public final void initComponents() {
+        String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
+        int ROW = 0;
+        int LEFTMARGIN = 16; //to inner components
+        int COLUMN = 0; //first column
+
+        //Components of the property: Anti-aliasing.
+        layout.addLabelComboBox(pBaseProperties, lAliasing, MessagesGED.anti_alising,
+                                cAliasing, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+        cAliasing.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                GraphicController.getController().setProperty(
+                    currentFigure, GraphicObjectProperties.__GO_ANTIALIASING__,
+                    cAliasing.getSelectedIndex());
             }
         });
 
-        lBaseProperties.setText(MessagesGED.base_properties);
+        //Components of the property: Auto-Resize.
+        layout.addLabelComboBox(pBaseProperties, lResize, MessagesGED.auto_resize,
+                                cResize, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+        cResize.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                GraphicController.getController().setProperty(
+                    currentFigure, GraphicObjectProperties.__GO_AUTORESIZE__,
+                    cResize.getSelectedIndex() == 0 ? false : true);
+            }
+        });
 
-        sBaseProperties.setPreferredSize(new Dimension(50, 2));
+        //Components of the property: Immediate Drawing.
+        layout.addLabelComboBox(pBaseProperties, lImmediateDrawing, MessagesGED.immediate_drawing,
+                                cImmediateDrawing, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+        cImmediateDrawing.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) { 
+                GraphicController.getController().setProperty(
+                        currentFigure, GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__,
+                        cImmediateDrawing.getSelectedIndex() == 0 ? false : true);
+            }
+        });
+
+        //Components of the property: Pixmap.
+        layout.addLabelComboBox(pBaseProperties, lPixmap, MessagesGED.pixmap,
+                                cPixmap, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+        cPixmap.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                GraphicController.getController().setProperty(
+                    currentFigure, GraphicObjectProperties.__GO_PIXMAP__,
+                    cPixmap.getSelectedIndex() == 0 ? false : true);
+            }
+        });
 
         //Components of the property: Visible.
-        lVisible.setBackground(new Color(255, 255, 255));
-        lVisible.setText(" " + MessagesGED.visible);
-        lVisible.setAlignmentX(0.5F);
-        lVisible.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lVisible.setOpaque(true);
-        lVisible.setPreferredSize(new Dimension(70, 20));
-
-        cVisible.setModel(new DefaultComboBoxModel(new String[] {MessagesGED.off, MessagesGED.on}));
-        cVisible.setBorder(null);
-        cVisible.setEditor(null);
-        cVisible.setPreferredSize(new Dimension(70, 20));
+        layout.addLabelComboBox(pBaseProperties, lVisible, MessagesGED.visible,
+                                cVisible, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
         cVisible.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cVisibleActionPerformed(evt);
+                GraphicController.getController().setProperty(
+                    currentFigure, GraphicObjectProperties.__GO_VISIBLE__,
+                    cVisible.getSelectedIndex() == 0 ? false : true);
             }
         });
     }
 
     /**
-    * Positioning all the components of the Basic Properties.
-    */
-    private void position() {
-        GroupLayout pBasePropertiesLayout = new GroupLayout(pBaseProperties);
-        pBaseProperties.setLayout(pBasePropertiesLayout);
-        pBasePropertiesLayout.setHorizontalGroup(
-            pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                .addGap(4, 4, 4)
-                .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-        );
-        pBasePropertiesLayout.setVerticalGroup(
-            pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-            .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        );
-    }
-
-    /**
-    * Loads the current properties of the section Base Properties.
-    *
+    * Loads the current properties of the section.
     * @param objectID Enters the identification of Figure.
     */
-    private void initPropertiesBase(String objectID) {
+    @Override
+    public final void loadProperties(String objectID) {
         if (objectID != null) {
-            currentfigure = objectID;
+            currentFigure = objectID;
+            boolean enable;
+
+            // Get the current status of the property: Anti-aliasing
+            cAliasing.setSelectedIndex((Integer) GraphicController.getController()
+                    .getProperty(currentFigure, GraphicObjectProperties.__GO_ANTIALIASING__));
+
+            // Get the current status of the property: Auto Resize
+            enable = (Boolean) GraphicController.getController()
+                    .getProperty(currentFigure, GraphicObjectProperties.__GO_AUTORESIZE__);
+            cResize.setSelectedIndex(enable?1:0);
+
+            // Get the current status of the property: Immediate Drawing
+            enable = (Boolean) GraphicController.getController()
+                    .getProperty(currentFigure, GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__);
+            cImmediateDrawing.setSelectedIndex(enable?1:0);
+
+            // Get the current status of the property: Pixmap
+            enable = (Boolean) GraphicController.getController()
+                    .getProperty(currentFigure, GraphicObjectProperties.__GO_PIXMAP__);
+            cPixmap.setSelectedIndex(enable?1:0);
+
             // Get the current status of the property: Visible
-            boolean isVisible = (Boolean) GraphicController.getController()
-                    .getProperty(currentfigure, GraphicObjectProperties.__GO_VISIBLE__);
-            if (isVisible) {
-                cVisible.setSelectedIndex(1);
-            } else {
-                cVisible.setSelectedIndex(0);
-            }
+            enable = (Boolean) GraphicController.getController()
+                    .getProperty(currentFigure, GraphicObjectProperties.__GO_VISIBLE__);
+            cVisible.setSelectedIndex(enable?1:0);
         }
     }
 
     /**
-    * Insert the icons on buttons.
+    * Get Status of Main Jpanel.
+    * @return visibility
     */
-    private final void setIconsBaseProperties() {
-        bBaseProperties.setIcon(new ImageIcon(SwingInspector.icon_collapse));
-        bBaseProperties.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
+    public static boolean getStatus() {
+        return pBaseProperties.isVisible();
     }
 
     /**
-    * Implement the action button to show/hide.
+    * Set Visibility of Property Group.
+    * @param visible boolean
     */
-    private void bBasePropertiesActionPerformed(ActionEvent evt) {
-        if (bBaseProperties.isSelected()) {
-            pBaseProperties.setVisible(false);
-            HideFigure.checkAllButtons();
-        } else {
-            pBaseProperties.setVisible(true);
-            HideFigure.checkAllButtons();
-        }
-    }
-
-    /**
-    * Updates the property: Visible.
-    *
-    * @param evt ActionEvent.
-    */
-    private void cVisibleActionPerformed(ActionEvent evt) {
-        boolean setVisible = true;
-        if (cVisible.getSelectedIndex() == 0) {
-            setVisible = false;
-        }
-        GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_VISIBLE__, setVisible);
+    public static void setVisibility(boolean visible) {
+        pBaseProperties.setVisible(visible);
+        bBaseProperties.setSelected(!visible);
     }
 }

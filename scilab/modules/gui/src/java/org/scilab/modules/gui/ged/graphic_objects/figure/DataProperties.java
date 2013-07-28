@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos CARDINOT
+ * Copyright (C) 2012 2013 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,18 +11,11 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects.figure;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
@@ -31,226 +24,203 @@ import javax.swing.JToggleButton;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.gui.ged.ContentLayout;
 
-import org.scilab.modules.gui.ged.SwingInspector;
 import org.scilab.modules.gui.ged.MessagesGED;
+import org.scilab.modules.gui.ged.graphic_objects.SimpleSection;
 
 /**
 * Construction and startup of all components of the section: DataProperties.
-*
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class DataProperties extends Control {
-    protected static JToggleButton bData;
-    protected static JPanel pData;
-    protected JLabel lData;
-    protected JSeparator sData;
-    protected JTextField cFigureID;
-    protected JLabel lFigureID;
-    protected JTextField cFigureName;
-    protected JLabel lFigureName;
-    protected JComboBox cUnits;
-    protected JLabel lUnits;
+public class DataProperties extends Figure implements SimpleSection {
+    private String currentFigure;
+    private ContentLayout layout = new ContentLayout();
+
+    private static JToggleButton bDataProperties;
+    private JLabel lDataProperties;
+    private JSeparator sDataProperties;
+    private static JPanel pDataProperties;
+    private JLabel lFigureID;
+    private JTextField cFigureID;
+    private JLabel lFigureName;
+    private JTextField cFigureName;
+    private JLabel lInfoMessage;
+    private JTextField cInfoMessage;
+    private JLabel lTag;
+    private JTextField cTag;
+    private JLabel lUserData;
+    private JTextField cUserData;
 
     /**
-    * Receives and passes the objectID to the parent class.
-    *
-    * @param objectID Enters the identification of Figure.
+    * Initializes the properties and the icons of the buttons.
+    * @param objectID Enters the identification of figure.
     */
     public DataProperties(String objectID) {
-        super(objectID);
-        position();
-        setIconsData();
-        initPropertiesData(objectID);
+        constructComponents();
+        initMainPanel();
+        initComponents();
+        loadProperties(objectID);
     }
 
     /**
-    * It has all the components of the section Control.
+    * Construct the Components.
     */
     @Override
-    public void dataComponents() {
-        pData = new JPanel();
-        bData = new JToggleButton();
-        lData = new JLabel();
-        sData = new JSeparator();
+    public final void constructComponents() {
+        bDataProperties = new JToggleButton();
+        lDataProperties = new JLabel();
+        sDataProperties = new JSeparator();
+        pDataProperties = new JPanel();
+
         lFigureID = new JLabel();
         cFigureID = new JTextField();
         lFigureName = new JLabel();
         cFigureName = new JTextField();
-        lUnits = new JLabel();
-        cUnits = new JComboBox();
+        lInfoMessage = new JLabel();
+        cInfoMessage = new JTextField();
+        lTag = new JLabel();
+        cTag = new JTextField();
+        lUserData = new JLabel();
+        cUserData = new JTextField();
+    }
 
-        //Components of the header: DataProperties.
-        pData.setAlignmentX(0.0F);
-        pData.setAlignmentY(0.0F);
+    /**
+    * Insert show/hide button, title and main JPanel of section.
+    */
+    @Override
+    public final void initMainPanel() {
+        String SECTIONNAME = MessagesGED.data_properties;
+        this.setName(SECTIONNAME);
 
-        bData.setBorder(null);
-        bData.setBorderPainted(false);
-        bData.setContentAreaFilled(false);
-        bData.setMaximumSize(new Dimension(16, 16));
-        bData.setMinimumSize(new Dimension(16, 16));
-        bData.setPreferredSize(new Dimension(16, 16));
-        bData.addActionListener(new ActionListener() {
+        layout.addHeader(this, pDataProperties, bDataProperties, lDataProperties, sDataProperties, SECTIONNAME);
+        bDataProperties.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                bDataActionPerformed(evt);
+                pDataProperties.setVisible(!bDataProperties.isSelected());
+                HideFigure.checkAllButtons();
             }
         });
+    }
 
-        lData.setText(MessagesGED.data);
-
-        sData.setPreferredSize(new Dimension(50, 2));
+    /**
+    * Initialize the Components.
+    */
+    @Override
+    public final void initComponents() {
+        int ROW = 0;
+        int LEFTMARGIN = 16; //to inner components
+        int COLUMN = 0; //first column
 
         //Components of the property: Figure ID.
-        lFigureID.setBackground(new Color(255, 255, 255));
-        lFigureID.setText(" " + MessagesGED.figure_id);
-        lFigureID.setAlignmentX(0.5F);
-        lFigureID.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lFigureID.setOpaque(true);
-        lFigureID.setPreferredSize(new Dimension(70, 20));
-
-        cFigureID.setBackground(new Color(238, 238, 238));
-        cFigureID.setEditable(true);
-        cFigureID.setToolTipText(MessagesGED.figure_id_tooltip);
-        cFigureID.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cFigureID.setPreferredSize(new Dimension(70, 20));
+        layout.addLabelTextField(pDataProperties, lFigureID, MessagesGED.figure_id,
+                                 cFigureID, true, LEFTMARGIN, COLUMN, ROW++);
         cFigureID.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cFigureIDActionPerformed(evt);
+                updateFigureID();
             }
         });
         cFigureID.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cFigureIDFocusLost(evt);
+                updateFigureID();
             }
         });
 
         //Components of the property: Figure Name.
-        lFigureName.setBackground(new Color(255, 255, 255));
-        lFigureName.setText(" " + MessagesGED.figure_name);
-        lFigureName.setAlignmentX(0.5F);
-        lFigureName.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lFigureName.setOpaque(true);
-        lFigureName.setPreferredSize(new Dimension(70, 20));
-
-        cFigureName.setToolTipText(MessagesGED.figure_name_tooltip);
-        cFigureName.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cFigureName.setPreferredSize(new Dimension(93	, 20));
+        layout.addLabelTextField(pDataProperties, lFigureName, MessagesGED.figure_name,
+                                 cFigureName, true, LEFTMARGIN, COLUMN, ROW++);
         cFigureName.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cFigureNameActionPerformed(evt);
+                updateFigureName();
             }
         });
         cFigureName.addFocusListener(new FocusAdapter() {
+            @Override
             public void focusLost(FocusEvent evt) {
-                cFigureNameFocusLost(evt);
+                updateFigureName();
             }
         });
 
-	//Components of the property: Units.
-        lUnits.setBackground(new Color(255, 255, 255));
-        lUnits.setText(" " + MessagesGED.units);
-        lUnits.setAlignmentX(0.5F);
-        lUnits.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lUnits.setOpaque(true);
-        lUnits.setPreferredSize(new Dimension(127, 20));
+        //Components of the property: Info Message.
+        layout.addLabelTextField(pDataProperties, lInfoMessage, MessagesGED.info_message,
+                                 cInfoMessage, true, LEFTMARGIN, COLUMN, ROW++);
+        cInfoMessage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateInfoMessage();
+            }
+        });
+        cInfoMessage.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateInfoMessage();
+            }
+        });
 
-        cUnits.setModel(new DefaultComboBoxModel(new String[] { 
-            "Inches", "Centimeters", "Normalized",
-            "Points", "Pixels", "Characters"}));
-        cUnits.setSelectedIndex(4);
-        cUnits.setBorder(null);
-        cUnits.setEditor(null);
-        cUnits.setPreferredSize(new Dimension(70, 20));
-   }
+        //Components of the property: Tag.
+        layout.addLabelTextField(pDataProperties, lTag, MessagesGED.tag,
+                                 cTag, true, LEFTMARGIN, COLUMN, ROW++);
+        cTag.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateTag();
+            }
+        });
+        cTag.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateTag();
+            }
+        });
 
-    /**
-    * Positioning all the components of the DataProperties.
-    */
-    private void position() {
-        GroupLayout pDataLayout = new GroupLayout(pData);
-        pData.setLayout(pDataLayout);
-        pDataLayout.setHorizontalGroup(
-            pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pDataLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pDataLayout.createSequentialGroup()
-                        .addComponent(lFigureID, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cFigureID, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pDataLayout.createSequentialGroup()
-                        .addComponent(lFigureName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cFigureName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pDataLayout.createSequentialGroup()
-                        .addComponent(lUnits, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cUnits, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        pDataLayout.setVerticalGroup(
-            pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pDataLayout.createSequentialGroup()
-                .addGroup(pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lFigureID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pDataLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(cFigureID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addGroup(pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lFigureName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pDataLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(cFigureName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addGroup(pDataLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pDataLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lUnits, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cUnits, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-        );
+        //Components of the property: User Data.
+        layout.addLabelTextField(pDataProperties, lUserData, MessagesGED.user_data,
+                                 cUserData, true, LEFTMARGIN, COLUMN, ROW++);
+        cUserData.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateUserData();
+            }
+        });
+        cUserData.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent evt) {
+                updateUserData();
+            }
+        });
     }
 
     /**
-    * Loads the current properties of the section DataProperties.
-    *
+    * Loads the current properties of the section.
     * @param objectID Enters the identification of Figure.
     */
-    public void initPropertiesData(String objectID) {
+    @Override
+    public final void loadProperties(String objectID) {
         if (objectID != null) {
-            currentfigure = objectID;
-            /** Get the current status of the property: Figure ID */
-            Integer currentFigureID = (Integer) GraphicController.getController()
-                    .getProperty(currentfigure, GraphicObjectProperties.__GO_ID__);
-            String figureID;
-            figureID = currentFigureID.toString();
-            cFigureID.setText(figureID);
-            /** Get the current status of the property: Figure Name */
-            String figureName = (String) GraphicController.getController()
-                    .getProperty(currentfigure, GraphicObjectProperties.__GO_NAME__);
-            cFigureName.setText(figureName);
-        }
-    }
+            currentFigure = objectID;
 
-    /**
-    * Insert the icons on buttons.
-    */
-    private void setIconsData() {
-        bData.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
-        bData.setIcon(new ImageIcon(SwingInspector.icon_collapse));
-    }
+            // Get the current status of the property: Figure ID
+            cFigureID.setText(((Integer) GraphicController.getController()
+                                .getProperty(currentFigure, GraphicObjectProperties.__GO_ID__)).toString());
 
-    /**
-    * Implement the action button to show/hide.
-    *
-    * @param evt ActionEvent.
-    */
-    private void bDataActionPerformed(ActionEvent evt) {
-        if (bData.isSelected()) {
-            pData.setVisible(false);
-            HideFigure.checkAllButtons();
-        } else {
-            pData.setVisible(true);
-            HideFigure.checkAllButtons();
+            // Get the current status of the property: Figure Name
+            cFigureName.setText((String) GraphicController.getController()
+                                .getProperty(currentFigure, GraphicObjectProperties.__GO_NAME__));
+
+            // Get the current status of the property: Info Message
+            cInfoMessage.setText((String) GraphicController.getController()
+                                .getProperty(currentFigure, GraphicObjectProperties.__GO_INFO_MESSAGE__));
+
+            // Get the current status of the property: Tag
+            cTag.setText((String) GraphicController.getController()
+                                .getProperty(currentFigure, GraphicObjectProperties.__GO_TAG__));
+
+            // Get the current status of the property: User Data
+            cUserData.setText((String) GraphicController.getController()
+                                .getProperty(currentFigure, GraphicObjectProperties.__GO_USER_DATA__));
         }
     }
 
@@ -260,25 +230,7 @@ public class DataProperties extends Control {
     private void updateFigureID() {
         int setfigureID = Integer.parseInt(cFigureID.getText());
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_ID__, setfigureID);
-    }
-
-    /**
-    * Updates the property: Figure ID.
-    *
-    * @param evt ActionEvent.
-    */
-    private void cFigureIDActionPerformed(ActionEvent evt) {
-        updateFigureID();
-    }
-
-    /**
-    * Updates the property: Figure ID.
-    *
-    * @param evt FocusEvent.
-    */
-    private void cFigureIDFocusLost(FocusEvent evt) {
-        updateFigureID();
+                .setProperty(currentFigure, GraphicObjectProperties.__GO_ID__, setfigureID);
     }
 
     /**
@@ -286,24 +238,47 @@ public class DataProperties extends Control {
     */
     private void updateFigureName() {
         GraphicController.getController()
-                .setProperty(currentfigure, GraphicObjectProperties.__GO_NAME__, cFigureName.getText());
+                .setProperty(currentFigure, GraphicObjectProperties.__GO_NAME__, cFigureName.getText());
     }
 
     /**
-    * Updates the property: Figure Name.
-    *
-    * @param evt ActionEvent.
+    * Updates the property: Info Message.
     */
-    private void cFigureNameActionPerformed(ActionEvent evt) {
-        updateFigureName();
+    private void updateInfoMessage() {
+        GraphicController.getController().setProperty(
+                currentFigure, GraphicObjectProperties.__GO_INFO_MESSAGE__, cInfoMessage.getText());
     }
 
     /**
-    * Updates the property: Figure Name.
-    *
-    * @param evt FocusEvent.
+    * Updates the property: Tag.
     */
-    private void cFigureNameFocusLost(FocusEvent evt) {
-        updateFigureName();
+    private void updateTag() {
+        GraphicController.getController().setProperty(
+                currentFigure, GraphicObjectProperties.__GO_TAG__, cTag.getText());
+    }
+
+    /**
+    * Updates the property: User Data.
+    */
+    private void updateUserData() {
+        GraphicController.getController().setProperty(
+                currentFigure, GraphicObjectProperties.__GO_USER_DATA__, cUserData.getText());
+    }
+
+    /**
+    * Get Status of Main Jpanel.
+    * @return visibility
+    */
+    public static boolean getStatus() {
+        return pDataProperties.isVisible();
+    }
+
+    /**
+    * Set Visibility of Property Group.
+    * @param visible boolean
+    */
+    public static void setVisibility(boolean visible) {
+        pDataProperties.setVisible(visible);
+        bDataProperties.setSelected(!visible);
     }
 }

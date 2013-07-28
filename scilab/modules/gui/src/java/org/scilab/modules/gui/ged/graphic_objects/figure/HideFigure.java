@@ -21,17 +21,10 @@ import org.scilab.modules.gui.ged.actions.ShowHide;
 public class HideFigure {
     public HideFigure(boolean hide) {
         try {
-            BaseProperties.pBaseProperties.setVisible(!hide);
-            BaseProperties.bBaseProperties.setSelected(hide);
-
-            Control.pControl.setVisible(!hide);
-            Control.bControl.setSelected(hide);
-
-            DataProperties.pData.setVisible(!hide);
-            DataProperties.bData.setSelected(hide);
-
-            Style.pStyle.setVisible(!hide);
-            Style.bStyle.setSelected(hide);
+            BaseProperties.setVisibility(!hide);
+            Control.setVisibility(!hide);
+            DataProperties.setVisibility(!hide);
+            Style.setVisibility(!hide);
         } catch (NullPointerException nexcF) { }
     }
 
@@ -40,10 +33,11 @@ public class HideFigure {
      * Updates the button's icon in the toolbar
      */
     public static void checkAllButtons() {
-        boolean BP = BaseProperties.pBaseProperties.isVisible();
-        boolean CO = Control.pControl.isVisible();
-        boolean DP = DataProperties.pData.isVisible();
-        boolean SA = Style.pStyle.isVisible();
+        boolean BP = BaseProperties.getStatus();
+        boolean CO = Control.getStatus();
+        boolean DP = DataProperties.getStatus();
+        boolean SA = Style.getStatus();
+
         if (BP && CO && DP && SA)
             ShowHide.setStatus(false);
         else if (!BP && !CO && !DP && !SA)

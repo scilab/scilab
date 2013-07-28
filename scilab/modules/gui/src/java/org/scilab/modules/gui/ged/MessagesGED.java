@@ -36,14 +36,24 @@ public class MessagesGED {
     public static final String grayplot = Messages.gettext("Grayplot");
 
     //Base Properties - Labels
+    public static final String anti_alising = Messages.gettext("Anti-alising");
+    public static final String auto_clear = Messages.gettext("Auto Clear");
+    public static final String auto_scale = Messages.gettext("Auto Scale");
+    public static final String auto_resize = Messages.gettext("Auto Resize");
+    public static final String axes_visible = Messages.gettext("Axes Visible");
+    public static final String axes_reverse = Messages.gettext("Axes Reverse");
     public static final String closed = Messages.gettext("Closed");
+    public static final String cube_scaling = Messages.gettext("Cube Scaling");
     public static final String fill_mode = Messages.gettext("Fill Mode");
+    public static final String immediate_drawing = Messages.gettext("Immediate Drawing");
+    public static final String isometric_view = Messages.gettext("Isometric View");
     public static final String line_mode = Messages.gettext("Line Mode");
     public static final String mark_mode = Messages.gettext("Mark Mode");
     public static final String visible = Messages.gettext("Visible");
     public static final String base_properties = Messages.gettext("Base Properties");
     public static final String on = Messages.gettext("On");
     public static final String off = Messages.gettext("Off");
+    public static final String pixmap = Messages.gettext("Pixmap");
     public static final String tag = Messages.gettext("Tag");
     public static final String text = Messages.gettext("Text");
     public static final String surface_mode = Messages.gettext("Surface Mode");
@@ -75,14 +85,15 @@ public class MessagesGED {
     public static final String arrowed = Messages.gettext("arrowed");
     public static final String filled = Messages.gettext("filled");
 
-    public static final String pixmap = Messages.gettext("Pixmap");
     public static final String pixel_drawing_mode = Messages.gettext("Pixel Drawing Mode");
     public static final String rotation_style = Messages.gettext("Rotation Style");
     public static final String unary = Messages.gettext("unary");
     public static final String multiple = Messages.gettext("multiple");
 
     public static final String font_color = Messages.gettext("Font Color");
+    public static final String font_size = Messages.gettext("Font Size");
     public static final String font_style = Messages.gettext("Font Style");
+    public static final String fractional_font = Messages.gettext("Fractional Font");
 
     public static final String arrow_size_factor = Messages.gettext("Arrow Size Factor");
     public static final String bar_width = Messages.gettext("Bar Width");
@@ -102,7 +113,13 @@ public class MessagesGED {
     public static final String data = Messages.gettext("Data");
     public static final String figure_id = Messages.gettext("Figure ID");
     public static final String figure_name = Messages.gettext("Figure Name");
+    public static final String info_message = Messages.gettext("Info Message");
     public static final String units = Messages.gettext("Units");
+    public static final String user_data = Messages.gettext("User Data");
+    public static final String x_label = Messages.gettext("X Label");
+    public static final String y_label = Messages.gettext("Y Label");
+    public static final String z_label = Messages.gettext("Z Label");
+    public static final String title = Messages.gettext("Title");
 
     //Data - Tooltip
     public static final String figure_id_tooltip = Messages.gettext("Number of current figure.");
@@ -116,12 +133,22 @@ public class MessagesGED {
     public static final String delete = Messages.gettext("Delete");
 
     //Control - Labels
+    public static final String _2d = Messages.gettext("2D");
+    public static final String _3d = Messages.gettext("3D");
     public static final String control = Messages.gettext("Control");
-    public static final String auto_resize = Messages.gettext("Auto Resize");
-    public static final String x_position = Messages.gettext("X Position");
-    public static final String y_position = Messages.gettext("Y Position");
-    public static final String x_size = Messages.gettext("X Size");
-    public static final String y_size = Messages.gettext("Y Size");
+    public static final String axes_size = Messages.gettext("Axes Size");
+    public static final String close_request_fcn = Messages.gettext("CloseRequestFcn");
+    public static final String resize_fcn = Messages.gettext("ResizeFcn");
+    public static final String figure_position = Messages.gettext("Figure Position");
+    public static final String figure_size = Messages.gettext("Figure Size");
+    public static final String event_handler = Messages.gettext("Event Handler");
+    public static final String function = Messages.gettext("Function");
+    public static final String view = Messages.gettext("View");
+    public static final String viewport = Messages.gettext("Viewport");
+    public static final String x_left = Messages.gettext("X Left");
+    public static final String y_up = Messages.gettext("Y Up");
+    public static final String log_flags = Messages.gettext("Log Flags");
+    public static final String tight_limits = Messages.gettext("Tight Limits");
 
     //Control - Tooltip
     public static final String x_position_tooltip = Messages.gettext("Enter a x position.");

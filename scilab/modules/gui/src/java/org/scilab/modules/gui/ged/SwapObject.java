@@ -138,8 +138,9 @@ public class SwapObject {
     */
     private void figure(String objectID) {
         adjust();
-        //Load the figure panel.
-        SwingInspector.pReceive.add(new Figure(objectID), "");
+        Figure figure = new Figure();
+        figure.initSections(objectID);
+        SwingInspector.pReceive.add(figure, "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.figure);
         } catch (NullPointerException npe) { }
