@@ -18,18 +18,23 @@ package org.scilab.modules.gui.ged.graphic_objects;
 public interface SimpleSection {
 
     /**
-    * Insert show/hide button, title and main JPanel of group.
+    * Construct all the components.
     */
-    void insertBase();
+    void constructComponents();
 
     /**
-    * It has all the components of the section Base Properties.
+    * Insert show/hide button, title and main JPanel of group.
     */
-    void components();
+    void initMainPanel();
+
+    /**
+    * Initilialize the components of the section.
+    */
+    void initComponents();
 
     /**
     * Loads the current properties of section.
     * @param objectID Enters the identification of polyline.
     */
-    void values(String objectID);
+    void loadProperties(String objectID);
 }

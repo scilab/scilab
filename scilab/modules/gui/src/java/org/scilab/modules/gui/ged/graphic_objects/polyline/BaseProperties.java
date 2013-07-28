@@ -35,9 +35,6 @@ public class BaseProperties extends Polyline implements SimpleSection {
     private static BaseProperties instance;
     private String currentpolyline;
     private ContentLayout layout = new ContentLayout();
-    private int LEFTMARGIN = 16;
-    private int LEFTCOLUMN = 0;
-    private int RIGHTCOLUMN = 1;
 
     private static JToggleButton bBaseProperties;
     private static JPanel pBaseProperties;
@@ -60,25 +57,42 @@ public class BaseProperties extends Polyline implements SimpleSection {
     */
     public BaseProperties(String objectID) {
         instance = this;
-        currentpolyline = objectID;
-        insertBase();
-        components();
-        values(objectID);
+        constructComponents();
+        initMainPanel();
+        initComponents();
+        loadProperties(objectID);
     }
 
     /**
-    * Insert show/hide button, title and main JPanel of group.
+    * Construct the Components.
     */
     @Override
-    public final void insertBase() {
-        String SECTIONNAME = MessagesGED.base_properties;
-        this.setName(SECTIONNAME);
+    public final void constructComponents() {
         bBaseProperties = new JToggleButton();
         lBaseProperties = new JLabel();
         sBaseProperties = new JSeparator();
         pBaseProperties = new JPanel();
 
-        //Positioning JPanel Base Properties.
+        lClosed = new JLabel();
+        cClosed = new JComboBox();
+        lFillMode = new JLabel();
+        cFillMode = new JComboBox();
+        lLineMode = new JLabel();
+        cLineMode = new JComboBox();
+        lMarkMode = new JLabel();
+        cMarkMode = new JComboBox();
+        lVisible = new JLabel();
+        cVisible = new JComboBox();
+    }
+
+    /**
+    * Insert show/hide button, title and main JPanel of section.
+    */
+    @Override
+    public final void initMainPanel() {
+        String SECTIONNAME = MessagesGED.base_properties;
+        this.setName(SECTIONNAME);
+
         layout.addHeader(this, pBaseProperties, bBaseProperties, lBaseProperties, sBaseProperties, SECTIONNAME);
         bBaseProperties.addActionListener(new ActionListener() {
             @Override
@@ -90,26 +104,18 @@ public class BaseProperties extends Polyline implements SimpleSection {
     }
 
     /**
-    * It has all the components of the section Base Properties.
+    * Initialize the Components.
     */
     @Override
-    public final void components() {
-        lClosed = new JLabel();
-        cClosed = new JComboBox();
-        lFillMode = new JLabel();
-        cFillMode = new JComboBox();
-        lLineMode = new JLabel();
-        cLineMode = new JComboBox();
-        lMarkMode = new JLabel();
-        cMarkMode = new JComboBox();
-        lVisible = new JLabel();
-        cVisible = new JComboBox();
+    public final void initComponents() {
         String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
         int ROW = 0;
+        int LEFTMARGIN = 16; //to inner components
+        int COLUMN = 0; //first column
 
         //Components of the property: Closed.
-        layout.addJLabel(pBaseProperties, lClosed, MessagesGED.closed, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJComboBox(pBaseProperties, cClosed, messageOffOn, RIGHTCOLUMN, ROW);
+        layout.addLabelComboBox(pBaseProperties, lClosed, MessagesGED.closed,
+                                cClosed, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
         cClosed.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -118,11 +124,10 @@ public class BaseProperties extends Polyline implements SimpleSection {
                         cClosed.getSelectedIndex() == 0 ? false : true);
             }
         });
-        ROW++;
 
         //Components of the property: Fill Mode.
-        layout.addJLabel(pBaseProperties, lFillMode, MessagesGED.fill_mode, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJComboBox(pBaseProperties, cFillMode, messageOffOn, RIGHTCOLUMN, ROW);
+        layout.addLabelComboBox(pBaseProperties, lFillMode, MessagesGED.fill_mode,
+                                cFillMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
         cFillMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -131,11 +136,10 @@ public class BaseProperties extends Polyline implements SimpleSection {
                     cFillMode.getSelectedIndex() == 0 ? false : true);
             }
         });
-        ROW++;
 
         //Components of the property: Line Mode.
-        layout.addJLabel(pBaseProperties, lLineMode, MessagesGED.line_mode, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJComboBox(pBaseProperties, cLineMode, messageOffOn, RIGHTCOLUMN, ROW);
+        layout.addLabelComboBox(pBaseProperties, lLineMode, MessagesGED.line_mode,
+                                cLineMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
         cLineMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -144,11 +148,10 @@ public class BaseProperties extends Polyline implements SimpleSection {
                     cLineMode.getSelectedIndex() == 0 ? false : true);
             }
         });
-        ROW++;
 
         //Components of the property: Mark Mode.
-        layout.addJLabel(pBaseProperties, lMarkMode, MessagesGED.mark_mode, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJComboBox(pBaseProperties, cMarkMode, messageOffOn, RIGHTCOLUMN, ROW);
+        layout.addLabelComboBox(pBaseProperties, lMarkMode, MessagesGED.mark_mode,
+                                cMarkMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
         cMarkMode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -157,11 +160,10 @@ public class BaseProperties extends Polyline implements SimpleSection {
                     getMarkMode());
             }
         });
-        ROW++;
 
         //Components of the property: Visible.
-        layout.addJLabel(pBaseProperties, lVisible, MessagesGED.visible, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJComboBox(pBaseProperties, cVisible, messageOffOn, RIGHTCOLUMN, ROW);
+        layout.addLabelComboBox(pBaseProperties, lVisible, MessagesGED.visible,
+                                cVisible, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
         cVisible.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -173,11 +175,11 @@ public class BaseProperties extends Polyline implements SimpleSection {
     }
 
     /**
-    * Loads the current properties of group: Base Properties.
+    * Loads the current properties of the section.
     * @param objectID Enters the identification of polyline.
     */
     @Override
-    public final void values(String objectID) {
+    public final void loadProperties(String objectID) {
         if (objectID != null) {
             currentpolyline = objectID;
             boolean enable;

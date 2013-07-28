@@ -47,9 +47,6 @@ import org.scilab.modules.gui.ged.MessagesGED;
 public class DataProperties extends Polyline implements SimpleSection {
     private String currentpolyline;
     private ContentLayout layout = new ContentLayout();
-    private int LEFTMARGIN = 0;
-    private int LEFTCOLUMN = 1;
-    private int RIGHTCOLUMN = 2;
 
     private static JToggleButton bDataProperties;
     private JLabel lDataProperties;
@@ -88,41 +85,22 @@ public class DataProperties extends Polyline implements SimpleSection {
     * @param objectID Enters the identification of polyline.
     */
     public DataProperties(String objectID) {
-        currentpolyline = objectID;
-        insertBase();
-        components();
-        dataDialog();
-        values(objectID);
+        constructComponents();
+        initMainPanel();
+        initComponents();
+        loadProperties(objectID);
     }
 
     /**
-    * Insert show/hide button, title and main JPanel of group.
+    * Construct the Components.
     */
     @Override
-    public final void insertBase() {
-        String SECTIONNAME = MessagesGED.data_properties;
-        this.setName(SECTIONNAME);
+    public final void constructComponents() {
         bDataProperties = new JToggleButton();
         lDataProperties = new JLabel();
         sDataProperties = new JSeparator();
         pDataProperties = new JPanel();
 
-        //Positioning JPanel Data Properties.
-        layout.addHeader(this, pDataProperties, bDataProperties, lDataProperties, sDataProperties, SECTIONNAME);
-        bDataProperties.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                pDataProperties.setVisible(!bDataProperties.isSelected());
-                HidePolyline.checkAllButtons();
-            }
-        });
-    }
-
-    /**
-    * It has all the components of the section Data Properties.
-    */
-    @Override
-    public final void components() {
         bClipBox = new JToggleButton();
         lClipBox = new JLabel();
         cClipBox = new JTextField();
@@ -150,13 +128,41 @@ public class DataProperties extends Polyline implements SimpleSection {
         delete = new JButton();
         refresh = new JButton();
         ok = new JButton();
+    }
+
+    /**
+    * Insert show/hide button, title and main JPanel of section.
+    */
+    @Override
+    public final void initMainPanel() {
+        String SECTIONNAME = MessagesGED.data_properties;
+        this.setName(SECTIONNAME);
+
+        layout.addHeader(this, pDataProperties, bDataProperties, lDataProperties, sDataProperties, SECTIONNAME);
+        bDataProperties.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                pDataProperties.setVisible(!bDataProperties.isSelected());
+                HidePolyline.checkAllButtons();
+            }
+        });
+    }
+
+    /**
+    * Initialize the Components.
+    */
+    @Override
+    public final void initComponents() {
         int ROW = 0;
+        int LEFTMARGIN = 0; //to inner components
+        int COLUMN = 1; //first column
+        int LEFTMARGINIP = 0; //left margin - inner panel
+        int COLUMNIP = 0; //left column - inner panel
 
         //Components of the property: Clip State.
-        layout.addJLabel(pDataProperties, lClipState, MessagesGED.clip_state, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJComboBox(pDataProperties, cClipState,
-                new String[] {MessagesGED.off, MessagesGED.clipgrf, MessagesGED.on},
-                RIGHTCOLUMN, ROW);
+        layout.addLabelComboBox(pDataProperties, lClipState, MessagesGED.clip_state,
+                                cClipState, new String[] {MessagesGED.off, MessagesGED.clipgrf, MessagesGED.on},
+                                LEFTMARGIN, COLUMN, ROW++);
         cClipState.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -165,11 +171,9 @@ public class DataProperties extends Polyline implements SimpleSection {
                         cClipState.getSelectedIndex());
             }
         });
-        ROW++;
 
         //Components of the property: Clip Box.
-        layout.addInnerPanel(pDataProperties, pClipBox, bClipBox, lClipBox, cClipBox, MessagesGED.clip_box, ROW);
-        ROW=ROW+2;
+        ROW = layout.addInnerPanel(pDataProperties, pClipBox, bClipBox, lClipBox, cClipBox, MessagesGED.clip_box, ROW);
         bClipBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -178,12 +182,9 @@ public class DataProperties extends Polyline implements SimpleSection {
             }
         });
         int rowClipBox = 0;
-        int LCClipBox = 0; //left column - clip box
-        int RCClipBox = 1; //rigth column - clip box
-        int LMClipBox = 0; //left margin - clip box
         //Clip Box Upper
-        layout.addJLabel(pClipBox, lClipBoxUpper, MessagesGED.upper_left, LCClipBox, rowClipBox, LMClipBox);
-        layout.addJTextField(pClipBox, cClipBoxUpper, true, RCClipBox, rowClipBox++);
+        layout.addLabelTextField(pClipBox, lClipBoxUpper, MessagesGED.upper_left,
+                                 cClipBoxUpper, true, LEFTMARGINIP, COLUMNIP, rowClipBox++);
         cClipBoxUpper.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -197,8 +198,8 @@ public class DataProperties extends Polyline implements SimpleSection {
             }
         });
         //Clip Box Point
-        layout.addJLabel(pClipBox, lClipBoxPoint, MessagesGED.point, LCClipBox, rowClipBox, LMClipBox);
-        layout.addJTextField(pClipBox, cClipBoxPoint, true, RCClipBox, rowClipBox++);
+        layout.addLabelTextField(pClipBox, lClipBoxPoint, MessagesGED.point,
+                                 cClipBoxPoint, true, LEFTMARGINIP, COLUMNIP, rowClipBox++);
         cClipBoxPoint.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -212,8 +213,8 @@ public class DataProperties extends Polyline implements SimpleSection {
             }
         });
         //Clip Box Width
-        layout.addJLabel(pClipBox, lClipBoxWidth, MessagesGED.width, LCClipBox, rowClipBox, LMClipBox);
-        layout.addJTextField(pClipBox, cClipBoxWidth, true, RCClipBox, rowClipBox++);
+        layout.addLabelTextField(pClipBox, lClipBoxWidth, MessagesGED.width,
+                                 cClipBoxWidth, true, LEFTMARGINIP, COLUMNIP, rowClipBox++);
         cClipBoxWidth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -227,8 +228,8 @@ public class DataProperties extends Polyline implements SimpleSection {
             }
         });
         //Clip Box Height
-        layout.addJLabel(pClipBox, lClipBoxHeight, MessagesGED.height, LCClipBox, rowClipBox, LMClipBox);
-        layout.addJTextField(pClipBox, cClipBoxHeight, true, RCClipBox, rowClipBox);
+        layout.addLabelTextField(pClipBox, lClipBoxHeight, MessagesGED.height,
+                                 cClipBoxHeight, true, LEFTMARGINIP, COLUMNIP, rowClipBox++);
         cClipBoxHeight.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -255,8 +256,8 @@ public class DataProperties extends Polyline implements SimpleSection {
         ROW++;
 
         //Components of the property: Tag.
-        layout.addJLabel(pDataProperties, lTag, MessagesGED.tag, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJTextField(pDataProperties, cTag, true, RIGHTCOLUMN, ROW);
+        layout.addLabelTextField(pDataProperties, lTag, MessagesGED.tag,
+                                 cTag, true, LEFTMARGIN, COLUMN, ROW++);
         cTag.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -308,11 +309,11 @@ public class DataProperties extends Polyline implements SimpleSection {
     }
 
     /**
-    * Loads the current properties of group: Data Properties.
+    * Loads the current properties of the section.
     * @param objectID Enters the identification of polyline.
     */
     @Override
-    public final void values(String objectID) {
+    public final void loadProperties(String objectID) {
         if (objectID != null) {
             currentpolyline = objectID;
 
@@ -341,7 +342,7 @@ public class DataProperties extends Polyline implements SimpleSection {
     /**
     * Inserts the current situation of the clip box.
     */
-    public void titleClipBox() {
+    public final void titleClipBox() {
         String titleUpper = cClipBoxUpper.getText();
         String titlePoint = cClipBoxPoint.getText();
         String titleWidth = cClipBoxWidth.getText();
@@ -368,13 +369,14 @@ public class DataProperties extends Polyline implements SimpleSection {
 
     /**
     * Get all data from a polyline.
+    * @return data
     */
-    public Object[][] getData() {
+    public final Object[][] getData() {
         double[] dataX = (double[]) PolylineData.getDataX(currentpolyline);
         double[] dataY = (double[]) PolylineData.getDataY(currentpolyline);
         double[] dataZ = (double[]) PolylineData.getDataZ(currentpolyline);
         Object[][] data = new Object[dataX.length][3];
-        for (int i=0; i<dataX.length; i++){
+        for (int i = 0; i < dataX.length; i++) {
             data[i][0] = dataX[i];
             data[i][1] = dataY[i];
             data[i][2] = dataZ[i];
@@ -384,10 +386,12 @@ public class DataProperties extends Polyline implements SimpleSection {
 
     /**
     * Checks if the polyline has 3 dimensions.
+    * @param data polyline
+    * @return is3D
     */
     private boolean is3D(Object[][] data) {
         boolean is3D = false;
-        for (int i=0; i<data.length; i++) {
+        for (int i = 0; i < data.length; i++) {
             if ((Double) data[i][2] != 0.0) {
                 is3D = true;
             }
@@ -417,7 +421,7 @@ public class DataProperties extends Polyline implements SimpleSection {
     * @param evt TableModelEvent.
     */
     private void dataTableEvent(TableModelEvent evt) {
-        if(dataTable.getSelectedRow() != -1) {
+        if (dataTable.getSelectedRow() != -1) {
             if (dataTable.getRowCount() <= dataTable.getSelectedRow()) {
                 return;
             }
@@ -428,7 +432,8 @@ public class DataProperties extends Polyline implements SimpleSection {
                } else if (yValue == null) {
                    yValue = 0.0;
                }
-               PolylineData.setPointValue(currentpolyline, dataTable.getSelectedRow(), (Double)xValue, (Double)yValue, 0.0);
+               PolylineData.setPointValue(currentpolyline, dataTable.getSelectedRow(),
+                       (Double) xValue, (Double) yValue, 0.0);
         }
     }
 

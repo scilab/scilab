@@ -44,9 +44,6 @@ import org.scilab.modules.gui.ged.MessagesGED;
 public class Position extends Polyline implements SimpleSection {
     private String currentpolyline;
     private ContentLayout layout = new ContentLayout();
-    private int LEFTMARGIN = 16;
-    private int LEFTCOLUMN = 0;
-    private int RIGHTCOLUMN = 1;
 
     private static JToggleButton bPosition;
     private JLabel lPosition;
@@ -77,41 +74,22 @@ public class Position extends Polyline implements SimpleSection {
     * @param objectID Enters the identification of polyline.
     */
     public Position(String objectID) {
-        currentpolyline = objectID;
-        insertBase();
-        components();
-        shiftDialog();
-        values(objectID);
+        constructComponents();
+        initMainPanel();
+        initComponents();
+        loadProperties(objectID);
     }
 
     /**
-    * Insert show/hide button, title and main JPanel of group.
+    * Construct the Components.
     */
     @Override
-    public final void insertBase() {
-        String SECTIONNAME = MessagesGED.position;
-        this.setName(SECTIONNAME);
+    public final void constructComponents() {
         bPosition = new JToggleButton();
         lPosition = new JLabel();
         sPosition = new JSeparator();
         pPosition = new JPanel();
 
-        //Positioning JPanel Data Properties.
-        layout.addHeader(this, pPosition, bPosition, lPosition, sPosition, SECTIONNAME);
-        bPosition.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                pPosition.setVisible(!bPosition.isSelected());
-                HidePolyline.checkAllButtons();
-            }
-        });
-    }
-
-    /**
-    * It has all the components of the section Position.
-    */
-    @Override
-    public final void components() {
         lMarkSizeUnit = new JLabel();
         cMarkSizeUnit = new JComboBox();
         lShiftX = new JLabel();
@@ -131,14 +109,39 @@ public class Position extends Polyline implements SimpleSection {
         shiftTable = new JTable();
         refresh = new JButton();
         ok = new JButton();
+    }
+
+    /**
+    * Insert show/hide button, title and main JPanel of section.
+    */
+    @Override
+    public final void initMainPanel() {
+        String SECTIONNAME = MessagesGED.position;
+        this.setName(SECTIONNAME);
+
+        layout.addHeader(this, pPosition, bPosition, lPosition, sPosition, SECTIONNAME);
+        bPosition.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                pPosition.setVisible(!bPosition.isSelected());
+                HidePolyline.checkAllButtons();
+            }
+        });
+    }
+
+    /**
+    * Initialize the Components.
+    */
+    @Override
+    public final void initComponents() {
         int ROW = 0;
+        int LEFTMARGIN = 16; //to inner components
+        int COLUMN = 0; //first column
 
         //Components of the property: Mark Size Unit.
-        layout.addJLabel(pPosition, lMarkSizeUnit, MessagesGED.mark_size_unit, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJComboBox(pPosition, cMarkSizeUnit,
-                new String[] {MessagesGED.point, MessagesGED.tabulated},
-                RIGHTCOLUMN, ROW);
-        ROW++;
+        layout.addLabelComboBox(pPosition, lMarkSizeUnit, MessagesGED.mark_size_unit,
+                                cMarkSizeUnit, new String[] {MessagesGED.point, MessagesGED.tabulated},
+                                LEFTMARGIN, COLUMN, ROW++);
         cMarkSizeUnit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -149,8 +152,8 @@ public class Position extends Polyline implements SimpleSection {
         });
 
         //Components of the property: X Shift.
-        layout.addJLabel(pPosition, lShiftX, MessagesGED.x_shift, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addDataField(pPosition, pShiftX, bShiftX, cShiftX, RIGHTCOLUMN, ROW, currentpolyline);
+        layout.addJLabel(pPosition, lShiftX, MessagesGED.x_shift, COLUMN, ROW, LEFTMARGIN);
+        layout.addDataField(pPosition, pShiftX, bShiftX, cShiftX, COLUMN+1, ROW, currentpolyline);
         bShiftX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -161,8 +164,8 @@ public class Position extends Polyline implements SimpleSection {
         ROW++;
 
         //Components of the property: Y Shift.
-        layout.addJLabel(pPosition, lShiftY, MessagesGED.y_shift, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addDataField(pPosition, pShiftY, bShiftY, cShiftY, RIGHTCOLUMN, ROW, currentpolyline);
+        layout.addJLabel(pPosition, lShiftY, MessagesGED.y_shift, COLUMN, ROW, LEFTMARGIN);
+        layout.addDataField(pPosition, pShiftY, bShiftY, cShiftY, COLUMN+1, ROW, currentpolyline);
         bShiftY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -173,8 +176,8 @@ public class Position extends Polyline implements SimpleSection {
         ROW++;
 
         //Components of the property: Z Shift.
-        layout.addJLabel(pPosition, lShiftZ, MessagesGED.z_shift, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addDataField(pPosition, pShiftZ, bShiftZ, cShiftZ, RIGHTCOLUMN, ROW, currentpolyline);
+        layout.addJLabel(pPosition, lShiftZ, MessagesGED.z_shift, COLUMN, ROW, LEFTMARGIN);
+        layout.addDataField(pPosition, pShiftZ, bShiftZ, cShiftZ, COLUMN+1, ROW, currentpolyline);
         bShiftZ.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -182,6 +185,7 @@ public class Position extends Polyline implements SimpleSection {
                 shiftDialog.setVisible(true);
             }
         });
+        ROW++;
     }
 
     /**
@@ -232,11 +236,11 @@ public class Position extends Polyline implements SimpleSection {
     }
 
     /**
-    * Loads the current properties of group: Position.
+    * Loads the current properties of the section.
     * @param objectID Enters the identification of polyline.
     */
     @Override
-    public final void values(String objectID) {
+    public final void loadProperties(String objectID) {
         if (objectID != null) {
             currentpolyline = objectID;
 

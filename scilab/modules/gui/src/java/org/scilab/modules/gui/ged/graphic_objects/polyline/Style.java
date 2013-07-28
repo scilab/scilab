@@ -48,9 +48,6 @@ public class Style extends Polyline implements SimpleSection {
     private String currentPolyline;
     private String parentFigure;
     private ContentLayout layout = new ContentLayout();
-    private int LEFTMARGIN = 16;
-    private int LEFTCOLUMN = 0;
-    private int RIGHTCOLUMN = 1;
 
     private static JToggleButton bStyle;
     private JLabel lStyle;
@@ -107,9 +104,10 @@ public class Style extends Polyline implements SimpleSection {
     public Style(String objectID) {
         currentPolyline = objectID;
         parentFigure = getFigueID(objectID);
-        insertBase();
-        components();
-        values(currentPolyline);
+        constructComponents();
+        initMainPanel();
+        initComponents();
+        loadProperties(objectID);
         dialogBackgroundColor();
         dialogForegroundColor();
         dialogMarkBackground();
@@ -117,33 +115,15 @@ public class Style extends Polyline implements SimpleSection {
     }
 
     /**
-    * Insert show/hide button, title and main JPanel of group.
+    * Construct the Components.
     */
     @Override
-    public final void insertBase() {
-        String SECTIONNAME = MessagesGED.style_appearance;
-        this.setName(SECTIONNAME);
+    public final void constructComponents() {
         bStyle = new JToggleButton();
         lStyle = new JLabel();
         sStyle = new JSeparator();
         pStyle = new JPanel();
 
-        //Positioning JPanel Data Properties.
-        layout.addHeader(this, pStyle, bStyle, lStyle, sStyle, SECTIONNAME);
-        bStyle.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                pStyle.setVisible(!bStyle.isSelected());
-                HidePolyline.checkAllButtons();
-            }
-        });
-    }
-
-    /**
-    * It has all the components of the section Style/Appeareance.
-    */
-    @Override
-    public final void components() {
         lArrowSize = new JLabel();
         cArrowSize = new JTextField();
         lBarWidth = new JLabel();
@@ -174,11 +154,38 @@ public class Style extends Polyline implements SimpleSection {
         cMarkSize = new JTextField();
         lMarkStyle = new JLabel();
         cMarkStyle = new JComboBox(MarkStyle.values());
+    }
+
+    /**
+    * Insert show/hide button, title and main JPanel of section.
+    */
+    @Override
+    public final void initMainPanel() {
+        String SECTIONNAME = MessagesGED.style_appearance;
+        this.setName(SECTIONNAME);
+
+        layout.addHeader(this, pStyle, bStyle, lStyle, sStyle, SECTIONNAME);
+        bStyle.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                pStyle.setVisible(!bStyle.isSelected());
+                HidePolyline.checkAllButtons();
+            }
+        });
+    }
+
+    /**
+    * Initialize the Components.
+    */
+    @Override
+    public final void initComponents() {
         int ROW = 0;
+        int LEFTMARGIN = 16; //to inner components
+        int COLUMN = 0; //first column
 
         //Components of the property: Arrow Size Factor.
-        layout.addJLabel(pStyle, lArrowSize, MessagesGED.arrow_size_factor, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJTextField(pStyle, cArrowSize, true, RIGHTCOLUMN, ROW);
+        layout.addLabelTextField(pStyle, lArrowSize, MessagesGED.arrow_size_factor,
+                                 cArrowSize, true, LEFTMARGIN, COLUMN, ROW++);
         cArrowSize.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -191,11 +198,10 @@ public class Style extends Polyline implements SimpleSection {
                 setArrowSize(cArrowSize.getText());
             }
         });
-        ROW++;
 
         //Components of the property: Bar Width.
-        layout.addJLabel(pStyle, lBarWidth, MessagesGED.bar_width, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJTextField(pStyle, cBarWidth, true, RIGHTCOLUMN, ROW);
+        layout.addLabelTextField(pStyle, lBarWidth, MessagesGED.bar_width,
+                                 cBarWidth, true, LEFTMARGIN, COLUMN, ROW++);
         cBarWidth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -208,38 +214,23 @@ public class Style extends Polyline implements SimpleSection {
                 setBarWidth(cBarWidth.getText());
             }
         });
-        ROW++;
 
         //Components of the property: Background Color.
-        layout.addJLabel(pStyle, lBackColor, MessagesGED.background_color, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addColorField(pStyle, pBackColor, bBackColor, cBackColor, RIGHTCOLUMN, ROW);
-        bBackColor.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                backcolorDialog.setVisible(true);
-            }
-        });
-        ROW++;
+        layout.addLabelColorField(pStyle, lBackColor, MessagesGED.background_color,
+                backcolorDialog, cBackColor, pBackColor, bBackColor,
+                LEFTMARGIN, COLUMN, ROW++);
 
         //Components of the property: Foreground Color.
-        layout.addJLabel(pStyle, lForeColor, MessagesGED.foreground_color, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addColorField(pStyle, pForeColor, bForeColor, cForeColor, RIGHTCOLUMN, ROW);
-        bForeColor.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                forecolorDialog.setVisible(true);
-            }
-        });
-        ROW++;
+        layout.addLabelColorField(pStyle, lForeColor, MessagesGED.foreground_color,
+                forecolorDialog, cForeColor, pForeColor, bForeColor,
+                LEFTMARGIN, COLUMN, ROW++);
 
         //Components of the property: Line Style.
-        layout.addJLabel(pStyle, lLine, MessagesGED.line_style, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJComboBox(pStyle, cLine,
-                new String[] { MessagesGED.dash, MessagesGED.dash_dot,
-                    MessagesGED.longdash_dot, MessagesGED.bigdash_dot,
-                    MessagesGED.bigdash_longdash, MessagesGED.dot,
-                    MessagesGED.double_dot }
-                , RIGHTCOLUMN, ROW);
+        String[] options = new String[] {MessagesGED.dash, MessagesGED.dash_dot, MessagesGED.longdash_dot,
+            MessagesGED.bigdash_dot, MessagesGED.bigdash_longdash, MessagesGED.dot, MessagesGED.double_dot};
+        layout.addLabelComboBox(pStyle, lLine, MessagesGED.line_style,
+                                 cLine, options,
+                                 LEFTMARGIN, COLUMN, ROW++);
         cLine.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -248,14 +239,13 @@ public class Style extends Polyline implements SimpleSection {
                     cLine.getSelectedIndex() + 1);
             }
         });
-        ROW++;
 
         //Components of the property: Polyline Style.
-        layout.addJLabel(pStyle, lPolyline, MessagesGED.polyline_style, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJComboBox(pStyle, cPolyline,
-                new String[] { MessagesGED.interpolated, MessagesGED.staircase, MessagesGED.barplot,
-                    MessagesGED.bar, MessagesGED.arrowed, MessagesGED.filled }
-                , RIGHTCOLUMN, ROW);
+        options = new String[] {MessagesGED.interpolated, MessagesGED.staircase, MessagesGED.barplot,
+                    MessagesGED.bar, MessagesGED.arrowed, MessagesGED.filled};
+        layout.addLabelComboBox(pStyle, lPolyline, MessagesGED.polyline_style,
+                                 cPolyline, options,
+                                 LEFTMARGIN, COLUMN, ROW++);
         cPolyline.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -264,11 +254,10 @@ public class Style extends Polyline implements SimpleSection {
                     cPolyline.getSelectedIndex());
             }
         });
-        ROW++;
 
         //Components of the property: Thickness.
-        layout.addJLabel(pStyle, lThickness, MessagesGED.thickness, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJTextField(pStyle, cThickness, true, RIGHTCOLUMN, ROW);
+        layout.addLabelTextField(pStyle, lThickness, MessagesGED.thickness,
+                                 cThickness, true, LEFTMARGIN, COLUMN, ROW++);
         cThickness.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -281,33 +270,20 @@ public class Style extends Polyline implements SimpleSection {
                 setThickness(cThickness.getText());
             }
         });
-        ROW++;
 
         //Components of the property: Mark Background.
-        layout.addJLabel(pStyle, lMarkBackground, MessagesGED.mark_background, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addColorField(pStyle, pMarkBackground, bMarkBackground, cMarkBackground, RIGHTCOLUMN, ROW);
-        bMarkBackground.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                markBackgroundDialog.setVisible(true);
-            }
-        });
-        ROW++;
+        layout.addLabelColorField(pStyle, lMarkBackground, MessagesGED.mark_background,
+                markBackgroundDialog, cMarkBackground, pMarkBackground, bMarkBackground,
+                LEFTMARGIN, COLUMN, ROW++);
 
         //Components of the property: Mark Foreground.
-        layout.addJLabel(pStyle, lMarkForeground, MessagesGED.mark_foreground, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addColorField(pStyle, pMarkForeground, bMarkForeground, cMarkForeground, RIGHTCOLUMN, ROW);
-        bMarkForeground.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                markForegroundDialog.setVisible(true);
-            }
-        });
-        ROW++;
+        layout.addLabelColorField(pStyle, lMarkForeground, MessagesGED.mark_foreground,
+                markForegroundDialog, cMarkForeground, pMarkForeground, bMarkForeground,
+                LEFTMARGIN, COLUMN, ROW++);
 
         //Components of the property: Mark Size.
-        layout.addJLabel(pStyle, lMarkSize, MessagesGED.mark_size, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJTextField(pStyle, cMarkSize, true, RIGHTCOLUMN, ROW);
+        layout.addLabelTextField(pStyle, lMarkSize, MessagesGED.mark_size,
+                                 cMarkSize, true, LEFTMARGIN, COLUMN, ROW++);
         cMarkSize.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -320,11 +296,11 @@ public class Style extends Polyline implements SimpleSection {
                 setMarkSize(cMarkSize.getText());
             }
         });
-        ROW++;
 
         //Components of the property: Mark Style.
-        layout.addJLabel(pStyle, lMarkStyle, MessagesGED.mark_style, LEFTCOLUMN, ROW, LEFTMARGIN);
-        layout.addJComboBox(pStyle, cMarkStyle, null, RIGHTCOLUMN, ROW);
+        layout.addLabelComboBox(pStyle, lMarkStyle, MessagesGED.mark_style,
+                                 cMarkStyle, null,
+                                 LEFTMARGIN, COLUMN, ROW++);
         cMarkStyle.setRenderer(markStyleRenderer);
         cMarkStyle.addActionListener(new ActionListener() {
             @Override
@@ -336,15 +312,14 @@ public class Style extends Polyline implements SimpleSection {
                     currentPolyline, GraphicObjectProperties.__GO_MARK_STYLE__, cMarkStyle.getSelectedIndex());
             }
         });
-        ROW++;
    }
 
     /**
-    * Loads the current properties of the section Style/Appearance.
+    * Loads the current properties of the section.
     * @param objectID Enters the identification of polyline.
     */
     @Override
-    public final void values(String objectID) {
+    public final void loadProperties(String objectID) {
         if (objectID != null) {
             currentPolyline = objectID;
 
@@ -360,7 +335,9 @@ public class Style extends Polyline implements SimpleSection {
             Integer scilabBackgroundColor = (Integer) GraphicController.getController()
                   .getProperty(currentPolyline, GraphicObjectProperties.__GO_BACKGROUND__);
             Double[] rgbBackgroundColor = ColorMapHandler.getRGBcolor(parentFigure, scilabBackgroundColor);
-            cBackColor.setBackground(new Color(rgbBackgroundColor[0].intValue(), rgbBackgroundColor[1].intValue(), rgbBackgroundColor[2].intValue()));
+            cBackColor.setBackground(new Color(rgbBackgroundColor[0].intValue(),
+                                               rgbBackgroundColor[1].intValue(),
+                                               rgbBackgroundColor[2].intValue()));
 
             // Get the current status of the property: Foreground Color
             Integer scilabForegroundColor;
@@ -371,7 +348,9 @@ public class Style extends Polyline implements SimpleSection {
                 scilabForegroundColor = EditorManager.getFromUid(parentFigure).getOriColor();
             }
             Double[] rgbForegroundColor = ColorMapHandler.getRGBcolor(parentFigure, scilabForegroundColor);
-            cForeColor.setBackground(new Color(rgbForegroundColor[0].intValue(), rgbForegroundColor[1].intValue(), rgbForegroundColor[2].intValue()));
+            cForeColor.setBackground(new Color(rgbForegroundColor[0].intValue(),
+                                               rgbForegroundColor[1].intValue(),
+                                               rgbForegroundColor[2].intValue()));
 
             // Get the current status of the property: Line Style
             int currentLineStyle = (Integer) GraphicController.getController()
@@ -391,20 +370,25 @@ public class Style extends Polyline implements SimpleSection {
             Integer scilabMarkBackground = (Integer) GraphicController.getController()
                   .getProperty(currentPolyline, GraphicObjectProperties.__GO_MARK_BACKGROUND__);
             Double[] rgbMarkBackground = ColorMapHandler.getRGBcolor(parentFigure, scilabMarkBackground);
-            Color markBackgroundCOLOR = new Color(rgbMarkBackground[0].intValue(), rgbMarkBackground[1].intValue(), rgbMarkBackground[2].intValue());
+            Color markBackgroundCOLOR = new Color(rgbMarkBackground[0].intValue(),
+                                            rgbMarkBackground[1].intValue(),
+                                            rgbMarkBackground[2].intValue());
             cMarkBackground.setBackground(markBackgroundCOLOR);
             markStyleRenderer.setMarkBackground(markBackgroundCOLOR);
 
             // Get the current status of the property: Mark Foreground Color
             Integer scilabMarkForeground;
-            if ((Boolean)GraphicController.getController().getProperty(currentPolyline, GraphicObjectProperties.__GO_MARK_MODE__)) {
+            if ((Boolean) GraphicController.getController()
+            .getProperty(currentPolyline, GraphicObjectProperties.__GO_MARK_MODE__)) {
     		scilabMarkForeground = EditorManager.getFromUid(parentFigure).getOriColor();
             } else {
             	scilabMarkForeground = (Integer) GraphicController.getController()
                         .getProperty(currentPolyline, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
             }
             Double[] rgbMarkForeground = ColorMapHandler.getRGBcolor(parentFigure, scilabMarkForeground);
-            Color markForegroundCOLOR = new Color(rgbMarkForeground[0].intValue(), rgbMarkForeground[1].intValue(), rgbMarkForeground[2].intValue());
+            Color markForegroundCOLOR = new Color(rgbMarkForeground[0].intValue(),
+                                            rgbMarkForeground[1].intValue(),
+                                            rgbMarkForeground[2].intValue());
             cMarkForeground.setBackground(markForegroundCOLOR);
             markStyleRenderer.setMarkForeground(markForegroundCOLOR);
 

@@ -27,6 +27,7 @@ import javax.swing.Box.Filler;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -102,7 +103,8 @@ public class ContentLayout extends JPanel {
         panel.add(separator, gbc);
     }
 
-    public void addColorField(JPanel parentPanel, JPanel fieldPanel, JButton colorButton, JLabel fieldColor, int column, int row) {
+    public void addColorField(JPanel parentPanel, JPanel fieldPanel, final JDialog colorDialog,
+                                JButton colorButton, JLabel fieldColor, int column, int row) {
         fieldPanel.setBackground(new Color(255, 255, 255));
         fieldPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         fieldPanel.setPreferredSize(new Dimension(5, 20));
@@ -114,6 +116,12 @@ public class ContentLayout extends JPanel {
         colorButton.setMinimumSize(new Dimension(16, 16));
         colorButton.setPreferredSize(new Dimension(16, 16));
         colorButton.setIcon(new ImageIcon(SwingInspector.icon_color_fill));
+        colorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                colorDialog.setVisible(true);
+            }
+        });
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -518,8 +526,9 @@ public class ContentLayout extends JPanel {
     * @param field JTextField
     * @param message Title of property
     * @param row Row number
+    * @return Next free row
     */
-    public void addInnerPanel(JPanel gpanel, JPanel ipanel, JToggleButton tbutton, JLabel label,
+    public int addInnerPanel(JPanel gpanel, JPanel ipanel, JToggleButton tbutton, JLabel label,
                         JTextField field, String message, int row) {
         tbutton.setSelected(true);
         ipanel.setVisible(false);
@@ -536,6 +545,8 @@ public class ContentLayout extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 0.1;
         gpanel.add(ipanel, gbc);
+
+        return row + 2;
     }
 
     /**
@@ -551,5 +562,124 @@ public class ContentLayout extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 0.1;
         mpanel.add(spanel, gbc);
+    }
+
+    /**
+    * Add Label+ComboBox in a Row.
+    * @param panel JPanel
+    * @param label JLabel
+    * @param message String of Label
+    * @param comboBox JComboBox
+    * @param options Options of JComboBox
+    * @param leftMargin Left Margin
+    * @param firstColumn Initial Column
+    * @param row Row number
+    */
+    public void addLabelComboBox(JPanel panel, JLabel label, String message,
+                                  JComboBox comboBox, String[] options,
+                                  int leftMargin, int firstColumn, int row) {
+        addJLabel(panel, label, message, firstColumn, row, leftMargin);
+        addJComboBox(panel, comboBox, options, firstColumn+1, row);
+    }
+
+    /**
+    * Add Label+TextField in a Row.
+    * @param panel JPanel
+    * @param label JLabel
+    * @param message String of Label
+    * @param textField JTextField
+    * @param editable Text field is editable?
+    * @param leftMargin Left Margin
+    * @param firstColumn Initial Column
+    * @param row Row number
+    */
+    public void addLabelTextField(JPanel panel, JLabel label, String message,
+                                  JTextField textField, boolean editable,
+                                  int leftMargin, int firstColumn, int row) {
+        addJLabel(panel, label, message, firstColumn, row, leftMargin);
+        addJTextField(panel, textField, editable, firstColumn+1, row);
+    }
+
+    /**
+    * Add Label+ColorField in a Row.
+    * @param panel JPanel
+    * @param label JLabel
+    * @param message String of Label
+    * @param colorField JLabel
+    * @param colorPanel JPanel - show the current color
+    * @param button Button of paint bucket
+    * @param editable Text field is editable?
+    * @param leftMargin Left Margin
+    * @param firstColumn Initial Column
+    * @param row Row number
+    */
+    public void addLabelColorField(JPanel panel, JLabel label, String message,
+                                  JDialog colorDialog, JLabel colorField, JPanel colorPanel, JButton button,
+                                  int leftMargin, int firstColumn, int row) {
+        addJLabel(panel, label, message, firstColumn, row, leftMargin);
+        addColorField(panel, colorPanel, colorDialog, button, colorField, firstColumn+1, row);
+    }
+
+    /**
+    * Add Field with 3 JCheckBox.
+    * @param panel JPanel
+    * @param fieldPanel Label
+    * @param check1 Check box 1
+    * @param check2 Check box 2
+    * @param check3 Check box 3
+    * @param column Column number
+    * @param row Row number
+    */
+    public void add3CheckBoxField(JPanel panel, JPanel fieldPanel,
+                                     JCheckBox check1, JCheckBox check2, JCheckBox check3,
+                                     int column, int row) {
+
+        fieldPanel.setBackground(new Color(255, 255, 255));
+        fieldPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
+        fieldPanel.setPreferredSize(new Dimension(5, 20));
+        fieldPanel.setLayout(new GridBagLayout());
+
+        check1.setText("X");
+        gbc = new GridBagConstraints();
+        gbc.insets = new Insets(0, 0, 0, 10);
+        fieldPanel.add(check1, gbc);
+
+        check2.setText("Y");
+        gbc = new GridBagConstraints();
+        gbc.insets = new Insets(0, 0, 0, 10);
+        fieldPanel.add(check2, gbc);
+
+        check3.setText("Z");
+        gbc = new GridBagConstraints();
+        gbc.insets = new Insets(0, 0, 0, 0);
+        fieldPanel.add(check3, gbc);
+
+        gbc = new GridBagConstraints();
+        gbc.gridx = column;
+        gbc.gridy = row;
+        gbc.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gbc.ipadx = 70;
+        gbc.insets = new Insets(0, 4, 5, 0);
+        panel.add(fieldPanel, gbc);
+    }
+
+    /**
+    * Add Label+3CheckBoxField in a Row.
+    * @param panel JPanel
+    * @param label JLabel
+    * @param message String of Label
+    * @param fieldPanel Label
+    * @param CB1 CheckBox 1
+    * @param CB2 CheckBox 2
+    * @param CB3 CheckBox 3
+    * @param leftMargin Left Margin
+    * @param firstColumn Initial Column
+    * @param row Row number
+    */
+    public void addLabel3CheckBox(JPanel panel, JLabel label, String message,
+                                  JPanel fieldPanel, JCheckBox CB1, JCheckBox CB2, JCheckBox CB3,
+                                  int leftMargin, int firstColumn, int row) {
+        addJLabel(panel, label, message, firstColumn, row, leftMargin);
+        add3CheckBoxField(panel, fieldPanel, CB1, CB2, CB3, firstColumn+1, row);
     }
 }
