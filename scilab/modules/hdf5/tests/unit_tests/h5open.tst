@@ -25,13 +25,8 @@ assert_checkequal(a.root.Name,'/');
 h5write(a,"Dset_1",[1 2;3 4]);
 h5close(a);
 
-if getos() == "Windows" then
-    msgerr = msprintf(gettext("%s: %s\n"), "h5open", msprintf(gettext("Cannot append the file (not HDF5): %s."), WSCI + filesep() + "COPYING-FR"));
-    msgerr($+1) = gettext("HDF5 description") + ": " + "unable to find a valid file signature.";
-else
-    msgerr = msprintf(gettext("%s: %s\n"), "h5open", msprintf(gettext("Cannot append the file (not HDF5): %s."), SCI + filesep() + "COPYING-FR"));
-    msgerr($+1) = gettext("HDF5 description") + ": " + "unable to find a valid file signature.";
-end
+msgerr = msprintf(gettext("%s: %s\n"), "h5open", msprintf(gettext("Cannot append the file (not HDF5): %s."), pathconvert(SCI, %f) + filesep() + "COPYING-FR"));
+msgerr($+1) = gettext("HDF5 description") + ": " + "unable to find a valid file signature.";
 assert_checkerror("h5open(SCI + ""/COPYING-FR"")",msgerr,999);
 
 copyfile(SCI+"/COPYING-FR",TMPDIR+"/z.h5");
