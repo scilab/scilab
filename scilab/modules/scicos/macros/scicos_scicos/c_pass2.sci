@@ -2479,11 +2479,11 @@ endfunction
 function [ok,bllst]=adjust_typ(bllst,connectmat)
 
     for i=1:length(bllst)
-        if size(bllst(i).in,1)<>size(bllst(i).intyp,2) then
-            bllst(i).intyp=bllst(i).intyp(1)*ones(size(bllst(i).in,1),1);
+        if size(bllst(i).in,"*")<>size(bllst(i).intyp,"*") then
+            bllst(i).intyp=bllst(i).intyp(1)*ones(bllst(i).in);
         end
-        if size(bllst(i).out,1)<>size(bllst(i).outtyp,2) then
-            bllst(i).outtyp=bllst(i).outtyp(1)*ones(size(bllst(i).out,1),1);
+        if size(bllst(i).out,"*")<>size(bllst(i).outtyp,"*") then
+            bllst(i).outtyp=bllst(i).outtyp(1)*ones(bllst(i).out);
         end
     end
     nlnk=size(connectmat,1)
