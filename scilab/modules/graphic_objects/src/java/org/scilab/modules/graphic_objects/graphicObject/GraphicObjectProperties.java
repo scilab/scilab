@@ -356,7 +356,7 @@ public class GraphicObjectProperties {
     public static final int __GO_UI_MESSAGE__ =             295;
     public static final int __GO_UI_MESSAGE_SIZE__ =        296;
 
-    public static final int __GO_AMBIENTCOLOR__ =           298; 
+    public static final int __GO_AMBIENTCOLOR__ =           298;
     public static final int __GO_DIFFUSECOLOR__ =           299;
     public static final int __GO_SPECULARCOLOR__ =          300;
 
@@ -364,6 +364,8 @@ public class GraphicObjectProperties {
     public static final int __GO_MATERIAL_SHININES__ =      301;
 
     public static final int __GO_LIGHTING__ =               302;
-
+    public static final int __GO_LIGHT_TYPE__ =             303;
+    public static final int __GO_LIGHT_DIRECTION__ =        304;
+    public static final int __GO_LIGHT_POSITION__ =         305;
 
 }

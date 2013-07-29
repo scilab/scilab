@@ -36,6 +36,17 @@ public class ColorTriplet {
         specular = new Double[] {0.0, 0.0, 0.0};
     }
 
+    /** copy constructor */
+    public ColorTriplet(ColorTriplet other) {
+        ambient = new Double[3];
+        diffuse = new Double[3];
+        specular = new Double[3];
+        setAmbientColor(other.ambient);
+        setDiffuseColor(other.diffuse);
+        setSpecularColor(other.specular);
+    }
+
+
     /** returns the ambient color */
     public Double[] getAmbientColor() {
         Double[] ret = new Double[]{ambient[0], ambient[1], ambient[2]};

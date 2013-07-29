@@ -380,6 +380,12 @@ public class Axes extends GraphicObject {
                 return ColorTriplet.ColorTripletProperty.SPECULARCOLOR;
             case __GO_LIGHTING__ :
                 return LightProperty.ENABLED;
+            case __GO_LIGHT_TYPE__ :
+                return LightProperty.TYPE;
+            case __GO_LIGHT_POSITION__ :
+                return LightProperty.POSITION;
+            case __GO_LIGHT_DIRECTION__ :
+                return LightProperty.DIRECTION;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -569,7 +575,7 @@ public class Axes extends GraphicObject {
             }
         } else if (property == ArcProperty.ARCDRAWINGMETHOD) {
             return getArcDrawingMethod();
-        }else if (property instanceof ColorTriplet.ColorTripletProperty) {
+        } else if (property instanceof ColorTriplet.ColorTripletProperty) {
             ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
             switch (cp) {
                 case AMBIENTCOLOR:
@@ -579,8 +585,18 @@ public class Axes extends GraphicObject {
                 case SPECULARCOLOR:
                     return getLightSpecularColor();
             }
-        } else if (property == LightProperty.ENABLED) {
-            return isLightEnabled();
+        } else if (property instanceof LightProperty) {
+            LightProperty lp = (LightProperty)property;
+            switch (lp) {
+                case ENABLED:
+                    return isLightEnabled();
+                case TYPE:
+                    return getLightType();
+                case POSITION:
+                    return getLightPosition();
+                case DIRECTION:
+                    return getLightDirection();
+            }
         }
 
         return super.getProperty(property);
@@ -765,8 +781,6 @@ public class Axes extends GraphicObject {
             }
         } else if (property == ArcProperty.ARCDRAWINGMETHOD) {
             return setArcDrawingMethod((Integer) value);
-        } else if (property == LightProperty.ENABLED) {
-            return setLightEnabled((Boolean) value);
         } else if (property instanceof ColorTriplet.ColorTripletProperty) {
             ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
             switch (cp) {
@@ -776,6 +790,18 @@ public class Axes extends GraphicObject {
                     return setLightDiffuseColor((Double[])value);
                 case SPECULARCOLOR:
                     return setLightSpecularColor((Double[])value);
+            }
+        } else if (property instanceof LightProperty) {
+            LightProperty lp = (LightProperty)property;
+            switch (lp) {
+                case ENABLED:
+                    return setLightEnabled((Boolean) value);
+                case TYPE:
+                    return setLightType((Integer)value);
+                case POSITION:
+                    return setLightPosition((Double[])value);
+                case DIRECTION:
+                    return setLightDirection((Double[])value);
             }
         }
 
@@ -2396,6 +2422,48 @@ public class Axes extends GraphicObject {
      */
     public UpdateStatus setLightEnabled(Boolean status) {
         return light.setEnabled(status);
+    }
+
+    /**
+     * @return the light's type.
+     */
+    public Integer getLightType() {
+        return light.getTypeAsInteger();
+    }
+
+    /**
+     * @param the new light's type.
+     */
+    public UpdateStatus setLightType(Integer type) {
+        return light.setTypeAsInteger(type);
+    }
+
+    /**
+     * @return the light's position.
+     */
+    public Double[] getLightPosition() {
+        return light.getPosition();
+    }
+
+    /**
+     * @param the new light's position.
+     */
+    public UpdateStatus setLightPosition(Double[] pos) {
+        return light.setPosition(pos);
+    }
+
+    /**
+     * @return the light's direction.
+     */
+    public Double[] getLightDirection() {
+        return light.getDirection();
+    }
+
+    /**
+     * @param the new light's direction.
+     */
+    public UpdateStatus setLightDirection(Double[] dir) {
+        return light.setDirection(dir);
     }
 
     /**

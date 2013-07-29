@@ -355,7 +355,7 @@
 #define __GO_UI_MESSAGE__                  295
 #define __GO_UI_MESSAGE_SIZE__             296
 
-#define __GO_AMBIENTCOLOR__                298 
+#define __GO_AMBIENTCOLOR__                298
 #define __GO_DIFFUSECOLOR__                299
 #define __GO_SPECULARCOLOR__               300
 
@@ -363,6 +363,8 @@
 #define __GO_MATERIAL_SHININES__           301
 
 #define __GO_LIGHTING__                    302
-
+#define __GO_LIGHT_TYPE__                  303
+#define __GO_LIGHT_DIRECTION__             304
+#define __GO_LIGHT_POSITION__              305
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */
