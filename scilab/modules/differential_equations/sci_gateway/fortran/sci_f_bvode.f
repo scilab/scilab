@@ -134,9 +134,9 @@ c     1 <= ltol(1) <= M
          return
       endif
 c     ltol(1) < ltol(2) < ... < ltol(NTOL) <= M
-      do 11 i=2,mltol*nltol then
-         if(istk(iadr(lltol+i-2)).ge.istk(iadr(lltol+i-1)).or.
-     $      istk(iadr(lltol+i-1)).gt.mstar) then
+      do 11 i=2,mltol*nltol
+         if(istk(iadr(lltol)+i-2).ge.istk(iadr(lltol)+i-1).or.
+     $      istk(iadr(lltol)+i-1).gt.mstar) then
             err = 8
             call error(116)
             return
