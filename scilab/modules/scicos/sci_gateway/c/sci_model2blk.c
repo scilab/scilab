@@ -111,8 +111,8 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     unsigned char *ptr_uc = NULL;
     short *ptr_s = NULL;
     unsigned short *ptr_us = NULL;
-    long *ptr_l = NULL;
-    unsigned long *ptr_ul = NULL;
+    SCSINT32_COP *ptr_l = NULL;
+    SCSUINT32_COP *ptr_ul = NULL;
     int nblklst = 40;
 
     scicos_block Block;
@@ -427,8 +427,8 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     }
                     break;
                 case 84  :
-                    if ((Block.inptr[i] = (long *) \
-                                          MALLOC(Block.insz[i] * Block.insz[Block.nin + i] * sizeof(long))) == NULL)
+                    if ((Block.inptr[i] = (SCSINT32_COP *) \
+                                          MALLOC(Block.insz[i] * Block.insz[Block.nin + i] * sizeof(SCSINT32_COP))) == NULL)
                     {
                         for (j = 0; j < i; j++)
                         {
@@ -439,7 +439,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
-                    ptr_l = (long *) Block.inptr[i];
+                    ptr_l = (SCSINT32_COP *) Block.inptr[i];
                     for (j = 0; j < Block.insz[i]*Block.insz[Block.nin + i]; j++)
                     {
                         ptr_l[j] = 0;
@@ -484,8 +484,8 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     }
                     break;
                 case 814 :
-                    if ((Block.inptr[i] = (unsigned long *) \
-                                          MALLOC(Block.insz[i] * Block.insz[Block.nin + i] * sizeof(unsigned long))) == NULL)
+                    if ((Block.inptr[i] = (SCSUINT32_COP *) \
+                                          MALLOC(Block.insz[i] * Block.insz[Block.nin + i] * sizeof(SCSUINT32_COP))) == NULL)
                     {
                         for (j = 0; j < i; j++)
                         {
@@ -496,7 +496,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
-                    ptr_ul = (unsigned long *) Block.inptr[i];
+                    ptr_ul = (SCSUINT32_COP *) Block.inptr[i];
                     for (j = 0; j < Block.insz[i]*Block.insz[Block.nin + i]; j++)
                     {
                         ptr_ul[j] = 0;
@@ -747,8 +747,8 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     }
                     break;
                 case 84  :
-                    if ((Block.outptr[i] = (long *) \
-                                           MALLOC(Block.outsz[i] * Block.outsz[Block.nout + i] * sizeof(long))) == NULL)
+                    if ((Block.outptr[i] = (SCSINT32_COP *) \
+                                           MALLOC(Block.outsz[i] * Block.outsz[Block.nout + i] * sizeof(SCSINT32_COP))) == NULL)
                     {
                         for (j = 0; j < Block.nin; j++)
                         {
@@ -765,7 +765,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
-                    ptr_l = (long *) Block.outptr[i];
+                    ptr_l = (SCSINT32_COP *) Block.outptr[i];
                     for (j = 0; j < Block.outsz[i]*Block.outsz[Block.nout + i]; j++)
                     {
                         ptr_l[j] = 0;
@@ -822,8 +822,8 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     }
                     break;
                 case 814 :
-                    if ((Block.outptr[i] = (unsigned long *) \
-                                           MALLOC(Block.outsz[i] * Block.outsz[Block.nout + i] * sizeof(unsigned long))) == NULL)
+                    if ((Block.outptr[i] = (SCSUINT32_COP *) \
+                                           MALLOC(Block.outsz[i] * Block.outsz[Block.nout + i] * sizeof(SCSUINT32_COP))) == NULL)
                     {
                         for (j = 0; j < Block.nin; j++)
                         {
@@ -840,7 +840,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
-                    ptr_ul = (unsigned long *) Block.outptr[i];
+                    ptr_ul = (SCSUINT32_COP *) Block.outptr[i];
                     for (j = 0; j < Block.outsz[i]*Block.outsz[Block.nout + i]; j++)
                     {
                         ptr_ul[j] = 0;
@@ -1288,7 +1288,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                 if (ilh2[3] == 4)
                 {
                     Block.oztyp[i] = 84;
-                    if ((Block.ozptr[i] = (long *) MALLOC(mh2 * nh2 * sizeof(long))) == NULL)
+                    if ((Block.ozptr[i] = (SCSINT32_COP *) MALLOC(mh2 * nh2 * sizeof(SCSINT32_COP))) == NULL)
                     {
                         for (j = 0; j < Block.nin; j++)
                         {
@@ -1317,10 +1317,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
-                    ptr_l = (long *) Block.ozptr[i];
+                    ptr_l = (SCSINT32_COP *) Block.ozptr[i];
                     for (j = 0; j < mh2 * nh2; j++)
                     {
-                        ptr_l[j] = *((long *)(&ilh2[4]) + j);
+                        ptr_l[j] = *((SCSINT32_COP *)(&ilh2[4]) + j);
                     }
                 }
                 else if (ilh2[3] == 2)
@@ -1402,7 +1402,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                 else if (ilh2[3] == 14)
                 {
                     Block.oztyp[i] = 814;
-                    if ((Block.ozptr[i] = (unsigned long *) MALLOC(mh2 * nh2 * sizeof(unsigned long))) == NULL)
+                    if ((Block.ozptr[i] = (SCSUINT32_COP *) MALLOC(mh2 * nh2 * sizeof(SCSUINT32_COP))) == NULL)
                     {
                         for (j = 0; j < Block.nin; j++)
                         {
@@ -1431,10 +1431,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
-                    ptr_ul = (unsigned long *) Block.ozptr[i];
+                    ptr_ul = (SCSUINT32_COP *) Block.ozptr[i];
                     for (j = 0; j < mh2 * nh2; j++)
                     {
-                        ptr_ul[j] = *((unsigned long *)(&ilh2[4]) + j);
+                        ptr_ul[j] = *((SCSUINT32_COP *)(&ilh2[4]) + j);
                     }
                 }
                 else if (ilh2[3] == 12)
@@ -1828,7 +1828,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                 if (ilh2[3] == 4)
                 {
                     Block.opartyp[i] = 84;
-                    if ((Block.oparptr[i] = (long *) MALLOC(mh2 * nh2 * sizeof(long))) == NULL)
+                    if ((Block.oparptr[i] = (SCSINT32_COP *) MALLOC(mh2 * nh2 * sizeof(SCSINT32_COP))) == NULL)
                     {
                         for (j = 0; j < Block.nin; j++)
                         {
@@ -1865,10 +1865,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
-                    ptr_l = (long *) Block.oparptr[i];
+                    ptr_l = (SCSINT32_COP *) Block.oparptr[i];
                     for (j = 0; j < mh2 * nh2; j++)
                     {
-                        ptr_l[j] = *((long *)(&ilh2[4]) + j);
+                        ptr_l[j] = *((SCSINT32_COP *)(&ilh2[4]) + j);
                     }
                 }
                 else if (ilh2[3] == 2)
@@ -1966,7 +1966,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                 else if (ilh2[3] == 14)
                 {
                     Block.opartyp[i] = 814;
-                    if ((Block.oparptr[i] = (unsigned long *) MALLOC(mh2 * nh2 * sizeof(unsigned long))) == NULL)
+                    if ((Block.oparptr[i] = (SCSUINT32_COP *) MALLOC(mh2 * nh2 * sizeof(SCSUINT32_COP))) == NULL)
                     {
                         for (j = 0; j < Block.nin; j++)
                         {
@@ -2003,10 +2003,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
-                    ptr_ul = (unsigned long *) Block.oparptr[i];
+                    ptr_ul = (SCSUINT32_COP *) Block.oparptr[i];
                     for (j = 0; j < mh2 * nh2; j++)
                     {
-                        ptr_ul[j] = *((unsigned long *)(&ilh2[4]) + j);
+                        ptr_ul[j] = *((SCSUINT32_COP *)(&ilh2[4]) + j);
                     }
                 }
                 else if (ilh2[3] == 12)
