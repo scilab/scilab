@@ -98,7 +98,7 @@
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>..\..\..\..\bin\MALLOC.lib;..\..\..\..\bin\scilocalization.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\..\..\..\bin\scilocalization.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../../../bin/sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -326,9 +326,6 @@
     <None Include="..\..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
