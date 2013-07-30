@@ -74,11 +74,11 @@ assert_checkequal(res2, 0);
 assert_checkequal(res, 0);
 assert_checkequal(res2, 1);
 [res, res2] = cdfnor("PQ", 1, inf, 1);
-assert_checkalmostequal(res, 0, tol);
-assert_checkalmostequal(res2, 1, tol);
+assert_checkequal(res, %nan);
+assert_checkequal(res2, %nan);
 [res, res2] = cdfnor("PQ", 1, -inf, 1);
-assert_checkalmostequal(res, 1, tol);
-assert_checkalmostequal(res2, 0, tol);
+assert_checkequal(res, %nan);
+assert_checkequal(res2, %nan);
 
 // cdfpoi
 [res, res2] = cdfpoi("PQ", inf, 1);
