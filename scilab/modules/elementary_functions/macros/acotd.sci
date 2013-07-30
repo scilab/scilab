@@ -15,7 +15,7 @@ function y = acotd(x)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "acotd", 1));
     end
 
-    if ~isreal(x)
+    if type(x) <> 1 | ~isreal(x) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"acotd",1));
     end
     y = 90-atand(x);

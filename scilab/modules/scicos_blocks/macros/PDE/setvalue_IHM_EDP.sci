@@ -29,17 +29,17 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
     //    - params_pde (tlist) : rajouter a la list exprs du bloc EDP afin de sauvegarder les             //
     //                           informations de l'IHM. C'est une aussi variable de sortie.               //                                                    //
     // sorties :                                                                                          //
-    //    - ok (booleen) : variable de gestion des erreurs et la sortie de la fonction.                   //
+    //    - ok (Booleen) : variable de gestion des erreurs et la sortie de la fonction.                   //
     //    - a_domaine et b_domaine (Entiers) : sont les bords du domaine [a b]                            //
-    //    - discr (Entier) : renvoi le type du disciminant (0: consatnt ou 1: non constant)               //
-    //    - signe (Entier) : renvoi le signe du discriminant dans les cas non constant                    //
+    //    - discr (Entier) : renvoie le type du disciminant (0: consatnt ou 1: non constant)               //
+    //    - signe (Entier) : renvoie le signe du discriminant dans les cas non constant                    //
     //              (1: positif, 2: négatif, 3: nul )                                                     //
-    //    - choix (Entier) : renvoi le choix entre le mode manuel et le mode automatique (systeme expert) //
+    //    - choix (Entier) : renvoie le choix entre le mode manuel et le mode automatique (systeme expert) //
     //              (0 : Automatique, 1 : Manuel)                                                         //
-    //    - type_meth (Entier) : renvoi le type de la methode de discretisation dans le cas manuel        //
+    //    - type_meth (Entier) : renvoie le type de la methode de discretisation dans le cas manuel        //
     //                  (1 : differences finies, 2 : elements finis, 3 : volumes finis)                   //
-    //    - degre (Entier) : renvoi de l'ordre de la discritisation (1 ou 2 pour EF et DF, 1 pour VF)     //
-    //    - Nbr_maillage (Entier) : renvoi le nombre de points de maillage                                //
+    //    - degre (Entier) : renvoie l'ordre de la discretisation (1 ou 2 pour EF et DF, 1 pour VF)     //
+    //    - Nbr_maillage (Entier) : renvoie le nombre de points de maillage                                //
     //    - CI et CI1 (String) : renvoient les expressions des conditions initiales                       //
     //    - CLa_type, CLb_type (Entiers) : renvoient les types des conditions aux limittes                //
     //                         resp en a et en b (0 : Dirichlet, 1 : Neumann)                             //
@@ -49,7 +49,7 @@ function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,
     //             3 : du/dt, 4 : d2u/dtdx, 5 : du/dx, 6 : u, 7 : f)                                      //
     //    - ai et bi (String) : renvoient les differents coeficients des operateurs (ai(x) et bi(t))      //                                                             //
     //    - k (Entier) : codant le nombre de ports d'entrees du bloc EDP                                  //
-    //    - mesures (vecteur des entiers) : renvoi la liste des points de mesures                         //
+    //    - mesures (Vecteur d'entiers) : renvoie la liste des points de mesures                         //
     //----------------------------------------------------------------------------------------------------//
 
     ok=%f;a_domaine=[];b_domaine=[];choix=0;signe=1;discr=0;type_meth=1;degre=1;Nbr_maillage=10;

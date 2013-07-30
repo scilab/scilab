@@ -23,7 +23,7 @@ function [t]=tanh(z)
     end
 
     if type(z)<>1 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"sinhm",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"tanh",1));
     end
 
     if isreal(z) then

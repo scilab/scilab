@@ -424,7 +424,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
 
         if (res != CURLE_OK)
         {
-            Scierror(999, _("Failed to set write data [%s]\n"), errorBuffer);
+            Scierror(999, _("Failed to set write function [%s]\n"), errorBuffer);
             return NULL;
         }
 

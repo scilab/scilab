@@ -1225,7 +1225,7 @@ x_1=block->x[0];
                 </para>
                 <para> When systems are explicitly given in terms of Ordinary Differential Equations (ODE), it can be explicitly expressed or implicitly used in the residual vector when systems are expressed in terms of Differantial Algebraic Equations (DAE).</para>
                 <para> Both systems must be programmed with .</para>
-                <para> For i.e the Lorentz attractor written as an ODE system with three state variables, of the form :
+                <para> For i.e the Lorenz attractor written as an ODE system with three state variables, of the form :
                 </para>
                 <para>
                     will be defined :
@@ -1269,7 +1269,7 @@ xd[2] = x[0]*x[1]-c*x[2];
                     <emphasis role="bold">block-&gt;res :</emphasis> Array of double of size nx,1 corresponding to Differential Algebraic Equation (DAE) residual.
                 </para>
                 <para> It is used to write the vector of systems that have the following form :</para>
-                <para>  For i.e the Lorentz attractor written as a DAE system with three state variables, will be defined :
+                <para>  For i.e the Lorenz attractor written as a DAE system with three state variables, will be defined :
                 </para>
                 <programlisting role="code"><![CDATA[                    #include "scicos_block4.h"
                     ...

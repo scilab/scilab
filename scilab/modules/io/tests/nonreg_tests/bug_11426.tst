@@ -7,8 +7,6 @@
 //
 // <-- CLI SHELL MODE -->
 //
-// <-- ENGLISH IMPOSED -->
-//
 // <-- Non-regression test for bug 11426 -->
 //
 // <-- Bugzilla URL -->
@@ -19,5 +17,5 @@
 
 oldMode = warning("query');
 warning("on");
-save(SCI + "/saveenv.dat");
+save(TMPDIR + "/saveenv.dat");
 warning(oldMode);

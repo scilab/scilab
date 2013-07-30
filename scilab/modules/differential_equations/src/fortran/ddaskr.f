@@ -2640,10 +2640,10 @@ C If a root was found on the previous step, evaluate R0 = R(T0). -------
       ZROOT = .FALSE.
       DO 210 I = 1,NRT
         IF (ABS(R0(I)) .EQ. ZERO) THEN
-          ZROOT = .TRUE.
 c*********SCILAB ENTERPRISES INPUT
 c******** Like with JOB = 1, simply initialize JROOT to 0,
 c******** mask the ones that are null at the left endpoint
+c          ZROOT = .TRUE.
           JROOT(I) = MASKED
         ELSE
           JROOT(I) = 0
@@ -2687,7 +2687,7 @@ c**** Here, the calculaltion mode can save some computations
       IF ((TOUT - TN)*H .GE. ZERO) THEN
          T1 = TN
          GO TO 330
-         ENDIF
+      ENDIF
       T1 = TOUT
       ELSE
       T1 = TN
@@ -2843,25 +2843,24 @@ c****** If a root function is null at both endpoints, flag it as STUCK.
 c        ZROOT = .TRUE.
         GO TO 120
 C At this point, R0(i) has been checked and cannot be zero. ------------
- 110    IF (SIGN(1.0D0,R0(I)) .EQ. SIGN(1.0D0,R1(I))) GO TO 120
 c******** Here, test if some roots get UNSTUCK.
-          IF (JROOT(i).EQ.MASKED) IUNSTUCK = I
-          T2 = ABS(R1(I)/(R1(I)-R0(I)))
-          IF (T2 .LE. TMAX) GO TO 120
-            TMAX = T2
-            IMAX = I
+ 110    IF (JROOT(I).EQ.MASKED) IUNSTUCK = I
+        IF (R0(I)*R1(I) .GT. ZERO) GO TO 120
+        T2 = ABS(R1(I)/(R1(I)-R0(I)))
+        IF (T2 .LE. TMAX) GO TO 120
+        TMAX = T2
+        IMAX = I
  120    CONTINUE
       IF (IMAX .GT. 0) GO TO 130
 c******* STUCK and UNSTUCK root functions count as sign changes.
          IF (ISTUCK .GT. 0) THEN
-            SGNCHG = .TRUE.
             IMAX = ISTUCK
+            GO TO 130
          ELSEIF (IUNSTUCK .GT. 0) THEN
-            SGNCHG = .TRUE.
             IMAX = IUNSTUCK
-         ELSE
-      SGNCHG = .FALSE.
+            GO TO 130
          ENDIF
+      SGNCHG = .FALSE.
       GO TO 140
  130  SGNCHG = .TRUE.
  140  IF (.NOT. SGNCHG) GO TO 400
@@ -2912,28 +2911,27 @@ C Check to see in which interval R changes sign. -----------------------
       ZROOT = .FALSE.
       DO 220 I = 1,NRT
         IF (ABS(RX(I)) .GT. ZERO) GO TO 210
-        IF (ABS(RX(I)) .EQ. ZERO .AND. JROOT(i) .NE. MASKED) ISTUCK = I
+        IF (ABS(RX(I)).EQ.ZERO .AND. JROOT(I).NE.MASKED) ISTUCK = I
 c        ZROOT = .TRUE.
         GO TO 220
 C Neither R0(i) nor RX(i) can be zero at this point. -------------------
- 210    IF (SIGN(1.0D0,R0(I)) .EQ. SIGN(1.0D0,RX(I))) GO TO 220
-          IF (JROOT(i).EQ.MASKED) IUNSTUCK = I
-          T2 = ABS(RX(I)/(RX(I) - R0(I)))
-          IF (T2 .LE. TMAX) GO TO 220
-            TMAX = T2
-            IMAX = I
+ 210    IF (JROOT(I).EQ.MASKED) IUNSTUCK = I
+        IF (R0(I)*RX(I) .GT. 0) GO TO 220
+        T2 = ABS(RX(I)/(RX(I) - R0(I)))
+        IF (T2 .LE. TMAX) GO TO 220
+          TMAX = T2
+          IMAX = I
  220    CONTINUE
       IF (IMAX .GT. 0) GO TO 230
          IF (ISTUCK .GT. 0) THEN
-            SGNCHG = .TRUE.
             IMAX = ISTUCK
+            GO TO 230
          ELSEIF (IUNSTUCK .GT. 0) THEN
-            SGNCHG = .TRUE.
             IMAX = IUNSTUCK
-         ELSE
+            GO TO 230
+         ENDIF
       SGNCHG = .FALSE.
       IMAX = IMXOLD
-         ENDIF
       GO TO 240
  230  SGNCHG = .TRUE.
  240  NXLAST = LAST
@@ -2962,33 +2960,41 @@ C
 C Return with X1 as the root.  Set JROOT.  Set X = X1 and RX = R1. -----
  300  JFLAG = 2
       X = X1
+      CALL DCOPY (NRT, R1, 1, RX, 1)
 c**** The following part unmasks root functions if needed
 c**** and gives final values to JROOT
       UMROOT = .FALSE.
-      CALL DCOPY (NRT, R1, 1, RX, 1)
       DO 320 I = 1,NRT
 c        JROOT(I) = 0
         IF (JROOT(I) .NE. MASKED) THEN
           IF (ABS(R1(I)) .EQ. ZERO) THEN
-            JROOT(I) = -SIGN(1.0D0,R0(I))
+            IF (R0(I).GT.ZERO) THEN
+               JROOT(I) = -1
+            ELSE
+               JROOT(I) = 1
+            ENDIF
             ZROOT = .TRUE.
             GO TO 320
           ENDIF
-          IF (SIGN(1.0D0,R0(I)) .NE. SIGN(1.0D0,R1(I))) THEN
-            JROOT(I) = SIGN(1.0D0,R1(I) - R0(I))
+          IF (R0(I)*R1(I).LT.ZERO) THEN
+            JROOT(I) = SIGN(1.0D0,R1(I))
+            ZROOT = .TRUE.
           ELSE
             JROOT(I) = 0
             ZROOT = .FALSE.
           ENDIF
         ELSE
           IF (ABS(R1(I)) .NE. ZERO) THEN
-            JROOT(I) = SIGN(2.0D0,R1(I))
+            IF (R1(I) .GT. ZERO) THEN
+              JROOT(I) = 2
+            ELSE
+              JROOT(I) = -2
+            ENDIF
             UMROOT = .TRUE.
-            ZROOT = .FALSE.
           ELSE
             JROOT(I) = 0
-            ZROOT = .FALSE.
           ENDIF
+          ZROOT = .FALSE.
         ENDIF
  320    CONTINUE
       IF (ZROOT) THEN

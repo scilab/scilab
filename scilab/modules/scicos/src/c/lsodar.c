@@ -60,8 +60,8 @@ extern void C2F(lsodar) (LSRhsFn f, int *neq, realtype *y, realtype *t, realtype
 
 void * LSodarCreate (int * neq, int ng)
 {
-    int lRn, lRs, lIw, lRw;
-    LSodarMem lsodar_mem;
+    int lRn = 0, lRs = 0, lIw = 0, lRw = 0;
+    LSodarMem lsodar_mem = NULL;
 
     /* Allocate the problem memory space */
     lsodar_mem = NULL;
@@ -134,7 +134,7 @@ void * LSodarCreate (int * neq, int ng)
 
 int LSodarInit (void * lsodar_mem, LSRhsFn f, realtype t0, N_Vector y)
 {
-    LSodarMem ls_mem;
+    LSodarMem ls_mem = NULL;
 
     /* Check the input arguments */
 
@@ -185,7 +185,7 @@ int LSodarInit (void * lsodar_mem, LSRhsFn f, realtype t0, N_Vector y)
 
 int LSodarReInit (void * lsodar_mem, realtype tOld, N_Vector y)
 {
-    LSodarMem ls_mem;
+    LSodarMem ls_mem = NULL;
 
     /* Check the input arguments */
 
@@ -223,7 +223,7 @@ int LSodarReInit (void * lsodar_mem, realtype tOld, N_Vector y)
 
 int LSodarSStolerances (void * lsodar_mem, realtype reltol, realtype abstol)
 {
-    LSodarMem ls_mem;
+    LSodarMem ls_mem = NULL;
 
     if (lsodar_mem == NULL)
     {
@@ -268,8 +268,8 @@ int LSodarSStolerances (void * lsodar_mem, realtype reltol, realtype abstol)
 
 int LSodarRootInit (void * lsodar_mem, int ng, LSRootFn g)
 {
-    LSodarMem ls_mem;
-    int nrt;
+    LSodarMem ls_mem = NULL;
+    int nrt = 0;
 
     if (lsodar_mem == NULL)
     {
@@ -309,7 +309,7 @@ int LSodarRootInit (void * lsodar_mem, int ng, LSRootFn g)
 
 int LSodarSetMaxStep (void * lsodar_mem, realtype hMax)
 {
-    LSodarMem ls_mem;
+    LSodarMem ls_mem = NULL;
 
     if (lsodar_mem == NULL)
     {
@@ -339,7 +339,7 @@ int LSodarSetMaxStep (void * lsodar_mem, realtype hMax)
 
 int LSodarSetStopTime (void * lsodar_mem, realtype tCrit)
 {
-    LSodarMem ls_mem;
+    LSodarMem ls_mem = NULL;
 
     if (lsodar_mem == NULL)
     {
@@ -384,7 +384,7 @@ int LSodarSetStopTime (void * lsodar_mem, realtype tCrit)
 
 int LSodar (void * lsodar_mem, realtype tOut, N_Vector yOut, realtype * tOld, int itask)
 {
-    LSodarMem ls_mem;
+    LSodarMem ls_mem = NULL;
 
     /* Check the input arguments */
 
@@ -460,7 +460,7 @@ int LSodar (void * lsodar_mem, realtype tOut, N_Vector yOut, realtype * tOld, in
 
 int LSodarGetRootInfo (void * lsodar_mem, int * rootsfound)
 {
-    LSodarMem ls_mem;
+    LSodarMem ls_mem = NULL;
 
     if (lsodar_mem == NULL)
     {
@@ -486,7 +486,7 @@ int LSodarGetRootInfo (void * lsodar_mem, int * rootsfound)
 
 void LSodarFree (void ** lsodar_mem)
 {
-    LSodarMem ls_mem;
+    LSodarMem ls_mem = NULL;
 
     if (*lsodar_mem == NULL)
     {
@@ -529,7 +529,7 @@ void LSFreeVectors (LSodarMem ls_mem)
 
 int LSodarSetErrHandlerFn (void * lsodar_mem, LSErrHandlerFn ehfun, void * eh_data)
 {
-    LSodarMem ls_mem;
+    LSodarMem ls_mem = NULL;
 
     if (lsodar_mem == NULL)
     {
@@ -583,6 +583,4 @@ void LSProcessError (LSodarMem ls_mem, int error_code, const char *module, const
 
     /* Finalize argument processing */
     va_end(ap);
-
-    return;
 }

@@ -107,6 +107,9 @@ Xcos
 * Bug #7350 fixed - The superblock I/O ports numbering was not updated
                     when a new port was dropped.
 
+* Bug #8570 fixed - "Region to superblock" has been renamed to 
+                    "Selection to superblock".
+
 * Bug #11518 fixed - CLR block-text was displayed out of the bounding box 
                      when zooming.
 
@@ -185,6 +188,8 @@ Bug fixes
 
 * Bug #5616 fixed - typeof(uiCreateTree(...)) returned "Tree" instead of "uitree".
 
+* Bug #5694 fixed - numdiff() help page clarified.
+
 * Bug #5779 fixed - xnumb number format was too small (+ unit test added).
 
 * Bug #6168 fixed - Help for zpbutt, zpch1, zpch2 and zpell were unclear.
@@ -226,6 +231,8 @@ Bug fixes
 
 * Bug #7828 fixed - Slight improvements in nicholschart.
 
+* Bug #7848 fixed - The third argument of correl function is now optional.
+
 * Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
 * Bug #7960 fixed - plzr() could not produce pole zero plot for a simple transfer function.
@@ -242,8 +249,16 @@ Bug fixes
 
 * Bug #8373 fixed - clear() can now take a matrix of strings argument.
 
+* Bug #8462 fixed - bvodeS() could make Scilab unstable.
+
+* Bug #8470 fixed - bvode() displayed some output in terminal window and not in Scilab console.
+
+* Bug #8479 fixed - the latest Saxon version was not supported.
+
 * Bug #8511 fixed - sprand used rand and grand functions, and internal state of the random
                     generator was changed.
+
+* Bug #8561 fixed - ddassl(), ddasrt(), ddaskr(): abs and rel tolerances sizes are now checked.
 
 * Bug #8597 fixed - Uncontrolled message of grand/clcg4 should be displayed as warning.
 
@@ -261,6 +276,8 @@ Bug fixes
 
 * Bug #8778 fixed - Call_ScilabOpen, TerminateScilab can not be called more
                     than 80 times in a loop.
+
+* Bug #8779 fixed - gsort() did not preserve order of equal elements, in lexicographic sort.
 
 * Bug #8820 fixed - Squeeze did not return a matrix when the number of dimensions
                     of the result was less or equal to 2.
@@ -286,6 +303,8 @@ Bug fixes
 * Bug #9059 fixed - tbx_build_macros and genlib do not stop on error.
 
 * Bug #9109 fixed - nfreq tagged as obsolete.
+
+* Bug #9385 fixed - The type checking in trigonometric functions has been added.
 
 * Bug #9459 fixed - Default values of the optional plot3d arguments were not documented.
 
@@ -314,6 +333,8 @@ Bug fixes
                      if it is present, then the function will issue a warning instead of an error.
 
 * Bug #10287 fixed - Added an error message for complex expression as input argument of integrate function.
+
+* Bug #10305 fixed - Comparison of lists with empty items returned an error message.
 
 * Bug #10596 fixed - exit(xxx) from Scilab was failing.
 
@@ -476,3 +497,9 @@ Bug fixes
                      backup filename.
 
 * Bug #12715 fixed - Variable cross in pspect and cspect has been renamed because of conflicts with cross function.
+
+* Bug #12736 fixed - In SciNotes, the Completion window appeared only in first tab.
+
+* Bug #12758 fixed - Focus issue with plot3d() fixed.
+
+* Bug #12747 fixed - legendre() now accepts the -1 and 1 values for the third argument.

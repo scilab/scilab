@@ -136,7 +136,7 @@ void HDF5Scilab::readAttributeData(H5Object & obj, const std::string & path, con
     }
 
     H5Attribute * attr = new H5Attribute(*hobj, attrName);
-    attr->getData().toScilab(pvApiCtx, pos);
+    attr->getData().toScilab(pvApiCtx, pos, 0, 0, H5Options::isReadFlip());
 
     if (path != ".")
     {
@@ -203,7 +203,7 @@ void HDF5Scilab::readData(H5Object & obj, const std::string & name, const unsign
             {
                 dims = space.select(size, start, stride, count, block);
                 data = &dataset->getData(space, dims);
-                data->toScilab(pvApiCtx, pos);
+                data->toScilab(pvApiCtx, pos, 0, 0, H5Options::isReadFlip());
             }
             catch (const H5Exception & /*e*/)
             {
@@ -218,6 +218,10 @@ void HDF5Scilab::readData(H5Object & obj, const std::string & name, const unsign
             if (data->mustDelete())
             {
                 delete data;
+            }
+            else if (!H5Object::isEmptyPath(name))
+            {
+                hobj->unregisterChild(data);
             }
         }
         else
@@ -399,7 +403,7 @@ void HDF5Scilab::createLink(H5Object & parent, const std::string & name, H5Objec
     {
         if (hard)
         {
-            throw H5Exception(__LINE__, __FILE__, _("Cannot create a hard link to an external object: %s."), name.c_str());
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create a hard link to the external object: %s."), name.c_str());
         }
         createLink(parent, name, targetObject);
     }
@@ -902,18 +906,25 @@ void HDF5Scilab::getScilabData(hid_t * type, unsigned int * ndims, hsize_t ** di
 {
     SciErr err;
     int * addr = 0;
-    int row;
-    int col;
-    int _type;
-
-    *mustDelete = false;
-    *mustDeleteContent = false;
 
     err = getVarAddressFromPosition(pvApiCtx, rhsPosition, &addr);
     if (err.iErr)
     {
         throw H5Exception(__LINE__, __FILE__, _("Can not read input argument #%d."), rhsPosition);
     }
+
+    getScilabData(type, ndims, dims, data, mustDelete, mustDeleteContent, flip, addr, rhsPosition, pvApiCtx);
+}
+
+void HDF5Scilab::getScilabData(hid_t * type, unsigned int * ndims, hsize_t ** dims, void ** data, bool * mustDelete, bool * mustDeleteContent, const bool flip, int * addr, int rhsPosition, void * pvApiCtx)
+{
+    SciErr err;
+    int row;
+    int col;
+    int _type;
+
+    *mustDelete = false;
+    *mustDeleteContent = false;
 
     err = getVarType(pvApiCtx, addr, &_type);
     if (err.iErr)
@@ -925,14 +936,40 @@ void HDF5Scilab::getScilabData(hid_t * type, unsigned int * ndims, hsize_t ** di
     {
         case sci_matrix :
         {
-            double * mat = 0;
-
             if (isVarComplex(pvApiCtx, addr))
             {
-                throw H5Exception(__LINE__, __FILE__, _("Complex datatype not handled for now."));
+                doublecomplex * mat = 0;
+                double * re = 0;
+                double * im = 0;
+                hid_t complex_id = H5Tcreate(H5T_COMPOUND, sizeof(doublecomplex));
+                H5Tinsert(complex_id, "real", offsetof(doublecomplex, r), H5T_NATIVE_DOUBLE);
+                H5Tinsert(complex_id, "imag", offsetof(doublecomplex, i), H5T_NATIVE_DOUBLE);
+
+                err = getComplexMatrixOfDouble(pvApiCtx, addr, &row, &col, &re, &im);
+                if (err.iErr)
+                {
+                    H5Tclose(complex_id);
+                    throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                }
+
+                mat = new doublecomplex[row * col];
+                for (int i = 0; i < row * col; i++)
+                {
+                    mat[i].r = re[i];
+                    mat[i].i = im[i];
+                }
+
+                *type = complex_id;
+                *ndims = 2;
+                *dims = new hsize_t[*ndims];
+                (*dims)[0] = flip ? col : row;
+                (*dims)[1] = flip ? row : col;
+                *data = mat;
+                *mustDelete = true;
             }
             else
             {
+                double * mat = 0;
                 err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, &mat);
                 if (err.iErr)
                 {
@@ -1068,6 +1105,55 @@ void HDF5Scilab::getScilabData(hid_t * type, unsigned int * ndims, hsize_t ** di
             (*dims)[0] = flip ? col : row;
             (*dims)[1] = flip ? row : col;
             *data = matB;
+            break;
+        }
+        case sci_mlist :
+        {
+            if (isHypermatType(pvApiCtx, addr))
+            {
+                int * entries = 0;
+                int * _dims = 0;
+                int _ndims;
+
+                err = getHypermatEntries(pvApiCtx, addr, &entries);
+                if (err.iErr)
+                {
+                    throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                }
+
+                getScilabData(type, ndims, dims, data, mustDelete, mustDeleteContent, flip, entries, rhsPosition, pvApiCtx);
+                if (*dims)
+                {
+                    delete[] *dims;
+                }
+
+                err = getHypermatDimensions(pvApiCtx, addr, &_dims, &_ndims);
+                if (err.iErr)
+                {
+                    throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                }
+
+                *dims = new hsize_t[_ndims];
+                if (flip)
+                {
+                    for (int i = 0; i < _ndims; i++)
+                    {
+                        (*dims)[i] = _dims[_ndims - 1 - i];
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < _ndims; i++)
+                    {
+                        (*dims)[i] = _dims[i];
+                    }
+                }
+                *ndims = _ndims;
+            }
+            else
+            {
+                throw H5Exception(__LINE__, __FILE__, _("%s: Datatype not handled for now."));
+            }
             break;
         }
         default :

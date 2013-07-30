@@ -49,6 +49,7 @@ HDF5_SCILAB_IMPEXP int readDoubleMatrix(int _iDatasetId, double *_pdblData);
 HDF5_SCILAB_IMPEXP int readDoubleComplexMatrix(int _iDatasetId, double *_pdblReal, double *_pdblImg);
 
 HDF5_SCILAB_IMPEXP int readStringMatrix(int _iDatasetId, char **_pstData);
+HDF5_SCILAB_IMPEXP int freeStringMatrix(int _iDatasetId, char** _pstData);
 
 HDF5_SCILAB_IMPEXP int readBooleanMatrix(int _iDatasetId, int* _piData);
 

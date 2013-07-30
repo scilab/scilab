@@ -447,7 +447,7 @@ A = 7;
 B = 12;
 checkMeanVariance2arg ( 400 , 800 , 'f' , A , B , B/(B-2) , (2*B^2*(A+B-2))/(A*(B-2)^2*(B-4)) , 4*rtol );
 //
-for A = linspace(1,20,4)
+for A = floor(linspace(1,20,4))
   for B = floor(linspace(5,20,4))
     checkLaw2arg ( 'f' , mycdff , N , NC , A , B , 2*rtol );
   end

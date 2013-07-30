@@ -53,7 +53,7 @@
             (tamanho de pilha excedido! (Use a função stacksize para
             aumentá-lo))
         </para>
-        <para>18 "Too many variables!" (muitas variáveis!)</para>
+        <para>18 "Too many variables." (muitas variáveis!)</para>
         <para>19 "Problem is singular" (o problema é singular)</para>
         <para>* 20 "Wrong type for argument #%d: Square matrix expected." (tipo
             errado para o argumento %d: esperava matriz quadrada)

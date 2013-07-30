@@ -1,14 +1,14 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) ????-2008 - Université de Nancy - Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) ????-2008 - Université de Nancy - Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 #include <string.h>
 #include "api_scilab.h"
@@ -67,6 +67,10 @@ int sci_legendre(char *fname, unsigned long fname_len)
     double* pdblPQA = NULL;
     int* piPQA      = NULL;
 
+    int iType1 = 0;
+    int iType2 = 0;
+    int iType3 = 0;
+
     CheckInputArgument(pvApiCtx, 3, 4);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
@@ -79,6 +83,19 @@ int sci_legendre(char *fname, unsigned long fname_len)
         return 1;
     }
 
+    sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (iType1 != sci_matrix)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Integer or vector of integers expected.\n"), fname, 1);
+        return 1;
+    }
+
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &mN, &nN, &pdblN);
     if (sciErr.iErr)
     {
@@ -88,7 +105,7 @@ int sci_legendre(char *fname, unsigned long fname_len)
 
     if (verify_cstr(pdblN, mN * nN, &n1, &n2) == 0)
     {
-        Scierror(999, _("%s: Wrong type for first input argument.\n"), fname);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Integer >= %d expected.\n"), fname, 1, 0);
         return 1;
     }
 
@@ -106,6 +123,19 @@ int sci_legendre(char *fname, unsigned long fname_len)
         return 1;
     }
 
+    sciErr = getVarType(pvApiCtx, piAddr2, &iType2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (iType2 != sci_matrix)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Integer or vector of integers expected.\n"), fname, 2);
+        return 1;
+    }
+
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &mM, &nM, &pdblM);
     if (sciErr.iErr)
     {
@@ -115,7 +145,7 @@ int sci_legendre(char *fname, unsigned long fname_len)
 
     if (verify_cstr(pdblM, mM * nM, &m1, &m2) == 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Integer >= %d expected.\n"), fname, 2, 0);
         return 1;
     }
 
@@ -139,7 +169,14 @@ int sci_legendre(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    if (isVarComplex(pvApiCtx, piAddr3))
+    sciErr = getVarType(pvApiCtx, piAddr3, &iType3);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (iType3 != sci_matrix || isVarComplex(pvApiCtx, piAddr3))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 3);
         return 1;
@@ -156,9 +193,9 @@ int sci_legendre(char *fname, unsigned long fname_len)
 
     for ( i = 0 ; i < mnx ; i++ )
     {
-        if ((fabs(pdblX[i]) < 1.0) == 0)
+        if ((fabs(pdblX[i]) <= 1.0) == 0)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) expected.\n"), fname, 3, -1, 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Matrix with elements in [%d,%d] expected.\n"), fname, 3, -1, 1);
             return 1;
         }
     }
@@ -216,19 +253,48 @@ int sci_legendre(char *fname, unsigned long fname_len)
 
     for ( i = 0 ; i < mnx ; i++ )
     {
-        xx = fabs(pdblX[i]); /* dxleg computes only for x in [0,1) */
-        C2F(dxlegf) (&dnu1, &nudiff, &m1, &m2, &xx, &id, pdblPQA + i * MNp1, piPQA + i * MNp1, &ierror);
-        if ( ierror != 0 )
+        xx = fabs(pdblX[i]);
+        /* manage the case where xx = 1 with n scalar*/
+        if (N_is_scalar && xx == 1)
         {
-            if ( ierror == 207 ) /* @TODO what is 207 ? */
+            if (m1 == 0)
             {
-                Scierror(999, _("%s: overflow or underflow of an extended range number\n"), fname);
+                pdblPQA[i * MNp1] = 1;
             }
             else
             {
-                Scierror(999, _("%s: error number %d\n"), fname, ierror);
+                pdblPQA[i * MNp1] = 0;
             }
-            return 0;
+
+            if (normalized)
+            {
+                pdblPQA[i * MNp1] = pdblPQA[i * MNp1]  * sqrt(dnu1 + 0.5);
+            }
+
+            piPQA[i * MNp1] = 0;
+
+            for (j = 1; j < MNp1; j++)
+            {
+                pdblPQA[i * MNp1 + j] = 0;
+                piPQA[i * MNp1 + j] = 0;
+            }
+        }
+        else
+        {
+            /* dxleg computes only for x in [0,1] */
+            C2F(dxlegf) (&dnu1, &nudiff, &m1, &m2, &xx, &id, pdblPQA + i * MNp1, piPQA + i * MNp1, &ierror);
+            if ( ierror != 0 )
+            {
+                if ( ierror == 207 ) /* @TODO what is 207 ? */
+                {
+                    Scierror(999, _("%s: overflow or underflow of an extended range number\n"), fname);
+                }
+                else
+                {
+                    Scierror(999, _("%s: error number %d\n"), fname, ierror);
+                }
+                return 0;
+            }
         }
     }
 

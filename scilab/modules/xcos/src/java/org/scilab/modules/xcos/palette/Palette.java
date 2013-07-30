@@ -205,7 +205,7 @@ public final class Palette {
                         cat.getNode().add(pal);
                         pal.setParent(cat);
 
-                        PaletteNode.refreshView(pal);
+                        PaletteNode.refreshView(cat, pal);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -274,7 +274,7 @@ public final class Palette {
                         throw new RuntimeException(String.format(WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, NAME));
                     }
 
-                    PaletteNode.refreshView(node.getParent());
+                    PaletteNode.refreshView(node.getParent(), node);
                 }
             });
         } catch (final InterruptedException e) {
@@ -342,7 +342,7 @@ public final class Palette {
 
                     node.setEnable(status);
 
-                    PaletteNode.refreshView(node.getParent());
+                    PaletteNode.refreshView(node.getParent(), node);
                 }
             });
         } catch (final InterruptedException e) {
@@ -393,8 +393,8 @@ public final class Palette {
                     destination.getNode().add(src);
                     src.setParent(destination);
 
-                    PaletteNode.refreshView(toBeReloaded[0]);
-                    PaletteNode.refreshView(toBeReloaded[1]);
+                    PaletteNode.refreshView(toBeReloaded[0], null);
+                    PaletteNode.refreshView(toBeReloaded[1], src);
                 }
             });
         } catch (final InterruptedException e) {
