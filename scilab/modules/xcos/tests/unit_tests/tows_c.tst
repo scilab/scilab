@@ -10,7 +10,7 @@
 
 // Import diagram
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/tows_c.xcos"));
-Info = scicos_simulate(scs_m, 'nw');
+Info = scicos_simulate(scs_m);
 
 // Reference values
 t = (2.2 : 0.1 : 14.9)';
@@ -29,9 +29,10 @@ shortV_ref(:, 2) = shortV_ref(:, 2) + 1; // shortV_ref = [7, 8] with 128 rows
 charV_ref = int8(ones(128, 2));
 charV_ref = 9*charV_ref;
 charV_ref(:, 2) = charV_ref(:, 2) + 1;   // charV_ref = [9, 10] with 128 rows
-intM2_ref = int32([11 12 ; 13 14]); // intM2_ref is an element of hypermatrix intM2
-shortM_ref = int16([15 16; 17 18]); // shortM_ref is an element of hypermatrix shortM
-charM_ref = int8([19 20 ; 21 22]);  // charM_ref is an element of hypermatrix charM
+intM2_ref = int32([11 12 ; 13 14]);      // intM2_ref is an element of hypermatrix intM2
+shortM_ref = int16([15 16; 17 18]);      // shortM_ref is an element of hypermatrix shortM
+charM_ref = int8([19 20 ; 21 22]);       // charM_ref is an element of hypermatrix charM
+nineteen_ref = struct('values', ones(128,1), 'time', t);  // Checks that a ninteteen characters variable name is possible, with correct time values
 
 // Run simulation with scicos_simulate() + check results
 try scicos_simulate(scs_m, Info); catch disp(lasterror()); end  // Run simulation
@@ -55,6 +56,8 @@ for i = 1:128
     assert_checktrue(and(shortM.values(:, :, i) == shortM_ref));
     assert_checktrue(and(charM.values(:, :, i)  == charM_ref));
 end
+assert_checkalmostequal(nineteen19Letters19.values, nineteen_ref.values);
+assert_checkalmostequal(nineteen19Letters19.time, nineteen_ref.time);
 
 // Run simulation with xcos_simulate() + check results
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end  // Run simulation
@@ -78,6 +81,8 @@ for i = 1:128
     assert_checktrue(and(shortM.values(:, :, i) == shortM_ref));
     assert_checktrue(and(charM.values(:, :, i)  == charM_ref));
 end
+assert_checkalmostequal(nineteen19Letters19.values, nineteen_ref.values);
+assert_checkalmostequal(nineteen19Letters19.time, nineteen_ref.time);
 
 // Type checks
 assert_checkequal(type(A.values), 1);              // A takes real numbers
