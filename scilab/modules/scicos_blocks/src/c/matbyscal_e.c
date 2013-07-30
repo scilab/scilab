@@ -43,9 +43,9 @@ SCICOS_BLOCKS_IMPEXP void matbyscal_e(scicos_block *block, int flag)
             case SCSINT32_N :
             {
 
-                long *u1 = Getint32InPortPtrs(block, 1);
-                long *u2 = Getint32InPortPtrs(block, 2);
-                long *y1 = Getint32OutPortPtrs(block, 1);
+                SCSINT32_COP *u1 = Getint32InPortPtrs(block, 1);
+                SCSINT32_COP *u2 = Getint32InPortPtrs(block, 2);
+                SCSINT32_COP *y1 = Getint32OutPortPtrs(block, 1);
                 for (i = 0; i < mu * nu; i++)
                 {
                     v = (double)u1[i] * (double)u2[0];
@@ -57,7 +57,7 @@ SCICOS_BLOCKS_IMPEXP void matbyscal_e(scicos_block *block, int flag)
                     }
                     else
                     {
-                        y1[i] = (long)v;
+                        y1[i] = (SCSINT32_COP)v;
                     }
                 }
                 break;
@@ -112,9 +112,9 @@ SCICOS_BLOCKS_IMPEXP void matbyscal_e(scicos_block *block, int flag)
             case SCSUINT32_N :
             {
 
-                unsigned long *u1 = Getuint32InPortPtrs(block, 1);
-                unsigned long *u2 = Getuint32InPortPtrs(block, 2);
-                unsigned long *y1 = Getuint32OutPortPtrs(block, 1);
+                SCSUINT32_COP *u1 = Getuint32InPortPtrs(block, 1);
+                SCSUINT32_COP *u2 = Getuint32InPortPtrs(block, 2);
+                SCSUINT32_COP *y1 = Getuint32OutPortPtrs(block, 1);
                 for (i = 0; i < mu * nu; i++)
                 {
                     v = (double)u1[i] * (double)u2[0];
@@ -126,7 +126,7 @@ SCICOS_BLOCKS_IMPEXP void matbyscal_e(scicos_block *block, int flag)
                     }
                     else
                     {
-                        y1[i] = (unsigned long)v;
+                        y1[i] = (SCSUINT32_COP)v;
                     }
                 }
                 break;

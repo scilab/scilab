@@ -27,8 +27,8 @@ SCICOS_BLOCKS_IMPEXP void shift_32_LC(scicos_block *block, int flag)
 {
     int mu = GetInPortRows(block, 1);
     int nu = GetInPortCols(block, 1);
-    long *u = Getint32InPortPtrs(block, 1);
-    long *y = Getint32OutPortPtrs(block, 1);
+    SCSINT32_COP *u = Getint32InPortPtrs(block, 1);
+    SCSINT32_COP *y = Getint32OutPortPtrs(block, 1);
     int *ipar = GetIparPtrs(block);
     unsigned long k = (unsigned long)pow(2, 32 - 1);
 
@@ -36,7 +36,7 @@ SCICOS_BLOCKS_IMPEXP void shift_32_LC(scicos_block *block, int flag)
     for (i = 0; i < mu * nu; i++)
     {
         int j = 0;
-        long v = u[i];
+        SCSINT32_COP v = u[i];
         for (j = 0; j < ipar[0]; j++)
         {
             y[i] = v & k;

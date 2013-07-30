@@ -28,7 +28,7 @@ SCICOS_BLOCKS_IMPEXP void logicalop_ui32(scicos_block *block, int flag)
 {
     int i = 0, m = 0, n = 0, nin = 0, k = 0, j = 0, l = 0;
     int *ipar = NULL;
-    unsigned long *y = NULL, *u = NULL;
+    SCSUINT32_COP *y = NULL, *u = NULL;
     m = GetInPortRows(block, 1);
     n = GetInPortCols(block, 1);
     y = Getuint32OutPortPtrs(block, 1);
@@ -285,7 +285,7 @@ SCICOS_BLOCKS_IMPEXP void logicalop_ui32(scicos_block *block, int flag)
                             l = (l + 1) % 2;
                         }
                     }
-                    *y = (unsigned long)l;
+                    *y = (SCSUINT32_COP)l;
                 }
                 else
                 {
@@ -311,7 +311,7 @@ SCICOS_BLOCKS_IMPEXP void logicalop_ui32(scicos_block *block, int flag)
                                 l = (l + 1) % 2;
                             }
                         }
-                        y[i] = (unsigned long)l;
+                        y[i] = (SCSUINT32_COP)l;
                     }
                 }
                 else
