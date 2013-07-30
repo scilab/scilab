@@ -503,3 +503,5 @@ Bug fixes
 * Bug #12758 fixed - Focus issue with plot3d() fixed.
 
 * Bug #12747 fixed - legendre() now accepts the -1 and 1 values for the third argument.
+
+* Bug #12772 fixed - eigs() failed when trying to solve a sparse matrix eigen value problem.
