@@ -60,9 +60,9 @@ function [x,y,typ]=MATCATH(job,arg1,arg2)
         end
     case "define" then
         model=scicos_model()
-        junction_name="mat_cath";
+        function_name="mat_cath";
         funtyp=4;
-        model.sim=list(junction_name,funtyp)
+        model.sim=list(function_name,funtyp)
         model.in=[-1;-1]
         model.in2=[-2;-3]
         model.intyp=[1 1]

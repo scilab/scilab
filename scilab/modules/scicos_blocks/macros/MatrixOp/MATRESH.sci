@@ -63,11 +63,11 @@ function [x,y,typ]=MATRESH(job,arg1,arg2)
                 end
             end
             if (typ==1) then
-                junction_name="mat_reshape";
+                function_name="mat_reshape";
                 ot=1;
                 it=1;
             elseif (typ==2) then
-                junction_name="matz_reshape";
+                function_name="matz_reshape";
                 ot=2;
                 it=2;
             else message("Datatype is not supported");ok=%f;
@@ -78,7 +78,7 @@ function [x,y,typ]=MATRESH(job,arg1,arg2)
             end
             if ok then
                 funtyp=4;
-                model.sim=list(junction_name,funtyp)
+                model.sim=list(function_name,funtyp)
                 graphics.exprs=label
                 arg1.graphics=graphics
                 arg1.model=model
@@ -89,9 +89,9 @@ function [x,y,typ]=MATRESH(job,arg1,arg2)
         needcompile=resume(needcompile)
     case "define" then
         model=scicos_model()
-        junction_name="mat_reshape";
+        function_name="mat_reshape";
         funtyp=4;
-        model.sim=list(junction_name,funtyp)
+        model.sim=list(function_name,funtyp)
         model.in=-1
         model.in2=-2
         model.intyp=1
