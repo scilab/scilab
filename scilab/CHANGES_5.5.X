@@ -505,3 +505,5 @@ Bug fixes
 * Bug #12747 fixed - legendre() now accepts the -1 and 1 values for the third argument.
 
 * Bug #12772 fixed - eigs() failed when trying to solve a sparse matrix eigen value problem.
+
+* Bug #12774 fixed - Fix various typos.

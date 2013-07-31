@@ -1183,7 +1183,7 @@ L77:
         int curline;
         for (kmac = 0; kmac < C2F(dbg).nmacs; kmac++) /* loop on table of functions containing breakpoints */
         {
-            /* does the name of the current funtion fit the registered name*/
+            /* does the name of the current function fit the registered name*/
             if (C2F(eqid)(&(C2F(vstk).idstk[kfin * nsiz]), &(C2F(dbg).macnms[kmac * nsiz])))  /* yes */
             {
                 /* test if there is a registered breakpoint at the current line*/

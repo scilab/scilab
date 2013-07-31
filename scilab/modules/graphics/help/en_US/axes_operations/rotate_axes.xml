@@ -35,7 +35,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>rotate_axes</literal> funtion is used to perform an interactive rotation of an Axes object.
+            <literal>rotate_axes</literal> function is used to perform an interactive rotation of an Axes object.
             When the function is called, the user is requested to click twice on the graphic window. The first click
             initializes the rotation and the second ends it.
             
