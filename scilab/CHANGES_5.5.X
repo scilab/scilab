@@ -121,6 +121,9 @@ Xcos
 * Bug #12387 fixed - Setup menu option "Modelica initialize" did not blur
                      during simulation.
 
+* Bug #12414 fixed - SWITCH_m block had different behaviors
+                     for different types of inputs.
+
 * Bug #12424 fixed - Calling lincos on a Derivative block made scilab crash.
 
 * Bug #12460 fixed - xcosPalGenerateAllIcons sometimes crashed Scilab.
