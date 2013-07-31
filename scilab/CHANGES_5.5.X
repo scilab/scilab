@@ -509,4 +509,6 @@ Bug fixes
 
 * Bug #12772 fixed - eigs() failed when trying to solve a sparse matrix eigen value problem.
 
-* Bug #12774 fixed - Fix various typos.
+* Bug #12774 fixed - Various typos fixed.
+
+* Bug #12775 fixed - Some related functions were not listed in "See also" section of routh_t help page.
