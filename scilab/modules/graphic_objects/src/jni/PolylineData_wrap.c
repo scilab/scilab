@@ -332,7 +332,7 @@ BOOL translatePolyline(char *uid, double x, double y, double z, int flagX, int f
         } else {
             for (i = 0; i < getDataSize_(uid); ++i)
             {
-                datax[i] = pow(10.,log10(datax[i]) + x);
+                datax[i] += x;
             }
         }
     }
@@ -348,7 +348,7 @@ BOOL translatePolyline(char *uid, double x, double y, double z, int flagX, int f
         } else {
             for (i = 0; i < getDataSize_(uid); ++i)
             {
-                datay[i] = pow(10.,log10(datay[i]) + y);
+                datay[i] += y;
             }
         }
     }
@@ -362,7 +362,7 @@ BOOL translatePolyline(char *uid, double x, double y, double z, int flagX, int f
         } else {
             for (i = 0; i < getDataSize_(uid); ++i)
             {
-                dataz[i] = pow(10.,log10(dataz[i]) + z);
+                dataz[i] += z;
             }
         }
 	}

@@ -143,7 +143,7 @@ public class DatatipCommon {
     public static double[] getTransformedPosition(String figure, Integer[] pos) {
 
         String axes = AxesHandler.clickedAxes(figure, pos);
-        double[] position = {1.0 * pos[0], 1.0 * pos[1], 0.0};
+        double[] position = new double[] {1.0 * pos[0], 1.0 * pos[1], 0.0};
         position = CallRenderer.get2dViewFromPixelCoordinates(axes, position);
         boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, __GO_X_AXIS_LOG_FLAG__),
                                             (Boolean)GraphicController.getController().getProperty(axes, __GO_Y_AXIS_LOG_FLAG__),
@@ -164,16 +164,6 @@ public class DatatipCommon {
         String axes = AxesHandler.clickedAxes(figure, pos);
         double[] position = {1.0 * pos[0], 1.0 * pos[1], 0.0};
         return CallRenderer.get2dViewFromPixelCoordinates(axes, position);
-    }
-
-    /**
-     * Checks if the axes is in default view (2d view).
-     *
-     * @return true if is in default view, false otherwise.
-     */
-    public static boolean defaultView(String axes) {
-        Double rot[] = (Double[])GraphicController.getController().getProperty(axes, __GO_ROTATION_ANGLES__);
-        return (rot[0] == 0.0 && rot[1] == 270.0);
     }
 
     static double[] toLogScale(double[] data, boolean logScale) {

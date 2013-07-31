@@ -20,8 +20,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.renderer.CallRenderer;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.localization.Messages;
 
@@ -283,11 +285,14 @@ public class DataEditor {
                 double[] pos = {1.0 * event.getX(), 1.0 * event.getY(), 1.0};
                 double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
                 boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__),
-                                                    (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__)
+                                                    (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__),
+                                                    (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__)
                                                    };
                 c2d[0] = CommonHandler.InverseLogScale(c2d[0], logFlags[0]);
                 c2d[1] = CommonHandler.InverseLogScale(c2d[1], logFlags[1]);
-                PolylineData.insertPoint(curPolyline, picked.point, c2d[0], c2d[1], 0.0);
+                c2d[2] = CommonHandler.InverseLogScale(c2d[2], logFlags[2]);
+                double[] point = CommonHandler.computeIntersection(curPolyline, picked.point, c2d);
+                PolylineData.insertPoint(curPolyline, picked.point, point[0], point[1], point[2]);
             }
         }
     }
@@ -305,14 +310,17 @@ public class DataEditor {
      * @param clicPos Position (x, y) where the will be inserted.
      */
     void onClickInsert(Integer[] clickPos) {
+        picked = picker.pickPoint(curPolyline, clickPos[0], clickPos[1]);
         double[] pos = {1.0 * clickPos[0], 1.0 * clickPos[1], 1.0};
         double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
         boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__),
-                                            (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__)
+                                            (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__),
+                                            (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__)
                                            };
         c2d[0] = CommonHandler.InverseLogScale(c2d[0], logFlags[0]);
         c2d[1] = CommonHandler.InverseLogScale(c2d[1], logFlags[1]);
-        PolylineData.insertPoint(curPolyline, picked.point, c2d[0], c2d[1], 0.0);
+        c2d[2] = CommonHandler.InverseLogScale(c2d[2], logFlags[2]);
+        double[] point = CommonHandler.computeIntersection(curPolyline, picked.point, c2d);
+        PolylineData.insertPoint(curPolyline, picked.point, point[0], point[1], point[2]);
     }
-
 }

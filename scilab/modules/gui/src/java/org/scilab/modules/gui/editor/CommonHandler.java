@@ -17,7 +17,8 @@ package org.scilab.modules.gui.editor;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.SurfaceData;
 
@@ -322,5 +323,67 @@ public class CommonHandler {
             return Math.pow(10., value);
         }
         return value;
+    }
+
+    /**
+     * Used to compute the correct position to insert a point
+     * R1: Given index i, it calculates the straight line between the points i and i+1 from curPolyline
+     * R2: Given the 2d point it calculates the 3d straight line from this point and current 3d view
+     * With this two lines we can compute the closest point to R2 belonging to R1
+     * This point is the position to insert the point
+     *
+     * @param polyline The polyline to find the point
+     * @param i The index from the first point of R1
+     * @param point2d The 2d point in default view
+     * @return The position in 3d coordinates (x, y ,z)
+     */
+    public static double[] computeIntersection(String polyline, int i, double[] point2d) {
+
+        double[] datax = (double[])PolylineData.getDataX(polyline);
+        double[] datay = (double[])PolylineData.getDataY(polyline);
+        double[] dataz = (double[])PolylineData.getDataZ(polyline);
+        String axes = (String)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
+        Axes obj = (Axes)GraphicController.getController().getObjectFromId(axes);
+		//Points of R1
+        double[] c3d1 = AxesDrawer.compute3dViewCoordinates(obj, new double[] { point2d[0], point2d[1], 1.0});
+        double[] c3d2 = AxesDrawer.compute3dViewCoordinates(obj, new double[] { point2d[0], point2d[1], 0.0});
+        //Points of R2
+        double[] p3d1 = {datax[i], datay[i], dataz[i]};
+        double[] p3d2 = {datax[i+1], datay[i+1], dataz[i+1]};
+
+        /*
+         * Computes the intersection between the lines
+         * or the closest point belonging to the curPolyline
+         */
+        double[] p0, p1, q0, q1, nl;
+        p0 = p3d1;
+        p1 = minus(p3d2, p3d1);
+        q0 = c3d1;
+        q1 = minus(c3d2, c3d1);
+        nl = cross(q1, cross(p1, q1));
+        double u = (dot(nl, q0) - dot(nl, p0)) / dot(nl, p1);
+        double[] point = plus(p0, scalar(p1, u));
+        return point;
+    }
+
+    private static double dot(double[] p, double[] q) {
+        return p[0]*q[0] + p[1]*q[1] + p[2]*q[2];
+    }
+
+    private static double[] cross(double[] p, double[] q) {
+        return new double[]{ p[1]*q[2] - p[2]*q[1], p[2]*q[0] - p[0]*q[2], p[0]*q[1] - p[1]*q[0]};
+    }
+
+    private static double[] minus(double[] p, double[] q) {
+        return new double[]{ p[0] - q[0], p[1] - q[1], p[2] - q[2]};
+    }
+	
+    private static double[] plus(double[] p, double[] q) {
+        return new double[]{ p[0] + q[0], p[1] + q[1], p[2] + q[2]};
+    }
+	
+    private static double[] scalar(double[] p, double v) {
+        p[0] *= v; p[1] *= v; p[2] *= v;
+        return p;
     }
 }

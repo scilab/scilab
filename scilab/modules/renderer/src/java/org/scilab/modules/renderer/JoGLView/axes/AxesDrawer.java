@@ -836,6 +836,38 @@ public class AxesDrawer {
     }
 
     /**
+     * Computes and returns the coordinates of a point onto the 3d view plane.
+     * To compute them, the point is projected using the object to window coordinate projection, then
+     * unprojected using the object to window coordinate projection corresponding to the 3d view
+     * @param axes the given Axes.
+     * @param coordinates the object (x,y,z) coordinates to project onto the 2d view plane (3-element array).
+     * @returns the 3d view coordinates (3-element array).
+     */
+    public static double[] compute3dViewCoordinates(Axes axes, double[] coordinates) {
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        AxesDrawer axesDrawer;
+        Transformation projection;
+        Transformation projection2d;
+
+        Vector3d point = new Vector3d(coordinates);
+
+        if (currentVisitor != null) {
+            Integer[] size = currentVisitor.getFigure().getAxesSize();
+            Dimension canvasDimension = new Dimension(size[0], size[1]);
+
+            axesDrawer = currentVisitor.getAxesDrawer();
+
+            projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, false);
+            projection2d = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, true);
+
+            point = projection2d.project(point);
+            point = projection.unproject(point);
+        }
+
+        return new double[] {point.getX(), point.getY(), point.getZ()};
+    }
+
+    /**
      * Computes and returns the coordinates of a point projected onto the default 2d view plane
      * from its pixel coordinates, using the given Axes. Pixel coordinates are expressed in
      * the AWT's 2d coordinate frame.

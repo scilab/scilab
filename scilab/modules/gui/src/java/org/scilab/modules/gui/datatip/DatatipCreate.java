@@ -25,6 +25,7 @@ import java.text.DecimalFormat;
 
 import org.scilab.modules.gui.editor.AxesHandler;
 import org.scilab.modules.gui.editor.EntityPicker;
+import org.scilab.modules.gui.editor.CommonHandler;
 import org.scilab.modules.gui.datatip.DatatipDrag;
 
 /**
@@ -51,11 +52,9 @@ public class DatatipCreate {
         String polylineUid = ep.pick(figureUid, coordIntX, coordIntY);
         double[] graphicCoord = DatatipCommon.getTransformedPosition(figureUid, new Integer[] {coordIntX, coordIntY});
         String axes = (String)GraphicController.getController().getProperty(polylineUid, GraphicObjectProperties.__GO_PARENT_AXES__);
-
-        if (!DatatipCommon.defaultView(axes)) {
-            graphicCoord = CallRenderer.get2dViewCoordinates(axes, graphicCoord);
-        }
-        String newDatatip = datatipProperties(graphicCoord, polylineUid);
+        EntityPicker.PickedPoint picked = ep.pickPoint(polylineUid, coordIntX, coordIntY);
+        double[] point = CommonHandler.computeIntersection(polylineUid, picked.point, graphicCoord);
+        String newDatatip = datatipProperties(point, polylineUid);
         return newDatatip;
     }
 
