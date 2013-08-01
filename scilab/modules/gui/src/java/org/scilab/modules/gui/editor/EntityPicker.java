@@ -122,6 +122,7 @@ public class EntityPicker {
 
         double[] datax = (double[])PolylineData.getDataX(uid);
         double[] datay = (double[])PolylineData.getDataY(uid);
+        double[] dataz = (double[])PolylineData.getDataZ(uid);
         int size = datax.length;
 
         if (PolylineData.isXShiftSet(uid) != 0) {
@@ -138,17 +139,24 @@ public class EntityPicker {
             }
         }
 
+        if (PolylineData.isZShiftSet(uid) != 0) {
+            double[] z_shift = (double[])PolylineData.getShiftZ(uid);
+            for (int i = 0; i < size; ++i) {
+                dataz[i] += z_shift[i];
+            }
+        }
         datax = toLogScale(datax, curAxes.getXAxisLogFlag());
         datay = toLogScale(datay, curAxes.getYAxisLogFlag());
+        dataz = toLogScale(dataz, curAxes.getZAxisLogFlag());
 
         double[] oldPoint = null;
         if (needTransform) {
-            oldPoint = transformPoint(curAxes, datax[0], datay[0], 0.0);
+            oldPoint = transformPoint(curAxes, datax[0], datay[0], dataz[0]);
         }
 
         for (Integer i = 0; i < (size - 1); ++i) {
             if (needTransform) {
-                double[] newPoint = transformPoint(curAxes, datax[i + 1], datay[i + 1], 0.0);
+                double[] newPoint = transformPoint(curAxes, datax[i + 1], datay[i + 1], dataz[i + 1]);
                 if (isInRange(oldPoint[0], newPoint[0], oldPoint[1], newPoint[1], x, y)) {
                     return i;
                 }
@@ -197,6 +205,7 @@ public class EntityPicker {
 
         double[] datax = (double[])PolylineData.getDataX(uid);
         double[] datay = (double[])PolylineData.getDataY(uid);
+        double[] dataz = (double[])PolylineData.getDataZ(uid);
 
         if (PolylineData.isXShiftSet(uid) != 0) {
             double[] x_shift = (double[])PolylineData.getShiftX(uid);
@@ -212,8 +221,16 @@ public class EntityPicker {
             }
         }
 
+        if (PolylineData.isZShiftSet(uid) != 0) {
+            double[] z_shift = (double[])PolylineData.getShiftZ(uid);
+            for (int i = 0; i < dataz.length; ++i) {
+                dataz[i] += z_shift[i];
+            }
+        }
+
         datax = toLogScale(datax, curAxes.getXAxisLogFlag());
         datay = toLogScale(datay, curAxes.getYAxisLogFlag());
+        dataz = toLogScale(dataz, curAxes.getZAxisLogFlag());
 
         Integer size = CommonHandler.getMarkSize(uid);
         Integer unit = CommonHandler.getMarkSizeUnit(uid);
@@ -226,7 +243,7 @@ public class EntityPicker {
 
         for (int i = 0; i < datax.length; ++i) {
             if (needTransform) {
-                double[] point = transformPoint(curAxes, datax[i], datay[i], 0.0);
+                double[] point = transformPoint(curAxes, datax[i], datay[i], dataz[i]);
                 if ((Math.abs(point[0] - x) <= deltax) && (Math.abs(point[1] - y) <= deltay)) {
                     return i;
                 }
