@@ -512,3 +512,5 @@ Bug fixes
 * Bug #12774 fixed - Various typos fixed.
 
 * Bug #12775 fixed - Some related functions were not listed in "See also" section of routh_t help page.
+
+* Bug #12779 fixed - savewave() had a miscoding in the internal function write_wavedat().
