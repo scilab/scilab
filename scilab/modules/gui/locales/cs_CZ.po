@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -389,18 +389,9 @@ msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Druhý prvek musí být mlist.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Label: A string expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Jmenovka: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Icon: A string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Ikona: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: callback: A string expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Zpětné volání: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Error in the tree parsing.\n"
@@ -857,6 +848,12 @@ msgstr "Písmo textu plochy"
 msgid "Custom:"
 msgstr "Vlastní:"
 
+msgid "LaTeX preview"
+msgstr ""
+
+msgid "LaTeX font size:"
+msgstr ""
+
 msgid "Web"
 msgstr "Internet"
 
@@ -1115,7 +1112,6 @@ msgstr "Pozadí Konzole..."
 msgid "No print service found."
 msgstr "Žádna služba tisku nenalezena."
 
-#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1125,7 +1121,6 @@ msgstr ""
 "míšení kontroly rozhraní a grafiky není dostupné. Zadejte %s pro více "
 "informací."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "V některých případech %s tento problém spraví"
 
@@ -1303,7 +1298,6 @@ msgstr "Uložit a spustit"
 msgid "Empty tab"
 msgstr "Prázdná karta"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1311,11 +1305,9 @@ msgstr ""
 "Karta s uuid %s nemůže být obnovena.\n"
 "Tuto chybu, prosíme, nahlaste s předchozí zprávou a přiložte soubor %s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Jste si jisti,  že chcete %s zavřít?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Jste si jisti,  že chcete %s a %s zavřít?"
 
@@ -1370,7 +1362,6 @@ msgstr "Všechny soubory obrázku PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Všechny soubory RTF (Bohatý Textový Formát)"
 
-#, c-format
 msgid "All %s files"
 msgstr "Všechny soubory %s"
 
@@ -1629,21 +1620,21 @@ msgstr ""
 " je nesprávná: %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván Strom.\n"
+msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
-msgstr "%s: Špatný typ vstupních argumentů z #%d: Očekáván Strom.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgid "%s: Wrong type for input argument #%d: String or uitree expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván Řetězec nebo Strom.\n"
 
 #, c-format
 msgid "%s: Invalid position '%s'.\n"
@@ -1664,11 +1655,6 @@ msgstr "%s: Žádný shodující se uzel.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván strom nebo Řetězec.\n"
 
 #, c-format
 msgid ""

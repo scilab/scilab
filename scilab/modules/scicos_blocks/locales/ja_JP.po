@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-15 04:23+0000\n"
+"PO-Revision-Date: 2013-07-29 09:11+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ja\n"
 
 msgid "overflow error"
@@ -102,14 +102,6 @@ msgstr "遅延後の時間は %f ですが、最後に保存された時間は %
 
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr "遅延ブロックのバッファ長を増やしてみてください \n"
-
-#, c-format
-msgid "Error when opening file '%s'.\n"
-msgstr "ファイル '%s'をオープンする際にエラー発生\n"
-
-#, c-format
-msgid "Write error in file '%s'.\n"
-msgstr "ファイル '%s'への書込みエラー.\n"
 
 msgid "Size of buffer or input size have changed!\n"
 msgstr "バッファの大きさまたは入力の大きさが変更されています!\n"
@@ -450,20 +442,20 @@ msgid "Please give the boundary conditions"
 msgstr "境界条件を指定してください"
 
 #, c-format
-msgid "The finite element discrtization takes %.2f seconds"
-msgstr "有限要素離散化には %.2f 秒かかります"
+msgid "The finite element discretization took %.2f seconds"
+msgstr "有限要素離散化に %.2f 秒かかりました"
 
 #, c-format
-msgid "The finite differences discrtization takes %.2f seconds"
-msgstr "有限離散化には %.2f 秒かかります"
+msgid "The finite differences discretization took %.2f seconds"
+msgstr "有限差分離散化に %.2f 秒かかりました"
 
 #, c-format
-msgid "The finite volume discrtization takes %.2f seconds"
-msgstr "有限容積離散化には %.2f 秒かかります"
+msgid "The finite volume discretization took %.2f seconds"
+msgstr "有限容積離散化に %.2f 秒かかりました"
 
 #, c-format
-msgid "The code generation, the compilation and link takes %.2f seconds"
-msgstr "コード生成, コンパイルおよびリンクには %.2f 秒かかります"
+msgid "The code generation, the compilation and link took %.2f seconds"
+msgstr "コード生成, コンパイルおよびリンクに %.2f 秒かかります"
 
 msgid "Event output port"
 msgstr "出力ポートのイベント"

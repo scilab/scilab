@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-17 21:22+0000\n"
+"PO-Revision-Date: 2013-06-26 20:48+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -81,42 +81,32 @@ msgid "%s: SB10FD exit with info = %d.\n"
 msgstr "%s: SB10FD ukončeno s informacemi = %d.\n"
 
 #, c-format
-msgid "%s: TASK must be a scalar.\n"
-msgstr "%s: TASK musí být skalár.\n"
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo.\n"
 
 #, c-format
-msgid "%s: TASK has 1, 2 or 3 the only admissible values.\n"
-msgstr "%s: TASK má pouze 1, 2 nebo 3 přijatelné hodnoty.\n"
+msgid "%s: %s must be a scalar.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for %s: %d, %d or %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: TASK = 1 : LINMEQ requires at least 4 input arguments.\n"
 msgstr "%s: TASK = 1 : LINMEQ vyžaduje alespoň 4 vstupní argumenty.\n"
 
 #, c-format
-msgid "%s: TRANS must be a scalar.\n"
+msgid "%s: Wrong value for %s: %d, %d, %d or %d expected.\n"
 msgstr ""
-"%s: TRANS musí být skalár.\n"
-".\n"
 
 #, c-format
-msgid "%s: TRANS has 0, 1, 2 or 3 the only admissible values.\n"
-msgstr "%s: TRANS má pouze 1, 2 nebo 3 přijatelné hodnoty.\n"
+msgid "%s: Wrong value for %s: %d, or %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: TRANS has 0 or 1 the only admissible values.\n"
-msgstr "%s: TRANS přijímá pouze 0, nebo 1 hodnotu.\n"
-
-#, c-format
-msgid "%s: SCHUR must be a scalar.\n"
-msgstr "%s: SCHUR musí být skalár.\n"
-
-#, c-format
-msgid "%s: SCHUR has 1 or 2 the only admissible values.\n"
-msgstr "%s: SCHUR přijímá pouze 1, nebo 2 hodnoty.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+msgid "%s: Wrong value for %s: %d or %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
@@ -179,17 +169,14 @@ msgstr ""
 "menší než jedna.\n"
 
 #, c-format
-msgid ""
-"%s: Warning: the right hand sides were scaled by %lf to avoid overflow."
+msgid "%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"
 msgstr ""
-"%s: Varování: pravé strany byly zmenšeny o %lf aby se zabránilo přetečení."
 
 #, c-format
 msgid ""
 "%s: Warning: the equation is (almost) singular. Perturbed values have been "
-"used."
+"used.\n"
 msgstr ""
-"%s: Varování: rovnice je (skoro) singulární. Byly použity rozdělené hodnoty."
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A complex expected.\n"
@@ -627,12 +614,12 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván zjistitelný systém.\n"
 
 #, c-format
-msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
-msgstr "%s: Přímá průchodka nastavena na svůj koeficient nulového stupně.\n"
+msgid "%s: Wrong type for input argument #%d: A proper system expected\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Direct feedthrough set to zero.\n"
-msgstr "%s: Přímá průchodka nastavena na nulu.\n"
+msgid "%s: Wrong type for input argument #%d: A SIMO expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Simulation failed before final time is reached.\n"

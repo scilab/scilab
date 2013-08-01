@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-18 11:02+0000\n"
-"Last-Translator: yurchor <Unknown>\n"
+"PO-Revision-Date: 2013-06-26 05:19+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: uk\n"
 
 #, c-format
@@ -108,6 +108,12 @@ msgstr ""
 "%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: помилкове значення вхідного параметра №%d.\n"
 
@@ -190,6 +196,17 @@ msgstr ""
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s: файл з назвою %s не відкрито у Scilab.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s: несумісність вхідних параметрів №%d і №%d: розмірності цих параметрів "
+"мають бути однаковими.\n"
 
 #, c-format
 msgid ""
@@ -371,6 +388,10 @@ msgid "%s: An error occurred.\n"
 msgstr "%s: сталася помилка.\n"
 
 #, c-format
+msgid "%s: Warning: Directory '%s' does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
@@ -434,6 +455,10 @@ msgstr "Не вдалося встановити порт проксі-серв�
 msgid "Failed to set proxy user:password [%s]\n"
 msgstr ""
 "Не вдалося встановити значення користувач:пароль для проксі-сервера [%s]\n"
+
+#, c-format
+msgid "Failed to set write function [%s]\n"
+msgstr ""
 
 #, c-format
 msgid "Failed to set write data [%s]\n"

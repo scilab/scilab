@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-07-20 14:26+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2013-07-26 13:11+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: fr\n"
 
 #, c-format
@@ -74,29 +74,32 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s : Impossible d'ouvrir le fichier %s.\n"
 
-msgid "Index range must be specified as a scalar or 2-element vector."
+msgid "Index range must be specified as a scalar or a 2 elements vector."
 msgstr ""
+"La gamme des index doit être spécifiée comme un scalaire ou un vecteur à 2 "
+"éléments."
 
 msgid "Sample limit vector must have 2 elements."
-msgstr ""
+msgstr "Le vecteur des limites de l'échantillon doit avoir 2 éléments."
 
 msgid "Sample limits out of range."
 msgstr "Limites d'échantillonnage en dehors de l'intervalle."
 
 msgid "Sample limits must be given in ascending order."
 msgstr ""
+"Les limites de l'échantillon doivent être données par ordre croissant."
 
 msgid "Error in file format."
-msgstr ""
+msgstr "Erreur de format de fichier."
 
 msgid "Error while reading sound file."
-msgstr ""
+msgstr "Erreur à la lecture du fichier son."
 
 msgid "Unrecognized data format."
 msgstr "Format de données non reconnu."
 
 msgid "Truncated data file."
-msgstr ""
+msgstr "Fichier de données tronqué."
 
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
@@ -108,7 +111,7 @@ msgid "Data array must have 1- or 2-dimensions only."
 msgstr "Le tableau de données doit avoir 1 ou 2 dimensions seulement."
 
 msgid "Data clipped during write to file."
-msgstr ""
+msgstr "Les données ont été tronquées à l'écriture dans le fichier."
 
 msgid "Error while writing sound file."
 msgstr "Erreur pendant l'écriture du fichier son."

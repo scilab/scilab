@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-09-01 09:48+0000\n"
+"PO-Revision-Date: 2013-06-26 01:16+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ca\n"
 
 #, c-format
@@ -467,9 +467,6 @@ msgstr ""
 "**** SUNDIALS.Ida: hi ha massa feina en el moment=%g (regió stiff, canvia "
 "RTOL i ATOL)\n"
 
-msgid "End of activation"
-msgstr "Final d'activació"
-
 #, c-format
 msgid "block %d is called "
 msgstr "s'ha cridat al bloc %d "
@@ -515,6 +512,39 @@ msgid ""
 msgstr ""
 "\n"
 "Avís: La funcio zero-crossing #%d retorna un NaN"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The residual function #%d returns a NaN"
+msgstr ""
+
+msgid ""
+"\n"
+"Error: Problem in the evaluation of a root function"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner evaluation function returns a NaN at index #%d."
+msgstr ""
+
+msgid ""
+"\n"
+"Error: The preconditioner evaluation function failed."
+msgstr ""
+
+msgid ""
+"\n"
+"Error: Failed to factor the preconditioner."
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner application function returns a NaN at index #%d."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -577,10 +607,6 @@ msgstr ""
 " La funció residual retorna NAN/Inf. \n"
 " Verifiqueu el vostre model:\n"
 " pot ser que crideu algunes funcions amb entrades incorrectes."
-
-#, c-format
-msgid "Slider t=%10.3f, flag=%d \n"
-msgstr "Diapositives t=%10.3f, flag=%d \n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -669,7 +695,7 @@ msgstr ""
 msgid "Simulation parameters not set:"
 msgstr ""
 
-msgid "Initialisation problem:"
+msgid "Initialization problem:"
 msgstr ""
 
 msgid "Simulation problem: "
@@ -744,8 +770,7 @@ msgstr ""
 msgid ""
 "No continuous-time state. Thresholds are ignored; this \n"
 "may be OK if you don't generate external events with them.\n"
-"If you want to reactivate the thresholds, the you need\n"
-"\n"
+"If you want to reactivate the thresholds, then you need\n"
 "to include a block with continuous-time state in your diagram.\n"
 "   You can for example include DUMMY CLSS block (linear palette)."
 msgstr ""
@@ -909,7 +934,7 @@ msgstr ""
 msgid "Evaluation problem: Unknown block"
 msgstr ""
 
-msgid "Can not loaded dynamic library: "
+msgid "Cannot load dynamic library: "
 msgstr ""
 
 msgid "Can't include "
