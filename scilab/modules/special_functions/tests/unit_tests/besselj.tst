@@ -23,7 +23,7 @@ ieee(1)
 //test of numerical precision reference computed by maple
 exec(SCI+'/modules/special_functions/tests/unit_tests/besselj_ref.sce',-1)
 besselJ=besselj(alpha',x);
-if norm((besselJ-besselJ_ref)./abs(besselJ_ref),1)>1d6*%eps then pause,end
+if norm((besselJ-besselJ_ref)./abs(besselJ_ref),1)>1.1d6*%eps then pause,end
 
 
 
