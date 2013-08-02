@@ -98,7 +98,9 @@ SciNotes
 Xcos
 ====
 
-* Updated Sundials to lastest "2.5.0", keeping our modifications
+* Updated Sundials to the "2.5.0" version, keeping our modifications
+
+* Updated JGraphX to the "2.1.0.7" version, updating our performance hooks
 
 * Added a new DAE solver : DDaskr, using BDF methods with direct Newton and preconditioned Krylov linear solvers, which includes rootfinding.
 
