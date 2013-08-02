@@ -30,12 +30,13 @@ extern "C"
 #include "freeArrayOfString.h"
 }
 /*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
 #define DEFAULT_FILESPEC L"*.*"
-
-using namespace types;
-
+#else
+#define DEFAULT_FILESPEC L"*"
+#endif
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     wchar_t* pwstPath   = NULL;
     wchar_t* pwstSpec   = NULL;
@@ -44,7 +45,7 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
     if (in.size() < 0 || in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "findfiles", 0, 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() == 0)
@@ -62,7 +63,7 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
         if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "findfiles", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         pwstPath = expandPathVariableW(in[0]->getAs<types::String>()->get()[0]);
@@ -73,7 +74,7 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
             if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "findfiles", 2);
-                return Function::Error;
+                return types::Function::Error;
             }
 
             pwstSpec = in[1]->getAs<types::String>()->get()[0];
@@ -92,14 +93,14 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
     pwstFilesList = findfilesW(pwstPath, pwstSpec, &iSize, FALSE);
     if (pwstFilesList)
     {
-        String* pS = new String(iSize, 1);
+        types::String* pS = new types::String(iSize, 1);
         pS->set(pwstFilesList);
         freeArrayOfWideString(pwstFilesList, iSize);
         out.push_back(pS);
     }
     else
     {
-        out.push_back(Double::Empty());
+        out.push_back(types::Double::Empty());
     }
 
     FREE(pwstPath);
@@ -108,6 +109,6 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
         FREE(pwstSpec);
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
