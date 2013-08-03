@@ -69,6 +69,11 @@ public final class Appearance {
     private Color fillColor = DEFAULT_FILL_COLOR;
 
     /**
+     * The material used for lighting.
+     */
+    private Material material;
+
+    /**
      * Default constructor.
      */
     public Appearance() {
@@ -165,4 +170,21 @@ public final class Appearance {
     public void setFillColor(Color fillColor) {
         this.fillColor = fillColor;
     }
+
+    /**
+     * Get the material.
+     * @return  the material.
+     */
+    public Material getMaterial() {
+        return material;
+    }
+
+    /**
+     * Set the material.
+     * @param  the new material.
+     */
+    public void setMaterial(Material m) {
+        material = m;
+    }
 }
+

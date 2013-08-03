@@ -82,6 +82,19 @@ public interface Light {
     void setPosition(Vector3d position);
 
     /**
+     * Get the light direction.
+     * @return the light direction.
+     */
+    Vector3d getDirection();
+
+    /**
+     * Set the light direction.
+     * Used only for directional light.
+     * @param position the new position.
+     */
+    void setDirection(Vector3d direction);
+
+    /**
      * Return the spot direction.
      * @return the spot direction.
      */

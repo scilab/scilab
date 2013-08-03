@@ -64,6 +64,7 @@ import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
+import org.scilab.modules.renderer.JoGLView.util.LightingUtils;
 
 
 import java.awt.Component;
@@ -584,6 +585,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                     /* Front-facing triangles */
                     Appearance appearance = new Appearance();
+                    appearance.setMaterial(LightingUtils.getMaterial(fac3d.getMaterial()));
+                    LightingUtils.setLight(drawingTools.getLightManager(), currentAxes.getLight());
 
                     if (fac3d.getColorMode() != 0) {
                         geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
@@ -621,6 +624,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     }
 
                     drawingTools.draw(geometry, appearance);
+                    LightingUtils.setLightingEnable(drawingTools.getLightManager(), false);
                 }
 
                 if (fac3d.getMarkMode()) {
@@ -673,6 +677,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                     /* Front-facing triangles */
                     Appearance appearance = new Appearance();
+                    appearance.setMaterial(LightingUtils.getMaterial(plot3d.getMaterial()));
+                    LightingUtils.setLight(drawingTools.getLightManager(), currentAxes.getLight());
 
                     if (plot3d.getColorFlag() == 1) {
                         geometry.setColors(dataManager.getColorBuffer(plot3d.getIdentifier()));
@@ -699,6 +705,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         appearance.setLineWidth(plot3d.getLineThickness().floatValue());
                     }
                     drawingTools.draw(geometry, appearance);
+                    LightingUtils.setLightingEnable(drawingTools.getLightManager(), false);
                 }
 
                 if (plot3d.getMarkMode()) {

@@ -298,4 +298,19 @@ public abstract class Surface extends ClippableContouredObject {
         return material.setShinines(s);
     }
 
+    /**
+     * @return the material.
+     */
+    public Material getMaterial() {
+        return material;
+    }
+
+    /**
+     * @param the new material.
+     */
+    public void setMaterial(Material material) {
+        if (material != null) {
+            this.material = material;
+        }
+    }
 }

@@ -20,6 +20,8 @@ import org.scilab.forge.scirenderer.implementation.jogl.utils.GLShortCuts;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.texture.Texture;
+import org.scilab.forge.scirenderer.lightning.LightManager;
+import org.scilab.forge.scirenderer.shapes.appearance.Material;
 
 import javax.media.opengl.GL2;
 import java.nio.FloatBuffer;
@@ -126,6 +128,13 @@ public final class JoGLShapeDrawer {
 
         GLShortCuts.useColor(gl, appearance.getFillColor());
 
+        LightManager lm = drawingTools.getLightManager();
+        boolean lighting = lm.isLightningEnable();
+        if (lighting) {
+            lm.setMaterial(appearance.getMaterial());
+            gl.glEnable(GL2.GL_NORMALIZE);
+        }
+
         IndicesBuffer indices = geometry.getIndices();
         if (geometry.getFillDrawingMode() != Geometry.FillDrawingMode.NONE) {
             if (indices != null) {
@@ -150,6 +159,9 @@ public final class JoGLShapeDrawer {
         gl.glDisableClientState(GL2.GL_NORMAL_ARRAY);
         gl.glDisableClientState(GL2.GL_TEXTURE_COORD_ARRAY);
         gl.glDisable(GL2.GL_TEXTURE_2D);
+        //disable lighting to draw lines
+        lm.setLightningEnable(false);
+        gl.glDisable(GL2.GL_NORMALIZE);
 
         if (geometry.getLineDrawingMode() != Geometry.LineDrawingMode.NONE) {
             if (appearance.getLineColor() != null || geometry.getColors() != null) {
@@ -176,6 +188,7 @@ public final class JoGLShapeDrawer {
         }
 
         gl.glDisableClientState(GL2.GL_VERTEX_ARRAY);
+        lm.setLightningEnable(lighting);
     }
 
     /**
@@ -234,6 +247,12 @@ public final class JoGLShapeDrawer {
         if (geometry.getPolygonOffsetMode()) {
             gl.glEnable(GL2.GL_POLYGON_OFFSET_FILL);
             gl.glPolygonOffset(1, 1);
+        }
+
+        LightManager lm = drawingTools.getLightManager();
+        boolean lighting = lm.isLightningEnable();
+        if (lighting) {
+            lm.setMaterial(appearance.getMaterial());
         }
 
         if (geometry.getFillDrawingMode() != Geometry.FillDrawingMode.NONE) {
@@ -307,6 +326,8 @@ public final class JoGLShapeDrawer {
         }
 
         gl.glDisable(GL2.GL_TEXTURE_2D);
+        //disable lighting to draw lines
+        lm.setLightningEnable(false);
 
         // Draw edges if any.
         if (geometry.getLineDrawingMode() != Geometry.LineDrawingMode.NONE) {
@@ -357,6 +378,7 @@ public final class JoGLShapeDrawer {
                 gl.glEnd();
             }
         }
+        lm.setLightningEnable(lighting);
     }
 
 

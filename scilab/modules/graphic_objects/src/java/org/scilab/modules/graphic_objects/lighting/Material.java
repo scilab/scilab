@@ -34,10 +34,10 @@ public class Material extends ColorTriplet {
     public Material() {
         super();
         useColorMaterial = true;
-        ambient[0] = ambient[1] = ambient[2] = 0.3;
+        ambient[0] = ambient[1] = ambient[2] = 0.0;
         diffuse[0] = diffuse[1] = diffuse[2] = 1.0;
         specular[0] = specular[1] = specular[2] = 1.0;
-        shinines = 10.0;
+        shinines = 2.0;
     }
 
     /**

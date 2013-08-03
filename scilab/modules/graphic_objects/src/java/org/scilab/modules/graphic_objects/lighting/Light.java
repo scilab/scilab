@@ -43,10 +43,9 @@ public class Light extends ColorTriplet {
         diffuse[0] = diffuse[1] = diffuse[2] = 1.0;
         specular[0] = specular[1] = specular[2] = 1.0;
 
-        position = new Double[] {0.0, 0.0, 0.0};
-        //normalized (1, 1, -1)
-        direction = new Double[] {0.577350269, 0.577350269, -0.577350269};
-        type = LightType.DIRECTIONAL;
+        position = new Double[] {0.0, 0.0, 1.0};
+        direction = new Double[] {0.0, 0.0, 1.0};
+        type = LightType.POINT;
     }
 
     /** copy contructor */
@@ -61,7 +60,7 @@ public class Light extends ColorTriplet {
     }
 
     /** enables/disables lighting */
-    public UpdateStatus setEnabled(Boolean status) {
+    public UpdateStatus setEnable(Boolean status) {
         if (enabled != status) {
             enabled = status;
             return UpdateStatus.Success;
@@ -70,7 +69,7 @@ public class Light extends ColorTriplet {
     }
 
     /** returns lighting status */
-    public Boolean isEnabled() {
+    public Boolean isEnable() {
         return enabled;
     }
 

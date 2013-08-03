@@ -589,7 +589,7 @@ public class Axes extends GraphicObject {
             LightProperty lp = (LightProperty)property;
             switch (lp) {
                 case ENABLED:
-                    return isLightEnabled();
+                    return isLightEnable();
                 case TYPE:
                     return getLightType();
                 case POSITION:
@@ -795,7 +795,7 @@ public class Axes extends GraphicObject {
             LightProperty lp = (LightProperty)property;
             switch (lp) {
                 case ENABLED:
-                    return setLightEnabled((Boolean) value);
+                    return setLightEnable((Boolean) value);
                 case TYPE:
                     return setLightType((Integer)value);
                 case POSITION:
@@ -2413,15 +2413,15 @@ public class Axes extends GraphicObject {
     /**
      * @return true if lighting is enabled.
      */
-    public Boolean isLightEnabled() {
-        return light.isEnabled();
+    public Boolean isLightEnable() {
+        return light.isEnable();
     }
 
     /**
      * @param status lighting status (on/off).
      */
-    public UpdateStatus setLightEnabled(Boolean status) {
-        return light.setEnabled(status);
+    public UpdateStatus setLightEnable(Boolean status) {
+        return light.setEnable(status);
     }
 
     /**
@@ -2464,6 +2464,22 @@ public class Axes extends GraphicObject {
      */
     public UpdateStatus setLightDirection(Double[] dir) {
         return light.setDirection(dir);
+    }
+
+    /**
+     * @return the light.
+     */
+    public Light getLight() {
+        return light;
+    }
+
+    /**
+     * @param the new light.
+     */
+    public void setLight(Light light) {
+        if (light != null) {
+            this.light = light;
+        }
     }
 
     /**
