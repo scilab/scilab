@@ -15,12 +15,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jcompile">
     <refnamediv>
         <refname>jcompile</refname>
-        <refpurpose>Compile Java code</refpurpose>
+        <refpurpose>Compile Java code or file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
             class = jcompile(className, code);
+            class = jcompile(javaFiles);
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -39,6 +40,12 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>javaFiles</term>
+                <listitem>
+                    <para>Path to Java files.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>class</term>
                 <listitem>
                     <para>A mlist typed _JClass</para>
@@ -51,10 +58,11 @@
         <para>
             Compile Java source code and load the corresponding class. If the package tools.jar, distributed with JDK, is not in the classpath, the Eclipse Compiler for Java (ECJ) will be used.
         </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+        <para>If the argument is a file, jcompile will compile the Java code.
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
                hw = jcompile("HelloWorld", ["public class HelloWorld {"
                                             "public static String getHello() {"
                                             "return ""Hello World !!"";"
@@ -65,13 +73,29 @@
 
                jremove hello hw
       ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="jimport">jimport</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            <programlisting role="example"><![CDATA[
+fd = mopen(TMPDIR+'/HelloWorld.java','wt');
+mputl(["public class HelloWorld {"
+                   "public static String getHello() {"
+                   "return ""Hello World !!"";"
+                   "}"
+                   "}"],fd);
+mclose(fd);
+
+jcompile(TMPDIR+"/HelloWorld.java")
+      ]]></programlisting>
+            <programlisting role="example"><![CDATA[
+directory=SCI+"/modules/external_objects_java/examples/com/foo/";
+// Compile of all them
+jcompile(ls(directory + "/*.java"))
+      ]]></programlisting>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="jimport">jimport</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

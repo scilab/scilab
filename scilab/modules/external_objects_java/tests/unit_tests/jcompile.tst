@@ -26,3 +26,41 @@ v = jgetfield(t, "field");
 //junwraprem(t.field)
 
 jremove c t v;
+
+
+fd = mopen(TMPDIR+'/HelloWorld.java','wt');
+mputl(["public class HelloWorld {"
+                   "public static String getHello() {"
+                   "return ""Hello World !!"";"
+                   "}"
+                   "}"],fd);
+mclose(fd);
+
+jcompile(TMPDIR+"/HelloWorld.java")
+jimport HelloWorld;
+assert_checkequal(HelloWorld.getHello(), "Hello World !!");
+
+directory=SCI+"/modules/external_objects_java/examples/com/foo/";
+// Compile of all them
+jcompile(ls(directory + "/*.java"))
+
+jimport("com.foo.HouseFactory")
+house = HouseFactory.basicHouse();
+
+assert_checkequal(house.toString(), "This is a house painted in white, has a white door, and 1 windows");
+
+assert_checkequal(jgetclassname(house), "com.foo.House");
+jimport("com.foo.CircularWindow");
+newWindow = CircularWindow.new(0.5);
+
+house.addWindow(newWindow);
+assert_checkequal(house.toString(), "This is a house painted in white, has a white door, and 2 windows");
+
+jimport("com.foo.Color");
+
+jimport("com.foo.Door");
+newDoor = Door.new(Color.RED);
+house.replaceDoor(newDoor);
+
+assert_checkequal(house.toString(), "This is a house painted in white, has a red door, and 2 windows");
+

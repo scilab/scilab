@@ -320,7 +320,7 @@ jcompile(ls(directory + "/*.java"))
             %_EObj_e: An error occurred: Exception when calling Java method : Invalid field swapDoorHouseColor
         </screen>
         <para>
-            Concluding, the JIMS package does a very good job at hiding the Java JNI interface with Scilab, and make it very clear and transparent to use Java libraries under Scilab. All the normal JVM functionality is present and the Scilab syntax is clear and natural to use.
+            Concluding, the JIMS package does the job of hiding the Java JNI interface with Scilab, and make it very clear and transparent to use Java libraries under Scilab. All the normal JVM functionality is present and the Scilab syntax is clear and natural to use.
         </para>
         <para>
             From this point you should understand how to interface Scilab and Java libraries, utilize the full power of Java under the Scilab scripting environment.
