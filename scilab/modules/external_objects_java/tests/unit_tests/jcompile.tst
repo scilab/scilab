@@ -22,7 +22,7 @@ assert_checkequal(jgetclassname(c),"Test");
 t = c.new(128);
 v = jgetfield(t, "field");
 
-// or more easier
+// or easier
 //junwraprem(t.field)
 
 jremove c t v;

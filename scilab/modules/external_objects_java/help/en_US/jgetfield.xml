@@ -67,7 +67,7 @@
                t = c.new(128);
                v = jgetfield(t, "field")
 
-               // or more easier
+               // or easier
                t.field
 
                jremove c t v;
