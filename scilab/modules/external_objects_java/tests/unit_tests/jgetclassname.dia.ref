@@ -19,7 +19,7 @@ jremove s;
 assert_checkequal(jgetclassname("toto"), "java.lang.String");
 assert_checkequal(jgetclassname(1), "double");
 assert_checkequal(jgetclassname(%t), "boolean");
-assert_checkequal(jgetclassname(int8(2)), "int");
+assert_checkequal(jgetclassname(int8(2)), "byte");
 assert_checkequal(jgetclassname(int16(2)), "short");
 assert_checkequal(jgetclassname(int32(2)), "int");
 s = scf();
