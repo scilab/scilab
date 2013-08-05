@@ -17,7 +17,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A constructor wrapper
@@ -25,6 +27,58 @@ import java.util.List;
  * @author Calixte DENIZET
  */
 public final class FunctionArguments {
+
+    private static final List<Converter> converters = new ArrayList<Converter>();
+
+    static {
+        registerConverter(new Converter() {
+            @Override
+            public Object convert(Object original, Class<?> to) {
+                return ((Number) original).intValue();
+            }
+
+            @Override
+            public boolean canConvert(Class<?> from, Class<?> to) {
+                return (to == int.class || to == Integer.class) && (Number.class.isAssignableFrom(from) || ScilabJavaObject.primTypes.containsKey(from));
+            }
+        });
+        registerConverter(new Converter() {
+            @Override
+            public Object convert(Object original, Class<?> to) {
+                return ((Number) original).floatValue();
+            }
+
+            @Override
+            public boolean canConvert(Class<?> from, Class<?> to) {
+                return (to == float.class || to == Float.class) && (from == double.class || from == Double.class);
+            }
+        });
+    }
+
+    /**
+     * Register a converter
+     * @param converter the converter to register
+     */
+    public static final void registerConverter(Converter converter) {
+        int index = converters.indexOf(converter);
+        if (index == -1) {
+            converters.add(converter);
+        } else {
+            converters.remove(index);
+            converters.add(converter);
+        }
+    }
+
+    /**
+     * Unregister a converter
+     * @param converter the converter to unregister
+     */
+    public static final void unregisterConverter(Converter converter) {
+        int index = converters.indexOf(converter);
+        if (index != -1) {
+            converters.remove(index);
+        }
+    }
 
     /**
      * To find the "correct" method we proceed as follow:
@@ -59,21 +113,26 @@ public final class FunctionArguments {
         boolean mustConv = false;
         boolean isVarArgs = false;
         long sqd = Long.MAX_VALUE;
-        boolean[] refBools = new boolean[2];
+        boolean[] refBools = new boolean[1];
+        Map<Integer, Converter> toConvert = null;
+        Map<Integer, Converter> toConv = new HashMap<Integer, Converter>();
         for (MethodDescriptor desc : descriptors) {
             if (desc.getName() == internName) {
                 Method f = desc.getMethod();
                 Class[] types = f.getParameterTypes();
                 refBools[0] = false;
-                refBools[1] = false;
-                long d = compareClassArgs(types, argsClass, args, refBools);
+                long d = compareClassArgs(types, argsClass, args, refBools, toConv);
                 if (d != Long.MIN_VALUE && d < sqd) {
                     // The method is valid and the distance is lesser than the previous found one.
                     sqd = d;
                     better = f;
-                    mustConv = refBools[0];
-                    isVarArgs = refBools[1];
+                    isVarArgs = refBools[0];
+                    toConvert = toConv;
+                    toConv = new HashMap<Integer, Converter>();
+                } else {
+                    toConv.clear();
                 }
+
                 if (d == 0) {
                     break;
                 }
@@ -81,16 +140,16 @@ public final class FunctionArguments {
         }
 
         if (better != null) {
-            if (mustConv) {
+            if (toConvert != null && !toConvert.isEmpty()) {
                 // Contains int.class arguments and we passed double.class args
                 Class[] types = better.getParameterTypes();
-                for (int i = 0; i < types.length; i++) {
-                    if (types[i] == int.class && argsClass[i] == double.class) {
-                        argsClass[i] = int.class;
-                        args[i] = ((Double) args[i]).intValue();
-                    }
+                for (Map.Entry<Integer, Converter> entry : toConvert.entrySet()) {
+                    int i = entry.getKey();
+                    argsClass[i] = types[i];
+                    args[i] = entry.getValue().convert(args[i], types[i]);
                 }
             }
+
             if (isVarArgs) {
                 // Variable arguments
                 Class[] types = better.getParameterTypes();
@@ -123,19 +182,23 @@ public final class FunctionArguments {
         boolean mustConv = false;
         boolean isVarArgs = false;
         long sqd = Long.MAX_VALUE;
-        boolean[] refBools = new boolean[2];
+        boolean[] refBools = new boolean[1];
+        Map<Integer, Converter> toConvert = null;
+        Map<Integer, Converter> toConv = new HashMap<Integer, Converter>();
         for (Constructor f : functions) {
             if (Modifier.isPublic(f.getModifiers())) {
                 Class[] types = f.getParameterTypes();
                 refBools[0] = false;
-                refBools[1] = false;
-                long d = compareClassArgs(types, argsClass, args, refBools);
+                long d = compareClassArgs(types, argsClass, args, refBools, toConv);
                 if (d != Long.MIN_VALUE && d < sqd) {
                     // The constructor is valid and the distance is lesser than the previous found one.
                     sqd = d;
                     better = f;
-                    mustConv = refBools[0];
-                    isVarArgs = refBools[1];
+                    isVarArgs = refBools[0];
+                    toConvert = toConv;
+                    toConv = new HashMap<Integer, Converter>();
+                } else {
+                    toConv.clear();
                 }
 
                 if (d == 0) {
@@ -145,14 +208,13 @@ public final class FunctionArguments {
         }
 
         if (better != null) {
-            if (mustConv) {
+            if (toConvert != null && !toConvert.isEmpty()) {
                 // Contains int.class arguments and we passed double.class args
                 Class[] types = better.getParameterTypes();
-                for (int i = 0; i < types.length; i++) {
-                    if (types[i] == int.class && argsClass[i] == double.class) {
-                        argsClass[i] = int.class;
-                        args[i] = ((Double) args[i]).intValue();
-                    }
+                for (Map.Entry<Integer, Converter> entry : toConvert.entrySet()) {
+                    int i = entry.getKey();
+                    argsClass[i] = types[i];
+                    args[i] = entry.getValue().convert(args[i], types[i]);
                 }
             }
             if (isVarArgs) {
@@ -182,7 +244,7 @@ public final class FunctionArguments {
      * @param bools references on boolean
      * @return the distance
      */
-    private static final long compareClassArgs(Class[] A, Class[] B, Object[] arr, boolean[] bools) {
+    private static final long compareClassArgs(Class[] A, Class[] B, Object[] arr, boolean[] bools, Map<Integer, Converter> toConvert) {
         if (A.length > B.length) {
             return Long.MIN_VALUE;
         }
@@ -191,7 +253,7 @@ public final class FunctionArguments {
         int end = A.length;
         if (A.length > 0 && ((A.length < B.length && A[A.length - 1] == Object[].class) || (A.length == B.length && A.length == 1 && A[0] == Object[].class && B[0] != Object[].class))) {
             // this is a variable arguments method
-            bools[1] = true;
+            bools[0] = true;
             end--;
             s = 1 << 40;
         } else if (A.length < B.length) {
@@ -201,11 +263,15 @@ public final class FunctionArguments {
         for (int i = 0; i < end; i++) {
             long d = dist(A[i], B[i]);
             if (d == -1) {
-                if (A[i] == int.class && B[i] == double.class && ((Double) arr[i]).intValue() == ((Double) arr[i]).doubleValue()) {
-                    // argument are not compatible but the given double value is an integer value and an int.class is expected
-                    d = 2048;
-                    bools[0] = true;
-                } else {
+                for (Converter converter : converters) {
+                    if (converter.canConvert(B[i], A[i])) {
+                        d = 2048;
+                        toConvert.put(i, converter);
+                        break;
+                    }
+                }
+
+                if (d != 2048) {
                     return Long.MIN_VALUE;
                 }
             }
