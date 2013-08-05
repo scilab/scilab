@@ -55,7 +55,7 @@ public class ColorTriplet {
 
     /** Sets the ambient color */
     public UpdateStatus setAmbientColor(Double[] color) {
-        if (color.length != 3) return UpdateStatus.Fail;
+        if (color.length != 3 || !isColorValid(color)) return UpdateStatus.Fail;
 
         if (ambient[0] != color[0] || ambient[1] != color[1] || ambient[2] != color[2]) {
             ambient[0] = color[0];
@@ -74,7 +74,7 @@ public class ColorTriplet {
 
     /** Sets the diffuse color */
     public UpdateStatus setDiffuseColor(Double[] color) {
-        if (color.length != 3) return UpdateStatus.Fail;
+        if (color.length != 3 || !isColorValid(color)) return UpdateStatus.Fail;
 
         if (diffuse[0] != color[0] || diffuse[1] != color[1] || diffuse[2] != color[2]) {
             diffuse[0] = color[0];
@@ -93,7 +93,7 @@ public class ColorTriplet {
 
     /** Sets the specular color */
     public UpdateStatus setSpecularColor(Double[] color) {
-        if (color.length != 3) return UpdateStatus.Fail;
+        if (color.length != 3 || !isColorValid(color)) return UpdateStatus.Fail;
 
         if (specular[0] != color[0] || specular[1] != specular[1] || specular[2] != color[2]) {
             specular[0] = color[0];
@@ -102,5 +102,14 @@ public class ColorTriplet {
             return UpdateStatus.Success;
         }
         return UpdateStatus.NoChange;
+    }
+
+    private boolean isColorValid(Double[] color) {
+        for (Double d : color) {
+            if (d < 0.0 || d > 1.0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
