@@ -157,6 +157,12 @@ Toolbox skeleton
 * Add some Xcos specific content to xcos_toolbox_skeleton help pages.
 
 
+Compilation
+============
+
+* Enforce a minimal version of Flexdock (1.2.4).
+
+
 Bug fixes
 ==========
 
