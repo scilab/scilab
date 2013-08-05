@@ -20,3 +20,9 @@ assert_checkerror("dsearch(int8([ 1 5 7]), [3 4 7 10], ""d"")", errmsg1);
 
 errmsg2 = msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"), "dsearch", 2);
 assert_checkerror("dsearch([1 5 7], int8([3 4 7 10]), ""d"")", errmsg2);
+
+m=50000;
+n=10;
+X=grand(m,1,"def");
+s=linspace(0,1,n)';
+assert_checktrue(execstr("[ind, occ] = dsearch(X, s);", "errcatch")==0);

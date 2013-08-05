@@ -70,6 +70,9 @@ c     TEXT
 
 c     get val
       il = iadr(lstk(top))
+      if (istk(il) < 0) then
+        il = iadr(istk(il + 1));
+      endif
       if (istk(il) .ne. 1) then
         err = 2
         call error(202)
@@ -111,6 +114,9 @@ c     get val
       
 c     get X
       il = iadr(lstk(top))
+      if (istk(il) < 0) then
+        il = iadr(istk(il + 1));
+      endif
       if (istk(il) .ne. 1) then
         err = 1
         call error(202)
