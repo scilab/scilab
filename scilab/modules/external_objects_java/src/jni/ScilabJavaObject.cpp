@@ -134,6 +134,7 @@ ScilabJavaObject::ScilabJavaObject(JavaVM * jvm_)
     jintgetArrayElementjintintjintArray_intintID = NULL;
     voidsetArrayElementjintintjintArray_intintjintintID = NULL;
     voidremoveScilabJavaObjectjintintID = NULL;
+    voidremoveScilabJavaObjectjintArray_intintID = NULL;
     voidlimitDirectBufferjintintID = NULL;
     jintisUnwrappablejintintID = NULL;
     jintwrapjdoubledoubleID = NULL;
@@ -211,6 +212,7 @@ ScilabJavaObject::ScilabJavaObject(JavaVM * jvm_, jobject JObj)
     jintgetArrayElementjintintjintArray_intintID = NULL;
     voidsetArrayElementjintintjintArray_intintjintintID = NULL;
     voidremoveScilabJavaObjectjintintID = NULL;
+    voidremoveScilabJavaObjectjintArray_intintID = NULL;
     voidlimitDirectBufferjintintID = NULL;
     jintisUnwrappablejintintID = NULL;
     jintwrapjdoubledoubleID = NULL;
@@ -960,6 +962,43 @@ void ScilabJavaObject::removeScilabJavaObject (JavaVM * jvm_, int id)
     }
 
     curEnv->CallStaticVoidMethod(cls, voidremoveScilabJavaObjectjintintID , id);
+    curEnv->DeleteLocalRef(cls);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+}
+
+void ScilabJavaObject::removeScilabJavaObject (JavaVM * jvm_, int const* id, int idSize)
+{
+
+    JNIEnv * curEnv = NULL;
+    jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+    jclass cls = curEnv->FindClass( className().c_str() );
+    if ( cls == NULL)
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+
+    jmethodID voidremoveScilabJavaObjectjintArray_intintID = curEnv->GetStaticMethodID(cls, "removeScilabJavaObject", "([I)V" ) ;
+    if (voidremoveScilabJavaObjectjintArray_intintID == NULL)
+    {
+        throw GiwsException::JniMethodNotFoundException(curEnv, "removeScilabJavaObject");
+    }
+
+    jintArray id_ = curEnv->NewIntArray( idSize ) ;
+
+    if (id_ == NULL)
+    {
+        // check that allocation succeed
+        throw GiwsException::JniBadAllocException(curEnv);
+    }
+
+    curEnv->SetIntArrayRegion( id_, 0, idSize, (jint*)(id) ) ;
+
+
+    curEnv->CallStaticVoidMethod(cls, voidremoveScilabJavaObjectjintArray_intintID , id_);
+    curEnv->DeleteLocalRef(id_);
     curEnv->DeleteLocalRef(cls);
     if (curEnv->ExceptionCheck())
     {

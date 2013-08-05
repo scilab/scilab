@@ -98,6 +98,7 @@ protected:
     jmethodID jintgetArrayElementjintintjintArray_intintID; // cache method id
     jmethodID voidsetArrayElementjintintjintArray_intintjintintID; // cache method id
     jmethodID voidremoveScilabJavaObjectjintintID; // cache method id
+    jmethodID voidremoveScilabJavaObjectjintArray_intintID; // cache method id
     jmethodID voidlimitDirectBufferjintintID; // cache method id
     jmethodID jintisUnwrappablejintintID; // cache method id
     jmethodID jintwrapjdoubledoubleID; // cache method id
@@ -229,6 +230,8 @@ public:
     static void setArrayElement(JavaVM * jvm_, int id, int const* index, int indexSize, int idArg);
 
     static void removeScilabJavaObject(JavaVM * jvm_, int id);
+
+    static void removeScilabJavaObject(JavaVM * jvm_, int const* id, int idSize);
 
     static void limitDirectBuffer(JavaVM * jvm_, int id);
 

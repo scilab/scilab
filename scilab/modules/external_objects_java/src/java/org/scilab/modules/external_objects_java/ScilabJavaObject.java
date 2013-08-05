@@ -1081,6 +1081,16 @@ public class ScilabJavaObject {
     }
 
     /**
+     * Remove objects.
+     * @param ids the Java Object ids
+     */
+    public static final void removeScilabJavaObject(final int[] ids) {
+        for (int id : ids) {
+            removeScilabJavaObject(id);
+        }
+    }
+
+    /**
      * Set the limit of a direct buffer to 0 to make it unusable.
      * @param id the Java Object id
      */

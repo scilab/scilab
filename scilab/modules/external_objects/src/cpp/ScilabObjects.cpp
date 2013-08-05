@@ -185,12 +185,7 @@ void ScilabObjects::removeTemporaryVars(const int envId, int * tmpvar)
     if (tmpvar && *tmpvar)
     {
         ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
-
-        for (int i = 1; i <= *tmpvar; i++)
-        {
-            env.removeobject(tmpvar[i]);
-        }
-
+        env.removeobject(tmpvar + 1, *tmpvar);
         *tmpvar = 0;
     }
 }

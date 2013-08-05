@@ -25,6 +25,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
     int * ret = 0;
     char * methName = 0;
     int nbArgs = Rhs - 2;
+    std::vector<int> torem;
 
     if (Rhs < 2)
     {
@@ -139,6 +140,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
 
     if (helper.getAutoUnwrap())
     {
+        torem.reserve(*ret);
         for (int i = 1; i <= *ret; i++)
         {
             if (!ScilabObjects::unwrap(ret[i], Rhs + i, envId, pvApiCtx))
@@ -149,20 +151,26 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
                 }
                 catch (ScilabAbstractEnvironmentException & e)
                 {
-                    for (int j = 1; j <= *ret; j++)
+                    if (!torem.empty())
                     {
-                        env.removeobject(ret[j]);
+                        env.removeobject(&(torem[0]), torem.size());
                     }
+                    env.removeobject(ret + 1, *ret);
                     delete[] ret;
                     throw;
                 }
             }
             else
             {
-                env.removeobject(ret[i]);
+                torem.push_back(ret[i]);
             }
 
             LhsVar(i) = Rhs + i;
+        }
+
+        if (!torem.empty())
+        {
+            env.removeobject(&(torem[0]), torem.size());
         }
     }
     else
@@ -175,10 +183,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
             }
             catch (ScilabAbstractEnvironmentException & e)
             {
-                for (int j = 1; j <= *ret; j++)
-                {
-                    env.removeobject(ret[j]);
-                }
+                env.removeobject(ret + 1, *ret);
                 delete[] ret;
                 throw;
             }

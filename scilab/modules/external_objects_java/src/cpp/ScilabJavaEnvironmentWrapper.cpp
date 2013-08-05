@@ -78,7 +78,7 @@ int ScilabJavaEnvironmentWrapper::wrap(double * re, double * im, int xSize, int 
 int ScilabJavaEnvironmentWrapper::wrap(char * x, const bool isRef) const
 {
     JavaVM * vm = getScilabJavaVM();
-    return wrap<char>(vm, x);
+    return wrap(vm, (byte *)x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(char * x, int xSize, const bool isRef) const

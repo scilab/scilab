@@ -36,6 +36,7 @@ public:
     static void goDown();
     static void registerVariable(const int envId, const int varId);
     static void unregisterVariable(const int envId, const int varId);
+    static void unregisterVariable(const int envId, const int * varId, const int length);
 
 private:
     static _MapIds getAllObjectsAtCurrentLevel(void * pvApiCtx);

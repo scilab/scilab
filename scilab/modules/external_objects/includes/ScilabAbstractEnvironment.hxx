@@ -241,6 +241,18 @@ public:
     virtual void disabletrace() = 0;
 
     virtual void writeLog(const std::string & fun, const std::string str, ...) const = 0;
+
+    /**
+     * Remove the object with the given id
+     * @param id the object id
+     */
+    virtual void removeobject(const int * ids, const int length)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            removeobject(ids[i]);
+        }
+    }
 };
 }
 #endif //__SCILABABSTRACTENVIRONMENT_HXX__

@@ -191,6 +191,8 @@ public :
 
     void removeobject(int id);
 
+    void removeobject(const int * id, const int length);
+
     void autoremoveobject(int id);
 
     void getaccessiblemethods(int id, const ScilabStringStackAllocator & allocator);

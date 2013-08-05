@@ -352,6 +352,20 @@ void ScilabJavaEnvironment::removeobject(int id)
     ScilabAutoCleaner::unregisterVariable(envId, id);
 }
 
+void ScilabJavaEnvironment::removeobject(const int * id, const int length)
+{
+    if (length == 1)
+    {
+        removeobject(*id);
+    }
+    else
+    {
+        JavaVM *vm = getScilabJavaVM();
+        ScilabJavaObject::removeScilabJavaObject(vm, id, length);
+        ScilabAutoCleaner::unregisterVariable(envId, id, length);
+    }
+}
+
 void ScilabJavaEnvironment::autoremoveobject(int id)
 {
     JavaVM *vm = getScilabJavaVM();
