@@ -13,8 +13,11 @@
 package org.scilab.modules.external_objects_java;
 
 import java.lang.reflect.Array;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -27,7 +30,7 @@ import java.util.logging.Level;
 @SuppressWarnings(value = {"unchecked", "serial"})
 public final class ScilabJavaArray {
 
-    private static final Map<Class, Class> mappings = new HashMap<Class, Class>(8);
+    static final Map<Class, Class> mappings = new HashMap<Class, Class>(8);
     private static final Map<String, Class> baseType = new HashMap<String, Class>(8);
 
     static {
@@ -299,6 +302,15 @@ public final class ScilabJavaArray {
                 return a;
             }
 
+            if (types.length == 0) {
+                try {
+                    Method m = ScilabJavaArray.class.getDeclaredMethod("toPrimitive", base);
+                    return m.invoke(null, a);
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+
             return toPrimitive(a, types.length - 1, types);
         }
 
@@ -335,6 +347,214 @@ public final class ScilabJavaArray {
     }
 
     /**
+     * Box a double array
+     * @param a an array
+     * @return a boxed array
+     */
+    public static Double[] fromPrimitive(final double[] a) {
+        Double[] arr = new Double[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Box a float array
+     * @param a an array
+     * @return a boxed array
+     */
+    public static Float[] fromPrimitive(final float[] a) {
+        Float[] arr = new Float[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Box an int array
+     * @param a an array
+     * @return a boxed array
+     */
+    public static Integer[] fromPrimitive(final int[] a) {
+        Integer[] arr = new Integer[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Box a char array
+     * @param a an array
+     * @return a boxed array
+     */
+    public static Character[] fromPrimitive(final char[] a) {
+        Character[] arr = new Character[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Box a double array
+     * @param a an array
+     * @return a boxed array
+     */
+    public static Byte[] fromPrimitive(final byte[] a) {
+        Byte[] arr = new Byte[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Box a short array
+     * @param a an array
+     * @return a boxed array
+     */
+    public static Short[] fromPrimitive(final short[] a) {
+        Short[] arr = new Short[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Box a long array
+     * @param a an array
+     * @return a boxed array
+     */
+    public static Long[] fromPrimitive(final long[] a) {
+        Long[] arr = new Long[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Box a boolean array
+     * @param a an array
+     * @return a boxed array
+     */
+    public static Boolean[] fromPrimitive(final boolean[] a) {
+        Boolean[] arr = new Boolean[a.length];
+        for (int i = 0; i < a.length; i++) {
+            arr[i] = a[i];
+        }
+
+        return arr;
+    }
+
+    /**
+     * Convert a double (or other type of the same kind) multiarray into a primitive Double multiarray.
+     * (Take care: it is not a high performance function !!! if you have a better implementation, send it to me...)
+     * @param the array to convert, allowed types are: double, float, int, char, byte, boolean, short, long
+     * @return the primitive array.
+     */
+    public static Object fromPrimitive(final Object a) {
+        Class base = a.getClass();
+        if (base.isArray()) {
+            Class[] types = getFromPrimClasses(base);
+            if (types == null) {
+                return a;
+            }
+
+            if (types.length == 0) {
+                try {
+                    Method m = ScilabJavaArray.class.getDeclaredMethod("fromPrimitive", base);
+                    return m.invoke(null, a);
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+
+            return fromPrimitive(a, types.length - 1, types);
+        }
+
+        return a;
+    }
+
+    /**
+     * Recursively convert an array double[][][] into an array Double[][][]
+     * @param a the array
+     * @param pos the position in the array types
+     * @param types an array containing the intermediate array class (see getPrimClass)
+     * @return the converted array
+     */
+    private static Object fromPrimitive(final Object a, int pos, Class[] types) {
+        Object[] arr = (Object[]) a;
+        Object[] o = (Object[]) Array.newInstance(types[pos], arr.length);
+
+        if (pos != 0) {
+            for (int i = 0; i < arr.length; i++) {
+                o[i] = fromPrimitive(arr[i], pos - 1, types);
+            }
+        } else {
+            try {
+                Method m = ScilabJavaArray.class.getDeclaredMethod("fromPrimitive", a.getClass().getComponentType());
+                for (int i = 0; i < arr.length; i++) {
+                    o[i] = m.invoke(null, arr[i]);
+                }
+            } catch (Exception e) {
+                return null;
+            }
+        }
+
+        return o;
+    }
+
+    public static Class getArrayBaseType(Class c) {
+        Class base = c;
+        while (base.isArray()) {
+            base = base.getComponentType();
+        }
+
+        return base;
+    }
+
+    /**
+     * Get an array of primitive arrays classes. For example, double[][][][] will give {Double[], Double[][], Double[][][]}.
+     * @param c the base class
+     * @return an array of classes
+     */
+    private static Class[] getFromPrimClasses(Class c) {
+        int nbDims = 0;
+        Class base = c;
+        while (base.isArray()) {
+            base = base.getComponentType();
+            nbDims++;
+        }
+
+        base = ScilabJavaObject.primTypes.get(base);
+        if (base == null) {
+            return null;
+        }
+
+        Class[] cl = new Class[nbDims - 1];
+        if (cl.length != 0) {
+            cl[0] = Array.newInstance(base, 0).getClass();
+            for (int i = 1; i < nbDims - 1; i++) {
+                cl[i] = Array.newInstance(cl[i - 1], 0).getClass();
+            }
+        }
+
+        return cl;
+    }
+
+    /**
      * Get an array of primitive arrays classes. For example, Double[][][][] will give {double[], double[][], double[][][]}.
      * @param c the base class
      * @return an array of classes
@@ -353,9 +573,11 @@ public final class ScilabJavaArray {
         }
 
         Class[] cl = new Class[nbDims - 1];
-        cl[0] = Array.newInstance(base, 0).getClass();
-        for (int i = 1; i < nbDims - 1; i++) {
-            cl[i] = Array.newInstance(cl[i - 1], 0).getClass();
+        if (cl.length != 0) {
+            cl[0] = Array.newInstance(base, 0).getClass();
+            for (int i = 1; i < nbDims - 1; i++) {
+                cl[i] = Array.newInstance(cl[i - 1], 0).getClass();
+            }
         }
 
         return cl;
@@ -480,5 +702,36 @@ public final class ScilabJavaArray {
         }
 
         return arr;
+    }
+
+    /**
+     * Convert a list to an array of primitive type
+     * @return an array
+     */
+    public static List toList(Object obj) {
+        if (obj.getClass().isArray()) {
+            Class base = obj.getClass().getComponentType();
+            if (ScilabJavaObject.primTypes.containsKey(base)) {
+                obj = fromPrimitive(obj);
+            }
+            ArrayList list = new ArrayList();
+            try {
+                Field _elementData = ArrayList.class.getDeclaredField("elementData");
+                Field _size = ArrayList.class.getDeclaredField("size");
+                _elementData.setAccessible(true);
+                _size.setAccessible(true);
+                _elementData.set(list, obj);
+                _size.set(list, ((Object[]) obj).length);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return list;
+        }
+
+        List l = new LinkedList();
+        l.add(obj);
+
+        return l;
     }
 }

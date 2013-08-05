@@ -31,6 +31,7 @@ public final class FunctionArguments {
     private static final List<Converter> converters = new ArrayList<Converter>();
 
     static {
+        // Converter to convert a number to an int
         registerConverter(new Converter() {
             @Override
             public Object convert(Object original, Class<?> to) {
@@ -42,6 +43,8 @@ public final class FunctionArguments {
                 return (to == int.class || to == Integer.class) && (Number.class.isAssignableFrom(from) || ScilabJavaObject.primTypes.containsKey(from));
             }
         });
+
+        // Converter to convert a double to a float
         registerConverter(new Converter() {
             @Override
             public Object convert(Object original, Class<?> to) {
@@ -51,6 +54,37 @@ public final class FunctionArguments {
             @Override
             public boolean canConvert(Class<?> from, Class<?> to) {
                 return (to == float.class || to == Float.class) && (from == double.class || from == Double.class);
+            }
+        });
+
+        // Converter to convert a double[] to a Double[] (or an other primitive type)
+        registerConverter(new Converter() {
+            @Override
+            public Object convert(Object original, Class<?> to) {
+                return ScilabJavaArray.fromPrimitive(original);
+            }
+
+            @Override
+            public boolean canConvert(Class<?> from, Class<?> to) {
+                if (from.isArray() && to.isArray()) {
+                    final Class _from = ScilabJavaArray.getArrayBaseType(from);
+                    final Class _to = ScilabJavaArray.getArrayBaseType(to);
+                    return ScilabJavaObject.primTypes.get(_from) == _to;
+                }
+                return false;
+            }
+        });
+
+        // Converter to convert a double[] to a ArrayList<Double> (or an other primitive type)
+        registerConverter(new Converter() {
+            @Override
+            public Object convert(Object original, Class<?> to) {
+                return ScilabJavaArray.toList(original);
+            }
+
+            @Override
+            public boolean canConvert(Class<?> from, Class<?> to) {
+                return from.isArray() && to.isAssignableFrom(ArrayList.class);
             }
         });
     }
