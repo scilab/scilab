@@ -912,7 +912,7 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/modules/preferences/includes/ \
 	-I$(top_srcdir)/modules/external_objects/includes/ \
 	-I$(top_srcdir)/modules/functions/includes/ $(EIGEN_CPPFLAGS) \
-	$(XML_FLAGS) $(AM_CPPFLAGS) $(VMKIT_ACPPFLAGS) $(am__append_3)
+	$(XML_FLAGS) $(AM_CPPFLAGS) $(VMKIT_CPPFLAGS) $(am__append_3)
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicore.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscicore-algo.la

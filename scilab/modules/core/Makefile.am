@@ -277,7 +277,7 @@ libscicore_la_CPPFLAGS = \
 $(EIGEN_CPPFLAGS) \
 $(XML_FLAGS) \
 $(AM_CPPFLAGS) \
-$(VMKIT_ACPPFLAGS)
+$(VMKIT_CPPFLAGS)
 
 # Used by sci_getdebuginfo:
 if TCLTK
