@@ -94,6 +94,7 @@ void ColSortstring(char * *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + n * j), (char *) (ind + n * j), flag, n,
                  sizeof(char *), sizeof(int),
+                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCstring : compareDstring,
                  swapcodestring, swapcodeind);
     }
@@ -119,6 +120,7 @@ void RowSortstring(char * *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + i), (char *) (ind + i), flag, p,
                  n * sizeof(char *), n * sizeof(int),
+                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCstring : compareDstring,
                  swapcodestring, swapcodeind);
     }
@@ -139,6 +141,7 @@ void GlobalSortstring(char * *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, n * p,
              sizeof(char *), sizeof(int),
+             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? compareCstring : compareDstring,
              swapcodestring, swapcodeind);
 }
@@ -223,6 +226,7 @@ void LexiRowstring(char * *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, n,
              sizeof(char *), sizeof(int),
+             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiRowcompareCstring : LexiRowcompareDstring,
              LexiRowswapcodestring, swapcodeind);
 }
@@ -298,6 +302,7 @@ void LexiColstring(char * *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, p,
              n * sizeof(char *), sizeof(int),
+             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiColcompareCstring : LexiColcompareDstring,
              LexiColswapcodestring, swapcodeind);
 }
