@@ -96,11 +96,11 @@ scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
 scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
 
 if WITH_VMKIT
-scilab_bin_LDFLAGS              += $(VMKIT_ALDFLAGS)
-scilab_cli_bin_LDFLAGS          += $(VMKIT_ALDFLAGS)
-AM_CPPFLAGS                     += $(VMKIT_ACPPFLAGS)
-scilab_bin_LDADD                += $(VMKIT_ALDADD)
-scilab_cli_bin_LDADD            += $(VMKIT_ALDADD)
+scilab_bin_LDFLAGS              += $(VMKIT_LDFLAGS)
+scilab_cli_bin_LDFLAGS          += $(VMKIT_LDFLAGS)
+AM_CPPFLAGS                     += $(VMKIT_CPPFLAGS)
+scilab_bin_LDADD                += $(VMKIT_LDADD)
+scilab_cli_bin_LDADD            += $(VMKIT_LDADD)
 endif
 
 if NEED_JAVA
@@ -140,7 +140,7 @@ endif
 
 # check is performed with scilab
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
-TESTS = $(top_srcdir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
+TESTS = $(top_builddir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
 
 all-local: $(TARGETS_ALL)
 

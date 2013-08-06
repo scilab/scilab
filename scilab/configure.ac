@@ -66,6 +66,7 @@ AC_CONFIG_HEADERS([modules/core/includes/machine.h])
 # strip executable
 AM_PROG_INSTALL_STRIP
 AC_PROG_LN_S
+AM_PROG_AR
 
 AC_CUSTOM_LARGE_FILE
 
@@ -2246,6 +2247,14 @@ echo ""
 echo "HDF5 configuration:"
 echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
 echo "  HDF5 LIBS ........... = $HDF5_LIBS"
+
+if test -n "$with_vmkit" -o -n "$with_vmkit_package"; then
+echo ""
+echo "JIT configuration:"
+echo "  VMKIT_CPPFLAGS ..... = $VMKIT_CPPFLAGS"
+echo "  VMKIT_LDFLAGS ...... = $VMKIT_LDFLAGS"
+echo "  VMKIT_LDADD ........ = $VMKIT_LDADD"
+fi
 
 echo ""
 echo "PCRE configuration:"
