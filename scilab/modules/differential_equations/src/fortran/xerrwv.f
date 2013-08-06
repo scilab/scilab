@@ -57,6 +57,7 @@ c statement 100 at the end.
 c!
 c-----------------------------------------------------------------------
       include 'stack.h'
+      integer num, imess, imode
       common /eh0001/ mesflg, lunit
       integer         iero
       common /ierode/ iero
@@ -70,30 +71,43 @@ cstd      lun = lunit
 c get number of words in message. --------------------------------------
       nch = min(len(msg),80)
 c write the message. ---------------------------------------------------
+c     retrieve display information
+      call errmds(num,imess,imode)
 cstd      write (lun, 10) (msg(i:i),i=1,nch)
 cstd 10   format(1x,80a1)
-      call basout(io,lun,msg(1:nch))
+c     print if we are not inside of an execstr("...", "errcatch", "n")
+      if (imess .eq. 0) then
+         call basout(io,lun,msg(1:nch))
+      endif
       if (ni .eq. 1) then
 cstd         write (lun, 20) i1
          write (str, 20) i1
  20      format(6x,'where i1 is : ',i10)
-         call basout(io,lun,str)
+         if (imess .eq. 0) then
+            call basout(io,lun,str)
+         endif
       elseif (ni .eq. 2) then
 cstd         write (lun, 30) i1,i2
          write (str, 30) i1,i2
  30      format(6x,'where i1 is : ',i10,3x,' and i2 : ',i10)
-         call basout(io,lun,str)
+         if (imess .eq. 0) then
+            call basout(io,lun,str)
+         endif
       endif
       if (nr .eq. 1) then
 cstd         write (lun, 40) r1
          write (str, 40) r1
  40      format(6x,'where r1 is : ',d21.13)
-         call basout(io,lun,str)
+         if (imess .eq. 0) then
+            call basout(io,lun,str)
+         endif
       elseif (nr .eq. 2) then
 cstd         write (lun, 50) r1,r2
          write (str, 50) r1,r2
  50      format(6x,'where r1 is : ',d21.13,3x,'and r2 : ',d21.13)
-         call basout(io,lun,str)
+         if (imess .eq. 0) then
+            call basout(io,lun,str)
+         endif
       endif
 c abort the run if iert = 2. -------------------------------------------
  100  if (iert .ne. 2) return
