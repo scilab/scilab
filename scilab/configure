@@ -872,13 +872,13 @@ ac_ct_F77
 FFLAGS
 F77
 PKG_CONFIG
-VMKIT_ALDADD
-VMKIT_ALDFLAGS
-VMKIT_ACPPFLAGS
+VMKIT_LDADD
+VMKIT_LDFLAGS
+VMKIT_CPPFLAGS
 VMKIT_BIN_DIR
-LLVM_BIN_DIR
-VMKIT_SRC_DIR
-LLVM_SRC_DIR
+LLVM_LIB_DIR
+VMKIT_INCLUDE_DIR
+LLVM_INCLUDE_DIR
 WITH_VMKIT_FALSE
 WITH_VMKIT_TRUE
 AM_BACKSLASH
@@ -6288,13 +6288,13 @@ fi
 if test -n "$with_vmkit_package"; then
    # Hardcode path for Debian and Ubuntu
    # This will be improved by an automatic detection
-   LLVM_SRC_DIR="/usr/include/llvm-3.3/"
-   LLVM_BIN_DIR="/usr/lib/llvm-3.3/lib/"
-   VMKIT_SRC_DIR="/usr/include/vmkit/"
+   LLVM_INCLUDE_DIR="/usr/include/llvm-3.3/"
+   LLVM_LIB_DIR="/usr/lib/llvm-3.3/lib/"
+   VMKIT_INCLUDE_DIR="/usr/include/vmkit/"
    VMKIT_BIN_DIR="/usr/bin/"
-   VMKIT_ACPPFLAGS="-I$LLVM_SRC_DIR/ -I$VMKIT_SRC_DIR/ -I$VMKIT_SRC_DIR/MMTk/ -D_DEBUG -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -O3 -fomit-frame-pointer -fvisibility-inlines-hidden -fPIC -Woverloaded-virtual -Wcast-qual"
-   VMKIT_ALDFLAGS="-L$LLVM_BIN_DIR/ -lLLVMBitReader -lLLVMipo -lLLVMVectorize -lLLVMInstrumentation -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMMCParser -lLLVMJIT -lLLVMRuntimeDyld -lLLVMExecutionEngine -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMMC -lLLVMObject -lLLVMCore -lLLVMSupport"
-   VMKIT_ALDADD="$VMKIT_BIN_DIR/../lib/libFinalMMTk.a $VMKIT_BIN_DIR/../lib/libJ3.a $VMKIT_BIN_DIR/../lib/libClasspath.a $VMKIT_BIN_DIR/../lib/libVmkit.a $VMKIT_BIN_DIR/../lib/libVmkitCompiler.a $VMKIT_BIN_DIR/../lib/libCommonThread.a"
+   VMKIT_CPPFLAGS="-I$LLVM_INCLUDE_DIR/ -I$VMKIT_INCLUDE_DIR/ -I$VMKIT_INCLUDE_DIR/MMTk/ -D_DEBUG -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -O3 -fomit-frame-pointer -fvisibility-inlines-hidden -fPIC -Woverloaded-virtual -Wcast-qual"
+   VMKIT_LDFLAGS="-L$LLVM_LIB_DIR/ -lLLVMBitReader -lLLVMipo -lLLVMVectorize -lLLVMInstrumentation -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMMCParser -lLLVMJIT -lLLVMRuntimeDyld -lLLVMExecutionEngine -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMMC -lLLVMObject -lLLVMCore -lLLVMSupport"
+   VMKIT_LDADD="$VMKIT_BIN_DIR/../lib/libFinalMMTk.a $VMKIT_BIN_DIR/../lib/libJ3.a $VMKIT_BIN_DIR/../lib/libClasspath.a $VMKIT_BIN_DIR/../lib/libVmkit.a $VMKIT_BIN_DIR/../lib/libVmkitCompiler.a $VMKIT_BIN_DIR/../lib/libCommonThread.a"
 
 $as_echo "#define VMKIT_ENABLED /**/" >>confdefs.h
 
@@ -6310,8 +6310,8 @@ if test -n "$with_vmkit";then
                 as_fn_error $? "Due the use of --with-vmkit, the use of --with-vmkit-src=<dir> is needed" "$LINENO" 5a
         fi
 
-        LLVM_SRC_DIR="$with_llvm_src"
-        VMKIT_SRC_DIR="$with_vmkit_src"
+        LLVM_INCLUDE_DIR="$with_llvm_src"
+        VMKIT_INCLUDE_DIR="$with_vmkit_src"
 
 
 
@@ -6323,10 +6323,10 @@ if test -n "$with_llvm_bin";then
         if (test "$with_llvm_bin" == "" || test "x$with_llvm_bin" == "xyes");then
                 as_fn_error $? "Use --with-llvm-bin=<dir>" "$LINENO" 5
         else
-                LLVM_BIN_DIR="$with_llvm_bin"
+                LLVM_LIB_DIR="$with_llvm_bin"
         fi
 else
-        LLVM_BIN_DIR="$with_llvm_src/Release+Asserts"
+        LLVM_LIB_DIR="$with_llvm_src/Release+Asserts"
 fi
 
 
@@ -6342,14 +6342,14 @@ fi
 
 
 
-VMKIT_ACPPFLAGS="-I$LLVM_SRC_DIR/include -I$LLVM_SRC_DIR/ -I$VMKIT_SRC_DIR/ -I$VMKIT_SRC_DIR/MMTk/ -D_DEBUG -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -O3 -fomit-frame-pointer -fvisibility-inlines-hidden -fPIC -Woverloaded-virtual -Wcast-qual"
+VMKIT_CPPFLAGS="-I$LLVM_INCLUDE_DIR/include -I$LLVM_INCLUDE_DIR/ -I$VMKIT_INCLUDE_DIR/ -I$VMKIT_INCLUDE_DIR/MMTk/ -D_DEBUG -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -O3 -fomit-frame-pointer -fvisibility-inlines-hidden -fPIC -Woverloaded-virtual -Wcast-qual"
 
 
-VMKIT_ALDFLAGS="-L$LLVM_BIN_DIR/lib -lLLVMBitReader -lLLVMipo -lLLVMVectorize -lLLVMInstrumentation -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMMCParser -lLLVMJIT -lLLVMRuntimeDyld -lLLVMExecutionEngine -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMMC -lLLVMObject -lLLVMCore -lLLVMSupport"
+VMKIT_LDFLAGS="-L$LLVM_LIB_DIR/lib -lLLVMBitReader -lLLVMipo -lLLVMVectorize -lLLVMInstrumentation -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMMCParser -lLLVMJIT -lLLVMRuntimeDyld -lLLVMExecutionEngine -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMMC -lLLVMObject -lLLVMCore -lLLVMSupport"
 
 
 
-VMKIT_ALDADD="$VMKIT_BIN_DIR/../lib/libFinalMMTk.a $VMKIT_BIN_DIR/../lib/libJ3.a $VMKIT_BIN_DIR/../lib/libClasspath.a $VMKIT_BIN_DIR/../lib/libVmkit.a $VMKIT_BIN_DIR/../lib/libVmkitCompiler.a $VMKIT_BIN_DIR/../lib/libCommonThread.a"
+VMKIT_LDADD="$VMKIT_BIN_DIR/../lib/libFinalMMTk.a $VMKIT_BIN_DIR/../lib/libJ3.a $VMKIT_BIN_DIR/../lib/libClasspath.a $VMKIT_BIN_DIR/../lib/libVmkit.a $VMKIT_BIN_DIR/../lib/libVmkitCompiler.a $VMKIT_BIN_DIR/../lib/libCommonThread.a"
 
 
 fi
@@ -44436,6 +44436,14 @@ echo ""
 echo "HDF5 configuration:"
 echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
 echo "  HDF5 LIBS ........... = $HDF5_LIBS"
+
+if test -n "$with_vmkit" -o -n "$with_vmkit_package"; then
+echo ""
+echo "JIT configuration:"
+echo "  VMKIT_CPPFLAGS ..... = $VMKIT_CPPFLAGS"
+echo "  VMKIT_LDFLAGS ...... = $VMKIT_LDFLAGS"
+echo "  VMKIT_LDADD ........ = $VMKIT_LDADD"
+fi
 
 echo ""
 echo "PCRE configuration:"

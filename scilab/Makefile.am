@@ -124,11 +124,11 @@ scilab_cli_bin_CPPFLAGS += $(OPENMPI_CXXFLAGS)
 endif
 
 if WITH_VMKIT
-scilab_bin_LDFLAGS              += $(VMKIT_ALDFLAGS)
-scilab_cli_bin_LDFLAGS          += $(VMKIT_ALDFLAGS)
-AM_CPPFLAGS                     += $(VMKIT_ACPPFLAGS)
-scilab_bin_LDADD                += $(VMKIT_ALDADD)
-scilab_cli_bin_LDADD            += $(VMKIT_ALDADD)
+scilab_bin_LDFLAGS              += $(VMKIT_LDFLAGS)
+scilab_cli_bin_LDFLAGS          += $(VMKIT_LDFLAGS)
+AM_CPPFLAGS                     += $(VMKIT_CPPFLAGS)
+scilab_bin_LDADD                += $(VMKIT_LDADD)
+scilab_cli_bin_LDADD            += $(VMKIT_LDADD)
 endif
 
 if NEED_JAVA
