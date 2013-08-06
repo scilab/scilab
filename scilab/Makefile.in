@@ -281,20 +281,12 @@ am_scilab_bin_OBJECTS = scilab_bin-scilab.$(OBJEXT) $(am__objects_1) \
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
-<<<<<<<
-scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(am__append_8) \
-=======
 @WITH_VMKIT_TRUE@am__DEPENDENCIES_3 = $(am__DEPENDENCIES_1)
-scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(am__append_4) \
->>>>>>>
+scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(am__append_8) \
 	$(top_builddir)/modules/libscilab.la $(am__DEPENDENCIES_1) \
-<<<<<<<
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) $(am__append_16)
-scilab_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
-=======
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_3)
-scilab_bin_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
->>>>>>>
+scilab_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
 am__scilab_cli_bin_SOURCES_DIST =  \
@@ -306,14 +298,8 @@ am_scilab_cli_bin_OBJECTS = scilab_cli_bin-scilab.$(OBJEXT) \
 scilab_cli_bin_OBJECTS = $(am_scilab_cli_bin_OBJECTS)
 scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) \
 	$(top_builddir)/modules/libscilab-cli.la $(am__DEPENDENCIES_1) \
-<<<<<<<
-=======
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_3)
-scilab_cli_bin_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
-	$(CXXFLAGS) $(scilab_cli_bin_LDFLAGS) $(LDFLAGS) -o $@
->>>>>>>
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) $(am__append_17)
 scilab_cli_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(AM_CXXFLAGS) $(CXXFLAGS) $(scilab_cli_bin_LDFLAGS) \
@@ -878,16 +864,7 @@ TARGETS_ALL = macros $(am__append_18) $(am__append_19)
 
 # check is performed with scilab, so use the serial-tests on purpose
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
-<<<<<<<
 TESTS = $(top_builddir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
-
-# VMKIT Stuff
-@WITH_VMKIT_TRUE@VMKIT_ACPPFLAGS = -I$(LLVM_SRC_DIR)/include -I$(VMKIT_SRC_DIR)/include -I$(VMKIT_SRC_DIR)/lib/vmkit/MMTk/ -D_DEBUG -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -O3 -fomit-frame-pointer -fvisibility-inlines-hidden -fPIC -Woverloaded-virtual -Wcast-qual
-@WITH_VMKIT_TRUE@VMKIT_ALDFLAGS = -L$(LLVM_BIN_DIR)/lib -lLLVMBitReader -lLLVMipo -lLLVMVectorize -lLLVMInstrumentation -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMMCParser -lLLVMJIT -lLLVMRuntimeDyld -lLLVMExecutionEngine -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMMC -lLLVMObject -lLLVMCore -lLLVMSupport
-@WITH_VMKIT_TRUE@VMKIT_ALDADD = $(VMKIT_BIN_DIR)/lib/libFinalMMTk.a $(VMKIT_BIN_DIR)/lib/libJ3.a $(VMKIT_BIN_DIR)/lib/libClasspath.a $(VMKIT_BIN_DIR)/lib/libVmkit.a $(VMKIT_BIN_DIR)/lib/libVmkitCompiler.a $(VMKIT_BIN_DIR)/lib/libCommonThread.a
-=======
-TESTS = $(top_srcdir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
->>>>>>>
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
