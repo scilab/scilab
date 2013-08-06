@@ -2472,7 +2472,7 @@ function [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
     end
 endfunction
 
-// adjust_typ: It resolves positives and negatives port types.
+// adjust_typ: It resolves positive and negative port types.
 //		   Its Algorithm is based on the algorithm of adjust_inout
 // Fady NASSIF: 14/06/2007
 
@@ -2502,7 +2502,7 @@ function [ok,bllst]=adjust_typ(bllst,connectmat)
                 //             target ports are explicitly informed
                 //             with positive types
                 if (intyp>0 & outtyp>0) then
-                    //if types of source and target port doesn't match and aren't double and complex
+                    //if types of source and target port don't match and aren't double and complex
                     //then call bad_connection, set flag ok to false and exit
 
                     if intyp<>outtyp then
@@ -2571,7 +2571,7 @@ function [ok,bllst]=adjust_typ(bllst,connectmat)
 
             //loop on the two dimensions of source/target port
             //only case : target and source ports are both
-            //            negatives or null
+            //            negative or null
             if nouttyp<=0 & nintyp<=0 then
                 findflag=%t;
                 //
@@ -2605,5 +2605,3 @@ function [ok,bllst]=adjust_typ(bllst,connectmat)
         end
     end
 endfunction
-
-

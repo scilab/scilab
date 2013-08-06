@@ -3207,7 +3207,7 @@ int C2F(putlhsvar) ()
     {
         nbvars1 = Max(nbvars1, LhsVar(k));
     }
-    /* check if output variabe are in increasing order in the stack */
+    /* check if output variables are in increasing order in the stack */
     lcres = TRUE;
     ibufprec = 0;
     for (ix = 1; ix <= Lhs; ++ix)
