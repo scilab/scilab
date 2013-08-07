@@ -110,11 +110,11 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
 @IS_MACOSX_TRUE@am__append_3 = $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
 # Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
 @GUI_TRUE@am__append_4 = $(top_builddir)/modules/jvm/libscijvm.la
-@WITH_VMKIT_TRUE@am__append_5 = $(VMKIT_LDFLAGS)
-@WITH_VMKIT_TRUE@am__append_6 = $(VMKIT_LDFLAGS)
+@WITH_VMKIT_TRUE@am__append_5 = $(VMKIT_LDFLAGS) -lz
+@WITH_VMKIT_TRUE@am__append_6 = $(VMKIT_LDFLAGS)  -lz
 @WITH_VMKIT_TRUE@am__append_7 = $(VMKIT_CPPFLAGS)
-@WITH_VMKIT_TRUE@am__append_8 = $(VMKIT_LDADD)
-@WITH_VMKIT_TRUE@am__append_9 = $(VMKIT_LDADD)
+@WITH_VMKIT_TRUE@am__append_8 = $(VMKIT_LDADD) -lz
+@WITH_VMKIT_TRUE@am__append_9 = $(VMKIT_LDADD) -lz
 
 #-static
 @ENABLE_STATIC_TRUE@am__append_10 = scilab-static-bin
@@ -960,6 +960,7 @@ scilab_bin_CPPFLAGS = \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/parse/includes/ \
 -I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/jit/includes/ \
 -I$(top_srcdir)/modules/symbol/includes/ \
 -I$(top_srcdir)/modules/functions_manager/includes/ \
 -I$(top_srcdir)/modules/types/includes/ \

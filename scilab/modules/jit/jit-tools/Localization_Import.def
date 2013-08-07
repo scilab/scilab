@@ -1,0 +1,6 @@
+LIBRARY    scilocalization.dll
+
+
+EXPORTS
+to_wide_string
+

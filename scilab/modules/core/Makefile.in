@@ -209,7 +209,7 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/cpp/search_functions.cpp src/cpp/demangle.cpp \
 	src/cpp/backtrace_print.cpp src/cpp/storeCommand.cpp \
 	src/cpp/banner.cpp src/cpp/with_module.cpp src/cpp/runner.cpp \
-	src/cpp/jitter.cpp src/fortran/clunit.f src/fortran/getlin.f \
+	src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/allowptr.f src/fortran/isany.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/setgetmode.f src/fortran/showstack.f \
@@ -300,7 +300,7 @@ am__objects_3 = libscicore_algo_la-hashtable_core.lo \
 	libscicore_algo_la-backtrace_print.lo \
 	libscicore_algo_la-storeCommand.lo \
 	libscicore_algo_la-banner.lo libscicore_algo_la-with_module.lo \
-	libscicore_algo_la-runner.lo libscicore_algo_la-jitter.lo
+	libscicore_algo_la-runner.lo
 @USE_DYNAMIC_STACK_TRUE@am__objects_4 = relocstack.lo
 am__objects_5 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 	nextj.lo setgetmode.lo showstack.lo setippty.lo compil.lo \
@@ -358,8 +358,7 @@ am__objects_8 = libscicore_la-core_gw.lo \
 	libscicore_la-sci_abort.lo libscicore_la-sci_who.lo \
 	libscicore_la-sci_stacksize.lo libscicore_la-sci_format.lo \
 	libscicore_la-sci_sciargs.lo libscicore_la-sci_ieee.lo \
-	libscicore_la-sci_funcprot.lo libscicore_la-sci_mode.lo \
-	libscicore_la-sci_runASTwithVMKit.lo
+	libscicore_la-sci_funcprot.lo libscicore_la-sci_mode.lo
 am_libscicore_la_OBJECTS = $(am__objects_6) $(am__objects_7) \
 	$(am__objects_8)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -779,8 +778,7 @@ src/cpp/backtrace_print.cpp \
 src/cpp/storeCommand.cpp \
 src/cpp/banner.cpp \
 src/cpp/with_module.cpp \
-src/cpp/runner.cpp \
-src/cpp/jitter.cpp
+src/cpp/runner.cpp
 
 CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/allowptr.f src/fortran/isany.f \
@@ -881,8 +879,7 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_sciargs.cpp \
 	sci_gateway/cpp/sci_ieee.cpp \
 	sci_gateway/cpp/sci_funcprot.cpp \
-	sci_gateway/cpp/sci_mode.cpp \
-	sci_gateway/cpp/sci_runASTwithVMKit.cpp 
+	sci_gateway/cpp/sci_mode.cpp
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
@@ -912,7 +909,7 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/modules/preferences/includes/ \
 	-I$(top_srcdir)/modules/external_objects/includes/ \
 	-I$(top_srcdir)/modules/functions/includes/ $(EIGEN_CPPFLAGS) \
-	$(XML_FLAGS) $(AM_CPPFLAGS) $(VMKIT_CPPFLAGS) $(am__append_3)
+	$(XML_FLAGS) $(AM_CPPFLAGS) $(am__append_3)
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicore.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscicore-algo.la
@@ -1198,7 +1195,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-intmacr2tree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-isanan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-islittleendian.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-jitter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-loadversion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-md5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-mode_exec.Plo@am__quote@
@@ -1279,7 +1275,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_quit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_readgateway.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_return.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_runASTwithVMKit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_sciargs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_setbpt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_stacksize.Plo@am__quote@
@@ -2096,13 +2091,6 @@ libscicore_algo_la-runner.lo: src/cpp/runner.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_algo_la-runner.lo `test -f 'src/cpp/runner.cpp' || echo '$(srcdir)/'`src/cpp/runner.cpp
 
-libscicore_algo_la-jitter.lo: src/cpp/jitter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_algo_la-jitter.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-jitter.Tpo -c -o libscicore_algo_la-jitter.lo `test -f 'src/cpp/jitter.cpp' || echo '$(srcdir)/'`src/cpp/jitter.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicore_algo_la-jitter.Tpo $(DEPDIR)/libscicore_algo_la-jitter.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jitter.cpp' object='libscicore_algo_la-jitter.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_algo_la-jitter.lo `test -f 'src/cpp/jitter.cpp' || echo '$(srcdir)/'`src/cpp/jitter.cpp
-
 libscicore_la-core_gw.lo: sci_gateway/cpp/core_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-core_gw.lo -MD -MP -MF $(DEPDIR)/libscicore_la-core_gw.Tpo -c -o libscicore_la-core_gw.lo `test -f 'sci_gateway/cpp/core_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/core_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicore_la-core_gw.Tpo $(DEPDIR)/libscicore_la-core_gw.Plo
@@ -2298,13 +2286,6 @@ libscicore_la-sci_mode.lo: sci_gateway/cpp/sci_mode.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_mode.cpp' object='libscicore_la-sci_mode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_mode.lo `test -f 'sci_gateway/cpp/sci_mode.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_mode.cpp
-
-libscicore_la-sci_runASTwithVMKit.lo: sci_gateway/cpp/sci_runASTwithVMKit.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_runASTwithVMKit.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_runASTwithVMKit.Tpo -c -o libscicore_la-sci_runASTwithVMKit.lo `test -f 'sci_gateway/cpp/sci_runASTwithVMKit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_runASTwithVMKit.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicore_la-sci_runASTwithVMKit.Tpo $(DEPDIR)/libscicore_la-sci_runASTwithVMKit.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_runASTwithVMKit.cpp' object='libscicore_la-sci_runASTwithVMKit.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_runASTwithVMKit.lo `test -f 'sci_gateway/cpp/sci_runASTwithVMKit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_runASTwithVMKit.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<

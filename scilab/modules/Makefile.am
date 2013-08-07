@@ -88,6 +88,7 @@ graph \
 xcos \
 system_env \
 ast \
+jit \
 symbol \
 parse \
 scinotes \
@@ -185,6 +186,7 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/threads/libscithreads.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
 	$(top_builddir)/modules/ast/libsciast.la \
+	$(top_builddir)/modules/jit/libscijit.la \
 	$(top_builddir)/modules/symbol/libscisymbol.la \
 	$(top_builddir)/modules/parse/libsciparse.la \
 	$(top_builddir)/modules/system_env/libscisystem_env.la \

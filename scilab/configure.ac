@@ -1882,6 +1882,7 @@ desktop/images/icons/Makefile
 desktop/Makefile
 modules/threads/Makefile
 modules/ast/Makefile
+modules/jit/Makefile
 modules/parse/Makefile
 modules/symbol/Makefile
 modules/functions_manager/Makefile
