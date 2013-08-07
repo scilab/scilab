@@ -31,7 +31,6 @@ for i=1:2  // 'max step size' = 10^-i, precision
     scs_m.props.tol(6) = 102;     // Solver
     scicos_simulate(scs_m, Info, Context); // DDaskr
     ddaskrval = res.values;       // Results
-    time = res.time;              // Time
 
     // Modify solver + run IDA + save results
     scs_m.props.tol(6) = 100;     // Solver

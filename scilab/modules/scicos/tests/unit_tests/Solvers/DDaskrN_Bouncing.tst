@@ -27,7 +27,6 @@ Info = scicos_simulate(scs_m, list());
 scs_m.props.tol(6) = 101;      // Solver
 scicos_simulate(scs_m, Info);  // DDaskr
 ddaskrval = res.values;         // Results
-time = res.time;                // Time
 
 // Modify solver + run IDA + save results
 scs_m.props.tol(6) = 100;     // Solver

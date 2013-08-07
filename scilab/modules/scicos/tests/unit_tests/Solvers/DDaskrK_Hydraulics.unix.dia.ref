@@ -27,7 +27,6 @@ scicos_simulate(scs_m);   // DDaskr
  Flat Modelica : TMPDIR/DDaskr_Hydraulics_test_imf.mo
  Simulation C code :TMPDIR/DDaskr_Hydraulics_test_im.c
 ddaskrval = res.values;         // Results
-time = res.time;                // Time
 // Modify solver + run IDA + save results
 scs_m.props.tol(6) = 100;      // Solver
 scicos_simulate(scs_m);  // IDA
