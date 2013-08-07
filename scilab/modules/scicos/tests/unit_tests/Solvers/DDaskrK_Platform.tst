@@ -9,7 +9,7 @@
 // <-- XCOS TEST -->
 
 // Import diagram
-assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/DDaskr_RLC_test.zcos"));
+assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/DDaskr_Platform_test.zcos"));
 
 // Redefining messagebox() to avoid popup
 prot = funcprot();
@@ -18,22 +18,22 @@ function messagebox(msg, msg_title)
  disp(msg);
 endfunction
 funcprot(prot);
+Info = scicos_simulate(scs_m, list());
 
-for i=2:3
+for i=1:2  // 'max step size' = 10^-i, precision
 
     // Start by updating the clock block period (sampling)
     Context.per = 5*10^-i;
-    Info = scicos_simulate(scs_m, list(), Context);
 
     // Modify solver + run DDaskr + save results
-    scs_m.props.tol(6) = 101;     // Solver
-    scicos_simulate(scs_m, Info); // DDaskr
+    scs_m.props.tol(6) = 102;     // Solver
+    scicos_simulate(scs_m, Info, Context); // DDaskr
     ddaskrval = res.values;       // Results
     time = res.time;              // Time
 
     // Modify solver + run IDA + save results
     scs_m.props.tol(6) = 100;     // Solver
-    scicos_simulate(scs_m, Info); // IDA
+    scicos_simulate(scs_m, Info, Context); // IDA
     idaval = res.values;          // Results
 
     // Compare results
@@ -42,11 +42,12 @@ for i=2:3
     // Extract mean, standard deviation, maximum
     mea = mean(compa);
     [maxi, indexMaxi] = max(compa);
+    maxi, mea
     stdeviation = st_deviation(compa);
 
     // Verifying closeness of the results
-    assert_checktrue(maxi <= 10^-(i+4));
-    assert_checktrue(mea <= 10^-(i+4));
-    assert_checktrue(stdeviation <= 10^-(i+4));
+    assert_checktrue(maxi <= 5*10^-(i+2));
+    assert_checktrue(mea <= 5*10^-(i+2));
+    assert_checktrue(stdeviation <= 5*10^-(i+2));
 
 end

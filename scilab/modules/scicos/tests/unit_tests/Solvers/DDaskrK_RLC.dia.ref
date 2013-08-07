@@ -7,7 +7,7 @@
 // <-- ENGLISH IMPOSED -->
 // <-- XCOS TEST -->
 // Import diagram
-assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/DDaskr_Hydraulics_test.zcos"));
+assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/DDaskr_RLC_test.zcos"));
 // Redefining messagebox() to avoid popup
 prot = funcprot();
 funcprot(0);
@@ -15,32 +15,53 @@ function messagebox(msg, msg_title)
  disp(msg);
 endfunction
 funcprot(prot);
-// Modify solver + run DDaskr + save results
-scs_m.props.tol(6) = 101;       // Solver
-scicos_simulate(scs_m);   // DDaskr
+for i=2:3
+    // Start by updating the clock block period (sampling)
+    Context.per = 5*10^-i;
+    Info = scicos_simulate(scs_m, list(), Context);
+    // Modify solver + run DDaskr + save results
+    scs_m.props.tol(6) = 102;     // Solver
+    scicos_simulate(scs_m, Info); // DDaskr
+    ddaskrval = res.values;       // Results
+    time = res.time;              // Time
+    // Modify solver + run IDA + save results
+    scs_m.props.tol(6) = 100;     // Solver
+    scicos_simulate(scs_m, Info); // IDA
+    idaval = res.values;          // Results
+    // Compare results
+    compa = abs(ddaskrval-idaval);
+    // Extract mean, standard deviation, maximum
+    mea = mean(compa);
+    [maxi, indexMaxi] = max(compa);
+    stdeviation = st_deviation(compa);
+    // Verifying closeness of the results
+    assert_checktrue(maxi <= 10^-(i+4));
+    assert_checktrue(mea <= 10^-(i+4));
+    assert_checktrue(stdeviation <= 10^-(i+4));
+end
 --------------------------------------------\
- Main Modelica : TMPDIR/DDaskr_Hydraulics_test_im.mo
+ Main Modelica : TMPDIR/DDaskr_RLC_test_im.mo
 
- Flat Modelica : TMPDIR/DDaskr_Hydraulics_test_imf.mo
- Simulation C code :TMPDIR/DDaskr_Hydraulics_test_im.c
+ Flat Modelica : TMPDIR/DDaskr_RLC_test_imf.mo
+ Simulation C code :TMPDIR/DDaskr_RLC_test_im.c
  
 !Modelica blocks are reduced to a block with:             !
 !                                                         !
 !Number of differential states: 2                         !
 !                                                         !
-!Number of algebraic states: 5                            !
+!Number of algebraic states: 1                            !
 !                                                         !
 !Number of discrete time states  : 0                      !
 !                                                         !
-!Number of zero-crossing surfaces: 19                     !
+!Number of zero-crossing surfaces: 0                      !
 !                                                         !
-!Number of modes  : 19                                    !
+!Number of modes  : 0                                     !
 !                                                         !
-!Number of inputs : 1                                     !
+!Number of inputs : 0                                     !
 !                                                         !
 !Number of outputs: 1                                     !
 !                                                         !
-!Input/output dependency:[F]                              !
+!Input/output dependency:[T]                              !
 !                                                         !
 !Analytical Jacobian: enabled  (%Jacobian=%t)             !
 !                                                         !
@@ -54,41 +75,40 @@ scicos_simulate(scs_m);   // DDaskr
    Generate a loader file
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
-   ilib_gen_Make: Copy DDaskr_Hydraulics_test_im.c to TMPDIR
+   ilib_gen_Make: Copy DDaskr_RLC_test_im.c to TMPDIR
    ilib_gen_Make: configure : Generate Makefile.
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
    Generate a cleaner file
 Shared archive loaded.
 Link done.
-ddaskrval = res.values;         // Results
-time = res.time;                // Time
-// Modify solver + run IDA + save results
-scs_m.props.tol(6) = 100;       // Solver
-scicos_simulate(scs_m);   // IDA
---------------------------------------------\
- Main Modelica : TMPDIR/DDaskr_Hydraulics_test_im.mo
+Warning : redefining function: dst                     . Use funcprot(0) to avoid this message
 
- Flat Modelica : TMPDIR/DDaskr_Hydraulics_test_imf.mo
- Simulation C code :TMPDIR/DDaskr_Hydraulics_test_im.c
+Warning : redefining function: dst                     . Use funcprot(0) to avoid this message
+
+--------------------------------------------\
+ Main Modelica : TMPDIR/DDaskr_RLC_test_im.mo
+
+ Flat Modelica : TMPDIR/DDaskr_RLC_test_imf.mo
+ Simulation C code :TMPDIR/DDaskr_RLC_test_im.c
  
 !Modelica blocks are reduced to a block with:             !
 !                                                         !
 !Number of differential states: 2                         !
 !                                                         !
-!Number of algebraic states: 5                            !
+!Number of algebraic states: 1                            !
 !                                                         !
 !Number of discrete time states  : 0                      !
 !                                                         !
-!Number of zero-crossing surfaces: 19                     !
+!Number of zero-crossing surfaces: 0                      !
 !                                                         !
-!Number of modes  : 19                                    !
+!Number of modes  : 0                                     !
 !                                                         !
-!Number of inputs : 1                                     !
+!Number of inputs : 0                                     !
 !                                                         !
 !Number of outputs: 1                                     !
 !                                                         !
-!Input/output dependency:[F]                              !
+!Input/output dependency:[T]                              !
 !                                                         !
 !Analytical Jacobian: enabled  (%Jacobian=%t)             !
 !                                                         !
@@ -102,21 +122,14 @@ scicos_simulate(scs_m);   // IDA
    Generate a loader file
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
-   ilib_gen_Make: Copy DDaskr_Hydraulics_test_im.c to TMPDIR
+   ilib_gen_Make: Copy DDaskr_RLC_test_im.c to TMPDIR
    ilib_gen_Make: configure : Generate Makefile.
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
    Generate a cleaner file
 Shared archive loaded.
 Link done.
-idaval = res.values;            // Results
-// Compare results
-compa = abs(ddaskrval-idaval);
-// Extract mean, standard deviation, maximum
-mea = mean(compa);
-[maxi, indexMaxi] = max(compa);
-stdeviation = st_deviation(compa);
-// Verifying closeness of the results
-assert_checktrue(maxi <= 2*10^-(7));
-assert_checktrue(mea <= 2*10^-(7));
-assert_checktrue(stdeviation <= 2*10^-(7));
+Warning : redefining function: dst                     . Use funcprot(0) to avoid this message
+
+Warning : redefining function: dst                     . Use funcprot(0) to avoid this message
+

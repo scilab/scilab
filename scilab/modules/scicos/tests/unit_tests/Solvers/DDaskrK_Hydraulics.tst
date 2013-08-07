@@ -9,7 +9,7 @@
 // <-- XCOS TEST -->
 
 // Import diagram
-assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/DDaskr_Hydraulics_test.zcos"));
+assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/DDaskr_Hydraulics_test.zcos"));
 
 // Redefining messagebox() to avoid popup
 prot = funcprot();
@@ -42,4 +42,3 @@ stdeviation = st_deviation(compa);
 assert_checktrue(maxi <= 2*10^-(6));
 assert_checktrue(mea <= 2*10^-(6));
 assert_checktrue(stdeviation <= 2*10^-(6));
-

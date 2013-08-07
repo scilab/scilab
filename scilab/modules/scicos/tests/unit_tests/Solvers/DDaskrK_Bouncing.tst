@@ -9,7 +9,7 @@
 // <-- XCOS TEST -->
 
 // Import diagram
-assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/DDaskr_Bouncing_test.zcos"));
+assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/DDaskr_Bouncing_test.zcos"));
 
 // Redefining messagebox() to avoid popup
 prot = funcprot();

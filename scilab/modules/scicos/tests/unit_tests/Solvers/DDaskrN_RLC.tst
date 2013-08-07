@@ -9,7 +9,7 @@
 // <-- XCOS TEST -->
 
 // Import diagram
-assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/DDaskr_RLC_test.zcos"));
+assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/DDaskr_RLC_test.zcos"));
 
 // Redefining messagebox() to avoid popup
 prot = funcprot();
@@ -26,7 +26,7 @@ for i=2:3
     Info = scicos_simulate(scs_m, list(), Context);
 
     // Modify solver + run DDaskr + save results
-    scs_m.props.tol(6) = 102;     // Solver
+    scs_m.props.tol(6) = 101;     // Solver
     scicos_simulate(scs_m, Info); // DDaskr
     ddaskrval = res.values;       // Results
     time = res.time;              // Time
