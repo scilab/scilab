@@ -273,9 +273,10 @@ DIST_SUBDIRS = prebuildjava threads operations output_stream arnoldi \
 	interpolation sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms graph xcos \
-	system_env ast symbol parse scinotes parallel modules_manager \
-	ui_data history_browser preferences xml types external_objects \
-	external_objects_java scicos_blocks scicos mpi . javasci
+	system_env ast jit symbol parse scinotes parallel \
+	modules_manager ui_data history_browser preferences xml types \
+	external_objects external_objects_java scicos_blocks scicos \
+	mpi . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -596,10 +597,10 @@ SUBDIRS = prebuildjava threads operations output_stream arnoldi \
 	interpolation sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
-	hdf5 graph xcos system_env ast symbol parse scinotes parallel \
-	modules_manager ui_data history_browser preferences xml types \
-	external_objects $(am__append_1) $(am__append_2) scicos \
-	$(am__append_3) . $(am__append_4)
+	hdf5 graph xcos system_env ast jit symbol parse scinotes \
+	parallel modules_manager ui_data history_browser preferences \
+	xml types external_objects $(am__append_1) $(am__append_2) \
+	scicos $(am__append_3) . $(am__append_4)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -670,6 +671,7 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/threads/libscithreads.la \
 	$(top_builddir)/modules/ast/libsciast.la \
+	$(top_builddir)/modules/jit/libscijit.la \
 	$(top_builddir)/modules/symbol/libscisymbol.la \
 	$(top_builddir)/modules/parse/libsciparse.la \
 	$(top_builddir)/modules/system_env/libscisystem_env.la \

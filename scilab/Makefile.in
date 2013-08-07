@@ -123,11 +123,11 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT)
 @MPI_TRUE@am__append_10 = $(OPENMPI_CXXFLAGS)
 @MPI_TRUE@am__append_11 = $(top_srcdir)/modules/console/src/c/others/initMPI.c
 @MPI_TRUE@am__append_12 = $(OPENMPI_CXXFLAGS)
-@WITH_VMKIT_TRUE@am__append_13 = $(VMKIT_LDFLAGS)
-@WITH_VMKIT_TRUE@am__append_14 = $(VMKIT_LDFLAGS)
+@WITH_VMKIT_TRUE@am__append_13 = $(VMKIT_LDFLAGS) -lz
+@WITH_VMKIT_TRUE@am__append_14 = $(VMKIT_LDFLAGS)  -lz
 @WITH_VMKIT_TRUE@am__append_15 = $(VMKIT_CPPFLAGS)
-@WITH_VMKIT_TRUE@am__append_16 = $(VMKIT_LDADD)
-@WITH_VMKIT_TRUE@am__append_17 = $(VMKIT_LDADD)
+@WITH_VMKIT_TRUE@am__append_16 = $(VMKIT_LDADD) -lz
+@WITH_VMKIT_TRUE@am__append_17 = $(VMKIT_LDADD) -lz
 
 #  The user wants to compile the localization files
 @GENERATE_LOCALIZATION_FILES_TRUE@am__append_18 = localization
@@ -817,6 +817,7 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/parse/includes/ \
 	-I$(top_srcdir)/modules/ast/includes/ \
+	-I$(top_srcdir)/modules/jit/includes/ \
 	-I$(top_srcdir)/modules/symbol/includes/ \
 	-I$(top_srcdir)/modules/functions_manager/includes/ \
 	-I$(top_srcdir)/modules/types/includes/ \

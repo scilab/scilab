@@ -842,7 +842,7 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
 	-I$(top_srcdir)/modules/graphics/includes/ \
 	-I$(top_srcdir)/modules/system_env/includes/ $(EIGEN_CPPFLAGS) \
-	$(XML_FLAGS) $(AM_CPPFLAGS) $(VMKIT_CPPFLAGS) $(am__append_3)
+	$(XML_FLAGS) $(AM_CPPFLAGS) $(am__append_3)
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicore.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscicore-algo.la
@@ -2434,12 +2434,12 @@ uninstall-am: uninstall-libscicore_la_etcDATA \
 src/cpp/storeCommand.cpp \
 src/cpp/banner.cpp \
 src/cpp/with_module.cpp \
-src/cpp/runner.cpp \
-src/cpp/jitter.cpp
+src/cpp/runner.cpp
 	sci_gateway/cpp/sci_format.cpp \
 	sci_gateway/cpp/sci_sciargs.cpp \
 	sci_gateway/cpp/sci_ieee.cpp \
 	sci_gateway/cpp/sci_funcprot.cpp \
+	sci_gateway/cpp/sci_mode.cpp \
 	sci_gateway/cpp/sci_runASTwithVMKit.cpp
 
 # This target enables tests for Scilab

@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0D3FA25B-8116-44EC-A45E-260789DAA3D9}</ProjectGuid>
+    <RootNamespace>ast</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>includes;../symbol/includes;../types/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../operations/includes;../localization/includes;../../libs/intl;../output_stream/includes;../system_env/includes;../string/includes;../api_scilab/includes;../threads/includes;../../libs/Eigen/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
+      <AdditionalDependencies>core.lib;$(SolutionDir)bin\types.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <PreLinkEvent>
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>includes;../symbol/includes;../types/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../operations/includes;../localization/includes;../../libs/intl;../output_stream/includes;../system_env/includes;../string/includes;../api_scilab/includes;../threads/includes;../../libs/Eigen/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
+      <AdditionalDependencies>core.lib;$(SolutionDir)bin\types.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <PreLinkEvent>
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>includes;../symbol/includes;../types/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../operations/includes;../localization/includes;../../libs/intl;../output_stream/includes;../system_env/includes;../string/includes;../api_scilab/includes;../threads/includes;../../libs/Eigen/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
+      <AdditionalDependencies>core.lib;$(SolutionDir)bin\types.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <PreLinkEvent>
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>includes;../symbol/includes;../types/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../operations/includes;../localization/includes;../../libs/intl;../output_stream/includes;../system_env/includes;../string/includes;../api_scilab/includes;../threads/includes;../../libs/Eigen/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
+      <AdditionalDependencies>core.lib;$(SolutionDir)bin\types.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <PreLinkEvent>
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\cpp\debugvisitor.cpp" />
+    <ClCompile Include="src\cpp\libAst.cpp" />
+    <ClCompile Include="src\cpp\macrovarvisitor.cpp" />
+    <ClCompile Include="src\cpp\mutevisitor.cpp" />
+    <ClCompile Include="src\cpp\printvisitor.cpp" />
+    <ClCompile Include="src\cpp\shortcutvisitor.cpp" />
+    <ClCompile Include="src\cpp\visitor_common.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\all.hxx" />
+    <ClInclude Include="includes\alldec.hxx" />
+    <ClInclude Include="includes\allexp.hxx" />
+    <ClInclude Include="includes\allvar.hxx" />
+    <ClInclude Include="includes\anydecs.hxx" />
+    <ClInclude Include="includes\arraylistexp.hxx" />
+    <ClInclude Include="includes\arraylistvar.hxx" />
+    <ClInclude Include="includes\assignexp.hxx" />
+    <ClInclude Include="includes\assignlistexp.hxx" />
+    <ClInclude Include="includes\ast.hxx" />
+    <ClInclude Include="includes\boolexp.hxx" />
+    <ClInclude Include="includes\breakexp.hxx" />
+    <ClInclude Include="includes\callexp.hxx" />
+    <ClInclude Include="includes\caseexp.hxx" />
+    <ClInclude Include="includes\cellcallexp.hxx" />
+    <ClInclude Include="includes\cellexp.hxx" />
+    <ClInclude Include="includes\colonvar.hxx" />
+    <ClInclude Include="includes\commentexp.hxx" />
+    <ClInclude Include="includes\constexp.hxx" />
+    <ClInclude Include="includes\continueexp.hxx" />
+    <ClInclude Include="includes\controlexp.hxx" />
+    <ClInclude Include="includes\debugvisitor.hxx" />
+    <ClInclude Include="includes\dec.hxx" />
+    <ClInclude Include="includes\decls.hxx" />
+    <ClInclude Include="includes\decs.hxx" />
+    <ClInclude Include="includes\dollarvar.hxx" />
+    <ClInclude Include="includes\doubleexp.hxx" />
+    <ClInclude Include="includes\dummyvisitor.hxx" />
+    <ClInclude Include="includes\execvisitor.hxx" />
+    <ClInclude Include="includes\exp.hxx" />
+    <ClInclude Include="includes\fieldexp.hxx" />
+    <ClInclude Include="includes\floatexp.hxx" />
+    <ClInclude Include="includes\forexp.hxx" />
+    <ClInclude Include="includes\functiondec.hxx" />
+    <ClInclude Include="includes\ifexp.hxx" />
+    <ClInclude Include="includes\intexp.hxx" />
+    <ClInclude Include="includes\macrovarvisitor.hxx" />
+    <ClInclude Include="includes\stepvisitor.hxx" />
+    <ClInclude Include="src\cpp\libAst.hxx" />
+    <ClInclude Include="includes\listexp.hxx" />
+    <ClInclude Include="includes\logicalopexp.hxx" />
+    <ClInclude Include="includes\mathexp.hxx" />
+    <ClInclude Include="includes\matrixexp.hxx" />
+    <ClInclude Include="includes\matrixlineexp.hxx" />
+    <ClInclude Include="includes\mutevisitor.hxx" />
+    <ClInclude Include="includes\nilexp.hxx" />
+    <ClInclude Include="includes\notexp.hxx" />
+    <ClInclude Include="includes\opexp.hxx" />
+    <ClInclude Include="includes\printvisitor.hxx" />
+    <ClInclude Include="includes\returnexp.hxx" />
+    <ClInclude Include="includes\run_AssignExp.hxx" />
+    <ClInclude Include="includes\run_CallExp.hxx" />
+    <ClInclude Include="includes\run_MatrixExp.hxx" />
+    <ClInclude Include="includes\run_OpExp.hxx" />
+    <ClInclude Include="includes\runvisitor.hxx" />
+    <ClInclude Include="includes\selectexp.hxx" />
+    <ClInclude Include="includes\seqexp.hxx" />
+    <ClInclude Include="includes\shortcutvisitor.hxx" />
+    <ClInclude Include="includes\simplevar.hxx" />
+    <ClInclude Include="includes\stringexp.hxx" />
+    <ClInclude Include="includes\timedvisitor.hxx" />
+    <ClInclude Include="includes\token.hxx" />
+    <ClInclude Include="includes\transposeexp.hxx" />
+    <ClInclude Include="includes\trycatchexp.hxx" />
+    <ClInclude Include="includes\var.hxx" />
+    <ClInclude Include="includes\vardec.hxx" />
+    <ClInclude Include="includes\visitor.hxx" />
+    <ClInclude Include="includes\visitor_common.hxx" />
+    <ClInclude Include="includes\whileexp.hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\bin\blasplus.lib" />
+    <Library Include="..\..\bin\lapack.lib" />
+    <Library Include="..\..\bin\libintl.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
+      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\console\src\c\console.vcxproj">
+      <Project>{445d3b85-c9b1-498b-9c88-0a3c2390b1cc}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\operations\operations.vcxproj">
+      <Project>{1bb396f7-ce61-4cfc-9c22-266b2cfb2e74}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\symbol\symbol.vcxproj">
+      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\system_env\system_env.vcxproj">
+      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\threads\threads.vcxproj">
+      <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\types\typesmacro\typesmacro.vcxproj">
+      <Project>{9252a034-7f22-4cb1-a634-4577da69f2d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="ast-tools\ast-tools.vcxproj">
+      <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="core_Import.def" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

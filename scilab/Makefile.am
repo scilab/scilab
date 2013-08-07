@@ -64,6 +64,7 @@ scilab_bin_CPPFLAGS = \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/parse/includes/ \
 -I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/jit/includes/ \
 -I$(top_srcdir)/modules/symbol/includes/ \
 -I$(top_srcdir)/modules/functions_manager/includes/ \
 -I$(top_srcdir)/modules/types/includes/ \
@@ -124,11 +125,11 @@ scilab_cli_bin_CPPFLAGS += $(OPENMPI_CXXFLAGS)
 endif
 
 if WITH_VMKIT
-scilab_bin_LDFLAGS              += $(VMKIT_LDFLAGS)
-scilab_cli_bin_LDFLAGS          += $(VMKIT_LDFLAGS)
+scilab_bin_LDFLAGS              += $(VMKIT_LDFLAGS) -lz
+scilab_cli_bin_LDFLAGS          += $(VMKIT_LDFLAGS)  -lz
 AM_CPPFLAGS                     += $(VMKIT_CPPFLAGS)
-scilab_bin_LDADD                += $(VMKIT_LDADD)
-scilab_cli_bin_LDADD            += $(VMKIT_LDADD)
+scilab_bin_LDADD                += $(VMKIT_LDADD) -lz
+scilab_cli_bin_LDADD            += $(VMKIT_LDADD) -lz
 endif
 
 if NEED_JAVA
