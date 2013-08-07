@@ -89,5 +89,6 @@
 <module name="external_objects" activate="no"/>
 <module name="operations" activate="yes"/>
 <module name="ast" activate="yes"/>
+<module name="jit" activate="yes"/>
 </modules>
 
