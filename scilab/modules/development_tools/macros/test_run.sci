@@ -273,9 +273,9 @@ function test_run_result = test_run(varargin)
         test_failed_percent  = 0;
     end
 
-    if isfield(params, "exportFile") then
+//    if isfield(params, "exportFile") then
         //exportToXUnitFormat(params.exportFile, status.testsuites);
-    end
+//    end
 
     if params.full_summary then
         printf("\n");
@@ -288,10 +288,10 @@ function test_run_result = test_run(varargin)
         printf("   length             %4.2f sec\n", status.totalTime);
         printf("   --------------------------------------------------------------------------\n");
 
-        if isfield(params, "exportFile") then
-            printf("   Export to          %s\n", params.exportFile);
-            printf("   --------------------------------------------------------------------------\n");
-        end
+        // if isfield(params, "exportFile") then
+        //     printf("   Export to          %s\n", params.exportFile);
+        //     printf("   --------------------------------------------------------------------------\n");
+        // end
 
         if status.test_failed_count > 0 then
             printf("   Details\n\n");
@@ -508,6 +508,7 @@ function status = test_single(_module, _testPath, _testName)
     graphic       = %F;
     mpi           = %F;
     execMode      = "";
+    jit           = %F;
     platform      = "all";
     language      = "any";
     //try_catch     = %T; // Scilab 5.4.0
@@ -645,6 +646,11 @@ function status = test_single(_module, _testPath, _testName)
         jvm = %T;
     end
 
+    if ~isempty(grep(sciFile, "<-- JIT TEST -->")) then
+        jit = %t;
+        execMode = "NWNI";
+    end
+
     // Language
     if ~isempty(grep(sciFile, "<-- FRENCH IMPOSED -->")) then
         language = "fr_FR";
@@ -697,6 +703,13 @@ function status = test_single(_module, _testPath, _testName)
     "tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"
     ];
 
+    if jit then
+        head = [
+        head;
+        "runVMKit();"
+        ];
+    end
+
     if xcosNeeded then
         head = [
         head;
@@ -741,7 +754,6 @@ function status = test_single(_module, _testPath, _testName)
 
     //Build final test
     sciFile = [head ; sciFile ; tail];
-
 
     //Build command to execute
 
