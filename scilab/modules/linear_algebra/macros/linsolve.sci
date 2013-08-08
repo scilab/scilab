@@ -21,7 +21,7 @@ function [x0,kerA]=linsolve(A,b,x0)
         W=W(:,1:na-rk);last=W(na,:);
         [W2,rk1]=colcomp(last);
         if rk1==0 then
-            warning(gettext("Conflicting linear constraints!"));
+            warning(gettext("Conflicting linear constraints."));
             x0=[];kerA=[];return;
         end
         W=W*W2;

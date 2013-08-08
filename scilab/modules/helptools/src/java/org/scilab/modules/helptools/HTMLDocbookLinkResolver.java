@@ -290,6 +290,7 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(false);
         factory.setNamespaceAware(true);
+        factory.setXIncludeAware(true);
 
         try {
             SAXParser parser = factory.newSAXParser();

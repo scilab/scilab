@@ -27,7 +27,7 @@
 SCICOS_BLOCKS_IMPEXP void extract_bit_32_UH1(scicos_block *block, int flag)
 {
     int i = 0, maxim = 0;
-    long *y = NULL, *u = NULL, ref = 0, n = 0;
+    SCSINT32_COP *y = NULL, *u = NULL, ref = 0, n = 0;
     y = Getint32OutPortPtrs(block, 1);
     u = Getint32InPortPtrs(block, 1);
     maxim = 32;

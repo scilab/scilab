@@ -40,13 +40,13 @@ function [x,y,typ]=MATMAGPHI(job,arg1,arg2)
             if ~ok then break,end
             label=lab
             if (decomptyp==1) then
-                junction_name="matz_abs";
+                function_name="matz_abs";
                 in=[-1 -2];
                 it=2;
                 out=[-1 -2;-1 -2];
                 ot=[1 1];
             elseif (decomptyp==2) then
-                junction_name="matz_absc";
+                function_name="matz_absc";
                 in=[-1 -2;-1 -2];
                 it=[1 1];
                 out=[-1 -2];
@@ -58,7 +58,7 @@ function [x,y,typ]=MATMAGPHI(job,arg1,arg2)
                 [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
             end
             if ok then
-                model.sim=list(junction_name,funtyp);
+                model.sim=list(function_name,funtyp);
                 arg1.model=model
                 graphics.exprs=label
                 arg1.graphics=graphics
@@ -68,9 +68,9 @@ function [x,y,typ]=MATMAGPHI(job,arg1,arg2)
         end
     case "define" then
         model=scicos_model()
-        junction_name="matz_abs";
+        function_name="matz_abs";
         funtyp=4;
-        model.sim=list(junction_name,funtyp)
+        model.sim=list(function_name,funtyp)
         model.in=-1
         model.in2=-2
         model.intyp=2

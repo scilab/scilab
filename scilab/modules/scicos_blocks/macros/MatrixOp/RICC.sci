@@ -55,9 +55,9 @@ function [x,y,typ]=RICC(job,arg1,arg2)
         end
     case "define" then
         model=scicos_model()
-        junction_name="ricc_m";
+        function_name="ricc_m";
         funtyp=4;
-        model.sim=list(junction_name,funtyp)
+        model.sim=list(function_name,funtyp)
         model.in=[-1;-1;-1]
         model.in2=[-1;-1;-1]
         model.intyp=[1 1 1]

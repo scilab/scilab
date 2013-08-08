@@ -20,9 +20,9 @@ data_ref = [49 44 49];
 if getos() == "Windows" then
     eol = [13 10]; //CRLF
 elseif getos()=="Darwin" then
-    eol = [10]; //LF
-else
     eol = [13]; //CR
+else
+    eol = [10]; //LF
 end
 
 ref = [data_ref, eol, data_ref, eol];
@@ -32,7 +32,7 @@ stringIn = mgetl(fileOut);
 
 info = fileinfo(fileOut);
 fd = mopen(fileOut, "rb");
-data_read = mget(info(1), "c", fd)
+data_read = mget(info(1), "c", fd);
 mclose(fd);
 
 assert_checkequal(data_read, ref);

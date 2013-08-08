@@ -36,7 +36,7 @@ function x=%s_pow(a,p)
         else
             [s,u,bs]=bdiag(p+0*%i);
             if max(bs)>1 then
-                error(msprintf(_("%s: unable to diagonalize!"),"%s_pow"));
+                error(msprintf(_("%s: Unable to diagonalize.\n"),"%s_pow"));
             end
             w=diag(s);
             x=u*diag(a.^diag(s))*inv(u);
@@ -59,7 +59,7 @@ function x=%s_pow(a,p)
             r=and(imag(a)==0)
             [s,u,bs]=bdiag(a+0*%i);
             if max(bs)>1 then
-                error(msprintf(_("%s: unable to diagonalize!"),"%s_pow"));
+                error(msprintf(_("%s: Unable to diagonalize.\n"),"%s_pow"));
             end
             x=u*diag(diag(s).^p)*inv(u);
         end

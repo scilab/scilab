@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-06-25 16:31+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: includes/spDefs.h, line: 379
 #, c-format
@@ -40,7 +40,7 @@ msgid "Operation count for inner loop of factorization = %d.\n"
 msgstr ""
 
 #
-# File: src/c/spFactor.c, line: 3399
+# File: src/c/spFactor.c, line: 3395
 #, c-format
 msgid "Pivot found at %1d,%1d using "
 msgstr ""
@@ -315,17 +315,17 @@ msgstr ""
 
 #
 # File: macros/chfact.sci, line: 59
-msgid "Nonpositive diag. encountered, matrix is not positive def."
+msgid "Non-positive diagonal encountered, matrix is not positive definite."
 msgstr ""
 
 #
 # File: macros/chfact.sci, line: 61
-msgid "Insufficient working storage in blkfct, temp(*)"
+msgid "Insufficient working storage in blkfct, temp(*)."
 msgstr ""
 
 #
 # File: macros/chfact.sci, line: 63
-msgid "Insufficient working storage in blkfct, iwork(*)"
+msgid "Insufficient working storage in blkfct, iwork(*)."
 msgstr ""
 
 #

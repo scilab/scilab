@@ -42,14 +42,14 @@ function [x,y,typ]=MATTRAN(job,arg1,arg2)
             ["Datatype(1=real double 2=Complex)";"rule (1=.'' 2='')"],list("vec",1,"vec",1),label)
             if ~ok then break,end
             if (typ==1) then
-                junction_name="mattran_m";
+                function_name="mattran_m";
                 ot=1;
                 it=1;
             elseif (typ==2) then
                 if rule==1 then
-                    junction_name="matztran_m";
+                    function_name="matztran_m";
                 else
-                    junction_name="mathermit_m";
+                    function_name="mathermit_m";
                 end
                 ot=2;
                 it=2;
@@ -61,7 +61,7 @@ function [x,y,typ]=MATTRAN(job,arg1,arg2)
             if ok then
                 label=exprs;
                 [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
-                model.sim=list(junction_name,funtyp);
+                model.sim=list(function_name,funtyp);
                 graphics.exprs=label;
                 arg1.graphics=graphics;arg1.model=model;
                 x=arg1

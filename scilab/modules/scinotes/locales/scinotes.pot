@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-06-25 16:31+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/gw_scinotes.c, line: 37
 #, c-format
@@ -234,27 +234,27 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 27
-# File: scilab_fake_localization_file.c, line: 97
+# File: scilab_fake_localization_file.c, line: 98
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 71
 msgid "Cut"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 28
-# File: scilab_fake_localization_file.c, line: 96
+# File: scilab_fake_localization_file.c, line: 97
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 72
 msgid "Copy"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 29
-# File: scilab_fake_localization_file.c, line: 101
+# File: scilab_fake_localization_file.c, line: 102
 msgid "Copy as HTML with line number"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 30
-# File: scilab_fake_localization_file.c, line: 98
+# File: scilab_fake_localization_file.c, line: 99
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 73
 msgid "Paste"
 msgstr ""
@@ -272,7 +272,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 33
-# File: scilab_fake_localization_file.c, line: 99
+# File: scilab_fake_localization_file.c, line: 100
 msgid "Paste Column"
 msgstr ""
 
@@ -283,14 +283,14 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 35
-# File: scilab_fake_localization_file.c, line: 94
+# File: scilab_fake_localization_file.c, line: 95
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 74
 msgid "Select All"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 36
-# File: scilab_fake_localization_file.c, line: 95
+# File: scilab_fake_localization_file.c, line: 96
 msgid "Select current block"
 msgstr ""
 
@@ -378,7 +378,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 52
-# File: scilab_fake_localization_file.c, line: 100
+# File: scilab_fake_localization_file.c, line: 101
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 83
 msgid "Correct Indentation"
 msgstr ""
@@ -464,7 +464,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 68
-# File: scilab_fake_localization_file.c, line: 813
+# File: scilab_fake_localization_file.c, line: 747
 msgid "Scinotes General settings"
 msgstr ""
 
@@ -522,7 +522,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 79
-# File: scilab_fake_localization_file.c, line: 92
+# File: scilab_fake_localization_file.c, line: 93
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 227
 msgid "Copy selection in a new tab"
 msgstr ""
@@ -576,7 +576,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 89
-# File: scilab_fake_localization_file.c, line: 102
+# File: scilab_fake_localization_file.c, line: 92
 msgid "Help on ;Help on selection"
 msgstr ""
 
@@ -592,305 +592,311 @@ msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 93
+# File: scilab_fake_localization_file.c, line: 94
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 226
 msgid "Complete"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 646
+# File: scilab_fake_localization_file.c, line: 648
 msgid "Display"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 651
+# File: scilab_fake_localization_file.c, line: 653
 msgid "Header"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 662
+# File: scilab_fake_localization_file.c, line: 664
 msgid "Autosave"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 677
+# File: scilab_fake_localization_file.c, line: 674
 msgid "Editor"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 683
+# File: scilab_fake_localization_file.c, line: 677
 msgid "Use Scinotes"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 719
+# File: scilab_fake_localization_file.c, line: 697
 msgid "External editor: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 753
+# File: scilab_fake_localization_file.c, line: 716
 msgid "(Don't forget to quote path containing white spaces)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 773
+# File: scilab_fake_localization_file.c, line: 726
 msgid "Scilab command: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 823
+# File: scilab_fake_localization_file.c, line: 752
 msgid "Restore previous session on start-up"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 835
+# File: scilab_fake_localization_file.c, line: 759
 msgid "Add carriage return at the end of the file."
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 841
+# File: scilab_fake_localization_file.c, line: 763
 msgid "Number of recently opened files to display: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 862
+# File: scilab_fake_localization_file.c, line: 778
 msgid "Default file encoding: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 882
+# File: scilab_fake_localization_file.c, line: 790
 msgid "Default End-Of-Line: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 957
+# File: scilab_fake_localization_file.c, line: 831
 msgid "General display options"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 961
+# File: scilab_fake_localization_file.c, line: 833
 msgid "Highlight current line: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 985
+# File: scilab_fake_localization_file.c, line: 846
 msgid "Show line numbers: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 995
+# File: scilab_fake_localization_file.c, line: 852
 msgid "Whereami compatible"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1005
+# File: scilab_fake_localization_file.c, line: 858
 msgid "Normal"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1015
+# File: scilab_fake_localization_file.c, line: 864
 msgid "Wrap lines"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1025
+# File: scilab_fake_localization_file.c, line: 870
 msgid "Background color: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1036
+# File: scilab_fake_localization_file.c, line: 877
 msgid "Cursor color: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1052
+# File: scilab_fake_localization_file.c, line: 888
 msgid "Keywords"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1056
+# File: scilab_fake_localization_file.c, line: 890
 msgid "Enable keywords colorization"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1068
+# File: scilab_fake_localization_file.c, line: 897
 msgid "Set syntax Colors"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1074
+# File: scilab_fake_localization_file.c, line: 900
 msgid "Highlight corresponding brackets"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1086
-# File: scilab_fake_localization_file.c, line: 1150
+# File: scilab_fake_localization_file.c, line: 906
+# File: scilab_fake_localization_file.c, line: 950
 msgid "Color: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1100
-# File: scilab_fake_localization_file.c, line: 1164
+# File: scilab_fake_localization_file.c, line: 913
+# File: scilab_fake_localization_file.c, line: 957
 msgid "Highlight on mouse over"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1112
-# File: scilab_fake_localization_file.c, line: 1176
+# File: scilab_fake_localization_file.c, line: 919
+# File: scilab_fake_localization_file.c, line: 963
 msgid "Style: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1119
-# File: scilab_fake_localization_file.c, line: 1183
+# File: scilab_fake_localization_file.c, line: 925
+# File: scilab_fake_localization_file.c, line: 969
 msgid "Filled"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1124
-# File: scilab_fake_localization_file.c, line: 1188
+# File: scilab_fake_localization_file.c, line: 930
+# File: scilab_fake_localization_file.c, line: 974
 msgid "Framed"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1129
+# File: scilab_fake_localization_file.c, line: 935
 msgid "Underlined"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1138
+# File: scilab_fake_localization_file.c, line: 943
 msgid "Highlight corresponding keywords (e.g. if ... end)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1203
+# File: scilab_fake_localization_file.c, line: 986
 msgid "Tabulation and Indentation"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1207
+# File: scilab_fake_localization_file.c, line: 988
 msgid "Tabulation size: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1228
+# File: scilab_fake_localization_file.c, line: 1004
 msgid "Use space"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1262
+# File: scilab_fake_localization_file.c, line: 1021
 msgid "Representation: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1264
+# File: scilab_fake_localization_file.c, line: 1023
 msgid "Chevrons"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1274
+# File: scilab_fake_localization_file.c, line: 1029
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 302
 msgid "Horizontal rule"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1284
+# File: scilab_fake_localization_file.c, line: 1035
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 303
 msgid "Vertical rule"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1296
+# File: scilab_fake_localization_file.c, line: 1041
 msgid "Enable auto indentation"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1306
+# File: scilab_fake_localization_file.c, line: 1047
 msgid "Indent size: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1336
+# File: scilab_fake_localization_file.c, line: 1069
 msgid "Enable autosave in Scinotes"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1348
+# File: scilab_fake_localization_file.c, line: 1077
 msgid "Save options"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1352
+# File: scilab_fake_localization_file.c, line: 1079
 msgid "Save every "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1372
+# File: scilab_fake_localization_file.c, line: 1094
 msgid " minutes "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1382
+# File: scilab_fake_localization_file.c, line: 1102
 msgid "Close options"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1384
+# File: scilab_fake_localization_file.c, line: 1103
 msgid "Delete automatically saved files"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1398
+# File: scilab_fake_localization_file.c, line: 1113
 msgid "Filename"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1402
+# File: scilab_fake_localization_file.c, line: 1115
 msgid "Append filename with: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1436
+# File: scilab_fake_localization_file.c, line: 1133
+#, c-format
+msgid "(%date can be used to be replaced by the current date)"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1141
 msgid "Replace extension with: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1474
+# File: scilab_fake_localization_file.c, line: 1164
 msgid "Location"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1478
+# File: scilab_fake_localization_file.c, line: 1166
 msgid "Source file directory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1488
+# File: scilab_fake_localization_file.c, line: 1172
 msgid "Single directory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1501
+# File: scilab_fake_localization_file.c, line: 1181
 msgid "Choose an autosave directory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1533
+# File: scilab_fake_localization_file.c, line: 1198
 msgid "Default header"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1537
+# File: scilab_fake_localization_file.c, line: 1200
 msgid "Add a default header to new file"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/scinotes/actions/SciNotesCompletionAction.java, line: 312
+# File: src/java/org/scilab/modules/scinotes/actions/SciNotesCompletionAction.java, line: 313
 msgid "Graphics handle field"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/scinotes/actions/SciNotesCompletionAction.java, line: 317
+# File: src/java/org/scilab/modules/scinotes/actions/SciNotesCompletionAction.java, line: 318
 msgid "No help"
 msgstr ""
 

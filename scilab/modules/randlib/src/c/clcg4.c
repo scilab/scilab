@@ -239,7 +239,7 @@ int set_seed_clcg4(int g, double s0, double s1, double s2, double s3)
         init_generator_clcg4(g, InitialSeed);
         if (getWarningMode())
         {
-            sciprint(_("WARNING: %s\n"), _("be aware that you have may lost synchronization\n    between the virtual gen %d and the others !\n    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."), g);
+            sciprint(_("WARNING: %s\n"), _("be aware that you may have lost synchronization\n    between the virtual generator %d and the others.\n    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."), g);
         }
         return ( 1 );
     }

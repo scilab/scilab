@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-09-01 09:49+0000\n"
+"PO-Revision-Date: 2013-06-26 01:17+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: \n"
 
 #, c-format
@@ -82,11 +82,15 @@ msgid "%s: SB10FD exit with info = %d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: TASK must be a scalar.\n"
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为实数。\n"
+
+#, c-format
+msgid "%s: %s must be a scalar.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: TASK has 1, 2 or 3 the only admissible values.\n"
+msgid "%s: Wrong value for %s: %d, %d or %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -94,28 +98,16 @@ msgid "%s: TASK = 1 : LINMEQ requires at least 4 input arguments.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: TRANS must be a scalar.\n"
+msgid "%s: Wrong value for %s: %d, %d, %d or %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: TRANS has 0, 1, 2 or 3 the only admissible values.\n"
+msgid "%s: Wrong value for %s: %d, or %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: TRANS has 0 or 1 the only admissible values.\n"
+msgid "%s: Wrong value for %s: %d or %d expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: SCHUR must be a scalar.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: SCHUR has 1 or 2 the only admissible values.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
@@ -166,14 +158,13 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Warning: the right hand sides were scaled by %lf to avoid overflow."
+msgid "%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"
 msgstr ""
 
 #, c-format
 msgid ""
 "%s: Warning: the equation is (almost) singular. Perturbed values have been "
-"used."
+"used.\n"
 msgstr ""
 
 #, c-format
@@ -569,12 +560,12 @@ msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为detectable system。\n"
 
 #, c-format
-msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
-msgstr "%s:直接馈通设置的零度系数。\n"
+msgid "%s: Wrong type for input argument #%d: A proper system expected\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Direct feedthrough set to zero.\n"
-msgstr "%s:直接馈通设置为零。\n"
+msgid "%s: Wrong type for input argument #%d: A SIMO expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Simulation failed before final time is reached.\n"

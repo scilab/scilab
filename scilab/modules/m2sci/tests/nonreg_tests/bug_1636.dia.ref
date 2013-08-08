@@ -5,7 +5,7 @@
 //
 // <-- Short Description -->
 //    When processing an m-file with multiple continuation lines in the
-//    initial funtion statement, i.e the first line, I received an index
+//    initial function statement, i.e the first line, I received an index
 //    error in  line 181 of m2sci_syntax. On investigation, I found the index
 //    k was zero and traced this to lines 141 and 171 which set k=k-1 after
 //    appending line k to line k-1. I have produced a modified

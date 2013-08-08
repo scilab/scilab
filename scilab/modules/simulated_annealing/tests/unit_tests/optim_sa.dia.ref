@@ -100,18 +100,20 @@ T0 = compute_initial_temp(x0, quad , 0.7, 100, saparams);
 // This allows to check that the output function really allows to 
 // stop the algorithm.
 [x_best, f_best, mean_list, var_list, temp_list, f_history, x_history , iter ] = optim_sa(x0, quad , 1e6, 100, T0, %f, saparams);
-Iter = #1   , 	 x_best=[  -1.000D+00   -1.000D+00], f_best =    4.100D+01, T =    1.454D+00
-Iter = #2   , 	 x_best=[  -4.080D-01   -3.183D-01], f_best =    3.044D+01, T =    1.308D+00
-Iter = #3   , 	 x_best=[  -2.314D-01   -4.811D-01], f_best =    3.002D+01, T =    1.177D+00
-Iter = #4   , 	 x_best=[   6.618D-01    8.374D-02], f_best =    1.965D+01, T =    1.060D+00
-Iter = #5   , 	 x_best=[   9.314D-01    8.207D-01], f_best =    1.417D+01, T =    9.537D-01
-Iter = #6   , 	 x_best=[   1.850D+00    1.222D+00], f_best =    7.784D+00, T =    8.583D-01
-Iter = #7   , 	 x_best=[   2.540D+00    1.415D+00], f_best =    4.646D+00, T =    7.725D-01
-Iter = #8   , 	 x_best=[   3.206D+00    2.394D+00], f_best =    9.970D-01, T =    6.952D-01
-Iter = #9   , 	 x_best=[   3.165D+00    2.633D+00], f_best =    8.318D-01, T =    6.257D-01
-Iter = #10  , 	 x_best=[   3.165D+00    2.633D+00], f_best =    8.318D-01, T =    5.631D-01
-Iter = #11  , 	 x_best=[   3.165D+00    2.633D+00], f_best =    8.318D-01, T =    5.068D-01
-Iter = #12  , 	 x_best=[   3.961D+00    2.904D+00], f_best =    1.075D-02, T =    4.561D-01
+Iter = #1   , 	 x_best=[  -1.000D+00   -1.000D+00], f_best =    4.100D+01, T =    1.608D+00
+Iter = #2   , 	 x_best=[   1.078D-01    1.127D-01], f_best =    2.349D+01, T =    1.447D+00
+Iter = #3   , 	 x_best=[   6.984D-01    4.624D-01], f_best =    1.734D+01, T =    1.302D+00
+Iter = #4   , 	 x_best=[   8.860D-01    8.590D-01], f_best =    1.428D+01, T =    1.172D+00
+Iter = #5   , 	 x_best=[   1.012D+00    1.526D+00], f_best =    1.110D+01, T =    1.055D+00
+Iter = #6   , 	 x_best=[   2.233D+00    1.673D+00], f_best =    4.883D+00, T =    9.493D-01
+Iter = #7   , 	 x_best=[   2.884D+00    2.775D+00], f_best =    1.295D+00, T =    8.543D-01
+Iter = #8   , 	 x_best=[   3.356D+00    2.657D+00], f_best =    5.322D-01, T =    7.689D-01
+Iter = #9   , 	 x_best=[   3.356D+00    2.657D+00], f_best =    5.322D-01, T =    6.920D-01
+Iter = #10  , 	 x_best=[   3.356D+00    2.657D+00], f_best =    5.322D-01, T =    6.228D-01
+Iter = #11  , 	 x_best=[   3.985D+00    2.319D+00], f_best =    4.644D-01, T =    5.605D-01
+Iter = #12  , 	 x_best=[   4.048D+00    2.653D+00], f_best =    1.230D-01, T =    5.045D-01
+Iter = #13  , 	 x_best=[   4.048D+00    2.653D+00], f_best =    1.230D-01, T =    4.540D-01
+Iter = #14  , 	 x_best=[   3.942D+00    2.813D+00], f_best =    3.844D-02, T =    4.086D-01
 assert_checkalmostequal ( x_best , [4 3] ,  1.e-1 );
 assert_checkalmostequal ( f_best , 0 ,  [] , 1.e-1 );
 assert_checkequal ( iter > 0 , %t );

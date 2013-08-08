@@ -40,7 +40,7 @@
         <title>Description</title>
         <para>
             <literal>krac2(sys)</literal> computes the gains <literal>g</literal> such that the system
-            <literal>sys</literal> fedback by g (<literal>sys/.g</literal>) has  2 real equal poles.
+            <literal>sys</literal> feedback by g (<literal>sys/.g</literal>) has  2 real equal poles.
         </para>
     </refsection>
     <refsection>

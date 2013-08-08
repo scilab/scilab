@@ -37,7 +37,7 @@ function parentNode = uiGetParentNode(tree, node)
             isPosition = %T;
 
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree or String expected.\n"), "uiGetParentNode",2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: String or uitree expected.\n"), "uiGetParentNode",2));
             return;
         end
     end

@@ -45,9 +45,9 @@ assert_checkerror("h5write(a.root.mnt.Group_2, ""Dataset_2"", uint32([10 11;12 1
 h5write(a.root.mnt.Group_2, "Dataset_2", uint32([10 11 2;12 13 9]));
 h5umount(a, "/mnt");
 assert_checkequal(a.root.mnt.Groups,"Group_1");
-assert_checkequal(c.root.Group_2.Dataset_2.data,uint32([10 11 2;12 13 9])');
+assert_checkequal(c.root.Group_2.Dataset_2.data,uint32([10 11 2;12 13 9]));
 h5rm(a, "/mnt")
-assert_checkequal(c.root.Group_2.Dataset_2.data,uint32([10 11 2;12 13 9])');
+assert_checkequal(c.root.Group_2.Dataset_2.data,uint32([10 11 2;12 13 9]));
 h5close(a, b, c)
-assert_checkequal(h5read(TMPDIR+"/test2.h5","/Group_2/Dataset_2"),uint32([10 11 2;12 13 9])');
+assert_checkequal(h5read(TMPDIR+"/test2.h5","/Group_2/Dataset_2"),uint32([10 11 2;12 13 9]));
 

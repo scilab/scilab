@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import org.scilab.modules.xcos.palette.PaletteManager;
@@ -61,6 +62,7 @@ public class PaletteManagerPanel extends JSplitPane {
 
         TreeNode root = controller.getRoot();
         JTree tree = new JTree(new PaletteTreeModel(root));
+        JScrollPane treeScrollPane = new JScrollPane(tree);
 
         /** Setup tree */
         tree.getSelectionModel().setSelectionMode(
@@ -71,10 +73,11 @@ public class PaletteManagerPanel extends JSplitPane {
 
         tree.setEditable(false);
         tree.setDragEnabled(true);
+        tree.setExpandsSelectedPaths(true);
         tree.setDropMode(DropMode.INSERT);
         tree.setTransferHandler(new PaletteTreeTransferHandler());
 
-        setLeftComponent(new JScrollPane(tree));
+        setLeftComponent(treeScrollPane);
         panel.setViewportView(rootPalette);
         setRightComponent(panel);
     }
@@ -110,8 +113,11 @@ public class PaletteManagerPanel extends JSplitPane {
                      .getView();
 
         /* Tree layout */
-        tree.expandRow(1);
-        tree.setSelectionRow(2);
+        final Object root = tree.getModel().getRoot();
+        final Object firstChild = tree.getModel().getChild(root, 0);
+        final Object secondChild = tree.getModel().getChild(firstChild, 0);
+        tree.setSelectionPath(new TreePath(new Object[] {root, firstChild, secondChild}));
+
         tree.setRootVisible(false);
         tree.setScrollsOnExpand(true);
 

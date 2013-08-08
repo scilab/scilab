@@ -102,6 +102,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     private final boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
     private Dimension lastDimension;
     private Point lastPosition;
+    private boolean isRestoring;
 
     /**
      * Constructor
@@ -109,7 +110,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     public SwingScilabWindow() {
         super();
         this.uuid = UUID.randomUUID().toString();
-
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         // By default ctrl+w close the window
@@ -186,6 +186,14 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         sciDockingListener.setAssociatedWindowId(windowUID);
 
         allScilabWindows.put(windowUID, this);
+    }
+
+    public void setIsRestoring(boolean b) {
+        isRestoring = b;
+    }
+
+    public boolean isRestoring() {
+        return isRestoring;
     }
 
     /**
@@ -498,6 +506,18 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         }
     }
 
+    public boolean compareMenuBar(MenuBar mb) {
+        if (mb == null ^ this.menuBar == null) {
+            return false;
+        }
+
+        if (mb == null && this.menuBar == null) {
+            return true;
+        }
+
+        return mb.getAsSimpleMenuBar() == this.menuBar;
+    }
+
     /**
      * Sets a Scilab ToolBar to a Scilab window
      * @param newToolBar the Scilab ToolBar to set to the Scilab window
@@ -525,6 +545,18 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         }
     }
 
+    public boolean compareToolBar(ToolBar tb) {
+        if (tb == null ^ this.toolBar == null) {
+            return false;
+        }
+
+        if (tb == null && this.toolBar == null) {
+            return true;
+        }
+
+        return tb.getAsSimpleToolBar() == this.toolBar;
+    }
+
     /**
      * Sets a Scilab InfoBar to a Scilab window
      * @param newInfoBar the Scilab InfoBar to set to the Scilab window
@@ -550,6 +582,18 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             }
             //  else nothing to do element alredy set
         }
+    }
+
+    public boolean compareInfoBar(TextBox ib) {
+        if (ib == null ^ this.infoBar == null) {
+            return false;
+        }
+
+        if (ib == null && this.infoBar == null) {
+            return true;
+        }
+
+        return ib.getAsSimpleTextBox() == this.infoBar;
     }
 
     /**

@@ -53,9 +53,10 @@ public final class XcosMessages {
     /* Edit Menu */
     public static final String EDIT = Messages.gettext("Edit");
     public static final String BLOCK_PARAMETERS = Messages.gettext("Block Parameters") + DOTS;
-    public static final String REGION_TO_SUPERBLOCK = Messages.gettext("Region to superblock");
+    public static final String REGION_TO_SUPERBLOCK = Messages.gettext("Selection to superblock");
     public static final String SUPERBLOCK_MASK = Messages.gettext("Superblock mask");
     public static final String CREATE = Messages.gettext("Create");
+    public static final String RENAME = Messages.gettext("Rename");
     public static final String REMOVE = Messages.gettext("Remove");
     public static final String CUSTOMIZE = Messages.gettext("Customize") + DOTS;
     public static final String SAVE_BLOCK_GUI = Messages.gettext("Save block GUI");
@@ -67,6 +68,7 @@ public final class XcosMessages {
     public static final String CREATE_CATEGORY = Messages.gettext("Create a category");
     public static final String ADDTO_CATEGORY = Messages.gettext("Add to a new category");
     public static final String DEFAULT_CATEGORY_NAME = Messages.gettext("Category");
+    public static final String ASK_FOR_A_NAME = Messages.gettext("Enter a name");
 
     public static final String DUMP = Messages.gettext("Dump");
     public static final String VIEW_IN_SCICOS = Messages.gettext("View in Scicos");

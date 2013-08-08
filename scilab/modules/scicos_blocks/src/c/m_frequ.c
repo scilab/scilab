@@ -31,7 +31,7 @@ SCICOS_BLOCKS_IMPEXP void m_frequ(scicos_block *block, int flag)
     double *mat = NULL;
     double *Dt = NULL;
     double *off = NULL;
-    long *icount = NULL;
+    SCSINT32_COP *icount = NULL;
     double t = 0.0;
     long long *counter = NULL;
     int m = 0;

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -97,9 +97,8 @@ msgid "%s: Wrong type for input argument #%d: A double matrix expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána dvojitá matice.\n"
 
 #, c-format
-msgid "%s: Wrogn size for input argument #%d: five row vector expected.\n"
+msgid "%s: Wrong size for input argument #%d: Five row vector expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor s pěti řádky.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
@@ -434,8 +433,8 @@ msgstr "Neplatná hodnost výběru."
 msgid "Invalid selection."
 msgstr "Neplatná volba."
 
-msgid "Cannot get the current errors stack"
-msgstr "Nelze získat současný zásobník chyb"
+msgid "Cannot get the current stack of errors."
+msgstr ""
 
 msgid "HDF5 description"
 msgstr "Popis HDF5"
@@ -683,8 +682,8 @@ msgid "Cannot create the soft link: %s."
 msgstr "Nelze vytvořit měkký odkaz: %s."
 
 #, c-format
-msgid "Cannot create a hard link to an external object: %s."
-msgstr "Nelze vytvořit pevný odkaz k externímu objektu: %s."
+msgid "Cannot create a hard link to the external object: %s."
+msgstr ""
 
 #, c-format
 msgid "Cannot create the external link: %s."

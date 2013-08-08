@@ -178,7 +178,7 @@ function savewave(filename,x,rate,nbits)
             // Determine if a pad-byte is appended to data chunk:
             %v2_1$1 = total_samples * BytesPerSample;
             if ( %v2_1$1 - fix(%v2_1$1./2).*2 ) then
-                mput(0,fid,"uc");
+                mput(0,"uc",fid);
             end
         else
             // Unknown wave-format for data.

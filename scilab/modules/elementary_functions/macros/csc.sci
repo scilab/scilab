@@ -13,6 +13,10 @@ function y = csc(x)
     if rhs <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"csc", 1));
     end
+    
+    if and(typeof(x) <> ["constant", "sparse", "hypermatrix"]) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix or hypermatrix expected.\n"), "csc", 1));
+    end
 
     y = ones(x)./sin(x);
 endfunction

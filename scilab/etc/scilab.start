@@ -92,7 +92,7 @@ for i=1:size(modules,"*")
   startFile = "SCI/modules/" + modules(i) + "/etc/" + modules(i) + ".start";
   ierr=exec(startFile, 'errcatch', -1);
   if ierr <> 0 then
-     disp(msprintf(gettext("Failed to exec %s:"),startFile));
+     disp(msprintf(gettext("Failed to execute %s:"),startFile));
      disp(lasterror());
      exit(2);
    end

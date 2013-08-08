@@ -62,7 +62,7 @@ function [y,Fs,bits]=auread(aufile,ext)
             y = [snd("samples"),snd("chans")];
             return
         elseif exts>2 then
-            error(msprintf(gettext("%s: An error occurred: %s\n"),"auread",gettext("Index range must be specified as a scalar or 2-element vector.")));
+            error(msprintf(gettext("%s: An error occurred: %s\n"),"auread",gettext("Index range must be specified as a scalar or a 2 elements vector.")));
         elseif exts==1 then
             ext = [1,ext];
         end

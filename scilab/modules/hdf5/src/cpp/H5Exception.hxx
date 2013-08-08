@@ -78,7 +78,7 @@ private:
         hid_t stid = H5Eget_current_stack();
         if (stid < 0)
         {
-            return std::string(_("Cannot get the current errors stack"));
+            return std::string(_("Cannot get the current stack of errors."));
         }
 
         ssize_t stackSize = H5Eget_num(stid);

@@ -43,7 +43,7 @@ static char *defaultStringError(void);
 /*--------------------------------------------------------------------------*/
 int errorTable(int iErr)
 {
-    int errtyp = 0; /* by default error can be catched */
+    int errtyp = 0; /* by default error can be caught */
     int iValueReturned = 0;
 
     /* clean last error */

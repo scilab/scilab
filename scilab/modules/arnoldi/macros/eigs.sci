@@ -574,7 +574,6 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
     if(iparam(7) == 3)
         umf_ludel(Lup);
     end
-
     if(Areal & Breal)
         if(Asym)
             [d, z, resid, v, iparam, iptnr, workd, workl, info_eupd] = dseupd(rvec, howmny, _select, d, z, sigma, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_eupd);
@@ -621,7 +620,9 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
                     index = find(di~=0);
                     index = index(1:2:$);
                     res_v = z;
-                    res_v(:,[index index+1]) = [complex(res_v(:,index),res_v(:,index+1)), complex(res_v(:,index),-res_v(:,index+1))];
+                    if ~isempty(index) then
+                        res_v(:,[index index+1]) = [complex(res_v(:,index),res_v(:,index+1)), complex(res_v(:,index),-res_v(:,index+1))];
+                    end
                     res_d = diag(res_d);
                     res_v = res_v(:,1:nev);
                 end
