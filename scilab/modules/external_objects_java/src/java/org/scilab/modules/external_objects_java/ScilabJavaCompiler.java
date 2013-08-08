@@ -50,15 +50,15 @@ import javax.tools.JavaFileObject.Kind;
 public class ScilabJavaCompiler {
 
     private static final String JAVACOMPILER = "javax.tools.JavaCompiler";
-    private static final String binpath = System.getProperty("java.io.tmpdir") + File.separator + "JIMS" + File.separator + "bin";
+    private static final String BINPATH = System.getProperty("java.io.tmpdir") + File.separator + "JIMS" + File.separator + "bin";
 
     private static JavaCompiler compiler;
 
     static {
         new File(System.getProperty("java.io.tmpdir") + File.separator + "JIMS").mkdir();
-        new File(binpath).mkdir();
+        new File(BINPATH).mkdir();
         try {
-            URL binURL = new File(binpath).toURI().toURL();
+            URL binURL = new File(BINPATH).toURI().toURL();
             addURLToClassPath(binURL);
         } catch (MalformedURLException e) {
             System.err.println(e);
@@ -85,7 +85,7 @@ public class ScilabJavaCompiler {
             }
 
             if (compiler == null) {
-                throw new ScilabJavaException("No java compiler in the classpath\nCheck for tools.jar (comes from JDK) or ecj-3.6.x.ajr (Eclipse Compiler for Java)");
+                throw new ScilabJavaException("No java compiler in the classpath\nCheck for tools.jar (comes from JDK) or ecj-3.6.x.jar (Eclipse Compiler for Java)");
             }
         }
     }
@@ -123,7 +123,7 @@ public class ScilabJavaCompiler {
             compilationUnits.add(sourceString);
         }
 
-        String[] compileOptions = new String[] {"-d", binpath} ;
+        String[] compileOptions = new String[] {"-d", BINPATH} ;
         Iterable<String> options = Arrays.asList(compileOptions);
 
         CompilationTask task = compiler.getTask(null, manager, diagnostics, options, null, compilationUnits);
@@ -173,7 +173,7 @@ public class ScilabJavaCompiler {
         private final String code;
 
         private SourceString(String className, String[] code) {
-            super(URI.create("string:///" + className.replace('.', '/') + Kind.SOURCE.extension), Kind.SOURCE);
+            super(new File(BINPATH + "/" + className.replace('.', '/') + Kind.SOURCE.extension).toURI(), Kind.SOURCE);
 
             StringBuffer buf = new StringBuffer();
             for (String str : code) {
