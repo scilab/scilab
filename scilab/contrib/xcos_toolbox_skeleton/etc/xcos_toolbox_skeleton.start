@@ -34,20 +34,7 @@ function xcos_skeletonlib = startModule()
 // Add blocks to the Xcos palette
 // =============================================================================
   mprintf("\tLoad palette\n");
-  pal = xcosPal("Xcos toolbox blocks");
-
-  blocks = ["TBX_SUM_c" "TBX_MUT_STYLE" "TBX_SUM_sci"];
-  for i=1:size(blocks, "*")
-    h5  = ls(root_tlbx + "/images/h5/"  + blocks(i) + "." + ["sod" "h5"]);
-    gif = ls(root_tlbx + "/images/gif/" + blocks(i) + "." + ["png" "jpg" "gif"]);
-    svg = ls(root_tlbx + "/images/svg/" + blocks(i) + "." + ["png" "jpg" "gif" "svg"]);
-
-    pal = xcosPalAddBlock(pal, h5(1), gif(1), svg(1));
-  end
-
-  if ~xcosPalAdd(pal) then
-    error(msprintf(gettext("%s: Unable to export %s.\n"), "xcos_toolbox_skeleton.start", "pal"));
-  end
+  exec(pathconvert(root_tlbx+"/macros/loader_pal.sce", %f));
 
 // Load simulation functions
 // =============================================================================
