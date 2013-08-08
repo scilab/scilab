@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [s]=%lss_v_lss(s1,s2)
-    //s=%lss_v_lss(s1,s2)  <=> s = s1 "fedback" with s2
+    //s=%lss_v_lss(s1,s2)  <=> s = s1 "feedback" with s2
     //             <=> s=s1/.s2    (in state-space)
     //!
     [s1,s2]=sysconv(s1,s2)

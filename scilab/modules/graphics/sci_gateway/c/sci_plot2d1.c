@@ -86,7 +86,7 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        /* lauch the default routines depending on the name of the calling funtion */
+        /* lauch the default routines depending on the name of the calling function */
         sci_demo(fname, fname_len);
         return 0;
     }
@@ -113,7 +113,7 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
         if (FirstOpt() <= nbInputArgument(pvApiCtx))
         {
             Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 3 + iskip);
-            return(0);
+            return (0);
         }
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 1 + iskip, &piAddrl2);
@@ -165,7 +165,7 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
         {
             Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),
                      fname, 1, 3 + iskip);
-            return(0);
+            return (0);
         }
 
 

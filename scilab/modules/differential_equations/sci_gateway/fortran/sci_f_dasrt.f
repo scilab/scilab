@@ -109,7 +109,7 @@ c     --------------------------------
       endif
       if(.not.getrvect(fname,topk,top-rhs+5,m5,n5,lrtol))return
       m5 = m5*n5
-      if(m5.ne.m4) then
+      if(m5.ne.m4.or.(m5.ne.1.and.m5.ne.neq)) then
          call error(60)
          return
       endif

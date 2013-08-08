@@ -17,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
@@ -27,6 +28,8 @@ import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.Palette;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
@@ -66,6 +69,10 @@ public class PaletteManagerMouseListener implements MouseListener {
             final MenuItem create = ScilabMenuItem.createMenuItem();
             setupCreateOrAdd(paletteTree, path, create);
             menu.add(create);
+
+            final MenuItem rename = ScilabMenuItem.createMenuItem();
+            setupRename(paletteTree, path, rename);
+            menu.add(rename);
 
             final MenuItem remove = ScilabMenuItem.createMenuItem();
             setupRemove(paletteTree, path, remove);
@@ -108,33 +115,71 @@ public class PaletteManagerMouseListener implements MouseListener {
         create.setCallback(new CommonCallBack(XcosMessages.CREATE) {
             @Override
             public void callBack() {
+                String name = JOptionPane.showInputDialog(XcosMessages.ASK_FOR_A_NAME, XcosMessages.DEFAULT_CATEGORY_NAME);
+                if (name == null || name.isEmpty()) {
+                    return;
+                }
+
                 Category nonModifiedRoot = currentNode.getParent();
                 final Category c = new Category();
                 c.setEnable(true);
-                c.setName(XcosMessages.DEFAULT_CATEGORY_NAME);
+                c.setName(name);
 
                 if (currentNode instanceof Category) {
                     ((Category) currentNode).getNode().add(c);
                     c.setParent((Category) currentNode);
-                    if (path != null) {
-                        path.pathByAddingChild(c);
-                    } else {
-                        nonModifiedRoot = (Category) currentNode;
-                    }
+
+                    PaletteNode.refreshView(currentNode, c);
                 } else if (currentNode instanceof Palette) {
                     final int index = nonModifiedRoot.getIndex(currentNode);
+
                     nonModifiedRoot.getNode().set(index, c);
                     c.getNode().add(currentNode);
                     currentNode.setParent(c);
                     c.setParent(nonModifiedRoot);
-                    path.getParentPath().pathByAddingChild(c);
-                }
 
-                PaletteNode.refreshView(c);
+                    PaletteNode.refreshView(nonModifiedRoot, currentNode);
+                }
             }
         });
 
         create.setEnabled(true);
+    }
+
+    /**
+     * Setup the rename item
+     *
+     * @param paletteTree
+     *            the current tree
+     * @param path
+     *            the current path
+     * @param rename
+     *            the menu item
+     */
+    // CSOFF: IllegalCatch
+    private void setupRename(final JTree paletteTree, final TreePath path, final MenuItem rename) {
+        rename.setText(XcosMessages.RENAME);
+        rename.setCallback(new CommonCallBack(XcosMessages.RENAME) {
+            @Override
+            public void callBack() {
+                if (path == null) {
+                    return;
+                }
+
+                try {
+                    final PaletteNode currentNode = (PaletteNode) path.getLastPathComponent();
+
+                    final String s = JOptionPane.showInputDialog(XcosMessages.ASK_FOR_A_NAME, currentNode.getName());
+                    if (s == null || s.isEmpty()) {
+                        return;
+                    }
+
+                    currentNode.setName(s);
+                } catch (final Exception e) {
+                    Logger.getLogger(PaletteManagerMouseListener.class.getName()).severe(e.toString());
+                }
+            }
+        });
     }
 
     /**

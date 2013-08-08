@@ -26,7 +26,7 @@ ilib_for_link(link_name,files,libs,flag);
 exec loader.sce;
 
 // test new function through the ode function
-// Passing a parameter to argument funtion of ode
+// Passing a parameter to argument function of ode
 
 param=[0.04,10000,3d+7];
 y=ode([1;0;0],0,[0.4,4],"ext11c")

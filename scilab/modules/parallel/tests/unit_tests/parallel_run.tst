@@ -249,7 +249,7 @@ for sched=0:1
   if toc()>sleep_time+2 then pause,end;
 end;
 // test dynamic versus static scheduling : dynamic scheduling should be better on tasks of varying length.
-args=(1:20)^2/100;
+args=(1:20).^2/100;
 for sched=0:1
   tic();
   res= parallel_run(args, "do_sleep", init_param("dynamic_scheduling", sched, 'nb_workers', 5 ));

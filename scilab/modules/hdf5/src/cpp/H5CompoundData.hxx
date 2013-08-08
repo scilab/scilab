@@ -26,7 +26,7 @@ public:
 
     virtual ~H5CompoundData();
 
-    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const;
+    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0, const bool flip = true) const;
 
     virtual void getAccessibleAttribute(const std::string & _name, const int pos, void * pvApiCtx) const;
 

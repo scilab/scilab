@@ -29,17 +29,17 @@ h5group(b, "Group_1");
 h5write(b, "Group_1/Dataset_1", [1 2;3 4]);
 
 h5mount(a, "/mnt", b);
-assert_checkequal(a.root.mnt.Group_1.Dataset_1.data,[1 2;3 4]');
+assert_checkequal(a.root.mnt.Group_1.Dataset_1.data,[1 2;3 4]);
 h5write(a.root.mnt.Group_1, "Dataset_1", [10 11;12 13]);
-assert_checkequal(a.root.mnt.Group_1.Dataset_1.data,[10 11;12 13]');
-assert_checkequal(b.root.mnt.Group_1.Dataset_1.data,[10 11;12 13]');
+assert_checkequal(a.root.mnt.Group_1.Dataset_1.data,[10 11;12 13]);
+assert_checkequal(b.root.mnt.Group_1.Dataset_1.data,[10 11;12 13]);
 h5umount(a, "/mnt");
 assert_checkequal(a.root.mnt.Groups,[]);
-assert_checkequal(b.root.Group_1.Dataset_1.data,[10 11;12 13]');
+assert_checkequal(b.root.Group_1.Dataset_1.data,[10 11;12 13]);
 h5rm(a, "/mnt");
 msgerr = msprintf(gettext("%s: Error in retrieving field content:\n%s\n"), "%H5Object_e", msprintf(gettext("Invalid field: %s"), "mnt"));
 assert_checkerror("a.root.mnt",msgerr,999);
-assert_checkequal(b.root.Group_1.Dataset_1.data,[10 11;12 13]');
+assert_checkequal(b.root.Group_1.Dataset_1.data,[10 11;12 13]);
 
 h5group(a,"/mnt");
 h5mount(a,"/mnt",b);

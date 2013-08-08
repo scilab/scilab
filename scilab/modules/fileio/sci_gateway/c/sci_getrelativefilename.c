@@ -54,12 +54,12 @@ int sci_getrelativefilename(char *fname, unsigned long l)
     // Check type
     if (isStringType(pvApiCtx, piAddr1) == 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), fname, 1);
         return 0;
     }
     if (getAllocatedMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, &Input_StringMatrix_1))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), fname, 1);
         return 0;
     }
 
@@ -74,12 +74,12 @@ int sci_getrelativefilename(char *fname, unsigned long l)
     // Check type
     if (isStringType(pvApiCtx, piAddr2) == 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings exepected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), fname, 2);
         return 0;
     }
     if (getAllocatedMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, &Input_StringMatrix_2))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), fname, 2);
         return 0;
     }
 
@@ -91,7 +91,7 @@ int sci_getrelativefilename(char *fname, unsigned long l)
         return 0;
     }
 
-    OutputStrings = (char**)MALLOC(iRows1*iCols1 * sizeof(char*));
+    OutputStrings = (char**)MALLOC(iRows1 * iCols1 * sizeof(char*));
     if (OutputStrings == NULL)
     {
         freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
@@ -100,7 +100,7 @@ int sci_getrelativefilename(char *fname, unsigned long l)
         return 0;
     }
 
-    for( x = 0; x < iRows1*iCols1; x++)
+    for ( x = 0; x < iRows1 * iCols1; x++)
     {
         OutputStrings[x] = (char*)MALLOC(PATH_MAX * sizeof(char*));
         if (OutputStrings[x] == NULL)
@@ -120,7 +120,7 @@ int sci_getrelativefilename(char *fname, unsigned long l)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), fname, 2, PATH_MAX);
         }
-        OutputStrings[x] = getrelativefilename(Input_StringMatrix_1[x], Input_StringMatrix_2[x]);        
+        OutputStrings[x] = getrelativefilename(Input_StringMatrix_1[x], Input_StringMatrix_2[x]);
     }
 
     sciErr = createMatrixOfString(pvApiCtx, iRhs + 1, iRows1, iCols1, (char**)OutputStrings);

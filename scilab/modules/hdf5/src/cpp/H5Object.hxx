@@ -259,7 +259,7 @@ public :
     virtual void createOnScilabStack(int pos, void * pvApiCtx) const;
     virtual void createInScilabList(int * list, int stackPos, int pos, void * pvApiCtx) const;
 
-    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const
+    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0, const bool flip = true) const
     {
         if (parentList)
         {
@@ -274,6 +274,14 @@ public :
     bool isRoot() const
     {
         return this == &root;
+    }
+
+    void unregisterChild(H5Object * child)
+    {
+        if (!locked)
+        {
+            children.erase(child);
+        }
     }
 
     static std::string getIndentString(const unsigned int indentLevel)
@@ -387,13 +395,6 @@ protected :
         if (!locked)
         {
             children.insert(child);
-        }
-    }
-    void unregisterChild(H5Object * child)
-    {
-        if (!locked)
-        {
-            children.erase(child);
         }
     }
 

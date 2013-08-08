@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
 // =============================================================================
 // Unitary tests for movefile function
 // =============================================================================
@@ -52,6 +53,7 @@ rmdir(TMPDIR + filesep() + dir1, 's');
 rmdir(TMPDIR + filesep() + dir2, 's');
 // =============================================================================
 removedir(TMPDIR+'/etc');
+removedir: Warning: Directory 'TMPDIR/etc' does not exist.
 ierr = execstr("movefile(TMPDIR+""/etc"",TMPDIR)","errcatch");
 if ierr <> 999 then bugmes();quit;end
 // =============================================================================

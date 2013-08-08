@@ -27,7 +27,7 @@ SCICOS_BLOCKS_IMPEXP void matmul_ui32n(scicos_block *block, int flag)
 {
     if ((flag == 1) | (flag == 6))
     {
-        unsigned long *u1, *u2, *y;
+        SCSUINT32_COP *u1, *u2, *y;
         double k, C, D, t;
         int mu1, nu1, nu2, i, j, l, ji, jl, il;
         int *ipar;
@@ -56,7 +56,7 @@ SCICOS_BLOCKS_IMPEXP void matmul_ui32n(scicos_block *block, int flag)
                     D = D + C;
                 }
                 t = D - (int)(D / (k)) * ((k));
-                y[jl] = (unsigned long)t;
+                y[jl] = (SCSUINT32_COP)t;
             }
         }
     }

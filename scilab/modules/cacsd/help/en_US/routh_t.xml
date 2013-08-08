@@ -111,7 +111,10 @@ routh_t(P2)
                 <link linkend="roots">roots</link>
             </member>
             <member>
-                <link linkend="kpure">kpure</link>
+                <link linkend="evans">evans</link>
+            </member>
+            <member>
+                <link linkend="spec">spec</link>
             </member>
         </simplelist>
     </refsection>

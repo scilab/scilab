@@ -12,8 +12,8 @@
 
 package org.scilab.modules.xcos.palette.model;
 
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Logger;
 
 import javax.swing.JTree;
@@ -180,10 +180,25 @@ public abstract class PaletteNode implements TreeNode {
             throw new RuntimeException("Parent node is 'null'");
         }
 
+        // select the right "next" node
+        final TreeNode toBeSelected;
+        if (toBeReloaded.getChildCount() > 1) {
+            final int index = toBeReloaded.getIndex(node);
+            if (index > 0) {
+                toBeSelected = toBeReloaded.getChildAt(index - 1);
+            } else {
+                toBeSelected = toBeReloaded.getChildAt(index + 1);
+            }
+        } else {
+            toBeSelected = toBeReloaded;
+        }
+
+        // remove the node
         node.setParent(null);
         toBeReloaded.getNode().remove(node);
 
-        refreshView(toBeReloaded);
+
+        refreshView(toBeReloaded, toBeSelected);
     }
 
     /**
@@ -192,44 +207,27 @@ public abstract class PaletteNode implements TreeNode {
      * @param toBeReloaded
      *            the category to refresh
      */
-    public static void refreshView(final PaletteNode toBeReloaded) {
+    public static void refreshView(final TreeNode toBeReloaded, final TreeNode selected) {
         if (PaletteManagerView.get() != null) {
             final JTree tree = PaletteManagerView.get().getTree();
             final DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 
             /*
-             * Reload the model
+             * Reload the whole model
              */
-            if (toBeReloaded.isLeaf()) {
-                model.reload(toBeReloaded.getParent());
-            } else {
-                model.reload(toBeReloaded);
-            }
+            model.reload();
 
             /*
-             * Select the better path
+             * Select the better path, if applicable
              */
-
-            // getting the current path
-            final Deque<TreeNode> objectPath = new LinkedList<TreeNode>();
-            TreeNode current = toBeReloaded;
-            do {
-                objectPath.addFirst(current);
-                current = current.getParent();
-            } while (current != null);
-
-            // appending the all first children to the path
-            // this will force a leaf to be selected
-            current = toBeReloaded;
-            while (!current.isLeaf() && current.getAllowsChildren() && current.children().hasMoreElements()) {
-                current = current.getChildAt(0);
-                objectPath.addLast(current);
+            ArrayList<Object> path = new ArrayList<Object>();
+            for (TreeNode n = selected; n != null; n = n.getParent()) {
+                path.add(n);
             }
+            path.add(tree.getModel().getRoot());
+            Collections.reverse(path);
 
-            // select and expand the better found path
-            final TreePath path = new TreePath(objectPath.toArray());
-            tree.setSelectionPath(path);
-            tree.expandPath(path);
+            tree.setSelectionPath(new TreePath(path.toArray()));
         }
     }
 

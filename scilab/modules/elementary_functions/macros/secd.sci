@@ -16,7 +16,7 @@ function x = secd(x)
     end
 
     // Secant argument in degree
-    if ~isreal(x) then
+    if type(x) <> 1 | ~isreal(x) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"secd",1));
     end
 

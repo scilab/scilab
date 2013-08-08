@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-08 06:53+0000\n"
-"Last-Translator: Hélion du Mas des Bourboux <helion331990@gmail.com>\n"
+"PO-Revision-Date: 2013-07-15 13:24+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: fr\n"
 
 #, c-format
@@ -187,11 +187,11 @@ msgstr "Matrice de double"
 
 #, c-format
 msgid "stack size exceeded!\n"
-msgstr "Taille de la pile dépassée !\n"
+msgstr "Taille de la pile dépassée\n"
 
 #, c-format
 msgid "Use stacksize function to increase it.\n"
-msgstr "Utiliser la fonction stacksize pour l'augmenter.\n"
+msgstr "Utilisez la fonction stacksize pour l'augmenter.\n"
 
 #, c-format
 msgid "Memory used for variables: %d\n"
@@ -337,4 +337,4 @@ msgstr "%s : Nom de variable invalide.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %d: An integer expected.\n"
-msgstr "%s : Mauvais type d'argument %d : Un entier été attendu.\n"
+msgstr "%s : Type erroné de l'argument n°%d : Un entier attendu.\n"

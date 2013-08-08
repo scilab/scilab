@@ -16,6 +16,7 @@
 #include <vector>
 #include <map>
 
+#include "H5Options.hxx"
 #include "H5Object.hxx"
 #include "H5File.hxx"
 #include "H5Group.hxx"
@@ -279,6 +280,8 @@ public:
 
     static void getScilabData(hid_t * type, unsigned int * ndims, hsize_t ** dims, void ** data, bool * mustDelete, bool * mustDeleteContent, const bool flip, int rhsPosition, void * pvApiCtx);
 
+    static void getScilabData(hid_t * type, unsigned int * ndims, hsize_t ** dims, void ** data, bool * mustDelete, bool * mustDeleteContent, const bool flip, int * addr, int rhsPosition, void * pvApiCtx);
+
     template <typename T>
     static void createObjectFromStack(const std::string & file, const std::string & location, const std::string & name, const bool flip, void * pvApiCtx, const int rhsPosition, const unsigned int srank, const hsize_t * sdims, const hsize_t * sstart, const hsize_t * sstride, const hsize_t * scount, const hsize_t * sblock, const std::string & targetType, const unsigned int drank, const hsize_t * ddims, const hsize_t * dmaxdims, const hsize_t * dstart, const hsize_t * dstride, const hsize_t * dcount, const hsize_t * dblock)
     {
@@ -380,12 +383,12 @@ public:
 
                 for (unsigned int i = 0; i < total; i++)
                 {
-                    char * name = static_cast<char **>(data)[i];
-                    err = H5Rcreate(newData + i, loc, name, H5R_OBJECT, -1);
+                    char * _name = static_cast<char **>(data)[i];
+                    err = H5Rcreate(newData + i, loc, _name, H5R_OBJECT, -1);
                     if (err < 0)
                     {
                         FREE(newData);
-                        throw H5Exception(__LINE__, __FILE__, _("Invalid path: %s."), name);
+                        throw H5Exception(__LINE__, __FILE__, _("Invalid path: %s."), _name);
                     }
                 }
 
@@ -403,7 +406,7 @@ public:
 
                 data = newData;
                 mustDeleteContent = false;
-                mustDelete = true;
+                mustDelete = false;
 
                 if (sourceType > 0)
                 {
@@ -446,6 +449,11 @@ public:
             }
 
             throw;
+        }
+
+        if (newobj)
+        {
+            delete newobj;
         }
 
         if (mustDeleteContent)

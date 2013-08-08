@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Grafický modul Scilabu je vypnut, režim -nogui nebo -nwni.\n"
@@ -489,8 +489,8 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s : '%s' musí být nastaveno\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d or %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d nebo %d.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
 
 #, c-format
 msgid ""
@@ -499,7 +499,7 @@ msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor s %d prvky.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 
 #, c-format
@@ -1361,7 +1361,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s:Wrong type for input arguments #%d and #%d: If argument #%d is a handle "
+"%s: Wrong type for input arguments #%d and #%d: If argument #%d is a handle "
 "or a string, argument #%d must be a string or a scalar.\n"
 msgstr ""
 
@@ -1425,10 +1425,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu [%s, %s].\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -1739,10 +1735,6 @@ msgid "Tcl/Tk interface not installed."
 msgstr "Rozhraní Tcl/Tk není nainstalováno"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván Reálné číslo\n"
 
@@ -1765,7 +1757,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s:  Wrong number of input argument: %d expected.\n"
+msgid "%s:  Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #, c-format

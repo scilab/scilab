@@ -61,9 +61,9 @@ function [x,y,typ] = MATCATV(job,arg1,arg2)
     case "define" then
         l1=[2;2]
         model=scicos_model()
-        junction_name="mat_catv";
+        function_name="mat_catv";
         funtyp=4;
-        model.sim=list(junction_name,funtyp)
+        model.sim=list(function_name,funtyp)
         model.in2=[-1;-1]
         model.in=[-2;-3]
         model.intyp=[-1 -1]

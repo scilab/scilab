@@ -14,6 +14,6 @@
 //
 // <-- Short Description -->
 // fileparts crashed scilab when matrix of strings was passed as input argument.
-//
-if execstr("fileparts(ls(""SCI/modules/fileio/macros/*.sci""))", "errcatch") <> 999 then bugmes();quit;end
-if lasterror() <> msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), "fileparts", 1) then bugmes();quit;end
+// Following the commit: https://codereview.scilab.org/#/c/11620/, fileparts 
+// manages the matrix of strings.
+assert_checktrue(execstr("fileparts(ls(""SCI/modules/fileio/macros/*.sci""))", "errcatch") == 0);

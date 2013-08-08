@@ -26,8 +26,8 @@
 SCICOS_BLOCKS_IMPEXP void bit_set_32(scicos_block *block, int flag)
 {
     int n, m, i;
-    long *opar;
-    long *u, *y;
+    SCSINT32_COP *opar;
+    SCSINT32_COP *u, *y;
     opar = Getint32OparPtrs(block, 1);
     u = Getint32InPortPtrs(block, 1);
     y = Getint32OutPortPtrs(block, 1);

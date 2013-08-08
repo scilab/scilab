@@ -142,7 +142,7 @@ int sci_h5dataset(char *fname, unsigned long fname_len)
 
     if (row != 5)
     {
-        Scierror(999, _("%s: Wrogn size for input argument #%d: five row vector expected.\n"), fname, 3);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Five row vector expected.\n"), fname, 3);
         return 0;
     }
 

@@ -65,7 +65,7 @@ function bOK = detectmsvc64tools()
             else
                 show = displayWarningMsVC();
                 if show then
-                    TXT = gettext("Microsoft Visual Studio C 2008 or more x64 Compiler not installed.");
+                    TXT = gettext("Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed.");
                     warning(TXT);
                     clear TXT;
                     disableWarningMsVC();
@@ -75,7 +75,7 @@ function bOK = detectmsvc64tools()
         else
             show = displayWarningMsVC();
             if show then
-                TXT = gettext("Microsoft Visual Studio C 2008 or more Compiler not found.");
+                TXT = gettext("Microsoft Visual Studio C 2008 (or more recent) Compiler not found.");
                 warning(TXT);
                 clear TXT;
                 disableWarningMsVC();

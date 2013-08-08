@@ -47,7 +47,7 @@ int cdfpoiI(char* fname, unsigned long l)
             if (S[i] == S[i] && S[i] + 1 != S[i]) // NaN and Inf will be handled in the program
                 if ((int) S[i] - S[i] != 0)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: A matrix of integer value expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: A matrix of integer values expected.\n"), fname, 2);
                     return 0;
                 }
         CdfBase(fname, 2, 2, callpos, "PQ", _("S and Xlam"), 1, C2F(cdfpoi),
@@ -68,7 +68,7 @@ int cdfpoiI(char* fname, unsigned long l)
             if (S[i] == S[i] && S[i] + 1 != S[i]) // NaN and Inf will be handled in the program
                 if ((int) S[i] - S[i] != 0)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: A matrix of integer value expected.\n"), fname, 4);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: A matrix of integer values expected.\n"), fname, 4);
                     return 0;
                 }
         CdfBase(fname, 3, 1, callpos, "Xlam", _("P,Q and S"), 3, C2F(cdfpoi),

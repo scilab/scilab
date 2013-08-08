@@ -14,7 +14,8 @@
             <varlistentry>
                 <term>p  </term>
                 <listitem>
-                    <para>polynôme
+                    <para>
+                        polynôme
                     </para>
                 </listitem>
             </varlistentry>
@@ -22,20 +23,22 @@
                 <term>f  </term>
                 <listitem>
                     <para>
-                        vecteur <literal>[f0 f1 ... fn]</literal> tel que <literal>p=prod(f)</literal> 
+                        vecteur <literal>[f0 f1 ... fn]</literal> tel que <literal>p=prod(f)</literal>
                     </para>
                     <variablelist>
                         <varlistentry>
                             <term>f0  </term>
                             <listitem>
-                                <para>constante
+                                <para>
+                                    constante
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>fi  </term>
                             <listitem>
-                                <para>polynôme
+                                <para>
+                                    polynôme
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -54,13 +57,15 @@
     
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[
-pol2str(%z)
+        <programlisting role="example">
+            <![CDATA[
+x = poly(0, "x")
+polfact(x^2-1)
 
-p = poly ([1, 2, 3], "x","coeff");
-pol2str(p)
+polfact(x^7-1)
 
- ]]></programlisting>
+ ]]>
+        </programlisting>
     </refsection>
     
     <refsection role="see also">

@@ -64,9 +64,9 @@ function [txtdo]=lmitool(PROBNAME,XNAME,DNAME)
         labels=[gettext("LMI problem name: ");gettext("Names of unknown matrices: ");...
         gettext("Names of data matrices: ")];
         [ok,PROBNAME,XNAME,DNAME]=getvalue([gettext("Problem definition");
-        gettext("LMITOOL will generate for you a skeleton of the functions needed");
+        gettext("LMITOOL will generate a skeleton of the functions needed");
         gettext(" (see User''s Guide for details). For that, you need to specify:");
-        gettext("1- Name of you problem which will be given to the solver function,");
+        gettext("1- Name of your problem which will be given to the solver function,");
         gettext("2- Names of unknown matrices or list of unknown matrices,");
         gettext("3- Names of data matrices or list of data matrices.")],labels,...
         list("str",1,"str",1,"str",1),...
@@ -156,19 +156,19 @@ function [txtdo]=lmitool(PROBNAME,XNAME,DNAME)
     sep2;" ";txts1;" ";sep13;txts2];
 
     if RHS==0|RHS==1 then
-        [txt4]=x_dialog([gettext("Function definitions");
-        gettext("Here is a skeleton of the functions which you should edit");
-        gettext("You can do the editing in this window or click on ''ok'', save");
-        gettext("the skeleton and edit later using your favorite editor")],[txt4]);
+        [txt4]=x_dialog([gettext("Function definitions: ");
+        gettext("Here is a skeleton of the functions you should edit.");
+        gettext("You can edit in this window or click on ''ok''.");
+        gettext("Save and edit the skeleton later through your favorite editor.")],[txt4]);
     end
     if txt4==[] then txtdo="Try again";return;end
     txt=[txt4];
     n=1;
     if RHS<>3 then
 
-        fname=x_dialog([gettext("Name of file in which you want the solver function");
-        gettext("and the evaluation function be saved (overwrites if a");
-        gettext("file with the same name exists already)")],[fname+"                "])
+        fname=x_dialog([gettext("Name of the file where to save the solver function");
+        gettext("and the evaluation function");
+        gettext("(Will overwrite if a file with the same name already exists).")],[fname+"                "])
         fname=stripblanks(fname);
     else
         messagebox(gettext("functions saved in ")+fname',"modal","info");

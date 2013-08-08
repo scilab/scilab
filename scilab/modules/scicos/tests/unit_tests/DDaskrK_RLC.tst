@@ -18,38 +18,22 @@ function messagebox(msg, msg_title)
  disp(msg);
 endfunction
 funcprot(prot);
-Info = scicos_simulate(scs_m, list(), 'nw');
-
-// looking for the CLOCK_f/EVTDLY_f to update period
-for path_1=1:length(scs_m.objs)
-    if typeof(scs_m.objs(path_1))=="Block" & scs_m.objs(path_1).gui=="CLOCK_f" then
-        CLOCK_f_scs_m = scs_m.objs(path_1).model.rpar;
-        break;
-    end
-end
-for path_2=1:length(CLOCK_f_scs_m)
-    if typeof(CLOCK_f_scs_m.objs(path_2))=="Block" & CLOCK_f_scs_m.objs(path_2).gui=="EVTDLY_f" then
-        EVTDLY_f_blk = CLOCK_f_scs_m.objs(path_2);
-        break;
-    end
-end
-
-
 
 for i=2:3
 
     // Start by updating the clock block period (sampling)
-    scs_m.objs(path_1).model.rpar.objs(path_2).graphics.exprs = [string(5*(10^-i));"0"];
+    Context.per = 5*10^-i;
+    Info = scicos_simulate(scs_m, list(), Context);
 
     // Modify solver + run DDaskr + save results
     scs_m.props.tol(6) = 102;     // Solver
-    scicos_simulate(scs_m, Info, 'nw'); // DDaskr
-    ddaskrval = res.values;        // Results
-    time = res.time;               // Time
+    scicos_simulate(scs_m, Info); // DDaskr
+    ddaskrval = res.values;       // Results
+    time = res.time;              // Time
 
     // Modify solver + run IDA + save results
     scs_m.props.tol(6) = 100;     // Solver
-    scicos_simulate(scs_m, Info, 'nw'); // IDA
+    scicos_simulate(scs_m, Info); // IDA
     idaval = res.values;          // Results
 
     // Compare results
@@ -61,7 +45,8 @@ for i=2:3
     stdeviation = st_deviation(compa);
 
     // Verifying closeness of the results
-    assert_checktrue(maxi <= 10^-(i+3));
-    assert_checktrue(mea <= 10^-(i+3));
-    assert_checktrue(stdeviation <= 10^-(i+3));
+    assert_checktrue(maxi <= 10^-(i+4));
+    assert_checktrue(mea <= 10^-(i+4));
+    assert_checktrue(stdeviation <= 10^-(i+4));
+
 end

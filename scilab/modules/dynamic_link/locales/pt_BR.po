@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -204,13 +204,13 @@ msgstr "%s não é um ponto de entrada.\n"
 msgid "Linking %s.\n"
 msgstr "Realizando o linking de %s.\n"
 
-msgid "C Function to call in scilab.\n"
+msgid "Calling a C function from Scilab.\n"
 msgstr ""
 
-msgid "Call ilib_for_link to build C function.\n"
+msgid "Calling ilib_for_link to build C function.\n"
 msgstr ""
 
-msgid "Call C function. Z = X+Y"
+msgid "Calling C function. Z = X+Y"
 msgstr ""
 
 #, c-format
@@ -222,16 +222,16 @@ msgid "with Y = %d"
 msgstr ""
 
 #, c-format
-msgid "result Z = %d"
+msgid "Result Z = %d"
 msgstr ""
 
-msgid "Fortran subroutine to call in scilab.\n"
+msgid "Calling a Fortran subroutine from Scilab.\n"
 msgstr ""
 
-msgid "Call ilib_for_link to build fortran subroutine.\n"
+msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
 msgstr ""
 
-msgid "Call Fortran subroutine. Z = X+Y"
+msgid "Calling Fortran subroutine. Z = X+Y"
 msgstr ""
 
 msgid "Dynamic link"
@@ -258,10 +258,11 @@ msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
 "Não foi possível encontrar um compilador Intel Fortran 9, 10, 11 ou 12."
 
-msgid "Microsoft Visual Studio C 2008 or more x64 Compiler not installed."
+msgid ""
+"Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
 msgstr ""
 
-msgid "Microsoft Visual Studio C 2008 or more Compiler not found."
+msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
 msgstr ""
 
 #, c-format

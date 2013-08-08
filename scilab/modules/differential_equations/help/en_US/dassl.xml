@@ -71,9 +71,9 @@
             <varlistentry>
                 <term>atol, rtol</term>
                 <listitem>
-                    <para>a real scalars or column vectors of same size as
-                        <literal>y</literal>. <literal>atol, rtol</literal> give respectively
-                        absolute and relative error tolerances of solution. If vectors the
+                    <para>real scalars or column vectors of same size as
+                        <literal>y</literal> or both of size 1. <literal>atol, rtol</literal> give respectively
+                        absolute and relative error tolerances of solution. If vectors, the
                         tolerances are specified for each component of
                         <literal>y</literal>.
                     </para>

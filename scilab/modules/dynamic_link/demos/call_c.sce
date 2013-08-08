@@ -16,7 +16,7 @@ if haveacompiler() then
     "{ *c = *a + *b; }"  ];
 
     mprintf("\n");
-    mprintf(gettext("C Function to call in scilab.\n"));
+    mprintf(gettext("Calling a C function from Scilab.\n"));
 
     disp(foo);
 
@@ -28,7 +28,7 @@ if haveacompiler() then
         mputl(foo,"foo.c");
 
         mprintf("\n");
-        mprintf(gettext("Call ilib_for_link to build C function.\n"));
+        mprintf(gettext("Calling ilib_for_link to build C function.\n"));
         ilib_for_link(["foo"],"foo.c",[],"c");
         exec loader.sce ;
         chdir(path);
@@ -39,7 +39,7 @@ if haveacompiler() then
     X = 5;
     Y = 7;
     mprintf("\n");
-    mprintf(gettext("Call C function. Z = X+Y"));
+    mprintf(gettext("Calling C function. Z = X+Y"));
     mprintf("\n");
     mprintf(gettext("with X = %d"), X);
     mprintf("\n");
@@ -48,7 +48,7 @@ if haveacompiler() then
     mprintf("Z = call(''foo'', X, 1, ''d'', Y, 2, ''d'', ''out'', [1,1], 3, ''d'');");
     mprintf("\n");
     Z = call("foo", X, 1, "d", Y, 2, "d", "out", [1,1], 3, "d");
-    mprintf(gettext("result Z = %d"), Z);
+    mprintf(gettext("Result Z = %d"), Z);
     mprintf("\n");
 
 end

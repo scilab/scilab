@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-06-25 16:31+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/sci_ascii.c, line: 250
 msgid "WARNING : \n"
@@ -124,7 +124,7 @@ msgstr ""
 # File: sci_gateway/c/sci_strsubst.c, line: 415
 # File: sci_gateway/c/sci_strtod.c, line: 136
 # File: sci_gateway/c/sci_strtod.c, line: 148
-# File: sci_gateway/c/sci_strtod.c, line: 268
+# File: sci_gateway/c/sci_strtod.c, line: 267
 # File: src/c/pcre_error.c, line: 29
 #, c-format
 msgid "%s: No more memory.\n"
@@ -285,8 +285,8 @@ msgstr ""
 # File: sci_gateway/c/sci_strsplit.c, line: 216
 # File: sci_gateway/c/sci_strsubst.c, line: 375
 # File: sci_gateway/c/sci_strsubst.c, line: 435
-# File: sci_gateway/c/sci_strtod.c, line: 294
-# File: sci_gateway/c/sci_strtod.c, line: 306
+# File: sci_gateway/c/sci_strtod.c, line: 293
+# File: sci_gateway/c/sci_strtod.c, line: 305
 # File: sci_gateway/c/sci_tokens.c, line: 106
 #, c-format
 msgid "%s: Memory allocation error.\n"

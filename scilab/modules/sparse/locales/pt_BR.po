@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -238,13 +238,13 @@ msgstr ""
 msgid "  Possible matrix is not positive definite."
 msgstr ""
 
-msgid "Nonpositive diag. encountered, matrix is not positive def."
+msgid "Non-positive diagonal encountered, matrix is not positive definite."
 msgstr ""
 
-msgid "Insufficient working storage in blkfct, temp(*)"
+msgid "Insufficient working storage in blkfct, temp(*)."
 msgstr ""
 
-msgid "Insufficient working storage in blkfct, iwork(*)"
+msgid "Insufficient working storage in blkfct, iwork(*)."
 msgstr ""
 
 msgid " SYMFCT requires PERM to be neqns x 1"

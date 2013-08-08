@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
 // =============================================================================
 // Unitary tests for mkdir function
 // =============================================================================
@@ -55,8 +56,11 @@ removedir(test_1_dir);
 removedir(test_2_dir);
 removedir(test_3_dir);
 removedir(test_4_dir);
+removedir: Warning: Directory 'TMPDIR/mkdir_test_3/mkdir_test_4' does not exist.
 removedir(test_5_dir);
+removedir: Warning: Directory 'TMPDIR/mkdir_test_1' does not exist.
 removedir(test_6_dir);
+removedir: Warning: Directory 'TMPDIR/mkdir_test_6' does not exist.
 removedir(test_7_dir);
 // TEST : error messages
 try

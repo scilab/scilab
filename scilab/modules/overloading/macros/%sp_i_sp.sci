@@ -30,7 +30,7 @@ function a=%sp_i_sp(i,j,b,a)
             a = matrix(b,m,n)
         else
             // print an error
-            error(msprintf(_("%s: Sparse insertion case not treated.\n"),"%sp_i_sp"));
+            error(msprintf(_("%s: Sparse insertion case is not implemented.\n"),"%sp_i_sp"));
         end
     end
 endfunction

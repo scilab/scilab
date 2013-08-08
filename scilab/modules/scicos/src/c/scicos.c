@@ -2128,9 +2128,10 @@ static void cossimdaskr(double *told)
     int (* DAESetMaxNumItersIC) (void*, int);
     int (* DAESetMaxNumStepsIC) (void*, int);
     int (* DAESetLineSearchOffIC) (void*, int);
-    /* Generic flags for stop mode */
-    int DAE_NORMAL   = 1;  /* IDA_NORMAL   = 1 */
-    int DAE_ONE_STEP = 2;  /* IDA_ONE_STEP = 2 */
+    /* For DAEs, the generic flags for stop mode depend on the used solver */
+    int DAE_NORMAL = 0, DAE_ONE_STEP = 0;
+    DAE_NORMAL   = (solver == IDA_BDF_Newton) ? 1 : 0;  /* IDA_NORMAL   = 1, DDAS_NORMAL   = 0 */
+    DAE_ONE_STEP = (solver == IDA_BDF_Newton) ? 2 : 1;  /* IDA_ONE_STEP = 2, DDAS_ONE_STEP = 1 */
     switch (solver)
     {
         case IDA_BDF_Newton:
@@ -2174,9 +2175,6 @@ static void cossimdaskr(double *told)
             *ierr = 1000;
             return;
     }
-    /* For DAEs, the stop mode flag depends on the used solver */
-    DAE_NORMAL   = (solver == IDA_BDF_Newton) ? 1 : 0;  /* IDA_NORMAL   = 1, DDAS_NORMAL   = 0 */
-    DAE_ONE_STEP = (solver == IDA_BDF_Newton) ? 2 : 1;  /* IDA_ONE_STEP = 2, DDAS_ONE_STEP = 1 */
 
     /* Set extension of Sundials for scicos */
     set_sundials_with_extension(TRUE);

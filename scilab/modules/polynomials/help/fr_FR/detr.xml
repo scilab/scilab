@@ -14,7 +14,8 @@
             <varlistentry>
                 <term>h  </term>
                 <listitem>
-                    <para>matrice carrée de polynômes ou de fractions rationnelles
+                    <para>
+                        matrice carrée de doubles ou de polynômes ou de fractions rationnelles.
                     </para>
                 </listitem>
             </varlistentry>
@@ -26,6 +27,28 @@
             <literal>d=detr(h)</literal> renvoie le déterminant <literal>d</literal> de la
             matrice <literal>h</literal>. Basé sur l'algorithme de Leverrier.
         </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            <![CDATA[
+// Matrice de doubles
+A = rand(5,5);
+detr(A)
+
+A = A+%i;
+detr(A)
+
+// Matrice de polynômes
+x = poly(0, 'x')
+A = [1+x 2 5; 3 4-x 3+x; x^2 1 x];
+detr(A)
+
+// Matrice de fractions rationnelles
+A = [1/x 2 3; 3 4/x 3/x; 1/x^2 1 1/x];
+detr(A)
+ ]]>
+        </programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

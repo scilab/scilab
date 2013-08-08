@@ -34,7 +34,7 @@ public:
 
     virtual ~H5ReferenceData();
 
-    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const;
+    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0, const bool flip = true) const;
 
     bool isReference() const
     {

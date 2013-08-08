@@ -19,10 +19,11 @@ function y = tand(x)
     if rhs <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"tand", 1));
     end
-
-    if ( ~isreal(x) ) then
+    
+    if type(x)<>1 | ~isreal(x) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"tand",1));
     end
+
     // Argument reduction toward [-90,90[
     n = round(x / 180);
     x = x - n * 180;
