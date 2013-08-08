@@ -214,6 +214,7 @@
     <ClCompile Include="sci_gateway\cpp\sci_jgetmethods.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jimport.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jinvoke.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jinvoke_db.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jnewInstance.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jremove.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_jsetfield.cpp" />
@@ -232,6 +233,7 @@
     <ClCompile Include="src\jni\ScilabJavaClass.cpp" />
     <ClCompile Include="src\jni\ScilabJavaCompiler.cpp" />
     <ClCompile Include="src\jni\ScilabJavaObject.cpp" />
+    <ClCompile Include="src\jni\ScilabOperations.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
@@ -275,6 +277,7 @@
     <ClInclude Include="src\jni\ScilabJavaClass.hxx" />
     <ClInclude Include="src\jni\ScilabJavaCompiler.hxx" />
     <ClInclude Include="src\jni\ScilabJavaObject.hxx" />
+    <ClInclude Include="src\jni\ScilabOperations.hxx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
