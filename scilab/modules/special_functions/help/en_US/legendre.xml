@@ -42,8 +42,8 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        real (row) vector (elements of <literal>x</literal> must be in
-                        the <literal>(-1,1)</literal> interval)
+                        real matrix(elements of <literal>x</literal> must be in
+                        the <literal>[-1,1]</literal> interval)
                     </para>
                 </listitem>
             </varlistentry>

@@ -75,18 +75,52 @@ public final class BarUpdater implements PropertyChangeListener {
      */
     public static void updateBars(String parentWindowsID, MenuBar newMenuBar, ToolBar newToolBar, TextBox newInfoBar, String newWindowTitle, Image newIcon) {
         SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(parentWindowsID);
-        if (parentWindow != null) {
-            parentWindow.addMenuBar(newMenuBar);
-            parentWindow.addToolBar(newToolBar);
-            parentWindow.addInfoBar(newInfoBar);
-            parentWindow.setTitle(newWindowTitle);
-            /** The following line is used to update the menubar, toolbar, ... displayed on screen */
-            parentWindow.getRootPane().revalidate();
-            if (OS.get() == OS.MAC) { /* Fix bug #11787 */
-                parentWindow.repaint();
+        if (parentWindow != null && !parentWindow.isRestoring()) {
+            boolean same = parentWindow.compareMenuBar(newMenuBar) && parentWindow.compareToolBar(newToolBar) && parentWindow.compareInfoBar(newInfoBar);
+            if (!same) {
+                parentWindow.addMenuBar(newMenuBar);
+                parentWindow.addToolBar(newToolBar);
+                parentWindow.addInfoBar(newInfoBar);
+                parentWindow.setTitle(newWindowTitle);
+                /** The following line is used to update the menubar, toolbar, ... displayed on screen */
+                parentWindow.getRootPane().revalidate();
+                if (OS.get() == OS.MAC) { /* Fix bug #11787 */
+                    parentWindow.repaint();
+                }
+                if (newIcon != null) {
+                    parentWindow.setIconImage(newIcon);
+                }
             }
-            if (newIcon != null) {
-                parentWindow.setIconImage(newIcon);
+        }
+    }
+
+    /**
+     * Local update for MenuBar and ToolBar
+     * Called when a Dock is complete.
+     * @param parentWindowsID : the ID of the window we want to update.
+     * @param newMenuBar the new MenuBar to display.
+     * @param newToolBar the new ToolBar to display.
+     * @param newInfoBar the new InfoBar to display.
+     * @param newWindowTitle the new Title to display
+     * @param newIcon the new windows icon
+     */
+    public static void forceUpdateBars(String parentWindowsID, MenuBar newMenuBar, ToolBar newToolBar, TextBox newInfoBar, String newWindowTitle, Image newIcon) {
+        SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(parentWindowsID);
+        if (parentWindow != null) {
+            boolean same = parentWindow.compareMenuBar(newMenuBar) && parentWindow.compareToolBar(newToolBar) && parentWindow.compareInfoBar(newInfoBar);
+            if (!same) {
+                parentWindow.addMenuBar(newMenuBar);
+                parentWindow.addToolBar(newToolBar);
+                parentWindow.addInfoBar(newInfoBar);
+                parentWindow.setTitle(newWindowTitle);
+                /** The following line is used to update the menubar, toolbar, ... displayed on screen */
+                parentWindow.getRootPane().revalidate();
+                if (OS.get() == OS.MAC) { /* Fix bug #11787 */
+                    parentWindow.repaint();
+                }
+                if (newIcon != null) {
+                    parentWindow.setIconImage(newIcon);
+                }
             }
         }
     }

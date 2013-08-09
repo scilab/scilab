@@ -37,7 +37,7 @@ public:
 
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const;
 
-    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const;
+    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0, const bool flip = true) const;
 
     virtual std::string dump(std::map<haddr_t, std::string> & alreadyVisited, const unsigned int indentLevel) const;
 };

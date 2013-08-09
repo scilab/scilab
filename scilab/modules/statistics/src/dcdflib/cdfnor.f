@@ -98,6 +98,8 @@ C
 C
 C**********************************************************************
 C     .. Parameters ..
+      DOUBLE PRECISION inf
+      PARAMETER (inf=1.0D300)
 C     ..
 C     .. Scalar Arguments ..
       DOUBLE PRECISION bound,mean,p,q,sd,x
@@ -207,7 +209,7 @@ C
                RETURN
             ENDIF
          ELSE
-            x = SIGN(1D308,x)
+            x = SIGN(inf,x)
          ENDIF
       ENDIF
 C
@@ -220,7 +222,7 @@ C
          CALL RETURNANANFORTRAN(sd)
          RETURN
       ENDIF
-      IF (vfinite(1,mean).EQ.0) mean = SIGN(1D308,mean)
+      IF (vfinite(1,mean).EQ.0) mean = SIGN(inf,mean)
 C
 C     SD
 C
@@ -231,7 +233,7 @@ C
          CALL RETURNANANFORTRAN(mean)
          RETURN
       ENDIF
-      IF (vfinite(1,sd).EQ.0) sd = SIGN(1D308,sd)
+      IF (vfinite(1,sd).EQ.0) sd = SIGN(inf,sd)
       IF (.NOT. (sd.LE.0.0D0)) GO TO 160
       bound = 0.0D0
       status = -6

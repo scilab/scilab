@@ -53,7 +53,7 @@ function [x, y, typ] = TOWS_c(job, arg1, arg2)
             //check for valid name variable
             r = %f;
             ierr = execstr("r = validvar(varnam)", "errcatch");
-            if ~r | ierr <> 0 then
+            if ~r | ierr <> 0 | length(varnam) > 19 then
                 message(["Invalid variable name."; "Please choose another variable name."]);
                 ok = %f;
             end

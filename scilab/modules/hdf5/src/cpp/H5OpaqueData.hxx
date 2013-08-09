@@ -43,7 +43,7 @@ public:
         os << std::hex << std::setfill('0') << std::setw(2) << (int)x[dataSize - 1];
     }
 
-    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const
+    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0, const bool flip = true) const
     {
         unsigned char * newData = 0;
 
@@ -59,15 +59,15 @@ public:
         }
         else
         {
-            int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition);
+            int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition, flip);
             hsize_t * _dims = new hsize_t[ndims + 1];
             memcpy(_dims, dims, ndims * sizeof(hsize_t));
             _dims[ndims] = (hsize_t)dataSize;
 
             try
             {
-                alloc(pvApiCtx, lhsPosition, 1, (int)(totalSize * dataSize), list, 3, &newData);
-                H5DataConverter::C2FHypermatrix((int)ndims + 1, _dims, (int)(totalSize * dataSize), static_cast<unsigned char *>(getData()), newData);
+                alloc(pvApiCtx, lhsPosition, (int)(totalSize * dataSize), 1, list, 3, &newData);
+                H5DataConverter::C2FHypermatrix((int)ndims + 1, _dims, (int)(totalSize * dataSize), static_cast<unsigned char *>(getData()), newData, flip);
             }
             catch (const H5Exception & /*e*/)
             {

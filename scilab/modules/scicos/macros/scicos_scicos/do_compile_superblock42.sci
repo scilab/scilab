@@ -1798,7 +1798,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
     // Scilab and C files generation
     //***********************************
 
-    //** generate scilab interfacing funtion
+    //** generate scilab interfacing function
     //   of the generated scicos block
     ok=gen_gui42();
 

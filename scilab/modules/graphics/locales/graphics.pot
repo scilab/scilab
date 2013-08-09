@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-06-25 16:31+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 136
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -62,7 +62,7 @@ msgstr ""
 # File: sci_gateway/c/sci_xclick.c, line: 170
 # File: sci_gateway/c/sci_xfarcs.c, line: 114
 # File: sci_gateway/c/sci_xfpolys.c, line: 185
-# File: sci_gateway/c/sci_xget.c, line: 136
+# File: sci_gateway/c/sci_xget.c, line: 131
 # File: sci_gateway/c/sci_xgetmouse.c, line: 128
 # File: sci_gateway/c/sci_xgetmouse.c, line: 162
 # File: sci_gateway/c/sci_xgraduate.c, line: 100
@@ -195,14 +195,14 @@ msgstr ""
 # File: src/c/getHandleProperty/set_y_ticks_property.c, line: 72
 # File: src/c/getHandleProperty/set_z_shift_property.c, line: 79
 # File: src/c/getHandleProperty/set_z_ticks_property.c, line: 72
-# File: src/c/sciCall.c, line: 168
-# File: src/c/sciCall.c, line: 238
-# File: src/c/sciCall.c, line: 275
-# File: src/c/sciCall.c, line: 332
-# File: src/c/sciCall.c, line: 497
-# File: src/c/sciCall.c, line: 823
-# File: src/c/sciCall.c, line: 890
-# File: src/c/sciCall.c, line: 965
+# File: src/c/sciCall.c, line: 165
+# File: src/c/sciCall.c, line: 235
+# File: src/c/sciCall.c, line: 272
+# File: src/c/sciCall.c, line: 327
+# File: src/c/sciCall.c, line: 488
+# File: src/c/sciCall.c, line: 811
+# File: src/c/sciCall.c, line: 878
+# File: src/c/sciCall.c, line: 953
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -933,7 +933,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_xget.c, line: 92
-# File: sci_gateway/c/sci_xget.c, line: 465
+# File: sci_gateway/c/sci_xget.c, line: 460
 # File: sci_gateway/c/sci_xset.c, line: 99
 # File: sci_gateway/c/sci_xset.c, line: 559
 #, c-format
@@ -1012,7 +1012,7 @@ msgstr ""
 # File: sci_gateway/c/sci_xset.c, line: 180
 # File: sci_gateway/c/sci_xset.c, line: 503
 #, c-format
-msgid "%s: Wrong number of input argument: %d or %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
@@ -1026,7 +1026,7 @@ msgstr ""
 # File: sci_gateway/c/sci_xset.c, line: 420
 # File: sci_gateway/c/sci_xset.c, line: 489
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
@@ -2259,13 +2259,13 @@ msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 779
+# File: src/c/sciCall.c, line: 770
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 810
+# File: src/c/sciCall.c, line: 800
 #, c-format
 msgid "%s: y vector is not monotonous.\n"
 msgstr ""
@@ -2957,17 +2957,6 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/color.sci, line: 38
-# File: macros/eval3d.sci, line: 26
-# File: macros/rgb2name.sci, line: 22
-# File: macros/square.sci, line: 25
-# File: macros/twinkle.sci, line: 25
-# File: macros/xclear.sci, line: 46
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-
-#
 # File: macros/colordef.sci, line: 33
 # File: macros/colordef.sci, line: 47
 # File: macros/colordef.sci, line: 72
@@ -3536,13 +3525,6 @@ msgid "Tcl/Tk interface not installed."
 msgstr ""
 
 #
-# File: macros/ged.sci, line: 20
-# File: macros/getSurfPropertyName.sci, line: 12
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-
-#
 # File: macros/ged.sci, line: 25
 # File: macros/ged.sci, line: 33
 #, c-format
@@ -3583,7 +3565,7 @@ msgstr ""
 #
 # File: macros/getColorIndex.sci, line: 76
 #, c-format
-msgid "%s:  Wrong number of input argument: %d expected.\n"
+msgid "%s:  Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
@@ -3914,9 +3896,6 @@ msgstr ""
 # File: macros/setSurfProperty.sci, line: 164
 # File: macros/setSurfProperty.sci, line: 313
 # File: macros/setSurfProperty.sci, line: 368
-# File: macros/setTitleLabelProperty.sci, line: 83
-# File: macros/setTitleLabelProperty.sci, line: 120
-# File: macros/setTitleLabelProperty.sci, line: 157
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
 msgstr ""
@@ -3957,11 +3936,11 @@ msgstr ""
 # File: macros/setSurfProperty.sci, line: 319
 # File: macros/setSurfProperty.sci, line: 374
 # File: macros/setTitleLabelProperty.sci, line: 74
-# File: macros/setTitleLabelProperty.sci, line: 89
-# File: macros/setTitleLabelProperty.sci, line: 110
-# File: macros/setTitleLabelProperty.sci, line: 125
-# File: macros/setTitleLabelProperty.sci, line: 147
-# File: macros/setTitleLabelProperty.sci, line: 162
+# File: macros/setTitleLabelProperty.sci, line: 87
+# File: macros/setTitleLabelProperty.sci, line: 108
+# File: macros/setTitleLabelProperty.sci, line: 122
+# File: macros/setTitleLabelProperty.sci, line: 144
+# File: macros/setTitleLabelProperty.sci, line: 158
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Vector or index in the colormap "
@@ -3997,25 +3976,25 @@ msgid "%s: Ambiguous MarkStyle value.\n"
 msgstr ""
 
 #
-# File: macros/setTitleLabelProperty.sci, line: 190
+# File: macros/setTitleLabelProperty.sci, line: 186
 #, c-format
 msgid ""
 "%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/setTitleLabelProperty.sci, line: 209
+# File: macros/setTitleLabelProperty.sci, line: 205
 msgid "Incorrect input: ..."
 msgstr ""
 
 #
-# File: macros/setTitleLabelProperty.sci, line: 231
+# File: macros/setTitleLabelProperty.sci, line: 227
 #, c-format
 msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
 msgstr ""
 
 #
-# File: macros/setTitleLabelProperty.sci, line: 238
+# File: macros/setTitleLabelProperty.sci, line: 234
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real matrix or a string matrix "

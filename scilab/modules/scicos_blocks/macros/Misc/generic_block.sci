@@ -36,7 +36,7 @@ function [x,y,typ]=generic_block(job,arg1,arg2)
         model=arg1.model;graphics=arg1.graphics;label=graphics.exprs
         if size(label,"*")==14 then label(9)=[],end //compatiblity
         while %t do
-            [ok,junction_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,auto0,depu,dept,lab]=..
+            [ok,function_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,auto0,depu,dept,lab]=..
             scicos_getvalue("Set GENERIC block parameters",..
             ["simulation function";
             "function type (0,1,2,..)";
@@ -56,7 +56,7 @@ function [x,y,typ]=generic_block(job,arg1,arg2)
             "str",1,"str",1),label)
             if ~ok then break,end
             label=lab
-            junction_name=stripblanks(junction_name)
+            function_name=stripblanks(function_name)
             xx=xx(:);z=z(:);rpar=rpar(:);ipar=int(ipar(:));
             i=int(i(:));
             o=int(o(:));
@@ -76,7 +76,7 @@ function [x,y,typ]=generic_block(job,arg1,arg2)
             if ok then
                 // AVERIFIER
                 if funtyp==3 then needcompile=4;end
-                model.sim=list(junction_name,funtyp);
+                model.sim=list(function_name,funtyp);
                 model.state=xx
                 model.dstate=z
                 model.rpar=rpar
@@ -94,9 +94,9 @@ function [x,y,typ]=generic_block(job,arg1,arg2)
         needcompile=resume(needcompile)
     case "define" then
         model=scicos_model()
-        junction_name="sinblk";
+        function_name="sinblk";
         funtyp=1;
-        model.sim=list(junction_name,funtyp)
+        model.sim=list(function_name,funtyp)
 
         model.in=1
         model.out=1
@@ -109,7 +109,7 @@ function [x,y,typ]=generic_block(job,arg1,arg2)
         model.blocktype="c"
         model.firing=[]
         model.dep_ut=[%t %f]
-        label=[junction_name;sci2exp(funtyp);
+        label=[function_name;sci2exp(funtyp);
         sci2exp(model.in);sci2exp(model.out);
         sci2exp(model.evtin);sci2exp(model.evtout);
         sci2exp(model.state);sci2exp(model.dstate);

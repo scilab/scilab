@@ -39,7 +39,7 @@ function [x,y,typ]=CBLOCK4(job,arg1,arg2)
         label=graphics.exprs;
 
         while %t do
-            [ok,junction_name,impli,in,it,out,ot,ci,co,xx,z,oz,...
+            [ok,function_name,impli,in,it,out,ot,ci,co,xx,z,oz,...
             rpar,ipar,opar,nmode,nzcr,auto0,depu,dept,lab]=..
             scicos_getvalue("Set C-Block4 block parameters",..
             ["Simulation function";
@@ -68,7 +68,7 @@ function [x,y,typ]=CBLOCK4(job,arg1,arg2)
                 break
             end
             label(1)=lab
-            funam=stripblanks(junction_name)
+            funam=stripblanks(function_name)
             xx=xx(:);
             z=z(:);
             rpar=rpar(:);

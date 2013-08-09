@@ -13,6 +13,10 @@ function y = asec(x)
     if rhs <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"asec", 1));
     end
+    
+    if and(type(x) <> [1 5]) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix expected.\n"), "asec", 1));
+    end
 
     y = acos(ones(x)./x);
 endfunction

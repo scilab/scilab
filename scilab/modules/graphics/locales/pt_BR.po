@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: pt_BR\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -525,8 +525,9 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s : '%s' tem que estar definido\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d or %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
 
 #, c-format
 msgid ""
@@ -534,7 +535,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
 
 #, c-format
@@ -1440,7 +1441,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s:Wrong type for input arguments #%d and #%d: If argument #%d is a handle "
+"%s: Wrong type for input arguments #%d and #%d: If argument #%d is a handle "
 "or a string, argument #%d must be a string or a scalar.\n"
 msgstr ""
 
@@ -1507,11 +1508,6 @@ msgid ""
 msgstr ""
 "%s: Valor incorreto para o %dº argumento de entrada: deve estar no intervalo "
 "[%s,%s].\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -1844,10 +1840,6 @@ msgid "Tcl/Tk interface not installed."
 msgstr "Interface Tcl/Tk não está instalada."
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o %dº argumento de entrada: esperava-se um número "
@@ -1876,7 +1868,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s:  Wrong number of input argument: %d expected.\n"
+msgid "%s:  Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #, c-format

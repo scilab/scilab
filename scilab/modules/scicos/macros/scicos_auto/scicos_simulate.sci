@@ -394,35 +394,31 @@ function [alreadyran, %cpr, Resume_line, TOWS_vals, Names] = do_terminate1(scs_m
         // Second step: Link the variable names to their values vectors,
         //and call '[names(1), names(2), ...] = resume(names(1), names(2), ...)' to save the variable into Scilab
         if ~isempty(Names) then
-            execstr("Names1val  = "+Names(1)+"_val;");
-            execstr("Names1valt = "+Names(1)+"_valt;");
-            // If input is a matrix, use function matrix() to reshape the saved values
-            if (size(Names1val, "r") > buff_sizes(1)) then  // In this case, size(Names(1), 'r') = buff_sizes(1) * nCols2
-                nRows = buff_sizes(1);
-                nCols  = size(Names1val, "c");
-                nCols2 = size(Names1val, "r") / buff_sizes(1);
-                Names1val = matrix(Names1val, nCols, nCols2, nRows);
-            end
-            // Replace default struct with value vector of first element of 'Names'
-            TOWS_vals.values = Names1val;
-            TOWS_vals.time   = Names1valt;
-            Resume_line_args = Names(1);  // Will contain 'names(1), names(2), ...'
-            for i=2:size(Names, "c")
+            for i=1:size(Names, "c")
                 execstr("NamesIval = "+Names(i)+"_val;");
+                execstr("NamesIvalt = "+Names(i)+"_valt;");
                 // If input is a matrix, use function matrix() to reshape the saved values
-                if (size(NamesIval, "r") > buff_sizes(i)) then  // In this case, size(Names(i), 'r') = buff_sizes(i) * nCols2
-                    nRows = buff_sizes(i);
+                // Check condition using time vector, if we have more values than time stamps, split it
+                if (size(NamesIval, "r") > size(NamesIvalt, "r")) then  // In this case, size(Names(i), 'r') = buff_sizes(i) * nCols2
+                    nRows  = size(NamesIvalt, "r");
                     nCols  = size(NamesIval, "c");
-                    nCols2 = size(NamesIval, "r") / buff_sizes(i);
+                    nCols2 = size(NamesIval, "r") / nRows;
                     NamesIval = matrix(NamesIval, nCols, nCols2, nRows);
                 end
-                ierr = execstr("TOWS_vals = [TOWS_vals struct(''values'', NamesIval,''time'',"+Names(i)+"_valt)];", "errcatch");
-                if ierr <> 0 then
-                    str_err = split_lasterror(lasterror());
-                    message(["Simulation problem" ; "Unable to find To Workspace Variable {"+Names(i)+"}:" ; str_err]);
-                    break;
+                if i == 1 then
+                    // Replace default struct with value vector of first element of 'Names'
+                    TOWS_vals.values = NamesIval;
+                    TOWS_vals.time   = NamesIvalt;
+                    Resume_line_args = Names(1);
+                else
+                    ierr = execstr("TOWS_vals = [TOWS_vals struct(''values'', NamesIval, ''time'', NamesIvalt)];", "errcatch");
+                    if ierr <> 0 then
+                        str_err = split_lasterror(lasterror());
+                        message(["Simulation problem" ; "Unable to find To Workspace Variable {"+Names(i)+"}:" ; str_err]);
+                        break;
+                    end
+                    Resume_line_args   = Resume_line_args + ", " + Names(i);  // Concatenate the variable names up to the last one
                 end
-                Resume_line_args   = Resume_line_args + ", " + Names(i);  // Concatenate the variable names up to the last one
             end
             Resume_line = "[" + Resume_line_args + "] = resume(" + Resume_line_args + ");";  // Build the message
             // Will execute Resume_line at the end of the main function, because it does not return control

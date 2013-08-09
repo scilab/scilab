@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -884,8 +884,8 @@ msgstr "Nepř.Vkládání-Hybridní Pozorovatel"
 msgid "Temperature Controller"
 msgstr "Ovladač Teploty"
 
-msgid "Inverted Pendulum"
-msgstr "Inverzní Kyvadlo"
+msgid "Inverted pendulum"
+msgstr ""
 
 msgid "Lorentz butterfly"
 msgstr "Lorentzův motýl"

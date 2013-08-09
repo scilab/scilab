@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: pl\n"
 
 #, c-format
@@ -411,15 +411,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Label: A string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Icon: A string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: callback: A string expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: A string expected.\n"
 msgstr ""
 
 #, c-format
@@ -879,6 +872,12 @@ msgstr ""
 msgid "Custom:"
 msgstr ""
 
+msgid "LaTeX preview"
+msgstr ""
+
+msgid "LaTeX font size:"
+msgstr ""
+
 msgid "Web"
 msgstr ""
 
@@ -1145,7 +1144,6 @@ msgstr "Tło konsoli..."
 msgid "No print service found."
 msgstr ""
 
-#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1155,7 +1153,6 @@ msgstr ""
 "taki, w którym nie ma możliwości jednoczesnego używania uicontrols i "
 "grafiki. Żeby uzyskać więcej informacji wprowadź %s ."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "w niektórych sytuacjach %s usuwa ten problem"
 
@@ -1331,7 +1328,6 @@ msgstr "Zapisz i wykonaj"
 msgid "Empty tab"
 msgstr "Pusta karta"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1340,11 +1336,9 @@ msgstr ""
 "Proszę o zgłoszenie tego błędu i załączenie poprzedniegu komunikatu oraz "
 "pliku %s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Jesteś pewny, że chcesz zamknąć %s ?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Jesteś pewny, że chcesz zamknąć %s  i %s ?"
 
@@ -1399,7 +1393,6 @@ msgstr "Wszystkie pliki PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Wszystkie pliki RTF"
 
-#, c-format
 msgid "All %s files"
 msgstr "Wszystkie %s pliki"
 
@@ -1658,10 +1651,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano drzewa "
-"katalogowego (tree).\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -1670,16 +1661,13 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
-"%s: Nieprawidłowe typy parametrów wejściowych zaczynając od nr %d: "
-"Oczekiwano drzewa katalogowego (tree).\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgid "%s: Wrong type for input argument #%d: String or uitree expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano ciągu znaków "
-"lub drzewa katalogowego (tree).\n"
 
 #, c-format
 msgid "%s: Invalid position '%s'.\n"
@@ -1702,12 +1690,6 @@ msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wartości typu "
 "logicznego (boolean).\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano drzewa "
-"katalogowego (tree) lub ciągu znaków.\n"
 
 #, c-format
 msgid ""

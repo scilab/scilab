@@ -94,7 +94,7 @@ void H5StringData::printData(std::ostream & os, const unsigned int pos, const un
     }
 }
 
-void H5StringData::toScilab(void * pvApiCtx, const int lhsPosition, int * parentList, const int listPosition) const
+void H5StringData::toScilab(void * pvApiCtx, const int lhsPosition, int * parentList, const int listPosition, const bool flip) const
 {
     static char EMPTY[] = { '\0' };
 
@@ -121,6 +121,8 @@ void H5StringData::toScilab(void * pvApiCtx, const int lhsPosition, int * parent
         _data = _tdata;
     }
 
+    std::cout << ndims << std::endl;
+
     if (ndims == 0)
     {
         H5BasicData<char *>::create(pvApiCtx, lhsPosition, 1, 1, _data, parentList, listPosition);
@@ -134,14 +136,21 @@ void H5StringData::toScilab(void * pvApiCtx, const int lhsPosition, int * parent
         char ** newData = new char *[totalSize];
         if (ndims == 2)
         {
-            H5DataConverter::C2FHypermatrix(2, dims, 0, _data, newData);
-            H5BasicData<char *>::create(pvApiCtx, lhsPosition, (int)dims[0], (int)dims[1], newData, parentList, listPosition);
+            H5DataConverter::C2FHypermatrix(2, dims, 0, _data, newData, flip);
+            if (flip)
+            {
+                H5BasicData<char *>::create(pvApiCtx, lhsPosition, (int)dims[1], (int)dims[0], newData, parentList, listPosition);
+            }
+            else
+            {
+                H5BasicData<char *>::create(pvApiCtx, lhsPosition, (int)dims[0], (int)dims[1], newData, parentList, listPosition);
+            }
         }
         else
         {
-            int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition);
-            H5DataConverter::C2FHypermatrix((int)ndims, dims, totalSize, _data, newData);
-            H5BasicData<char *>::create(pvApiCtx, lhsPosition, 1, (int)totalSize, newData, parentList, listPosition);
+            int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition, flip);
+            H5DataConverter::C2FHypermatrix((int)ndims, dims, totalSize, _data, newData, flip);
+            H5BasicData<char *>::create(pvApiCtx, lhsPosition, (int)totalSize, 1, newData, list, 3);
         }
         delete[] newData;
     }

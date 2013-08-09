@@ -7,7 +7,7 @@
 //
 
 // =============================================================================
-// Demonstrate animation based on the rotation of Lorentz curve
+// Demonstrate animation based on the rotation of Lorenz curve
 // =============================================================================
 
 function demo_anim3()
@@ -42,7 +42,7 @@ function demo_anim3()
         e = gce(); //handle on the just created 3D polyline
         e.foreground = j;//set its color
     end
-    title("Lorentz curve","fontsize",3);
+    title("Lorenz curve","fontsize",3);
 
     curAxe = gca();
     curAxe.box = "off";

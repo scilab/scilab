@@ -43,11 +43,11 @@ function [x,y,typ]=EXTRACT(job,arg1,arg2)
             b=b(:);
             if ~ok then break,end
             if (typ==1) then
-                junction_name="extract";
+                function_name="extract";
                 ot=1;
                 it=1;
             elseif (typ==2) then
-                junction_name="extractz";
+                function_name="extractz";
                 ot=2;
                 it=2;
             else message("Datatype is not supported");ok=%f;
@@ -64,7 +64,7 @@ function [x,y,typ]=EXTRACT(job,arg1,arg2)
             if ok then
                 label=exprs;
                 [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
-                model.sim=list(junction_name,funtyp);
+                model.sim=list(function_name,funtyp);
                 graphics.exprs=label;
                 arg1.graphics=graphics;arg1.model=model;
                 x=arg1
@@ -73,9 +73,9 @@ function [x,y,typ]=EXTRACT(job,arg1,arg2)
         end
     case "define" then
         model=scicos_model()
-        junction_name="extract";
+        function_name="extract";
         funtyp=4;
-        model.sim=list(junction_name,funtyp)
+        model.sim=list(function_name,funtyp)
 
         model.in=-1
         model.in2=-2

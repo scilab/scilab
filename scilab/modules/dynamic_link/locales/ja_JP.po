@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-13 14:32+0000\n"
+"PO-Revision-Date: 2013-07-26 15:01+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -197,14 +197,14 @@ msgstr "%s はエントリポイントではありません.\n"
 msgid "Linking %s.\n"
 msgstr "%s をリンクします。\n"
 
-msgid "C Function to call in scilab.\n"
-msgstr "scilabでコールするC関数.\n"
+msgid "Calling a C function from Scilab.\n"
+msgstr "ScilabからC関数をコール中.\n"
 
-msgid "Call ilib_for_link to build C function.\n"
-msgstr "C関数を構築するためにilib_for_linkをコール.\n"
+msgid "Calling ilib_for_link to build C function.\n"
+msgstr "C関数構築のためにilib_for_linkをコール中.\n"
 
-msgid "Call C function. Z = X+Y"
-msgstr "C関数をコール. Z = X+Y"
+msgid "Calling C function. Z = X+Y"
+msgstr "C関数をコール中. Z = X+Y"
 
 #, c-format
 msgid "with X = %d"
@@ -215,17 +215,17 @@ msgid "with Y = %d"
 msgstr "条件: Y = %d"
 
 #, c-format
-msgid "result Z = %d"
-msgstr "結果: Z = %d"
+msgid "Result Z = %d"
+msgstr "結果 Z = %d"
 
-msgid "Fortran subroutine to call in scilab.\n"
-msgstr "scilabでコールするFortranサブルーチン.\n"
+msgid "Calling a Fortran subroutine from Scilab.\n"
+msgstr "Scilabからfortranサブルーチンをコール中.\n"
 
-msgid "Call ilib_for_link to build fortran subroutine.\n"
-msgstr "fortranサブルーチンを構築するためにilib_for_linkをコール.\n"
+msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
+msgstr "fortranサブルーチンを構築するするためにilib_for_linkをコール中.\n"
 
-msgid "Call Fortran subroutine. Z = X+Y"
-msgstr "Fortranサブルーチンをコール. Z = X+Y"
+msgid "Calling Fortran subroutine. Z = X+Y"
+msgstr "fortranサブルーチンをコール中. Z = X+Y"
 
 # File: etc/dynamic_link.start, line: 43
 msgid "Dynamic link"
@@ -251,11 +251,12 @@ msgstr "Microsoft Visual Studio C x86 コンパイラが見つかりません."
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr "Intel Fortran コンパイラ 9, 10, 11 または 12 コンパイラが見つかりません."
 
-msgid "Microsoft Visual Studio C 2008 or more x64 Compiler not installed."
-msgstr "Microsoft Visual Studio C 2008 以降の x64 用コンパイラがインストールされていません."
+msgid ""
+"Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
+msgstr "Microsoft Visual Studio C 2008 (またはそれ以降) x64 コンパイラがインストールされていません."
 
-msgid "Microsoft Visual Studio C 2008 or more Compiler not found."
-msgstr "Microsoft Visual Studio C 2008 以降のコンパイラがインストールされていません."
+msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
+msgstr "Microsoft Visual Studio C 2008 (またはそれ以降) コンパイラが見つかりません."
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"

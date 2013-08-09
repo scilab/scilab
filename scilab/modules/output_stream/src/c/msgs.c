@@ -1441,7 +1441,7 @@ static int msg_113(int *n, int *ierr)
 /*--------------------------------------------------------------------------*/
 static int msg_114(int *n, int *ierr)
 {
-    sciprint(_("%s: %s: %s is too small. %s is orthogonal to the columns of the jacobian to machine precision.\n"), _("Warning"), "lsqrsolve", "gtol", "fvec");
+    sciprint(_("%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to machine precision.\n"), _("Warning"), "lsqrsolve", "gtol", "fvec");
     return 0;
 }
 /*--------------------------------------------------------------------------*/

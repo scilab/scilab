@@ -98,7 +98,9 @@ SciNotes
 Xcos
 ====
 
-* Updated Sundials to lastest "2.5.0", keeping our modifications
+* Updated Sundials to the "2.5.0" version, keeping our modifications
+
+* Updated JGraphX to the "2.1.0.7" version, updating our performance hooks
 
 * Added a new DAE solver : DDaskr, using BDF methods with direct Newton and preconditioned Krylov linear solvers, which includes rootfinding.
 
@@ -106,6 +108,9 @@ Xcos
 
 * Bug #7350 fixed - The superblock I/O ports numbering was not updated
                     when a new port was dropped.
+
+* Bug #8570 fixed - "Region to superblock" has been renamed to 
+                    "Selection to superblock".
 
 * Bug #11518 fixed - CLR block-text was displayed out of the bounding box 
                      when zooming.
@@ -117,6 +122,9 @@ Xcos
 
 * Bug #12387 fixed - Setup menu option "Modelica initialize" did not blur
                      during simulation.
+
+* Bug #12414 fixed - SWITCH_m block had different behaviors
+                     for different types of inputs.
 
 * Bug #12424 fixed - Calling lincos on a Derivative block made scilab crash.
 
@@ -147,6 +155,12 @@ Toolbox skeleton
 =================
 
 * Add some Xcos specific content to xcos_toolbox_skeleton help pages.
+
+
+Compilation
+============
+
+* Enforce a minimal version of Flexdock (1.2.4).
 
 
 Bug fixes
@@ -228,6 +242,8 @@ Bug fixes
 
 * Bug #7828 fixed - Slight improvements in nicholschart.
 
+* Bug #7848 fixed - The third argument of correl function is now optional.
+
 * Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
 * Bug #7960 fixed - plzr() could not produce pole zero plot for a simple transfer function.
@@ -253,6 +269,8 @@ Bug fixes
 * Bug #8511 fixed - sprand used rand and grand functions, and internal state of the random
                     generator was changed.
 
+* Bug #8561 fixed - ddassl(), ddasrt(), ddaskr(): abs and rel tolerances sizes are now checked.
+
 * Bug #8597 fixed - Uncontrolled message of grand/clcg4 should be displayed as warning.
 
 * Bug #8607 fixed - Some error messages in modules/overloading/macros were not standard and not localized.
@@ -269,7 +287,7 @@ Bug fixes
 
 * Bug #8778 fixed - Call_ScilabOpen, TerminateScilab can not be called more
                     than 80 times in a loop.
-                    
+
 * Bug #8779 fixed - gsort() did not preserve order of equal elements, in lexicographic sort.
 
 * Bug #8820 fixed - Squeeze did not return a matrix when the number of dimensions
@@ -296,6 +314,8 @@ Bug fixes
 * Bug #9059 fixed - tbx_build_macros and genlib do not stop on error.
 
 * Bug #9109 fixed - nfreq tagged as obsolete.
+
+* Bug #9385 fixed - The type checking in trigonometric functions has been added.
 
 * Bug #9459 fixed - Default values of the optional plot3d arguments were not documented.
 
@@ -324,6 +344,8 @@ Bug fixes
                      if it is present, then the function will issue a warning instead of an error.
 
 * Bug #10287 fixed - Added an error message for complex expression as input argument of integrate function.
+
+* Bug #10305 fixed - Comparison of lists with empty items returned an error message.
 
 * Bug #10596 fixed - exit(xxx) from Scilab was failing.
 
@@ -488,3 +510,17 @@ Bug fixes
 * Bug #12715 fixed - Variable cross in pspect and cspect has been renamed because of conflicts with cross function.
 
 * Bug #12736 fixed - In SciNotes, the Completion window appeared only in first tab.
+
+* Bug #12758 fixed - Focus issue with plot3d() fixed.
+
+* Bug #12747 fixed - legendre() now accepts the -1 and 1 values for the third argument.
+
+* Bug #12772 fixed - eigs() failed when trying to solve a sparse matrix eigen value problem.
+
+* Bug #12774 fixed - Various typos fixed.
+
+* Bug #12775 fixed - Some related functions were not listed in "See also" section of routh_t help page.
+
+* Bug #12779 fixed - savewave() had a miscoding in the internal function write_wavedat().
+
+* Bug #12783 fixed - There were some inconsistent error messages in dsearch().

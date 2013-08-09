@@ -65,7 +65,7 @@ public:
         os << transformedData[pos];
     }
 
-    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const
+    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0, const bool flip = true) const
     {
         U * newData = 0;
 
@@ -82,14 +82,22 @@ public:
         {
             if (ndims == 2)
             {
-                H5BasicData<U>::alloc(pvApiCtx, lhsPosition, (int)dims[0], (int)dims[1], parentList, listPosition, &newData);
+                if (flip)
+                {
+                    H5BasicData<U>::alloc(pvApiCtx, lhsPosition, (int)dims[1], (int)dims[0], parentList, listPosition, &newData);
+                }
+                else
+                {
+                    H5BasicData<U>::alloc(pvApiCtx, lhsPosition, (int)dims[0], (int)dims[1], parentList, listPosition, &newData);
+                }
+
                 H5DataConverter::C2FHypermatrix(2, dims, 0, static_cast<U *>(getData()), newData);
             }
             else
             {
-                int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition);
-                H5BasicData<U>::alloc(pvApiCtx, lhsPosition, 1, (int)totalSize, list, 3, &newData);
-                H5DataConverter::C2FHypermatrix((int)ndims, dims, totalSize, static_cast<U *>(getData()), newData);
+                int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition, flip);
+                H5BasicData<U>::alloc(pvApiCtx, lhsPosition, (int)totalSize, 1, list, 3, &newData);
+                H5DataConverter::C2FHypermatrix((int)ndims, dims, totalSize, static_cast<U *>(getData()), newData, flip);
             }
         }
     }

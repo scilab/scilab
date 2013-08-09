@@ -12896,8 +12896,8 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jgraphx us
 
 
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.8.0.0) of jgraphx" >&5
-$as_echo_n "checking minimal version (1.8.0.0) of jgraphx... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (2.0.0.1) of jgraphx" >&5
+$as_echo_n "checking minimal version (2.0.0.1) of jgraphx... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$JGRAPHX:$ac_java_classpath"
    if test "x" == "x"; then
@@ -12910,7 +12910,7 @@ import com.mxgraph.view.mxGraph;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="1.8.0.0";
+        String minVersion="2.0.0.1";
 
                             System.out.println(mxGraph.VERSION);
                                   if (compare(minVersion, mxGraph.VERSION) > 0) {
@@ -12959,7 +12959,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
                 echo "configure: CLASSPATH was $CLASSPATH" >&5
-                  as_fn_error $? "Wrong version of jgraphx. Expected at least 1.8.0.0. Found $STDOUT" "$LINENO" 5
+                  as_fn_error $? "Wrong version of jgraphx. Expected at least 2.0.0.1. Found $STDOUT" "$LINENO" 5
                             fi
         fi
         if test -f conftest.java.output; then
@@ -12969,7 +12969,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of jgraphx. Expected at least 1.8.0.0. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of jgraphx. Expected at least 2.0.0.1. Found $STDOUT" "$LINENO" 5
             fi
 
    else
@@ -12982,7 +12982,7 @@ import com.mxgraph.view.mxGraph;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="1.8.0.0";
+        String minVersion="2.0.0.1";
 
                             System.out.println(mxGraph.VERSION);
                                   if (compare(minVersion, mxGraph.VERSION) != 0) {
@@ -13031,7 +13031,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
                 echo "configure: CLASSPATH was $CLASSPATH" >&5
-                  as_fn_error $? "Wrong version of jgraphx. Expected exact version 1.8.0.0. Found $STDOUT" "$LINENO" 5
+                  as_fn_error $? "Wrong version of jgraphx. Expected exact version 2.0.0.1. Found $STDOUT" "$LINENO" 5
                             fi
         fi
         if test -f conftest.java.output; then
@@ -13041,7 +13041,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of jgraphx. Expected exact version 1.8.0.0. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of jgraphx. Expected exact version 2.0.0.1. Found $STDOUT" "$LINENO" 5
             fi
 
     fi
@@ -13447,8 +13447,8 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar flexdock u
 
 
 
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.2.3) of flexdock" >&5
-$as_echo_n "checking minimal version (1.2.3) of flexdock... " >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.2.4) of flexdock" >&5
+$as_echo_n "checking minimal version (1.2.4) of flexdock... " >&6; }
    saved_ac_java_classpath=$ac_java_classpath
    export ac_java_classpath="$FLEXDOCK:$ac_java_classpath"
    if test "x" == "x"; then
@@ -13461,7 +13461,7 @@ import org.flexdock.util.Utilities;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="1.2.3";
+        String minVersion="1.2.4";
 
                             System.out.println(Utilities.VERSION);
                                   if (compare(minVersion, Utilities.VERSION) > 0) {
@@ -13510,7 +13510,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
                 echo "configure: CLASSPATH was $CLASSPATH" >&5
-                  as_fn_error $? "Wrong version of flexdock. Expected at least 1.2.3. Found $STDOUT" "$LINENO" 5
+                  as_fn_error $? "Wrong version of flexdock. Expected at least 1.2.4. Found $STDOUT" "$LINENO" 5
                             fi
         fi
         if test -f conftest.java.output; then
@@ -13520,7 +13520,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of flexdock. Expected at least 1.2.3. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of flexdock. Expected at least 1.2.4. Found $STDOUT" "$LINENO" 5
             fi
 
    else
@@ -13533,7 +13533,7 @@ import org.flexdock.util.Utilities;
 
 public class conftest {
     public static void main(String[] argv) {
-        String minVersion="1.2.3";
+        String minVersion="1.2.4";
 
                             System.out.println(Utilities.VERSION);
                                   if (compare(minVersion, Utilities.VERSION) != 0) {
@@ -13582,7 +13582,7 @@ EOF
                    STDOUT=`cat conftest.java.output`
                 fi
                 echo "configure: CLASSPATH was $CLASSPATH" >&5
-                  as_fn_error $? "Wrong version of flexdock. Expected exact version 1.2.3. Found $STDOUT" "$LINENO" 5
+                  as_fn_error $? "Wrong version of flexdock. Expected exact version 1.2.4. Found $STDOUT" "$LINENO" 5
                             fi
         fi
         if test -f conftest.java.output; then
@@ -13592,7 +13592,7 @@ EOF
         echo "configure: failed program was:" >&5
         cat conftest.java >&5
         echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of flexdock. Expected exact version 1.2.3. Found $STDOUT" "$LINENO" 5
+          as_fn_error $? "Wrong version of flexdock. Expected exact version 1.2.4. Found $STDOUT" "$LINENO" 5
             fi
 
     fi

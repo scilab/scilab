@@ -21,14 +21,14 @@ function res = ver()
         res(2,2) = sprintf("%s %s",system_getproperty("os.name"), ..
         system_getproperty("os.version"));
 
-        res(3,1) = gettext("Java version :");
+        res(3,1) = gettext("Java version: ");
         res(3,2) = system_getproperty("java.version");
 
-        res(4,1) = gettext("Java runtime information :");
+        res(4,1) = gettext("Java runtime information: ");
         res(4,2) = sprintf("%s (build %s)\n",system_getproperty("java.runtime.name"), ..
         system_getproperty("java.runtime.version"));
 
-        res(5,1) = gettext("Java vm information :");
+        res(5,1) = gettext("Java Virtual Machine information: ");
         res(5,2) = sprintf("%s (build %s, %s)\n",system_getproperty("java.vm.name"), ..
         system_getproperty("java.vm.version"), ..
         system_getproperty("java.vm.info"));

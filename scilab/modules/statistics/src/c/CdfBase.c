@@ -194,8 +194,22 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
 
     for (i = 0; i < inarg; ++i)
     {
+        int j = 0;
         getVarAddressFromPosition(pvApiCtx, i + 2, &p);
         getMatrixOfDouble(pvApiCtx, p, &rows[i], &cols[i], &data[i]);
+        /*check data are integers, by pass Inf and NaN*/
+
+        for(j = 0 ; j < rows[i] * cols[i] ; j++)
+        {
+            if (data[i][j] == data[i][j] && data[i][j] + 1 != data[i][j]) // NaN and Inf will be handled in the program
+            {
+                if ((int)data[i][j] - data[i][j] != 0)
+                {
+                    Scierror(999, _("%s: Wrong value for input argument #%d: A matrix of integer value expected.\n"), fname, i + 1);
+                    return 1;
+                }
+            }
+        }
     }
     for (i = 1; i < inarg ; ++i)
     {

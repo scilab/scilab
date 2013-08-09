@@ -8,7 +8,6 @@
 // <-- Non-regression test for bug 12679 -->
 //
 // <-- CLI SHELL MODE -->
-// <-- ENGLISH IMPOSED -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=12679
@@ -25,10 +24,6 @@ p = [s, s*(s+1)^2, 2*s^2+s^3];
 [pgcd, u] = gcd(p);
 assert_checkequal(p*u, [0 0 s]);
 // Complex polynomials should yield an error
-s = poly(%i, 's');
-p = [s, s*(s+1)^2,2*s^2+s^3];
-refMsg = msprintf(_("%s: Wrong type for argument #%d: Real Polynomial expected.\n"), "gcd", 1);
-assert_checkerror("[pgcd, u] = gcd(p);", refMsg);
 
 // Normal behavior, with integers
 V = int32([2^2*3^5, 2^3*3^2, 2^2*3^4*5]);
@@ -48,11 +43,6 @@ s = poly(0, 's');
 p = [s, s*(s+1)^2, s^2*(s+2)];
 [pp, fact] = lcm(p);
 assert_checkequal(pp, [2*s^2 + 5*s^3 + 4*s^4 + s^5]);
-// Complex polynomials should yield an error
-s = poly(%i, 's');
-p = [s, s*(s+1)^2, s^2*(s+2)];
-refMsg3 = msprintf(_("%s: Wrong type for argument #%d: Real Polynomial expected.\n"), "lcm", 1);
-assert_checkerror("[pp, fact] = lcm(p);", refMsg3);
 
 // Normal behavior, with integers
 V = int32([2^2*3^5, 2^3*3^2, 2^2*3^4*5]);

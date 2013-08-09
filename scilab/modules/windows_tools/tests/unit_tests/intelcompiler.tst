@@ -8,4 +8,4 @@
 // Checks that Scilab has been compiled using Intel C++ Compiler version 13
 
 [a,b]=getdebuginfo();
-assert_checkequal(b(5), "Compiled with Intel compiler (1300)");
+assert_checkequal(b(5), "Compiled with Intel compiler (1310)");

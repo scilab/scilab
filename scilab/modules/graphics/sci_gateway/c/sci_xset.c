@@ -179,7 +179,7 @@ int sci_xset(char *fname, void *pvApiCtx)
         int clipState = 2;
         if (nbInputArgument(pvApiCtx) != 5 && nbInputArgument(pvApiCtx) != 2)
         {
-            Scierror(999, _("%s: Wrong number of input argument: %d or %d expected.\n"), fname, 2, 5);
+            Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 5);
             return 1;
         }
 
@@ -245,7 +245,7 @@ int sci_xset(char *fname, void *pvApiCtx)
         char *subwinUID = NULL;
         if (nbInputArgument(pvApiCtx) != 3)
         {
-            Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
             return -1;
         }
 
@@ -419,7 +419,7 @@ int sci_xset(char *fname, void *pvApiCtx)
         double fontSize = xx[1];
         if (nbInputArgument(pvApiCtx) != 3)
         {
-            Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
             return -1;
         }
 
@@ -488,7 +488,7 @@ int sci_xset(char *fname, void *pvApiCtx)
         int figurePosition[2];
         if (nbInputArgument(pvApiCtx) != 2)
         {
-            Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return -1;
         }
         getOrCreateDefaultSubwin();
@@ -502,7 +502,7 @@ int sci_xset(char *fname, void *pvApiCtx)
         int figureSize[2];
         if (nbInputArgument(pvApiCtx) != 2 && nbInputArgument(pvApiCtx) != 3)
         {
-            Scierror(999, _("%s: Wrong number of input argument: %d or %d expected.\n"), fname, 2, 3);
+            Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 3);
             return -1;
         }
         getOrCreateDefaultSubwin();

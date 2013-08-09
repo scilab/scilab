@@ -34,11 +34,11 @@ SCICOS_BLOCKS_IMPEXP void summation_i32e(scicos_block *block, int flag)
     {
         int j = 0, k = 0;
         int nu = 0, mu = 0, nin = 0;
-        long *y = NULL;
+        SCSINT32_COP *y = NULL;
         int *ipar = NULL;
         double v = 0., l = 0.;
         double *rpar = NULL;
-        long *u = NULL;
+        SCSINT32_COP *u = NULL;
 
         y = Getint32OutPortPtrs(block, 1);
         nu = GetInPortRows(block, 1);
@@ -64,7 +64,7 @@ SCICOS_BLOCKS_IMPEXP void summation_i32e(scicos_block *block, int flag)
             }
             else
             {
-                y[0] = (long)v;
+                y[0] = (SCSINT32_COP)v;
             }
         }
         else
@@ -92,7 +92,7 @@ SCICOS_BLOCKS_IMPEXP void summation_i32e(scicos_block *block, int flag)
                 }
                 else
                 {
-                    y[j] = (long)v;
+                    y[j] = (SCSINT32_COP)v;
                 }
             }
         }

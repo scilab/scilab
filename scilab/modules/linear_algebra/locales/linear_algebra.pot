@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-06-25 16:31+0100\n"
+"Revision-Date: 2013-07-26 14:48+0100\n"
 
 # File: sci_gateway/c/sci_backslash.c, line: 66
 # File: sci_gateway/c/sci_backslash.c, line: 87
@@ -142,17 +142,18 @@ msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 
 #
-# File: macros/gschur.sci, line: 22
-# File: macros/gschur.sci, line: 38
+# File: macros/gschur.sci, line: 21
+# File: macros/gschur.sci, line: 37
 # File: macros/gspec.sci, line: 13
 #, c-format
 msgid "%s: Obsolete function. Please replace '%s' by '%s'."
 msgstr ""
 
 #
-# File: macros/gschur.sci, line: 30
+# File: macros/gschur.sci, line: 29
 #, c-format
-msgid "%s: Obsolete function. Old external cannot be used."
+msgid ""
+"%s: Obsolete function. Former external functions cannot be used anymore."
 msgstr ""
 
 #
@@ -177,7 +178,7 @@ msgstr ""
 
 #
 # File: macros/linsolve.sci, line: 24
-msgid "Conflicting linear constraints!"
+msgid "Conflicting linear constraints."
 msgstr ""
 
 #
@@ -207,14 +208,18 @@ msgstr ""
 
 #
 # File: macros/penlaur.sci, line: 30
+# File: macros/rowshuff.sci, line: 33
 #, c-format
 msgid "%s: Singular pencil."
 msgstr ""
 
 #
 # File: macros/pinv.sci, line: 38
+# File: macros/rank.sci, line: 30
+# File: macros/rref.sci, line: 42
 #, c-format
-msgid "%s: Type not defined for %s. Check argument or define function %s."
+msgid ""
+"%s: Function not defined for type '%s'. Check argument or define function %s."
 msgstr ""
 
 #
@@ -242,28 +247,10 @@ msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/rank.sci, line: 30
-#, c-format
-msgid "%s: Type not defined '%s'. Check argument or define function %s."
-msgstr ""
-
-#
 # File: macros/rowcomp.sci, line: 33
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"
-msgstr ""
-
-#
-# File: macros/rowshuff.sci, line: 33
-#, c-format
-msgid "%s: Singular pencil!"
-msgstr ""
-
-#
-# File: macros/rref.sci, line: 42
-#, c-format
-msgid "%s: Type not defined %s. Check argument or define function %s."
 msgstr ""
 
 #

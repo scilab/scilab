@@ -20,7 +20,16 @@ extern int C2F(mtlist)(); /* fortran */
 /*--------------------------------------------------------------------------*/
 int sci_rlist(char *fname, void* pvApiCtx)
 {
-    C2F(mtlist)(C2F(rattyp));
-    return 0;
+    if (nbInputArgument(pvApiCtx) == 2)
+    {
+        int lw = 0;
+        OverLoad(0);
+        return 0;
+    }
+    else
+    {
+        C2F(mtlist)(C2F(rattyp));
+        return 0;
+    }
 }
 /*--------------------------------------------------------------------------*/

@@ -21,7 +21,7 @@ function blocks = xcosPalGenerateAllIcons(path)
         error(sprintf(gettext("%s: Wrong type for argument %d: Matrix of strings expected.\n"), "xcosPalGenerateAllIcons", 1));
     end
     // 2. Check size
-    if size(path, "*")<>1 then
+    if and(size(path)<>1) then
         error(sprintf(gettext("%s: Wrong size for input argument #%d: Vector expected.\n"), "xcosPalGenerateAllIcons" , 1));
     end
 

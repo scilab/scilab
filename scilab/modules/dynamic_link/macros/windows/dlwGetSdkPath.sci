@@ -31,6 +31,8 @@ function SDKpath = dlwGetSdkPath()
             else
                 SDKpath = [];
             end
+        else
+            //errclear();
         end
     end
 

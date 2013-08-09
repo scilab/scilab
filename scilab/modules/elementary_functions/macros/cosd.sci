@@ -15,10 +15,11 @@ function x = cosd(x)
     if rhs <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"cosd", 1));
     end
-
-    if ~isreal(x) then
+    
+    if type(x) <> 1 | ~isreal(x) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"cosd",1));
     end
+
     n = round(x/90);
     x = x - n*90;
     m = pmodulo(n,4);

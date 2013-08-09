@@ -30,7 +30,7 @@ SCICOS_BLOCKS_IMPEXP void delay4_i32(scicos_block *block, int flag)
        Scicos block simulator
        Ouputs nx*dt delayed input */
 
-    long *y = NULL, *u = NULL, *oz = NULL;
+    SCSINT32_COP *y = NULL, *u = NULL, *oz = NULL;
     int nz = 0, mz = 0;
 
 

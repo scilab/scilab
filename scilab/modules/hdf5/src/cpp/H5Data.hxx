@@ -69,7 +69,7 @@ protected:
         }
     }
 
-    int * getHypermatrix(void * pvApiCtx, const int position, int * parentList = 0, const int listPosition = 0) const
+    int * getHypermatrix(void * pvApiCtx, const int position, int * parentList = 0, const int listPosition = 0, const bool flip = true) const
     {
         static const char * hypermat[3] = {"hm", "dims", "entries"};
 
@@ -95,22 +95,22 @@ protected:
             throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
         }
 
-        if (sizeof(int) == sizeof(hsize_t))
+        int * _dims = 0;
+        err = allocMatrixOfInteger32InList(pvApiCtx, position, list, 2, 1, (int)ndims, &_dims);
+        if (err.iErr)
         {
-            err = createMatrixOfInteger32InList(pvApiCtx, position, list, 2, 1, (int)ndims, (int *)dims);
-            if (err.iErr)
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
+        }
+
+        if (flip)
+        {
+            for (int i = 0; i < ndims; i++)
             {
-                throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
+                _dims[i] = (int)dims[ndims - 1 - i];
             }
         }
         else
         {
-            int * _dims = 0;
-            err = allocMatrixOfInteger32InList(pvApiCtx, position, list, 2, 1, (int)ndims, &_dims);
-            if (err.iErr)
-            {
-                throw H5Exception(__LINE__, __FILE__, _("Cannot create an hypermatrix on the stack"));
-            }
             for (int i = 0; i < ndims; i++)
             {
                 _dims[i] = (int)dims[i];

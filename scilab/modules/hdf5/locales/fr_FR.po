@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-31 06:56+0000\n"
+"PO-Revision-Date: 2013-07-26 13:48+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: fr\n"
 
 #, c-format
@@ -109,8 +109,10 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice double attendue.\n"
 
 #, c-format
-msgid "%s: Wrogn size for input argument #%d: five row vector expected.\n"
+msgid "%s: Wrong size for input argument #%d: Five row vector expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur de cinq "
+"lignes attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
@@ -449,7 +451,7 @@ msgid "Unknown dataspace"
 msgstr "Dataspace inconnu"
 
 msgid "Extents"
-msgstr ""
+msgstr "Extensions"
 
 msgid "Invalid selection rank."
 msgstr "Rang de sélection invalide."
@@ -457,8 +459,8 @@ msgstr "Rang de sélection invalide."
 msgid "Invalid selection."
 msgstr "Sélection invalide."
 
-msgid "Cannot get the current errors stack"
-msgstr ""
+msgid "Cannot get the current stack of errors."
+msgstr "Impossible d'obtenir la pile courante d'erreurs."
 
 msgid "HDF5 description"
 msgstr "Description HDF5"
@@ -485,10 +487,10 @@ msgid "Link path"
 msgstr "Chemin de lien"
 
 msgid "Link target file"
-msgstr ""
+msgstr "Fichier pointé par le lien"
 
 msgid "Link target path"
-msgstr ""
+msgstr "Chemin pointé par le lien"
 
 msgid "Invalid hdf5 file: empty filename."
 msgstr "Fichier hdf5 invalide : nom de fichier vide."
@@ -586,7 +588,7 @@ msgid "Cannot get linked object"
 msgstr "Impossible d'obtenir l'objet lié"
 
 msgid "Link target name"
-msgstr ""
+msgstr "Nom pointé par le lien"
 
 #, c-format
 msgid "The link %s does not exist."
@@ -703,15 +705,15 @@ msgstr "Le lien existe déjà : %s."
 
 #, c-format
 msgid "Cannot create the hard link: %s."
-msgstr ""
+msgstr "Impossible de créer le lien dur : %s."
 
 #, c-format
 msgid "Cannot create the soft link: %s."
-msgstr ""
+msgstr "Impossible de créer le lien symbolique : %s."
 
 #, c-format
-msgid "Cannot create a hard link to an external object: %s."
-msgstr ""
+msgid "Cannot create a hard link to the external object: %s."
+msgstr "Impossible de créer le lien dur sur l'objet externe : %s."
 
 #, c-format
 msgid "Cannot create the external link: %s."
@@ -724,7 +726,7 @@ msgid "Invalid filter"
 msgstr "Filtre invalide"
 
 msgid "Can only label a dataset"
-msgstr ""
+msgstr "Il n'est possible d'identifier qu'un ensemble de données"
 
 msgid "Target object is not a file"
 msgstr "L'objet cible n'est pas un fichier"

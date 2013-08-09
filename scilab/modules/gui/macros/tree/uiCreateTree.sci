@@ -26,7 +26,7 @@ function myTree = uiCreateTree(parentNode, varargin)
                 if (typeof(varargin(subTreesIndex)) == "uitree") then
                     myTree(subTreesIndex + 2) = varargin(subTreesIndex)
                 else
-                    error(msprintf(gettext("%s: Wrong type for input arguments from #%d: uitree expected.\n"), "uiCreateTree",2));
+                    error(msprintf(gettext("%s: Wrong type for element %d of input argument #%d: uitree expected.\n"), "uiCreateTree", subTreesIndex, 2));
                     return;
                 end
             end

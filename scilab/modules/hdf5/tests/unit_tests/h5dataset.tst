@@ -33,17 +33,17 @@ y = uint32(matrix(1:100,10,10));
 
 z = uint32(zeros(7,12));
 h5write(a,"dx",y',[2 1 ],[ 4 1 ],[ 2 1 ],[ 1 9 ]);
-z(3:6,3:11) = a.root.dx.Data';
+z(3:6,3:11) = a.root.dx.Data;
 
 msgerr = msprintf(gettext("%s: %s\n"), "h5dataset", msprintf(gettext("Cannot create the dataset: %s"), ""));
 assert_checkerror("h5dataset(a, """", [10 10 ; 2 1 ; 4 1 ; 2 1 ; 1 9], x, [7 12 ; 9 14 ; 3 3 ; 1 1 ; 1 1 ; 4 9])",msgerr,999);
 h5dataset(a, "D_set1", [10 10 ; 2 1 ; 4 1 ; 2 1 ; 1 9], x, [7 12 ; 9 14 ; 3 3 ; 1 1 ; 1 1 ; 4 9]);
-assert_checkequal(a.root.D_set1.Data,z);
+assert_checkequal(a.root.D_set1.Data,z');
 
 z = uint32(zeros(9,12));
 z(1:5,1) = uint32([1;21;41;61;81]);
 h5dataset(a, "D_set2", [5 20 ; 1 1 ; 1 1 ; 1 1 ; 5 1], y, [9 12 ; 9 14 ; 1 1 ; 1 1 ; 1 1 ; 5 1]);
-assert_checkequal(a.root.D_set2.Data,z);
+assert_checkequal(a.root.D_set2.Data,z');
 
 msgerr = msprintf(gettext("%s: %s\n") + "%s: %s\n", "h5dataset", gettext("Cannot write data in the dataset."), gettext("HDF5 description"), "src and dest data spaces have different sizes.");
 assert_checkerror("h5dataset(a, ""Dset_3"", [10 10 ; 2 1 ; 4 1 ; 2 1 ; 1 9], x, [10 10 ; 11 14 ; 3 3 ; 1 1 ; 1 1 ; 1 1])",msgerr,999);
