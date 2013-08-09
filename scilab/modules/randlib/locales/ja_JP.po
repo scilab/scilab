@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-22 14:56+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-29 09:04+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -112,8 +112,12 @@ msgstr ""
 "%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s', '%s', '%s' または '%s' を指定してください.\n"
 
 #, c-format
-msgid "%s Wrong value for input argument #%d: %s.\n"
-msgstr ""
+msgid "%s Wrong value for input argument #%d: '%s' is unknown.\n"
+msgstr "%s 入力引数 #%d の値が間違っています: '%s' が不明です.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
@@ -180,8 +184,8 @@ msgstr "P(%d) > 1\n"
 msgid "Sum of P(i) > 1\n"
 msgstr "Sum of P(i) > 1\n"
 
-msgid "Missing shape and scale for Gamma law\n"
-msgstr "ガンマ分布でshape およびscaleが指定されていません\n"
+msgid "Missing shape and rate for Gamma law\n"
+msgstr "ガンマ法の shape と rate が指定されていません\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 617
@@ -373,15 +377,17 @@ msgstr ""
 "s4 は [1, 2147483322] の範囲の整数"
 
 #, c-format
+msgid "WARNING: %s\n"
+msgstr "警告: %s\n"
+
+#, c-format
 msgid ""
-"\n"
-"=> be aware that you have may lost synchronization\n"
-"    between the virtual gen %d and the others !\n"
-"    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
+"be aware that you may have lost synchronization\n"
+"    between the virtual generator %d and the others.\n"
+"    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."
 msgstr ""
-"\n"
-"=> 仮想生成器 %d とその他の間で同期が失われる可能性があります!\n"
-"     修復するには, grand(\"setall\", s1, s2, s3, s4) を実行してください."
+"仮想生成器 %d とその他の間の同期を失っている可能性がります.\n"
+"回復したい場合,  grand(\"setall\", s1, s2, s3, s4)  を実行してください."
 
 msgid ""
 "\n"
@@ -443,6 +449,30 @@ msgstr "理論"
 msgid "Simulation of a discrete random variable"
 msgstr "離散乱数のシミュレーション"
 
+msgid "Simulation of a discrete uniform random variable"
+msgstr "離散一様確率変数のシミュレーション"
+
+msgid "Simulation of a Erlang random variable"
+msgstr "Erlan確率変数のシミュレーション"
+
+msgid "macro histplot : Histogram plot"
+msgstr "histplotマクロ: ヒストグラムプロット"
+
+msgid "Classes"
+msgstr "クラス"
+
+msgid "p must be < 1"
+msgstr "p は < 1 とする必要があります"
+
+msgid "Simulation of a geometric random variable"
+msgstr "幾何学的確率変数のシミュレーション"
+
+msgid "Simulation of a hyper geometric random variable"
+msgstr "ハイパー幾何学的確率変数のシミュレーション"
+
+msgid "Simulation of a Poisson random variable"
+msgstr "ポワソンランダム変数のシミュレーション"
+
 # File: etc/randlib.start, line: 23
 msgid "Random"
 msgstr "ランダム"
@@ -473,3 +503,6 @@ msgstr "超幾何学的乱数"
 
 msgid "Erlang random variable"
 msgstr "Erlang乱数"
+
+msgid "Simulation of a Weibull random variable"
+msgstr "ワイブル確率変数のシミュレーション"

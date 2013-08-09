@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-09-01 15:21+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: \n"
 
 #, c-format
@@ -26,19 +26,19 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 輸入參數 的資料型態錯誤: 應該是字串型態.\n"
 
 #, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: 錯誤產生: %s\n"
+
+msgid "Cannot play file."
+msgstr "無法使用檔案."
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Memory 分配有誤.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: 錯誤產生: %s\n"
-
-msgid "Cannot play file."
-msgstr "無法使用檔案."
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
@@ -70,6 +70,30 @@ msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: 無法開啟檔案 %s.\n"
 
+msgid "Index range must be specified as a scalar or a 2 elements vector."
+msgstr ""
+
+msgid "Sample limit vector must have 2 elements."
+msgstr ""
+
+msgid "Sample limits out of range."
+msgstr "取樣的限制值超過範圍."
+
+msgid "Sample limits must be given in ascending order."
+msgstr ""
+
+msgid "Error in file format."
+msgstr ""
+
+msgid "Error while reading sound file."
+msgstr ""
+
+msgid "Unrecognized data format."
+msgstr "無法理解的資料格式"
+
+msgid "Truncated data file."
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
 msgstr "%s: 輸入參數數值錯誤: 檔案名稱必須為一字串.\n"
@@ -77,14 +101,14 @@ msgstr "%s: 輸入參數數值錯誤: 檔案名稱必須為一字串.\n"
 msgid "Data array must have 1- or 2-dimensions only."
 msgstr "數據陣列必須只有1- or 2-維 ."
 
+msgid "Data clipped during write to file."
+msgstr ""
+
 msgid "Error while writing sound file."
 msgstr "寫入聲音檔時有誤."
 
 msgid "Mu-law can only be used with 8 bit data. Use method='linear' instead."
 msgstr "Mu-law 只能在8 bit數據使用。請改用method='linear'."
-
-msgid "Unrecognized data format."
-msgstr "無法理解的資料格式"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -177,9 +201,6 @@ msgstr "不能用每個樣本大於16 bits 才讀.wav檔"
 
 msgid "Sample limit vector must have 2 entries."
 msgstr "取樣的極限向量只能有2個輸入值."
-
-msgid "Sample limits out of range."
-msgstr "取樣的限制值超過範圍."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "無效的取樣限制(使用遞減順序)."

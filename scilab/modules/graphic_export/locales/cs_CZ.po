@@ -7,41 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-07-16 15:47+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-19 22:01+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Grafický modul Scilabu je vypnut, režim -nogui nebo -nwni.\n"
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Není více paměti.\n"
-
-#, c-format
-msgid "%s: Invalid driver: %s.\n"
-msgstr "%s: Neplatný ovladač: %s.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Nastala chyba: %s\n"
-
-#, c-format
-msgid "%s: Invalid path: %s.\n"
-msgstr "%s: Neplatná cesta: %s.\n"
 
 #, c-format
 msgid ""
@@ -51,8 +27,16 @@ msgstr ""
 "rutina.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s: Špatný typ argumentu %d: Očekáváno reálné číslo.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Handle matrix expected.\n"
+msgstr "%s: Špatný typ argumentu %d: Očekávána obslužná rutina matice.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -68,6 +52,17 @@ msgstr "%s: vstupní argument #%d musí být platná obslužná rutina.\n"
 msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or figure handle expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu %d: Očekáván skalár nebo obslužná rutina "
+"čísla.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekávána řetězcová matice.\n"
 
 #, c-format
 msgid ""
@@ -96,6 +91,30 @@ msgstr ""
 #, c-format
 msgid "%s: %s\n"
 msgstr "%s: %s\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Není více paměti.\n"
+
+#, c-format
+msgid "%s: Invalid driver: %s.\n"
+msgstr "%s: Neplatný ovladač: %s.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Nastala chyba: %s\n"
+
+#, c-format
+msgid "%s: Invalid path: %s.\n"
+msgstr "%s: Neplatná cesta: %s.\n"
 
 msgid "xinit must be called before xend."
 msgstr "xinit musí být zavolán před xend."

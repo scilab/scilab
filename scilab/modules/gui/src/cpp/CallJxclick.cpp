@@ -17,32 +17,32 @@ using namespace org_scilab_modules_gui_events;
 
 void CallJxclick()
 {
-  Jxclick::xclick(getScilabJavaVM());
+    Jxclick::xclick(getScilabJavaVM());
 }
 
 int getJxclickMouseButtonNumber()
 {
-  return Jxclick::getMouseButtonNumber(getScilabJavaVM());
+    return Jxclick::getMouseButtonNumber(getScilabJavaVM());
 }
 
 double getJxclickXCoordinate()
 {
-  return Jxclick::getXCoordinate(getScilabJavaVM());
+    return Jxclick::getXCoordinate(getScilabJavaVM());
 }
 
 double getJxclickYCoordinate()
 {
-  return Jxclick::getYCoordinate(getScilabJavaVM());
+    return Jxclick::getYCoordinate(getScilabJavaVM());
 }
 
 char * getJxclickWindowID()
 {
-  return Jxclick::getWindowID(getScilabJavaVM());
+    return Jxclick::getWindowID(getScilabJavaVM());
 }
 
 char * getJxclickMenuCallback()
 {
-  return Jxclick::getMenuCallback(getScilabJavaVM());
+    return Jxclick::getMenuCallback(getScilabJavaVM());
 }
 
 void deleteJxclickString(char *stringToDelete)

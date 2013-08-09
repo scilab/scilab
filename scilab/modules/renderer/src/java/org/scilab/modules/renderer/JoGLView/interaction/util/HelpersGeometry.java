@@ -26,7 +26,7 @@ import java.nio.FloatBuffer;
  * @author Pierre Lando
  */
 public class HelpersGeometry extends DefaultGeometry {
-    
+
     /** The helper size */
     private static final double HELPERS_SIZE = .05;
 

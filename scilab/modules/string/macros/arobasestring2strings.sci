@@ -14,48 +14,48 @@
 
 function [strings] = arobasestring2strings( varargin )
 
-// call : arobasestring2strings( string )
+    // call : arobasestring2strings( string )
 
-[lhs,rhs] = argn(0) ;
+    [lhs,rhs] = argn(0) ;
 
-// check number of arguments
-if ( rhs ~= 1 ) then
-  error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"arobasestring2strings",1));
-  return ;
-end
+    // check number of arguments
+    if ( rhs ~= 1 ) then
+        error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"arobasestring2strings",1));
+        return ;
+    end
 
-cText = varargin(1) ;
+    cText = varargin(1) ;
 
-// check type
-if ( type(cText) ~= 10 ) then
-  error(msprintf(gettext("%s: Wrong type for input argument: String expected.\n"),"arobasestring2strings"));
-  return ;
-end
+    // check type
+    if ( type(cText) ~= 10 ) then
+        error(msprintf(gettext("%s: Wrong type for input argument: String expected.\n"),"arobasestring2strings"));
+        return ;
+    end
 
-// check the size
-if ( size( cText ) <> 1 ) then
-  error(msprintf(gettext("%s: Wrong size for input argument #%d: A character string expected.\n"),"arobasestring2strings",1));
-  return ;
-end
+    // check the size
+    if ( size( cText ) <> 1 ) then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: A character string expected.\n"),"arobasestring2strings",1));
+        return ;
+    end
 
-// in the text, each line is separated by a '@' character
-// in the resulting matrix, each line is put on a line
-// of the matrix
+    // in the text, each line is separated by a '@' character
+    // in the resulting matrix, each line is put on a line
+    // of the matrix
 
-// positions of @ in 
-arobPos = strindex( cText, '@' ) ;
+    // positions of @ in
+    arobPos = strindex( cText, "@" ) ;
 
-nbArob = size( arobPos ) ;
-nbArob = nbArob(2);
+    nbArob = size( arobPos ) ;
+    nbArob = nbArob(2);
 
-// add the last character
-arobPos( nbArob + 1 ) = length( cText ) + 1 ;
+    // add the last character
+    arobPos( nbArob + 1 ) = length( cText ) + 1 ;
 
-// get the first string
-strings(1) = part( cText, [1:arobPos(1)-1] ) ;
+    // get the first string
+    strings(1) = part( cText, [1:arobPos(1)-1] ) ;
 
-for i = 1 : nbArob
-  strings( i + 1 ) = part( cText, [ arobPos(i) + 1 : arobPos(i+1) - 1 ] ) ;
-end
+    for i = 1 : nbArob
+        strings( i + 1 ) = part( cText, [ arobPos(i) + 1 : arobPos(i+1) - 1 ] ) ;
+    end
 
 endfunction

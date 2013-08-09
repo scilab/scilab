@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-30 14:11+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-26 14:00+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: fr\n"
 
 #, c-format
@@ -225,13 +225,13 @@ msgid "Eye variable undefined in this context.\n"
 msgstr "La variable Eye n'est pas définie dans ce contexte.\n"
 
 msgid "Submatrix incorrectly defined.\n"
-msgstr "Sous-matrice incorrectement définie.\n"
+msgstr "La sous-matrice n'est pas correctement définie.\n"
 
 msgid "Incorrect command!\n"
 msgstr "Commande erronée !\n"
 
 msgid "stack size exceeded!\n"
-msgstr "Taille de la pile dépassée !\n"
+msgstr "Taille de la pile dépassée\n"
 
 msgid "Use stacksize function to increase it.\n"
 msgstr "Utilisez la fonction stacksize pour l'augmenter.\n"
@@ -364,8 +364,8 @@ msgid "Incorrect file or format.\n"
 msgstr "Fichier ou format erroné.\n"
 
 #, c-format
-msgid "subroutine not found: %s\n"
-msgstr "Impossible de trouver le sous-programme : %s\n"
+msgid "%s: subroutine not found.\n"
+msgstr "%s : Impossible de trouver la sous-routine.\n"
 
 #, c-format
 msgid "Wrong type for argument #%d: Real matrix expected.\n"
@@ -505,7 +505,7 @@ msgstr "%s : Type erroné de l'argument %d : Un vecteur réel attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Un scalaire attendu.\n"
+msgstr "%s : Type erroné de l'argument n°%d : Un scalaire attendu.\n"
 
 msgid "Host does not answer...\n"
 msgstr "L'hôte ne répond pas...\n"
@@ -616,7 +616,7 @@ msgstr "Nom de fonction déjà utilisé.\n"
 
 #, c-format
 msgid "Too many functions are defined (maximum #:%d).\n"
-msgstr "Trop de fonctions sont définies (nb maximum: %d).\n"
+msgstr "Trop de fonctions sont définies (maximum : %d).\n"
 
 msgid "Too complex for scilab, may be a too long control instruction.\n"
 msgstr "Erreur : L'instruction de contrôle est peut-être trop longue.\n"
@@ -756,11 +756,22 @@ msgid "%s: df0 must be positive !\n"
 msgstr "%s : df0 doit être positif !\n"
 
 msgid "Undefined operation for the given operands.\n"
-msgstr "Opération non définie pour les opérandes donnés.\n"
+msgstr "Opération non définie pour les opérandes données.\n"
 
 #, c-format
 msgid "check or define function %s for overloading.\n"
 msgstr "Vérifier ou définir la fonction %s pour la surcharge.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument %d : Une matrice de handle attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument n°%d : Une matrice réelle ou complexe "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
@@ -798,8 +809,9 @@ msgstr ""
 "(fonction externe) attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Un polynôme attendu.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument %d : Une matrice polynomiale attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
@@ -941,10 +953,10 @@ msgstr "Aucun fichier d'entrée n'est associé à l'unité logique %d.\n"
 #, c-format
 msgid "  check arguments or define function %s for overloading.\n"
 msgstr ""
-"  vérifiez les arguments ou définir la fonction %s pour la surcharge.\n"
+"  Vérifier les arguments ou définir la fonction %s pour la surcharge.\n"
 
 msgid "Function not defined for given argument type(s),\n"
-msgstr "Fonction non définie pour le type d'argument donné.\n"
+msgstr "Fonction non définie pour le type d'argument donné,\n"
 
 #, c-format
 msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
@@ -1079,6 +1091,12 @@ msgstr ""
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr ""
 "Les arguments d'entrée doivent avoir le même nom de variable formelle.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Wrong value for element %s.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Valeur erronée de "
+"l'élément %s.\n"
 
 msgid "Unknown data.\n"
 msgstr "Données inconnues.\n"
@@ -1458,26 +1476,38 @@ msgstr ""
 "est au plus %s en valeur absolue.\n"
 
 #, c-format
-msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
-msgstr "%s : Le nombre d'appels à %s a atteint ou dépassé %s.\n"
+msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr "%s : %s : Le nombre d'appels à %s a été atteint ou a dépassé %s.\n"
+
+msgid "Warning"
+msgstr "Attention"
 
 #, c-format
 msgid ""
-"%s: %s is too small. No further reduction in the criterion is possible.\n"
+"%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
 msgstr ""
-"%s : %s est trop petit. Une réduction supplémentaire du critère est "
-"impossible.\n"
+"%s : %s : %s  est trop petit. Aucune autre réduction du critère n'est "
+"possible.\n"
 
 #, c-format
 msgid ""
-"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
 "machine precision.\n"
 msgstr ""
-"%s : %s est trop petit. %s est orthogonal aux colonnes du Jacobien à la "
+"%s : %s : %s est trop petit. %s est orthogonal aux colonnes du Jacobien à la "
 "précision machine près.\n"
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly: le nom de variable doit faire moins de 5 caractères de long.\n"
+
+msgid ""
+"Warning: Syntax \"vector ^ scalar\" is obsolete. It will be removed in "
+"Scilab 6.0.\n"
+"  Use \"vector .^ scalar\" instead.\n"
+msgstr ""
+"Attention : La syntaxe \"vector ^ scalar\" est obsolète. Elle sera supprimée "
+"dans Scilab 6.0.\n"
+"  Veuillez utiliser \"vector .^ scalar\" à la place.\n"
 
 #, c-format
 msgid "  (cont'd) %s\n"

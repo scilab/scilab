@@ -35,7 +35,7 @@
                 <listitem>
                     <para>The simplex data.</para>
                     <para>
-                         The simplex matrix has size <literal>nbve</literal>-by-<literal>n+1</literal>, 
+                        The simplex matrix has size <literal>nbve</literal>-by-<literal>n+1</literal>, 
                         and is organized by row by row as follows: 
                     </para>
                     <itemizedlist>

@@ -24,31 +24,32 @@
     }                                 \
 }
 /*--------------------------------------------------------------------------*/
-int C2F(gencusum)(int *typ,int *n, void *in, void *out, int *iw)
+int C2F(gencusum)(int *typ, int *n, void *in, void *out, int *iw)
 {
     int k, kk;
     int t;
-    t=0;
+    t = 0;
 
-    switch (*typ) {
-  case 1:
-      CUSUM(integer1);
-      break;
-  case 2:
-      CUSUM(integer2);
-      break;
-  case 4:
-      CUSUM(int) ;
-      break;
-  case 11:
-      CUSUM(unsigned char);
-      break;
-  case 12:
-      CUSUM(unsigned short);
-      break;
-  case 14:
-      CUSUM(unsigned int);
-      break;
+    switch (*typ)
+    {
+        case 1:
+            CUSUM(integer1);
+            break;
+        case 2:
+            CUSUM(integer2);
+            break;
+        case 4:
+            CUSUM(int) ;
+            break;
+        case 11:
+            CUSUM(unsigned char);
+            break;
+        case 12:
+            CUSUM(unsigned short);
+            break;
+        case 14:
+            CUSUM(unsigned int);
+            break;
     }
     return 0;
 }
@@ -63,30 +64,31 @@ Type *IN;\
     }\
 }
 /*--------------------------------------------------------------------------*/
-int C2F(gencusumasdouble)(int *typ,int *n, void *in, double *out, int *iw)
+int C2F(gencusumasdouble)(int *typ, int *n, void *in, double *out, int *iw)
 {
     int k = 0, kk = 0;
     double t = 0.0;
 
-    switch (*typ) {
-  case 1:
-      CUSUM_DOUBLE(integer1);
-      break;
-  case 2:
-      CUSUM_DOUBLE(integer2);
-      break;
-  case 4:
-      CUSUM_DOUBLE(int) ;
-      break;
-  case 11:
-      CUSUM_DOUBLE(unsigned char);
-      break;
-  case 12:
-      CUSUM_DOUBLE(unsigned short);
-      break;
-  case 14:
-      CUSUM_DOUBLE(unsigned int);
-      break;
+    switch (*typ)
+    {
+        case 1:
+            CUSUM_DOUBLE(integer1);
+            break;
+        case 2:
+            CUSUM_DOUBLE(integer2);
+            break;
+        case 4:
+            CUSUM_DOUBLE(int) ;
+            break;
+        case 11:
+            CUSUM_DOUBLE(unsigned char);
+            break;
+        case 12:
+            CUSUM_DOUBLE(unsigned short);
+            break;
+        case 14:
+            CUSUM_DOUBLE(unsigned int);
+            break;
     }
     return 0;
 }

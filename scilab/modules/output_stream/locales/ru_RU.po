@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: output_stream-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-02-10 04:50+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-30 13:07+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -356,8 +356,8 @@ msgid "Incorrect file or format.\n"
 msgstr "Некорректный файл или формат.\n"
 
 #, c-format
-msgid "subroutine not found: %s\n"
-msgstr "подпрограмма не найдена: %s\n"
+msgid "%s: subroutine not found.\n"
+msgstr "%s: подпрограмма не найдена.\n"
 
 #, c-format
 msgid "Wrong type for argument #%d: Real matrix expected.\n"
@@ -741,6 +741,16 @@ msgid "check or define function %s for overloading.\n"
 msgstr "отметьте или определите функцию %s как перегружаемую.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась матрица дескрипторов.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента №%d: ожидалась вещественная или комплексная "
+"матрица.\n"
+
+#, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Неверный размер параметра %d: ожидался размер (%d,%d).\n"
 
@@ -774,8 +784,8 @@ msgstr ""
 "функция).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
-msgstr "%s:Неверный тип параметра %d: ожидался полином.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась матрица полиномов.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
@@ -1046,6 +1056,12 @@ msgstr ""
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr ""
 "Входные параметры должны иметь одинаковое имя формальной переменной.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Wrong value for element %s.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: неверное значение у элемента "
+"%s.\n"
 
 msgid "Unknown data.\n"
 msgstr "Неизвестные данные.\n"
@@ -1416,24 +1432,35 @@ msgstr ""
 "модулю.\n"
 
 #, c-format
-msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
-msgstr "%s: Количество вызовов %s достигло или превысило %s.\n"
+msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr "%s: %s: Количество вызовов %s достигло или превысило %s.\n"
+
+msgid "Warning"
+msgstr "Внимание"
 
 #, c-format
 msgid ""
-"%s: %s is too small. No further reduction in the criterion is possible.\n"
-msgstr "%s: %s слишком мало. Невозможно дальнейшее уменьшение по критерию.\n"
+"%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+"%s: %s: %s слишком мала. Дальнейшее уменьшение по критерию не возможно.\n"
 
 #, c-format
 msgid ""
-"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
 "machine precision.\n"
 msgstr ""
-"%s: %s слишком мал. %s ортогонален столбцам Якобиана в пределах машинной "
-"точности.\n"
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly: имя переменной должно быть длиной менее 5 символов.\n"
+
+msgid ""
+"Warning: Syntax \"vector ^ scalar\" is obsolete. It will be removed in "
+"Scilab 6.0.\n"
+"  Use \"vector .^ scalar\" instead.\n"
+msgstr ""
+"Внимание: синтаксис \"вектор ^ скаляр\" устарел. Он будет удалён в Scilab "
+"6.0.\n"
+"  Вместо него используйте \"вектор .^ скаляр\".\n"
 
 #, c-format
 msgid "  (cont'd) %s\n"

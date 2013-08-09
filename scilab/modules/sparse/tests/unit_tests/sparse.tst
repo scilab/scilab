@@ -79,7 +79,7 @@ if or(ij<>[1,3;1,5;1,6;2,1;2,4;4,3;4,4;5,1;6,6])|or(v<>[3;2;1;5;4;7;6;8;9]) then
 zer=sparse([],[],[6,6]);[ij,v]=spget(zer);
 if ij<>[]|v<>[] then pause,end
 //-----------------------------------------------
-// addition and substraction tests
+// addition and subtraction tests
 //-----------------------------------------------
 // -- real real
 a=sparse([1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6],1:9,[6 6]);

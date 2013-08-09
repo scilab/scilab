@@ -118,7 +118,7 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
     int useproxy;
 
     char *tp, *field, *value, *eqptr;
-    int eqpos, tplen;
+    int eqpos = 0 , tplen;
 
     //construct ATOMS config file path
     configPtr = (char *)MALLOC(PATH_MAX * sizeof(char));
@@ -176,7 +176,6 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
     useproxy = 0;
 
     tp = field = value = eqptr = NULL;
-    eqpos = tplen = 0;
 
 
     // parse each line to extract variables
@@ -425,7 +424,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
 
         if (res != CURLE_OK)
         {
-            Scierror(999, _("Failed to set write data [%s]\n"), errorBuffer);
+            Scierror(999, _("Failed to set write function [%s]\n"), errorBuffer);
             return NULL;
         }
 

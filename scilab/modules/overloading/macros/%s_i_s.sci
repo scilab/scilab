@@ -50,7 +50,7 @@ function M=%s_i_s(varargin)
     v=M(:)
 
     Ndims=rhs-2
-    nd=size(dims,'*')
+    nd=size(dims,"*")
     if Ndims>nd then dims(nd+1:Ndims)=0;end
     del=N==[];count=[]
     dims1=[]
@@ -70,23 +70,23 @@ function M=%s_i_s(varargin)
             else
                 iimp=iimp+1
 
-                if iimp<=size(size(N),'*') then
+                if iimp<=size(size(N),"*") then
 
                     if iimp==1 then
                         single=%t
                         for kk=1:k-1
-                            if size(varargin(kk),1)==-1|size(varargin(kk),'*')>1 then
+                            if size(varargin(kk),1)==-1|size(varargin(kk),"*")>1 then
                                 single=%f
                                 break
                             end
                         end
                         if single then
-                            ik=1:size(N,'*'),
+                            ik=1:size(N,"*"),
                         else
-                            ik=1:size(N,size(size(N),'*')+1-iimp)
+                            ik=1:size(N,size(size(N),"*")+1-iimp)
                         end
                     else
-                        ik=1:size(N,size(size(N),'*')+1-iimp)
+                        ik=1:size(N,size(size(N),"*")+1-iimp)
                     end
                 else
                     ik=1
@@ -105,9 +105,9 @@ function M=%s_i_s(varargin)
         end
 
 
-        if size(ik,'*')>1 then
+        if size(ik,"*")>1 then
             ik=ik(:)
-            if size(I,'*')>1 then
+            if size(I,"*")>1 then
                 I=(dims1(k)*I).*.ones(ik)+ones(I).*.(ik-1)
             else
                 I=dims1(k)*I+ik-1
@@ -118,18 +118,18 @@ function M=%s_i_s(varargin)
         if del then
             if or(ik<>(1:dims1(k))') then
                 count=[count k]
-                nk=size(ik,'*')
+                nk=size(ik,"*")
             end
         end
     end //end of the loop on subscripts
 
     if ~del&or(dims1>dims) then
         I1=0
-        for k=size(dims1,'*'):-1:1
+        for k=size(dims1,"*"):-1:1
             ik1=(1:dims(k))'
             if ik1<>[] then
                 if dims1(k)>1 then
-                    if size(I1,'*')>1 then
+                    if size(I1,"*")>1 then
                         I1=(dims1(k)*I1).*.ones(ik1)+ones(I1).*.(ik1-1)
                     else
                         I1=dims1(k)*I1+ik1-1
@@ -144,14 +144,14 @@ function M=%s_i_s(varargin)
     end
     v(I+1)=matrix(N,-1,1)
     if del then
-        if size(count,'*')>1 then
+        if size(count,"*")>1 then
             error(msprintf(_("%s: A null assignment can have only one non-colon index.\n"),"%s_i_s"));
         end
         dims1(count)=dims1(count)-nk
     end
 
     while  dims1($)==1 then dims1($)=[],end
-    select size(dims1,'*')
+    select size(dims1,"*")
     case 0
         M=v
     case 1
@@ -159,6 +159,6 @@ function M=%s_i_s(varargin)
     case 2
         M=matrix(v,dims1(1),dims1(2))
     else
-        M=mlist(['hm','dims','entries'],int32(matrix(dims1,1,-1)),v)
+        M=mlist(["hm","dims","entries"],int32(matrix(dims1,1,-1)),v)
     end
 endfunction

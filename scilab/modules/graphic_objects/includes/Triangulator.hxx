@@ -231,7 +231,7 @@ private:
     static double dot(Vector3d v0, Vector3d v1);
 
     /**
-     * Normalizes a 2D vector, the z coordinate is ignored. 
+     * Normalizes a 2D vector, the z coordinate is ignored.
      * It should be moved to a Vector3d class.
      * @param[in] the vector to normalize.
      * @return the normalized vector.

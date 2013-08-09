@@ -16,7 +16,7 @@
 //
 
 function [] = %_xtitle()
-  x=(1:10)';
-  plot2d(x, x);
-  xtitle(['Title';'Main'], 'x', 'y');
+    x=(1:10)';
+    plot2d(x, x);
+    xtitle(["Title";"Main"], "x", "y");
 endfunction

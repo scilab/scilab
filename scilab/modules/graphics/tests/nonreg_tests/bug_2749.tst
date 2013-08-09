@@ -20,9 +20,6 @@
 // set double buffer mode to avoid blinking animation
 //---------------------------------------------------
 curFig = gcf();clf();  // erase window
-pix = curFig.pixmap; //preserve old setting
-curFig.pixmap = "on";
-
 
 //The surface definition 
 //----------------------
@@ -50,7 +47,6 @@ realtimeinit(0.05);//set time step (0.05 seconds)  and date reference
 for i=1:size(A,'*')
   realtime(i); //wait till date 0.05*i seconds
   curAxe.rotation_angles = [45,A(i)];
-  show_pixmap(); //send  buffer to screen
 end
 
 // check memory consumption

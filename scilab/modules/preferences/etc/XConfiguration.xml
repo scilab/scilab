@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<interface version="0.12" path="1/" width="800" height="600">
+<interface version="0.14" path="1/" width="800" height="600">
     <general/>
     <web/>
     <preference/>

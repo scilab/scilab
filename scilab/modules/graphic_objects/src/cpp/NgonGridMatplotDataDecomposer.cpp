@@ -195,11 +195,10 @@ void NgonGridMatplotDataDecomposer::fillGridVertices(float* buffer, int bufferLe
                     buffer[bufferOffset + 1] = (float)(ycoords[k] * scale[1] + translation[1]);
                 }
 
-                /*                if (coordinateMask & 0x4)
-                                {
-                                    zij = getZCoordinate(z, numX, numY, xindices[k], yindices[k], logMask & 0x4);
-                                    buffer[bufferOffset +2] = (float)(zij * scale[2] + translation[2]);
-                		    }*/
+                /*if (coordinateMask & 0x4)
+                    zij = getZCoordinate(z, numX, numY, xindices[k], yindices[k], logMask & 0x4);
+                    buffer[bufferOffset +2] = (float)(zij * scale[2] + translation[2]);
+                }*/
 
                 if (elementsSize == 4 && (coordinateMask & 0x8))
                 {
@@ -208,7 +207,6 @@ void NgonGridMatplotDataDecomposer::fillGridVertices(float* buffer, int bufferLe
 
                 bufferOffset += elementsSize;
             }
-
         }
     }
 
@@ -328,7 +326,7 @@ void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int buff
 
     /*for (int j = 0; j < numY-1; j++)
     {
-        for (int i = 0; i < numX-1; i++)
+        for (int i = 0; i < numX - 1; i++)
         {
             float facetColor[3];
 
@@ -336,7 +334,7 @@ void NgonGridMatplotDataDecomposer::fillColors(char* id, float* buffer, int buff
             ColorComputer::getDirectColor((double) currentZ - 1.0, colormap, colormapSize, facetColor);
             writeFacetColorToBuffer(buffer, bufferOffset, facetColor, elementsSize);
 
-            bufferOffset += 4*elementsSize;
+            bufferOffset += 4 * elementsSize;
         }
     }*/
 

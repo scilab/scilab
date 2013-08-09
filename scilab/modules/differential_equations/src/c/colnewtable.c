@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -14,7 +14,7 @@
 #include "machine.h"
 #include "dynlib_differential_equations.h"
 /***********************************
-* Search Table for colnew 
+* Search Table for colnew
 *   corr uses : fcoldg , fcolg, fcoldf,fcolf,fcolgu
 ***********************************/
 
@@ -39,46 +39,56 @@ extern void C2F(cndg)(ARGS_fcoldg);
 DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fcoldg)(ARGS_fcoldg);
 DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfcoldg)(char *name, int *rep);
 
-FTAB FTab_fcoldg[] ={
-{"cndg", (voidf)  C2F(cndg)},
-{(char *) 0, (voidf) 0}};
+FTAB FTab_fcoldg[] =
+{
+    {"cndg", (voidf)  C2F(cndg)},
+    {(char *) 0, (voidf) 0}
+};
 /**************** fcolg ***************/
 extern void C2F(cng)(ARGS_fcolg);
 
 DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fcolg)(ARGS_fcolg);
 DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfcolg)(char *name, int *rep);
- 
-FTAB FTab_fcolg[] ={
-{"cng", (voidf)  C2F(cng)},
-{(char *) 0, (voidf) 0}};
+
+FTAB FTab_fcolg[] =
+{
+    {"cng", (voidf)  C2F(cng)},
+    {(char *) 0, (voidf) 0}
+};
 /**************** fcolf ***************/
 extern void C2F(cnf)(ARGS_fcolf);
 DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fcolf)(ARGS_fcolf);
 DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfcolf)(char *name, int *rep);
 
-FTAB FTab_fcolf[] ={
-{"cnf", (voidf)  C2F(cnf)},
-{(char *) 0, (voidf) 0}};
+FTAB FTab_fcolf[] =
+{
+    {"cnf", (voidf)  C2F(cnf)},
+    {(char *) 0, (voidf) 0}
+};
 /**************** fcoldf ***************/
 extern void C2F(cndf)(ARGS_fcoldf);
 DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fcoldf)(ARGS_fcoldf);
 DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfcoldf)(char *name, int *rep);
- 
-FTAB FTab_fcoldf[] ={
-{"cndf", (voidf)  C2F(cndf)},
-{(char *) 0, (voidf) 0}};
+
+FTAB FTab_fcoldf[] =
+{
+    {"cndf", (voidf)  C2F(cndf)},
+    {(char *) 0, (voidf) 0}
+};
 /**************** fcolgu ***************/
 extern void C2F(cngu)(ARGS_fcolgu);
 DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fcolgu)(ARGS_fcolgu);
 DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfcolgu)(char *name, int *rep);
 
-FTAB FTab_fcolgu[] ={
-{"cngu", (voidf)  C2F(cngu)},
-{(char *) 0, (voidf) 0}};
+FTAB FTab_fcolgu[] =
+{
+    {"cngu", (voidf)  C2F(cngu)},
+    {(char *) 0, (voidf) 0}
+};
 
 
 /***********************************
-* Search Table for colnew 
+* Search Table for colnew
 *   corr uses : fcoldg , fcolg, fcoldf,fcolf,fcolgu
 ***********************************/
 
@@ -90,14 +100,14 @@ static fcoldgf fcoldgfonc ;
 
 void C2F(fcoldg)(int *i, double *z, double *dg)
 {
-	(*fcoldgfonc)(i,z,dg);
+    (*fcoldgfonc)(i, z, dg);
 }
 
 /** fixes the function associated to name **/
 
 void C2F(setfcoldg)(char *name, int *rep)
 {
-	fcoldgfonc = (fcoldgf) GetFunctionByName(name,rep,FTab_fcoldg);
+    fcoldgfonc = (fcoldgf) GetFunctionByName(name, rep, FTab_fcoldg);
 }
 
 
@@ -109,14 +119,14 @@ static fcolgf fcolgfonc ;
 
 void C2F(fcolg)(int *i, double *z, double *g)
 {
-	(*fcolgfonc)(i,z,g);
+    (*fcolgfonc)(i, z, g);
 }
 
 /** fixes the function associated to name **/
 
 void C2F(setfcolg)(char *name, int *rep)
 {
-	fcolgfonc = (fcolgf) GetFunctionByName(name,rep,FTab_fcolg);
+    fcolgfonc = (fcolgf) GetFunctionByName(name, rep, FTab_fcolg);
 }
 
 
@@ -129,14 +139,14 @@ static fcoldff fcoldffonc ;
 
 void C2F(fcoldf)(double *x, double *z, double *df)
 {
-	(*fcoldffonc)(x,z,df);
+    (*fcoldffonc)(x, z, df);
 }
 
 /** fixes the function associated to name **/
 
 void C2F(setfcoldf)(char *name, int *rep)
 {
-	fcoldffonc = (fcoldff) GetFunctionByName(name,rep,FTab_fcoldf);
+    fcoldffonc = (fcoldff) GetFunctionByName(name, rep, FTab_fcoldf);
 }
 
 
@@ -148,14 +158,14 @@ static fcolff fcolffonc ;
 
 void C2F(fcolf)(double *x, double *z, double *df)
 {
-	(*fcolffonc)(x,z,df);
+    (*fcolffonc)(x, z, df);
 }
 
 /** fixes the function associated to name **/
 
 void C2F(setfcolf)(char *name, int *rep)
 {
-	fcolffonc = (fcolff) GetFunctionByName(name,rep,FTab_fcolf);
+    fcolffonc = (fcolff) GetFunctionByName(name, rep, FTab_fcolf);
 }
 
 /** the current function fixed by setfcolgu **/
@@ -166,12 +176,12 @@ static fcolguf fcolgufonc ;
 
 void C2F(fcolgu)(double *x, double *z, double *dmval)
 {
-	(*fcolgufonc)(x,z,dmval);
+    (*fcolgufonc)(x, z, dmval);
 }
 
 /** fixes the function associated to name **/
 
 void C2F(setfcolgu)(char *name, int *rep)
 {
-	fcolgufonc = (fcolguf) GetFunctionByName(name,rep,FTab_fcolgu);
+    fcolgufonc = (fcolguf) GetFunctionByName(name, rep, FTab_fcolgu);
 }

@@ -8,23 +8,23 @@
 
 function subdemolist = demo_gateway()
 
-  demopath = get_absolute_file_path("graphics.dem.gateway.sce");
-  add_demo(gettext("Graphics"), demopath+"graphics.dem.gateway.sce");
+    demopath = get_absolute_file_path("graphics.dem.gateway.sce");
+    add_demo(gettext("Graphics"), demopath+"graphics.dem.gateway.sce");
 
-  subdemolist = [_("2D and 3D plots")             ,"2d_3d_plots/2d_3d_plots.dem.gateway.sce"             ; ..
-                 _("Basic functions")             ,"basic_functions/basic_functions.dem.gateway.sce"     ; ..
-                 _("Animation")                   ,"anim/anim.dem.gateway.sce"                           ; ..
-                 _("Finite Elements")             ,"fec/fec.dem.gateway.sce"                             ; ..
-                 _("Bezier curves and surfaces")  ,"bezier/bezier.dem.gateway.sce"                       ; ..
-                 _("More surfaces")               ,"surface/surfaces.dem.gateway.sce"                    ; ..
-                 _("Complex elementary functions"),"cmplxfunc/cmplxfunc.dem.gateway.sce"                 ; ..
-                 _("bar histogram")               ,"bar/bar.dem.sce"; ..
-                 _("Datatips")                    ,"datatips/datatips.dem.gateway.sce"                   ; ..
-                 _("LaTeX/MathML")                ,"textrendering/textrendering.dem.gateway.sce"         ; ..                            
-                 _("Misc")                        ,"misc/misc.dem.sce"                                   ; ..
-                 _("Colormap")                    ,"colormap/colormap.dem.sce"];
+    subdemolist = [_("2D and 3D plots")             ,"2d_3d_plots/2d_3d_plots.dem.gateway.sce"             ; ..
+    _("Basic functions")             ,"basic_functions/basic_functions.dem.gateway.sce"     ; ..
+    _("Animation")                   ,"anim/anim.dem.gateway.sce"                           ; ..
+    _("Finite Elements")             ,"fec/fec.dem.gateway.sce"                             ; ..
+    _("Bezier curves and surfaces")  ,"bezier/bezier.dem.gateway.sce"                       ; ..
+    _("More surfaces")               ,"surface/surfaces.dem.gateway.sce"                    ; ..
+    _("Complex elementary functions"),"cmplxfunc/cmplxfunc.dem.gateway.sce"                 ; ..
+    _("bar histogram")               ,"bar/bar.dem.sce"; ..
+    _("Datatips")                    ,"datatips/datatips.dem.gateway.sce"                   ; ..
+    _("LaTeX/MathML")                ,"textrendering/textrendering.dem.gateway.sce"         ; ..
+    _("Misc")                        ,"misc/misc.dem.sce"                                   ; ..
+    _("Colormap")                    ,"colormap/colormap.dem.sce"];
 
-  subdemolist(:,2) = demopath + subdemolist(:,2);
+    subdemolist(:,2) = demopath + subdemolist(:,2);
 endfunction
 
 subdemolist = demo_gateway();

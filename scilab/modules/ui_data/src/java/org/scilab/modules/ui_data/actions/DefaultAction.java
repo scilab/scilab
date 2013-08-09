@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Allan SIMON
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -37,154 +37,154 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
  */
 public abstract class DefaultAction extends CommonCallBack {
 
-	/**
-	 * Default constructor.
-	 * 
-	 *The {@link AbstractAction} object is configured using the reflection API.
-	 * So you have to be sure that the following fields are declared as static
-	 * final fields of each subclasses.
-	 * <ul>
-	 * <li>String NAME : The name of the action</li>
-	 * <li>String SMALL_ICON : The associated icon name (located on
-	 * $SCI/modules/gui/images/icons)</li>
-	 * <li>int MNEMONIC_KEY : The key associated with the action (see
-	 * {@link KeyEvent})</li>
-	 * <li>int ACCELERATOR_KEY : The key mask to apply to the mnemonic</li>
-	 * </ul>
-	 * 
-	 * @param scilabVariableBrowser
-	 *            corresponding scilabVariableBrowser
-	 */
-	public DefaultAction() {
-		super("", CallBack.UNTYPED);
+    /**
+     * Default constructor.
+     *
+     *The {@link AbstractAction} object is configured using the reflection API.
+     * So you have to be sure that the following fields are declared as static
+     * final fields of each subclasses.
+     * <ul>
+     * <li>String NAME : The name of the action</li>
+     * <li>String SMALL_ICON : The associated icon name (located on
+     * $SCI/modules/gui/images/icons)</li>
+     * <li>int MNEMONIC_KEY : The key associated with the action (see
+     * {@link KeyEvent})</li>
+     * <li>int ACCELERATOR_KEY : The key mask to apply to the mnemonic</li>
+     * </ul>
+     *
+     * @param scilabVariableBrowser
+     *            corresponding scilabVariableBrowser
+     */
+    public DefaultAction() {
+        super("", CallBack.UNTYPED);
 
-		installProperties();
-	}
+        installProperties();
+    }
 
-	/**
-	 * Install the static actions properties on the instance
-	 */
-	private void installProperties() {
-		String name = "";
+    /**
+     * Install the static actions properties on the instance
+     */
+    private void installProperties() {
+        String name = "";
         ImageIcon icon = null;
-		int mnemonic = 0;
-		int accelerator = 0;
-		try {
-			name = (String) getClass().getField("NAME").get(null);
-			
-			/*
-			 * Getting icon from the registered icon path
-			 */
+        int mnemonic = 0;
+        int accelerator = 0;
+        try {
+            name = (String) getClass().getField("NAME").get(null);
+
+            /*
+             * Getting icon from the registered icon path
+             */
             final String iconName = (String) getClass().getField("SMALL_ICON").get(null);
             if (iconName != null && !iconName.isEmpty()) {
                 icon = new ImageIcon(ScilabSwingUtilities.findIcon(iconName));
             }
-			
-			mnemonic = getClass().getField("MNEMONIC_KEY").getInt(null);
-			accelerator = getClass().getField("ACCELERATOR_KEY").getInt(null);
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (NoSuchFieldException e) {
-			e.printStackTrace();
-		}
 
-		assert !"".equals(name);
-		putValue(Action.NAME, name);
-		putValue(Action.SHORT_DESCRIPTION, name);
-		putValue(Action.LONG_DESCRIPTION, name);
+            mnemonic = getClass().getField("MNEMONIC_KEY").getInt(null);
+            accelerator = getClass().getField("ACCELERATOR_KEY").getInt(null);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
+        assert !"".equals(name);
+        putValue(Action.NAME, name);
+        putValue(Action.SHORT_DESCRIPTION, name);
+        putValue(Action.LONG_DESCRIPTION, name);
         if (icon != null) {
             putValue(Action.SMALL_ICON, icon);
-		}
+        }
 
-		/*
-		 * Set up the accelerator instead of the mnemonic as the menu is the
-		 * preferred way on keyboard control. We are using Action.MNEMONIC_KEY
-		 * as keyboard key and Action.ACCELERATOR_KEY as a mask.
-		 * 
-		 * Install it only when there is a real shortcut (with a mnemonic).
-		 */
-		if (mnemonic != 0) {
-			putValue(Action.MNEMONIC_KEY, mnemonic);
-			putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(mnemonic,
-					accelerator));
-		}
-	}
+        /*
+         * Set up the accelerator instead of the mnemonic as the menu is the
+         * preferred way on keyboard control. We are using Action.MNEMONIC_KEY
+         * as keyboard key and Action.ACCELERATOR_KEY as a mask.
+         *
+         * Install it only when there is a real shortcut (with a mnemonic).
+         */
+        if (mnemonic != 0) {
+            putValue(Action.MNEMONIC_KEY, mnemonic);
+            putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(mnemonic,
+                     accelerator));
+        }
+    }
 
-	/**
-	 * Create a menu item
-	 * 
-	 * @param callBack
-	 *            the associated callBack
-	 * @return the menu item
-	 */
-	protected static MenuItem createMenu(CommonCallBack callBack) {
-		MenuItem item = ScilabMenuItem.createMenuItem();
+    /**
+     * Create a menu item
+     *
+     * @param callBack
+     *            the associated callBack
+     * @return the menu item
+     */
+    protected static MenuItem createMenu(CommonCallBack callBack) {
+        MenuItem item = ScilabMenuItem.createMenuItem();
 
-		SwingScilabMenuItem swingItem = (SwingScilabMenuItem) item
-				.getAsSimpleMenuItem();
-		swingItem.setAction(callBack);
+        SwingScilabMenuItem swingItem = (SwingScilabMenuItem) item
+                                        .getAsSimpleMenuItem();
+        swingItem.setAction(callBack);
 
-		return item;
-	}
+        return item;
+    }
 
-	/**
-	 * Create a button
-	 * 
-	 * @param callback
-	 *            the associated callback
-	 * @return the push button
-	 */
-	protected static PushButton createButton(CommonCallBack callback) {
-		PushButton item = ScilabPushButton.createPushButton();
+    /**
+     * Create a button
+     *
+     * @param callback
+     *            the associated callback
+     * @return the push button
+     */
+    protected static PushButton createButton(CommonCallBack callback) {
+        PushButton item = ScilabPushButton.createPushButton();
 
-		SwingScilabPushButton swingItem = (SwingScilabPushButton) item
-				.getAsSimplePushButton();
-		swingItem.setAction(callback);
+        SwingScilabPushButton swingItem = (SwingScilabPushButton) item
+                                          .getAsSimplePushButton();
+        swingItem.setAction(callback);
 
-		// Not compatible with java 1.5
-		// Hide the name text
-		// swingItem.setHideActionText(true);
-		swingItem.setText("");
+        // Not compatible with java 1.5
+        // Hide the name text
+        // swingItem.setHideActionText(true);
+        swingItem.setText("");
 
-		return item;
-	}
+        return item;
+    }
 
-	/**
-	 * Create a checkbox item
-	 * 
-	 * @param callback
-	 *            the associated callback
-	 * @return the checkbox item
-	 */
-	protected static CheckBoxMenuItem createCheckBoxMenu(CommonCallBack callback) {
-		CheckBoxMenuItem item = ScilabCheckBoxMenuItem.createCheckBoxMenuItem();
+    /**
+     * Create a checkbox item
+     *
+     * @param callback
+     *            the associated callback
+     * @return the checkbox item
+     */
+    protected static CheckBoxMenuItem createCheckBoxMenu(CommonCallBack callback) {
+        CheckBoxMenuItem item = ScilabCheckBoxMenuItem.createCheckBoxMenuItem();
 
-		SwingScilabCheckBoxMenuItem swingItem = (SwingScilabCheckBoxMenuItem) item
-				.getAsSimpleCheckBoxMenuItem();
-		swingItem.setAction(callback);
+        SwingScilabCheckBoxMenuItem swingItem = (SwingScilabCheckBoxMenuItem) item
+                                                .getAsSimpleCheckBoxMenuItem();
+        swingItem.setAction(callback);
 
-		return item;
-	}
+        return item;
+    }
 
-	
-	/**
-	 * Action
-	 * @param e parameters
-	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	@Override
-	public abstract void actionPerformed(ActionEvent e);
-	
-	/**
-	 * Not used
-	 * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
-	 */
-	@Override
-	public void callBack() {
-		assert "Must never be called as we bypass Callback.java".equals("");
-	}
+
+    /**
+     * Action
+     * @param e parameters
+     * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public abstract void actionPerformed(ActionEvent e);
+
+    /**
+     * Not used
+     * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
+     */
+    @Override
+    public void callBack() {
+        assert "Must never be called as we bypass Callback.java".equals("");
+    }
 }

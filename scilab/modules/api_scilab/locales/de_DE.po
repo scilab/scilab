@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:11+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-16 19:37+0000\n"
+"Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: de\n"
 
 #, c-format
@@ -143,7 +143,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
-msgstr "%s: falsche Größe für Argument %d: (%d,%d) erwartet.\n"
+msgstr "%s: Falsche Größe für Argument #%d: (%d,%d) erwartet.\n"
 
 #, c-format
 msgid ""
@@ -154,10 +154,11 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
+"%s: Falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s: Falscher Typ für Argument #%d: Reelle Matrix erwartet.\n"
 
 #, c-format
 msgid "%s: Unable to get argument precision"
@@ -205,6 +206,9 @@ msgstr ""
 msgid "\tin %s\n"
 msgstr "\tin %s\n"
 
+msgid "handle matrix"
+msgstr ""
+
 msgid "int matrix"
 msgstr ""
 
@@ -241,6 +245,24 @@ msgid "%s: Items must be inserted in order"
 msgstr ""
 
 msgid "API_ERROR_GET_POLY_IN_LIST"
+msgstr ""
+
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr ""
+
+msgid "Optional argument list is empty.\n"
+msgstr ""
+
+msgid "Optional arguments list: \n"
+msgstr ""
+
+#, c-format
+msgid "and %s.\n"
 msgstr ""
 
 msgid "pointer"
@@ -297,3 +319,7 @@ msgstr "%s: Kein weiterer Speicher verfügbar.\n"
 #, c-format
 msgid "%s: Invalid variable name.\n"
 msgstr "%s: Ungültiger Variablenname.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An integer expected.\n"
+msgstr ""

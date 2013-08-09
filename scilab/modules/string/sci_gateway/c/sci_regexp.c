@@ -134,7 +134,10 @@ int sci_regexp(char *fname, unsigned long fname_len)
 
         GetRhsVar(3, STRING_DATATYPE, &m3, &n3, &l3);
 
-        if ( m3 * n3 != 0) typ = cstk(l3)[0];
+        if ( m3 * n3 != 0)
+        {
+            typ = cstk(l3)[0];
+        }
         if (typ != STR_ONCE)
         {
             freeArrayOfString(Str, mn);

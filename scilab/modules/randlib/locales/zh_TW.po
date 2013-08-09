@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-09-01 09:52+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: \n"
 
 #, c-format
@@ -105,7 +105,11 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s Wrong value for input argument #%d: %s.\n"
+msgid "%s Wrong value for input argument #%d: '%s' is unknown.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #, c-format
@@ -159,8 +163,8 @@ msgstr "P(%d) 大於 1\n"
 msgid "Sum of P(i) > 1\n"
 msgstr "P(i) 小於 1 的和\n"
 
-msgid "Missing shape and scale for Gamma law\n"
-msgstr "Gamma law 找不到 shape 與 scale\n"
+msgid "Missing shape and rate for Gamma law\n"
+msgstr ""
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A 小於等於 0.0 或 R 小於等於 0.0\n"
@@ -332,16 +336,15 @@ msgstr ""
 "                                              s4必須是介於[1, 2147483646] 的整數範圍."
 
 #, c-format
-msgid ""
-"\n"
-"=> be aware that you have may lost synchronization\n"
-"    between the virtual gen %d and the others !\n"
-"    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
+msgid "WARNING: %s\n"
 msgstr ""
-"\n"
-"=> 察覺到你可能失去同步化\n"
-"    介於 virtual gen %d 和其它值之間 !\n"
-"    如果你要覆蓋它,使用 grand((\"setall\", s1, s2, s3, s4) ."
+
+#, c-format
+msgid ""
+"be aware that you may have lost synchronization\n"
+"    between the virtual generator %d and the others.\n"
+"    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."
+msgstr ""
 
 msgid ""
 "\n"
@@ -403,6 +406,30 @@ msgstr "理論"
 msgid "Simulation of a discrete random variable"
 msgstr "離散亂數變數的模擬"
 
+msgid "Simulation of a discrete uniform random variable"
+msgstr ""
+
+msgid "Simulation of a Erlang random variable"
+msgstr ""
+
+msgid "macro histplot : Histogram plot"
+msgstr ""
+
+msgid "Classes"
+msgstr ""
+
+msgid "p must be < 1"
+msgstr ""
+
+msgid "Simulation of a geometric random variable"
+msgstr ""
+
+msgid "Simulation of a hyper geometric random variable"
+msgstr ""
+
+msgid "Simulation of a Poisson random variable"
+msgstr ""
+
 msgid "Random"
 msgstr "亂數"
 
@@ -432,3 +459,6 @@ msgstr "超幾何亂數變數"
 
 msgid "Erlang random variable"
 msgstr "Erlang亂數變數"
+
+msgid "Simulation of a Weibull random variable"
+msgstr ""

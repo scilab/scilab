@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2012 - Samuel GOUGEON 
+// Copyright (C) 2012 - Samuel GOUGEON
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
@@ -23,4 +23,5 @@ endfunction
 demo_hist3d();
 clear demo_hist3d;
 
-
+
+

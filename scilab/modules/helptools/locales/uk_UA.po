@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-27 16:54+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-18 04:52+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: uk\n"
 
 #, c-format
@@ -197,6 +197,10 @@ msgstr "Приклади"
 msgid "        Add here scilab instructions and comments"
 msgstr "        Тут можна додати команди scilab та коментарі до них"
 
+msgid "        Add here scilab instructions to generate a graphic"
+msgstr ""
+"        Тут можна додати команди scilab для створення графічного зображення"
+
 msgid "See Also"
 msgstr "Дивіться також"
 
@@ -287,14 +291,6 @@ msgid "Building the scilab manual file ["
 msgstr "Збирання файла підручника зі scilab ["
 
 #, c-format
-msgid "%s: %s has not been generated."
-msgstr "%s: %s не було створено."
-
-#, c-format
-msgid "%s: %s file hasn't been moved in the %s directory."
-msgstr "%s: файл %s не було пересунуто до каталогу %s."
-
-#, c-format
 msgid ""
 "\n"
 "Building the manual file [%s] in %s.\n"
@@ -309,6 +305,14 @@ msgid ""
 msgstr ""
 "\n"
 "Збирання файла підручника [%s].\n"
+
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr "%s: %s не було створено."
+
+#, c-format
+msgid "%s: %s file hasn't been moved in the %s directory."
+msgstr "%s: файл %s не було пересунуто до каталогу %s."
 
 #, c-format
 msgid "%s: Please check %s, number of modules is invalid.\n"

@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sound-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-01-23 14:46+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-17 14:28+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -28,19 +28,19 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Произошла ошибка: %s\n"
+
+msgid "Cannot play file."
+msgstr "Не удалось воспроизвести файл."
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка выделения памяти.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Произошла ошибка: %s\n"
-
-msgid "Cannot play file."
-msgstr "Не удалось воспроизвести файл."
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
@@ -72,6 +72,30 @@ msgstr "%s: Неверное количество входных парамет�
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Не удалось открыть файл %s.\n"
 
+msgid "Index range must be specified as a scalar or a 2 elements vector."
+msgstr ""
+
+msgid "Sample limit vector must have 2 elements."
+msgstr ""
+
+msgid "Sample limits out of range."
+msgstr "Границы сэмплов вне допустимых пределов."
+
+msgid "Sample limits must be given in ascending order."
+msgstr ""
+
+msgid "Error in file format."
+msgstr "Ошибка в формате файла."
+
+msgid "Error while reading sound file."
+msgstr "Ошибка во время чтения звукового файла."
+
+msgid "Unrecognized data format."
+msgstr "Неизвестный формат данных."
+
+msgid "Truncated data file."
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
 msgstr ""
@@ -80,6 +104,9 @@ msgstr ""
 msgid "Data array must have 1- or 2-dimensions only."
 msgstr "Массив данных должен быть одно- или двумерным."
 
+msgid "Data clipped during write to file."
+msgstr "Данные обрезаны во время записи в файл."
+
 msgid "Error while writing sound file."
 msgstr "Ошибка записи звукового файла."
 
@@ -87,9 +114,6 @@ msgid "Mu-law can only be used with 8 bit data. Use method='linear' instead."
 msgstr ""
 "Mu-law может быть использован только с 8-битными данными. Используйте метод "
 "«linear» вместо него."
-
-msgid "Unrecognized data format."
-msgstr "Неизвестный формат данных."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -188,9 +212,6 @@ msgstr "Не удалось прочитать .wav файл с более че�
 msgid "Sample limit vector must have 2 entries."
 msgstr ""
 "Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."
-
-msgid "Sample limits out of range."
-msgstr "Границы сэмплов вне допустимых пределов."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Неверные границы сэмплов (нужно указывать их по возрастанию)."

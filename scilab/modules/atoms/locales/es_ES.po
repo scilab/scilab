@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-06-25 00:50+0000\n"
 "Last-Translator: gustavoreyes <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: es\n"
 
 #, c-format
@@ -292,6 +292,10 @@ msgstr "%s: Error mientras se copiaba el archivo '%s' al directorio '%s'.\n"
 #, c-format
 msgid "%s: Error while creating the directory '%s'.\n"
 msgstr "%s: Error mientras se creaba el directorio '%s'.\n"
+
+#, c-format
+msgid "%s: Previously existing file with the same name in '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

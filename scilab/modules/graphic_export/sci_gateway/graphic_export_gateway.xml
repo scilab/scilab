@@ -2,8 +2,8 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="graphic_export">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  *
@@ -28,17 +28,17 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<!-- =================== -->
-  <PRIMITIVE gatewayId="57" primitiveId="1" primitiveName="xs2bmp" />
-  <PRIMITIVE gatewayId="57" primitiveId="2" primitiveName="xs2gif" />
-  <PRIMITIVE gatewayId="57" primitiveId="3" primitiveName="xs2jpg" />
-  <PRIMITIVE gatewayId="57" primitiveId="4" primitiveName="xs2png" />
-  <PRIMITIVE gatewayId="57" primitiveId="5" primitiveName="xs2ppm" />
-  <PRIMITIVE gatewayId="57" primitiveId="6" primitiveName="xs2eps" />
-  <PRIMITIVE gatewayId="57" primitiveId="7" primitiveName="xs2pdf" />
-  <PRIMITIVE gatewayId="57" primitiveId="8" primitiveName="xs2svg" />
-  <PRIMITIVE gatewayId="57" primitiveId="9" primitiveName="xs2ps" />
-  <PRIMITIVE gatewayId="57" primitiveId="10" primitiveName="driver" />
-  <PRIMITIVE gatewayId="57" primitiveId="11" primitiveName="xinit" />
-  <PRIMITIVE gatewayId="57" primitiveId="12" primitiveName="xend" />
+    <!-- =================== -->
+    <PRIMITIVE gatewayId="57" primitiveId="1" primitiveName="xs2bmp" />
+    <PRIMITIVE gatewayId="57" primitiveId="2" primitiveName="xs2gif" />
+    <PRIMITIVE gatewayId="57" primitiveId="3" primitiveName="xs2jpg" />
+    <PRIMITIVE gatewayId="57" primitiveId="4" primitiveName="xs2png" />
+    <PRIMITIVE gatewayId="57" primitiveId="5" primitiveName="xs2ppm" />
+    <PRIMITIVE gatewayId="57" primitiveId="6" primitiveName="xs2eps" />
+    <PRIMITIVE gatewayId="57" primitiveId="7" primitiveName="xs2pdf" />
+    <PRIMITIVE gatewayId="57" primitiveId="8" primitiveName="xs2svg" />
+    <PRIMITIVE gatewayId="57" primitiveId="9" primitiveName="xs2ps" />
+    <PRIMITIVE gatewayId="57" primitiveId="10" primitiveName="driver" />
+    <PRIMITIVE gatewayId="57" primitiveId="11" primitiveName="xinit" />
+    <PRIMITIVE gatewayId="57" primitiveId="12" primitiveName="xend" />
 </GATEWAY>

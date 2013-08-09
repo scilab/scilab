@@ -18,38 +18,42 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void delay4_i32(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void delay4_i32(scicos_block *block, int flag)
 {
-  /* Copyright INRIA
-   
-     Scicos block simulator
-     Ouputs nx*dt delayed input */
+    /* Copyright INRIA
 
-  long *y = NULL,*u = NULL,*oz = NULL;
-  int nz = 0,mz = 0;
-  
-  
-  u=Getint32InPortPtrs(block,1);
-  y=Getint32OutPortPtrs(block,1);
-  oz=Getint32OzPtrs(block,1);
-  nz=GetOzSize(block,1,2);
-  mz=GetOzSize(block,1,1);
+       Scicos block simulator
+       Ouputs nx*dt delayed input */
 
-  if ((flag==1)||(flag==6)||(flag==4)){
-    y[0]=oz[0];
-  }else if (flag == 2){
-    /*  shift buffer */
-	int i = 0; 
-    for (i=0; i<=(mz*nz)-2; i++){
-      oz[i]=oz[i+1];
+    SCSINT32_COP *y = NULL, *u = NULL, *oz = NULL;
+    int nz = 0, mz = 0;
+
+
+    u = Getint32InPortPtrs(block, 1);
+    y = Getint32OutPortPtrs(block, 1);
+    oz = Getint32OzPtrs(block, 1);
+    nz = GetOzSize(block, 1, 2);
+    mz = GetOzSize(block, 1, 1);
+
+    if ((flag == 1) || (flag == 6) || (flag == 4))
+    {
+        y[0] = oz[0];
     }
-    /* add new point to the buffer */
-    oz[(mz*nz)-1]=u[0];
-  }
+    else if (flag == 2)
+    {
+        /*  shift buffer */
+        int i = 0;
+        for (i = 0; i <= (mz * nz) - 2; i++)
+        {
+            oz[i] = oz[i + 1];
+        }
+        /* add new point to the buffer */
+        oz[(mz * nz) - 1] = u[0];
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

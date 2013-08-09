@@ -18,40 +18,40 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+static gw_generic_table Tab[] =
 {
-	{sci_scilist, "list"},
-	{sci_scitlist, "tlist"},
-	{sci_rlist, "rlist"},
-	{sci_lsslist, "lsslist"},
-	{sci_glist, "glist"},
-	{sci_lstcat, "lstcat"},
-	{sci_scimlist, "mlist"},
-	{sci_definedfields, "definedfields"},
-	{sci_lstsize, "lstsize"}
+    {sci_scilist, "list"},
+    {sci_scitlist, "tlist"},
+    {sci_rlist, "rlist"},
+    {sci_lsslist, "lsslist"},
+    {sci_glist, "glist"},
+    {sci_lstcat, "lstcat"},
+    {sci_scimlist, "mlist"},
+    {sci_definedfields, "definedfields"},
+    {sci_lstsize, "lstsize"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_data_structures1(void)
 {
-	Rhs=Max(Rhs,0);
-	if (Top - Rhs + Lhs + 1 >= Bot)
-	{
-		SciError(18);
-		return 0;
-	}
+    Rhs = Max(Rhs, 0);
+    if (Top - Rhs + Lhs + 1 >= Bot)
+    {
+        SciError(18);
+        return 0;
+    }
 
-	if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-	}
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
 
-	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int C2F(gwdatastructures1)(void)
 {
-	return gw_data_structures1();
+    return gw_data_structures1();
 }
 /*--------------------------------------------------------------------------*/

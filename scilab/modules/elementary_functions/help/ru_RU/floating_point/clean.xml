@@ -14,7 +14,8 @@
     <refnamediv>
         <refname>clean</refname>
         <refpurpose>
-          очищает матрицы (округление малых значений до нуля)    </refpurpose>
+            очищает матрицы (округление малых значений до нуля)    
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
@@ -33,7 +34,7 @@
                 <term>epsa, epsr</term>
                 <listitem>
                     <para>
-                      вещественные числа. Допустимые отклонения для  очистки (значения по умолчанию соответственно <literal>1.d-10</literal> и <literal>1.d-10</literal>)
+                        вещественные числа. Допустимые отклонения для  очистки (значения по умолчанию соответственно <literal>1.d-10</literal> и <literal>1.d-10</literal>)
                     </para>
                 </listitem>
             </varlistentry>
@@ -62,4 +63,4 @@ clean(w*inv(w))
  ]]></programlisting>
     </refsection>
 </refentry>
- 
+

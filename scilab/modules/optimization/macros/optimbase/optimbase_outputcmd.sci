@@ -27,9 +27,9 @@ function stop = optimbase_outputcmd ( this , ...
         funtype = typeof(this.outputcommand)
         if ( funtype == "function" ) then
             __optimbase_f__ = this.outputcommand
-		//
-		// Backward-compatibility: process the outputcommandarg field
-		//
+            //
+            // Backward-compatibility: process the outputcommandarg field
+            //
             if ( typeof(this.outputcommandarg) == "string" ) then
                 __optimbase_args__ = list()
             else
@@ -43,13 +43,13 @@ function stop = optimbase_outputcmd ( this , ...
         // Callback the output
         //
         stop = __optimbase_f__ ( state , data , __optimbase_args__(1:$) )
-		//
-		// Backward-compatibility: define the stop variable
-		//
-            if ( exists("stop")==0 ) then
-                optb_warnheaderobsolete ( "outputfun(state,data)" , "stop=outputfun(state,data)", "5.4.1" )
-                stop = %f
-            end
+        //
+        // Backward-compatibility: define the stop variable
+        //
+        if ( exists("stop")==0 ) then
+            optb_warnheaderobsolete ( "outputfun(state,data)" , "stop=outputfun(state,data)", "5.4.1" )
+            stop = %f
+        end
     end
 endfunction
 

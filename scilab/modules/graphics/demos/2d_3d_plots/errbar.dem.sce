@@ -6,19 +6,19 @@
 
 
 function demo_errbar()
-  my_handle             = scf(100001);
-  clf(my_handle,"reset");
-  demo_viewCode("errbar.dem.sce");
+    my_handle             = scf(100001);
+    clf(my_handle,"reset");
+    demo_viewCode("errbar.dem.sce");
 
-  // DEMO START
+    // DEMO START
 
-  my_plot_desc          = "errbar";
-  my_handle.figure_name = my_plot_desc;
+    my_plot_desc          = "errbar";
+    my_handle.figure_name = my_plot_desc;
 
-  errbar();
-  xtitle(my_plot_desc," "," "," ");
+    errbar();
+    xtitle(my_plot_desc," "," "," ");
 
-  // DEMO END
+    // DEMO END
 endfunction
 
 demo_errbar();

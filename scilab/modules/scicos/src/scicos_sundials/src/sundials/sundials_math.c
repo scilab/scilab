@@ -27,81 +27,93 @@
 
 realtype RPowerI(realtype base, int exponent)
 {
-  int i, expt;
-  realtype prod;
+    int i, expt;
+    realtype prod;
 
-  prod = ONE;
-  expt = abs(exponent);
-  for(i = 1; i <= expt; i++) prod *= base;
-  if (exponent < 0) prod = ONE/prod;
-  return(prod);
+    prod = ONE;
+    expt = abs(exponent);
+    for (i = 1; i <= expt; i++)
+    {
+        prod *= base;
+    }
+    if (exponent < 0)
+    {
+        prod = ONE / prod;
+    }
+    return(prod);
 }
 
 realtype RPowerR(realtype base, realtype exponent)
 {
-  if (base <= ZERO) return(ZERO);
+    if (base <= ZERO)
+    {
+        return(ZERO);
+    }
 
 #if defined(SUNDIALS_USE_GENERIC_MATH)
-  return((realtype) pow((double) base, (double) exponent));
+    return((realtype) pow((double) base, (double) exponent));
 #elif defined(SUNDIALS_DOUBLE_PRECISION)
-  return(pow(base, exponent));
+    return(pow(base, exponent));
 #elif defined(SUNDIALS_SINGLE_PRECISION)
-  return(powf(base, exponent));
+    return(powf(base, exponent));
 #elif defined(SUNDIALS_EXTENDED_PRECISION)
-  return(powl(base, exponent));
+    return(powl(base, exponent));
 #endif
 }
 
 realtype RSqrt(realtype x)
 {
-  if (x <= ZERO) return(ZERO);
+    if (x <= ZERO)
+    {
+        return(ZERO);
+    }
 
 #if defined(SUNDIALS_USE_GENERIC_MATH)
-  return((realtype) sqrt((double) x));
+    return((realtype) sqrt((double) x));
 #elif defined(SUNDIALS_DOUBLE_PRECISION)
-  return(sqrt(x));
+    return(sqrt(x));
 #elif defined(SUNDIALS_SINGLE_PRECISION)
-  return(sqrtf(x));
+    return(sqrtf(x));
 #elif defined(SUNDIALS_EXTENDED_PRECISION)
-  return(sqrtl(x));
+    return(sqrtl(x));
 #endif
 }
 
 realtype RAbs(realtype x)
 {
 #if defined(SUNDIALS_USE_GENERIC_MATH)
-  return((realtype) fabs((double) x));
+    return((realtype) fabs((double) x));
 #elif defined(SUNDIALS_DOUBLE_PRECISION)
-  return(fabs(x));
+    return(fabs(x));
 #elif defined(SUNDIALS_SINGLE_PRECISION)
-  return(fabsf(x));
+    return(fabsf(x));
 #elif defined(SUNDIALS_EXTENDED_PRECISION)
-  return(fabsl(x));
+    return(fabsl(x));
 #endif
 }
 
 realtype RExp(realtype x)
 {
 #if defined(SUNDIALS_USE_GENERIC_MATH)
-  return((realtype) exp((double) x));
+    return((realtype) exp((double) x));
 #elif defined(SUNDIALS_DOUBLE_PRECISION)
-  return(exp(x));
+    return(exp(x));
 #elif defined(SUNDIALS_SINGLE_PRECISION)
-  return(expf(x));
+    return(expf(x));
 #elif defined(SUNDIALS_EXTENDED_PRECISION)
-  return(expl(x));
+    return(expl(x));
 #endif
 }
 
 realtype FLOOR(realtype x)
 {
 #if defined(SUNDIALS_USE_GENERIC_MATH)
-  return(floor((double) x));
+    return(floor((double) x));
 #elif defined(SUNDIALS_DOUBLE_PRECISION)
-  return((floor(x));
+    return((floor(x));
 #elif defined(SUNDIALS_SINGLE_PRECISION)
-  return(floor(x));
+    return(floor(x));
 #elif defined(SUNDIALS_EXTENDED_PRECISION)
-  return(floor(x));
+    return(floor(x));
 #endif
 }

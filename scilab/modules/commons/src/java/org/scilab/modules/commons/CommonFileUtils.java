@@ -9,30 +9,30 @@
 package org.scilab.modules.commons;
 
 
- /** 
-   * Some file utils
-   * @author Calixte DENIZET
-   * @copyright DIGITEO 2011
-   */
+/**
+  * Some file utils
+  * @author Calixte DENIZET
+  * @copyright DIGITEO 2011
+  */
 public class CommonFileUtils {
 
- /**
-   * Constructor
-   */
- protected CommonFileUtils() {
-    throw new UnsupportedOperationException();
- }
-  public static int isEmptyDirectory(String dirName) {
-    return CommonFileUtilsJNI.isEmptyDirectory(dirName);
-  }
+    /**
+      * Constructor
+      */
+    protected CommonFileUtils() {
+        throw new UnsupportedOperationException();
+    }
+    public static int isEmptyDirectory(String dirName) {
+        return CommonFileUtilsJNI.isEmptyDirectory(dirName);
+    }
 
-  
- /**
-   * Get the current working directory
-   * @return the Scilab CWD
-   */
-public static String getCWD() {
-    return CommonFileUtilsJNI.getCWD();
-  }
+
+    /**
+      * Get the current working directory
+      * @return the Scilab CWD
+      */
+    public static String getCWD() {
+        return CommonFileUtilsJNI.getCWD();
+    }
 
 }

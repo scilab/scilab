@@ -13,39 +13,39 @@
 //  the tlist or mlist "s", FALSE otherwise
 
 function r = isfield(s,field)
-	
-	r = [];
-	
-	rhs = argn(2);
-	
-	if rhs <> 2 then
+
+    r = [];
+
+    rhs = argn(2);
+
+    if rhs <> 2 then
         msg = _("%s: Wrong number of input argument(s): %d expected.\n")
-		error(msprintf(msg,"isfield",2));
-	end
-	
-	if ~or(type(s)==[16 17]) then
+        error(msprintf(msg,"isfield",2));
+    end
+
+    if ~or(type(s)==[16 17]) then
         msg = _("%s: Wrong type for input argument #%d: struct array or tlist or mlist expected.\n")
-		error(msprintf(msg,"isfield",1));
-	end
-	
-	if type(field) <> 10 then
+        error(msprintf(msg,"isfield",1));
+    end
+
+    if type(field) <> 10 then
         msg = _("%s: Wrong type for input argument #%d: A string expected.\n")
-		error(msprintf(msg,"isfield",2));
-	end
-	
-	[nr,nc]     = size(field);
-	fields      = getfield(1,s);
+        error(msprintf(msg,"isfield",2));
+    end
+
+    [nr,nc]     = size(field);
+    fields      = getfield(1,s);
     if  isstruct(s) then
         cancel = 1:2
-    else 
+    else
         cancel = 1
     end
-	fields(cancel) = [];
-	
-	for row=1:nr
-		for line=1:nc
-			r(row,line) = or(fields==field(row,line));
-		end
-	end
-	
+    fields(cancel) = [];
+
+    for row=1:nr
+        for line=1:nc
+            r(row,line) = or(fields==field(row,line));
+        end
+    end
+
 endfunction

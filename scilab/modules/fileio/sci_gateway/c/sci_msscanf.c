@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -57,7 +57,9 @@ int sci_sscanf(char *fname, unsigned long fname_len)
 
     lw = iarg + Top - Rhs;      /* Scilab string vector */
     if (!C2F(getwsmat) ("sscanf", &Top, &lw, &m1, &n1, &il1, &ild1, 6L))
+    {
         return 0;
+    }
     GetRhsVar(iarg + 1, STRING_DATATYPE, &m2, &n2, &l2);    /* Format */
     n_count = StringConvert(cstk(l2)) + 1;  /* conversion */
 
@@ -74,9 +76,13 @@ int sci_sscanf(char *fname, unsigned long fname_len)
     {
         rowcount++;
         if ((maxrow >= 0) && (rowcount >= maxrow))
+        {
             break;
+        }
         if (k >= m1 * n1)
+        {
             break;
+        }
         skip = *istk(ild1 + k) - 1;
         SciStrtoStr(istk(il1 + skip), &n_count, istk(ild1 + k), &str);
         k += n_count;
@@ -85,29 +91,33 @@ int sci_sscanf(char *fname, unsigned long fname_len)
         err = do_xxscanf("sscanf", (FILE *) 0, cstk(l2), &args, str, &retval, buf, type);
         FREE(str);
         if (err < 0)
+        {
             return 0;
+        }
 
         if ((err = Store_Scan(&nrow, &ncol, type_s, type, &retval, &retval_s, buf, &data, rowcount, args)) < 0)
         {
             switch (err)
             {
-            case MISMATCH:
-                if (maxrow >= 0)
-                {
-                    Free_Scan(rowcount, ncol, type_s, &data);
-                    Scierror(999, _("%s: Data mismatch.\n"), fname);
-                    return 0;
-                }
-                break;
+                case MISMATCH:
+                    if (maxrow >= 0)
+                    {
+                        Free_Scan(rowcount, ncol, type_s, &data);
+                        Scierror(999, _("%s: Data mismatch.\n"), fname);
+                        return 0;
+                    }
+                    break;
 
-            case MEM_LACK:
-                Free_Scan(rowcount, ncol, type_s, &data);
-                Scierror(999, _("%s: No more memory.\n"), fname);
-                return 0;
+                case MEM_LACK:
+                    Free_Scan(rowcount, ncol, type_s, &data);
+                    Scierror(999, _("%s: No more memory.\n"), fname);
+                    return 0;
             }
 
             if (err == MISMATCH)
+            {
                 break;
+            }
         }
     }                           /* while */
 

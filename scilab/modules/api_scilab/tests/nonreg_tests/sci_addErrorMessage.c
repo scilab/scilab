@@ -29,7 +29,10 @@ int sci_addErrorMessage(char *fname, unsigned long fname_len)
         if (isIntegerType(pvApiCtx, piAddressVarOne))
         {
             if (!getScalarInteger32(pvApiCtx, piAddressVarOne,
-                                    &errorMessageCount));
+                                    &errorMessageCount))
+            {
+                ;
+            }
             {
                 SciErr sciErr;
                 char errMsg[100];

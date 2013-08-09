@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:11+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-28 14:09+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -114,10 +114,6 @@ msgstr "トレース設定のデフォルト値"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列のベクトルを指定してください.\n"
 
 #, c-format
 msgid ""
@@ -333,7 +329,7 @@ msgid "Export"
 msgstr "エクスポート"
 
 msgid "Export all diagrams"
-msgstr ""
+msgstr "全ダイアグラムをエクスポート"
 
 msgid "Save as interface function"
 msgstr "インターフェース関数の保存"
@@ -347,7 +343,7 @@ msgstr "閉じる"
 msgid "Quit Xcos"
 msgstr "Xcosを終了"
 
-msgid "Recent Files"
+msgid "Recent files"
 msgstr "最近のファイル"
 
 msgid "Edit"
@@ -399,7 +395,7 @@ msgid "View"
 msgstr "表示"
 
 msgid "Fit diagram or blocks to view"
-msgstr ""
+msgstr "ダイアグラムまたはブロックを視野に一致させる"
 
 msgid "Normal 100%"
 msgstr "標準 100%"
@@ -865,7 +861,7 @@ msgstr "連続系プラント-複合オブザーバ"
 msgid "Temperature Controller"
 msgstr "温度制御器"
 
-msgid "Inverted Pendulum"
+msgid "Inverted pendulum"
 msgstr "倒立振子"
 
 msgid "Lorentz butterfly"
@@ -1148,6 +1144,18 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: パレットを hdf5にエクスポートできません.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr "%s: 引数 %d の型が間違っています: 文字列の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: No block found.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:  ブロックが見つかりません.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr "%s: 引数 %dの型が間違っています: 文字列を指定してください."
 
@@ -1200,8 +1208,26 @@ msgstr "%s: ブロックパラメータを評価する際にエラーが発生�
 msgid "%s: Error during block parameters update.\n"
 msgstr "%s: ブロックパラメータを更新する際にエラーが発生しました.\n"
 
+msgid "Initialisation problem"
+msgstr "初期化時に問題"
+
+msgid "End problem"
+msgstr "終了時に問題"
+
 msgid "Simulation problem"
 msgstr "シミュレーション問題"
 
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr "post_xcos_simulateでエラーが発生しました: シミュレーションを終了します."
+
+#, c-format
+msgid "%s: Cannot open file '%s' for reading.\n"
+msgstr "%s: ファイル '%s' を読み込み用にオープンできませんでした.\n"
+
+#, c-format
+msgid "%s: Error while trying to read file contents from '%s'.\n"
+msgstr "%s: ファイル '%s' 読み込み時にエラーが発生しました.\n"
+
+#, c-format
+msgid "%s: Syntax error while trying to set up context from"
+msgstr "%s:  コンテキスト形式を設定する際に構文エラーが発生しました"

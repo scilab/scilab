@@ -20,27 +20,27 @@
 //
 
 function r=validvar(s)
-//Serge Steer, 08/10/2007
-//Alan restricted validvar for operation, 29/03/08
+    //Serge Steer, 08/10/2007
+    //Alan restricted validvar for operation, 29/03/08
 
-  //check if the string s is a valid identifier
+    //check if the string s is a valid identifier
     s=stripblanks(s)
     r=%f
-    if size(s,'*')<>1 then return, end
-    if s=='' then return, end
+    if size(s,"*")<>1 then return, end
+    if s=="" then return, end
 
     //create a function with s as single statement
-    if execstr('deff(''foo'',s)','errcatch') then return, end
+    if execstr("deff(''foo'',s)","errcatch") then return, end
     t=macr2tree(foo) //syntax tree
     instr=t.statements(2) //ignore leading and trailing EOL
 
-    //lhs shoud be "ans"
+    //lhs should be "ans"
     if size(instr.lhs)<>1 then return,end
-    if instr.lhs(1).name<>'ans' then return,end
+    if instr.lhs(1).name<>"ans" then return,end
 
     //expression should be just a reference to s
-    if typeof(instr.expression)<>'operation' then return, end
-    if instr.expression.operator<>'ext' then return,end
+    if typeof(instr.expression)<>"operation" then return, end
+    if instr.expression.operator<>"ext" then return,end
     if size(instr.expression.operands)<>1 then return,end
     if instr.expression.operands(1).name<>s  then return,end
 

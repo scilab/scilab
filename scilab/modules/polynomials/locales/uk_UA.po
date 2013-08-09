@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2011-10-03 15:20+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-26 05:27+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: uk\n"
 
 msgid "Polynomials"
@@ -68,6 +68,18 @@ msgstr ""
 "динамічну систему або масив поліномів.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: мало бути використано масив або поліном.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real Polynomial expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: мало бути використано тип полінома з "
+"дійсними коефіцієнтами.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра: слід використовувати масив "
@@ -96,6 +108,22 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
 "з набору {%s}.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: мало бути використано тип матриці з "
+"поліномів з дійсними коефіцієнтами.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String expected.\n"
+msgstr "%s: помилковий тип параметра №%d: мало бути використано рядок.\n"
+
+#, c-format
+msgid "%s: Wrong value for argument #%d: %s or %s expected.\n"
+msgstr ""
+"%s: помилкове значення параметра №%d: мало бути використано %s або %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected.\n"

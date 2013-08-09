@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Sylvestre LEDRU
- * Copyright (C) DIGITEO - 2010 - Allan CORNET 
- * 
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -33,8 +33,8 @@
 * @param[in] fd: a int file descriptor to open
 * @param[in/out] buf : string buffer returned
 * @param[in] n : bsiz (4096)
-* @param[in/out]: *cnt numbers of returned characters 
-* @param[in/out]: *nr numbers of returned characters 
+* @param[in/out]: *cnt numbers of returned characters
+* @param[in/out]: *nr numbers of returned characters
 * @return info code
 * -1 : EOF reached
 * 0 : EOF reached after an EOL
@@ -52,7 +52,7 @@ FILEIO_IMPEXP int LineRead(int fd, char buf[], int n, int *cnt, int *nr);
 * @param[in/out] buf : string buffer returned
 * @param[in] *n : bsiz (4096)
 * @param[out] *count : numbers of returned characters + 1
-* @param[out] *nr : numbers of returned characters 
+* @param[out] *nr : numbers of returned characters
 * @param[out] *ierr : int error code
 * -1 : EOF reached
 * 0 : EOF reached after an EOL

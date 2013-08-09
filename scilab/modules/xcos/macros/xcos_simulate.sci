@@ -1,5 +1,6 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) Scilab Enterprises - 2013 - Bruno JOFRET
 // Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
 //
 // This file must be used under the terms of the CeCILL.
@@ -36,13 +37,13 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         end
         ok=%t;
 
-        // force update on the parent in case of scoped modification
+        // Force update on the parent in case of scoped modification
         scs_m=resume(scs_m);
     endfunction
 
     if isdef("pre_xcos_simulate") then
         if type(pre_xcos_simulate) == 15 then
-            // if has a multiple implementation (on a list)
+            // If has a multiple implementation (on a list)
             for f=pre_xcos_simulate;
                 ok=invoke_pre_simulate(f, scs_m, needcompile);
                 if ~ok then
@@ -51,7 +52,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
                 end
             end
         else
-            // if has a unique implementation
+            // If has a unique implementation
             ok=invoke_pre_simulate("pre_xcos_simulate", scs_m, needcompile);
             if ~ok then
                 %cpr=[];
@@ -102,7 +103,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
     //** context eval here
     [%scicos_context, ierr] = script2var(context, %scicos_context);
 
-    //for backward compatibility for scifunc
+    // For backward compatibility for scifunc
     if ierr==0 then
         %mm = getfield(1,%scicos_context)
         for %mi=%mm(3:$)
@@ -112,7 +113,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
             end
         end
     end
-    //end of for backward compatibility for scifuncpagate context values
+    // End of for backward compatibility for scifuncpagate context values
 
     [scs_m,%cpr,needcompile,ok] = do_eval(scs_m, %cpr, %scicos_context);
     if ~ok then
@@ -163,13 +164,13 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         choix = []
     end
 
-    //** switch appropriate solver
+    //** switch to appropriate solver
     if %cpr.sim.xptr($)-1<size(%cpr.state.x,"*") & solver<100 then
         warning(["Diagram has been compiled for implicit solver"
         "switching to implicit Solver"])
         solver = 100 ; //** Magic number
         tolerances(6) = solver ; //** save Magic number solver type
-    elseif (%cpr.sim.xptr($)-1==size(%cpr.state.x,"*")) & (solver==100 & size(%cpr.state.x,"*")<>0) then
+    elseif (%cpr.sim.xptr($)-1==size(%cpr.state.x,"*")) & ((or (solver == [100 101 102])) & size(%cpr.state.x,"*")<>0) then
         message(["Diagram has been compiled for explicit solver"
         "switching to explicit Solver"])
         solver = 0 ; //** Magic number
@@ -296,7 +297,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
     //** scicos simulation
     tf = scs_m.props.tf
 
-    // inform Xcos the simulator is going to run
+    // Inform Xcos the simulator is going to run
     xcosSimulationStarted();
 
     //** run scicosim via 'start' flag
@@ -353,7 +354,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         if kfun<>0 then //** block error
             path = corinv(kfun);
             //** get error cmd for the block
-            get_errorcmd(path,gettext("Simulation problem"),str_err);
+            execstr(get_errorcmd(path,gettext("Simulation problem"),str_err));
         else //** simulator error
             message(["Simulation problem:";str_err])
             //scf(curwin);
@@ -361,17 +362,58 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         ok = %f;
     end
 
-    //restore saved variables in Scilab environment ( "To workspace" block )
-    [txt,files]=returntoscilab()
-    n=size(files,1)
-    for i=1:n
-        load(TMPDIR+"/Workspace/"+files(i))
-        ierr = execstr(files(i)+"=struct('"values'",x,'"time'",t)", "errcatch")
-        if ierr <> 0
-            str_err = split_lasterror(lasterror());
-            message(["Simulation problem:";str_err]);
-        end
+    // Restore saved variables in Scilab environment ("To workspace" block)
 
+    // First step: Search the %cpr tree for TOWS_c blocks, and extract the variable names.
+    path = %cpr.sim;
+    Names = [];
+    buff_sizes = [];
+    increment = 1;
+    for i=1:size(path.funs)
+        increment2 = path.ipptr(i+1);
+        if (increment2 - increment <> 0) then   // ipar has at least a few elements
+            space = increment2 - increment;     // The number of elements that the current block pushed into ipar
+            if (path.funs(i) == "tows_c") then  // Found a Tow_workspace block
+                varNameLen = space - 2;         // Space minus 'buffer_size' and 'var length' ipar elements
+                varNameCode = path.ipar(increment+2:increment+2+varNameLen-1);  // varName is stored in Scilab code
+                varName = ascii(varNameCode);
+                Names = [Names varName];        // Append varName in Names
+                buff_size  = path.ipar(increment);  // Retrieve buffer size
+                buff_sizes = [buff_sizes buff_size];
+            end
+            increment = increment2;
+        end
+    end
+    // At the end, Names contains the string names of the variables and buff_sizes the respective buffer sizes
+
+    // Second step: Link the variable names to their values vectors,
+    //and call '[names(1), names(2), ...] = resume(names(1), names(2), ...)' to save the variable into Scilab
+    if ~isempty(Names) then
+        for i=1:size(Names, "c")
+            execstr("NamesIval  = "+Names(i)+"_val;");
+            execstr("NamesIvalt = "+Names(i)+"_valt;");
+            // If input is a matrix, use function matrix() to reshape the saved values
+            // Check condition using time vector, if we have more values than time stamps, split it
+            if (size(NamesIval, "r") > size(NamesIvalt, "r")) then
+                nRows  = size(NamesIvalt, "r");
+                nCols  = size(NamesIval, "c");
+                nCols2 = size(NamesIval, "r") / nRows;
+                NamesIval = matrix(NamesIval, nCols, nCols2, nRows);
+            end
+            ierr = execstr(Names(i)+" = struct(''values'', NamesIval, ''time'', NamesIvalt)", "errcatch");
+            if ierr <> 0 then
+                str_err = split_lasterror(lasterror());
+                message(["Simulation problem" ; "Unable to resume To Workspace Variable {"+Names(i)+"}:" ; str_err]);
+                break;
+            end
+            if i == 1 then
+                Resume_line_args = Names(1);
+            else
+                Resume_line_args = Resume_line_args + ", " + Names(i);  // Concatenate the variable names up to the last one
+            end
+        end
+        Resume_line = "[" + Resume_line_args + "] = resume(" + Resume_line_args + ");";  // Build the message
+        // Will execute Resume_line at the end of the function, to run the following Hook instructions
     end
 
     // Hook according to SEP066
@@ -383,13 +425,13 @@ function %cpr = xcos_simulate(scs_m, needcompile)
             return
         end
         ok=%t
-        // force update on the parent in case of scoped modification
+        // Force update on the parent in case of scoped modification
         scs_m=resume(scs_m);
     endfunction
 
     if isdef("post_xcos_simulate") then
         if type(post_xcos_simulate) == 15 then
-            // if has a multiple implementation (on a list)
+            // If has a multiple implementation (on a list)
             for f=post_xcos_simulate;
                 ok=invoke_post_simulate(f, %cpr, scs_m, needcompile);
                 if ~ok then
@@ -398,7 +440,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
                 end
             end
         else
-            // if has a unique implementation
+            // If has a unique implementation
             ok=invoke_post_simulate("post_xcos_simulate", %cpr, scs_m, needcompile);
             if ~ok then
                 %cpr=[];
@@ -407,13 +449,10 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         end
     end
 
-    // finally restore the exported variables on the parent context
-    if ~isempty(txt) then
-        ierr = execstr(txt, "errcatch")
-        if ierr <> 0 then
-            str_err = split_lasterror(lasterror());
-            message(["Simulation problem while executing <"+txt+">:";str_err]);
-        end
+    // Executing the resume() function at the end, because it does not return control
+    if ~isempty(Names) then
+        execstr(Resume_line);
     end
+
 endfunction
 

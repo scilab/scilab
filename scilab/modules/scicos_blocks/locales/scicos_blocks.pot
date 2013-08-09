@@ -14,100 +14,100 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
-# File: src/c/convert.c, line: 769
-# File: src/c/convert.c, line: 784
-# File: src/c/convert.c, line: 799
-# File: src/c/convert.c, line: 814
-# File: src/c/convert.c, line: 829
-# File: src/c/convert.c, line: 844
-# File: src/c/convert.c, line: 859
-# File: src/c/convert.c, line: 874
-# File: src/c/convert.c, line: 888
-# File: src/c/convert.c, line: 903
-# File: src/c/convert.c, line: 918
-# File: src/c/convert.c, line: 933
-# File: src/c/convert.c, line: 947
-# File: src/c/convert.c, line: 960
-# File: src/c/convert.c, line: 975
-# File: src/c/convert.c, line: 989
-# File: src/c/convert.c, line: 1002
-# File: src/c/convert.c, line: 1016
-# File: src/c/convert.c, line: 1031
-# File: src/c/convert.c, line: 1046
-# File: src/c/convert.c, line: 1061
-# File: src/c/convert.c, line: 1076
-# File: src/c/convert.c, line: 1091
-# File: src/c/convert.c, line: 1106
-# File: src/c/convert.c, line: 1121
-# File: src/c/convert.c, line: 1136
-# File: src/c/convert.c, line: 1151
-# File: src/c/gainblk_i16e.c, line: 51
-# File: src/c/gainblk_i16e.c, line: 68
-# File: src/c/gainblk_i32e.c, line: 53
-# File: src/c/gainblk_i32e.c, line: 70
-# File: src/c/gainblk_i8e.c, line: 53
-# File: src/c/gainblk_i8e.c, line: 70
-# File: src/c/gainblk_ui16e.c, line: 53
-# File: src/c/gainblk_ui16e.c, line: 70
-# File: src/c/gainblk_ui32e.c, line: 53
-# File: src/c/gainblk_ui32e.c, line: 70
-# File: src/c/gainblk_ui8e.c, line: 53
-# File: src/c/gainblk_ui8e.c, line: 70
-# File: src/c/matbyscal_e.c, line: 50
-# File: src/c/matbyscal_e.c, line: 64
-# File: src/c/matbyscal_e.c, line: 78
-# File: src/c/matbyscal_e.c, line: 92
-# File: src/c/matbyscal_e.c, line: 106
-# File: src/c/matbyscal_e.c, line: 120
-# File: src/c/matmul2_e.c, line: 50
-# File: src/c/matmul2_e.c, line: 64
-# File: src/c/matmul2_e.c, line: 78
-# File: src/c/matmul2_e.c, line: 92
-# File: src/c/matmul2_e.c, line: 106
-# File: src/c/matmul2_e.c, line: 120
+# File: src/c/convert.c, line: 1214
+# File: src/c/convert.c, line: 1239
+# File: src/c/convert.c, line: 1264
+# File: src/c/convert.c, line: 1289
+# File: src/c/convert.c, line: 1314
+# File: src/c/convert.c, line: 1339
+# File: src/c/convert.c, line: 1364
+# File: src/c/convert.c, line: 1389
+# File: src/c/convert.c, line: 1413
+# File: src/c/convert.c, line: 1438
+# File: src/c/convert.c, line: 1463
+# File: src/c/convert.c, line: 1488
+# File: src/c/convert.c, line: 1512
+# File: src/c/convert.c, line: 1536
+# File: src/c/convert.c, line: 1561
+# File: src/c/convert.c, line: 1585
+# File: src/c/convert.c, line: 1609
+# File: src/c/convert.c, line: 1633
+# File: src/c/convert.c, line: 1658
+# File: src/c/convert.c, line: 1683
+# File: src/c/convert.c, line: 1708
+# File: src/c/convert.c, line: 1733
+# File: src/c/convert.c, line: 1758
+# File: src/c/convert.c, line: 1783
+# File: src/c/convert.c, line: 1808
+# File: src/c/convert.c, line: 1833
+# File: src/c/convert.c, line: 1858
+# File: src/c/gainblk_i16e.c, line: 55
+# File: src/c/gainblk_i16e.c, line: 83
+# File: src/c/gainblk_i32e.c, line: 57
+# File: src/c/gainblk_i32e.c, line: 85
+# File: src/c/gainblk_i8e.c, line: 57
+# File: src/c/gainblk_i8e.c, line: 85
+# File: src/c/gainblk_ui16e.c, line: 57
+# File: src/c/gainblk_ui16e.c, line: 85
+# File: src/c/gainblk_ui32e.c, line: 57
+# File: src/c/gainblk_ui32e.c, line: 85
+# File: src/c/gainblk_ui8e.c, line: 57
+# File: src/c/gainblk_ui8e.c, line: 85
+# File: src/c/matbyscal_e.c, line: 54
+# File: src/c/matbyscal_e.c, line: 77
+# File: src/c/matbyscal_e.c, line: 100
+# File: src/c/matbyscal_e.c, line: 123
+# File: src/c/matbyscal_e.c, line: 146
+# File: src/c/matbyscal_e.c, line: 169
+# File: src/c/matmul2_e.c, line: 54
+# File: src/c/matmul2_e.c, line: 77
+# File: src/c/matmul2_e.c, line: 100
+# File: src/c/matmul2_e.c, line: 123
+# File: src/c/matmul2_e.c, line: 146
+# File: src/c/matmul2_e.c, line: 169
 # File: src/c/matmul_i16e.c, line: 61
 # File: src/c/matmul_i32e.c, line: 62
-# File: src/c/matmul_i8e.c, line: 58
-# File: src/c/matmul_ui16e.c, line: 58
-# File: src/c/matmul_ui32e.c, line: 58
+# File: src/c/matmul_i8e.c, line: 64
+# File: src/c/matmul_ui16e.c, line: 64
+# File: src/c/matmul_ui32e.c, line: 64
 # File: src/c/matmul_ui8e.c, line: 60
 # File: src/c/summation_i16e.c, line: 54
-# File: src/c/summation_i16e.c, line: 79
+# File: src/c/summation_i16e.c, line: 82
 # File: src/c/summation_i32e.c, line: 61
-# File: src/c/summation_i32e.c, line: 85
+# File: src/c/summation_i32e.c, line: 89
 # File: src/c/summation_i8e.c, line: 60
-# File: src/c/summation_i8e.c, line: 85
+# File: src/c/summation_i8e.c, line: 88
 # File: src/c/summation_ui16e.c, line: 61
-# File: src/c/summation_ui16e.c, line: 85
+# File: src/c/summation_ui16e.c, line: 89
 # File: src/c/summation_ui32e.c, line: 61
-# File: src/c/summation_ui32e.c, line: 85
+# File: src/c/summation_ui32e.c, line: 89
 # File: src/c/summation_ui8e.c, line: 61
-# File: src/c/summation_ui8e.c, line: 85
+# File: src/c/summation_ui8e.c, line: 89
 msgid "overflow error"
 msgstr ""
 
 #
-# File: src/c/edgetrig.c, line: 52
+# File: src/c/edgetrig.c, line: 67
 msgid "Trigger block must have discrete time input."
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 170
+# File: src/c/fromws_c.c, line: 171
 #, c-format
 msgid "The '%s' variable does not exist.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 181
-# File: src/c/fromws_c.c, line: 189
-# File: src/c/fromws_c.c, line: 207
+# File: src/c/fromws_c.c, line: 182
+# File: src/c/fromws_c.c, line: 190
+# File: src/c/fromws_c.c, line: 208
 msgid "Invalid variable type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 217
+# File: src/c/fromws_c.c, line: 218
 #, c-format
 msgid ""
 "Data dimensions are inconsistent:\n"
@@ -116,70 +116,70 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 231
+# File: src/c/fromws_c.c, line: 233
 msgid "Output should be of Real type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 241
+# File: src/c/fromws_c.c, line: 243
 msgid "Output should be of complex type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 257
+# File: src/c/fromws_c.c, line: 259
 msgid "Output should be of int8 type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 267
+# File: src/c/fromws_c.c, line: 269
 msgid "Output should be of int16 type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 277
+# File: src/c/fromws_c.c, line: 279
 msgid "Output should be of int32 type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 287
+# File: src/c/fromws_c.c, line: 289
 msgid "Output should be of uint8 type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 297
+# File: src/c/fromws_c.c, line: 299
 msgid "Output should be of uint16 type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 307
+# File: src/c/fromws_c.c, line: 309
 msgid "Output should be of uint32 type.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 456
+# File: src/c/fromws_c.c, line: 458
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 467
+# File: src/c/fromws_c.c, line: 469
 msgid "The Time vector type is not double.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 497
+# File: src/c/fromws_c.c, line: 499
 msgid "The time vector should be an increasing vector.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 537
+# File: src/c/fromws_c.c, line: 540
 msgid "Allocation problem in spline.\n"
 msgstr ""
 
 #
-# File: src/c/fromws_c.c, line: 1523
-# File: src/c/fromws_c.c, line: 1535
+# File: src/c/fromws_c.c, line: 1533
+# File: src/c/fromws_c.c, line: 1545
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
 msgstr ""
 
@@ -192,75 +192,56 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/readau.c, line: 135
-# File: src/c/readau.c, line: 199
-# File: src/c/readc.c, line: 105
-# File: src/c/readc.c, line: 185
+# File: src/c/readau.c, line: 147
+# File: src/c/readau.c, line: 217
+# File: src/c/readc.c, line: 108
+# File: src/c/readc.c, line: 204
 msgid "Read error!\n"
 msgstr ""
 
 #
-# File: src/c/readau.c, line: 163
-# File: src/c/readc.c, line: 152
-# File: src/c/writec.c, line: 94
+# File: src/c/readau.c, line: 179
+# File: src/c/readc.c, line: 166
+# File: src/c/writec.c, line: 107
 msgid "Could not open the file!\n"
 msgstr ""
 
 #
-# File: src/c/readau.c, line: 181
-# File: src/c/readc.c, line: 167
+# File: src/c/readau.c, line: 198
+# File: src/c/readc.c, line: 185
 msgid "Read error\n"
 msgstr ""
 
 #
-# File: src/c/time_delay.c, line: 86
+# File: src/c/time_delay.c, line: 89
 #, c-format
 msgid "delayed time=%f but last stored time=%f \n"
 msgstr ""
 
 #
-# File: src/c/time_delay.c, line: 87
+# File: src/c/time_delay.c, line: 90
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr ""
 
 #
-# File: src/c/tows_c.c, line: 692
-#, c-format
-msgid "Error when opening file '%s'.\n"
-msgstr ""
-
-#
-# File: src/c/tows_c.c, line: 1323
-# File: src/c/tows_c.c, line: 1333
-# File: src/c/tows_c.c, line: 1357
-# File: src/c/tows_c.c, line: 1454
-# File: src/c/tows_c.c, line: 1468
-# File: src/c/tows_c.c, line: 1478
-# File: src/c/tows_c.c, line: 1488
-# File: src/c/tows_c.c, line: 1500
-#, c-format
-msgid "Write error in file '%s'.\n"
-msgstr ""
-
-#
-# File: src/c/tows_c.c, line: 1532
-# File: src/c/tows_c.c, line: 1541
+# File: src/c/tows_c.c, line: 1572
+# File: src/c/tows_c.c, line: 1581
 msgid "Size of buffer or input size have changed!\n"
 msgstr ""
 
 #
-# File: src/c/variable_delay.c, line: 66
+# File: src/c/variable_delay.c, line: 78
 #, c-format
 msgid "delayed time=%f but last stored time=%f\n"
 msgstr ""
 
 #
-# File: src/c/variable_delay.c, line: 67
+# File: src/c/variable_delay.c, line: 79
 msgid "Consider increasing the length of buffer in variable delay block\n"
 msgstr ""
 
 #
-# File: src/c/writeau.c, line: 115
+# File: src/c/writeau.c, line: 126
 msgid "Could not open /dev/audio!\n"
 msgstr ""
 
@@ -886,6 +867,79 @@ msgstr ""
 #
 # File: macros/PDE/IHM_EDP.sci, line: 352
 msgid "Cancel"
+msgstr ""
+
+#
+# File: macros/PDE/IHM_EDP.sci, line: 412
+msgid "Please give the discretization domain values"
+msgstr ""
+
+#
+# File: macros/PDE/IHM_EDP.sci, line: 420
+# File: macros/PDE/IHM_EDP.sci, line: 427
+# File: macros/PDE/IHM_EDP.sci, line: 434
+# File: macros/PDE/IHM_EDP.sci, line: 441
+# File: macros/PDE/IHM_EDP.sci, line: 448
+# File: macros/PDE/IHM_EDP.sci, line: 455
+# File: macros/PDE/IHM_EDP.sci, line: 462
+#, c-format
+msgid "Please give the %s operator coefficients"
+msgstr ""
+
+#
+# File: macros/PDE/IHM_EDP.sci, line: 471
+msgid "Please give the sign for the variable discriminant"
+msgstr ""
+
+#
+# File: macros/PDE/IHM_EDP.sci, line: 480
+msgid "Please give the discretization method type"
+msgstr ""
+
+#
+# File: macros/PDE/IHM_EDP.sci, line: 486
+msgid "Please give the discretization method degree"
+msgstr ""
+
+#
+# File: macros/PDE/IHM_EDP.sci, line: 492
+msgid "Please give the number of discretization points"
+msgstr ""
+
+#
+# File: macros/PDE/IHM_EDP.sci, line: 500
+# File: macros/PDE/IHM_EDP.sci, line: 507
+#, c-format
+msgid "Please give the initial condition %s"
+msgstr ""
+
+#
+# File: macros/PDE/IHM_EDP.sci, line: 514
+msgid "Please give the boundary conditions"
+msgstr ""
+
+#
+# File: macros/PDE/translate.sci, line: 87
+#, c-format
+msgid "The finite element discretization took %.2f seconds"
+msgstr ""
+
+#
+# File: macros/PDE/translate.sci, line: 106
+#, c-format
+msgid "The finite differences discretization took %.2f seconds"
+msgstr ""
+
+#
+# File: macros/PDE/translate.sci, line: 120
+#, c-format
+msgid "The finite volume discretization took %.2f seconds"
+msgstr ""
+
+#
+# File: macros/PDE/translate.sci, line: 131
+#, c-format
+msgid "The code generation, the compilation and link took %.2f seconds"
 msgstr ""
 
 #
@@ -1569,4 +1623,10 @@ msgstr ""
 #
 # File: macros/Sources/tkscaleblk.sci, line: 52
 msgid "&?"
+msgstr ""
+
+#
+# File: tests/unit_tests/scicos_unitary.sci, line: 93
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""

@@ -9,6 +9,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [num]=demo_choose(fil)
-	load(fil,'choice','titl');
-	num=x_choose(choice,titl);
+    load(fil,"choice","titl");
+    num=x_choose(choice,titl);
 endfunction

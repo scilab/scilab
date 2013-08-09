@@ -59,7 +59,7 @@ c     [].*a     a.*[]  -->[]
       if(mn1.ne.1.and.mn2.ne.1) then
 c       check dimensions
          if (m1.ne.m2 .or. n1.ne.n2) then
-            buf='inconsistent element-wise operation'
+            buf='Inconsistent element-wise operation'
             call error(9999)
             return
          endif

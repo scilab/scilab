@@ -28,14 +28,14 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="signal_processing">
-
-
-<PRIMITIVE gatewayId="18" primitiveId="2" primitiveName="fft" />
-<PRIMITIVE gatewayId="18" primitiveId="4" primitiveName="corr" />
-<PRIMITIVE gatewayId="18" primitiveId="5" primitiveName="rpem" />
-<PRIMITIVE gatewayId="18" primitiveId="6" primitiveName="amell" />
-<PRIMITIVE gatewayId="18" primitiveId="7" primitiveName="delip" />
-<PRIMITIVE gatewayId="18" primitiveId="8" primitiveName="remez" />
-<PRIMITIVE gatewayId="18" primitiveId="9" primitiveName="syredi" />
-<PRIMITIVE gatewayId="18" primitiveId="10" primitiveName="conv2" />
+    
+    
+    <PRIMITIVE gatewayId="18" primitiveId="2" primitiveName="fft" />
+    <PRIMITIVE gatewayId="18" primitiveId="4" primitiveName="corr" />
+    <PRIMITIVE gatewayId="18" primitiveId="5" primitiveName="rpem" />
+    <PRIMITIVE gatewayId="18" primitiveId="6" primitiveName="amell" />
+    <PRIMITIVE gatewayId="18" primitiveId="7" primitiveName="delip" />
+    <PRIMITIVE gatewayId="18" primitiveId="8" primitiveName="remez" />
+    <PRIMITIVE gatewayId="18" primitiveId="9" primitiveName="syredi" />
+    <PRIMITIVE gatewayId="18" primitiveId="10" primitiveName="conv2" />
 </GATEWAY>

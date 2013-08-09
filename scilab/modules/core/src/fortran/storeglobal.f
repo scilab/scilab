@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine storeglobal(id,k)
@@ -16,9 +16,9 @@ c
       logical eqid
       integer v,vk
 c
-      iadr(l)=l+l-1   
+      iadr(l)=l+l-1
 
-   
+
       il=iadr(lstk(k))
       kg=istk(il+2)
       if (.not.eqid(idstk(1,kg),id)) then
@@ -62,7 +62,7 @@ c     .           not enough memory, realloc
                endif
                call unsfdcopy(lstk(gtop+1)-lstk(kg+1),stk(ls),-1,
      $              stk(ll),-1)
-c     .        update pointer               
+c     .        update pointer
             else
 c     .        new is smaller, move bottom up
                call unsfdcopy(lstk(gtop+1)-lstk(kg+1),stk(ls),1,
@@ -88,7 +88,7 @@ c     .  update pointers on variables
         if(update) then
 
 
-c     .     following lines are necessary because of use of 
+c     .     following lines are necessary because of use of
 c     .     il=iadr(istk(il+1)) to get variable pointed by an indirect
 c     .     variable.
 c     .     it should be no more useful with il=iadr(lstk(istk(il+2)))
@@ -140,10 +140,10 @@ c
       kd=offset-lstk(isiz+2)
       do 05 k=isiz+2,gtop+1
          lstk(k)=lstk(k)+kd
- 05   continue 
-      call freegmem()
+ 05   continue
+      call freeGlobalStackLastMemory()
       lstk(gbot)=lstk(isiz+2)+mem
-c     following lines are necessary because of use of il=iadr(istk(il+1)) 
+c     following lines are necessary because of use of il=iadr(istk(il+1))
 c     to get variable pointed by an indirect variable.
 c     it should be no more useful with il=iadr(lstk(istk(il+2)))
       do 09 i = isiz+2, gtop

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2013-01-26 04:08+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Invalid argument address"
@@ -201,6 +201,9 @@ msgstr "API错误：\n"
 msgid "\tin %s\n"
 msgstr "\t在%s中\n"
 
+msgid "handle matrix"
+msgstr ""
+
 msgid "int matrix"
 msgstr "整型矩阵"
 
@@ -237,6 +240,24 @@ msgstr "%s：条目必须顺序插入"
 
 msgid "API_ERROR_GET_POLY_IN_LIST"
 msgstr "API_ERROR_GET_POLY_IN_LIST"
+
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr ""
+
+msgid "Optional argument list is empty.\n"
+msgstr ""
+
+msgid "Optional arguments list: \n"
+msgstr ""
+
+#, c-format
+msgid "and %s.\n"
+msgstr ""
 
 msgid "pointer"
 msgstr "指针"
@@ -290,3 +311,7 @@ msgstr "%s：内存不足。\n"
 #, c-format
 msgid "%s: Invalid variable name.\n"
 msgstr "%s：无效的变量名。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An integer expected.\n"
+msgstr ""

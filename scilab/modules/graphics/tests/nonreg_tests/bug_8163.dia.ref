@@ -11,6 +11,6 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=8163
 //
 // <-- Short Description -->
-// datatipToggle cannot be called without agrument as stated in the help page
+// datatipToggle cannot be called without argument as stated in the help page
 plot(1:10)
 if execstr('datatipToggle()','errcatch')<>0 then bugmes();quit;end

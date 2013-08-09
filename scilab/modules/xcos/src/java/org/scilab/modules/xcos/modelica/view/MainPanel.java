@@ -164,7 +164,7 @@ public final class MainPanel extends JPanel {
     private MutableTreeNode createNodes(Struct struct) {
         DefaultMutableTreeNode structNode = new DefaultMutableTreeNode(struct);
 
-        for (Object child : struct.getSubnodes().getTerminalOrStruct()) {
+        for (Object child : struct.getSubnodes().getStructOrTerminal()) {
             // recursive call
             if (child instanceof Struct) {
                 structNode.add(createNodes((Struct) child));
@@ -188,7 +188,7 @@ public final class MainPanel extends JPanel {
             final Struct struct = (Struct) ((DefaultMutableTreeNode) path
                                             .getLastPathComponent()).getUserObject();
 
-            for (Object child : struct.getSubnodes().getTerminalOrStruct()) {
+            for (Object child : struct.getSubnodes().getStructOrTerminal()) {
                 if (child instanceof Terminal) {
                     ret.add((Terminal) child);
                 }

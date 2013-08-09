@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-24 21:05+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-26 21:04+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -33,17 +33,8 @@ msgid " results may be inaccurate. rcond = %s1\n"
 msgstr " výsledky mohou být nepřesné. rcond = %s1\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Žádná další paměť.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván jeden řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván jeden řetězec.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -60,6 +51,10 @@ msgstr "%s: Špatný typ argumentu %d: Očekáván reálný skalár.\n"
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
 msgstr "%s: Špatná velikost argumentu %d: Očekáván reálný skalár.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Žádná další paměť.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
@@ -134,8 +129,8 @@ msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: Špatný typ vstupních argumentů.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekávána 1,2 nebo 3.\n"
+msgid "%s: Wrong value for input argument #%d: 0,1 or 2 expected.\n"
+msgstr "%s: Špatné hodnoty vstupního argumentu #%d: Očekávána 0,1 nebo 2.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -536,21 +531,35 @@ msgstr "Žádné místo pro přidělení zásobníku Scilab.\n"
 
 #, c-format
 msgid ""
-"Oups. A fatal error has been detected by Scilab.\n"
-"Your instance will probably crash soon.\n"
-"Please report a bug on %s with:\n"
+"A fatal error has been detected by Scilab.\n"
+"Your instance will probably quit unexpectedly soon.\n"
+"If a graphic feature has been used, this might be caused by the system "
+"graphic drivers.\n"
+"Please try to update them and run this feature again.\n"
+"You can report a bug on %s with:\n"
 "* a sample code which reproduces the issue\n"
 "* the result of [a, b] = getdebuginfo()\n"
 "* the following information:\n"
 "%s %s\n"
 msgstr ""
-"Jejda. Scilab zjistil závažnou chybu.\n"
-"Vaše instance pravděpodobně brzy spadne.\n"
-"Prosím nahlaste tuto chybu na %s spolu s:\n"
-"* ukázkou kódu, který chybu znovu způsobí\n"
-"* výsledkem [a, b] = getdebuginfo()\n"
-"* následujícími informacemi:\n"
-"%s %s\n"
+
+msgid "stack size exceeded!\n"
+msgstr "překročena velikost zásobníku!\n"
+
+msgid "Use stacksize function to increase it.\n"
+msgstr "Použijte funkci stacksize pro její zvýšení.\n"
+
+#, c-format
+msgid "Memory used for variables: %d\n"
+msgstr "Využitá paměť pro proměnné: %d\n"
+
+#, c-format
+msgid "Intermediate memory needed: %d\n"
+msgstr "Potřebná přechodná paměť: %d\n"
+
+#, c-format
+msgid "Total memory available: %d\n"
+msgstr "Celkem dostupné paměti: %d\n"
 
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
@@ -566,20 +575,18 @@ msgstr "%s: Špatná velikost argumentu %d: očekáváno (%d,%d).\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Real or complex matrix "
+"%s: Wrong type for element %d of argument #%d: Real or Complex matrix "
 "expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d (Prvek seznamu: %d): Očekávána reálná nebo "
-"komplexní matice.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
+"%s: Špatný typ argumentu #%d: Očekávána reálná nebo komplexní matice.\n"
 
 #, c-format
-msgid "%s: Too many names.\n"
-msgstr "%s: Příliš mnoho jmen.\n"
+msgid "%s: Too many variables.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: List of size at least %d expected.\n"
@@ -587,23 +594,13 @@ msgstr ""
 "%s: Špatný typ argumentu %d: Očekáván seznam o velikosti alespoň %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Int matrix expected.\n"
-msgstr ""
-"%s: Špatný typ argumentu %d (Prvek seznamu: %d): Očekávána matice celých "
-"čísel.\n"
-
-#, c-format
 msgid "%s: Wrong size for argument #%d: At least %d expected.\n"
 msgstr "%s: Špatná velikost argumentu %d: Očekáváno alespoň %d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Boolean matrix "
-"expected.\n"
+"%s: Wrong type for element %d of argument #%d: Boolean matrix expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d (Prvek seznamu: %d): Očekávána booleovská "
-"matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
@@ -611,18 +608,16 @@ msgstr "%s: Špatný typ argumentu %d: Očekávána booleovská matice.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Sparse matrix expected.\n"
+"%s: Wrong type for element %d of argument #%d: Sparse matrix expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d (Prvek seznamu: %d): Očekávána řídká matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekávána řídká matice.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Vector expected.\n"
-msgstr "%s: Špatný typ argumentu %d (Prvek seznamu: %d): Očekáván vektor.\n"
+msgid "%s: Wrong type for element %d of argument #%d: Vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Vector expected.\n"
@@ -637,62 +632,46 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Špatná velikost argumentu %d: očekáváno %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Scalar expected.\n"
-msgstr "%s: Špatný typ argumentu %d (Prvek seznamu: %d): Očekáván skalár.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván skalár, '%s' nebo '%s'.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Matrix of strings "
-"expected.\n"
+msgid "%s: Wrong type for element %d of argument #%d: Scalar expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d (Prvek seznamu: %d): Očekávána matice řetězců.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
+msgstr "%s: Špatný typ argumentu %d: Očekáván skalár.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for element %d of argument #%d: Matrix of strings expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekávána matice řetězců.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d (List element: %d): String matrix expected.\n"
-msgstr ""
-"%s: Špatný typ argumentu %d (Prvek seznamu: %d): Očekávána řetězcová "
-"matice.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána řetězcová matice.\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: List expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván seznam.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván seznam.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána polynomická matice.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekávána polynomická matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván polynom.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván polynom.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d: Očekávána fungující matice celých čísel.\n"
+"%s: Špatný typ argumentu #%d: Očekávána fungující matice celých čísel.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Row vector expected.\n"
+msgid "%s: Wrong type for element %d of argument #%d: Row vector expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d (Prvek seznamu: %d): Očekáván řádkový vektor.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Row vector expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván řádkový vektor.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván řádkový vektor.\n"
 
 #, c-format
 msgid "%s: argument %d >(%d) should be a column vector.\n"
@@ -700,28 +679,23 @@ msgstr "%s: argument %d > (%d) by měl být sloupcový vektor.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Column vector expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván sloupcový vektor.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván sloupcový vektor.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Boxed pointer expected.\n"
+msgid "%s: Wrong type for element %d of argument #%d: Pointer expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d (Prvek seznamu: %d): Očekáván zabalený "
-"ukazatel.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Boxed pointer expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván zabalený ukazatel.\n"
+msgid "%s: Wrong type for argument #%d: Pointer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekávána matice.\n"
 
 #, c-format
-msgid "%s: entry point %s not found in predefined tables or link table.\n"
+msgid "%s: Subroutine '%s' not found.\n"
 msgstr ""
-"%s: vstupní bod %s nebyl v přednastavených tabulkách nebo tabulce propojení "
-"nalezen.\n"
 
 #, c-format
 msgid ""
@@ -745,11 +719,8 @@ msgstr "%f: Žádné další místo pro uložení řetězců argumentů.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Matrix of handle "
-"expected.\n"
+"%s: Wrong type for element %d of argument #%d: Matrix of handle expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d (Prvek seznamu: %d): Očekávána matice obslužné "
-"rutiny.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
@@ -833,6 +804,10 @@ msgstr ""
 #, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s: Problémy s rekurzí. Je nám líto ...\n"
+
+#, c-format
+msgid "%s: Too many names.\n"
+msgstr "%s: Příliš mnoho jmen.\n"
 
 #, c-format
 msgid "%s: %s is not a Scilab function.\n"
@@ -978,11 +953,9 @@ msgstr "%s vyřazeno z fronty - sekv.\n"
 
 #, c-format
 msgid ""
-"Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
+"%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
 "\n"
 msgstr ""
-"Nainstalujte, prosím, modul ATOMS texmacs: atomsInstall('texmacs')\n"
-"\n"
 
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Nelze najít dočasný adresář Windows (1)."
@@ -1041,7 +1014,6 @@ msgstr ""
 msgid "Empty tab"
 msgstr "Prázdná karta"
 
-#, c-format
 msgid "Scilab %s Console"
 msgstr "Konzole Scilab %s"
 
@@ -1058,6 +1030,10 @@ msgstr "Provedení spuštění:"
 
 msgid "  loading initial environment"
 msgstr "  načítání úvodního prostředí"
+
+#, c-format
+msgid "Failed to execute %s:"
+msgstr ""
 
 msgid "&File"
 msgstr "&Soubor"
@@ -1080,11 +1056,29 @@ msgstr "&?"
 msgid "&Toolboxes"
 msgstr "&Panely nástrojů"
 
-msgid "Introduction"
-msgstr "Úvod"
+msgid "Introduction: Getting started with Scilab"
+msgstr "Úvod: Začínáme se Scilab"
 
-msgid "Getting started with Scilab"
-msgstr "Začínáme se Scilabem"
+msgid "Scilab objects"
+msgstr "Objekty Scilab"
+
+msgid "Operations and numerical primitives"
+msgstr "Operace a číselná primitiva"
+
+msgid "Online definition of function"
+msgstr "Online definice funkce"
+
+msgid "Optimization and simulation"
+msgstr "Optimalizace a simulace"
+
+msgid "Systems: definition and analysis"
+msgstr "Systémy: definice a analýza"
+
+msgid "Linear algebra"
+msgstr "Lineární algebra"
+
+msgid "Call an external routine"
+msgstr "Volání externí rutiny"
 
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
@@ -1147,6 +1141,24 @@ msgstr "%s: Špatný počet vstupních argumentů: Očekávány alespoň %d.\n"
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekávána definovaná proměnná.\n"
+
+msgid "Scilab Version: "
+msgstr "Verze Scilab: "
+
+msgid "Operating System: "
+msgstr "Operační systém: "
+
+msgid "Java version: "
+msgstr ""
+
+msgid "Java runtime information: "
+msgstr ""
+
+msgid "Java Virtual Machine information: "
+msgstr ""
+
+msgid "Vendor specification: "
+msgstr "Specifikace dodavatele: "
 
 #, c-format
 msgid "%s called at line %s of %s"

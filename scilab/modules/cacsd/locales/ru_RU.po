@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-19 15:20+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-29 17:04+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -36,6 +36,254 @@ msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: должно быть в интервале [%d "
 "%d].\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался вещественным.\n"
+
+#, c-format
+msgid "%s: A must be a square matrix.\n"
+msgstr "%s: A должна быть квадратной матрицей.\n"
+
+#, c-format
+msgid "%s: A and B must have equal number of rows.\n"
+msgstr "%s: A и B должны иметь одинаковое количество строк.\n"
+
+#, c-format
+msgid "%s: A and C must have equal number of columns.\n"
+msgstr "%s: A и C должны иметь одинаковое количество столбцов.\n"
+
+#, c-format
+msgid "%s: B and D must have equal number of columns.\n"
+msgstr "%s: B и D должны иметь одинаковое количество столбцов.\n"
+
+#, c-format
+msgid "%s: C and D must have equal number of rows.\n"
+msgstr "%s: C и D должны иметь одинаковое количество строк.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка распределения памяти.\n"
+
+#, c-format
+msgid "%s: NCON must be a scalar.\n"
+msgstr "%s: NCON должен быть скаляром.\n"
+
+#, c-format
+msgid "%s: NMEAS must be a scalar.\n"
+msgstr "%s: NMEAS должен быть скаляром.\n"
+
+#, c-format
+msgid "%s: GAMMA must be a scalar.\n"
+msgstr "%s: GAMMA должна быть скаляром.\n"
+
+#, c-format
+msgid "%s: SB10DD exit with info = %d.\n"
+msgstr "%s: SB10DD вышел с info = %d.\n"
+
+#, c-format
+msgid "%s: SB10FD exit with info = %d.\n"
+msgstr "%s: SB10FD вышел с info = %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
+
+#, c-format
+msgid "%s: %s must be a scalar.\n"
+msgstr "%s: %s должно быть скаляром.\n"
+
+#, c-format
+msgid "%s: Wrong value for %s: %d, %d or %d expected.\n"
+msgstr "%s: Неверное значение %s: ожидалось %d, %d или %d.\n"
+
+#, c-format
+msgid "%s: TASK = 1 : LINMEQ requires at least 4 input arguments.\n"
+msgstr "%s: TASK = 1 : LINMEQ требует по крайней мере 4 входных аргумента.\n"
+
+#, c-format
+msgid "%s: Wrong value for %s: %d, %d, %d or %d expected.\n"
+msgstr "%s: Неверное значение %s: ожидалось %d, %d, %d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for %s: %d, or %d expected.\n"
+msgstr "%s: Неверное значение %s: ожидалось %d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for %s: %d or %d expected.\n"
+msgstr "%s: Неверное значение %s: ожидалось %d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента №%d: ожидалась вещественная или комплексная "
+"матрица.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалась квадратная матрица.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong column size for input argument #%d: Same column size of input "
+"argument #%d expected.\n"
+msgstr ""
+"%s: Неверный размер столбца у входного аргумента №%d: ожидался тот же размер "
+"столбца, что и у входного аргумента №%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong row size for input argument #%d: Same row size of input argument "
+"#%d expected.\n"
+msgstr ""
+"%s: Неверный размер строки у входного аргумента №%d: ожидался тот же размер "
+"строки, что и у входного аргумента №%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At most 3 elements expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалось не более 3 элементов.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At most 2 elements expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалось не более 2 элементов.\n"
+
+#, c-format
+msgid "%s: Convergence problem...\n"
+msgstr "%s: Проблема сходимости...\n"
+
+#, c-format
+msgid "%s: Problem is singular.\n"
+msgstr "%s: Задача вырождена.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: eigenvalues must have negative real "
+"parts.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: собственные числа должны иметь "
+"отрицательные вещественные части.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: eigenvalues modulus must be less "
+"than one.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: модуль собственных чисел "
+"должен быть меньше единицы.\n"
+
+#, c-format
+msgid "%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"
+msgstr ""
+"%s: Внимание: входные аргументы во избежание переполнения были "
+"отмасштабированы в %lf.\n"
+
+#, c-format
+msgid ""
+"%s: Warning: the equation is (almost) singular. Perturbed values have been "
+"used.\n"
+msgstr ""
+"%s: Внимание: уравнение (почти) вырождено. Использованы возмущённые "
+"значения.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A complex expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидался комплексное число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s: Неверный размер входных аргументов №%d и №%d: ожидается один и тот же "
+"размер.\n"
+
+#, c-format
+msgid "%s: AB13MD exit with info = %d.\n"
+msgstr "%s: AB13MD вышел с info = %d.\n"
+
+#, c-format
+msgid "%s: D must be a square matrix.\n"
+msgstr "%s: D должна быть квадратной матрицей.\n"
+
+#, c-format
+msgid "%s: C must be a square matrix.\n"
+msgstr "%s: C должна быть квадратной матрицей.\n"
+
+#, c-format
+msgid "%s: The matrices A, C and D must have the same order.\n"
+msgstr "%s: Матрицы A, C и D должны быть одного порядка.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Type must be continuous or "
+"discrete.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: тип должен быть непрерывным "
+"или дискретным.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: метод должен быть schur или "
+"sign.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: метод должен быть schur или "
+"invf.\n"
+
+#, c-format
+msgid "%s: RICCSL exit with info = %d.\n"
+msgstr "%s: RICCSL вышел с info = %d.\n"
+
+#, c-format
+msgid "%s: RICCMS exit with info = %d.\n"
+msgstr "%s: RICCMS вышел с info = %d.\n"
+
+#, c-format
+msgid "%s: RICDSL exit with info = %d.\n"
+msgstr "%s: RICDSL вышел с info = %d.\n"
+
+#, c-format
+msgid "%s: RICDMF exit with info = %d.\n"
+msgstr "%s: RICDMF вышел с info = %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same column dimension as input "
+"argument #%d expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался то же размер по "
+"столбцам, что и у входного аргумента №%d.\n"
+
+#, c-format
+msgid "%s: MB03OD exit with info = %d.\n"
+msgstr "%s: MB03OD вышел с info = %d.\n"
+
+#, c-format
+msgid "%s: DORGQR exit with info = %d.\n"
+msgstr "%s: DORGQR вышел с info = %d.\n"
+
+#, c-format
+msgid "%s: ZB03OD exit with info = %d.\n"
+msgstr "%s: ZB03OD вышел с info = %d.\n"
+
+#, c-format
+msgid "%s: ZUNGQR exit with info = %d.\n"
+msgstr "%s: ZUNGQR вышел с info = %d.\n"
 
 msgid "CACSD"
 msgstr "Системы управления"
@@ -397,14 +645,13 @@ msgstr ""
 "система.\n"
 
 #, c-format
-msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
+msgid "%s: Wrong type for input argument #%d: A proper system expected\n"
 msgstr ""
-"%s: Матрице прямой связи присвоено значение своего коэффициента нулевого "
-"порядка.\n"
+"%s: Неверный тип входного аргумента №%d: ожидалась собственная система.\n"
 
 #, c-format
-msgid "%s: Direct feedthrough set to zero.\n"
-msgstr "%s: Матрице прямой связи присвоено нулевое значение.\n"
+msgid "%s: Wrong type for input argument #%d: A SIMO expected.\n"
+msgstr "%s: Неверный тип входного аргумента %d: ожидалось SIMO.\n"
 
 #, c-format
 msgid "%s: Simulation failed before final time is reached.\n"
@@ -463,15 +710,6 @@ msgstr "%s: Неверное количество выходных параме�
 #, c-format
 msgid "%s: More than %d iterations.\n"
 msgstr "%s: Более %d итераций.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"

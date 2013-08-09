@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 136
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -62,7 +62,7 @@ msgstr ""
 # File: sci_gateway/c/sci_xclick.c, line: 170
 # File: sci_gateway/c/sci_xfarcs.c, line: 114
 # File: sci_gateway/c/sci_xfpolys.c, line: 185
-# File: sci_gateway/c/sci_xget.c, line: 136
+# File: sci_gateway/c/sci_xget.c, line: 131
 # File: sci_gateway/c/sci_xgetmouse.c, line: 128
 # File: sci_gateway/c/sci_xgetmouse.c, line: 162
 # File: sci_gateway/c/sci_xgraduate.c, line: 100
@@ -93,7 +93,6 @@ msgstr ""
 # File: sci_gateway/c/sci_delete.c, line: 113
 # File: sci_gateway/c/sci_get.c, line: 185
 # File: sci_gateway/c/sci_glue.c, line: 72
-# File: sci_gateway/c/sci_is_handle_valid.c, line: 64
 # File: sci_gateway/c/sci_move.c, line: 93
 # File: sci_gateway/c/sci_relocate_handle.c, line: 67
 # File: sci_gateway/c/sci_relocate_handle.c, line: 84
@@ -196,14 +195,14 @@ msgstr ""
 # File: src/c/getHandleProperty/set_y_ticks_property.c, line: 72
 # File: src/c/getHandleProperty/set_z_shift_property.c, line: 79
 # File: src/c/getHandleProperty/set_z_ticks_property.c, line: 72
-# File: src/c/sciCall.c, line: 168
-# File: src/c/sciCall.c, line: 238
-# File: src/c/sciCall.c, line: 275
-# File: src/c/sciCall.c, line: 332
-# File: src/c/sciCall.c, line: 497
-# File: src/c/sciCall.c, line: 823
-# File: src/c/sciCall.c, line: 890
-# File: src/c/sciCall.c, line: 965
+# File: src/c/sciCall.c, line: 165
+# File: src/c/sciCall.c, line: 235
+# File: src/c/sciCall.c, line: 272
+# File: src/c/sciCall.c, line: 327
+# File: src/c/sciCall.c, line: 488
+# File: src/c/sciCall.c, line: 811
+# File: src/c/sciCall.c, line: 878
+# File: src/c/sciCall.c, line: 953
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -446,7 +445,6 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_clear_pixmap.c, line: 34
 # File: sci_gateway/c/sci_draw.c, line: 35
-# File: sci_gateway/c/sci_show_pixmap.c, line: 36
 #, c-format
 msgid "%s: Function %s is obsolete.\n"
 msgstr ""
@@ -458,15 +456,11 @@ msgstr ""
 # File: sci_gateway/c/sci_draw.c, line: 35
 # File: sci_gateway/c/sci_draw.c, line: 36
 # File: sci_gateway/c/sci_draw.c, line: 37
-# File: sci_gateway/c/sci_show_pixmap.c, line: 36
-# File: sci_gateway/c/sci_show_pixmap.c, line: 37
-# File: sci_gateway/c/sci_show_pixmap.c, line: 38
 msgid "Warning"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_clear_pixmap.c, line: 35
-# File: sci_gateway/c/sci_show_pixmap.c, line: 37
 #, c-format
 msgid "%s: Please use %s instead.\n"
 msgstr ""
@@ -474,7 +468,6 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_clear_pixmap.c, line: 36
 # File: sci_gateway/c/sci_draw.c, line: 37
-# File: sci_gateway/c/sci_show_pixmap.c, line: 38
 #, c-format
 msgid ""
 "%s: This function will be permanently removed in Scilab %s\n"
@@ -633,6 +626,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_is_handle_valid.c, line: 48
+# File: sci_gateway/c/sci_is_handle_valid.c, line: 64
 # File: sci_gateway/c/sci_set.c, line: 259
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
@@ -939,7 +933,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_xget.c, line: 92
-# File: sci_gateway/c/sci_xget.c, line: 465
+# File: sci_gateway/c/sci_xget.c, line: 460
 # File: sci_gateway/c/sci_xset.c, line: 99
 # File: sci_gateway/c/sci_xset.c, line: 559
 #, c-format
@@ -1018,7 +1012,7 @@ msgstr ""
 # File: sci_gateway/c/sci_xset.c, line: 180
 # File: sci_gateway/c/sci_xset.c, line: 503
 #, c-format
-msgid "%s: Wrong number of input argument: %d or %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
@@ -1032,7 +1026,7 @@ msgstr ""
 # File: sci_gateway/c/sci_xset.c, line: 420
 # File: sci_gateway/c/sci_xset.c, line: 489
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
@@ -2265,19 +2259,19 @@ msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 779
+# File: src/c/sciCall.c, line: 770
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 810
+# File: src/c/sciCall.c, line: 800
 #, c-format
 msgid "%s: y vector is not monotonous.\n"
 msgstr ""
 
 #
-# File: src/nographics/nographics.c, line: 74
+# File: src/nographics/nographics.c, line: 80
 msgid "Scilab Graphics module not installed.\n"
 msgstr ""
 
@@ -2601,7 +2595,15 @@ msgid "%s : Invalid entity %s\n"
 msgstr ""
 
 #
+# File: macros/ResetFigureDDM.sci, line: 20
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: figure graphic handle expected.\n"
+msgstr ""
+
+#
 # File: macros/Sfgrayplot.sci, line: 28
+# File: macros/bar.sci, line: 62
 # File: macros/colorbar.sci, line: 41
 # File: macros/colordef.sci, line: 13
 # File: macros/comet.sci, line: 50
@@ -2626,6 +2628,49 @@ msgid "%s: Wrong type for input argument #%d: function expected.\n"
 msgstr ""
 
 #
+# File: macros/Sgrayplot.sci, line: 49
+#, c-format
+msgid ""
+"%s: Wrong type for input argument(s): Arguments #%d, #%d and #%d must be "
+"real.\n"
+msgstr ""
+
+#
+# File: macros/Sgrayplot.sci, line: 53
+# File: macros/bar.sci, line: 117
+# File: macros/bar.sci, line: 142
+# File: macros/barh.sci, line: 113
+# File: macros/barh.sci, line: 137
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: The number of rows of "
+"argument #%d must be equal to the size of argument #%d.\n"
+msgstr ""
+
+#
+# File: macros/Sgrayplot.sci, line: 55
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: The number of columns of "
+"argument #%d must be equal to the size of argument #%d.\n"
+msgstr ""
+
+#
+# File: macros/TitleLabel.sci, line: 29
+# File: macros/bar.sci, line: 39
+# File: macros/barh.sci, line: 42
+# File: macros/barhomogenize.sci, line: 43
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Axes handle expected.\n"
+msgstr ""
+
+#
+# File: macros/TitleLabel.sci, line: 44
+#, c-format
+msgid "%s: Wrong size or type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
 # File: macros/addcolor.sci, line: 15
 # File: macros/autumncolormap.sci, line: 14
 # File: macros/bonecolormap.sci, line: 15
@@ -2637,7 +2682,6 @@ msgstr ""
 # File: macros/dragrect.sci, line: 13
 # File: macros/eval3dp.sci, line: 42
 # File: macros/getColorIndex.sci, line: 15
-# File: macros/getSurfPropertyName.sci, line: 12
 # File: macros/get_figure_handle.sci, line: 13
 # File: macros/ghdl2tree.sci, line: 13
 # File: macros/ghdl_fields.sci, line: 14
@@ -2735,6 +2779,105 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
+# File: macros/bar.sci, line: 47
+# File: macros/bar.sci, line: 53
+#, c-format
+msgid "%s: Wrong type for input arguments #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: macros/bar.sci, line: 73
+# File: macros/barh.sci, line: 71
+#, c-format
+msgid ""
+"%s: Wrong type for input arguments: Matrix expected for %s, %s and %s.\n"
+msgstr ""
+
+#
+# File: macros/bar.sci, line: 77
+# File: macros/barh.sci, line: 75
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected for %s and %s.\n"
+msgstr ""
+
+#
+# File: macros/bar.sci, line: 120
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A scalar or a column vector "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/bar.sci, line: 123
+# File: macros/bar.sci, line: 148
+# File: macros/barh.sci, line: 119
+# File: macros/barh.sci, line: 143
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgstr ""
+
+#
+# File: macros/bar.sci, line: 135
+# File: macros/barh.sci, line: 130
+# File: macros/datatips/datatipSetStyle.sci, line: 43
+# File: macros/setPlotProperty.sci, line: 112
+# File: macros/setSurfProperty.sci, line: 391
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#
+# File: macros/bar.sci, line: 145
+# File: macros/barh.sci, line: 116
+# File: macros/barh.sci, line: 140
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d: A scalar or a column vector "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/barhomogenize.sci, line: 52
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A handle, a string or a scalar "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/barhomogenize.sci, line: 64
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgstr ""
+
+#
+# File: macros/barhomogenize.sci, line: 70
+#, c-format
+msgid ""
+"%s: Wrong type for input arguments #%d and #%d: If argument #%d is a handle "
+"or a string, argument #%d must be a string or a scalar.\n"
+msgstr ""
+
+#
+# File: macros/barhomogenize.sci, line: 84
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected for %s.\n"
+msgstr ""
+
+#
+# File: macros/barhomogenize.sci, line: 100
+#, c-format
+msgid "%s: The bars must have the same x data.\n"
+msgstr ""
+
+#
+# File: macros/barhomogenize.sci, line: 104
+#, c-format
+msgid "%s: Could not find any bar in the current graphic.\n"
+msgstr ""
+
+#
 # File: macros/checkXYPair.sci, line: 18
 # File: macros/fplot2d.sci, line: 25
 #, c-format
@@ -2811,16 +2954,6 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
-msgstr ""
-
-#
-# File: macros/color.sci, line: 38
-# File: macros/eval3d.sci, line: 26
-# File: macros/square.sci, line: 25
-# File: macros/twinkle.sci, line: 25
-# File: macros/xclear.sci, line: 46
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
@@ -2909,10 +3042,9 @@ msgstr ""
 # File: macros/ged_insert.sci, line: 15
 # File: macros/genfac3d.sci, line: 37
 # File: macros/graduate.sci, line: 39
-# File: macros/graypolarplot.sci, line: 27
+# File: macros/graypolarplot.sci, line: 30
 # File: macros/histplot.sci, line: 64
 # File: macros/legend.sci, line: 12
-# File: macros/legends.sci, line: 22
 # File: macros/paramfplot2d.sci, line: 37
 # File: macros/plot3d2.sci, line: 24
 # File: macros/plot3d3.sci, line: 16
@@ -2979,6 +3111,7 @@ msgstr ""
 #
 # File: macros/contourf.sci, line: 71
 # File: macros/contourf.sci, line: 75
+# File: macros/getPlotPropertyName.sci, line: 16
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
@@ -3268,12 +3401,6 @@ msgid "Select tip style"
 msgstr ""
 
 #
-# File: macros/datatips/datatipSetStyle.sci, line: 43
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#
 # File: macros/datatips/datatipSetStyle.sci, line: 51
 # File: macros/datatips/datatipSetStyle.sci, line: 55
 #, c-format
@@ -3398,12 +3525,6 @@ msgid "Tcl/Tk interface not installed."
 msgstr ""
 
 #
-# File: macros/ged.sci, line: 20
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-
-#
 # File: macros/ged.sci, line: 25
 # File: macros/ged.sci, line: 33
 #, c-format
@@ -3428,9 +3549,56 @@ msgid "Left click on a graphic entity to open its property editor"
 msgstr ""
 
 #
-# File: macros/getLineSpec.sci, line: 75
+# File: macros/getColorIndex.sci, line: 46
+# File: macros/setPlotProperty.sci, line: 46
+# File: macros/setPlotProperty.sci, line: 201
+# File: macros/setPlotProperty.sci, line: 255
+# File: macros/setSurfProperty.sci, line: 103
+# File: macros/setSurfProperty.sci, line: 153
+# File: macros/setSurfProperty.sci, line: 296
+# File: macros/setSurfProperty.sci, line: 350
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A color of the colormap expected.\n"
+msgstr ""
+
+#
+# File: macros/getColorIndex.sci, line: 76
+#, c-format
+msgid "%s:  Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#
+# File: macros/getLineSpec.sci, line: 76
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
+msgstr ""
+
+#
+# File: macros/getPlotPropertyName.sci, line: 33
+# File: macros/getSurfPropertyName.sci, line: 38
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid property name expected.\n"
+msgstr ""
+
+#
+# File: macros/getPlotPropertyName.sci, line: 41
+#, c-format
+msgid "%s: Ambiguous line property.\n"
+msgstr ""
+
+#
+# File: macros/getPlotPropertyName.sci, line: 60
+# File: macros/getSurfPropertyName.sci, line: 67
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Only one property expected.\n"
+msgstr ""
+
+#
+# File: macros/getSurfPropertyName.sci, line: 48
+#, c-format
+msgid "%s: Ambiguous surface property: %s.\n"
 msgstr ""
 
 #
@@ -3580,11 +3748,32 @@ msgid "%s: No '%s' handle found.\n"
 msgstr ""
 
 #
-# File: macros/legends.sci, line: 30
+# File: macros/legends.sci, line: 29
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real array or graphic handle array "
 "expected.\n"
+msgstr ""
+
+#
+# File: macros/legends.sci, line: 42
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/legends.sci, line: 99
+#, c-format
+msgid ""
+"%s: Wrong value for input argument %s: Must be in the interval [%d, %d]."
+msgstr ""
+
+#
+# File: macros/legends.sci, line: 170
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Polyline handles expected.\n"
 msgstr ""
 
 #
@@ -3651,6 +3840,29 @@ msgid "%s: Input argument #%d must be a handle on an axis.\n"
 msgstr ""
 
 #
+# File: macros/rgb2name.sci, line: 14
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A vector of 3 integers expected.\n"
+msgstr ""
+
+#
+# File: macros/rgb2name.sci, line: 19
+#, c-format
+msgid ""
+"%s: Wrong type for input arguments #%d, #%d and #%d: Scalars expected.\n"
+msgstr ""
+
+#
+# File: macros/rgb2name.sci, line: 25
+# File: macros/rgb2name.sci, line: 28
+# File: macros/rgb2name.sci, line: 31
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: must be in the interval [%d, %d].\n"
+msgstr ""
+
+#
 # File: macros/rotate.sci, line: 25
 # File: macros/surf.sci, line: 389
 # File: macros/surf.sci, line: 395
@@ -3677,39 +3889,116 @@ msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
 
 #
+# File: macros/setPlotProperty.sci, line: 57
+# File: macros/setPlotProperty.sci, line: 218
+# File: macros/setPlotProperty.sci, line: 273
+# File: macros/setSurfProperty.sci, line: 114
+# File: macros/setSurfProperty.sci, line: 164
+# File: macros/setSurfProperty.sci, line: 313
+# File: macros/setSurfProperty.sci, line: 368
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
+msgstr ""
+
+#
+# File: macros/setPlotProperty.sci, line: 63
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: 3 elements vector or index in the "
+"colormap expected.\n"
+msgstr ""
+
+#
+# File: macros/setPlotProperty.sci, line: 75
+# File: macros/setPlotProperty.sci, line: 307
+# File: macros/setSurfProperty.sci, line: 64
+# File: macros/setSurfProperty.sci, line: 402
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+
+#
+# File: macros/setPlotProperty.sci, line: 133
+# File: macros/setPlotProperty.sci, line: 138
+# File: macros/setPlotProperty.sci, line: 156
+# File: macros/setSurfProperty.sci, line: 228
+# File: macros/setSurfProperty.sci, line: 251
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A marker style expected.\n"
+msgstr ""
+
+#
+# File: macros/setPlotProperty.sci, line: 224
+# File: macros/setPlotProperty.sci, line: 279
+# File: macros/setSurfProperty.sci, line: 120
+# File: macros/setSurfProperty.sci, line: 170
+# File: macros/setSurfProperty.sci, line: 266
+# File: macros/setSurfProperty.sci, line: 319
+# File: macros/setSurfProperty.sci, line: 374
+# File: macros/setTitleLabelProperty.sci, line: 74
+# File: macros/setTitleLabelProperty.sci, line: 87
+# File: macros/setTitleLabelProperty.sci, line: 108
+# File: macros/setTitleLabelProperty.sci, line: 122
+# File: macros/setTitleLabelProperty.sci, line: 144
+# File: macros/setTitleLabelProperty.sci, line: 158
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Vector or index in the colormap "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/setPlotProperty.sci, line: 296
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+
+#
+# File: macros/setPlotProperty.sci, line: 330
+#, c-format
+msgid ""
+"%s: Wrong size or type for input argument #%d: A column or row vector "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/setSurfProperty.sci, line: 34
 # File: macros/setTitleLabelProperty.sci, line: 36
 # File: macros/setTitleLabelProperty.sci, line: 49
-msgid "Color data must be a scalar."
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/setTitleLabelProperty.sci, line: 74
-# File: macros/setTitleLabelProperty.sci, line: 89
-msgid "Color value must be a 3 element vector or an index in the colormap."
+# File: macros/setSurfProperty.sci, line: 233
+#, c-format
+msgid "%s: Ambiguous MarkStyle value.\n"
 msgstr ""
 
 #
-# File: macros/setTitleLabelProperty.sci, line: 83
-# File: macros/setTitleLabelProperty.sci, line: 157
-msgid "Incorrect input: Color vector should be a 3x1 or 1x3 vector"
+# File: macros/setTitleLabelProperty.sci, line: 186
+#, c-format
+msgid ""
+"%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/setTitleLabelProperty.sci, line: 110
-# File: macros/setTitleLabelProperty.sci, line: 125
-# File: macros/setTitleLabelProperty.sci, line: 147
-# File: macros/setTitleLabelProperty.sci, line: 162
-msgid "Color value must be a 3 elements vector or an index in the colormap."
-msgstr ""
-
-#
-# File: macros/setTitleLabelProperty.sci, line: 175
-# File: macros/setTitleLabelProperty.sci, line: 190
-# File: macros/setTitleLabelProperty.sci, line: 208
-# File: macros/setTitleLabelProperty.sci, line: 213
-# File: macros/setTitleLabelProperty.sci, line: 230
-# File: macros/setTitleLabelProperty.sci, line: 237
+# File: macros/setTitleLabelProperty.sci, line: 205
 msgid "Incorrect input: ..."
+msgstr ""
+
+#
+# File: macros/setTitleLabelProperty.sci, line: 227
+#, c-format
+msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
+msgstr ""
+
+#
+# File: macros/setTitleLabelProperty.sci, line: 234
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real matrix or a string matrix "
+"expected.\n"
 msgstr ""
 
 #

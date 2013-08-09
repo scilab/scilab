@@ -7,16 +7,10 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-pkglib_LTLIBRARIES = libsciscicos_blocks.la
-
-libsciscicos_blocks_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
-
 #### Target ######
 modulename=scicos_blocks
 
-include $(top_srcdir)/Makefile.incl.am
-
-if XCOS
+#### Source listing ######
 
 # All the filename are important here.
 # The filename must be the same as the function name
@@ -341,8 +335,14 @@ src/c/scicos_evalhermite.c \
 src/c/scicos_indexfinder.c
 
 NON_BLOCK_CXX_SOURCES = \
-src/jni/AfficheBlock.cpp \
 src/cpp/scoUtils.cpp
+
+NON_BLOCK_JNI_SOURCES = \
+src/cpp/HelpersJNI.cpp \
+src/jni/AfficheBlock.cpp
+
+NON_BLOCK_CLI_SOURCES = \
+src/cpp/HelpersCLI.cpp
 
 GIWS_WRAPPERS = \
 src/jni/Blocks.giws.xml
@@ -406,31 +406,59 @@ src/fortran/trash.f \
 src/fortran/writef.f \
 src/fortran/zcross.f
 
+#### Multi-libraries handling ######
 
-libsciscicos_blocks_la_CPPFLAGS= -I$(srcdir)/includes/ \
+noinst_LTLIBRARIES = libsciscicos_blocks-algo.la
+pkglib_LTLIBRARIES = libsciscicos_blocks-cli.la
+if XCOS
+if GUI
+pkglib_LTLIBRARIES += libsciscicos_blocks.la
+endif
+endif
+
+libsciscicos_blocks_algo_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
+libsciscicos_blocks_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
+libsciscicos_blocks_cli_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
+
+libsciscicos_blocks_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/cpp/ \
-			-I$(srcdir)/src/jni/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
-	 		-I$(top_srcdir)/modules/commons/src/jni/ \
 			-I$(top_srcdir)/modules/elementary_functions/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
 			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/modules/graphic_objects/includes/ \
-	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 	 		-I$(top_srcdir)/modules/scicos/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
-			$(JAVA_JNI_INCLUDE) \
 			$(AM_CPPFLAGS)
 
-libsciscicos_blocks_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) \
+libsciscicos_blocks_la_CPPFLAGS= -I$(srcdir)/src/jni/ \
+	 		-I$(top_srcdir)/modules/commons/src/jni/ \
+	 		-I$(top_srcdir)/modules/jvm/includes/ \
+			$(JAVA_JNI_INCLUDE) \
+			$(libsciscicos_blocks_algo_la_CPPFLAGS)
+
+libsciscicos_blocks_cli_la_CPPFLAGS= $(libsciscicos_blocks_algo_la_CPPFLAGS)
+
+libsciscicos_blocks_algo_la_SOURCES = $(SCICOS_BLOCKS_C_SOURCES) \
+$(SCICOS_BLOCKS_CXX_SOURCES) \
 $(SCICOS_BLOCKS_FORTRAN_SOURCES) \
 $(NON_BLOCK_C_SOURCES) \
-$(NON_BLOCK_CXX_SOURCES) \
-$(SCICOS_BLOCKS_CXX_SOURCES)
+$(NON_BLOCK_CXX_SOURCES)
+
+libsciscicos_blocks_cli_la_SOURCES =
+libsciscicos_blocks_la_SOURCES =
+if XCOS
+libsciscicos_blocks_cli_la_SOURCES += $(NON_BLOCK_CLI_SOURCES)
+libsciscicos_blocks_cli_la_LIBADD = libsciscicos_blocks-algo.la
+if GUI
+libsciscicos_blocks_la_SOURCES += $(NON_BLOCK_JNI_SOURCES)
+libsciscicos_blocks_la_LIBADD = libsciscicos_blocks-algo.la
+endif
+endif
 
 
 # For the code check (splint)
@@ -439,10 +467,14 @@ INCLUDE_FLAGS = $(libsciscicos_blocks_la_CPPFLAGS)
 
 
 #### scicos_blocks : Generation of the  includes/blocks.h Files ####
-BUILT_SOURCES = includes/blocks.h
+BUILT_SOURCES =
+
+if XCOS
+BUILT_SOURCES += includes/blocks.h
+endif
 
 if GIWS
-BUILT_SOURCES+=giws
+BUILT_SOURCES += giws
 endif
 
 $(top_builddir)/modules/scicos_blocks/build/Cblocknames:Makefile.am $(SCICOS_BLOCKS_C_SOURCES)
@@ -514,11 +546,7 @@ MACROSSPECIALEXT=*.mo \
 
 TESTS_DIREXT= tests/unit_tests/Linear
 
-else
-
-libsciscicos_blocks_la_SOURCES =
-
-endif
-
 .NOTPARALLEL: build/Fblocknames build/Cblocknames
+
+include $(top_srcdir)/Makefile.incl.am
 

@@ -110,6 +110,6 @@ public final class LoadAsPalAction extends DefaultAction {
         final Category root = PaletteManager.getInstance().getRoot();
         root.getNode().add(c);
         c.setParent(root);
-        PaletteNode.refreshView(c);
+        PaletteNode.refreshView(root, c);
     }
 }

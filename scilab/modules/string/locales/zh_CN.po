@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-07-31 13:51+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: \n"
 
 msgid "WARNING : \n"
@@ -109,6 +109,10 @@ msgstr "%s：输入参数#%d的类型错误：应该为实数矩阵或字符串�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: impossible to get dimensions of this matrix.\n"
@@ -267,6 +271,10 @@ msgid ""
 msgstr "%s：输入参数#%d的大小错误：应该为非空字符串矩阵。\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: '.' or ',' expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A character or a vector of single "
 "characters expected.\n"
@@ -368,10 +376,6 @@ msgstr "%s：指定的表达式没有值。\n"
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
 msgstr "%s：该功能尚未实现：%s\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

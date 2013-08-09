@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-19 15:05+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-08-01 13:55+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -63,8 +63,179 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
+
+#, c-format
+msgid "%s: Invalid H5Object.\n"
+msgstr "%s: Некорректный H5Object.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась строка или H5Object.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Недостаточно памяти.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s: %s\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A H5Object expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался H5Object.\n"
+
+#, c-format
+msgid "%s: Cannot remove H5Object.\n"
+msgstr "%s: Не могу удалить H5Object.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица значений типа "
+"double.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Five row vector expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалось пять вектор-строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: six row vector expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался шестиэлементный вектор-"
+"строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d column vector expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался %d-элементный вектор-"
+"столбец.\n"
+
+#, c-format
+msgid "%s: Can not print H5Object: invalid object.\n"
+msgstr "%s: Не могу распечатать H5Object: недопустимый объект.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался H5Object.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалось строковое значение.\n"
+
+#, c-format
+msgid "%s: Can not create output argument.\n"
+msgstr "%s: Не могу создать выходной аргумент.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A HDF5 object expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался объект HDF5.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Неверный размер входного аргумента №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидался вещественный вектор-"
+"строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Real row or column vector expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидались вещественные вектор-"
+"строка или вектор-столбец.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вектор-строка строковых "
+"значений.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row or column vector expected.\n"
+msgstr ""
+"%s: Неверный массив входного аргумента №%d: ожидались вектор-строка или "
+"вектор-столбец.\n"
+
+#, c-format
+msgid "%s: Can not use H5Object: invalid object.\n"
+msgstr "%s: Не могу использовать H5Object: недопустимый объект.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась строка или логическое "
+"значение.\n"
+
+#, c-format
+msgid "%s: Invalid number of arguments: more than %d expected.\n"
+msgstr "%s: Недопустимое количество аргументов: ожидалось более %d.\n"
+
+#, c-format
+msgid "%s: Invalid access mode: %s.\n"
+msgstr "%s: Недопустимый режим доступа: %s.\n"
+
+#, c-format
+msgid "%s: Invalid number of input arguments.\n"
+msgstr "%s: Недопустимое количество входных аргументов.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидался тип double.\n"
+
+#, c-format
+msgid "%s: Invalid number of input argument.\n"
+msgstr "%s: Недопустимое количество входных аргументов.\n"
+
+#, c-format
+msgid "%s: Invalid path: cannot be empty.\n"
+msgstr "%s: Недопустимый путь: не может быть пустым.\n"
+
+#, c-format
+msgid "%s: Second argument must be a dataset name.\n"
+msgstr "%s: Второй аргумент должен быть именем набора данных.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался тот же размер.\n"
+
+#, c-format
+msgid "%s: Argument 'count' is missing.\n"
+msgstr "%s: Пропущен аргумента 'count'.\n"
+
+#, c-format
+msgid "%s: Invalid number of argument(s): %d expected.\n"
+msgstr "%s: Недопустимое количество аргументов: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Unable to open file: %s\n"
@@ -79,3 +250,528 @@ msgstr ""
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: Неверный формат HDF5 Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: More than %d expected.\n"
+msgstr ""
+"%s: Неверное количество входных аргументов: ожидалось больше, чем %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался тип string или double.\n"
+
+#, c-format
+msgid "%s: Only one field can be requested.\n"
+msgstr "%s: Может быть запрошено только одно поле.\n"
+
+#, c-format
+msgid ""
+"%s: Error in retrieving field content:\n"
+"%s\n"
+msgstr ""
+"%s: Ошибка при получении содержимого поля:\n"
+"%s\n"
+
+#, c-format
+msgid "%s: Not an H5 Compound object.\n"
+msgstr "%s: Не  составной объект H5.\n"
+
+#, c-format
+msgid "%s: Can not print H5Object.\n"
+msgstr "%s: Не могу распечатать H5Object.\n"
+
+msgid "Invalid index."
+msgstr "Недопустимый индекс."
+
+msgid "Dimensions"
+msgstr "Размеры"
+
+#, c-format
+msgid "Cannot open attribute: %s"
+msgstr "Не могу открыть атрибут: %s"
+
+msgid "Cannot get the attribute type"
+msgstr "Не могу получить тип атрибута"
+
+msgid "Cannot get the attribute dataspace"
+msgstr "Не могу получить пространство данных атрибута"
+
+msgid "Error in retrieving data."
+msgstr "Ошибка при получении данных."
+
+#, c-format
+msgid "Attribute %s already exists."
+msgstr "Атрибут %s уже существует."
+
+msgid "Cannot create a new attribute."
+msgstr "Не могу создать новый атрибут."
+
+msgid "Cannot write data in the attribute."
+msgstr "Не могу записать данные в атрибут."
+
+msgid "Cannot copy the attribute"
+msgstr "Не могу скопировать атрибут"
+
+msgid "Cannot read attribute data."
+msgstr "Не могу прочитать данные атрибута."
+
+msgid "Cannot get the size of attribute list."
+msgstr "Не могу получить размер списка атрибутов."
+
+#, c-format
+msgid "Invalid index %d: must be between 0 and %d."
+msgstr "Недопустимый индекс %d: должен быть между 0 и %d."
+
+#, c-format
+msgid "Cannot open attribute at position %d."
+msgstr "Не могу открыть атрибут на позиции %d."
+
+msgid "Filename"
+msgstr "Имя файла"
+
+msgid "Number of elements"
+msgstr "Количество элементов"
+
+msgid "Cannot copy data to an empty pointer"
+msgstr "Не могу скопировать данные в пустой указатель"
+
+msgid "Wrong dimensions."
+msgstr "Неверные размерности."
+
+#, c-format
+msgid "Invalid field name: %s"
+msgstr "Неправильное имя поля: %s"
+
+msgid "Fields Names"
+msgstr "Имена полей"
+
+msgid "Cannot create an hypermatrix on the stack"
+msgstr "Не могу создать гиперматрицу в стеке"
+
+msgid "Cannot get the data type"
+msgstr "Не могу получить тип данных"
+
+msgid "Unknown integer datatype."
+msgstr "Неизвестный тип данных целого числа"
+
+msgid "Unknown floating-point datatype."
+msgstr "Неизвестный тип данных числа с плавающей запятой"
+
+msgid "Bitfield is too big"
+msgstr ""
+
+msgid "Cannot get data from an unknown data type."
+msgstr "Немогу получить данных из неизвестного типа данных."
+
+msgid "Memory to allocate is too big"
+msgstr "Память для распределения слишком велика"
+
+msgid "Cannot allocate memory to get the data"
+msgstr "Немогу распределить память для получения данных"
+
+msgid "Cannot retrieve the data from the attribute"
+msgstr "Не могу получить данных из атрибута"
+
+#, c-format
+msgid "Cannot open the given dataset %s."
+msgstr "Не могу открыть указанный набор данных %s."
+
+#, c-format
+msgid "Cannot get the dataspace associated with dataset named %s."
+msgstr ""
+"Не могу получить пространство данных, связанное с набором данных по имени %s."
+
+msgid "Invalid layout"
+msgstr "Недопустимая разметка"
+
+#, c-format
+msgid "Only %d dimensions."
+msgstr "Лишь %d размерности."
+
+msgid "Cannot list dataset attributes."
+msgstr "Не могу перечислить атрибуты набора данных."
+
+#, c-format
+msgid "Cannot open the dataset: %s"
+msgstr "Не могу открыть набор данных: %s"
+
+msgid "Invalid source space"
+msgstr "Недопустимое пространство источника"
+
+msgid "Invalid target space"
+msgstr "Недопустимое пространство цели"
+
+msgid "Cannot modify maximum dimensions."
+msgstr "Нельзя изменить максимальные размеры."
+
+#, c-format
+msgid "Cannot modify dimension %d."
+msgstr "Не могу изменить размерность %d."
+
+#, c-format
+msgid "Cannot set the chunk dimensions: %s"
+msgstr ""
+
+#, c-format
+msgid "Cannot create the dataset: %s"
+msgstr "Не могу создать набор данных: %s"
+
+msgid "Cannot write data in the dataset."
+msgstr "Не могу записать данные в набор данных."
+
+msgid "unknown dataspace"
+msgstr "неизвестное пространство данных"
+
+msgid "Unknown dataspace: cannot get its dimensions"
+msgstr "Неизвестное пространство данных: не могу получить его размеры"
+
+msgid "Cannot select all."
+msgstr "Не могу выбрать всё."
+
+msgid "Cannot create an array of integer on the stack."
+msgstr "Не могу создать массив целых чисел в стеке."
+
+msgid "Cannot create a string on the stack."
+msgstr "Не могу создать строковое значение в стеке."
+
+msgid "Unknown dataspace"
+msgstr "Неизвестное пространство данных"
+
+msgid "Extents"
+msgstr ""
+
+msgid "Invalid selection rank."
+msgstr ""
+
+msgid "Invalid selection."
+msgstr "Недопустимый выбор."
+
+msgid "Cannot get the current stack of errors."
+msgstr "Не могу получить текущий стек ошибок."
+
+msgid "HDF5 description"
+msgstr "описание HDF5"
+
+msgid "Exception thrown in file"
+msgstr "Выдан сигнал исключения в файле"
+
+msgid "at line"
+msgstr "на строке"
+
+msgid "Cannot get the link info"
+msgstr "Не могу получить информацию о ссылке"
+
+msgid "Cannot get the link target"
+msgstr "Не могу получить цель ссылки"
+
+msgid "Link type"
+msgstr "Тип ссылки"
+
+msgid "Link name"
+msgstr "Название ссылки"
+
+msgid "Link path"
+msgstr "Путь ссылки"
+
+msgid "Link target file"
+msgstr "Целевой файл ссылки"
+
+msgid "Link target path"
+msgstr "Целевой путь ссылки"
+
+msgid "Invalid hdf5 file: empty filename."
+msgstr "Недопустимый hdf5-файл: пустое имя файла."
+
+#, c-format
+msgid "Invalid hdf5 file: %s."
+msgstr "Недопустимый hdf5-файл: %s."
+
+#, c-format
+msgid "Cannot open the given hdf5 file: %s."
+msgstr "Не могу открыть указанный hdf5-файл: %s."
+
+#, c-format
+msgid "Cannot create the given hdf5 file: %s."
+msgstr "Не могу создать указанный hdf5-файл: %s."
+
+#, c-format
+msgid ""
+"Cannot open the file: %s, an empty file with the same name already exists."
+msgstr ""
+"Не могу открыть файл: %s, уже существует пустой файл с таким же именем."
+
+#, c-format
+msgid "Cannot append the file (not HDF5): %s."
+msgstr "Не могу дополнить файл (не HDF5): %s."
+
+msgid "Invalid flag."
+msgstr "Недопустимый флаг."
+
+#, c-format
+msgid "Invalid path: %s"
+msgstr "Недопустимый путь: %s"
+
+msgid "Cannot set 'core' as driver."
+msgstr "Не могу установить 'core' в качестве драйвера."
+
+#, c-format
+msgid "Invalid filename: must contain a '%d'."
+msgstr "Недопустимое имя файла: должно содержать '%d'."
+
+msgid "Cannot set 'family' as driver."
+msgstr "Не могу установить 'family' в качестве драйвера."
+
+msgid "Error in flushing the file."
+msgstr "Ошибка во время сбрасывания файла на диск."
+
+#, c-format
+msgid "Cannot retrieve file size: %s"
+msgstr "Не могу получить размер файла: %s"
+
+#, c-format
+msgid "Cannot retrieve file version: %s"
+msgstr "Не могу получить версию файла: %s"
+
+msgid "Cannot create an integer on the stack."
+msgstr "Не могу создать целое число в стеке."
+
+#, c-format
+msgid "Invalid field %s."
+msgstr "Недопустимое поле %s."
+
+#, c-format
+msgid "Cannot open the group %s."
+msgstr "Не могу открыть группу %s."
+
+msgid "Cannot get the links number"
+msgstr "Не могу получить количество ссылок"
+
+msgid "Cannot create a column of strings on the stack."
+msgstr "Не могу создать столбец строковых значений в стеке."
+
+msgid "Cannot list group links."
+msgstr "Не могу перечислить ссылки группы."
+
+msgid "Cannot list group attributes."
+msgstr "Не могу перечислить атрибуты группы."
+
+msgid "Cannot list group contents"
+msgstr "Не могу перечислить содержимое группы."
+
+#, c-format
+msgid "The group already exists: %s."
+msgstr "Группа уже существует: %s."
+
+#, c-format
+msgid "Cannot create the group: %s."
+msgstr "Не могу создать группу: %s."
+
+msgid "Cannot get the number of groups."
+msgstr "Не могу получить количество групп."
+
+msgid "Cannot get linked object"
+msgstr "Не могу получить объект, на который ссылаются"
+
+msgid "Link target name"
+msgstr "Имя цели ссылки"
+
+#, c-format
+msgid "The link %s does not exist."
+msgstr "Ссылка %s не существует."
+
+#, c-format
+msgid "Invalid link type: %s."
+msgstr "Недопустимый тип ссылки: %s."
+
+msgid "Cannot get the number of links."
+msgstr "Не могу получить количество ссылок."
+
+msgid "Invalid operation"
+msgstr "Недопустимая операция"
+
+#, c-format
+msgid "Invalid index at position %d"
+msgstr "Недопустимый индекс на позиции %d"
+
+msgid "Cannot get the number of objects."
+msgstr "Не могу получить количество объектов."
+
+msgid "Parent group name"
+msgstr "Имя родительской группы"
+
+msgid "Parent group path"
+msgstr "Путь родительской группы"
+
+msgid "Elements type"
+msgstr "Типы элементов"
+
+msgid "Size"
+msgstr "Размер"
+
+#, c-format
+msgid "Invalid index: %d."
+msgstr "Недопустимый индекс: %d."
+
+#, c-format
+msgid "Cannot get object at position %d."
+msgstr "Не могу получить объект на позиции %d."
+
+#, c-format
+msgid "Invalid name: %s."
+msgstr "Недопустимое имя: %s."
+
+msgid "Invalid HDF5 object"
+msgstr "Недопустимый объект HDF5"
+
+#, c-format
+msgid "Invalid field: %s"
+msgstr "Недопустимое поле: %s"
+
+msgid "Cannot create a mlist on the stack."
+msgstr "Не могу создать mlist в стеке."
+
+msgid "Cannot list names."
+msgstr "Не могу перечислить имена."
+
+msgid "Cannot retrieve information about the object"
+msgstr "Не могу получить информацию об объекте"
+
+msgid "Unknown HDF5 object"
+msgstr "Неизвестный объект HDF5"
+
+msgid "Cannot retrieve numeric index."
+msgstr "Не могу получить числовой индекс."
+
+msgid "Cannot open object at the given position."
+msgstr "Не могу открыть объект на указанной позиции."
+
+msgid "Link target"
+msgstr "Цель ссылки"
+
+msgid "Cannot free the memory associated with String data"
+msgstr "Не могу освободить память, связанную со строковыми данными"
+
+#, c-format
+msgid "Invalid H5Type name: %s."
+msgstr "Недопустимое H5Type-имя: %s."
+
+msgid "Unknown datatype"
+msgstr "Неизвестный тип данных"
+
+msgid "Cannot get H5Object id"
+msgstr "Не могу получить идентификатор H5Object"
+
+msgid "Invalid object: not a dataset."
+msgstr "Недопустимый объект: не набор данных."
+
+msgid "Cannot remove a file."
+msgstr "Не могу удалить файл."
+
+msgid "Cannot remove root element."
+msgstr "Не могу получить корневой элемент."
+
+#, c-format
+msgid "The name doesn't exist: %s."
+msgstr "Имени не существует: %s."
+
+#, c-format
+msgid "Cannot remove the attribute: %s."
+msgstr "Не могу удалить атрибут: %s."
+
+#, c-format
+msgid "Cannot remove the link: %s."
+msgstr "Не могу удалить ссылку: %s."
+
+#, c-format
+msgid "The link already exists: %s."
+msgstr "Ссылка уже существует: %s."
+
+#, c-format
+msgid "Cannot create the hard link: %s."
+msgstr "Не могу создать жёсткую ссылку: %s."
+
+#, c-format
+msgid "Cannot create the soft link: %s."
+msgstr "Не могу создать гибкую ссылку: %s."
+
+#, c-format
+msgid "Cannot create a hard link to the external object: %s."
+msgstr "Не могу создать жёсткую ссылку на внешний объект: %s."
+
+#, c-format
+msgid "Cannot create the external link: %s."
+msgstr "Не могу создать внешнюю ссылку: %s."
+
+msgid "Cannot copy object."
+msgstr "Не могу скопировать объект"
+
+msgid "Invalid filter"
+msgstr "Недопустимый фильтр"
+
+msgid "Can only label a dataset"
+msgstr "Можно только пометить набор данных"
+
+msgid "Target object is not a file"
+msgstr "Целевой объект не является файлом"
+
+msgid "Invalid location"
+msgstr "Недопустимое расположение"
+
+#, c-format
+msgid "Invalid location: %s"
+msgstr "Недопустимое расположение: %s"
+
+#, c-format
+msgid "Cannot mount the file: %s"
+msgstr "Не могу примонтировать файл: %s"
+
+#, c-format
+msgid "Cannot unmount the file at location: %s"
+msgstr ""
+
+#, c-format
+msgid "Can not read input argument #%d."
+msgstr "Не могу прочитать входной аргумент №%d."
+
+#, c-format
+msgid "Can not get the type of input argument #%d."
+msgstr "Не могу получить тип входного аргумента №%d."
+
+msgid "Complex datatype not handled for now."
+msgstr "Пока нет управления комплексным типом данных."
+
+#, c-format
+msgid "%s: Can not read input argument #%d."
+msgstr "%s: Не могу прочитать входной аргумент №%d."
+
+#, c-format
+msgid "%s: Datatype not handled for now."
+msgstr "%s: Пока нет управления типом данных."
+
+#, c-format
+msgid "Invalid rank, must be in the interval [0, %d]."
+msgstr ""
+
+msgid "No converter found for the specified target datatype."
+msgstr "Не найден преобразователь указанного целевого типа данных."
+
+msgid "Cannot create a new dataspace."
+msgstr "Не могу создать новое пространство данных."
+
+msgid "Invalid target dataspace."
+msgstr "Недопустимое целевое пространство данных."
+
+msgid "Cannot create the target type."
+msgstr "Не могу создать целевойтип."
+
+msgid "Incompatible dimensions"
+msgstr "Несовместимые размерности"
+
+msgid "References must be given as strings"
+msgstr "Ссылки должны быть указаны в виде строковых значений"
+
+#, c-format
+msgid "Invalid path: %s."
+msgstr "Недопустимый путь: %s."

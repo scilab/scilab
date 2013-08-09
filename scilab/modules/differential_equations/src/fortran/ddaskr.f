@@ -1958,9 +1958,13 @@ C
      *   RWORK(LRX),JROOT,IRT,RWORK(LROUND),INFO(3),
      *   RWORK,IWORK,RPAR,IPAR)
       IF (IRT .LT. 0) GO TO 731
-      IF (IRT .NE. 1) GO TO 405
+c*****SCILAB ENTERPRISES INPUT
+c**** IRT = 2 corresponds to a ZERO_DETACH return.
+      IF (IRT .NE. 1 .AND. IRT .NE. 2) GO TO 405
       IWORK(LIRFND) = 1
-      IDID = 5
+      IF (IRT .EQ. 1) IDID = 5
+      IF (IRT .EQ. 2) IDID = 6
+c*****
       T = RWORK(LT0)
       DONE = .TRUE.
       GO TO 490
@@ -2185,9 +2189,13 @@ C
      *   RWORK(LPSI),IWORK(LKOLD),RWORK(LR0),RWORK(LR1),
      *   RWORK(LRX),JROOT,IRT,RWORK(LROUND),INFO(3),
      *   RWORK,IWORK,RPAR,IPAR)
-      IF(IRT .NE. 1) GO TO 530
+      IF (IRT .NE. 1 .AND. IRT .NE. 2) GO TO 530
       IWORK(LIRFND) = 1
-      IDID = 5
+c*****SCILAB ENTERPRISES INPUT
+c**** IRT = 2 corresponds to a ZERO_DETACH return.
+      IF (IRT .EQ. 1) IDID = 5
+      IF (IRT .EQ. 2) IDID = 6
+c*****
       T = RWORK(LT0)
       GO TO 580
 C
@@ -2569,36 +2577,56 @@ C-----------------------------------------------------------------------
 C     
       H = PSI(1)
       IRT = 0
-      DO 10 I = 1,NRT
- 10     JROOT(I) = 0
+c*****SCILAB ENTERPRISES INPUT
+c**** Do not reset JROOT with every call of DRCHEK2,
+c**** because we want to keep the MASKED roots
+c      DO 10 I = 1,NRT
+c 10     JROOT(I) = 0
+      MASKED = 55
+c*****
       HMINR = (ABS(TN) + ABS(H))*UROUND*100.0D0
 C
       GO TO (100, 200, 300), JOB
 C
 C Evaluate R at initial T (= RWORK(LT0)); check for zero values.--------
  100  CONTINUE
+c*****SCILAB ENTERPRISES INPUT
+c**** Initialize JROOT just one time,
+c**** at the first call of DRCHEK2() (JOB = 1)
+      DO 101 I = 1,NRT
+ 101     JROOT(I) = 0
+      RWORK(LT0) = TN
+c*****
       CALL DDATRP2(TN,RWORK(LT0),Y,YP,NEQ,KOLD,PHI,PSI)
       CALL RT (NEQ, RWORK(LT0), Y, NRT, R0, RPAR, IPAR)
       IWORK(LNRTE) = 1
       ZROOT = .FALSE.
       DO 110 I = 1,NRT
- 110    IF (ABS(R0(I)) .EQ. ZERO) ZROOT = .TRUE.
-      IF (.NOT. ZROOT) GO TO 190
+c*******SCILAB ENTERPRISES INPUT
+c****** On the first call of DRCHEK2(),
+c****** just list the zeros and tag them as MASKED
+        IF (ABS(R0(I)) .EQ. ZERO) THEN
+c           ZROOT = .TRUE.
+           JROOT(I) = MASKED
+        ENDIF
+ 110  CONTINUE
+c      IF (.NOT. ZROOT) GO TO 190
 C R has a zero at T.  Look at R at T + (small increment). --------------
-      TEMP2 = MAX(HMINR/ABS(H), 0.1D0)
-      TEMP1 = TEMP2*H
-      RWORK(LT0) = RWORK(LT0) + TEMP1
-      DO 120 I = 1,NEQ
- 120    Y(I) = Y(I) + TEMP2*PHI(I,2)
-      CALL RT (NEQ, RWORK(LT0), Y, NRT, R0, RPAR, IPAR)
-      IWORK(LNRTE) = IWORK(LNRTE) + 1
-      ZROOT = .FALSE.
-      DO 130 I = 1,NRT
- 130    IF (ABS(R0(I)) .EQ. ZERO) ZROOT = .TRUE.
-      IF (.NOT. ZROOT) GO TO 190
+c      TEMP2 = MAX(HMINR/ABS(H), 0.1D0)
+c      TEMP1 = TEMP2*H
+c      RWORK(LT0) = RWORK(LT0) + TEMP1
+c      DO 120 I = 1,NEQ
+c 120    Y(I) = Y(I) + TEMP2*PHI(I,2)
+c      CALL RT (NEQ, RWORK(LT0), Y, NRT, R0, RPAR, IPAR)
+c      IWORK(LNRTE) = IWORK(LNRTE) + 1
+c      ZROOT = .FALSE.
+c      DO 130 I = 1,NRT
+c 130    IF (ABS(R0(I)) .EQ. ZERO) ZROOT = .TRUE.
+c      IF (.NOT. ZROOT) GO TO 190
 C R has a zero at T and also close to T.  Take error return. -----------
-      IRT = -1
-      RETURN
+c      IRT = -1
+c      RETURN
+c******
 C
  190  CONTINUE
       RETURN
@@ -2612,45 +2640,59 @@ C If a root was found on the previous step, evaluate R0 = R(T0). -------
       ZROOT = .FALSE.
       DO 210 I = 1,NRT
         IF (ABS(R0(I)) .EQ. ZERO) THEN
-          ZROOT = .TRUE.
-          JROOT(I) = 1
+c*********SCILAB ENTERPRISES INPUT
+c******** Like with JOB = 1, simply initialize JROOT to 0,
+c******** mask the ones that are null at the left endpoint
+c          ZROOT = .TRUE.
+          JROOT(I) = MASKED
+        ELSE
+          JROOT(I) = 0
+c*********
         ENDIF
  210    CONTINUE
-      IF (.NOT. ZROOT) GO TO 260
+c      IF (.NOT. ZROOT) GO TO 260
 C R has a zero at T0.  Look at R at T0+ = T0 + (small increment). ------
-      TEMP1 = SIGN(HMINR,H)
-      RWORK(LT0) = RWORK(LT0) + TEMP1
-      IF ((RWORK(LT0) - TN)*H .LT. ZERO) GO TO 230
-      TEMP2 = TEMP1/H
-      DO 220 I = 1,NEQ
- 220    Y(I) = Y(I) + TEMP2*PHI(I,2)
-      GO TO 240
- 230  CALL DDATRP2 (TN, RWORK(LT0), Y, YP, NEQ, KOLD, PHI, PSI)
- 240  CALL RT (NEQ, RWORK(LT0), Y, NRT, R0, RPAR, IPAR)
-      IWORK(LNRTE) = IWORK(LNRTE) + 1
-      DO 250 I = 1,NRT
-        IF (ABS(R0(I)) .GT. ZERO) GO TO 250
+c      TEMP1 = SIGN(HMINR,H)
+c      RWORK(LT0) = RWORK(LT0) + TEMP1
+c      IF ((RWORK(LT0) - TN)*H .LT. ZERO) GO TO 230
+c      TEMP2 = TEMP1/H
+c      DO 220 I = 1,NEQ
+c 220    Y(I) = Y(I) + TEMP2*PHI(I,2)
+c      GO TO 240
+c 230  CALL DDATRP2 (TN, RWORK(LT0), Y, YP, NEQ, KOLD, PHI, PSI)
+c 240  CALL RT (NEQ, RWORK(LT0), Y, NRT, R0, RPAR, IPAR)
+c      IWORK(LNRTE) = IWORK(LNRTE) + 1
+c      DO 250 I = 1,NRT
+c        IF (ABS(R0(I)) .GT. ZERO) GO TO 250
 C If Ri has a zero at both T0+ and T0, return an error flag. -----------
-        IF (JROOT(I) .EQ. 1) THEN
-          IRT = -2
-          RETURN
-        ELSE
+c        IF (JROOT(I) .EQ. 1) THEN
+c          IRT = -2
+c          RETURN
+c        ELSE
 C If Ri has a zero at T0+, but not at T0, return valid root. -----------
-          JROOT(I) = -SIGN(1.0D0,R0(I))
-          IRT = 1
-        ENDIF
- 250    CONTINUE
-      IF (IRT .EQ. 1) RETURN
+c          JROOT(I) = -SIGN(1.0D0,R0(I))
+c          IRT = 1
+c        ENDIF
+c 250    CONTINUE
+c      IF (IRT .EQ. 1) RETURN
 C R0 has no zero components.  Proceed to check relevant interval. ------
- 260  IF (TN .EQ. RWORK(LTLAST)) RETURN
+c 260  IF (TN .EQ. RWORK(LTLAST)) RETURN
+ 260  RETURN
 C
  300  CONTINUE
 C Set T1 to TN or TOUT, whichever comes first, and get R at T1. --------
+c*****SCILAB ENTERPRISES INPUT
+c**** Here, the calculaltion mode can save some computations
+      IF (INFO3 .EQ. 0) THEN
       IF ((TOUT - TN)*H .GE. ZERO) THEN
          T1 = TN
          GO TO 330
-         ENDIF
+      ENDIF
       T1 = TOUT
+      ELSE
+      T1 = TN
+      ENDIF
+c*****
       IF ((T1 - RWORK(LT0))*H .LE. ZERO) GO TO 390
  330  CALL DDATRP2 (TN, T1, Y, YP, NEQ, KOLD, PHI, PSI)
       CALL RT (NEQ, T1, Y, NRT, R1, RPAR, IPAR)
@@ -2669,6 +2711,14 @@ C Call DROOTS2 to search for root in interval from T0 to T1. -----------
       IF (JFLAG .EQ. 4) GO TO 390
 C Found a root.  Interpolate to X and return. --------------------------
       CALL DDATRP2 (TN, X, Y, YP, NEQ, KOLD, PHI, PSI)
+c*****SCILAB ENTERPRISES INPUT
+c**** If DROOTS2 returned JFLAG = 5,
+c**** then IRT = 2 will throw the ZERO_DETACH warning
+      IF (JFLAG .EQ. 5) THEN
+        IRT = 2
+        RETURN
+c*****
+      ENDIF
       IRT = 1
       RETURN
 C
@@ -2769,27 +2819,47 @@ C-----------------------------------------------------------------------
       INTEGER I, IMAX, IMXOLD, LAST, NXLAST
       DOUBLE PRECISION ALPHA, T2, TMAX, X2, FRACINT, FRACSUB,
      1                 ZERO, TENTH, HALF, FIVE
-      LOGICAL ZROOT, SGNCHG, XROOT
+c*****SCILAB ENTERPRISES INPUT
+c**** UMROOT is a boolean to flag a root which gets unmasked.
+      LOGICAL ZROOT, SGNCHG, XROOT, UMROOT
+c*****
       SAVE ALPHA, X2, IMAX, LAST
       DATA ZERO/0.0D0/, TENTH/0.1D0/, HALF/0.5D0/, FIVE/5.0D0/
 C
+      MASKED = 55
       IF (JFLAG .EQ. 1) GO TO 200
 C JFLAG .ne. 1.  Check for change in sign of R or zero at X1. ----------
+c*****SCILAB ENTERPRISES INPUT
+c**** ISTUCK and IUNSTUCK help finding masked / unmasked roots.
+      ISTUCK = 0
+      IUNSTUCK = 0
       IMAX = 0
       TMAX = ZERO
       ZROOT = .FALSE.
       DO 120 I = 1,NRT
         IF (ABS(R1(I)) .GT. ZERO) GO TO 110
-        ZROOT = .TRUE.
+c****** If a root function is null at both endpoints, flag it as STUCK.
+        IF (ABS(R1(I)) .EQ. ZERO .AND. JROOT(I) .NE. MASKED) ISTUCK = I
+c        ZROOT = .TRUE.
         GO TO 120
 C At this point, R0(i) has been checked and cannot be zero. ------------
- 110    IF (SIGN(1.0D0,R0(I)) .EQ. SIGN(1.0D0,R1(I))) GO TO 120
-          T2 = ABS(R1(I)/(R1(I)-R0(I)))
-          IF (T2 .LE. TMAX) GO TO 120
-            TMAX = T2
-            IMAX = I
+c******** Here, test if some roots get UNSTUCK.
+ 110    IF (JROOT(I).EQ.MASKED) IUNSTUCK = I
+        IF (R0(I)*R1(I) .GT. ZERO) GO TO 120
+        T2 = ABS(R1(I)/(R1(I)-R0(I)))
+        IF (T2 .LE. TMAX) GO TO 120
+        TMAX = T2
+        IMAX = I
  120    CONTINUE
       IF (IMAX .GT. 0) GO TO 130
+c******* STUCK and UNSTUCK root functions count as sign changes.
+         IF (ISTUCK .GT. 0) THEN
+            IMAX = ISTUCK
+            GO TO 130
+         ELSEIF (IUNSTUCK .GT. 0) THEN
+            IMAX = IUNSTUCK
+            GO TO 130
+         ENDIF
       SGNCHG = .FALSE.
       GO TO 140
  130  SGNCHG = .TRUE.
@@ -2835,20 +2905,31 @@ C Return to the calling routine to get a value of RX = R(X). -----------
 C Check to see in which interval R changes sign. -----------------------
  200  IMXOLD = IMAX
       IMAX = 0
+      ISTUCK = 0
+      IUNSTUCK = 0
       TMAX = ZERO
       ZROOT = .FALSE.
       DO 220 I = 1,NRT
         IF (ABS(RX(I)) .GT. ZERO) GO TO 210
-        ZROOT = .TRUE.
+        IF (ABS(RX(I)).EQ.ZERO .AND. JROOT(I).NE.MASKED) ISTUCK = I
+c        ZROOT = .TRUE.
         GO TO 220
 C Neither R0(i) nor RX(i) can be zero at this point. -------------------
- 210    IF (SIGN(1.0D0,R0(I)) .EQ. SIGN(1.0D0,RX(I))) GO TO 220
-          T2 = ABS(RX(I)/(RX(I) - R0(I)))
-          IF (T2 .LE. TMAX) GO TO 220
-            TMAX = T2
-            IMAX = I
+ 210    IF (JROOT(I).EQ.MASKED) IUNSTUCK = I
+        IF (R0(I)*RX(I) .GT. 0) GO TO 220
+        T2 = ABS(RX(I)/(RX(I) - R0(I)))
+        IF (T2 .LE. TMAX) GO TO 220
+          TMAX = T2
+          IMAX = I
  220    CONTINUE
       IF (IMAX .GT. 0) GO TO 230
+         IF (ISTUCK .GT. 0) THEN
+            IMAX = ISTUCK
+            GO TO 230
+         ELSEIF (IUNSTUCK .GT. 0) THEN
+            IMAX = IUNSTUCK
+            GO TO 230
+         ENDIF
       SGNCHG = .FALSE.
       IMAX = IMXOLD
       GO TO 240
@@ -2880,15 +2961,49 @@ C Return with X1 as the root.  Set JROOT.  Set X = X1 and RX = R1. -----
  300  JFLAG = 2
       X = X1
       CALL DCOPY (NRT, R1, 1, RX, 1)
+c**** The following part unmasks root functions if needed
+c**** and gives final values to JROOT
+      UMROOT = .FALSE.
       DO 320 I = 1,NRT
-        JROOT(I) = 0
-        IF (ABS(R1(I)) .EQ. ZERO) THEN
-          JROOT(I) = -SIGN(1.0D0,R0(I))
-          GO TO 320
+c        JROOT(I) = 0
+        IF (JROOT(I) .NE. MASKED) THEN
+          IF (ABS(R1(I)) .EQ. ZERO) THEN
+            IF (R0(I).GT.ZERO) THEN
+               JROOT(I) = -1
+            ELSE
+               JROOT(I) = 1
+            ENDIF
+            ZROOT = .TRUE.
+            GO TO 320
           ENDIF
-        IF (SIGN(1.0D0,R0(I)) .NE. SIGN(1.0D0,R1(I)))
-     1     JROOT(I) = SIGN(1.0D0,R1(I) - R0(I))
+          IF (R0(I)*R1(I).LT.ZERO) THEN
+            JROOT(I) = SIGN(1.0D0,R1(I))
+            ZROOT = .TRUE.
+          ELSE
+            JROOT(I) = 0
+            ZROOT = .FALSE.
+          ENDIF
+        ELSE
+          IF (ABS(R1(I)) .NE. ZERO) THEN
+            IF (R1(I) .GT. ZERO) THEN
+              JROOT(I) = 2
+            ELSE
+              JROOT(I) = -2
+            ENDIF
+            UMROOT = .TRUE.
+          ELSE
+            JROOT(I) = 0
+          ENDIF
+          ZROOT = .FALSE.
+        ENDIF
  320    CONTINUE
+      IF (ZROOT) THEN
+        DO 325 I = 1,NRT
+ 325      IF (JROOT(I) .EQ. 2 .OR. JROOT(I) .EQ. -2) JROOT(I) = 0
+      ELSEIF (UMROOT) THEN
+        JFLAG = 5
+      ENDIF
+c*****
       RETURN
 C
 C No sign change in the interval.  Check for zero at right endpoint. ---

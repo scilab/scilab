@@ -13,7 +13,7 @@
     <refnamediv>
         <refname>CVode</refname>
         <refpurpose>
-            <emphasis>CVode</emphasis> (short for C-language Variable-coefficients ODE solver) is a numerical solver providing an efficient and stable method to solve Ordinary Differential Equations (ODEs) Initial Value Problems. It uses either <emphasis>BDF</emphasis> or <emphasis>Adams</emphasis> as implicit integration method, and <emphasis>Newton</emphasis> or <emphasis>Functional</emphasis> iterations
+            <emphasis>CVode</emphasis> (short for C-language Variable-coefficients ODE solver) is a numerical solver providing an efficient and stable method to solve Ordinary Differential Equations (ODEs) Initial Value Problems. It uses either <emphasis>BDF</emphasis> or <emphasis>Adams</emphasis> as implicit integration method, and <emphasis>Newton</emphasis> or <emphasis>Functional</emphasis> iterations.
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -110,7 +110,7 @@
             For either choice and at each step, injecting this integration in <emphasis>(1)</emphasis> yields the nonlinear system:
         </para>
         <para>
-            <latex>
+            <latex scilab:localized="true">
                 G(y_n)\equiv y_n-h_n\beta_{n,0}f(t_n,y_n)-a_n=0, \hspace{2 mm} where \hspace{2 mm} a_n\equiv \sum_{i>0} (\alpha_{n,i} y_{n-i} + h_n\beta_{n,i}\dot{y}_{n-i})
             </latex>
         </para>
@@ -136,7 +136,7 @@
                     <latex>
                         y_{n(m+1)} = h_n &#x3B2;_{n,0} f(t_n,y_{n(m)}) + a_n
                     </latex>
-                    <latex>
+                    <latex scilab:localized="true">
                         where \hspace{2 mm} a_n\equiv \sum_{i>0} (\alpha_{n,i} y_{n-i} + h_n\beta_{n,i}\dot{y}_{n-i})
                     </latex>
                 </para>
@@ -145,7 +145,7 @@
             <listitem>
                 <emphasis role="bold">Newton:</emphasis> here, we use an implemented direct dense solver on the linear system:
                 <para>
-                    <latex>
+                    <latex scilab:localized="true">
                         M[y_{n(m+1)}-y_{n(m)}]=-G(y_{n(m)}), \hspace{4 mm} M \approx I-\gamma J, \hspace{2 mm} J=\frac{\partial f}{\partial y}, \hspace{2 mm} and \hspace{2 mm} \gamma = h_n\beta_{n,0}
                     </latex>
                 </para>
@@ -256,9 +256,6 @@ Time for Adams / Functional:
                 <link linkend="LSodar">LSodar</link>
             </member>
             <member>
-                <link linkend="IDA">IDA</link>
-            </member>
-            <member>
                 <link linkend="RK">Runge-Kutta 4(5)</link>
             </member>
             <member>
@@ -266,6 +263,12 @@ Time for Adams / Functional:
             </member>
             <member>
                 <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="IDA">IDA</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
             </member>
             <member>
                 <link linkend="Comparisons">Comparisons</link>

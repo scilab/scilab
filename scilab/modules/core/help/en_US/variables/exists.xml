@@ -14,7 +14,7 @@
             <varlistentry>
                 <term>ve</term>
                 <listitem>
-                    <para>Output result with possible values:
+                    <para>a matrix with the same size as <varname>name</varname> with possible values:
                         <literal>1</literal> if true, 
                         <literal>0</literal> if false
                     </para>
@@ -23,7 +23,7 @@
             <varlistentry>
                 <term>name</term>
                 <listitem>
-                    <para>a character string</para>
+                    <para>a matrix of character strings</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -68,9 +68,9 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-exists("myNotLikelyToExistVariable")
-myNotLikelyToExistVariable = 1;
-exists("myNotLikelyToExistVariable")
+exists("myNotLikelyToExistVar")
+myNotLikelyToExistVar = 1;
+exists("myNotLikelyToExistVar")
  ]]></programlisting>
         <programlisting role="example"><![CDATA[ 
 deff('foo(x)',..
@@ -81,9 +81,9 @@ a12=[];foo(1)
 
 function level1()
   function level2()
-    disp(exists("a","a"));
-    disp(exists("a","l"));
-    disp(exists("a","n"));
+    disp(exists(["a","b"],"a"));
+    disp(exists(["a","b"],"l"));
+    disp(exists(["a","b"],"n"));
   endfunction
   level2()
 endfunction

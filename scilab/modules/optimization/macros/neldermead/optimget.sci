@@ -13,22 +13,22 @@
 //   Queries an optimization structure.
 //   The key is searched in the list of existing fields,
 //   ignoring the case.
-//   Only leading characters of the field name are sufficient to 
+//   Only leading characters of the field name are sufficient to
 //   make the search successful.
 // Usage:
 //   val = optimget ( options , key )
 //   val = optimset ( options , key , value )
 //
 function val = optimget (varargin)
-  [lhs,rhs]=argn();
-  if rhs<=1 | rhs >=4 then
-    errmsg = error(msprintf(gettext("%s: Wrong number of arguments : %d expected while %d given"),"optimget", 2,rhs));
-    error(errmsg);
-  end
-  options = varargin(1);
-  // Search the field by index
-  key = varargin(2);
-  fields = [
+    [lhs,rhs]=argn();
+    if rhs<=1 | rhs >=4 then
+        errmsg = error(msprintf(gettext("%s: Wrong number of arguments : %d expected while %d given"),"optimget", 2,rhs));
+        error(errmsg);
+    end
+    options = varargin(1);
+    // Search the field by index
+    key = varargin(2);
+    fields = [
     "Display"
     "FunValCheck"
     "MaxFunEvals"
@@ -38,24 +38,24 @@ function val = optimget (varargin)
     "TolFun"
     "TolX"
     ];
-  // Search for the given key in the list of available fields.
-  // Use a regexp which ignores the case.
-  regstr = "/" + key + "/i";
-  [r,w] = grep ( fields , regstr , "r" );
-  opsize = size(r,2)
-  if opsize<>1 then
-    matching = strcat(fields(r(1:opsize))," ");
-    errmsg = error(msprintf(gettext("%s: Ambiguous property name %s matches several fields : %s"),"optimget", key , matching));
-    error(errmsg);
-  end
-  // Get the matching field
-  name = fields(r(1));
-  val = options(name);
-  // When the value is given and the field is empty, return the value.
-  if rhs==3 then
-    if val == [] then
-      val = varargin(3)
+    // Search for the given key in the list of available fields.
+    // Use a regexp which ignores the case.
+    regstr = "/" + key + "/i";
+    [r,w] = grep ( fields , regstr , "r" );
+    opsize = size(r,2)
+    if opsize<>1 then
+        matching = strcat(fields(r(1:opsize))," ");
+        errmsg = error(msprintf(gettext("%s: Ambiguous property name %s matches several fields : %s"),"optimget", key , matching));
+        error(errmsg);
     end
-  end
+    // Get the matching field
+    name = fields(r(1));
+    val = options(name);
+    // When the value is given and the field is empty, return the value.
+    if rhs==3 then
+        if val == [] then
+            val = varargin(3)
+        end
+    end
 endfunction
 

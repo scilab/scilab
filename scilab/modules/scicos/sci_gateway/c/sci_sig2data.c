@@ -1,6 +1,6 @@
 /*  Scicos
 *
-*  Copyright (C) INRIA - 
+*  Copyright (C) INRIA -
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -75,61 +75,61 @@ extern int *listentry(int *header, int i);
 */
 int sci_sig2data(char *fname, unsigned long fname_len)
 {
-	int m1 = 0, n1 = 0;
-	int *il1 = NULL;
-	int m1h = 0, n1h = 0;
-	int *ilh1 = NULL;
-	int ierr = 0;
+    int m1 = 0, n1 = 0;
+    int *il1 = NULL;
+    int m1h = 0, n1h = 0;
+    int *ilh1 = NULL;
+    int ierr = 0;
 
-	CheckRhs(1,1);
-	CheckLhs(1,2);
+    CheckRhs(1, 1);
+    CheckLhs(1, 2);
 
-	il1 = (int *) GetData(1);
-	m1  = il1[1];
-	n1  = il1[2];
+    il1 = (int *) GetData(1);
+    m1  = il1[1];
+    n1  = il1[2];
 
-	if (il1[0] != sci_mlist) 
-	{
-		Scierror(888,_("%s : First argument must be a structure.\n"),fname);
-		return 0;
-	}
+    if (il1[0] != sci_mlist)
+    {
+        Scierror(888, _("%s : First argument must be a structure.\n"), fname);
+        return 0;
+    }
 
-	ilh1 = (int *) (listentry(il1,1));
-	m1h  = ilh1[1];
-	n1h  = ilh1[2];
-	if ((ilh1[m1h*n1h+5]!=28) || (ilh1[m1h*n1h+6]!=29)) 
-	{
-		Scierror(888,_("%s : First argument must be a structure.\n"),fname);
-		return 0;
-	}
+    ilh1 = (int *) (listentry(il1, 1));
+    m1h  = ilh1[1];
+    n1h  = ilh1[2];
+    if ((ilh1[m1h * n1h + 5] != 28) || (ilh1[m1h * n1h + 6] != 29))
+    {
+        Scierror(888, _("%s : First argument must be a structure.\n"), fname);
+        return 0;
+    }
 
-	if ((n1h!=4) || \
-		(ilh1[m1h*n1h+11]!=31) || \
-		(ilh1[m1h*n1h+12]!=10) || \
-		(ilh1[m1h*n1h+13]!=21) || \
-		(ilh1[m1h*n1h+14]!=30) || \
-		(ilh1[m1h*n1h+15]!=14) || \
-		(ilh1[m1h*n1h+16]!=28) || \
-		(ilh1[m1h*n1h+17]!=29) || \
-		(ilh1[m1h*n1h+18]!=18) || \
-		(ilh1[m1h*n1h+19]!=22) || \
-		(ilh1[m1h*n1h+20]!=14)) 
-	{
-			Scierror(888, _("%s : First argument must be a scicos signal structure.\n"),fname);
-			return 0;
-	}
+    if ((n1h != 4) || \
+            (ilh1[m1h * n1h + 11] != 31) || \
+            (ilh1[m1h * n1h + 12] != 10) || \
+            (ilh1[m1h * n1h + 13] != 21) || \
+            (ilh1[m1h * n1h + 14] != 30) || \
+            (ilh1[m1h * n1h + 15] != 14) || \
+            (ilh1[m1h * n1h + 16] != 28) || \
+            (ilh1[m1h * n1h + 17] != 29) || \
+            (ilh1[m1h * n1h + 18] != 18) || \
+            (ilh1[m1h * n1h + 19] != 22) || \
+            (ilh1[m1h * n1h + 20] != 14))
+    {
+        Scierror(888, _("%s : First argument must be a scicos signal structure.\n"), fname);
+        return 0;
+    }
 
-	ierr = CopyVarFromlistentry(Top-Rhs+2,il1,3);
-	LhsVar(1) = 2;
+    ierr = CopyVarFromlistentry(Top - Rhs + 2, il1, 3);
+    LhsVar(1) = 2;
 
-	if (Lhs==2) 
-	{
-		ierr = CopyVarFromlistentry(Top-Rhs+3,il1,4);
-		LhsVar(2) = 3;
-	}
+    if (Lhs == 2)
+    {
+        ierr = CopyVarFromlistentry(Top - Rhs + 3, il1, 4);
+        LhsVar(2) = 3;
+    }
 
-	PutLhsVar();
+    PutLhsVar();
 
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

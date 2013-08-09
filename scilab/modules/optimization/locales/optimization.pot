@@ -14,28 +14,28 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/sci_qld.c, line: 86
 # File: sci_gateway/c/sci_qld.c, line: 112
 # File: sci_gateway/c/sci_qld.c, line: 138
 # File: sci_gateway/c/sci_qld.c, line: 164
 # File: sci_gateway/c/sci_qld.c, line: 190
-# File: sci_gateway/c/sci_qld.c, line: 227
-# File: sci_gateway/c/sci_qld.c, line: 265
-# File: sci_gateway/c/sci_qld.c, line: 301
-# File: sci_gateway/c/sci_qp_solve.c, line: 94
-# File: sci_gateway/c/sci_qp_solve.c, line: 119
-# File: sci_gateway/c/sci_qp_solve.c, line: 148
-# File: sci_gateway/c/sci_qp_solve.c, line: 195
-# File: sci_gateway/c/sci_qp_solve.c, line: 221
+# File: sci_gateway/c/sci_qld.c, line: 230
+# File: sci_gateway/c/sci_qld.c, line: 271
+# File: sci_gateway/c/sci_qld.c, line: 307
+# File: sci_gateway/c/sci_qp_solve.c, line: 97
+# File: sci_gateway/c/sci_qp_solve.c, line: 122
+# File: sci_gateway/c/sci_qp_solve.c, line: 151
+# File: sci_gateway/c/sci_qp_solve.c, line: 198
+# File: sci_gateway/c/sci_qp_solve.c, line: 224
 #, c-format
 msgid "%s: Wrong type for argument %d: A real expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_qld.c, line: 94
-# File: sci_gateway/c/sci_qp_solve.c, line: 102
+# File: sci_gateway/c/sci_qp_solve.c, line: 105
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
 msgstr ""
@@ -43,10 +43,10 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_qld.c, line: 120
 # File: sci_gateway/c/sci_qld.c, line: 172
-# File: sci_gateway/c/sci_qld.c, line: 210
-# File: sci_gateway/c/sci_qld.c, line: 247
-# File: sci_gateway/c/sci_qp_solve.c, line: 127
-# File: sci_gateway/c/sci_qp_solve.c, line: 203
+# File: sci_gateway/c/sci_qld.c, line: 213
+# File: sci_gateway/c/sci_qld.c, line: 253
+# File: sci_gateway/c/sci_qp_solve.c, line: 130
+# File: sci_gateway/c/sci_qp_solve.c, line: 206
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
@@ -59,61 +59,62 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_qld.c, line: 201
-# File: sci_gateway/c/sci_qld.c, line: 238
-# File: sci_gateway/c/sci_qld.c, line: 321
-# File: sci_gateway/c/sci_qld.c, line: 329
-# File: sci_gateway/c/sci_qld.c, line: 337
-# File: sci_gateway/c/sci_qld.c, line: 347
-# File: sci_gateway/c/sci_qld.c, line: 355
-# File: sci_gateway/c/sci_qp_solve.c, line: 245
-# File: sci_gateway/c/sci_qp_solve.c, line: 253
-# File: sci_gateway/c/sci_qp_solve.c, line: 261
-# File: sci_gateway/c/sci_qp_solve.c, line: 269
+# File: sci_gateway/c/sci_qld.c, line: 241
+# File: sci_gateway/c/sci_qld.c, line: 327
+# File: sci_gateway/c/sci_qld.c, line: 335
+# File: sci_gateway/c/sci_qld.c, line: 343
+# File: sci_gateway/c/sci_qld.c, line: 353
+# File: sci_gateway/c/sci_qld.c, line: 361
+# File: sci_gateway/c/sci_qp_solve.c, line: 248
+# File: sci_gateway/c/sci_qp_solve.c, line: 256
+# File: sci_gateway/c/sci_qp_solve.c, line: 264
+# File: sci_gateway/c/sci_qp_solve.c, line: 272
+# File: sci_gateway/c/sci_qp_solve.c, line: 280
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qld.c, line: 273
-# File: sci_gateway/c/sci_qld.c, line: 309
-# File: sci_gateway/c/sci_qp_solve.c, line: 229
+# File: sci_gateway/c/sci_qld.c, line: 279
+# File: sci_gateway/c/sci_qld.c, line: 315
+# File: sci_gateway/c/sci_qp_solve.c, line: 232
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qld.c, line: 387
+# File: sci_gateway/c/sci_qld.c, line: 397
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qld.c, line: 389
+# File: sci_gateway/c/sci_qld.c, line: 401
 #, c-format
 msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qld.c, line: 391
+# File: sci_gateway/c/sci_qld.c, line: 405
 #, c-format
 msgid "%s: Length of working array is too short.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qld.c, line: 393
+# File: sci_gateway/c/sci_qld.c, line: 409
 #, c-format
 msgid "%s: The constraints are inconsistent.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 178
+# File: sci_gateway/c/sci_qp_solve.c, line: 181
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %d column(s) expected for matrix %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 235
+# File: sci_gateway/c/sci_qp_solve.c, line: 238
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an integer in the range 0 "
@@ -121,118 +122,138 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 278
-# File: sci_gateway/c/sci_qp_solve.c, line: 302
-# File: sci_gateway/c/sci_qp_solve.c, line: 310
+# File: sci_gateway/c/sci_qp_solve.c, line: 289
+# File: sci_gateway/c/sci_qp_solve.c, line: 313
+# File: sci_gateway/c/sci_qp_solve.c, line: 321
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 345
+# File: sci_gateway/c/sci_qp_solve.c, line: 357
 #, c-format
 msgid "%s: The minimization problem has no solution.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 349
+# File: sci_gateway/c/sci_qp_solve.c, line: 361
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 288
+# File: sci_gateway/c/sci_qp_solve.c, line: 374
+#, c-format
+msgid ""
+"\n"
+"%s: Warning: The minimization problem has no solution. The results may be "
+"inaccurate.\n"
+"\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_qp_solve.c, line: 381
+#, c-format
+msgid ""
+"\n"
+"%s: Warning: Q is not symmetric positive definite. The results may be "
+"inaccurate.\n"
+"\n"
+msgstr ""
+
+#
+# File: src/c/sp.c, line: 296
 msgid "m must be at least one.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 293
+# File: src/c/sp.c, line: 305
 msgid "L must be at least one.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 298
+# File: src/c/sp.c, line: 314
 #, c-format
 msgid "blck_szs[%d] must be at least one.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 303
+# File: src/c/sp.c, line: 323
 msgid "nu must be at least 1.0.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 324
+# File: src/c/sp.c, line: 347
 msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 338
+# File: src/c/sp.c, line: 365
 msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 373
+# File: src/c/sp.c, line: 404
 #, c-format
 msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 428
-# File: src/c/sp.c, line: 613
+# File: src/c/sp.c, line: 465
+# File: src/c/sp.c, line: 733
 #, c-format
 msgid "Error in dspgv, info = %d.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 430
+# File: src/c/sp.c, line: 471
 msgid "x0 is not strictly primal feasible.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 443
+# File: src/c/sp.c, line: 494
 msgid "Z0 is not positive definite.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 446
+# File: src/c/sp.c, line: 502
 msgid "F(x)*Z has a negative eigenvalue.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 468
+# File: src/c/sp.c, line: 528
 msgid ""
 "\n"
 "    primal obj.  dual obj.  dual. gap \n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 526
+# File: src/c/sp.c, line: 617
 #, c-format
 msgid "Error in dgels, info = %d.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 538
+# File: src/c/sp.c, line: 635
 #, c-format
 msgid "Error in dtrcon, info = %d.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 542
+# File: src/c/sp.c, line: 644
 msgid ""
 "The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
 "are very badly conditioned).\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 586
+# File: src/c/sp.c, line: 696
 #, c-format
 msgid "Error in dspst, info = %d.\n"
 msgstr ""
 
 #
-# File: src/c/sp.c, line: 594
+# File: src/c/sp.c, line: 709
 #, c-format
 msgid "Error in dspev, info = %d.\n"
 msgstr ""
@@ -240,6 +261,17 @@ msgstr ""
 # File: demos/datafit/datafit.dem.gateway.sce, line: 8
 # File: demos/optimization.dem.gateway.sce, line: 12
 msgid "Non linear data fitting"
+msgstr ""
+
+#
+# File: demos/datafit/demo_datafit.sci, line: 39
+# File: demos/datafit/demo_datafit.sci, line: 47
+msgid "Experimental data"
+msgstr ""
+
+#
+# File: demos/datafit/demo_datafit.sci, line: 47
+msgid "Fitting function"
 msgstr ""
 
 #
@@ -703,6 +735,12 @@ msgid "Defining McKinnon function...\n"
 msgstr ""
 
 #
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 85
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 85
+msgid "Error: function expects a two dimensional input\n"
+msgstr ""
+
+#
 # File: demos/neldermead/nmplot_mckinnon.sce, line: 113
 #, c-format
 msgid "x0 = %s\n"
@@ -880,6 +918,36 @@ msgstr ""
 # File: macros/bvodeS.sci, line: 59
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
+msgstr ""
+
+#
+# File: macros/datafit.sci, line: 71
+#, c-format
+msgid "%s: Jacobian cannot be a list, parameters must be set in G."
+msgstr ""
+
+#
+# File: macros/datafit.sci, line: 79
+#, c-format
+msgid "%s: Wrong measurement matrix."
+msgstr ""
+
+#
+# File: macros/datafit.sci, line: 90
+#, c-format
+msgid "%s: Initial guess must be a column vector."
+msgstr ""
+
+#
+# File: macros/datafit.sci, line: 92
+#, c-format
+msgid "%s: Weighting matrix must be square."
+msgstr ""
+
+#
+# File: macros/datafit.sci, line: 107
+#, c-format
+msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
 
 #
@@ -1078,6 +1146,18 @@ msgid ""
 msgstr ""
 
 #
+# File: macros/leastsq.sci, line: 44
+#, c-format
+msgid "%s: Jacobian cannot be a list, parameters must be set in fun."
+msgstr ""
+
+#
+# File: macros/leastsq.sci, line: 56
+#, c-format
+msgid "%s: With hard coded function, user must give output size of fun."
+msgstr ""
+
+#
 # File: macros/lmisolver.sci, line: 38
 #, c-format
 msgid "%s: initial guess is feasible."
@@ -1227,6 +1307,229 @@ msgstr ""
 # File: macros/lmisolver.sci, line: 350
 #, c-format
 msgid "%s: optimal solution found"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 15
+msgid "Welcome to LMITOOL"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 16
+msgid "LMITOOL is a Scilab package for LMI optimization"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 19
+msgid "It can solve the following problem"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 21
+msgid "   minimize  f(X1,...,XM)  "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 22
+msgid "subject to the LME constraints: "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 23
+msgid "   Gi(X1,...,XM)=0,  i=1,2,...,p,"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 24
+msgid "and the LMI constraints:  "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 25
+msgid "   Hj(X1,...,XM)>=0,  j=1,2,...,q."
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 27
+msgid "where"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 28
+msgid ""
+"X1,...,XM are unknown real matrices, referred to as the unknown matrices,"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 29
+msgid ""
+"f is the objective function, a linear scalar function of the entries of the "
+"X's,"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 30
+msgid "Gi's are affine matrix functions of the entries of the X's,"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 31
+msgid "Hj's are affine symmetric matrix functions of the entries of the X's."
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 33
+msgid ""
+"These functions are parameterized by the entries of known data matrices "
+"D1,...,DN."
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 35
+msgid "For a detailed description and examples consult: "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 36
+msgid ""
+"          'LMITOOL: a Package for LMI Optimization in Scilab, User's Guide' "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 38
+msgid ""
+"LMITOOL uses Semidefinite Programming package SP developed by L. "
+"Vandenberghe and S. Boyd."
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 64
+msgid "LMI problem name: "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 64
+msgid "Names of unknown matrices: "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 65
+msgid "Names of data matrices: "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 66
+msgid "Problem definition"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 67
+msgid "LMITOOL will generate a skeleton of the functions needed"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 68
+msgid " (see User's Guide for details). For that, you need to specify:"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 69
+msgid "1- Name of your problem which will be given to the solver function,"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 70
+msgid "2- Names of unknown matrices or list of unknown matrices,"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 71
+msgid "3- Names of data matrices or list of data matrices."
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 75
+msgid "Try again"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 133
+msgid "File not generated by lmitool or badly modified."
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 159
+msgid "Function definitions: "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 160
+msgid "Here is a skeleton of the functions you should edit."
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 161
+msgid "You can edit in this window or click on 'ok'."
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 162
+msgid "Save and edit the skeleton later through your favorite editor."
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 169
+msgid "Name of the file where to save the solver function"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 170
+msgid "and the evaluation function"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 171
+msgid "(Will overwrite if a file with the same name already exists)."
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 174
+msgid "functions saved in "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 196
+msgid "    To solve your problem, you need to "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 197
+msgid "1- edit file "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 198
+msgid "2- load (and compile) your functions:"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 200
+msgid " and call "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 200
+msgid " function:"
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 200
+msgid "3- Define "
+msgstr ""
+
+#
+# File: macros/lmitool.sci, line: 202
+msgid "To check the result, use [LME,LMI,OBJ]="
 msgstr ""
 
 #
@@ -1600,6 +1903,13 @@ msgstr ""
 msgid ""
 "%s: No default options available: the function '%s' does not exist on the "
 "path."
+msgstr ""
+
+#
+# File: macros/numdiff.sci, line: 26
+#, c-format
+msgid ""
+"%s: Hard coded function not allowed, create a Scilab function using call."
 msgstr ""
 
 #

@@ -4,12 +4,12 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- ENGLISH IMPOSED -->
+//
 // <-- CLI SHELL MODE -->
 
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): 1 to 5 expected."), "h5open");
+msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "h5open", 1, 5);
 assert_checkerror("h5open()",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #1: A string expected."), "h5open");
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5open", 1);
 assert_checkerror("h5open(42)",msgerr,999);
 
 a = h5open(TMPDIR + "/x.sod");
@@ -25,21 +25,11 @@ assert_checkequal(a.root.Name,'/');
 h5write(a,"Dset_1",[1 2;3 4]);
 h5close(a);
 
-
-//on Windows path / does not exist.
-if getos() == "Windows" then
-    msgerr = msprintf(gettext("%s: Cannot create the given hdf5 file: %s."), "h5open", filesep());
-else
-    msgerr = msprintf(gettext("%s: Cannot append the file (not HDF5): %s."), "h5open", filesep());
-end
-assert_checkerror("h5open(""/"")",msgerr,999);
-
-if getos() == "Windows" then
-    msgerr = msprintf(gettext("%s: Cannot append the file (not HDF5): %s."), "h5open", WSCI + filesep() + "COPYING-FR");
-else
-    msgerr = msprintf(gettext("%s: Cannot append the file (not HDF5): %s."), "h5open", SCI + filesep() + "COPYING-FR");
-end
+msgerr = msprintf(gettext("%s: %s\n"), "h5open", msprintf(gettext("Cannot append the file (not HDF5): %s."), pathconvert(SCI, %f) + filesep() + "COPYING-FR"));
+msgerr($+1) = gettext("HDF5 description") + ": " + "unable to find a valid file signature.";
 assert_checkerror("h5open(SCI + ""/COPYING-FR"")",msgerr,999);
+
 copyfile(SCI+"/COPYING-FR",TMPDIR+"/z.h5");
-msgerr = msprintf(gettext("%s: Cannot append the file (not HDF5): %s."), "h5open", TMPDIR + filesep() + "z.h5");
+msgerr = msprintf(gettext("%s: %s\n"), "h5open", msprintf(gettext("Cannot append the file (not HDF5): %s."), TMPDIR + filesep() + "z.h5"));
+msgerr($+1) = gettext("HDF5 description") + ": " + "unable to find a valid file signature.";
 assert_checkerror("h5open(TMPDIR + ""/z.h5"")",msgerr,999);

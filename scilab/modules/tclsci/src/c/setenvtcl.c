@@ -14,27 +14,27 @@
 #include "GlobalTclInterp.h"
 #include "setenvtcl.h"
 /*--------------------------------------------------------------------------*/
-int setenvtcl(char *string,char *value)
+int setenvtcl(char *string, char *value)
 {
-	char MyTclCommand[2048];
+    char MyTclCommand[2048];
 
-	sprintf(MyTclCommand,"env(%s)",string);
+    sprintf(MyTclCommand, "env(%s)", string);
 
-	if (getTclInterp()==NULL)
-		{
-			releaseTclInterp();
-			return FALSE;
-		}
-	releaseTclInterp();
-	if ( !Tcl_SetVar(getTclInterp(),MyTclCommand, value, TCL_GLOBAL_ONLY) )
-		{
-			releaseTclInterp();
-			return FALSE;
-		}
-	else
-		{
-			releaseTclInterp();
-			return TRUE;
-		}
+    if (getTclInterp() == NULL)
+    {
+        releaseTclInterp();
+        return FALSE;
+    }
+    releaseTclInterp();
+    if ( !Tcl_SetVar(getTclInterp(), MyTclCommand, value, TCL_GLOBAL_ONLY) )
+    {
+        releaseTclInterp();
+        return FALSE;
+    }
+    else
+    {
+        releaseTclInterp();
+        return TRUE;
+    }
 }
 /*--------------------------------------------------------------------------*/

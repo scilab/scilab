@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2011-10-05 14:13+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-28 14:03+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -58,6 +58,15 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています: 線形動的システムまたは多項式配列を指定してください.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 整数配列または多項式を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real Polynomial expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 実数多項式を指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
 msgstr "%s: 入力引数の型が間違っています: 多項式配列を指定してください.\n"
 
@@ -82,6 +91,19 @@ msgstr "%s: 入力引数 %d と %d で互換性がありません。\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 実数行列または多項式を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for argument #%d: %s or %s expected.\n"
+msgstr "%s: 引数 #%d の値が間違っています:  %s または %s を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected.\n"

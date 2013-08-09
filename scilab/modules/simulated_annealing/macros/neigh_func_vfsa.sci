@@ -8,19 +8,19 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function x_neigh = neigh_func_vfsa(x_current, T, param)
-if ~isdef('param','local') then
-  param = [];
-end
+    if ~isdef("param","local") then
+        param = [];
+    end
 
-[Delta,err] = get_param(param,'delta',0.1*ones(size(x_current,1), size(x_current,2)));
-[Min,err]   = get_param(param,'min_bound',-%inf*ones(size(x_current,1),size(x_current,2)));
-[Max,err]   = get_param(param,'max_bound',%inf*ones(size(x_current,1),size(x_current,2)));
+    [Delta,err] = get_param(param,"delta",0.1*ones(size(x_current,1), size(x_current,2)));
+    [Min,err]   = get_param(param,"min_bound",-%inf*ones(size(x_current,1),size(x_current,2)));
+    [Max,err]   = get_param(param,"max_bound",%inf*ones(size(x_current,1),size(x_current,2)));
 
-y = zeros(size(x_current,1), size(x_current,2));
-for i=1:length(y)
-  a = rand(1,1);
-  y(i) = sign(a-0.5)*T*((1+1/T)^abs(2*a-1)-1);
-  x_neigh(i) = x_current(i) + y(i)*Delta(i);
-end
-x_neigh = max(min(x_neigh, Max),Min);
+    y = zeros(size(x_current,1), size(x_current,2));
+    for i=1:length(y)
+        a = grand(1,1,"def");
+        y(i) = sign(a-0.5)*T*((1+1/T)^abs(2*a-1)-1);
+        x_neigh(i) = x_current(i) + y(i)*Delta(i);
+    end
+    x_neigh = max(min(x_neigh, Max),Min);
 endfunction

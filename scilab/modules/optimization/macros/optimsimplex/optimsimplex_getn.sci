@@ -15,6 +15,6 @@
 //   <no arg>
 //
 function n = optimsimplex_getn ( this )
-  n = this.n
+    n = this.n
 endfunction
 

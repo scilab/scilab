@@ -6,13 +6,9 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-
-// Execute with exec("SCI/modules/scicos/tests/unit_tests/LSodar.tst");
-//  or test_run('scicos', 'LSodar', ['no_check_error_output']);
+// <-- XCOS TEST -->
 
 // Import diagram
-loadScicos();
-loadXcosLibs();
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/LSodar_test.zcos"));
 
 // Set solver to LSodar + run LSodar + save results

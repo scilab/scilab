@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-09-03 11:19+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: it\n"
 
 #, c-format
@@ -161,8 +161,8 @@ msgstr ""
 "ma non può essere caricato in Scilab poiché %s è una variabile protetta.\n"
 
 #, c-format
-msgid "%s: Warning: Error in file %s : %s. File ignored\n"
-msgstr "%s: Attenzione: c'è il seg. errore nel file %s: %s.File ignorato\n"
+msgid "%s: Error in file %s : %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"

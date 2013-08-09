@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-02-14 17:30+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-30 20:06+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 msgid "Polynomials"
 msgstr "Polynomy"
@@ -62,6 +62,16 @@ msgstr ""
 "nebo pole polynomů.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
+msgstr ""
+"%s: Špatný typ argumentu #%d: Očekáváno pole celých čísel nebo polynom.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real Polynomial expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván reálný polynom.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu: Očekáváno pole polynomů.\n"
 
@@ -84,6 +94,20 @@ msgstr "%s: nekompatibilní vstupní argumenty %d a %d\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgstr ""
+"%s: Špatný typ argumentu #%d: Očekávána reálná matice nebo polynomy.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong value for argument #%d: %s or %s expected.\n"
+msgstr "%s: Špatná hodnota argumentu #%d: Očekáváno %s nebo %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected.\n"

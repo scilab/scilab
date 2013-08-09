@@ -73,7 +73,7 @@ disp("Scilab has found " + string(i) + " chars in the file");
 
  ]]></programlisting>
     </refsection>
-
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

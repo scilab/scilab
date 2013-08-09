@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: includes/spDefs.h, line: 379
 #, c-format
@@ -28,25 +28,25 @@ msgid "%s: A zero was encountered on the diagonal the matrix.\n"
 msgstr ""
 
 #
-# File: src/c/spFactor.c, line: 234
+# File: src/c/spFactor.c, line: 252
 #, c-format
 msgid "Reordering,  Step = %1d\n"
 msgstr ""
 
 #
-# File: src/c/spFactor.c, line: 712
+# File: src/c/spFactor.c, line: 813
 #, c-format
 msgid "Operation count for inner loop of factorization = %d.\n"
 msgstr ""
 
 #
-# File: src/c/spFactor.c, line: 3012
+# File: src/c/spFactor.c, line: 3395
 #, c-format
 msgid "Pivot found at %1d,%1d using "
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 177
+# File: src/c/spOutput.c, line: 186
 #, c-format
 msgid ""
 "MATRIX SUMMARY\n"
@@ -54,38 +54,38 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 178
+# File: src/c/spOutput.c, line: 187
 #, c-format
 msgid "Size of matrix = %1u x %1u.\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 180
+# File: src/c/spOutput.c, line: 190
 #, c-format
 msgid "Matrix has been reordered.\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 184
+# File: src/c/spOutput.c, line: 196
 #, c-format
 msgid "Matrix after factorization:\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 186
+# File: src/c/spOutput.c, line: 200
 #, c-format
 msgid "Matrix before factorization:\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 224
-# File: src/c/spOutput.c, line: 226
+# File: src/c/spOutput.c, line: 257
+# File: src/c/spOutput.c, line: 261
 #, c-format
 msgid "Columns %1d to %1d.\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 309
+# File: src/c/spOutput.c, line: 387
 #, c-format
 msgid ""
 "\n"
@@ -93,13 +93,13 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 310
+# File: src/c/spOutput.c, line: 388
 #, c-format
 msgid "Smallest element in matrix = %-1.4lg.\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 323
+# File: src/c/spOutput.c, line: 410
 #, c-format
 msgid ""
 "\n"
@@ -107,13 +107,13 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 324
+# File: src/c/spOutput.c, line: 411
 #, c-format
 msgid "Smallest diagonal element = %-1.4lg.\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 327
+# File: src/c/spOutput.c, line: 415
 #, c-format
 msgid ""
 "\n"
@@ -121,13 +121,13 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 328
+# File: src/c/spOutput.c, line: 416
 #, c-format
 msgid "Smallest pivot element = %-1.4lg.\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 332
+# File: src/c/spOutput.c, line: 420
 #, c-format
 msgid ""
 "\n"
@@ -135,103 +135,103 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 335
+# File: src/c/spOutput.c, line: 424
 #, c-format
 msgid "Number of fill-ins = %1d.\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 419
+# File: src/c/spOutput.c, line: 513
 #, c-format
 msgid "Warning : The following matrix is factored in to LU form.\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 686
+# File: src/c/spOutput.c, line: 843
 #, c-format
 msgid "Matrix has not been factored.\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 687
+# File: src/c/spOutput.c, line: 845
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 690
+# File: src/c/spOutput.c, line: 849
 #, c-format
 msgid "Matrix is complex.\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 692
+# File: src/c/spOutput.c, line: 853
 #, c-format
 msgid "Matrix is real.\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 716
+# File: src/c/spOutput.c, line: 884
 #, c-format
 msgid "     Initial number of elements = %d\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 719
+# File: src/c/spOutput.c, line: 887
 #, c-format
 msgid "     Initial average number of elements per row = %lf\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 721
+# File: src/c/spOutput.c, line: 889
 #, c-format
 msgid "     Fill-ins = %d\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 722
+# File: src/c/spOutput.c, line: 890
 #, c-format
 msgid "     Average number of fill-ins per row = %lf%%\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 724
+# File: src/c/spOutput.c, line: 892
 #, c-format
 msgid "     Total number of elements = %d\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 726
+# File: src/c/spOutput.c, line: 894
 #, c-format
 msgid "     Average number of elements per row = %lf\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 728
+# File: src/c/spOutput.c, line: 896
 #, c-format
 msgid "     Density = %lf%%\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 730
+# File: src/c/spOutput.c, line: 898
 #, c-format
 msgid "     Relative Threshold = %e\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 731
+# File: src/c/spOutput.c, line: 899
 #, c-format
 msgid "     Absolute Threshold = %e\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 732
+# File: src/c/spOutput.c, line: 900
 #, c-format
 msgid "     Largest Element = %e\n"
 msgstr ""
 
 #
-# File: src/c/spOutput.c, line: 733
+# File: src/c/spOutput.c, line: 901
 #, c-format
 msgid ""
 "     Smallest Element = %e\n"
@@ -306,6 +306,46 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
 "%s: %d.\n"
+msgstr ""
+
+#
+# File: macros/chfact.sci, line: 54
+msgid "  Possible matrix is not positive definite."
+msgstr ""
+
+#
+# File: macros/chfact.sci, line: 59
+msgid "Non-positive diagonal encountered, matrix is not positive definite."
+msgstr ""
+
+#
+# File: macros/chfact.sci, line: 61
+msgid "Insufficient working storage in blkfct, temp(*)."
+msgstr ""
+
+#
+# File: macros/chfact.sci, line: 63
+msgid "Insufficient working storage in blkfct, iwork(*)."
+msgstr ""
+
+#
+# File: macros/chfact.sci, line: 104
+msgid " SYMFCT requires PERM to be neqns x 1"
+msgstr ""
+
+#
+# File: macros/chfact.sci, line: 106
+msgid " SYMFCT requires INVN to be neqns x 1"
+msgstr ""
+
+#
+# File: macros/chfact.sci, line: 108
+msgid " SYMFCT requires CACHSZ  to be 1 x 1"
+msgstr ""
+
+#
+# File: macros/chfact.sci, line: 114
+msgid " Insufficient working storage in sfinit"
 msgstr ""
 
 #

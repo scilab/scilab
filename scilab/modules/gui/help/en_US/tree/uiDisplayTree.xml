@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.1-subset Scilab" xml:lang="en" xml:id="uiDisplayTree">
     <refnamediv>
         <refname>uiDisplayTree</refname>
-        <refpurpose>Printing a Tree in GUI mode</refpurpose>
+        <refpurpose>Printing an uitree in GUI mode</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -15,7 +15,7 @@
             <varlistentry>
                 <term>tree</term>
                 <listitem>
-                    <para>a Tree.</para>
+                    <para>an uitree</para>
                 </listitem>
             </varlistentry>
         </variablelist>

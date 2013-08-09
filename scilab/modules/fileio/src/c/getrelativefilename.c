@@ -33,7 +33,7 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
     int cdLen = 0, afLen = 0;
     int i = 0;
     int levels = 0;
-    char *relativeFilename= (char*)MALLOC(PATH_MAX*sizeof(char));
+    char *relativeFilename = (char*)MALLOC(PATH_MAX * sizeof(char));
     char *_currentDirectory = normalizeFileSeparator(currentDirectory);
     char *_absoluteFilename = normalizeFileSeparator(absoluteFilename);
 
@@ -41,22 +41,38 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
     afLen = (int)strlen(_absoluteFilename);
 
     // make sure the names are not too short
-    if( cdLen < ABSOLUTE_NAME_START+1 || afLen < ABSOLUTE_NAME_START+1)
+    if ( cdLen < ABSOLUTE_NAME_START + 1 || afLen < ABSOLUTE_NAME_START + 1)
     {
         // fix bug 2181
         strcpy(relativeFilename, _absoluteFilename);
-        if (_currentDirectory) {FREE(_currentDirectory); _currentDirectory = NULL;}
-        if (_absoluteFilename) {FREE(_absoluteFilename); _absoluteFilename = NULL;}
+        if (_currentDirectory)
+        {
+            FREE(_currentDirectory);
+            _currentDirectory = NULL;
+        }
+        if (_absoluteFilename)
+        {
+            FREE(_absoluteFilename);
+            _absoluteFilename = NULL;
+        }
         return relativeFilename;
     }
 
     // Handle DOS names that are on different drives:
-    if(tolower(_currentDirectory[0]) != tolower(_absoluteFilename[0]))
+    if (tolower(_currentDirectory[0]) != tolower(_absoluteFilename[0]))
     {
         // not on the same drive, so only absolute filename will do
         strcpy(relativeFilename, _absoluteFilename);
-        if (_currentDirectory) {FREE(_currentDirectory); _currentDirectory = NULL;}
-        if (_absoluteFilename) {FREE(_absoluteFilename); _absoluteFilename = NULL;}
+        if (_currentDirectory)
+        {
+            FREE(_currentDirectory);
+            _currentDirectory = NULL;
+        }
+        if (_absoluteFilename)
+        {
+            FREE(_absoluteFilename);
+            _absoluteFilename = NULL;
+        }
         return relativeFilename;
     }
 
@@ -65,23 +81,23 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
     i = ABSOLUTE_NAME_START;
 
 #if defined(_MSC_VER)
-    while(i < afLen && i < cdLen && tolower(_currentDirectory[i]) == tolower(_absoluteFilename[i]) )
+    while (i < afLen && i < cdLen && tolower(_currentDirectory[i]) == tolower(_absoluteFilename[i]) )
     {
         i++;
     }
 #else
-    while(i < afLen && i < cdLen && _currentDirectory[i] == _absoluteFilename[i])
+    while (i < afLen && i < cdLen && _currentDirectory[i] == _absoluteFilename[i])
     {
         i++;
     }
 #endif
 
-    if(i == cdLen && (_absoluteFilename[i] == DIR_SEPARATOR[0] || _absoluteFilename[i-1] == DIR_SEPARATOR[0]))
+    if (i == cdLen && (_absoluteFilename[i] == DIR_SEPARATOR[0] || _absoluteFilename[i - 1] == DIR_SEPARATOR[0]))
     {
         // the whole current directory name is in the file name,
         // so we just trim off the current directory name to get the
         // current file name.
-        if(_absoluteFilename[i] == DIR_SEPARATOR[0])
+        if (_absoluteFilename[i] == DIR_SEPARATOR[0])
         {
             // a directory name might have a trailing slash but a relative
             // file name should not have a leading one...
@@ -89,8 +105,16 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
         }
 
         strcpy(relativeFilename, &_absoluteFilename[i]);
-        if (_currentDirectory) {FREE(_currentDirectory); _currentDirectory = NULL;}
-        if (_absoluteFilename) {FREE(_absoluteFilename); _absoluteFilename = NULL;}
+        if (_currentDirectory)
+        {
+            FREE(_currentDirectory);
+            _currentDirectory = NULL;
+        }
+        if (_absoluteFilename)
+        {
+            FREE(_absoluteFilename);
+            _absoluteFilename = NULL;
+        }
         return relativeFilename;
     }
 
@@ -103,14 +127,14 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 
     // count the number of directory levels we have to go up to get to the
     // common directory
-    while(i < cdLen)
+    while (i < cdLen)
     {
         i++;
-        if(_currentDirectory[i] == DIR_SEPARATOR[0])
+        if (_currentDirectory[i] == DIR_SEPARATOR[0])
         {
             // make sure it's not a trailing slash
             i++;
-            if(_currentDirectory[i] != '\0')
+            if (_currentDirectory[i] != '\0')
             {
                 levels++;
             }
@@ -119,22 +143,30 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 
     // move the absolute filename marker back to the start of the directory name
     // that it has stopped in.
-    while(afMarker > 0 && _absoluteFilename[afMarker-1] != DIR_SEPARATOR[0])
+    while (afMarker > 0 && _absoluteFilename[afMarker - 1] != DIR_SEPARATOR[0])
     {
         afMarker--;
     }
 
     // check that the result will not be too long
-    if(levels * 3 + afLen - afMarker > PATH_MAX)
+    if (levels * 3 + afLen - afMarker > PATH_MAX)
     {
-        if (_currentDirectory) {FREE(_currentDirectory); _currentDirectory = NULL;}
-        if (_absoluteFilename) {FREE(_absoluteFilename); _absoluteFilename = NULL;}
+        if (_currentDirectory)
+        {
+            FREE(_currentDirectory);
+            _currentDirectory = NULL;
+        }
+        if (_absoluteFilename)
+        {
+            FREE(_absoluteFilename);
+            _absoluteFilename = NULL;
+        }
         return NULL;
     }
 
     // add the appropriate number of "..\"s.
     rfMarker = 0;
-    for(i = 0; i < levels; i++)
+    for (i = 0; i < levels; i++)
     {
         relativeFilename[rfMarker++] = '.';
         relativeFilename[rfMarker++] = '.';
@@ -144,8 +176,16 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
     // copy the rest of the filename into the result string
     strcpy(&relativeFilename[rfMarker], &_absoluteFilename[afMarker]);
 
-    if (_currentDirectory) {FREE(_currentDirectory); _currentDirectory = NULL;}
-    if (_absoluteFilename) {FREE(_absoluteFilename); _absoluteFilename = NULL;}
+    if (_currentDirectory)
+    {
+        FREE(_currentDirectory);
+        _currentDirectory = NULL;
+    }
+    if (_absoluteFilename)
+    {
+        FREE(_absoluteFilename);
+        _absoluteFilename = NULL;
+    }
 
     return relativeFilename;
 }

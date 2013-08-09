@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:03+0100\n"
-"PO-Revision-Date: 2013-03-28 21:06+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-30 20:14+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 msgid "X,Y,A and B"
 msgstr "X,Y,A a B"
@@ -46,6 +46,14 @@ msgstr "Pr,OMPr,P,Q a S"
 
 msgid "P,Q,S  and Xn"
 msgstr "P,Q,S a Xn"
+
+#, c-format
+msgid ""
+"%s: Warning: using non integer values for argument #%d may lead to incorrect "
+"results.\n"
+msgstr ""
+"%s: Varování: použití neceločíselných hodnot v argumentu #%d může vést k "
+"nesprávným výsledkům.\n"
 
 msgid "X and Df"
 msgstr "X a Df"
@@ -151,6 +159,12 @@ msgstr "P,Q,X a Průměr"
 msgid " Std must not be zero\n"
 msgstr " Std nesmí být nula\n"
 
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A matrix of integer values "
+"expected.\n"
+msgstr ""
+
 msgid "S and Xlam"
 msgstr "S a Xlam"
 
@@ -230,12 +244,12 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -253,43 +267,64 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno stejný počet sloupců "
 "jako první vstupní argument.\n"
 
-msgid "histplot() : (normalized) histogram plot"
-msgstr "histplot() : (normalizovaný) graf histogramu"
-
-msgid "Gaussian random sample histogram"
-msgstr "Náhodný vzorek gaussovského histogramu"
-
-msgid "Exact gaussian density"
-msgstr "Přesná gaussovská hustota"
-
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáváno nejméně %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
+msgid "%s: Wrong type for input argument #%d: a real matrix expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána reálná matice.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
+"%s: Wrong type for input argument #%d: an integer or a real matrix "
+"expected.\n"
 msgstr ""
-"%s: Špatné hodnoty vstupního argumentu #%d: Prvky musí být ve vzestupném "
-"pořadí.\n"
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo nebo reálná "
+"matice.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno %d nebo %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno %dx%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d, %d, nebo %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno alespoň %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong dimensions for input argument #%d: A column vector or matrix "
+"expected.\n"
+msgstr ""
+"%s: Špatné rozměry vstupního argumentu #%d: Očekáván sloupcový vektor nebo "
+"matice.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong dimensions for input argument #%d: A row vector or matrix "
+"expected.\n"
+msgstr ""
+"%s: Špatné rozměry vstupního argumentu #%d: Očekáván řádkový vektor nebo "
+"matice.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', %d, '%s' or %d expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', %d, '%s' nebo "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -315,6 +350,26 @@ msgstr "%s: Špatný typ vstupního argumentu #%d.\n"
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor nebo skalár.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A full or sparse matrix, or an "
+"integer matrix, or an hypermat expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána celá nebo řídká matice, "
+"celočíselná matice nebo hypermatice.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupních argumentů #%d a #%d: Očekávány stejné "
+"rozměry.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s', %d or %d.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: '%s', '%s', %d nebo %d.\n"
 
 #, c-format
 msgid ""
@@ -405,13 +460,6 @@ msgstr "Kruh korelací"
 
 msgid "Eigenvalues"
 msgstr "Vlastní čísla"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupních argumentů #%d a #%d: Očekávány stejné "
-"rozměry.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"

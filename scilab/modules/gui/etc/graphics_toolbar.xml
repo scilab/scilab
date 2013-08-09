@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 <toolbar>
-  <!-- [SCILAB_FIGURE_ID] pattern is replaced at generation of Java menu by the ID of the figure -->
-  <!-- Rotate -->
-  <button icon="transform-rotate" tooltiptext="Rotate">
-    <callback instruction="set(get_figure_handle([SCILAB_FIGURE_ID]), 'info_message', 'Right click and drag to rotate.')" type="-2"/>
-  </button>
-  <separator/>
-  <!-- Zoom Area -->
-  <button icon="zoom-fit-selection" tooltiptext="Zoom Area">
-    <callback instruction="zoom_rect(get_figure_handle([SCILAB_FIGURE_ID]))" type="-2"/>
-  </button>
-  <!-- Original View -->
-  <button icon="zoom-original" tooltiptext="Original View">
-    <callback instruction="unzoom(get_figure_handle([SCILAB_FIGURE_ID]))" type="-2"/>
-  </button>
-  <separator/>
-  <!-- Datatips -->
-  <button icon="datatips" tooltiptext="toggle datatip mode">
-    <callback instruction="datatipManagerMode([SCILAB_FIGURE_ID],&quot;toggle&quot;);" type="-2"/>
-  </button>
-  <separator/>
-  <!-- Help -->
-  <button icon="help-browser" tooltiptext="Help Browser">
-    <callback instruction="help();" type="-2"/>
-  </button>
+    <!-- [SCILAB_FIGURE_ID] pattern is replaced at generation of Java menu by the ID of the figure -->
+    <!-- Rotate -->
+    <button icon="transform-rotate" tooltiptext="Rotate">
+        <callback instruction="set(get_figure_handle([SCILAB_FIGURE_ID]), 'info_message', 'Right click and drag to rotate.')" type="-2"/>
+    </button>
+    <separator/>
+    <!-- Zoom Area -->
+    <button icon="zoom-fit-selection" tooltiptext="Zoom Area">
+        <callback instruction="zoom_rect(get_figure_handle([SCILAB_FIGURE_ID]))" type="-2"/>
+    </button>
+    <!-- Original View -->
+    <button icon="zoom-original" tooltiptext="Original View">
+        <callback instruction="unzoom(get_figure_handle([SCILAB_FIGURE_ID]))" type="-2"/>
+    </button>
+    <separator/>
+    <!-- Datatips -->
+    <button icon="datatips" tooltiptext="toggle datatip mode">
+        <callback instruction="datatipManagerMode([SCILAB_FIGURE_ID],&quot;toggle&quot;);" type="-2"/>
+    </button>
+    <separator/>
+    <!-- Help -->
+    <button icon="help-browser" tooltiptext="Help Browser">
+        <callback instruction="help();" type="-2"/>
+    </button>
 </toolbar>

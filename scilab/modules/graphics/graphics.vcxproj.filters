@@ -593,9 +593,6 @@
     <ClCompile Include="sci_gateway\c\sci_set.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_show_pixmap.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_show_window.c">
       <Filter>Source Files</Filter>
     </ClCompile>

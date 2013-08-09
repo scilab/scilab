@@ -30,7 +30,7 @@ umf_ludel(Lup)
 // a real (but small)  example
 // first load a sparse matrix
 [A] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
-// compute the factorisation
+// compute the factorization
 Lup = umf_lufact(A);
 b = rand(size(A,1),1); // a random rhs
 // use umf_lusolve for solving Ax=b

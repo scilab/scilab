@@ -6,19 +6,19 @@
 
 function demo_tclsci_scroll()
 
-  mprintf("\n");
-  
-  tkpath = SCI + "/modules/tclsci/demos/tk/";
+    mprintf("\n");
 
-  TCL_EvalFile(tkpath + 'cscroll')
+    tkpath = SCI + "/modules/tclsci/demos/tk/";
 
-  while %t //wait for toplevel to disapear
-    TCL_EvalStr('set h [winfo exists .cscroll]');
-    if TCL_GetVar("h")=='0' then break,end
-    sleep(1);
-  end
-  
-  mprintf("\n");
+    TCL_EvalFile(tkpath + "cscroll")
+
+    while %t //wait for toplevel to disapear
+        TCL_EvalStr("set h [winfo exists .cscroll]");
+        if TCL_GetVar("h")=="0" then break,end
+        sleep(1);
+    end
+
+    mprintf("\n");
 
 endfunction
 

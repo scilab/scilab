@@ -9,10 +9,10 @@
 //=============================================================================
 function xcoslibrarieslist = dlwGetXcosLibraries()
 
-  xcoslibrarieslist = ["scicos.lib"; ..
-                       "scicos_f.lib"; ..
-                       "scicos_blocks.lib"; ..
-                       "scicos_blocks_f.lib"]; 
+    xcoslibrarieslist = ["scicos.lib"; ..
+    "scicos_f.lib"; ..
+    "scicos_blocks.lib"; ..
+    "scicos_blocks_f.lib"];
 
 endfunction
 //=============================================================================

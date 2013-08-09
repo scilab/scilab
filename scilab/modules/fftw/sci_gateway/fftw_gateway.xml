@@ -14,8 +14,8 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="fftw">
-
-<!--
+    
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -30,15 +30,15 @@
 
  Don't touch if you do not know what you are doing
 -->
-
-<PRIMITIVE gatewayId="51" primitiveId="1" primitiveName="loadfftwlibrary" />
-<PRIMITIVE gatewayId="51" primitiveId="2" primitiveName="disposefftwlibrary" />
-<PRIMITIVE gatewayId="51" primitiveId="3" primitiveName="fftwlibraryisloaded" />
-<PRIMITIVE gatewayId="51" primitiveId="4" primitiveName="fftw" />
-<PRIMITIVE gatewayId="51" primitiveId="5" primitiveName="fftw_flags" />
-<PRIMITIVE gatewayId="51" primitiveId="6" primitiveName="get_fftw_wisdom" />
-<PRIMITIVE gatewayId="51" primitiveId="7" primitiveName="set_fftw_wisdom" />
-<PRIMITIVE gatewayId="51" primitiveId="8" primitiveName="fftw_forget_wisdom" />
-<PRIMITIVE gatewayId="51" primitiveId="9" primitiveName="dct" />
-<PRIMITIVE gatewayId="51" primitiveId="10" primitiveName="dst" />
+    
+    <PRIMITIVE gatewayId="51" primitiveId="1" primitiveName="loadfftwlibrary" />
+    <PRIMITIVE gatewayId="51" primitiveId="2" primitiveName="disposefftwlibrary" />
+    <PRIMITIVE gatewayId="51" primitiveId="3" primitiveName="fftwlibraryisloaded" />
+    <PRIMITIVE gatewayId="51" primitiveId="4" primitiveName="fftw" />
+    <PRIMITIVE gatewayId="51" primitiveId="5" primitiveName="fftw_flags" />
+    <PRIMITIVE gatewayId="51" primitiveId="6" primitiveName="get_fftw_wisdom" />
+    <PRIMITIVE gatewayId="51" primitiveId="7" primitiveName="set_fftw_wisdom" />
+    <PRIMITIVE gatewayId="51" primitiveId="8" primitiveName="fftw_forget_wisdom" />
+    <PRIMITIVE gatewayId="51" primitiveId="9" primitiveName="dct" />
+    <PRIMITIVE gatewayId="51" primitiveId="10" primitiveName="dst" />
 </GATEWAY>

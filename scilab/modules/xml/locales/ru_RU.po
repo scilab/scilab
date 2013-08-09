@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-10 17:02+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-08-01 14:05+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -364,7 +364,7 @@ msgstr "Не могу сделать синтаксический разбор �
 
 #, c-format
 msgid "%s: No root element.\n"
-msgstr ""
+msgstr "%s: Нет корневого элемента.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%i: A string expected.\n"
@@ -376,7 +376,7 @@ msgstr "%s: Неверный тип для установки поля %s.\n"
 
 #, c-format
 msgid "%s: Not valid xml for root.\n"
-msgstr ""
+msgstr "%s: Некорректный формат xml для корня.\n"
 
 #, c-format
 msgid "%s: Field %s is not modifiable: %s\n"

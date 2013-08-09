@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-11-29 22:31+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-26 12:04+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: fr\n"
 
 #, c-format
@@ -199,6 +199,36 @@ msgstr "%s n'est pas un point d'entrée.\n"
 msgid "Linking %s.\n"
 msgstr "Édition de liens %s.\n"
 
+msgid "Calling a C function from Scilab.\n"
+msgstr "Appeler une fonction C depuis Scilab.\n"
+
+msgid "Calling ilib_for_link to build C function.\n"
+msgstr "Appeler ilib_for_link pour compiler une fonction C.\n"
+
+msgid "Calling C function. Z = X+Y"
+msgstr "Appeler la fonction C. Z = X+Y"
+
+#, c-format
+msgid "with X = %d"
+msgstr "avec X = %d"
+
+#, c-format
+msgid "with Y = %d"
+msgstr "avec Y = %d"
+
+#, c-format
+msgid "Result Z = %d"
+msgstr "Résultat Z = %d"
+
+msgid "Calling a Fortran subroutine from Scilab.\n"
+msgstr "Appeler une sous-routine Fortran depuis Scilab.\n"
+
+msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
+msgstr "Appeler ilib_for_link pour compiler une sous-routine Fortran.\n"
+
+msgid "Calling Fortran subroutine. Z = X+Y"
+msgstr "Appeler la sous-routine Fortran. Z = X+Y"
+
 msgid "Dynamic link"
 msgstr "Lien dynamique"
 
@@ -209,12 +239,30 @@ msgid "Call a Fortran subroutine"
 msgstr "Appeler une sous-routine Fortran"
 
 #, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr "%s : Un compilateur Fortran ou C est requis.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée.\n"
+
+msgid "Microsoft Visual Studio C x86 Compiler not found."
+msgstr "Le compilateur Microsoft Visual Studio C x86 n'a pas été trouvé."
 
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
 "Impossible de trouver un compilateur Intel Fortran Compiler 9, 10, 11 ou 12"
+
+msgid ""
+"Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
+msgstr ""
+"Le compilateur Microsoft Visual Studio C 2008 x64 (ou plus récent) n'est pas "
+"installé."
+
+msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
+msgstr ""
+"Impossible de trouver le compilateur Microsoft Visual Studio C 2008 (ou plus "
+"récent)."
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
@@ -242,10 +290,6 @@ msgid ""
 msgstr ""
 "En raison de la nature multiconstructeur du monde Unix, la fonction 'have a "
 "compiler' est uniquement supportée sous Windows."
-
-#, c-format
-msgid "%s: A Fortran or C compiler is required.\n"
-msgstr "%s : Un compilateur Fortran ou C est requis.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -483,3 +527,12 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr ""
 "%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
+
+msgid "not found."
+msgstr "absent."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected."
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractère "
+"attendue."

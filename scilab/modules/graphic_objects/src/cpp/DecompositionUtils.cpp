@@ -178,12 +178,12 @@ void DecompositionUtils::getDecomposedQuadTriangleIndices(double vertices[4][3],
      * for respectively the first and second condigurations.
      */
 
-    mid0[0] = 0.5*(vertices[0][0] + vertices[2][0]);
-    mid0[1] = 0.5*(vertices[0][1] + vertices[2][1]);
-    mid0[2] = 0.5*(vertices[0][2] + vertices[2][2]);
-    mid1[0] = 0.5*(vertices[1][0] + vertices[3][0]);
-    mid1[1] = 0.5*(vertices[1][1] + vertices[3][1]);
-    mid1[2] = 0.5*(vertices[1][2] + vertices[3][2]);
+    mid0[0] = 0.5 * (vertices[0][0] + vertices[2][0]);
+    mid0[1] = 0.5 * (vertices[0][1] + vertices[2][1]);
+    mid0[2] = 0.5 * (vertices[0][2] + vertices[2][2]);
+    mid1[0] = 0.5 * (vertices[1][0] + vertices[3][0]);
+    mid1[1] = 0.5 * (vertices[1][1] + vertices[3][1]);
+    mid1[2] = 0.5 * (vertices[1][2] + vertices[3][2]);
 
     /* 1st decomposition */
 
@@ -197,19 +197,19 @@ void DecompositionUtils::getDecomposedQuadTriangleIndices(double vertices[4][3],
     mo1[1] = vertices[3][1] - mid0[1];
     mo1[2] = vertices[3][2] - mid0[2];
 
-    nmo0 = mo0[0]*mo0[0] + mo0[1]*mo0[1] + mo0[2]*mo0[2];
-    nmo1 = mo1[0]*mo1[0] + mo1[1]*mo1[1] + mo1[2]*mo1[2];
+    nmo0 = mo0[0] * mo0[0] + mo0[1] * mo0[1] + mo0[2] * mo0[2];
+    nmo1 = mo1[0] * mo1[0] + mo1[1] * mo1[1] + mo1[2] * mo1[2];
 
     if (nmo0 * nmo1 > 0.0)
     {
-        denom = DecompositionUtils::getSquareRoot(nmo0*nmo1);
+        denom = DecompositionUtils::getSquareRoot(nmo0 * nmo1);
     }
     else
     {
         denom = 1.0;
     }
 
-    dot0 = (mo0[0]*mo1[0] + mo0[1]*mo1[1] + mo0[2]*mo1[2]) / denom;
+    dot0 = (mo0[0] * mo1[0] + mo0[1] * mo1[1] + mo0[2] * mo1[2]) / denom;
 
     /* 2nd decomposition */
 
@@ -223,19 +223,19 @@ void DecompositionUtils::getDecomposedQuadTriangleIndices(double vertices[4][3],
     mo1[1] = vertices[0][1] - mid1[1];
     mo1[2] = vertices[0][2] - mid1[2];
 
-    nmo0 = mo0[0]*mo0[0] + mo0[1]*mo0[1] + mo0[2]*mo0[2];
-    nmo1 = mo1[0]*mo1[0] + mo1[1]*mo1[1] + mo1[2]*mo1[2];
+    nmo0 = mo0[0] * mo0[0] + mo0[1] * mo0[1] + mo0[2] * mo0[2];
+    nmo1 = mo1[0] * mo1[0] + mo1[1] * mo1[1] + mo1[2] * mo1[2];
 
     if (nmo0 * nmo1 > 0.0)
     {
-        denom = getSquareRoot(nmo0*nmo1);
+        denom = getSquareRoot(nmo0 * nmo1);
     }
     else
     {
         denom = 1.0;
     }
 
-    dot1 = (mo0[0]*mo1[0] + mo0[1]*mo1[1] + mo0[2]*mo1[2]) / denom;
+    dot1 = (mo0[0] * mo1[0] + mo0[1] * mo1[1] + mo0[2] * mo1[2]) / denom;
 
     /* The lower the dot product, the closer to -1, and the more coplanar the triangles are. */
     if (dot0 <= dot1)

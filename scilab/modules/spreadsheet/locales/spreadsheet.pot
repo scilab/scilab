@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/gw_csv_helpers.c, line: 72
 # File: sci_gateway/c/gw_csv_helpers.c, line: 128
@@ -273,57 +273,57 @@ msgid "%s: error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 95
-# File: sci_gateway/c/sci_xls_open.c, line: 115
+# File: sci_gateway/c/sci_xls_open.c, line: 99
+# File: sci_gateway/c/sci_xls_open.c, line: 119
 #, c-format
 msgid "The file %s does not exist.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 121
+# File: sci_gateway/c/sci_xls_open.c, line: 125
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 130
+# File: sci_gateway/c/sci_xls_open.c, line: 134
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 144
+# File: sci_gateway/c/sci_xls_open.c, line: 148
 #, c-format
 msgid "%s: There is no xls stream in the ole2 file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 178
+# File: sci_gateway/c/sci_xls_open.c, line: 182
 #, c-format
 msgid "%s: Not an ole2 file.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 182
+# File: sci_gateway/c/sci_xls_open.c, line: 186
 #, c-format
 msgid "%s: The file has no Workbook directory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 186
+# File: sci_gateway/c/sci_xls_open.c, line: 190
 # File: sci_gateway/c/sci_xls_read.c, line: 62
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 190
+# File: sci_gateway/c/sci_xls_open.c, line: 194
 #, c-format
 msgid "%s: Incorrect or corrupted file.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xls_open.c, line: 194
+# File: sci_gateway/c/sci_xls_open.c, line: 198
 #, c-format
 msgid "%s: Only BIFF8 file format is handled.\n"
 msgstr ""
@@ -361,19 +361,19 @@ msgid "Warning"
 msgstr ""
 
 #
-# File: src/c/ripole/logger.c, line: 120
+# File: src/c/ripole/logger.c, line: 121
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
 msgstr ""
 
 #
-# File: src/c/ripole/logger.c, line: 122
+# File: src/c/ripole/logger.c, line: 123
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
 msgstr ""
 
 #
-# File: src/c/ripole/logger.c, line: 346
+# File: src/c/ripole/logger.c, line: 365
 #, c-format
 msgid "LOGGER-Default: %s%s"
 msgstr ""
@@ -540,7 +540,7 @@ msgid "Unable to decode stream with element string '%s'\n"
 msgstr ""
 
 #
-# File: src/c/ripole/pldstr.c, line: 504
+# File: src/c/ripole/pldstr.c, line: 564
 #, c-format
 msgid ""
 "%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform "
@@ -548,7 +548,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/ripole/pldstr.c, line: 586
+# File: src/c/ripole/pldstr.c, line: 667
 #, c-format
 msgid ""
 "%s:%d:PLD_strreplace_general: Allocated memory ran out while replacing '%s' "
@@ -562,13 +562,13 @@ msgid "Decoding filename=%s"
 msgstr ""
 
 #
-# File: src/c/ripole/ripole.c, line: 150
+# File: src/c/ripole/ripole.c, line: 154
 #, c-format
 msgid "ripOLE requires an input file to decode.\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ripole.c, line: 187
+# File: src/c/ripole/ripole.c, line: 196
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr ""

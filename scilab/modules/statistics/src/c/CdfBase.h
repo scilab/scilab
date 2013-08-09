@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+
 #ifndef __CDFBASE_H__
 #define __CDFBASE_H__
 
@@ -31,7 +31,7 @@
  * @param (*foncErr)()
  * @return
  */
-int  CdfBase(char *fname,int inarg,int oarg,int *callpos,char *option,char *errnames,int which,int (*fonc)(),void (*foncErr)() );
+int  CdfBase(char *fname, int inarg, int oarg, int *callpos, char *option, char *errnames, int which, int (*fonc)(), void (*foncErr)() );
 
 
 /* messages error */

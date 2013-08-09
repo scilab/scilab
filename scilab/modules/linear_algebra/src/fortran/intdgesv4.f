@@ -139,6 +139,7 @@ c
       do 70 i = 1, M
          istk(lJPVT+i-1) = 0
  70   continue
+      info = 1
       call DGELSY1( N, M, K, stk(lAT), N, stk(lBT), max(M,N),
      $     istk(lJPVT), RCOND, istk(lRANK), stk(lDWORK),
      $     LWORK, INFO )

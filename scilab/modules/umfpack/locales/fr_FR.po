@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2011-09-01 09:53+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-26 13:27+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: fr\n"
 
 #, c-format
@@ -52,17 +52,14 @@ msgstr "Factorisation"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
-"Cholesky factorisation"
+"Cholesky factorization"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être une référence "
-"valide vers une factorisation de Cholesky"
+"valide à la factorisation de Cholesky."
 
 #, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr ""
-"%s : Plus de mémoire disponible : Augmentez stacksize %d mots "
-"supplémentaires sont requis.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
 msgid ""
@@ -78,10 +75,18 @@ msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
-"factorisation.\n"
+"%s: Wrong type for input argument #%d: not compatible with the Cholesky "
+"factorization.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Pas compatible avec la "
+"%s : Type erroné de l'argument d'entrée n°%d : Incompatible avec la "
+"factorisation de Cholesky.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
+"factorization.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Incompatible avec la "
 "factorisation de Cholesky.\n"
 
 #, c-format
@@ -116,11 +121,11 @@ msgstr "Espace insuffisant pour stocker le pointeur LU dans ListNumeric"
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s : Une erreur s'est produite : %s.\n"
 
-msgid "This is not a factorisation of a square matrix"
-msgstr "Ce n'est pas une factorisation d'une matrice carrée"
+msgid "This is not a factorization of a square matrix"
+msgstr "Il ne s'agit pas d'une factorisation d'une matrice carrée"
 
-msgid "This is a factorisation of a singular matrix"
-msgstr "C'est une factorisation d'une matrice singulière"
+msgid "This is a factorization of a singular matrix"
+msgstr "Il s'agit d'une factorisation d'une matrice singulière"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"

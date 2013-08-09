@@ -4,9 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- ENGLISH IMPOSED -->
+//
 // <-- CLI SHELL MODE -->
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): 1 expected."), "h5isRef");
+msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "h5isRef", 1);
 assert_checkerror("h5isRef()",msgerr,77);
 assert_checkfalse(h5isRef("42"));
 assert_checkfalse(h5isRef(42));

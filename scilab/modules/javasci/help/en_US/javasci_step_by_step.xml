@@ -100,7 +100,7 @@ foo[1,1] = 0.0
 6.    10.          12.
         ]]></programlisting>
         <para>
-For more information about the objects and methods, browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).
+            For more information about the objects and methods, browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).
         </para>
     </refsection>
     <refsection>
@@ -155,15 +155,15 @@ java -cp $(CLASSPATH):. -DSCI=$(SCI) -Djava.library.path=$(LIB_PATH) Example1
     <refsection>
         <title>See Also</title>
         <simplelist type="inline">
-<member>
-    Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser). 
-</member>
-<member>
-    <link linkend="compile_and_run_javasci_v2">Compile and run with Javasci v2</link>
-</member>
-<member>
-    <link linkend="javasci_faq_v2">Javasci v2 FAQ</link>
-</member>
+            <member>
+                Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser). 
+            </member>
+            <member>
+                <link linkend="compile_and_run_javasci_v2">Compile and run with Javasci v2</link>
+            </member>
+            <member>
+                <link linkend="javasci_faq_v2">Javasci v2 FAQ</link>
+            </member>
         </simplelist>
     </refsection>
 </refentry>

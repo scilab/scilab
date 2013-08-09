@@ -3,12 +3,12 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function xsetm()
-  warnobsolete('ged', '5.5.0');
-//obsolete function formely used for old_graphic style
-  ged(1);
+    warnobsolete("ged", "5.5.0");
+    //obsolete function formely used for old_graphic style
+    ged(1);
 
 endfunction

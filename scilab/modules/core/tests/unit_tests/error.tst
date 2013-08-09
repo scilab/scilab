@@ -155,7 +155,7 @@ assert_checkerror ( "error(48)" , msgerror );
 msgerror = msprintf(gettext("Incorrect file or format.\n"));
 assert_checkerror ( "error(49)" , msgerror );
 
-msgerror = msprintf(gettext("subroutine not found: %s\n"),"");
+msgerror = msprintf(gettext("%s: subroutine not found.\n"), "");
 assert_checkerror ( "error(50)" , msgerror );
 
 msgerror = "";
@@ -431,10 +431,10 @@ assert_checkerror ( "error(142, 22)" , msgerror );
 msgerror = msprintf(gettext("%s: df0 must be positive !\n"), "optim");
 assert_checkerror ( "error(143)" , msgerror );
 
-msgerror = "";
+msgerror =  msprintf(gettext("%s: Wrong type for argument #%d: Matrix of handle expected.\n"), "error", 0);
 assert_checkerror ( "error(200)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), "error", 22);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"), "error", 22);
 assert_checkerror ( "error(201, 22)" , msgerror );
 
 msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "error", 22);
@@ -467,7 +467,7 @@ assert_checkerror ( "error(210, 20)" , msgerror );
 msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Function or string (external function) expected.\n"), "error", 20);
 assert_checkerror ( "error(211, 20)" , msgerror );
 
-msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Polynomial expected.\n"), "error", 20);
+msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Polynomial matrix expected.\n"), "error", 20);
 assert_checkerror ( "error(212, 20)" , msgerror );
 
 msgerror = msprintf(gettext("%s: Wrong type for argument #%d: Working int matrix expected.\n"), "error", 20);

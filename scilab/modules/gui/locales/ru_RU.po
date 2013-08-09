@@ -9,19 +9,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-09-24 12:20+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-08-01 13:51+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -40,8 +48,16 @@ msgstr ""
 "«%s».\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась матрица строк.\n"
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался вещественным.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -67,13 +83,14 @@ msgid "%s: Figure number must be given when not in '%s' mode.\n"
 msgstr "%s: Разряд числа не может быть представлен в «%s» режиме.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица дескрипторов.\n"
 
 #, c-format
 msgid ""
@@ -92,13 +109,18 @@ msgstr ""
 "дескриптор «Figure».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась матрица строк.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица логических "
+"значений.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -267,6 +289,10 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: Ожидался графический дескриптор.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Handle expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался дескриптор.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
 msgstr ""
@@ -343,6 +369,41 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: At least 2 elements expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалось хотя бы 2 элемента.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: First element must be a string.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: первый элемент должен быть "
+"строкой.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Tree expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалось дерево.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Second element must be a mlist.\n"
+msgstr ""
+"%s: Неверный тип входного элемента №%d: второй элемент должен быть типа "
+"mlist.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Неверный тип элемента %d входного аргумента №%d: ожидалось строковое "
+"значение.\n"
+
+#, c-format
+msgid "%s: Error in the tree parsing.\n"
+msgstr "%s: Ошибка в анализе дерева.\n"
+
+#, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Произошла ошибка: %s.\n"
 
@@ -364,10 +425,6 @@ msgstr ""
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: Файл %s не существует.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
@@ -417,16 +474,6 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась матрица строк.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась матрица логических "
-"значений.\n"
 
 msgid "&File"
 msgstr "&Файл"
@@ -540,7 +587,7 @@ msgid "&All Objects View (All objects with properties)"
 msgstr "&Обзор всех объектов (все объекты со свойствами)"
 
 msgid "&Ged-like View (Future ged)"
-msgstr ""
+msgstr "&Ged-образный обзор (будущий ged)"
 
 msgid "&?"
 msgstr "&Справка"
@@ -806,6 +853,12 @@ msgstr "Шрифт текста рабочего стола"
 msgid "Custom:"
 msgstr "Своя настройка:"
 
+msgid "LaTeX preview"
+msgstr "предварительный просмотр LaTeX"
+
+msgid "LaTeX font size:"
+msgstr "размер шрифта LaTeX:"
+
 msgid "Web"
 msgstr "Интернет"
 
@@ -1067,7 +1120,6 @@ msgstr "Цвет фона"
 msgid "No print service found."
 msgstr "Служба печати не найдена."
 
-#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1077,7 +1129,6 @@ msgstr ""
 "в котором невозможно смешивать графическое отображение с элементами "
 "управления (uicontrols). Для получения справки напечатайте %s."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "В некоторых случаях %s решает проблему"
 
@@ -1256,7 +1307,6 @@ msgstr "Сохранить и выполнить"
 msgid "Empty tab"
 msgstr "Пустая вкладка"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1265,11 +1315,9 @@ msgstr ""
 "Пожалуйста, сообщите об ошибке с помощью предыдущего сообщения и прикрепив "
 "файл %s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Вы действительно хотите закрыть %s ?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Вы действительно хотите закрыть %s и %s ?"
 
@@ -1324,7 +1372,6 @@ msgstr "Все изображения PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Все файлы RTF (Rich Text Format)"
 
-#, c-format
 msgid "All %s files"
 msgstr "Все файлы %s"
 
@@ -1583,21 +1630,21 @@ msgstr ""
 " неверен: %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалось дерево.\n"
+msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
-msgstr "%s: Неверный тип входных параметров с №%d: ожидалось дерево.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgid "%s: Wrong type for input argument #%d: String or uitree expected.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась строка или дерево.\n"
 
 #, c-format
 msgid "%s: Invalid position '%s'.\n"
@@ -1619,11 +1666,6 @@ msgstr "%s: Нет совпадающей вершины.\n"
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось дерево или строка.\n"
 
 #, c-format
 msgid ""

@@ -12,37 +12,37 @@ package org.scilab.modules.localization;
 
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
- /** 
-   * @author Sylvestre LEDRU
-   * @copyright DIGITEO 2009
-   */
+/**
+  * @author Sylvestre LEDRU
+  * @copyright DIGITEO 2009
+  */
 public class MessagesJNI {
 
-  /**
-    * Constructor
-    */
-  protected MessagesJNI() {
-    throw new UnsupportedOperationException();
-  }
-
-  static {
-    try {
-        if (System.getProperty("os.name").toLowerCase().contains("windows") != true) {
-            if (System.getProperty("testngTests")!=null) {
-                System.loadLibrary("scilab");
-            }
-        }
-        System.loadLibrary("scilocalization");
-    } catch (SecurityException e) {
-        System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
-        System.err.println(e.getLocalizedMessage());
-        e.printStackTrace(System.err);
-    } catch (UnsatisfiedLinkError e)    {
-        System.err.println("The native library scilocalization does not exist or cannot be found.");
-        System.err.println(e.getLocalizedMessage());
-        e.printStackTrace(System.err);
+    /**
+      * Constructor
+      */
+    protected MessagesJNI() {
+        throw new UnsupportedOperationException();
     }
-  }
 
-  public final static native String gettext(String jarg1);
+    static {
+        try {
+            if (System.getProperty("os.name").toLowerCase().contains("windows") != true) {
+                if (System.getProperty("testngTests") != null) {
+                    System.loadLibrary("scilab");
+                }
+            }
+            System.loadLibrary("scilocalization");
+        } catch (SecurityException e) {
+            System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
+            System.err.println(e.getLocalizedMessage());
+            e.printStackTrace(System.err);
+        } catch (UnsatisfiedLinkError e)    {
+            System.err.println("The native library scilocalization does not exist or cannot be found.");
+            System.err.println(e.getLocalizedMessage());
+            e.printStackTrace(System.err);
+        }
+    }
+
+    public final static native String gettext(String jarg1);
 }

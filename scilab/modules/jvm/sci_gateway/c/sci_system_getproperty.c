@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,34 +19,38 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_system_getproperty(char *fname,unsigned long fname_len)
+int sci_system_getproperty(char *fname, unsigned long fname_len)
 {
-	Rhs = Max(Rhs,0);
-	CheckRhs(1,1);
-	CheckLhs(0,1);
+    Rhs = Max(Rhs, 0);
+    CheckRhs(1, 1);
+    CheckLhs(0, 1);
 
-	if ( GetType(1) == sci_strings )
-	{
-		static int m1,n1=0,l1=0;
-		char *propertyName = NULL;
-		char *propertyValue = NULL;
+    if ( GetType(1) == sci_strings )
+    {
+        static int m1, n1 = 0, l1 = 0;
+        char *propertyName = NULL;
+        char *propertyValue = NULL;
 
-		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		propertyName=cstk(l1);
-		propertyValue=system_getproperty(propertyName,"unknown");
+        GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
+        propertyName = cstk(l1);
+        propertyValue = system_getproperty(propertyName, "unknown");
 
-		n1=1;
-		CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(propertyValue), &m1),&n1,&propertyValue);
-		LhsVar(1)=Rhs+1;
-		if (propertyValue) {FREE(propertyValue);propertyValue=NULL;}
+        n1 = 1;
+        CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, (m1 = (int)strlen(propertyValue), &m1), &n1, &propertyValue);
+        LhsVar(1) = Rhs + 1;
+        if (propertyValue)
+        {
+            FREE(propertyValue);
+            propertyValue = NULL;
+        }
         PutLhsVar();
-	}
-	else
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname, 1);
-		return 0;
-	}
-	return 0;
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        return 0;
+    }
+    return 0;
 }
 
 /*--------------------------------------------------------------------------*/

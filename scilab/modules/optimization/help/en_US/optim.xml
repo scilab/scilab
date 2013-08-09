@@ -275,89 +275,136 @@
                     </para>
                     <itemizedlist>
                         <listitem>
-                            <para><literal>"qn"</literal> without constraints: from <literal>iflag=1</literal>
-                            to <literal>iflag=3</literal>.</para>
+                            <para>
+                                <literal>"qn"</literal> without constraints: from <literal>iflag=1</literal>
+                                to <literal>iflag=3</literal>.
+                            </para>
                             <itemizedlist>
                                 <listitem>
-                                    <para><literal>iflag>=1</literal>: initial and final print,</para>
+                                    <para>
+                                        <literal>iflag>=1</literal>: initial and final print,
+                                    </para>
                                 </listitem>
                                 <listitem>
-                                    <para><literal>iflag>=2</literal>: one line per iteration (number of iterations,
-                                    number of calls to f, value of f),</para>
+                                    <para>
+                                        <literal>iflag>=2</literal>: one line per iteration (number of iterations,
+                                        number of calls to f, value of f),
+                                    </para>
                                 </listitem>
                                 <listitem>
-                                    <para><literal>iflag>=3</literal>: extra information on line searches.</para>
+                                    <para>
+                                        <literal>iflag>=3</literal>: extra information on line searches.
+                                    </para>
                                 </listitem>
                             </itemizedlist>
                         </listitem>
                         <listitem>
-                            <para><literal>"qn"</literal> with bounds constraints: from <literal>iflag=1</literal>
-                            to <literal>iflag=4</literal>.</para>
+                            <para>
+                                <literal>"qn"</literal> with bounds constraints: from <literal>iflag=1</literal>
+                                to <literal>iflag=4</literal>.
+                            </para>
                             <itemizedlist>
                                 <listitem>
-                                    <para><literal>iflag>=1</literal>: initial and final print,</para>
+                                    <para>
+                                        <literal>iflag>=1</literal>: initial and final print,
+                                    </para>
                                 </listitem>
                                 <listitem>
-                                    <para><literal>iflag>=2</literal>: one line per iteration (number of iterations,
-                                    number of calls to f, value of f),</para>
+                                    <para>
+                                        <literal>iflag>=2</literal>: one line per iteration (number of iterations,
+                                        number of calls to f, value of f),
+                                    </para>
                                 </listitem>
                                 <listitem>
-                                    <para><literal>iflag>=3</literal>: extra information on line searches.</para>
+                                    <para>
+                                        <literal>iflag>=3</literal>: extra information on line searches.
+                                    </para>
                                 </listitem>
                             </itemizedlist>
                         </listitem>
                         <listitem>
-                            <para><literal>"gc"</literal> without constraints: from <literal>iflag=1</literal>
-                            to <literal>iflag=5</literal>.</para>
+                            <para>
+                                <literal>"gc"</literal> without constraints: from <literal>iflag=1</literal>
+                                to <literal>iflag=5</literal>.
+                            </para>
                             <itemizedlist>
                                 <listitem>
-                                    <para><literal>iflag>=1</literal> and <literal>iflag>=2</literal>: initial and final print,</para>
+                                    <para>
+                                        <literal>iflag>=1</literal> and <literal>iflag>=2</literal>: initial and final print,
+                                    </para>
                                 </listitem>
                                 <listitem>
-                                    <para><literal>iflag=3</literal>: one line per iteration (number of iterations,
-                                    number of calls to f, value of f),</para>
+                                    <para>
+                                        <literal>iflag=3</literal>: one line per iteration (number of iterations,
+                                        number of calls to f, value of f),
+                                    </para>
                                 </listitem>
                                 <listitem>
-                                    <para><literal>iflag>=4</literal>: extra information on lines searches.</para>
+                                    <para>
+                                        <literal>iflag>=4</literal>: extra information on lines searches.
+                                    </para>
                                 </listitem>
-                            </itemizedlist> 
+                            </itemizedlist>
+                            
                         </listitem>
                         <listitem>
-                            <para><literal>"gc"</literal> with bounds constraints: from <literal>iflag=1</literal>
-                            to <literal>iflag=3</literal>.</para>
+                            <para>
+                                <literal>"gc"</literal> with bounds constraints: from <literal>iflag=1</literal>
+                                to <literal>iflag=3</literal>.
+                            </para>
                             <itemizedlist>
                                 <listitem>
-                                    <para><literal>iflag>=1</literal>: initial and final print,</para>
+                                    <para>
+                                        <literal>iflag>=1</literal>: initial and final print,
+                                    </para>
                                 </listitem>
                                 <listitem>
-                                    <para><literal>iflag>=2</literal>: one print per iteration,</para>
+                                    <para>
+                                        <literal>iflag>=2</literal>: one print per iteration,
+                                    </para>
                                 </listitem>
                                 <listitem>
-                                    <para><literal>iflag=3</literal>: extra information.</para>
+                                    <para>
+                                        <literal>iflag=3</literal>: extra information.
+                                    </para>
                                 </listitem>
                             </itemizedlist>
                         </listitem>
                         <listitem>
-                            <para><literal>"nd"</literal> with bounds constraints: from <literal>iflag=1</literal>
-                            to <literal>iflag=8</literal>.</para>
+                            <para>
+                                <literal>"nd"</literal> with bounds constraints: from <literal>iflag=1</literal>
+                                to <literal>iflag=8</literal>.
+                            </para>
                             <itemizedlist>
                                 <listitem>
-                                    <para><literal>iflag>=1</literal>: initial and final print,</para>
+                                    <para>
+                                        <literal>iflag>=1</literal>: initial and final print,
+                                    </para>
                                 </listitem>
                                 <listitem>
-                                    <para><literal>iflag>=2</literal>: one print on each convergence,</para>
+                                    <para>
+                                        <literal>iflag>=2</literal>: one print on each convergence,
+                                    </para>
                                 </listitem>
                                 <listitem>
-                                    <para><literal>iflag>=3</literal>: one print per iteration,</para>
+                                    <para>
+                                        <literal>iflag>=3</literal>: one print per iteration,
+                                    </para>
                                 </listitem>
                                 <listitem>
-                                    <para><literal>iflag>=4</literal>: line search,</para>
+                                    <para>
+                                        <literal>iflag>=4</literal>: line search,
+                                    </para>
                                 </listitem>
                                 <listitem>
-                                    <para><literal>iflag>=5</literal>: various tolerances,</para>
+                                    <para>
+                                        <literal>iflag>=5</literal>: various tolerances,
+                                    </para>
                                 </listitem>
                                 <listitem>
-                                    <para><literal>iflag>=6</literal>: weight and information on the computation of direction.</para>
+                                    <para>
+                                        <literal>iflag>=6</literal>: weight and information on the computation of direction.
+                                    </para>
                                 </listitem>
                             </itemizedlist>
                         </listitem>

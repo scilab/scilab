@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[pgcd, U]=gcd(p)</synopsis>
+        <synopsis>[pgcd, U] = gcd(p)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -26,7 +26,7 @@
                 <term>p</term>
                 <listitem>
                     <para>
-                        a polynomial row vector <literal>p=[p1, ..., pn]</literal> or
+                        a polynomial row vector <literal>p = [p1, ..., pn]</literal> (type equal to 2) or
                         an integer row vector (type equal to 8).
                     </para>
                 </listitem>
@@ -36,14 +36,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>[pgcd, U]=gcd(p)</code> computes the gcd of components of <varname>p</varname> (<varname>pgcd</varname>) and an
+            <code>[pgcd, U] = gcd(p)</code> computes the gcd of components of <varname>p</varname> (<varname>pgcd</varname>) and a
             unimodular matrix (with polynomial inverse) <varname>U</varname>, with minimal degree such that
         </para>
         <para>
-            <literal>p*U=[0 ... 0 pgcd]</literal>.
+            <literal>p*U = [0 ... 0 pgcd]</literal>.
         </para>
         <para>
-            In mathematics, an <emphasis role='italic'>unimodular</emphasis> matrix
+            In mathematics, a <emphasis role='italic'>unimodular</emphasis> matrix
             <literal>U</literal> is a square integer matrix having
             determinant <literal>+1</literal> or <literal>-1</literal>.
         </para>
@@ -61,8 +61,6 @@ p*u
 V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
 [thegcd,U]=gcd(V)
 V*U
-
-gcd([15 20])
 
 gcd(uint8([15 20]))
 

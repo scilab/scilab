@@ -7,7 +7,8 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
-// 
+// Run with test_run('statistics','cdfnor',['no_check_error_output']);
+//
 // References
 // Assessing the quality of the Normal distribution function
 // References
@@ -18,20 +19,20 @@
 //
 // Table from Yalta, 2008.
 table = [
-  0.5 , 0.0 
-  1.e-1 , -1.28155 
-  1.e-2 , -2.32635 
-  1.e-3 , -3.09023 
-  1.e-4 , -3.71902 
-  1.e-5 , -4.26489 
-  1.e-6 , -4.75342 
-  1.e-7 , -5.19934 
-  1.e-15 , -7.94135 
-  1.e-16 , -8.22208 
-  1.e-100 , -21.2735 
-  1.e-197 , -29.9763 
-  1.e-198 , -30.0529 
-  1.e-300 , -37.0471 
+  0.5 , 0.0
+  1.e-1 , -1.28155
+  1.e-2 , -2.32635
+  1.e-3 , -3.09023
+  1.e-4 , -3.71902
+  1.e-5 , -4.26489
+  1.e-6 , -4.75342
+  1.e-7 , -5.19934
+  1.e-15 , -7.94135
+  1.e-16 , -8.22208
+  1.e-100 , -21.2735
+  1.e-197 , -29.9763
+  1.e-198 , -30.0529
+  1.e-300 , -37.0471
 ];
 precision = 1.e-5;
 nt = size(table,"r");
@@ -105,3 +106,19 @@ for k = 1 : nt
     mprintf("Test #%3d/%3d: Digits p1= %.1f, q1=%.1f, X=%.1f, M=%.1f, S=%.1f\n",k,nt,dP,dQ,dx,dmu,dstd);
   end
 end
+// IEEE support
+// See http://bugzilla.scilab.org/show_bug.cgi?id=7296
+Mean = 0;
+Std = 1;
+x = %inf; // Inf
+[P, Q] = cdfnor("PQ", x, Mean, Std);
+assert_checkequal(P, 1);
+assert_checkequal(Q, 0);
+x = -%inf; // -Inf
+[P, Q] = cdfnor("PQ", x, Mean, Std);
+assert_checkequal(P, 0);
+assert_checkequal(Q, 1);
+x = %nan; // NaN
+[P, Q] = cdfnor("PQ", x, Mean, Std);
+assert_checkequal(P, %nan);
+assert_checkequal(Q, %nan);

@@ -15,32 +15,32 @@
 //  this : the current nmplot object
 //
 function nmplot_simplexhistory ( this , colorforeground , markforeground , markstyle )
-  drawlater();
-  if (~isdef('foregroundcolor','local')) then
-    colorforeground = 5;
-  end
-  if (~isdef('markforeground','local')) then
-    markforeground = 3;
-  end
-  if (~isdef('markstyle','local')) then
-    markstyle = 9;
-  end
-  exec(this.simplexfn,-1);
-  nbiter = length ( history )
-  n = neldermead_cget ( this.nmbase , "-numberofvariables" )
-  for iter = 1:nbiter
-    simplex = history(iter)
-    xcoords  = simplex(1:n+1,1)
-    ycoords  = simplex(1:n+1,2)
-    plot2d ( xcoords , ycoords )
-  end
-  f = gcf()
-  for iter = 1:nbiter
-    f.children(1).children(iter).children.foreground = colorforeground;
-    f.children(1).children(iter).children.mark_foreground = markforeground
-    f.children(1).children(iter).children.mark_style = markstyle;
-    f.children(1).children(iter).children.closed = "on";
-  end
-  drawnow();
+    drawlater();
+    if (~isdef("foregroundcolor","local")) then
+        colorforeground = 5;
+    end
+    if (~isdef("markforeground","local")) then
+        markforeground = 3;
+    end
+    if (~isdef("markstyle","local")) then
+        markstyle = 9;
+    end
+    exec(this.simplexfn,-1);
+    nbiter = length ( history )
+    n = neldermead_cget ( this.nmbase , "-numberofvariables" )
+    for iter = 1:nbiter
+        simplex = history(iter)
+        xcoords  = simplex(1:n+1,1)
+        ycoords  = simplex(1:n+1,2)
+        plot2d ( xcoords , ycoords )
+    end
+    f = gcf()
+    for iter = 1:nbiter
+        f.children(1).children(iter).children.foreground = colorforeground;
+        f.children(1).children(iter).children.mark_foreground = markforeground
+        f.children(1).children(iter).children.mark_style = markstyle;
+        f.children(1).children(iter).children.closed = "on";
+    end
+    drawnow();
 endfunction
 

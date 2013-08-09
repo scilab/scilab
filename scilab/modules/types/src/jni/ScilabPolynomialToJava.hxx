@@ -25,17 +25,17 @@ using namespace org_scilab_modules_types;
 namespace org_modules_types
 {
 
-    class ScilabPolynomialToJava
-    {
+class ScilabPolynomialToJava
+{
 
-        static jobjectArray getJavaArrayFromPolynom(JNIEnv * curEnv, double *** data, int rows, int cols, int ** nbCoeff);
+    static jobjectArray getJavaArrayFromPolynom(JNIEnv * curEnv, double *** data, int rows, int cols, int ** nbCoeff);
 
-    public :
+public :
 
-        static void sendPolynomial(JavaVM * jvm_, char * varName, int * indexes, int indexesSize, char * polyVarName, double *** data, int rows, int cols, int ** nbCoeff, bool swaped, int handlerId);
+    static void sendPolynomial(JavaVM * jvm_, char * varName, int * indexes, int indexesSize, char * polyVarName, double *** data, int rows, int cols, int ** nbCoeff, bool swaped, int handlerId);
 
-        static void sendPolynomial(JavaVM * jvm_, char * varName, int * indexes, int indexesSize, char * polyVarName, double *** real, double *** img, int rows, int cols, int ** nbCoef, bool swaped, int handlerId);
-    };
+    static void sendPolynomial(JavaVM * jvm_, char * varName, int * indexes, int indexesSize, char * polyVarName, double *** real, double *** img, int rows, int cols, int ** nbCoef, bool swaped, int handlerId);
+};
 }
 
 #endif

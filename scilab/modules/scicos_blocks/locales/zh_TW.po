@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-09-01 15:19+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 msgid "overflow error"
 msgstr "溢位錯誤"
@@ -101,14 +101,6 @@ msgstr "延遲時間=%f 但是前一儲存時間=%f \n"
 
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr "在延時區塊中考慮增加緩衝區的長度 \n"
-
-#, c-format
-msgid "Error when opening file '%s'.\n"
-msgstr "開啟 '%s' 檔案時發生錯誤.\n"
-
-#, c-format
-msgid "Write error in file '%s'.\n"
-msgstr "檔案寫入錯誤 '%s'.\n"
 
 msgid "Size of buffer or input size have changed!\n"
 msgstr "緩衝區大小或輸入大小已經改變!\n"
@@ -420,6 +412,48 @@ msgid "Validate"
 msgstr ""
 
 msgid "Cancel"
+msgstr ""
+
+msgid "Please give the discretization domain values"
+msgstr ""
+
+#, c-format
+msgid "Please give the %s operator coefficients"
+msgstr ""
+
+msgid "Please give the sign for the variable discriminant"
+msgstr ""
+
+msgid "Please give the discretization method type"
+msgstr ""
+
+msgid "Please give the discretization method degree"
+msgstr ""
+
+msgid "Please give the number of discretization points"
+msgstr ""
+
+#, c-format
+msgid "Please give the initial condition %s"
+msgstr ""
+
+msgid "Please give the boundary conditions"
+msgstr ""
+
+#, c-format
+msgid "The finite element discretization took %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The finite differences discretization took %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The finite volume discretization took %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The code generation, the compilation and link took %.2f seconds"
 msgstr ""
 
 msgid "Event output port"
@@ -778,3 +812,7 @@ msgstr "編輯(&E)"
 
 msgid "&?"
 msgstr "&?輔助說明"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr ""

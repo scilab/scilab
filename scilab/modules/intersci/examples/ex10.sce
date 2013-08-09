@@ -14,10 +14,10 @@
 //   Interface file '/tmp/ex10fi.o'
 //   User's files '/tmp/ex10f.o';
 //
-files=G_make(['/tmp/ex10fi.o','/tmp/ex10f.o'],'ex10.dll');
+files=G_make(["/tmp/ex10fi.o","/tmp/ex10f.o"],"ex10.dll");
 //2-Link object files .o with addinter
 //addinter(files,'ex10fi',matusr_funs);
-exec('ex10fi.sce');
+exec("ex10fi.sce");
 //Test Scilab functions:
 // calc1: 3 matrix input variables and at most 3 output variables of
 // types double, real, int

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2011-09-01 09:49+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-29 09:20+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -51,13 +51,12 @@ msgstr "因数分解"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
-"Cholesky factorisation"
-msgstr "%s: 入力引数 #%d の値が間違っています:　コレスキー分解への有効な参照を指定してください."
+"Cholesky factorization"
+msgstr "%s: 入力引数 #%d の値が間違っています: コレスキー分解への有効な参照を指定してください"
 
 #, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr "%s: メモリ不足です: スタックサイズを %d ワード分増やしてください.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid ""
@@ -71,9 +70,15 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: not compatible with the Cholesky "
+"factorization.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: コレスキー分解と互換性がありません.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: not compatible with the Cholesky "
-"factorisation.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: コレスキー分解とは互換性がありません.\n"
+"factorization.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: コレスキー分解と互換性がありません.\n"
 
 #, c-format
 msgid "%s: not enough memory.\n"
@@ -118,11 +123,11 @@ msgstr "LUポインターを数値リストに保存するための場所があ�
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: エラーが発生しました: %s\n"
 
-msgid "This is not a factorisation of a square matrix"
-msgstr "正方行列の因数分解ではありません"
+msgid "This is not a factorization of a square matrix"
+msgstr "正方行列の分解ではありません"
 
-msgid "This is a factorisation of a singular matrix"
-msgstr "特異行列の因数分解です"
+msgid "This is a factorization of a singular matrix"
+msgstr "特異行列の分解ではありません"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"

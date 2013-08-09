@@ -37,31 +37,32 @@ Type *V;\
     }\
 }
 
-int C2F(genmprod)(int *typ,int *job, int *a, int *na, int *m, int *n, int *v, int *nv)
+int C2F(genmprod)(int *typ, int *job, int *a, int *na, int *m, int *n, int *v, int *nv)
 {
-  static int  i, j, t, iv;
+    static int  i, j, t, iv;
 
-  switch (*typ) {
-  case 1:
-    MPROD(integer1);
-    break;
-  case 2:
-    MPROD(integer2);
-    break;
-  case 4:
-    MPROD(int) ;
-    break;
-  case 11:
-    MPROD(unsigned char);
-    break;
-  case 12:
-    MPROD(unsigned short);
-    break;
-  case 14:
-    MPROD(unsigned int);
-    break;
-  }
-  return 0;
+    switch (*typ)
+    {
+        case 1:
+            MPROD(integer1);
+            break;
+        case 2:
+            MPROD(integer2);
+            break;
+        case 4:
+            MPROD(int) ;
+            break;
+        case 11:
+            MPROD(unsigned char);
+            break;
+        case 12:
+            MPROD(unsigned short);
+            break;
+        case 14:
+            MPROD(unsigned int);
+            break;
+    }
+    return 0;
 }
 #define MPROD_DOUBLE(Type) {\
 Type *A;\
@@ -85,30 +86,31 @@ Type *A;\
     }\
 }
 
-int C2F(genmprodasdouble)(int *typ,int *job, int *a, int *na, int *m, int *n, double *v, int *nv)
+int C2F(genmprodasdouble)(int *typ, int *job, int *a, int *na, int *m, int *n, double *v, int *nv)
 {
-  static int  i, j, iv;
-  static double t;
+    static int  i, j, iv;
+    static double t;
 
-  switch (*typ) {
-  case 1:
-    MPROD_DOUBLE(integer1);
-    break;
-  case 2:
-    MPROD_DOUBLE(integer2);
-    break;
-  case 4:
-    MPROD_DOUBLE(int) ;
-    break;
-  case 11:
-    MPROD_DOUBLE(unsigned char);
-    break;
-  case 12:
-    MPROD_DOUBLE(unsigned short);
-    break;
-  case 14:
-    MPROD_DOUBLE(unsigned int);
-    break;
-  }
-  return 0;
+    switch (*typ)
+    {
+        case 1:
+            MPROD_DOUBLE(integer1);
+            break;
+        case 2:
+            MPROD_DOUBLE(integer2);
+            break;
+        case 4:
+            MPROD_DOUBLE(int) ;
+            break;
+        case 11:
+            MPROD_DOUBLE(unsigned char);
+            break;
+        case 12:
+            MPROD_DOUBLE(unsigned short);
+            break;
+        case 14:
+            MPROD_DOUBLE(unsigned int);
+            break;
+    }
+    return 0;
 }

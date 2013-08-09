@@ -108,7 +108,9 @@
                         См. функции <link linkend="glue">glue</link>, <link
                         linkend="unglue">unglue</link> и <link
                         linkend="Compound_properties">свойства составного
-                        объекта Compound</link>.
+                            объекта Compound
+                        </link>
+                        .
                     </para>
                 </listitem>
             </varlistentry>

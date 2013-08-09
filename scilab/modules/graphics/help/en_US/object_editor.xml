@@ -103,7 +103,9 @@
                         Using the mouse, it allows the user to select a 2D
                         object (like a curve, a rectangle...) and put it in the
                         clipboard. Thus, by a next call to <literal>Paste
-                        object</literal>, the object is copied in the
+                            object
+                        </literal>
+                        ,the object is copied in the
                         selected current axes.
                     </para>
                     <para/>
@@ -187,7 +189,8 @@
                     <para/>
                 </listitem>
             </varlistentry>
-        </variablelist>        
+        </variablelist>
+        
         <para>
             Once the graphic interface is enabled (using the <literal>Figure Properties</literal> or <literal>Current Axes Properties</literal> options), two main areas appear:
         </para>

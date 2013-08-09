@@ -35,18 +35,29 @@ char *createtempfilename(const char *prefix, BOOL bShortFormat)
 
     tempfilename = wide_string_to_UTF8(wcresult);
 
-    if (wcresult) {FREE(wcresult); wcresult = NULL;}
-    if (wcresult) {FREE(wcresult); wcresult = NULL;}
+    if (wcresult)
+    {
+        FREE(wcresult);
+        wcresult = NULL;
+    }
+    if (wcresult)
+    {
+        FREE(wcresult);
+        wcresult = NULL;
+    }
 #else
-     char *TmpDir = getTMPDIR();
-     if (TmpDir)
-     {
+    char *TmpDir = getTMPDIR();
+    if (TmpDir)
+    {
         char TempFileName[PATH_MAX];
-        sprintf(TempFileName, "%s/%sXXXXXX",TmpDir, prefix);
+        sprintf(TempFileName, "%s/%sXXXXXX", TmpDir, prefix);
         int fd = mkstemp(TempFileName);
-        if (fd != -1) close(fd);
+        if (fd != -1)
+        {
+            close(fd);
+        }
         tempfilename = strdup(TempFileName);
-     }
+    }
 #endif
     return tempfilename;
 }
@@ -82,9 +93,21 @@ wchar_t *createtempfilenameW(const wchar_t *wcprefix, BOOL bShortFormat)
 
     wcReturnedTempFilename = to_wide_string(result);
 
-    if (result) {FREE(result); result = NULL;}
-    if (prefix) {FREE(prefix); prefix = NULL;}
-    if (result) {FREE(result); result = NULL;}
+    if (result)
+    {
+        FREE(result);
+        result = NULL;
+    }
+    if (prefix)
+    {
+        FREE(prefix);
+        prefix = NULL;
+    }
+    if (result)
+    {
+        FREE(result);
+        result = NULL;
+    }
 #endif
     return wcReturnedTempFilename;
 }

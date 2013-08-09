@@ -142,6 +142,7 @@ c
       do 70 i = 1, M
          istk(lJPVT+i-1) = 0
  70   continue
+      info = 1
       call ZGELSY1( N, M, K, zstk(lAT), N, zstk(lBT), max(M,N),
      $     istk(lJPVT), RCOND, istk(lRANK), zstk(lDWORK),
      $     LWORK, stk(lRWORK), INFO )

@@ -23,46 +23,46 @@ import com.mxgraph.util.mxEventObject;
  * the action.
  */
 public final class MinimalNumberOfCellsConstraint extends ActionConstraint {
-	private final int minimalCount;
-	private int numberOfCells;
+    private final int minimalCount;
+    private int numberOfCells;
 
-	/**
-	 * Default constructor
-	 * @param minimalCount the minimal number of cells for the action to be enabled
-	 */
-	public MinimalNumberOfCellsConstraint(int minimalCount) {
-		numberOfCells = 0;
-		
-		// add the root and the default parent to the minimal count
-		this.minimalCount = minimalCount + 2;
-	}
+    /**
+     * Default constructor
+     * @param minimalCount the minimal number of cells for the action to be enabled
+     */
+    public MinimalNumberOfCellsConstraint(int minimalCount) {
+        numberOfCells = 0;
 
-	/**
-	 * Install this constraint on a graph for the specific action.
-	 * @param action the constrained action
-	 * @param scilabGraph where to install constraint 
-	 */
-	public void install(final DefaultAction action, ScilabGraph scilabGraph) {
-		super.install(action, scilabGraph);
-		scilabGraph.addListener(mxEvent.CELLS_ADDED, this);
-		scilabGraph.addListener(mxEvent.CELLS_REMOVED, this);
-		scilabGraph.addListener(mxEvent.ROOT, this);
-	}
+        // add the root and the default parent to the minimal count
+        this.minimalCount = minimalCount + 2;
+    }
 
-	/**
-	 * Enable or disable the action.
-	 * 
-	 * @param sender
-	 *            the sender
-	 * @param evt
-	 *            the event
-	 * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
-	 *      com.mxgraph.util.mxEventObject)
-	 */
-	public void invoke(Object sender, mxEventObject evt) {
-		final mxGraphModel model = (mxGraphModel) ((ScilabGraph) sender).getModel();
-		numberOfCells = model.getCells().size();
-		
-		setEnabled(numberOfCells >= minimalCount);
-	}
+    /**
+     * Install this constraint on a graph for the specific action.
+     * @param action the constrained action
+     * @param scilabGraph where to install constraint
+     */
+    public void install(final DefaultAction action, ScilabGraph scilabGraph) {
+        super.install(action, scilabGraph);
+        scilabGraph.addListener(mxEvent.CELLS_ADDED, this);
+        scilabGraph.addListener(mxEvent.CELLS_REMOVED, this);
+        scilabGraph.addListener(mxEvent.ROOT, this);
+    }
+
+    /**
+     * Enable or disable the action.
+     *
+     * @param sender
+     *            the sender
+     * @param evt
+     *            the event
+     * @see com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
+     *      com.mxgraph.util.mxEventObject)
+     */
+    public void invoke(Object sender, mxEventObject evt) {
+        final mxGraphModel model = (mxGraphModel) ((ScilabGraph) sender).getModel();
+        numberOfCells = model.getCells().size();
+
+        setEnabled(numberOfCells >= minimalCount);
+    }
 }

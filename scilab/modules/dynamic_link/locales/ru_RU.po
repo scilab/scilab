@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-04-17 15:12+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-30 12:57+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -185,6 +185,36 @@ msgstr "%s не является точкой входа.\n"
 msgid "Linking %s.\n"
 msgstr "Компоновка %s.\n"
 
+msgid "Calling a C function from Scilab.\n"
+msgstr "Вызов C-функции из Scilab.\n"
+
+msgid "Calling ilib_for_link to build C function.\n"
+msgstr "Вызов ilib_for_link для сборки C-функции.\n"
+
+msgid "Calling C function. Z = X+Y"
+msgstr "Вызов C-функции. Z = X+Y"
+
+#, c-format
+msgid "with X = %d"
+msgstr "с X = %d"
+
+#, c-format
+msgid "with Y = %d"
+msgstr "с Y = %d"
+
+#, c-format
+msgid "Result Z = %d"
+msgstr "Результат Z = %d"
+
+msgid "Calling a Fortran subroutine from Scilab.\n"
+msgstr "Вызов подпрограммы Fortran из Scilab.\n"
+
+msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
+msgstr "Вызов ilib_for_link для сборки подпрограммы Fortran.\n"
+
+msgid "Calling Fortran subroutine. Z = X+Y"
+msgstr "Вызов подпрограммы Fortran Z = X+Y"
+
 msgid "Dynamic link"
 msgstr "Динамическая компоновка"
 
@@ -195,11 +225,29 @@ msgid "Call a Fortran subroutine"
 msgstr "Вызвать подпрограмму Fortran"
 
 #, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr "%s: Требуется компилятор Fortran или C.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Неверное количество входных параметров.\n"
 
+msgid "Microsoft Visual Studio C x86 Compiler not found."
+msgstr "Компилятор Microsoft Visual Studio C x86 Compiler не найден."
+
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr "Не найдены Intel Fortran Compiler 9, 10, 11 или 12."
+
+msgid ""
+"Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
+msgstr ""
+"Компилятор Microsoft Visual Studio C 2008 (или более ранний) x64 Compiler не "
+"установлен."
+
+msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
+msgstr ""
+"Компилятор Microsoft Visual Studio C 2008 (или более ранний) Compiler не "
+"найден."
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
@@ -227,10 +275,6 @@ msgid ""
 msgstr ""
 "Из-за того, что мир Unix по своей природе многоплатформенный, функция "
 "'haveacompiler' поддерживается только в Windows."
-
-#, c-format
-msgid "%s: A Fortran or C compiler is required.\n"
-msgstr "%s: Требуется компилятор Fortran или C.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -463,3 +507,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
+
+msgid "not found."
+msgstr "не найден."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected."
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался тип String."

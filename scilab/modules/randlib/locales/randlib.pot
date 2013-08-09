@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:49+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/sci_grand.c, line: 154
 # File: sci_gateway/c/sci_grand.c, line: 509
@@ -518,7 +518,7 @@ msgid "%s: Wrong value for input argument %s.\n"
 msgstr ""
 
 #
-# File: src/c/clcg2.c, line: 88
+# File: src/c/clcg2.c, line: 97
 msgid ""
 "\n"
 "Bad seeds for clcg2, must be integers with  s1 in [1, 2147483562]\n"
@@ -526,7 +526,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/clcg4.c, line: 168
+# File: src/c/clcg4.c, line: 216
 msgid ""
 "\n"
 " bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]\n"
@@ -536,29 +536,29 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/clcg4.c, line: 188
+# File: src/c/clcg4.c, line: 242
 #, c-format
 msgid "WARNING: %s\n"
 msgstr ""
 
 #
-# File: src/c/clcg4.c, line: 188
+# File: src/c/clcg4.c, line: 242
 #, c-format
 msgid ""
-"be aware that you have may lost synchronization\n"
-"    between the virtual gen %d and the others !\n"
-"    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
+"be aware that you may have lost synchronization\n"
+"    between the virtual generator %d and the others.\n"
+"    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."
 msgstr ""
 
 #
-# File: src/c/fsultra.c, line: 171
+# File: src/c/fsultra.c, line: 175
 msgid ""
 "\n"
 "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr ""
 
 #
-# File: src/c/fsultra.c, line: 184
+# File: src/c/fsultra.c, line: 188
 #, c-format
 msgid ""
 "\n"
@@ -566,14 +566,14 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/fsultra.c, line: 192
+# File: src/c/fsultra.c, line: 196
 msgid ""
 "\n"
 "The second component of the fsultra state, must be 0 or 1\n"
 msgstr ""
 
 #
-# File: src/c/fsultra.c, line: 200
+# File: src/c/fsultra.c, line: 204
 msgid ""
 "\n"
 "The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
@@ -585,17 +585,17 @@ msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
 msgstr ""
 
 #
-# File: src/c/mt.c, line: 145
+# File: src/c/mt.c, line: 150
 msgid "Bad seed for mt, must be an int in [0, 2^32-1]\n"
 msgstr ""
 
 #
-# File: src/c/mt.c, line: 172
+# File: src/c/mt.c, line: 177
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
 msgstr ""
 
 #
-# File: src/c/urand.c, line: 61
+# File: src/c/urand.c, line: 64
 msgid ""
 "\n"
 "Bad seed for urand, must be an int in [0,  2147483647]\n"
@@ -612,17 +612,65 @@ msgstr ""
 
 #
 # File: demos/binomial.dem.sce, line: 63
+# File: demos/discrete.dem.sce, line: 47
+# File: demos/discrete_uni.dem.sce, line: 39
+# File: demos/geometric.dem.sce, line: 48
+# File: demos/poisson.dem.sce, line: 51
 msgid "Simulation"
 msgstr ""
 
 #
 # File: demos/binomial.dem.sce, line: 63
+# File: demos/discrete.dem.sce, line: 47
+# File: demos/discrete_uni.dem.sce, line: 39
+# File: demos/geometric.dem.sce, line: 48
+# File: demos/poisson.dem.sce, line: 51
 msgid "Theory"
 msgstr ""
 
 #
 # File: demos/discrete.dem.sce, line: 43
 msgid "Simulation of a discrete random variable"
+msgstr ""
+
+#
+# File: demos/discrete_uni.dem.sce, line: 35
+msgid "Simulation of a discrete uniform random variable"
+msgstr ""
+
+#
+# File: demos/erlang.dem.sce, line: 40
+msgid "Simulation of a Erlang random variable"
+msgstr ""
+
+#
+# File: demos/exp.dem.sce, line: 32
+msgid "macro histplot : Histogram plot"
+msgstr ""
+
+#
+# File: demos/exp.dem.sce, line: 33
+msgid "Classes"
+msgstr ""
+
+#
+# File: demos/geometric.dem.sce, line: 15
+msgid "p must be < 1"
+msgstr ""
+
+#
+# File: demos/geometric.dem.sce, line: 44
+msgid "Simulation of a geometric random variable"
+msgstr ""
+
+#
+# File: demos/hypergeom.dem.sce, line: 31
+msgid "Simulation of a hyper geometric random variable"
+msgstr ""
+
+#
+# File: demos/poisson.dem.sce, line: 47
+msgid "Simulation of a Poisson random variable"
 msgstr ""
 
 #
@@ -673,4 +721,9 @@ msgstr ""
 #
 # File: demos/randlib.dem.gateway.sce, line: 20
 msgid "Erlang random variable"
+msgstr ""
+
+#
+# File: demos/weibull.dem.sce, line: 26
+msgid "Simulation of a Weibull random variable"
 msgstr ""

@@ -436,7 +436,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
                                int nmax, int *ind_max)
 {
     /*
-     *   converti une "structure" scilab d'indicage en un vecteur d'indices
+     *   convertit une "structure" scilab d'indicage en un vecteur d'indices
      *
      *      pos     : position de la variable initiale
      *      pos_ind : position de la variable resultante (le vecteur d'indice)
@@ -775,13 +775,13 @@ int C2F(intehm)()
 
     if ( Rhs < 2 )
     {
-        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"),"hmops",2);
+        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), "hmops", 2);
         return(0);
     };
 
     if ( ! get_hmat(Rhs, &H) )
     {
-        Scierror(999, _("%s: Wrong type for input argument(s): An hypermatrix expected.\n"),"hmops");
+        Scierror(999, _("%s: Wrong type for input argument(s): An hypermatrix expected.\n"), "hmops");
         return 0;
     }
     else if ( H.type == NOT_REAL_or_CMPLX_or_BOOL_or_INT  || H.type == OLD_HYPERMAT )
@@ -794,7 +794,7 @@ int C2F(intehm)()
     nb_index_vectors = Rhs - 1;
     if ( H.dimsize <  nb_index_vectors )
     {
-        Scierror(999, _("%s: Wrong number of input arguments: at most %d expected.\n"),"hmops",H.dimsize);
+        Scierror(999, _("%s: Wrong number of input arguments: at most %d expected.\n"), "hmops", H.dimsize);
         return 0;
     }
     else if ( H.dimsize > nb_index_vectors )  /* reshape H */
@@ -822,7 +822,7 @@ int C2F(intehm)()
         ier = create_index_vector(i, dec + i, &mn, H.dims[i - 1], &ind_max);
         if ( ier == 0  ||  ind_max > H.dims[i - 1] )
         {
-            Scierror(999, _("%s: Bad index #%d in hypermatrix extraction. "),"hmops", i);
+            Scierror(999, _("%s: Invalid index #%d in hypermatrix extraction. "), "hmops", i);
             return 0;
         }
         if ( mn == 0 )   /* the vector index is [] => we return an empty matrix */
@@ -981,14 +981,14 @@ int C2F(intihm)()
 
     if ( Rhs < 3 )
     {
-        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"),"hmops", 3);
+        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), "hmops", 3);
         return 0;
     };
     nb_index_vectors = Rhs - 2;
 
     if ( ! get_hmat(Rhs, &A) )
     {
-        Scierror(999, _("%s: Wrong type for input argument(s): An hypermatrix expected.\n"),"hmops");
+        Scierror(999, _("%s: Wrong type for input argument(s): An hypermatrix expected.\n"), "hmops");
         return 0;
     }
     else if ( A.type == NOT_REAL_or_CMPLX_or_BOOL_or_INT  || A.type == OLD_HYPERMAT )
@@ -1055,7 +1055,7 @@ int C2F(intihm)()
             }
             else   /* B have at least 2 elts */
             {
-                Scierror(999, _("%s: Bad hypermatrix insertion.\n"),"hmops");
+                Scierror(999, _("%s: Invalid hypermatrix insertion.\n"), "hmops");
                 return 0;
             }
         }
@@ -1073,7 +1073,7 @@ int C2F(intihm)()
             }
             if ( iconf >= B.dimsize  ||  B.dims[iconf] != mn )
             {
-                Scierror(999, _("%s: Bad hypermatrix insertion.\n"),"hmops");
+                Scierror(999, _("%s: Invalid hypermatrix insertion.\n"), "hmops");
                 return 0;
             }
             iconf++;
@@ -1083,7 +1083,7 @@ int C2F(intihm)()
     /* to finish the conformity test */
     if ( !B_is_scalar &&  ntot != B.size )
     {
-        Scierror(999, _("%s: Bad hypermatrix insertion.\n"),"hmops");
+        Scierror(999, _("%s: Invalid hypermatrix insertion.\n"), "hmops");
         return 0;
     }
 

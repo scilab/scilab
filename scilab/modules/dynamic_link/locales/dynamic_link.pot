@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/sci_addinter.c, line: 46
 # File: sci_gateway/c/sci_addinter.c, line: 58
@@ -50,7 +50,7 @@ msgid "%s : second argument must be a unique id of a shared library.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_c_link.c, line: 100
+# File: sci_gateway/c/sci_c_link.c, line: 111
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -96,19 +96,19 @@ msgid "Unique dynamic library name expected."
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_link.c, line: 114
+# File: sci_gateway/c/sci_link.c, line: 120
 #, c-format
 msgid "%s: Wrong type for input argument. Strings vector expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_link.c, line: 120
+# File: sci_gateway/c/sci_link.c, line: 126
 #, c-format
 msgid "%s: Wrong type for input argument. Strings expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_link.c, line: 136
+# File: sci_gateway/c/sci_link.c, line: 142
 #, c-format
 msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
@@ -120,49 +120,49 @@ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: src/c/addinter.c, line: 210
+# File: src/c/addinter.c, line: 223
 #, c-format
 msgid "Error: Not a valid internal routine number %d.\n"
 msgstr ""
 
 #
-# File: src/c/addinter.c, line: 237
+# File: src/c/addinter.c, line: 252
 #, c-format
 msgid "Interface %s not linked.\n"
 msgstr ""
 
 #
-# File: src/c/dl_genErrorMessage.c, line: 24
+# File: src/c/dl_genErrorMessage.c, line: 25
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
 msgstr ""
 
 #
-# File: src/c/dl_genErrorMessage.c, line: 28
+# File: src/c/dl_genErrorMessage.c, line: 29
 #, c-format
 msgid "%s: Cannot open shared files. Max entry %d reached.\n"
 msgstr ""
 
 #
-# File: src/c/dl_genErrorMessage.c, line: 32
+# File: src/c/dl_genErrorMessage.c, line: 33
 #, c-format
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr ""
 
 #
-# File: src/c/dl_genErrorMessage.c, line: 36
+# File: src/c/dl_genErrorMessage.c, line: 37
 #, c-format
 msgid "%s: Already loaded from library %s\n"
 msgstr ""
 
 #
-# File: src/c/dl_genErrorMessage.c, line: 39
+# File: src/c/dl_genErrorMessage.c, line: 40
 #, c-format
 msgid "%s: problem with one of the entry point.\n"
 msgstr ""
 
 #
-# File: src/c/dl_genErrorMessage.c, line: 42
+# File: src/c/dl_genErrorMessage.c, line: 43
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr ""
@@ -257,6 +257,57 @@ msgstr ""
 msgid "Linking %s.\n"
 msgstr ""
 
+# File: demos/call_c.sce, line: 19
+msgid "Calling a C function from Scilab.\n"
+msgstr ""
+
+#
+# File: demos/call_c.sce, line: 31
+msgid "Calling ilib_for_link to build C function.\n"
+msgstr ""
+
+#
+# File: demos/call_c.sce, line: 42
+msgid "Calling C function. Z = X+Y"
+msgstr ""
+
+#
+# File: demos/call_c.sce, line: 44
+# File: demos/call_fortran.sce, line: 44
+#, c-format
+msgid "with X = %d"
+msgstr ""
+
+#
+# File: demos/call_c.sce, line: 46
+# File: demos/call_fortran.sce, line: 46
+#, c-format
+msgid "with Y = %d"
+msgstr ""
+
+#
+# File: demos/call_c.sce, line: 51
+# File: demos/call_fortran.sce, line: 51
+#, c-format
+msgid "Result Z = %d"
+msgstr ""
+
+#
+# File: demos/call_fortran.sce, line: 18
+msgid "Calling a Fortran subroutine from Scilab.\n"
+msgstr ""
+
+#
+# File: demos/call_fortran.sce, line: 30
+msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
+msgstr ""
+
+#
+# File: demos/call_fortran.sce, line: 42
+msgid "Calling Fortran subroutine. Z = X+Y"
+msgstr ""
+
+#
 # File: demos/dynamic_link.dem.gateway.sce, line: 9
 msgid "Dynamic link"
 msgstr ""
@@ -269,6 +320,15 @@ msgstr ""
 #
 # File: demos/dynamic_link.dem.gateway.sce, line: 12
 msgid "Call a Fortran subroutine"
+msgstr ""
+
+#
+# File: macros/G_make.sci, line: 15
+# File: macros/ilib_build.sci, line: 23
+# File: macros/ilib_mex_build.sci, line: 15
+# File: macros/windows/dlwMake.sci, line: 13
+#, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
 msgstr ""
 
 #
@@ -286,8 +346,24 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #
+# File: macros/configure_msvc.sci, line: 35
+msgid "Microsoft Visual Studio C x86 Compiler not found."
+msgstr ""
+
+#
 # File: macros/detectmsifort64tools.sci, line: 37
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
+msgstr ""
+
+#
+# File: macros/detectmsvc64tools.sci, line: 60
+msgid ""
+"Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
+msgstr ""
+
+#
+# File: macros/detectmsvc64tools.sci, line: 70
+msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
 msgstr ""
 
 #
@@ -328,13 +404,6 @@ msgstr ""
 msgid ""
 "Due to the multivendors nature of the Unix world, the function "
 "'haveacompiler' is only supported under Windows."
-msgstr ""
-
-#
-# File: macros/ilib_build.sci, line: 23
-# File: macros/ilib_mex_build.sci, line: 15
-#, c-format
-msgid "%s: A Fortran or C compiler is required.\n"
 msgstr ""
 
 #
@@ -667,4 +736,15 @@ msgstr ""
 # File: macros/windows/dlwGenerateMakefile.sci, line: 22
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+
+#
+# File: macros/windows/dlwGenerateMakefile.sci, line: 261
+msgid "not found."
+msgstr ""
+
+#
+# File: macros/windows/dlwMake.sci, line: 24
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected."
 msgstr ""

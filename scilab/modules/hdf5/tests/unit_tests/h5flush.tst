@@ -4,13 +4,13 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- ENGLISH IMPOSED -->
+//
 // <-- LINUX ONLY -->
 // <-- CLI SHELL MODE -->
 
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): 1 to 2 expected."), "h5flush");
+msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "h5flush", 1, 2);
 assert_checkerror("h5flush()",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #1: A HDF5 object expected."), "h5flush");
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A HDF5 object expected.\n"), "h5flush", 1);
 assert_checkerror("h5flush(42)",msgerr,999);
 
 a = h5open(TMPDIR + "/test.h5", "w");

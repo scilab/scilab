@@ -7,19 +7,19 @@
 
 function demo_fplot2d()
 
-  my_handle   = scf(100001);
-  clf(my_handle,"reset");
-  demo_viewCode("fplot2d.dem.sce");
+    my_handle   = scf(100001);
+    clf(my_handle,"reset");
+    demo_viewCode("fplot2d.dem.sce");
 
-  // DEMO START
+    // DEMO START
 
-  my_plot_desc          = "fplot2d : f given by external";
-  my_handle.figure_name = my_plot_desc;
+    my_plot_desc          = "fplot2d : f given by external";
+    my_handle.figure_name = my_plot_desc;
 
-  fplot2d();
-  xtitle(" ","x ","f(x) ");
+    fplot2d();
+    xtitle(" ","x ","f(x) ");
 
-  // DEMO END
+    // DEMO END
 endfunction
 
 demo_fplot2d();

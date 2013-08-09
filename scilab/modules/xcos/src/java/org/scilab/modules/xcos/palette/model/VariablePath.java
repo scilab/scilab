@@ -23,11 +23,11 @@ import javax.xml.bind.annotation.XmlType;
  * A variable path is a path dependent of an environment variable. The real path
  * is computed at runtime by concatenate the environment variable result and the
  * path.
- * 
+ *
  * <p>
  * The following schema fragment specifies the expected content contained within
  * this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="VariablePath">
  *   &lt;complexContent>
@@ -38,8 +38,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "VariablePath")
@@ -59,9 +59,9 @@ public class VariablePath {
 
     /**
      * Gets the value of the path property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getPath() {
         return path;
@@ -69,10 +69,10 @@ public class VariablePath {
 
     /**
      * Sets the value of the path property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setPath(String value) {
         this.path = value;
@@ -80,9 +80,9 @@ public class VariablePath {
 
     /**
      * Gets the value of the variable property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getVariable() {
         return variable;
@@ -90,10 +90,10 @@ public class VariablePath {
 
     /**
      * Sets the value of the variable property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setVariable(String value) {
         this.variable = value;
@@ -101,7 +101,7 @@ public class VariablePath {
 
     /**
      * Evaluate the environment variable and construct a real absolut path.
-     * 
+     *
      * @return the real path
      */
     public String getEvaluatedPath() {

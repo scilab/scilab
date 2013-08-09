@@ -4,6 +4,9 @@
   <xs:element name="model" type="Model"/>
 
   <xs:complexType name="Info" final="extension restriction">
+    <xs:annotation>
+      <xs:documentation>Specify the size of all the parameters, state, inputs or outputs.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="number_of_integer_parameters" type="xs:nonNegativeInteger" minOccurs="0"/>
       <xs:element name="number_of_real_parameters" type="xs:nonNegativeInteger" minOccurs="0"/>
@@ -20,14 +23,16 @@
   </xs:complexType>
 
   <xs:complexType name="ModelicaValue" final="extension restriction">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:attribute name="value" type="xs:string"/>
-      </xs:extension>
-    </xs:simpleContent>
+    <xs:annotation>
+      <xs:documentation>Modelica String assignation.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="value" type="xs:string"/>
   </xs:complexType>
 
   <xs:complexType name="Struct" final="extension restriction">
+    <xs:annotation>
+      <xs:documentation>Partial tree of a structured content. Each node of a this type must not be a leaf.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="name" type="xs:string"/>
       <xs:element name="subnodes">
@@ -44,6 +49,9 @@
   </xs:complexType>
 
   <xs:complexType name="Terminal" final="extension restriction">
+    <xs:annotation>
+      <xs:documentation>Terminal node of a {@link Struct} tree. This node is always a leaf.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="name" type="xs:string"/>
       <xs:element name="kind" type="xs:string"/>
@@ -61,6 +69,9 @@
   </xs:complexType>
 
   <xs:complexType name="Output" final="extension restriction">
+    <xs:annotation>
+      <xs:documentation>Describe an output of the modelica world.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="name" type="xs:string"/>
       <xs:element name="order" type="xs:nonNegativeInteger" minOccurs="0"/>
@@ -75,25 +86,36 @@
   </xs:complexType>
 
   <xs:complexType name="Model" final="extension restriction">
+    <xs:annotation>
+      <xs:documentation>Root of the modelica tree.</xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="name" type="xs:string" minOccurs="0"/>
       <xs:element name="model_info" type="Info" minOccurs="0"/>
       <xs:element name="identifiers" minOccurs="0">
         <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>Describe any model identifier.</xs:documentation>
+          </xs:annotation>
           <xs:sequence>
             <xs:element name="parameter" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="explicit_variable" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="implicit_variable" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="input" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="implicit_relations" minOccurs="0">
         <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>Wrapper around the implicit (and inputs) variables list.</xs:documentation>
+          </xs:annotation>
           <xs:sequence>
             <xs:element name="implicit_relation" minOccurs="0" maxOccurs="unbounded">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="implicit_variable" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                  <xs:element name="input" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -102,6 +124,9 @@
       </xs:element>
       <xs:element name="explicit_relations" minOccurs="0">
         <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>Wrapper around the explicit variables list.</xs:documentation>
+          </xs:annotation>
           <xs:sequence>
             <xs:element name="explicit_relation" minOccurs="0" maxOccurs="unbounded">
               <xs:complexType>
@@ -115,6 +140,9 @@
       </xs:element>
       <xs:element name="outputs" minOccurs="0">
         <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>Wrapper around the {@link Output} list.</xs:documentation>
+          </xs:annotation>
           <xs:sequence>
             <xs:element name="output" type="Output" minOccurs="0" maxOccurs="unbounded"/>
           </xs:sequence>

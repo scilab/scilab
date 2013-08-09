@@ -17,8 +17,8 @@
 //
 filename=SCI +'/modules/sound/tests/nonreg_tests/bug_11860.wav';
 [y_ref,Fs_ref,nbits_ref]=wavread(filename);
-wavwrite(y_ref,Fs_ref,nbits_ref,SCI+'/modules/sound/tests/nonreg_tests/bug_11860_written.wav');
-filename_written=SCI+'/modules/sound/tests/nonreg_tests/bug_11860_written.wav';
+wavwrite(y_ref,Fs_ref,nbits_ref,TMPDIR + '/bug_11860_written.wav');
+filename_written=TMPDIR + '/bug_11860_written.wav';
 [y,Fs,nbits]=wavread(filename_written);
 assert_checktrue(abs(y_ref-y)<1e-6);
 assert_checkalmostequal(Fs,Fs_ref);

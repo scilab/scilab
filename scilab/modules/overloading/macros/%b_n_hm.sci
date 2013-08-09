@@ -8,9 +8,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function M=%b_n_hm(s,M)
-//s<>M
-  if size(s,'*')<> 1 then
-    M=%t;return
-  end
-  M.entries=s<>M.entries
+    //s<>M
+    if size(s,"*")<> 1 then
+        M=%t;return
+    end
+    M.entries=s<>M.entries
 endfunction

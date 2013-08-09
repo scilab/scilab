@@ -7,24 +7,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-02-28 12:11+0000\n"
-"Last-Translator: Daniel Dietrich <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-12 18:18+0000\n"
+"Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: de\n"
 
 msgid "bike simulation, stable trajectory"
-msgstr "Fahrrad Simulation, stabile Trajektorie"
+msgstr "Fahrrad-Simulation, stabile Trajektorie"
 
 msgid "bike simulation, unstable trajectory"
-msgstr "Fahrrad Simulation, instabile Trajektorie"
+msgstr "Fahrrad-Simulation, instabile Trajektorie"
 
 msgid "spherical pendulum simulation"
-msgstr "Simulation eines sphärischen Pendels."
+msgstr "Simulation eines sphärischen Pendels"
 
 msgid "Simulation"
 msgstr "Simulation"
@@ -51,7 +51,7 @@ msgid "Levitron"
 msgstr "Levitron"
 
 msgid "Blackhole"
-msgstr "schwarzes Loch"
+msgstr "Schwarzes Loch"
 
 msgid "Cylinder"
 msgstr "Zylinder"
@@ -126,11 +126,15 @@ msgstr ""
 "Version\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: A real expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
 msgstr "%s: falsche Größe für Eingangsargumente: gleiche Größe erwartet.\n"
 
 msgid "Defining %ODEOPTIONS variable"
-msgstr "definiere %ODEOPTIONS Variable"
+msgstr "Definiere %ODEOPTIONS Variable"
 
 msgid "Meaning of itask and tcrit:"
 msgstr "Bedeutung von itask und tcrit:"
@@ -219,13 +223,13 @@ msgid "h0 (first step tried)"
 msgstr ""
 
 msgid "hmax (max step size)"
-msgstr ""
+msgstr "hmax (maximale Schrittweite)"
 
 msgid "hmin (min step size)"
-msgstr ""
+msgstr "hmin (minimale Schrittweite)"
 
 msgid "mxstep (max number of steps allowed)"
-msgstr ""
+msgstr "mxstep (maximale Anzahl erlaubter Schritte)"
 
 msgid "maxordn (maximum non-stiff order allowed, at most 12)"
 msgstr ""

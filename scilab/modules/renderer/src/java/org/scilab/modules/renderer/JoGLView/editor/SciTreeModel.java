@@ -84,7 +84,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
                         }
                     }
                 }
-            }            
+            }
         }
         return -1;
     }
@@ -101,7 +101,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
         Vector<String> path = getPath(id);
         if (path != null) {
             for (TreeModelListener listener : listeners.getListeners(TreeModelListener.class)) {
-                TreeModelEvent e = new TreeModelEvent(id, path.toArray(), new int[]{0}, new Object[]{id});
+                TreeModelEvent e = new TreeModelEvent(id, path.toArray(), new int[] {0}, new Object[] {id});
                 listener.treeStructureChanged(e);
             }
         }
@@ -111,7 +111,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
         Vector<String> path = getPath(id);
         if (path != null) {
             for (TreeModelListener listener : listeners.getListeners(TreeModelListener.class)) {
-                TreeModelEvent e = new TreeModelEvent(id, path.toArray(), new int[]{0}, new Object[]{id});
+                TreeModelEvent e = new TreeModelEvent(id, path.toArray(), new int[] {0}, new Object[] {id});
                 listener.treeNodesInserted(e);
             }
         }
@@ -121,7 +121,7 @@ public class SciTreeModel implements TreeModel, GraphicView {
         Vector<String> path = getPath(id);
         if (path != null) {
             for (TreeModelListener listener : listeners.getListeners(TreeModelListener.class)) {
-                TreeModelEvent e = new TreeModelEvent(id, path.toArray(), new int[]{0}, new Object[]{id});
+                TreeModelEvent e = new TreeModelEvent(id, path.toArray(), new int[] {0}, new Object[] {id});
                 listener.treeNodesRemoved(e);
             }
         }
@@ -150,6 +150,6 @@ public class SciTreeModel implements TreeModel, GraphicView {
         if (parent instanceof String) {
             return (String) parent;
         }
-        return null; 
+        return null;
     }
 }

@@ -8,9 +8,9 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 //------------------------------------
-genlib('scicos_utilslib','SCI/modules/scicos/macros/scicos_utils',%f,%t);
+genlib("scicos_utilslib","SCI/modules/scicos/macros/scicos_utils",%f,%t);
 //------------------------------------

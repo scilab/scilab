@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-19 21:42+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-15 20:50+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -386,6 +386,12 @@ msgstr "Normální"
 msgid "Wrap lines"
 msgstr "Zalamovat řádky"
 
+msgid "Background color: "
+msgstr "Barva pozadí: "
+
+msgid "Cursor color: "
+msgstr "Barva kurzoru: "
+
 msgid "Keywords"
 msgstr "Klíčová slova"
 
@@ -469,6 +475,10 @@ msgstr "Název souboru"
 
 msgid "Append filename with: "
 msgstr "Připojit k souborům: "
+
+#, c-format
+msgid "(%date can be used to be replaced by the current date)"
+msgstr ""
 
 msgid "Replace extension with: "
 msgstr "Nahradit příponu tímto: "
@@ -1072,3 +1082,21 @@ msgstr "Zvolte základní adresář hledání"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Modul Scilabu '%s' není nainstalován.\n"
+
+msgid "the last error did not occur inside a library function."
+msgstr "poslední chyba se neudála uvnitř knihovní funkce."
+
+msgid " on line "
+msgstr " online "
+
+msgid "opening file "
+msgstr "otevírání souboru "
+
+msgid " of the source file of the function "
+msgstr " ze zdrojového souboru funkce "
+
+msgid "the source file of the function "
+msgstr "zdrojový soubor funkce "
+
+msgid " was not found in any library path"
+msgstr " nebylo nalezeno v žádné cestě knihovny"

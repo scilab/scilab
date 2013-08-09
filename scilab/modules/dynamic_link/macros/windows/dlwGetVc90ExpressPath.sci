@@ -9,21 +9,21 @@
 
 //=============================================================================
 function vcPath = dlwGetVc90ExpressPath()
-  vcPath = [];
-  try
-    vcPath = winqueryreg('HKEY_LOCAL_MACHINE', ..
-                       'Software\Microsoft\VCExpress\9.0\Setup\VS', ..
-                       'ProductDir');
-  catch
-    // remove last error on 'winqueryreg' fails
-    lasterror();
-    return;
-  end
+    vcPath = [];
+    try
+        vcPath = winqueryreg("HKEY_LOCAL_MACHINE", ..
+        "Software\Microsoft\VCExpress\9.0\Setup\VS", ..
+        "ProductDir");
+    catch
+        // remove last error on 'winqueryreg' fails
+        lasterror();
+        return;
+    end
 
-  // remove last file separator if it exists
-  if vcPath <> [] then
-    vcPath = pathconvert(vcPath, %f, %t);
-  end
+    // remove last file separator if it exists
+    if vcPath <> [] then
+        vcPath = pathconvert(vcPath, %f, %t);
+    end
 
 endfunction
 //=============================================================================

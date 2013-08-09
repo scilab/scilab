@@ -25,56 +25,56 @@ import org.scilab.modules.gui.widget.Widget;
  */
 public interface SimpleMenu extends Widget {
 
-        /**
-         * Append a MenuItem to the Menu
-         * @param newMenuItem the MenuItem to add to the Menu
-         */
-        void add(MenuItem newMenuItem);
+    /**
+     * Append a MenuItem to the Menu
+     * @param newMenuItem the MenuItem to add to the Menu
+     */
+    void add(MenuItem newMenuItem);
 
-        /**
-         * Append a CheckBoxMenuItem to the Menu
-         * @param newCheckBoxMenuItem the CheckBoxMenuItem to add to the Menu
-         */
-        void add(CheckBoxMenuItem newCheckBoxMenuItem);
+    /**
+     * Append a CheckBoxMenuItem to the Menu
+     * @param newCheckBoxMenuItem the CheckBoxMenuItem to add to the Menu
+     */
+    void add(CheckBoxMenuItem newCheckBoxMenuItem);
 
-        /**
-         * Append a subMenu to the Menu
-         * @param newSubMenu the subMenu to append to the Menu
-         */
-        void add(Menu newSubMenu);
+    /**
+     * Append a subMenu to the Menu
+     * @param newSubMenu the subMenu to append to the Menu
+     */
+    void add(Menu newSubMenu);
 
-        /**
-         * set a mnemonic to the Menu
-         * @param mnemonic the new mnemonic of the Menu
-         */
-        void setMnemonic(int mnemonic);
+    /**
+     * set a mnemonic to the Menu
+     * @param mnemonic the new mnemonic of the Menu
+     */
+    void setMnemonic(int mnemonic);
 
-        /**
-         * Add a Separator to a Menu
-         */
-        void addSeparator();
+    /**
+     * Add a Separator to a Menu
+     */
+    void addSeparator();
 
-        /**
-         * Set if the Menu is checked or not
-         * @param status true if the Menu is checked
-         */
-        void setChecked(boolean status);
+    /**
+     * Set if the Menu is checked or not
+     * @param status true if the Menu is checked
+     */
+    void setChecked(boolean status);
 
-        /**
-         * Get if the Menu is checked or not
-         * @return true if the Menu is checked
-         */
-        boolean isChecked();
+    /**
+     * Get if the Menu is checked or not
+     * @return true if the Menu is checked
+     */
+    boolean isChecked();
 
-        /**
-         * Retrieve the CallBack associated to this Menu
-         * @return the CallBack
-         */
-        CommonCallBack getCallback();
+    /**
+     * Retrieve the CallBack associated to this Menu
+     * @return the CallBack
+     */
+    CommonCallBack getCallback();
 
-        /**
-         * Get the base text used for the Menu
-         * @return the text
-         */
-        String getBaseText();
+    /**
+     * Get the base text used for the Menu
+     * @return the text
+     */
+    String getBaseText();
 }

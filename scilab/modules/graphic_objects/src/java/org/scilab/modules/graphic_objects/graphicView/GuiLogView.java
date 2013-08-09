@@ -43,39 +43,36 @@ public class GuiLogView implements GraphicView {
         frame.setVisible(false);
         frame.setSize(800, 600);
     }
-    
+
     public void show() {
         frame.setVisible(true);
     }
-    
+
     public void createObject(String id) {
         try {
             int objectType = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
             Document doc = htmlLogPane.getDocument();
-            doc.insertString(doc.getLength(), "+++"+id+" Object Created type is "+objectType+".\n", null);
+            doc.insertString(doc.getLength(), "+++" + id + " Object Created type is " + objectType + ".\n", null);
             htmlLogPane.setCaretPosition(doc.getLength());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    } 
+    }
     public void deleteObject(String id) {
         try {
             Document doc = htmlLogPane.getDocument();
-            doc.insertString(doc.getLength(), "---"+id+" Object Deleted.\n", null);
+            doc.insertString(doc.getLength(), "---" + id + " Object Deleted.\n", null);
             htmlLogPane.setCaretPosition(doc.getLength());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
     public void updateObject(String id, int property) {
         try {
             Document doc = htmlLogPane.getDocument();
-            doc.insertString(doc.getLength(), "==="+id+" Object Property " + property + " Updated.\n", null);
+            doc.insertString(doc.getLength(), "===" + id + " Object Property " + property + " Updated.\n", null);
             htmlLogPane.setCaretPosition(doc.getLength());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

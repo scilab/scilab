@@ -15,6 +15,6 @@
 //   n : the dimension
 //
 function this = optimsimplex_setn ( this , n )
-  this.n = n;
+    this.n = n;
 endfunction
 

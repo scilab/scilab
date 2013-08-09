@@ -36,7 +36,7 @@ c     EXTERNAL API FUNCTIONS
       external checkrhs, checklhs, getsmat, getrvect, cremat, getrmat
 
 c     LOCAL VAR
-      integer topk, topl
+      integer topk, topl, il
       integer mX, nX, lX, mval, nval, lval, mch, nch, lch, nlch
       integer lind, mocc, nocc, locc, linfo, lc, j
       character*1 ch
@@ -68,7 +68,16 @@ c     TEXT
          return
       endif
 
-c     get val 
+c     get val
+      il = iadr(lstk(top))
+      if (istk(il) < 0) then
+        il = iadr(istk(il + 1));
+      endif
+      if (istk(il) .ne. 1) then
+        err = 2
+        call error(202)
+        return
+      endif
       if( .not. getrvect(fname, topk, top, mval, nval, lval) ) return
       if (ch.eq.'d') then
          if (mval*nval.lt.1) then
@@ -104,6 +113,15 @@ c     get val
       top = top - 1
       
 c     get X
+      il = iadr(lstk(top))
+      if (istk(il) < 0) then
+        il = iadr(istk(il + 1));
+      endif
+      if (istk(il) .ne. 1) then
+        err = 1
+        call error(202)
+        return
+      endif
       if( .not. getrmat(fname, topk, top, mX, nX, lX) ) return
 
 c     reserve space for ind

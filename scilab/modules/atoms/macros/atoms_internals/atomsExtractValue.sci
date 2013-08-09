@@ -14,5 +14,5 @@
 // Recup a particular field of the description for the toolbox
 
 function fieldValue = atomsExtractValue(field, listdDesc, position)
-  fieldValue = listdDesc(field)(position)
+    fieldValue = listdDesc(field)(position)
 endfunction

@@ -24,10 +24,10 @@ function d = assert_cond2reqdigits ( varargin )
         //   ovar1 : output variable #1
         //
         // Description
-        //   This function allows to expand input arguments of 
-        //   computationnal functions. 
+        //   This function allows to expand input arguments of
+        //   computationnal functions.
         //   If scalars are input, expand it to the size of other other variables.
-        //   
+        //
         //   If matrices are input, all must have the same shape: if not, an error is generated.
         //
         // Examples
@@ -101,7 +101,7 @@ function d = assert_cond2reqdigits ( varargin )
 
     function argin = argindefault ( rhs , vararglist , ivar , default )
         // Returns the value of the input argument #ivar.
-        // If this argument was not provided, or was equal to the 
+        // If this argument was not provided, or was equal to the
         // empty matrix, returns the default value.
         if ( rhs < ivar ) then
             argin = default

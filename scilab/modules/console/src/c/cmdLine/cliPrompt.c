@@ -31,6 +31,7 @@ int printPrompt(int token)
 {
     char * prompt = (char*)malloc(sizeof(char) * (PROMPT_SIZE_MAX + 1));
     char * tmpPrompt = GetTemporaryPrompt();
+    int promptLen;
 
     /* Retrieve the prompt. It can be different if the pause mode is enabled */
     GetCurrentPrompt(prompt);
@@ -49,5 +50,8 @@ int printPrompt(int token)
         setCharDisplay(DISP_LAST_SET);
         fflush(stdout);
     }
-    return strlen(prompt);
+    promptLen = strlen(prompt);
+    free(prompt);
+    return promptLen;
 }
+

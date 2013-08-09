@@ -25,9 +25,9 @@ H5ReferenceData::~H5ReferenceData()
     delete[] cumprod;
 }
 
-void H5ReferenceData::toScilab(void * pvApiCtx, const int lhsPosition, int * parentList, const int listPosition) const
+void H5ReferenceData::toScilab(void * pvApiCtx, const int lhsPosition, int * parentList, const int listPosition, const bool flip) const
 {
-    H5Object::toScilab(pvApiCtx, lhsPosition, parentList, listPosition);
+    H5Object::toScilab(pvApiCtx, lhsPosition, parentList, listPosition, flip);
 }
 
 const char ** H5ReferenceData::getReferencesName() const

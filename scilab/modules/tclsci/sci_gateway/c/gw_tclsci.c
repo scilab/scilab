@@ -28,56 +28,56 @@
 /*--------------------------------------------------------------------------*/
 static BOOL bFirstTclInit = TRUE;
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+static gw_generic_table Tab[] =
 {
-  {sci_TCL_DoOneEvent,"TCL_DoOneEvent"},
-  {sci_TCL_EvalStr,"TCL_EvalStr"},
-  {sci_TCL_GetVar,"TCL_GetVar"},
-  {sci_TCL_SetVar,"TCL_SetVar"},
-  {sci_opentk,"opentk"},
-  {sci_TCL_GetVersion,"TCL_GetVersion"},
-  {sci_TCL_UnsetVar,"TCL_UnsetVar"},
-  {sci_TCL_ExistVar,"TCL_ExistVar"},
-  {sci_TCL_UpVar,"TCL_UpVar"},
-  {sci_TCL_DeleteInterp,"TCL_DeleteInterp"},
-  {sci_TCL_ExistInterp,"TCL_ExistInterp"},
-  {sci_TCL_ExistArray,"TCL_ExistArray"},
-  {sci_TCL_EvalFile,"TCL_EvalFile"}
- };
+    {sci_TCL_DoOneEvent, "TCL_DoOneEvent"},
+    {sci_TCL_EvalStr, "TCL_EvalStr"},
+    {sci_TCL_GetVar, "TCL_GetVar"},
+    {sci_TCL_SetVar, "TCL_SetVar"},
+    {sci_opentk, "opentk"},
+    {sci_TCL_GetVersion, "TCL_GetVersion"},
+    {sci_TCL_UnsetVar, "TCL_UnsetVar"},
+    {sci_TCL_ExistVar, "TCL_ExistVar"},
+    {sci_TCL_UpVar, "TCL_UpVar"},
+    {sci_TCL_DeleteInterp, "TCL_DeleteInterp"},
+    {sci_TCL_ExistInterp, "TCL_ExistInterp"},
+    {sci_TCL_ExistArray, "TCL_ExistArray"},
+    {sci_TCL_EvalFile, "TCL_EvalFile"}
+};
 /*--------------------------------------------------------------------------*/
 int gw_tclsci(void)
 {
-	if ( getScilabMode() != SCILAB_NWNI )
-	{
-		if (bFirstTclInit)
-		{
-			InitializeTclTk();
-			bFirstTclInit = FALSE;
-		}
-		
-		if (isTkStarted())
-		{
-			Rhs = Max(0, Rhs);
+    if ( getScilabMode() != SCILAB_NWNI )
+    {
+        if (bFirstTclInit)
+        {
+            InitializeTclTk();
+            bFirstTclInit = FALSE;
+        }
 
-            if(pvApiCtx == NULL)
+        if (isTkStarted())
+        {
+            Rhs = Max(0, Rhs);
+
+            if (pvApiCtx == NULL)
             {
                 pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
             }
 
-            pvApiCtx->pstName = (char*)Tab[Fin-1].name;
-			callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-		}
-		else
-		{
-			sciprint(_("Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"));
-		}
-	}
-	else
-	{
-		Scierror(999,_("Tcl/TK interface disabled in -nogui mode.\n"));
-		return 0;
-	}
+            pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
+            callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+        }
+        else
+        {
+            sciprint(_("Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"));
+        }
+    }
+    else
+    {
+        Scierror(999, _("Tcl/TK interface disabled in -nogui mode.\n"));
+        return 0;
+    }
 
-  return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

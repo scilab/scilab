@@ -9,37 +9,29 @@
 
 
 function [d]=detr(h)
-//[d]=detr(h)  computes the determinant of a polynomial or
-//rational function matrix h using Leverrier's method
-//!
-  tof=typeof(h)
-  if or(tof==['polynomial','constant']) then
-    [m,n]=size(h);
-    if m<>n then 
-      error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"detr",1))
+    //[d]=detr(h)  computes the determinant of a polynomial or
+    //rational function matrix h using Leverrier's method
+    //!
+    rhs = argn(2);
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "detr", 1));
     end
-    f=eye(n,n);
-    for k=1:n-1,
-      b=h*f,
-      d=-sum(diag(b))/k
-      f=b+eye(n,n)*d,
+    
+    tof=typeof(h)
+    if or(tof==["polynomial","constant", "rational"]) then
+        [m,n]=size(h);
+        if m<>n then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"detr",1))
+        end
+        f=eye(n,n);
+        for k=1:n-1,
+            b=h*f,
+            d=-sum(diag(b))/k
+            f=b+eye(n,n)*d,
+        end
+        d=-sum(diag(h*f))/n;
+        if 2*int(n/2)<>n then d=-d;end
+    else
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A floating point number or polynomial or rational fraction array expected.\n"),"detr",1))
     end
-    d=-sum(diag(h*f))/n;
-    if 2*int(n/2)<>n then d=-d;end
-  elseif tof=='rational' then //
-    [m,n]=size(h(2));
-    if m<>n then 
-      error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"detr",1))
-    end
-    f=eye(n,n);
-    for k=1:n-1,
-      b=h*f,
-      d=0;for l=1:n,d=d+b(l,l),end,d=-d/k;
-      f=b+eye(n,n)*d,
-    end
-    b=h*f;d=0;for l=1:n,d=d+b(l,l),end;d=-d/n;
-    if 2*int(n/2)<>n then d=-d;end
-  else
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: A floating point number or polynomial or rational fraction array expected.\n"),"detr",1))
-  end
 endfunction

@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:12+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-26 01:22+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -30,6 +30,26 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是 scilab 的函數名稱
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
 msgstr " 結果可能不正確. rcond = %s1\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 無法讀取第 #%d 個參數.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
+msgstr "%s:參數%d的型別錯誤:應該為一實數純量.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
+msgstr "%s:參數%d的長度錯誤:應該為一實數純量.\n"
 
 #
 # File: src/c/stack2.c, line: 1868
@@ -78,30 +98,6 @@ msgstr " 結果可能不正確. rcond = %s1\n"
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體不夠.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: 無法讀取第 #%d 個參數.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s:參數%d的型別錯誤:應該為一實數純量.\n"
-
-#, c-format
-msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr "%s:參數%d的長度錯誤:應該為一實數純量.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
@@ -168,8 +164,8 @@ msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s: 輸入參數的資料型態錯誤.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
-msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 1,2 或 3.\n"
+msgid "%s: Wrong value for input argument #%d: 0,1 or 2 expected.\n"
+msgstr ""
 
 #
 # File: macros/add_demo.sci, line: 4
@@ -622,21 +618,35 @@ msgstr "無法再配置空間給  Scilab 堆疊 (stack).\n"
 
 #, c-format
 msgid ""
-"Oups. A fatal error has been detected by Scilab.\n"
-"Your instance will probably crash soon.\n"
-"Please report a bug on %s with:\n"
+"A fatal error has been detected by Scilab.\n"
+"Your instance will probably quit unexpectedly soon.\n"
+"If a graphic feature has been used, this might be caused by the system "
+"graphic drivers.\n"
+"Please try to update them and run this feature again.\n"
+"You can report a bug on %s with:\n"
 "* a sample code which reproduces the issue\n"
 "* the result of [a, b] = getdebuginfo()\n"
 "* the following information:\n"
 "%s %s\n"
 msgstr ""
-"喔糟糕. Scilab 偵測到一個嚴重錯誤.\n"
-"你執行的工作可能會很快毀損.\n"
-"請在 %s 發佈錯誤報告:\n"
-"* 根據此問題寫一範例程式碼.\n"
-"* [a,b]的運算結果 = getdebuginfo()\n"
-"* 參考下面的訊息:\n"
-"%s %s\n"
+
+msgid "stack size exceeded!\n"
+msgstr ""
+
+msgid "Use stacksize function to increase it.\n"
+msgstr ""
+
+#, c-format
+msgid "Memory used for variables: %d\n"
+msgstr ""
+
+#, c-format
+msgid "Intermediate memory needed: %d\n"
+msgstr ""
+
+#, c-format
+msgid "Total memory available: %d\n"
+msgstr ""
 
 #
 # File: src/c/stack1.c, line: 81
@@ -654,51 +664,21 @@ msgstr "%s: 參數 %d 大小 (size) 錯誤: 應為 (%d,%d) .\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Real or complex matrix "
+"%s: Wrong type for element %d of argument #%d: Real or Complex matrix "
 "expected.\n"
-msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為實數或複數矩陣\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr "%s: 參數 %d 型態錯誤: 應為實數或複數矩陣.\n"
+msgid "%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"
+msgstr ""
 
-#
-# File: src/c/stack2.c, line: 1929
-# File: src/c/stack2.c, line: 2155
-# File: src/c/stack1.c, line: 232
-# File: src/c/stack1.c, line: 511
-# File: src/c/stack1.c, line: 682
-# File: src/c/stack1.c, line: 702
-# File: src/c/stack1.c, line: 880
-# File: src/c/stack1.c, line: 1277
-# File: src/c/stack1.c, line: 1303
-# File: src/c/stack1.c, line: 1327
-# File: src/c/stack1.c, line: 1356
-# File: src/c/stack1.c, line: 1381
-# File: src/c/stack1.c, line: 1541
-# File: src/c/stack1.c, line: 1618
-# File: src/c/stack1.c, line: 1771
-# File: src/c/stack1.c, line: 1920
-# File: src/c/stack1.c, line: 2076
-# File: src/c/stack1.c, line: 2143
-# File: src/c/stack1.c, line: 2172
-# File: src/c/stack1.c, line: 2267
-# File: src/c/stack1.c, line: 2558
-# File: src/c/stack1.c, line: 2684
-# File: src/c/stack1.c, line: 3025
-# File: src/c/stack1.c, line: 3114
 #, c-format
-msgid "%s: Too many names.\n"
-msgstr "%s: 太多名稱.\n"
+msgid "%s: Too many variables.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: List of size at least %d expected.\n"
 msgstr "%s: 參數 %d 型態錯誤 : 應為最小個數為 %d 之串列 (List).\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Int matrix expected.\n"
-msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為  Int 矩陣.\n"
 
 #
 # File: src/c/stack1.c, line: 569
@@ -717,9 +697,8 @@ msgstr "%s: 參數 %d 大小 (size) 錯誤: 預期最小為 %d .\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Boolean matrix "
-"expected.\n"
-msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為  Boolean 矩陣.\n"
+"%s: Wrong type for element %d of argument #%d: Boolean matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
@@ -727,17 +706,16 @@ msgstr "%s: 參數 %d 型態錯誤: 應為 Boolean 矩陣.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Sparse matrix expected.\n"
-msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為 稀疏矩陣.\n"
+"%s: Wrong type for element %d of argument #%d: Sparse matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為稀疏矩陣.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Vector expected.\n"
-msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為向量.\n"
+msgid "%s: Wrong type for element %d of argument #%d: Vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Vector expected.\n"
@@ -752,32 +730,21 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: 參數 %d 大小 (size) 錯誤: 應為 %d .\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Scalar expected.\n"
-msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為純量.\n"
+msgid "%s: Wrong type for element %d of argument #%d: Scalar expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr "%s: 參數 %d 型態錯誤 : 應為純量, '%s' 或 '%s'.\n"
+msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Matrix of strings "
-"expected.\n"
-msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為矩陣或字串.\n"
+"%s: Wrong type for element %d of argument #%d: Matrix of strings expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr "%s: 參數 %d 型態錯誤 : 應為矩陣或字串.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d (List element: %d): String matrix expected.\n"
-msgstr "%s: 第 %d 參數的型態錯誤 (列出元素: %d): 應該是字串矩陣.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
-msgstr "%s: 參數 %d 型態錯誤: 應為字串矩陣.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: List expected.\n"
@@ -796,9 +763,8 @@ msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為整數矩陣.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Row vector expected.\n"
-msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為 Row vector expected.\n"
+msgid "%s: Wrong type for element %d of argument #%d: Row vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Row vector expected.\n"
@@ -815,23 +781,20 @@ msgid "%s: Wrong type for argument #%d: Column vector expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為列向量.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Boxed pointer expected.\n"
-msgstr "%s: 參數 %d 型態錯誤 (List 元素: %d): 應為 Boxed 指標 (pointer).\n"
+msgid "%s: Wrong type for element %d of argument #%d: Pointer expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Boxed pointer expected.\n"
-msgstr "%s: 參數 %d 型態錯誤: 應為 Boxed 指標 (pointer).\n"
+msgid "%s: Wrong type for argument #%d: Pointer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應為矩陣.\n"
 
-#
-# File: src/c/stack1.c, line: 2938
 #, c-format
-msgid "%s: entry point %s not found in predefined tables or link table.\n"
-msgstr "%s: 進入點(entry point) %s 不在事先已定義之表或連結表內.\n"
+msgid "%s: Subroutine '%s' not found.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -859,9 +822,8 @@ msgstr "%f: 儲存字串參數的空間已用完.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Matrix of handle "
-"expected.\n"
-msgstr "%s: 參數 %d 型態錯誤  (List 元素: %d): 應為 handle 之矩陣.\n"
+"%s: Wrong type for element %d of argument #%d: Matrix of handle expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
@@ -1008,6 +970,35 @@ msgstr ""
 #, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s: 程式產生遞迴問題 (Recursion problems). 對不起 ...\n"
+
+#
+# File: src/c/stack2.c, line: 1929
+# File: src/c/stack2.c, line: 2155
+# File: src/c/stack1.c, line: 232
+# File: src/c/stack1.c, line: 511
+# File: src/c/stack1.c, line: 682
+# File: src/c/stack1.c, line: 702
+# File: src/c/stack1.c, line: 880
+# File: src/c/stack1.c, line: 1277
+# File: src/c/stack1.c, line: 1303
+# File: src/c/stack1.c, line: 1327
+# File: src/c/stack1.c, line: 1356
+# File: src/c/stack1.c, line: 1381
+# File: src/c/stack1.c, line: 1541
+# File: src/c/stack1.c, line: 1618
+# File: src/c/stack1.c, line: 1771
+# File: src/c/stack1.c, line: 1920
+# File: src/c/stack1.c, line: 2076
+# File: src/c/stack1.c, line: 2143
+# File: src/c/stack1.c, line: 2172
+# File: src/c/stack1.c, line: 2267
+# File: src/c/stack1.c, line: 2558
+# File: src/c/stack1.c, line: 2684
+# File: src/c/stack1.c, line: 3025
+# File: src/c/stack1.c, line: 3114
+#, c-format
+msgid "%s: Too many names.\n"
+msgstr "%s: 太多名稱.\n"
 
 #
 # File: src/c/stack2.c, line: 2041
@@ -1236,11 +1227,9 @@ msgstr "移除 (Unqueuing) %s - seq(選項).\n"
 
 #, c-format
 msgid ""
-"Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
+"%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
 "\n"
 msgstr ""
-"請安裝 texmacs ATOMS 模組: 執行 automsinstall('texmacs')\n"
-"\n"
 
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "找不到 Windows 的暫存目錄 (1)."
@@ -1312,7 +1301,6 @@ msgstr ""
 msgid "Empty tab"
 msgstr "空白標籤"
 
-#, c-format
 msgid "Scilab %s Console"
 msgstr ""
 
@@ -1333,6 +1321,10 @@ msgstr "執行啟動"
 # File: etc/scilab.start, line: 42
 msgid "  loading initial environment"
 msgstr "  載入初始環境"
+
+#, c-format
+msgid "Failed to execute %s:"
+msgstr ""
 
 msgid "&File"
 msgstr "檔案(&F)"
@@ -1355,11 +1347,29 @@ msgstr "&?"
 msgid "&Toolboxes"
 msgstr "工具箱(&)"
 
-msgid "Introduction"
-msgstr "簡介"
+msgid "Introduction: Getting started with Scilab"
+msgstr ""
 
-msgid "Getting started with Scilab"
-msgstr "Scilab 入門"
+msgid "Scilab objects"
+msgstr ""
+
+msgid "Operations and numerical primitives"
+msgstr ""
+
+msgid "Online definition of function"
+msgstr ""
+
+msgid "Optimization and simulation"
+msgstr ""
+
+msgid "Systems: definition and analysis"
+msgstr ""
+
+msgid "Linear algebra"
+msgstr ""
+
+msgid "Call an external routine"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
@@ -1431,6 +1441,24 @@ msgstr "%s: 輸入參數數目錯誤: 預期最少為 %d 個.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為已定義之變數.\n"
+
+msgid "Scilab Version: "
+msgstr ""
+
+msgid "Operating System: "
+msgstr ""
+
+msgid "Java version: "
+msgstr ""
+
+msgid "Java runtime information: "
+msgstr ""
+
+msgid "Java Virtual Machine information: "
+msgstr ""
+
+msgid "Vendor specification: "
+msgstr ""
 
 #, c-format
 msgid "%s called at line %s of %s"

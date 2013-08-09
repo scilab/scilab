@@ -7,23 +7,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:11+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-02 14:42+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: zh_CN\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "在 -nogui 或 -nwni 模式下 Scilab 的图形模块被禁用。\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s：内存分配错误。\n"
+
+#, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
 msgstr "%s：输入参数 #%d 和参数 #%d 的大小错误：长度不一致。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr "%s：第%d个参数的类型错误：应该为字符串矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s：第%d个参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Incorrect value.\n"
@@ -48,6 +64,10 @@ msgstr "%s：第 %d 个句柄不是一个折线句柄。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr "%s：输入参数 #%d 的类型错误：应该为实标量。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real scalar expected.\n"
@@ -83,11 +103,19 @@ msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s：可选参数位置错误：参数 #%d 必须置于位置 %d。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Function %s is obsolete.\n"
 msgstr ""
 
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #, c-format
 msgid "%s: Please use %s instead.\n"
@@ -97,6 +125,10 @@ msgstr ""
 msgid ""
 "%s: This function will be permanently removed in Scilab %s\n"
 "\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -123,6 +155,14 @@ msgstr ""
 
 #, c-format
 msgid "%s: Please see documentation for more details.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s：输入参数 #%d 的大小错误：应该为 %d。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
@@ -159,10 +199,6 @@ msgstr "%s：输入参数 #%d 的类型错误：应该为向量 %s 或 %s。\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: List of size %d expected.\n"
 msgstr "%s：输入参数 #%d 的大小错误：应该为 %d 大小的 List。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s：输入参数 #%d 的大小错误：应该为 %d。\n"
 
 #, c-format
 msgid ""
@@ -228,6 +264,10 @@ msgid ""
 msgstr "%s：输入参数 #%d 的类型错误：应该为一个简单的 Figure 或 Axes 句柄。\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
 "option. See help for more information.\n"
@@ -257,6 +297,38 @@ msgstr "%s：输入参数 #%d 的类型错误：应该为实行向量。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s：输入参数 #%d 的类型错误：应该为一个布尔型。\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can not get type of input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr "%s：第%d个输入参数的大小出错：应该为单字符串（即不是字符串矩阵）。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of handle expected\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A matrix of string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or handle expected.\n"
@@ -361,8 +433,8 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s：必须设置“%s”\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d or %d expected.\n"
-msgstr ""
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid ""
@@ -370,16 +442,16 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s：输入的参数的数目错误：应该为 %d。\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s：输入参数的数目错误，应该为 %d 个。\n"
 
 #, c-format
 msgid "Figure n%d"
-msgstr ""
+msgstr "图像n%d"
 
 #, c-format
 msgid "WARNING: %s\n"
-msgstr ""
+msgstr "警告：%s\n"
 
 msgid "xset(\"wshow\") is obsolete."
 msgstr ""
@@ -516,13 +588,13 @@ msgstr "该对象无 %s 属性。\n"
 
 #, c-format
 msgid "Graphic window number %d"
-msgstr "图象窗口数目 %d"
+msgstr "图像窗口%d"
 
 msgid "Default axes cannot be created.\n"
 msgstr ""
 
 msgid "This object has not any graphic mode\n"
-msgstr "这个对象没有任何图象模式\n"
+msgstr "此对象没有任何图象模式\n"
 
 msgid "This object can not be moved.\n"
 msgstr "这个对象不能移动。\n"
@@ -567,6 +639,9 @@ msgstr "列数必须是 %d 。\n"
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "属性“%s”不为这个句柄存在。\n"
+
+msgid "Tlist could not be created, check ticks location and label vectors.\n"
+msgstr ""
 
 #, c-format
 msgid "%s should be a vector of double.\n"
@@ -763,7 +838,7 @@ msgstr "属性“%s”值错误：必须是“%s”。\n"
 
 msgid ""
 "Old graphic mode is no longer available. Please refer to the set help page.\n"
-msgstr "旧的图象模式不再有效。请查阅 set 帮助页面。\n"
+msgstr "旧的图像模式不再有效。请查阅 set 帮助页面。\n"
 
 #, c-format
 msgid ""
@@ -1070,6 +1145,11 @@ msgid "%s : Invalid entity %s\n"
 msgstr "%s：无效的实体 %s\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: figure graphic handle expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为 %d 到 %d 个参数。\n"
 
@@ -1080,6 +1160,32 @@ msgstr "%s：输入参数 #%d 必须为实数。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: function expected.\n"
 msgstr "%s：输入参数 #%d 的类型错误：应该为函数。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument(s): Arguments #%d, #%d and #%d must be "
+"real.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: The number of rows of "
+"argument #%d must be equal to the size of argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: The number of columns of "
+"argument #%d must be equal to the size of argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Axes handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size or type for input argument #%d: A string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -1102,17 +1208,79 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s：输入参数的个数错误：应该为%d到%d个。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument '%s': A vector expected.\n"
+msgid "%s: Wrong type for input arguments #%d: A string expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument '%s': A non empty matrix expected.\n"
+"%s: Wrong type for input arguments: Matrix expected for %s, %s and %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected for %s and %s.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments '%s' and '%s': Incompatible dimensions.\n"
+"%s: Wrong size for input argument #%d: A scalar or a column vector "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d: A scalar or a column vector "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A handle, a string or a scalar "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input arguments #%d and #%d: If argument #%d is a handle "
+"or a string, argument #%d must be a string or a scalar.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected for %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The bars must have the same x data.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not find any bar in the current graphic.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr "%s：输入参数 #%d 的大小错误：应该为一个向量。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A non empty matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible dimensions.\n"
 msgstr ""
 
 #, c-format
@@ -1144,10 +1312,6 @@ msgstr "%s：输入参数 #%d 的类型错误：应该为实数型的。\n"
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr "%s：输入参数 #%d 的值错误：必须在区间 [%s, %s] 中。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -1370,10 +1534,6 @@ msgid "Select tip style"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
 msgstr ""
 
@@ -1429,10 +1589,6 @@ msgid "Edit label generator"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
-msgstr "%s：输入参数 #%d 的大小错误：应该为一个向量。\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s', '%s', '%s' "
 "or '%s' expected.\n"
@@ -1440,10 +1596,6 @@ msgstr ""
 
 msgid "Tcl/Tk interface not installed."
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s：输入参数的数目错误，应该为 %d 个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
@@ -1461,8 +1613,34 @@ msgid "Left click on a graphic entity to open its property editor"
 msgstr ""
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A color of the colormap expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s:  Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument.\n"
 msgstr "%s：输入参数的类型错误。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid property name expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Ambiguous line property.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Only one property expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Ambiguous surface property: %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -1560,8 +1738,19 @@ msgid ""
 msgstr "%s：输入参数 #%d 类型错误：应该为实的数组或图像句柄队列。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-msgstr "%s：第%d个输入参数的大小出错：应该为单字符串（即不是字符串矩阵）。\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument %s: Must be in the interval [%d, %d]."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Polyline handles expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Matrices of same size expected.\n"
@@ -1604,30 +1793,90 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments '%s': A vector of size %d expected.\n"
+"%s: Wrong type for input argument #%d: A vector of 3 integers expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"
+msgid ""
+"%s: Wrong type for input arguments #%d, #%d and #%d: Scalars expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: must be in the interval [%d, %d].\n"
 msgstr ""
 
-msgid "Color data must be a scalar."
+#, c-format
+msgid ""
+"%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
 msgstr ""
 
-msgid "Color value must be a 3 element vector or an index in the colormap."
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
 
-msgid "Incorrect input: Color vector should be a 3x1 or 1x3 vector"
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
 
-msgid "Color value must be a 3 elements vector or an index in the colormap."
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: 3 elements vector or index in the "
+"colormap expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A marker style expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Vector or index in the colormap "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size or type for input argument #%d: A column or row vector "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Ambiguous MarkStyle value.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
 msgid "Incorrect input: ..."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real matrix or a string matrix "
+"expected.\n"
 msgstr ""
 
 #, c-format
@@ -1687,6 +1936,10 @@ msgstr "%s：输入参数 #%d 的类型错误：应该为一个向量。\n"
 
 #, c-format
 msgid "%s: file %s does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 
 #, c-format

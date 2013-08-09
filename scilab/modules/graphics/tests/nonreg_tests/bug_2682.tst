@@ -6,7 +6,9 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
-
+//
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Non-regression test for bug 2682-->
 //
 // <-- Bugzilla URL -->

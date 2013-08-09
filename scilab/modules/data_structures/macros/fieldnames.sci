@@ -8,18 +8,18 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function f=fieldnames(t)
-  if or(type(t)==[16,17]) then
-    if h5isCompound(t) then
-      f=%H5Object_fieldnames(t);
+    if or(type(t)==[16,17]) then
+        if h5isCompound(t) then
+            f=%H5Object_fieldnames(t);
+        else
+            f=matrix(getfield(1,t),-1,1)
+            if f(1)<>"st" then //ignore type
+                f=f(2:$)
+            else //ignore type and dims
+                f=f(3:$)
+            end
+        end
     else
-      f=matrix(getfield(1,t),-1,1)
-      if f(1)<>'st' then //ignore type
-        f=f(2:$)
-      else //ignore type and dims
-        f=f(3:$)
-      end
+        f=[]
     end
-  else
-    f=[]
-  end
 endfunction

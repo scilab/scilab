@@ -118,6 +118,9 @@ fun a toto 'a string'
             (e.g. <literal>%foo</literal>) are often used to overload (see <link linkend="overloading">overloading</link>
             ) operations or functions for new data type.
         </para>
+        <para>
+            Note that a function name must respect some syntax rules (see <link linkend="names">names</link>).
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -169,6 +172,9 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
             </member>
             <member>
                 <link linkend="varargout">varargout</link>
+            </member>
+            <member>
+                <link linkend="names">names</link>
             </member>
         </simplelist>
     </refsection>

@@ -195,7 +195,7 @@ public class DropFilesListener implements DropTargetListener {
     private static java.util.List textURIListToFileList(String data) {
         java.util.List list = new java.util.ArrayList(1);
         for (java.util.StringTokenizer st = new java.util.StringTokenizer(data, "\r\n");
-             st.hasMoreTokens();) {
+                st.hasMoreTokens();) {
             String s = st.nextToken();
             if (s.startsWith("#")) {
                 // the line is a comment (as per the RFC 2483)

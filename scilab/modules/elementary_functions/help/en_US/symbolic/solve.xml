@@ -33,8 +33,8 @@
     <refsection>
         <title>Description</title>
         <para>
-          <code>x = solve(A, b)</code> solves <literal>A*x = b</literal> when
-          <literal>A</literal> is an upper triangular matrix made of character strings.
+            <code>x = solve(A, b)</code> solves <literal>A*x = b</literal> when
+            <literal>A</literal> is an upper triangular matrix made of character strings.
         </para>
     </refsection>
     <refsection>

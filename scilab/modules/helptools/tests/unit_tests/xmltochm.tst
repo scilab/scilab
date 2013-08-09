@@ -4,8 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
-// <-- ENGLISH IMPOSED -->
 // <-- NO CHECK ERROR OUTPUT -->
 // <-- NEED JVM -->
 
@@ -16,7 +14,9 @@ if getos() == 'Windows' then
 // TEST 1 (french help and english help are complete)
 // =============================================================================
 
-my_module_path = pathconvert(SCI+"/modules/helptools/examples/example_1",%f,%f);
+tmpPath = TMPDIR + "/examples";
+copyfile("SCI/modules/helptools/examples", tmpPath);
+my_module_path = pathconvert(tmpPath + "/example_1",%f,%f);
 
 // Build the french help
 
@@ -50,7 +50,7 @@ clean_help(my_english_help_dir);
 //         french help)
 // =============================================================================
 
-my_module_path = pathconvert(SCI+"/modules/helptools/examples/example_2",%f,%f);
+my_module_path = pathconvert(tmpPath + "/example_2",%f,%f);
 
 // Build the french help
 
@@ -84,7 +84,7 @@ clean_help(my_english_help_dir);
 //         english help)
 // =============================================================================
 
-my_module_path = pathconvert(SCI+"/modules/helptools/examples/example_3",%f,%f);
+my_module_path = pathconvert(tmpPath + "/example_3",%f,%f);
 
 // Build the french help
 

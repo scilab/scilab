@@ -19,24 +19,24 @@
 // See the file ../license.txt
 //
 //------------------------------------
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 //------------------------------------
-genlib('Hydraulicslib','SCI/modules/scicos_blocks/macros/Hydraulics',%f,%t);
+genlib("Hydraulicslib","SCI/modules/scicos_blocks/macros/Hydraulics",%f,%t);
 //------------------------------------
-if with_modelica_compiler() then 
+if with_modelica_compiler() then
 
-  // create models file in current directory
-  models = findfiles(pwd(),'*.mo');
-  fd = mopen('models','wt');
-  for i=1:size(models,'*')
-    mputstr(models(i) + ascii(13),fd);
-  end
-  mclose(fd);
-    
-  
-  // generate moc files
-  //exec("../../src/scripts/genmoc.sce");
+    // create models file in current directory
+    models = findfiles(pwd(),"*.mo");
+    fd = mopen("models","wt");
+    for i=1:size(models,"*")
+        mputstr(models(i) + ascii(13),fd);
+    end
+    mclose(fd);
+
+
+    // generate moc files
+    //exec("../../src/scripts/genmoc.sce");
 end;
 //------------------------------------

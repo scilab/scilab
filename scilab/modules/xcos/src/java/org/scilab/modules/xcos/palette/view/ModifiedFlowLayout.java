@@ -60,12 +60,14 @@ public class ModifiedFlowLayout extends FlowLayout {
 
             // Let this behave like a regular FlowLayout (single row)
             // if the container hasn't been assigned any size yet
-            if (w == 0)
+            if (w == 0) {
                 w = Integer.MAX_VALUE;
+            }
 
             Insets insets = target.getInsets();
-            if (insets == null)
+            if (insets == null) {
                 insets = new Insets(0, 0, 0, 0);
+            }
             int reqdWidth = 0;
 
             int maxwidth = w - (insets.left + insets.right + hgap * 2);

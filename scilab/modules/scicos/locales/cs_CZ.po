@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-21 13:43+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-15 21:43+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s : lnksz argument must be double or integer.\n"
@@ -318,598 +318,6 @@ msgstr ""
 "PEVNÉ vlastnosti (tj. , fixed=false) v modelu Modelica. Toto bude opraveno v "
 "příští verzi"
 
-msgid "IDA_MEM_NULL:The argument ida_mem was NULL"
-msgstr "IDA_MEM_NULL: Argument ida_mem byl PRÁZDNÝ"
-
-msgid ""
-"IDA_ILL_INPUT: One of the input arguments was illegal. This errors message "
-"may be returned if the linear solver function initialization (called by the "
-"user after calling IDACreate) failed to set the linear solver-specific "
-"lsolve field in ida_mem."
-msgstr ""
-"IDA_ILL_INPUT: Jeden ze vstupních argumentů byl nepřípustný. Tato chybová "
-"zpráva mohla být vrácena, když zavedení lineárního řešitele funkce (zavolaný "
-"uživatelem po volání IDACreate) nemohl v ida_mem nastavit specifické pole "
-"lsolve lineárního řešitele."
-
-msgid "IDA_NO_MALLOC: indicating that ida_mem was not allocated."
-msgstr "IDA_NO_MALLOC: označující, že ida_mem nebylo přiděleno."
-
-msgid ""
-"IDA_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
-"tout. The default value for mxstep is MXSTEP_DEFAULT = 500."
-msgstr ""
-"IDA_TOO_MUCH_WORK: Řešitel dosáhl mxstep vnitřních kroků ale nemohl "
-"dosáhnout tout. Výchozí hodnota pro mxstep je MXSTEP_DEFAULT = 500."
-
-msgid ""
-"IDA_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
-"user for some internal step."
-msgstr ""
-"IDA_TOO_MUCH_ACC: Řešitel nemohl v jistém vnitřním kroku splnit uživatelem "
-"požadovanou přesnost."
-
-msgid ""
-"IDA_ERR_FAIL: Error test failures occurred too many times (=MXETF = 10) "
-"during one internal step or occurred with |h|=h_min"
-msgstr ""
-"IDA_ERR_FAIL: K selhání zkoušky konvergence došlo příliš často (= MXETF = "
-"10) během jednoho vnitřního časového kroku nebo s |h|=h_min"
-
-msgid ""
-"IDA_CONV_FAIL: IDACalcIC->Failed to get convergence of the Newton "
-"iterations. or IDA_solve->Convergence test failures occurred too many times "
-"(= MXNCF = 10) during one internal step. "
-msgstr ""
-"IDA_CONV_FAIL: IDACalcIC->Selhalo v získání konvergence Newtonových iterací. "
-"nebo IDA_solve->K selhání zkoušky konvergence došlo příliš často (= MXNCF = "
-"10) během jednoho vnitřního časového kroku. "
-
-msgid "IDA_LINIT_FAIL: The linear solver''s initialization routine failed."
-msgstr "IDA_LINIT_FAIL: Zaváděcí rutina lineárního řešitele selhala."
-
-msgid ""
-"IDA_LSETUP_FAIL: The linear solver''s setup routine had a non-recoverable "
-"error."
-msgstr ""
-"IDA_LSETUP_FAIL: Rutina nastavení lineárního řešitele měla neopravitelnou "
-"chybu."
-
-msgid ""
-"IDA_LSOLVE_FAIL: The linear solver''s solve routine had a non-recoverable "
-"error."
-msgstr ""
-"IDA_LSOLVE_FAIL: Rutina řešení lineárního řešitele měla neopravitelnou chybu."
-
-msgid ""
-"IDA_RES_FAIL: The user''s residual routine returned a non-recoverable error "
-"flag."
-msgstr ""
-"IDA_RES_FAIL: Uživatelova zbytková rutina vrátila příznak neopravitelné "
-"chyby."
-
-msgid ""
-"IDA_CONSTR_FAIL: IDACalcIC was unable to find a solution satisfying the "
-"inequality constraints."
-msgstr ""
-"IDA_CONSTR_FAIL: IDACalcIC nebylo schopno nalézt řešení splňující omezení "
-"nerovnosti."
-
-msgid ""
-"IDA_REP_RES_ERR: The user''s residual function repeatedly returned a "
-"recoverable error flag, but the solver was unable to recover."
-msgstr ""
-"IDA_REP_RES_ERR: Uživatelova zbytková funkce opakovaně vrátila příznak "
-"opravitelné chyby, ale řešitel nebyl schopen ji opravit."
-
-msgid "IDA_MEM_FAIL: A memory allocation failed."
-msgstr "IDA_MEM_FAIL: Přidělení paměti selhalo."
-
-msgid "IDA_BAD_T: t is not in the interval [tn-hu,tn]."
-msgstr "IDA_BAD_T: t není v intervalu [tn-hu,tn]."
-
-msgid ""
-"IDA_BAD_EWT: Some component of the error weight vector is zero (illegal), "
-"either for the input value of y0 or a corrected value."
-msgstr ""
-"IDA_BAD_EWT: Některá komponenta váhového vektor chyby je nula (nepřípustné), "
-"buď pro vstupní hodnotu y0 nebo opravenou hodnotu."
-
-msgid ""
-"IDA_FIRST_RES_FAIL: The user''s residual routine returned  a recoverable "
-"error flag on the first call, but IDACalcIC was unable to recover."
-msgstr ""
-"IDA_FIRST_RES_FAIL: Uživatelova zbytková rutina vrátila příznak opravitelné "
-"chyby při prvním volání, ale IDACalcIC nebylo schopno ji opravit."
-
-msgid ""
-"IDA_LINESEARCH_FAIL: The Linesearch algorithm failed to find a solution with "
-"a step larger than steptol in weighted RMS norm."
-msgstr ""
-"IDA_LINESEARCH_FAIL: Algoritmus Linesearch nemohl nalézt řešení s krokem "
-"větším než steptol ve vážené normě RMS."
-
-msgid ""
-"IDA_NO_RECOVERY: The user''s residual routine, or the linear solver''s setup "
-"or solve routine had a  recoverable error, but IDACalcIC was unable to "
-"recover."
-msgstr ""
-"IDA_NO_RECOVERY: Zbytková rutina uživatele nebo nastavení lineárního "
-"řešitele či rutina řešení měly opravitelnou chybu, ale IDACalcIC nebylo "
-"schopno ji opravit."
-
-msgid "IDA_RTFUNC_FAIL: The root founding function failed."
-msgstr "IDA_RTFUNC_FAIL: Funkce založení kořenu selhala."
-
-msgid "IDA_YOUT_NULL: ''yout'' = NULL illegal."
-msgstr "IDA_YOUT_NULL: ''yout'' = PRÁZDNÝ nepřípustné."
-
-msgid "IDA_TRET_NULL: ''tret'' = NULL illegal."
-msgstr "IDA_TRET_NULL: ''tret'' = PRÁZDNÝ nepřípustné."
-
-msgid "IDA_BAD_ITASK: Illegal value for itask."
-msgstr "IDA_BAD_ITASK: Neplatná hodnota pro itask."
-
-msgid ""
-"IDA_NO_ESTOP: itask = IDA_NORMAL_TSTOP or itask = IDA_ONE_STEP_TSTOP but "
-"tstop was not set"
-msgstr ""
-"IDA_NO_ESTOP: itask = IDA_NORMAL_TSTOP nebo itask = IDA_ONE_STEP_TSTOP ale "
-"tstop nebylo nastaveno"
-
-msgid "IDA_BAD_H0: h0 and tout - t0 inconsistent."
-msgstr "IDA_BAD_H0: h0 a tout - t0 nekonzistentní."
-
-msgid ""
-"IDA_BAD_TSTOP: tstop is behind current simulation time in the direction of "
-"integration."
-msgstr ""
-"IDA_BAD_TSTOP: tstop je za současným čase simulace ve směru začlenění."
-
-msgid "IDA_BAD_INIT_ROOT: Root found at and very near initial t."
-msgstr "IDA_BAD_INIT_ROOT: Kořen nalezen u a velmi blízko počátečního t."
-
-msgid "IDA_NO_EFUN: itol = IDA_WF but no EwtSet function was provided."
-msgstr ""
-"IDA_NO_EFUN: itol = IDA_WF ale žádná funkce EwtSet nebyla poskytnuta."
-
-msgid "IDA_EWT_FAIL: The user-provide EwtSet function failed."
-msgstr "IDA_EWT_FAIL: Uživatelem poskytnutá funkce EwtSet selhala."
-
-msgid ""
-"IDACalc cannot find the initial condition at this point. If you are using a "
-"Modelica model, you can try with the initialization GUI to try with other "
-"nonlinear solvers."
-msgstr ""
-"IDACalc nemůže v tomto bodě nalézt počáteční podmínku. Pokud používáte model "
-"Modelica, můžete zkusit se zavedením GUI pro provedení s jinými nelineárními "
-"řešiteli."
-
-msgid "IDA_LSOLVE_NULL: The linear solver''s solve routine is NULL."
-msgstr "IDA_LSOLVE_NULL: Rutina řešení lineárního řešitele je PRÁZDNÁ."
-
-msgid "IDA_NULL_Y0: y0 = NULL illegal."
-msgstr "IDA_NULL_Y0: y0 = PRÁZDNÉ nepřípustné."
-
-msgid ""
-"IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
-"and IDA_WF."
-msgstr ""
-"IDA_BAD_ITOL:  Neplatná hodnota pro itol. Platné hodnoty jsou IDA_SS, "
-"IDA_SV, a IDA_WF."
-
-msgid "IDA_NULL_F: user supplied ODE routine is (NULL) illegal."
-msgstr "IDA_NULL_F: uživatelem zadaná rutina ODE je (PRÁZDNÁ) nepřípustné."
-
-msgid "IDA_BAD_NVECTOR: A required vector operation is not implemented."
-msgstr "IDA_BAD_NVECTOR: Požadovaná vektorová operace není zavedena."
-
-msgid "IDA_NULL_ABSTOL: absolute tolerances is = NULL illegal."
-msgstr "IDA_NULL_ABSTOL: absolutní tolerance je = PRÁZDNÁ nepřípustné."
-
-msgid "IDA_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
-msgstr "IDA_BAD_RELTOL: relativní tolerance je reltol < 0 nepřípustné."
-
-msgid "IDA_BAD_ABSTOL: abstol has negative component(s) (illegal)."
-msgstr "IDA_BAD_ABSTOL: abstol má negativní komponentu(y) (nepřípustné)."
-
-msgid "IDA_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
-msgstr ""
-"IDA_NULL_G: uživatelem zadaná rutina průchodu nulou je (PRÁZDNÁ) nepřípustné."
-
-msgid ""
-"IDA_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
-"integration"
-msgstr ""
-"IDA_BAD_TOUT: Problém s interpolací. ''tout'' příliš daleko ve směru "
-"začlenění"
-
-msgid "IDA_YP0_NULL: the derivative yp0 = NULL is illegal."
-msgstr "IDA_YP0_NULL: derivát yp0 = PRÁZDNÝ je nepřípustné."
-
-msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
-msgstr "IDA_RES_NULL: vrácené zbytkové res = PRÁZDNÉ je nepřípustné."
-
-msgid "IDA_YRET_NULL: yret = NULL illegal.."
-msgstr "IDA_YRET_NULL: yret = PRÁZDNÝ nepřípustné."
-
-msgid "IDA_YPRET_NULL: yret = NULL illegal.."
-msgstr "IDA_YPRET_NULL: yret = PRÁZDNÝ nepřípustné."
-
-msgid "IDA_BAD_HINIT: yret = NULL illegal.."
-msgstr "IDA_BAD_HINIT: yret = PRÁZDNÉ nepřípustné."
-
-msgid ""
-"IDA_MISSING_ID :id = NULL (''id'' defines algebraic and differential states) "
-"but suppressalg option on."
-msgstr ""
-"IDA_MISSING_ID :id = PRÁZDNÝ (''id'' určuje algebraické a diferenciální "
-"stavy) ale možnost suppressalg je zapnuta."
-
-msgid "IDA_Y0_FAIL_CONSTR: y0 fails to satisfy constraints."
-msgstr "IDA_Y0_FAIL_CONSTR: y0 nemůže splnit omezení."
-
-msgid "IDA_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
-msgstr ""
-"IDA_TOO_CLOSE: ''tout'' příliš blízko k ''t0'' pro spuštění začlenění."
-
-msgid "IDA_CLOSE_ROOTS: Root found at and very near starting time."
-msgstr "IDA_CLOSE_ROOTS: Kořen nalezen u a velmi blízko počátečnímu času."
-
-msgid "IDA_Residual_NAN: The residual function returns NAN."
-msgstr "IDA_Residual_NAN: Zbytková funkce vrací NAN."
-
-msgid "IDA_Rootfunction_NAN: The Root function returns NAN."
-msgstr "IDA_Rootfunction_NAN: Kořenová funkce vrací NAN."
-
-msgid ""
-"CV_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
-"''tout''. The default value for mxstep is MXSTEP_DEFAULT = 500."
-msgstr ""
-"CV_TOO_MUCH_WORK: Řešitel dosáhl mxstep vnitřních kroků ale nemohl dosáhnout "
-"''tout''. Výchozí hodnota pro mxstep je MXSTEP_DEFAULT = 500."
-
-msgid ""
-"CV_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
-"user for some internal step"
-msgstr ""
-"CV_TOO_MUCH_ACC: Řešitel nemohl uspokojit přesnost pro jistý vnitřní krok "
-"vyžadovanou uživatelem"
-
-msgid ""
-"CV_ERR_FAILURE: Error test failures occurred too many times (=MXETF = 7) "
-"during one internal step or occurred with |h|=h_min "
-msgstr ""
-"CV_ERR_FAILURE: K selhání zkoušek chyb došlo příliš často (= MXETF = 7) "
-"během jednoho vnitřního časového kroku nebo s |h|=h_min "
-
-msgid ""
-"CV_CONV_FAILURE: Convergence test failures occurred too many times (= MXNCF "
-"= 10) during one internal time step or occurred with |h| = hmin."
-msgstr ""
-"CV_CONV_FAILURE: K selhání zkoušky konvergence došlo příliš často (= MXNCF = "
-"10) během jednoho vnitřního časového kroku nebo s |h| = hmin."
-
-msgid "CV_LINIT_FAIL: The linear solver''s initialization function failed."
-msgstr "CV_LINIT_FAIL: Zavedení funkce lineárního řešitele selhalo."
-
-msgid ""
-"CV_LSETUP_FAIL: The linear solver''s setup routine failed in an "
-"unrecoverable manner."
-msgstr ""
-"CV_LSETUP_FAIL: Rutina nastavení lineárního řešitele selhala neopravitelným "
-"způsobem."
-
-msgid ""
-"CV_LSOLVE_FAIL: The linear solver''s solve routine failed in an "
-"unrecoverable manner."
-msgstr ""
-"CV_LSETUP_FAIL: Rutina nastavení řešení lineárního řešitele selhala "
-"neopravitelným způsobem."
-
-msgid ""
-"CV_RHSFUNC_FAIL: The right-hand side function (user supplied ODE) failed in "
-"an unrecoverable manner"
-msgstr ""
-"CV_RHSFUNC_FAIL: Funkce vpravo (uživatelem zadané ODE) selhala "
-"neopravitelným způsobem."
-
-msgid ""
-"CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
-"recoverable error at the first call"
-msgstr ""
-"CV_FIRST_RHSFUNC_ERR: Funkce napravo (uživatelem poskytnuté ODE) měla při "
-"prvním volání vyřešitelnou chybu"
-
-msgid ""
-"CV_REPTD_RHSFUNC_ERR: Convergence tests occurred too many times due to "
-"repeated recoverable errors in the right-hand side function (user supplied "
-"ODE). This error may be raised due to repeated  recoverable errors during "
-"the estimation of an initial step size."
-msgstr ""
-"CV_REPTD_RHSFUNC_ERR: Ke zkouškám konvergence docházelo příliš často kvůli "
-"opakovaným opravitelným chybám ve funkci napravo (uživatelem zadaná ODE). "
-"Tato chyba mohla vzniknout kvůli opakovaným opravitelným chybám během odhadu "
-"velikosti počátečního kroku."
-
-msgid ""
-"CV_UNREC_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
-"recoverable error, but no recovery was possible."
-msgstr ""
-"CV_UNREC_RHSFUNC_ERR: Funkce vpravo (uživatelem zadané ODE) měla "
-"obnovitelnou chybu, ale žádná oprava nebyla možná."
-
-msgid ""
-"CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."
-msgstr ""
-"CV_RTFUNC_FAIL: Kořenová hledající rutina  selhala neopravitelným způsobem."
-
-msgid ""
-"CV_MEM_FAIL: a memory allocation failed, including an attempt to increase "
-"maxord"
-msgstr ""
-"CV_MEM_FAIL: přidělení paměti selhalo, včetně pokusu o zvýšení maxord"
-
-msgid "CV_MEM_NULL: the cvode memory was NULL"
-msgstr "CV_MEM_NULL: paměť cvode byla nulová"
-
-msgid ""
-"CV_ILL_INPUT: indicating an input argument was illegal. This include the "
-"situation where a component of the error weight vector becomes negative "
-"during internal time-stepping. This also includes if the linear solver "
-"function initialization (called by the user after calling CVodeCreat) failed "
-"to set the linear solver-specific ''lsolve'' field in cvode_mem. This error "
-"happens if number of root functions is positive but the return surface value "
-"is NULL. "
-msgstr ""
-"CV_ILL_INPUT: naznačující, že vstupní argument byl nepřípustný. To zahrnuje "
-"situaci, kdy komponenta váha chyby vektoru se stane zápornou během vnitřního "
-"krokování času. Toto také zahrnuje pokud zavedení funkce lineárního řešitele "
-"(zavolaná uživatelem po volání CVodeCreat) selže při nastavení konkrétní "
-"pole ''isolve'' lineárního řešitele ve cvode_mem. Tato chyba se stane, když "
-"počet kořenových funkcí je kladný ale návratová hodnota povrchu je nulová. "
-
-msgid ""
-"CV_NO_MALLOC: indicating that cvode_mem has not been allocated (i.e., "
-"CVodeMalloc has not been called)."
-msgstr ""
-"CV_NO_MALLOC: naznačující, že cvode_mem nebyl přidělen (tj. nebyl zavolán "
-"CVodeMalloc)."
-
-msgid ""
-"CV_BAD_K: k (the order of the derivative of y to be computed) is not in the "
-"range 0, 1, ..., qu, where qu is the order last used"
-msgstr ""
-"CV_BAD_K: k (pořadí derivátu y které bude spočítáno) není v rozsahu 0, 1 "
-"..., qu, kde qu je poslední použité pořadí"
-
-msgid "CV_BAD_T: t is not in the interval [tn-hu,tn]."
-msgstr "CV_BAD_T: t není v intervalu [tn-hu,tn]."
-
-msgid ""
-"CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
-"[((d/dt)^k)y](t)."
-msgstr ""
-"CV_BAD_DKY: Argument dky byl prázdný. dky je výstupní derivát vektoru "
-"[((d/dt)^k)y](t)."
-
-msgid "CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
-msgstr "CV_TOO_CLOSE: ''tout'' příliš blízko ''t0'' pro spuštění začlenění."
-
-msgid "CV_YOUT_NULL: ''yout'' = NULL illegal."
-msgstr "CV_YOUT_NULL: ''yout'' = PRÁZDNÉ nepřípustné."
-
-msgid "CV_TRET_NULL: ''tret'' = NULL illegal."
-msgstr "CV_TRET_NULL: ''tret'' = PRÁZDNÉ nepřípustné."
-
-msgid "CV_BAD_ITASK: Illegal value for itask."
-msgstr "CV_BAD_ITASK: Neplatná hodnota pro itask."
-
-msgid ""
-"CV_NO_ESTOP: itask = CV_NORMAL_TSTOP or itask = CV_ONE_STEP_TSTOP but tstop "
-"was not set"
-msgstr ""
-"CV_NO_ESTOP: itask = CV_NORMAL_TSTOP nebo itask = CV_ONE_STEP_TSTOP ale "
-"tstop nebyl nastaven"
-
-msgid "CV_BAD_H0: h0 and tout - t0 inconsistent."
-msgstr "CV_BAD_H0: h0 a tout - t0 nekonzistentní."
-
-msgid ""
-"CV_BAD_TSTOP: tstop is behind current simulation time in the direction of "
-"integration."
-msgstr ""
-"CV_BAD_TSTOP: tstop je za současným časem simulace ve směru začlenění."
-
-msgid "CV_BAD_INIT_ROOT: Root found at and very near initial t."
-msgstr "CV_BAD_INIT_ROOT: KOřen nalezen u a velmi blízko počátečního t."
-
-msgid "CV_NO_EFUN: itol = CV_WF but no EwtSet function was provided."
-msgstr "CV_NO_EFUN: itol = CV_WF ale nebyla poskytnuta žádná funkce EwtSet."
-
-msgid "CV_EWT_FAIL: The user-provide EwtSet function failed."
-msgstr "CV_EWT_FAIL: Uživatelem poskytnutá funkce EwtSet selhala."
-
-msgid "CV_BAD_EWT: Initial ewt has component(s) equal to zero (illegal)."
-msgstr ""
-"CV_BAD_EWT: Počáteční ewt má komponenty rovnající se nule (nepřípustné)."
-
-msgid "CV_LSOLVE_NULL: The linear solver''s solve routine is NULL."
-msgstr ""
-"CV_LSOLVE_NULL: Rutina nastavení řešení lineárního řešitele je nulová."
-
-msgid "CV_NULL_Y0: y0 = NULL illegal."
-msgstr "CV_NULL_Y0: y0 = prázdné, nepřípustné."
-
-msgid ""
-"CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and "
-"CV_WF."
-msgstr ""
-"CV_BAD_ITOL: Neplatná hodnota pro itol. Platné hodnoty jsou CV_SS, CV_SV, a "
-"CV_WF."
-
-msgid "CV_NULL_F: user supplied ODE routine is (NULL) illegal."
-msgstr "CV_NULL_F: uživatelem zadaná rutina ODE je (prázdná) nepřípustné."
-
-msgid "CV_BAD_NVECTOR: A required vector operation is not implemented."
-msgstr "CV_BAD_NVECTOR: Požadovaná vektorová operace není zavedena."
-
-msgid "CV_NULL_ABSTOL: absolute tolerances is = NULL illegal."
-msgstr "CV_NULL_ABSTOL: absolutní tolerance je = nulové, nepřípustné."
-
-msgid "CV_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
-msgstr "CV_BAD_RELTOL: relativní tolerance je reltol < 0 nepřípustné."
-
-msgid "CV_BAD_ABSTOL: abstol has negative component(s) (illegal)."
-msgstr "CV_BAD_ABSTOL: abstol má zporné komonenty (nepřípustné)."
-
-msgid "CV_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
-msgstr ""
-"CV_NULL_G: uživatelem zadaná rutina průchodu nulou je (prázdná) nepřípustné."
-
-msgid ""
-"CV_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
-"integration"
-msgstr ""
-"CV_BAD_TOUT: Problém s interpolací. ''tout'' je příliš daleko ve směru "
-"začlenění"
-
-msgid "CV_CLOSE_ROOTS: Root found at and very near starting time."
-msgstr "CV_CLOSE_ROOTS: KOřen nalezen u a velmi blízko času spuštění."
-
-msgid "CV_Derivative_NAN: The Derivatives returned by blocks are NAN."
-msgstr "CV_Derivative_NAN: Deriváty, které bloky vrátily jsou NAN."
-
-msgid "CV_Rootfunction_NAN: The Root function returns NAN."
-msgstr "CV_Rootfunction_NAN: Kořenová funkce vrací NAN."
-
-msgid ""
-"KIN_MEM_NULL: An error in the memory allocation in KINCreate or KINMalloc."
-msgstr "KIN_MEM_NULL: Chyba přidělení paměti v KINCreate nebo KINMalloc."
-
-msgid "KIN_ILL_INPUT: A supplied parameter is invalid (check error message)."
-msgstr ""
-"KIN_ILL_INPUT: Zadaný parametr je neplatný (zkontrolujte chybovou zprávu)."
-
-msgid ""
-"KIN_NO_MALLOC: Additional system memory has not yet been  allocated for "
-"vector storage (forgot to call the  KINMalloc routine)"
-msgstr ""
-"KIN_NO_MALLOC: Dodatečná systémová paměť pro uložení vektorů nebyla "
-"přidělena (rutina KINMslloc nebyla zavolána)"
-
-msgid ""
-"KIN_MEM_FAIL: An error occurred during memory allocation (either "
-"insufficient system resources are available or the vector kernel has not yet "
-"been initialized "
-msgstr ""
-"KIN_MEM_FAIL: Při přidělování paměti se stala chyba (buď nejsou dostatečné "
-"systémové zdroje dostupné, nebo vektor kernelu nebyl ještě zaveden "
-
-msgid ""
-"KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
-"iterate sufficiently distinct  from the current iterate failure to satisfy "
-"the sufficient decrease condition could mean the current iterate is close to "
-"an approximate solution of the given nonlinear system, the finite-difference "
-" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
-"real scalar scsteptol is too large "
-msgstr ""
-"KIN_LINESEARCH_NONCONV: Algoritmus hledání řádku nemohl najít iteraci "
-"dostatečně odlišnou od současného selhání iterace, aby splnil podmínku "
-"dostatečného klesání, což může znamenat, že současná iterace je blízko k "
-"přibližnému řešení zadaného nelineárního systému, přiblížení konečného "
-"rozdílu produktu matice-vektoru J(u)*v je nepřesné, nebo reálný skalár "
-"scsteptol je příliš velký "
-
-msgid ""
-"KIN_MAXITER_REACHED: The maximum number of nonlinear iterations has been "
-"reached "
-msgstr "KIN_MAXITER_REACHED: Dosažen maximální počet nelineárních opakování "
-
-msgid ""
-"KIN_MXNEWT_5X_EXCEEDE: Five consecutive steps have been taken that satisfy "
-"the following inequality:  ||uscale*p||_L2 > 0.99*mxnewtstep where p denotes "
-"the current step and mxnewtstep is a real scalar upper bound on the scaled "
-"step length such a failure may mean ||fscale*func(u)||_L2 asymptotes from "
-"above to a finite value, or the real scalar mxnewtstep is too small "
-msgstr ""
-"KIN_MXNEWT_5X_EXCEEDE: Bylo provedeno pět po sobě jdoucích kroků, které "
-"splňují následující nerovnost: ||uscale*p||_L2 > 0.99*mxnewtstep kd ep "
-"označuje současný krom a mxnewtstep je horní hranice reálného skaláru na "
-"zmenšené délce kroku takové selhání může znamenat asymptoty "
-"||fscale*func(u)||_L2 shora do konečné hodnoty, nebo reálný skalár "
-"mxnewtstep je příliš malý "
-
-msgid ""
-"KIN_LINESEARCH_BCFAI: The line search algorithm (implemented in "
-"KINLineSearch) was unable to satisfy the beta-condition for MXNBCF + 1 "
-"nonlinear iterations (not necessarily consecutive), which may indicate the "
-"algorithm is making  poor progress "
-msgstr ""
-"KIN_LINESEARCH_BCFAI: Algoritmus hledání řádku (zavedený v KINLineSearch) "
-"nemohl uspokojit beta-podmínku pro MXNBCF + 1 nelineárních opakování (nemusí "
-"být nutně za sebou), což může naznačovat, že algoritmus nepostupuje dobře "
-
-msgid ""
-"KIN_LINSOLV_NO_RECOVERY: The user-supplied routine psolve encountered a "
-"recoverable error, but the preconditioner is already current"
-msgstr ""
-"KIN_LINSOLV_NO_RECOVERY: Uživatelem zadaná rutina psolve narazila na "
-"opravitelnou chybu, ale stabilizátor je již současný"
-
-msgid ""
-"KIN_LINIT_FAIL: The linear solver initialization routine (linit) encountered "
-"an error."
-msgstr ""
-"KIN_LINIT_FAIL: Rutina zavedení lineárního řešitele (linit) narazila na "
-"chybu."
-
-msgid ""
-"KIN_LSETUP_FAIL: The user-supplied routine pset (used to compute the "
-"preconditioner) encountered an unrecoverable error ."
-msgstr ""
-"KIN_LSETUP_FAIL: Uživatelem zadaná rutina pset (použití ke spočtení "
-"stabilizátoru) narazila na neopravitelnou chybu."
-
-msgid ""
-"KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the "
-"preconditioned linear system) encountered an unrecoverable error, or the "
-"linear solver routine (lsolve) encountered an error condition."
-msgstr ""
-"KIN_LSOLVE_FAIL: Buď uživatelem zadaná rutina psolve (použitá k řešení "
-"stabilizovaného lineárního systému) narazila na opravitelnou chybu, nebo "
-"rutina lineárního řešitele (lsolve) narazila na chybovou podmínku."
-
-msgid ""
-"KIN_SYSFUNC_FAIL: Error in the computing function. Please verify your model."
-msgstr ""
-"KIN_SYSFUNC_FAIL: Chyba ve výpočetní funkci. Ověřte, prosím, Váš model."
-
-msgid ""
-"KIN_FIRST_SYSFUNC_ERR: The system function failed at the first call. Please "
-"verify your model. There might be an error in the computing function, for "
-"example a function may be called with illegal inputs."
-msgstr ""
-"KIN_FIRST_SYSFUNC_ERR: Systémová funkce selhala při prvním volání. Ověřte, "
-"prosím, Váš model. Může tam být chyba ve funkcí výpočtu, například funkce "
-"může být volána s neplatnými vstupy."
-
-msgid ""
-"KIN_REPTD_SYSFUNC_ERR: The system function failed repeatedly. Please verify "
-"your model. There might be an error in the computing function, for example a "
-"function may be called with illegal inputs"
-msgstr ""
-"KIN_REPTD_SYSFUNC_ERR:  Systémová funkce opakovaně selhala. Ověřte, prosím, "
-"Váš model. Může existovat chyba ve výpočetní funkci, například funkce může "
-"být volána s neplatnými vstupy."
-
-msgid ""
-"KIN_NAN_ERR: The residual function returns NAN. Please verify your model: "
-"some functions might be called with illegal inputs."
-msgstr ""
-"KIN_NAN_ERR: Zbytková funkce vrací NAN. Ověřte, prosím, Váš model: některé "
-"funkce mohou být volány s neplatnými vstupy."
-
 msgid "unknown or erroneous block"
 msgstr "neznámý nebo chybný blok"
 
@@ -1056,9 +464,6 @@ msgstr ""
 "**** SUNDIALS.Ida: příliš mnoho práce v čase=%g (ztuhlá oblast, změňte RTOL "
 "a ATOL)\n"
 
-msgid "End of activation"
-msgstr "Konec aktivace"
-
 #, c-format
 msgid "block %d is called "
 msgstr "je volán blok %d "
@@ -1104,6 +509,39 @@ msgid ""
 msgstr ""
 "\n"
 "Varování: Funkce #%d překračující nulu vrací NaN"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The residual function #%d returns a NaN"
+msgstr ""
+
+msgid ""
+"\n"
+"Error: Problem in the evaluation of a root function"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner evaluation function returns a NaN at index #%d."
+msgstr ""
+
+msgid ""
+"\n"
+"Error: The preconditioner evaluation function failed."
+msgstr ""
+
+msgid ""
+"\n"
+"Error: Failed to factor the preconditioner."
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner application function returns a NaN at index #%d."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1168,10 +606,6 @@ msgstr ""
 " Zbylá funkce vrátila NAN/Inf. \n"
 " Prosím prověřte Váš model:\n"
 " některé funkce mohou být volány s neplatnými vstupy."
-
-#, c-format
-msgid "Slider t=%10.3f, flag=%d \n"
-msgstr "Posun t=%10.3f, příznak=%d \n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -1268,8 +702,8 @@ msgstr ""
 msgid "Simulation parameters not set:"
 msgstr "Parametry simulace nejsou nastaveny:"
 
-msgid "Initialisation problem:"
-msgstr "Problém při zavádění:"
+msgid "Initialization problem:"
+msgstr ""
 
 msgid "Simulation problem: "
 msgstr "Problém simulace: "
@@ -1280,6 +714,20 @@ msgstr "Konečný problém: "
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
+
+msgid "Your model contains states defined in standard Scicos blocks.\n"
+msgstr "Váš model obsahuje stavy zadané ve standardních blocích Scicos.\n"
+
+#, c-format
+msgid "Initialisation problem in %s "
+msgstr "Problém zavedení v %s "
+
+#, c-format
+msgid "Initialisation problem in the %s method"
+msgstr "Problém zavedené v metodě %s"
+
+msgid "Initialisation problem in the finish phase"
+msgstr "Problém zavedení v konečné fázi"
 
 msgid "Problem with the block generated from modelica blocks."
 msgstr "Problém s blokem vytvořeným z bloků modelica."
@@ -1315,6 +763,56 @@ msgstr "Blok má připojen vstupní port<br />s nekompatibilním typem:"
 #, c-format
 msgid "%s: Error: A scifunc block has not been defined."
 msgstr "%s: Chyba: Blok scifunc nebyl určen."
+
+#, c-format
+msgid " Main Modelica : %s"
+msgstr " Hlavní Modelica : %s"
+
+msgid "No block can be activated"
+msgstr "Nemůže být aktivován žádný blok"
+
+msgid "Problem in port size or type."
+msgstr "Problém s velikostí portu nebo typem"
+
+msgid ""
+"No continuous-time state. Thresholds are ignored; this \n"
+"may be OK if you don't generate external events with them.\n"
+"If you want to reactivate the thresholds, then you need\n"
+"to include a block with continuous-time state in your diagram.\n"
+"   You can for example include DUMMY CLSS block (linear palette)."
+msgstr ""
+"Žádný stav spojitého času. Prahy jsou ignorovány; toto \n"
+"může být v pořádku, pokud pomocí nich nevytváříte externí události.\n"
+"Pokud chcete prahy znovu aktivovat, pak ve vašem grafu\n"
+"potřebujete zahrnout blok se stavem spojitého času.\n"
+"   Například můžete použít blok DUMMY CLSS (lineární paleta)."
+
+msgid "Diagram contains implicit blocks, compiling for implicit Solver."
+msgstr ""
+"Graf obsahuje implicitní bloky, sestavování na implicitního řešitele."
+
+msgid "Algebraic loop on events."
+msgstr "Algebraické smyčky při událostech"
+
+msgid "Algebraic loop."
+msgstr "Algebraická smyčka"
+
+msgid "A C or Fortran block is used but not linked.\n"
+msgstr "Je použit blok C nebo Fortran ale není propojen.\n"
+
+#, c-format
+msgid "Number of modes in block #%d cannot be determined."
+msgstr "Počet režimů v bloku #%d nlze zjistit.."
+
+#, c-format
+msgid "Number of zero crossings in block #%d cannot be determined."
+msgstr "Počet průchodů nulou v bloku #%d nelze zjistit."
+
+msgid "Not enough information to find port sizes.\n"
+msgstr "Není dostatek informací k nalezení velikostí portu.\n"
+
+msgid "I cannot find a link with undetermined size.\n"
+msgstr "Nelze najít propojení s neurčenou velikostí.\n"
 
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
@@ -1365,8 +863,95 @@ msgstr ""
 "<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto "
 "varování.</em><br />Vstupní port bloku má neurčený typ:"
 
+msgid ""
+"Highlighted block(s) have connected ports \n"
+"with  sizes that cannot be determined by the context.\n"
+"What is the size of this link?"
+msgstr ""
+"Zvýrazněné bloky mají připojené porty \n"
+"s velikostmi, které nemohou být zjištěny pomocí kontextu.\n"
+"Jaká je velikost tohoto propojení?"
+
+#, c-format
+msgid "the dep_ut size of the %s block is not correct.\n"
+msgstr "Velikost dep_ut v bloku %s není správná.\n"
+
+msgid "Not enough information to find port type.\n"
+msgstr "Není dostatek informací k nalezení typu portu.\n"
+
+msgid "The initialization file already exists!"
+msgstr "Soubor zavedení již existuje!"
+
+msgid "Do you want to overwrite it?"
+msgstr "Chcete ho přepsat?"
+
+msgid "No"
+msgstr "Ne"
+
+msgid "Yes"
+msgstr "Ano"
+
+msgid "Modelica blocks are reduced to a block with:"
+msgstr "Bloky Modelica jsou omezeny na blok s:"
+
+#, c-format
+msgid "Number of differential states: %d"
+msgstr "Počet rozdílných stavů: %d"
+
+#, c-format
+msgid "Number of algebraic states: %d"
+msgstr "Počet algebraických stavů: %d"
+
+#, c-format
+msgid "Number of discrete time states  : %d"
+msgstr "Počet stavů diskrétního času : %d"
+
+#, c-format
+msgid "Number of zero-crossing surfaces: %d"
+msgstr "Počet povrchů procházejících nulou: %d"
+
+#, c-format
+msgid "Number of modes  : %d"
+msgstr "Počet režimu : %d"
+
+#, c-format
+msgid "Number of inputs : %d"
+msgstr "Počet vstupů : %d"
+
+#, c-format
+msgid "Number of outputs: %d"
+msgstr "Počet výstupů: %d"
+
+#, c-format
+msgid "Input/output dependency:[%s]"
+msgstr "Vstupní/Výstupní závislost:[%s]"
+
+#, c-format
+msgid "Analytical Jacobian: enabled  (%%Jacobian=%s)"
+msgstr "Analytická Jacobiho matice: povolena (%%matice=%s)"
+
+#, c-format
+msgid "Parameter embedding mode: enabled (%%Modelica_ParEmb=%s)"
+msgstr "Režim vnořování parametru: povolen (%%Modelica_ParEmb=%s)"
+
+#, c-format
+msgid "Generated files path: %s"
+msgstr ""
+
+msgid "Hyper Matrix is not supported"
+msgstr "Hyper matice není podporována"
+
 msgid "Type not recognized"
 msgstr "Nerozpoznaný typ"
+
+msgid "Complex Matrix is not supported"
+msgstr "Komplexní matice není podporována"
+
+msgid "Block is ignored because of undefined input(s)."
+msgstr ""
+
+msgid "Superblock should not contains any Scilab function block."
+msgstr ""
 
 msgid "Evaluation problem: value not updated from context."
 msgstr "Problém s vyhodnocením: hodnota není aktualizována z kontextu."
@@ -1374,11 +959,32 @@ msgstr "Problém s vyhodnocením: hodnota není aktualizována z kontextu."
 msgid "Evaluation problem: Unknown block"
 msgstr "Problémy vyhodnocení: Neznámý blok"
 
+msgid "Cannot load dynamic library: "
+msgstr ""
+
+msgid "Can't include "
+msgstr ""
+
+msgid "This file does not exist"
+msgstr ""
+
+msgid "-------Modelica compiler error (with the translator):-------"
+msgstr ""
+
+msgid "Please read the error message in the Scilab window"
+msgstr ""
+
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr "Je nám líto: Jsou podporovány pouze jazyky C nebo FORTRAN"
 
 msgid "Sorry file name not defined in "
 msgstr "Je nám líto, jméno souboru není určeno v "
+
+msgid "I/O blocks must be only used in a Super Block"
+msgstr ""
+
+msgid "This Super block input port is not connected."
+msgstr ""
 
 #, c-format
 msgid "%s: Empty diagram"
@@ -1406,6 +1012,15 @@ msgstr "%s: Špatná velikost parametru bloku '%s': Očekáváno %s, obdrženo %
 #, c-format
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
 msgstr "%s: Špatný typ parametru bloku '%s': Očekáváno %s(%s), obdrženo %s"
+
+msgid "There are too many Modelica files.\n"
+msgstr "Příliš mnoho souborů Modelica.\n"
+
+msgid "-------Modelica translator error message:-----"
+msgstr "-------Chybová zpráva překladatele Modelica:-----"
+
+msgid "-------XML to Modelica error:-------"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

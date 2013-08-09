@@ -13,7 +13,7 @@
 #ifndef __GET_UICONTROL_RELIEF_HXX__
 #define __GET_UICONTROL_RELIEF_HXX__
 
-extern "C"{
+extern "C" {
 #include "localization.h"
 #include "GetUicontrolRelief.h"
 #include "Scierror.h"

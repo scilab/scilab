@@ -11,35 +11,35 @@ package org.scilab.modules.ui_data;
 
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
- /** 
-   * All Scilab history management used in Java console 
-   * @author Vincent COUVERT
-   * @author Allan CORNET
-   * @copyright INRIA 
-   */
+/**
+  * All Scilab history management used in Java console
+  * @author Vincent COUVERT
+  * @author Allan CORNET
+  * @copyright INRIA
+  */
 class UI_dataJNI {
 
- /**
-   * Constructor
-   */
- protected UI_dataJNI() {
+    /**
+      * Constructor
+      */
+    protected UI_dataJNI() {
         throw new UnsupportedOperationException();
- }
-
-  static {
-    try {
-        System.loadLibrary("sciui_data");
-    } catch (SecurityException e) {
-        System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
-        System.err.println(e.getLocalizedMessage());
-        e.printStackTrace(System.err);
-    } catch (UnsatisfiedLinkError e)    {
-        System.err.println("The native library sciui_data does not exist or cannot be found.");
-        System.err.println(e.getLocalizedMessage());
-        e.printStackTrace(System.err);
     }
-  }
 
-  public final static native void putScilabVariable(String jarg1, String[] jarg2, int jarg3, int jarg4);
-  public final static native String getUnnamedVariable();
+    static {
+        try {
+            System.loadLibrary("sciui_data");
+        } catch (SecurityException e) {
+            System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
+            System.err.println(e.getLocalizedMessage());
+            e.printStackTrace(System.err);
+        } catch (UnsatisfiedLinkError e)    {
+            System.err.println("The native library sciui_data does not exist or cannot be found.");
+            System.err.println(e.getLocalizedMessage());
+            e.printStackTrace(System.err);
+        }
+    }
+
+    public final static native void putScilabVariable(String jarg1, String[] jarg2, int jarg3, int jarg4);
+    public final static native String getUnnamedVariable();
 }

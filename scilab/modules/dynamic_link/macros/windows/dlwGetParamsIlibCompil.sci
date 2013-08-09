@@ -10,13 +10,13 @@
 
 //=============================================================================
 function [make_command, lib_name_make, lib_name, path, makename, files] = ..
-             dlwGetParamsIlibCompil(lib_name, files)
-  
-  path='';
-  lib_name = lib_name + getdynlibext();
-  lib_name_make = lib_name;
-  makename = dlwGetDefltMakefileName() + dlwGetMakefileExt() ;
-  make_command = 'nmake /Y /nologo /f ';
+    dlwGetParamsIlibCompil(lib_name, files)
+
+    path="";
+    lib_name = lib_name + getdynlibext();
+    lib_name_make = lib_name;
+    makename = dlwGetDefltMakefileName() + dlwGetMakefileExt() ;
+    make_command = "nmake /Y /nologo /f ";
 
 endfunction
 //=============================================================================

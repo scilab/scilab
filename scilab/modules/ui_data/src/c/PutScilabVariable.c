@@ -17,7 +17,7 @@
 #include "Scierror.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
-#endif 
+#endif
 
 
 void putScilabVariable(char * name, char ** lines, int rows, int cols)

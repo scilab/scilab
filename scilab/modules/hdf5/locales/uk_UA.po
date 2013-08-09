@@ -1,20 +1,21 @@
 # Ukrainian translation for scilab
 # Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
 # This file is distributed under the same license as the scilab package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
 #
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-19 17:19+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-24 05:06+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
-"Language-Team: Ukrainian <uk@li.org>\n"
+"Language-Team: Ukrainian <translation-team-uk@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: uk\n"
 
 #, c-format
@@ -64,9 +65,192 @@ msgstr ""
 "«string».\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
+
+#, c-format
+msgid "%s: Invalid H5Object.\n"
+msgstr "%s: некоректний H5Object.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
+"або H5Object.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: доступну пам’ять вичерпано.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s: %s\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A H5Object expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"H5Object.\n"
+
+#, c-format
+msgid "%s: Cannot remove H5Object.\n"
+msgstr "%s: не вдалося вилучити H5Object.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано тип матриці "
+"зі значень з подвійною точністю (double).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Five row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати одинарне "
+"значення типу «string».\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: six row vector expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано вектор з "
+"шістьма рядками.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d column vector expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано вектор з "
+"%d стовпчиками.\n"
+
+#, c-format
+msgid "%s: Can not print H5Object: invalid object.\n"
+msgstr "%s: не вдалося вивести H5Object: некоректний об’єкт.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано H5Object.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано рядок.\n"
+
+#, c-format
+msgid "%s: Can not create output argument.\n"
+msgstr "%s: не вдалося створити вихідний параметр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A HDF5 object expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип об’єкт "
+"HDF5.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«boolean».\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор-рядок "
+"дійсних чисел.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Real row or column vector expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано вектор-"
+"рядок або вектор-стовпчик з дійсних значень.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано масив-рядок з "
+"рядків.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row or column vector expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано вектор-"
+"рядок або вектор-стовпчик.\n"
+
+#, c-format
+msgid "%s: Can not use H5Object: invalid object.\n"
+msgstr "%s: не вдалося використати H5Object: некоректний об’єкт.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
+"або «boolean».\n"
+
+#, c-format
+msgid "%s: Invalid number of arguments: more than %d expected.\n"
+msgstr ""
+"%s: некоректна кількість параметрів: параметрів мало бути більше за %d.\n"
+
+#, c-format
+msgid "%s: Invalid access mode: %s.\n"
+msgstr "%s: некоректний режим доступу: %s.\n"
+
+#, c-format
+msgid "%s: Invalid number of input arguments.\n"
+msgstr "%s: некоректна кількість вхідних параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано тип "
+"«double».\n"
+
+#, c-format
+msgid "%s: Invalid number of input argument.\n"
+msgstr "%s: некоректна кількість вхідних параметрів.\n"
+
+#, c-format
+msgid "%s: Invalid path: cannot be empty.\n"
+msgstr "%s: некоректний шлях: шлях не може бути порожнім.\n"
+
+#, c-format
+msgid "%s: Second argument must be a dataset name.\n"
+msgstr "%s: другий параметр має бути назвою набору даних.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: розмірності мають "
+"збігатися.\n"
+
+#, c-format
+msgid "%s: Argument 'count' is missing.\n"
+msgstr "%s: не вказано параметра count.\n"
+
+#, c-format
+msgid "%s: Invalid number of argument(s): %d expected.\n"
+msgstr "%s: некоректна кількість параметрів: параметрів мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Unable to open file: %s\n"
@@ -81,3 +265,531 @@ msgstr ""
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: некоректний формат Scilab HDF5\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: More than %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути більше за %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано рядок (string) "
+"або число з подвійною точністю (double).\n"
+
+#, c-format
+msgid "%s: Only one field can be requested.\n"
+msgstr "%s: запит можна надсилати лише щодо одного поля.\n"
+
+#, c-format
+msgid ""
+"%s: Error in retrieving field content:\n"
+"%s\n"
+msgstr ""
+"%s: помилка під час спроби отримання вмісту поля:\n"
+"%s\n"
+
+#, c-format
+msgid "%s: Not an H5 Compound object.\n"
+msgstr "%s: не є складеним об’єктом H5.\n"
+
+#, c-format
+msgid "%s: Can not print H5Object.\n"
+msgstr "%s: не вдалося вивести H5Object.\n"
+
+msgid "Invalid index."
+msgstr "Некоректний індекс."
+
+msgid "Dimensions"
+msgstr "Розмірності"
+
+#, c-format
+msgid "Cannot open attribute: %s"
+msgstr "Не вдалося відкрити атрибут: %s"
+
+msgid "Cannot get the attribute type"
+msgstr "Не вдалося отримати тип атрибуту"
+
+msgid "Cannot get the attribute dataspace"
+msgstr "Не вдалося отримати простір даних атрибуту"
+
+msgid "Error in retrieving data."
+msgstr "Помилка під час спроби отримання даних."
+
+#, c-format
+msgid "Attribute %s already exists."
+msgstr "Атрибут %s вже існує."
+
+msgid "Cannot create a new attribute."
+msgstr "Не вдалося створити новий атрибут."
+
+msgid "Cannot write data in the attribute."
+msgstr "Не вдалося виконати запис даних до атрибуту."
+
+msgid "Cannot copy the attribute"
+msgstr "Не вдалося скопіювати атрибут"
+
+msgid "Cannot read attribute data."
+msgstr "Не вдалося виконати читання даних атрибуту."
+
+msgid "Cannot get the size of attribute list."
+msgstr "Не вдалося отримати розмір списку атрибутів."
+
+#, c-format
+msgid "Invalid index %d: must be between 0 and %d."
+msgstr "Некоректний індекс %d: мало бути вказано значення від 0 до %d."
+
+#, c-format
+msgid "Cannot open attribute at position %d."
+msgstr "Не вдалося відкрити атрибут у позиції %d."
+
+msgid "Filename"
+msgstr "Назва файла"
+
+msgid "Number of elements"
+msgstr "Кількість елементів"
+
+msgid "Cannot copy data to an empty pointer"
+msgstr "Не можна копіювати дані до порожнього вказівника."
+
+msgid "Wrong dimensions."
+msgstr "Помилкові розмірності."
+
+#, c-format
+msgid "Invalid field name: %s"
+msgstr "Некоректна назва поля: %s"
+
+msgid "Fields Names"
+msgstr "Назви полів"
+
+msgid "Cannot create an hypermatrix on the stack"
+msgstr "Не вдалося створити гіперматрицю на основі даних зі стека"
+
+msgid "Cannot get the data type"
+msgstr "Не вдалося отримати тип даних"
+
+msgid "Unknown integer datatype."
+msgstr "Невідомий тип цілочисельних даних."
+
+msgid "Unknown floating-point datatype."
+msgstr "Невідомий тип даних з рухомою крапкою."
+
+msgid "Bitfield is too big"
+msgstr "Бітове поле є надто великим"
+
+msgid "Cannot get data from an unknown data type."
+msgstr "Не можна отримувати дані, якщо невідомим є тип цих даних."
+
+msgid "Memory to allocate is too big"
+msgstr "Об’єм пам’яті, який слід отримати, є надто великим"
+
+msgid "Cannot allocate memory to get the data"
+msgstr "Не вдалося отримати об’єм пам’яті, потрібний для зберігання даних"
+
+msgid "Cannot retrieve the data from the attribute"
+msgstr "Не вдалося отримати дані з атрибуту"
+
+#, c-format
+msgid "Cannot open the given dataset %s."
+msgstr "Не вдалося відкрити вказаний набір даних %s."
+
+#, c-format
+msgid "Cannot get the dataspace associated with dataset named %s."
+msgstr ""
+"Не вдалося отримати простір даних, пов’язаний з набором даних з назвою %s."
+
+msgid "Invalid layout"
+msgstr "Некоректне компонування"
+
+#, c-format
+msgid "Only %d dimensions."
+msgstr "Лише %d розмірностей."
+
+msgid "Cannot list dataset attributes."
+msgstr "Не вдалося побудувати список атрибутів набору даних."
+
+#, c-format
+msgid "Cannot open the dataset: %s"
+msgstr "Не вдалося відкрити набір даних: %s"
+
+msgid "Invalid source space"
+msgstr "Некоректний початковий простір"
+
+msgid "Invalid target space"
+msgstr "Некоректний простір призначення"
+
+msgid "Cannot modify maximum dimensions."
+msgstr "Не вдалося змінити максимальні розмірності."
+
+#, c-format
+msgid "Cannot modify dimension %d."
+msgstr "Не вдалося змінити розмірність %d."
+
+#, c-format
+msgid "Cannot set the chunk dimensions: %s"
+msgstr "Не вдалося встановити розмірності фрагмента: %s"
+
+#, c-format
+msgid "Cannot create the dataset: %s"
+msgstr "Не вдалося створити набір даних: %s"
+
+msgid "Cannot write data in the dataset."
+msgstr "Не вдалося виконати запис даних до набору даних."
+
+msgid "unknown dataspace"
+msgstr "невідомий простір даних"
+
+msgid "Unknown dataspace: cannot get its dimensions"
+msgstr "Невідомий простір даних: не вдалося отримати його розмірності"
+
+msgid "Cannot select all."
+msgstr "Не вдалося вибрати все."
+
+msgid "Cannot create an array of integer on the stack."
+msgstr "Не вдалося створити масив цілих чисел на основі даних зі стека."
+
+msgid "Cannot create a string on the stack."
+msgstr "Не вдалося створити рядок на основі даних зі стека."
+
+msgid "Unknown dataspace"
+msgstr "Невідомий простір даних"
+
+msgid "Extents"
+msgstr "Розміри"
+
+msgid "Invalid selection rank."
+msgstr "Некоректний ранг вибору."
+
+msgid "Invalid selection."
+msgstr "Некоректний вибір."
+
+msgid "Cannot get the current stack of errors."
+msgstr ""
+
+msgid "HDF5 description"
+msgstr "Опис HDF5"
+
+msgid "Exception thrown in file"
+msgstr "Під час обробки файла сталося виключення"
+
+msgid "at line"
+msgstr "у рядку"
+
+msgid "Cannot get the link info"
+msgstr "Не вдалося отримати дані зв’язку"
+
+msgid "Cannot get the link target"
+msgstr "Не вдалося отримати дані щодо призначення зв’язку"
+
+msgid "Link type"
+msgstr "Тип зв’язку"
+
+msgid "Link name"
+msgstr "Назва зв’язку"
+
+msgid "Link path"
+msgstr "Шлях зв’язку"
+
+msgid "Link target file"
+msgstr "Пов’язати файл призначення"
+
+msgid "Link target path"
+msgstr "Пов’язати шлях призначення"
+
+msgid "Invalid hdf5 file: empty filename."
+msgstr "Некоректний файл hdf5: порожня назва файла."
+
+#, c-format
+msgid "Invalid hdf5 file: %s."
+msgstr "Некоректний файл hdf5: %s."
+
+#, c-format
+msgid "Cannot open the given hdf5 file: %s."
+msgstr "Не вдалося відкрити вказаний файл hdf5: %s."
+
+#, c-format
+msgid "Cannot create the given hdf5 file: %s."
+msgstr "Не вдалося створити вказаний файл hdf5: %s."
+
+#, c-format
+msgid ""
+"Cannot open the file: %s, an empty file with the same name already exists."
+msgstr ""
+"Не вдалося відкрити файл: %s, вже існує порожній файл з такою назвою."
+
+#, c-format
+msgid "Cannot append the file (not HDF5): %s."
+msgstr "Не вдалося долучити файл (не є файлом HDF5): %s."
+
+msgid "Invalid flag."
+msgstr "Некоректний прапорець."
+
+#, c-format
+msgid "Invalid path: %s"
+msgstr "Некоректний шлях: %s"
+
+msgid "Cannot set 'core' as driver."
+msgstr "Не можна встановлювати core як драйвер."
+
+#, c-format
+msgid "Invalid filename: must contain a '%d'."
+msgstr "Некоректна назва файла: назва має містити «%d»."
+
+msgid "Cannot set 'family' as driver."
+msgstr "Не можна встановлювати family як драйвер."
+
+msgid "Error in flushing the file."
+msgstr "Помилка під час спроби спорожнення файла."
+
+#, c-format
+msgid "Cannot retrieve file size: %s"
+msgstr "Не вдалося отримати дані щодо розміру файла: %s"
+
+#, c-format
+msgid "Cannot retrieve file version: %s"
+msgstr "Не вдалося отримати дані щодо версії файла: %s"
+
+msgid "Cannot create an integer on the stack."
+msgstr "Не вдалося створити ціле число на основі даних зі стека."
+
+#, c-format
+msgid "Invalid field %s."
+msgstr "Некоректне поле «%s»."
+
+#, c-format
+msgid "Cannot open the group %s."
+msgstr "Не вдалося відкрити групу %s."
+
+msgid "Cannot get the links number"
+msgstr "Не вдалося отримати дані щодо кількості зв’язків"
+
+msgid "Cannot create a column of strings on the stack."
+msgstr ""
+"Не вдалося створити стовпчик з рядків (string) на основі даних зі стека."
+
+msgid "Cannot list group links."
+msgstr "Не вдалося побудувати список зв’язків у групі."
+
+msgid "Cannot list group attributes."
+msgstr "Не вдалося побудувати список атрибутів групи"
+
+msgid "Cannot list group contents"
+msgstr "Не вдалося побудувати список вмісту групи"
+
+#, c-format
+msgid "The group already exists: %s."
+msgstr "Група вже існує: %s."
+
+#, c-format
+msgid "Cannot create the group: %s."
+msgstr "Не вдалося створити групу: %s."
+
+msgid "Cannot get the number of groups."
+msgstr "Не вдалося отримати дані щодо кількості груп."
+
+msgid "Cannot get linked object"
+msgstr "Не вдалося отримати пов’язаний об’єкт"
+
+msgid "Link target name"
+msgstr "Назва призначення зв’язку"
+
+#, c-format
+msgid "The link %s does not exist."
+msgstr "Зв’язку %s не існує."
+
+#, c-format
+msgid "Invalid link type: %s."
+msgstr "Некоректний тип зв’язку: %s."
+
+msgid "Cannot get the number of links."
+msgstr "Не вдалося отримати кількість зв’язків."
+
+msgid "Invalid operation"
+msgstr "Некоректна дія"
+
+#, c-format
+msgid "Invalid index at position %d"
+msgstr "Некоректний індекс у позиції %d"
+
+msgid "Cannot get the number of objects."
+msgstr "Не вдалося отримати дані щодо кількості об’єктів."
+
+msgid "Parent group name"
+msgstr "Назва батьківської групи"
+
+msgid "Parent group path"
+msgstr "Шлях до батьківської групи"
+
+msgid "Elements type"
+msgstr "Тип елементів"
+
+msgid "Size"
+msgstr "Розмір"
+
+#, c-format
+msgid "Invalid index: %d."
+msgstr "Некоректний індекс: %d."
+
+#, c-format
+msgid "Cannot get object at position %d."
+msgstr "Не вдалося отримати об’єкт у позиції %d."
+
+#, c-format
+msgid "Invalid name: %s."
+msgstr "Некоректна назва: %s."
+
+msgid "Invalid HDF5 object"
+msgstr "Некоректний об’єкт HDF5"
+
+#, c-format
+msgid "Invalid field: %s"
+msgstr "Некоректне поле: %s"
+
+msgid "Cannot create a mlist on the stack."
+msgstr "Не вдалося створити mlist на основі даних зі стека."
+
+msgid "Cannot list names."
+msgstr "Не вдалося побудувати список назв."
+
+msgid "Cannot retrieve information about the object"
+msgstr "Не вдалося отримати даних щодо об’єкта"
+
+msgid "Unknown HDF5 object"
+msgstr "Невідомий об’єкт HDF5"
+
+msgid "Cannot retrieve numeric index."
+msgstr "Не вдалося отримати числовий індекс."
+
+msgid "Cannot open object at the given position."
+msgstr "Не вдалося відкрити об’єкт за вказаною позицією."
+
+msgid "Link target"
+msgstr "Ціль посилання"
+
+msgid "Cannot free the memory associated with String data"
+msgstr "Не вдалося вивільнити пам’ять, пов’язану з рядковими даними"
+
+#, c-format
+msgid "Invalid H5Type name: %s."
+msgstr "Некоректна назва H5Type: %s."
+
+msgid "Unknown datatype"
+msgstr "Невідомий тип даних"
+
+msgid "Cannot get H5Object id"
+msgstr "Не вдалося отримати ідентифікатор H5Object"
+
+msgid "Invalid object: not a dataset."
+msgstr "Некоректний об’єкт: об’єкт не є набором даних."
+
+msgid "Cannot remove a file."
+msgstr "Не вдалося вилучити файл."
+
+msgid "Cannot remove root element."
+msgstr "Вилучення кореневого елемента неможливе."
+
+#, c-format
+msgid "The name doesn't exist: %s."
+msgstr "Такої назви не існує: %s."
+
+#, c-format
+msgid "Cannot remove the attribute: %s."
+msgstr "Не вдалося вилучити атрибут: %s."
+
+#, c-format
+msgid "Cannot remove the link: %s."
+msgstr "Не вдалося вилучити зв’язок: %s."
+
+#, c-format
+msgid "The link already exists: %s."
+msgstr "Зв’язок вже існує: %s."
+
+#, c-format
+msgid "Cannot create the hard link: %s."
+msgstr "Не вдалося створити жорсткий зв’язок: %s."
+
+#, c-format
+msgid "Cannot create the soft link: %s."
+msgstr "Не вдалося створити гнучкий зв’язок: %s."
+
+#, c-format
+msgid "Cannot create a hard link to the external object: %s."
+msgstr ""
+
+#, c-format
+msgid "Cannot create the external link: %s."
+msgstr "Створення зовнішнього зв’язку неможливе: %s."
+
+msgid "Cannot copy object."
+msgstr "Не вдалося скопіювати об’єкт."
+
+msgid "Invalid filter"
+msgstr "Некоректний фільтр"
+
+msgid "Can only label a dataset"
+msgstr "Встановлення мітки можливе лише для набору даних"
+
+msgid "Target object is not a file"
+msgstr "Об’єкт призначення не є файлом"
+
+msgid "Invalid location"
+msgstr "Некоректна адреса"
+
+#, c-format
+msgid "Invalid location: %s"
+msgstr "Некоректна адреса: %s"
+
+#, c-format
+msgid "Cannot mount the file: %s"
+msgstr "Не вдалося змонтувати файл: %s"
+
+#, c-format
+msgid "Cannot unmount the file at location: %s"
+msgstr "Не вдалося демонтувати файл з такою адресою: %s"
+
+#, c-format
+msgid "Can not read input argument #%d."
+msgstr "Не вдалося виконати читання вхідного параметра №%d."
+
+#, c-format
+msgid "Can not get the type of input argument #%d."
+msgstr "Не вдалося отримати тип вхідного параметра №%d."
+
+msgid "Complex datatype not handled for now."
+msgstr "У поточній версії обробки комплексних типів даних не передбачено."
+
+#, c-format
+msgid "%s: Can not read input argument #%d."
+msgstr "%s: не вдалося прочитати вхідний параметр №%d."
+
+#, c-format
+msgid "%s: Datatype not handled for now."
+msgstr "%s: у поточній версії обробки цього типу даних не передбачено."
+
+#, c-format
+msgid "Invalid rank, must be in the interval [0, %d]."
+msgstr "Некоректний ранг. Ранг має належати інтервалу [0, %d]."
+
+msgid "No converter found for the specified target datatype."
+msgstr ""
+"Для вказаного типу даних призначення не виявлено засобу перетворення."
+
+msgid "Cannot create a new dataspace."
+msgstr "Не вдалося створити новий простір даних."
+
+msgid "Invalid target dataspace."
+msgstr "Некоректний простір даних призначення."
+
+msgid "Cannot create the target type."
+msgstr "Не вдалося створити тип призначення."
+
+msgid "Incompatible dimensions"
+msgstr "Несумісні розмірності"
+
+msgid "References must be given as strings"
+msgstr "Посилання має бути вказано як рядки"
+
+#, c-format
+msgid "Invalid path: %s."
+msgstr "Некоректний шлях: %s."

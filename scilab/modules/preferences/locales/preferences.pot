@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/gw_preferences.c, line: 38
 #, c-format
@@ -78,42 +78,42 @@ msgid "Save"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 241
+# File: scilab_fake_localization_file.c, line: 389
 msgid "Select a file to open with SciNotes"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 247
+# File: scilab_fake_localization_file.c, line: 395
 msgid "Select a directory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 256
+# File: scilab_fake_localization_file.c, line: 404
 msgid "Please install atoms module."
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 262
+# File: scilab_fake_localization_file.c, line: 410
 msgid "Please install xcos module."
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 536
+# File: scilab_fake_localization_file.c, line: 684
 msgid "Default"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 542
+# File: scilab_fake_localization_file.c, line: 690
 msgid "Cancel"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 548
+# File: scilab_fake_localization_file.c, line: 696
 msgid "OK"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 554
+# File: scilab_fake_localization_file.c, line: 702
 msgid "Apply"
 msgstr ""
 

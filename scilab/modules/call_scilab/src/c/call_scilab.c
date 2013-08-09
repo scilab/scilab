@@ -115,7 +115,9 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
     }
 
     if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STARTED)
+    {
         return -1;
+    }
 
     SetFromCToON();
 
@@ -326,9 +328,9 @@ char *getLastErrorMessageSingle(void)
 }
 
 /*--------------------------------------------------------------------------*/
- int getLastErrorValue(void)
- {
-     /* defined in lasterror.h */
-     return getInternalLastErrorValue();
- }
- /*--------------------------------------------------------------------------*/
+int getLastErrorValue(void)
+{
+    /* defined in lasterror.h */
+    return getInternalLastErrorValue();
+}
+/*--------------------------------------------------------------------------*/

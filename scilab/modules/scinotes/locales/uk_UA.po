@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2010.
-# Yuri Chornoivan <yurchor@ukr.net>, 2012.
+# Yuri Chornoivan <yurchor@ukr.net>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-19 18:18+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-13 13:44+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: uk\n"
 
 #, c-format
@@ -394,6 +394,12 @@ msgstr "Звичайна"
 msgid "Wrap lines"
 msgstr "Переносити рядки"
 
+msgid "Background color: "
+msgstr "Колір тла: "
+
+msgid "Cursor color: "
+msgstr "Колір курсора: "
+
 msgid "Keywords"
 msgstr "Ключові слова"
 
@@ -477,6 +483,10 @@ msgstr "Назва файла"
 
 msgid "Append filename with: "
 msgstr "Додати назву файла з: "
+
+#, c-format
+msgid "(%date can be used to be replaced by the current date)"
+msgstr ""
 
 msgid "Replace extension with: "
 msgstr "Замінити суфікс на такий: "
@@ -1088,3 +1098,21 @@ msgstr "Виберіть кореневий каталог пошуку"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» Scilab не встановлено.\n"
+
+msgid "the last error did not occur inside a library function."
+msgstr "остання помилка сталася поза межами функції з бібліотеки."
+
+msgid " on line "
+msgstr " у рядку "
+
+msgid "opening file "
+msgstr "відкриття файла "
+
+msgid " of the source file of the function "
+msgstr " початкового коду функції "
+
+msgid "the source file of the function "
+msgstr "початковий код функції "
+
+msgid " was not found in any library path"
+msgstr " не було знайдено за жодною з адрес бібліотек"

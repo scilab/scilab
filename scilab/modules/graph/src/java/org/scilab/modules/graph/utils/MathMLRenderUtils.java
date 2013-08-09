@@ -31,51 +31,51 @@ import org.xml.sax.SAXException;
 
 /**
  * Contains useful method for rendering a MathML formula.
- * 
+ *
  * Before accessing this class you must load the jeuclid.jar file on the
  * classpath.
  */
 public final class MathMLRenderUtils {
-	/**
-	 * Cache for the generated MathML components
-	 */
-	private static Map<String, JMathComponent> generatedMathMLComponents = new WeakHashMap<String, JMathComponent>();
-	
-	/**
-	 * Return a cached or a new instance of a JMathComponent generated from
-	 * text.
-	 * @param text the MathML formula
-	 * @return the {@link JMathComponent} instance
-	 * @throws SAXException when the text is not a valid XML file
-	 */
-	public static Component getMathMLComponent(String text) throws SAXException {
-		String escapedText = SupportedLabelType.MathML.escape(text);
-		
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder;
-		Document doc;
-		JMathComponent comp;
-		
-		comp = generatedMathMLComponents.get(text);
-		if (comp == null) {
-			try {
-				builder = factory.newDocumentBuilder();
-				doc = builder.parse(new InputSource(new StringReader(escapedText)));
-				comp = new JMathComponent();
-				comp.setDocument(doc.getFirstChild());
-				generatedMathMLComponents.put(text, comp);
-			} catch (ParserConfigurationException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return comp;
-	}
-	
-	/**
-	 * This class is a static singleton
-	 */
-	private MathMLRenderUtils() { }
+    /**
+     * Cache for the generated MathML components
+     */
+    private static Map<String, JMathComponent> generatedMathMLComponents = new WeakHashMap<String, JMathComponent>();
+
+    /**
+     * Return a cached or a new instance of a JMathComponent generated from
+     * text.
+     * @param text the MathML formula
+     * @return the {@link JMathComponent} instance
+     * @throws SAXException when the text is not a valid XML file
+     */
+    public static Component getMathMLComponent(String text) throws SAXException {
+        String escapedText = SupportedLabelType.MathML.escape(text);
+
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder;
+        Document doc;
+        JMathComponent comp;
+
+        comp = generatedMathMLComponents.get(text);
+        if (comp == null) {
+            try {
+                builder = factory.newDocumentBuilder();
+                doc = builder.parse(new InputSource(new StringReader(escapedText)));
+                comp = new JMathComponent();
+                comp.setDocument(doc.getFirstChild());
+                generatedMathMLComponents.put(text, comp);
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return comp;
+    }
+
+    /**
+     * This class is a static singleton
+     */
+    private MathMLRenderUtils() { }
 }

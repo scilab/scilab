@@ -7,27 +7,92 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-19 21:39+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-24 21:44+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
-msgid "Invalid index.\n"
-msgstr "Neplatný index.\n"
-
-msgid "Incorrect assignment.\n"
-msgstr "Nesprávné přidělení.\n"
+#, c-format
+msgid "%s: Invalid index.\n"
+msgstr "%s: Neplatný index.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
-msgid "Affection of a string in a matrix of numbers is not implemented."
-msgstr "Náklonnost řetězce v matici čísel není zavedeno."
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d.\n"
+
+#, c-format
+msgid "%s: Multidimensional sparse matrices are not handled.\n"
+msgstr "%s: Mnohorozměrné řídké matice nejsou zpracovávány.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'c', 'd' or a scalar expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván skalár, 'c', nebo 'd'.\n"
+
+#, c-format
+msgid ""
+"%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgstr "%s: Ovlivnění řetězce v matici čísel není zavedeno.\n"
+
+#, c-format
+msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
+msgstr "%s: Syntaxe x(j) je povolena pouze pro cbloky řádku.\n"
+
+#, c-format
+msgid ""
+"%s: In concatenation the number of dimensions for each component must "
+"match.\n"
+msgstr "%s: Ve zřetězení musí odpovídat počet rozměrů pro každou část.\n"
+
+#, c-format
+msgid "%s: Invalid field name.\n"
+msgstr "%s: Neplatný název pole.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván platný název pole.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s: Špatný počet výstupních argumentů.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgstr ""
+"%s: ŠPatná velikost vstupního argumentu #%d: Transpozice nemůže být určena.\n"
+
+#, c-format
+msgid "%s: Invalid path.\n"
+msgstr "%s: Neplatná cesta.\n"
+
+#, c-format
+msgid ""
+"%s: Input argument #%d and input argument #%d have incompatible dimensions.\n"
+msgstr "%s: Vstupní argument #%d a #%d nají nekompatibilní rozměry.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
+
+#, c-format
+msgid "%s: Inconsistent dimensions.\n"
+msgstr "%s: Rozporné rozměry.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -40,6 +105,39 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+
+#, c-format
+msgid "%s: Inconsistent element-wise operation.\n"
+msgstr "%s: Rozporné operace směřující k prvkům.\n"
+
+#, c-format
+msgid "%s: Too many subscripts.\n"
+msgstr "%s: Příliš mnoho dolních indexů.\n"
+
+#, c-format
+msgid "%s: Operand is not a boolean hypermatrix.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible operand dimensions.\n"
+msgstr "%s: Nekompatibilní  rozměry operandu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
+msgstr "%s: Špatný typ vstupních argumentů: očekávána hypermatice.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupních argumentů: Očekávány celočíselné skaláry.\n"
+
+#, c-format
+msgid "%s: Only one -1 value admitted.\n"
+msgstr "%s: Přijata pouze jedna hodnota -1.\n"
+
+#, c-format
+msgid "%s: Input and output matrices  must have the same number of elements"
+msgstr "%s: Vstupní a výstupní matice musí mít stejný počet prvků"
 
 #, c-format
 msgid ""
@@ -63,18 +161,84 @@ msgstr ""
 "číslo nebo řetězec znaku.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
-
-msgid "A null assignment can have only one non-colon index"
-msgstr "Prázdné přidělení musí mít pouze rejstřík bez dvojtečky"
-
-msgid "Invalid field name."
-msgstr "Neplatné jméno pole."
+msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
+msgstr ""
+"%s: Špatný txp vstupního argumentu #%d: Očekávány celočíselné hodnoty.\n"
 
 #, c-format
-msgid "%s is not a valid field name."
-msgstr "%s není platné jméno pole"
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekávány alespoň %d.\n"
+
+#, c-format
+msgid "%s: Invalid syntax for a MIMO system.\n"
+msgstr "%s: Neplatná syntaxe pro systém MIMO.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno %d nebo %s.\n"
+
+#, c-format
+msgid ""
+"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
+msgstr "%s: Vložení řídké matice do číselné matice není zavedeno.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: integer expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments.\n"
+msgstr "%s: Špatná velikost vstupních argumentů.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument(s).\n"
+msgstr "%s: Špatná velikost vstupních argumentů.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+
+msgid ""
+"  Warning: Syntax vector ^ scalar is obsolete it will be removed in scilab-"
+"6.\n"
+"           Use vector .^ scalar instead.\n"
+msgstr ""
+"  Varování: Syntaxe vektor ^ skalár je zastaralá, bude odstraněna v scilab-"
+"6.\n"
+"           Místo toho použijte vektor .^ skalár.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Not yet implemented.\n"
+msgstr "%s: Není ještě zavedeno.\n"
+
+#, c-format
+msgid "%s: A null assignment can have only one non-colon index.\n"
+msgstr "%s? Prázdné přidělení může mít index pouze bez dvojtečky.\n"
+
+#, c-format
+msgid "%s: Unable to diagonalize.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Sparse insertion case is not implemented.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
+
+#, c-format
+msgid "%s: Field names mismatch.\n"
+msgstr "%s: Neshoda názvů polí.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Není platný název pole.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
@@ -89,5 +253,30 @@ msgid ""
 "%s: input and output matrices  must have the same number of elements.\n"
 msgstr "%s: vstupní a výstupní matice musí mít stejný počet prvků.\n"
 
-msgid "Incorrect assignment."
-msgstr "Nesprávné přidělení."
+#, c-format
+msgid "%s: Wrong size or value for input argument #%d.\n"
+msgstr "%s: Špatná velikost nebo hodnota vstupního argumentu #%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"
+
+#, c-format
+msgid "%s: Not implemented.\n"
+msgstr "%s: Nezavedeno.\n"
+
+#, c-format
+msgid ""
+"%s: Invalid assignement: for insertion in cell, use e.g. x(i,j).entries=y.\n"
+msgstr ""
+"%s: Neplatné přidělení: pro vložení ve volání použijte např. "
+"x(i,j).entries=y.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible sizes for properties '%s' and '%s': Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"

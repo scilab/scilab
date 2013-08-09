@@ -68,35 +68,10 @@ public final class ScilabVariableBrowser implements VariableBrowser {
     }
 
     /**
-     * Retrieve Singleton
-     * @param columnNames : columns title
-     * @param data : data from scilab (type, name, size, ...)
+     * Opens Variable Browser
      * @return the Variable Browser
      */
-    public static VariableBrowser getVariableBrowser(boolean update, final Object[][] data) {
-        final VariableBrowser variableBrowser = getVariableBrowser(update);
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                variableBrowser.setData(data);
-            }
-        });
-        return variableBrowser;
-    }
-
-    /**
-     * Get the variable browser singleton
-     * @return the Variable Browser
-     */
-    public static VariableBrowser getVariableBrowser() {
-        return instance;
-    }
-
-    /**
-     * Get the variable browser singleton with specified columns title.
-     * @param columnNames : the columns title
-     * @return the Variable Browser
-     */
-    public static VariableBrowser getVariableBrowser(boolean update) {
+    public static VariableBrowser openVariableBrowser() {
         if (instance == null) {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingScilabVariableBrowser.VARBROWSERUUID);
             if (!success) {
@@ -106,16 +81,34 @@ public final class ScilabVariableBrowser implements VariableBrowser {
                 window.setLocation(0, 0);
                 window.setSize(500, 500);
                 window.setVisible(true);
-            }
-        } else {
-            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, browserTab);
-            if (!update) {
-                window.setVisible(true);
                 window.toFront();
             }
         }
-
         return instance;
+    }
+
+    /**
+     * Set Variable Browser data
+     * @param data : data from scilab (type, name, size, ...)
+     */
+    public static void setVariableBrowserData(final Object[][] data) {
+        if (instance != null) {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    instance.setData(data);
+                }
+            });
+        }
+    }
+
+    /**
+     * Update Variable Browser window
+     */
+    public static void updateVariableBrowser() {
+        if (instance != null) {
+            SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, browserTab);
+            window.repaint();
+        }
     }
 
     /**
@@ -125,6 +118,14 @@ public final class ScilabVariableBrowser implements VariableBrowser {
         if (instance != null) {
             instance = null;
         }
+    }
+
+    /**
+     * Get the variable browser singleton
+     * @return the Variable Browser
+     */
+    public static VariableBrowser getVariableBrowser() {
+        return instance;
     }
 
     /**

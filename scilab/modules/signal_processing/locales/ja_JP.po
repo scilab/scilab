@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:03+0100\n"
-"PO-Revision-Date: 2012-08-07 03:27+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-17 13:18+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -97,6 +97,18 @@ msgstr "3点畳み込み"
 msgid "Signal derivative estimate"
 msgstr "信号微分推定"
 
+msgid "Choose filter type and parameters"
+msgstr "フィルタ型よパラメータを選択してください"
+
+msgid "Discrete IIR filter "
+msgstr "離散IIRフィルタ "
+
+msgid "Discrete IIR filter : low pass  fr < 0.2"
+msgstr "離散IIRフィルタ: ローパス fr < 0.2"
+
+msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
+msgstr "離散IIRフィルタ バンドパス 0.15 < fr < 0.25"
+
 msgid "Minimax FIR filter"
 msgstr "ミニマックスFIRフィルタ"
 
@@ -105,6 +117,12 @@ msgstr "範囲[.23,.27]にローパスカットオフ"
 
 msgid "length 33"
 msgstr "長さ33"
+
+msgid "Remez Triangular filter"
+msgstr "Remez 三角化フィルタ"
+
+msgid "magnitude error"
+msgstr "ゲイン誤差"
 
 msgid "Signal Processing"
 msgstr "信号処理"
@@ -145,6 +163,18 @@ msgstr "ARMA, 二次元版"
 msgid "Arma, Spectral power estimation"
 msgstr "ARMA, スペクトルパワー推定"
 
+msgid "Data spectrum"
+msgstr "データスペクトラム"
+
+msgid "magnitude"
+msgstr "ゲイン"
+
+msgid "Spectral estimation"
+msgstr "スペクトル推定"
+
+msgid "spectral power"
+msgstr "スペクトル強度"
+
 msgid "estimates xf"
 msgstr "推定 xf"
 
@@ -153,6 +183,27 @@ msgstr "推定 xs"
 
 msgid "real state"
 msgstr "実状態"
+
+msgid "Windowed FIR Low pass Filter"
+msgstr "ウインドウ付FIRローパスフィルタ"
+
+msgid "Kaiser window,cut-off:0.2"
+msgstr "カイザーウインドウ,カットオフ:0.2"
+
+msgid "Hamming window,cut-off:0.2,0.3"
+msgstr "ハミングウインドウ,カットオフ:0.2,0.3"
+
+msgid "length 127"
+msgstr "長さ127"
+
+msgid "Windowed FIR Band pass Filter"
+msgstr "ウインドウ付FIRバンドパスフィルタ"
+
+msgid "Chebyshev window,cut-off:0.15,0.35"
+msgstr "チェビシェフウインドウ,カットオフ:0.15,0.35"
+
+msgid "length 55"
+msgstr "長さ55"
 
 #
 # File: macros/%asn.sci, line: 23
@@ -260,6 +311,10 @@ msgstr "%s: 入力引数の数が正しくありません: %d から %d の範�
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: 入力引数の数が不正です: %d または、%d を想定します。\n"
+
+#, c-format
+msgid "%s: Filter order too small.\n"
+msgstr "%s: フィルタ次数が小さすぎます.\n"
 
 #, c-format
 msgid ""

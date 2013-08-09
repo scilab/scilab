@@ -898,7 +898,7 @@ c     Save a matrix of strings
 c
       integer fd
 
-      character*2 fmti,fmtc
+      character*3 fmti,fmtc
 c
 c      iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
@@ -921,7 +921,7 @@ c     Copyright INRIA
 c     Load a matrix of strings
       include 'stack.h'
       integer fd
-      character*2 fmti
+      character*3 fmti
       integer sadr
 c
 c      iadr(l)=l+l-1
@@ -965,7 +965,7 @@ c     Save a matrix of boolean
       include 'stack.h'
 c
       integer fd
-      character*2 fmti
+      character*3 fmti
 c
 c      iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
@@ -986,7 +986,7 @@ c     Copyright INRIA
 c     Load a matrix of boolean
       include 'stack.h'
       integer fd
-      character*2 fmti
+      character*3 fmti
       integer sadr
 c
 c      iadr(l)=l+l-1
@@ -1022,7 +1022,7 @@ c     Save  a function
       include 'stack.h'
 c
       integer fd
-      character*2 fmti
+      character*3 fmti
 c
 c      iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
@@ -1047,7 +1047,7 @@ c     Load a function
       include 'stack.h'
 c
       integer fd
-      character*2 fmti
+      character*3 fmti
       integer sadr
 c
 c      iadr(l)=l+l-1
@@ -1104,7 +1104,7 @@ c     Save a compiled function
       include 'stack.h'
 c
       integer fd
-      character*2 fmti
+      character*3 fmti
 c
 c      iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
@@ -1130,7 +1130,7 @@ c     Load a compiled function
 c
       integer fd
       integer sadr
-      character*2 fmti
+      character*3 fmti
 c
 c      iadr(l)=l+l-1
       sadr(l)=(l/2)+1

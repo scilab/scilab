@@ -20,34 +20,34 @@
 namespace org_modules_completion
 {
 
+/**
+ * @file
+ * @author Calixte DENIZET <calixte.denizet@scilab.org>
+ *
+ * Class to handle the mapping between XMLObjects and their id
+ */
+class FieldsManager
+{
+
+    static std::map<const std::string, FieldsGetter *> typeToFieldsGetter;
+
+public :
+
     /**
-     * @file
-     * @author Calixte DENIZET <calixte.denizet@scilab.org>
-     *
-     * Class to handle the mapping between XMLObjects and their id
+     * Add a FieldGetter to the map
+     * @param typeName the type name
+     * @param getter a pointer to a FieldGetter
      */
-    class FieldsManager
-    {
+    static void addFieldsGetter(const std::string & typeName, FieldsGetter * getter);
 
-        static std::map<const std::string, FieldsGetter *> typeToFieldsGetter;
-
-    public :
-
-        /**
-         * Add a FieldGetter to the map
-         * @param typeName the type name
-         * @param getter a pointer to a FieldGetter
-         */
-        static void addFieldsGetter(const std::string & typeName, FieldsGetter * getter);
-
-        /**
-         * Retrieve the fields name for a given type and a given mlist
-         * @param typeName the type name
-         * @param mlist the mlist address
-         * @return the array of fields name
-         */
-        static const char ** getFieldsForType(const std::string & typeName, int * mlist);
-    };
+    /**
+     * Retrieve the fields name for a given type and a given mlist
+     * @param typeName the type name
+     * @param mlist the mlist address
+     * @return the array of fields name
+     */
+    static const char ** getFieldsForType(const std::string & typeName, int * mlist);
+};
 }
 
 #endif

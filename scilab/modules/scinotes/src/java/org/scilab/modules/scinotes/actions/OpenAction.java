@@ -73,7 +73,7 @@ public class OpenAction extends DefaultAction {
             path = ConfigManager.getLastOpenedDirectory();
         }
 
-        String[] mask = new String[]{"*.cos*", "*.sci", "*.sce", "*.tst", "*.start", "*.quit", "*.dem", "*.sc*", "all"};
+        String[] mask = new String[] {"*.cos*", "*.sci", "*.sce", "*.tst", "*.start", "*.quit", "*.dem", "*.sc*", "all"};
 
         SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
         fileChooser.setMultiSelectionEnabled(true);

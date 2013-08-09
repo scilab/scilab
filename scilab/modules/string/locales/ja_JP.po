@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-09 12:14+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-18 04:33+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -202,6 +202,10 @@ msgstr "%s: 入力引数 #%d で不正な型: 実行列、または、文字列�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 単一の文字列を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: impossible to get dimensions of this matrix.\n"
@@ -453,6 +457,10 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 空でない行列、または、文字列を想定します。\n"
 
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '.' or ',' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '.' または ',' を指定してください.\n"
+
 #
 # File: sci_gateway/c/sci_tokens.c, line: 72
 # File: sci_gateway/c/sci_tokens.c, line: 82
@@ -588,10 +596,6 @@ msgstr "%s: 与えられた表現はいかなる値も持っていません。\n
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
 msgstr "%s: この特徴は装備されていません。: %s\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
-msgstr "%s: 入力引数 #%d の型が正しくありません: 文字列の配列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-05-15 14:26+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-26 14:58+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -35,24 +35,25 @@ msgstr "%s: mlist 入力引数 #%d を指定して mlist を作成すること�
 msgid "%s: Can not create a tlist with input argument #%d.\n"
 msgstr "%s: mlist 入力引数 #%d を指定して tlist を作成することはできません.\n"
 
-msgid " An hypermatrix extraction must have at least 2 arguments. "
-msgstr " ハイパー行列の展開には,最低2つの引数が必要です. "
-
-msgid " Argument is not an hypermatrix. "
-msgstr " 引数がハイパー行列ではありません. "
-
-msgid " Incompatible hypermatrix extraction. "
-msgstr " 互換性がないハイパー行列の展開です. "
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています:  %d 以上の引数を指定してください.\n"
 
 #, c-format
-msgid "Bad (%d th) index in hypermatrix extraction. "
-msgstr "ハイパー行列の展開において、(%d 番目) のインデックスが不正です. "
+msgid "%s: Wrong type for input argument(s): An hypermatrix expected.\n"
+msgstr "%s: 入力引数の型が間違っています:  ハイパー行列を指定してください.\n"
 
-msgid " An hypermatrix insertion must have at least 3 arguments. "
-msgstr " ハイパー行列への挿入には,最低3つの引数が必要です. "
+#, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: 最大でも%d 個としてください.\n"
 
-msgid " Bad hypermatrix insertion. "
-msgstr " 不正なハイパー行列の挿入です. "
+#, c-format
+msgid "%s: Invalid index #%d in hypermatrix extraction. "
+msgstr "%s: ハイパー行列の展開時の添字 #%d が無効です. "
+
+#, c-format
+msgid "%s: Invalid hypermatrix insertion.\n"
+msgstr "%s: ハイパー行列の挿入が無効です.\n"
 
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr "スタック上の引数が多すぎます. stack.h を編集し,intersiz を大きくしてください.\n"
@@ -76,8 +77,10 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 構造体の配列を指定してください.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: struct array or tlist or mlist "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 構造体配列またはtlistまたはmlistを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"

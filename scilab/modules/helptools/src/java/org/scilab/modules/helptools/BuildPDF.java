@@ -46,82 +46,82 @@ import org.scilab.modules.commons.xml.ScilabTransformerFactory;
  */
 public final class BuildPDF {
 
-	/**
-	 * Default constructor (must not be used)
-	 */
-	private BuildPDF() {
-		throw new UnsupportedOperationException();
-	}
-	
-	
     /**
-     * After the saxon process, create the PDF thanks to fop 
+     * Default constructor (must not be used)
+     */
+    private BuildPDF() {
+        throw new UnsupportedOperationException();
+    }
+
+
+    /**
+     * After the saxon process, create the PDF thanks to fop
      *
-     * @param outputDirectory Where the files are available and 
+     * @param outputDirectory Where the files are available and
      * @param language In which language (for the file name)
      * @return The result of the process
-	 */
-	public static String buildPDF(String outputDirectory, String language, String format) {
+     */
+    public static String buildPDF(String outputDirectory, String language, String format) {
 
-		String baseName = Helpers.getBaseName(language);
-		/* the following '..' is used because we are in the current working
-		   directory with all the tmp stuff in it */
-		String fileName = outputDirectory + "/" + baseName; 
-		if (format.equalsIgnoreCase("PS")) {
-			 fileName+= ".ps";
-		}else{
-			 fileName+= ".pdf";
-		}
+        String baseName = Helpers.getBaseName(language);
+        /* the following '..' is used because we are in the current working
+           directory with all the tmp stuff in it */
+        String fileName = outputDirectory + "/" + baseName;
+        if (format.equalsIgnoreCase("PS")) {
+            fileName += ".ps";
+        } else {
+            fileName += ".pdf";
+        }
 
-		try {
-                        FopFactory fopFactory = FopFactory.newInstance();
-                        fopFactory.addElementMapping(new JLaTeXMathElementMapping());
-                        fopFactory.getXMLHandlerRegistry().addXMLHandler(new JLaTeXMathXMLHandler());
-                        fopFactory.setUserConfig(new File(System.getenv("SCI") + "/modules/helptools/etc/fopconf.xml"));
-                        
-                        // Step 3: Construct fop with desired output format
-			OutputStream out = new BufferedOutputStream(new FileOutputStream(fileName));
-			Fop fop;
-			if (format.equalsIgnoreCase("PS")) {
-				fop = fopFactory.newFop(MimeConstants.MIME_POSTSCRIPT, out);
-			} else {
-				fop = fopFactory.newFop(MimeConstants.MIME_PDF, out);
-			}
+        try {
+            FopFactory fopFactory = FopFactory.newInstance();
+            fopFactory.addElementMapping(new JLaTeXMathElementMapping());
+            fopFactory.getXMLHandlerRegistry().addXMLHandler(new JLaTeXMathXMLHandler());
+            fopFactory.setUserConfig(new File(System.getenv("SCI") + "/modules/helptools/etc/fopconf.xml"));
 
-			// Step 4: Setup JAXP using identity transformer
-			String factoryName = ScilabTransformerFactory.useDefaultTransformerFactoryImpl();
-			TransformerFactory factory = TransformerFactory.newInstance();
-			Transformer transformer = factory.newTransformer(); // identity transformer
-			// Step 5: Setup input and output for XSLT transformation 
-			// Setup input stream
-			Source src = new StreamSource(new File(Helpers.getTemporaryNameFo(outputDirectory)));
+            // Step 3: Construct fop with desired output format
+            OutputStream out = new BufferedOutputStream(new FileOutputStream(fileName));
+            Fop fop;
+            if (format.equalsIgnoreCase("PS")) {
+                fop = fopFactory.newFop(MimeConstants.MIME_POSTSCRIPT, out);
+            } else {
+                fop = fopFactory.newFop(MimeConstants.MIME_PDF, out);
+            }
 
-			// Resulting SAX events (the generated FO) must be piped through to FOP
-			Result res = new SAXResult(fop.getDefaultHandler());
-            
-			// Step 6: Start XSLT transformation and FOP processing
-			transformer.transform(src, res);
-			ScilabTransformerFactory.restoreTransformerFactoryImpl(factoryName);
+            // Step 4: Setup JAXP using identity transformer
+            String factoryName = ScilabTransformerFactory.useDefaultTransformerFactoryImpl();
+            TransformerFactory factory = TransformerFactory.newInstance();
+            Transformer transformer = factory.newTransformer(); // identity transformer
+            // Step 5: Setup input and output for XSLT transformation
+            // Setup input stream
+            Source src = new StreamSource(new File(Helpers.getTemporaryNameFo(outputDirectory)));
 
-			FormattingResults foResults = fop.getResults();
-			System.out.println("Generated " + foResults.getPageCount() + " pages in total.");
+            // Resulting SAX events (the generated FO) must be piped through to FOP
+            Result res = new SAXResult(fop.getDefaultHandler());
 
-			//Clean-up
-			out.close();
-		} catch (FOPException e) {
-			System.out.println(e.getLocalizedMessage());
-		} catch (FileNotFoundException e) {
-			System.out.println(e.getLocalizedMessage());
-		} catch (TransformerConfigurationException e) {
-			System.out.println(e.getLocalizedMessage());
-		} catch (TransformerException e) {
-			System.out.println(e.getLocalizedMessage());
-		} catch (IOException e) {
-			System.out.println(e.getLocalizedMessage());
-		} catch (SAXException e) {
-			System.out.println(e.getLocalizedMessage());
-		}
-			
-		return fileName;
-	}
+            // Step 6: Start XSLT transformation and FOP processing
+            transformer.transform(src, res);
+            ScilabTransformerFactory.restoreTransformerFactoryImpl(factoryName);
+
+            FormattingResults foResults = fop.getResults();
+            System.out.println("Generated " + foResults.getPageCount() + " pages in total.");
+
+            //Clean-up
+            out.close();
+        } catch (FOPException e) {
+            System.out.println(e.getLocalizedMessage());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getLocalizedMessage());
+        } catch (TransformerConfigurationException e) {
+            System.out.println(e.getLocalizedMessage());
+        } catch (TransformerException e) {
+            System.out.println(e.getLocalizedMessage());
+        } catch (IOException e) {
+            System.out.println(e.getLocalizedMessage());
+        } catch (SAXException e) {
+            System.out.println(e.getLocalizedMessage());
+        }
+
+        return fileName;
+    }
 }

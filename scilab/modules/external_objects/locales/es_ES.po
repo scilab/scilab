@@ -1,0 +1,176 @@
+# Spanish translation for scilab
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-14 19:30+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 16718)\n"
+
+msgid "Exception thrown in file"
+msgstr "Se generó una excepción en el archivo"
+
+msgid "at line"
+msgstr "en la línea"
+
+#, c-format
+msgid "%s: An error occurred: %s"
+msgstr "%s: Ocurrió un error: %s"
+
+#, c-format
+msgid "Invalid environment: identifier %d is invalid"
+msgstr "Entorno no válido: el identificador %d no es válido"
+
+msgid "Invalid environment"
+msgstr "Entorno no válido"
+
+#, c-format
+msgid "Invalid variable name: %s"
+msgstr "Nombre de variable no válido: %s"
+
+msgid "Cannot allocate memory"
+msgstr "No se puede asignar memoria"
+
+msgid "Invalid variable: cannot retrieve the data"
+msgstr "Variable no válida: no se pueden recuperar los datos"
+
+msgid "Invalid variable: cannot create data"
+msgstr "Variable no válida: no se pueden crear los datos"
+
+msgid "External Class expected"
+msgstr "Se esperaba una clase externa"
+
+msgid "Incompatible External Objects"
+msgstr "Objetos externos incompatibles"
+
+msgid "External object expected"
+msgstr "Se esperaba un objeto externo"
+
+msgid "Unable to wrap. Unmanaged datatype ?"
+msgstr ""
+
+msgid "Invalid String"
+msgstr "Cadena no válida"
+
+msgid "A single string expected"
+msgstr ""
+
+msgid "A single String expected"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for argument #%d: A string expected."
+msgstr ""
+
+#, c-format
+msgid "Cannot open the given file %s."
+msgstr ""
+
+#, c-format
+msgid "Wrong number of arguments : more than %d expected."
+msgstr ""
+
+#, c-format
+msgid "A strictly positive integer is expected at position %d."
+msgstr ""
+
+msgid "Invalid name"
+msgstr "Nombre no válido"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A String expected."
+msgstr ""
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr ""
+
+msgid "The argument must be 'rc' or 'cr'."
+msgstr ""
+
+#, c-format
+msgid "Invalid dimensions for input argument #%d: A single string expected."
+msgstr ""
+
+msgid "Invalid dimensions: arguments #2 and #3 must have the same."
+msgstr ""
+
+msgid "Invalid variable: cannot create the data"
+msgstr "Variable no válida: no se pueden crear los datos"
+
+#, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr ""
+
+msgid "Incompatible External Object"
+msgstr "Objeto externo incompatible"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A string expected."
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument #%d: A boolean expected."
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument #%d: A single boolean expected."
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument #%d: An External Object expected."
+msgstr ""
+
+msgid "Cannot create the identifier"
+msgstr "No se puede crear el identificador"
+
+msgid "The class name cannot end with a dot."
+msgstr "El nombre de la clase no puede terminar con un punto."
+
+msgid "The class name cannot start with a dot."
+msgstr "El nombre de la clase no puede comenzar con un punto."
+
+msgid "A variable with this name is already existing"
+msgstr "Ya existe una variable con este nombre"
+
+msgid "Bad number of output arguments"
+msgstr ""
+
+msgid "Wrong number of arguments : more than 2 arguments expected"
+msgstr ""
+
+msgid "Cannot invoke on null object"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument #%d: A List expected."
+msgstr ""
+
+#, c-format
+msgid "Wrong type for input argument #%d: An Integer32 expected."
+msgstr ""
+
+msgid "Cannot invoke on null object."
+msgstr ""
+
+msgid "Wrong number of arguments : more than 1 argument expected"
+msgstr ""
+
+msgid "Wrong number of arguments : more than 1 argument expected."
+msgstr ""
+
+#, c-format
+msgid "Cannot wrap argument %d."
+msgstr ""
+
+msgid "Can only wrap as a reference to a named variable"
+msgstr ""

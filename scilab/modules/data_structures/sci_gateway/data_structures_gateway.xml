@@ -14,8 +14,8 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="data_structures">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -31,17 +31,17 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
-
-<PRIMITIVE gatewayId="17" primitiveId="1" primitiveName="list" />
-<PRIMITIVE gatewayId="17" primitiveId="2" primitiveName="tlist" />
-<PRIMITIVE gatewayId="17" primitiveId="3" primitiveName="rlist" />
-<PRIMITIVE gatewayId="17" primitiveId="4" primitiveName="lsslist" />
-<PRIMITIVE gatewayId="17" primitiveId="5" primitiveName="glist" />
-<PRIMITIVE gatewayId="17" primitiveId="6" primitiveName="lstcat" />
-<PRIMITIVE gatewayId="17" primitiveId="7" primitiveName="mlist" />
-<PRIMITIVE gatewayId="17" primitiveId="8" primitiveName="definedfields" />
-<PRIMITIVE gatewayId="17" primitiveId="9" primitiveName="lstsize" />
-<PRIMITIVE gatewayId="41" primitiveId="1" primitiveName="getfield" />
-<PRIMITIVE gatewayId="41" primitiveId="2" primitiveName="setfield" />
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="17" primitiveId="1" primitiveName="list" />
+    <PRIMITIVE gatewayId="17" primitiveId="2" primitiveName="tlist" />
+    <PRIMITIVE gatewayId="17" primitiveId="3" primitiveName="rlist" />
+    <PRIMITIVE gatewayId="17" primitiveId="4" primitiveName="lsslist" />
+    <PRIMITIVE gatewayId="17" primitiveId="5" primitiveName="glist" />
+    <PRIMITIVE gatewayId="17" primitiveId="6" primitiveName="lstcat" />
+    <PRIMITIVE gatewayId="17" primitiveId="7" primitiveName="mlist" />
+    <PRIMITIVE gatewayId="17" primitiveId="8" primitiveName="definedfields" />
+    <PRIMITIVE gatewayId="17" primitiveId="9" primitiveName="lstsize" />
+    <PRIMITIVE gatewayId="41" primitiveId="1" primitiveName="getfield" />
+    <PRIMITIVE gatewayId="41" primitiveId="2" primitiveName="setfield" />
 </GATEWAY>

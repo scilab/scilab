@@ -77,9 +77,9 @@ public class PointBComputer extends AbstractPointComputer implements PointComput
         boolean r = true;
         Double[] bounds = getAxes().getDataBounds();
         float[] middle = new float[] {
-                (float) (bounds[0] + bounds[1]) / 2f,
-                (float) (bounds[2] + bounds[3]) / 2f,
-                (float) (bounds[4] + bounds[5]) / 2f
+            (float) (bounds[0] + bounds[1]) / 2f,
+            (float) (bounds[2] + bounds[3]) / 2f,
+            (float) (bounds[4] + bounds[5]) / 2f
         };
 
         for (int i = 0; i < AXIS_NUMBER; i++) {

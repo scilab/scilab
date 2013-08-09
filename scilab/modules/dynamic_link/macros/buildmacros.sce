@@ -8,14 +8,14 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //=============================================================================
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 //=============================================================================
-genlib('dynamic_linklib','SCI/modules/dynamic_link/macros',%f,%t);
-genlib('dynamic_linkutilslib','SCI/modules/dynamic_link/macros/utils',%f,%t);
+genlib("dynamic_linklib","SCI/modules/dynamic_link/macros",%f,%t);
+genlib("dynamic_linkutilslib","SCI/modules/dynamic_link/macros/utils",%f,%t);
 //=============================================================================
-if getos() == 'Windows' then
-  genlib('dynamic_linkwindowslib','SCI/modules/dynamic_link/macros/windows',%f,%t);
+if getos() == "Windows" then
+    genlib("dynamic_linkwindowslib","SCI/modules/dynamic_link/macros/windows",%f,%t);
 end
 //=============================================================================

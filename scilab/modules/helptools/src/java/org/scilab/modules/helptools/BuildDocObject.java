@@ -17,15 +17,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+
 import org.xml.sax.SAXParseException;
 import org.xml.sax.SAXException;
-
-import com.icl.saxon.StyleSheet; /* saxon */
 
 /**
  * This classes intends to wrap Saxon features in a easy-to-use class.
  */
-public class BuildDocObject extends StyleSheet {
+public class BuildDocObject {
 
     /**
      * Windows version ?
@@ -289,8 +294,9 @@ public class BuildDocObject extends StyleSheet {
      * @param styleSheet Path to the CSS stylesheet
      * @return The path to the file/directory created.
      * @throws FileNotFoundException Raises an exception if no file/dir found
+     * @throws TransformerException
      */
-    public String process(String sourceDoc, String styleSheet) throws FileNotFoundException {
+    public String process(String sourceDoc, String styleSheet) throws FileNotFoundException, TransformerException {
         ArrayList<String> args = new ArrayList<String>();
 
         if (!new File(sourceDoc).isFile()) {
@@ -318,39 +324,40 @@ public class BuildDocObject extends StyleSheet {
             throw new FileNotFoundException("Unable to parse generated master file.");
         }
 
+        final StreamResult outputTarget;
         if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(POSTSCRIPT_FORMAT)) {
-            /* PDF & postscript take other args */
-            args.add("-o");
-            args.add(Helpers.getTemporaryNameFo(outputDirectory));
+            outputTarget = new StreamResult(new File(Helpers.getTemporaryNameFo(outputDirectory)));
         } else {
-            if (!new File(styleSheet).isFile()) {
-                throw new FileNotFoundException("Could not find CSS stylesheet: " + styleSheet);
-            }
-            /* Where it will be stored */
-            String out = this.outputDirectory + File.separator + new File(styleSheet).getName();
-
-            try {
-                Helpers.copyFile(new File(styleSheet), new File(out));
-            } catch (java.io.FileNotFoundException e) {
-                System.err.println(ERROR_WHILE_COPYING + styleSheet + TO + out + COLON + e.getMessage());
-            } catch (java.io.IOException e) {
-                System.err.println(ERROR_WHILE_COPYING + styleSheet + TO + out + COLON + e.getMessage());
-            }
-
-            args.add("html.stylesheet=" + new File(styleSheet).getName());
+            throw new RuntimeException("Invalid format");
         }
 
-        //args.add("-t");
-        args.add(sourceDocProcessed);
-        args.add(path);
-        args.add("base.dir=" + this.outputDirectory);
-        args.addAll(specificArgs);
-        /**
-         * We are calling directly the method as we were using a command line
-         * program because it is much easier ...
-         * However, this should be rewritted using the API
+        final StreamSource xmlSource = new StreamSource(new File(sourceDocProcessed));
+
+        /*
+         * We rely on the saxon implementation to compile xsl files (the default JVM implementation failed).
+         *
+         * Supported version :
+         *  * Saxon-HE 9.5 (and may be 8.x too) which handle xinclude, XSLT-2 and has better performances
+         *  * Saxon 6.5 if on the classpath
+         *  * JVM Apache-xerces as a fallback but may probably fail to compile docbook.xsl
          */
-        doMain(args.toArray(new String [args.size()]), new StyleSheet(), "java com.icl.saxon.StyleSheet");
+        TransformerFactory tfactory;
+        try {
+            tfactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
+        } catch (TransformerFactoryConfigurationError e) {
+            // switch back to the default implementation which may be saxon 6.5 if found on the classpath or the JVM default implementation otherwise
+            tfactory = TransformerFactory.newInstance();
+        }
+
+        final Transformer transform = tfactory.newTransformer(new StreamSource(new File(path)));
+
+        transform.setParameter("base.dir", this.outputDirectory);
+        for (String arg : specificArgs) {
+            String[] nameValue = arg.split("=");
+            transform.setParameter(nameValue[0], nameValue[1]);
+        }
+
+        transform.transform(xmlSource, outputTarget);
 
         if (new File(sourceDocProcessed).isDirectory()) {
             /* Delete the master temp file to avoid to be shipped with the rest */
@@ -363,23 +370,5 @@ public class BuildDocObject extends StyleSheet {
 
         return this.postProcess();
 
-    }
-
-    /**
-     * The case to see if it working
-     *
-     * @param arg Useless arg
-     */
-    public static void main(String[] arg) {
-        try {
-            BuildDocObject d = new BuildDocObject();
-            d.setOutputDirectory("/tmp/");
-            d.setExportFormat(JH_FORMAT);
-            d.setDocbookPath("/usr/share/xml/docbook/stylesheet/nwalsh/");
-            d.process(SCI + "/modules/helptools/master_en_US_help.xml",
-                      SCI + "/modules/helptools/css/javahelp.css");
-        } catch (FileNotFoundException e) {
-            System.err.println("Exception catched: " + e.getMessage());
-        }
     }
 }

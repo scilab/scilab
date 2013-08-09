@@ -31,7 +31,7 @@ import javax.swing.tree.TreeSelectionModel;
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 
-public abstract class TreeView implements GraphicView, TreeSelectionListener{
+public abstract class TreeView implements GraphicView, TreeSelectionListener {
 
     protected Map<String, DefaultMutableTreeNode> allObjects = new ConcurrentHashMap<String, DefaultMutableTreeNode>();
     protected DefaultTreeModel topModel = null;
@@ -48,7 +48,7 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener{
         frame = new JFrame("TreeView");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel panel = new JPanel(new GridLayout(1,0));
+        JPanel panel = new JPanel(new GridLayout(1, 0));
 
         topModel = new DefaultTreeModel(top);
         tree = new JTree(topModel);
@@ -61,8 +61,8 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener{
         tree.addTreeSelectionListener(this);
 
 
-        Dimension minDims = new Dimension(400,300);
-        //Create the scroll pane and add the tree to it. 
+        Dimension minDims = new Dimension(400, 300);
+        //Create the scroll pane and add the tree to it.
         JScrollPane treeView = new JScrollPane(tree);
         treeView.setMinimumSize(minDims);
 
@@ -78,7 +78,7 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener{
         treeDetailPane.setLeftComponent(treeView);
         treeDetailPane.setRightComponent(htmlView);
 
-        treeDetailPane.setDividerLocation(100); 
+        treeDetailPane.setDividerLocation(100);
         treeDetailPane.setPreferredSize(new Dimension(1200, 600));
 
         //Add the split pane to this panel.
@@ -91,7 +91,7 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener{
     public abstract void createObject(String id);
     public abstract void deleteObject(String id) ;
     public abstract void updateObject(String id, int property);
-    
+
     /*
      * Inner class to wrap GraphicObject in a Node.
      */
@@ -109,8 +109,8 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener{
         public String toHTML() {
             StringBuffer strBuff = new StringBuffer();
             strBuff.append("<html><body>");
-            strBuff.append("<h1>Graphic Object of type: "+graphicObject.getType()+"</h1>");
-            strBuff.append("<h2> Id : "+graphicObject.getIdentifier()+"</h2>");
+            strBuff.append("<h1>Graphic Object of type: " + graphicObject.getType() + "</h1>");
+            strBuff.append("<h2> Id : " + graphicObject.getIdentifier() + "</h2>");
             strBuff.append("<table border=\"1\">");
             strBuff.append("<tr><th>Property Name</th><th>Value</th></tr>");
             // Graphic Object
@@ -123,16 +123,13 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener{
                     String[] strings = (String []) values;
                     strBuff.append("{");
                     for (int i = 0; i < strings.length ; ++i) {
-                        strBuff.append(strings[i]+",");
+                        strBuff.append(strings[i] + ",");
                     }
                     strBuff.append("}");
-                }
-                else {
+                } else {
                     if (values != null) {
                         strBuff.append(values.toString());
-                    }
-                    else
-                    {
+                    } else {
                         strBuff.append("??? NULL ???");
                     }
                 }

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:49+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -798,7 +798,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsRemove.sci, line: 250
+# File: macros/atomsRemove.sci, line: 246
 #, c-format
 msgid ""
 "Removing %s (%s)(%s).\n"
@@ -806,7 +806,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsRemove.sci, line: 260
+# File: macros/atomsRemove.sci, line: 267
 #, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
@@ -814,7 +814,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsRemove.sci, line: 273
+# File: macros/atomsRemove.sci, line: 280
 #, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) cannot been deleted, please check "
@@ -822,7 +822,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsRemove.sci, line: 292
+# File: macros/atomsRemove.sci, line: 299
 #, c-format
 msgid ""
 "%s: The root directory of this package (%s-%s) cannot been deleted, please "
@@ -830,7 +830,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsRemove.sci, line: 302
+# File: macros/atomsRemove.sci, line: 309
 #, c-format
 msgid ""
 "Deleting archives files for %s.\n"
@@ -1307,7 +1307,7 @@ msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 263
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 264
 #, c-format
 msgid "%s: save ('%s') has failed.\n"
 msgstr ""

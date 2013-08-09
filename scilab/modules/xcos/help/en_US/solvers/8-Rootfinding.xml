@@ -53,7 +53,7 @@
             <emphasis>
                 [t<subscript>mid</subscript>, t<subscript>hi</subscript>]
             </emphasis>
-            ,following which does the sign change occur in.
+            , following which does the sign change occur in.
         </para>
         <para>
             Since the tolerance depends on the step size, the smaller it is, the more accurate the homing in will be.
@@ -153,6 +153,9 @@ Time without rootfinding:
             </member>
             <member>
                 <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
             </member>
             <member>
                 <link linkend="Comparisons">Comparisons</link>

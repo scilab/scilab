@@ -139,7 +139,7 @@ n = 300;
 u = -prbs_a(n, 1, int([2.5,5,10,17.5,20,22,27,35]*100/12));
 zd = narsimul(ar, u);
 
-// using now armax1 : coloured noise identification
+// using now armax1 : colored noise identification
 // you can test the same example with
 [arc1, resid] = armax1(3,3,2,zd(1:n),u,1);
 disp(arc1);

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-05-26 08:44+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-29 09:16+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -305,6 +305,30 @@ msgid ""
 "%s: %d.\n"
 msgstr "%s: 入力引数  #%d: %s=%d の値が間違っています,  %s: %d がお大きさと一致しません.\n"
 
+msgid "  Possible matrix is not positive definite."
+msgstr "  実行可能行列が正定ではありません."
+
+msgid "Non-positive diagonal encountered, matrix is not positive definite."
+msgstr "正でない対角要素がありました, 行列は正定ではありません."
+
+msgid "Insufficient working storage in blkfct, temp(*)."
+msgstr "blkfct, temp(*) で利用可能な記憶領域が十分でありません."
+
+msgid "Insufficient working storage in blkfct, iwork(*)."
+msgstr "blkfct, iwork(*) で利用可能な記憶領域が十分でありません."
+
+msgid " SYMFCT requires PERM to be neqns x 1"
+msgstr " SYMFCT は PERM が 1 x 1 であることを要求します"
+
+msgid " SYMFCT requires INVN to be neqns x 1"
+msgstr " SYMFCT は INVN が 1 x 1 であることを要求します"
+
+msgid " SYMFCT requires CACHSZ  to be 1 x 1"
+msgstr " SYMFCT は CACHSZ が 1 x 1 であることを要求します"
+
+msgid " Insufficient working storage in sfinit"
+msgstr " sfinit の作業領域が足りません"
+
 #
 # File: macros/gmres.sci, line: 51
 #, c-format
@@ -453,9 +477,27 @@ msgstr "%s: 入力引数 #%d で不正な値: 機能 %s の置き換えを想定
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A transpose of the function %s "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 関数 %s の転置を指定してください.\n"
+
+#, c-format
+msgid ""
 "%s : Calling qmr(A,Ap) is deprecated. Please see qmr documentation for more "
 "details.\n"
 msgstr "%s : qmr(A,Ap) のコールは廃止されています. 詳細については, qmr のドキュメントを参照ください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex, full or sparse "
+"column vector expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  実数または複素数の通常または疎の列ベクトルを指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex, full or sparse, "
+"square matrix or a function expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複素数の通常または疎の正方行列または関数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -465,9 +507,33 @@ msgstr "%s : qmr(...,M1,M1p) のコールは廃止されています. 詳細に�
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A transpose of the function "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 関数の転置を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong prototype of input argument #%d: If M1 is function, use the header "
+"M1(x,t) instead M1(x).\n"
+msgstr ""
+"%s: 入力引数 #%d のプロトタイプが間違っています: M1 が関数の場合, M1(x)ではなくヘッダ M1(x,t) を使用してください.\n"
+
+#, c-format
+msgid ""
 "%s : Calling qmr(...,M2,M2p) is deprecated. Please see qmr documentation for "
 "more details.\n"
 msgstr "%s : qmr(...,M2,M2p) のコールは廃止されています. 詳細については, qmr のドキュメントを参照ください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong prototype of input argument #%d: If M2 is function, use the header "
+"M2(x,t) instead M2(x).\n"
+msgstr ""
+"%s: 入力引数 #%d のプロトタイプが間違っています: M12が関数の場合, M2(x)ではなくヘッダ M2(x,t) を使用してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

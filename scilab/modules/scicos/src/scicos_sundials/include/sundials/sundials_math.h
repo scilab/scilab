@@ -26,17 +26,17 @@ extern "C" {
 
 #include <sundials/sundials_types.h>
 
-/*
- * -----------------------------------------------------------------
- * Macros : MIN and MAX
- * -----------------------------------------------------------------
- * MIN(A,B) returns the minimum of A and B
- *
- * MAX(A,B) returns the maximum of A and B
- *
- * SQR(A) returns A^2
- * -----------------------------------------------------------------
- */
+    /*
+     * -----------------------------------------------------------------
+     * Macros : MIN and MAX
+     * -----------------------------------------------------------------
+     * MIN(A,B) returns the minimum of A and B
+     *
+     * MAX(A,B) returns the maximum of A and B
+     *
+     * SQR(A) returns A^2
+     * -----------------------------------------------------------------
+     */
 
 #ifndef MIN
 #define MIN(A, B) ((A) < (B) ? (A) : (B))
@@ -62,77 +62,77 @@ extern "C" {
 #define EXP RExp
 #endif
 
-/*
- * -----------------------------------------------------------------
- * Function : RPowerI
- * -----------------------------------------------------------------
- * Usage : int exponent;
- *         realtype base, ans;
- *         ans = RPowerI(base,exponent);
- * -----------------------------------------------------------------
- * RPowerI returns the value of base^exponent, where base is of type
- * realtype and exponent is of type int.
- * -----------------------------------------------------------------
- */
+    /*
+     * -----------------------------------------------------------------
+     * Function : RPowerI
+     * -----------------------------------------------------------------
+     * Usage : int exponent;
+     *         realtype base, ans;
+     *         ans = RPowerI(base,exponent);
+     * -----------------------------------------------------------------
+     * RPowerI returns the value of base^exponent, where base is of type
+     * realtype and exponent is of type int.
+     * -----------------------------------------------------------------
+     */
 
-SUNDIALS_EXPORT realtype RPowerI(realtype base, int exponent);
+    SUNDIALS_EXPORT realtype RPowerI(realtype base, int exponent);
 
-/*
- * -----------------------------------------------------------------
- * Function : RPowerR
- * -----------------------------------------------------------------
- * Usage : realtype base, exponent, ans;
- *         ans = RPowerR(base,exponent);
- * -----------------------------------------------------------------
- * RPowerR returns the value of base^exponent, where both base and
- * exponent are of type realtype. If base < ZERO, then RPowerR
- * returns ZERO.
- * -----------------------------------------------------------------
- */
+    /*
+     * -----------------------------------------------------------------
+     * Function : RPowerR
+     * -----------------------------------------------------------------
+     * Usage : realtype base, exponent, ans;
+     *         ans = RPowerR(base,exponent);
+     * -----------------------------------------------------------------
+     * RPowerR returns the value of base^exponent, where both base and
+     * exponent are of type realtype. If base < ZERO, then RPowerR
+     * returns ZERO.
+     * -----------------------------------------------------------------
+     */
 
-SUNDIALS_EXPORT realtype RPowerR(realtype base, realtype exponent);
+    SUNDIALS_EXPORT realtype RPowerR(realtype base, realtype exponent);
 
-/*
- * -----------------------------------------------------------------
- * Function : RSqrt
- * -----------------------------------------------------------------
- * Usage : realtype sqrt_x;
- *         sqrt_x = RSqrt(x);
- * -----------------------------------------------------------------
- * RSqrt(x) returns the square root of x. If x < ZERO, then RSqrt
- * returns ZERO.
- * -----------------------------------------------------------------
- */
+    /*
+     * -----------------------------------------------------------------
+     * Function : RSqrt
+     * -----------------------------------------------------------------
+     * Usage : realtype sqrt_x;
+     *         sqrt_x = RSqrt(x);
+     * -----------------------------------------------------------------
+     * RSqrt(x) returns the square root of x. If x < ZERO, then RSqrt
+     * returns ZERO.
+     * -----------------------------------------------------------------
+     */
 
-SUNDIALS_EXPORT realtype RSqrt(realtype x);
+    SUNDIALS_EXPORT realtype RSqrt(realtype x);
 
-/*
- * -----------------------------------------------------------------
- * Function : RAbs (a.k.a. ABS)
- * -----------------------------------------------------------------
- * Usage : realtype abs_x;
- *         abs_x = RAbs(x);
- * -----------------------------------------------------------------
- * RAbs(x) returns the absolute value of x.
- * -----------------------------------------------------------------
- */
+    /*
+     * -----------------------------------------------------------------
+     * Function : RAbs (a.k.a. ABS)
+     * -----------------------------------------------------------------
+     * Usage : realtype abs_x;
+     *         abs_x = RAbs(x);
+     * -----------------------------------------------------------------
+     * RAbs(x) returns the absolute value of x.
+     * -----------------------------------------------------------------
+     */
 
-SUNDIALS_EXPORT realtype RAbs(realtype x);
+    SUNDIALS_EXPORT realtype RAbs(realtype x);
 
-/*
- * -----------------------------------------------------------------
- * Function : RExp (a.k.a. EXP)
- * -----------------------------------------------------------------
- * Usage : realtype exp_x;
- *         exp_x = RExp(x);
- * -----------------------------------------------------------------
- * RExp(x) returns e^x (base-e exponential function).
- * -----------------------------------------------------------------
- */
+    /*
+     * -----------------------------------------------------------------
+     * Function : RExp (a.k.a. EXP)
+     * -----------------------------------------------------------------
+     * Usage : realtype exp_x;
+     *         exp_x = RExp(x);
+     * -----------------------------------------------------------------
+     * RExp(x) returns e^x (base-e exponential function).
+     * -----------------------------------------------------------------
+     */
 
-SUNDIALS_EXPORT realtype RExp(realtype x);
+    SUNDIALS_EXPORT realtype RExp(realtype x);
 
-SUNDIALS_EXPORT realtype FLOOR(realtype x);
+    SUNDIALS_EXPORT realtype FLOOR(realtype x);
 
 #ifdef __cplusplus
 }

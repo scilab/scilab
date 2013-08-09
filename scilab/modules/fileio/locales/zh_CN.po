@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-06-05 02:30+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: \n"
 
 #, c-format
@@ -92,6 +92,12 @@ msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s：输入参数#%d的值错误。\n"
 
@@ -143,6 +149,14 @@ msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
 msgstr "%s：输入参数#%d的值错误：'%s'是一个不正确的路径。\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not create the output argument.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
@@ -153,6 +167,15 @@ msgstr "%s：输入参数的值错误：不可为空字符串。\n"
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s：不能在Scilab中打开文件 %s 。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -305,6 +328,10 @@ msgid "%s: An error occurred.\n"
 msgstr "%s：发生一个错误。\n"
 
 #, c-format
+msgid "%s: Warning: Directory '%s' does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
@@ -312,6 +339,63 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: A string (3 characters max.) "
 "expected.\n"
+msgstr ""
+
+msgid "Could not parse the URL.\n"
+msgstr ""
+
+#, c-format
+msgid "Failed to read the scicurl_config file '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "Improper syntax of scicurl_config file ('%s'), '=' not found %d:%s\n"
+msgstr ""
+
+#, c-format
+msgid "Improper syntax of scicurl_config file ('%s'), after an '='\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Improper syntax of scicurl_config file ('%s'), space before and after '=' "
+"expected\n"
+msgstr ""
+
+#, c-format
+msgid "Failed opening '%s' for writing.\n"
+msgstr ""
+
+#, c-format
+msgid "Failed to set URL [%s]\n"
+msgstr ""
+
+#, c-format
+msgid "Failed to set user:pwd [%s]\n"
+msgstr ""
+
+#, c-format
+msgid "Failed to set proxy host [%s]\n"
+msgstr ""
+
+#, c-format
+msgid "Failed to set proxy port [%s]\n"
+msgstr ""
+
+#, c-format
+msgid "Failed to set proxy user:password [%s]\n"
+msgstr ""
+
+#, c-format
+msgid "Failed to set write function [%s]\n"
+msgstr ""
+
+#, c-format
+msgid "Failed to set write data [%s]\n"
+msgstr ""
+
+#, c-format
+msgid "Transfer did not complete successfully: %s\n"
 msgstr ""
 
 msgid "unclosed [ directive."

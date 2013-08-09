@@ -8,12 +8,16 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y = sech(x)
-  //Hyperbolic secant.
-  
-  rhs = argn(2);
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"sech", 1));
-  end
-  y = ones(x)./cosh(x);
-  
+    //Hyperbolic secant.
+
+    rhs = argn(2);
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"sech", 1));
+    end
+    
+    if type(x) <> 1 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"sech",1));
+    end
+    y = ones(x)./cosh(x);
+
 endfunction

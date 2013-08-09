@@ -7,21 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-22 14:52+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-30 07:18+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: fr\n"
 
-msgid "Invalid index.\n"
-msgstr "Index invalide.\n"
-
-msgid "Incorrect assignment.\n"
-msgstr "Affectation erronée.\n"
+#, c-format
+msgid "%s: Invalid index.\n"
+msgstr "%s : Index invalide.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -29,10 +27,87 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
-msgid "Affection of a string in a matrix of numbers is not implemented."
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Multidimensional sparse matrices are not handled.\n"
 msgstr ""
-"L'affectation d'une chaîne de caractères dans une matrice de nombres n'est "
-"pas implémentée."
+"%s : Les matrices creuses multidimensionnelles ne sont pas prises en "
+"charge.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'c', 'd' or a scalar expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : 'c', 'd' ou un scalaire "
+"attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgstr ""
+"%s : L'affectation d'une chaîne de caractères dans une matrice de nombres "
+"n'est pas implémentée.\n"
+
+#, c-format
+msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
+msgstr ""
+"%s : La syntaxe x(j) est seulement autorisée pour les blocs C ligne.\n"
+
+#, c-format
+msgid ""
+"%s: In concatenation the number of dimensions for each component must "
+"match.\n"
+msgstr ""
+"%s : En concaténation, le nombre de dimensions de chaque composant doit "
+"correspondre.\n"
+
+#, c-format
+msgid "%s: Invalid field name.\n"
+msgstr "%s : Nom de champ invalide.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un nom de champ valide "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s : Nombre erroné d'arguments de sortie.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : La transposée ne peut "
+"pas être définie.\n"
+
+#, c-format
+msgid "%s: Invalid path.\n"
+msgstr "%s : Chemin invalide.\n"
+
+#, c-format
+msgid ""
+"%s: Input argument #%d and input argument #%d have incompatible dimensions.\n"
+msgstr ""
+"%s : Les arguments d'entrée n°%d et n°%d ont des dimensions incompatibles.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+
+#, c-format
+msgid "%s: Inconsistent dimensions.\n"
+msgstr "%s : Dimensions incohérentes.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -50,6 +125,44 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être dans l'ensemble "
 "{%s}.\n"
+
+#, c-format
+msgid "%s: Inconsistent element-wise operation.\n"
+msgstr "%s : Opération élément par élément incohérente.\n"
+
+#, c-format
+msgid "%s: Too many subscripts.\n"
+msgstr "%s : Trop d'indices.\n"
+
+#, c-format
+msgid "%s: Operand is not a boolean hypermatrix.\n"
+msgstr "%s : L'opérande n'est pas une hypermatrice booléenne.\n"
+
+#, c-format
+msgid "%s: Incompatible operand dimensions.\n"
+msgstr "%s : Dimensions de l'opérande incompatibles.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument ou des arguments d'entrée : Une hypermatrice "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument ou des arguments d'entrée : Des "
+"scalaires entiers attendus.\n"
+
+#, c-format
+msgid "%s: Only one -1 value admitted.\n"
+msgstr "%s : Une seule valeur -1 est possible.\n"
+
+#, c-format
+msgid "%s: Input and output matrices  must have the same number of elements"
+msgstr ""
+"%s : Les matrices d'entrée et de sortie doivent avoir le même nombre "
+"d'éléments."
 
 #, c-format
 msgid ""
@@ -74,18 +187,96 @@ msgstr ""
 "ou une chaîne de caractères attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
-
-msgid "A null assignment can have only one non-colon index"
-msgstr "Une affectation null ne peut avoir qu'un seul index non-colon"
-
-msgid "Invalid field name."
-msgstr "Nom de champ non valide."
+msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Des valeurs entières "
+"attendues.\n"
 
 #, c-format
-msgid "%s is not a valid field name."
-msgstr "%s n'est pas un nom de champ valide."
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendus.\n"
+
+#, c-format
+msgid "%s: Invalid syntax for a MIMO system.\n"
+msgstr "%s : Syntaxe invalide pour un système MIMO.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %s attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
+msgstr ""
+"%s : L'insertion d'une matrice creuse dans une matrice de nombre n'est pas "
+"définie.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: integer expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments.\n"
+msgstr "%s : Dimension erronée des arguments d'entrée.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument(s).\n"
+msgstr "%s : Dimension erronée de l'argument ou des argument(s) d'entrée.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
+
+msgid ""
+"  Warning: Syntax vector ^ scalar is obsolete it will be removed in scilab-"
+"6.\n"
+"           Use vector .^ scalar instead.\n"
+msgstr ""
+"  Attention : La syntaxe vector ^ scalar est obsolète. Elle sera supprimée "
+"dans Scilab 6.\n"
+"           Veuillez utiliser vector .^ scalar à la place.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
+msgstr ""
+"%s : Type erroné des arguments d'entrée n°%d et n°%d : Des valeurs entières "
+"attendues.\n"
+
+#, c-format
+msgid "%s: Not yet implemented.\n"
+msgstr "%s : Pas encore implémenté.\n"
+
+#, c-format
+msgid "%s: A null assignment can have only one non-colon index.\n"
+msgstr ""
+"%s : Une assignation à null peut seulement avoir un seul index qui ne soit "
+"pas :\n"
+
+#, c-format
+msgid "%s: Unable to diagonalize.\n"
+msgstr "%s : Impossible de diagonaliser.\n"
+
+#, c-format
+msgid "%s: Sparse insertion case is not implemented.\n"
+msgstr ""
+"%s : Le cas de l'insertion dans une matrice creuse n'est pas implémenté.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
+
+#, c-format
+msgid "%s: Field names mismatch.\n"
+msgstr "%s : Les noms de champs ne correspondent pas.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Ceci n'est pas un nom de "
+"champ valide.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
@@ -102,5 +293,32 @@ msgstr ""
 "%s : Les matrices d'entrée et de sortie doivent avoir le même nombre "
 "d'éléments.\n"
 
-msgid "Incorrect assignment."
-msgstr "Attribution erronée."
+#, c-format
+msgid "%s: Wrong size or value for input argument #%d.\n"
+msgstr "%s : Dimension ou valeur erronée de l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Not implemented.\n"
+msgstr "%s : Non implémenté.\n"
+
+#, c-format
+msgid ""
+"%s: Invalid assignement: for insertion in cell, use e.g. x(i,j).entries=y.\n"
+msgstr ""
+"%s : Affectation invalide : Pour une insertion dans une cell, utilisez e.g. "
+"x(i,j).entries=y.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible sizes for properties '%s' and '%s': Same sizes expected.\n"
+msgstr ""
+"%s : Dimensions incompatibles des propriétés '%s' et '%s' : Mêmes dimensions "
+"attendues.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"

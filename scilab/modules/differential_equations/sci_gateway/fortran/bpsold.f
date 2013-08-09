@@ -24,8 +24,7 @@ c
       double precision t,y(*),ydot(*),savr(*),wk(*),cj,wght(*),wp(*),
      *                  b(*),eplin,rpar(*)
       integer neq,iwp(*),ier,ipar(*)
-      integer vol,tops,nordre
-      double precision diwp(2*neq*neq)
+      integer vol,tops,nordre,hsize
       data nordre/4/,mlhs/2/
 c
       iadr(l)=l+l-1
@@ -66,14 +65,31 @@ c
 c     Minimum entry arguments for the simulator. The value of these arguments
 c     comes from the Fortran context (call list)
 c+
-      isize = 2*neq*neq
-      do 100 i=1, isize
-        diwp(i) = iwp(i)
- 100  continue
 c
-      call ftob(wp,neq*neq,istk(il+1))
+      lwp = neq*neq
+      call ftob(wp,lwp,istk(il+1))
       if(err.gt.0.or.err1.gt.0) return
-      call ftob(diwp,isize,istk(il+2))
+c      call ftob(iwp,isize,istk(il+2))
+      ilx=iadr(lstk(istk(il+2)))
+      hsize=4
+      liwp = 2*neq*neq
+      if(top.ge.bot) then
+         call error(18)
+         return
+      endif
+      top=top+1
+      il2=iadr(lstk(top))
+      err=lstk(top)+sadr(hsize)+liwp-lstk(bot)
+      if(err.gt.0) then
+         call error(17)
+         return
+      endif
+      call icopy(hsize,istk(ilx),1,istk(il2),1)
+      l=sadr(il2+hsize)
+      do 900 i=1,liwp
+         stk(l+i-1) = iwp(i)
+900   continue
+      lstk(top+1)=l+liwp
       if(err.gt.0.or.err1.gt.0) return
       call ftob(b,neq,istk(il+3))
       if(err.gt.0.or.err1.gt.0) return

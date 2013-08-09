@@ -57,7 +57,7 @@ c     addition
       call i_a_i
       go to 999
 c     
-c     substraction
+c     subtraction
  08   if(rhs.eq.1) then
 c     .  unary minus
          call i_s_i

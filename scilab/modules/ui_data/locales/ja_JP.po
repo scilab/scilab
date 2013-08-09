@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:03+0100\n"
-"PO-Revision-Date: 2013-03-22 15:06+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-29 09:18+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ja\n"
 
 #, c-format
@@ -44,6 +44,9 @@ msgstr "%s: ans は編集できません.\n"
 #, c-format
 msgid "%s: Undefined variable: %s.\n"
 msgstr "%s: 変数が未定義です: %s.\n"
+
+msgid "Redefining permanent variable.\n"
+msgstr "永続的変数を再定義しています.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
@@ -76,8 +79,8 @@ msgstr "Scilabバージョン情報(&A)..."
 msgid "Name"
 msgstr "名前"
 
-msgid "Dimension"
-msgstr "次元"
+msgid "Value"
+msgstr "値"
 
 msgid "Type"
 msgstr "型"
@@ -102,6 +105,12 @@ msgstr "ファイル"
 
 msgid "Close"
 msgstr "閉じる"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Modify"
+msgstr "修正"
 
 msgid "Filter"
 msgstr "フィルタ"
@@ -348,6 +357,9 @@ msgstr "Scilab型:"
 
 msgid "Bytes:"
 msgstr "バイト数:"
+
+msgid "Type not supported for this operation"
+msgstr "型がこの処理でサポートされていません"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

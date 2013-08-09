@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-08-30 21:04+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ca\n"
 
 #, c-format
@@ -191,6 +191,9 @@ msgstr ""
 msgid "        Add here scilab instructions and comments"
 msgstr ""
 
+msgid "        Add here scilab instructions to generate a graphic"
+msgstr ""
+
 msgid "See Also"
 msgstr ""
 
@@ -279,14 +282,6 @@ msgid "Building the scilab manual file ["
 msgstr "S'està generant el fitxer de manual de l'Scilab ["
 
 #, c-format
-msgid "%s: %s has not been generated."
-msgstr "%s: El %s no s'ha generat."
-
-#, c-format
-msgid "%s: %s file hasn't been moved in the %s directory."
-msgstr "%s: El fitxer %s no s'ha mogut al directori %s."
-
-#, c-format
 msgid ""
 "\n"
 "Building the manual file [%s] in %s.\n"
@@ -297,6 +292,14 @@ msgid ""
 "\n"
 "Building the manual file [%s].\n"
 msgstr ""
+
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr "%s: El %s no s'ha generat."
+
+#, c-format
+msgid "%s: %s file hasn't been moved in the %s directory."
+msgstr "%s: El fitxer %s no s'ha mogut al directori %s."
 
 #, c-format
 msgid "%s: Please check %s, number of modules is invalid.\n"

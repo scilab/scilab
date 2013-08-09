@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-28 21:06+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-30 20:12+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected with option '%s'.\n"
@@ -120,8 +120,12 @@ msgstr ""
 "'%s', '%s' nebo '%s'.\n"
 
 #, c-format
-msgid "%s Wrong value for input argument #%d: %s.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: %s.\n"
+msgid "%s Wrong value for input argument #%d: '%s' is unknown.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: '%s' je neznámé.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
@@ -178,8 +182,8 @@ msgstr "P(%d) > 1\n"
 msgid "Sum of P(i) > 1\n"
 msgstr "Suma P(i) > 1\n"
 
-msgid "Missing shape and scale for Gamma law\n"
-msgstr "Chybí tvar a velikost pro Gamma zákon\n"
+msgid "Missing shape and rate for Gamma law\n"
+msgstr "Chybí tvar a sazba pro Gammův zákon\n"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 nebo R <= 0.0\n"
@@ -355,16 +359,15 @@ msgstr ""
 "                                             s4 ve [1, 2147483322]"
 
 #, c-format
+msgid "WARNING: %s\n"
+msgstr "VAROVÁNÍ: %s\n"
+
+#, c-format
 msgid ""
-"\n"
-"=> be aware that you have may lost synchronization\n"
-"    between the virtual gen %d and the others !\n"
-"    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
+"be aware that you may have lost synchronization\n"
+"    between the virtual generator %d and the others.\n"
+"    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."
 msgstr ""
-"\n"
-"=> upozorňujeme, že jste mohli ztratit synchronizaci\n"
-"    mezi virtuálním gen %d a ostatními !\n"
-"    použijte grand(\"setall\", s1, s2, s3, s4) pokud ji chcete obnovit."
 
 msgid ""
 "\n"
@@ -426,6 +429,30 @@ msgstr "Teorie"
 msgid "Simulation of a discrete random variable"
 msgstr "Simulace diskrétní náhodné proměnné"
 
+msgid "Simulation of a discrete uniform random variable"
+msgstr "Simulace diskrétní jednotné náhodné veličiny"
+
+msgid "Simulation of a Erlang random variable"
+msgstr "Simulace Erlangovy náhodné proměnné"
+
+msgid "macro histplot : Histogram plot"
+msgstr "makro histplot : Plocha histogramu"
+
+msgid "Classes"
+msgstr "Třídy"
+
+msgid "p must be < 1"
+msgstr "p musí být < 1"
+
+msgid "Simulation of a geometric random variable"
+msgstr "Simulace geometrické náhodné proměnné"
+
+msgid "Simulation of a hyper geometric random variable"
+msgstr "Simulace hyper geometrické náhodné proměnné"
+
+msgid "Simulation of a Poisson random variable"
+msgstr ""
+
 msgid "Random"
 msgstr "Náhodně"
 
@@ -439,7 +466,7 @@ msgid "discrete uniform random variable"
 msgstr "náhodná diskrétní jednotná proměnná"
 
 msgid "geometric random variable"
-msgstr "náhdná geometrická proměnná"
+msgstr "náhodná geometrická proměnná"
 
 msgid "Poisson random variable"
 msgstr "Náhodná poissonova proměnná"
@@ -455,3 +482,6 @@ msgstr "Náhodná hyper geometrická proměnná"
 
 msgid "Erlang random variable"
 msgstr "Náhodná proměnná Erlang"
+
+msgid "Simulation of a Weibull random variable"
+msgstr "Simulace Weibullovy náhodné proměnné"

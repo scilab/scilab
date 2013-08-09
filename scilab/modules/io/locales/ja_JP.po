@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-07-03 14:57+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-14 15:09+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -180,7 +180,7 @@ msgstr "v2cunitによる管理外のエラー.\n"
 
 #, c-format
 msgid "%s: handle no more valid ignored.\n"
-msgstr ""
+msgstr "%s: ハンドルは有効ではありません, 無視しました.\n"
 
 #, c-format
 msgid "%s : Invalid entity %s\n"
@@ -246,3 +246,8 @@ msgstr "%s: インタープリタシステムは応答しません..."
 #, c-format
 msgid "%s: error during %s execution"
 msgstr "%s: %s 実行で、エラーが起こりました"
+
+#, c-format
+msgid ""
+"%s: The command failed with the error code %s and the following message:\n"
+msgstr "%s: コマンドはエラーコード %s および以下のメッセージで終了しました:\n"

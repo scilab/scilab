@@ -7,15 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-27 03:24+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-29 12:32+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался вещественным.\n"
 
 #, c-format
 msgid "%s: the computation is already terminated\n"
@@ -31,6 +35,10 @@ msgid ""
 "%s: Wrong size for input argument %s: A matrix of size %dx%d expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра %s: ожидалась (%d x %d)-матрица.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -151,10 +159,13 @@ msgstr ""
 msgid ""
 "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
+"%s: B не является положительно определённой. Попробуйте sigma='SM' или "
+"sigma=scalar.\n"
 
 #, c-format
 msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
 msgstr ""
+"%s: Если opts.cholB - ИСТИНА, то B должна быть верхней треугольной.\n"
 
 #, c-format
 msgid ""
@@ -228,6 +239,8 @@ msgid ""
 "%s: Error with input argument #%d: B is not positive definite. Try with "
 "sigma='SM' or sigma=scalar.\n"
 msgstr ""
+"%s: Ошибка входного аргумента №%d: B не является положительно определённой. "
+"Попробуйте sigma='SM' or sigma=scalar.\n"
 
 #, c-format
 msgid "%s: Error with %s: info = %d \n"
@@ -236,12 +249,6 @@ msgstr "%s: Ошибка в %s: info = %d \n"
 #, c-format
 msgid "%s: Error with %s: unknown mode returned.\n"
 msgstr "%s: Ошибка в %s: возвращён неизвестный режим.\n"
-
-#, c-format
-msgid ""
-"%s: A - sigma * B is not inversible, try with a different value of sigma.\n"
-msgstr ""
-"%s: A - sigma * B нельзя обратить, попробуйте другое значение sigma.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -318,16 +325,20 @@ msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be complex for "
 "complex problems.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: начальный вектор %s должен быть "
+"комплексным для комплексных задач.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
 "upper triangular.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: если opts.cholB - ИСТИНА, то B "
+"должна быть верхней треугольной.\n"
 
 #, c-format
 msgid ""
-"%s: Impossible to use the Cholesky factorisation with complex sparse "
+"%s: Impossible to use the Cholesky factorization with complex sparse "
 "matrices.\n"
 msgstr ""
 "%s: Невозможно использовать разложение Холецкого с комплексными разрежёнными "
@@ -357,6 +368,9 @@ msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be in the range 1 to N - 2.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: для вещественных "
+"несимметричных или комплексных задач k должна быть в диапазоне от 1 до N - "
+"2.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
@@ -394,18 +408,24 @@ msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
 "N by 1.\n"
 msgstr ""
+"%s: Неверные размеры входного аргумента №%d: начальный вектор opts.resid "
+"должен быть N на 1.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be real "
 "for real problems.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: начальный вектор opts.resid должен "
+"быть вещественным для вещественных задач.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be "
 "complex for complex problems.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: начальный вектор opts.resid должен "
+"быть комплексным для комплексных задач.\n"
 
 #, c-format
 msgid ""

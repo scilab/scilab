@@ -14,10 +14,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
-# File: sci_gateway/c/sci_consolebox.c, line: 45
-# File: sci_gateway/c/sci_consolebox.c, line: 82
+# File: sci_gateway/c/sci_consolebox.c, line: 51
+# File: sci_gateway/c/sci_consolebox.c, line: 93
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr ""
 
@@ -105,7 +105,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_findfileassociation.c, line: 57
-# File: sci_gateway/c/sci_winhttpdownload.c, line: 67
+# File: sci_gateway/c/sci_winhttpdownload.c, line: 81
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr ""
@@ -148,7 +148,7 @@ msgid "%s: Cannot query value of this type.\n"
 msgstr ""
 
 #
-# File: src/c/scilab_windows/splashScreen.cpp, line: 209
+# File: src/c/scilab_windows/splashScreen.cpp, line: 224
 msgid "Scilab Console"
 msgstr ""
 

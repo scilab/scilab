@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-05-22 14:39+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-18 13:33+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -63,7 +63,7 @@ msgstr "Матрица до факторизации:\n"
 
 #, c-format
 msgid "Columns %1d to %1d.\n"
-msgstr "Стосбцы с %1d по %1d.\n"
+msgstr "Столбцы с %1d по %1d.\n"
 
 #, c-format
 msgid ""
@@ -234,6 +234,30 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: %s=%d, которое не равно "
 "размеру %s: %d.\n"
 
+msgid "  Possible matrix is not positive definite."
+msgstr ""
+
+msgid "Non-positive diagonal encountered, matrix is not positive definite."
+msgstr ""
+
+msgid "Insufficient working storage in blkfct, temp(*)."
+msgstr ""
+
+msgid "Insufficient working storage in blkfct, iwork(*)."
+msgstr ""
+
+msgid " SYMFCT requires PERM to be neqns x 1"
+msgstr " SYMFCT требует, чтобы размер PERM был neqns x 1"
+
+msgid " SYMFCT requires INVN to be neqns x 1"
+msgstr " SYMFCT требует, чтобы размер INVN был neqns x 1"
+
+msgid " SYMFCT requires CACHSZ  to be 1 x 1"
+msgstr " SYMFCT требует, чтобы размер CACHSZ  был 1 x 1"
+
+msgid " Insufficient working storage in sfinit"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
@@ -349,9 +373,31 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A transpose of the function %s "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s : Calling qmr(A,Ap) is deprecated. Please see qmr documentation for more "
 "details.\n"
 msgstr "%s : Вызов qmr(A,Ap) устарел. Смотрите документацию по qmr.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex, full or sparse "
+"column vector expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вещественный или "
+"комплексный, полный или разрежённый вектор-столбец.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex, full or sparse, "
+"square matrix or a function expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидались вещественная или "
+"комплексная, полная или разрежённая, квадратная матрица или функция.\n"
 
 #, c-format
 msgid ""
@@ -361,9 +407,36 @@ msgstr "%s : Вызов qmr(...,M1,M1p) устарел. Смотрите док�
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A transpose of the function "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong prototype of input argument #%d: If M1 is function, use the header "
+"M1(x,t) instead M1(x).\n"
+msgstr ""
+"%s: Неверный прототип входного аргумента №%d: Если M1 - это функция, то "
+"используйте заголовок M1(x,t) вместо M1(x).\n"
+
+#, c-format
+msgid ""
 "%s : Calling qmr(...,M2,M2p) is deprecated. Please see qmr documentation for "
 "more details.\n"
 msgstr "%s : Вызов qmr(...,M2,M2p) устарел. Смотрите документацию по qmr.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong prototype of input argument #%d: If M2 is function, use the header "
+"M2(x,t) instead M2(x).\n"
+msgstr ""
+"%s: Неверный прототип входного аргумента №%d: Если M2 - это функция, то "
+"используйте заголовок M2(x,t) вместо M2(x).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидается вещественный скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

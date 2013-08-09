@@ -527,7 +527,7 @@ int C2F(createvar) (int *lw, char *typex, int *m, int *n, int *lr, unsigned long
     switch (Type)
     {
         case 'c':
-            ix1 = *m * *n;
+            ix1 = *m **n;
             if (!C2F(cresmat2) (fname, &lw1, &ix1, lr, nlgh))
             {
                 return FALSE;
@@ -693,7 +693,7 @@ int C2F(createcvar) (int *lw, char *typex, int *it, int *m, int *n, int *lr, int
                 return FALSE;
             }
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             C2F(intersci).ntypes[*lw - 1] = Type;
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
             C2F(intersci).lad[*lw - 1] = *lr;
@@ -704,7 +704,7 @@ int C2F(createcvar) (int *lw, char *typex, int *it, int *m, int *n, int *lr, int
                 return FALSE;
             }
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             C2F(intersci).ntypes[*lw - 1] = Type;
             C2F(intersci).iwhere[*lw - 1] = *Lstk(lw1);
             C2F(intersci).lad[*lw - 1] = *lr;
@@ -938,7 +938,7 @@ int C2F(createcvarfrom) (int *lw, char *typex, int *it, int *m, int *n, int *lr,
             *lar = *lr;
             *lac = *lc;
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
         case 'i':
             if (!C2F(cremat) (fname, &lw1, it, m, n, lr, &lcs, nlgh))
@@ -956,7 +956,7 @@ int C2F(createcvarfrom) (int *lw, char *typex, int *it, int *m, int *n, int *lr,
             *lar = *lr;
             *lac = *lc;
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
     }
     C2F(intersci).ntypes[*lw - 1] = '$';
@@ -1004,7 +1004,7 @@ int C2F(createlistvarfrom) (int *lnumber, int *number, char *typex, int *m, int 
             }
             if (*lar != -1)
             {
-                C2F(cvstr1) (m, istk(*lr), cstk(*lar), &cx0, *m * *n + 1);
+                C2F(cvstr1) (m, istk(*lr), cstk(*lar), &cx0, *m **n + 1);
             }
             *lar = *lr;
             *lr = cadr(*lr);
@@ -1158,7 +1158,7 @@ int C2F(createlistcvarfrom) (int *lnumber, int *number, char *typex, int *it, in
             *lar = *lr;
             *lac = *lc;
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
         case 'i':
             ix1 = *lnumber + Top - Rhs;
@@ -1177,7 +1177,7 @@ int C2F(createlistcvarfrom) (int *lnumber, int *number, char *typex, int *it, in
             *lar = *lr;
             *lac = *lc;
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
         default:
             Scierror(999, _("%s: (%s) bad third argument!\n"), fname, "createlistcvar");
@@ -1247,7 +1247,7 @@ int C2F(createlistvarfromptr) (int *lnumber, int *number, char *typex, int *m, i
             {
                 return FALSE;
             }
-            ix1 = *m * *n;
+            ix1 = *m **n;
             C2F(cint) (&ix1, (int **)iptr, stk(lr));
             break;
         case 'b':
@@ -1255,7 +1255,7 @@ int C2F(createlistvarfromptr) (int *lnumber, int *number, char *typex, int *m, i
             {
                 return FALSE;
             }
-            ix1 = *m * *n;
+            ix1 = *m **n;
             C2F(cbool) (&ix1, (int **)iptr, istk(lr));
             break;
         case 'S':
@@ -1356,7 +1356,7 @@ int C2F(createlistcvarfromptr) (int *lnumber, int *number, char *typex, int *it,
             {
                 return FALSE;
             }
-            ix1 = *m * *n;
+            ix1 = *m **n;
             C2F(cint) (&ix1, (int **)iptr, stk(lr));
             if (*it == 1)
             {
@@ -1535,7 +1535,7 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
                 return FALSE;
             }
 
-            ix2 = *m * *n;
+            ix2 = *m **n;
             /* in case where ix2 is 0 in2str adds the \0 char after the end of
              * the storage of the variable, so it writes over the next variable
              * tp avoid this pb we shift up by one the location where the
@@ -1567,7 +1567,7 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
             {
                 return FALSE;
             }
-            ix2 = *m * *n;
+            ix2 = *m **n;
             if ((it != 1) && (ix2 != 0))
             {
                 Scierror(999, _("%s: Wrong type for argument: Complex expected.\n"), fname);
@@ -1600,7 +1600,7 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
             {
                 return FALSE;
             }
-            ix1 = *m * *n;
+            ix1 = *m **n;
             C2F(simple) (&ix1, stk(*lr), sstk(iadr(*lr)));
             *lr = iadr(*lr);
             C2F(intersci).ntypes[*number - 1] = Type;
@@ -1612,7 +1612,7 @@ int C2F(getrhsvar) (int *number, char *typex, int *m, int *n, int *lr, unsigned 
             {
                 return FALSE;
             }
-            ix1 = *m * *n;
+            ix1 = *m **n;
             C2F(entier) (&ix1, stk(*lr), istk(iadr(*lr)));
             *lr = iadr(*lr);
             C2F(intersci).ntypes[*number - 1] = Type;
@@ -1783,20 +1783,20 @@ int C2F(getrhscvar) (int *number, char *typex, int *it, int *m, int *n, int *lr,
             {
                 return FALSE;
             }
-            ix1 = *m * *n * (*it + 1);
+            ix1 = *m **n * (*it + 1);
             C2F(simple) (&ix1, stk(*lr), sstk(iadr(*lr)));
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
         case 'i':
             if (!C2F(getmat) (fname, &topk, &lw, it, m, n, lr, lc, nlgh))
             {
                 return FALSE;
             }
-            ix1 = *m * *n * (*it + 1);
+            ix1 = *m **n * (*it + 1);
             C2F(entier) (&ix1, stk(*lr), istk(iadr(*lr)));
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
     }
     C2F(intersci).ntypes[*number - 1] = Type;
@@ -1897,7 +1897,7 @@ int C2F(getlistrhsvar) (int *lnumber, int *number, char *typex, int *m, int *n, 
             {
                 return FALSE;
             }
-            ix2 = *m * *n;
+            ix2 = *m **n;
             C2F(in2str) (&ix2, istk(*lr), cstk(cadr(*lr)), ix2 + 1);
             *lr = cadr(*lr);
             break;
@@ -1912,7 +1912,7 @@ int C2F(getlistrhsvar) (int *lnumber, int *number, char *typex, int *m, int *n, 
             {
                 return FALSE;
             }
-            ix1 = *m * *n;
+            ix1 = *m **n;
             C2F(simple) (&ix1, stk(*lr), sstk(iadr(*lr)));
             *lr = iadr(*lr);
             break;
@@ -1921,7 +1921,7 @@ int C2F(getlistrhsvar) (int *lnumber, int *number, char *typex, int *m, int *n, 
             {
                 return FALSE;
             }
-            ix1 = *m * *n;
+            ix1 = *m **n;
             C2F(entier) (&ix1, stk(*lr), istk(iadr(*lr)));
             *lr = iadr(*lr);
             break;
@@ -1937,7 +1937,7 @@ int C2F(getlistrhsvar) (int *lnumber, int *number, char *typex, int *m, int *n, 
             {
                 return FALSE;
             }
-            ix2 = *m * *n;
+            ix2 = *m **n;
             if ((it != 1) && (ix2 != 0))
             {
                 Scierror(999, _("%s: argument %d > (%d) should be a complex matrix.\n"), fname, Rhs + (lw - topk), *number);
@@ -2056,20 +2056,20 @@ int C2F(getlistrhscvar) (int *lnumber, int *number, char *typex, int *it, int *m
             {
                 return FALSE;
             }
-            ix1 = *m * *n * (*it + 1);
+            ix1 = *m **n * (*it + 1);
             C2F(simple) (&ix1, stk(*lr), sstk(iadr(*lr)));
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
         case 'i':
             if (!C2F(getlistmat) (fname, &topk, &lw, number, it, m, n, lr, lc, nlgh))
             {
                 return FALSE;
             }
-            ix1 = *m * *n * (*it + 1);
+            ix1 = *m **n * (*it + 1);
             C2F(entier) (&ix1, stk(*lr), istk(iadr(*lr)));
             *lr = iadr(*lr);
-            *lc = *lr + *m * *n;
+            *lc = *lr + *m **n;
             break;
         default:
             Scierror(999, _("%s: (%s) bad third argument!\n"), fname, "getlistrhscvar");
@@ -2195,11 +2195,11 @@ int C2F(createcvarfromptr) (int *number, char *typex, int *it, int *m, int *n, d
             {
                 return FALSE;
             }
-            ix1 = *m * *n;
+            ix1 = *m **n;
             C2F(cdouble) (&ix1, (double **)iptr, stk(lrs));
             if (*it == 1)
             {
-                ix1 = *m * *n;
+                ix1 = *m **n;
                 C2F(cdouble) (&ix1, (double **)iptc, stk(lcs));
             }
             break;
@@ -2208,11 +2208,11 @@ int C2F(createcvarfromptr) (int *number, char *typex, int *it, int *m, int *n, d
             {
                 return FALSE;
             }
-            ix1 = *m * *n;
+            ix1 = *m **n;
             C2F(cint) (&ix1, (int **)iptr, stk(lrs));
             if (*it == 1)
             {
-                ix1 = *m * *n;
+                ix1 = *m **n;
                 C2F(cint) (&ix1, (int **)iptc, stk(lcs));
             }
             break;
@@ -2584,7 +2584,6 @@ int C2F(scistring) (int *ifirst, char *thestring, int *mlhs, int *mrhs, unsigned
         if (C2F(com).fun <= 0)
         {
             lf = *Lstk(Fin);
-            ils = iadr(lf) + 1;
             ret = C2F(scifunction) (ifirst, &lf, mlhs, mrhs);
         }
         else
@@ -3208,7 +3207,7 @@ int C2F(putlhsvar) ()
     {
         nbvars1 = Max(nbvars1, LhsVar(k));
     }
-    /* check if output variabe are in increasing order in the stack */
+    /* check if output variables are in increasing order in the stack */
     lcres = TRUE;
     ibufprec = 0;
     for (ix = 1; ix <= Lhs; ++ix)

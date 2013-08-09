@@ -93,7 +93,9 @@
                 <para>ones() is equivalent to ones(1,1).</para>
             </listitem>
             <listitem>
-                <para><literal>ones(3,-3)</literal> and <literal>ones(-3,-3)</literal> both return an empty matrix.</para>
+                <para>
+                    <literal>ones(3,-3)</literal> and <literal>ones(-3,-3)</literal> both return an empty matrix.
+                </para>
             </listitem>
         </itemizedlist>
     </refsection>

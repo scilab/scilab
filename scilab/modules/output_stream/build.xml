@@ -11,10 +11,10 @@
  *
  -->
 <project name="output_stream" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.output_stream.name}"/>
-  <property name="library.title" value="Scilab I/O"/>
-  <description>
-	Build "output_stream" Scilab module
-  </description>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.output_stream.name}"/>
+    <property name="library.title" value="Scilab I/O"/>
+    <description>
+        Build "output_stream" Scilab module
+    </description>
 </project>

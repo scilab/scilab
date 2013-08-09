@@ -1,10 +1,10 @@
 c     ====================================       
       subroutine loren (neq, t, y, ydot)
 c     ==================================== 
-c     lorentz equation 
+c     lorenz equation 
 c     ====================================       
       double precision t, y, ydot,sig,ro,beta
-      common / lorentz / sig,ro,beta 
+      common / lorenz / sig,ro,beta 
       dimension y(3), ydot(3)
       data sig,ro,beta  /10.0 ,28.0, 2.6666667 /
       

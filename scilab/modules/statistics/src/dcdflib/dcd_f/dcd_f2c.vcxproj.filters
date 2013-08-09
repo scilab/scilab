@@ -409,5 +409,11 @@
     <None Include="statistics_Import.def">
       <Filter>Library Dependencies</Filter>
     </None>
+    <None Include="Core_Import.def">
+      <Filter>Library Dependencies</Filter>
+    </None>
+    <None Include="elementary_functions_Import.def">
+      <Filter>Library Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

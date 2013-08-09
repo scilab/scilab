@@ -54,6 +54,7 @@ lsResult = ls(dir2+'/'+file1);
 if lsResult == [] then bugmes();quit;end
 // =============================================================================
 removedir(TMPDIR+'/etc');
+removedir: Warning: Directory 'TMPDIR/etc' does not exist.
 ierr = execstr("copyfile(SCI+""etc"",TMPDIR)","errcatch");
 if ierr <> 999 then bugmes();quit;end
 // =============================================================================

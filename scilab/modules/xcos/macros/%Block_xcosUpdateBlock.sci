@@ -19,7 +19,7 @@ function %Block_xcosUpdateBlock(blk)
     while isfile(tempfile)
         timestamp = timestamp + 1;
         tempfile = TMPDIR + filesep() + "xcosUpdateBlock_" + string(timestamp(10)) + ".sod";
-    end    
+    end
 
     // export to hdf5
     blk = blk;

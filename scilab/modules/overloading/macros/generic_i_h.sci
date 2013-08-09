@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function h=generic_i_h(i,v,h)
@@ -14,7 +14,7 @@ function h=generic_i_h(i,v,h)
     if type(i)<>15 then  error(msprintf(_("%s: Wrong type for input argument #%d.\n"),"generic_i_h",1)),end
 
     if and(type(i($))<>[1 2 4 8 129 15]) then
-        i($+1)=: 
+        i($+1)=:
     end
     n=lstsize(i)
     hdl=h;hind=[]
@@ -28,7 +28,7 @@ function h=generic_i_h(i,v,h)
         elseif type(p)==15 then
             hdl=hdl(p(:))
         else
-            error('Invalid path')
+            error("Invalid path")
         end
 
         if type(hdl)<>9 then //a leaf found
@@ -38,7 +38,11 @@ function h=generic_i_h(i,v,h)
             if (k+1)==size(i) then
                 index=i($)
             else
-                index=list(i(k+1:$))
+                if i(2)=="locations" & size(v,"*") <> size(property(3),"*") | i(2)=="labels" & size(v,"*") <> size(property(2),"*") then
+                    error(msprintf(_("%s: Incompatible sizes for properties ''%s'' and ''%s'': Same sizes expected.\n"), "generic_i_h", i(1)+".locations", i(1)+".labels"));
+                else
+                    index=list(i(k+1:$))
+                end
             end
             break
         end
@@ -53,10 +57,10 @@ function h=generic_i_h(i,v,h)
                 property=v
             end
         end
-        if size(hdl,'*')==1 then //a single handle
+        if size(hdl,"*")==1 then //a single handle
             hdl(hind)=property
-        else //mutiple handle 
-            np=size(hdl,'*')
+        else //mutiple handle
+            np=size(hdl,"*")
             for k=1:np
                 h=hdl(k);h(hind)=property
             end

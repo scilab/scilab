@@ -39,7 +39,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>ismatrix(<varname>x</varname>)</literal> returns true if <varname>x</varname>
+            <literal>
+                ismatrix(<varname>x</varname>)
+            </literal>
+            returns true if <varname>x</varname>
             is a matrix. Scalars and vectors are considered as matrix, and it is the same for
             hypermatrix only if one of its three dimensions equals to 1. Note that <literal>matrix([])</literal>
             returns false.

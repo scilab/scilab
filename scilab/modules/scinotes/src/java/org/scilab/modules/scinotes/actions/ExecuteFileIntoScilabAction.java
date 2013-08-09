@@ -82,7 +82,7 @@ public class ExecuteFileIntoScilabAction extends DefaultAction {
         SciNotes editor = getEditor();
         if (((ScilabDocument) getEditor().getTextPane().getDocument()).isContentModified()) {
             if (saveBefore || ScilabModalDialog.show(getEditor(), SciNotesMessages.EXECUTE_WARNING, SciNotesMessages.EXECUTE_FILE_INTO_SCILAB,
-                                                     IconType.WARNING_ICON, ButtonType.CANCEL_OR_SAVE_AND_EXECUTE) == AnswerOption.SAVE_EXECUTE_OPTION) {
+                    IconType.WARNING_ICON, ButtonType.CANCEL_OR_SAVE_AND_EXECUTE) == AnswerOption.SAVE_EXECUTE_OPTION) {
                 if (editor.save(getEditor().getTabPane().getSelectedIndex(), true)) {
                     this.executeFile(editor, editor.getTextPane().getName());
                 }

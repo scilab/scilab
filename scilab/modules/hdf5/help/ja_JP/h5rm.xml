@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5rm" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>h5rm</refname>
+        
+        <refpurpose>HDF5ファイルから要素を削除</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            h5rm(obj [, names])
+            
+            h5rm(filename, names)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>obj</term>
+                
+                <listitem>
+                    
+                    <para>H5Object</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>names</term>
+                
+                <listitem>
+                    
+                    <para>削除する位置を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>filename</term>
+                
+                <listitem>
+                    
+                    <para>HDF5ファイルのパスを指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>ファイルから一つ以上のオブジェクトを削除します.</para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+a = h5open(TMPDIR + "/test.h5", "a");
+
+// ルート以下に複数のグループを作成可能
+names = "Group_" + string(1:10);
+h5group(a, names)
+
+// これらを表示
+h5ls(a)
+
+// ... または
+a.root.groups
+
+// これらから一部を削除可能
+names = "Group_" + string(1:2:10);
+h5rm(a, names);
+
+// 全てokか確認we check that all is ok
+a.root.groups
+
+// 処理を完了し, 全リソースを解放
+h5close(a);
+
+// 属性も削除可能
+x = %pi;
+save(TMPDIR + "/x.sod", "x"); // SOD ファイルは HDF5 ファイル
+
+// 作成したファイルをオープン
+a = h5open(TMPDIR + "/x.sod");
+
+// 属性を探す
+h5ls(a)
+
+// ... または
+a.root.attributes
+
+// 'SCILAB_sod_version'を削除
+h5rm(a, "SCILAB_sod_version"), h5ls(a)
+
+// リソースを解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5group">h5group</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5dataset">h5dataset</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5attr">h5attr</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>HDF5モジュールが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

@@ -24,28 +24,28 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  * @author Manuel JULIACHS
  */
 public class Fec extends ClippableContouredObject {
-	// TBD: Data
-	// + triangles	-> Data Model
-	// TBD properties relative to the data model
-	/** Fec properties names */
-	private enum FecProperty { ZBOUNDS, OUTSIDECOLOR, COLORRANGE  };
+    // TBD: Data
+    // + triangles	-> Data Model
+    // TBD properties relative to the data model
+    /** Fec properties names */
+    private enum FecProperty { ZBOUNDS, OUTSIDECOLOR, COLORRANGE  };
 
-	/** Z Bounds: 2-element array */
-	private double[] zBounds;
+    /** Z Bounds: 2-element array */
+    private double[] zBounds;
 
-	/** 2-element array */
-	private int[] outsideColor;
+    /** 2-element array */
+    private int[] outsideColor;
 
-	/** 2-element array */
-	private int[] colorRange;
+    /** 2-element array */
+    private int[] colorRange;
 
-	/** Constructor */
-	public Fec() {
-		super();
-		zBounds = new double[2];
-		outsideColor = new int[2];
-		colorRange = new int[2];
-	}
+    /** Constructor */
+    public Fec() {
+        super();
+        zBounds = new double[2];
+        outsideColor = new int[2];
+        colorRange = new int[2];
+    }
 
     @Override
     public void accept(Visitor visitor) throws ObjectRemovedException {
@@ -53,122 +53,122 @@ public class Fec extends ClippableContouredObject {
     }
 
     /**
-	 * Returns the enum associated to a property name
-	 * @param propertyName the property name
-	 * @return the property enum
-	 */
-	public Object getPropertyFromName(int propertyName) {
-		switch (propertyName) {
-		case __GO_Z_BOUNDS__ :
-			return FecProperty.ZBOUNDS;
-		case __GO_OUTSIDE_COLOR__ :
-			return FecProperty.OUTSIDECOLOR;
-		case __GO_COLOR_RANGE__ :
-			return FecProperty.COLORRANGE;
-		default :
-			return super.getPropertyFromName(propertyName);
-		}
-	}
+     * Returns the enum associated to a property name
+     * @param propertyName the property name
+     * @return the property enum
+     */
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+            case __GO_Z_BOUNDS__ :
+                return FecProperty.ZBOUNDS;
+            case __GO_OUTSIDE_COLOR__ :
+                return FecProperty.OUTSIDECOLOR;
+            case __GO_COLOR_RANGE__ :
+                return FecProperty.COLORRANGE;
+            default :
+                return super.getPropertyFromName(propertyName);
+        }
+    }
 
-	/**
-	 * Fast property get method
-	 * @param property the property to get
-	 * @return the property value
-	 */
-	public Object getProperty(Object property) {
-		if (property == FecProperty.ZBOUNDS) {
-			return getZBounds();
-		} else if (property == FecProperty.OUTSIDECOLOR) {
-			return getOutsideColor();
-		} else if (property == FecProperty.COLORRANGE) {
-			return getColorRange();
-		} else {
-			return super.getProperty(property);
-		}
-	}
+    /**
+     * Fast property get method
+     * @param property the property to get
+     * @return the property value
+     */
+    public Object getProperty(Object property) {
+        if (property == FecProperty.ZBOUNDS) {
+            return getZBounds();
+        } else if (property == FecProperty.OUTSIDECOLOR) {
+            return getOutsideColor();
+        } else if (property == FecProperty.COLORRANGE) {
+            return getColorRange();
+        } else {
+            return super.getProperty(property);
+        }
+    }
 
-	/**
-	 * Fast property set method
-	 * @param property the property to set
-	 * @param value the property value
-	 * @return true if the property has been set, false otherwise
-	 */
-	public UpdateStatus setProperty(Object property, Object value) {
-		if (property == FecProperty.ZBOUNDS) {
-			setZBounds((Double[]) value);
-		} else if (property == FecProperty.OUTSIDECOLOR) {
-			setOutsideColor((Integer[]) value);
-		} else if (property == FecProperty.COLORRANGE) {
-			setColorRange((Integer[]) value);
-		} else {
-			return super.setProperty(property, value);
-		}
+    /**
+     * Fast property set method
+     * @param property the property to set
+     * @param value the property value
+     * @return true if the property has been set, false otherwise
+     */
+    public UpdateStatus setProperty(Object property, Object value) {
+        if (property == FecProperty.ZBOUNDS) {
+            setZBounds((Double[]) value);
+        } else if (property == FecProperty.OUTSIDECOLOR) {
+            setOutsideColor((Integer[]) value);
+        } else if (property == FecProperty.COLORRANGE) {
+            setColorRange((Integer[]) value);
+        } else {
+            return super.setProperty(property, value);
+        }
 
-		return UpdateStatus.Success;
-	}
+        return UpdateStatus.Success;
+    }
 
-	/**
-	 * @return the colorRange
-	 */
-	public Integer[] getColorRange() {
-		Integer[] retColorRange = new Integer[2];
-		retColorRange[0] = colorRange[0];
-		retColorRange[1] = colorRange[1];
-		
-		return retColorRange;
-	}
+    /**
+     * @return the colorRange
+     */
+    public Integer[] getColorRange() {
+        Integer[] retColorRange = new Integer[2];
+        retColorRange[0] = colorRange[0];
+        retColorRange[1] = colorRange[1];
 
-	/**
-	 * @param colorRange the colorRange to set
-	 */
-	public void setColorRange(Integer[] colorRange) {
-		this.colorRange[0] = colorRange[0];
-		this.colorRange[1] = colorRange[1];
-	}
+        return retColorRange;
+    }
 
-	/**
-	 * @return the outsideColor
-	 */
-	public Integer[] getOutsideColor() {
-		Integer[] retOutsideColor = new Integer[2];
-		retOutsideColor[0] = outsideColor[0];
-		retOutsideColor[1] = outsideColor[1];
+    /**
+     * @param colorRange the colorRange to set
+     */
+    public void setColorRange(Integer[] colorRange) {
+        this.colorRange[0] = colorRange[0];
+        this.colorRange[1] = colorRange[1];
+    }
 
-		return retOutsideColor;
-	}
+    /**
+     * @return the outsideColor
+     */
+    public Integer[] getOutsideColor() {
+        Integer[] retOutsideColor = new Integer[2];
+        retOutsideColor[0] = outsideColor[0];
+        retOutsideColor[1] = outsideColor[1];
 
-	/**
-	 * @param outsideColor the outsideColor to set
-	 */
-	public void setOutsideColor(Integer[] outsideColor) {
-		this.outsideColor[0] = outsideColor[0];
-		this.outsideColor[1] = outsideColor[1];
-	}
+        return retOutsideColor;
+    }
 
-	/**
-	 * @return the zBounds
-	 */
-	public Double[] getZBounds() {
-		Double[] retZBounds = new Double[2];
-		retZBounds[0] = zBounds[0];
-		retZBounds[1] = zBounds[1];
+    /**
+     * @param outsideColor the outsideColor to set
+     */
+    public void setOutsideColor(Integer[] outsideColor) {
+        this.outsideColor[0] = outsideColor[0];
+        this.outsideColor[1] = outsideColor[1];
+    }
 
-		return retZBounds;
-	}
+    /**
+     * @return the zBounds
+     */
+    public Double[] getZBounds() {
+        Double[] retZBounds = new Double[2];
+        retZBounds[0] = zBounds[0];
+        retZBounds[1] = zBounds[1];
 
-	/**
-	 * @param bounds the zBounds to set
-	 */
-	public void setZBounds(Double[] zBounds) {
-		this.zBounds[0] = zBounds[0];
-		this.zBounds[1] = zBounds[1];
-	}
+        return retZBounds;
+    }
 
-	/**
-	 * @return Type as String
-	 */
-	public Integer getType() {
-		return GraphicObjectProperties.__GO_FEC__;
-	}
+    /**
+     * @param bounds the zBounds to set
+     */
+    public void setZBounds(Double[] zBounds) {
+        this.zBounds[0] = zBounds[0];
+        this.zBounds[1] = zBounds[1];
+    }
+
+    /**
+     * @return Type as String
+     */
+    public Integer getType() {
+        return GraphicObjectProperties.__GO_FEC__;
+    }
 
 }

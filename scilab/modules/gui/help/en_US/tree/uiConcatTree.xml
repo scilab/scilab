@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="uiConcatTree">
     <refnamediv>
         <refname>uiConcatTree</refname>
-        <refpurpose>Concatenation of Trees </refpurpose>
+        <refpurpose>Concatenation of trees </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -15,7 +15,7 @@
             <varlistentry>
                 <term>tree1, tree2</term>
                 <listitem>
-                    <para>are of type Tree</para>
+                    <para>are of type uitree</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -26,7 +26,7 @@
             <varlistentry>
                 <term>concatenatedTree</term>
                 <listitem>
-                    <para>a Tree, which is the concatenation of tree1 and tree2</para>
+                    <para>an uitree, which is the concatenation of tree1 and tree2</para>
                 </listitem>
             </varlistentry>
         </variablelist>

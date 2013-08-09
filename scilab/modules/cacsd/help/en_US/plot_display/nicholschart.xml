@@ -64,6 +64,13 @@
         </para>
     </refsection>
     <refsection>
+        <title>Remark</title>
+        <para>
+            Traditionally, the type of a calling sequence for <code>nicholschart</code> is: nicholschart(modules=gains, args=phases, colors=colors), 
+but the following calling sequence is also allowed: nicholschart(gains, phases, colors).
+        </para>
+    </refsection>
+    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
     //Nichols chart
@@ -118,5 +125,14 @@
                 <link linkend="hallchart">hallchart</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark> Calling sequence allowed: nicholschart(gains, phases, colors).</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

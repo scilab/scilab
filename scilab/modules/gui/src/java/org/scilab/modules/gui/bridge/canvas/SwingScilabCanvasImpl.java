@@ -220,7 +220,7 @@ public class SwingScilabCanvasImpl {
             } catch (Exception e) {
                 // Catch JoGL Exceptions and hide it ...
                 // Make another try
-                System.err.println("[SafeGLJPanel.display] catching " + e.toString());
+                //System.err.println("[SafeGLJPanel.display] catching "+e.toString());
                 super.reshape(getX(), getY(), getWidth(), getHeight());
                 super.display();
             }

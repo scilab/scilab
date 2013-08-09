@@ -219,6 +219,7 @@ public class DocbookTagConverter extends DefaultHandler {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(false);
         factory.setNamespaceAware(true);
+        factory.setXIncludeAware(true);
 
         try {
             factory.setFeature("http://xml.org/sax/features/namespace-prefixes", true);

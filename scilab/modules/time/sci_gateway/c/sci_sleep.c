@@ -44,7 +44,10 @@ int sci_sleep(char *fname, unsigned long fname_len)
 #ifdef _MSC_VER
         {
             int ms = (sec); /** time is specified in milliseconds in scilab**/
-            if (ms > 0) Sleep(ms); /* Number of milliseconds to sleep. */
+            if (ms > 0)
+            {
+                Sleep(ms);    /* Number of milliseconds to sleep. */
+            }
         }
 #else
         {

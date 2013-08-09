@@ -23,7 +23,7 @@ import org.scilab.modules.commons.OS;
 public final class FileComparators {
 
     private static final boolean isWindows = (OS.get() == OS.WINDOWS);
-    
+
     public static final Comparator<FileNode> ASCENDING_ALPHA = new Comparator<FileNode>() {
         public int compare(FileNode f1, FileNode f2) {
             if (f1.isFile == f2.isFile) {

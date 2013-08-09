@@ -33,9 +33,9 @@
     <refsection>
         <title>Description</title>
         <para>
-          The function <function>addf</function> performs a symbolic addition.
-          <code>c = addf("a", "b")</code> returns the character string <varname>c</varname>
-          which is <literal>"a + b"</literal>. Trivial simplifications such as <code>addf("0", "a")</code> or <code>addf("1", "2")</code> are performed.
+            The function <function>addf</function> performs a symbolic addition.
+            <code>c = addf("a", "b")</code> returns the character string <varname>c</varname>
+            which is <literal>"a + b"</literal>. Trivial simplifications such as <code>addf("0", "a")</code> or <code>addf("1", "2")</code> are performed.
         </para>
     </refsection>
     <refsection>

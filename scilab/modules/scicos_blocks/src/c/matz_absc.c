@@ -18,26 +18,26 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void matz_absc(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void matz_absc(scicos_block *block, int flag)
 {
 
-	int i = 0;
-	int mu=GetOutPortRows(block,1);
-	int nu=GetOutPortCols(block,1);
+    int i = 0;
+    int mu = GetOutPortRows(block, 1);
+    int nu = GetOutPortCols(block, 1);
 
-	double *u1=GetRealInPortPtrs(block,1);
-	double *u2=GetRealInPortPtrs(block,2);
-	double *y1r=GetRealOutPortPtrs(block,1);
-	double *y1i=GetImagOutPortPtrs(block,1);
-	for (i=0;i<mu*nu;i++) 
-	{
-		*(y1r+i)=(*(u1+i))*(cos(*(u2+i)));
-		*(y1i+i)=(*(u1+i))*(sin(*(u2+i)));
-	}
+    double *u1 = GetRealInPortPtrs(block, 1);
+    double *u2 = GetRealInPortPtrs(block, 2);
+    double *y1r = GetRealOutPortPtrs(block, 1);
+    double *y1i = GetImagOutPortPtrs(block, 1);
+    for (i = 0; i < mu * nu; i++)
+    {
+        *(y1r + i) = (*(u1 + i)) * (cos(*(u2 + i)));
+        *(y1i + i) = (*(u1 + i)) * (sin(*(u2 + i)));
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

@@ -26,31 +26,40 @@
 /*--------------------------------------------------------------------------*/
 int linesmore(void)
 {
-	int retval = 0;
-	if (getScilabMode() != SCILAB_STD)
-	{
-		int ch = 0;
-		/* Scilab has not his own window */
-		sciprint(MSG_MORE);
+    int retval = 0;
+    if (getScilabMode() != SCILAB_STD)
+    {
+        int ch = 0;
+        /* Scilab has not his own window */
+        sciprint(MSG_MORE);
 
 #if _MSC_VER
-		ch = _getch();
-		if ( (ch != ' ') && (ch != 13) && (ch != 'y') ) retval = 1;
+        ch = _getch();
+        if ( (ch != ' ') && (ch != 13) && (ch != 'y') )
+        {
+            retval = 1;
+        }
 #else
-		ch = getchar();
-		if ( (ch != ' ') && (ch != '\n') && (ch != 'y') ) retval = 1;
+        ch = getchar();
+        if ( (ch != ' ') && (ch != '\n') && (ch != 'y') )
+        {
+            retval = 1;
+        }
 #endif
 
-		sciprint("\n");
-	}
-	else
-	{
-		/* scilab has his own window */
-		int ch = 0;
-		ConsolePrintf(MSG_MORE);
-		ch = GetCharWithoutOutput();
-		if ( ch == 110 ) retval = 1;
-	}
-	return retval;
+        sciprint("\n");
+    }
+    else
+    {
+        /* scilab has his own window */
+        int ch = 0;
+        ConsolePrintf(MSG_MORE);
+        ch = GetCharWithoutOutput();
+        if ( ch == 110 )
+        {
+            retval = 1;
+        }
+    }
+    return retval;
 }
 /*--------------------------------------------------------------------------*/

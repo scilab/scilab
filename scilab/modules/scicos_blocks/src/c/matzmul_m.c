@@ -18,26 +18,26 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 extern int C2F(wmmul)();
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void matzmul_m(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void matzmul_m(scicos_block *block, int flag)
 {
-	int mu1=GetInPortRows(block,1);
-	int mu2=GetInPortRows(block,2);
-	int nu=GetInPortCols(block,2);
+    int mu1 = GetInPortRows(block, 1);
+    int mu2 = GetInPortRows(block, 2);
+    int nu = GetInPortCols(block, 2);
 
-	double *u1r=GetRealInPortPtrs(block,1);
-	double *u1i=GetImagInPortPtrs(block,1);
-	double *u2r=GetRealInPortPtrs(block,2);
-	double *u2i=GetImagInPortPtrs(block,2);
-	double *yr=GetRealOutPortPtrs(block,1);
-	double *yi=GetImagOutPortPtrs(block,1);
+    double *u1r = GetRealInPortPtrs(block, 1);
+    double *u1i = GetImagInPortPtrs(block, 1);
+    double *u2r = GetRealInPortPtrs(block, 2);
+    double *u2i = GetImagInPortPtrs(block, 2);
+    double *yr = GetRealOutPortPtrs(block, 1);
+    double *yi = GetImagOutPortPtrs(block, 1);
 
-	C2F(wmmul)(u1r,u1i,&mu1,u2r,u2i,&mu2,yr,yi,&mu1,&mu1,&mu2,&nu);
+    C2F(wmmul)(u1r, u1i, &mu1, u2r, u2i, &mu2, yr, yi, &mu1, &mu1, &mu2, &nu);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

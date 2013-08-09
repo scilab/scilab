@@ -42,8 +42,8 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        real (row) vector (elements of <literal>x</literal> must be in
-                        the <literal>(-1,1)</literal> interval)
+                        real matrix(elements of <literal>x</literal> must be in
+                        the <literal>[-1,1]</literal> interval)
                     </para>
                 </listitem>
             </varlistentry>
@@ -144,14 +144,14 @@ x = linspace(-l,l,200)';
 y = legendre(5, 0:5, x, "norm");
 clf()
 plot2d(x,y', leg="p5,0@p5,1@p5,2@p5,3@p5,4@p5,5")
-xtitle("the (normalised) associated Legendre functions of degree 5")
+xtitle("the (normalized) associated Legendre functions of degree 5")
  ]]></programlisting>
         <scilab:image>
             l = nearfloat("pred",1);
             x = linspace(-l,l,200)';
             y = legendre(5, 0:5, x, "norm");
             plot2d(x,y', leg="p5,0@p5,1@p5,2@p5,3@p5,4@p5,5")
-            xtitle("the (normalised) associated Legendre functions of degree 5")
+            xtitle("the (normalized) associated Legendre functions of degree 5")
         </scilab:image>
         <programlisting role="example"><![CDATA[
 // example 3 : define then plot a spherical harmonic

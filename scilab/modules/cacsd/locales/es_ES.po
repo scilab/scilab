@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:12+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-26 01:19+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: es\n"
 
 #, c-format
@@ -33,6 +33,228 @@ msgstr "%s: Valores incorrectos de los argumentos de entrada #%d y #%d.\n"
 msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Debe estar en [%d %d].\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: A must be a square matrix.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: A and B must have equal number of rows.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: A and C must have equal number of columns.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: B and D must have equal number of columns.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: C and D must have equal number of rows.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: NCON must be a scalar.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: NMEAS must be a scalar.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: GAMMA must be a scalar.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: SB10DD exit with info = %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: SB10FD exit with info = %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un real.\n"
+
+#, c-format
+msgid "%s: %s must be a scalar.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for %s: %d, %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: TASK = 1 : LINMEQ requires at least 4 input arguments.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for %s: %d, %d, %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for %s: %d, or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for %s: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong column size for input argument #%d: Same column size of input "
+"argument #%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong row size for input argument #%d: Same row size of input argument "
+"#%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At most 3 elements expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At most 2 elements expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Convergence problem...\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Problem is singular.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: eigenvalues must have negative real "
+"parts.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: eigenvalues modulus must be less "
+"than one.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Warning: the equation is (almost) singular. Perturbed values have been "
+"used.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A complex expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: AB13MD exit with info = %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: D must be a square matrix.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: C must be a square matrix.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The matrices A, C and D must have the same order.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Type must be continuous or "
+"discrete.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: RICCSL exit with info = %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: RICCMS exit with info = %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: RICDSL exit with info = %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: RICDMF exit with info = %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same column dimension as input "
+"argument #%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: MB03OD exit with info = %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: DORGQR exit with info = %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: ZB03OD exit with info = %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: ZUNGQR exit with info = %d.\n"
+msgstr ""
 
 msgid "CACSD"
 msgstr "CACSD"
@@ -409,12 +631,12 @@ msgstr ""
 "detectable.\n"
 
 #, c-format
-msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
-msgstr "%s: Alimentación directa ajustada a su coeficiente de grado cero.\n"
+msgid "%s: Wrong type for input argument #%d: A proper system expected\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Direct feedthrough set to zero.\n"
-msgstr "%s: Alimentación directa ajustada a cero.\n"
+msgid "%s: Wrong type for input argument #%d: A SIMO expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Simulation failed before final time is reached.\n"
@@ -475,16 +697,6 @@ msgstr ""
 #, c-format
 msgid "%s: More than %d iterations.\n"
 msgstr "%s: Más de %d iteraciones.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un real.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"

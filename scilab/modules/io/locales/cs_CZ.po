@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-28 21:05+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-19 20:46+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -173,3 +173,8 @@ msgstr "%s: Systémový převaděč neodpovídá..."
 #, c-format
 msgid "%s: error during %s execution"
 msgstr "%s: chyby při spouštění %s"
+
+#, c-format
+msgid ""
+"%s: The command failed with the error code %s and the following message:\n"
+msgstr "%s: Příkaz selhal s kódem chyby %s a následující zprávou:\n"

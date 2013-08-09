@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-04-06 14:55+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-26 15:01+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -197,6 +197,36 @@ msgstr "%s はエントリポイントではありません.\n"
 msgid "Linking %s.\n"
 msgstr "%s をリンクします。\n"
 
+msgid "Calling a C function from Scilab.\n"
+msgstr "ScilabからC関数をコール中.\n"
+
+msgid "Calling ilib_for_link to build C function.\n"
+msgstr "C関数構築のためにilib_for_linkをコール中.\n"
+
+msgid "Calling C function. Z = X+Y"
+msgstr "C関数をコール中. Z = X+Y"
+
+#, c-format
+msgid "with X = %d"
+msgstr "条件: X = %d"
+
+#, c-format
+msgid "with Y = %d"
+msgstr "条件: Y = %d"
+
+#, c-format
+msgid "Result Z = %d"
+msgstr "結果 Z = %d"
+
+msgid "Calling a Fortran subroutine from Scilab.\n"
+msgstr "Scilabからfortranサブルーチンをコール中.\n"
+
+msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
+msgstr "fortranサブルーチンを構築するするためにilib_for_linkをコール中.\n"
+
+msgid "Calling Fortran subroutine. Z = X+Y"
+msgstr "fortranサブルーチンをコール中. Z = X+Y"
+
 # File: etc/dynamic_link.start, line: 43
 msgid "Dynamic link"
 msgstr "ダイナミックリンク"
@@ -208,11 +238,25 @@ msgid "Call a Fortran subroutine"
 msgstr "Fortranサブルーチンをコール"
 
 #, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr "%s: Fortran または Cコンパイラが必要です.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: 入力引数の数が間違っています.\n"
 
+msgid "Microsoft Visual Studio C x86 Compiler not found."
+msgstr "Microsoft Visual Studio C x86 コンパイラが見つかりません."
+
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr "Intel Fortran コンパイラ 9, 10, 11 または 12 コンパイラが見つかりません."
+
+msgid ""
+"Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
+msgstr "Microsoft Visual Studio C 2008 (またはそれ以降) x64 コンパイラがインストールされていません."
+
+msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
+msgstr "Microsoft Visual Studio C 2008 (またはそれ以降) コンパイラが見つかりません."
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
@@ -241,10 +285,6 @@ msgid ""
 "Due to the multivendors nature of the Unix world, the function "
 "'haveacompiler' is only supported under Windows."
 msgstr "Unix業界には複数のベンダが存在するため,'haveacompiler'関数がサポートされているのはWindows環境のみです."
-
-#, c-format
-msgid "%s: A Fortran or C compiler is required.\n"
-msgstr "%s: Fortran または Cコンパイラが必要です.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -483,3 +523,10 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定�
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+msgid "not found."
+msgstr "見つかりません."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected."
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください."

@@ -2,19 +2,19 @@
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the scilab package.
 #
-# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-04-05 16:52+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-13 09:17+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: uk\n"
 
 #, c-format
@@ -207,6 +207,36 @@ msgstr "%s не є точкою входу.\n"
 msgid "Linking %s.\n"
 msgstr "З’єднання %s.\n"
 
+msgid "Calling a C function from Scilab.\n"
+msgstr ""
+
+msgid "Calling ilib_for_link to build C function.\n"
+msgstr ""
+
+msgid "Calling C function. Z = X+Y"
+msgstr ""
+
+#, c-format
+msgid "with X = %d"
+msgstr "з X = %d"
+
+#, c-format
+msgid "with Y = %d"
+msgstr "з Y = %d"
+
+#, c-format
+msgid "Result Z = %d"
+msgstr ""
+
+msgid "Calling a Fortran subroutine from Scilab.\n"
+msgstr ""
+
+msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
+msgstr ""
+
+msgid "Calling Fortran subroutine. Z = X+Y"
+msgstr ""
+
 msgid "Dynamic link"
 msgstr "Динамічне з’єднання"
 
@@ -217,11 +247,25 @@ msgid "Call a Fortran subroutine"
 msgstr "Викликати підпрограму Fortran"
 
 #, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr "%s: потрібен компілятор Fortran або C.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: помилкова кількість вхідних параметрів.\n"
 
+msgid "Microsoft Visual Studio C x86 Compiler not found."
+msgstr "Не виявлено компілятора C Microsoft Visual Studio x86."
+
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr "Не знайдено компілятора Fortran Intel версії 9, 10, 11 або 12."
+
+msgid ""
+"Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
+msgstr ""
+
+msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
+msgstr ""
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
@@ -251,10 +295,6 @@ msgstr ""
 "Через відмінності у побудові різних дистрибутивів сумісних з Unix "
 "операційних систем, функцією «haveacompiler» можна скористатися лише у "
 "Windows."
-
-#, c-format
-msgid "%s: A Fortran or C compiler is required.\n"
-msgstr "%s: потрібен компілятор Fortran або C.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -497,3 +537,11 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід вказати принаймні %d.\n"
+
+msgid "not found."
+msgstr "не знайдено."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected."
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string»."

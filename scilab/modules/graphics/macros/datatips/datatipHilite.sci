@@ -8,22 +8,22 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function datatipHilite(datatip_handle)
-//datatip utility function
-  point_handle=datatip_handle.children(1)
-  string_handle=datatip_handle.children(2)
-  style=string_handle.user_data(2);
-  if style(1)==1 then
-    if point_handle.mark_background==point_handle.mark_foreground then
-      point_handle.mark_background=addcolor([255 255 238]/255);
+    //datatip utility function
+    point_handle=datatip_handle.children(1)
+    string_handle=datatip_handle.children(2)
+    style=string_handle.user_data(2);
+    if style(1)==1 then
+        if point_handle.mark_background==point_handle.mark_foreground then
+            point_handle.mark_background=addcolor([255 255 238]/255);
+        else
+            point_handle.mark_background=point_handle.mark_foreground;
+        end
     else
-      point_handle.mark_background=point_handle.mark_foreground;
-    end
-  else
-    if point_handle.mark_mode=="on" then
-      point_handle.mark_mode="off"
-    else
-      point_handle.mark_mode="on"
-    end
+        if point_handle.mark_mode=="on" then
+            point_handle.mark_mode="off"
+        else
+            point_handle.mark_mode="on"
+        end
 
-  end
+    end
 endfunction

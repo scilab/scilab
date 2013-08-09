@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-10-25 20:48+0000\n"
 "Last-Translator: Grzegorz Szostek <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: pl\n"
 
 #, c-format
@@ -39,6 +39,10 @@ msgstr ""
 "typu real.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Polynomial expected."
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: must not contain %s or %s.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego #%d: nie może zawerać %s ani "
@@ -50,9 +54,27 @@ msgstr ""
 "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: must be %d, %d, %s, '%s' or '%s'.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -74,6 +96,15 @@ msgstr ""
 "kolumnowy.\n"
 
 #, c-format
+msgid "%s: Obsolete function. Please replace '%s' by '%s'."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Obsolete function. Former external functions cannot be used anymore."
+msgstr ""
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Niezgodne argumenty wejściowe nr %d oraz nr %d: Oczekiwany taki sam "
@@ -87,6 +118,16 @@ msgstr "%s: SVD i QR nie zostanie zaimplementowane dla macierzy rzadkich.\n"
 msgid "%s: This feature has not been implemented.\n"
 msgstr "%s: Ta funkcja nie została zrealizowana.\n"
 
+msgid "Conflicting linear constraints."
+msgstr ""
+
+msgid "Recomputing initial guess"
+msgstr ""
+
+#, c-format
+msgid "Possible Conflicting linear constraints, error in the order of %s"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
@@ -97,6 +138,15 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
 "{%s}.\n"
+
+#, c-format
+msgid "%s: Singular pencil."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Function not defined for type '%s'. Check argument or define function %s."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

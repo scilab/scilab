@@ -17,8 +17,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>lusolve(hand,b)
-            lusolve(A,b)
+        <synopsis>x=lusolve(hand,b)
+            x=lusolve(A,b)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -40,6 +40,12 @@
                 <term>hand</term>
                 <listitem>
                     <para>疎行列LU分解を計算した際のハンドル(lufactの出力)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>通常の実数行列</para>
                 </listitem>
             </varlistentry>
         </variablelist>

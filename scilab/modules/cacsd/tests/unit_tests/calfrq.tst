@@ -4,9 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-K=0.001;     // Minimum relative prediction error in the nyquist plan 
+K=0.001;      // Minimum relative prediction error in the nyquist plan 
 Epss=0.002;   // minimum frequency distance with a singularity
-nptmax=5000;  //maximum number of discretisation points
+nptmax=5000;  //maximum number of discretization points
 pas=100/(2*%pi);
 s=%s;
 

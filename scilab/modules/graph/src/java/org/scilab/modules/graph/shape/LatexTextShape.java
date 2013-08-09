@@ -26,6 +26,7 @@ import org.scilab.modules.graph.utils.ScilabGraphUtils;
 import com.mxgraph.canvas.mxGraphics2DCanvas;
 import com.mxgraph.shape.mxITextShape;
 import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxCellState;
 
@@ -52,73 +53,63 @@ public class LatexTextShape implements mxITextShape {
     public void paintShape(mxGraphics2DCanvas canvas, String text, mxCellState state, Map<String, Object> style) {
 
         CellRendererPane rendererPane = canvas.getRendererPane();
-        Rectangle rect = state.getLabelBounds().getRectangle();
-        if (rect.isEmpty()) {
-            rect.grow(1, 1);
-        }
+        mxRectangle rect = state.getLabelBounds();
         Graphics2D g = canvas.getGraphics();
 
-        if (rendererPane != null && (g.getClipBounds() == null || g.getClipBounds().intersects(rect))) {
+        if (rendererPane != null && (g.getClipBounds() == null || g.getClipBounds().intersects(rect.getRectangle()))) {
             final double scale = canvas.getScale();
-            final int x = rect.x;
-            final int y = rect.y;
-            final int w = rect.width;
-            final int h = rect.height;
+            final double x = rect.getX();
+            final double y = rect.getY();
+            final double w = rect.getWidth();
+            final double h = rect.getHeight();
 
-            if (g.hitClip(x, y, w, h)) {
-                AffineTransform at = g.getTransform();
+            AffineTransform at = g.getTransform();
 
-                /*
-                 * do not scale x nor y, due to the g.scale() call.
-                 */
-                final double sx = x;
-                final double sy = y;
+            // handle text color
+            Color textColor = mxUtils.getColor(style, mxConstants.STYLE_FONTCOLOR, Color.BLACK);
+            rendererPane.setForeground(textColor);
 
-                final double sw = w / scale;
-                final double sh = h / scale;
-                g.scale(scale, scale);
-
-                // handle text color
-                Color textColor = mxUtils.getColor(style, mxConstants.STYLE_FONTCOLOR, Color.BLACK);
-                rendererPane.setForeground(textColor);
-
-                // TODO: handle horizontal align
-                final Object align = mxUtils.getString(style, mxConstants.STYLE_ALIGN, mxConstants.ALIGN_CENTER);
-                final double horizAlignProportion;
-                if (align.equals(mxConstants.ALIGN_LEFT)) {
-                    horizAlignProportion = 0;
-                } else if (align.equals(mxConstants.ALIGN_RIGHT)) {
-                    horizAlignProportion = 1.0;
-                } else {
-                    horizAlignProportion = 0.5;
-                }
-
-                // TODO: handle vertical align
-                final Object vertAlign = mxUtils.getString(style, mxConstants.STYLE_VERTICAL_ALIGN, mxConstants.ALIGN_MIDDLE);
-                final double vertAlignProportion;
-                if (vertAlign.equals(mxConstants.ALIGN_TOP)) {
-                    vertAlignProportion = 0;
-                } else if (vertAlign.equals(mxConstants.ALIGN_BOTTOM)) {
-                    vertAlignProportion = 1.0;
-                } else {
-                    vertAlignProportion = 0.5;
-                }
-
-                // parse the text and cache it if valid. Will throw an exception
-                // if the text is not valid but the text must have been already
-                // checked on ScilabCanvas#getTextShape(...).
-                final Icon icon = ScilabGraphUtils.getTexIcon(text);
-                final int iw = icon.getIconWidth();
-                final int ih = icon.getIconHeight();
-
-                final double dx = (sw - iw) / 2;
-                final double dy = (sh - ih) / 2;
-
-                icon.paintIcon(rendererPane, g, (int) (sx + dx), (int) (sy + dy));
-
-                // Restores the previous transformation
-                g.setTransform(at);
+            // TODO: handle horizontal align
+            final Object align = mxUtils.getString(style, mxConstants.STYLE_ALIGN, mxConstants.ALIGN_CENTER);
+            final double horizAlignProportion;
+            if (align.equals(mxConstants.ALIGN_LEFT)) {
+                horizAlignProportion = 0;
+            } else if (align.equals(mxConstants.ALIGN_RIGHT)) {
+                horizAlignProportion = 1.0;
+            } else {
+                horizAlignProportion = 0.5;
             }
+
+            // TODO: handle vertical align
+            final Object vertAlign = mxUtils.getString(style, mxConstants.STYLE_VERTICAL_ALIGN, mxConstants.ALIGN_MIDDLE);
+            final double vertAlignProportion;
+            if (vertAlign.equals(mxConstants.ALIGN_TOP)) {
+                vertAlignProportion = 0;
+            } else if (vertAlign.equals(mxConstants.ALIGN_BOTTOM)) {
+                vertAlignProportion = 1.0;
+            } else {
+                vertAlignProportion = 0.5;
+            }
+
+            // parse the text and cache it if valid. Will throw an exception
+            // if the text is not valid but the text must have been already
+            // checked on ScilabCanvas#getTextShape(...).
+            float fontSize = (float) (mxUtils.getInt(style, mxConstants.STYLE_FONTSIZE, 16) * scale);
+            final Icon icon = ScilabGraphUtils.getTexIcon(text, fontSize);
+            // the icon is generated scaled so width and height are already scaled
+            final double ih = icon.getIconHeight();
+            final double iw = icon.getIconWidth();
+
+
+            double dx = (iw - w) / 2;
+            double dy = (ih - h) / 2;
+
+            icon.paintIcon(rendererPane, g,
+                           (int) (x + dx) + mxConstants.LABEL_INSET ,
+                           (int) (y + dy) + mxConstants.LABEL_INSET);
+
+            // Restores the previous transformation
+            g.setTransform(at);
         }
     }
 

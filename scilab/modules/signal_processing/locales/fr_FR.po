@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:03+0100\n"
-"PO-Revision-Date: 2012-08-03 08:09+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-26 14:20+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: fr\n"
 
 #, c-format
@@ -99,6 +99,18 @@ msgstr "Convolution 3 points"
 msgid "Signal derivative estimate"
 msgstr "Estimation de la dérivée du signal"
 
+msgid "Choose filter type and parameters"
+msgstr "Choisir le type et les paramètres du filtre"
+
+msgid "Discrete IIR filter "
+msgstr "Filtre RII discret "
+
+msgid "Discrete IIR filter : low pass  fr < 0.2"
+msgstr "Filtre RII discret : passe-bas fr < 0,2"
+
+msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
+msgstr "Filtre RII discret passe-bande 0,15 < fr < 0,25"
+
 msgid "Minimax FIR filter"
 msgstr "Filtres RIF minimax"
 
@@ -107,6 +119,12 @@ msgstr "Fréquence de coupure dans l'intervalle [.23,.27]"
 
 msgid "length 33"
 msgstr "Longueur 33"
+
+msgid "Remez Triangular filter"
+msgstr "Filtre triangulaire de Remez"
+
+msgid "magnitude error"
+msgstr "Erreur d'amplitude"
 
 msgid "Signal Processing"
 msgstr "Traitement du signal"
@@ -130,7 +148,7 @@ msgid "Bode plots"
 msgstr "Diagrammes de Bode"
 
 msgid "Window FIR filters"
-msgstr "Filtres RIF de fenêtre"
+msgstr "Filtres RIF avec fenêtre"
 
 msgid "1-D convolution"
 msgstr "Convolution 1D"
@@ -147,6 +165,18 @@ msgstr "Arma, version bidimensionnelle"
 msgid "Arma, Spectral power estimation"
 msgstr "Arma, Estimation de la densité spectrale d'énergie :"
 
+msgid "Data spectrum"
+msgstr "Spectre de données"
+
+msgid "magnitude"
+msgstr "Amplitude"
+
+msgid "Spectral estimation"
+msgstr "Estimation spectrale"
+
+msgid "spectral power"
+msgstr "Puissance spectrale"
+
 msgid "estimates xf"
 msgstr "Estime xf"
 
@@ -155,6 +185,27 @@ msgstr "Estime xs"
 
 msgid "real state"
 msgstr "état réel"
+
+msgid "Windowed FIR Low pass Filter"
+msgstr "Filtre passe-bas RIF avec fenêtre"
+
+msgid "Kaiser window,cut-off:0.2"
+msgstr "Fenêtre de Kaiser, fréquence de coupure : 0.2"
+
+msgid "Hamming window,cut-off:0.2,0.3"
+msgstr "Fenêtre de Hamming, fréquences de coupure : 0.2, 0.3"
+
+msgid "length 127"
+msgstr "Longueur 127"
+
+msgid "Windowed FIR Band pass Filter"
+msgstr "Filtre passe-bande RIF avec fenêtre"
+
+msgid "Chebyshev window,cut-off:0.15,0.35"
+msgstr "Fenêtre de Chebyshev, fréquences de coupure : 0.15, 0.35"
+
+msgid "length 55"
+msgstr "Longueur 55"
 
 #, c-format
 msgid ""
@@ -257,6 +308,10 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
+
+#, c-format
+msgid "%s: Filter order too small.\n"
+msgstr "%s: Ordre du filtre trop faible.\n"
 
 #, c-format
 msgid ""

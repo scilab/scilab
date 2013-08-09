@@ -5,12 +5,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- ENGLISH IMPOSED -->
-// Execute with exec("SCI/modules/scicos/tests/unit_tests/ImpRK.tst");
-//  or test_run('scicos', 'ImpRK', ['no_check_error_output']);
+// <-- XCOS TEST -->
 // Import diagram
-loadScicos();
-loadXcosLibs();
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/RK_test.zcos"));
+Info = scicos_simulate(scs_m, list(), 'nw');
 for i=2:4  // 'max step size' = 10^-i, precision
  // Start by updating the clock block period (sampling)
  scs_m.objs(7).model.rpar(1) = 5*(10^-i);
@@ -18,12 +16,12 @@ for i=2:4  // 'max step size' = 10^-i, precision
  // Modify solver and 'max step size' + run ImpRK + save results
  scs_m.props.tol(7) = 5*(10^-i); scs_m.props.tol(6) = 7;         // 'max step size' + solver
  scs_m.props.tol(2) = 1.0e-12;                                   // reltol
- try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end  // ImpRK
+ try scicos_simulate(scs_m, Info, 'nw'); catch disp(lasterror()); end  // ImpRK
  rkval = res.values;   // Results
  time = res.time;      // Time
  // Modify solver and reltol + run CVode + save results
  scs_m.props.tol(6) = 4; scs_m.props.tol(2) = 1.0e-15;
- try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end
+ try scicos_simulate(scs_m, Info, 'nw'); catch disp(lasterror()); end
  cvval = res.values;
  // Compare results
  compa = abs(rkval-cvval);

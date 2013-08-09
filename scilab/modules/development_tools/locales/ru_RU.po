@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-19 14:58+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-19 14:11+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -202,6 +202,10 @@ msgid "The test %s is not available from the %s module"
 msgstr "Тест %s недоступен из модуля %s"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A row array of strings expected.\n"
 msgstr ""
@@ -299,6 +303,8 @@ msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
 "'testsuites'.\n"
 msgstr ""
+"Файл '%s' не соответствует формату XUnit XML. Ожидалось, что корневой тэг "
+"будет 'testsuites'.\n"
 
 #, c-format
 msgid "No variable %s_ref in reference file"

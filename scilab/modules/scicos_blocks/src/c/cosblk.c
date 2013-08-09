@@ -18,43 +18,43 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <math.h>
 #include "scicos.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /*------------------------------------------------
- *     Scicos block simulator 
- *     A set of elementary blocks 
+ *     Scicos block simulator
+ *     A set of elementary blocks
  *------------------------------------------------*/
 
 /*------------------------------------------------
- *     Scicos block simulator 
- *     
+ *     Scicos block simulator
+ *
  *------------------------------------------------*/
-SCICOS_BLOCKS_IMPEXP void cosblk(int *flag, int *nevprt, double *t, 
-								 double *xd, double *x, int *nx, double *z,
-								 int *nz, double *tvec, int *ntvec, 
-								 double *rpar, int *nrpar, int *ipar, 
-								 int *nipar, double *u, int *nu, double *y,
-								 int *ny)
+SCICOS_BLOCKS_IMPEXP void cosblk(int *flag, int *nevprt, double *t,
+                                 double *xd, double *x, int *nx, double *z,
+                                 int *nz, double *tvec, int *ntvec,
+                                 double *rpar, int *nrpar, int *ipar,
+                                 int *nipar, double *u, int *nu, double *y,
+                                 int *ny)
 {
-  int i  = 0;
-  for (i = 0; i < *nu ; i++)
-  {
-	  y[i] = cos(u[i]);
-  }
+    int i  = 0;
+    for (i = 0; i < *nu ; i++)
+    {
+        y[i] = cos(u[i]);
+    }
 }
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void C2F(cosblk)(int *flag, int *nevprt, double *t, 
-									  double *xd, double *x, int *nx, double *z,
-									  int *nz, double *tvec, int *ntvec, 
-									  double *rpar, int *nrpar, int *ipar, 
-									  int *nipar, double *u, int *nu, double *y,
-									  int *ny)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void C2F(cosblk)(int *flag, int *nevprt, double *t,
+                                      double *xd, double *x, int *nx, double *z,
+                                      int *nz, double *tvec, int *ntvec,
+                                      double *rpar, int *nrpar, int *ipar,
+                                      int *nipar, double *u, int *nu, double *y,
+                                      int *ny)
 {
-	cosblk(flag, nevprt, t, xd, x, nx, z, nz, tvec, 
-				ntvec, rpar, nrpar, ipar, nipar, u, nu, y, ny);
+    cosblk(flag, nevprt, t, xd, x, nx, z, nz, tvec,
+           ntvec, rpar, nrpar, ipar, nipar, u, nu, y, ny);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

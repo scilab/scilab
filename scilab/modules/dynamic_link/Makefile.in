@@ -519,6 +519,9 @@ libscidynamic_link_la_root_DATA = license.txt
 libscidynamic_link_la_etcdir = $(mydatadir)/etc
 libscidynamic_link_la_etc_DATA = etc/dynamic_link.quit etc/dynamic_link.start
 
+#### dynamic_link : internal functions ####
+MACROSDIRSEXT = macros/utils
+
 #### dynamic_link : gateway declaration ####
 libscidynamic_link_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscidynamic_link_la_sci_gateway_DATA = sci_gateway/dynamic_link_gateway.xml

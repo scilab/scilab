@@ -47,7 +47,7 @@ function [d, v] = eigs(varargin)
     cholB = 0;
     info = 0;
     B = [];
-    sigma = 'LM';
+    sigma = "LM";
     if(rhs == 1)
         if(~issparse(varargin(1)))
             info = int32(0);
@@ -61,9 +61,9 @@ function [d, v] = eigs(varargin)
     if(typeof(varargin(1)) <> "function")
         select rhs
         case 1
-            nev =  min(size(A, 'r'), 6);
+            nev =  min(size(A, "r"), 6);
         case 2
-            nev = min(size(A, 'r'), 6);
+            nev = min(size(A, "r"), 6);
             B = varargin(2);
         case 3
             B = varargin(2);
@@ -121,9 +121,9 @@ function [d, v] = eigs(varargin)
             end
         case 2
             if(issparse(A) | issparse(B))
-                [d, v] = speigs(A, B, nev, 'LM', maxiter, tol, ncv, cholB, resid, info);
+                [d, v] = speigs(A, B, nev, "LM", maxiter, tol, ncv, cholB, resid, info);
             else
-                [d, v] = %_eigs(A, B, nev, 'LM', maxiter, tol, ncv, cholB, resid, info);
+                [d, v] = %_eigs(A, B, nev, "LM", maxiter, tol, ncv, cholB, resid, info);
             end
         end
     else
@@ -266,24 +266,24 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar expected.\n"), "eigs", 4));
         end
         sigma = which;
-        which = 'LM';
+        which = "LM";
 
     case 10 then
         [mWHICH, nWHICH] = size(which);
         if(mWHICH * nWHICH <> 1)
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "eigs", 4));
         end
-        if(strcmp(which,'LM') ~= 0 & strcmp(which,'SM') ~= 0  & strcmp(which,'LR') ~= 0 & strcmp(which,'SR') ~= 0 & strcmp(which,'LI') ~= 0 & strcmp(which,'SI') ~= 0 & strcmp(which,'LA') ~= 0 & strcmp(which,'SA') ~= 0 & strcmp(which,'BE') ~= 0)
+        if(strcmp(which,"LM") ~= 0 & strcmp(which,"SM") ~= 0  & strcmp(which,"LR") ~= 0 & strcmp(which,"SR") ~= 0 & strcmp(which,"LI") ~= 0 & strcmp(which,"SI") ~= 0 & strcmp(which,"LA") ~= 0 & strcmp(which,"SA") ~= 0 & strcmp(which,"BE") ~= 0)
             if(Areal & Breal & Asym)
                 error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of ''%s'', ''%s'', ''%s'', ''%s'' or ''%s''.\n"), "eigs", 4, "LM", "SM", "LA", "SA", "BE"));
             else
                 error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s''.\n"), "eigs", 4, "LM", "SM", "LR", "SR", "LI", "SI"));
             end
         end
-        if((~Areal | ~Breal | ~Asym) & (strcmp(which,'LA') == 0 | strcmp(which,'SA') == 0 | strcmp(which,'BE') == 0))
+        if((~Areal | ~Breal | ~Asym) & (strcmp(which,"LA") == 0 | strcmp(which,"SA") == 0 | strcmp(which,"BE") == 0))
             error(msprintf(gettext("%s: Invalid sigma value for complex or non symmetric problem.\n"), "eigs"));
         end
-        if(Areal & Breal & Asym & (strcmp(which,'LR') == 0 | strcmp(which,'SR') == 0 | strcmp(which,'LI') == 0 | strcmp(which,'SI') == 0))
+        if(Areal & Breal & Asym & (strcmp(which,"LR") == 0 | strcmp(which,"SR") == 0 | strcmp(which,"LI") == 0 | strcmp(which,"SI") == 0))
             error(msprintf(gettext("%s: Invalid sigma value for real symmetric problem.\n"), "eigs"));
         end
         sigma = 0;
@@ -398,16 +398,16 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
     ipntr = zeros(14,1);
 
     //MODE 1, 2, 3, 4, 5
-    if(~strcmp(which,'SM') | sigma <> 0)
+    if(~strcmp(which,"SM") | sigma <> 0)
         iparam(7) = 3;
-        which = 'LM';
+        which = "LM";
     end
 
     //bmat initialization
     if(matB == 0 | iparam(7) == 1)
-        bmat = 'I';
+        bmat = "I";
     else
-        bmat = 'G';
+        bmat = "G";
     end
 
     if(cholB)
@@ -425,7 +425,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
 
     if(~cholB & matB & iparam(7) == 1)
         if(issparse(%_B) & ~Breal)
-            error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparse matrices.\n"), "eigs"));
+            error(msprintf(gettext("%s: Impossible to use the Cholesky factorization with complex sparse matrices.\n"), "eigs"));
         else
             if(issparse(%_B))
                 [R, P] = spchol(%_B);
@@ -445,7 +445,7 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
     end
 
     //Main
-    howmny = 'A';
+    howmny = "A";
     ido = 0;
     info_eupd = 0;
     _select = zeros(ncv,1);
@@ -574,7 +574,6 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
     if(iparam(7) == 3)
         umf_ludel(Lup);
     end
-
     if(Areal & Breal)
         if(Asym)
             [d, z, resid, v, iparam, iptnr, workd, workl, info_eupd] = dseupd(rvec, howmny, _select, d, z, sigma, bmat, nA, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_eupd);
@@ -621,7 +620,9 @@ function [res_d, res_v] = speigs(A, %_B, nev, which, maxiter, tol, ncv, cholB, r
                     index = find(di~=0);
                     index = index(1:2:$);
                     res_v = z;
-                    res_v(:,[index index+1]) = [complex(res_v(:,index),res_v(:,index+1)), complex(res_v(:,index),-res_v(:,index+1))];
+                    if ~isempty(index) then
+                        res_v(:,[index index+1]) = [complex(res_v(:,index),res_v(:,index+1)), complex(res_v(:,index),-res_v(:,index+1))];
+                    end
                     res_d = diag(res_d);
                     res_v = res_v(:,1:nev);
                 end
@@ -663,7 +664,7 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
     //**************************
     //Second variable nA :
     //**************************
-    if(size(nA,'*') <> 1 | ~isreal(nA) | typeof(nA) <> "constant")
+    if(size(nA,"*") <> 1 | ~isreal(nA) | typeof(nA) <> "constant")
         error(msprintf(gettext("%s: Wrong type for input argument #%d: n must be a positive integer.\n"), "eigs", 2));
     end
 
@@ -721,23 +722,23 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
             error(msprintf(gettext("%s: Wrong type for input argument #%d: a scalar expected.\n"), "eigs", 5));
         end
         sigma = which;
-        which = 'LM';
+        which = "LM";
     case 10 then
         [mWHICH, nWHICH] = size(which);
         if(mWHICH * nWHICH <> 1)
             error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "eigs", 5));
         end
-        if(strcmp(which,'LM') ~= 0 & strcmp(which,'SM') ~= 0  & strcmp(which,'LR') ~= 0 & strcmp(which,'SR') ~= 0 & strcmp(which,'LI') ~= 0 & strcmp(which,'SI') ~= 0 & strcmp(which,'LA') ~= 0 & strcmp(which,'SA') ~= 0 & strcmp(which,'BE') ~= 0)
+        if(strcmp(which,"LM") ~= 0 & strcmp(which,"SM") ~= 0  & strcmp(which,"LR") ~= 0 & strcmp(which,"SR") ~= 0 & strcmp(which,"LI") ~= 0 & strcmp(which,"SI") ~= 0 & strcmp(which,"LA") ~= 0 & strcmp(which,"SA") ~= 0 & strcmp(which,"BE") ~= 0)
             if(a_real & Breal & a_sym)
                 error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of %s, %s, %s, %s or %s.\n"), "eigs", 5, "LM", "SM", "LA", "SA", "BE"));
             else
                 error(msprintf(gettext("%s: Wrong value for input argument #%d: Unrecognized sigma value.\n Sigma must be one of %s, %s, %s, %s, %s or %s.\n"), "eigs", 5, "LM", "SM", "LR", "SR", "LI", "SI"));
             end
         end
-        if((~a_real | ~Breal | ~a_sym) & (strcmp(which,'LA') == 0 | strcmp(which,'SA') == 0 | strcmp(which,'BE') == 0))
+        if((~a_real | ~Breal | ~a_sym) & (strcmp(which,"LA") == 0 | strcmp(which,"SA") == 0 | strcmp(which,"BE") == 0))
             error(msprintf(gettext("%s: Invalid sigma value for complex or non symmetric problem.\n"), "eigs"));
         end
-        if(a_real & Breal & a_sym & (strcmp(which,'LR') == 0 | strcmp(which,'SR') == 0 | strcmp(which,'LI') == 0 | strcmp(which,'SI') == 0))
+        if(a_real & Breal & a_sym & (strcmp(which,"LR") == 0 | strcmp(which,"SR") == 0 | strcmp(which,"LI") == 0 | strcmp(which,"SI") == 0))
             error(msprintf(gettext("%s: Invalid sigma value for real symmetric problem.\n"), "eigs"));
         end
         sigma = 0;
@@ -752,7 +753,7 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
     //*************************
     //MAXITER :
     //*************************
-    if(typeof(maxiter) <> "constant" | ~isreal(maxiter) | size(maxiter,'*') <> 1)
+    if(typeof(maxiter) <> "constant" | ~isreal(maxiter) | size(maxiter,"*") <> 1)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a scalar.\n"), "eigs", 6, "opts.maxiter"));
     end
 
@@ -767,7 +768,7 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
         error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be a real scalar.\n"), "eigs", 7, "opts.tol"));
     end
 
-    if(size(tol,'*') <> 1)
+    if(size(tol,"*") <> 1)
         error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"), "eigs", 7, "opts.tol"));
     end
 
@@ -778,7 +779,7 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
         error(msprintf(gettext("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "eigs", 8, "opts.ncv"));
     end
 
-    if(size(ncv,'*') > 1 | ncv <> floor(ncv) | (ncv <> [] & ncv <= 0))
+    if(size(ncv,"*") > 1 | ncv <> floor(ncv) | (ncv <> [] & ncv <= 0))
         error(msprintf(gettext("%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"), "eigs", 8, "opts.ncv"));
     end
 
@@ -829,7 +830,7 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"), "eigs", 10));
     end
 
-    if(size(resid,'*') ~= nA)
+    if(size(resid,"*") ~= nA)
         error(msprintf(gettext("%s: Wrong dimension for input argument #%d: Start vector opts.resid must be N by 1.\n"), "eigs", 10));
     end
 
@@ -852,16 +853,16 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
     ipntr = zeros(14,1);
 
     //MODE 1, 2, 3, 4, 5
-    if(~strcmp(which,'SM') | sigma <> 0)
+    if(~strcmp(which,"SM") | sigma <> 0)
         iparam(7) = 3;
-        which = 'LM';
+        which = "LM";
     end
 
     //bmat initialization
     if(matB == 0 | iparam(7) == 1)
-        bmat = 'I';
+        bmat = "I";
     else
-        bmat = 'G';
+        bmat = "G";
     end
 
     if(cholB)
@@ -878,7 +879,7 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
     end
     if(~cholB & matB & iparam(7) == 1)
         if(issparse(%_B) & ~Breal)
-            error(msprintf(gettext("%s: Impossible to use the Cholesky factorisation with complex sparse matrices.\n"), "eigs"));
+            error(msprintf(gettext("%s: Impossible to use the Cholesky factorization with complex sparse matrices.\n"), "eigs"));
         else
             if(issparse(%_B))
                 [R,P] = spchol(%_B);
@@ -898,7 +899,7 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
     end
 
     //Main
-    howmny = 'A';
+    howmny = "A";
     ido = 0;
     info_aupd = 0;
     _select = zeros(ncv,1);
@@ -957,7 +958,7 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
                     workd(ipntr(2):ipntr(2)+nA-1) = workd(ipntr(1):ipntr(1)+nA-1);
                 else
                     if(matB == 0)
-                        ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(1):ipntr(1)+nA-1))', 'errcatch');
+                        ierr = execstr("workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(1):ipntr(1)+nA-1))", "errcatch");
                         if(ierr <> 0)
                             break;
                         end
@@ -965,20 +966,20 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
                         if(issparse(%_B))
                             y = umf_lusolve(Rprimefact, workd(ipntr(1):ipntr(1)+nA-1));
                             if(~cholB)
-                                ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun( y(perm) )', 'errcatch');
+                                ierr = execstr("workd(ipntr(2):ipntr(2)+nA-1) = A_fun( y(perm) )", "errcatch");
                                 if(ierr <> 0)
                                     break;
                                 end
                                 y = y(iperm);
                             else
-                                ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun(y)', 'errcatch');
+                                ierr = execstr("workd(ipntr(2):ipntr(2)+nA-1) = A_fun(y)", "errcatch");
                                 if(ierr <> 0)
                                     break;
                                 end
                             end
                             workd(ipntr(2):ipntr(2)+nA-1) = umf_lusolve(Rfact, y);
                         else
-                            ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun( R \ workd(ipntr(1):ipntr(1)+nA-1) )', 'errcatch');
+                            ierr = execstr("workd(ipntr(2):ipntr(2)+nA-1) = A_fun( R \ workd(ipntr(1):ipntr(1)+nA-1) )", "errcatch");
                             if(ierr <> 0)
                                 break;
                             end
@@ -991,7 +992,7 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
                     if(ido == 2)
                         workd(ipntr(2):ipntr(2)+nA-1) = workd(ipntr(1):ipntr(1)+nA-1);
                     else
-                        ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(1):ipntr(1)+nA-1))', 'errcatch');
+                        ierr = execstr("workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(1):ipntr(1)+nA-1))", "errcatch");
                         if(ierr <> 0)
                             break;
                         end
@@ -1009,12 +1010,12 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
                         else
                             workd(ipntr(2):ipntr(2)+nA-1) = %_B * workd(ipntr(1):ipntr(1)+nA-1);
                         end
-                        ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(2):ipntr(2)+nA-1))', 'errcatch');
+                        ierr = execstr("workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(2):ipntr(2)+nA-1))", "errcatch");
                         if(ierr <> 0)
                             break;
                         end
                     else
-                        ierr = execstr('workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(3):ipntr(3)+nA-1))', 'errcatch');
+                        ierr = execstr("workd(ipntr(2):ipntr(2)+nA-1) = A_fun(workd(ipntr(3):ipntr(3)+nA-1))", "errcatch");
                         if(ierr <> 0)
                             break;
                         end

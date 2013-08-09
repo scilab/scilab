@@ -31,11 +31,13 @@ void CheckEMPTY(FILE *f, VARPTR var, int flag);
 void CheckWORK(FILE *f, VARPTR var, int flag);
 void CheckDIMFOREXT(FILE *f, VARPTR var, int flag);
 void Check(FILE *f, VARPTR var, int nel);
-void CheckSquare(FILE *f, VARPTR var, char *str1,char *);
+void CheckSquare(FILE *f, VARPTR var, char *str1, char *);
 
-typedef  struct  {
-  int type;
-  void   (*fonc) (FILE *f, VARPTR var, int flag ) ;} CheckRhsTab ;
+typedef  struct
+{
+    int type;
+    void   (*fonc) (FILE *f, VARPTR var, int flag ) ;
+} CheckRhsTab ;
 
 extern CheckRhsTab CHECKTAB[];
 

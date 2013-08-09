@@ -9,4 +9,3 @@
 
 add_help_chapter("Modules manager", SCI+"/modules/modules_manager/help/ja_JP", %T);
 
- 

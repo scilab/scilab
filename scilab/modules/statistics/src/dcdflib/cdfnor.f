@@ -98,6 +98,8 @@ C
 C
 C**********************************************************************
 C     .. Parameters ..
+      DOUBLE PRECISION inf
+      PARAMETER (inf=1.0D300)
 C     ..
 C     .. Scalar Arguments ..
       DOUBLE PRECISION bound,mean,p,q,sd,x
@@ -107,7 +109,7 @@ C     .. Local Scalars ..
       DOUBLE PRECISION z,pq
 C     ..
 C     .. External Functions ..
-
+      INTEGER vfinite
       DOUBLE PRECISION dinvnr,spmpar
       EXTERNAL dinvnr,spmpar
 C     ..
@@ -132,6 +134,12 @@ C
 C
 C     P
 C
+      IF (ISANAN(p).EQ.1) THEN
+         CALL RETURNANANFORTRAN(x)
+         CALL RETURNANANFORTRAN(sd)
+         CALL RETURNANANFORTRAN(mean)
+         RETURN
+      ENDIF
       IF (.NOT. ((p.LE.0.0D0).OR. (p.GT.1.0D0))) GO TO 60
       IF (.NOT. (p.LE.0.0D0)) GO TO 40
       bound = 0.0D0
@@ -146,6 +154,12 @@ C
 C
 C     Q
 C
+      IF (ISANAN(q).EQ.1) THEN
+         CALL RETURNANANFORTRAN(x)
+         CALL RETURNANANFORTRAN(sd)
+         CALL RETURNANANFORTRAN(mean)
+         RETURN
+      ENDIF
       IF (.NOT. ((q.LE.0.0D0).OR. (q.GT.1.0D0))) GO TO 100
       IF (.NOT. (q.LE.0.0D0)) GO TO 80
       bound = 0.0D0
@@ -174,8 +188,52 @@ C
   140 CONTINUE
   150 IF (which.EQ.4) GO TO 170
 C
+C     X
+C
+      IF (ISANAN(x).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(mean)
+         CALL RETURNANANFORTRAN(sd)
+         RETURN
+      ENDIF
+      IF (vfinite(1,x).EQ.0) then
+         IF (which.EQ.1) then
+            IF (x.GT.0) then
+               p = 1
+               q = 0
+               RETURN
+            ELSE
+               p = 0
+               q = 1
+               RETURN
+            ENDIF
+         ELSE
+            x = SIGN(inf,x)
+         ENDIF
+      ENDIF
+C
+C     MEAN
+C
+      IF (ISANAN(mean).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(x)
+         CALL RETURNANANFORTRAN(sd)
+         RETURN
+      ENDIF
+      IF (vfinite(1,mean).EQ.0) mean = SIGN(inf,mean)
+C
 C     SD
 C
+      IF (ISANAN(sd).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(x)
+         CALL RETURNANANFORTRAN(mean)
+         RETURN
+      ENDIF
+      IF (vfinite(1,sd).EQ.0) sd = SIGN(inf,sd)
       IF (.NOT. (sd.LE.0.0D0)) GO TO 160
       bound = 0.0D0
       status = -6

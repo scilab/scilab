@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-05-10 04:11+0000\n"
 "Last-Translator: MouetteYang <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: \n"
 
 #, c-format
@@ -57,8 +57,157 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 輸入參數 的資料型態錯誤: 應該是字串型態.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid H5Object.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A H5Object expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot remove H5Object.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Five row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: six row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d column vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can not print H5Object: invalid object.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can not create output argument.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A HDF5 object expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Real row or column vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row or column vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can not use H5Object: invalid object.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid number of arguments: more than %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid access mode: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid number of input arguments.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid number of input argument.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid path: cannot be empty.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Second argument must be a dataset name.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument 'count' is missing.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid number of argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to open file: %s\n"
@@ -71,3 +220,522 @@ msgstr ""
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: 無效的HDF5 Scilab格式。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: More than %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Only one field can be requested.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Error in retrieving field content:\n"
+"%s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Not an H5 Compound object.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can not print H5Object.\n"
+msgstr ""
+
+msgid "Invalid index."
+msgstr ""
+
+msgid "Dimensions"
+msgstr ""
+
+#, c-format
+msgid "Cannot open attribute: %s"
+msgstr ""
+
+msgid "Cannot get the attribute type"
+msgstr ""
+
+msgid "Cannot get the attribute dataspace"
+msgstr ""
+
+msgid "Error in retrieving data."
+msgstr ""
+
+#, c-format
+msgid "Attribute %s already exists."
+msgstr ""
+
+msgid "Cannot create a new attribute."
+msgstr ""
+
+msgid "Cannot write data in the attribute."
+msgstr ""
+
+msgid "Cannot copy the attribute"
+msgstr ""
+
+msgid "Cannot read attribute data."
+msgstr ""
+
+msgid "Cannot get the size of attribute list."
+msgstr ""
+
+#, c-format
+msgid "Invalid index %d: must be between 0 and %d."
+msgstr ""
+
+#, c-format
+msgid "Cannot open attribute at position %d."
+msgstr ""
+
+msgid "Filename"
+msgstr ""
+
+msgid "Number of elements"
+msgstr ""
+
+msgid "Cannot copy data to an empty pointer"
+msgstr ""
+
+msgid "Wrong dimensions."
+msgstr ""
+
+#, c-format
+msgid "Invalid field name: %s"
+msgstr ""
+
+msgid "Fields Names"
+msgstr ""
+
+msgid "Cannot create an hypermatrix on the stack"
+msgstr ""
+
+msgid "Cannot get the data type"
+msgstr ""
+
+msgid "Unknown integer datatype."
+msgstr ""
+
+msgid "Unknown floating-point datatype."
+msgstr ""
+
+msgid "Bitfield is too big"
+msgstr ""
+
+msgid "Cannot get data from an unknown data type."
+msgstr ""
+
+msgid "Memory to allocate is too big"
+msgstr ""
+
+msgid "Cannot allocate memory to get the data"
+msgstr ""
+
+msgid "Cannot retrieve the data from the attribute"
+msgstr ""
+
+#, c-format
+msgid "Cannot open the given dataset %s."
+msgstr ""
+
+#, c-format
+msgid "Cannot get the dataspace associated with dataset named %s."
+msgstr ""
+
+msgid "Invalid layout"
+msgstr ""
+
+#, c-format
+msgid "Only %d dimensions."
+msgstr ""
+
+msgid "Cannot list dataset attributes."
+msgstr ""
+
+#, c-format
+msgid "Cannot open the dataset: %s"
+msgstr ""
+
+msgid "Invalid source space"
+msgstr ""
+
+msgid "Invalid target space"
+msgstr ""
+
+msgid "Cannot modify maximum dimensions."
+msgstr ""
+
+#, c-format
+msgid "Cannot modify dimension %d."
+msgstr ""
+
+#, c-format
+msgid "Cannot set the chunk dimensions: %s"
+msgstr ""
+
+#, c-format
+msgid "Cannot create the dataset: %s"
+msgstr ""
+
+msgid "Cannot write data in the dataset."
+msgstr ""
+
+msgid "unknown dataspace"
+msgstr ""
+
+msgid "Unknown dataspace: cannot get its dimensions"
+msgstr ""
+
+msgid "Cannot select all."
+msgstr ""
+
+msgid "Cannot create an array of integer on the stack."
+msgstr ""
+
+msgid "Cannot create a string on the stack."
+msgstr ""
+
+msgid "Unknown dataspace"
+msgstr ""
+
+msgid "Extents"
+msgstr ""
+
+msgid "Invalid selection rank."
+msgstr ""
+
+msgid "Invalid selection."
+msgstr ""
+
+msgid "Cannot get the current stack of errors."
+msgstr ""
+
+msgid "HDF5 description"
+msgstr ""
+
+msgid "Exception thrown in file"
+msgstr ""
+
+msgid "at line"
+msgstr ""
+
+msgid "Cannot get the link info"
+msgstr ""
+
+msgid "Cannot get the link target"
+msgstr ""
+
+msgid "Link type"
+msgstr ""
+
+msgid "Link name"
+msgstr ""
+
+msgid "Link path"
+msgstr ""
+
+msgid "Link target file"
+msgstr ""
+
+msgid "Link target path"
+msgstr ""
+
+msgid "Invalid hdf5 file: empty filename."
+msgstr ""
+
+#, c-format
+msgid "Invalid hdf5 file: %s."
+msgstr ""
+
+#, c-format
+msgid "Cannot open the given hdf5 file: %s."
+msgstr ""
+
+#, c-format
+msgid "Cannot create the given hdf5 file: %s."
+msgstr ""
+
+#, c-format
+msgid ""
+"Cannot open the file: %s, an empty file with the same name already exists."
+msgstr ""
+
+#, c-format
+msgid "Cannot append the file (not HDF5): %s."
+msgstr ""
+
+msgid "Invalid flag."
+msgstr ""
+
+#, c-format
+msgid "Invalid path: %s"
+msgstr ""
+
+msgid "Cannot set 'core' as driver."
+msgstr ""
+
+#, c-format
+msgid "Invalid filename: must contain a '%d'."
+msgstr ""
+
+msgid "Cannot set 'family' as driver."
+msgstr ""
+
+msgid "Error in flushing the file."
+msgstr ""
+
+#, c-format
+msgid "Cannot retrieve file size: %s"
+msgstr ""
+
+#, c-format
+msgid "Cannot retrieve file version: %s"
+msgstr ""
+
+msgid "Cannot create an integer on the stack."
+msgstr ""
+
+#, c-format
+msgid "Invalid field %s."
+msgstr ""
+
+#, c-format
+msgid "Cannot open the group %s."
+msgstr ""
+
+msgid "Cannot get the links number"
+msgstr ""
+
+msgid "Cannot create a column of strings on the stack."
+msgstr ""
+
+msgid "Cannot list group links."
+msgstr ""
+
+msgid "Cannot list group attributes."
+msgstr ""
+
+msgid "Cannot list group contents"
+msgstr ""
+
+#, c-format
+msgid "The group already exists: %s."
+msgstr ""
+
+#, c-format
+msgid "Cannot create the group: %s."
+msgstr ""
+
+msgid "Cannot get the number of groups."
+msgstr ""
+
+msgid "Cannot get linked object"
+msgstr ""
+
+msgid "Link target name"
+msgstr ""
+
+#, c-format
+msgid "The link %s does not exist."
+msgstr ""
+
+#, c-format
+msgid "Invalid link type: %s."
+msgstr ""
+
+msgid "Cannot get the number of links."
+msgstr ""
+
+msgid "Invalid operation"
+msgstr ""
+
+#, c-format
+msgid "Invalid index at position %d"
+msgstr ""
+
+msgid "Cannot get the number of objects."
+msgstr ""
+
+msgid "Parent group name"
+msgstr ""
+
+msgid "Parent group path"
+msgstr ""
+
+msgid "Elements type"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+#, c-format
+msgid "Invalid index: %d."
+msgstr ""
+
+#, c-format
+msgid "Cannot get object at position %d."
+msgstr ""
+
+#, c-format
+msgid "Invalid name: %s."
+msgstr ""
+
+msgid "Invalid HDF5 object"
+msgstr ""
+
+#, c-format
+msgid "Invalid field: %s"
+msgstr ""
+
+msgid "Cannot create a mlist on the stack."
+msgstr ""
+
+msgid "Cannot list names."
+msgstr ""
+
+msgid "Cannot retrieve information about the object"
+msgstr ""
+
+msgid "Unknown HDF5 object"
+msgstr ""
+
+msgid "Cannot retrieve numeric index."
+msgstr ""
+
+msgid "Cannot open object at the given position."
+msgstr ""
+
+msgid "Link target"
+msgstr ""
+
+msgid "Cannot free the memory associated with String data"
+msgstr ""
+
+#, c-format
+msgid "Invalid H5Type name: %s."
+msgstr ""
+
+msgid "Unknown datatype"
+msgstr ""
+
+msgid "Cannot get H5Object id"
+msgstr ""
+
+msgid "Invalid object: not a dataset."
+msgstr ""
+
+msgid "Cannot remove a file."
+msgstr ""
+
+msgid "Cannot remove root element."
+msgstr ""
+
+#, c-format
+msgid "The name doesn't exist: %s."
+msgstr ""
+
+#, c-format
+msgid "Cannot remove the attribute: %s."
+msgstr ""
+
+#, c-format
+msgid "Cannot remove the link: %s."
+msgstr ""
+
+#, c-format
+msgid "The link already exists: %s."
+msgstr ""
+
+#, c-format
+msgid "Cannot create the hard link: %s."
+msgstr ""
+
+#, c-format
+msgid "Cannot create the soft link: %s."
+msgstr ""
+
+#, c-format
+msgid "Cannot create a hard link to the external object: %s."
+msgstr ""
+
+#, c-format
+msgid "Cannot create the external link: %s."
+msgstr ""
+
+msgid "Cannot copy object."
+msgstr ""
+
+msgid "Invalid filter"
+msgstr ""
+
+msgid "Can only label a dataset"
+msgstr ""
+
+msgid "Target object is not a file"
+msgstr ""
+
+msgid "Invalid location"
+msgstr ""
+
+#, c-format
+msgid "Invalid location: %s"
+msgstr ""
+
+#, c-format
+msgid "Cannot mount the file: %s"
+msgstr ""
+
+#, c-format
+msgid "Cannot unmount the file at location: %s"
+msgstr ""
+
+#, c-format
+msgid "Can not read input argument #%d."
+msgstr ""
+
+#, c-format
+msgid "Can not get the type of input argument #%d."
+msgstr ""
+
+msgid "Complex datatype not handled for now."
+msgstr ""
+
+#, c-format
+msgid "%s: Can not read input argument #%d."
+msgstr ""
+
+#, c-format
+msgid "%s: Datatype not handled for now."
+msgstr ""
+
+#, c-format
+msgid "Invalid rank, must be in the interval [0, %d]."
+msgstr ""
+
+msgid "No converter found for the specified target datatype."
+msgstr ""
+
+msgid "Cannot create a new dataspace."
+msgstr ""
+
+msgid "Invalid target dataspace."
+msgstr ""
+
+msgid "Cannot create the target type."
+msgstr ""
+
+msgid "Incompatible dimensions"
+msgstr ""
+
+msgid "References must be given as strings"
+msgstr ""
+
+#, c-format
+msgid "Invalid path: %s."
+msgstr ""

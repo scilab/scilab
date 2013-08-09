@@ -51,7 +51,7 @@ double Plot3DDecomposer::getZCoordinate(double* z, int numX, int numY, int i, in
 {
     double zij = 0.;
 
-    zij = z[numX*j+i];
+    zij = z[numX * j + i];
 
     return zij;
 }
@@ -60,7 +60,7 @@ double Plot3DDecomposer::getZCoordinate(double* z, int numX, int numY, int i, in
 {
     double zij = 0.;
 
-    zij = z[numX*j+i];
+    zij = z[numX * j + i];
 
     if (logUsed)
     {
@@ -71,7 +71,7 @@ double Plot3DDecomposer::getZCoordinate(double* z, int numX, int numY, int i, in
 }
 
 void Plot3DDecomposer::getFacetTriangles(double* x, double* y, double* z, int numX, int numY, int i, int j,
-                                         int* facetVertexIndices, int* triangleVertexIndices)
+        int* facetVertexIndices, int* triangleVertexIndices)
 {
     double vertices[4][3];
 
@@ -181,7 +181,7 @@ int Plot3DDecomposer::getWireIndicesSize(char* id)
         return 0;
     }
 
-    return 2*2*(numX-1)*(numY-1) + 2*(numX-1) + 2*(numY-1);
+    return 2 * 2 * (numX - 1) * (numY - 1) + 2 * (numX - 1) + 2 * (numY - 1);
 }
 
 /*
@@ -257,13 +257,13 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
     jm1HorizontalEdgeZValid = 0;
 
     /* x-axis and y-axis indices (respectively) */
-    for (int j = 0; j < numY-1; j++)
+    for (int j = 0; j < numY - 1; j++)
     {
-        nextRowValid = DecompositionUtils::isValid(y[j+1]);
+        nextRowValid = DecompositionUtils::isValid(y[j + 1]);
 
         if (logMask & 0x2)
         {
-            nextRowValid &= DecompositionUtils::isLogValid(y[j+1]);
+            nextRowValid &= DecompositionUtils::isLogValid(y[j + 1]);
         }
 
         if (!currentRowValid)
@@ -282,7 +282,7 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
         }
 
         ij = getPointIndex(numX, numY, 0, j);
-        ijp1 = getPointIndex(numX, numY, 0, j+1);
+        ijp1 = getPointIndex(numX, numY, 0, j + 1);
 
         lowerLeftZValid = DecompositionUtils::isValid(z[ij]);
         upperLeftZValid = DecompositionUtils::isValid(z[ijp1]);
@@ -298,20 +298,20 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
         /* Set to 0 as not relevant for the first column iteration */
         im1VerticalEdgeZValid = 0;
 
-        for (int i = 0; i < numX-1; i++)
+        for (int i = 0; i < numX - 1; i++)
         {
 #if !PER_VERTEX_VALUES
             firstVertexIndex = getFirstVertexIndex(numX, numY, i, j);
 #endif
 
-            ip1j = getPointIndex(numX, numY, i+1, j);
-            ip1jp1 = getPointIndex(numX, numY, i+1, j+1);
+            ip1j = getPointIndex(numX, numY, i + 1, j);
+            ip1jp1 = getPointIndex(numX, numY, i + 1, j + 1);
 
-            nextColumnValid = DecompositionUtils::isValid(x[i+1]);
+            nextColumnValid = DecompositionUtils::isValid(x[i + 1]);
 
             if (logMask & 0x1)
             {
-                nextColumnValid &= DecompositionUtils::isLogValid(x[i+1]);
+                nextColumnValid &= DecompositionUtils::isLogValid(x[i + 1]);
             }
 
             lowerRightZValid = DecompositionUtils::isValid(z[ip1j]);
@@ -325,8 +325,8 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
 
             if (j > 0)
             {
-                ijm1 = getPointIndex(numX, numY, i, j-1);
-                ip1jm1 = getPointIndex(numX, numY, i+1, j-1);
+                ijm1 = getPointIndex(numX, numY, i, j - 1);
+                ip1jm1 = getPointIndex(numX, numY, i + 1, j - 1);
 
                 jm1HorizontalEdgeZValid = DecompositionUtils::isValid(z[ijm1]) && DecompositionUtils::isValid(z[ip1jm1]);
 
@@ -349,10 +349,10 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
             {
 #if PER_VERTEX_VALUES
                 buffer[bufferOffset] = ij;
-                buffer[bufferOffset+1] = ip1j;
+                buffer[bufferOffset + 1] = ip1j;
 #else
                 buffer[bufferOffset] = firstVertexIndex;
-                buffer[bufferOffset+1] = firstVertexIndex +1;
+                buffer[bufferOffset + 1] = firstVertexIndex + 1;
 #endif
 
                 bufferOffset += 2;
@@ -362,10 +362,10 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
             {
 #if PER_VERTEX_VALUES
                 buffer[bufferOffset] = ij;
-                buffer[bufferOffset+1] = ijp1;
+                buffer[bufferOffset + 1] = ijp1;
 #else
                 buffer[bufferOffset] = firstVertexIndex;
-                buffer[bufferOffset+1] = firstVertexIndex +2;
+                buffer[bufferOffset + 1] = firstVertexIndex + 2;
 #endif
 
                 bufferOffset += 2;
@@ -388,12 +388,12 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
         {
 #if PER_VERTEX_VALUES
             buffer[bufferOffset] = ij;
-            buffer[bufferOffset+1] = ijp1;
+            buffer[bufferOffset + 1] = ijp1;
 #else
-            firstVertexIndex = getFirstVertexIndex(numX, numY, numX-2, j);
+            firstVertexIndex = getFirstVertexIndex(numX, numY, numX - 2, j);
 
-            buffer[bufferOffset] = firstVertexIndex +1;
-            buffer[bufferOffset+1] = firstVertexIndex +3;
+            buffer[bufferOffset] = firstVertexIndex + 1;
+            buffer[bufferOffset + 1] = firstVertexIndex + 3;
 #endif
 
             bufferOffset += 2;
@@ -404,11 +404,11 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
     }
 
     /* Topmost horizontal lines */
-    currentRowValid = DecompositionUtils::isValid(y[numY-1]);
+    currentRowValid = DecompositionUtils::isValid(y[numY - 1]);
 
     if (logMask & 0x2)
     {
-        currentRowValid &= DecompositionUtils::isLogValid(y[numY-1]);
+        currentRowValid &= DecompositionUtils::isLogValid(y[numY - 1]);
     }
 
     currentColumnValid = DecompositionUtils::isValid(x[0]);
@@ -418,7 +418,7 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
         currentColumnValid = DecompositionUtils::isValid(x[0]);
     }
 
-    ij = getPointIndex(numX, numY, 0, numY-1);
+    ij = getPointIndex(numX, numY, 0, numY - 1);
 
     lowerLeftZValid = DecompositionUtils::isValid(z[ij]);
 
@@ -427,18 +427,18 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
         lowerLeftZValid &= DecompositionUtils::isValid(z[ij]);
     }
 
-    ij = getPointIndex(numX, numY, 0, numY-1);
+    ij = getPointIndex(numX, numY, 0, numY - 1);
 
-    for (int i = 0; i < numX-1; i++)
+    for (int i = 0; i < numX - 1; i++)
     {
-        nextColumnValid = DecompositionUtils::isValid(x[i+1]);
+        nextColumnValid = DecompositionUtils::isValid(x[i + 1]);
 
         if (logMask & 0x1)
         {
-            nextColumnValid &= DecompositionUtils::isLogValid(x[i+1]);
+            nextColumnValid &= DecompositionUtils::isLogValid(x[i + 1]);
         }
 
-        ip1j = getPointIndex(numX, numY, i+1, numY-1);
+        ip1j = getPointIndex(numX, numY, i + 1, numY - 1);
 
         lowerRightZValid = DecompositionUtils::isValid(z[ip1j]);
 
@@ -447,8 +447,8 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
             lowerRightZValid &= DecompositionUtils::isLogValid(z[ip1j]);
         }
 
-        ijm1 = getPointIndex(numX, numY, i, numY-2);
-        ip1jm1 = getPointIndex(numX, numY, i+1, numY-2);
+        ijm1 = getPointIndex(numX, numY, i, numY - 2);
+        ip1jm1 = getPointIndex(numX, numY, i + 1, numY - 2);
 
         jm1HorizontalEdgeZValid = DecompositionUtils::isValid(z[ijm1]) && DecompositionUtils::isValid(z[ip1jm1]);
 
@@ -463,12 +463,12 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
         {
 #if PER_VERTEX_VALUES
             buffer[bufferOffset] = ij;
-            buffer[bufferOffset+1] = ip1j;
+            buffer[bufferOffset + 1] = ip1j;
 #else
-            firstVertexIndex = getFirstVertexIndex(numX, numY, i, numY-2);
+            firstVertexIndex = getFirstVertexIndex(numX, numY, i, numY - 2);
 
-            buffer[bufferOffset] = firstVertexIndex +2;
-            buffer[bufferOffset+1] = firstVertexIndex +3;
+            buffer[bufferOffset] = firstVertexIndex + 2;
+            buffer[bufferOffset + 1] = firstVertexIndex + 3;
 #endif
 
             bufferOffset += 2;

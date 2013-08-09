@@ -21,50 +21,50 @@
 /*--------------------------------------------------------------------------*/
 char **GetVariablesName(void)
 {
-        int returnedArraySize = 0;
-        char **VarsName = getVariablesName(&returnedArraySize, TRUE);
-        /* SWIG char array must be finished by NULL */
-        if (VarsName)
-        {
-                VarsName = (char**)REALLOC(VarsName,sizeof(char*)*(returnedArraySize+1));
-                VarsName[returnedArraySize] = NULL;
-        }
-        return VarsName;
+    int returnedArraySize = 0;
+    char **VarsName = getVariablesName(&returnedArraySize, TRUE);
+    /* SWIG char array must be finished by NULL */
+    if (VarsName)
+    {
+        VarsName = (char**)REALLOC(VarsName, sizeof(char*) * (returnedArraySize + 1));
+        VarsName[returnedArraySize] = NULL;
+    }
+    return VarsName;
 }
 /*--------------------------------------------------------------------------*/
 char **GetCommandsName(void)
 {
-        int returnedArraySize = 0;
-        char **CommandKeywords = getcommandkeywords(&returnedArraySize);
-        if (CommandKeywords)
-        {
-                CommandKeywords = (char**)REALLOC(CommandKeywords, sizeof(char*)*(returnedArraySize+1));
-                CommandKeywords[returnedArraySize] = NULL;
-        }
-        return CommandKeywords;
+    int returnedArraySize = 0;
+    char **CommandKeywords = getcommandkeywords(&returnedArraySize);
+    if (CommandKeywords)
+    {
+        CommandKeywords = (char**)REALLOC(CommandKeywords, sizeof(char*) * (returnedArraySize + 1));
+        CommandKeywords[returnedArraySize] = NULL;
+    }
+    return CommandKeywords;
 }
 /*--------------------------------------------------------------------------*/
 char **GetFunctionsName(void)
 {
-        int returnedArraySize = 0;
-        char **FunctionsName = GetFunctionsList(&returnedArraySize);
-        if (FunctionsName)
-        {
-                FunctionsName = (char**)REALLOC(FunctionsName, sizeof(char*)*(returnedArraySize+1));
-                FunctionsName[returnedArraySize] = NULL;
-        }
-        return FunctionsName;
+    int returnedArraySize = 0;
+    char **FunctionsName = GetFunctionsList(&returnedArraySize);
+    if (FunctionsName)
+    {
+        FunctionsName = (char**)REALLOC(FunctionsName, sizeof(char*) * (returnedArraySize + 1));
+        FunctionsName[returnedArraySize] = NULL;
+    }
+    return FunctionsName;
 }
 /*--------------------------------------------------------------------------*/
 char **GetMacrosName(void)
 {
-        int returnedArraySize = 0;
-        char **MacrosName = getmacroslist(&returnedArraySize);
-        if (MacrosName)
-        {
-                MacrosName = (char**)REALLOC(MacrosName, sizeof(char*)*(returnedArraySize+1));
-                MacrosName[returnedArraySize] = NULL;
-        }
-        return MacrosName;
+    int returnedArraySize = 0;
+    char **MacrosName = getmacroslist(&returnedArraySize);
+    if (MacrosName)
+    {
+        MacrosName = (char**)REALLOC(MacrosName, sizeof(char*) * (returnedArraySize + 1));
+        MacrosName[returnedArraySize] = NULL;
+    }
+    return MacrosName;
 }
 /*--------------------------------------------------------------------------*/

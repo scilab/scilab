@@ -142,11 +142,11 @@ public abstract class AbstractScilabCodeHandler {
      */
     public static class LinkWriter {
 
-	/**
-	 * Default Constructor
-	 */
-	public LinkWriter() { }
-	
+        /**
+         * Default Constructor
+         */
+        public LinkWriter() { }
+
         /**
          * @param id the id
          * @return the modified link

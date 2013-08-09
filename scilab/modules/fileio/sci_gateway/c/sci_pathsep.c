@@ -25,7 +25,10 @@ int sci_pathsep(char *fname, unsigned long fname_len)
     CheckLhs(1, 1);
 
     separator = (char*)MALLOC(sizeof(char) * (strlen(PATH_SEPARATOR) + 1));
-    if (separator) strcpy(separator, PATH_SEPARATOR);
+    if (separator)
+    {
+        strcpy(separator, PATH_SEPARATOR);
+    }
 
     n1 = 1;
     m1 = (int)strlen(separator);

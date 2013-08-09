@@ -10,7 +10,7 @@ matcmp_
 matldiv_
 matrdiv_
 matmult_
-matsubst_
+matsubt_
 matchsgn_
 matadd_
 vecimpl_

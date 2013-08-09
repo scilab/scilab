@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-22 14:38+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-26 14:06+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: fr\n"
 
 #, c-format
@@ -28,7 +28,7 @@ msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 #, c-format
 msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument n°%d : Une matrice de chaîne de caractères "
+"%s : Type erroné de l'argument n°%d : Une matrice de chaînes de caractères "
 "attendue.\n"
 
 #, c-format
@@ -396,6 +396,12 @@ msgstr "Normal"
 msgid "Wrap lines"
 msgstr "Retour automatique à la ligne"
 
+msgid "Background color: "
+msgstr "Couleur d'arrière-plan : "
+
+msgid "Cursor color: "
+msgstr "Couleur du curseur : "
+
 msgid "Keywords"
 msgstr "Mots-clés"
 
@@ -480,6 +486,10 @@ msgstr "Nom de fichier"
 
 msgid "Append filename with: "
 msgstr "Adjoindre le nom de fichier avec : "
+
+#, c-format
+msgid "(%date can be used to be replaced by the current date)"
+msgstr "(%date peut être utilisée pour être remplacée par la date actuelle)"
 
 msgid "Replace extension with: "
 msgstr "Remplacer l'extension par : "
@@ -1123,3 +1133,22 @@ msgstr "Sélectionner le répertoire de base pour la recherche"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Le module '%s' de Scilab n'est pas installé.\n"
+
+msgid "the last error did not occur inside a library function."
+msgstr ""
+"La dernière erreur ne s'est pas produite dans une fonction de bibliothèque"
+
+msgid " on line "
+msgstr " à la ligne "
+
+msgid "opening file "
+msgstr "ouverture du fichier "
+
+msgid " of the source file of the function "
+msgstr " du fichier source de la fonction "
+
+msgid "the source file of the function "
+msgstr "le fichier source de la fonction "
+
+msgid " was not found in any library path"
+msgstr " n'a pas pu être trouvée dans aucune bibliothèque"

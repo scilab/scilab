@@ -10,14 +10,14 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function y = asecd(x)
-  //Inverse secant, result in degrees.
-  rhs = argn(2);
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"asecd", 1));
-  end
+    //Inverse secant, result in degrees.
+    rhs = argn(2);
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"asecd", 1));
+    end
 
-  if ~isreal(x) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"asecd",1));
-  end
-  y = 180/%pi*acos(ones(x)./x);
+    if and(type(x) <> [1 5]) | ~isreal(x) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real sparse or full matrix expected.\n"),"asecd",1));
+    end
+    y = 180/%pi*acos(ones(x)./x);
 endfunction

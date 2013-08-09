@@ -210,7 +210,7 @@
                 </para>
                 <para>
                     Le paramètre d'entrée <literal>f</literal> de
-                    <literal>ode</literal> défini le membre de droite de léquation
+                    <literal>ode</literal> définit le membre de droite de l'équation
                     différentielle du premier ordre dy/dt=f(t,y). C'est un external qui
                     peut être :
                 </para>
@@ -235,13 +235,13 @@
                         <para>Si c'est une subroutine Fortran, sa liste d'appel doit
                             être
                         </para>
-                        <programlisting role=""><![CDATA[ 
-subroutine fex(n,t,y,ydot) 
+                        <programlisting role=""><![CDATA[
+subroutine fex(n,t,y,ydot)
 integer n
 double precision t,y(*),ydot(*)
  ]]></programlisting>
                         <para>Si c'est une fonction C son prototype doit être:</para>
-                        <programlisting role=""><![CDATA[ 
+                        <programlisting role=""><![CDATA[
 void fex(int *n,double *t,double *y,double *ydot)
  ]]></programlisting>
                         <para>
@@ -320,18 +320,18 @@ void fex(int *n,double *t,double *y,double *ydot)
                 <para>En Fortran, Cette routine doit avoir la liste d'appel suivante
                     :
                 </para>
-                <programlisting role=""><![CDATA[ 
-subroutine fex(n,t,y,ml,mu,J,nrpd) 
+                <programlisting role=""><![CDATA[
+subroutine fex(n,t,y,ml,mu,J,nrpd)
 integer n,ml,mu,nrpd
 double precision t,y(*),J(*)
  ]]></programlisting>
                 <para>Si c'est une fonction C son prototype doit être:</para>
-                <programlisting role=""><![CDATA[ 
+                <programlisting role=""><![CDATA[
 void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
  ]]></programlisting>
                 <para>Dans la plupart des cas il n'est pas nécessaire d'utiliser
                     <literal>ml</literal>, <literal>mu</literal> et
-                    <literal>nrpd</literal>, qui sont relatif aà la possibilité de
+                    <literal>nrpd</literal>, qui sont relatifs à la possibilité de
                     stockage "bande" du Jacobien
                 </para>
                 <para>
@@ -342,11 +342,11 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
             <listitem>
                 <para>
                     Les arguments optionnels <literal>w</literal> et
-                    <literal>iw</literal> sont des vecteurs ou le solveur stocke des
-                    informations sur son état(voir <link linkend="ode_optional_output">ode_optional_output</link> pour plus de
+                    <literal>iw</literal> sont des vecteurs dans lesquels le solveur stocke des
+                    informations sur son état (voir <link linkend="ode_optional_output">ode_optional_output</link> pour plus de
                     détails) . Lorsque ces paramêtres sont utilisés comme argument
                     d'entrée, ils permettent de redémarrer l'intégration au point où elle
-                    s'était arrêtée à la sortie d'un apple précédent à
+                    s'était arrêtée à la sortie d'un appel précédent à
                     <literal>ode</literal>.
                 </para>
             </listitem>
@@ -359,7 +359,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // ---------- EDO Simple  (external : fonction Scilab)
 // dy/dt=y^2-y sin(t)+cos(t), y(0)=0
 function ydot=f(t,y),ydot=y^2-y*sin(t)+cos(t),endfunction
@@ -382,7 +382,7 @@ y=ode(y0,t0,t,'myode');
 // ---------- Simulation de dx/dt = A x(t) + B u(t) avec u(t)=sin(omega*t),
 // x0=[1;0]
 // solution x(t) desired at t=0.1, 0.2, 0.5 ,1.
-// A and u function are passed to RHS function in a list. 
+// A and u function are passed to RHS function in a list.
 // B and omega are passed as global variables
 function xdot=linear(t,x,A,u),xdot=A*x+B*u(t),endfunction
 function ut=u(t),ut=sin(omega*t),endfunction
@@ -391,22 +391,22 @@ ode([1;0],0,[0.1,0.2,0.5,1],list(linear,A,u))
 
 // ----------Integration de l'équation différentielle de Riccati (état matriciel)
 // Xdot=A'*X + X*A - X'*B*X + C , X(0)=Identity
-// Solution at t=[1,2] 
-function Xdot=ric(t,X),Xdot=A'*X+X*A-X'*B*X+C,endfunction  
+// Solution at t=[1,2]
+function Xdot=ric(t,X),Xdot=A'*X+X*A-X'*B*X+C,endfunction
 A=[1,1;0,2]; B=[1,0;0,1]; C=[1,0;0,1];
 t0=0;t=0:0.1:%pi;
 X=ode(eye(A),0,t,ric)
 
 // ---------- Calcul de exp(A)  (état matriciel)
 A=[1,1;0,2];
-function xdot=f(t,x),xdot=A*x;,endfunction 
+function xdot=f(t,x),xdot=A*x;,endfunction
 ode(eye(A),0,1,f)
 ode("adams",eye(A),0,1,f)
 
 // ----------  Calcul de exp(A)  (état matriciel, cas raide, jacobien fourni)
 A=[10,0;0,-1];
-function xdot=f(t,x),xdot=A*x,endfunction 
-function J=Jacobian(t,y),J=A,endfunction 
+function xdot=f(t,x),xdot=A*x,endfunction
+function J=Jacobian(t,y),J=A,endfunction
 ode("stiff",[0;1],0,1,f,Jacobian)
  ]]></programlisting>
     </refsection>
@@ -454,7 +454,7 @@ ode("stiff",[0;1],0,1,f,Jacobian)
     </refsection>
     <refsection>
         <title>Fonctions Utilisées</title>
-        <para>Les sous programmes associés se trouvent dans le répertoire
+        <para>Les sous-programmes associés se trouvent dans le répertoire
             SCI/modules/differential_equations/src/fortran/: lsode.f lsoda.f lsodar.f
         </para>
     </refsection>

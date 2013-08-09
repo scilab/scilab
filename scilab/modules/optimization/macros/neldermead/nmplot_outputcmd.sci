@@ -26,39 +26,39 @@
 // stop: set to true when the algorithm must stop
 //
 function stop = nmplot_outputcmd ( state , data , this )
-  nmplot_log ( this , "nmplot_outputcmd (1)")
-  iter = data.iteration
-  // Print simplex
-  x = optimsimplex_getallx ( data.simplex )
-  if this.simplexfn <> "" then
-    nbve = optimsimplex_getnbve ( data.simplex )
-    n = optimsimplex_getn ( data.simplex )
-    mfprintf ( this.simplexhandle , "// Iteration #%d\n", iter )
-    mfprintf ( this.simplexhandle , "history($+1) = [\n" )
-    for ive = 1:nbve
-      mfprintf ( this.simplexhandle , "// Vertex #%d\n", ive )
-      for ix = 1:n
-        mfprintf ( this.simplexhandle , "%e ", x(ive,ix))
-      end
-      mfprintf ( this.simplexhandle , "\n")
+    nmplot_log ( this , "nmplot_outputcmd (1)")
+    iter = data.iteration
+    // Print simplex
+    x = optimsimplex_getallx ( data.simplex )
+    if this.simplexfn <> "" then
+        nbve = optimsimplex_getnbve ( data.simplex )
+        n = optimsimplex_getn ( data.simplex )
+        mfprintf ( this.simplexhandle , "// Iteration #%d\n", iter )
+        mfprintf ( this.simplexhandle , "history($+1) = [\n" )
+        for ive = 1:nbve
+            mfprintf ( this.simplexhandle , "// Vertex #%d\n", ive )
+            for ix = 1:n
+                mfprintf ( this.simplexhandle , "%e ", x(ive,ix))
+            end
+            mfprintf ( this.simplexhandle , "\n")
+        end
+        mfprintf ( this.simplexhandle , "]\n" )
     end
-    mfprintf ( this.simplexhandle , "]\n" )
-  end
-  // Function value average
-  if this.fbarfn <> "" then 
-    fbar = optimsimplex_fvmean ( data.simplex )
-    mfprintf ( this.fbarhandle , "%d %e\n", iter , fbar )
-  end
-  // Minimum function value
-  if this.foptfn <> "" then
-    fopt = data.fval
-    mfprintf ( this.fopthandle , "%d %e\n", iter , fopt )
-  end
-  // Sigma
-  if this.sigmafn <> "" then
-    sigma = optimsimplex_size ( data.simplex , "sigmaplus" )
-    mfprintf ( this.sigmahandle , "%d %e\n", iter , sigma )
-  end
-  stop = %f
+    // Function value average
+    if this.fbarfn <> "" then
+        fbar = optimsimplex_fvmean ( data.simplex )
+        mfprintf ( this.fbarhandle , "%d %e\n", iter , fbar )
+    end
+    // Minimum function value
+    if this.foptfn <> "" then
+        fopt = data.fval
+        mfprintf ( this.fopthandle , "%d %e\n", iter , fopt )
+    end
+    // Sigma
+    if this.sigmafn <> "" then
+        sigma = optimsimplex_size ( data.simplex , "sigmaplus" )
+        mfprintf ( this.sigmahandle , "%d %e\n", iter , sigma )
+    end
+    stop = %f
 endfunction
 

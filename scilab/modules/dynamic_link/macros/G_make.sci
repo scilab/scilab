@@ -11,42 +11,42 @@
 //=============================================================================
 function res = G_make(files, objects_or_dll)
 
-  if ~haveacompiler() then
-    error(msprintf(gettext('%s: A Fortran or C compiler is required.\n'),'G_make'))
-  end
-
-  [lhs,rhs] = argn(0);
-  if rhs <> 2 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"G_make"));
-    return
-  end
-
-  msg = '';
-
-  if getos() == 'Windows' then // WINDOWS
-    // Load dynamic_link Internal lib if it's not already loaded
-    if ~ exists("dynamic_linkwindowslib") then
-      load("SCI/modules/dynamic_link/macros/windows/lib");
+    if ~haveacompiler() then
+        error(msprintf(gettext("%s: A Fortran or C compiler is required.\n"),"G_make"))
     end
-    res = dlwMake(files, objects_or_dll);
-  else // LINUX
 
-    mk = [];
-    for x = files(:)', if strindex(x,'-l')==[], mk=mk+' '+x ; end ;end
+    [lhs,rhs] = argn(0);
+    if rhs <> 2 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"G_make"));
+        return
+    end
+
+    msg = "";
+
+    if getos() == "Windows" then // WINDOWS
+        // Load dynamic_link Internal lib if it's not already loaded
+        if ~ exists("dynamic_linkwindowslib") then
+            load("SCI/modules/dynamic_link/macros/windows/lib");
+        end
+        res = dlwMake(files, objects_or_dll);
+    else // LINUX
+
+        mk = [];
+        for x = files(:)', if strindex(x,"-l")==[], mk=mk+" "+x ; end ;end
+
+        if ilib_verbose() > 1 then
+            msg = unix_g("make "+ mk);
+        else
+            host("make "+ mk);
+        end
+
+        res = files ;
+
+    end
 
     if ilib_verbose() > 1 then
-      msg = unix_g('make '+ mk);
-    else
-      host('make '+ mk);
+        disp(msg);
     end
-
-    res = files ;
-
-  end
-
-  if ilib_verbose() > 1 then
-    disp(msg);
-  end
 
 endfunction
 //=============================================================================

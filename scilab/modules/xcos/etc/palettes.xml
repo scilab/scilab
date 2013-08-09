@@ -528,7 +528,7 @@
             </block>
             <block name="SUPER_f">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/SUPER_f.png"/>
-                 
+                
             </block>
         </node>
         <node xsi:type="PreLoaded" enable="true" name="Zero crossing detection">

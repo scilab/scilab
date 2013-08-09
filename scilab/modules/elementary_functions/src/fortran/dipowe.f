@@ -9,7 +9,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c
       subroutine dipowe(v,p,r,ierr)
 c!purpose
-c     computes r=v^p where v double precision and b integer
+c     computes r=v^p where v double precision and p integer
 c!calling sequence
 c     subroutine dipowe(v,p,r,ierr)
 c     integer p ,ierr

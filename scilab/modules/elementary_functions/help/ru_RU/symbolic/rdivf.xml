@@ -33,10 +33,10 @@
     <refsection>
         <title>Описание</title>
         <para>
-          <code>r=rdivf("d", "c")</code> выполняет правое символьное деление (деление слева
-          направо) и возвращает строку <varname>r</varname>, которая равна
-          <literal>"c/d"</literal>. Выполняются такие простейшие упрощения как
-          <literal>"c/1" = "c"</literal>.
+            <code>r=rdivf("d", "c")</code> выполняет правое символьное деление (деление слева
+            направо) и возвращает строку <varname>r</varname>, которая равна
+            <literal>"c/d"</literal>. Выполняются такие простейшие упрощения как
+            <literal>"c/1" = "c"</literal>.
         </para>
     </refsection>
     <refsection>

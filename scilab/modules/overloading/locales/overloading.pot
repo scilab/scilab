@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:49+0100\n"
+"Revision-Date: 2013-07-26 14:53+0100\n"
 
 # File: macros/%0_i_st.sci, line: 19
 #, c-format
@@ -41,7 +41,7 @@ msgstr ""
 # File: macros/%p_i_lss.sci, line: 22
 # File: macros/%ticks_i_h.sci, line: 42
 # File: macros/generic_i_h.sci, line: 14
-# File: macros/generic_i_h.sci, line: 66
+# File: macros/generic_i_h.sci, line: 70
 # File: macros/generic_i_s.sci, line: 31
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -172,6 +172,7 @@ msgstr ""
 # File: macros/%p_prod.sci, line: 26
 # File: macros/%p_sum.sci, line: 28
 # File: macros/%r_cumprod.sci, line: 21
+# File: macros/%r_cumsum.sci, line: 28
 # File: macros/%r_prod.sci, line: 21
 # File: macros/%r_sum.sci, line: 23
 # File: macros/%sp_cumprod.sci, line: 26
@@ -196,6 +197,7 @@ msgstr ""
 # File: macros/%p_prod.sci, line: 28
 # File: macros/%p_sum.sci, line: 30
 # File: macros/%r_cumprod.sci, line: 23
+# File: macros/%r_cumsum.sci, line: 30
 # File: macros/%r_prod.sci, line: 23
 # File: macros/%r_sum.sci, line: 25
 # File: macros/%sp_cumprod.sci, line: 28
@@ -228,6 +230,8 @@ msgstr ""
 # File: macros/%p_sum.sci, line: 37
 # File: macros/%r_cumprod.sci, line: 31
 # File: macros/%r_cumprod.sci, line: 42
+# File: macros/%r_cumsum.sci, line: 39
+# File: macros/%r_cumsum.sci, line: 52
 # File: macros/%r_prod.sci, line: 31
 # File: macros/%r_prod.sci, line: 42
 # File: macros/%r_sum.sci, line: 32
@@ -273,25 +277,20 @@ msgstr ""
 #
 # File: macros/%hm_g_hm.sci, line: 16
 #, c-format
-msgid "%s: Operand not a boolean hypermat.\n"
+msgid "%s: Operand is not a boolean hypermatrix.\n"
 msgstr ""
 
 #
 # File: macros/%hm_g_hm.sci, line: 25
+# File: macros/%hm_h_hm.sci, line: 26
 #, c-format
-msgid "%s: incompatible operand dimensions.\n"
+msgid "%s: Incompatible operand dimensions.\n"
 msgstr ""
 
 #
 # File: macros/%hm_h_hm.sci, line: 17
 #, c-format
 msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
-msgstr ""
-
-#
-# File: macros/%hm_h_hm.sci, line: 26
-#, c-format
-msgid "%s: Incompatible operand dimensions.\n"
 msgstr ""
 
 #
@@ -393,6 +392,12 @@ msgid "%s: Wrong size for input argument(s).\n"
 msgstr ""
 
 #
+# File: macros/%r_cumsum.sci, line: 22
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+
+#
 # File: macros/%r_p_s.sci, line: 23
 msgid ""
 "  Warning: Syntax vector ^ scalar is obsolete it will be removed in "
@@ -404,7 +409,7 @@ msgstr ""
 # File: macros/%s_b_s.sci, line: 12
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d and #%d: integer values expected.\n"
+"%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
 msgstr ""
 
 #
@@ -427,13 +432,13 @@ msgstr ""
 # File: macros/%s_pow.sci, line: 39
 # File: macros/%s_pow.sci, line: 62
 #, c-format
-msgid "%s: unable to diagonalize!"
+msgid "%s: Unable to diagonalize.\n"
 msgstr ""
 
 #
 # File: macros/%sp_i_sp.sci, line: 33
 #, c-format
-msgid "%s: Sparse insertion case not treated.\n"
+msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr ""
 
 #
@@ -496,6 +501,13 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Invalid assignement: for insertion in cell, use e.g. x(i,j).entries=y.\n"
+msgstr ""
+
+#
+# File: macros/generic_i_h.sci, line: 42
+#, c-format
+msgid ""
+"%s: Incompatible sizes for properties '%s' and '%s': Same sizes expected.\n"
 msgstr ""
 
 #

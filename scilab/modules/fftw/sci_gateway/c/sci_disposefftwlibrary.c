@@ -12,6 +12,7 @@
 */
 
 #include "callfftw.h"
+#include "fftwlibname.h"
 #include "gw_fftw.h"
 #include "localization.h"
 #include "api_scilab.h"
@@ -30,6 +31,7 @@ int sci_disposefftwlibrary(char *fname, unsigned long fname_len)
     {
         iErr = createScalarBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 0); // false
     }
+    freefftwlibname();
 
     if (iErr)
     {

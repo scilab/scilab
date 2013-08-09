@@ -69,14 +69,14 @@ c     .     eye*cst
          call unsfdcopy(mn2*(it2+1),stk(l2),1,stk(l1),1)
          it21=it2+2*it1
          if(it21.eq.0) then
-c     .     le scalaire et la matrice sont reel
+c     .     Real scalar and matrix
             call dscal(mn2,sr,stk(l1),1)
          elseif(it21.eq.1) then
-c     .     la matrice est complexe le scalaire est reel
+c     .     Complex matrix, real scalar
             call dscal(mn2,sr,stk(l1),1)
             call dscal(mn2,sr,stk(l1+mn2),1)
          elseif(it21.eq.2) then
-c     .     la matrice est reelle, le scalaire est complexe
+c     .     Real matrix, complex scalar
             lstk(top+1)=l1+mn2*(itr+1)
             err=lstk(top+1)-lstk(bot)
             if(err.gt.0) then
@@ -87,7 +87,7 @@ c     .     la matrice est reelle, le scalaire est complexe
             call dscal(mn2,sr,stk(l1),1)
             call dscal(mn2,si,stk(l1+mn2),1)
          elseif(it21.eq.3) then
-c     .     la matrice et le scalaire sont complexes
+c     .     Complex matrix and scalar
             call wscal(mn2,sr,si,stk(l1),stk(l1+mn2),1)
          endif
          lstk(top+1)=l1+mn2*(itr+1)
@@ -99,10 +99,10 @@ c     .  a*cst
          endif
          it21=it2+2*it1
          if(it21.eq.0) then
-c     .     la matrice et le scalaire sont reel
+c     .     Real matrix and scalar
             call dscal(mn1,stk(l2),stk(l1),1)
          elseif(it21.eq.1) then
-c     .     la matrice est reelle le scalaire est complexe
+c     .     Real matrix, complex scalar
             sr = stk(l2)
             si = stk(l2+1)
             lstk(top+1)=l1+mn1*(itr+1)
@@ -116,14 +116,14 @@ c     .     la matrice est reelle le scalaire est complexe
             call dscal(mn1,sr,stk(l1),1)
             istk(il1+3)=itr
          elseif(it21.eq.2) then
-c     .     la matrice est complexe, le scalaire est reel
+c     .     Complex matrix, real scalar
             sr = stk(l2)
             call dscal(mn1,sr,stk(l1),1)
             call dscal(mn1,sr,stk(l1+mn1),1)
          elseif(it21.eq.3) then
             sr = stk(l2)
             si = stk(l2+1)
-c     .     la matrice et le scalaire sont complexes
+c     .     Complex matrix and scalar
             call wscal(mn1,sr,si,stk(l1),stk(l1+mn1),1)
          endif
       else
@@ -149,7 +149,7 @@ c     .  m1*n2 may overflow
             if(it2.eq.1) call dgemm('n','n',m1,n2,n1,1.d0,stk(l1),m1,
      $           stk(l2+mn2),m2,0.d0,stk(lr+m1*n2),m1)      
          else
-c     .     a et a2 sont complexes
+c     .     a and a2 both complex
             call wmmul(stk(l1),stk(l1+mn1),m1,stk(l2),stk(l2
      $           +mn2),m2,stk(lr),stk(lr+m1*n2),m1,m1,n1,n2)
          endif

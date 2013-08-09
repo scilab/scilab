@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:08+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-28 15:27+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -350,11 +350,9 @@ msgstr " バッファ長よりも長い入力行: %d\n"
 msgid "Incorrect file or format.\n"
 msgstr "ファイルまたはフォーマットが間違っています.\n"
 
-#
-# File: src/c/errmsg.c, line: 388
 #, c-format
-msgid "subroutine not found: %s\n"
-msgstr "サブルーチンが見つかりません: %s\n"
+msgid "%s: subroutine not found.\n"
+msgstr "%s: サブルーチンが見つかりません.\n"
 
 #, c-format
 msgid "Wrong type for argument #%d: Real matrix expected.\n"
@@ -741,6 +739,14 @@ msgid "check or define function %s for overloading.\n"
 msgstr "関数 %s を確認またはオーバーロード定義してください.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています:　ハンドルの行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 実数または複素数行列を指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: 引数 %d の大きさが間違っています: 大きさを (%d,%d)  としてください.\n"
 
@@ -771,8 +777,8 @@ msgid ""
 msgstr "%s: 引数 %d の型が間違っています:　関数または文字列(外部関数)を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 多項式を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています:  多項式行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
@@ -1024,6 +1030,10 @@ msgstr "%s: 入力引数は同じ変数名形式とする必要があります.\
 
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr "%s: 入力引数の変数名形式は同じにしてください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Wrong value for element %s.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 要素 %s の値が間違っています.\n"
 
 msgid "Unknown data.\n"
 msgstr "未知のデータ.\n"
@@ -1391,22 +1401,33 @@ msgid ""
 msgstr "%s: %s およびヤコビアンの任意の列の間の角度の余弦の絶対値は最大 %s です.\n"
 
 #, c-format
-msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
-msgstr "%s: %s をコールした際に %s に達したか,もしくは越えました.\n"
+msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr "%s: %s: %sのコール回数が %s に達したまたは超えました.\n"
+
+msgid "Warning"
+msgstr "警告"
 
 #, c-format
 msgid ""
-"%s: %s is too small. No further reduction in the criterion is possible.\n"
-msgstr "%s: %s は小さすぎます. 閾値をこれ以上小さくすることはできません.\n"
+"%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr "%s: %s: %s が小さすぎます. 閾値をこれ以上小さくすることはできません.\n"
 
 #, c-format
 msgid ""
-"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
 "machine precision.\n"
-msgstr "%s: %s は小さすぎます. %s は機械精度のヤコビアンの列に直交しています.\n"
+msgstr "%s:%s:%s が小さすぎます. %s: 機械精度に関するヤコビアンの列に直交しています.\n"
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly: 変数名は 5文字未満とする必要があります.\n"
+
+msgid ""
+"Warning: Syntax \"vector ^ scalar\" is obsolete. It will be removed in "
+"Scilab 6.0.\n"
+"  Use \"vector .^ scalar\" instead.\n"
+msgstr ""
+"警告:  構文 \"vector ^ scalar\" は廃止予定です.  この構文は Scilab 6.0 で廃止されます.\n"
+"  代わりに \"vector .^ scalar\"を指定してください.\n"
 
 #
 # File: src/c/sciprint_full.c, line: 96
