@@ -711,7 +711,7 @@ Temps pour DDaskr - GMRes :
             </informaltable>
         </para>
         <para>
-            L'exemple suivant corrobore le précédent, il est plus court mais plus complet, parce-qu'il traite du remplissage et vidage s'une cuve.
+            L'exemple suivant corrobore le précédent, il est plus court mais plus complet, parce-qu'il traite du remplissage et vidage d'une cuve.
         </para>
         <para>
             <link type="scilab" linkend="scilab.zcos/xcos/demos/ModelicaBlocks/Hydraulics.zcos">
