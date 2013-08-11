@@ -360,7 +360,7 @@
 #define __GO_SPECULARCOLOR__               300
 
 #define __GO_COLORMATERIAL__               297
-#define __GO_MATERIAL_SHININES__           301
+#define __GO_MATERIAL_SHININESS__          301
 
 #define __GO_LIGHTING__                    302
 #define __GO_LIGHT_TYPE__                  303

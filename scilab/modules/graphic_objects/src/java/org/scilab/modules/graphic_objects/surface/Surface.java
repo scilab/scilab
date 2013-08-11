@@ -75,8 +75,8 @@ public abstract class Surface extends ClippableContouredObject {
                 return ColorTriplet.ColorTripletProperty.SPECULARCOLOR;
             case __GO_COLORMATERIAL__ :
                 return Material.MaterialProperty.COLOR_MATERIAL;
-            case __GO_MATERIAL_SHININES__ :
-                return Material.MaterialProperty.SHININES;
+            case __GO_MATERIAL_SHININESS__ :
+                return Material.MaterialProperty.SHININESS;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -105,8 +105,8 @@ public abstract class Surface extends ClippableContouredObject {
             switch (mp) {
                 case COLOR_MATERIAL:
                     return getColorMaterialMode();
-                case SHININES:
-                    return getMaterialShinines();
+                case SHININESS:
+                    return getMaterialShininess();
             }
         } else if (property instanceof ColorTriplet.ColorTripletProperty) {
             ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
@@ -150,8 +150,8 @@ public abstract class Surface extends ClippableContouredObject {
             switch (mp) {
                 case COLOR_MATERIAL:
                     return setColorMaterialMode((Boolean)value);
-                case SHININES:
-                    return setMaterialShinines((Double)value);
+                case SHININESS:
+                    return setMaterialShininess((Double)value);
             }
         } else if (property instanceof ColorTriplet.ColorTripletProperty) {
             ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
@@ -243,59 +243,59 @@ public abstract class Surface extends ClippableContouredObject {
     }
 
     /**
-     * @return the material's ambient color.
+     * @return the ambient color of the material.
      */
     public Double[] getMaterialAmbientColor() {
         return material.getAmbientColor();
     }
 
     /**
-     * @param the new material's ambient color.
+     * @param the new ambient color of the material.
      */
     public UpdateStatus setMaterialAmbientColor(Double[] color) {
         return material.setAmbientColor(color);
     }
 
     /**
-     * @return the material's diffuse color.
+     * @return the diffuse color of the material.
      */
     public Double[] getMaterialDiffuseColor() {
         return material.getDiffuseColor();
     }
 
     /**
-     * @param the new material's diffuse color.
+     * @param the new diffuse color of the material.
      */
     public UpdateStatus setMaterialDiffuseColor(Double[] color) {
         return material.setDiffuseColor(color);
     }
 
     /**
-     * @return the material's specular color.
+     * @return the specular color of the material.
      */
     public Double[] getMaterialSpecularColor() {
         return material.getSpecularColor();
     }
 
     /**
-     * @param the new material's specular color.
+     * @param the new specular color of the material.
      */
     public UpdateStatus setMaterialSpecularColor(Double[] color) {
         return material.setSpecularColor(color);
     }
 
     /**
-     * @return the material's shinines level.
+     * @return the shininess level of the material.
      */
-    public Double getMaterialShinines() {
-        return material.getShinines();
+    public Double getMaterialShininess() {
+        return material.getShininess();
     }
 
     /**
-     * @param the new material's shinines level.
+     * @param the new shininess level of the material.
      */
-    public UpdateStatus setMaterialShinines(Double s) {
-        return material.setShinines(s);
+    public UpdateStatus setMaterialShininess(Double s) {
+        return material.setShininess(s);
     }
 
     /**

@@ -332,7 +332,7 @@ src/c/getHandleProperty/get_ambient_color_property.c \
 src/c/getHandleProperty/get_diffuse_color_property.c \
 src/c/getHandleProperty/get_specular_color_property.c \
 src/c/getHandleProperty/get_color_material_property.c \
-src/c/getHandleProperty/get_material_shinines_property.c \
+src/c/getHandleProperty/get_material_shininess_property.c \
 src/c/getHandleProperty/get_lighting_property.c \
 src/c/getHandleProperty/get_light_type_property.c \
 src/c/getHandleProperty/get_light_direction_property.c \
@@ -341,7 +341,7 @@ src/c/getHandleProperty/set_ambient_color_property.c \
 src/c/getHandleProperty/set_diffuse_color_property.c \
 src/c/getHandleProperty/set_specular_color_property.c \
 src/c/getHandleProperty/set_color_material_property.c \
-src/c/getHandleProperty/set_material_shinines_property.c \
+src/c/getHandleProperty/set_material_shininess_property.c \
 src/c/getHandleProperty/set_lighting_property.c \
 src/c/getHandleProperty/set_light_type_property.c \
 src/c/getHandleProperty/set_light_direction_property.c \

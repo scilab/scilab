@@ -22,7 +22,7 @@
 #include "graphicObjectProperties.h"
 
 /**
- * Sets the light's direction.
+ * Sets the direction of the light.
  */
 int set_light_direction_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {

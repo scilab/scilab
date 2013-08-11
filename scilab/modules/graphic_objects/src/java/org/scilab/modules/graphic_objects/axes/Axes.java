@@ -2369,14 +2369,14 @@ public class Axes extends GraphicObject {
     }
 
     /**
-     * @return the light's ambient color.
+     * @return the ambient color of the light.
      */
     public Double[] getLightAmbientColor() {
         return light.getAmbientColor();
     }
 
     /**
-     * @param color the new light's ambient color.
+     * @param color the new ambient color of the light.
      */
     public UpdateStatus setLightAmbientColor(Double[] color) {
         return light.setAmbientColor(color);
@@ -2390,21 +2390,21 @@ public class Axes extends GraphicObject {
     }
 
     /**
-     * @param color the new light's diffuse color.
+     * @param color the new diffuse color of the light.
      */
     public UpdateStatus setLightDiffuseColor(Double[] color) {
         return light.setDiffuseColor(color);
     }
 
     /**
-     * @return the light's specular color.
+     * @return the specular color of the light.
      */
     public Double[] getLightSpecularColor() {
         return light.getSpecularColor();
     }
 
     /**
-     * @param color the new light's specular color.
+     * @param color the new specular color of the light.
      */
     public UpdateStatus setLightSpecularColor(Double[] color) {
         return light.setSpecularColor(color);
@@ -2425,42 +2425,42 @@ public class Axes extends GraphicObject {
     }
 
     /**
-     * @return the light's type.
+     * @return the type of the light.
      */
     public Integer getLightType() {
         return light.getTypeAsInteger();
     }
 
     /**
-     * @param the new light's type.
+     * @param the new type of the light.
      */
     public UpdateStatus setLightType(Integer type) {
         return light.setTypeAsInteger(type);
     }
 
     /**
-     * @return the light's position.
+     * @return the position of the light.
      */
     public Double[] getLightPosition() {
         return light.getPosition();
     }
 
     /**
-     * @param the new light's position.
+     * @param the new position of the light.
      */
     public UpdateStatus setLightPosition(Double[] pos) {
         return light.setPosition(pos);
     }
 
     /**
-     * @return the light's direction.
+     * @return the direction of the light.
      */
     public Double[] getLightDirection() {
         return light.getDirection();
     }
 
     /**
-     * @param the new light's direction.
+     * @param the new direction of the light.
      */
     public UpdateStatus setLightDirection(Double[] dir) {
         return light.setDirection(dir);

@@ -450,7 +450,7 @@ am__objects_1 = libscigraphics_algo_la-GetCommandArg.lo \
 	libscigraphics_algo_la-get_diffuse_color_property.lo \
 	libscigraphics_algo_la-get_specular_color_property.lo \
 	libscigraphics_algo_la-get_color_material_property.lo \
-	libscigraphics_algo_la-get_material_shinines_property.lo \
+	libscigraphics_algo_la-get_material_shininess_property.lo \
 	libscigraphics_algo_la-get_lighting_property.lo \
 	libscigraphics_algo_la-get_light_type_property.lo \
 	libscigraphics_algo_la-get_light_direction_property.lo \
@@ -459,7 +459,7 @@ am__objects_1 = libscigraphics_algo_la-GetCommandArg.lo \
 	libscigraphics_algo_la-set_diffuse_color_property.lo \
 	libscigraphics_algo_la-set_specular_color_property.lo \
 	libscigraphics_algo_la-set_color_material_property.lo \
-	libscigraphics_algo_la-set_material_shinines_property.lo \
+	libscigraphics_algo_la-set_material_shininess_property.lo \
 	libscigraphics_algo_la-set_lighting_property.lo \
 	libscigraphics_algo_la-set_light_type_property.lo \
 	libscigraphics_algo_la-set_light_direction_property.lo \
@@ -1135,7 +1135,7 @@ src/c/getHandleProperty/get_ambient_color_property.c \
 src/c/getHandleProperty/get_diffuse_color_property.c \
 src/c/getHandleProperty/get_specular_color_property.c \
 src/c/getHandleProperty/get_color_material_property.c \
-src/c/getHandleProperty/get_material_shinines_property.c \
+src/c/getHandleProperty/get_material_shininess_property.c \
 src/c/getHandleProperty/get_lighting_property.c \
 src/c/getHandleProperty/get_light_type_property.c \
 src/c/getHandleProperty/get_light_direction_property.c \
@@ -1144,7 +1144,7 @@ src/c/getHandleProperty/set_ambient_color_property.c \
 src/c/getHandleProperty/set_diffuse_color_property.c \
 src/c/getHandleProperty/set_specular_color_property.c \
 src/c/getHandleProperty/set_color_material_property.c \
-src/c/getHandleProperty/set_material_shinines_property.c \
+src/c/getHandleProperty/set_material_shininess_property.c \
 src/c/getHandleProperty/set_lighting_property.c \
 src/c/getHandleProperty/set_light_type_property.c \
 src/c/getHandleProperty/set_light_direction_property.c \
@@ -1585,7 +1585,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_mark_size_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_mark_size_unit_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_mark_style_property.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_material_shinines_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_material_shininess_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_old_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_outside_colors_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_parent_property.Plo@am__quote@
@@ -1736,7 +1736,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_mark_size_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_mark_size_unit_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_mark_style_property.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_material_shinines_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_material_shininess_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_old_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_outside_colors_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_parent_property.Plo@am__quote@
@@ -4019,12 +4019,12 @@ libscigraphics_algo_la-get_color_material_property.lo: src/c/getHandleProperty/g
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_color_material_property.lo `test -f 'src/c/getHandleProperty/get_color_material_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_color_material_property.c
 
-libscigraphics_algo_la-get_material_shinines_property.lo: src/c/getHandleProperty/get_material_shinines_property.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_material_shinines_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_material_shinines_property.Tpo -c -o libscigraphics_algo_la-get_material_shinines_property.lo `test -f 'src/c/getHandleProperty/get_material_shinines_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_material_shinines_property.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_algo_la-get_material_shinines_property.Tpo $(DEPDIR)/libscigraphics_algo_la-get_material_shinines_property.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_material_shinines_property.c' object='libscigraphics_algo_la-get_material_shinines_property.lo' libtool=yes @AMDEPBACKSLASH@
+libscigraphics_algo_la-get_material_shininess_property.lo: src/c/getHandleProperty/get_material_shininess_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_material_shininess_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_material_shininess_property.Tpo -c -o libscigraphics_algo_la-get_material_shininess_property.lo `test -f 'src/c/getHandleProperty/get_material_shininess_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_material_shininess_property.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_algo_la-get_material_shininess_property.Tpo $(DEPDIR)/libscigraphics_algo_la-get_material_shininess_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_material_shininess_property.c' object='libscigraphics_algo_la-get_material_shininess_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_material_shinines_property.lo `test -f 'src/c/getHandleProperty/get_material_shinines_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_material_shinines_property.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_material_shininess_property.lo `test -f 'src/c/getHandleProperty/get_material_shininess_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_material_shininess_property.c
 
 libscigraphics_algo_la-get_lighting_property.lo: src/c/getHandleProperty/get_lighting_property.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_lighting_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_lighting_property.Tpo -c -o libscigraphics_algo_la-get_lighting_property.lo `test -f 'src/c/getHandleProperty/get_lighting_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_lighting_property.c
@@ -4082,12 +4082,12 @@ libscigraphics_algo_la-set_color_material_property.lo: src/c/getHandleProperty/s
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_color_material_property.lo `test -f 'src/c/getHandleProperty/set_color_material_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_color_material_property.c
 
-libscigraphics_algo_la-set_material_shinines_property.lo: src/c/getHandleProperty/set_material_shinines_property.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_material_shinines_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_material_shinines_property.Tpo -c -o libscigraphics_algo_la-set_material_shinines_property.lo `test -f 'src/c/getHandleProperty/set_material_shinines_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_material_shinines_property.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_material_shinines_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_material_shinines_property.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_material_shinines_property.c' object='libscigraphics_algo_la-set_material_shinines_property.lo' libtool=yes @AMDEPBACKSLASH@
+libscigraphics_algo_la-set_material_shininess_property.lo: src/c/getHandleProperty/set_material_shininess_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_material_shininess_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_material_shininess_property.Tpo -c -o libscigraphics_algo_la-set_material_shininess_property.lo `test -f 'src/c/getHandleProperty/set_material_shininess_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_material_shininess_property.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_material_shininess_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_material_shininess_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_material_shininess_property.c' object='libscigraphics_algo_la-set_material_shininess_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_material_shinines_property.lo `test -f 'src/c/getHandleProperty/set_material_shinines_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_material_shinines_property.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_material_shininess_property.lo `test -f 'src/c/getHandleProperty/set_material_shininess_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_material_shininess_property.c
 
 libscigraphics_algo_la-set_lighting_property.lo: src/c/getHandleProperty/set_lighting_property.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_lighting_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_lighting_property.Tpo -c -o libscigraphics_algo_la-set_lighting_property.lo `test -f 'src/c/getHandleProperty/set_lighting_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_lighting_property.c

@@ -23,12 +23,12 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStat
 public class Material extends ColorTriplet {
 
     /** material properties */
-    public enum MaterialProperty {COLOR_MATERIAL, SHININES};
+    public enum MaterialProperty {COLOR_MATERIAL, SHININESS};
     /** Specifies if the sufarce color will be used as diffuse color */
     private Boolean useColorMaterial;
 
-    /** Specular shinines parameter*/
-    private Double shinines;
+    /** Specular shininess parameter*/
+    private Double shininess;
 
 
     public Material() {
@@ -37,7 +37,7 @@ public class Material extends ColorTriplet {
         ambient[0] = ambient[1] = ambient[2] = 0.0;
         diffuse[0] = diffuse[1] = diffuse[2] = 1.0;
         specular[0] = specular[1] = specular[2] = 1.0;
-        shinines = 2.0;
+        shininess = 2.0;
     }
 
     /**
@@ -57,18 +57,18 @@ public class Material extends ColorTriplet {
         return useColorMaterial;
     }
 
-    /** Sets shinines level*/
-    public UpdateStatus setShinines(Double s) {
-        if (shinines != s) {
-            shinines = s;
+    /** Sets shininess level*/
+    public UpdateStatus setShininess(Double s) {
+        if (shininess != s) {
+            shininess = s;
             return UpdateStatus.Success;
         }
         return UpdateStatus.NoChange;
     }
 
-    /** Gets shinines level*/
-    public Double getShinines() {
-        return shinines;
+    /** Gets shininess level*/
+    public Double getShininess() {
+        return shininess;
     }
 
 }

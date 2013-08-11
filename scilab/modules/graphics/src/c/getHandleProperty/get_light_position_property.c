@@ -20,7 +20,7 @@
 #include "graphicObjectProperties.h"
 
 /**
- * Gets the light's position.
+ * Gets the position of the light.
  */
 int get_light_position_property(void* _pvCtx, char* pobjUID)
 {

@@ -653,7 +653,7 @@ function %h_p(h)
                 "diffuse_color = "+sci2exp(h.diffuse_color)
                 "specular_color = "+sci2exp(h.specular_color)
                 "color_material = "+sci2exp(h.color_material)
-                "material_shinines = "+sci2exp(h.material_shinines)
+                "material_shininess = "+sci2exp(h.material_shininess)
                 "user_data = "+fmtuser_data(u)
                 "tag = "+h.tag
                 ]
@@ -683,7 +683,7 @@ function %h_p(h)
                 "diffuse_color = "+sci2exp(h.diffuse_color)
                 "specular_color = "+sci2exp(h.specular_color)
                 "color_material = "+sci2exp(h.color_material)
-                "material_shinines = "+sci2exp(h.material_shinines)
+                "material_shininess = "+sci2exp(h.material_shininess)
                 "user_data = "+fmtuser_data(u)
                 "tag = "+h.tag
                 ]
@@ -752,7 +752,7 @@ function %h_p(h)
                 "diffuse_color = "+sci2exp(h.diffuse_color)
                 "specular_color = "+sci2exp(h.specular_color)
                 "color_material = "+sci2exp(h.color_material)
-                "material_shinines = "+sci2exp(h.material_shinines)
+                "material_shininess = "+sci2exp(h.material_shininess)
                 "user_data = "+fmtuser_data(u)
                 "tag = "+h.tag
                 ]
@@ -782,7 +782,7 @@ function %h_p(h)
                 "diffuse_color = "+sci2exp(h.diffuse_color)
                 "specular_color = "+sci2exp(h.specular_color)
                 "color_material = "+sci2exp(h.color_material)
-                "material_shinines = "+sci2exp(h.material_shinines)
+                "material_shininess = "+sci2exp(h.material_shininess)
                 "user_data = "+fmtuser_data(u)
                 "tag = "+h.tag
                 ]

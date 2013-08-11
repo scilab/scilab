@@ -20,7 +20,7 @@
 #include "graphicObjectProperties.h"
 
 /**
- * Gets the light's direction.
+ * Gets the direction of the light.
  */
 int get_light_direction_property(void* _pvCtx, char* pobjUID)
 {

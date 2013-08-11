@@ -220,7 +220,7 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
     {"diffuse_color", get_diffuse_color_property},
     {"specular_color", get_specular_color_property},
     {"color_material", get_color_material_property},
-    {"material_shinines", get_material_shinines_property},
+    {"material_shininess", get_material_shininess_property},
     {"lighting", get_lighting_property},
     {"light_type", get_light_type_property},
     {"light_direction", get_light_direction_property},

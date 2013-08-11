@@ -21,21 +21,21 @@
 
 
 /**
- * Gets the shinines level of the surface.
+ * Gets the shininess level of the surface.
  */
-int get_material_shinines_property(void* _pvCtx, char* pobjUID)
+int get_material_shininess_property(void* _pvCtx, char* pobjUID)
 {
-    double shinines = 0;
-    double* pShinines = &shinines;
+    double shininess = 0;
+    double* pShininess = &shininess;
 
-    getGraphicObjectProperty(pobjUID, __GO_MATERIAL_SHININES__, jni_double, (void **)&pShinines);
+    getGraphicObjectProperty(pobjUID, __GO_MATERIAL_SHININESS__, jni_double, (void **)&pShininess);
 
-    if (pShinines == NULL)
+    if (pShininess == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "material_shinines");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "material_shininess");
         return -1;
     }
 
-    return sciReturnDouble(_pvCtx, shinines);
+    return sciReturnDouble(_pvCtx, shininess);
 
 }

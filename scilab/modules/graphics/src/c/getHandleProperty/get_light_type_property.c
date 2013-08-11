@@ -21,7 +21,7 @@
 
 
 /**
- * Gets the light's type.
+ * Gets the type of the light.
  */
 int get_light_type_property(void* _pvCtx, char* pobjUID)
 {
@@ -36,6 +36,13 @@ int get_light_type_property(void* _pvCtx, char* pobjUID)
         return -1;
     }
 
-    return sciReturnDouble(_pvCtx, type);
+    if (type == 0)
+    {
+        return sciReturnString(_pvCtx, "directional");
+    }
+    else
+    {
+        return sciReturnString(_pvCtx, "point");
+    }
 
 }

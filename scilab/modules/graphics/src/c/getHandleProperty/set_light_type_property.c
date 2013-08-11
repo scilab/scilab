@@ -16,31 +16,38 @@
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
 #include "localization.h"
-
+#include "stricmp.h"
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /**
- * Sets the light's type.
+ * Sets the type of the light.
  */
 int set_light_type_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int val;
 
-    if (valueType != sci_matrix)
+    if (valueType != sci_strings)
     {
-        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "light_type");
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "light_type");
         return SET_PROPERTY_ERROR;
     }
 
-    if (nbRow * nbCol != 1)
+    if (stricmp((char*)_pvData, "directional") == 0)
     {
-        Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "light_type", 1);
+        val = 0;
+    }
+    else if (stricmp((char*)_pvData, "point") == 0)
+    {
+        val = 1;
+    }
+    else
+    {
+        Scierror(999, _("Wrong value for '%s' property: 'directional' or 'point' expected.\n"), "light_type");
         return SET_PROPERTY_ERROR;
     }
-    val = (int)((double*)_pvData)[0];
 
     status = setGraphicObjectProperty(pobjUID, __GO_LIGHT_TYPE__, &val, jni_int, 1);
 

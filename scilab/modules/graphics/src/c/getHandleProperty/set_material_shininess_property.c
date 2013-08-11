@@ -22,25 +22,25 @@
 #include "graphicObjectProperties.h"
 
 /**
- * Sets the shinines level of the surface.
+ * Sets the shininess level of the surface.
  */
-int set_material_shinines_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_material_shininess_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
 
     if (valueType != sci_matrix)
     {
-        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "material_shinines");
+        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "material_shininess");
         return SET_PROPERTY_ERROR;
     }
 
     if (nbRow * nbCol != 1)
     {
-        Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "material_shinines", 1);
+        Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "material_shininess", 1);
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_MATERIAL_SHININES__, _pvData, jni_double, 1);
+    status = setGraphicObjectProperty(pobjUID, __GO_MATERIAL_SHININESS__, _pvData, jni_double, 1);
 
     if (status == TRUE)
     {
@@ -48,7 +48,7 @@ int set_material_shinines_property(void* _pvCtx, char* pobjUID, void* _pvData, i
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "material_shinines");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "material_shininess");
         return SET_PROPERTY_ERROR;
     }
 }

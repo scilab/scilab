@@ -22,7 +22,7 @@
 #include "graphicObjectProperties.h"
 
 /**
- * Sets the light's position.
+ * Sets the position of the light.
  */
 int set_light_position_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {

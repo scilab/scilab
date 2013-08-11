@@ -36,7 +36,7 @@ public class LightingUtils {
         color = m.getSpecularColor();
         mtl.setSpecularColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
         mtl.setColorMaterialEnable(m.getColorMaterialMode().booleanValue());
-        mtl.setShinines(m.getShinines().floatValue());
+        mtl.setShinines(m.getShininess().floatValue());
 
         return mtl;
     }
@@ -48,6 +48,7 @@ public class LightingUtils {
      */
     public static void setLight(LightManager manager, org.scilab.modules.graphic_objects.lighting.Light light) {
 
+        if (manager == null) return;
         setLightingEnable(manager, light.isEnable());
 
         Light sciLight = manager.getLight(0);
@@ -76,6 +77,7 @@ public class LightingUtils {
      * @param status the status.
      */
     public static void setLightingEnable(LightManager manager, Boolean status) {
+        if (manager == null) return;
         manager.setLightningEnable(status.booleanValue());
         Light light = manager.getLight(0);
         light.setEnable(status.booleanValue());
