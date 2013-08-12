@@ -39,6 +39,6 @@ mea = mean(compa);
 stdeviation = st_deviation(compa);
 
 // Verifying closeness of the results
-assert_checktrue(maxi <= 2*10^-(7));
-assert_checktrue(mea <= 2*10^-(7));
-assert_checktrue(stdeviation <= 2*10^-(7));
+assert_checktrue(maxi <= 2d-7);
+assert_checktrue(mea <= 2d-7);
+assert_checktrue(stdeviation <= 2d-7);

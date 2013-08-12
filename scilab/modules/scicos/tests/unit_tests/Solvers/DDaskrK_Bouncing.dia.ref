@@ -79,6 +79,6 @@ mea = mean(compa);
 [maxi, indexMaxi] = max(compa);
 stdeviation = st_deviation(compa);
 // Verifying closeness of the results
-assert_checktrue(maxi <= 5*10^-(5));
-assert_checktrue(mea <= 5*10^-(5));
-assert_checktrue(stdeviation <= 5*10^-(5));
+assert_checktrue(maxi <= 5d-5);
+assert_checktrue(mea <= 5d-5);
+assert_checktrue(stdeviation <= 5d-5);

@@ -48,7 +48,7 @@ scicos_simulate(scs_m);   // DDaskr
 !                                                         !
 !                                                         !
 !                                                         !
-!Generated files path: TMPDIR/         !
+!Generated files path: TMPDIR/          !
 !                                                         !
 !                                                         !
    Generate a loader file
@@ -96,7 +96,7 @@ scicos_simulate(scs_m);   // IDA
 !                                                         !
 !                                                         !
 !                                                         !
-!Generated files path: TMPDIR/         !
+!Generated files path: TMPDIR/          !
 !                                                         !
 !                                                         !
    Generate a loader file
@@ -117,6 +117,6 @@ mea = mean(compa);
 [maxi, indexMaxi] = max(compa);
 stdeviation = st_deviation(compa);
 // Verifying closeness of the results
-assert_checktrue(maxi <= 2*10^-(7));
-assert_checktrue(mea <= 2*10^-(7));
-assert_checktrue(stdeviation <= 2*10^-(7));
+assert_checktrue(maxi <= 2d-7);
+assert_checktrue(mea <= 2d-7);
+assert_checktrue(stdeviation <= 2d-7);

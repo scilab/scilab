@@ -21,7 +21,7 @@ for solver = 0:7
     tolerances(6) = solver;
 
     // Modify 'Max step size' if RK-based solver
-    if (solver >= 5) then tolerances(7) = 10^(-2); end
+    if (solver >= 5) then tolerances(7) = 0.01; end
 
     // Start the solver
     [state, t] = scicosim(%state0, 0.0, tf, %cpr.sim, "start", tolerances);

@@ -40,6 +40,6 @@ mea = mean(compa);
 stdeviation = st_deviation(compa);
 
 // Verifying closeness of the results
-assert_checktrue(maxi <= 10^-(12));
-assert_checktrue(mea <= 10^-(12));
-assert_checktrue(stdeviation <= 10^-(12));
+assert_checktrue(maxi <= 1d-12);
+assert_checktrue(mea <= 1d-12);
+assert_checktrue(stdeviation <= 1d-12);
