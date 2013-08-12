@@ -17,10 +17,10 @@ import org.scilab.modules.gui.editor.AxesHandler;
 import org.scilab.modules.gui.ged.actions.ShowHide;
 import org.scilab.modules.gui.ged.graphic_objects.axes.Axes;
 import org.scilab.modules.gui.ged.graphic_objects.figure.Figure;
+import org.scilab.modules.gui.ged.graphic_objects.imageplot.Imageplot;
 import org.scilab.modules.gui.ged.graphic_objects.legend.Legend;
 import org.scilab.modules.gui.ged.graphic_objects.polyline.Polyline;
 import org.scilab.modules.gui.ged.graphic_objects.surface.Surface;
-import org.scilab.modules.gui.ged.graphic_objects.surface.grayplot.Grayplot;
 
 /**
 * Manager object exchange.
@@ -213,8 +213,9 @@ public class SwapObject {
     */
     private void grayplot(String objectID) {
         adjust();
-        //Load the polyline panel.
-        SwingInspector.pReceive.add(new Grayplot(objectID), "");
+        Imageplot imageplot = new Imageplot();
+        imageplot.initSections(objectID);
+        SwingInspector.pReceive.add(imageplot, "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.grayplot);
         } catch (NullPointerException npe) { }

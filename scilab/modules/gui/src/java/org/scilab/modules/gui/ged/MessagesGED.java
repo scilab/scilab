@@ -113,6 +113,8 @@ public class MessagesGED {
 
     //Data - Labels
     public static final String data_properties = Messages.gettext("Data Properties");
+    public static final String data_mapping = Messages.gettext("Data Mapping");
+    public static final String direct = Messages.gettext("Direct");
     public static final String clip_box = Messages.gettext("Clip Box");
     public static final String upper_left = Messages.gettext("Upper-left");
     public static final String point = Messages.gettext("Point");
@@ -127,6 +129,7 @@ public class MessagesGED {
     public static final String x_label = Messages.gettext("X Label");
     public static final String y_label = Messages.gettext("Y Label");
     public static final String z_label = Messages.gettext("Z Label");
+    public static final String scaled = Messages.gettext("Scaled");
     public static final String title = Messages.gettext("Title");
 
     //Data - Tooltip
