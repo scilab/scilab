@@ -34,7 +34,7 @@
             Le schéma utilisé est de vérifier les traversées de zéro de <emphasis>g(t)</emphasis> sur chaque pas de temps, puis (changement de signe détecté) de zoomer sur cette traversée (ou racine) grâce à une méthode des sécantes modifiée.
         </para>
         <para>
-            Après des vérifications et ajustements corrects, les racines sont recherchées dans 
+            Après des vérifications et ajustements corrects, les racines sont recherchées dans
             <emphasis>
                 [t<subscript>lo</subscript>, t<subscript>hi</subscript>]
             </emphasis>
@@ -42,15 +42,15 @@
             la racine suivant une tolérance acceptable, donnée par <emphasis>l'arrondi de la machine</emphasis>, le <emphasis>temps actuel</emphasis> et le <emphasis>pas de temps</emphasis>.
         </para>
         <para>
-            On détermine alors quelle fonction racine a le plus de chances de voir sa racine arriver en première en comparant les valeurs de la méthode des sécantes, et on donne une nouvelle valeur 
+            On détermine alors quelle fonction racine a le plus de chances de voir sa racine arriver en première en comparant les valeurs de la méthode des sécantes, et on donne une nouvelle valeur
             <emphasis>
                 t<subscript>mid</subscript>
             </emphasis>
-            et on restreint l'intervalle de recherche à 
+            et on restreint l'intervalle de recherche à
             <emphasis>
                 [t<subscript>lo</subscript>, t<subscript>mid</subscript>]
             </emphasis>
-            ou 
+            ou
             <emphasis>
                 [t<subscript>mid</subscript>, t<subscript>hi</subscript>]
             </emphasis>
@@ -78,7 +78,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            Exemple simple d'un Sinus traversant zéro plusieurs fois :
+            Exemple simple d'une fonction Sinus traversant zéro plusieurs fois :
         </para>
         <para>
             <programlisting language="example"><![CDATA[
@@ -87,7 +87,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       loadXcosLibs();
       importXcosDiagram("SCI/modules/xcos/demos/Threshold_ZeroCrossing.zcos");
 
-      // Lancement du chrono, de la simulation et affichage du temps
+      // Lancement du chronomètre, de la simulation et affichage du temps
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
@@ -131,7 +131,7 @@ Temps sans recherche de racine :
             ]]></screen>
         </para>
         <para>
-            Suivant le nombre de racines, l'aspect de la fonction à l'approche de ces racines, les tolérances, ..., le surplus de temps de calcul va de 25% à 45%. 
+            Suivant le nombre de racines, l'aspect de la fonction à l'approche de ces racines, les tolérances, ..., le surplus de temps de calcul va de 25% à 45%.
         </para>
     </refsection>
     <refsection>

@@ -3,8 +3,6 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-// Run with exec("SCI/modules/xcos/examples/solvers/benchSinus.sce");
-
 // Import the diagram, augment the ending time and store its compilation in Info()
 loadScicos();
 loadXcosLibs();
@@ -39,4 +37,3 @@ for solver = 0:7
 
 end
 disp("--------------------------------");
-
