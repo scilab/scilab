@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos CARDINOT
+ * Copyright (C) 2012 2013 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,19 +11,10 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects.legend;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
@@ -32,307 +23,211 @@ import javax.swing.JToggleButton;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
-import org.scilab.modules.gui.ged.SwingInspector;
+import org.scilab.modules.gui.ged.ContentLayout;
 import org.scilab.modules.gui.ged.MessagesGED;
+import org.scilab.modules.gui.ged.graphic_objects.SimpleSection;
 
 /**
 * Construction and startup of all components of the section: Base Properties.
-*
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class BaseProperties extends Roof {
-    protected static JToggleButton bBaseProperties;
-    protected static JPanel pBaseProperties;
-    protected JSeparator sBaseProperties;
-    protected JLabel lBaseProperties;
-    protected JLabel lTag;
-    protected JTextField cTag;
-    protected JLabel lText;
-    protected JComboBox cText;
-    private static String[] text;
-    private int getIndex = 0;
-    protected JComboBox cVisible;
-    protected JLabel lVisible;
-    protected String currentlegend = null;
+public class BaseProperties extends Legend implements SimpleSection {
+    private static BaseProperties instance;
+    private String currentLegend;
+    private ContentLayout layout = new ContentLayout();
+
+    private static JToggleButton bBaseProperties;
+    private static JPanel pBaseProperties;
+    private JLabel lBaseProperties;
+    private JSeparator sBaseProperties;
+    private JLabel lFillMode;
+    private JComboBox cFillMode;
+    private JLabel lLineMode;
+    private JComboBox cLineMode;
+    private JLabel lVisible;
+    private JComboBox cVisible;
 
     /**
     * Initializes the properties and the icons of the buttons.
-    * @param objectID Enters the identification of legend.
+    * @param objectID Enters the identification of Legend.
     */
-    public BaseProperties(String objectID){
-        initPropertiesBase(objectID);
-        position();
-        setIconsBaseProperties();
+    public BaseProperties(String objectID) {
+        instance = this;
+        constructComponents();
+        initMainPanel();
+        initComponents();
+        loadProperties(objectID);
     }
 
     /**
-    * It has all the components of the section Base Properties.
+    * Construct the Components.
     */
     @Override
-    public void basePropertiesComponents() {
+    public final void constructComponents() {
         bBaseProperties = new JToggleButton();
         lBaseProperties = new JLabel();
         sBaseProperties = new JSeparator();
         pBaseProperties = new JPanel();
-        lTag = new JLabel();
-        cTag = new JTextField();
-        lText = new JLabel();
-        cText = new JComboBox();
+
+        lFillMode = new JLabel();
+        cFillMode = new JComboBox();
+        lLineMode = new JLabel();
+        cLineMode = new JComboBox();
         lVisible = new JLabel();
         cVisible = new JComboBox();
+    }
 
-        //Components of the header: Base Properties.
-        bBaseProperties.setBorder(null);
-        bBaseProperties.setBorderPainted(false);
-        bBaseProperties.setContentAreaFilled(false);
-        bBaseProperties.setMaximumSize(new Dimension(16, 16));
-        bBaseProperties.setMinimumSize(new Dimension(16, 16));
-        bBaseProperties.setPreferredSize(new Dimension(16, 16));
-        bBaseProperties.setRolloverEnabled(false);
+    /**
+    * Insert show/hide button, title and main JPanel of section.
+    */
+    @Override
+    public final void initMainPanel() {
+        String SECTIONNAME = MessagesGED.base_properties;
+        this.setName(SECTIONNAME);
+        layout.addHeader(this, pBaseProperties, bBaseProperties, lBaseProperties, sBaseProperties, SECTIONNAME);
         bBaseProperties.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                bBasePropertiesActionPerformed(evt);
+                pBaseProperties.setVisible(!bBaseProperties.isSelected());
+                HideLegend.checkAllButtons();
             }
         });
+    }
 
-        lBaseProperties.setText(MessagesGED.base_properties);
+    /**
+    * Initialize the Components.
+    */
+    @Override
+    public final void initComponents() {
+        String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
+        int ROW = 0;
+        int LEFTMARGIN = 16; //to inner components
+        int COLUMN = 0; //first column
 
-        sBaseProperties.setPreferredSize(new Dimension(50, 2));
-
-        pBaseProperties.setAlignmentX(0.0F);
-        pBaseProperties.setAlignmentY(0.0F);
-
-        //Components of the property: Tag.
-        lTag.setBackground(new Color(255, 255, 255));
-        lTag.setText(" " + MessagesGED.tag);
-        lTag.setAlignmentX(0.5F);
-        lTag.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lTag.setOpaque(true);
-        lTag.setPreferredSize(new Dimension(70, 20));
-
-        cTag.setBackground(new Color(255, 255, 255));
-        cTag.setEditable(true);
-        cTag.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        cTag.setPreferredSize(new Dimension(70, 20));
-        cTag.addActionListener(new ActionListener() {
+        //Components of the property: Fill Mode.
+        layout.addLabelComboBox(pBaseProperties, lFillMode, MessagesGED.fill_mode,
+                                cFillMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+        cFillMode.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cTagActionPerformed(evt);
-            }
-        });
-        cTag.addFocusListener(new FocusAdapter() {
-            public void focusLost(FocusEvent evt) {
-                cTagFocusLost(evt);
+                GraphicController.getController().setProperty(
+                    currentLegend, GraphicObjectProperties.__GO_FILL_MODE__,
+                    cFillMode.getSelectedIndex() == 0 ? false : true);
             }
         });
 
-        //Components of the property: Text.
-        lText.setBackground(new Color(255, 255, 255));
-        lText.setText(" " + MessagesGED.text);
-        lText.setAlignmentX(0.5F);
-        lText.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lText.setOpaque(true);
-        lText.setPreferredSize(new Dimension(70, 20));
-
-        cText.setBorder(null);
-        cText.setEditable(true);
-        cText.setPreferredSize(new Dimension(70, 20));
-        cText.addActionListener(new ActionListener() {
+        //Components of the property: Line Mode.
+        layout.addLabelComboBox(pBaseProperties, lLineMode, MessagesGED.line_mode,
+                                cLineMode, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
+        cLineMode.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cTextActionPerformed(evt);
-            }
-        });
-        cText.addFocusListener(new FocusAdapter() {
-            public void focusLost(FocusEvent evt) {
-                cTextFocusLost(evt);
+                GraphicController.getController().setProperty(
+                    currentLegend, GraphicObjectProperties.__GO_LINE_MODE__,
+                    cLineMode.getSelectedIndex() == 0 ? false : true);
             }
         });
 
         //Components of the property: Visible.
-        lVisible.setBackground(new Color(255, 255, 255));
-        lVisible.setText(" " + MessagesGED.visible);
-        lVisible.setAlignmentX(0.5F);
-        lVisible.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        lVisible.setOpaque(true);
-        lVisible.setPreferredSize(new Dimension(70, 20));
-
-        cVisible.setModel(new DefaultComboBoxModel(new String[] {MessagesGED.off , MessagesGED.on}));
-        cVisible.setBorder(null);
-        cVisible.setEditor(null);
-        cVisible.setPreferredSize(new Dimension(70, 20));
+        layout.addLabelComboBox(pBaseProperties, lVisible, MessagesGED.visible,
+                                cVisible, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
         cVisible.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent evt) {
-                cVisibleActionPerformed(evt);
+                GraphicController.getController().setProperty(
+                    currentLegend, GraphicObjectProperties.__GO_VISIBLE__,
+                    cVisible.getSelectedIndex() == 0 ? false : true);
             }
         });
     }
 
     /**
-    * Positioning all the components of the Basic Properties.
+    * Loads the current properties of the section.
+    * @param objectID Enters the identification of Legend.
     */
-    private void position() {
-        GroupLayout pBasePropertiesLayout = new GroupLayout(pBaseProperties);
-        pBaseProperties.setLayout(pBasePropertiesLayout);
-        pBasePropertiesLayout.setHorizontalGroup(
-            pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                        .addComponent(lTag, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cTag, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                        .addComponent(lText, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cText, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
-                    .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                        .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4)
-                        .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))))
-        );
-        pBasePropertiesLayout.setVerticalGroup(
-            pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(pBasePropertiesLayout.createSequentialGroup()
-                .addGroup(pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lTag, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cTag, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lText, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cText, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(pBasePropertiesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(lVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cVisible, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)))
-        );
-    }
-
-    /**
-    * Loads the current properties of the section Base Properties.
-    *
-    * @param objectID Enters the identification of legend.
-    */
-    public void initPropertiesBase(String objectID) {
+    @Override
+    public final void loadProperties(String objectID) {
         if (objectID != null) {
-            currentlegend = objectID;
+            currentLegend = objectID;
+            boolean enable;
 
-            // Get the current status of the property: Tag
-            String tag = (String) GraphicController.getController()
-                    .getProperty(currentlegend, GraphicObjectProperties.__GO_TAG__);
-            cTag.setText(tag);
+            // Get the current status of the property: Line Mode
+            enable = (Boolean) GraphicController.getController()
+                    .getProperty(currentLegend, GraphicObjectProperties.__GO_LINE_MODE__);
+            cLineMode.setSelectedIndex(enable?1:0);
 
-            // Get the current status of the property: Text
-            text = (String[]) GraphicController.getController()
-                    .getProperty(currentlegend, GraphicObjectProperties.__GO_TEXT_STRINGS__);
-            cText.setModel(new DefaultComboBoxModel(text));
+            // Get the current status of the property: Fill Mode
+            enable = (Boolean) GraphicController.getController()
+                    .getProperty(currentLegend, GraphicObjectProperties.__GO_FILL_MODE__);
+            cFillMode.setSelectedIndex(enable?1:0);
 
             // Get the current status of the property: Visible
-            boolean isVisible = (Boolean) GraphicController.getController()
-                    .getProperty(currentlegend, GraphicObjectProperties.__GO_VISIBLE__);
-            if (isVisible) {
-                cVisible.setSelectedIndex(1);
-            } else {
-                cVisible.setSelectedIndex(0);
-            }
+            enable = (Boolean) GraphicController.getController()
+                    .getProperty(currentLegend, GraphicObjectProperties.__GO_VISIBLE__);
+            cVisible.setSelectedIndex(enable?1:0);
         }
     }
 
     /**
-    * Insert the icons on buttons.
+    * Get Instance.
+    * @return instance
     */
-    public void setIconsBaseProperties() {
-        bBaseProperties.setIcon(new ImageIcon(SwingInspector.icon_collapse));
-        bBaseProperties.setSelectedIcon(new ImageIcon(SwingInspector.icon_expand));
+    public static BaseProperties getInstance() {
+        return instance;
     }
 
     /**
-    * Implement the action button to show/hide.
+    * Get Fill Mode.
+    * @return boolean
     */
-    private void bBasePropertiesActionPerformed(ActionEvent evt) {
-        if (bBaseProperties.isSelected()) {
-            pBaseProperties.setVisible(false);
-            HideLegend.checkAllButtons();
-        } else {
-            pBaseProperties.setVisible(true);
-            HideLegend.checkAllButtons();
-        }
+    public boolean getFillMode() {
+        return cFillMode.getSelectedIndex() == 0 ? false : true;
     }
 
     /**
-    * Updates the property: Tag.
+    * Set Fill Mode.
+    * @param boolean
     */
-    private void updateTag() {
-        GraphicController.getController()
-                .setProperty(currentlegend, GraphicObjectProperties.__GO_TAG__, cTag.getText());
+    public void setFillMode(boolean enable) {
+        cFillMode.setSelectedIndex(enable?1:0);
+        GraphicController.getController().setProperty(
+                currentLegend, GraphicObjectProperties.__GO_FILL_MODE__,
+                enable);
     }
 
     /**
-    * Updates the property: Tag.
-    *
-    * @param evt ActionEvent.
+    * Get Line Mode.
+    * @return boolean
     */
-    private void cTagActionPerformed(ActionEvent evt) {
-        updateTag();
+    public boolean getLineMode() {
+        return cLineMode.getSelectedIndex() == 0 ? false : true;
     }
 
     /**
-    * Updates the property: Tag.
-    *
-    * @param evt FocusEvent.
+    * Set Line Mode.
+    * @param boolean
     */
-    private void cTagFocusLost(FocusEvent evt) {
-        updateTag();
+    public void setLineMode(boolean enable) {
+        cLineMode.setSelectedIndex(enable?1:0);
+        GraphicController.getController().setProperty(
+                currentLegend, GraphicObjectProperties.__GO_LINE_MODE__,
+                enable);
     }
 
     /**
-    * Updates the property: Text.
-    *
-    * @param status Indicate an edition or a change
+    * Get Status of Main Jpanel.
+    * @return visibility
     */
-    private void updateText(String status) {
-        if (cText.getSelectedIndex() != -1) {
-            getIndex = cText.getSelectedIndex();
-        }
-        String editString = (String)(cText.getSelectedItem());
-        if (status == "comboBoxEdited") {
-            text[getIndex] = editString;
-            cText.setModel(new DefaultComboBoxModel(text));
-            cText.setSelectedIndex(getIndex);
-            GraphicController.getController()
-                .setProperty(currentlegend, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
-        }
+    public static boolean getStatus() {
+        return pBaseProperties.isVisible();
     }
 
     /**
-    * Updates the property: Text.
-    *
-    * @param evt ActionEvent.
+    * Set Visibility of Property Group.
+    * @param visible boolean
     */
-    private void cTextActionPerformed(ActionEvent evt) {
-        String status = evt.getActionCommand();
-        updateText(status);
-    }
-
-    /**
-    * Updates the property: Text.
-    *
-    * @param evt FocusEvent.
-    */
-    private void cTextFocusLost(FocusEvent evt) {
-        updateText("comboBoxEdited");
-    }
-
-    /**
-    * Updates the property: Visible.
-    *
-    * @param evt ActionEvent.
-    */
-    private void cVisibleActionPerformed(ActionEvent evt) {
-        boolean setVisible = true;
-        if (cVisible.getSelectedIndex() == 0) {
-            setVisible = false;
-        }
-        GraphicController.getController()
-                .setProperty(currentlegend, GraphicObjectProperties.__GO_VISIBLE__, setVisible);
+    public static void setVisibility(boolean visible) {
+        pBaseProperties.setVisible(visible);
+        bBaseProperties.setSelected(!visible);
     }
 }

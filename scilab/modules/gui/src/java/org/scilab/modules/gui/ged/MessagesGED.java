@@ -99,11 +99,6 @@ public class MessagesGED {
     public static final String unary = Messages.gettext("unary");
     public static final String multiple = Messages.gettext("multiple");
 
-    public static final String font_color = Messages.gettext("Font Color");
-    public static final String font_size = Messages.gettext("Font Size");
-    public static final String font_style = Messages.gettext("Font Style");
-    public static final String fractional_font = Messages.gettext("Fractional Font");
-
     public static final String arrow_size_factor = Messages.gettext("Arrow Size Factor");
     public static final String bar_width = Messages.gettext("Bar Width");
     public static final String thickness = Messages.gettext("Thickness");
@@ -181,7 +176,17 @@ public class MessagesGED {
     public static final String title_page = Messages.gettext("Title Page");
     public static final String axis_title = Messages.gettext("Axis Title");
 
+    //Font - Labels
+    public static final String font = Messages.gettext("Font");
+    public static final String font_color = Messages.gettext("Font Color");
+    public static final String font_size = Messages.gettext("Font Size");
+    public static final String font_style = Messages.gettext("Font Style");
+    public static final String fractional_font = Messages.gettext("Fractional Font");
+
     //Position - Labels
+    public static final String coordinates = Messages.gettext("Coordinates");
+    public static final String x_coordinate = Messages.gettext("X Coordinate");
+    public static final String y_coordinate = Messages.gettext("Y Coordinate");
     public static final String position = Messages.gettext("Position");
     public static final String axes_bounds = Messages.gettext("Axes Bounds");
     public static final String mark_size_unit = Messages.gettext("Mark Size Unit");

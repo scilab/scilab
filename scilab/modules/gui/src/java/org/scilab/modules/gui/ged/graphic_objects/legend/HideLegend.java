@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos CARDINOT
+ * Copyright (C) 2013 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,14 +15,16 @@ import org.scilab.modules.gui.ged.actions.ShowHide;
 
 /**
  * Manages the operation of the button show/hide for the current legend.
- *
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
 public class HideLegend {
     public HideLegend(boolean hide) {
         try {
-            BaseProperties.pBaseProperties.setVisible(!hide);
-            BaseProperties.bBaseProperties.setSelected(hide);
+            BaseProperties.setVisibility(!hide);
+            DataProperties.setVisibility(!hide);
+            Font.setVisibility(!hide);
+            Position.setVisibility(!hide);
+            Style.setVisibility(!hide);
         } catch (NullPointerException nexcC) { }
     }
 
@@ -31,10 +33,15 @@ public class HideLegend {
      * Updates the button's icon in the toolbar
      */
     public static void checkAllButtons() {
-        boolean BP = BaseProperties.pBaseProperties.isVisible();
-        if (BP)
+        boolean BP = BaseProperties.getStatus();
+        boolean DP = DataProperties.getStatus();
+        boolean FT = Font.getStatus();
+        boolean PO = Position.getStatus();
+        boolean SA = Style.getStatus();
+
+        if (BP && DP && FT && PO && SA)
             ShowHide.setStatus(false);
-        else if (!BP)
+        else if (!BP && !DP && !FT && !PO && !SA)
             ShowHide.setStatus(true);
     }
 }

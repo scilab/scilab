@@ -152,8 +152,9 @@ public class SwapObject {
     */
     private void legend(String objectID) {
         adjust();
-        //Load the legend panel.
-        SwingInspector.pReceive.add(new Legend(objectID), "");
+        Legend legend = new Legend();
+        legend.initSections(objectID);
+        SwingInspector.pReceive.add(legend, "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.legend);
         } catch (NullPointerException npe) { }
