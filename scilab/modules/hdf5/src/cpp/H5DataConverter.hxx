@@ -107,7 +107,7 @@ public:
             {
                 totalSize *= dims[i];
             }
-            memcpy(static_cast<void *>(dest), static_cast<const void *>(src), totalSize * sizeof(T));
+            memcpy(dest, src, totalSize * sizeof(T));
         }
         else
         {
