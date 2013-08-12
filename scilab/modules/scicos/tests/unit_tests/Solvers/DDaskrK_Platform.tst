@@ -4,9 +4,13 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- ENGLISH IMPOSED -->
+//
 // <-- XCOS TEST -->
+//
+
+ilib_verbose(0); //to remove ilib_* traces
 
 // Import diagram
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/DDaskr_Platform_test.zcos"));
@@ -15,9 +19,7 @@ assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/DD
 prot = funcprot();
 funcprot(0);
 function messagebox(msg, msg_title)
- disp(msg);
 endfunction
-funcprot(prot);
 Info = scicos_simulate(scs_m, list());
 
 for i=1:2  // 'max step size' = 10^-i, precision
@@ -42,7 +44,6 @@ for i=1:2  // 'max step size' = 10^-i, precision
     // Extract mean, standard deviation, maximum
     mea = mean(compa);
     [maxi, indexMaxi] = max(compa);
-    maxi, mea
     stdeviation = st_deviation(compa);
 
     // Verifying closeness of the results
@@ -51,3 +52,4 @@ for i=1:2  // 'max step size' = 10^-i, precision
     assert_checktrue(stdeviation <= 5*10^-(i+2));
 
 end
+funcprot(prot);

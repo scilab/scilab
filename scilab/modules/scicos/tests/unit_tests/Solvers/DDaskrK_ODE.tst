@@ -4,17 +4,20 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- ENGLISH IMPOSED -->
+//
 // <-- XCOS TEST -->
+//
+
+ilib_verbose(0); //to remove ilib_* traces
 
 // Import diagram
-assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/ODE.zcos"));
+assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/Kalman.zcos"));
 
 prot = funcprot();
 funcprot(0);
 function message(msg)
- disp(msg);
 endfunction
 funcprot(prot);
 

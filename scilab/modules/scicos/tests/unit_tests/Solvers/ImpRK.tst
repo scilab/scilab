@@ -4,9 +4,11 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- ENGLISH IMPOSED -->
+//
 // <-- XCOS TEST -->
+//
 
 // Import diagram
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/Kalman.zcos"));
