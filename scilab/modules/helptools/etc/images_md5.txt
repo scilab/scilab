@@ -23,10 +23,12 @@
 9-Comparaisons_2.png=af6502f90edbd9b38543af88fe5f38f3
 9-Comparaisons_3.png=f0a5c1ac73fbad1886c26a1175dded0f
 9-Comparaisons_4.png=155d2afc64b08b7caf19b0324b199262
+9-Comparaisons_5.png=8f30c91c51b71037aabf3b6bc14bf2a4
 9-Comparisons_1.png=1317221b1234f688e6595e11a3792d1b
 9-Comparisons_2.png=af6502f90edbd9b38543af88fe5f38f3
 9-Comparisons_3.png=f0a5c1ac73fbad1886c26a1175dded0f
 9-Comparisons_4.png=7682e302fa1460ea459dc980a030917b
+9-Comparisons_5.png=8f30c91c51b71037aabf3b6bc14bf2a4
 ABS_VALUE_1.png=14a5f86525c3b2d00b2211899dbff9ca
 BITCLEAR_1.png=65ca5a6984734c64ccc8151737cc8451
 BITCLEAR_fr_FR_1.png=32be3272a6958d5174808d3e533c70f6

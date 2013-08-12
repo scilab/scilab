@@ -6,17 +6,15 @@
 // Import the diagram, modify parameters, augment the ending time and store its compilation in Info()
 loadScicos();
 loadXcosLibs();
-importXcosDiagram("SCI/modules/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.zcos");
+importXcosDiagram("SCI/modules/xcos/demos/ModelicaBlocks/Hydraulics.zcos");
 // Redefining messagebox() to avoid popup
 function messagebox(msg, title)
     disp(title);
     disp(msg);
 endfunction
 
-scs_m.objs(3).graphics.exprs.paramv(1) = 0.15; // Gravity
-scs_m.objs(3).graphics.exprs.paramv(2) = 0.99; // Floor stickiness
 Info = scicos_simulate(scs_m, "nw");
-tf = 2000; // Final time
+tf = 50; // Final time
 tolerances = scs_m.props.tol;
 [%tcur, %cpr, alreadyran, needstart, needcompile, %state0] = Info(:);
 

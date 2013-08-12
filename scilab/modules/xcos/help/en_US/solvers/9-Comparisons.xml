@@ -123,7 +123,7 @@
     <refsection>
         <title>Examples - ODEs</title>
         <para>
-            We will begin with a simple nonstiff example: a Sinus integration.
+            We will begin with a simple nonstiff example: a Sine integration.
         </para>
         <para>
             <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/ODE_Example.zcos">
@@ -674,13 +674,13 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
             The Scilab console displays:
             <screen><![CDATA[
 Time for IDA:
- 7.5
+ 8
 
 Time for DDaskr - Newton:
- 5.4
+ 5.6
 
 Time for DDaskr - GMRes:
- 10.2
+ 6.5
             ]]></screen>
         </para>
         <para>
@@ -693,7 +693,7 @@ Time for DDaskr - GMRes:
             GMRes is slower due to the small size of the problem.
         </para>
         <para>
-            From the result, we can extract the speed factors:
+            From the results, we can extract the speed factors:
         </para>
         <para>
             <informaltable border="1">
@@ -712,6 +712,72 @@ Time for DDaskr - GMRes:
                     </td>
                     <td align="center"> 1.39x </td>
                     <td align="center"> 1.9x </td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>
+            The next example simply corroborates the previous one, it is shorter but more thorough, since it deals with the filling and emptying of a tank.
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/ModelicaBlocks/Hydraulics.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../demos/ModelicaBlocks/Hydraulics.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/demos/ModelicaBlocks/Hydraulics.zcos");
+// Redefining messagebox() to avoid popup
+function messagebox(msg, title)
+ disp(title);
+ disp(msg);
+endfunction
+scs_m.props.tol(6) = 100;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            In the following script, we compare the time difference between the solvers by running the example with the three solvers in turn:
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchHydraulics.sce">
+                Open the script
+            </link>
+        </para>
+        <para>
+            The Scilab console displays:
+            <screen><![CDATA[
+Time for IDA:
+ 3
+
+Time for DDaskr - Newton:
+ 0.8
+
+Time for DDaskr - GMRes:
+ 0.85
+            ]]></screen>
+        </para>
+        <para>
+            From the results, we can extract the speed factors:
+        </para>
+        <para>
+            <informaltable border="1">
+                <tr>
+                    <td align="center"> </td>
+                    <td align="center">
+                        <emphasis>IDA</emphasis> 
+                    </td>
+                    <td align="center">
+                        <emphasis>DDaskr G</emphasis> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>DDaskr N</emphasis> 
+                    </td>
+                    <td align="center"> 3.75x </td>
+                    <td align="center"> 1.06x </td>
                 </tr>
             </informaltable>
         </para>
