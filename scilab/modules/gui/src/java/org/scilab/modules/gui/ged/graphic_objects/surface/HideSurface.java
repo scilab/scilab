@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos CARDINOT
+ * Copyright (C) 2013 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,15 +14,16 @@ package org.scilab.modules.gui.ged.graphic_objects.surface;
 import org.scilab.modules.gui.ged.actions.ShowHide;
 
 /**
- * Manages the operation of the button show/hide for the current surface.
- *
+ * Manages the operation of the button show/hide for the surface properties.
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
-public class HideSurface {
+public class HideSurface extends Surface {
     public HideSurface(boolean hide) {
         try {
-            BaseProperties.pBaseProperties.setVisible(!hide);
-            BaseProperties.bBaseProperties.setSelected(hide);
+            BaseProperties.setVisibility(!hide);
+            DataProperties.setVisibility(!hide);
+            Mark.setVisibility(!hide);
+            Style.setVisibility(!hide);
         } catch (NullPointerException nexcC) { }
     }
 
@@ -31,10 +32,14 @@ public class HideSurface {
      * Updates the button's icon in the toolbar
      */
     public static void checkAllButtons() {
-        boolean BP = BaseProperties.pBaseProperties.isVisible();
-        if (BP)
+        boolean BP = BaseProperties.getStatus();
+        boolean DP = DataProperties.getStatus();
+        boolean MK = Mark.getStatus();
+        boolean SA = Style.getStatus();
+
+        if (BP && DP && MK && SA)
             ShowHide.setStatus(false);
-        else if (!BP)
+        else if (!BP && !DP && !MK && !SA)
             ShowHide.setStatus(true);
     }
 }

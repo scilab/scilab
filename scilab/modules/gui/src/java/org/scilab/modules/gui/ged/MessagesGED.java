@@ -101,7 +101,11 @@ public class MessagesGED {
 
     public static final String arrow_size_factor = Messages.gettext("Arrow Size Factor");
     public static final String bar_width = Messages.gettext("Bar Width");
+    public static final String color_mode = Messages.gettext("Color Mode");
+    public static final String color_flag = Messages.gettext("Color Flag");
+    public static final String hidden_color = Messages.gettext("Hidden Color");
     public static final String thickness = Messages.gettext("Thickness");
+    public static final String mark = Messages.gettext("Mark");
     public static final String mark_background = Messages.gettext("Mark Background");
     public static final String mark_foreground = Messages.gettext("Mark Foreground");
     public static final String mark_size = Messages.gettext("Mark Size");

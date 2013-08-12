@@ -19,8 +19,8 @@ import org.scilab.modules.gui.ged.graphic_objects.axes.Axes;
 import org.scilab.modules.gui.ged.graphic_objects.figure.Figure;
 import org.scilab.modules.gui.ged.graphic_objects.legend.Legend;
 import org.scilab.modules.gui.ged.graphic_objects.polyline.Polyline;
-import org.scilab.modules.gui.ged.graphic_objects.surface.grayplot.Grayplot;
 import org.scilab.modules.gui.ged.graphic_objects.surface.Surface;
+import org.scilab.modules.gui.ged.graphic_objects.surface.grayplot.Grayplot;
 
 /**
 * Manager object exchange.
@@ -183,8 +183,9 @@ public class SwapObject {
     */
     private void plot3d(String objectID) {
         adjust();
-        //Load the polyline panel.
-        SwingInspector.pReceive.add(new Surface(objectID), "");
+        Surface surface = new Surface();
+        surface.initSections(objectID);
+        SwingInspector.pReceive.add(surface, "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.plot3d);
         } catch (NullPointerException npe) { }
@@ -197,8 +198,9 @@ public class SwapObject {
     */
     private void fac3d(String objectID) {
         adjust();
-        //Load the polyline panel.
-        SwingInspector.pReceive.add(new Surface(objectID), "");
+        Surface surface = new Surface();
+        surface.initSections(objectID);
+        SwingInspector.pReceive.add(surface, "");
         try {
             Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.fac3d);
         } catch (NullPointerException npe) { }
