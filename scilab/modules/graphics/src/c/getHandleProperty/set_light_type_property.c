@@ -27,6 +27,7 @@
 int set_light_type_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
+    int val;
 
     if (valueType != sci_matrix)
     {
@@ -39,7 +40,7 @@ int set_light_type_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
         Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "light_type", 1);
         return SET_PROPERTY_ERROR;
     }
-    int val = (int)((double*)_pvData)[0];
+    val = (int)((double*)_pvData)[0];
 
     status = setGraphicObjectProperty(pobjUID, __GO_LIGHT_TYPE__, &val, jni_int, 1);
 

@@ -27,6 +27,7 @@
 int set_specular_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
+    double * color;
 
     if (valueType != sci_matrix)
     {
@@ -40,9 +41,9 @@ int set_specular_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int 
         return SET_PROPERTY_ERROR;
     }
 
-    double * color = (double*)_pvData;
+    color = (double*)_pvData;
     if (color[0] < 0.0 || color[1] < 0.0 || color[2] < 0.0 ||
-        color[0] > 1.0 || color[1] > 1.0 || color[2] > 1.0 )
+            color[0] > 1.0 || color[1] > 1.0 || color[2] > 1.0 )
     {
         Scierror(999, _("Wrong values for '%s' property: values between [0, 1] expected.\n"), "specular_color");
         return SET_PROPERTY_ERROR;

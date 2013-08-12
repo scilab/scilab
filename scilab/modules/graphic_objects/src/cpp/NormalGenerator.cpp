@@ -20,7 +20,7 @@
 
 inline void normalize3(float* v)
 {
-    float inv_norm = 1.0f / sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]);
+    float inv_norm = 1.0f / sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
     v[0] *= inv_norm;
     v[1] *= inv_norm;
     v[2] *= inv_norm;
@@ -29,12 +29,12 @@ inline void normalize3(float* v)
 bool CalculateGridNormalFlat(float* position, float* buffer, int bufferLength, int elementSize)
 {
     if (elementSize < 3) return false;
-    for (int i = 0; i < bufferLength; i+= 4*elementSize)
+    for (int i = 0; i < bufferLength; i += 4 * elementSize)
     {
         float *p1 = &position[i],
-              *p2 = &position[i+elementSize],
-              *p3 = &position[i+2*elementSize], 
-              *p4 = &position[i+3*elementSize];
+               *p2 = &position[i + elementSize],
+                *p3 = &position[i + 2 * elementSize],
+                 *p4 = &position[i + 3 * elementSize];
 
         float v1[3], v2[3], n1[3], n2[3], n1pn2[3];
         //v1 = p2-p1
@@ -57,9 +57,9 @@ bool CalculateGridNormalFlat(float* position, float* buffer, int bufferLength, i
 
 
         COPY3(&buffer[i], n1pn2);
-        COPY3(&buffer[i+elementSize], n1pn2);
-        COPY3(&buffer[i+2*elementSize], n1pn2);
-        COPY3(&buffer[i+3*elementSize], n1pn2);
+        COPY3(&buffer[i + elementSize], n1pn2);
+        COPY3(&buffer[i + 2 * elementSize], n1pn2);
+        COPY3(&buffer[i + 3 * elementSize], n1pn2);
     }
     return true;
 }
@@ -67,12 +67,12 @@ bool CalculateGridNormalFlat(float* position, float* buffer, int bufferLength, i
 bool CalculateGridNormalSmooth(float* position, float* buffer, int bufferLength, int elementSize, int numX, int numY)
 {
     if (elementSize < 3) return false;
-    for (int i = 0; i < bufferLength; i+= 4*elementSize)
+    for (int i = 0; i < bufferLength; i += 4 * elementSize)
     {
         float *p1 = &position[i],
-              *p2 = &position[i+elementSize],
-              *p3 = &position[i+2*elementSize], 
-              *p4 = &position[i+3*elementSize];
+               *p2 = &position[i + elementSize],
+                *p3 = &position[i + 2 * elementSize],
+                 *p4 = &position[i + 3 * elementSize];
 
         float v1[3], v2[3], n1[3], n2[3], n1pn2[3];
         //v1 = p2-p1
@@ -95,23 +95,23 @@ bool CalculateGridNormalSmooth(float* position, float* buffer, int bufferLength,
 
 
         COPY3(&buffer[i], n1pn2);
-        COPY3(&buffer[i+elementSize], n1);
-        COPY3(&buffer[i+2*elementSize], n2);
-        COPY3(&buffer[i+3*elementSize], n1pn2);
+        COPY3(&buffer[i + elementSize], n1);
+        COPY3(&buffer[i + 2 * elementSize], n2);
+        COPY3(&buffer[i + 3 * elementSize], n1pn2);
     }
 
     // average normals in x axis
-    for (int i = 0; i < numX-1; ++i)
+    for (int i = 0; i < numX - 1; ++i)
     {
-        for (int j = 0; j < numY-2; ++j)
+        for (int j = 0; j < numY - 2; ++j)
         {
             float sum[3];
             float *p2, *p3, *pj0, *pj1;
             p2 = getGridNormal(buffer, numX, numY, elementSize, i, j, 2);
             p3 = getGridNormal(buffer, numX, numY, elementSize, i, j, 3);
 
-            pj0 = getGridNormal(buffer, numX, numY, elementSize, i, j+1, 0);
-            pj1 = getGridNormal(buffer, numX, numY, elementSize, i, j+1, 1);
+            pj0 = getGridNormal(buffer, numX, numY, elementSize, i, j + 1, 0);
+            pj1 = getGridNormal(buffer, numX, numY, elementSize, i, j + 1, 1);
 
             PLUS3(pj0, p2, sum);
             COPY3(p2, sum);
@@ -124,17 +124,17 @@ bool CalculateGridNormalSmooth(float* position, float* buffer, int bufferLength,
     }
 
     // average normals in y axis
-    for (int j = 0; j < numY-1; ++j)
+    for (int j = 0; j < numY - 1; ++j)
     {
-        for (int i = 0; i < numX-2; ++i)
+        for (int i = 0; i < numX - 2; ++i)
         {
             float sum[3];
             float *p1, *p3, *pi0, *pi2;
             p1 = getGridNormal(buffer, numX, numY, elementSize, i, j, 1);
             p3 = getGridNormal(buffer, numX, numY, elementSize, i, j, 3);
 
-            pi0 = getGridNormal(buffer, numX, numY, elementSize, i+1, j, 0);
-            pi2 = getGridNormal(buffer, numX, numY, elementSize, i+1, j, 2);
+            pi0 = getGridNormal(buffer, numX, numY, elementSize, i + 1, j, 0);
+            pi2 = getGridNormal(buffer, numX, numY, elementSize, i + 1, j, 2);
 
             PLUS3(pi0, p1, sum);
             COPY3(p1, sum);
@@ -145,6 +145,7 @@ bool CalculateGridNormalSmooth(float* position, float* buffer, int bufferLength,
             COPY3(pi2, sum);
         }
     }
+    return true;
 }
 
 float * getGridNormal(float *buffer, int numX, int numY, int elementSize, int i, int j, int k)
@@ -156,27 +157,28 @@ float * getGridNormal(float *buffer, int numX, int numY, int elementSize, int i,
 
 bool CalculatePolygonNormalFlat(float* position, float* buffer, int bufferLength, int elementSize, int polygonVertices)
 {
-    for (int i = 0; i < bufferLength; i+=(elementSize*polygonVertices))
+    for (int i = 0; i < bufferLength; i += (elementSize * polygonVertices))
     {
         float v1[3], v2[3], n[3], sum[] = {0.0f, 0.0f, 0.0f};
-        
-        for (int j = 0; j < polygonVertices-2; ++j)
+
+        for (int j = 0; j < polygonVertices - 2; ++j)
         {
             float *p1 = &position[i],
-                  *p2 = &position[i+ (j+2)*elementSize],
-                  *p3 = &position[i+(j+1)*elementSize];
+                   *p2 = &position[i + (j + 2) * elementSize],
+                    *p3 = &position[i + (j + 1) * elementSize];
 
             MINUS3(p2, p1, v1);
             MINUS3(p3, p1, v2);
             CROSS3(v1, v2, n);
             normalize3(n);
-            
+
             PLUS3(n, sum, sum);
         }
         for (int j = 0; j < polygonVertices; ++j)
         {
-            COPY3(&buffer[i+j*elementSize], sum);
+            COPY3(&buffer[i + j * elementSize], sum);
         }
     }
+    return true;
 }
 
