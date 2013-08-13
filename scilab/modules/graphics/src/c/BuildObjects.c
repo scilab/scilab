@@ -1283,6 +1283,116 @@ char *ConstructGrayplot(char *pparentsubwinUID, double *pvecx, double *pvecy, do
     return pobjUID;
 }
 
+/********************** 14/05/2002 *****
+ **ConstructGrayplot
+ * This function is used to build Grayplot and Matplot objects.
+ * It would probably be better to put the code related to Matplot objects
+ * in a separate build function, as it would avoid having to perform several tests
+ * on the type parameter. This is done so because Matplot objects were previously
+ * internally represented by sciGrayplot structures.
+ */
+char *ConstructImplot(char *pparentsubwinUID, double *pvecx, unsigned char *pvecz, int n1, int n2, int plottype)
+{
+    char *pobjUID = NULL;
+
+    int typeParent = -1;
+    int *piTypeParent = &typeParent;
+
+    char *grayplotID = NULL;
+    int result = 0;
+    int dataMapping = 0;
+    int gridSize[4];
+
+    int parentVisible = 0;
+    int *piParentVisible = &parentVisible;
+    double *clipRegion = NULL;
+    int clipRegionSet = 0;
+    int *piClipRegionSet = &clipRegionSet;
+    int clipState = 0;
+    int *piClipState = &clipState;
+    int numElements = 0;
+    double pdblScale[2];
+
+    getGraphicObjectProperty(pparentsubwinUID, __GO_TYPE__, jni_int, (void **)&piTypeParent);
+
+    if (typeParent != __GO_AXES__)
+    {
+        Scierror(999, _("The parent has to be a SUBWIN\n"));
+        return (char *)NULL;
+    }
+
+    pobjUID = (char *)createGraphicObject(__GO_MATPLOT__);
+    grayplotID = (char *)createDataObject(pobjUID, __GO_MATPLOT__);
+
+    if (grayplotID == NULL)
+    {
+        deleteGraphicObject(pobjUID);
+        releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
+        return NULL;
+    }
+
+    gridSize[0] = n2;
+    gridSize[1] = 1;
+    gridSize[2] = n1;
+    gridSize[3] = 1;
+
+    /* Allocates the coordinates arrays */
+    result = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+    if (result == 0)
+    {
+        deleteGraphicObject(pobjUID);
+        deleteDataObject(pobjUID);
+        releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
+        return NULL;
+    }
+
+    /* Only for Matplot1 objects */
+    if (pvecx)
+    {
+        setGraphicObjectProperty(pobjUID, __GO_MATPLOT_TRANSLATE__, pvecx, jni_double_vector, 2);
+        pdblScale[0] = (pvecx[2] - pvecx[0]) / (n2 - 1.0);
+        pdblScale[1] = (pvecx[3] - pvecx[1]) / (n1 - 1.0);
+        setGraphicObjectProperty(pobjUID, __GO_MATPLOT_SCALE__, pdblScale, jni_double_vector, 2);
+    }
+
+    numElements = (n1 - 1) * (n2 - 1);
+    if (plottype != -1)
+    {
+        setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
+    }
+
+    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, pvecz, jni_double_vector, numElements);
+
+    /*
+     * Adding a new handle and setting the parent-child relationship is now
+     * done after data initialization in order to avoid additional
+     * clean-up.
+     */
+    setGraphicObjectRelationship(pparentsubwinUID, pobjUID);
+
+    getGraphicObjectProperty(pparentsubwinUID, __GO_VISIBLE__, jni_bool, (void **)&piParentVisible);
+    setGraphicObjectProperty(pobjUID, __GO_VISIBLE__, &parentVisible, jni_bool, 1);
+
+    /*
+     * Clip state and region
+     * To be checked for consistency
+     */
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipRegion);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+    releaseGraphicObjectProperty(__GO_CLIP_BOX__, clipRegion, jni_double_vector, 4);
+
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_BOX_SET__, jni_bool, (void **)&piClipRegionSet);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_BOX_SET__, &clipRegionSet, jni_bool, 1);
+
+    getGraphicObjectProperty(pparentsubwinUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
+    setGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+    /* Initializes the default Contour values */
+    cloneGraphicContext(pparentsubwinUID, pobjUID);
+
+    return pobjUID;
+}
+
 /**ConstructAxis
  * This function creates an Axis object
  * @author Djalel ABDEMOUCHE

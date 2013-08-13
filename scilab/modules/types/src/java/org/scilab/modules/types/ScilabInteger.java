@@ -16,7 +16,6 @@ package org.scilab.modules.types;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import java.util.Arrays;
 
 /**
  * This class provides a representation on the Scilab Integer datatype<br>
@@ -39,20 +38,19 @@ public class ScilabInteger implements ScilabType {
 
     private static final int VERSION = 0;
 
-    private long[][] longData = null;
-    private short[][] shortData = null;
-    private int[][] intData = null;
-    private byte[][] byteData = null;
-    private ScilabIntegerTypeEnum precision;
-    private String varName;
-    private boolean swaped;
+    protected long[][] longData;
+    protected short[][] shortData;
+    protected int[][] intData;
+    protected byte[][] byteData;
+    protected ScilabIntegerTypeEnum precision;
+    protected String varName;
+    protected boolean swaped;
+    transient protected boolean byref;
 
     /**
      * Default constructor
      */
-    public ScilabInteger() {
-
-    }
+    public ScilabInteger() { }
 
     /**
      * Constructor with values
@@ -207,6 +205,50 @@ public class ScilabInteger implements ScilabType {
     }
 
     /**
+     * Constructor with single signed value
+     *
+     * @param value
+     *            the unique value
+     */
+    public ScilabInteger(byte value, boolean bUnsigned) {
+        this(value);
+        this.precision = bUnsigned ? ScilabIntegerTypeEnum.sci_uint8 : ScilabIntegerTypeEnum.sci_int8;
+    }
+
+    /**
+     * Constructor with single signed value
+     *
+     * @param value
+     *            the unique value
+     */
+    public ScilabInteger(short value, boolean bUnsigned) {
+        this(value);
+        this.precision = bUnsigned ? ScilabIntegerTypeEnum.sci_uint16 : ScilabIntegerTypeEnum.sci_int16;
+    }
+
+    /**
+     * Constructor with single signed value
+     *
+     * @param value
+     *            the unique value
+     */
+    public ScilabInteger(int value, boolean bUnsigned) {
+        this(value);
+        this.precision = bUnsigned ? ScilabIntegerTypeEnum.sci_uint32 : ScilabIntegerTypeEnum.sci_int32;
+    }
+
+    /**
+     * Constructor with single signed value
+     *
+     * @param value
+     *            the unique value
+     */
+    public ScilabInteger(long value, boolean bUnsigned) {
+        this(value);
+        this.precision = bUnsigned ? ScilabIntegerTypeEnum.sci_uint64 : ScilabIntegerTypeEnum.sci_int64;
+    }
+
+    /**
      * Set the current values
      *
      * @param data
@@ -300,7 +342,7 @@ public class ScilabInteger implements ScilabType {
             case sci_uint8:
                 for (int i = 0; i < this.getHeight(); i++) {
                     for (int j = 0; j < this.getWidth(); j++) {
-                        convertedMatrix[i][j] = Long.valueOf(byteData[i][j]);
+                        convertedMatrix[i][j] = Long.valueOf(getByteElement(i, j));
                     }
                 }
                 return convertedMatrix;
@@ -308,7 +350,7 @@ public class ScilabInteger implements ScilabType {
             case sci_uint16:
                 for (int i = 0; i < this.getHeight(); i++) {
                     for (int j = 0; j < this.getWidth(); j++) {
-                        convertedMatrix[i][j] = Long.valueOf(shortData[i][j]);
+                        convertedMatrix[i][j] = Long.valueOf(getShortElement(i, j));
                     }
                 }
                 return convertedMatrix;
@@ -316,7 +358,7 @@ public class ScilabInteger implements ScilabType {
             case sci_uint32:
                 for (int i = 0; i < this.getHeight(); i++) {
                     for (int j = 0; j < this.getWidth(); j++) {
-                        convertedMatrix[i][j] = Long.valueOf(intData[i][j]);
+                        convertedMatrix[i][j] = Long.valueOf(getIntElement(i, j));
                     }
                 }
                 return convertedMatrix;
@@ -429,7 +471,6 @@ public class ScilabInteger implements ScilabType {
             }
         }
         return null;
-
     }
 
     /**
@@ -510,8 +551,12 @@ public class ScilabInteger implements ScilabType {
         }
     }
 
-    // int32(X), int8(x) , int16([x,x,x;x,x,x])
-    // uint32(X), uint8(x) , uint16([x,x,x;x,x,x])
+    /**
+     * {@inheritDoc}
+     */
+    public boolean isReference() {
+        return byref;
+    }
 
     /**
      * @return true, if there is no values; false otherwise.
@@ -554,37 +599,187 @@ public class ScilabInteger implements ScilabType {
     }
 
     /**
+     * Get the byte element at position (i, j)
+     * @param i the row index
+     * @param j the column index
+     * @return a byte
+     */
+    public byte getByteElement(final int i, final int j) {
+        return byteData[i][j];
+    }
+
+    /**
+     * Get the short element at position (i, j)
+     * @param i the row index
+     * @param j the column index
+     * @return a short
+     */
+    public short getShortElement(final int i, final int j) {
+        return shortData[i][j];
+    }
+
+    /**
+     * Get the int element at position (i, j)
+     * @param i the row index
+     * @param j the column index
+     * @return a int
+     */
+    public int getIntElement(final int i, final int j) {
+        return intData[i][j];
+    }
+
+    /**
+     * Get the long element at position (i, j)
+     * @param i the row index
+     * @param j the column index
+     * @return a long
+     */
+    public long getLongElement(final int i, final int j) {
+        return longData[i][j];
+    }
+
+    /**
+     * Set the byte element at position (i, j)
+     * @param i the row index
+     * @param j the column index
+     * @param x the byte to set
+     */
+    public void setByteElement(final int i, final int j, final byte x) {
+        byteData[i][j] = x;
+    }
+
+    /**
+     * Set the short element at position (i, j)
+     * @param i the row index
+     * @param j the column index
+     * @param x the short to set
+     */
+    public void setShortElement(final int i, final int j, final short x) {
+        shortData[i][j] = x;
+    }
+
+    /**
+     * Set the int element at position (i, j)
+     * @param i the row index
+     * @param j the column index
+     * @param x the int to set
+     */
+    public void setIntElement(final int i, final int j, final int x) {
+        intData[i][j] = x;
+    }
+
+    /**
+     * Set the long element at position (i, j)
+     * @param i the row index
+     * @param j the column index
+     * @param x the long to set
+     */
+    public void setLongElement(final int i, final int j, final long x) {
+        longData[i][j] = x;
+    }
+
+
+    /**
+     * Get the element at position (i, j) as a long
+     * @param i the row index
+     * @param j the column index
+     * @return a long
+     */
+    public long getElement(final int i, final int j) {
+        switch (this.getPrec()) {
+            case sci_int8:
+            case sci_uint8:
+                return getByteElement(i, j);
+            case sci_int16:
+            case sci_uint16:
+                return getShortElement(i, j);
+            case sci_int32:
+            case sci_uint32:
+                return getIntElement(i, j);
+            case sci_int64:
+            case sci_uint64:
+                return getLongElement(i, j);
+        }
+
+        return 0;
+    }
+
+    /**
+     * Set the element at position (i, j)
+     * @param i the row index
+     * @param j the column index
+     * @param x a long
+     */
+    public void setElement(final int i, final int j, final long x) {
+        switch (this.getPrec()) {
+            case sci_int8:
+            case sci_uint8:
+                setByteElement(i, j, (byte) x);
+                break;
+            case sci_int16:
+            case sci_uint16:
+                setShortElement(i, j, (short) x);
+                break;
+            case sci_int32:
+            case sci_uint32:
+                setIntElement(i, j, (int) x);
+                break;
+            case sci_int64:
+            case sci_uint64:
+                setLongElement(i, j, x);
+                break;
+        }
+    }
+
+    /**
      * @see org.scilab.modules.types.ScilabType#equals(Object)
      */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof ScilabInteger) {
-            return Arrays.deepEquals(this.getData(), ((ScilabInteger) obj).getData());
+            ScilabInteger sciInt = (ScilabInteger) obj;
+            if (isEmpty() && sciInt.isEmpty()) {
+                return true;
+            }
+
+            if (this.getWidth() != sciInt.getWidth() || this.getHeight() != sciInt.getHeight()) {
+                return false;
+            }
+
+            return ScilabTypeUtils.equalsInteger(this.getRawData(), this.isSwaped(), sciInt.getRawData(), sciInt.isSwaped());
         } else {
             return false;
         }
     }
 
-    private Object getCorrectData() {
+    /**
+     * Get the data as a array of arrays
+     * @return the data
+     */
+    public Object getCorrectData() {
         switch (this.getPrec()) {
             case sci_int8:
-                return byteData;
             case sci_uint8:
                 return byteData;
             case sci_int16:
-                return shortData;
             case sci_uint16:
                 return shortData;
             case sci_int32:
-                return intData;
             case sci_uint32:
                 return intData;
             case sci_int64:
-                return longData;
             case sci_uint64:
                 return longData;
         }
         return null;
+    }
+
+    /**
+     * Get the data as they are
+     * @return the data
+     */
+    public Object getRawData() {
+        return getCorrectData();
     }
 
     /**
@@ -648,8 +843,7 @@ public class ScilabInteger implements ScilabType {
         StringBuilder result = new StringBuilder();
 
         if (isEmpty()) {
-            result.append("int([])");
-            return result.toString();
+            return "[]";
         }
 
         if (isUnsigned()) {
@@ -696,10 +890,11 @@ public class ScilabInteger implements ScilabType {
      *            the current buffer
      */
     private void appendData(StringBuilder result) {
+        long[][] d = getData();
         for (int i = 0; i < getHeight(); ++i) {
             for (int j = 0; j < getWidth(); ++j) {
 
-                result.append(getData()[i][j]);
+                result.append(d[i][j]);
 
                 if (j != getWidth() - 1) {
                     result.append(", ");
@@ -710,5 +905,4 @@ public class ScilabInteger implements ScilabType {
             }
         }
     }
-
 }

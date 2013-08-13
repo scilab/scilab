@@ -335,6 +335,8 @@ Bug fixes
 
 * Bug #10213 fixed - sci2exp can be impacted by format which has been mentionned in its help page.
 
+* Bug #10216 fixed - Invalid syntaxes for zeros, ones, eye, rand, like zeros(2,:).
+
 * Bug #10226 fixed - When a // <empty session> line is delete, all sessions
                      histories are folded.
 
@@ -499,6 +501,9 @@ Bug fixes
 * Bug #12686 fixed - Error returned by diff() fixed.
 
 * Bug #12703 fixed - In SciNotes, common shortcuts 'SHIFT DELETE', 'SHIFT INSERT' (and others) added.
+
+* Bug #12705 fixed - Function members() added. It allows to find number of occurrences and linear indexes
+                     for common values between two matrices of the same type.
 
 * Bug #12706 fixed - A wrong size matrix as input argument of cross function was not detected.
 

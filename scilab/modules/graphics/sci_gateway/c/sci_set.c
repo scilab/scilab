@@ -153,75 +153,46 @@ int sci_set(char *fname, unsigned long fname_len)
                     iCols3 = -1;   /*unused */
                     valueType = -1;
                 }
-                else if (valueType == sci_matrix)
+                else
                 {
-                    sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &iRows3, &iCols3, (double**)&_pvData);
-                    if (sciErr.iErr)
+                    switch (valueType)
                     {
-                        printError(&sciErr, 0);
-                        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), fname, 3);
-                        return sciErr.iErr;
+                        case sci_matrix :
+                            getMatrixOfDouble(pvApiCtx, piAddr3, &iRows3, &iCols3, (double**)&_pvData);
+                            break;
+                        case sci_boolean :
+                            getMatrixOfBoolean(pvApiCtx, piAddr3, &iRows3, &iCols3, (int**)&_pvData);
+                            break;
+                        case sci_handles :
+                            getMatrixOfHandle(pvApiCtx, piAddr3, &iRows3, &iCols3, (long long**)&_pvData);
+                            break;
+                        case sci_strings :
+                            if (   strcmp(pstProperty, "tics_labels") != 0 && strcmp(pstProperty, "auto_ticks") != 0 &&
+                                    strcmp(pstProperty, "axes_visible") != 0 && strcmp(pstProperty, "axes_reverse") != 0 &&
+                                    strcmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
+                                    stricmp(pstProperty, "tooltipstring") != 0) /* Added for uicontrols */
+                            {
+                                getAllocatedSingleString(pvApiCtx, piAddr3, (char**)&_pvData);
+                                iRows3 = (int)strlen((char*)_pvData);
+                                iCols3 = 1;
+                            }
+                            else
+                            {
+                                isMatrixOfString = 1;
+                                getAllocatedMatrixOfString(pvApiCtx, piAddr3, &iRows3, &iCols3, (char***)&_pvData);
+                            }
+                            break;
+                        case sci_list :
+                            iCols3 = 1;
+                            getListItemNumber(pvApiCtx, piAddr3, &iRows3);
+                            _pvData = (void*)piAddr3;         /* In this case l3 is the list position in stack */
+                            break;
+                        default :
+                            _pvData = (void*)piAddr3;         /* In this case l3 is the list position in stack */
+                            break;
                     }
-                }
-                else if (valueType == sci_boolean)
-                {
-                    sciErr = getMatrixOfBoolean(pvApiCtx, piAddr3, &iRows3, &iCols3, (int**)&_pvData);
-                    if (sciErr.iErr)
-                    {
-                        printError(&sciErr, 0);
-                        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of boolean expected.\n"), fname, 3);
-                        return sciErr.iErr;
-                    }
-                }
-                else if (valueType == sci_handles)
-                {
-                    sciErr = getMatrixOfHandle(pvApiCtx, piAddr3, &iRows3, &iCols3, (long long**)&_pvData);
-                    if (sciErr.iErr)
-                    {
-                        printError(&sciErr, 0);
-                        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of handle expected\n"), fname, 3);
-                        return sciErr.iErr;
-                    }
-                }
-                else if (valueType == sci_strings)
-                {
-                    if (   strcmp(pstProperty, "tics_labels") != 0 && strcmp(pstProperty, "auto_ticks") != 0 &&
-                            strcmp(pstProperty, "axes_visible") != 0 && strcmp(pstProperty, "axes_reverse") != 0 &&
-                            strcmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
-                            stricmp(pstProperty, "tooltipstring") != 0) /* Added for uicontrols */
-                    {
-                        if (getAllocatedSingleString(pvApiCtx, piAddr3, (char**)&_pvData))
-                        {
-                            Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, 3);
-                            return 1;
-                        }
-                        iRows3 = (int)strlen((char*)_pvData);
-                        iCols3 = 1;
-                    }
-                    else
-                    {
-                        isMatrixOfString = 1;
-                        if (getAllocatedMatrixOfString(pvApiCtx, piAddr3, &iRows3, &iCols3, (char***)&_pvData))
-                        {
-                            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of string expected.\n"), fname, 3);
-                            return 1;
-                        }
-                    }
-                }
-                else if (valueType == sci_list) /* Added for callbacks */
-                {
-                    iCols3 = 1;
-                    sciErr = getListItemNumber(pvApiCtx, piAddr3, &iRows3);
-                    if (sciErr.iErr)
-                    {
-                        printError(&sciErr, 0);
-                        Scierror(999, _("%s: Wrong type for input argument #%d: A list expected.\n"), fname, 3);
-                        return sciErr.iErr;
-                    }
-                    _pvData = (void*)piAddr3;         /* In this case l3 is the list position in stack */
                 }
                 break;
-
             case sci_strings:      /* first is a string argument so it's a set("command",[param]) */
                 CheckRhs(2, 2);
                 if (getAllocatedSingleString(pvApiCtx, piAddr1, &pstProperty))

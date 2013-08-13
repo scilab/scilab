@@ -1,4 +1,4 @@
-    <package name="org.scilab.modules.types">
+<package name="org.scilab.modules.types">
     
     <object name="ScilabVariables">
         <method name="getAllListenedVariables" returnType="String[]" modifier="static" />
@@ -12,6 +12,16 @@
             <param type="int" name="handlerId"/>
         </method>
         
+        <!-- double matrix by reference-->
+        <method name="sendDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="DoubleBuffer" name="data"/>
+            <param type="int" name="rows"/>
+            <param type="int" name="cols"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
         <!-- complex matrix-->
         <method name="sendData" returnType="void" modifier="static">
             <param type="String" name="varName" />
@@ -19,6 +29,17 @@
             <param type="double[][]" name="real"/>
             <param type="double[][]" name="img"/>
             <param type="boolean" name="swaped"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
+        <!-- complex matrix by reference-->
+        <method name="sendDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="DoubleBuffer" name="real"/>
+            <param type="DoubleBuffer" name="img"/>
+            <param type="int" name="rows"/>
+            <param type="int" name="cols"/>
             <param type="int" name="handlerId"/>
         </method>
         
@@ -40,6 +61,26 @@
             <param type="int" name="handlerId"/>
         </method>
         
+        <!-- int8 matrix by reference-->
+        <method name="sendDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="ByteBuffer" name="data"/>
+            <param type="int" name="rows"/>
+            <param type="int" name="cols"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
+        <!-- uint8 matrix by reference-->
+        <method name="sendUnsignedDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="ByteBuffer" name="data"/>
+            <param type="int" name="rows"/>
+            <param type="int" name="cols"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
         <!-- int16 matrix-->
         <method name="sendData" returnType="void" modifier="static">
             <param type="String" name="varName" />
@@ -55,6 +96,26 @@
             <param type="int[]" name="indexes" />
             <param type="short[][]" name="data"/>
             <param type="boolean" name="swaped"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
+        <!-- int16 matrix by reference-->
+        <method name="sendDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="ShortBuffer" name="data"/>
+            <param type="int" name="rows"/>
+            <param type="int" name="cols"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
+        <!-- uint16 matrix by reference-->
+        <method name="sendUnsignedDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="ShortBuffer" name="data"/>
+            <param type="int" name="rows"/>
+            <param type="int" name="cols"/>
             <param type="int" name="handlerId"/>
         </method>
         
@@ -76,6 +137,26 @@
             <param type="int" name="handlerId"/>
         </method>
         
+        <!-- int32 matrix by reference-->
+        <method name="sendDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="IntBuffer" name="data"/>
+            <param type="int" name="rows"/>
+            <param type="int" name="cols"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
+        <!-- uint32 matrix by reference-->
+        <method name="sendUnsignedDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="IntBuffer" name="data"/>
+            <param type="int" name="rows"/>
+            <param type="int" name="cols"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
         <!-- int64, uint64 matrix-->
         <method name="sendData" returnType="void" modifier="static">
             <param type="String" name="varName" />
@@ -85,12 +166,42 @@
             <param type="int" name="handlerId"/>
         </method>
         
+        <!-- int64 matrix by reference-->
+        <method name="sendDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="LongBuffer" name="data"/>
+            <param type="int" name="rows"/>
+            <param type="int" name="cols"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
+        <!-- uint64 matrix by reference-->
+        <method name="sendUnsignedDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="LongBuffer" name="data"/>
+            <param type="int" name="rows"/>
+            <param type="int" name="cols"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
         <!-- boolean matrix-->
         <method name="sendData" returnType="void" modifier="static">
             <param type="String" name="varName" />
             <param type="int[]" name="indexes" />
             <param type="boolean[][]" name="data"/>
             <param type="boolean" name="swaped"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
+        <!-- boolean matrix by reference-->
+        <method name="sendBooleanDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="IntBuffer" name="data"/>
+            <param type="int" name="rows"/>
+            <param type="int" name="cols"/>
             <param type="int" name="handlerId"/>
         </method>
         
@@ -106,6 +217,7 @@
         <!-- Lists -->
         <method name="sendData" returnType="void" modifier="static">
             <param type="String" name="varName" />
+            <param type="int" name="nbItems" />
             <param type="int[]" name="indexes" />
             <param type="char" name="type" />
             <param type="int" name="handlerId"/>
@@ -129,6 +241,19 @@
             <param type="int" name="handlerId"/>
         </method>
         
+        <!-- Sparse matrix by reference-->
+        <method name="sendDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="int" name="row"/>
+            <param type="int" name="col"/>
+            <param type="int" name="nbItem"/>
+            <param type="IntBuffer" name="nbItemRow"/>
+            <param type="IntBuffer" name="colPos"/>
+            <param type="DoubleBuffer" name="data"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
         <!-- Complex sparse matrix-->
         <method name="sendData" returnType="void" modifier="static">
             <param type="String" name="varName" />
@@ -143,6 +268,20 @@
             <param type="int" name="handlerId"/>
         </method>
         
+        <!-- Complex Sparse matrix by reference-->
+        <method name="sendDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="int" name="row"/>
+            <param type="int" name="col"/>
+            <param type="int" name="nbItem"/>
+            <param type="IntBuffer" name="nbItemRow"/>
+            <param type="IntBuffer" name="colPos"/>
+            <param type="DoubleBuffer" name="real"/>
+            <param type="DoubleBuffer" name="imag"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
         <!-- Boolean sparse matrix-->
         <method name="sendData" returnType="void" modifier="static">
             <param type="String" name="varName" />
@@ -152,6 +291,18 @@
             <param type="int" name="nbItem"/>
             <param type="int[]" name="nbItemRow"/>
             <param type="int[]" name="colPos"/>
+            <param type="int" name="handlerId"/>
+        </method>
+        
+        <!-- Boolean sparse matrix by reference-->
+        <method name="sendDataAsBuffer" returnType="void" modifier="static">
+            <param type="String" name="varName" />
+            <param type="int[]" name="indexes" />
+            <param type="int" name="row"/>
+            <param type="int" name="col"/>
+            <param type="int" name="nbItem"/>
+            <param type="IntBuffer" name="nbItemRow"/>
+            <param type="IntBuffer" name="colPos"/>
             <param type="int" name="handlerId"/>
         </method>
     </object>

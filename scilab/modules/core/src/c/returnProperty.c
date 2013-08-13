@@ -157,3 +157,111 @@ int sciReturnUserData(void* _pvCtx, const int * userData, int userDataSize)
     return 0 ;
 }
 /*--------------------------------------------------------------------------*/
+int sciReturnHypermatOfDouble(void* _pvCtx, int dims[], int ndims, double values[])
+{
+    SciErr sciErr = createHypermatOfDouble(_pvCtx, nbInputArgument(_pvCtx) + 1, dims, ndims, values);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int sciReturnHypermatOfInteger8(void* _pvCtx, int dims[], int ndims, char values[])
+{
+    SciErr sciErr = createHypermatOfInteger8(_pvCtx, nbInputArgument(_pvCtx) + 1, dims, ndims, values);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int sciReturnHypermatOfUnsignedInteger8(void* _pvCtx, int dims[], int ndims, unsigned char values[])
+{
+    SciErr sciErr = createHypermatOfUnsignedInteger8(_pvCtx, nbInputArgument(_pvCtx) + 1, dims, ndims, values);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int sciReturnMatrixOfInteger8(void* _pvCtx, char values[], int nbRow, int nbCol)
+{
+    SciErr sciErr = createMatrixOfInteger8(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int sciReturnMatrixOfUnsignedInteger8(void* _pvCtx, unsigned char values[], int nbRow, int nbCol)
+{
+    SciErr sciErr = createMatrixOfUnsignedInteger8(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int sciReturnMatrixOfInteger16(void* _pvCtx, short values[], int nbRow, int nbCol)
+{
+    SciErr sciErr = createMatrixOfInteger16(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int sciReturnMatrixOfUnsignedInteger16(void* _pvCtx, unsigned short values[], int nbRow, int nbCol)
+{
+    SciErr sciErr = createMatrixOfUnsignedInteger16(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int sciReturnMatrixOfInteger32(void* _pvCtx, int values[], int nbRow, int nbCol)
+{
+    SciErr sciErr = createMatrixOfInteger32(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int sciReturnMatrixOfUnsignedInteger32(void* _pvCtx, unsigned int values[], int nbRow, int nbCol)
+{
+    SciErr sciErr = createMatrixOfUnsignedInteger32(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    return 0;
+}
+/*--------------------------------------------------------------------------*/

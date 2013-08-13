@@ -78,9 +78,14 @@ public class ScilabTextureManager {
     }
 
     private class ScilabTextureDataProvider extends AbstractTextureDataProvider implements GraphicView {
+
         private final String identifier;
         private Dimension dimension;
+        private int datatype = -1;
+        private int iType = -1;
         private boolean isValid;
+        private boolean isRowOrder;
+        private ByteBuffer buffer;
 
         public ScilabTextureDataProvider(String identifier) {
             this.identifier = identifier;
@@ -92,11 +97,40 @@ public class ScilabTextureManager {
             GraphicController.getController().register(this);
         }
 
+        @Override
+        public boolean isRowMajorOrder() {
+            return isRowOrder;
+        }
+
         private void updateData() {
             int width = MainDataLoader.getTextureWidth(identifier);
             int height = MainDataLoader.getTextureHeight(identifier);
-            dimension = new Dimension(width, height);
+            int gltype = MainDataLoader.getTextureGLType(identifier);
+            int itype = MainDataLoader.getTextureImageType(identifier);
+            int datatype = MainDataLoader.getTextureDataType(identifier);
+            boolean isRowOrder = MainDataLoader.isTextureRowOrder(identifier);
+            // todo gerer le cas itype == -1;
+            imageType = ImageType.fromInt(gltype);
+            if (dimension == null  || dimension.width != width || dimension.height != height || itype != iType || this.isRowOrder != isRowOrder || this.datatype != datatype) {
+                dimension = new Dimension(width, height);
+                this.isRowOrder = isRowOrder;
+                this.datatype = datatype;
+
+                // 3 is MATPLOT_INDEX
+                dispose(iType == 3);
+                iType = itype;
+            }
+
             fireUpdate();
+        }
+
+        public void dispose(boolean isIndex) {
+            if (buffer != null) {
+                if (isIndex) {
+                    MainDataLoader.disposeTextureData(identifier, buffer);
+                }
+                buffer = null;
+            }
         }
 
         @Override
@@ -110,16 +144,16 @@ public class ScilabTextureManager {
 
         @Override
         public ByteBuffer getData() {
-            int bufferLength = dimension.width * dimension.height * 4;
-            ByteBuffer buffer;
-            try {
-                buffer = BufferAllocation.newByteBuffer(bufferLength);
-            } catch (OutOfMemoryException exception) {
-                drawerVisitor.invalidate(GraphicController.getController().getObjectFromId(identifier), exception);
-                return null;
+            if (buffer == null) {
+                buffer = MainDataLoader.getTextureData(identifier);
+                updateData();
             }
-            MainDataLoader.fillTextureData(identifier, buffer, bufferLength);
-            buffer.rewind();
+
+            if (iType == 3) {
+                // Indexed colors, so we need to recalculate the color (if needed)
+                MainDataLoader.fillTextureData(identifier, buffer, buffer.capacity());
+            }
+
             return buffer;
         }
 
@@ -156,6 +190,8 @@ public class ScilabTextureManager {
             if (isValid() && identifier.equals(id)) {
                 isValid = false;
                 GraphicController.getController().unregister(this);
+                // 3 is MATPLOT_INDEX
+                dispose(iType == 3);
             }
         }
 

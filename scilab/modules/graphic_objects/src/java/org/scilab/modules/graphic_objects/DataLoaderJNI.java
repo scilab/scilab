@@ -33,4 +33,11 @@ public class DataLoaderJNI {
     public final static native int fillWireIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3, int jarg4);
     public final static native int getMarkIndicesSize(String jarg1);
     public final static native int fillMarkIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3);
+    public final static native java.nio.ByteBuffer getTextureData(String jarg1);
+    public final static native int getTextureImageType(String jarg1);
+    public final static native int getTextureDataType(String jarg1);
+    public final static native int getTextureGLType(String jarg1);
+    public final static native void disposeTextureData(String jarg1, java.nio.ByteBuffer jarg2);
+    public final static native int isTextureRowOrder(String jarg1);
+    public final static native void setABGRExt(int jarg1);
 }

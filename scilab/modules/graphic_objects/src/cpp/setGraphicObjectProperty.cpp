@@ -83,6 +83,11 @@ BOOL setGraphicObjectProperty(char const* _pstID, int _iName, void const* _pvVal
             || _iName == __GO_DATA_MODEL_Y_DIMENSIONS__
             || _iName == __GO_DATA_MODEL_MATPLOT_BOUNDS__
             || _iName == __GO_DATA_MODEL_MATPLOT_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_DATA_INFOS__
+            || _iName == __GO_DATA_MODEL_MATPLOT_DATA_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_DATA_ORDER__
+            || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__
        )
     {
         result = BOOLtobool(DataController::setGraphicObjectProperty(_pstID, _iName, _pvValue, numElements));

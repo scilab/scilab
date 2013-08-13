@@ -11,7 +11,6 @@
  */
 
 #include "ColorComputer.hxx"
-#include  "DecompositionUtils.hxx"
 
 extern "C"
 {
@@ -118,47 +117,6 @@ double ColorComputer::getIndex(double s, double smin, double srange, double inde
     return index;
 }
 
-void ColorComputer::getDirectColor(double s, double* colormap, int colormapSize, float* returnedColor, bool clamped)
-{
-    int index = 0;
-
-    if (s <= (double) BLACK_LOWER_INDEX)
-    {
-        /* Clamp to white */
-        returnedColor[0] = MAX_COMPONENT_VALUE;
-        returnedColor[1] = MAX_COMPONENT_VALUE;
-        returnedColor[2] = MAX_COMPONENT_VALUE;
-    }
-    else if ((((double) BLACK_LOWER_INDEX < s) && (s < (double) BLACK_UPPER_INDEX)) || !DecompositionUtils::isANumber(s))
-    {
-        /* Black is also output for Nan values */
-        returnedColor[0] = MIN_COMPONENT_VALUE;
-        returnedColor[1] = MIN_COMPONENT_VALUE;
-        returnedColor[2] = MIN_COMPONENT_VALUE;
-    }
-    else
-    {
-        if (s > (double)(colormapSize - 1))
-        {
-            if (clamped)
-            {
-                s = (double) (colormapSize - 1);
-            }
-            else
-            {
-                returnedColor[0] = -1;
-                return;
-            }
-        }
-
-        index = (int) s;
-
-        returnedColor[0] = (float)colormap[index];
-        returnedColor[1] = (float)colormap[colormapSize + index];
-        returnedColor[2] = (float)colormap[2 * colormapSize + index];
-    }
-}
-
 double ColorComputer::getDirectIndex(double s, int colormapSize)
 {
     double index = 0.;
@@ -189,25 +147,6 @@ double ColorComputer::getDirectIndex(double s, int colormapSize)
     }
 
     return index;
-}
-
-void ColorComputer::getDirectByteColor(double s, double* colormap, int colormapSize, unsigned char* returnedColor, bool clamped)
-{
-    float color[3];
-    getDirectColor(s, colormap, colormapSize, color, clamped);
-
-    returnedColor[0] = (unsigned char)(color[0] * 255);
-    returnedColor[1] = (unsigned char)(color[1] * 255);
-    returnedColor[2] = (unsigned char)(color[2] * 255);
-
-    if (!clamped && color[0] == -1)
-    {
-        returnedColor[3] = 0;
-    }
-    else
-    {
-        returnedColor[3] = 255;
-    }
 }
 
 double ColorComputer::getClampedDirectIndex(double s, int colormapSize)

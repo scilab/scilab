@@ -17,6 +17,7 @@
 
 #include "MatPlotDecomposer.hxx"
 #include "Fac3DDecomposer.hxx"
+#include "NgonGridMatplotData.hxx"
 #include "NgonGridGrayplotDataDecomposer.hxx"
 #include "NgonGridMatplotDataDecomposer.hxx"
 #include "Plot3DDecomposer.hxx"
@@ -301,4 +302,109 @@ int fillMarkIndices(char* id, int* BUFF, int bufferLength)
 {
     // TODO.
     return 0;
+}
+
+JavaDirectBuffer getTextureData(char * id)
+{
+    JavaDirectBuffer info;
+    int iType = 0;
+    int *piType = &iType;
+
+    info.address = NULL;
+    info.size = 0;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    if (iType == __GO_MATPLOT__)
+    {
+        void * address = NULL;
+        unsigned int size = 0;
+
+        if (!MatPlotDecomposer::getTextureData(id, &address, &size))
+        {
+            return info;
+        }
+        info.address = address;
+        info.size = size;
+    }
+
+    return info;
+}
+
+int getTextureImageType(char * id)
+{
+    int iType = 0;
+    int *piType = &iType;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    if (iType == __GO_MATPLOT__)
+    {
+        return MatPlotDecomposer::getTextureImageType(id);
+    }
+
+    return -1;
+}
+
+int getTextureDataType(char * id)
+{
+    int iType = 0;
+    int *piType = &iType;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    if (iType == __GO_MATPLOT__)
+    {
+        return MatPlotDecomposer::getTextureDataType(id);
+    }
+
+    return -1;
+}
+
+int getTextureGLType(char * id)
+{
+    int iType = 0;
+    int *piType = &iType;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    if (iType == __GO_MATPLOT__)
+    {
+        return MatPlotDecomposer::getTextureGLType(id);
+    }
+
+    return -1;
+}
+
+void disposeTextureData(char * id, unsigned char * buffer)
+{
+    int iType = 0;
+    int *piType = &iType;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    if (iType == __GO_MATPLOT__)
+    {
+        MatPlotDecomposer::disposeTextureData(id, buffer);
+    }
+}
+
+int isTextureRowOrder(char * id)
+{
+    int iType = 0;
+    int *piType = &iType;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    if (iType == __GO_MATPLOT__)
+    {
+        return MatPlotDecomposer::isTextureRowOrder(id);
+    }
+
+    return 0;
+}
+
+void setABGRExt(int isAvailable)
+{
+    NgonGridMatplotData::setABGRSupported(isAvailable != 0);
 }

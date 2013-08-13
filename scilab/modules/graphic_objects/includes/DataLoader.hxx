@@ -18,6 +18,12 @@ extern "C"
 {
 #endif
 
+    typedef struct
+    {
+        void * address;
+        unsigned int size;
+    } JavaDirectBuffer;
+
     /**
      * Return the texture width for the given object.
      * @param[in] the given object id.
@@ -140,6 +146,54 @@ extern "C"
      * @return the number of indices actually written.
      */
     int fillMarkIndices(char* id, int* buffer, int bufferLength);
+
+    /**
+     * Get texture data of the given object.
+     * @param[in] the id of the given object.
+     * @return a JavaDirectBuffer struct which will be converted into a java.nio.ByteBuffer.
+     */
+    JavaDirectBuffer getTextureData(char * id);
+
+    /**
+     * Get texture image type of the given object.
+     * @param[in] id the id of the given object.
+     * @return the image type.
+     */
+    int getTextureImageType(char * id);
+
+    /**
+     * Get the Scilab data type associated with the texture of the given object.
+     * @param[in] id the id of the given object.
+     * @return the image type (0 for RGB, 1 for RGBA, 2 for GRAY).
+     */
+    int getTextureDataType(char * id);
+
+    /**
+     * Get texture OpenGL type of the given object.
+     * @param[in] id the id of the given object.
+     * @return the OpenGL type.
+     */
+    int getTextureGLType(char * id);
+
+    /**
+     * Dispose texture data of the given object.
+     * @param[in] id the id of the given object.
+     * @param[in] buffer the address of the buffer to dipose.
+     */
+    void disposeTextureData(char * id, unsigned char * buffer);
+
+    /**
+     * Dispose texture data of the given object.
+     * @param[in] id the id of the given object.
+     * @return 1 if the texture is ROW_MAJOR_ORDER
+     */
+    int isTextureRowOrder(char * id);
+
+    /**
+     * Set tha availability of the ABGR extension
+     * @param[in] isAvailable 0 if it is not available
+     */
+    void setABGRExt(int isAvailable);
 
 #ifdef __cplusplus
 } //extern "C"

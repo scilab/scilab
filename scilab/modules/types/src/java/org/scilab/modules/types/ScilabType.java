@@ -32,6 +32,11 @@ public interface ScilabType extends Externalizable, Cloneable {
     public ScilabTypeEnum getType();
 
     /**
+     * @return true if data are backed in a java.nio.Buffer
+     */
+    boolean isReference();
+
+    /**
      * Return the width (number of elements) of the stored data
      *
      * @return the width
