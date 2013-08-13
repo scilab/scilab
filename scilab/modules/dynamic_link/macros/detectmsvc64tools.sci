@@ -42,16 +42,24 @@ function bOK = detectmsvc64tools()
         load("SCI/modules/dynamic_link/macros/windows/lib");
     end
 
-    if win64() then
-        compiler = findmsvccompiler();
-        supported_compiler = ["msvc100pro", ..
-        "msvc100express", ..
-        "msvc90pro", ..
-        "msvc90std", ..
-        "msvc90express"];
+  if win64() then
+    compiler = findmsvccompiler();
+    supported_compiler = ['msvc110pro', ..
+                          'msvc110express', ..
+                          'msvc100pro', ..
+                          'msvc100express', ..
+                          'msvc90pro', ..
+                          'msvc90std', ..
+                          'msvc90express'];
 
         if (find(supported_compiler == compiler) <> []) then
-            MSVCBIN64PATH = dlwGet64BitPath() + filesep() + "VC\bin\amd64";
+            MSVCBIN64PATH = dlwGet64BitPath();
+            if dlwIsVc11Express() then
+                MSVCBIN64PATH = MSVCBIN64PATH + filesep() + "VC\bin";
+            else
+                MSVCBIN64PATH = MSVCBIN64PATH + filesep() + "VC\bin\amd64";
+            end
+            
             if isdir(MSVCBIN64PATH) then
                 bOK = %T;
             else
