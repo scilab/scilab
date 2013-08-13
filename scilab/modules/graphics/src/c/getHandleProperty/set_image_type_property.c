@@ -23,6 +23,7 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
+#include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "stricmp.h"
