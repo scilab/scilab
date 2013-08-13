@@ -152,6 +152,7 @@ public class Position extends Polyline implements SimpleSection {
         });
 
         //Components of the property: X Shift.
+        shiftDialog();
         layout.addJLabel(pPosition, lShiftX, MessagesGED.x_shift, COLUMN, ROW, LEFTMARGIN);
         layout.addDataField(pPosition, pShiftX, bShiftX, cShiftX, COLUMN+1, ROW, currentpolyline);
         bShiftX.addActionListener(new ActionListener() {
@@ -196,10 +197,6 @@ public class Position extends Polyline implements SimpleSection {
         shiftDialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent evt) {
-                dataTableDialogWindowClosing(evt);
-            }
-
-            private void dataTableDialogWindowClosing(WindowEvent evt) {
                 updateShiftTable(0);
                 updateShiftTable(1);
                 updateShiftTable(2);

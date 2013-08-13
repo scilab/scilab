@@ -244,6 +244,7 @@ public class DataProperties extends Polyline implements SimpleSection {
         });
 
         //Components of the property: Data.
+        dataDialog();
         layout.addJLabel(pDataProperties, lData, MessagesGED.data, 1, ROW, LEFTMARGIN);
         layout.addDataField(pDataProperties, pData, bData, cData, 2, ROW, currentpolyline);
         bData.addActionListener(new ActionListener() {
@@ -280,14 +281,10 @@ public class DataProperties extends Polyline implements SimpleSection {
         dataTableDialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent evt) {
-                dataTableDialogWindowClosing(evt);
-            }
-
-            private void dataTableDialogWindowClosing(WindowEvent evt) {
                 updateDataTable();
             }
         });
-        dataTable.getModel().addTableModelListener(new TableModelListener() { 
+        dataTable.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent evt) {
                 dataTableEvent(evt);
@@ -443,8 +440,7 @@ public class DataProperties extends Polyline implements SimpleSection {
     private void updateTag() {
         GraphicController.getController().setProperty(
                 currentpolyline, GraphicObjectProperties.__GO_TAG__,
-                cTag.getText()
-                );
+                cTag.getText());
     }
 
     /**

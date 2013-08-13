@@ -79,7 +79,6 @@ public class Style extends Figure implements SimpleSection {
         lStyle = new JLabel();
         sStyle = new JSeparator();
         pStyle = new JPanel();
-
         lBackColor = new JLabel();
         pBackColor = new JPanel();
         bBackColor = new JButton();
@@ -192,14 +191,14 @@ public class Style extends Figure implements SimpleSection {
         chooserBack = new JColorChooser();
         okBack = new JButton();
         layout.addColorDialog(backcolorDialog, chooserBack, okBack, cBackColor,
-                currentFigure, "figure.Style", "setBackgroungColor", this);
+                currentFigure, "figure.Style", "setBackgroundColor", this);
     }
 
     /**
     * Change the color of the object.
     * @param scilabColor index of the color map.
     */
-    public final void setBackgroungColor(int scilabColor) {
+    public final void setBackgroundColor(int scilabColor) {
         GraphicController.getController().setProperty(
                 currentFigure, GraphicObjectProperties.__GO_BACKGROUND__, scilabColor);
     }

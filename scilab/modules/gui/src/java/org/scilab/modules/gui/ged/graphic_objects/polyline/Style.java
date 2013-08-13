@@ -108,10 +108,6 @@ public class Style extends Polyline implements SimpleSection {
         initMainPanel();
         initComponents();
         loadProperties(objectID);
-        dialogBackgroundColor();
-        dialogForegroundColor();
-        dialogMarkBackground();
-        dialogMarkForeground();
     }
 
     /**
@@ -216,11 +212,13 @@ public class Style extends Polyline implements SimpleSection {
         });
 
         //Components of the property: Background Color.
+        dialogBackgroundColor();
         layout.addLabelColorField(pStyle, lBackColor, MessagesGED.background_color,
                 backcolorDialog, cBackColor, pBackColor, bBackColor,
                 LEFTMARGIN, COLUMN, ROW++);
 
         //Components of the property: Foreground Color.
+        dialogForegroundColor();
         layout.addLabelColorField(pStyle, lForeColor, MessagesGED.foreground_color,
                 forecolorDialog, cForeColor, pForeColor, bForeColor,
                 LEFTMARGIN, COLUMN, ROW++);
@@ -272,11 +270,13 @@ public class Style extends Polyline implements SimpleSection {
         });
 
         //Components of the property: Mark Background.
+        dialogMarkBackground();
         layout.addLabelColorField(pStyle, lMarkBackground, MessagesGED.mark_background,
                 markBackgroundDialog, cMarkBackground, pMarkBackground, bMarkBackground,
                 LEFTMARGIN, COLUMN, ROW++);
 
         //Components of the property: Mark Foreground.
+        dialogMarkForeground();
         layout.addLabelColorField(pStyle, lMarkForeground, MessagesGED.mark_foreground,
                 markForegroundDialog, cMarkForeground, pMarkForeground, bMarkForeground,
                 LEFTMARGIN, COLUMN, ROW++);

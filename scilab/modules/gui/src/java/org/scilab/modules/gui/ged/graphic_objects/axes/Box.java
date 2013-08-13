@@ -72,7 +72,6 @@ public class Box extends Axes implements SimpleSection {
         initMainPanel();
         initComponents();
         loadProperties(objectID);
-        dialogHiddenAxisColor();
     }
 
     /**
@@ -141,6 +140,7 @@ public class Box extends Axes implements SimpleSection {
         //not implemented yet.
 
         //Components of the property: Hidden Axis Color.
+        dialogHiddenAxisColor();
         layout.addLabelColorField(pBox, lHiddenAxisColor, MessagesGED.hidden_axis_color,
                 colorDialog, cHiddenAxisColor, pHiddenAxisColor, bHiddenAxisColor,
                 LEFTMARGIN, COLUMN, ROW++);

@@ -22,7 +22,7 @@ import org.scilab.modules.gui.ged.graphic_objects.SimpleObject;
 *
 * @author Marcos Cardinot <mcardinot@gmail.com>
 */
-public class Figure  extends ContentLayout implements SimpleObject {
+public class Figure extends ContentLayout implements SimpleObject {
     private String objectID;
     private ContentLayout layout = new ContentLayout();
     private String [] sections;

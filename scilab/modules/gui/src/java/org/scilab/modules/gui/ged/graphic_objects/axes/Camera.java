@@ -253,8 +253,6 @@ public class Camera extends Axes implements SimpleSection {
         GraphicController.getController()
                 .setProperty(currentAxes, GraphicObjectProperties.__GO_ROTATION_ANGLES__, value);
         titleRotationAngles();
-        cView.setSelectedIndex((Integer) GraphicController.getController()
-                                .getProperty(currentAxes, GraphicObjectProperties.__GO_VIEW__));
     }
 
     /**
