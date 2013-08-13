@@ -210,3 +210,26 @@ int set_tip_label_mode_property(void* _pvCtx, char* pobj, void* _pvData, int val
         return SET_PROPERTY_ERROR;
     }
 }
+
+
+int set_tip_disp_function_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol)
+{
+    BOOL status = FALSE;
+    if (valueType != sci_strings)
+    {
+        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "tip_disp_function");
+        return SET_PROPERTY_ERROR;
+    }
+
+    status = setGraphicObjectProperty(pobj, __GO_DATATIP_DISPLAY_FNC__, _pvData, jni_string, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_disp_function");
+        return SET_PROPERTY_ERROR;
+    }
+}

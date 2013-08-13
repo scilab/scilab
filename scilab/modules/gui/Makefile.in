@@ -274,7 +274,8 @@ am__objects_5 = libscigui_la-sci_printsetupbox.lo \
 	libscigui_la-sci_datatip_manager_mode.lo \
 	libscigui_la-sci_datatip_toggle.lo \
 	libscigui_la-sci_datatipmove.lo \
-	libscigui_la-sci_datatip_set_style.lo
+	libscigui_la-sci_datatip_set_style.lo \
+	libscigui_la-sci_datatip_set_display.lo
 am_libscigui_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
 @GUI_TRUE@am_libscigui_la_rpath = -rpath $(pkglibdir)
@@ -763,7 +764,8 @@ sci_gateway/cpp/sci_plotbrowser.cpp \
 sci_gateway/cpp/sci_datatip_manager_mode.cpp \
 sci_gateway/cpp/sci_datatip_toggle.cpp \
 sci_gateway/cpp/sci_datatipmove.cpp \
-sci_gateway/cpp/sci_datatip_set_style.cpp
+sci_gateway/cpp/sci_datatip_set_style.cpp \
+sci_gateway/cpp/sci_datatip_set_display.cpp
 
 libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
@@ -1207,6 +1209,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_about.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatip_manager_mode.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatip_set_display.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatip_set_style.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatip_toggle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatipcreate.Plo@am__quote@
@@ -2251,6 +2254,13 @@ libscigui_la-sci_datatip_set_style.lo: sci_gateway/cpp/sci_datatip_set_style.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_datatip_set_style.cpp' object='libscigui_la-sci_datatip_set_style.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_datatip_set_style.lo `test -f 'sci_gateway/cpp/sci_datatip_set_style.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_set_style.cpp
+
+libscigui_la-sci_datatip_set_display.lo: sci_gateway/cpp/sci_datatip_set_display.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_datatip_set_display.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_datatip_set_display.Tpo -c -o libscigui_la-sci_datatip_set_display.lo `test -f 'sci_gateway/cpp/sci_datatip_set_display.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_set_display.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-sci_datatip_set_display.Tpo $(DEPDIR)/libscigui_la-sci_datatip_set_display.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_datatip_set_display.cpp' object='libscigui_la-sci_datatip_set_display.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_datatip_set_display.lo `test -f 'sci_gateway/cpp/sci_datatip_set_display.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_set_display.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

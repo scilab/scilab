@@ -195,6 +195,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipmove.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_display.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_style.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_toggle.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_manager_mode.cpp" />

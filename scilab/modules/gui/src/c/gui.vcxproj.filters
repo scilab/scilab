@@ -416,6 +416,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_style.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_display.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\jni\StartPlotBrowser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -187,5 +187,6 @@ int get_tip_auto_orientation_property(void* _pvCtx, char* pobjUID);
 int get_tip_interp_mode_property(void* _pvCtx, char* pobjUID);
 int get_tip_box_mode_property(void* _pvCtx, char* pobjUID);
 int get_tip_label_mode_property(void* _pvCtx, char* pobjUID);
+int get_tip_disp_function_property(void* _pvCtx, char* pobjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

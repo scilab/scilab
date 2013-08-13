@@ -20,6 +20,7 @@ import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 
 import java.text.DecimalFormat;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 
 public class Datatip extends Text {
 
@@ -79,7 +80,7 @@ public class Datatip extends Text {
         tipBoxMode = true;
         tipLabelMode = true;
         interpMode = true;
-        displayFnc = null;
+        displayFnc = "";
         setVisible(true);
         setBox(true);
         setLineMode(true);
@@ -278,6 +279,30 @@ public class Datatip extends Text {
         setTextStrings(textArray);
     }
 
+    /**
+     * Update the text from the datatip for datatipSetDisplay
+     */
+    void updateTextDispFunction(String displayFnc) {
+
+        if (displayFnc.length() != 0) {
+            String updateCommand = "try;" +
+                                   "d = getcallbackobject(\"" + getIdentifier() + "\");" +
+                                   "d.text = " + displayFnc + "(d.tip_data);" +
+                                   "clear(\"d\");" +
+                                   "catch;" +
+                                   "d.tip_disp_function = \"\";" +
+                                   "clear(\"d\");" +
+                                   "error(msprintf(_( \"%s: Wrong name of input argument #%d: Function ''%s'' not defined.\n\"),\"datatipSetDisplay\",2,\"" + displayFnc + "\"));" +
+                                   "end;";
+
+
+            InterpreterManagement.requestScilabExec(updateCommand);
+        } else {
+            updateText();
+        }
+
+    }
+
     public Boolean getTipBoxMode() {
         return tipBoxMode;
     }
@@ -309,6 +334,7 @@ public class Datatip extends Text {
 
     public void setDisplayFunction(String fnc) {
         displayFnc = fnc;
+        updateTextDispFunction(displayFnc);
     }
 
     @Override

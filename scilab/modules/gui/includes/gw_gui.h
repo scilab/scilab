@@ -63,6 +63,7 @@ GUI_IMPEXP int sci_datatip_manager_mode(char *fname, unsigned long fname_len);
 GUI_IMPEXP int sci_datatip_toggle(char *fname, unsigned long fname_len);
 GUI_IMPEXP int sci_datatipmove(char *fname, unsigned long fname_len);
 GUI_IMPEXP int sci_datatip_set_style(char *fname, unsigned long fname_len);
+GUI_IMPEXP int sci_datatip_set_display(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/
