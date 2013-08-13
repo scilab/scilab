@@ -430,10 +430,10 @@ public class ScilabDouble implements ScilabType {
                     final double y = getImaginaryElement(i, j);
                     if (y != 0) {
                         if (y > 0) {
-                            result.append("+");
+                            result.append(" + ");
                         }
                         result.append(Double.toString(y));
-                        result.append("*%i");
+                        result.append(" * %i");
                     }
                 }
                 if (j != getWidth() - 1) {
