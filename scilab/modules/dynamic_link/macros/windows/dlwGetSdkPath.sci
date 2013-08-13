@@ -12,12 +12,15 @@ function SDKpath = dlwGetSdkPath()
 
     SDKpath = [];
 
-    entries = ["Software\Microsoft\Microsoft SDKs\Windows\v7.0" "InstallationFolder"; .. // Microsoft Windows SDK 7.0
-    "Software\Microsoft\Microsoft SDKs\Windows\v7.0A" "InstallationFolder"; .. // Microsoft Windows SDK 7.0A
-    "Software\Microsoft\Microsoft SDKs\Windows\v7.1" "InstallationFolder"; .. // Microsoft Windows SDK 7.1
-    "Software\Microsoft\Microsoft SDKs\Windows" "CurrentInstallFolder" ; .. // Vista & Seven SDK
-    "Software\Microsoft\MicrosoftSDK\InstalledSDKs\D2FF9F89-8AA2-4373-8A31-C838BF4DBBE1" "Install Dir" ; .. // Windows 2003 R2 SDK
-    "Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3" "Install Dir"]; // Windows 2003 SDK
+    entries = [
+        "Software\Microsoft\Microsoft SDKs\Windows\v8.0A" "InstallationFolder" ; .. // Windows 8 A
+        "Software\Microsoft\Microsoft SDKs\Windows\v8.0" "InstallationFolder" ; .. // Windows 8    
+        "Software\Microsoft\Microsoft SDKs\Windows\v7.0" "InstallationFolder"; .. // Microsoft Windows SDK 7.0
+        "Software\Microsoft\Microsoft SDKs\Windows\v7.0A" "InstallationFolder"; .. // Microsoft Windows SDK 7.0A
+        "Software\Microsoft\Microsoft SDKs\Windows\v7.1" "InstallationFolder"; .. // Microsoft Windows SDK 7.1
+        "Software\Microsoft\Microsoft SDKs\Windows" "CurrentInstallFolder" ; .. // Vista & Seven SDK
+        "Software\Microsoft\MicrosoftSDK\InstalledSDKs\D2FF9F89-8AA2-4373-8A31-C838BF4DBBE1" "Install Dir" ; .. // Windows 2003 R2 SDK
+        "Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3" "Install Dir"]; // Windows 2003 SDK
 
     for i = 1:size(entries(:,1),"*")
         err = execstr("SDKpath = winqueryreg(""HKEY_LOCAL_MACHINE"", entries(i,1), entries(i,2))", "errcatch");
@@ -35,6 +38,5 @@ function SDKpath = dlwGetSdkPath()
             //errclear();
         end
     end
-
 endfunction
 //=============================================================================

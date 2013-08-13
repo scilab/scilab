@@ -670,7 +670,7 @@ double NgonGridDataDecomposer::computeFacetAverageZValue(double* z, int numX, in
     return avgz;
 }
 
-void NgonGridDataDecomposer::writeFacetColorToBuffer(float* buffer, int bufferOffset, float* color, int elementsSize)
+void NgonGridDataDecomposer::writeFacetColorToBuffer(float* buffer, int bufferOffset, float* color, int elementsSize, bool hasTransparency)
 {
     for (int k = 0; k < 4; k++)
     {
@@ -680,7 +680,14 @@ void NgonGridDataDecomposer::writeFacetColorToBuffer(float* buffer, int bufferOf
 
         if (elementsSize == 4)
         {
-            buffer[bufferOffset + 3] = 1.0;
+            if (hasTransparency)
+            {
+                buffer[bufferOffset + 3] = color[3];
+            }
+            else
+            {
+                buffer[bufferOffset + 3] = 1.0;
+            }
         }
 
         bufferOffset += elementsSize;

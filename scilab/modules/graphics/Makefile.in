@@ -278,6 +278,7 @@ am__objects_1 = libscigraphics_algo_la-GetCommandArg.lo \
 	libscigraphics_algo_la-get_grid_position_property.lo \
 	libscigraphics_algo_la-get_anti_aliasing_property.lo \
 	libscigraphics_algo_la-get_tag_property.lo \
+	libscigraphics_algo_la-get_image_type_property.lo \
 	libscigraphics_algo_la-GetHashTable.lo \
 	libscigraphics_algo_la-graphicModuleLoad.lo \
 	libscigraphics_algo_la-set_old_style_property.lo \
@@ -417,6 +418,7 @@ am__objects_1 = libscigraphics_algo_la-GetCommandArg.lo \
 	libscigraphics_algo_la-get_figure_resizefcn_property.lo \
 	libscigraphics_algo_la-set_figure_closerequestfcn_property.lo \
 	libscigraphics_algo_la-get_figure_closerequestfcn_property.lo \
+	libscigraphics_algo_la-set_image_type_property.lo \
 	libscigraphics_algo_la-DefaultCommandArg.lo \
 	libscigraphics_algo_la-Axes.lo \
 	libscigraphics_algo_la-sciMatrix.lo \
@@ -962,6 +964,7 @@ src/c/getHandleProperty/get_outside_colors_property.c \
 src/c/getHandleProperty/get_grid_position_property.c \
 src/c/getHandleProperty/get_anti_aliasing_property.c \
 src/c/getHandleProperty/get_tag_property.c \
+src/c/getHandleProperty/get_image_type_property.c \
 src/c/getHandleProperty/GetHashTable.c \
 src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
@@ -1101,6 +1104,7 @@ src/c/getHandleProperty/set_figure_resizefcn_property.c \
 src/c/getHandleProperty/get_figure_resizefcn_property.c \
 src/c/getHandleProperty/set_figure_closerequestfcn_property.c \
 src/c/getHandleProperty/get_figure_closerequestfcn_property.c \
+src/c/getHandleProperty/set_image_type_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \
@@ -1566,6 +1570,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_handle_visible_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_hidden_axis_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_hidden_color_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_image_type_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_immediate_drawing_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_info_message_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_interp_color_mode.Plo@am__quote@
@@ -1708,6 +1713,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_handle_visible_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_hidden_axis_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_hidden_color_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_image_type_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_immediate_drawing_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_info_message_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_interp_color_mode_property.Plo@am__quote@
@@ -2806,6 +2812,13 @@ libscigraphics_algo_la-get_tag_property.lo: src/c/getHandleProperty/get_tag_prop
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_tag_property.lo `test -f 'src/c/getHandleProperty/get_tag_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_tag_property.c
 
+libscigraphics_algo_la-get_image_type_property.lo: src/c/getHandleProperty/get_image_type_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_image_type_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_image_type_property.Tpo -c -o libscigraphics_algo_la-get_image_type_property.lo `test -f 'src/c/getHandleProperty/get_image_type_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_image_type_property.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_algo_la-get_image_type_property.Tpo $(DEPDIR)/libscigraphics_algo_la-get_image_type_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_image_type_property.c' object='libscigraphics_algo_la-get_image_type_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_image_type_property.lo `test -f 'src/c/getHandleProperty/get_image_type_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_image_type_property.c
+
 libscigraphics_algo_la-GetHashTable.lo: src/c/getHandleProperty/GetHashTable.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-GetHashTable.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-GetHashTable.Tpo -c -o libscigraphics_algo_la-GetHashTable.lo `test -f 'src/c/getHandleProperty/GetHashTable.c' || echo '$(srcdir)/'`src/c/getHandleProperty/GetHashTable.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_algo_la-GetHashTable.Tpo $(DEPDIR)/libscigraphics_algo_la-GetHashTable.Plo
@@ -3778,6 +3791,13 @@ libscigraphics_algo_la-get_figure_closerequestfcn_property.lo: src/c/getHandlePr
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_figure_closerequestfcn_property.c' object='libscigraphics_algo_la-get_figure_closerequestfcn_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_figure_closerequestfcn_property.lo `test -f 'src/c/getHandleProperty/get_figure_closerequestfcn_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_figure_closerequestfcn_property.c
+
+libscigraphics_algo_la-set_image_type_property.lo: src/c/getHandleProperty/set_image_type_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_image_type_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_image_type_property.Tpo -c -o libscigraphics_algo_la-set_image_type_property.lo `test -f 'src/c/getHandleProperty/set_image_type_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_image_type_property.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_image_type_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_image_type_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_image_type_property.c' object='libscigraphics_algo_la-set_image_type_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_image_type_property.lo `test -f 'src/c/getHandleProperty/set_image_type_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_image_type_property.c
 
 libscigraphics_algo_la-DefaultCommandArg.lo: src/c/DefaultCommandArg.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-DefaultCommandArg.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-DefaultCommandArg.Tpo -c -o libscigraphics_algo_la-DefaultCommandArg.lo `test -f 'src/c/DefaultCommandArg.c' || echo '$(srcdir)/'`src/c/DefaultCommandArg.c

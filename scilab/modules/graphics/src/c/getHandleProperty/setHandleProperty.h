@@ -180,5 +180,7 @@ int set_color_range_property(void* _pvCtx, char* pobj, void* _pvData, int valueT
 int set_grid_position_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_anti_aliasing_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_tag_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_image_type_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_video_mode_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */

@@ -13,18 +13,30 @@ function MSCompiler = dlwFindMsVcCompiler()
 
     // We use always last version of MS compiler
 
-    if dlwIsVc10Pro() & dlwIsVc10Express() then
-        MSCompiler = "msvc100express";     // Microsoft Visual 2010 Express with SDK extension
+
+  if dlwIsVc11Express() then
+    MSCompiler = 'msvc110express';     // Microsoft Visual 2012 Express
+    return;
+  end
+
+  if dlwIsVc11Pro() then
+    MSCompiler = 'msvc110pro';       // Microsoft Visual 2012 Professional (or more)
+    return;
+  end
+
+
+  if dlwIsVc10Pro() & dlwIsVc10Express() then
+    MSCompiler = 'msvc100express';     // Microsoft Visual 2010 Express with SDK extension
+    return;
+  end
+
+    if dlwIsVc10Express() then
+        MSCompiler = "msvc100express";     // Microsoft Visual 2010 Express
         return;
     end
 
     if dlwIsVc10Pro() then
         MSCompiler = "msvc100pro";       // Microsoft Visual 2010 Professional (or more)
-        return;
-    end
-
-    if dlwIsVc10Express() then
-        MSCompiler = "msvc100express";     // Microsoft Visual 2010 Express
         return;
     end
 

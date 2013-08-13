@@ -27,4 +27,8 @@ public class GetScilabVariable {
         GetScilabVariableJNI.getScilabVariable(variableName, arg1, arg2);
     }
 
+    public static void getScilabVariableAsReference(String variableName, int arg1) {
+        GetScilabVariableJNI.getScilabVariableAsReference(variableName, arg1);
+    }
+
 }

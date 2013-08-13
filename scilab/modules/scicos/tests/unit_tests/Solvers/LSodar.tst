@@ -4,9 +4,11 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- ENGLISH IMPOSED -->
+//
 // <-- XCOS TEST -->
+//
 
 // Import diagram
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/Kalman.zcos"));
@@ -31,6 +33,6 @@ mea = mean(compa);
 stdeviation = st_deviation(compa);
 
 // Verifying closeness of the results
-assert_checktrue(maxi <= 10^-8);
-assert_checktrue(mea <= 10^-8);
-assert_checktrue(stdeviation <= 10^-8);
+assert_checktrue(maxi <= 1d-8);
+assert_checktrue(mea <= 1d-8);
+assert_checktrue(stdeviation <= 1d-8);

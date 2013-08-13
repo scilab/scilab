@@ -43,4 +43,5 @@ class GetScilabVariableJNI {
     }
 
     public final static native void getScilabVariable(String jarg1, int jarg2, int jarg3);
+    public final static native void getScilabVariableAsReference(String jarg1, int jarg2);
 }

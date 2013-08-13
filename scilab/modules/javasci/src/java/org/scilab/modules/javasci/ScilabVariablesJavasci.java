@@ -45,15 +45,20 @@ public final class ScilabVariablesJavasci implements ScilabVariablesHandler {
      * Get a Scilab variable with a given name
      * @param name the variable name
      * @param swapRowCol if true the returned data will be stored row by row
+     * @param byref if true the variable is passed by reference if it is possible
      * @return the corresponding ScilabType object
      */
-    public static final ScilabType getScilabVariable(String name, boolean swapRowCol) {
+    public static final ScilabType getScilabVariable(String name, boolean swapRowCol, boolean byref) {
         if (id == -1) {
             id = ScilabVariables.addScilabVariablesHandler(new ScilabVariablesJavasci());
         }
 
         if (name != null && !name.isEmpty()) {
-            GetScilabVariable.getScilabVariable(name, swapRowCol ? 1 : 0, id);
+            if (byref) {
+                GetScilabVariable.getScilabVariableAsReference(name, id);
+            } else {
+                GetScilabVariable.getScilabVariable(name, swapRowCol ? 1 : 0, id);
+            }
             Thread t = Thread.currentThread();
             ScilabType var = map.get(t);
             map.remove(t);
@@ -62,6 +67,16 @@ public final class ScilabVariablesJavasci implements ScilabVariablesHandler {
         }
 
         return null;
+    }
+
+    /**
+     * Get a Scilab variable with a given name
+     * @param name the variable name
+     * @param swapRowCol if true the returned data will be stored row by row
+     * @return the corresponding ScilabType object
+     */
+    public static final ScilabType getScilabVariable(String name, boolean swapRowCol) {
+        return getScilabVariable(name, swapRowCol, false);
     }
 
     /**

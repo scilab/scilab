@@ -24,6 +24,7 @@
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "Matplot.h"
 /*--------------------------------------------------------------------------*/
 int sci_matplot(char *fname, void *pvApiCtx)
 {
@@ -44,12 +45,16 @@ int sci_matplot(char *fname, void *pvApiCtx)
     };
 
     char   * strf    = NULL ;
+    char strfl[4];
     double* rect    = NULL ;
     int    * nax     = NULL ;
     BOOL     flagNax = FALSE;
 
     int* piAddr1 = NULL;
-    double* l1 = NULL;
+    void * l1 = NULL;
+    int type = 0;
+    int precision = 0;
+    int plottype = -1;
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
@@ -69,6 +74,7 @@ int sci_matplot(char *fname, void *pvApiCtx)
                  fname, 1, 2);
         return(0);
     }
+
     //get variable address
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
     if (sciErr.iErr)
@@ -77,20 +83,224 @@ int sci_matplot(char *fname, void *pvApiCtx)
         return 1;
     }
 
-    // Retrieve a matrix of double at position 1.
-    sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
+    sciErr = getVarType(pvApiCtx, piAddr1, &type);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(999, _("%s: Cannot get the data type.\n"), fname, 1);
         printError(&sciErr, 0);
         return 1;
     }
 
-    if (m1 * n1 == 0)
+    switch (type)
     {
-        AssignOutputVariable(pvApiCtx, 1) = 0;
-        ReturnArguments(pvApiCtx);
-        return 0;
+        case sci_matrix :
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, (double **)&l1);
+            if (sciErr.iErr)
+            {
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            if (m1 * n1 == 0)
+            {
+                AssignOutputVariable(pvApiCtx, 1) = 0;
+                ReturnArguments(pvApiCtx);
+                return 0;
+            }
+
+            plottype = buildMatplotType(MATPLOT_Double, MATPLOT_FORTRAN, MATPLOT_INDEX);
+            break;
+        case sci_ints :
+            sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr1, &precision);
+            if (sciErr.iErr)
+            {
+                Scierror(999, _("%s: Cannot get the integer precision for argument %d.\n"), fname, 1);
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            switch (precision)
+            {
+                case SCI_INT8 :
+                    sciErr = getMatrixOfInteger8(pvApiCtx, piAddr1, &m1, &n1, (char **)(&l1));
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), fname, 1);
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+                    plottype = buildMatplotType(MATPLOT_Char, MATPLOT_FORTRAN, MATPLOT_RGB_332);
+                    break;
+                case SCI_UINT8 :
+                    sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, piAddr1, &m1, &n1, (unsigned char **)(&l1));
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), fname, 1);
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+                    plottype = buildMatplotType(MATPLOT_UChar, MATPLOT_FORTRAN, MATPLOT_GRAY);
+                    break;
+                case SCI_INT16 :
+                    sciErr = getMatrixOfInteger16(pvApiCtx, piAddr1, &m1, &n1, (short **)(&l1));
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), fname, 1);
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+                    plottype = buildMatplotType(MATPLOT_Short, MATPLOT_FORTRAN, MATPLOT_RGB_444);
+                    break;
+                case SCI_UINT16 :
+                    sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, piAddr1, &m1, &n1, (unsigned short **)(&l1));
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), fname, 1);
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+                    plottype = buildMatplotType(MATPLOT_UShort, MATPLOT_FORTRAN, MATPLOT_RGBA_4444);
+                    break;
+                case SCI_INT32 :
+                    sciErr = getMatrixOfInteger32(pvApiCtx, piAddr1, &m1, &n1, (int **)(&l1));
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), fname, 1);
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+                    plottype = buildMatplotType(MATPLOT_Int, MATPLOT_FORTRAN, MATPLOT_RGB);
+                    break;
+                case SCI_UINT32 :
+                    sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, piAddr1, &m1, &n1, (unsigned int **)(&l1));
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), fname, 1);
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+                    plottype = buildMatplotType(MATPLOT_UInt, MATPLOT_FORTRAN, MATPLOT_RGBA);
+                    break;
+                default :
+                    Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), fname, 1);
+                    return 1;
+            }
+            break;
+        case sci_mlist :
+            if (isHypermatType(pvApiCtx, piAddr1))
+            {
+                int htype = 0;
+                int ndims = 0;
+                int * dims = NULL;
+
+                sciErr = getHypermatType(pvApiCtx, piAddr1, &htype);
+                if (sciErr.iErr)
+                {
+                    Scierror(202, _("%s: Cannot get the hypermatrix data type for argument %d.\n"), fname, 1);
+                    return 1;
+                }
+
+                if (htype == sci_ints)
+                {
+                    sciErr = getHypermatOfIntegerPrecision(pvApiCtx, piAddr1, &precision);
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the hypermatrix data type for argument %d.\n"), fname, 1);
+                        return 1;
+                    }
+
+                    if (precision != SCI_UINT8 && precision != SCI_INT8)
+                    {
+                        Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), fname, 1);
+                        return 1;
+                    }
+
+                    if (precision == SCI_UINT8)
+                    {
+                        sciErr = getHypermatOfUnsignedInteger8(pvApiCtx, piAddr1, &dims, &ndims, (unsigned char **)&l1);
+                    }
+                    else
+                    {
+                        sciErr = getHypermatOfInteger8(pvApiCtx, piAddr1, &dims, &ndims, (char **)&l1);
+                    }
+
+                    if (sciErr.iErr || ndims != 3 || (dims[2] != 1 && dims[2] != 3 && dims[2] != 4))
+                    {
+                        Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), fname, 1);
+                        return 1;
+                    }
+
+                    m1 = dims[0];
+                    n1 = dims[1];
+                    if (dims[2] == 1)
+                    {
+                        if (precision == SCI_INT8)
+                        {
+                            plottype = buildMatplotType(MATPLOT_HM1_Char, MATPLOT_FORTRAN, MATPLOT_GRAY);
+                        }
+                        else
+                        {
+                            plottype = buildMatplotType(MATPLOT_HM1_UChar, MATPLOT_FORTRAN, MATPLOT_GRAY);
+                        }
+                    }
+                    else if (dims[2] == 3)
+                    {
+                        if (precision == SCI_INT8)
+                        {
+                            plottype = buildMatplotType(MATPLOT_HM3_Char, MATPLOT_FORTRAN, MATPLOT_RGB);
+                        }
+                        else
+                        {
+                            plottype = buildMatplotType(MATPLOT_HM3_UChar, MATPLOT_FORTRAN, MATPLOT_RGB);
+                        }
+                    }
+                    else
+                    {
+                        if (precision == SCI_INT8)
+                        {
+                            plottype = buildMatplotType(MATPLOT_HM4_Char, MATPLOT_FORTRAN, MATPLOT_RGBA);
+                        }
+                        else
+                        {
+                            plottype = buildMatplotType(MATPLOT_HM4_UChar, MATPLOT_FORTRAN, MATPLOT_RGBA);
+                        }
+                    }
+                }
+                else if (htype == sci_matrix)
+                {
+                    sciErr = getHypermatOfDouble(pvApiCtx, piAddr1, &dims, &ndims, (double **)&l1);
+                    if (sciErr.iErr || ndims != 3 || (dims[2] != 1 && dims[2] != 3 && dims[2] != 4))
+                    {
+                        Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), fname, 1);
+                        return 1;
+                    }
+
+                    m1 = dims[0];
+                    n1 = dims[1];
+                    if (dims[2] == 1)
+                    {
+                        plottype = buildMatplotType(MATPLOT_HM1_Double, MATPLOT_FORTRAN, MATPLOT_GRAY);
+                    }
+                    else if (dims[2] == 3)
+                    {
+                        plottype = buildMatplotType(MATPLOT_HM3_Double, MATPLOT_FORTRAN, MATPLOT_RGB);
+                    }
+                    else
+                    {
+                        plottype = buildMatplotType(MATPLOT_HM4_Double, MATPLOT_FORTRAN, MATPLOT_RGBA);
+                    }
+                }
+                else
+                {
+                    Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), "data", 1);
+                    return 1;
+                }
+            }
+            break;
+        default :
+            Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), fname, 1);
+            return 1;
     }
 
     GetStrf(pvApiCtx, fname, 2, opts, &strf);
@@ -101,8 +311,6 @@ int sci_matplot(char *fname, void *pvApiCtx)
 
     if (isDefStrf(strf))
     {
-        char strfl[4];
-
         strcpy(strfl, DEFSTRFN);
 
         strf = strfl;
@@ -123,7 +331,7 @@ int sci_matplot(char *fname, void *pvApiCtx)
         }
     }
 
-    Objmatplot((l1), &m1, &n1, strf, rect, nax, flagNax);
+    ObjmatplotImage((unsigned char *)(l1), &m1, &n1, strf, rect, nax, flagNax, plottype);
 
     /* NG end */
     AssignOutputVariable(pvApiCtx, 1) = 0;

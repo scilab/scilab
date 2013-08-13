@@ -3,8 +3,6 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-// Run with exec("SCI/modules/xcos/examples/solvers/benchSinus.sce");
-
 // Import the diagram, augment the ending time and store its compilation in Info()
 loadScicos();
 loadXcosLibs();
@@ -23,7 +21,7 @@ for solver = 0:7
     tolerances(6) = solver;
 
     // Modify 'Max step size' if RK-based solver
-    if (solver >= 5) then tolerances(7) = 10^(-2); end
+    if (solver >= 5) then tolerances(7) = 0.01; end
 
     // Start the solver
     [state, t] = scicosim(%state0, 0.0, tf, %cpr.sim, "start", tolerances);
@@ -39,4 +37,3 @@ for solver = 0:7
 
 end
 disp("--------------------------------");
-

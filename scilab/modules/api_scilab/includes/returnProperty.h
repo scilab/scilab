@@ -119,6 +119,68 @@ extern "C" {
      */
     void* sciReturnUserData(const int * userData, int userDataSize ) ;
 
+    /**
+     * copy a matrix stored has a double hypermatrix
+     * into a Scilab matrix in the stack in order to see it the console.
+     * @return 0 if the function was executed correctly, -1 if an error occurred.
+     */
+    void* sciReturnHypermatOfDouble(int dims[], int ndims, double values[]);
+
+    /**
+     * copy a matrix stored has a int8 hypermatrix
+     * into a Scilab matrix in the stack in order to see it the console.
+     * @return 0 if the function was executed correctly, -1 if an error occurred.
+     */
+    void* sciReturnHypermatOfInteger8(int dims[], int ndims, char values[]);
+
+    /**
+     * copy a matrix stored has a uint8 hypermatrix
+     * into a Scilab matrix in the stack in order to see it the console.
+     * @return 0 if the function was executed correctly, -1 if an error occurred.
+     */
+    void* sciReturnHypermatOfUnsignedInteger8(int dims[], int ndims, unsigned char values[]);
+
+    /**
+     * copy a matrix stored has a int8 array
+     * into a Scilab matrix in the stack in order to see it the console.
+     * @return 0 if the function was executed correctly, -1 if an error occurred.
+     */
+    void* sciReturnMatrixOfInteger8(char values[], int nbRow, int nbCol);
+
+    /**
+     * copy a matrix stored has a uint8 array
+     * into a Scilab matrix in the stack in order to see it the console.
+     * @return 0 if the function was executed correctly, -1 if an error occurred.
+     */
+    void* sciReturnMatrixOfUnsignedInteger8(unsigned char values[], int nbRow, int nbCol);
+
+    /**
+     * copy a matrix stored has a int16 array
+     * into a Scilab matrix in the stack in order to see it the console.
+     * @return 0 if the function was executed correctly, -1 if an error occurred.
+     */
+    void* sciReturnMatrixOfInteger16(short values[], int nbRow, int nbCol);
+
+    /**
+     * copy a matrix stored has a uint16 array
+     * into a Scilab matrix in the stack in order to see it the console.
+     * @return 0 if the function was executed correctly, -1 if an error occurred.
+     */
+    void* sciReturnMatrixOfUnsignedInteger16(unsigned short values[], int nbRow, int nbCol);
+
+    /**
+     * copy a matrix stored has a int32 array
+     * into a Scilab matrix in the stack in order to see it the console.
+     * @return 0 if the function was executed correctly, -1 if an error occurred.
+     */
+    void* sciReturnMatrixOfInteger32(int values[], int nbRow, int nbCol);
+
+    /**
+     * copy a matrix stored has a uint32 array
+     * into a Scilab matrix in the stack in order to see it the console.
+     * @return 0 if the function was executed correctly, -1 if an error occurred.
+     */
+    void* sciReturnMatrixOfUnsignedInteger32(unsigned int values[], int nbRow, int nbCol);
 #ifdef __cplusplus
 }
 #endif

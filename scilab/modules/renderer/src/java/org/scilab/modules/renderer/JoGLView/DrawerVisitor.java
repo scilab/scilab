@@ -372,11 +372,15 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void visit(Figure figure) {
         synchronized (figure) {
             /** Set the current {@see ColorMap}. */
-            colorMap = figure.getColorMap();
-            drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
-            drawingTools.clearDepthBuffer();
-            if (figure.isValid() && figure.getVisible() && figure.getImmediateDrawing()) {
-                askAcceptVisitor(figure.getChildren());
+            try {
+                colorMap = figure.getColorMap();
+                drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
+                drawingTools.clearDepthBuffer();
+                if (figure.isValid() && figure.getVisible() && figure.getImmediateDrawing()) {
+                    askAcceptVisitor(figure.getChildren());
+                }
+            } catch (Exception e) {
+                System.err.println(e);
             }
         }
     }
@@ -1076,6 +1080,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private class ColorMapTextureDataProvider extends AbstractTextureDataProvider {
         byte[] whiteColor = {(byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF};
         byte[] blackColor = {0x00, 0x00, 0x00, (byte) 0xFF};
+
+        public ColorMapTextureDataProvider() {
+            super();
+            this.imageType = ImageType.RGBA_BYTE;
+        }
 
         @Override
         public Dimension getTextureSize() {

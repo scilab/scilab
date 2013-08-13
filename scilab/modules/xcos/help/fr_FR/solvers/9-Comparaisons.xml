@@ -143,7 +143,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
         </para>
         <para>
             Dans le script suivant, on compare la différence de temps entre les solveurs en lançant l'exemple avec les huit solveurs tout à tour (<emphasis>IDA</emphasis> n'est pas adapté à ce genre de problème) :
-            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchSinus.sce">
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchSine.sce">
                 Ouverture du script
             </link>
         </para>

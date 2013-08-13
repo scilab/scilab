@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -58,16 +58,7 @@
     <ClInclude Include="src\c\checkCsvWriteFormat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\csv_complex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\csv_strsubst.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\c\csvDefault.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\csvIsnum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\c\csvRead.h">
@@ -80,9 +71,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\c\splitLine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\stringToComplex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\c\utftolatin.h">
@@ -123,9 +111,6 @@
     <ClCompile Include="sci_gateway\c\sci_csvDefault.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_csvIsnum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_csvRead.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -150,16 +135,7 @@
     <ClCompile Include="src\c\checkCsvWriteFormat.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\csv_complex.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\csv_strsubst.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\csvDefault.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\csvIsnum.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\csvRead.c">
@@ -175,9 +151,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\splitLine.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\stringToComplex.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\utftolatin.c">

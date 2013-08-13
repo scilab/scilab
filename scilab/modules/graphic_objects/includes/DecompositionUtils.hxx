@@ -31,6 +31,36 @@ public :
      */
     static int isANumber(double x);
 
+    static int isANumber(int x)
+    {
+        return 1;
+    }
+
+    static int isANumber(unsigned int x)
+    {
+        return 1;
+    }
+
+    static int isANumber(char x)
+    {
+        return 1;
+    }
+
+    static int isANumber(unsigned char x)
+    {
+        return 1;
+    }
+
+    static int isANumber(short x)
+    {
+        return 1;
+    }
+
+    static int isANumber(unsigned short x)
+    {
+        return 1;
+    }
+
     /**
      * Tests whether a scalar value is finite.
      * @param[in] the scalar value to test.

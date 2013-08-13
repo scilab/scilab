@@ -180,5 +180,7 @@ void* get_grid_position_property(void* _pvCtx, char* pobjUID);
 void* get_anti_aliasing_property(void* _pvCtx, char* pobjUID);
 void* get_tag_property(void* _pvCtx, char* pobjUID);
 void* get_UID(void* _pvCtx, char *pobjUID);
+void* get_image_type_property(void* _pvCtx, char* pobjUID);
+void* get_video_mode_property(void* _pvCtx, char* pobjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

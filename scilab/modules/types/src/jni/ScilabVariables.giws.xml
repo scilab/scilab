@@ -1,4 +1,4 @@
-        <package name="org.scilab.modules.types">
+    <package name="org.scilab.modules.types">
     
     <object name="ScilabVariables">
         <method name="getAllListenedVariables" returnType="String[]" modifier="static" />

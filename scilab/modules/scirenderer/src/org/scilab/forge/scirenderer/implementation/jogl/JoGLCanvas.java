@@ -177,10 +177,10 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
     public void redrawAndWait() {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
-                public void run() {
-                    autoDrawable.display();
-                }
-            });
+                    public void run() {
+                        autoDrawable.display();
+                    }
+                });
         } catch (Exception e) { }
     }
 
@@ -239,12 +239,12 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
 
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
-                public void run() {
-                    context.makeCurrent();
-                    image[0] = Screenshot.readToBufferedImage(autoDrawable.getWidth(), autoDrawable.getHeight());
-                    context.release();
-                }
-            });
+                    public void run() {
+                        context.makeCurrent();
+                        image[0] = Screenshot.readToBufferedImage(autoDrawable.getWidth(), autoDrawable.getHeight());
+                        context.release();
+                    }
+                });
         } catch (InterruptedException e) {
 
         } catch (InvocationTargetException e) {

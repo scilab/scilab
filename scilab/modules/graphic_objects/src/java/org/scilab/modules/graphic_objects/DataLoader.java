@@ -89,4 +89,35 @@ public class DataLoader {
         }
     }
 
+    public static java.nio.ByteBuffer getTextureData(String id) {
+        return DataLoaderJNI.getTextureData(id);
+    }
+
+    public static int getTextureImageType(String id) {
+        return DataLoaderJNI.getTextureImageType(id);
+    }
+
+    public static int getTextureDataType(String id) {
+        return DataLoaderJNI.getTextureDataType(id);
+    }
+
+    public static int getTextureGLType(String id) {
+        return DataLoaderJNI.getTextureGLType(id);
+    }
+
+    public static void disposeTextureData(String id, java.nio.ByteBuffer buffer) {
+        assert buffer.isDirect() : "Buffer must be allocated direct.";
+        {
+            DataLoaderJNI.disposeTextureData(id, buffer);
+        }
+    }
+
+    public static int isTextureRowOrder(String id) {
+        return DataLoaderJNI.isTextureRowOrder(id);
+    }
+
+    public static void setABGRExt(int isAvailable) {
+        DataLoaderJNI.setABGRExt(isAvailable);
+    }
+
 }

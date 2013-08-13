@@ -38,7 +38,8 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 
 * In browsevar, allows a user to plot the variable (already available in
   editvar).
-
+  
+* Update Windows Solution to Visual Studio 2012.
 
 Syntax changes
 ===============
@@ -501,6 +502,9 @@ Bug fixes
 * Bug #12686 fixed - Error returned by diff() fixed.
 
 * Bug #12703 fixed - In SciNotes, common shortcuts 'SHIFT DELETE', 'SHIFT INSERT' (and others) added.
+
+* Bug #12705 fixed - Function members() added. It allows to find number of occurrences and linear indexes
+                     for common values between two matrices of the same type.
 
 * Bug #12706 fixed - A wrong size matrix as input argument of cross function was not detected.
 

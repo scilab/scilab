@@ -34,11 +34,13 @@
 #include "set_data_property.h"
 #include "MALLOC.h"
 #include "sci_types.h"
+#include "api_scilab.h"
 
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
-
 #include "getGraphicObjectProperty.h"
+#include "Matplot.h"
+
 
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
@@ -514,6 +516,317 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
         return status;
 
     }
+    else if (type == __GO_MATPLOT__)
+    {
+        int datatype = 0;
+        int * piDataType = &datatype;
+        int imagetype = 0;
+        int * piImageType = &imagetype;
+        int dataorder = 0;
+        int * piDataOrder = &dataorder;
+        int plottype = -1;
+        int gridSize[4];
+        int numX = 0;
+        int *piNumX = &numX;
+        int numY = 0;
+        int *piNumY = &numY;
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void **)&piNumX);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void **)&piNumY);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_DATA_TYPE__, jni_int, (void **)&piDataType);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__, jni_int, (void **)&piImageType);
+        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_DATA_ORDER__, jni_int, (void **)&piDataOrder);
+
+        gridSize[1] = 1;
+        gridSize[3] = 1;
+
+        if (valueType == sci_mlist)
+        {
+            if (isHypermatType(_pvCtx, _pvData))
+            {
+                int htype = 0;
+                int ndims = 0;
+                int * dims = NULL;
+                int precision;
+                SciErr sciErr;
+                void * l1 = NULL;
+
+                sciErr = getHypermatType(_pvCtx, _pvData, &htype);
+                if (sciErr.iErr)
+                {
+                    Scierror(202, _("%s: Cannot get the hypermatrix data type for argument %d.\n"), "data", 1);
+                    return 1;
+                }
+
+                if (htype == sci_ints)
+                {
+                    sciErr = getHypermatOfIntegerPrecision(_pvCtx, _pvData, &precision);
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the hypermatrix data type for argument %d.\n"), "data", 1);
+                        return 1;
+                    }
+
+                    if (precision != SCI_UINT8 && precision != SCI_INT8)
+                    {
+                        Scierror(202, _("%s: A Wrong type for argument %d: A real or integer expected.\n"), "data", 1);
+                        return 1;
+                    }
+
+                    if (precision == SCI_UINT8)
+                    {
+                        sciErr = getHypermatOfUnsignedInteger8(_pvCtx, _pvData, &dims, &ndims, (unsigned char **)&l1);
+                    }
+                    else
+                    {
+                        sciErr = getHypermatOfInteger8(_pvCtx, _pvData, &dims, &ndims, (char **)&l1);
+                    }
+
+                    if (sciErr.iErr || ndims != 3 || (dims[1] != 1 && dims[2] != 3 && dims[2] != 4))
+                    {
+                        Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), "data", 1);
+                        return 1;
+                    }
+
+                    if (dims[2] == 1)
+                    {
+                        if (precision == SCI_INT8 && (DataType)datatype != MATPLOT_HM1_Char)
+                        {
+                            plottype = buildMatplotType(MATPLOT_HM1_Char, (DataOrder)dataorder, (ImageType)imagetype);
+                        }
+                        else if (precision == SCI_UINT8 && (DataType)datatype != MATPLOT_HM1_UChar)
+                        {
+                            plottype = buildMatplotType(MATPLOT_HM1_UChar, (DataOrder)dataorder, (ImageType)imagetype);
+                        }
+                    }
+                    else if (dims[2] == 3)
+                    {
+                        if (precision == SCI_INT8 && (DataType)datatype != MATPLOT_HM3_Char)
+                        {
+                            plottype = buildMatplotType(MATPLOT_HM3_Char, (DataOrder)dataorder, (ImageType)imagetype);
+                        }
+                        else if (precision == SCI_UINT8 && (DataType)datatype != MATPLOT_HM3_UChar)
+                        {
+                            plottype = buildMatplotType(MATPLOT_HM3_UChar, (DataOrder)dataorder, (ImageType)imagetype);
+                        }
+                    }
+                    else if (dims[2] == 4)
+                    {
+                        if (precision == SCI_INT8 && (DataType)datatype != MATPLOT_HM4_Char)
+                        {
+                            plottype = buildMatplotType(MATPLOT_HM4_Char, (DataOrder)dataorder, (ImageType)imagetype);
+                        }
+                        else if (precision == SCI_UINT8 && (DataType)datatype != MATPLOT_HM4_UChar)
+                        {
+                            plottype = buildMatplotType(MATPLOT_HM4_UChar, (DataOrder)dataorder, (ImageType)imagetype);
+                        }
+                    }
+                }
+                else if (htype == sci_matrix)
+                {
+                    sciErr = getHypermatOfDouble(_pvCtx, _pvData, &dims, &ndims, (double **)&l1);
+
+                    if (sciErr.iErr || ndims != 3 || (dims[2] != 1 && dims[2] != 3 && dims[2] != 4))
+                    {
+                        Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), "data", 1);
+                        return 1;
+                    }
+
+                    if (dims[2] == 1 && (DataType)datatype != MATPLOT_HM1_Double)
+                    {
+                        plottype = buildMatplotType(MATPLOT_HM1_Double, (DataOrder)dataorder, (ImageType)imagetype);
+                    }
+                    else if (dims[2] == 3 && (DataType)datatype != MATPLOT_HM3_Double)
+                    {
+                        plottype = buildMatplotType(MATPLOT_HM3_Double, (DataOrder)dataorder, (ImageType)imagetype);
+                    }
+                    else if (dims[2] == 4 && (DataType)datatype != MATPLOT_HM4_Double)
+                    {
+                        plottype = buildMatplotType(MATPLOT_HM4_Double, (DataOrder)dataorder, (ImageType)imagetype);
+                    }
+                }
+                else
+                {
+                    Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), "data", 1);
+                    return 1;
+                }
+
+                if (numX != dims[1] + 1 || numY != dims[0] + 1)
+                {
+                    gridSize[0] = dims[1] + 1;
+                    gridSize[2] = dims[0] + 1;
+                    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+                }
+
+                if (plottype != -1)
+                {
+                    setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
+                }
+                setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, l1, jni_double_vector, dims[0] * dims[1]);
+            }
+        }
+        else if (valueType == sci_ints)
+        {
+            int m = 0;
+            int n = 0;
+            void * l = NULL;
+            SciErr sciErr;
+            int precision;
+
+            sciErr = getMatrixOfIntegerPrecision(_pvCtx, _pvData, &precision);
+            if (sciErr.iErr)
+            {
+                Scierror(999, _("%s: Cannot get the integer precision for argument %d.\n"), "data", 1);
+                printError(&sciErr, 0);
+                return 1;
+            }
+
+            switch (precision)
+            {
+                case SCI_INT8 :
+                    sciErr = getMatrixOfInteger8(_pvCtx, _pvData, &m, &n, (char **)(&l));
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), "data", 1);
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+                    if ((DataType)datatype != MATPLOT_Char)
+                    {
+                        plottype = buildMatplotType(MATPLOT_Char, (DataOrder)dataorder, (ImageType)imagetype);
+                    }
+                    break;
+                case SCI_UINT8 :
+                    sciErr = getMatrixOfUnsignedInteger8(_pvCtx, _pvData, &m, &n, (unsigned char **)(&l));
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), "data", 1);
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+                    if ((DataType)datatype != MATPLOT_UChar)
+                    {
+                        plottype = buildMatplotType(MATPLOT_UChar, (DataOrder)dataorder, (ImageType)imagetype);
+                    }
+                    break;
+                case SCI_INT16 :
+                    sciErr = getMatrixOfInteger16(_pvCtx, _pvData, &m, &n, (short **)(&l));
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), "data", 1);
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+                    if ((DataType)datatype != MATPLOT_Short)
+                    {
+                        plottype = buildMatplotType(MATPLOT_Short, (DataOrder)dataorder, (ImageType)imagetype);
+                    }
+                    break;
+                case SCI_UINT16 :
+                    sciErr = getMatrixOfUnsignedInteger16(_pvCtx, _pvData, &m, &n, (unsigned short **)(&l));
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), "data", 1);
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+                    if ((DataType)datatype != MATPLOT_UShort)
+                    {
+                        plottype = buildMatplotType(MATPLOT_UShort, (DataOrder)dataorder, (ImageType)imagetype);
+                    }
+                    break;
+                case SCI_INT32 :
+                    sciErr = getMatrixOfInteger32(_pvCtx, _pvData, &m, &n, (int **)(&l));
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), "data", 1);
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+                    if ((DataType)datatype != MATPLOT_Int)
+                    {
+                        plottype = buildMatplotType(MATPLOT_Int, (DataOrder)dataorder, (ImageType)imagetype);
+                    }
+                    break;
+                case SCI_UINT32 :
+                    sciErr = getMatrixOfUnsignedInteger32(_pvCtx, _pvData, &m, &n, (unsigned int **)(&l));
+                    if (sciErr.iErr)
+                    {
+                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), "data", 1);
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+                    if ((DataType)datatype != MATPLOT_UInt)
+                    {
+                        plottype = buildMatplotType(MATPLOT_UInt, (DataOrder)dataorder, (ImageType)imagetype);
+                    }
+                    break;
+                default :
+                    Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), "data", 1);
+                    return 1;
+            }
+
+            if (precision == SCI_INT8 || precision == SCI_UINT8)
+            {
+                if ((ImageType)imagetype == MATPLOT_RGB)
+                {
+                    const int mb3 = m / 3;
+                    if (mb3 * 3 == m)
+                    {
+                        m = mb3;
+                    }
+                    else
+                    {
+                        Scierror(202, _("%s: Wrong dimension for argument %d: The number of rows must be a multiple of 3.\n"), "data", 1);
+                        return 1;
+                    }
+                }
+                else if ((ImageType)imagetype == MATPLOT_RGBA)
+                {
+                    const int mb4 = m / 4;
+                    if (mb4 * 4 == m)
+                    {
+                        m = mb4;
+                    }
+                    else
+                    {
+                        Scierror(202, _("%s: Wrong dimension for argument %d: The number of rows must be a multiple of 4.\n"), "data", 1);
+                        return 1;
+                    }
+                }
+            }
+
+            if (numX != n + 1 || numY != m + 1)
+            {
+                gridSize[0] = n + 1;
+                gridSize[2] = m + 1;
+                setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+            }
+
+            if (plottype != -1)
+            {
+                setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
+            }
+
+            setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, l, jni_double_vector, m * n);
+        }
+        else if (valueType == sci_matrix)
+        {
+            if (numX != nbCol + 1 || numY != nbRow + 1)
+            {
+                gridSize[0] = nbCol + 1;
+                gridSize[2] = nbRow + 1;
+                setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+            }
+
+            if ((DataType)datatype != MATPLOT_Double)
+            {
+                plottype = buildMatplotType(MATPLOT_Double, (DataOrder)dataorder, (ImageType)imagetype);
+                setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_DATA_INFOS__, &plottype, jni_int, 1);
+            }
+
+            setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__, _pvData, jni_double_vector, nbRow * nbCol);
+        }
+    }
     else  /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
     {
         if (valueType != sci_matrix)
@@ -525,6 +838,5 @@ int set_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType,
         return sciSetPoint(pobjUID, (double*)_pvData, &nbRow, &nbCol);
     }
     return SET_PROPERTY_ERROR;
-
 }
 /*------------------------------------------------------------------------*/

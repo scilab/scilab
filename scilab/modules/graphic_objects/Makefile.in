@@ -187,7 +187,8 @@ am__objects_4 = libscigraphic_objects_la-createGraphicObject.lo \
 	libscigraphic_objects_la-FigureModel.lo \
 	libscigraphic_objects_la-CurrentFigure.lo \
 	libscigraphic_objects_la-CurrentObject.lo \
-	libscigraphic_objects_la-CurrentSubwin.lo
+	libscigraphic_objects_la-CurrentSubwin.lo \
+	libscigraphic_objects_la-Texture.lo
 am_libscigraphic_objects_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libscigraphic_objects_la_OBJECTS =  \
@@ -629,7 +630,8 @@ GRAPHIC_OBJECTS_CXX_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/FigureModel.cpp \
 								src/cpp/CurrentFigure.cpp \
 								src/cpp/CurrentObject.cpp \
-								src/cpp/CurrentSubwin.cpp
+								src/cpp/CurrentSubwin.cpp \
+								src/cpp/Texture.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -782,6 +784,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-PolylineDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-ScilabNativeView_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-ScilabView.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-Texture.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecDataDecomposer.Plo@am__quote@
@@ -1114,6 +1117,13 @@ libscigraphic_objects_la-CurrentSubwin.lo: src/cpp/CurrentSubwin.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CurrentSubwin.cpp' object='libscigraphic_objects_la-CurrentSubwin.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-CurrentSubwin.lo `test -f 'src/cpp/CurrentSubwin.cpp' || echo '$(srcdir)/'`src/cpp/CurrentSubwin.cpp
+
+libscigraphic_objects_la-Texture.lo: src/cpp/Texture.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-Texture.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-Texture.Tpo -c -o libscigraphic_objects_la-Texture.lo `test -f 'src/cpp/Texture.cpp' || echo '$(srcdir)/'`src/cpp/Texture.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-Texture.Tpo $(DEPDIR)/libscigraphic_objects_la-Texture.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/Texture.cpp' object='libscigraphic_objects_la-Texture.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-Texture.lo `test -f 'src/cpp/Texture.cpp' || echo '$(srcdir)/'`src/cpp/Texture.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

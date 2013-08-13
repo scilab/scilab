@@ -59,6 +59,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WAITBAR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
 
 import java.awt.Component;
@@ -614,6 +615,10 @@ public final class SwingView implements GraphicView {
 
     @Override
     public void updateObject(final String id, final int property) {
+        if (property == __GO_IMMEDIATE_DRAWING__) {
+            return;
+        }
+
         final TypedObject registeredObject = allObjects.get(id);
         if (registeredObject == null && property != __GO_STYLE__) {
             return;

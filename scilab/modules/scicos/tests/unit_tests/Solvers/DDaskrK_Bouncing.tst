@@ -4,9 +4,13 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- ENGLISH IMPOSED -->
+//
 // <-- XCOS TEST -->
+//
+
+ilib_verbose(0); //to remove ilib_* traces
 
 // Import diagram
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/DDaskr_Bouncing_test.zcos"));
@@ -15,7 +19,6 @@ assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/DD
 prot = funcprot();
 funcprot(0);
 function messagebox(msg, msg_title)
- disp(msg);
 endfunction
 funcprot(prot);
 Info = scicos_simulate(scs_m, list());
@@ -40,6 +43,6 @@ mea = mean(compa);
 stdeviation = st_deviation(compa);
 
 // Verifying closeness of the results
-assert_checktrue(maxi <= 5*10^-(5));
-assert_checktrue(mea <= 5*10^-(5));
-assert_checktrue(stdeviation <= 5*10^-(5));
+assert_checktrue(maxi <= 5d-5);
+assert_checktrue(mea <= 5d-5);
+assert_checktrue(stdeviation <= 5d-5);
