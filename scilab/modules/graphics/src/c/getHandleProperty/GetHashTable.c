@@ -46,7 +46,7 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES 162
+#define NB_PROPERTIES 163
 
 /**
  * list of all property names and associated functions in scilab
@@ -215,7 +215,8 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
     {"showhiddenhandles", GetConsoleShowHiddenHandles},
     {"resizefcn", get_figure_resizefcn_property},
     {"tooltipstring", GetUicontrolTooltipString},
-    {"closerequestfcn", get_figure_closerequestfcn_property}
+    {"closerequestfcn", get_figure_closerequestfcn_property},
+    {"image_type", get_image_type_property}
 };
 
 /*--------------------------------------------------------------------------*/

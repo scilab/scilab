@@ -363,7 +363,9 @@ function %h_p(h)
 
 
         case "Matplot"
-            if size(h.data,"*") > 10 then
+            if typeof(h.data) == "hypermat" then
+                d="matrix "+strcat(string(h.data.dims),"x")
+            elseif size(h.data,"*") > 10 then
                 d="matrix "+strcat(string(size(h.data)),"x")
             else
                 d=sci2exp(h.data,0)
@@ -375,6 +377,7 @@ function %h_p(h)
             "children: "+fmtchildren(h.children)
             "visible = "+sci2exp(h.visible)
             "data = "+d
+            "image_type = " + sci2exp(h.image_type)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
             "user_data = "+fmtuser_data(u)

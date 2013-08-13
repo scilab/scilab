@@ -62,6 +62,63 @@ public class MainDataLoader {
         return DataLoader.getTextureHeight(id);
     }
 
+    /**
+     * Returns the data for the given object.
+     * @param id of the given object.
+     * @return the data.
+     */
+    public static ByteBuffer getTextureData(String id) {
+        return DataLoader.getTextureData(id);
+    }
+
+    /**
+     * Returns the data for the given object.
+     * @param id of the given object.
+     * @return the data.
+     */
+    public static boolean isTextureRowOrder(String id) {
+        return DataLoader.isTextureRowOrder(id) != 0;
+    }
+
+    /**
+     * Returns the data for the given object.
+     * @param id of the given object.
+     * @return the data.
+     */
+    public static void disposeTextureData(String id, ByteBuffer buffer) {
+        DataLoader.disposeTextureData(id, buffer);
+    }
+
+    /**
+     * Returns the image type of the texture data.
+     * 0 for RGB, 1 for RGBA, 2 for GRAY.
+     * @param id of the given object.
+     * @return the image type.
+     */
+    public static int getTextureImageType(String id) {
+        return DataLoader.getTextureImageType(id);
+    }
+
+    /**
+     * Returns the image type of the texture data.
+     * 0 for RGB, 1 for RGBA, 2 for GRAY.
+     * @param id of the given object.
+     * @return the image type.
+     */
+    public static int getTextureDataType(String id) {
+        return DataLoader.getTextureDataType(id);
+    }
+
+    /**
+     * Returns the image type of the texture data.
+     * 0 for RGB, 1 for RGBA, 2 for GRAY.
+     * @param id of the given object.
+     * @return the image type.
+     */
+    public static int getTextureGLType(String id) {
+        return DataLoader.getTextureGLType(id);
+    }
+
     public static void fillTextureCoordinates(String id, FloatBuffer buffer, int bufferLength) {
         DataLoader.fillTextureCoordinates(id, buffer, bufferLength);
     }

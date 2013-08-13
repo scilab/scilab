@@ -274,6 +274,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_handle_visible_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_hidden_axis_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_hidden_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_image_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_immediate_drawing_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_info_message_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_interp_color_mode.c" />
@@ -315,6 +316,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_thickness_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_resizefcn_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_image_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_tag_property.c" />
     <ClCompile Include="src\c\get_ticks_utils.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_color_property.c" />

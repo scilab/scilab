@@ -33,7 +33,143 @@
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "Matplot.h"
+#include "returnProperty.h"
+/*--------------------------------------------------------------------------*/
+/* the matplot data can have several type */
+int getmatplotdata(void * _pvCtx, char *pobjUID)
+{
+    int datatype = 0;
+    int * piDataType = &datatype;
+    int numX = 0;
+    int *piNumX = &numX;
+    int numY = 0;
+    int *piNumY = &numY;
+    void * data = NULL;
+    int imagetype = 0;
+    int * piImagetype = &imagetype;
+    int gltype = 0;
+    int * piGltype = &gltype;
+    int status = SET_PROPERTY_ERROR;
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_X__, jni_int, (void **)&piNumX);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_Y__, jni_int, (void **)&piNumY);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_DATA_TYPE__, jni_int, (void **)&piDataType);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Z__, jni_double_vector, &data);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__, jni_int, (void **)&piImagetype);
+    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_GL_TYPE__, jni_int, (void **)&piGltype);
 
+    if (!data)
+    {
+        return sciReturnEmptyMatrix(_pvCtx);
+    }
+
+    switch ((DataType)datatype)
+    {
+        case MATPLOT_HM1_Char :
+        {
+            int dims[3] = {numY - 1, numX - 1, 1};
+            status = sciReturnHypermatOfInteger8(_pvCtx, dims, 3, (char*)data);
+            break;
+        }
+        case MATPLOT_HM1_UChar :
+        {
+            int dims[3] = {numY - 1, numX - 1, 1};
+            status = sciReturnHypermatOfUnsignedInteger8(_pvCtx, dims, 3, (unsigned char*)data);
+            break;
+        }
+        case MATPLOT_HM3_Char :
+        {
+            int dims[3] = {numY - 1, numX - 1, 3};
+            status = sciReturnHypermatOfInteger8(_pvCtx, dims, 3, (char*)data);
+            break;
+        }
+        case MATPLOT_HM3_UChar :
+        {
+            int dims[3] = {numY - 1, numX - 1, 3};
+            status = sciReturnHypermatOfUnsignedInteger8(_pvCtx, dims, 3, (unsigned char*)data);
+            break;
+        }
+        case MATPLOT_HM1_Double :
+        {
+            int dims[3] = {numY - 1, numX - 1, 1};
+            status = sciReturnHypermatOfDouble(_pvCtx, dims, 3, (double*)data);
+            break;
+        }
+        case MATPLOT_HM3_Double :
+        {
+            int dims[3] = {numY - 1, numX - 1, 3};
+            status = sciReturnHypermatOfDouble(_pvCtx, dims, 3, (double*)data);
+            break;
+        }
+        case MATPLOT_HM4_Char :
+        {
+            int dims[3] = {numY - 1, numX - 1, 4};
+            status = sciReturnHypermatOfInteger8(_pvCtx, dims, 3, (char*)data);
+            break;
+        }
+        case MATPLOT_HM4_UChar :
+        {
+            int dims[3] = {numY - 1, numX - 1, 4};
+            status = sciReturnHypermatOfUnsignedInteger8(_pvCtx, dims, 3, (unsigned char*)data);
+            break;
+        }
+        case MATPLOT_HM4_Double :
+        {
+            int dims[3] = {numY - 1, numX - 1, 4};
+            status = sciReturnHypermatOfDouble(_pvCtx, dims, 3, (double*)data);
+            break;
+        }
+        case MATPLOT_Char :
+        {
+            status = sciReturnMatrixOfInteger8(_pvCtx, (char*)data, numY - 1, numX - 1);
+            break;
+        }
+        case MATPLOT_UChar :
+        {
+
+            if ((ImageType)imagetype == MATPLOT_RGB)
+            {
+                status = sciReturnMatrixOfUnsignedInteger8(_pvCtx, (unsigned char*)data, 3 * (numY - 1), numX - 1);
+            }
+            else if ((ImageType)imagetype == MATPLOT_GL_RGBA)
+            {
+                status = sciReturnMatrixOfUnsignedInteger8(_pvCtx, (unsigned char*)data, 4 * (numY - 1), numX - 1);
+            }
+            else
+            {
+                status = sciReturnMatrixOfUnsignedInteger8(_pvCtx, (unsigned char*)data, numY - 1, numX - 1);
+            }
+            break;
+        }
+        case MATPLOT_Short :
+        {
+            status = sciReturnMatrixOfInteger16(_pvCtx, (short*)data, numY - 1, numX - 1);
+            break;
+        }
+        case MATPLOT_UShort :
+        {
+            status = sciReturnMatrixOfUnsignedInteger16(_pvCtx, (unsigned short*)data, numY - 1, numX - 1);
+            break;
+        }
+        case MATPLOT_Int :
+        {
+            status = sciReturnMatrixOfInteger32(_pvCtx, (int*)data, numY - 1, numX - 1);
+            break;
+        }
+        case MATPLOT_UInt :
+        {
+            status = sciReturnMatrixOfUnsignedInteger32(_pvCtx, (unsigned int*)data, numY - 1, numX - 1);
+            break;
+        }
+        case MATPLOT_Double :
+        {
+            status = sciReturnMatrix(_pvCtx, (double*)data, numY - 1, numX - 1);
+            break;
+        }
+    }
+
+    return status;
+}
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the grayplot data is now given as a tlist (like for surface and champ objects) */
@@ -221,6 +357,8 @@ int get_data_property(void* _pvCtx, char* pobjUID)
             return getchampdata(pobjUID);
         case __GO_GRAYPLOT__ :
             return getgrayplotdata(pobjUID);
+        case __GO_MATPLOT__ :
+            return getmatplotdata(_pvCtx, pobjUID);
         default :
             /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
         {

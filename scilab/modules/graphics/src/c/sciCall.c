@@ -384,15 +384,41 @@ void Objmatplot (double    z[]      ,
     C2F(xgray1)(z, n1, n2, strflag, brect, aaint, flagNax, bsiz);
 }
 
+void ObjmatplotImage (void * z      ,
+                      int * n1       ,
+                      int * n2       ,
+                      char      strflag[],
+                      double    brect[]  ,
+                      int    aaint[]  ,
+                      BOOL      flagNax,
+                      int plottype)
+{
+    if (plottype == -1)
+    {
+        C2F(xgray1)((double *)z, n1, n2, strflag, brect, aaint, flagNax, bsiz);
+    }
+    else
+    {
+        C2F(implot)((unsigned char *)z, n1, n2, strflag, brect, aaint, flagNax, bsiz, plottype);
+    }
+}
+
 /*------------------------------------------------
  *  Matplot1
  *-----------------------------------------------*/
 void Objmatplot1 (double    z[],
                   int * n1 ,
                   int * n2 ,
-                  double    xrect[])
+                  double xrect[], int plottype)
 {
-    C2F(xgray2)(z, n1, n2, xrect);
+    if (plottype == -1)
+    {
+        C2F(xgray2)(z, n1, n2, xrect);
+    }
+    else
+    {
+        C2F(implot1)((unsigned char *)z, n1, n2, xrect, plottype);
+    }
 }
 
 /*------------------------------------------------

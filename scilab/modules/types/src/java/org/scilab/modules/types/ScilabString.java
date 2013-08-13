@@ -147,6 +147,13 @@ public class ScilabString implements ScilabType {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public boolean isReference() {
+        return false;
+    }
+
+    /**
      * @return the height of the data matrix
      * @see org.scilab.modules.types.ScilabType#getHeight()
      */

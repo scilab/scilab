@@ -35,6 +35,9 @@ public class JoGLCapacity {
     /** Accumulation buffer presence */
     private boolean accumulationBufferPresent = false;
 
+    /** ABGR extension */
+    private boolean hasABGRExtension = false;
+
     /**
      * Default constructor.
      * The constructor is package because, only {@link JoGLDrawingTools} use this class.
@@ -62,6 +65,8 @@ public class JoGLCapacity {
         } else {
             accumulationBufferPresent = true;
         }
+
+        hasABGRExtension = gl.isExtensionAvailable("GL_EXT_abgr");
     }
 
     /**
@@ -91,5 +96,9 @@ public class JoGLCapacity {
 
     public boolean isAccumulationBufferPresent() {
         return accumulationBufferPresent;
+    }
+
+    public boolean isABRExtensionPresent() {
+        return hasABGRExtension;
     }
 }

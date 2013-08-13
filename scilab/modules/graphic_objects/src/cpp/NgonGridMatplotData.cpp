@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -11,6 +12,9 @@
  */
 
 #include "NgonGridMatplotData.hxx"
+#include "Texture.hxx"
+
+#include <climits>
 
 extern "C" {
 #include <string.h>
@@ -19,14 +23,26 @@ extern "C" {
 #include "graphicObjectProperties.h"
 }
 
+const bool NgonGridMatplotData::isLittleEndian = NgonGridMatplotData::initEndian();
+bool NgonGridMatplotData::isABGRSupported = false;
+
 NgonGridMatplotData::NgonGridMatplotData(void)
 {
-
+    this->data = NULL;
+    this->dataSize = 0;
+    this->scilabData = NULL;
+    this->type = 0;
+    this->imagetype = MATPLOT_NONE;
 }
 
 NgonGridMatplotData::~NgonGridMatplotData(void)
 {
-
+    disposeTextureData();
+    if (this->scilabData)
+    {
+        delete[] (unsigned char *)this->scilabData;
+        this->scilabData = NULL;
+    }
 }
 
 int NgonGridMatplotData::getPropertyFromName(int propertyName)
@@ -41,29 +57,71 @@ int NgonGridMatplotData::getPropertyFromName(int propertyName)
             return MATPLOT_TYPE;
         case __GO_DATA_MODEL_Z__ :
             return Z_COORDINATES;
+        case __GO_DATA_MODEL_MATPLOT_GL_TYPE__ :
+            return MATPLOT_GL_TYPE;
+        case __GO_DATA_MODEL_MATPLOT_DATA_INFOS__ :
+            return MATPLOT_DATA_INFOS;
+        case __GO_DATA_MODEL_MATPLOT_DATA_TYPE__ :
+            return MATPLOT_DATA_TYPE;
+        case __GO_DATA_MODEL_MATPLOT_DATA_ORDER__ :
+            return MATPLOT_DATA_ORDER;
+        case __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__ :
+            return MATPLOT_IMAGE_TYPE;
+        case __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__ :
+            return MATPLOT_IMAGE_DATA;
+        case __GO_DATA_MODEL_MATPLOT_IMAGE_DATASIZE__ :
+            return MATPLOT_IMAGE_DATASIZE;
         default :
             return NgonGridData::getPropertyFromName(propertyName);
     }
-
 }
 
 int NgonGridMatplotData::setDataProperty(int property, void const* value, int numElements)
 {
-    if (property == GRID_SIZE)
+    switch (property)
     {
-        return setGridSize((int const*) value);
-    }
-    else if (property == MATPLOT_BOUNDS)
-    {
-        setBounds((double const*) value);
-    }
-    else if (property == Z_COORDINATES)
-    {
-        setDataZ((double const*) value, numElements);
-    }
-    else
-    {
-        return NgonGridData::setDataProperty(property, value, numElements);
+        case GRID_SIZE :
+        {
+            return setGridSize((int const*) value);
+        }
+        case MATPLOT_BOUNDS :
+        {
+            setBounds((double const*) value);
+            break;
+        }
+        case Z_COORDINATES :
+        {
+            setDataZ((double const*) value, numElements);
+            break;
+        }
+        case MATPLOT_IMAGE_TYPE :
+        {
+            return setImageType(*((int const*) value));
+        }
+        case MATPLOT_DATA_INFOS :
+        {
+            setDataInfos(*((int const*) value));
+            break;
+        }
+        case MATPLOT_DATA_TYPE :
+        {
+            setDataType(*((int const*) value));
+            break;
+        }
+        case MATPLOT_DATA_ORDER :
+        {
+            setDataOrder(*((int const*) value));
+            break;
+        }
+        case MATPLOT_IMAGE_DATA :
+        {
+            setImageData((void const *) value, numElements);
+            break;
+        }
+        default :
+        {
+            return NgonGridData::setDataProperty(property, value, numElements);
+        }
     }
 
     return 1;
@@ -71,21 +129,63 @@ int NgonGridMatplotData::setDataProperty(int property, void const* value, int nu
 
 void NgonGridMatplotData::getDataProperty(int property, void **_pvData)
 {
-    if (property == MATPLOT_BOUNDS)
+    switch (property)
     {
-        *_pvData = getBounds();
-    }
-    else if (property == MATPLOT_TYPE)
-    {
-        ((int *) *_pvData)[0] = getType();
-    }
-    else if (property == Z_COORDINATES)
-    {
-        *_pvData = getDataZ();
-    }
-    else
-    {
-        NgonGridData::getDataProperty(property, _pvData);
+        case MATPLOT_BOUNDS :
+        {
+            *_pvData = getBounds();
+            break;
+        }
+        case MATPLOT_TYPE :
+        {
+            ((int *) *_pvData)[0] = getType();
+            break;
+        }
+        case Z_COORDINATES :
+        {
+            *_pvData = getScilabData();
+            break;
+        }
+        case MATPLOT_IMAGE_TYPE :
+        {
+            ((int *) *_pvData)[0] = getImageType();
+            break;
+        }
+        case MATPLOT_GL_TYPE :
+        {
+            ((int *) *_pvData)[0] = getGLType();
+            break;
+        }
+        case MATPLOT_DATA_INFOS :
+        {
+            ((int *) *_pvData)[0] = getDataInfos();
+            break;
+        }
+        case MATPLOT_DATA_TYPE :
+        {
+            ((int *) *_pvData)[0] = getDataType();
+            break;
+        }
+        case MATPLOT_DATA_ORDER :
+        {
+            ((int *) *_pvData)[0] = getDataOrder();
+            break;
+        }
+        case MATPLOT_IMAGE_DATA :
+        {
+            *_pvData = getImageData();
+            break;
+        }
+        case MATPLOT_IMAGE_DATASIZE :
+        {
+            ((unsigned int *) *_pvData)[0] = getImageDataSize();
+            break;
+        }
+        default :
+        {
+            NgonGridData::getDataProperty(property, _pvData);
+            break;
+        }
     }
 }
 
@@ -154,6 +254,11 @@ int NgonGridMatplotData::setGridSize(int const* gridSize)
             e.what();
             result = 0;
         }
+    }
+
+    if (!result || (!xModified && !yModified))
+    {
+        return result;
     }
 
     if (xSize > 0 && ySize > 0)
@@ -333,9 +438,7 @@ void NgonGridMatplotData::computeCoordinates(void)
         {
             yCoordinates[i] = min + (double) i * (max - min) / (double) numElements;
         }
-
     }
-
 }
 
 void NgonGridMatplotData::setDataZ(double const* data, int numElements)
@@ -351,7 +454,235 @@ void NgonGridMatplotData::setDataZ(double const* data, int numElements)
     }
 }
 
+int NgonGridMatplotData::setImageType(int imagetype)
+{
+    const ImageType type = (ImageType)imagetype;
+
+    if (this->imagetype != type)
+    {
+        int grid[4] = {xSize, 1, ySize, 1};
+        if (this->datatype == MATPLOT_UChar || this->datatype == MATPLOT_Char)
+        {
+            if (this->imagetype == MATPLOT_RGB)
+            {
+                grid[2] = (ySize - 1) * 3 + 1;
+            }
+            else if (this->imagetype == MATPLOT_RGBA)
+            {
+                grid[2] = (ySize - 1) * 4 + 1;
+            }
+
+            if (type == MATPLOT_RGB)
+            {
+                if ((grid[2] - 1) % 3 != 0)
+                {
+                    return 0;
+                }
+                grid[2] = (grid[2] - 1) / 3 + 1;
+            }
+            else if (type == MATPLOT_RGBA)
+            {
+                if ((grid[2] - 1) % 4 != 0)
+                {
+                    return 0;
+                }
+                grid[2] = (grid[2] - 1) / 4 + 1;
+            }
+
+            this->setGridSize(grid);
+        }
+
+        this->imagetype = type;
+
+        if (this->scilabData)
+        {
+            setImageData(this->scilabData, (xSize - 1) * (ySize - 1));
+        }
+    }
+
+    return 1;
+}
+
+int NgonGridMatplotData::getImageType()
+{
+    return (int)this->imagetype;
+}
+
+int NgonGridMatplotData::getGLType()
+{
+    return (int)this->gltype;
+}
+
+int NgonGridMatplotData::getDataType()
+{
+    return (int)this->datatype;
+}
+
+void NgonGridMatplotData::setDataType(int datatype)
+{
+    if (this->datatype != (DataType)datatype)
+    {
+        this->datatype = (DataType)datatype;
+        disposeTextureData();
+    }
+}
+
+int NgonGridMatplotData::getDataOrder()
+{
+    return (int)this->dataorder;
+}
+
+void NgonGridMatplotData::setDataOrder(int dataorder)
+{
+    this->dataorder = (DataOrder)dataorder;
+}
+
+void * NgonGridMatplotData::getImageData()
+{
+    if (this->data)
+    {
+        return this->data;
+    }
+    else if (this->scilabData)
+    {
+        setImageData(this->scilabData, (xSize - 1) * (ySize - 1));
+        return this->data;
+    }
+
+    return NULL;
+}
+
+void * NgonGridMatplotData::getScilabData()
+{
+    return this->scilabData;
+}
+
+unsigned int NgonGridMatplotData::getImageDataSize()
+{
+    return this->dataSize;
+}
+
+void NgonGridMatplotData::setDataInfos(int infos)
+{
+    setDataType(infos & 0xFF);
+    setDataOrder((infos & 0xFF00) >> 8);
+    setImageType((infos & 0xFF0000) >> 16);
+}
+
+int NgonGridMatplotData::getDataInfos()
+{
+    return buildMatplotType(this->datatype, this->dataorder, this->imagetype);
+}
+
+void NgonGridMatplotData::setImageData(void const* data, const int numElements)
+{
+    if (!data)
+    {
+        disposeTextureData();
+        return;
+    }
+
+    unsigned int dataSize = 0;
+    const int N = ySize - 1;
+    const int M = xSize - 1;
+    const int NM = N * M;
+
+    if (numElements > NM)
+    {
+        return;
+    }
+
+    if (data != this->scilabData)
+    {
+        if (scilabData)
+        {
+            delete[] (unsigned char *)scilabData;
+            scilabData = NULL;
+        }
+
+        unsigned int _size;
+
+        switch (datatype)
+        {
+            case MATPLOT_HM3_Char :
+            case MATPLOT_HM3_UChar :
+                _size = numElements * 3;
+                break;
+            case MATPLOT_HM3_Double :
+                _size = numElements * sizeof(double) * 3;
+                break;
+            case MATPLOT_HM4_Char :
+            case MATPLOT_HM4_UChar :
+                _size = numElements * 4;
+                break;
+            case MATPLOT_HM4_Double :
+                _size = numElements * sizeof(double) * 4;
+                break;
+            case MATPLOT_HM1_Char :
+            case MATPLOT_HM1_UChar :
+            case MATPLOT_Char :
+            case MATPLOT_UChar :
+                _size = numElements;
+                break;
+            case MATPLOT_Int :
+            case MATPLOT_UInt :
+                _size = numElements * sizeof(int);
+                break;
+            case MATPLOT_Short :
+            case MATPLOT_UShort :
+                _size = numElements * sizeof(short);
+                break;
+            case MATPLOT_HM1_Double :
+            case MATPLOT_Double :
+                _size = numElements * sizeof(double);
+                break;
+        }
+        this->scilabData = new unsigned char[_size];
+        // todo: on peut ameliorer ca
+        // pr certains type de donnees (et certains modes) scilabData == data
+        // dc on peut eviter cette copie
+        memcpy(this->scilabData, data, _size);
+    }
+
+    void * dest = this->data;
+    if (this->imagetype == MATPLOT_INDEX)
+    {
+        this->gltype = MATPLOT_GL_RGBA;
+    }
+    else if (Texture::getImage(data, numElements, this->datatype, this->imagetype, &(this->data), &(this->dataSize), &(this->gltype)))
+    {
+        if (dest)
+        {
+            delete[] (unsigned char *)dest;
+        }
+    }
+
+    //std::cout << this->imagetype << "::" << this->datatype << "::" << this->dataorder << "::" << this->dataSize << "::" << (void*)this->data << std::endl;
+}
+
 int NgonGridMatplotData::getType(void)
 {
     return type;
+}
+
+bool NgonGridMatplotData::initEndian()
+{
+    const int num = 1;
+
+    return *(char *)&num == 1;
+}
+
+void NgonGridMatplotData::setABGRSupported(bool _isABGRSupported)
+{
+    isABGRSupported = _isABGRSupported;
+}
+
+void NgonGridMatplotData::disposeTextureData(void)
+{
+    if (this->data)
+    {
+        delete[] (unsigned char *)this->data;
+        this->data = NULL;
+        this->dataSize = 0;
+    }
 }
