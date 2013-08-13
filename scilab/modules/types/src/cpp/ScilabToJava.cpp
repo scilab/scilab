@@ -88,10 +88,10 @@ bool ScilabToJava::sendVariable(const std::string & name, std::vector<int> & ind
 {
     SciErr err;
 
-    int type;
-    int row;
-    int col;
-    int prec;
+    int type = 0;
+    int row = 0;
+    int col = 0;
+    int prec = 0;
 
     // Double
     double * real = 0;
