@@ -39,9 +39,9 @@
 /* Set the FPU to 53 bits... */
 void setFPUToDouble(void)
 {
-	fpu_control_t _cw;
+    fpu_control_t _cw;
     _FPU_GETCW(_cw);
-	_cw = (_cw & ~_FPU_EXTENDED) | _FPU_DOUBLE;
+    _cw = (_cw & ~_FPU_EXTENDED) | _FPU_DOUBLE;
     _FPU_SETCW(_cw);
 }
 
@@ -49,10 +49,10 @@ void setFPUToDouble(void)
 /* Set the FPU to 64 bits... It is the expected behaviour of a 32 bits Linux */
 void setFPUToExtended(void)
 {
-	fpu_control_t _cw;
-	//printf("Changing precision\n");
+    fpu_control_t _cw;
+    //printf("Changing precision\n");
     _FPU_GETCW(_cw);
-	_cw = (_cw & ~_FPU_DOUBLE) | _FPU_EXTENDED;
+    _cw = (_cw & ~_FPU_DOUBLE) | _FPU_EXTENDED;
     _FPU_SETCW(_cw);
 }
 

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2011-09-02 15:17+0000\n"
-"Last-Translator: davidcl <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-24 21:22+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -51,17 +51,12 @@ msgstr "faktorizace"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
-"Cholesky factorisation"
+"Cholesky factorization"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Musí být platný odkaz na "
-"Choleskiho faktorizaci"
 
 #, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr ""
-"%s: Žádná další paměť : potřeba zvýšit velikost zásobníku o %d dodatečných "
-"slov.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
 msgid ""
@@ -77,11 +72,15 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
-"factorisation.\n"
+"%s: Wrong type for input argument #%d: not compatible with the Cholesky "
+"factorization.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: není kompatibilní s Choleskiho "
-"faktorizací.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
+"factorization.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: not enough memory.\n"
@@ -115,11 +114,11 @@ msgstr "žádné místo pro umístění ukazatele LU v ListNumeric."
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Vyskytla se chyba: %s.\n"
 
-msgid "This is not a factorisation of a square matrix"
-msgstr "Toto není faktorizace jednoduché matice"
+msgid "This is not a factorization of a square matrix"
+msgstr ""
 
-msgid "This is a factorisation of a singular matrix"
-msgstr "Toto je faktorizace jednoduché matice"
+msgid "This is a factorization of a singular matrix"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"

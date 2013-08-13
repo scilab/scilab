@@ -7,15 +7,15 @@
 
 function subdemolist = gw_genetic_algo()
 
-  demopath = get_absolute_file_path("genetic_algorithms.dem.gateway.sce");
+    demopath = get_absolute_file_path("genetic_algorithms.dem.gateway.sce");
 
-  subdemolist = [_("Genetic algorithms"),             "GAdemo.sce"; ..
-         _("Genetic algorithms and Ising problem"), "GAIsing2ddemo.sce"; ..
-         _("MultiObjective Genetic Algorithm"),     "MOGAdemo.sce"; ..
-         _("Niched Sharing Genetic Algorithm"),     "NSGAdemo.sce"; ..
-         _("Niched Sharing Genetic Algorithm II"),  "NSGA2demo.sce"];
+    subdemolist = [_("Genetic algorithms"),             "GAdemo.sce"; ..
+    _("Genetic algorithms and Ising problem"), "GAIsing2ddemo.sce"; ..
+    _("MultiObjective Genetic Algorithm"),     "MOGAdemo.sce"; ..
+    _("Niched Sharing Genetic Algorithm"),     "NSGAdemo.sce"; ..
+    _("Niched Sharing Genetic Algorithm II"),  "NSGA2demo.sce"];
 
-  subdemolist(:,2) = demopath + subdemolist(:,2)
+    subdemolist(:,2) = demopath + subdemolist(:,2)
 endfunction
 
 subdemolist = gw_genetic_algo();

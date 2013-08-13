@@ -141,32 +141,6 @@ public abstract class ScilabObjectCodec extends mxObjectCodec {
     }
 
     /**
-     * Shortcut {@link mxObjectCodec#getMethod} for performance
-     */
-    @Override
-    protected Method getMethod(Object obj, String methodname, Class[] params) {
-        Class<?> type = obj.getClass();
-        Method method = null;
-
-        try {
-            method = type.getMethod(methodname, params);
-        } catch (SecurityException e) {
-        } catch (NoSuchMethodException e) {
-        }
-
-        return method;
-    }
-
-    /**
-     * Shortcut {@link mxObjectCodec#getField} for performance
-     */
-    @Override
-    protected Field getField(Object obj, String fieldname) {
-        // all data is accessed through the methods, not directly
-        return null;
-    }
-
-    /**
      * get an integer value from a attributes.
      *
      * @param dataAttrs

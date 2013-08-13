@@ -17,37 +17,40 @@
 #include "callFunctionFromGateway.h"
 #include "api_scilab.h"
 #include "MALLOC.h"
-/*--------------------------------------------------------------------------*/ 
-static gw_generic_table Tab[] = 
+/*--------------------------------------------------------------------------*/
+static gw_generic_table Tab[] =
 {
-	{C2F(intqr),"qr"},
-	{C2F(intsvd),"svd"},
-	{C2F(intlsq),"lsq"},
-	{C2F(inteig),"spec"},
-	{C2F(intinv),"inv"},
-	{C2F(intrcond),"rcond"},
-	{C2F(intchol),"chol"},
-	{C2F(intlu),"lu"},
-	{C2F(intslash),"slash"},
-	{C2F(intbackslash),"backslash"},
-	{C2F(intschur),"schur"},
-	{C2F(inthess),"hess"},
-	{C2F(intdet),"det"},
-	{C2F(intbalanc),"balanc"}
+    {C2F(intqr), "qr"},
+    {C2F(intsvd), "svd"},
+    {C2F(intlsq), "lsq"},
+    {C2F(inteig), "spec"},
+    {C2F(intinv), "inv"},
+    {C2F(intrcond), "rcond"},
+    {C2F(intchol), "chol"},
+    {C2F(intlu), "lu"},
+    {C2F(intslash), "slash"},
+    {C2F(intbackslash), "backslash"},
+    {C2F(intschur), "schur"},
+    {C2F(inthess), "hess"},
+    {C2F(intdet), "det"},
+    {C2F(intbalanc), "balanc"}
 };
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int gw_linear_algebra2(void)
-{  
-	Rhs = Max(0, Rhs);
+{
+    Rhs = Max(0, Rhs);
 
-    if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-	}
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
 
-	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	if (Err <= 0 && C2F(errgst).err1 <= 0) PutLhsVar();
-	return 0;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    if (Err <= 0 && C2F(errgst).err1 <= 0)
+    {
+        PutLhsVar();
+    }
+    return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

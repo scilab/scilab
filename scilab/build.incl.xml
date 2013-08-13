@@ -72,8 +72,6 @@
         <!-- Only useful for the documentation -->
         <pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
         <pathelement location="${batik.jar}"/>
-        <pathelement location="${xml_apis_ext.jar}"/>
-        <pathelement location="${saxon.jar}"/>
         <pathelement location="${xmlgraphics-commons.jar}"/>
         <pathelement location="${fop.jar}"/>
         <pathelement location="${jlatexmath-fop.jar}"/>

@@ -108,9 +108,9 @@
                     <td align="justify">
                         <programlisting>
                             dense=[%F, %F, %T, %F, %F
-                                   %T, %F, %F, %F, %F
-                                   %F, %F, %F, %F, %F
-                                   %F, %F, %F, %F, %T];
+                            %T, %F, %F, %F, %F
+                            %F, %F, %F, %F, %F
+                            %F, %F, %F, %F, %T];
                             sp=sparse(dense)
                         </programlisting>
                     </td>
@@ -174,12 +174,16 @@
                 <imagedata fileref="../images/img001.png" width="5.95cm" depth="1.64cm"/>
             </imageobject>
         </mediaobject>
-        <para>Each root dataset has an attribute called <literal>SCILAB_Class</literal>. This attribute defines which types is the variable stored in the HDF5 file.</para>
+        <para>
+            Each root dataset has an attribute called <literal>SCILAB_Class</literal>. This attribute defines which types is the variable stored in the HDF5 file.
+        </para>
         <para>If the variable is a primitive type and without complex values associated, data are stored directly into the dataset. Otherwise, the dataset contains references to the actual data.</para>
         <para>Every SOD file contains two specific variables:</para>
         <itemizedlist>
             <listitem>
-                <para><literal>SCILAB_scilab_version</literal> – Describe which version of Scilab has been used to save the SOD file.</para>
+                <para>
+                    <literal>SCILAB_scilab_version</literal> – Describe which version of Scilab has been used to save the SOD file.
+                </para>
                 <para>For example, with Scilab 5.4.0, the data will be:</para>
                 <para>
                     <emphasis>SCILAB_scilab_version = scilab-5.4.0</emphasis>
@@ -220,7 +224,7 @@
                         <para>SCILAB_Class = string</para>
                     </td>
                     <td align="left">
-
+                        
                     </td>
                     <td align="left">
                         <para>String</para>
@@ -234,7 +238,7 @@
                         <para>SCILAB_Class = boolean</para>
                     </td>
                     <td align="left">
-
+                        
                     </td>
                     <td align="left">
                         <para>32-bit integer</para>
@@ -266,7 +270,9 @@
         <para>
             Since the 5.4.0 release of Scilab and SOD v2, <literal>SCILAB_cols</literal> and <literal>SCILAB_rows</literal> are no longer used for matrices of double, integer, polynomial and string. SOD uses the native multidimensional HDF5 feature.
         </para>
-        <para><emphasis role="bold">Example</emphasis></para>
+        <para>
+            <emphasis role="bold">Example</emphasis>
+        </para>
         <para>
             The saving of the declaration: <code>int32([1 -4 7;-9 6 -3])</code> will be displayed as:
         </para>
@@ -289,8 +295,12 @@
                 Scalar value are stored as a matrix of size 1 by 1.
             </note>
         </para>
-        <para>An empty variable (<literal>[]</literal>) will have the attribute <literal>SCILAB_empty</literal> set to true.</para>
-        <para><emphasis role="bold">Types where data are stored in a dedicated group</emphasis></para>
+        <para>
+            An empty variable (<literal>[]</literal>) will have the attribute <literal>SCILAB_empty</literal> set to true.
+        </para>
+        <para>
+            <emphasis role="bold">Types where data are stored in a dedicated group</emphasis>
+        </para>
         <para>Many of Scilab datatypes are stored using groups. This allows a clear separations of the value but also an easy access.</para>
         <para>
             Groups are named from the variables enclosed by "#". For example, for a matrix of double called matrixofdouble, the name of the root dataset will be matrixofdouble, the name of the associated group will be <emphasis role="strong">#matrixofdouble#</emphasis>.
@@ -310,7 +320,9 @@
             listnested=list(2,%i,'f',ones(3,3))
             listnested(3) = list( %t, [32,42]);
         </programlisting>
-        <para><emphasis role="bold">Sparse</emphasis></para>
+        <para>
+            <emphasis role="bold">Sparse</emphasis>
+        </para>
         <para>
             <emphasis role="strong">Scilab type:</emphasis> sparse
         </para>
@@ -322,7 +334,9 @@
         </para>
         <para>SCILAB_rows = &lt;int&gt;</para>
         <para>Number of rows</para>
-        <para><emphasis>SCILAB_cols = &lt;int&gt;</emphasis></para>
+        <para>
+            <emphasis>SCILAB_cols = &lt;int&gt;</emphasis>
+        </para>
         <para>Number of columns</para>
         <para>
             <emphasis>SCILAB_items = &lt;int&gt;</emphasis>
@@ -334,8 +348,12 @@
         <para>
             First value (<literal>#0#</literal>): Each element of this data structure shows the number of non-null element per line. Therefore, the first element shows the number of element in the first line of the sparse matrix.
         </para>
-        <para>Second value (<literal>#1#</literal>): Provides the position of the column of each elements of the sparse matrix.</para>
-        <para>Third value (<literal>#2#</literal>): Stores the reference to the actual values of the element in the sparse matrix (which will be stored in a specific group).</para>
+        <para>
+            Second value (<literal>#1#</literal>): Provides the position of the column of each elements of the sparse matrix.
+        </para>
+        <para>
+            Third value (<literal>#2#</literal>): Stores the reference to the actual values of the element in the sparse matrix (which will be stored in a specific group).
+        </para>
         <para>Example, taking this matrix:</para>
         <programlisting role="no-scilab-exec">
             0. 1. 0. 0. 0. 0. 0. 0. 0. 0.
@@ -345,7 +363,7 @@
         </programlisting>
         <para>which is generated by the function:</para>
         <programlisting role="scilab_code">
-        sparse([1,2;4,5;3,10],[1,2,3])
+            sparse([1,2;4,5;3,10],[1,2,3])
         </programlisting>
         <para>
             will have:
@@ -383,16 +401,22 @@
             <emphasis>SCILAB_items = &lt;int&gt;</emphasis>
         </para>
         <para>Define the number of elements in the sparse matrix</para>
-        <para><emphasis role="strong">Root dataset values:</emphasis> While a sparse has 3 datasets, the boolean sparse has only 2 because defined values are automatically considered as true.</para>
-        <para>First value (<literal>#0#</literal>): Each element of this data structure shows the number of non-null element per line.</para>
+        <para>
+            <emphasis role="strong">Root dataset values:</emphasis> While a sparse has 3 datasets, the boolean sparse has only 2 because defined values are automatically considered as true.
+        </para>
+        <para>
+            First value (<literal>#0#</literal>): Each element of this data structure shows the number of non-null element per line.
+        </para>
         <para>Therefore, the first element shows the number of element in the first line of the sparse matrix.</para>
-        <para>Second value (<literal>#1#</literal>): Provides the position of the column of each elements of the sparse matrix.</para>
+        <para>
+            Second value (<literal>#1#</literal>): Provides the position of the column of each elements of the sparse matrix.
+        </para>
         <para>With the boolean sparse matrix:</para>
         <programlisting>
-        dense=[%F, %F, %T, %F, %F
-               %T, %F, %F, %F, %F
-               %F, %F, %F, %F, %F
-               %F, %F, %F, %F, %T];
+            dense=[%F, %F, %T, %F, %F
+            %T, %F, %F, %F, %F
+            %F, %F, %F, %F, %F
+            %F, %F, %F, %F, %T];
         </programlisting>
         <para>
             <emphasis>#0#</emphasis> contains <emphasis>1;1;0;1</emphasis>.
@@ -403,7 +427,9 @@
         <para>Only the two information are necessary to recreate the boolean sparse.</para>
         <para>HDF data types mapping:</para>
         <para>32-bit integer</para>
-        <para><emphasis role="bold">Double</emphasis></para>
+        <para>
+            <emphasis role="bold">Double</emphasis>
+        </para>
         <para>
             <emphasis role="strong">Scilab type:</emphasis> double
         </para>
@@ -422,7 +448,9 @@
         <para>
             <emphasis role="strong">HDF data types mapping:</emphasis> 64-bit floating-point
         </para>
-        <para><emphasis role="bold">Polynomial</emphasis></para>
+        <para>
+            <emphasis role="bold">Polynomial</emphasis>
+        </para>
         <para>
             <emphasis role="strong">Scilab type:</emphasis> polynomial
         </para>
@@ -446,7 +474,9 @@
         <para>
             <emphasis role="strong">HDF data types mapping:</emphasis> Object reference
         </para>
-        <para><emphasis role="bold">list</emphasis></para>
+        <para>
+            <emphasis role="bold">list</emphasis>
+        </para>
         <para>
             <emphasis role="strong">Scilab type:</emphasis> list
         </para>
@@ -467,7 +497,9 @@
         <para>
             <emphasis role="strong">HDF data types mapping:</emphasis> Object reference
         </para>
-        <para><emphasis role="bold">tlist </emphasis></para>
+        <para>
+            <emphasis role="bold">tlist </emphasis>
+        </para>
         <para>
             <emphasis role="strong">Scilab type:</emphasis> tlist
         </para>
@@ -478,7 +510,9 @@
         <para>
             <emphasis role="strong">HDF5 attributes:</emphasis> cf list
         </para>
-        <para><emphasis role="bold">mlist </emphasis></para>
+        <para>
+            <emphasis role="bold">mlist </emphasis>
+        </para>
         <para>
             <emphasis role="strong">Scilab type:</emphasis> mlist
         </para>
@@ -489,7 +523,9 @@
         <para>
             <emphasis role="strong">HDF5 attributes:</emphasis> cf list
         </para>
-        <para><emphasis role="bold">void </emphasis></para>
+        <para>
+            <emphasis role="bold">void </emphasis>
+        </para>
         <para>
             <emphasis role="strong">Scilab type:</emphasis> void
         </para>
@@ -499,7 +535,9 @@
         <para>SCILAB_Class = void</para>
         <para>A void value can only be found in very special usages of list, tlist and mlist. It can be created with the following syntax:</para>
         <programlisting>voidelement_ref=list(1,,3);</programlisting>
-        <para><emphasis role="bold">undefined </emphasis></para>
+        <para>
+            <emphasis role="bold">undefined </emphasis>
+        </para>
         <para>
             <emphasis role="strong">Scilab type:</emphasis> undefined
         </para>
@@ -511,8 +549,8 @@
             An undefined value is generated when the size of a list is increased and some elements not defined. They will be generated with the syntax:
         </para>
         <programlisting>
-        undefinedelement_ref=list(2,%i,'f',ones(3,3));
-        undefinedelement_ref(6)="toto"
+            undefinedelement_ref=list(2,%i,'f',ones(3,3));
+            undefinedelement_ref(6)="toto"
         </programlisting>
     </refsection>
     <refsection>
@@ -634,7 +672,7 @@
                 </tr>
                 <tr>
                     <td align="justify">
-
+                        
                     </td>
                     <td align="justify">
                         <para>6.0.0 (future)</para>

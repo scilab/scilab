@@ -16,33 +16,33 @@
 namespace org_modules_completion
 {
 
+/**
+ * @file
+ * @author Calixte DENIZET <calixte.denizet@scilab.org>
+ *
+ * Class to retrieve the fields name of an uncomplete mlist
+ */
+class FieldsGetter
+{
+
+public :
+
     /**
-     * @file
-     * @author Calixte DENIZET <calixte.denizet@scilab.org>
-     *
-     * Class to retrieve the fields name of an uncomplete mlist
+     * Default constructor
      */
-    class FieldsGetter
-    {
+    FieldsGetter() { }
 
-    public :
+    /**
+     * Destructor
+     */
+    virtual ~FieldsGetter() { }
 
-        /**
-         * Default constructor
-         */
-        FieldsGetter() { }
-
-        /**
-         * Destructor
-         */
-        virtual ~FieldsGetter() { }
-
-        /**
-         * @param typeName the type name
-         * @param mlist the mlist addr
-         */
-        virtual const char ** getFieldsName(const std::string & typeName, int * mlist) const = 0;
-    };
+    /**
+     * @param typeName the type name
+     * @param mlist the mlist addr
+     */
+    virtual const char ** getFieldsName(const std::string & typeName, int * mlist) const = 0;
+};
 }
 
 #endif

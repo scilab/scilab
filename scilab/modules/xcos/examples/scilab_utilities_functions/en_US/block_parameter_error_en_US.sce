@@ -17,9 +17,9 @@ ok = %f;
 while ~ok do
     // Input the parameter
     [Datatype] = x_mdialog( ..
-        "Parameter input", ..
-        "Data Type (3:int32, 4:int16, 5:int8, ...) ?", ..
-        "3" ..
+    "Parameter input", ..
+    "Data Type (3:int32, 4:int16, 5:int8, ...) ?", ..
+    "3" ..
     );
 
     if isempty(Datatype) then // Cancel or Ok ?
@@ -32,8 +32,8 @@ while ~ok do
     // Test 'Data Type' parameter and displays error box if necessary
     if Datatype < 3 | Datatype > 8 then
         block_parameter_error( ..
-            msprintf("Wrong values for ''Data Type'' parameter: %d.", Datatype), ..
-            msprintf("Must be in the interval %s.", "[3, 8]") ..
+        msprintf("Wrong values for ''Data Type'' parameter: %d.", Datatype), ..
+        msprintf("Must be in the interval %s.", "[3, 8]") ..
         );
         ok = %f;
 

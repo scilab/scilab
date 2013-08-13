@@ -53,37 +53,42 @@ BOOL setGraphicObjectProperty(char const* _pstID, int _iName, void const* _pvVal
 
     // Special Case for data, no need to go through Java.
     if (_iName == __GO_DATA_MODEL__
-        || _iName == __GO_DATA_MODEL_COORDINATES__
-        || _iName == __GO_DATA_MODEL_X__
-        || _iName == __GO_DATA_MODEL_Y__
-        || _iName == __GO_DATA_MODEL_Z__
-        || _iName == __GO_DATA_MODEL_X_COORDINATES_SHIFT__
-        || _iName == __GO_DATA_MODEL_Y_COORDINATES_SHIFT__
-        || _iName == __GO_DATA_MODEL_Z_COORDINATES_SHIFT__
-        || _iName == __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__
-        || _iName == __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__
-        || _iName == __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__
-        || _iName == __GO_DATA_MODEL_NUM_ELEMENTS__
-        || _iName == __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__
-        || _iName == __GO_DATA_MODEL_NUM_VERTICES_PER_GON__
-        || _iName == __GO_DATA_MODEL_NUM_GONS__
-        || _iName == __GO_DATA_MODEL_Z_COORDINATES_SET__
-        || _iName == __GO_DATA_MODEL_COLORS__
-        || _iName == __GO_DATA_MODEL_NUM_COLORS__
-        || _iName == __GO_DATA_MODEL_NUM_VERTICES__
-        || _iName == __GO_DATA_MODEL_NUM_INDICES__
-        || _iName == __GO_DATA_MODEL_INDICES__
-        || _iName == __GO_DATA_MODEL_VALUES__
-        || _iName == __GO_DATA_MODEL_FEC_TRIANGLES__
-        || _iName == __GO_DATA_MODEL_NUM_X__
-        || _iName == __GO_DATA_MODEL_NUM_Y__
-        || _iName == __GO_DATA_MODEL_NUM_Z__
-        || _iName == __GO_DATA_MODEL_GRID_SIZE__
-        || _iName == __GO_DATA_MODEL_X_DIMENSIONS__
-        || _iName == __GO_DATA_MODEL_Y_DIMENSIONS__
-        || _iName == __GO_DATA_MODEL_MATPLOT_BOUNDS__
-        || _iName == __GO_DATA_MODEL_MATPLOT_TYPE__
-        )
+            || _iName == __GO_DATA_MODEL_COORDINATES__
+            || _iName == __GO_DATA_MODEL_X__
+            || _iName == __GO_DATA_MODEL_Y__
+            || _iName == __GO_DATA_MODEL_Z__
+            || _iName == __GO_DATA_MODEL_X_COORDINATES_SHIFT__
+            || _iName == __GO_DATA_MODEL_Y_COORDINATES_SHIFT__
+            || _iName == __GO_DATA_MODEL_Z_COORDINATES_SHIFT__
+            || _iName == __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__
+            || _iName == __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__
+            || _iName == __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__
+            || _iName == __GO_DATA_MODEL_NUM_ELEMENTS__
+            || _iName == __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__
+            || _iName == __GO_DATA_MODEL_NUM_VERTICES_PER_GON__
+            || _iName == __GO_DATA_MODEL_NUM_GONS__
+            || _iName == __GO_DATA_MODEL_Z_COORDINATES_SET__
+            || _iName == __GO_DATA_MODEL_COLORS__
+            || _iName == __GO_DATA_MODEL_NUM_COLORS__
+            || _iName == __GO_DATA_MODEL_NUM_VERTICES__
+            || _iName == __GO_DATA_MODEL_NUM_INDICES__
+            || _iName == __GO_DATA_MODEL_INDICES__
+            || _iName == __GO_DATA_MODEL_VALUES__
+            || _iName == __GO_DATA_MODEL_FEC_TRIANGLES__
+            || _iName == __GO_DATA_MODEL_NUM_X__
+            || _iName == __GO_DATA_MODEL_NUM_Y__
+            || _iName == __GO_DATA_MODEL_NUM_Z__
+            || _iName == __GO_DATA_MODEL_GRID_SIZE__
+            || _iName == __GO_DATA_MODEL_X_DIMENSIONS__
+            || _iName == __GO_DATA_MODEL_Y_DIMENSIONS__
+            || _iName == __GO_DATA_MODEL_MATPLOT_BOUNDS__
+            || _iName == __GO_DATA_MODEL_MATPLOT_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_DATA_INFOS__
+            || _iName == __GO_DATA_MODEL_MATPLOT_DATA_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_DATA_ORDER__
+            || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__
+       )
     {
         result = BOOLtobool(DataController::setGraphicObjectProperty(_pstID, _iName, _pvValue, numElements));
         CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _pstID, __GO_DATA_MODEL__, _pstID);

@@ -328,14 +328,14 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
      */
     protected float computeAlignmentFactor(Text text) {
         switch (text.getAlignmentAsEnum()) {
-        case LEFT:
-            return 0f;
-        case CENTER:
-            return 1f / 2f;
-        case RIGHT:
-            return 1f;
-        default:
-            return 0f;
+            case LEFT:
+                return 0f;
+            case CENTER:
+                return 1f / 2f;
+            case RIGHT:
+                return 1f;
+            default:
+                return 0f;
         }
     }
 

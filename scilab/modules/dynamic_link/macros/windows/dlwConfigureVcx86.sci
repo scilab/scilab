@@ -13,9 +13,17 @@ function bOK = dlwConfigureVcx86()
   msvc = findmsvccompiler();
 
   select msvc,
+    // Microsoft Visual 2012 Studio Professional
+    case  'msvc110pro' then
+    bOK = dlwSetEnvVc11(msvc, %f);
+
     // Microsoft Visual 2010 Studio Professional
     case  'msvc100pro' then
     bOK = dlwSetEnvVc10(msvc, %f);
+
+    // Microsoft Visual 2012 Express
+    case  'msvc110express' then
+    bOK = dlwSetEnvVc11(msvc, %f);
 
     // Microsoft Visual 2010 Express
     case  'msvc100express' then

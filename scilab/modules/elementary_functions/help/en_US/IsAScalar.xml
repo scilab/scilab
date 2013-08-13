@@ -41,7 +41,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>IsAScalar(<varname>x</varname>)</literal> returns true if <varname>x</varname>
+            <literal>
+                IsAScalar(<varname>x</varname>)
+            </literal>
+            returns true if <varname>x</varname>
             is a scalar (if size(<varname>x</varname>) is 1 and type(<varname>x</varname>,1) is 1 too).
             <warning>This function is obsolete.</warning>
             It is better to use <link linkend="isscalar">isscalar</link> instead of <code>IsAScalar</code>.

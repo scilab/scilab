@@ -7,19 +7,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-07-16 15:51+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: es\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "El módulo «%s» de Scilab está deactivado en modo -nogui o -nwni.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de asignación de memoria.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -39,8 +47,16 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: No hay más memoria.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -68,14 +84,13 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un real.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -94,16 +109,19 @@ msgstr ""
 "real o un manejador de 'Figure'.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz "
-"de strings.\n"
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
 "strings.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -279,6 +297,10 @@ msgstr ""
 "gráfico.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Handle expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
 msgstr ""
@@ -364,6 +386,34 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: At least 2 elements expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: First element must be a string.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Tree expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Second element must be a mlist.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error in the tree parsing.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: A ocurrido un error: %s.\n"
 
@@ -385,10 +435,6 @@ msgstr ""
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: El archivo %s no existe.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Error de asignación de memoria.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
@@ -445,17 +491,6 @@ msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz "
 "de strings.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz "
-"de booleanos.\n"
 
 msgid "&File"
 msgstr "Archivo (&F)"
@@ -835,6 +870,12 @@ msgstr ""
 msgid "Custom:"
 msgstr ""
 
+msgid "LaTeX preview"
+msgstr ""
+
+msgid "LaTeX font size:"
+msgstr ""
+
 msgid "Web"
 msgstr ""
 
@@ -1105,14 +1146,12 @@ msgstr "Fondo de la Consola..."
 msgid "No print service found."
 msgstr ""
 
-#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
 "information."
 msgstr ""
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -1287,17 +1326,14 @@ msgstr "Guardar y ejecutar"
 msgid "Empty tab"
 msgstr "Pestaña vacía"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "¿Está seguro que desea cerrar %s ?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "¿Está seguro que desea cerrar %s y %s ?"
 
@@ -1352,7 +1388,6 @@ msgstr "Todos los archivos de imagen PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Todos los archivos RTF (Rich Text Format)"
 
-#, c-format
 msgid "All %s files"
 msgstr "Todos los archivos %s"
 
@@ -1616,9 +1651,8 @@ msgstr ""
 " es incorrecta: %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un árbol.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -1626,15 +1660,13 @@ msgstr ""
 "%s: Número incorrecto de argumentos de entrada: Se esperaban al menos %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un árbol.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgid "%s: Wrong type for input argument #%d: String or uitree expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un árbol o un "
-"string.\n"
 
 #, c-format
 msgid "%s: Invalid position '%s'.\n"
@@ -1656,12 +1688,6 @@ msgstr "%s: Ningún nodo coincidente.\n"
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un booleano.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un árbol o un "
-"string.\n"
 
 #, c-format
 msgid ""

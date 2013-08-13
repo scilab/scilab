@@ -18,6 +18,7 @@ import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 /**
  * @author Pierre Lando
@@ -44,20 +45,15 @@ public class TextureBufferedImage extends BufferedImage {
      * Returned data are stored in 4 bytes (RGBA) per pixel.
      * @return the buffer data of the image.
      */
-    public byte[] getRGBAData() {
+    public int[] getRGBAData() {
         int[] pixels = ((DataBufferInt) getRaster().getDataBuffer()).getData();
 
-        byte[] bytes = new byte[pixels.length * NB_COMPONENTS];
-        int j = 0;
-        for (int p : pixels) {
-            bytes[j] = (byte) ((p >> R_SHIFT) & COMPONENT_MASK);
-            bytes[j + 1] = (byte) ((p >> G_SHIFT) & COMPONENT_MASK);
-            bytes[j + 2] = (byte) ((p >> B_SHIFT) & COMPONENT_MASK);
-            bytes[j + 3] = (byte) ((p >> A_SHIFT) & COMPONENT_MASK);
-            j += NB_COMPONENTS;
+        for (int i = 0; i < pixels.length; i++) {
+            pixels[i] = (pixels[i] >> 24) | (pixels[i] << 8);
         }
+
         //updateFrame(this);
-        return bytes;
+        return pixels;
     }
 
     static JLabel label;
@@ -79,6 +75,14 @@ public class TextureBufferedImage extends BufferedImage {
      * @return a byte buffer filled with RGBA data.
      */
     public ByteBuffer getRGBABuffer() {
-        return ByteBuffer.wrap(getRGBAData());
+        int[] pixels = ((DataBufferInt) getRaster().getDataBuffer()).getData();
+        ByteBuffer buffer = ByteBuffer.allocate(pixels.length * 4);
+        buffer.order(ByteOrder.nativeOrder());
+        for (int i = 0; i < pixels.length; i++) {
+            buffer.putInt(((pixels[i] >> 24) & 0xFF) | ((pixels[i] << 8) & 0xFFFFFF00));
+        }
+        buffer.rewind();
+
+        return buffer;
     }
 }

@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -22,18 +22,19 @@
 #include "machine.h"
 #include "BOOL.h"
 
-typedef enum { 
-	RECURSION_ERROR = -1,
-	RECURSION_CALL_COMP = 1,
-	RECURSION_CALL_EXEC1 = 2,
-	RECURSION_CALL_EXECSTR = 3,
-	RECURSION_CALL_GETF = 4,
-	RECURSION_CALL_SAVE = 5,
-	RECURSION_CALL_LOAD = 6,
-	RECURSION_CALL_DEFF = 7,
-	RECURSION_CALL_DISP = 8,
-	RECURSION_CALL_EXEC2 = 9,
-	RECURSION_OVERLOAD = 10
+typedef enum
+{
+    RECURSION_ERROR = -1,
+    RECURSION_CALL_COMP = 1,
+    RECURSION_CALL_EXEC1 = 2,
+    RECURSION_CALL_EXECSTR = 3,
+    RECURSION_CALL_GETF = 4,
+    RECURSION_CALL_SAVE = 5,
+    RECURSION_CALL_LOAD = 6,
+    RECURSION_CALL_DEFF = 7,
+    RECURSION_CALL_DISP = 8,
+    RECURSION_CALL_EXEC2 = 9,
+    RECURSION_OVERLOAD = 10
 } recursion_function_called;
 
 #define GW_IO_ID 5
@@ -70,7 +71,7 @@ int getRecursionGatewayToCall(void);
 int C2F(getrecursiongatewaytocall)(int *callID);
 
 /**
-* get Function ID from a recursion call 
+* get Function ID from a recursion call
 * @return ID or RECURSION_ERROR
 */
 recursion_function_called getRecursionFunctionToCall(void);

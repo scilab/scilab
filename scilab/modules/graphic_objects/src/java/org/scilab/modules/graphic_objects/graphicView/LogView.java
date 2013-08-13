@@ -18,29 +18,29 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 public class LogView implements GraphicView {
 
     private static LogView me = null;
-    
+
     private LogView() {}
-   
+
     public static LogView createLogView() {
-        if(me == null) {
+        if (me == null) {
             me = new LogView();
         }
-        
+
         return me;
     }
-    
+
     public void createObject(String id) {
-       int objectType = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
-       System.out.println("+++"+id+" Object Created type is "+objectType+".");
+        int objectType = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
+        System.out.println("+++" + id + " Object Created type is " + objectType + ".");
     }
 
     public void deleteObject(String id) {
-        System.out.println("---"+id+" Object Deleted.");
+        System.out.println("---" + id + " Object Deleted.");
 
     }
 
     public void updateObject(String id, int property) {
-        System.out.println("==="+id+" Object Property " + property + " Updated.");
+        System.out.println("===" + id + " Object Property " + property + " Updated.");
     }
 
 }

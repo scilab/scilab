@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-07-26 14:55+0100\n"
 
 # File: sci_gateway/c/sci_base2dec.c, line: 41
 # File: sci_gateway/c/sci_base2dec.c, line: 54
@@ -90,7 +90,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_base2dec.c, line: 135
-# File: sci_gateway/c/sci_dec2base.c, line: 203
+# File: sci_gateway/c/sci_dec2base.c, line: 204
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -132,7 +132,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dec2base.c, line: 191
+# File: sci_gateway/c/sci_dec2base.c, line: 192
 #, c-format
 msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
 msgstr ""
@@ -162,7 +162,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_gsort.c, line: 140
 # File: sci_gateway/c/sci_gsort.c, line: 177
-msgid "It will be more strict in Scilab 6."
+msgid "It will no more be available in Scilab 6."
 msgstr ""
 
 #
@@ -466,6 +466,7 @@ msgstr ""
 # File: macros/acosh.sci, line: 34
 # File: macros/acoshm.sci, line: 21
 # File: macros/acosm.sci, line: 20
+# File: macros/acot.sci, line: 20
 # File: macros/asinh.sci, line: 27
 # File: macros/asinhm.sci, line: 23
 # File: macros/asinm.sci, line: 20
@@ -478,10 +479,13 @@ msgstr ""
 # File: macros/cotg.sci, line: 23
 # File: macros/coth.sci, line: 22
 # File: macros/cothm.sci, line: 20
+# File: macros/csch.sci, line: 18
+# File: macros/sech.sci, line: 19
 # File: macros/sinh.sci, line: 26
 # File: macros/sinhm.sci, line: 20
 # File: macros/sinm.sci, line: 25
 # File: macros/tanh.sci, line: 26
+# File: macros/tanm.sci, line: 20
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"
@@ -499,6 +503,27 @@ msgstr ""
 # File: macros/sinhm.sci, line: 25
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/acoth.sci, line: 18
+# File: macros/acsc.sci, line: 20
+# File: macros/acsch.sci, line: 21
+# File: macros/asec.sci, line: 18
+# File: macros/asech.sci, line: 22
+# File: macros/tanhm.sci, line: 20
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, sparse or full "
+"matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/acscd.sci, line: 21
+# File: macros/asecd.sci, line: 20
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real sparse or full matrix expected.\n"
 msgstr ""
 
 #
@@ -575,6 +600,7 @@ msgstr ""
 #
 # File: macros/bitset.sci, line: 32
 # File: macros/bitset.sci, line: 42
+# File: macros/cross.sci, line: 24
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
@@ -653,18 +679,52 @@ msgstr ""
 # File: macros/cosm.sci, line: 31
 # File: macros/logm.sci, line: 29
 # File: macros/signm.sci, line: 30
-# File: macros/tanhm.sci, line: 23
-# File: macros/tanm.sci, line: 23
+# File: macros/tanhm.sci, line: 27
+# File: macros/tanm.sci, line: 27
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #
 # File: macros/cothm.sci, line: 30
-# File: macros/tanhm.sci, line: 29
-# File: macros/tanm.sci, line: 30
+# File: macros/tanhm.sci, line: 33
+# File: macros/tanm.sci, line: 34
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgstr ""
+
+#
+# File: macros/cross.sci, line: 14
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#
+# File: macros/cross.sci, line: 17
+# File: macros/cross.sci, line: 20
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real, complex, boolean or "
+"polynomial matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/cross.sci, line: 27
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size 1x3 or 3xN "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/csc.sci, line: 18
+# File: macros/csgn.sci, line: 22
+# File: macros/sec.sci, line: 19
+# File: macros/sinc.sci, line: 22
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, sparse or full "
+"matrix or hypermatrix expected.\n"
 msgstr ""
 
 #
@@ -805,20 +865,22 @@ msgstr ""
 
 #
 # File: macros/nthroot.sci, line: 21
+# File: macros/nthroot.sci, line: 25
 #, c-format
-msgid "%s: Wrong type for input argument(s) %d: real arguments expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Real scalar or matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/nthroot.sci, line: 26
+# File: macros/nthroot.sci, line: 30
 #, c-format
-msgid "%s: Wrong type for input argument(s) %d: n must be a scalar.\n"
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: macros/nthroot.sci, line: 45
+# File: macros/nthroot.sci, line: 57
 #, c-format
-msgid "%s: If x is negative, n must be an odd integer\n"
+msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr ""
 
 #

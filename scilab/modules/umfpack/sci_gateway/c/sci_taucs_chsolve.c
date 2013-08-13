@@ -158,7 +158,7 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
 
         if (isVarComplex(pvApiCtx, piAddr3))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: not compatible with the Cholesky factorisation.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: not compatible with the Cholesky factorization.\n"), fname, 3);
             return 1;
         }
 
@@ -182,7 +182,7 @@ int sci_taucs_chsolve(char* fname, unsigned long l)
 
         if (mA != nA || mA != n)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: not compatible with the Cholesky factorisation.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong size for input argument #%d: not compatible with the Cholesky factorization.\n"), fname, 3);
             return 1;
         }
 

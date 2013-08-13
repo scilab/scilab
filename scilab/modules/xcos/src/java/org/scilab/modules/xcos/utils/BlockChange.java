@@ -27,7 +27,7 @@ public class BlockChange implements mxUndoableChange {
 
     /**
      * Construct a new undoable edit with the given source
-     * 
+     *
      * @param updated
      *            The new state
      * @param old
@@ -40,7 +40,7 @@ public class BlockChange implements mxUndoableChange {
 
     /**
      * Execute the current change.
-     * 
+     *
      * @see com.mxgraph.util.mxUndoableEdit.mxUndoableChange#execute()
      */
     @Override

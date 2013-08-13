@@ -2337,11 +2337,11 @@ int main(void)
             C(Inf, NaN)
         };
         cmplx w[NTST] = { /* w(z), computed with WolframAlpha
-                       ... note that WolframAlpha is problematic
-                       some of the above inputs, so I had to
-                       use the continued-fraction expansion
-                       in WolframAlpha in some cases, or switch
-                       to Maple */
+               ... note that WolframAlpha is problematic
+               some of the above inputs, so I had to
+               use the continued-fraction expansion
+               in WolframAlpha in some cases, or switch
+               to Maple */
                             C(-3.78270245518980507452677445620103199303131110e-7,
                               0.000903861276433172057331093754199933411710053155),
                             C(0.1764906227004816847297495349730234591778719532788,

@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A1CE241B-0FA7-488D-B737-1A1BC0F6A85E}</ProjectGuid>
+    <RootNamespace>scicos</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../;../../../includes;../../../../core/includes;../../../../time/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../scicos_blocks/includes;../../../../windows_tools/includes;../../../../localization/includes;../../../../string/includes;../../../../intersci/src/lib;../../../../dynamic_link/includes;../../scicos_sundials/include;../../scicos_sundials/include/sundials;../../scicos_sundials/src/ida;../../../../action_binding/includes;../../../../../libs/intl;../../../../intersci/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)../core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Dynamic_link_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../nographics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)nographics.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;../../../../../bin/linpack_f.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;nographics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>scicos-cli_export.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../;../../../includes;../../../../core/includes;../../../../time/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../scicos_blocks/includes;../../../../windows_tools/includes;../../../../localization/includes;../../../../string/includes;../../../../intersci/src/lib;../../../../dynamic_link/includes;../../scicos_sundials/include;../../scicos_sundials/include/sundials;../../scicos_sundials/src/ida;../../../../action_binding/includes;../../../../../libs/intl;../../../../intersci/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)../core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Dynamic_link_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../nographics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)nographics.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;../../../../../bin/linpack_f.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;nographics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>scicos-cli_export.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <ClCompile>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../;../../../includes;../../../../core/includes;../../../../time/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../scicos_blocks/includes;../../../../windows_tools/includes;../../../../localization/includes;../../../../string/includes;../../../../intersci/src/lib;../../../../dynamic_link/includes;../../scicos_sundials/include;../../scicos_sundials/include/sundials;../../scicos_sundials/src/ida;../../../../action_binding/includes;../../../../../libs/intl;../../../../intersci/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)../core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Dynamic_link_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../nographics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)nographics.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;../../../../../bin/linpack_f.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;nographics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>scicos-cli_export.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../;../../../includes;../../../../core/includes;../../../../time/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../scicos_blocks/includes;../../../../windows_tools/includes;../../../../localization/includes;../../../../string/includes;../../../../intersci/src/lib;../../../../dynamic_link/includes;../../scicos_sundials/include;../../scicos_sundials/include/sundials;../../scicos_sundials/src/ida;../../../../action_binding/includes;../../../../../libs/intl;../../../../intersci/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)../core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Dynamic_link_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../nographics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)nographics.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;../../../../../bin/linpack_f.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;nographics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>scicos-cli_export.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_loadScicos.c" />
+    <ClCompile Include="..\copyvarfromlistentry.c" />
+    <ClCompile Include="..\createblklist.c" />
+    <ClCompile Include="..\ddaskr.c" />
+    <ClCompile Include="..\DllmainScicos.c" />
+    <ClCompile Include="..\extractblklist.c" />
+    <ClCompile Include="..\ezxml.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\gw_scicos.c" />
+    <ClCompile Include="..\il_sim.c" />
+    <ClCompile Include="..\il_state.c" />
+    <ClCompile Include="..\import.c" />
+    <ClCompile Include="..\MlistGetFieldNumber.c" />
+    <ClCompile Include="..\lsodar.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_buildouttb.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_callblk.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_coserror.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_ctree2.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_ctree3.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_ctree4.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_curblock.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_curblockc.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_data2sig.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_diffobjs.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_duplicate.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_end_scicosim.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_ftree2.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_ftree3.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_ftree4.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_getblocklabel.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_getscicosvars.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_haltscicos.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_model2blk.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_phase_simulation.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_pointer_xproperty.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_debug.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_debug_count.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_time.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_scicosim.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_sctree.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_set_blockerror.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_set_xproperty.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_sig2data.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_var2vec.c" />
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_vec2var.c" />
+    <ClCompile Include="..\sciblk2.c" />
+    <ClCompile Include="..\sciblk4.c" />
+    <ClCompile Include="..\scicos.c" />
+    <ClCompile Include="..\scicos_free.c" />
+    <ClCompile Include="..\scicos_malloc.c" />
+    <ClCompile Include="..\tree.c" />
+    <ClCompile Include="..\var2sci.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\copyvarfromlistentry.h" />
+    <ClInclude Include="..\createblklist.h" />
+    <ClInclude Include="..\..\..\includes\dynlib_scicos.h" />
+    <ClInclude Include="..\ddaskr.h" />
+    <ClInclude Include="..\extractblklist.h" />
+    <ClInclude Include="..\ezxml.h" />
+    <ClInclude Include="..\..\..\includes\gw_scicos.h" />
+    <ClInclude Include="..\il_sim.h" />
+    <ClInclude Include="..\il_state.h" />
+    <ClInclude Include="..\..\..\includes\import.h" />
+    <ClInclude Include="..\MlistGetFieldNumber.h" />
+    <ClInclude Include="..\lsodar.h" />
+    <ClInclude Include="..\..\..\includes\scicos-def.h" />
+    <ClInclude Include="..\..\..\includes\scicos.h" />
+    <ClInclude Include="..\..\..\includes\scicos_free.h" />
+    <ClInclude Include="..\..\..\includes\scicos_malloc.h" />
+    <ClInclude Include="..\..\..\includes\scicos_math.h" />
+    <ClInclude Include="..\sciblk2.h" />
+    <ClInclude Include="..\sciblk4.h" />
+    <ClInclude Include="..\tree.h" />
+    <ClInclude Include="..\var2sci.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\locales\scicos.pot" />
+    <None Include="..\Core_f_Import.def" />
+    <None Include="..\differential_equations_f_Import.def" />
+    <None Include="..\Dynamic_link_Import.def" />
+    <None Include="..\elementary_functions_f_Import.def" />
+    <None Include="..\nographics_Import.def" />
+    <None Include="..\core_import.def" />
+    <None Include="..\Localization_Import.def" />
+    <None Include="..\Output_stream_Import.def" />
+    <None Include="..\Scicos_blocks_f_Import.def" />
+    <None Include="..\scicos_f_Import.def" />
+    <None Include="..\String_Import.def" />
+    <None Include="..\scicos-cli_Export.def" />
+    <None Include="..\..\..\Makefile.am" />
+    <None Include="..\..\..\scicos.iss" />
+    <None Include="..\..\..\sci_gateway\scicos_gateway.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="scicos-cli.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
+      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\api_scilab\api_scilab.vcxproj">
+      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\elementary_functions\src\c\elementary_functions.vcxproj">
+      <Project>{5b110267-7c18-437c-b87d-dba2b50729e9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\scicos_blocks\src\c\cli\scicos_blocks-cli.vcxproj">
+      <Project>{424a5578-ba28-435f-8313-8d85886a3539}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\time\time.vcxproj">
+      <Project>{05d8f60b-332a-4161-b946-b8ab30ed439c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
+      <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\scicos_sundials\scicos_sundials.vcxproj">
+      <Project>{c781737a-7c97-4cf9-acbc-f68c2bbf0ffa}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

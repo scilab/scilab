@@ -42,7 +42,8 @@ HDF5_CXX_SOURCES = src/cpp/H5Attribute.cpp \
 		   src/cpp/H5ReferenceData.cpp \
 		   src/cpp/H5CompoundData.cpp \
 		   src/cpp/H5ArrayData.cpp \
-		   src/cpp/H5VlenData.cpp
+		   src/cpp/H5VlenData.cpp \
+		   src/cpp/H5Options.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 

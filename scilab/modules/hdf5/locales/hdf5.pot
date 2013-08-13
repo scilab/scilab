@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:49+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 101
 #, c-format
@@ -307,10 +307,10 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_h5attr.cpp, line: 142
 # File: sci_gateway/cpp/sci_h5write.cpp, line: 156
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 69
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 123
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 70
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 124
 # File: sci_gateway/cpp/sci_is_hdf5_file.cpp, line: 48
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 81
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 85
 # File: src/cpp/import_from_hdf5_v1.cpp, line: 77
 # File: src/cpp/import_from_hdf5_v1.cpp, line: 110
 # File: src/cpp/listvar_in_hdf5_v1.cpp, line: 78
@@ -376,7 +376,7 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_h5dataset.cpp, line: 145
 #, c-format
-msgid "%s: Wrogn size for input argument #%d: five row vector expected.\n"
+msgid "%s: Wrong size for input argument #%d: Five row vector expected.\n"
 msgstr ""
 
 #
@@ -570,8 +570,8 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 78
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 89
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 79
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 93
 # File: src/cpp/import_from_hdf5_v1.cpp, line: 88
 # File: src/cpp/listvar_in_hdf5_v1.cpp, line: 88
 #, c-format
@@ -579,15 +579,15 @@ msgid "%s: Unable to open file: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 94
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 106
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 95
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 110
 #, c-format
 msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 260
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 305
+# File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 261
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 312
 # File: src/cpp/import_from_hdf5_v1.cpp, line: 247
 # File: src/cpp/listvar_in_hdf5_v1.cpp, line: 281
 #, c-format
@@ -948,7 +948,7 @@ msgstr ""
 
 #
 # File: src/cpp/H5Exception.hxx, line: 81
-msgid "Cannot get the current errors stack"
+msgid "Cannot get the current stack of errors."
 msgstr ""
 
 #
@@ -1385,7 +1385,7 @@ msgstr ""
 #
 # File: src/cpp/HDF5Scilab.cpp, line: 402
 #, c-format
-msgid "Cannot create a hard link to an external object: %s."
+msgid "Cannot create a hard link to the external object: %s."
 msgstr ""
 
 #

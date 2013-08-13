@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the scilab package.
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
-# Yuri Chornoivan <yurchor@gmail.com>, 2010, 2012.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-05-23 04:46+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-13 13:46+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: uk\n"
 
 #, c-format
@@ -238,6 +238,30 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: %s=%d, що не відповідає "
 "розмірності %s: %d.\n"
 
+msgid "  Possible matrix is not positive definite."
+msgstr "  Можлива матриця не є додатно визначеною."
+
+msgid "Non-positive diagonal encountered, matrix is not positive definite."
+msgstr ""
+
+msgid "Insufficient working storage in blkfct, temp(*)."
+msgstr ""
+
+msgid "Insufficient working storage in blkfct, iwork(*)."
+msgstr ""
+
+msgid " SYMFCT requires PERM to be neqns x 1"
+msgstr " Для SYMFCT PERM повинне мати розмірність кількості рівнянь на 1"
+
+msgid " SYMFCT requires INVN to be neqns x 1"
+msgstr " Для SYMFCT INVN повинне мати розмірність кількості рівнянь на 1"
+
+msgid " SYMFCT requires CACHSZ  to be 1 x 1"
+msgstr " Для SYMFCT CACHSZ повинне мати розмірність 1 на 1"
+
+msgid " Insufficient working storage in sfinit"
+msgstr " Недостатній об’єм робочого сховища даних у sfinit"
+
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
@@ -365,11 +389,35 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A transpose of the function %s "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано транспозицію "
+"функції %s.\n"
+
+#, c-format
+msgid ""
 "%s : Calling qmr(A,Ap) is deprecated. Please see qmr documentation for more "
 "details.\n"
 msgstr ""
 "%s: функція qmr(A,Ap) вважається застарілою. Будь ласка, ознайомтеся з "
 "документацією щодо qmr, щоб дізнатися більше.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex, full or sparse "
+"column vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано дійсний або "
+"комплексний, заповнений або розріджений вектор-стовпчик.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex, full or sparse, "
+"square matrix or a function expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано дійсну або "
+"комплексну, заповнену або розріджену квадратну матрицю або функцію.\n"
 
 #, c-format
 msgid ""
@@ -381,11 +429,41 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A transpose of the function "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано транспозицію "
+"функції.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong prototype of input argument #%d: If M1 is function, use the header "
+"M1(x,t) instead M1(x).\n"
+msgstr ""
+"%s: помилковий прототип вхідного параметра №%d: якщо M1 є функцією, "
+"використовуйте заголовок M1(x,t) замість M1(x).\n"
+
+#, c-format
+msgid ""
 "%s : Calling qmr(...,M2,M2p) is deprecated. Please see qmr documentation for "
 "more details.\n"
 msgstr ""
 "%s: функція qmr(...,M2,M2p) вважається застарілою. Будь ласка, ознайомтеся з "
 "документацією щодо qmr, щоб дізнатися більше.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong prototype of input argument #%d: If M2 is function, use the header "
+"M2(x,t) instead M2(x).\n"
+msgstr ""
+"%s: помилковий прототип вхідного параметра №%d: якщо M2 є функцією, "
+"використовуйте заголовок M2(x,t) замість M2(x).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати дійсне "
+"число.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

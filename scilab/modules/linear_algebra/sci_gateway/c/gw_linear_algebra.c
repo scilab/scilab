@@ -16,34 +16,34 @@
 #include "MALLOC.h"
 #include "gw_linear_algebra.h"
 #include "callFunctionFromGateway.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static int C2F(intvoid)(char *fname, unsigned long fname_len)
 {
-	return 0;
+    return 0;
 }
-/*--------------------------------------------------------------------------*/ 
-static gw_generic_table Tab[] = 
+/*--------------------------------------------------------------------------*/
+static gw_generic_table Tab[] =
 {
-  {C2F(inthess),"hess"},
-  {C2F(intschur),"schur"},
-  {C2F(inteig),"spec"},
-  {C2F(intbdiagr),"bdiag"},
-  {C2F(intvoid),"xxxx"},
-  {C2F(intbalanc),"balanc"}
+    {C2F(inthess), "hess"},
+    {C2F(intschur), "schur"},
+    {C2F(inteig), "spec"},
+    {C2F(intbdiagr), "bdiag"},
+    {C2F(intvoid), "xxxx"},
+    {C2F(intbalanc), "balanc"}
 };
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int gw_linear_algebra(void)
-{  
-	Rhs = Max(0, Rhs);
+{
+    Rhs = Max(0, Rhs);
 
-    if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-	}
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
 
-	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	PutLhsVar();
-	return 0;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    PutLhsVar();
+    return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

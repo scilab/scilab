@@ -12,32 +12,32 @@
 
 function demo_viewCode(this_script)
 
-  if (~isdef('editor') & (funptr('editor')==0)) then
-    return
-  end
+    if (~isdef("editor") & (funptr("editor")==0)) then
+        return
+    end
 
-  if isfile(this_script) then
-    path = fullpath(this_script);
-  else
-    path = get_absolute_file_path(this_script) + this_script;
-  end
+    if isfile(this_script) then
+        path = fullpath(this_script);
+    else
+        path = get_absolute_file_path(this_script) + this_script;
+    end
 
-  // Récupération du handle sur la fenêtre courante
-  my_fig = gcf();
+    // Récupération du handle sur la fenêtre courante
+    my_fig = gcf();
 
-  //Création du nouveau menu
-  if getos() == "Darwin" then
-      my_menu = uimenu( "parent", my_fig, ..
-      "label"       , gettext(" -- View Code -- "));
-      my_submenu = uimenu("parent", my_menu , ..
-      "label"       , gettext("Open in Editor"), ..
-      "Foregroundcolor" , [ 0/255 81/255 6/255 ]     , ..
-      "callback"    , "editor("""+path+""", ""readonly"")" );
-  else
-      my_menu = uimenu( "parent"      , my_fig             , ..
-      "label"       , gettext(" -- View Code -- ") , ..
-      "Foregroundcolor" , [ 0/255 81/255 6/255 ]     , ..
-      "callback"    , "editor("""+path+""", ""readonly"")" );
-  end
+    //Création du nouveau menu
+    if getos() == "Darwin" then
+        my_menu = uimenu( "parent", my_fig, ..
+        "label"       , gettext(" -- View Code -- "));
+        my_submenu = uimenu("parent", my_menu , ..
+        "label"       , gettext("Open in Editor"), ..
+        "Foregroundcolor" , [ 0/255 81/255 6/255 ]     , ..
+        "callback"    , "editor("""+path+""", ""readonly"")" );
+    else
+        my_menu = uimenu( "parent"      , my_fig             , ..
+        "label"       , gettext(" -- View Code -- ") , ..
+        "Foregroundcolor" , [ 0/255 81/255 6/255 ]     , ..
+        "callback"    , "editor("""+path+""", ""readonly"")" );
+    end
 endfunction
 

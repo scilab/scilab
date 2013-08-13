@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-08-25 19:05+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-29 17:06+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -96,6 +96,14 @@ msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась матрица строк или пустая "
+"матрица.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Неверное значение входного параметра №%d.\n"
 
@@ -151,6 +159,14 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: недопустимый путь «%s».\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: A string expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалось строковое значение.\n"
+
+#, c-format
+msgid "%s: Could not create the output argument.\n"
+msgstr "%s: Не могу создать выходной аргумент.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string.\n"
 msgstr "%s: Неверный тип входного параметра №%d: строка.\n"
 
@@ -162,6 +178,17 @@ msgstr ""
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s: Файл %s не открыт в Scilab.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s: Несовместимые входные аргументы №%d и №%d: ожидались одинаковые "
+"размеры.\n"
 
 #, c-format
 msgid ""
@@ -332,6 +359,10 @@ msgid "%s: An error occurred.\n"
 msgstr "%s: Произошла ошибка.\n"
 
 #, c-format
+msgid "%s: Warning: Directory '%s' does not exist.\n"
+msgstr "%s: Предупреждение: директория '%s' не существует.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
 
@@ -342,6 +373,66 @@ msgid ""
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидалась строка не более трёх "
 "символов.\n"
+
+msgid "Could not parse the URL.\n"
+msgstr "Не удалось проанализировать URL.\n"
+
+#, c-format
+msgid "Failed to read the scicurl_config file '%s'.\n"
+msgstr "Не удалось прочитать scicurl_config-файл '%s'.\n"
+
+#, c-format
+msgid "Improper syntax of scicurl_config file ('%s'), '=' not found %d:%s\n"
+msgstr ""
+"Неверный синтаксис scicurl_config-файла ('%s'), '=' не найден %d:%s\n"
+
+#, c-format
+msgid "Improper syntax of scicurl_config file ('%s'), after an '='\n"
+msgstr "Неверный синтаксис scicurl_config-файла ('%s'), после '='\n"
+
+#, c-format
+msgid ""
+"Improper syntax of scicurl_config file ('%s'), space before and after '=' "
+"expected\n"
+msgstr ""
+"Неверный синтаксис scicurl_config-файла ('%s'), ожидались пробелы до и после "
+"'='\n"
+
+#, c-format
+msgid "Failed opening '%s' for writing.\n"
+msgstr "Не удалось открыть '%s' на запись.\n"
+
+#, c-format
+msgid "Failed to set URL [%s]\n"
+msgstr "Не удалось установить URL [%s]\n"
+
+#, c-format
+msgid "Failed to set user:pwd [%s]\n"
+msgstr "Не удалось установить user:pwd [%s]\n"
+
+#, c-format
+msgid "Failed to set proxy host [%s]\n"
+msgstr "Не удалось установить прокси-хост [%s]\n"
+
+#, c-format
+msgid "Failed to set proxy port [%s]\n"
+msgstr "Не удалось установить прокси-порт [%s]\n"
+
+#, c-format
+msgid "Failed to set proxy user:password [%s]\n"
+msgstr "Не удалось установить прокси user:password [%s]\n"
+
+#, c-format
+msgid "Failed to set write function [%s]\n"
+msgstr ""
+
+#, c-format
+msgid "Failed to set write data [%s]\n"
+msgstr "Не удалось установить данные для записи [%s]\n"
+
+#, c-format
+msgid "Transfer did not complete successfully: %s\n"
+msgstr "Передача завершилась неудачно: %s\n"
 
 msgid "unclosed [ directive."
 msgstr "незакрытое указание «[»."

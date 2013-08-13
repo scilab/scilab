@@ -9,24 +9,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-19 15:57+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-27 16:56+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Графический модуль Scilab выключен в режимах -nogui и -nwni.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка распределения памяти.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s: Неверный размер входных параметров №%d и №%d: несовместимые длины.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица дескрипторов.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Incorrect value.\n"
@@ -53,6 +70,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался вещественный скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался вещественным.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real scalar expected.\n"
@@ -96,6 +117,15 @@ msgstr ""
 "позиции %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалась матрица %d на %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr "%s: Неверный размер входных параметров: размеры несовместимы.\n"
+
+#, c-format
 msgid "%s: Function %s is obsolete.\n"
 msgstr "%s: Функция %s устарела.\n"
 
@@ -113,6 +143,10 @@ msgid ""
 msgstr ""
 "%s: Эта функция будет окончательно удалена в  Scilab %s\n"
 "\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
@@ -139,6 +173,15 @@ msgstr "Не удалось удалить метку.\n"
 #, c-format
 msgid "%s: Please see documentation for more details.\n"
 msgstr "%s: Пожалуйста, смотрите подробности в документации.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидается вещественный скаляр.\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: Неверное значение %s «%c»: Ожидалось «%s», «%s» и «%s».\n"
@@ -179,10 +222,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: List of size %d expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидался список размером %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидался %d.\n"
 
 #, c-format
 msgid ""
@@ -264,6 +303,12 @@ msgstr ""
 "«Figure» или «Axes».\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица логических "
+"значений.\n"
+
+#, c-format
 msgid ""
 "%s: Can not run rubberbox on a 3D view with initial_rect or edition_mode "
 "option. See help for more information.\n"
@@ -304,6 +349,45 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
+
+#, c-format
+msgid "%s: Can not get type of input argument #%d.\n"
+msgstr "%s: Не могу получить тип входного аргумента №%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался отдельный дескриптор.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица логических "
+"значений.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of handle expected\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица дескрипторов.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A matrix of string expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица строковых "
+"значений.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидался список.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or handle expected.\n"
@@ -430,8 +514,8 @@ msgid "%s : '%s' must be set\n"
 msgstr "%s: «%s» должно быть установлено\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d or %d expected.\n"
-msgstr "%s: Неверное количество входых аргументов: ожидалось %d или %d.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
 
 #, c-format
 msgid ""
@@ -440,7 +524,7 @@ msgstr ""
 "%s: Неверный размер входного аргумента №%d: Ожидался %d-элементный вектор.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
@@ -662,6 +746,11 @@ msgstr "Количество столбцов должно быть %d.\n"
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "Свойство «%s» не существует для этого дескриптора.\n"
+
+msgid "Tlist could not be created, check ticks location and label vectors.\n"
+msgstr ""
+"Не удалось создать типизированный список, проверьте векторы расположения "
+"делений на оси (ticks location) и подписей (label).\n"
 
 #, c-format
 msgid "%s should be a vector of double.\n"
@@ -1164,12 +1253,15 @@ msgid ""
 "The color's number of pixel(i,j)\n"
 "  = rounded value of M(i,j)"
 msgstr ""
+"Matplot(M)  c  size(M)=>(%d,%d)\n"
+"Номер цвета элемента изображения pixel(i,j)\n"
+"  = округлённому значению M(i,j)"
 
 msgid "For data-scaled axes, please use Matplot1(..)"
 msgstr "Для осей, масштабированных по данным, используйте Matplot1(..)"
 
 msgid "Axes are scaled with M's indices"
-msgstr ""
+msgstr "Оси отмасштабированы индексами M"
 
 #, c-format
 msgid ""
@@ -1196,6 +1288,13 @@ msgid "%s : Invalid entity %s\n"
 msgstr "%s: Неверный объект %s\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: figure graphic handle expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался дескриптор графического "
+"окна.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
@@ -1206,6 +1305,40 @@ msgstr "%s: Входной параметр №%d должен быть веще
 #, c-format
 msgid "%s: Wrong type for input argument #%d: function expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument(s): Arguments #%d, #%d and #%d must be "
+"real.\n"
+msgstr ""
+"%s: Неверный тип входных аргументов: аргументы №%d, №%d и №%d должны быть "
+"вещественными.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: The number of rows of "
+"argument #%d must be equal to the size of argument #%d.\n"
+msgstr ""
+"%s: Неверный размер входных аргументов №%d и №%d: количество строк аргумента "
+"№%d должно быть равным размеру аргумента №%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: The number of columns of "
+"argument #%d must be equal to the size of argument #%d.\n"
+msgstr ""
+"%s: Неверный размер входных аргументов №%d и №%d: количество столбцов "
+"аргумента №%d должно быть равным размеру аргумента №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Axes handle expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался дескриптор осей.\n"
+
+#, c-format
+msgid "%s: Wrong size or type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Неверный размер или тип входного аргумента №%d: ожидалось строковое "
+"значение.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -1229,18 +1362,97 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument '%s': A vector expected.\n"
+msgid "%s: Wrong type for input arguments #%d: A string expected.\n"
 msgstr ""
+"%s: Неверный размер или тип входного аргумента №%d: ожидалось строковое "
+"значение.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument '%s': A non empty matrix expected.\n"
+"%s: Wrong type for input arguments: Matrix expected for %s, %s and %s.\n"
 msgstr ""
+"%s: Неверный тип входных аргументов: %s, %s и %s ожидались матрицами.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected for %s and %s.\n"
+msgstr "%s: Неверный тип входных аргументов:у %s и %s ожидался тип String.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments '%s' and '%s': Incompatible dimensions.\n"
+"%s: Wrong size for input argument #%d: A scalar or a column vector "
+"expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался скаляр или вектор-"
+"столбец.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался скаляр или вектор-"
+"столбец.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d: A scalar or a column vector "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер входных аргументов №%d: ожидался скаляр или вектор-"
+"столбец.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A handle, a string or a scalar "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидались дескриптор, строковое "
+"значение или скаляр.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась строка или скаляр.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input arguments #%d and #%d: If argument #%d is a handle "
+"or a string, argument #%d must be a string or a scalar.\n"
+msgstr ""
+"%s: Неверный тип входных аргументов №%d и №%d: если аргумент №%d является "
+"дескриптором или строковым значением, то аргумент №%d должен быть строковым "
+"значением или скаляром.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected for %s.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: %s ожидался вещественным.\n"
+
+#, c-format
+msgid "%s: The bars must have the same x data.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not find any bar in the current graphic.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A non empty matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d:ожидалась непустая матрица.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible dimensions.\n"
+msgstr ""
+"%s: Неверный размер входных аргументов №%d и №%d: размеры несовместимы.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
@@ -1249,11 +1461,14 @@ msgstr "%s: Неверное количество входных парамет�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'clear' or 'reset' expected."
 msgstr ""
+"%s: Неверные значения входного аргумента №%d: ожидалось 'clear' или 'reset'."
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A vector of 'Figure' handle expected."
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вектор дескриптора "
+"'Figure'."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
@@ -1261,7 +1476,7 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: '%s' expected.\n"
-msgstr ""
+msgstr "%s: Неверные значения входного аргумента №%d:  ожидалось '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -1274,10 +1489,6 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного параметра №%d: должно быть в интервале [%s, "
 "%s].\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -1406,7 +1617,7 @@ msgstr "Режим с одной подсказкой данных"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидался дескриптор '%s'.\n"
 
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: найдено пустое выпадающее меню."
@@ -1532,10 +1743,6 @@ msgid "Select tip style"
 msgstr "Выберите стиль ярлыка"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался булевский скаляр.\n"
@@ -1592,21 +1799,15 @@ msgid "Edit label generator"
 msgstr "Править параметры формирования меток"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s', '%s', '%s' "
 "or '%s' expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента: ожидалось '%s', '%s', '%s', '%s', "
+"'%s', '%s', '%s' или '%s'.\n"
 
 msgid "Tcl/Tk interface not installed."
 msgstr "Интерфейс Tcl/Tk не установлен."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
@@ -1629,8 +1830,38 @@ msgstr ""
 "Нажатие левой кнопки мыши на графическом объекте - открыть окно его свойств"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A color of the colormap expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидался цвет цветовой карты.\n"
+
+#, c-format
+msgid "%s:  Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument.\n"
 msgstr "%s: Неверный тип входного параметра.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid property name expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось корректное имя "
+"свойства.\n"
+
+#, c-format
+msgid "%s: Ambiguous line property.\n"
+msgstr "%s: Неоднозначное свойство линии.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Only one property expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалось только одно свойство.\n"
+
+#, c-format
+msgid "%s: Ambiguous surface property: %s.\n"
+msgstr "%s: Неоднозначное свойство поверхности: %s.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -1723,7 +1954,7 @@ msgstr "%s: Неверный размер входного параметра �
 
 #, c-format
 msgid "%s: No '%s' handle found.\n"
-msgstr ""
+msgstr "%s: Дескриптор '%s' не найден.\n"
 
 #, c-format
 msgid ""
@@ -1734,9 +1965,25 @@ msgstr ""
 "или графических дескрипторов.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
 msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
+"%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s», «%s», "
+"«%s», «%s» или «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument %s: Must be in the interval [%d, %d]."
+msgstr ""
+"%s: Неверное значение входного аргумента %s: должно быть на интервале [%d, "
+"%d]."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Polyline handles expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидались дескрипторы ломаных "
+"линий.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Matrices of same size expected.\n"
@@ -1757,11 +2004,11 @@ msgstr "%s: Неверный размер входного аргумента �
 
 #, c-format
 msgid "%s: Error : unable to evaluate input function '%s'."
-msgstr ""
+msgstr "%s: Ошибка: невозможно рассчитать входную функцию '%s'."
 
 #, c-format
 msgid "Error %d at line %d of the function: '%s"
-msgstr ""
+msgstr "Ошибка %d в строке %d функции: '%s"
 
 #, c-format
 msgid "%s: Error : unable to evaluate input function."
@@ -1772,10 +2019,12 @@ msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента: ожидалось '%s', '%s', '%s', '%s' "
+"или '%s'.\n"
 
 #, c-format
 msgid "%s: '%s' cannot be used with '%s'.\n"
-msgstr ""
+msgstr "%s: '%s' нельзя использовать с '%s'.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be a handle on an axis.\n"
@@ -1783,31 +2032,111 @@ msgstr "%s: Входной аргумент №%d должен быть деск
 
 #, c-format
 msgid ""
-"%s: Wrong size for input arguments '%s': A vector of size %d expected.\n"
+"%s: Wrong type for input argument #%d: A vector of 3 integers expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вектор из 3 целых чисел.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"
+msgid ""
+"%s: Wrong type for input arguments #%d, #%d and #%d: Scalars expected.\n"
 msgstr ""
+"%s: Неверный тип входных аргументов №%d, №%d и №%d: ожидались скаляры.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: must be in the interval [%d, %d].\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: должно быть на интервале [%d, "
+"%d].\n"
 
-msgid "Color data must be a scalar."
+#, c-format
+msgid ""
+"%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента '%s': ожидался вектор размером %d.\n"
 
-msgid "Color value must be a 3 element vector or an index in the colormap."
-msgstr ""
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An '%s' handle expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался дескриптор '%s'.\n"
 
-msgid "Incorrect input: Color vector should be a 3x1 or 1x3 vector"
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался дескриптор '%s'.\n"
 
-msgid "Color value must be a 3 elements vector or an index in the colormap."
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался вектор 3x1 или 1x3.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: 3 elements vector or index in the "
+"colormap expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вектор из 3 элементов или "
+"индекс на цветовой карте.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr "%s: Неверное значение входного аргумента №%d: ожидалось %s или %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A marker style expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидался стиль маркера.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Vector or index in the colormap "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вектор или индекс на "
+"цветовой карте.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалось целое число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size or type for input argument #%d: A column or row vector "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер или тип входного аргумента №%d: ожидался вектор-столбец "
+"или вектор-строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась вещественная матрица.\n"
+
+#, c-format
+msgid "%s: Ambiguous MarkStyle value.\n"
+msgstr "%s: Неоднозначное значение стиля маркера MarkStyle.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s: Неверный размер или тип входного аргумента №%d: ожидалась вещественная "
+"матрица.\n"
 
 msgid "Incorrect input: ..."
+msgstr "Некорректный ввод: ..."
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось хотя бы одно %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real matrix or a string matrix "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась вещественная матрица или "
+"матрица строк.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -1824,6 +2153,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An 'Axes' handle expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался дескриптор 'Axes'.\n"
 
 #, c-format
 msgid ""
@@ -1844,23 +2174,30 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument '%s': A Real matrix expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента '%s': ожидалась вещественная матрица.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument '%s': A matrix of size greater than %d-by-"
 "%d expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента '%s': ожидалась матрица размером "
+"больше, чем %d на %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments '%s' and '%s': Matrices of same size "
 "expected.\n"
 msgstr ""
+"%s: Неверный размер входных аргументов '%s' и '%s': ожидались матрицы "
+"одинаковых размеров.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""
+"%s: Неверный размер входных аргументов '%s' и '%s': ожидались одинаковые "
+"размеры.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -1873,6 +2210,11 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 #, c-format
 msgid "%s: file %s does not exist.\n"
 msgstr "%s: файл %s не существует.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr ""
+"%s: Неверный размер входных аргументов: ожидался одинаковый размер.\n"
 
 #, c-format
 msgid "%s: Wrong value given for %s."

@@ -53,7 +53,7 @@ extern "C" {
 #include "api_scilab.h"
     /* generics functions */
 
-/*Rhs*/
+    /*Rhs*/
     int* getNbInputArgument(void* _pvCtx);
 #define nbInputArgument(PVCTX) (*getNbInputArgument(PVCTX))
 
@@ -62,7 +62,7 @@ extern "C" {
 #endif
 #define Rhs (*getNbInputArgument(pvApiCtx))
 
-/*Top*/
+    /*Top*/
     int* getNbArgumentOnStack(void* _pvCtx);
 #define nbArgumentOnStack(PVCTX) (*getNbArgumentOnStack(PVCTX))
 
@@ -71,7 +71,7 @@ extern "C" {
 #endif
 #define Top (*getNbArgumentOnStack(pvApiCtx))
 
-/*Lhs*/
+    /*Lhs*/
     int* getNbOutputArgument(void* _pvCtx);
 #define nbOutputArgument(PVCTX) (*getNbOutputArgument(PVCTX))
 #ifdef Lhs
@@ -79,7 +79,7 @@ extern "C" {
 #endif
 #define Lhs (*getNbOutputArgument(pvApiCtx))
 
-/*PutLhs*/
+    /*PutLhs*/
     int* assignOutputVariable(void* _pvCtx, int _iVal);
 #define AssignOutputVariable(PVCTX, x) (*assignOutputVariable(PVCTX, x))
 #ifdef LhsVar
@@ -87,7 +87,7 @@ extern "C" {
 #endif
 #define LhsVar(x) (*assignOutputVariable(pvApiCtx, x))
 
-/*PutLhsVar*/
+    /*PutLhsVar*/
     int returnArguments(void* _pvCtx);
 #define ReturnArguments(PVCTX) if (! returnArguments(PVCTX)) { return 0; }
 #ifdef PutLhsVar

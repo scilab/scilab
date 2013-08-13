@@ -32,7 +32,7 @@
         <para>17 "stack size exceeded! Use stacksize function to increase
             it."
         </para>
-        <para>18 "Too many variables!"</para>
+        <para>18 "Too many variables."</para>
         <para>19 "Problem is singular."</para>
         <para>* 20 "Wrong type for argument #%d: Square matrix expected."</para>
         <para>21 "Invalid index."</para>
@@ -66,7 +66,7 @@
         <para>47 " end or else is missing..."</para>
         <para>* 48 " input line longer than buffer size: %d"</para>
         <para>49 "Incorrect file or format."</para>
-        <para>50 "subroutine not found: %s"</para>
+        <para>50 "Subroutine '%s' not found."</para>
         <para>* 52 "Wrong type for argument #%d: Real matrix expected."</para>
         <para>* 53 "Wrong type for input argument %d: Real or complex matrix
             expected."

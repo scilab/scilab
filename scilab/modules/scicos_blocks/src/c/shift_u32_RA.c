@@ -18,20 +18,23 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void shift_u32_RA(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void shift_u32_RA(scicos_block *block, int flag)
 {
-	int i = 0;
-	int mu = GetInPortRows(block,1);
-	int nu = GetInPortCols(block,1);
-	unsigned long *u = Getuint32InPortPtrs(block,1);
-	unsigned long *y = Getuint32OutPortPtrs(block,1);
-	int *ipar = GetIparPtrs(block);
+    int i = 0;
+    int mu = GetInPortRows(block, 1);
+    int nu = GetInPortCols(block, 1);
+    SCSUINT32_COP *u = Getuint32InPortPtrs(block, 1);
+    SCSUINT32_COP *y = Getuint32OutPortPtrs(block, 1);
+    int *ipar = GetIparPtrs(block);
 
-	for (i=0;i<mu*nu;i++) y[i]=u[i]>>-ipar[0];
+    for (i = 0; i < mu * nu; i++)
+    {
+        y[i] = u[i] >> -ipar[0];
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

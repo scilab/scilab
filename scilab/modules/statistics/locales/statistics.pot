@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/sci_cdfbet.c, line: 45
 msgid "X,Y,A and B"
@@ -38,8 +38,8 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_cdfbet.c, line: 68
 # File: sci_gateway/c/sci_cdfbin.c, line: 68
-# File: sci_gateway/c/sci_cdfchn.c, line: 63
-# File: sci_gateway/c/sci_cdff.c, line: 65
+# File: sci_gateway/c/sci_cdfchn.c, line: 86
+# File: sci_gateway/c/sci_cdff.c, line: 109
 # File: sci_gateway/c/sci_cdfgam.c, line: 67
 # File: sci_gateway/c/sci_cdfnbn.c, line: 68
 # File: sci_gateway/c/sci_cdfnor.c, line: 66
@@ -69,101 +69,129 @@ msgid "P,Q,S  and Xn"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 44
+# File: sci_gateway/c/sci_cdfchi.c, line: 51
+# File: sci_gateway/c/sci_cdfchi.c, line: 64
+# File: sci_gateway/c/sci_cdfchn.c, line: 47
+# File: sci_gateway/c/sci_cdfchn.c, line: 60
+# File: sci_gateway/c/sci_cdfchn.c, line: 79
+# File: sci_gateway/c/sci_cdff.c, line: 49
+# File: sci_gateway/c/sci_cdff.c, line: 56
+# File: sci_gateway/c/sci_cdff.c, line: 69
+# File: sci_gateway/c/sci_cdff.c, line: 76
+# File: sci_gateway/c/sci_cdff.c, line: 89
+# File: sci_gateway/c/sci_cdff.c, line: 102
+# File: sci_gateway/c/sci_cdffnc.c, line: 49
+# File: sci_gateway/c/sci_cdffnc.c, line: 56
+# File: sci_gateway/c/sci_cdffnc.c, line: 69
+# File: sci_gateway/c/sci_cdffnc.c, line: 76
+# File: sci_gateway/c/sci_cdffnc.c, line: 89
+# File: sci_gateway/c/sci_cdffnc.c, line: 102
+# File: sci_gateway/c/sci_cdffnc.c, line: 115
+# File: sci_gateway/c/sci_cdffnc.c, line: 122
+# File: sci_gateway/c/sci_cdft.c, line: 48
+# File: sci_gateway/c/sci_cdft.c, line: 61
+#, c-format
+msgid ""
+"%s: Warning: using non integer values for argument #%d may lead to incorrect "
+"results.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_cdfchi.c, line: 53
 msgid "X and Df"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 50
-# File: sci_gateway/c/sci_cdft.c, line: 47
+# File: sci_gateway/c/sci_cdfchi.c, line: 66
+# File: sci_gateway/c/sci_cdft.c, line: 63
 msgid "Df, P and Q"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 56
+# File: sci_gateway/c/sci_cdfchi.c, line: 72
 msgid "P,Q and X"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 61
-# File: sci_gateway/c/sci_cdfpoi.c, line: 59
-# File: sci_gateway/c/sci_cdft.c, line: 58
+# File: sci_gateway/c/sci_cdfchi.c, line: 77
+# File: sci_gateway/c/sci_cdfpoi.c, line: 79
+# File: sci_gateway/c/sci_cdft.c, line: 74
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchi.c, line: 88
+# File: sci_gateway/c/sci_cdfchi.c, line: 104
 msgid "cdfchi: Error in cumgam\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 40
+# File: sci_gateway/c/sci_cdfchn.c, line: 49
 msgid "X,Df and Pnonc"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 46
+# File: sci_gateway/c/sci_cdfchn.c, line: 62
 msgid "Df,Pnonc,P and Q"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 52
+# File: sci_gateway/c/sci_cdfchn.c, line: 68
 msgid "Pnonc,P,Q and X"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfchn.c, line: 58
+# File: sci_gateway/c/sci_cdfchn.c, line: 81
 msgid "P,Q,X and Df"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdff.c, line: 42
+# File: sci_gateway/c/sci_cdff.c, line: 58
 msgid "F,Dfn and Dfd"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdff.c, line: 48
+# File: sci_gateway/c/sci_cdff.c, line: 78
 msgid "Dfn,Dfd,P and Q"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdff.c, line: 54
+# File: sci_gateway/c/sci_cdff.c, line: 91
 msgid "Dfd,P,Q and F"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdff.c, line: 60
+# File: sci_gateway/c/sci_cdff.c, line: 104
 msgid "P,Q,F and Dfn"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdffnc.c, line: 42
+# File: sci_gateway/c/sci_cdffnc.c, line: 58
 msgid "F,Dfn,Dfd and Pnonc"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdffnc.c, line: 48
+# File: sci_gateway/c/sci_cdffnc.c, line: 78
 msgid "Dfn,Dfd,Pnonc,P and Q"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdffnc.c, line: 54
+# File: sci_gateway/c/sci_cdffnc.c, line: 91
 msgid "Dfd,Pnonc,P,Q and F"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdffnc.c, line: 60
+# File: sci_gateway/c/sci_cdffnc.c, line: 104
 msgid "Pnonc,P,Q,F and Dfn"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdffnc.c, line: 66
+# File: sci_gateway/c/sci_cdffnc.c, line: 124
 msgid "P,Q,F,Dfn and Dfd"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdffnc.c, line: 71
+# File: sci_gateway/c/sci_cdffnc.c, line: 129
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
@@ -236,27 +264,36 @@ msgid " Std must not be zero\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfpoi.c, line: 42
+# File: sci_gateway/c/sci_cdfpoi.c, line: 50
+# File: sci_gateway/c/sci_cdfpoi.c, line: 71
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A matrix of integer values "
+"expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_cdfpoi.c, line: 53
 msgid "S and Xlam"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfpoi.c, line: 48
+# File: sci_gateway/c/sci_cdfpoi.c, line: 59
 msgid "Xlam,P and Q"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdfpoi.c, line: 54
+# File: sci_gateway/c/sci_cdfpoi.c, line: 74
 msgid "P,Q and S"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdft.c, line: 41
+# File: sci_gateway/c/sci_cdft.c, line: 50
 msgid "T and Df"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_cdft.c, line: 53
+# File: sci_gateway/c/sci_cdft.c, line: 69
 msgid "P,Q and T"
 msgstr ""
 
@@ -274,20 +311,20 @@ msgid "%s and %s must have same size.\n"
 msgstr ""
 
 #
-# File: src/c/CdfBase.c, line: 122
-# File: src/c/CdfBase.c, line: 126
+# File: src/c/CdfBase.c, line: 125
+# File: src/c/CdfBase.c, line: 129
 #, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
 msgstr ""
 
 #
-# File: src/c/CdfBase.c, line: 134
+# File: src/c/CdfBase.c, line: 137
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %s\n"
 msgstr ""
 
 #
-# File: src/c/CdfBase.c, line: 138
+# File: src/c/CdfBase.c, line: 141
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr ""
@@ -338,6 +375,7 @@ msgstr ""
 # File: macros/center.sci, line: 35
 # File: macros/cmoment.sci, line: 37
 # File: macros/cmoment.sci, line: 55
+# File: macros/correl.sci, line: 26
 # File: macros/geomean.sci, line: 31
 # File: macros/geomean.sci, line: 37
 # File: macros/harmean.sci, line: 33
@@ -371,16 +409,8 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/correl.sci, line: 26
-# File: macros/covar.sci, line: 28
-# File: macros/perctl.sci, line: 31
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-
-#
-# File: macros/correl.sci, line: 31
-# File: macros/correl.sci, line: 32
+# File: macros/correl.sci, line: 33
+# File: macros/correl.sci, line: 37
 # File: macros/covar.sci, line: 32
 # File: macros/covar.sci, line: 33
 #, c-format
@@ -388,7 +418,13 @@ msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
 msgstr ""
 
 #
-# File: macros/correl.sci, line: 37
+# File: macros/correl.sci, line: 52
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected"
+msgstr ""
+
+#
+# File: macros/correl.sci, line: 64
 # File: macros/covar.sci, line: 37
 #, c-format
 msgid ""
@@ -397,7 +433,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/correl.sci, line: 38
+# File: macros/correl.sci, line: 67
 # File: macros/covar.sci, line: 38
 #, c-format
 msgid ""
@@ -449,6 +485,13 @@ msgstr ""
 # File: macros/cov.sci, line: 184
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+msgstr ""
+
+#
+# File: macros/covar.sci, line: 28
+# File: macros/perctl.sci, line: 31
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #

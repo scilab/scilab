@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/sci_conv2.c, line: 38
 # File: sci_gateway/c/sci_conv2.c, line: 99
@@ -126,6 +126,13 @@ msgstr ""
 
 #
 # File: demos/arma/arma3.dem.sce, line: 51
+# File: demos/remezfilt.dem.sce, line: 49
+# File: demos/remezfilt.dem.sce, line: 58
+# File: demos/spect.dem.sce, line: 45
+# File: demos/spect.dem.sce, line: 58
+# File: demos/winfilt.dem.sce, line: 21
+# File: demos/winfilt.dem.sce, line: 36
+# File: demos/winfilt.dem.sce, line: 52
 msgid "frequency"
 msgstr ""
 
@@ -180,6 +187,26 @@ msgid "Signal derivative estimate"
 msgstr ""
 
 #
+# File: demos/iir.dem.sce, line: 15
+msgid "Choose filter type and parameters"
+msgstr ""
+
+#
+# File: demos/iir.dem.sce, line: 25
+msgid "Discrete IIR filter "
+msgstr ""
+
+#
+# File: demos/iirfilt.dem.sce, line: 21
+msgid "Discrete IIR filter : low pass  fr < 0.2"
+msgstr ""
+
+#
+# File: demos/iirfilt.dem.sce, line: 32
+msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
+msgstr ""
+
+#
 # File: demos/remezfilt.dem.sce, line: 23
 msgid "Minimax FIR filter"
 msgstr ""
@@ -191,7 +218,18 @@ msgstr ""
 
 #
 # File: demos/remezfilt.dem.sce, line: 25
+# File: demos/winfilt.dem.sce, line: 24
 msgid "length 33"
+msgstr ""
+
+#
+# File: demos/remezfilt.dem.sce, line: 49
+msgid "Remez Triangular filter"
+msgstr ""
+
+#
+# File: demos/remezfilt.dem.sce, line: 58
+msgid "magnitude error"
 msgstr ""
 
 #
@@ -260,6 +298,29 @@ msgid "Arma, Spectral power estimation"
 msgstr ""
 
 #
+# File: demos/spect.dem.sce, line: 45
+msgid "Data spectrum"
+msgstr ""
+
+#
+# File: demos/spect.dem.sce, line: 45
+# File: demos/winfilt.dem.sce, line: 21
+# File: demos/winfilt.dem.sce, line: 36
+# File: demos/winfilt.dem.sce, line: 52
+msgid "magnitude"
+msgstr ""
+
+#
+# File: demos/spect.dem.sce, line: 58
+msgid "Spectral estimation"
+msgstr ""
+
+#
+# File: demos/spect.dem.sce, line: 58
+msgid "spectral power"
+msgstr ""
+
+#
 # File: demos/wiener.dem.sce, line: 94
 msgid "estimates xf"
 msgstr ""
@@ -272,6 +333,42 @@ msgstr ""
 #
 # File: demos/wiener.dem.sce, line: 94
 msgid "real state"
+msgstr ""
+
+#
+# File: demos/winfilt.dem.sce, line: 22
+# File: demos/winfilt.dem.sce, line: 37
+msgid "Windowed FIR Low pass Filter"
+msgstr ""
+
+#
+# File: demos/winfilt.dem.sce, line: 23
+msgid "Kaiser window,cut-off:0.2"
+msgstr ""
+
+#
+# File: demos/winfilt.dem.sce, line: 38
+msgid "Hamming window,cut-off:0.2,0.3"
+msgstr ""
+
+#
+# File: demos/winfilt.dem.sce, line: 39
+msgid "length 127"
+msgstr ""
+
+#
+# File: demos/winfilt.dem.sce, line: 53
+msgid "Windowed FIR Band pass Filter"
+msgstr ""
+
+#
+# File: demos/winfilt.dem.sce, line: 54
+msgid "Chebyshev window,cut-off:0.15,0.35"
+msgstr ""
+
+#
+# File: demos/winfilt.dem.sce, line: 55
+msgid "length 55"
 msgstr ""
 
 #
@@ -436,6 +533,12 @@ msgstr ""
 # File: macros/trans.sci, line: 50
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#
+# File: macros/frfit.sci, line: 73
+#, c-format
+msgid "%s: Filter order too small.\n"
 msgstr ""
 
 #

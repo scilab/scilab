@@ -19,9 +19,9 @@
 // See the file ../license.txt
 //
 //------------------------------------
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 //------------------------------------
-genlib('Misclib','SCI/modules/scicos_blocks/macros/Misc',%f,%t);
+genlib("Misclib","SCI/modules/scicos_blocks/macros/Misc",%f,%t);
 //------------------------------------

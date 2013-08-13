@@ -74,7 +74,7 @@ function dir_created = atomsExtract(archive_in,dir_out)
 
     elseif regexp(archive_in,"/\.zip$/","o") <> [] then
 
-        if getos() == 'Windows' then
+        if getos() == "Windows" then
             extract_cmd = """" + getshortpathname(pathconvert(SCI+"/tools/zip/unzip.exe",%F)) + """";
         else
             extract_cmd = "unzip";
@@ -88,9 +88,9 @@ function dir_created = atomsExtract(archive_in,dir_out)
 
     if stat ~= 0 then
         atomsError("error", ..
-            msprintf(gettext("%s: The extraction of the archive ''%s'' has failed.\n"), ..
-                "atomsExtract", ..
-                strsubst(archive_in,"\","\\") ));
+        msprintf(gettext("%s: The extraction of the archive ''%s'' has failed.\n"), ..
+        "atomsExtract", ..
+        strsubst(archive_in,"\","\\") ));
     end
 
     // Get the list of directories after the extraction

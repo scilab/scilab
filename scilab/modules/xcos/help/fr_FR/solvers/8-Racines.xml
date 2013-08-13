@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Scilab Enterprises - 2012 - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.
+ * The terms are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="RootFinding2">
+    <refnamediv>
+        <refname>Recherche de racines</refname>
+        <refpurpose>
+            Cette fonctionnalité trouve des racines de fonctions continues pour les blocks Zero-crossing.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Certains problèmes requièrent la détection de passage de zéro de fonctions continues (par exemple, les systèmes de régulation).
+            Tous les solveurs assurent cette foncionnalité, et est réalisée en suivant le même procédé.
+        </para>
+        <para>
+            Chaque Zero-crossing Block définit une de ces fonctions, notées <emphasis>g(t)</emphasis>.
+        </para>
+        <para>
+            En général, cette fonctionnalité ne trouve que les racines à multiplicité impaire, correspondant à un
+            changement de signe de <emphasis>g(t)</emphasis>. Si une de ces fonctions a une racine à multiplicité impaire (pas de changement de signe), elle ne sera probablement pas détectée. Si une telle racine est désirée,
+            l'utilisateur doit reformuler la fonction pour qu'elle change de signe à l'endroit de la racine.
+        </para>
+        <para>
+            Le schéma utilisé est de vérifier les traversées de zéro de <emphasis>g(t)</emphasis> sur chaque pas de temps, puis (changement de signe détecté) de zoomer sur cette traversée (ou racine) grâce à une méthode des sécantes modifiée.
+        </para>
+        <para>
+            Après des vérifications et ajustements corrects, les racines sont recherchées dans
+            <emphasis>
+                [t<subscript>lo</subscript>, t<subscript>hi</subscript>]
+            </emphasis>
+            . On entre dans une boucle pour localiser
+            la racine suivant une tolérance acceptable, donnée par <emphasis>l'arrondi de la machine</emphasis>, le <emphasis>temps actuel</emphasis> et le <emphasis>pas de temps</emphasis>.
+        </para>
+        <para>
+            On détermine alors quelle fonction racine a le plus de chances de voir sa racine arriver en première en comparant les valeurs de la méthode des sécantes, et on donne une nouvelle valeur
+            <emphasis>
+                t<subscript>mid</subscript>
+            </emphasis>
+            et on restreint l'intervalle de recherche à
+            <emphasis>
+                [t<subscript>lo</subscript>, t<subscript>mid</subscript>]
+            </emphasis>
+            ou
+            <emphasis>
+                [t<subscript>mid</subscript>, t<subscript>hi</subscript>]
+            </emphasis>
+            , suivant dans lequel le changement de signe se produit.
+        </para>
+        <para>
+            Puisque la tolérance dépend du pas de temps, plus ce dernier est faible, plus la précision sera grande.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples et Analyse du temps de calcul</title>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/Threshold_ZeroCrossing.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../demos/Threshold_ZeroCrossing.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/demos/Threshold_ZeroCrossing.zcos");
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            Exemple simple d'une fonction Sinus traversant zéro plusieurs fois :
+        </para>
+        <para>
+            <programlisting language="example"><![CDATA[
+      // Import du diagramme et réglage du temps final
+      loadScicos();
+      loadXcosLibs();
+      importXcosDiagram("SCI/modules/xcos/demos/Threshold_ZeroCrossing.zcos");
+
+      // Lancement du chronomètre, de la simulation et affichage du temps
+      tic();
+      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+      t = toc();
+      disp(t, "Temps pour LSodar :");
+      ]]></programlisting>
+        </para>
+        <para>
+            Les barres bleues représentent les traversées "positif vers négatif", et les rouges "négatif vers positif".
+        </para>
+        <para>
+            Dans les scripts suivants, on test le surplus de calcul de la détection de racines avec <emphasis>LSodar</emphasis> :
+        </para>
+        <para>
+            D'abord, un Sinus traversant zéro toutes les &#960; périodes :
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/Rootfinding.sce">
+                Ouverture du script
+            </link>
+        </para>
+        <para>
+            <screen><![CDATA[
+Temps avec recherche de racine :
+ 15.021
+
+Temps sans recherche de racine :
+ 10.573
+            ]]></screen>
+        </para>
+        <para>
+            Ensuite, une simple ligne droite traversant zéro une seule fois, au milieu de l'intervalle :
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/RootfindingSimple.sce">
+                Ouverture du script
+            </link>
+        </para>
+        <para>
+            <screen><![CDATA[
+Temps avec recherche de racine :
+ 0.114
+
+Temps sans recherche de racine :
+ 0.09
+            ]]></screen>
+        </para>
+        <para>
+            Suivant le nombre de racines, l'aspect de la fonction à l'approche de ces racines, les tolérances, ..., le surplus de temps de calcul va de 25% à 45%.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Voir Aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="LSodar">LSodar</link>
+            </member>
+            <member>
+                <link linkend="CVode">CVode</link>
+            </member>
+            <member>
+                <link linkend="IDA">IDA</link>
+            </member>
+            <member>
+                <link linkend="RK">Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DoPri">Dormand-Prince 4(5)</link>
+            </member>
+            <member>
+                <link linkend="RKImp">Runge-Kutta Implicite 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
+            </member>
+            <member>
+                <link linkend="Comparaisons">Comparaisons</link>
+            </member>
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
+            </member>
+            <member>
+                <link linkend="ode_root">ode_root</link>
+            </member>
+            <member>
+                <link linkend="odedc">odedc</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliographie</title>
+        <para>
+            <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Documentation Sundials</ulink>
+        </para>
+    </refsection>
+</refentry>

@@ -160,6 +160,7 @@ src/c/getHandleProperty/get_outside_colors_property.c \
 src/c/getHandleProperty/get_grid_position_property.c \
 src/c/getHandleProperty/get_anti_aliasing_property.c \
 src/c/getHandleProperty/get_tag_property.c \
+src/c/getHandleProperty/get_image_type_property.c \
 src/c/getHandleProperty/GetHashTable.c \
 src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
@@ -299,6 +300,7 @@ src/c/getHandleProperty/set_figure_resizefcn_property.c \
 src/c/getHandleProperty/get_figure_resizefcn_property.c \
 src/c/getHandleProperty/set_figure_closerequestfcn_property.c \
 src/c/getHandleProperty/get_figure_closerequestfcn_property.c \
+src/c/getHandleProperty/set_image_type_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \
@@ -390,7 +392,6 @@ sci_gateway/c/sci_fec.c \
 sci_gateway/c/sci_rubberbox.c \
 sci_gateway/c/sci_rotate_axes.c \
 sci_gateway/c/sci_is_handle_valid.c \
-sci_gateway/c/sci_show_pixmap.c \
 sci_gateway/c/sci_Legend.c
 
 libscigraphics_la_CPPFLAGS = \

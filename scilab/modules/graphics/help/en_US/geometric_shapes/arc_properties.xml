@@ -131,7 +131,7 @@
             <varlistentry>
                 <term>arc_drawing_method:</term>
                 <listitem>
-                    <para>This field controls the kind of discretisation used to render
+                    <para>This field controls the kind of discretization used to render
                         the arc. Its value must be either <literal>"nurbs"</literal> or
                         <literal>"lines"</literal>. If <literal>"nurbs"</literal> is
                         selected then the arc is rendered using nurbs curves and surfaces.

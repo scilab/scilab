@@ -290,6 +290,7 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
             iSize *= _piDims[i];
         }
 
+        FREE(dims);
     }
     else
     {
@@ -591,6 +592,41 @@ int readStringMatrix(int _iDatasetId, char **_pstData)
 
     //Read the data.
     status = H5Dread(_iDatasetId, typeId, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pstData);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    status = H5Tclose(typeId);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    return 0;
+}
+
+int freeStringMatrix(int _iDatasetId, char** _pstData)
+{
+    herr_t status;
+    hid_t typeId;
+    hid_t space;
+
+    typeId = H5Tcopy(H5T_C_S1);
+    status = H5Tset_size(typeId, H5T_VARIABLE);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    space = H5Dget_space (_iDatasetId);
+    status = H5Dvlen_reclaim (typeId, space, H5P_DEFAULT, _pstData);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    status = H5Sclose(space);
     if (status < 0)
     {
         return -1;

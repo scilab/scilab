@@ -66,18 +66,18 @@ function str = _strvec ( x )
     str = strcat(string(x)," ")
 endfunction
 function s = _tostring ( x )
-  if ( x==[] ) then
-    s = "[]"
-  else
-    n = size ( x , "*" )
-    if ( n == 1 ) then
-      s = string(x)
+    if ( x==[] ) then
+        s = "[]"
     else
-	  [nr,nc] = size(x)
-	  tx = typeof(x)
-      s = msprintf("%d-by-%d %s matrix",nr,nc,tx)
+        n = size ( x , "*" )
+        if ( n == 1 ) then
+            s = string(x)
+        else
+            [nr,nc] = size(x)
+            tx = typeof(x)
+            s = msprintf("%d-by-%d %s matrix",nr,nc,tx)
+        end
     end
-  end
 endfunction
 
 

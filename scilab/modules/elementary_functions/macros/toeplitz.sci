@@ -25,9 +25,9 @@ function a = toeplitz(c, r)
         r = c(:);
     end
 
-    nr = size(r, '*');
+    nr = size(r, "*");
     r = matrix(r, 1, nr);
-    nc = size(c, '*');
+    nc = size(c, "*");
     c = matrix(c, 1, nc);
 
     if nr * nc == 0 then

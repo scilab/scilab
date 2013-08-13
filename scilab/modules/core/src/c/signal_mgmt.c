@@ -403,8 +403,7 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
     // 4 is to ignore the first 4 functions
     bt = backtrace_print(4, 1);
     Scierror(42,
-             _
-             ("Oups. A fatal error has been detected by Scilab.\nYour instance will probably crash soon.\nPlease report a bug on %s with:\n* a sample code which reproduces the issue\n* the result of [a, b] = getdebuginfo()\n* the following information:\n%s %s\n"),
+             _("A fatal error has been detected by Scilab.\nYour instance will probably quit unexpectedly soon.\nIf a graphic feature has been used, this might be caused by the system graphic drivers.\nPlease try to update them and run this feature again.\nYou can report a bug on %s with:\n* a sample code which reproduces the issue\n* the result of [a, b] = getdebuginfo()\n* the following information:\n%s %s\n"),
              PACKAGE_BUGREPORT, print_buffer, bt);
 
     free(bt);
@@ -415,7 +414,7 @@ void base_error_init(void)
 {
     struct sigaction act;
 
-    int sig, j;
+    int j;
 
     struct sigaction ToSuspend;
 

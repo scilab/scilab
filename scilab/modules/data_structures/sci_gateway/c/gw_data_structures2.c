@@ -20,27 +20,27 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{sci_getfield, "getfield"},
-	{sci_setfield, "setfield"}
+    {sci_getfield, "getfield"},
+    {sci_setfield, "setfield"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_data_structures2(void)
 {
-	Rhs=Max(Rhs,0);
-	if (Top - Rhs + Lhs + 1 >= Bot)
-	{
-		static int codeerror = 18;
-		SciError(codeerror);
-		return 0;
-	}
+    Rhs = Max(Rhs, 0);
+    if (Top - Rhs + Lhs + 1 >= Bot)
+    {
+        static int codeerror = 18;
+        SciError(codeerror);
+        return 0;
+    }
 
-	if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-	}
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
 
-	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

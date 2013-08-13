@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:12+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-23 21:41+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Invalid argument address"
@@ -205,6 +205,9 @@ msgstr "Chyba API:\n"
 msgid "\tin %s\n"
 msgstr "\tv %s\n"
 
+msgid "handle matrix"
+msgstr "zpracování matice"
+
 msgid "int matrix"
 msgstr "celočíselná matice"
 
@@ -241,6 +244,24 @@ msgstr "%s: Položky musí být vloženy popořadě"
 
 msgid "API_ERROR_GET_POLY_IN_LIST"
 msgstr "API_ERROR_GET_POLY_IN_LIST"
+
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr "%s: Nepovinné argumenty jméno=hodnota musí být na konci.\n"
+
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr "%s: Nerozpoznané nepovinné argumenty %s.\n"
+
+msgid "Optional argument list is empty.\n"
+msgstr "Seznam nepovinných argumentů je prázdný.\n"
+
+msgid "Optional arguments list: \n"
+msgstr "Seznam nepovinných argumentů: \n"
+
+#, c-format
+msgid "and %s.\n"
+msgstr "a %s.\n"
 
 msgid "pointer"
 msgstr "ukazatel"
@@ -294,3 +315,7 @@ msgstr "%s: Není více paměti.\n"
 #, c-format
 msgid "%s: Invalid variable name.\n"
 msgstr "%s: neplatné jméno proměnné.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An integer expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu %d: Očekáváno celé číslo.\n"

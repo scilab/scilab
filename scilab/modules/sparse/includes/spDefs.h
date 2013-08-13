@@ -360,7 +360,7 @@
 /*
  *  ASSERT and ABORT
  *
- *  Macro used to assert that if the code is working correctly, then 
+ *  Macro used to assert that if the code is working correctly, then
  *  a condition must be true.  If not, then execution is terminated
  *  and an error message is issued stating that there is an internal
  *  error and giving the file and line number.  These assertions are
@@ -429,7 +429,8 @@ typedef  spREAL  RealNumber, *RealVector;
 /* Begin `ComplexNumber'. */
 
 typedef  struct
-{   RealNumber  Real;
+{
+    RealNumber  Real;
     RealNumber  Imag;
 } ComplexNumber, *ComplexVector;
 
@@ -486,7 +487,8 @@ typedef  struct
 /* Begin `MatrixElement'. */
 
 struct  MatrixElement
-{   RealNumber   Real;
+{
+    RealNumber   Real;
 #if spCOMPLEX
     RealNumber   Imag;
 #endif
@@ -527,7 +529,8 @@ typedef  ElementPtr  *ArrayOfElementPtrs;
 
 /* Begin `AllocationRecord'. */
 struct AllocationRecord
-{   char  *AllocatedPtr;
+{
+    char  *AllocatedPtr;
     struct  AllocationRecord  *NextRecord;
 };
 
@@ -562,7 +565,8 @@ typedef  struct  AllocationRecord  *AllocationListPtr;
 
 /* Begin `FillinListNodeStruct'. */
 struct FillinListNodeStruct
-{   ElementPtr  pFillinList;
+{
+    ElementPtr  pFillinList;
     int         NumberOfFillinsInList;
     struct      FillinListNodeStruct  *Next;
 };
@@ -687,7 +691,7 @@ struct FillinListNodeStruct
  *      Flag that indicates the sum of row and column interchange counts
  *      is an odd number.  Used when determining the sign of the determinant.
  *  Partitioned  (SPBOOLEAN)
- *      This flag indicates that the columns of the matrix have been 
+ *      This flag indicates that the columns of the matrix have been
  *      partitioned into two groups.  Those that will be addressed directly
  *      and those that will be addressed indirectly in spFactor().
  *  PivotsOriginalCol  (int)
@@ -766,8 +770,8 @@ struct FillinListNodeStruct
 
 /* Begin `MatrixFrame'. */
 struct  MatrixFrame
-{ 
-  int                            NumRank ; /* the numerical Rank of the matrix */
+{
+    int                            NumRank ; /* the numerical Rank of the matrix */
     RealNumber                   AbsThreshold;
     int                          AllocatedSize;
     int                          AllocatedExtSize;

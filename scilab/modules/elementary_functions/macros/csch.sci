@@ -8,11 +8,15 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y = csch(x)
-  //Cosecant hyperbolic
-  rhs = argn(2);
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"csch", 1));
-  end
-  
-  y = ones(x)./sinh(x);
+    //Cosecant hyperbolic
+    rhs = argn(2);
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"csch", 1));
+    end
+    
+    if type(x) <> 1 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"csch", 1));
+    end
+
+    y = ones(x)./sinh(x);
 endfunction

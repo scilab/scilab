@@ -17,31 +17,31 @@
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
-{ 
-	{cdfbetI, "cdfbet"},
-	{cdfbinI, "cdfbin"},
-	{cdfchiI, "cdfchi"},
-	{cdfchnI, "cdfchn"},
-	{cdffI, "cdff"},
-	{cdffncI, "cdffnc"},
-	{cdfgamI, "cdfgam"},
-	{cdfnbnI, "cdfnbn"},
-	{cdfnorI, "cdfnor"},
-	{cdfpoiI, "cdfpoi"},
-	{cdftI, "cdft"}
+{
+    {cdfbetI, "cdfbet"},
+    {cdfbinI, "cdfbin"},
+    {cdfchiI, "cdfchi"},
+    {cdfchnI, "cdfchn"},
+    {cdffI, "cdff"},
+    {cdffncI, "cdffnc"},
+    {cdfgamI, "cdfgam"},
+    {cdfnbnI, "cdfnbn"},
+    {cdfnorI, "cdfnor"},
+    {cdfpoiI, "cdfpoi"},
+    {cdftI, "cdft"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_statistics()
-{  
-	Rhs = Max(0, Rhs);
+{
+    Rhs = Max(0, Rhs);
 
-    if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-	}
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
 
-	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

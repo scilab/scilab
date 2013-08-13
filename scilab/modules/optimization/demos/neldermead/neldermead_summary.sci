@@ -10,20 +10,20 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function neldermead_summary(nm)
-function str = _strvec ( x )
-    str = strcat(string(x)," ")
-endfunction
+    function str = _strvec ( x )
+        str = strcat(string(x)," ")
+    endfunction
 
-  xopt = neldermead_get(nm,"-xopt")
-  fopt = neldermead_get(nm,"-fopt")
-  funevals = neldermead_get(nm,"-funevals")
-  iter = neldermead_get(nm,"-iterations")
-  status = neldermead_get(nm,"-status")
-  restartnb = neldermead_get(nm,"-restartnb")
-  mprintf("Xopt: [%s]\n",_strvec(xopt));
-  mprintf("Fopt: %s\n",string(fopt));
-  mprintf("Function evaluations: %d\n",funevals);
-  mprintf("Iterations: %d\n",iter);
-  mprintf("Status: %s\n",status);
-  mprintf("Restartnb: %d\n",restartnb)
-endfunction 
+    xopt = neldermead_get(nm,"-xopt")
+    fopt = neldermead_get(nm,"-fopt")
+    funevals = neldermead_get(nm,"-funevals")
+    iter = neldermead_get(nm,"-iterations")
+    status = neldermead_get(nm,"-status")
+    restartnb = neldermead_get(nm,"-restartnb")
+    mprintf("Xopt: [%s]\n",_strvec(xopt));
+    mprintf("Fopt: %s\n",string(fopt));
+    mprintf("Function evaluations: %d\n",funevals);
+    mprintf("Iterations: %d\n",iter);
+    mprintf("Status: %s\n",status);
+    mprintf("Restartnb: %d\n",restartnb)
+endfunction

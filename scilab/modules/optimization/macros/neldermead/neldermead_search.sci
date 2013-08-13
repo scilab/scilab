@@ -277,7 +277,7 @@ function this = neldermead_variable ( this )
             this = neldermead_log (this,sprintf("Reflect"));
         end
         // Transpose, because optimsimplex returns row vectors
-        xbar   = optimsimplex_xbar ( simplex ).'; 
+        xbar   = optimsimplex_xbar ( simplex ).';
         if ( verbose == 1 ) then
             this = neldermead_log (this,sprintf("xbar="+_strvec(xbar)+""));
         end
@@ -359,7 +359,7 @@ function this = neldermead_variable ( this )
                 step = "shrink";
             end
         else
-            // ( fr >= fn & fr >= fhigh )  
+            // ( fr >= fn & fr >= fhigh )
             // Inside contraction
             if ( verbose == 1 ) then
                 this = neldermead_log (this,sprintf("Contract - inside"));
@@ -635,7 +635,7 @@ function [ this , terminate , status ] = neldermead_termination (this , ...
             tolsa = this.tolsimplexizeabsolute;
             tolsr = this.tolsimplexizerelative;
             ssize0 = this.simplexsize0;
-            if ( verbose == 1 ) then 
+            if ( verbose == 1 ) then
                 this.optbase = optimbase_stoplog  ( this.optbase,sprintf("  > simplex size=%s < %s + %s * %s",...
                 string(ssize), string(tolsa) , string(tolsr) , string(ssize0) ));
             end
@@ -651,12 +651,12 @@ function [ this , terminate , status ] = neldermead_termination (this , ...
     if ( ~terminate ) then
         if ( this.tolssizedeltafvmethod ) then
             ssize = optimsimplex_size ( simplex , "sigmaplus" );
-            if ( verbose == 1 ) then 
+            if ( verbose == 1 ) then
                 this.optbase = optimbase_stoplog  ( this.optbase,sprintf("  > simplex size=%s < %s",...
                 string(ssize), string(this.tolsimplexizeabsolute)));
             end
             shiftfv = abs(optimsimplex_deltafvmax( simplex ))
-            if ( verbose == 1 ) then 
+            if ( verbose == 1 ) then
                 this.optbase = optimbase_stoplog  ( this.optbase,sprintf("  > abs(fv(n+1) - fv(1))=%s < toldeltafv=%s",...
                 string(shiftfv), string(this.toldeltafv)));
             end
@@ -737,14 +737,14 @@ function [ this , terminate , status ] = neldermead_termination (this , ...
             end
         end
     end
-    //		
+    //
     // Obsolete option: maintain for backward compatibility
     // Criteria #11 : user-defined criteria
-    //		
+    //
     if ( ~terminate ) then
         if ( this.myterminateflag ) then
             [ this , term , stat ] = this.myterminate ( this , simplex )
-            if ( term ) then 
+            if ( term ) then
                 terminate = term
                 status = stat
             end
@@ -1019,7 +1019,7 @@ function this = neldermead_startup (this)
 endfunction
 //
 // neldermead_scaletox0 --
-//   Scale the simplex into the 
+//   Scale the simplex into the
 //   nonlinear inequality constraints, if any.
 //   Scale toward x0, which is feasible.
 //   Do not update the function values.
@@ -1051,7 +1051,7 @@ function [ this , simplex0 ] = neldermead_scaletox0 ( this , simplex0 )
 endfunction
 //
 // neldermead_scaletocenter --
-//   Scale the simplex into the 
+//   Scale the simplex into the
 //   nonlinear inequality constraints, if any.
 //   Scale to the centroid of the points
 //   which satisfy the constraints.
@@ -1061,7 +1061,7 @@ endfunction
 //   It is unsure, since the centroid of the points
 //   which satisfy the constraints may not be feasible.
 // Arguments
-//   
+//
 //
 function [ this , simplex0 ] = neldermead_scaletocenter ( this , simplex0 , x0 )
     [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
@@ -1109,7 +1109,7 @@ function this = neldermead_termstartup ( this )
             [sg,this] = optimsimplex_gradientfv ( this.simplex0 , neldermead_costf , "forward" , this )
             nsg = sg.' * sg
             sigma0 = optimsimplex_size ( this.simplex0 , "sigmaplus" )
-            if nsg==0.0 then 
+            if nsg==0.0 then
                 this.kelleyalpha = this.kelleystagnationalpha0
             else
                 this.kelleyalpha = this.kelleystagnationalpha0 * sigma0 / nsg
@@ -1352,10 +1352,10 @@ endfunction
 // _boxlinesearch --
 //   For Box's method, perform a line search
 //   from xbar, on the line (xhigh,xbar) and returns:
-//   status : %t if the search is successful, 
+//   status : %t if the search is successful,
 //            status=%f if the search failed.
 //   xr : the reflected, scaled point
-//   fr : the function value. fr=f(xr) if the search successful, 
+//   fr : the function value. fr=f(xr) if the search successful,
 //        fr is Nan if the search failed.
 //   The reflected point satisfies the following
 //   constraints :
@@ -1414,7 +1414,7 @@ function [ this , status , xr , fr ] = _boxlinesearch ( this , n , xbar , xhigh 
     end
     //
     // 2. Scale from xr to xbar into nonlinear inequality constraints
-    // and update xr. 
+    // and update xr.
     // Set status to %f if the process fails, set status=%t if it succeeds.
     //
     nbnlc = optimbase_cget ( this.optbase , "-nbineqconst" );
@@ -1434,7 +1434,7 @@ function [ this , status , xr , fr ] = _boxlinesearch ( this , n , xbar , xhigh 
             xr = ( 1.0 - alpha ) * xbar + alpha * xr0;
         end
     end
-    // If scaling failed, returns immediately 
+    // If scaling failed, returns immediately
     // (there is no need to update the function value).
     if ( ~status ) then
         fr = %nan
@@ -1470,7 +1470,7 @@ endfunction
 // costf_transposex --
 //   Call the cost function and return the value.
 //   Transpose the value of x, so that the input row vector,
-//   given by optimsimplex, is transposed into a column vector, 
+//   given by optimsimplex, is transposed into a column vector,
 //   as required by the cost function.
 //
 function [ f , this ] = costf_transposex ( x , this )
@@ -1478,17 +1478,17 @@ function [ f , this ] = costf_transposex ( x , this )
     [ f , this ] = neldermead_costf ( xt , this )
 endfunction
 
-    function argin = argindefault ( rhs , vararglist , ivar , default )
-        // Returns the value of the input argument #ivar.
-        // If this argument was not provided, or was equal to the 
-        // empty matrix, returns the default value.
-        if ( rhs < ivar ) then
-            argin = default
+function argin = argindefault ( rhs , vararglist , ivar , default )
+    // Returns the value of the input argument #ivar.
+    // If this argument was not provided, or was equal to the
+    // empty matrix, returns the default value.
+    if ( rhs < ivar ) then
+        argin = default
+    else
+        if ( vararglist(ivar) <> [] ) then
+            argin = vararglist(ivar)
         else
-            if ( vararglist(ivar) <> [] ) then
-                argin = vararglist(ivar)
-            else
-                argin = default
-            end
+            argin = default
         end
-    endfunction
+    end
+endfunction

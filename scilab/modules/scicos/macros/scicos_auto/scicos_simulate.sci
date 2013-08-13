@@ -1,5 +1,6 @@
 //  Scicos
 //
+//  Copyright (C) Scilab Enterprises - 2013 - Bruno JOFRET
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 //  Copyright (C) 2011 - INRIA - Serge Steer
 
@@ -152,7 +153,8 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
     "cscopxy", ...
     "cscopxy3d", ...
     "cmatview", ...
-    "cmat3d"]
+    "cmat3d", ...
+    "bplatform2"]
 
     //** load the scicos function libraries
     //------------------------------------
@@ -248,7 +250,8 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
         error(["Incorrect context definition, " + lasterror()])
     end
 
-    if %cpr == list() then
+    // perform block supression only on partial compilation and full compilation
+    if needcompile > 1 then
         need_suppress  =%t
     else
         need_suppress = %f
@@ -263,7 +266,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
 
     if or(%state0_n <> %state0) then //initial state has been changed
         %state0 = %state0_n
-        [alreadyran, %cpr] = do_terminate1(scs_m, %cpr)
+        [alreadyran, %cpr, Resume_line, TOWS_vals, Names] = do_terminate1(scs_m, %cpr)
         choix = []
     end
     if (%cpr.sim.xptr($) - 1) < size(%cpr.state.x,"*") & solver < 100 then
@@ -271,7 +274,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
         solver = 100
         tolerances(6) = solver
     elseif (%cpr.sim.xptr($) - 1) == size(%cpr.state.x,"*") & ...
-        solver == 100 & size(%cpr.state.x,"*") <> 0 then
+        (or (solver == [100 101 102])) & size(%cpr.state.x,"*") <> 0 then
         warning(msprintf(_("Diagram has been compiled for explicit solver\nswitching to explicit solver.\n")))
         solver = 0
         tolerances(6) = solver
@@ -281,6 +284,9 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
         for i = 1:length(%cpr.sim.funs)
             if type(%cpr.sim.funs(i)) <> 13 then
                 if find(%cpr.sim.funs(i)(1) == Ignore) <> [] then
+                    if (%cpr.sim.funs(i)(1) == "bplatform2") then
+                        %cpr.sim.funtyp(i) = 4; // BPLATFORM block has function type 5, so need to set it to 4, like the trash block.
+                    end
                     %cpr.sim.funs(i)(1) = "trash";
                 end
             end
@@ -289,7 +295,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
 
     if needstart then //scicos initialization
         if alreadyran then
-            [alreadyran, %cpr] = do_terminate1(scs_m, %cpr)
+            [alreadyran, %cpr, Resume_line, TOWS_vals, Names] = do_terminate1(scs_m, %cpr)
             alreadyran = %f
         end
         %tcur = 0
@@ -301,7 +307,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
         ierr = execstr("[state, t] = scicosim(%cpr.state, %tcur, tf, %cpr.sim," + ..
         "''start'', tolerances)","errcatch")
         if ierr <> 0 then
-            error(_("Initialisation problem:"))
+            error(_("Initialization problem:"))
         end
         %cpr.state = state
     end
@@ -313,7 +319,15 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
         alreadyran = %t
         if (tf - t) < tolerances(3) then
             needstart = %t
-            [alreadyran, %cpr] = do_terminate1(scs_m, %cpr)
+            [alreadyran, %cpr, Resume_line, TOWS_vals, Names] = do_terminate1(scs_m, %cpr)
+            for i=1:size(Names, "c")
+                ierr = execstr(Names(i)+" = TOWS_vals("+string(i)+");", "errcatch");
+                if ierr <> 0 then
+                    str_err = split_lasterror(lasterror());
+                    message(["Simulation problem" ; "Unable to find To Workspace Variable {"+Names(i)+"}:" ; str_err]);
+                    break;
+                end
+            end
         else
             %tcur = t
         end
@@ -323,17 +337,19 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
 
     Info = list(%tcur, %cpr, alreadyran, needstart, needcompile, %state0)
 
-    [txt, files] = returntoscilab()
-    n = size(files,1)
-    for i = 1:n
-        load(TMPDIR + "/Workspace/" + files(i))
-        execstr(files(i) + " = struct('"values'", x, '"time'", t)")
+    // Executing the resume() function at the end, because it does not return control
+    if ~isempty(Names) then
+        execstr(Resume_line);
     end
-    execstr(txt)
 endfunction
 
-function [alreadyran, %cpr] = do_terminate1(scs_m, %cpr)
+function [alreadyran, %cpr, Resume_line, TOWS_vals, Names] = do_terminate1(scs_m, %cpr)
     // Copyright INRIA
+
+    // Default return values
+    Resume_line = "";
+    TOWS_vals = struct("values",[],"time",[]);
+    Names = [];
 
     if prod(size(%cpr)) < 2 then
         alreadyran = %f
@@ -350,6 +366,62 @@ function [alreadyran, %cpr] = do_terminate1(scs_m, %cpr)
         %cpr.state = state
         if ierr <> 0 then
             error([_("End problem: ");lasterror()])
+        end
+
+        // Restore saved variables in Scilab environment ("To workspace" block)
+
+        // First step: Search the %cpr tree for TOWS_c blocks, and extract the variable names.
+        path = %cpr.sim;
+        buff_sizes = [];
+        increment = 1;
+        for i=1:size(path.funs)
+            increment2 = path.ipptr(i+1);
+            if (increment2 - increment <> 0) then   // ipar has at least a few elements
+                space = increment2 - increment;      // The number of elements that the current block pushed into ipar
+                if (path.funs(i) == "tows_c") then  // Found a Tow_workspace block
+                    varNameLen = space - 2;         // Space minus 'buffer_size' and 'var length' ipar elements
+                    varNameCode = path.ipar(increment+2:increment+2+varNameLen-1);  // varName is stored in Scilab code
+                    varName = ascii(varNameCode);
+                    Names = [Names varName];        // Append varName in Names
+                    buff_size  = path.ipar(increment);  // Retrieve buffer size
+                    buff_sizes = [buff_sizes buff_size];
+                end
+                increment = increment2;
+            end
+        end
+        // At the end, Names contains the string names of the variables and buff_sizes the respective buffer sizes
+
+        // Second step: Link the variable names to their values vectors,
+        //and call '[names(1), names(2), ...] = resume(names(1), names(2), ...)' to save the variable into Scilab
+        if ~isempty(Names) then
+            for i=1:size(Names, "c")
+                execstr("NamesIval = "+Names(i)+"_val;");
+                execstr("NamesIvalt = "+Names(i)+"_valt;");
+                // If input is a matrix, use function matrix() to reshape the saved values
+                // Check condition using time vector, if we have more values than time stamps, split it
+                if (size(NamesIval, "r") > size(NamesIvalt, "r")) then  // In this case, size(Names(i), 'r') = buff_sizes(i) * nCols2
+                    nRows  = size(NamesIvalt, "r");
+                    nCols  = size(NamesIval, "c");
+                    nCols2 = size(NamesIval, "r") / nRows;
+                    NamesIval = matrix(NamesIval, nCols, nCols2, nRows);
+                end
+                if i == 1 then
+                    // Replace default struct with value vector of first element of 'Names'
+                    TOWS_vals.values = NamesIval;
+                    TOWS_vals.time   = NamesIvalt;
+                    Resume_line_args = Names(1);
+                else
+                    ierr = execstr("TOWS_vals = [TOWS_vals struct(''values'', NamesIval, ''time'', NamesIvalt)];", "errcatch");
+                    if ierr <> 0 then
+                        str_err = split_lasterror(lasterror());
+                        message(["Simulation problem" ; "Unable to find To Workspace Variable {"+Names(i)+"}:" ; str_err]);
+                        break;
+                    end
+                    Resume_line_args   = Resume_line_args + ", " + Names(i);  // Concatenate the variable names up to the last one
+                end
+            end
+            Resume_line = "[" + Resume_line_args + "] = resume(" + Resume_line_args + ");";  // Build the message
+            // Will execute Resume_line at the end of the main function, because it does not return control
         end
     end
 endfunction

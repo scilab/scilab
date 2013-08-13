@@ -13,7 +13,7 @@
 //   Update the simplex and restart the search.
 //
 function this = neldermead_restart ( this )
-  this = neldermead_updatesimp ( this );
-  this = neldermead_search (this);
+    this = neldermead_updatesimp ( this );
+    this = neldermead_search (this);
 endfunction
 

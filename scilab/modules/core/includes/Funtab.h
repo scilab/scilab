@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -13,7 +13,7 @@
 #define __FUNTAB_H__
 
 /**
- *    Hash table for scilab functions 
+ *    Hash table for scilab functions
  *    job is used to specify a job
  *   @param job : indicateur  de l'operation a effectuer
  *   1 recherche du pointeur fptr associe au nom id, le sous programme
@@ -33,6 +33,6 @@
  *   @param id  :vecteur de taille nsiz contenant le code scilab du nom
  *   @param fptr
  */
-int C2F(funtab)(int *id, int *fptr, int *job,char *namefunction,unsigned long namefunction_len);
+int C2F(funtab)(int *id, int *fptr, int *job, char *namefunction, unsigned long namefunction_len);
 
 #endif /* __FUNTAB_H__ */

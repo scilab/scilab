@@ -106,7 +106,7 @@ int sci_uiset(char *fname, unsigned long fname_len)
         }
         else
         {
-            org_modules_types::ScilabToJava::sendVariable<char *>("", indexes, 1, 1, &str, false, handlerId);
+            org_modules_types::ScilabToJava::sendStringVariable("", indexes, 1, 1, &str, false, false, handlerId);
             err = getVarAddressFromPosition(pvApiCtx, i + 1, &addr);
             if (err.iErr)
             {

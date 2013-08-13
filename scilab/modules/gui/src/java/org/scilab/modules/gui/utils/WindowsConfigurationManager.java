@@ -14,6 +14,10 @@ package org.scilab.modules.gui.utils;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -45,6 +49,7 @@ import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.commons.xml.XConfigurationEvent;
 import org.scilab.modules.commons.xml.XConfigurationListener;
+import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -88,6 +93,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
     private static boolean mustInvalidate;
     private static boolean mustSave = true;
+    private static int layoutId;
 
     static {
         try {
@@ -114,7 +120,6 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             Method registerFinalHook = scilab.getDeclaredMethod("registerFinalHook", Runnable.class);
             registerFinalHook.invoke(null, runnable);
 
-
             defaultWinAttributes.put("x", new Integer(DEFAULTX));
             defaultWinAttributes.put("y", new Integer(DEFAULTY));
             defaultWinAttributes.put("height", new Integer(DEFAULTHEIGHT));
@@ -139,7 +144,13 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
     public void configurationChanged(XConfigurationEvent e) {
         if (e.getModifiedPaths().contains(LAYOUT_PATH)) {
-            mustInvalidate = true;
+            Options options = getOptions();
+            if (options.id != layoutId) {
+                mustInvalidate = true;
+                layoutId = options.id;
+            }
+
+            mustSave = options.mustSave;
         }
     }
 
@@ -175,6 +186,11 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         if (doc == null) {
             createUserCopy();
             doc = ScilabXMLUtilities.readDocument(USER_WINDOWS_CONFIG_FILE);
+            Options options = getOptions();
+            if (mustSave) {
+                mustSave = options.mustSave;
+            }
+            layoutId = options.id;
         }
 
         if (doc == null && !oneTry) {
@@ -314,6 +330,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         }
 
         SwingScilabWindow window = new SwingScilabWindow();
+        window.setVisible(false);
 
         final String localUUID;
         if (preserveUUID) {
@@ -324,7 +341,25 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         window.setUUID(localUUID);
 
         if (containsX) {
-            window.setLocation(((Integer) attrs.get("x")).intValue(), ((Integer) attrs.get("y")).intValue());
+            boolean positionned = false;
+            Point p = new Point(((Integer) attrs.get("x")).intValue(), ((Integer) attrs.get("y")).intValue());
+
+            // We check that the coordinates are valid
+            GraphicsDevice[] gds = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
+            if (gds != null) {
+                for (GraphicsDevice gd : gds) {
+                    Rectangle r = gd.getDefaultConfiguration().getBounds();
+                    if (r.contains(p)) {
+                        positionned = true;
+                        window.setLocation(p.x, p.y);
+                        break;
+                    }
+                }
+            }
+
+            if (!positionned) {
+                window.setLocation(DEFAULTX, DEFAULTY);
+            }
         }
 
         window.setSize(((Integer) attrs.get("width")).intValue(), ((Integer) attrs.get("height")).intValue());
@@ -353,6 +388,8 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             return null;
         }
 
+        window.setIsRestoring(true);
+
         if (restoreTab) {
             if (!nullUUID) {
                 final LayoutNodeSerializer serializer = new LayoutNodeSerializer();
@@ -375,7 +412,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             // Be sur that the main tab will have the focus.
             // Get the elder tab and activate it
             final SwingScilabTab mainTab = ClosingOperationsManager.getElderTab(new ArrayList(Arrays.asList(tabs)));
-            BarUpdater.updateBars(mainTab.getParentWindowId(), mainTab.getMenuBar(), mainTab.getToolBar(), mainTab.getInfoBar(), mainTab.getName(), mainTab.getWindowIcon());
+            BarUpdater.forceUpdateBars(mainTab.getParentWindowId(), mainTab.getMenuBar(), mainTab.getToolBar(), mainTab.getInfoBar(), mainTab.getName(), mainTab.getWindowIcon());
 
             if (!ScilabConsole.isExistingConsole() && tabs.length == 1 && tabs[0].getPersistentId().equals(NULLUUID)) {
                 // null uuid is reserved to the console and in NW mode, there is no console.
@@ -401,8 +438,6 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                 }
             }
 
-            window.setVisible(true);
-
             if (requestFocus) {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
@@ -419,20 +454,24 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                                         }
                                     }
                                 }
-
+                                window.setVisible(true);
+                                window.requestFocus();
                                 window.toFront();
-                                mainTab.requestFocusInWindow();
-                                while (!mainTab.hasFocus()) {
-                                    Thread.yield();
-                                    mainTab.requestFocusInWindow();
-                                }
-
-                                ActiveDockableTracker.requestDockableActivation(mainTab);
+                                window.setIsRestoring(false);
+                                SwingUtilities.invokeLater(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ActiveDockableTracker.requestDockableActivation(mainTab);
+                                    }
+                                });
                             }
                         });
                         t.start();
                     }
                 });
+            } else {
+                window.setIsRestoring(false);
+                window.setVisible(true);
             }
         }
 
@@ -1021,6 +1060,10 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         return length;
     }
 
+    private static final Options getOptions() {
+        return XConfiguration.get(Options.class, XConfiguration.getXConfigurationDocument(), LAYOUT_PATH)[0];
+    }
+
 
     /**
      * Inner interface used to have something to execute when the restoration is finished
@@ -1031,5 +1074,18 @@ public class WindowsConfigurationManager implements XConfigurationListener {
          * Stuff to do when the restoration is ended
          */
         public void finish();
+    }
+
+    @XConfAttribute
+    private static class Options {
+
+        public boolean mustSave;
+        public int id;
+
+        @XConfAttribute(tag = "layouts", attributes = {"id", "save-desktop"})
+        private void set(int id, boolean mustSave) {
+            this.id = id;
+            this.mustSave = mustSave;
+        }
     }
 }

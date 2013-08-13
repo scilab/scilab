@@ -20,28 +20,28 @@
 //
 
 function scs_show(scs_m, win)
-//**
-//** 24 Nov 2006: Super simplified version
-//**
+    //**
+    //** 24 Nov 2006: Super simplified version
+    //**
 
-  if %scicos_debug_gr then
-    disp(_("scs_show active..."))
-  end
+    if %scicos_debug_gr then
+        disp(_("scs_show active..."))
+    end
 
-  gh_curwin = scf(win) ;
-  
-  if ~set_cmap(scs_m.props.options('Cmap')) then // add colors if required
-    scs_m.props.options('3D')(1)=%f //disable 3D block shape
-  end
+    gh_curwin = scf(win) ;
 
-  options = scs_m.props.options ; //** not used 
+    if ~set_cmap(scs_m.props.options("Cmap")) then // add colors if required
+        scs_m.props.options("3D")(1)=%f //disable 3D block shape
+    end
 
-  set_background(gh_curwin)     ;
-  pwindow_set_size(gh_curwin)   ;
-  window_set_size(gh_curwin)    ;
+    options = scs_m.props.options ; //** not used
 
-  scs_m.props.title(1) = msprintf(_("Scilab Graphics of %s"),scs_m.props.title(1))
+    set_background(gh_curwin)     ;
+    pwindow_set_size(gh_curwin)   ;
+    window_set_size(gh_curwin)    ;
 
-  drawobjs(scs_m, gh_curwin)
+    scs_m.props.title(1) = msprintf(_("Scilab Graphics of %s"),scs_m.props.title(1))
+
+    drawobjs(scs_m, gh_curwin)
 
 endfunction

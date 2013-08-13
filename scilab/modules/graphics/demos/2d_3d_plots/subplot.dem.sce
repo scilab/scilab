@@ -6,27 +6,27 @@
 
 function demo_subplot()
 
-  my_handle             = scf(100001);
-  clf(my_handle,"reset");
-  demo_viewCode("subplot.dem.sce");
+    my_handle             = scf(100001);
+    clf(my_handle,"reset");
+    demo_viewCode("subplot.dem.sce");
 
-  // DEMO START
+    // DEMO START
 
-  my_plot_desc          = "subplot";
-  my_handle.figure_name = my_plot_desc;
+    my_plot_desc          = "subplot";
+    my_handle.figure_name = my_plot_desc;
 
-  f = gcf();
-  f.axes_size = [790, 570];
-  subplot(2,2,1);
-  plot3d();
-  subplot(2,2,2);
-  plot2d();
-  subplot(2,2,3);
-  histplot();
-  subplot(2,2,4);
-  grayplot();
+    f = gcf();
+    f.axes_size = [790, 570];
+    subplot(2,2,1);
+    plot3d();
+    subplot(2,2,2);
+    plot2d();
+    subplot(2,2,3);
+    histplot();
+    subplot(2,2,4);
+    grayplot();
 
-  // DEMO END
+    // DEMO END
 
 endfunction
 

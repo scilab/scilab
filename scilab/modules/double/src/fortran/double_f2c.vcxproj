@@ -29,19 +29,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -281,7 +285,7 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\matpow.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\matrc.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\matrdiv.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\matsubst.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\matsubt.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\mattr.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\mattrc.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\matxpow.c" />
@@ -304,7 +308,7 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\matpow.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\matrc.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\matrdiv.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\matsubst.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\matsubt.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\mattr.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\mattrc.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\matxpow.f" />

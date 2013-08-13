@@ -37,7 +37,7 @@
     </confirmation-dialogs>
     <desktop-layout title="_(Desktop layout)">
         <body>
-            <layouts id="0">
+            <layouts id="0" save-desktop="true">
                 <layout id="0" name="_(Integrated)" path="$SCI/modules/gui/etc/integratedConfiguration.xml" image="file:///$SCI/modules/gui/images/preferences/integrated.png"/>
                 <layout id="1" name="_(Simple)" path="$SCI/modules/gui/etc/simpleConfiguration.xml" image="file:///$SCI/modules/gui/images/preferences/simple.png"/>
             </layouts>
@@ -72,7 +72,7 @@
                     <action key="OSSCKEY P" description="_(Next history line)" name="console-next-history"/>
                     <action key="F1" description="_(Help Browser)" name="console-help-browser"/>
                     <action key="F3" description="_(Console Search Field)" name="console-search-field"/>
-		    <action key="OSSCKEY F" description="_(Console Search Field)" name="console-search-field"/>
+                    <action key="OSSCKEY F" description="_(Console Search Field)" name="console-search-field"/>
                     <!--action key="OSSCKEY V" description="_(Paste)" name="console-paste"/>
           <action key="OSSCKEY O" description="_(Open a file)" name="console-open"/>
           <action key="OSSCKEY L" description="_(Load environment)" name="console-load"/>

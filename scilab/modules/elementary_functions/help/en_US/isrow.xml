@@ -39,7 +39,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>isrow(<varname>x</varname>)</literal> returns true if <varname>x</varname>
+            <literal>
+                isrow(<varname>x</varname>)
+            </literal>
+            returns true if <varname>x</varname>
             is a row. Scalars are considered as rows, and hypermatrix can be considered as rows only if
             all of its dimensions, except the last one, are equal to 1. Note that <literal>isrow([])</literal>
             returns false.

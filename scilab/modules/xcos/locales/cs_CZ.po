@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-28 21:07+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-12 20:59+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -105,10 +105,6 @@ msgstr "Výchozí nastavení sledování"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor řetězce.\n"
 
 #, c-format
 msgid ""
@@ -346,7 +342,7 @@ msgstr "Zavřít"
 msgid "Quit Xcos"
 msgstr "Ukončit Xcos"
 
-msgid "Recent Files"
+msgid "Recent files"
 msgstr "Nedávné soubory"
 
 msgid "Edit"
@@ -888,8 +884,8 @@ msgstr "Nepř.Vkládání-Hybridní Pozorovatel"
 msgid "Temperature Controller"
 msgstr "Ovladač Teploty"
 
-msgid "Inverted Pendulum"
-msgstr "Inverzní Kyvadlo"
+msgid "Inverted pendulum"
+msgstr ""
 
 msgid "Lorentz butterfly"
 msgstr "Lorentzův motýl"
@@ -1179,6 +1175,18 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: Nelze exportovat paletu do hdf5.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu %d: Očekávána matice řetězců.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: No block found.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Nenalezen žádný blok.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr "%s: Špatný typ argumentu %d: Očekáván řetězec."
 
@@ -1232,8 +1240,26 @@ msgstr "%s: Chyba při vyhodnocování parametrů bloku.\n"
 msgid "%s: Error during block parameters update.\n"
 msgstr "%s: Chyba při aktualizaci parametrů bloku.\n"
 
+msgid "Initialisation problem"
+msgstr "Problém zavedení"
+
+msgid "End problem"
+msgstr "Problém ukončení"
+
 msgid "Simulation problem"
 msgstr "Problém simulace"
 
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr "V post_xcos_simulate se objevila chyba: Ukončuji simulaci."
+
+#, c-format
+msgid "%s: Cannot open file '%s' for reading.\n"
+msgstr "%s: Nelze otevřít soubor '%s' pro čtení.\n"
+
+#, c-format
+msgid "%s: Error while trying to read file contents from '%s'.\n"
+msgstr "%s: Chyba při pokusu o čtení obsahu souboru z '%s'.\n"
+
+#, c-format
+msgid "%s: Syntax error while trying to set up context from"
+msgstr "%s: Syntaktická chyba při pokusu o nastavení kontextu z"

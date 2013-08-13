@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-08-24 14:21+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-28 15:21+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -32,11 +32,15 @@ msgstr "%s: QR反復が収束しません。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型に誤りがあります: 実数行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Polynomial expected."
+msgstr "%s: 入力引数 #%d の型が間違っています:  多項式を指定してください."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: must not contain %s or %s.\n"
@@ -47,8 +51,26 @@ msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 正方行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーまたは文字列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: must be %d, %d, %s, '%s' or '%s'.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d, %d, %s, '%s' または '%s'としてください.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: 入力引数の数が誤っています: %d から %d を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -64,6 +86,15 @@ msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
 
 #, c-format
+msgid "%s: Obsolete function. Please replace '%s' by '%s'."
+msgstr "%s: 廃止された関数です.  '%s' を '%s' で置き換えてください."
+
+#, c-format
+msgid ""
+"%s: Obsolete function. Former external functions cannot be used anymore."
+msgstr "%s: 廃止された関数. 以前の外部関数はもう使用出来ません."
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
 
@@ -75,6 +106,16 @@ msgstr "%s: 疎行列用のSVDとQRは実装されていません.\n"
 msgid "%s: This feature has not been implemented.\n"
 msgstr "%s: この機能は実装されていません.\n"
 
+msgid "Conflicting linear constraints."
+msgstr "線形拘束にかかっています."
+
+msgid "Recomputing initial guess"
+msgstr "初期推定値を再計算中"
+
+#, c-format
+msgid "Possible Conflicting linear constraints, error in the order of %s"
+msgstr "線形拘束が衝突し, %s 次の誤差が発生した可能性があります"
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
@@ -82,6 +123,15 @@ msgstr "%s: 入力引数の数が間違っています: %d または %d 個の�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
+
+#, c-format
+msgid "%s: Singular pencil."
+msgstr "%s: 特異なペンシル."
+
+#, c-format
+msgid ""
+"%s: Function not defined for type '%s'. Check argument or define function %s."
+msgstr "%s: 関数が型 '%s' について未定義です. 引数を確認または関数 %s を定義してください."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

@@ -1,0 +1,620 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{424A5578-BA28-435F-8313-8D85886A3539}</ProjectGuid>
+    <RootNamespace>scicos_blocks</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../string/includes;../../../../../libs/intl;../../../../windows_tools/includes;../../../../jvm/includes;../../../src/jni;../../../../../java/jdk/include;../../../../../java/jdk/include/win32;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)../core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../scicos-cli_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos-cli.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Linear_algebra_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linear_algebra_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;core.lib;scicos-cli.lib;output_stream.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../string/includes;../../../../../libs/intl;../../../../windows_tools/includes;../../../../jvm/includes;../../../src/jni;../../../../../java/jdk/include;../../../../../java/jdk/include/win32;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)../core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../scicos-cli_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos-cli.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Linear_algebra_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linear_algebra_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;core.lib;scicos-cli.lib;output_stream.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../string/includes;../../../../../libs/intl;../../../../windows_tools/includes;../../../../jvm/includes;../../../src/jni;../../../../../java/jdk/include;../../../../../java/jdk/include/win32;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)../core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../scicos-cli_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos-cli.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Linear_algebra_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linear_algebra_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;core.lib;scicos-cli.lib;output_stream.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../includes;../../../src/c;../../../src/cpp;../../../../output_stream/includes;../../../../localization/includes;../../../../graphics/includes;../../../../scicos/includes;../../../../core/includes;../../../../renderer/includes;../../../../elementary_functions/includes;../../../../string/includes;../../../../../libs/intl;../../../../windows_tools/includes;../../../../jvm/includes;../../../src/jni;../../../../../java/jdk/include;../../../../../java/jdk/include/win32;../../../../fileio/includes;../../../../commons/src/jni;../../../../graphic_objects/includes;../../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)../core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../scicos-cli_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos-cli.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Linear_algebra_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linear_algebra_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Slicot_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slicot_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;core.lib;scicos-cli.lib;output_stream.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\cpp\HelpersCLI.cpp" />
+    <ClCompile Include="..\absblk.c" />
+    <ClCompile Include="..\absolute_value.c" />
+    <ClCompile Include="..\acos_blk.c" />
+    <ClCompile Include="..\acosh_blk.c" />
+    <ClCompile Include="..\..\cpp\affich2.cpp" />
+    <ClCompile Include="..\..\cpp\scoUtils.cpp" />
+    <ClCompile Include="..\andlog.c" />
+    <ClCompile Include="..\asin_blk.c" />
+    <ClCompile Include="..\asinh_blk.c" />
+    <ClCompile Include="..\assignment.c" />
+    <ClCompile Include="..\atan_blk.c" />
+    <ClCompile Include="..\atanh_blk.c" />
+    <ClCompile Include="..\automat.c" />
+    <ClCompile Include="..\backlash.c" />
+    <ClCompile Include="..\bidon.c" />
+    <ClCompile Include="..\bit_clear_16.c" />
+    <ClCompile Include="..\bit_clear_32.c" />
+    <ClCompile Include="..\bit_clear_8.c" />
+    <ClCompile Include="..\bit_set_16.c" />
+    <ClCompile Include="..\bit_set_32.c" />
+    <ClCompile Include="..\bit_set_8.c" />
+    <ClCompile Include="..\bounce_ball.c" />
+    <ClCompile Include="..\bouncexy.c" />
+    <ClCompile Include="..\canimxy.c" />
+    <ClCompile Include="..\canimxy3d.c" />
+    <ClCompile Include="..\cdummy.c" />
+    <ClCompile Include="..\cevscpe.c" />
+    <ClCompile Include="..\cfscope.c" />
+    <ClCompile Include="..\cmat3d.c" />
+    <ClCompile Include="..\cmatview.c" />
+    <ClCompile Include="..\cmscope.c" />
+    <ClCompile Include="..\constraint_c.c" />
+    <ClCompile Include="..\convert.c" />
+    <ClCompile Include="..\cos_blk.c" />
+    <ClCompile Include="..\cosblk.c" />
+    <ClCompile Include="..\cosh_blk.c" />
+    <ClCompile Include="..\counter.c" />
+    <ClCompile Include="..\cscope.c" />
+    <ClCompile Include="..\cscopxy.c" />
+    <ClCompile Include="..\cscopxy3d.c" />
+    <ClCompile Include="..\csslti4.c" />
+    <ClCompile Include="..\cstblk4.c" />
+    <ClCompile Include="..\cstblk4_m.c" />
+    <ClCompile Include="..\cumsum_c.c" />
+    <ClCompile Include="..\cumsum_m.c" />
+    <ClCompile Include="..\cumsum_r.c" />
+    <ClCompile Include="..\cumsumz_c.c" />
+    <ClCompile Include="..\cumsumz_m.c" />
+    <ClCompile Include="..\cumsumz_r.c" />
+    <ClCompile Include="..\curve_c.c" />
+    <ClCompile Include="..\dband.c" />
+    <ClCompile Include="..\deadband.c" />
+    <ClCompile Include="..\delay4.c" />
+    <ClCompile Include="..\delay4_i16.c" />
+    <ClCompile Include="..\delay4_i32.c" />
+    <ClCompile Include="..\delay4_i8.c" />
+    <ClCompile Include="..\delay4_ui16.c" />
+    <ClCompile Include="..\delay4_ui32.c" />
+    <ClCompile Include="..\delay4_ui8.c" />
+    <ClCompile Include="..\deriv.c" />
+    <ClCompile Include="..\diffblk_c.c" />
+    <ClCompile Include="..\DllmainScicos_blocks.c" />
+    <ClCompile Include="..\dmmul.c" />
+    <ClCompile Include="..\dmmul1.c" />
+    <ClCompile Include="..\dollar4.c" />
+    <ClCompile Include="..\dollar4_m.c" />
+    <ClCompile Include="..\dsslti4.c" />
+    <ClCompile Include="..\edgetrig.c" />
+    <ClCompile Include="..\evaluate_expr.c" />
+    <ClCompile Include="..\evtdly4.c" />
+    <ClCompile Include="..\evtvardly.c" />
+    <ClCompile Include="..\expblk_m.c" />
+    <ClCompile Include="..\extdiag.c" />
+    <ClCompile Include="..\extdiagz.c" />
+    <ClCompile Include="..\extract.c" />
+    <ClCompile Include="..\extract_bit_16_LH.c" />
+    <ClCompile Include="..\extract_bit_16_LSB.c" />
+    <ClCompile Include="..\extract_bit_16_MSB0.c" />
+    <ClCompile Include="..\extract_bit_16_MSB1.c" />
+    <ClCompile Include="..\extract_bit_16_RB0.c" />
+    <ClCompile Include="..\extract_bit_16_RB1.c" />
+    <ClCompile Include="..\extract_bit_16_UH0.c" />
+    <ClCompile Include="..\extract_bit_16_UH1.c" />
+    <ClCompile Include="..\extract_bit_32_LH.c" />
+    <ClCompile Include="..\extract_bit_32_LSB.c" />
+    <ClCompile Include="..\extract_bit_32_MSB0.c" />
+    <ClCompile Include="..\extract_bit_32_MSB1.c" />
+    <ClCompile Include="..\extract_bit_32_RB0.c" />
+    <ClCompile Include="..\extract_bit_32_RB1.c" />
+    <ClCompile Include="..\extract_bit_32_UH0.c" />
+    <ClCompile Include="..\extract_bit_32_UH1.c" />
+    <ClCompile Include="..\extract_bit_8_LH.c" />
+    <ClCompile Include="..\extract_bit_8_LSB.c" />
+    <ClCompile Include="..\extract_bit_8_MSB0.c" />
+    <ClCompile Include="..\extract_bit_8_MSB1.c" />
+    <ClCompile Include="..\extract_bit_8_RB0.c" />
+    <ClCompile Include="..\extract_bit_8_RB1.c" />
+    <ClCompile Include="..\extract_bit_8_UH0.c" />
+    <ClCompile Include="..\extract_bit_8_UH1.c" />
+    <ClCompile Include="..\extract_bit_u16_MSB1.c" />
+    <ClCompile Include="..\extract_bit_u16_RB1.c" />
+    <ClCompile Include="..\extract_bit_u16_UH1.c" />
+    <ClCompile Include="..\extract_bit_u32_MSB1.c" />
+    <ClCompile Include="..\extract_bit_u32_RB1.c" />
+    <ClCompile Include="..\extract_bit_u32_UH1.c" />
+    <ClCompile Include="..\extract_bit_u8_MSB1.c" />
+    <ClCompile Include="..\extract_bit_u8_RB1.c" />
+    <ClCompile Include="..\extract_bit_u8_UH1.c" />
+    <ClCompile Include="..\extractor.c" />
+    <ClCompile Include="..\extractz.c" />
+    <ClCompile Include="..\exttril.c" />
+    <ClCompile Include="..\exttrilz.c" />
+    <ClCompile Include="..\exttriu.c" />
+    <ClCompile Include="..\exttriuz.c" />
+    <ClCompile Include="..\foriterator.c" />
+    <ClCompile Include="..\fromws_c.c" />
+    <ClCompile Include="..\gain.c" />
+    <ClCompile Include="..\gainblk.c" />
+    <ClCompile Include="..\gainblk_i16e.c" />
+    <ClCompile Include="..\gainblk_i16n.c" />
+    <ClCompile Include="..\gainblk_i16s.c" />
+    <ClCompile Include="..\gainblk_i32e.c" />
+    <ClCompile Include="..\gainblk_i32n.c" />
+    <ClCompile Include="..\gainblk_i32s.c" />
+    <ClCompile Include="..\gainblk_i8e.c" />
+    <ClCompile Include="..\gainblk_i8n.c" />
+    <ClCompile Include="..\gainblk_i8s.c" />
+    <ClCompile Include="..\gainblk_ui16e.c" />
+    <ClCompile Include="..\gainblk_ui16n.c" />
+    <ClCompile Include="..\gainblk_ui16s.c" />
+    <ClCompile Include="..\gainblk_ui32e.c" />
+    <ClCompile Include="..\gainblk_ui32n.c" />
+    <ClCompile Include="..\gainblk_ui32s.c" />
+    <ClCompile Include="..\gainblk_ui8e.c" />
+    <ClCompile Include="..\gainblk_ui8n.c" />
+    <ClCompile Include="..\gainblk_ui8s.c" />
+    <ClCompile Include="..\hystheresis.c" />
+    <ClCompile Include="..\integral_func.c" />
+    <ClCompile Include="..\integralz_func.c" />
+    <ClCompile Include="..\invblk4.c" />
+    <ClCompile Include="..\logic.c" />
+    <ClCompile Include="..\logicalop.c" />
+    <ClCompile Include="..\logicalop_i16.c" />
+    <ClCompile Include="..\logicalop_i32.c" />
+    <ClCompile Include="..\logicalop_i8.c" />
+    <ClCompile Include="..\logicalop_m.c" />
+    <ClCompile Include="..\logicalop_ui16.c" />
+    <ClCompile Include="..\logicalop_ui32.c" />
+    <ClCompile Include="..\logicalop_ui8.c" />
+    <ClCompile Include="..\lookup2d.c" />
+    <ClCompile Include="..\lookup_c.c" />
+    <ClCompile Include="..\m_frequ.c" />
+    <ClCompile Include="..\mat_bksl.c" />
+    <ClCompile Include="..\mat_cath.c" />
+    <ClCompile Include="..\mat_catv.c" />
+    <ClCompile Include="..\mat_det.c" />
+    <ClCompile Include="..\mat_diag.c" />
+    <ClCompile Include="..\mat_div.c" />
+    <ClCompile Include="..\mat_expm.c" />
+    <ClCompile Include="..\mat_inv.c" />
+    <ClCompile Include="..\mat_lu.c" />
+    <ClCompile Include="..\mat_pinv.c" />
+    <ClCompile Include="..\mat_reshape.c" />
+    <ClCompile Include="..\mat_sing.c" />
+    <ClCompile Include="..\mat_sqrt.c" />
+    <ClCompile Include="..\mat_sum.c" />
+    <ClCompile Include="..\mat_sumc.c" />
+    <ClCompile Include="..\mat_suml.c" />
+    <ClCompile Include="..\mat_svd.c" />
+    <ClCompile Include="..\mat_vps.c" />
+    <ClCompile Include="..\mat_vpv.c" />
+    <ClCompile Include="..\matbyscal.c" />
+    <ClCompile Include="..\matbyscal_e.c" />
+    <ClCompile Include="..\matbyscal_s.c" />
+    <ClCompile Include="..\mathermit_m.c" />
+    <ClCompile Include="..\matmul2_e.c" />
+    <ClCompile Include="..\matmul2_m.c" />
+    <ClCompile Include="..\matmul2_s.c" />
+    <ClCompile Include="..\matmul_i16e.c" />
+    <ClCompile Include="..\matmul_i16n.c" />
+    <ClCompile Include="..\matmul_i16s.c" />
+    <ClCompile Include="..\matmul_i32e.c" />
+    <ClCompile Include="..\matmul_i32n.c" />
+    <ClCompile Include="..\matmul_i32s.c" />
+    <ClCompile Include="..\matmul_i8e.c" />
+    <ClCompile Include="..\matmul_i8n.c" />
+    <ClCompile Include="..\matmul_i8s.c" />
+    <ClCompile Include="..\matmul_m.c" />
+    <ClCompile Include="..\matmul_ui16e.c" />
+    <ClCompile Include="..\matmul_ui16n.c" />
+    <ClCompile Include="..\matmul_ui16s.c" />
+    <ClCompile Include="..\matmul_ui32e.c" />
+    <ClCompile Include="..\matmul_ui32n.c" />
+    <ClCompile Include="..\matmul_ui32s.c" />
+    <ClCompile Include="..\matmul_ui8e.c" />
+    <ClCompile Include="..\matmul_ui8n.c" />
+    <ClCompile Include="..\matmul_ui8s.c" />
+    <ClCompile Include="..\mattran_m.c" />
+    <ClCompile Include="..\matz_abs.c" />
+    <ClCompile Include="..\matz_absc.c" />
+    <ClCompile Include="..\matz_bksl.c" />
+    <ClCompile Include="..\matz_cath.c" />
+    <ClCompile Include="..\matz_catv.c" />
+    <ClCompile Include="..\matz_conj.c" />
+    <ClCompile Include="..\matz_det.c" />
+    <ClCompile Include="..\matz_diag.c" />
+    <ClCompile Include="..\matz_div.c" />
+    <ClCompile Include="..\matz_expm.c" />
+    <ClCompile Include="..\matz_inv.c" />
+    <ClCompile Include="..\matz_lu.c" />
+    <ClCompile Include="..\matz_pinv.c" />
+    <ClCompile Include="..\matz_reim.c" />
+    <ClCompile Include="..\matz_reimc.c" />
+    <ClCompile Include="..\matz_reshape.c" />
+    <ClCompile Include="..\matz_sing.c" />
+    <ClCompile Include="..\matz_sqrt.c" />
+    <ClCompile Include="..\matz_sum.c" />
+    <ClCompile Include="..\matz_sumc.c" />
+    <ClCompile Include="..\matz_suml.c" />
+    <ClCompile Include="..\matz_svd.c" />
+    <ClCompile Include="..\matz_vps.c" />
+    <ClCompile Include="..\matz_vpv.c" />
+    <ClCompile Include="..\matzmul2_m.c" />
+    <ClCompile Include="..\matzmul_m.c" />
+    <ClCompile Include="..\matztran_m.c" />
+    <ClCompile Include="..\minmax.c" />
+    <ClCompile Include="..\modulo_count.c" />
+    <ClCompile Include="..\mswitch.c" />
+    <ClCompile Include="..\multiplex.c" />
+    <ClCompile Include="..\plusblk.c" />
+    <ClCompile Include="..\prod.c" />
+    <ClCompile Include="..\product.c" />
+    <ClCompile Include="..\ramp.c" />
+    <ClCompile Include="..\ratelimiter.c" />
+    <ClCompile Include="..\readau.c" />
+    <ClCompile Include="..\readc.c" />
+    <ClCompile Include="..\relational_op.c" />
+    <ClCompile Include="..\relational_op_i16.c" />
+    <ClCompile Include="..\relational_op_i32.c" />
+    <ClCompile Include="..\relational_op_i8.c" />
+    <ClCompile Include="..\relational_op_ui16.c" />
+    <ClCompile Include="..\relational_op_ui32.c" />
+    <ClCompile Include="..\relational_op_ui8.c" />
+    <ClCompile Include="..\relationalop.c" />
+    <ClCompile Include="..\relay.c" />
+    <ClCompile Include="..\ricc_m.c" />
+    <ClCompile Include="..\rndblk_m.c" />
+    <ClCompile Include="..\rndblkz_m.c" />
+    <ClCompile Include="..\root_coef.c" />
+    <ClCompile Include="..\rootz_coef.c" />
+    <ClCompile Include="..\samphold4.c" />
+    <ClCompile Include="..\samphold4_m.c" />
+    <ClCompile Include="..\satur.c" />
+    <ClCompile Include="..\scalar2vector.c" />
+    <ClCompile Include="..\scicos_evalhermite.c" />
+    <ClCompile Include="..\scicos_indexfinder.c" />
+    <ClCompile Include="..\scicosexit.c" />
+    <ClCompile Include="..\selector.c" />
+    <ClCompile Include="..\selector_m.c" />
+    <ClCompile Include="..\shift_16_LA.c" />
+    <ClCompile Include="..\shift_16_LC.c" />
+    <ClCompile Include="..\shift_16_RA.c" />
+    <ClCompile Include="..\shift_16_RC.c" />
+    <ClCompile Include="..\shift_32_LA.c" />
+    <ClCompile Include="..\shift_32_LC.c" />
+    <ClCompile Include="..\shift_32_RA.c" />
+    <ClCompile Include="..\shift_32_RC.c" />
+    <ClCompile Include="..\shift_8_LA.c" />
+    <ClCompile Include="..\shift_8_LC.c" />
+    <ClCompile Include="..\shift_8_RA.c" />
+    <ClCompile Include="..\shift_8_RC.c" />
+    <ClCompile Include="..\shift_u16_RA.c" />
+    <ClCompile Include="..\shift_u32_RA.c" />
+    <ClCompile Include="..\shift_u8_RA.c" />
+    <ClCompile Include="..\signum.c" />
+    <ClCompile Include="..\sin_blk.c" />
+    <ClCompile Include="..\sinh_blk.c" />
+    <ClCompile Include="..\step_func.c" />
+    <ClCompile Include="..\submat.c" />
+    <ClCompile Include="..\submatz.c" />
+    <ClCompile Include="..\sum.c" />
+    <ClCompile Include="..\summation.c" />
+    <ClCompile Include="..\summation_i16e.c" />
+    <ClCompile Include="..\summation_i16n.c" />
+    <ClCompile Include="..\summation_i16s.c" />
+    <ClCompile Include="..\summation_i32e.c" />
+    <ClCompile Include="..\summation_i32n.c" />
+    <ClCompile Include="..\summation_i32s.c" />
+    <ClCompile Include="..\summation_i8e.c" />
+    <ClCompile Include="..\summation_i8n.c" />
+    <ClCompile Include="..\summation_i8s.c" />
+    <ClCompile Include="..\summation_ui16e.c" />
+    <ClCompile Include="..\summation_ui16n.c" />
+    <ClCompile Include="..\summation_ui16s.c" />
+    <ClCompile Include="..\summation_ui32e.c" />
+    <ClCompile Include="..\summation_ui32n.c" />
+    <ClCompile Include="..\summation_ui32s.c" />
+    <ClCompile Include="..\summation_ui8e.c" />
+    <ClCompile Include="..\summation_ui8n.c" />
+    <ClCompile Include="..\summation_ui8s.c" />
+    <ClCompile Include="..\summation_z.c" />
+    <ClCompile Include="..\switch2.c" />
+    <ClCompile Include="..\switch2_m.c" />
+    <ClCompile Include="..\switchn.c" />
+    <ClCompile Include="..\tablex2d_c.c" />
+    <ClCompile Include="..\tan_blk.c" />
+    <ClCompile Include="..\tanh_blk.c" />
+    <ClCompile Include="..\tcslti4.c" />
+    <ClCompile Include="..\tcsltj4.c" />
+    <ClCompile Include="..\time_delay.c" />
+    <ClCompile Include="..\tows_c.c" />
+    <ClCompile Include="..\variable_delay.c" />
+    <ClCompile Include="..\whileiterator.c" />
+    <ClCompile Include="..\writeau.c" />
+    <ClCompile Include="..\writec.c" />
+    <ClCompile Include="..\zcross2.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\includes\dynlib_scicos_blocks.h" />
+    <ClInclude Include="..\..\cpp\Helpers.hxx" />
+    <ClInclude Include="..\..\..\includes\blocks.h" />
+    <ClInclude Include="..\..\..\includes\scicos_block.h" />
+    <ClInclude Include="..\..\..\includes\scicos_block4.h" />
+    <ClInclude Include="..\dmmul.h" />
+    <ClInclude Include="..\matz_cath.h" />
+    <ClInclude Include="..\matz_catv.h" />
+    <ClInclude Include="..\scicos_evalhermite.h" />
+    <ClInclude Include="..\scicos_indexfinder.h" />
+    <ClInclude Include="..\..\cpp\scoUtils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\elementary_functions_f_Import.def" />
+    <None Include="..\core_import.def" />
+    <None Include="..\Linear_algebra_f_Import.def" />
+    <None Include="..\Output_stream_Import.def" />
+    <None Include="..\polynomials_f_Import.def" />
+    <None Include="..\scicos-cli_Import.def" />
+    <None Include="..\Slicot_Import.def" />
+    <None Include="..\String_Import.def" />
+    <None Include="..\..\..\Makefile.am" />
+    <None Include="..\..\..\scicos_blocks.iss" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="scicos_blocks-cli.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
+      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\api_scilab\api_scilab.vcxproj">
+      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\commons\src\c\commons.vcxproj">
+      <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\fileio\fileio.vcxproj">
+      <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\graphics\graphics.vcxproj">
+      <Project>{8ccdd3c2-b025-4a12-a986-1aa28d7c0c33}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\graphic_objects\src\c\graphic_objects.vcxproj">
+      <Project>{30f9ee41-587b-4618-8de7-698d3fba4985}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\jvm\libjvm.vcxproj">
+      <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\scicos\src\scicos_sundials\scicos_sundials.vcxproj">
+      <Project>{c781737a-7c97-4cf9-acbc-f68c2bbf0ffa}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
+      <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\xcos\src\c\xcos.vcxproj">
+      <Project>{494fa8c9-6c85-4175-be4c-9a113c7a3278}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

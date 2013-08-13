@@ -59,94 +59,94 @@ public final class SwingViewMenu {
     public static void update(Widget uimenu, int property, Object value) {
         String uid = ((SwingViewObject) uimenu).getId();
         switch (property) {
-        case __GO_CALLBACK__ :
-            int cbType = (Integer) GraphicController.getController().getProperty(uid, __GO_CALLBACKTYPE__);
-            uimenu.setCallback(CommonCallBack.createCallback((String) value, cbType, uid));
-            break;
-        case __GO_CALLBACKTYPE__ :
-            String cbString = (String) GraphicController.getController().getProperty(uid, __GO_CALLBACK__);
-            uimenu.setCallback(CommonCallBack.createCallback(cbString, (Integer) value, uid));
-            break;
-        case __GO_UI_CHECKED__ :
-            if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
-                ((SwingScilabCheckBoxMenuItem) uimenu).setChecked((Boolean) value);
-            }
-            break;
-        case __GO_UI_ENABLE__ :
-            uimenu.setEnabled((Boolean) value);
-            break;
-        case __GO_VISIBLE__ :
-            uimenu.setVisible((Boolean) value);
-            break;
-        case __GO_UI_FOREGROUNDCOLOR__ :
-            Double[] allColors = ((Double[]) value);
-            uimenu.setForeground(new Color((int) (allColors[0] * COLORS_COEFF),
-                                           (int) (allColors[1] * COLORS_COEFF),
-                                           (int) (allColors[2] * COLORS_COEFF)));
-            break;
-        case __GO_UI_ICON__ :
-            if (!((String) value).equals("")) {
-                ((SwingScilabMenuItem) uimenu).setIcon(new ImageIcon(ScilabSwingUtilities.findIcon((String) value, "16x16")));
-            }
-            break;
-        case __GO_UI_LABEL__ :
-            String newText = (String) value;
-            String label = newText;
+            case __GO_CALLBACK__ :
+                int cbType = (Integer) GraphicController.getController().getProperty(uid, __GO_CALLBACKTYPE__);
+                uimenu.setCallback(CommonCallBack.createCallback((String) value, cbType, uid));
+                break;
+            case __GO_CALLBACKTYPE__ :
+                String cbString = (String) GraphicController.getController().getProperty(uid, __GO_CALLBACK__);
+                uimenu.setCallback(CommonCallBack.createCallback(cbString, (Integer) value, uid));
+                break;
+            case __GO_UI_CHECKED__ :
+                if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
+                    ((SwingScilabCheckBoxMenuItem) uimenu).setChecked((Boolean) value);
+                }
+                break;
+            case __GO_UI_ENABLE__ :
+                uimenu.setEnabled((Boolean) value);
+                break;
+            case __GO_VISIBLE__ :
+                uimenu.setVisible((Boolean) value);
+                break;
+            case __GO_UI_FOREGROUNDCOLOR__ :
+                Double[] allColors = ((Double[]) value);
+                uimenu.setForeground(new Color((int) (allColors[0] * COLORS_COEFF),
+                                               (int) (allColors[1] * COLORS_COEFF),
+                                               (int) (allColors[2] * COLORS_COEFF)));
+                break;
+            case __GO_UI_ICON__ :
+                if (!((String) value).equals("")) {
+                    ((SwingScilabMenuItem) uimenu).setIcon(new ImageIcon(ScilabSwingUtilities.findIcon((String) value, "16x16")));
+                }
+                break;
+            case __GO_UI_LABEL__ :
+                String newText = (String) value;
+                String label = newText;
 
-            // Try to set a mnemonic according to text (character preeceded by a &)
-            for (int charIndex = 0; charIndex < newText.length(); charIndex++) {
-                if (newText.charAt(charIndex) == '&') {
+                // Try to set a mnemonic according to text (character preeceded by a &)
+                for (int charIndex = 0; charIndex < newText.length(); charIndex++) {
+                    if (newText.charAt(charIndex) == '&') {
 
-                    boolean canBeAMnemonic = true;
+                        boolean canBeAMnemonic = true;
 
-                    // Previous char must not be a &
-                    if ((charIndex != 0) && (newText.charAt(charIndex - 1) == '&')) {
-                        canBeAMnemonic = false;
-                    }
-
-                    if (canBeAMnemonic && newText.charAt(charIndex + 1) != '&') {
-                        // A mnemonic
-                        if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
-                            ((SwingScilabCheckBoxMenuItem) uimenu).setMnemonic(newText.charAt(charIndex + 1));
-                        } else if (uimenu instanceof SwingScilabMenuItem) {
-                            ((SwingScilabMenuItem) uimenu).setMnemonic(newText.charAt(charIndex + 1));
-                        } else if (uimenu instanceof SwingScilabMenu) {
-                            ((SwingScilabMenu) uimenu).setMnemonic(newText.charAt(charIndex + 1));
+                        // Previous char must not be a &
+                        if ((charIndex != 0) && (newText.charAt(charIndex - 1) == '&')) {
+                            canBeAMnemonic = false;
                         }
 
-                        // Have to remove the & used to set a Mnemonic
-                        String firstPart = newText.substring(0, Math.max(charIndex, 0)); // Before &
-                        String secondPart = newText.substring(Math.min(charIndex + 1, newText.length()), newText.length()); // After &
-                        label = firstPart + secondPart;
-                        break;
+                        if (canBeAMnemonic && newText.charAt(charIndex + 1) != '&') {
+                            // A mnemonic
+                            if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
+                                ((SwingScilabCheckBoxMenuItem) uimenu).setMnemonic(newText.charAt(charIndex + 1));
+                            } else if (uimenu instanceof SwingScilabMenuItem) {
+                                ((SwingScilabMenuItem) uimenu).setMnemonic(newText.charAt(charIndex + 1));
+                            } else if (uimenu instanceof SwingScilabMenu) {
+                                ((SwingScilabMenu) uimenu).setMnemonic(newText.charAt(charIndex + 1));
+                            }
+
+                            // Have to remove the & used to set a Mnemonic
+                            String firstPart = newText.substring(0, Math.max(charIndex, 0)); // Before &
+                            String secondPart = newText.substring(Math.min(charIndex + 1, newText.length()), newText.length()); // After &
+                            label = firstPart + secondPart;
+                            break;
+                        }
+
                     }
-
                 }
-            }
 
-            // Set the text after relacing all && (display a & in the label) by &
-            uimenu.setText(label.replaceAll("&&", "&"));
-            break;
-        case __GO_UI_MNEMONIC__ :
-            String mnemonic = (String) value;
-            if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
-                ((SwingScilabCheckBoxMenuItem) uimenu).setMnemonic(mnemonic.charAt(0));
-            } else if (uimenu instanceof SwingScilabMenuItem) {
-                ((SwingScilabMenuItem) uimenu).setMnemonic(mnemonic.charAt(0));
-            } else if (uimenu instanceof SwingScilabMenu) {
-                ((SwingScilabMenu) uimenu).setMnemonic(mnemonic.charAt(0));
-            }
-            break;
-        case __GO_UI_ACCELERATOR__ :
-            String accelerator = (String) value;
-            if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
-                ((SwingScilabCheckBoxMenuItem) uimenu).setAccelerator(ScilabKeyStroke.getKeyStroke(accelerator));
-            } else if (uimenu instanceof SwingScilabMenuItem) {
-                ((SwingScilabMenuItem) uimenu).setAccelerator(ScilabKeyStroke.getKeyStroke(accelerator));
-            } else if (uimenu instanceof SwingScilabMenu) {
-                ((SwingScilabMenu) uimenu).setAccelerator(ScilabKeyStroke.getKeyStroke(accelerator));
-            }
-            break;
+                // Set the text after relacing all && (display a & in the label) by &
+                uimenu.setText(label.replaceAll("&&", "&"));
+                break;
+            case __GO_UI_MNEMONIC__ :
+                String mnemonic = (String) value;
+                if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
+                    ((SwingScilabCheckBoxMenuItem) uimenu).setMnemonic(mnemonic.charAt(0));
+                } else if (uimenu instanceof SwingScilabMenuItem) {
+                    ((SwingScilabMenuItem) uimenu).setMnemonic(mnemonic.charAt(0));
+                } else if (uimenu instanceof SwingScilabMenu) {
+                    ((SwingScilabMenu) uimenu).setMnemonic(mnemonic.charAt(0));
+                }
+                break;
+            case __GO_UI_ACCELERATOR__ :
+                String accelerator = (String) value;
+                if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
+                    ((SwingScilabCheckBoxMenuItem) uimenu).setAccelerator(ScilabKeyStroke.getKeyStroke(accelerator));
+                } else if (uimenu instanceof SwingScilabMenuItem) {
+                    ((SwingScilabMenuItem) uimenu).setAccelerator(ScilabKeyStroke.getKeyStroke(accelerator));
+                } else if (uimenu instanceof SwingScilabMenu) {
+                    ((SwingScilabMenu) uimenu).setAccelerator(ScilabKeyStroke.getKeyStroke(accelerator));
+                }
+                break;
         }
     }
 }

@@ -92,11 +92,11 @@
         </variablelist>
     </refsection>
     <refsection>
-      <title>Description</title>
-      <para>
-        The purpose of the eigs function is to compute the largest eigenvalues of sparse, large matrices.
-      </para>
-      <variablelist>
+        <title>Description</title>
+        <para>
+            The purpose of the eigs function is to compute the largest eigenvalues of sparse, large matrices.
+        </para>
+        <variablelist>
             <varlistentry>
                 <term>d = eigs(A) or d = eigs(Af, n)</term>
                 <listitem>

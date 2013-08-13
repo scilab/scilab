@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -16,7 +16,7 @@ import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.uielement.UIElement;
 
 /**
- * Interface for Message Boxes used by Scilab functions such as x_message 
+ * Interface for Message Boxes used by Scilab functions such as x_message
  * @author Vincent COUVERT
  */
 public interface MessageBox extends UIElement {
@@ -46,7 +46,7 @@ public interface MessageBox extends UIElement {
     void setMessage(String[] message);
 
     /**
-     * Display this MessageBox and wait for user choice 
+     * Display this MessageBox and wait for user choice
      */
     void displayAndWait();
 

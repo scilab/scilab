@@ -4132,20 +4132,15 @@ y3ref=[1.01128341555584961691590952355
 y3=erfc(x3);
 e3=norm((y3ref-y3)./abs(y3ref),1);
 
-if or([e1 e2 e3]>1d-13) then pause,end
+assert_checkalmostequal([e1 e2 e3], [0 0 0], [], 1.d-12);
+assert_checkequal(erfc(0), 1);
+assert_checkequal(erfc(%inf), 0)
 
-if (abs(erfc(0)-1)>1d-15) then pause,end
-
-if (abs(erfc(%inf))>1d-15) then pause,end
 
 x4=4; 
 w4=4.1;
 z4=3.9;
 deff("y=f(t)","y=exp(-t^2)");
-if (abs(erf(x4)-2/sqrt(%pi)*intg(0,x4,f))>10*%eps) then pause,end
-
-if (abs(erf(w4)-2/sqrt(%pi)*intg(0,w4,f))>10*%eps) then pause,end
- 
-if (abs(erf(z4)-2/sqrt(%pi)*intg(0,z4,f))>10*%eps) then pause,end
-
-
+assert_checkfalse(abs(erf(x4)-2/sqrt(%pi)*intg(0,x4,f))>10*%eps);
+assert_checkfalse(abs(erf(w4)-2/sqrt(%pi)*intg(0,w4,f))>10*%eps);
+assert_checkfalse(abs(erf(z4)-2/sqrt(%pi)*intg(0,z4,f))>10*%eps);

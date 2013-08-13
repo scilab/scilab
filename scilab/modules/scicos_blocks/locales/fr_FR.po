@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-08-30 13:50+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-26 14:25+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: fr\n"
 
 msgid "overflow error"
@@ -108,14 +108,6 @@ msgstr "temps de retard=%f mais dernier temps stocké=%f \n"
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr ""
 "Essayez d'augmenter la longueur de la mémoire tampon dans le bloc delay \n"
-
-#, c-format
-msgid "Error when opening file '%s'.\n"
-msgstr "Erreur à l'ouverture du fichier '%s'.\n"
-
-#, c-format
-msgid "Write error in file '%s'.\n"
-msgstr "Erreur en écriture dans le fichier '%s'.\n"
 
 msgid "Size of buffer or input size have changed!\n"
 msgstr "La dimension de la mémoire tampon ou de l'entrée a changé !\n"
@@ -433,6 +425,49 @@ msgstr "Valider"
 
 msgid "Cancel"
 msgstr "Annuler"
+
+msgid "Please give the discretization domain values"
+msgstr "Veuillez renseigner les valeurs du domaine de discrétisation"
+
+#, c-format
+msgid "Please give the %s operator coefficients"
+msgstr "Veuillez renseigner les coefficients de l'opérateur %s"
+
+msgid "Please give the sign for the variable discriminant"
+msgstr "Veuillez renseigner le signe du discriminant variable"
+
+msgid "Please give the discretization method type"
+msgstr "Veuillez renseigner le type de méthode de discrétisation"
+
+msgid "Please give the discretization method degree"
+msgstr "Veuillez renseigner le degré de méthode de discrétisation"
+
+msgid "Please give the number of discretization points"
+msgstr "Veuillez renseigner le nombre de points de discrétisation"
+
+#, c-format
+msgid "Please give the initial condition %s"
+msgstr "Veuillez donner la condition initiale de %s"
+
+msgid "Please give the boundary conditions"
+msgstr "Veuillez renseigner les conditions de bornes"
+
+#, c-format
+msgid "The finite element discretization took %.2f seconds"
+msgstr "La discrétisation en élément fini a pris %.2f secondes"
+
+#, c-format
+msgid "The finite differences discretization took %.2f seconds"
+msgstr "La discrétisation en différence finie a pris %.2f secondes"
+
+#, c-format
+msgid "The finite volume discretization took %.2f seconds"
+msgstr "La discrétisation en volume fini a pris %.2f secondes"
+
+#, c-format
+msgid "The code generation, the compilation and link took %.2f seconds"
+msgstr ""
+"La génération de code, la compilation et le lien ont pris %.2f secondes"
 
 msgid "Event output port"
 msgstr "Port de sortie de l'évènement"
@@ -807,3 +842,7 @@ msgstr "&Édition"
 
 msgid "&?"
 msgstr "&?"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : Au plus %d attendus.\n"

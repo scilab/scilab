@@ -47,12 +47,12 @@ denom(p) // Devrait retourner 1
 numer(p)
  ]]></programlisting>
     </refsection>
-        <refsection role="see also">
-            <title>Voir aussi</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="denom">denom</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="denom">denom</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

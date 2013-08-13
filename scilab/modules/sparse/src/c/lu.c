@@ -41,7 +41,7 @@
 #include "Scierror.h"
 /*
  *
- * lufact1  >>> Creation and LU factorisation of a sparse matrix
+ * lufact1  >>> Creation and LU factorization of a sparse matrix
  * Entry <<
  *   val,rc
  *       arrays of size k and kx2 a(rc(i),rc(*k+i))=val(i)

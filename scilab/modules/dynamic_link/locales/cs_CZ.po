@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-04-06 19:11+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-20 20:13+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -182,6 +182,36 @@ msgstr "%s není vstupní bod.\n"
 msgid "Linking %s.\n"
 msgstr "Propojení %s.\n"
 
+msgid "Calling a C function from Scilab.\n"
+msgstr ""
+
+msgid "Calling ilib_for_link to build C function.\n"
+msgstr ""
+
+msgid "Calling C function. Z = X+Y"
+msgstr ""
+
+#, c-format
+msgid "with X = %d"
+msgstr "kde X = %d"
+
+#, c-format
+msgid "with Y = %d"
+msgstr "kde Y = %d"
+
+#, c-format
+msgid "Result Z = %d"
+msgstr ""
+
+msgid "Calling a Fortran subroutine from Scilab.\n"
+msgstr ""
+
+msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
+msgstr ""
+
+msgid "Calling Fortran subroutine. Z = X+Y"
+msgstr ""
+
 msgid "Dynamic link"
 msgstr "Dynamické propojení"
 
@@ -192,11 +222,25 @@ msgid "Call a Fortran subroutine"
 msgstr "Zavolat podprogram Fortran"
 
 #, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr "%s: Je vyžadován kompilátor C nebo Fortran.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Špatný počet vstupních argumentů.\n"
 
+msgid "Microsoft Visual Studio C x86 Compiler not found."
+msgstr "Kompilátor C Microsoft Visual Studio x86 nenalezen."
+
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr "Intel Fortran Compiler 9, 10, 11 nebo 12 nebyl nalezen."
+
+msgid ""
+"Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
+msgstr ""
+
+msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
+msgstr ""
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
@@ -224,10 +268,6 @@ msgid ""
 msgstr ""
 "Díky tomu, že v Unixovém světě jsou kompilátory od více dodavatelů je funkce "
 "'haveacompiler' podporována pouze ve Windows."
-
-#, c-format
-msgid "%s: A Fortran or C compiler is required.\n"
-msgstr "%s: Je vyžadován kompilátor C nebo Fortran.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -452,3 +492,10 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno alespoň %d.\n"
+
+msgid "not found."
+msgstr "nenalezeno."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected."
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec."

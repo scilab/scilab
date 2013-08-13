@@ -7,43 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-09-01 09:27+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: it\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr ""
 "Il modulo grafico di Scilab ha disabilitato la modalità -nogui o -nwni.\n"
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Invalid driver: %s.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Invalid path: %s.\n"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -53,10 +29,18 @@ msgstr ""
 "un gestore.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
 "scalare.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Handle matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -70,6 +54,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or figure handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -102,6 +95,30 @@ msgstr ""
 #, c-format
 msgid "%s: %s\n"
 msgstr "%s: %s\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid driver: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid path: %s.\n"
+msgstr ""
 
 msgid "xinit must be called before xend."
 msgstr ""

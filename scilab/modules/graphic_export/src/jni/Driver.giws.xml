@@ -11,16 +11,16 @@
  -->
 
 <package name="org.scilab.modules.graphic_export">
-  <object name="Driver">
-    <method name="setDriver" returnType="boolean" modifier="static">
-      <parameter name="driver" type="String"/>
-    </method>
-    <method name="getDriver" returnType="String" modifier="static"/>
-    <method name="setPath" returnType="void" modifier="static">
-      <parameter name="path" type="String"/>
-    </method>
-    <method name="end" returnType="String" modifier="static" >
-      <parameter name="uid" type="String"/>
-    </method>
-  </object>
+    <object name="Driver">
+        <method name="setDriver" returnType="boolean" modifier="static">
+            <parameter name="driver" type="String"/>
+        </method>
+        <method name="getDriver" returnType="String" modifier="static"/>
+        <method name="setPath" returnType="void" modifier="static">
+            <parameter name="path" type="String"/>
+        </method>
+        <method name="end" returnType="String" modifier="static" >
+            <parameter name="uid" type="String"/>
+        </method>
+    </object>
 </package>

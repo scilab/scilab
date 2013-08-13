@@ -7,28 +7,98 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-19 15:06+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-30 13:03+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
-msgid "Invalid index.\n"
-msgstr "Неправильный индекс.\n"
-
-msgid "Incorrect assignment.\n"
-msgstr "Некорректное присвоение.\n"
+#, c-format
+msgid "%s: Invalid index.\n"
+msgstr "%s: Недопустимый индекс.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
-msgid "Affection of a string in a matrix of numbers is not implemented."
-msgstr "Вставка строковых значений в числовую матрицу не поддерживается."
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Неверный тип входного аргумента №%d.\n"
+
+#, c-format
+msgid "%s: Multidimensional sparse matrices are not handled.\n"
+msgstr "%s: Нельзя работать с многомерными разрежёнными матрицами.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'c', 'd' or a scalar expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидались 'c', 'd' или "
+"скаляр.\n"
+
+#, c-format
+msgid ""
+"%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgstr "%s: Вставка строкового значения в матрицу чисел не реализовано.\n"
+
+#, c-format
+msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
+msgstr "%s: Синтаксис x(j) разрешён только для строки cblock'ов.\n"
+
+#, c-format
+msgid ""
+"%s: In concatenation the number of dimensions for each component must "
+"match.\n"
+msgstr ""
+"%s: При конкатенации число размерностей для каждого компонента должно "
+"совпадать.\n"
+
+#, c-format
+msgid "%s: Invalid field name.\n"
+msgstr "%s: Недопустимое имя поля.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось допустимое имя "
+"поля.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Неверный размер входного аргумента №%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s: Неверное количество выходных аргументов.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: нельзя определить "
+"транспонирование.\n"
+
+#, c-format
+msgid "%s: Invalid path.\n"
+msgstr "%s: Недопустимый путь.\n"
+
+#, c-format
+msgid ""
+"%s: Input argument #%d and input argument #%d have incompatible dimensions.\n"
+msgstr "%s: Входные аргументы №%d и №%d имеют несовместимые размеры.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Inconsistent dimensions.\n"
+msgstr "%s: Несовместимые размеры.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
@@ -43,6 +113,40 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: должно быть из множества "
 "{%s}.\n"
+
+#, c-format
+msgid "%s: Inconsistent element-wise operation.\n"
+msgstr "%s: Несовместимая поэлементная операция.\n"
+
+#, c-format
+msgid "%s: Too many subscripts.\n"
+msgstr "%s: Слишком много подындексов.\n"
+
+#, c-format
+msgid "%s: Operand is not a boolean hypermatrix.\n"
+msgstr "%s: Операнд не является гиперматрицей логических значений.\n"
+
+#, c-format
+msgid "%s: Incompatible operand dimensions.\n"
+msgstr "%s: Несовместимые размерности операндов.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
+msgstr "%s: Неверный тип входных аргументов: ожидалась гиперматрица.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
+msgstr ""
+"%s: Неверный размер входных аргументов: ожидались целочисленные скаляры.\n"
+
+#, c-format
+msgid "%s: Only one -1 value admitted.\n"
+msgstr "%s: Допустимо только одно значение: -1.\n"
+
+#, c-format
+msgid "%s: Input and output matrices  must have the same number of elements"
+msgstr ""
+"%s: Входная и выходная матрицы должны иметь одинаковое количество элементов."
 
 #, c-format
 msgid ""
@@ -67,18 +171,90 @@ msgstr ""
 "число либо символьная строка.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Неверный размер входного аргумента №%d.\n"
-
-msgid "A null assignment can have only one non-colon index"
-msgstr "Пустое присваивание может содержать только один индекс без двоеточия"
-
-msgid "Invalid field name."
-msgstr "Недопустимое имя поля."
+msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидались целочисленные значения.\n"
 
 #, c-format
-msgid "%s is not a valid field name."
-msgstr "%s является недопустимым именем поля."
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: Неверное количество входных аргументов: Ожидалось как минимум %d.\n"
+
+#, c-format
+msgid "%s: Invalid syntax for a MIMO system.\n"
+msgstr "%s: Недопустимый синтаксис для MIMO-системы.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
+msgstr "%s: Неверное значение входного аргумента №%d: ожидалось %d или %s.\n"
+
+#, c-format
+msgid ""
+"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
+msgstr "%s: Вставка разрежённой матрицы в матрицу чисел не определена.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: integer expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалось целочисленное значение.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments.\n"
+msgstr "%s: Неверный размер входных аргументов.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument(s).\n"
+msgstr "%s: Неверные размеры аргументов.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr "%s: Неверное значение входного аргумента №%d: ожидалось %s или %s.\n"
+
+msgid ""
+"  Warning: Syntax vector ^ scalar is obsolete it will be removed in scilab-"
+"6.\n"
+"           Use vector .^ scalar instead.\n"
+msgstr ""
+"  Внимание: синтаксис вектор ^ скаляр устарел и будет удалён в Scilab-6.\n"
+"           Вместо этого используйте вектор .^ скаляр.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
+msgstr ""
+"%s: Неверный тип входных аргументов №%d и №%d: ожидались целочисленные "
+"значения.\n"
+
+#, c-format
+msgid "%s: Not yet implemented.\n"
+msgstr "%s: Пока не реализовано.\n"
+
+#, c-format
+msgid "%s: A null assignment can have only one non-colon index.\n"
+msgstr ""
+"%s: Присвоение нуля может иметь только одно указание индексов без "
+"двоеточия.\n"
+
+#, c-format
+msgid "%s: Unable to diagonalize.\n"
+msgstr "%s: Невозможно привести к диагональному виду.\n"
+
+#, c-format
+msgid "%s: Sparse insertion case is not implemented.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалось целое число.\n"
+
+#, c-format
+msgid "%s: Field names mismatch.\n"
+msgstr "%s: Имена полей не совпадают.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: неправильное имя поля.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
@@ -94,5 +270,32 @@ msgid ""
 msgstr ""
 "%s: входная и выходная матрицы должны иметь одинаковое число элементов.\n"
 
-msgid "Incorrect assignment."
-msgstr "Некорректное присвоение."
+#, c-format
+msgid "%s: Wrong size or value for input argument #%d.\n"
+msgstr "%s: Неверный размер или значение входного аргумента №%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Неверное значение входного аргумента №%d.\n"
+
+#, c-format
+msgid "%s: Not implemented.\n"
+msgstr "%s: Не реализовано.\n"
+
+#, c-format
+msgid ""
+"%s: Invalid assignement: for insertion in cell, use e.g. x(i,j).entries=y.\n"
+msgstr ""
+"%s: Недопустимое присвоение: для вставки в cell-массив используйте, "
+"например, x(i,j).entries=y.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible sizes for properties '%s' and '%s': Same sizes expected.\n"
+msgstr ""
+"%s: Несовместимые размеры для свойств '%s' и '%s': ожидались одинаковые "
+"размеры.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"

@@ -12,13 +12,25 @@
 
 /*--------------------------------------------------------------------------*/
 #include "gw_data_structures1.h"
+#include <api_scilab.h>
 /*--------------------------------------------------------------------------*/
 extern int C2F(rattyp)(); /* fortran */
 extern int C2F(mtlist)(); /* fortran */
 /*--------------------------------------------------------------------------*/
-int sci_rlist(char *fname,unsigned long fname_len)
+int sci_rlist(char *fname, unsigned long fname_len)
 {
-	C2F(mtlist)(C2F(rattyp));
-	return 0;
+    if (nbInputArgument(pvApiCtx) == 2)
+    {
+        int lw = 0;
+        C2F(overload)(&lw, fname, fname_len);
+        return 0;
+    }
+    else
+    {
+        C2F(mtlist)(C2F(rattyp));
+        return 0;
+    }
+
+
 }
 /*--------------------------------------------------------------------------*/

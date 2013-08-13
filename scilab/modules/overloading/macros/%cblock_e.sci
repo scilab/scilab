@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y=%cblock_e(varargin)
     x=varargin($)
@@ -16,18 +16,18 @@ function y=%cblock_e(varargin)
 
     dims=cumsum([1 dims(:,2)']);
     n=dims($)-1 // number of columns
-    y=mlist('cblock')
+    y=mlist("cblock")
 
     j=varargin($-1)
-    if type(j)==2|type(j)==129 then 
+    if type(j)==2|type(j)==129 then
         j=horner(j,n)
     elseif type(j)==4 then
         j=find(j)
-    elseif and(size(j)==[-1,-1]) then 
+    elseif and(size(j)==[-1,-1]) then
         j=1:n
     end
     if length(varargin)==2 then //y=x(i)
-        if m<>1 then 
+        if m<>1 then
             error(msprintf(_("%s: Syntax x(j) only allowed for row cblock''s.\n"),"cblock_e"));
         end
         i=1
@@ -37,7 +37,7 @@ function y=%cblock_e(varargin)
 
     first=%t
 
-    for k=1:size(j,'*')
+    for k=1:size(j,"*")
         jk=j(k)
         I=find(jk>=dims(1:$-1)&jk<dims(2:$))
         if I>1 then jk=jk-dims(I)+1,end

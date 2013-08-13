@@ -9,9 +9,9 @@
 
 
 //------------------------------------
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 //------------------------------------
-genlib('polynomialslib','SCI/modules/polynomials/macros',%f,%t);
+genlib("polynomialslib","SCI/modules/polynomials/macros",%f,%t);
 //------------------------------------

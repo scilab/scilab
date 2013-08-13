@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:03+0100\n"
-"PO-Revision-Date: 2013-03-22 15:04+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-29 09:17+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -63,6 +63,12 @@ msgstr "Pr,OMPr,P,Q と S"
 # File: sci_gateway/c/sci_cdfbin.c, line: 62
 msgid "P,Q,S  and Xn"
 msgstr "P,Q,S  と Xn"
+
+#, c-format
+msgid ""
+"%s: Warning: using non integer values for argument #%d may lead to incorrect "
+"results.\n"
+msgstr "%s: 警告: 引数 #%d に非整数値を使用すると結果が不正確になる可能性があります.\n"
 
 #
 # File: sci_gateway/c/sci_cdfchi.c, line: 43
@@ -217,6 +223,12 @@ msgstr "P,Q,X と 平均"
 msgid " Std must not be zero\n"
 msgstr " std はゼロ以外にしてください.\n"
 
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A matrix of integer values "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 整数値の行列を指定してください.\n"
+
 #
 # File: sci_gateway/c/sci_cdfpoi.c, line: 41
 msgid "S and Xlam"
@@ -303,12 +315,12 @@ msgid ""
 msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s', %d または %d を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected"
+msgstr "%s: 入力引数 #%d および #%d に互換性がありません: 同じ大きさを指定してください"
 
 #, c-format
 msgid ""
@@ -322,40 +334,56 @@ msgid ""
 "argument expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 最初の入力引数の列の数を同じにしてください.\n"
 
-msgid "histplot() : (normalized) histogram plot"
-msgstr ""
-
-msgid "Gaussian random sample histogram"
-msgstr ""
-
-msgid "Exact gaussian density"
-msgstr ""
-
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr ""
+msgid "%s: Wrong type for input argument #%d: a real matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  実数行例を指定してください.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
-msgstr ""
+"%s: Wrong type for input argument #%d: an integer or a real matrix "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  整数または実数行例を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d または %d を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  %dx%d を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d, %d または %d を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong dimensions for input argument #%d: A column vector or matrix "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の次元が間違っています:  列ベクトルまたは行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong dimensions for input argument #%d: A row vector or matrix "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の次元が間違っています: 行ベクトルまたは行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', %d, '%s' or %d expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:  '%s', %d, '%s'または %dを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -377,6 +405,21 @@ msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: スカラーまたはベクトルを指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A full or sparse matrix, or an "
+"integer matrix, or an hypermat expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  通常または疎の行列または整数行列またはハイパー行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ次元で指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s', %d or %d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:  '%s', '%s', %d または %d.\n"
 
 #, c-format
 msgid ""
@@ -455,11 +498,6 @@ msgstr "相関円"
 
 msgid "Eigenvalues"
 msgstr "固有値"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ次元で指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"

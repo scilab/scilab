@@ -98,33 +98,45 @@ public:
     }
 
     template <typename T>
-    static void C2FHypermatrix(const int ndims, const hsize_t * dims, const hsize_t size, const T * src, T * dest)
+    static void C2FHypermatrix(const int ndims, const hsize_t * dims, const hsize_t size, const T * src, T * dest, const bool flip = true)
     {
-        if (ndims == 2)
+        if (flip)
         {
-            for (int i = 0; i < dims[0]; i++)
+            hsize_t totalSize = 1;
+            for (int i = 0; i < ndims; i++)
             {
-                for (int j = 0; j < dims[1]; j++)
-                {
-                    dest[i + dims[0] * j] = src[j + dims[1] * i];
-                }
+                totalSize *= dims[i];
             }
+            memcpy(dest, src, totalSize * sizeof(T));
         }
         else
         {
-            hsize_t * cumprod = new hsize_t[ndims];
-            hsize_t * cumdiv = new hsize_t[ndims];
-            cumprod[0] = 1;
-            cumdiv[ndims - 1] = 1;
-            for (int i = 0; i < ndims - 1; i++)
+            if (ndims == 2)
             {
-                cumprod[i + 1] = dims[i] * cumprod[i];
-                cumdiv[i] = size / cumprod[i + 1];
+                for (int i = 0; i < dims[0]; i++)
+                {
+                    for (int j = 0; j < dims[1]; j++)
+                    {
+                        dest[i + dims[0] * j] = src[j + dims[1] * i];
+                    }
+                }
             }
+            else
+            {
+                hsize_t * cumprod = new hsize_t[ndims];
+                hsize_t * cumdiv = new hsize_t[ndims];
+                cumprod[0] = 1;
+                cumdiv[ndims - 1] = 1;
+                for (int i = 0; i < ndims - 1; i++)
+                {
+                    cumprod[i + 1] = dims[i] * cumprod[i];
+                    cumdiv[i] = size / cumprod[i + 1];
+                }
 
-            reorder(ndims, dims, cumprod, cumdiv, src, dest);
-            delete[] cumprod;
-            delete[] cumdiv;
+                reorder(ndims, dims, cumprod, cumdiv, src, dest);
+                delete[] cumprod;
+                delete[] cumdiv;
+            }
         }
     }
 

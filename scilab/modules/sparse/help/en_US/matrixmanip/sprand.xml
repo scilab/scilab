@@ -89,15 +89,6 @@
             function, where the parameter of the distribution function is 
             computed accordingly.
         </para>
-        <para>
-            As a side effect, the states of the random number generators <literal>rand</literal>
-            and <literal>grand</literal> are modified by this
-            function. 
-            The indices of the nonzeros entries are computed from an
-            exponential distribution function and the grand function. The values of
-            the matrix are computed from the distribution function given by the user
-            (i.e. uniform or normal) and the rand function.
-        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

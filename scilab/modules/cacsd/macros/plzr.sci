@@ -3,7 +3,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function plzr(a,b,c,d)
@@ -12,39 +12,39 @@ function plzr(a,b,c,d)
     [lhs,rhs]=argn(0)
 
     if rhs == 0 then
-        s=poly(0,'s');
+        s=poly(0,"s");
         n=[1+s, 2+3*s+4*s^2, 5;0, 1-s, s];
         d=[1+3*s, 5-s^3, s+1;1+s, 1+s+s^2, 3*s-1];
-        h=syslin('c',n./d); 
+        h=syslin("c",n./d);
         plzr(h);
         return;
     end
 
     select typeof(a)
-    case 'rational' then
-        if rhs<>1 then 
+    case "rational" then
+        if rhs<>1 then
             error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"plzr",1)),
         end
         a=tf2ss(a),
         dt=a.dt;
         [a,b,c,d]=a(2:5)
-        if type(d)<>1 then 
+        if type(d)<>1 then
             error(msprintf(gettext("%s: Wrong value of input argument %d: Proper system expected.\n"),"plzr",1));
         end
-    case 'state-space' then
-        if rhs<>1 then 
+    case "state-space" then
+        if rhs<>1 then
             error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"plzr",1)),
         end
         dt=a(7);
         [a,b,c,d]=a(2:5)
-        if type(d)<>1 then 
+        if type(d)<>1 then
             error(msprintf(gettext("%s: Wrong value of input argument %d: Proper system expected.\n"),"plzr",1));
         end
-    case 'constant' then
-        if rhs<>4 then 
+    case "constant" then
+        if rhs<>4 then
             error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"plzr",4)),
         end
-        if type(d)<>1 then 
+        if type(d)<>1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
             "plzr",4));
         end
@@ -56,7 +56,7 @@ function plzr(a,b,c,d)
             error(msprintf(gettext("%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n"),"plzr",1))
         end
     end
-    if type(d)<>1 then 
+    if type(d)<>1 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
         "plzr",4));
     end
@@ -73,9 +73,9 @@ function plzr(a,b,c,d)
 
     rect=[mnx, -my, mxx, my];
 
-    wdim=get(gcf(),'axes_size')
+    wdim=get(gcf(),"axes_size")
     dx=(mxx-mnx)/wdim(1);dy=2*my/wdim(2)
-    if dy>dx then 
+    if dy>dx then
         ax=(dy*wdim(1)-mxx+mnx)/2
         mxx=mxx+ax;mnx=mnx-ax
     elseif dy<dx then
@@ -90,31 +90,31 @@ function plzr(a,b,c,d)
 
     ax=gca();
     ax.data_bounds=[mnx, -my; mxx, my];
-    ax.axes_visible='on';
+    ax.axes_visible="on";
 
     legs=[],lhandle=[]
-    if size(nr,'*')<>0 then
+    if size(nr,"*")<>0 then
         xpoly(nr,ni)
-        e=gce();e.line_mode='off';e.mark_mode='on';
+        e=gce();e.line_mode="off";e.mark_mode="on";
         e.mark_size_unit="point";e.mark_size=7;e.mark_style=5;
         legs=[legs;gettext("Zeros")]
         lhandle=[e;lhandle]
     end;
-    if size(dr,'*')<>0 then
+    if size(dr,"*")<>0 then
         xpoly(dr,di)
-        e=gce();e.line_mode='off';e.mark_mode='on';
+        e=gce();e.line_mode="off";e.mark_mode="on";
         e.mark_size_unit="point";e.mark_size=7;e.mark_style=2;
         legs=[legs;gettext("Poles")]
         lhandle=[e;lhandle]
     end
-    if dt == 'd' then
-        ax.grid=ones(1,3)*color('gray')
+    if dt == "d" then
+        ax.grid=ones(1,3)*color("gray")
         ax.box = "on";
         xarc(-1,1,2,2,0,360*64)
         xtitle(gettext("Transmission zeros and poles"),gettext("Real axis"), ...
         gettext("Imaginary axis"));
     else
-        ax.grid=ones(1,3)*color('gray')
+        ax.grid=ones(1,3)*color("gray")
         ax.box = "on";
         ymin=ax.data_bounds(1,2);
         ymax=ax.data_bounds(2,2);

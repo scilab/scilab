@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-19 15:33+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-14 17:59+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -127,8 +127,12 @@ msgstr ""
 "«%s», «%s» или «%s».\n"
 
 #, c-format
-msgid "%s Wrong value for input argument #%d: %s.\n"
-msgstr ""
+msgid "%s Wrong value for input argument #%d: '%s' is unknown.\n"
+msgstr "%s Неверное значение входного аргумента №%d: '%s' неизвестно.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
@@ -158,6 +162,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Must be the number of random "
 "deviate.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: должно быть число со случайным "
+"отклонением.\n"
 
 msgid "Missing N and P for MULtinomial law\n"
 msgstr "Отсутствуют N и P для полиномиального распределения\n"
@@ -183,8 +189,8 @@ msgstr "P(%d) > 1\n"
 msgid "Sum of P(i) > 1\n"
 msgstr "Сумма P(i) > 1\n"
 
-msgid "Missing shape and scale for Gamma law\n"
-msgstr "Отсутствуют форма и масштаб для гамма-распределения\n"
+msgid "Missing shape and rate for Gamma law\n"
+msgstr "Отсутствует shape и rate для Gamma-распределения\n"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 или R <= 0.0\n"
@@ -241,6 +247,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Must be the number of random "
 "simulation.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: должно быть число случайной "
+"симуляции.\n"
 
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr "Отсутствуют Mean и Cov для многомерного нормального распределения\n"
@@ -371,17 +379,15 @@ msgstr ""
 "2147483322]"
 
 #, c-format
+msgid "WARNING: %s\n"
+msgstr "ВНИМАНИЕ: %s\n"
+
+#, c-format
 msgid ""
-"\n"
-"=> be aware that you have may lost synchronization\n"
-"    between the virtual gen %d and the others !\n"
-"    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
+"be aware that you may have lost synchronization\n"
+"    between the virtual generator %d and the others.\n"
+"    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."
 msgstr ""
-"\n"
-"=> помните, что вы можете потерять синхронизацию\n"
-"    между виртуальным генератором %d и другими!\n"
-"    используйте grand(\"setall\", s1, s2, s3, s4) если вы хотите "
-"восстановить её."
 
 msgid ""
 "\n"
@@ -450,6 +456,35 @@ msgstr "Теория"
 msgid "Simulation of a discrete random variable"
 msgstr "Моделирование дискретной случайной величины"
 
+msgid "Simulation of a discrete uniform random variable"
+msgstr ""
+"Моделирование случайной переменной по дискретному равномерному закону "
+"распределения"
+
+msgid "Simulation of a Erlang random variable"
+msgstr "Моделирование случайной переменной по закону распределения Эрланга"
+
+msgid "macro histplot : Histogram plot"
+msgstr "функция histplot : построение гистограммы"
+
+msgid "Classes"
+msgstr ""
+
+msgid "p must be < 1"
+msgstr ""
+
+msgid "Simulation of a geometric random variable"
+msgstr ""
+"Моделирование случайной переменной по геометрическому закону распределения"
+
+msgid "Simulation of a hyper geometric random variable"
+msgstr ""
+"Моделирование случайной переменной по гипергеометрическому закону "
+"распределения"
+
+msgid "Simulation of a Poisson random variable"
+msgstr ""
+
 msgid "Random"
 msgstr "Случайные величины"
 
@@ -479,3 +514,6 @@ msgstr "Переменная гипергеометрического распр
 
 msgid "Erlang random variable"
 msgstr "Переменная распределения Эрланга случайной величины"
+
+msgid "Simulation of a Weibull random variable"
+msgstr "Моделирование случайной переменой по закону распределения Вейбулла"

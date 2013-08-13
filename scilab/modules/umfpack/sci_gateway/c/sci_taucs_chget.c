@@ -38,7 +38,7 @@
  */
 
 /*------------------------------------------------------------+
-  |   11) Interface code for getting the Choleky factorisation  |
+  |   11) Interface code for getting the Choleky factorization  |
   |       p and C                                               |
   |                                                             |
   |   Scilab call                                               |
@@ -73,7 +73,7 @@ int sci_taucs_chget(char* fname, unsigned long l)
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 1, 3);
 
-    /* get the pointer to the Choleski factorisation handle */
+    /* get the pointer to the Choleski factorization handle */
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
     if (sciErr.iErr)
     {
@@ -93,7 +93,7 @@ int sci_taucs_chget(char* fname, unsigned long l)
     /* Check if the pointer is a valid ref to ... */
     if (! IsAdrInList( (Adr)pC, ListCholFactors, &it_flag) )
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: Must be a valid reference to a Cholesky factorisation"), fname, 1);
+        Scierror(999, _("%s: Wrong value for input argument #%d: Must be a valid reference to a Cholesky factorization"), fname, 1);
         return 1;
     }
 

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:11+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-26 01:14+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -350,8 +350,8 @@ msgid "Incorrect file or format.\n"
 msgstr "Formato de arquivo incorreto.\n"
 
 #, c-format
-msgid "subroutine not found: %s\n"
-msgstr "subrotina não encontrada: %s\n"
+msgid "%s: subroutine not found.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for argument #%d: Real matrix expected.\n"
@@ -750,6 +750,14 @@ msgid "check or define function %s for overloading.\n"
 msgstr "Verifique ou defina a função %s para overloading.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Tamanho errado para o argumento %d: Esperava-se (%d,%d).\n"
 
@@ -784,8 +792,8 @@ msgstr ""
 "(função externa).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
-msgstr "%s: Tipo incorreto para o argumento %d: esperava-se um polinômio.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
@@ -1058,6 +1066,10 @@ msgstr ""
 
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr "Argumentos de entrada deveria ter o mesmo nome da variável formal.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Wrong value for element %s.\n"
+msgstr ""
 
 msgid "Unknown data.\n"
 msgstr "Dado desconhecido.\n"
@@ -1425,25 +1437,31 @@ msgstr ""
 "%s em valor absoluto.\n"
 
 #, c-format
-msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
-msgstr "%s: O número de chamadas a %s alcançou ou excedeu %s.\n"
-
-#, c-format
-msgid ""
-"%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
 msgstr ""
-"%s: %s é muito pequeno. Nenhuma redução posterior no critério é possível.\n"
+
+msgid "Warning"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
 "machine precision.\n"
 msgstr ""
-"%s: %s é muito pequeno(a). %s é ortogonal às colunas da matriz jacobiana, "
-"pela precisão da máquina.\n"
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly: o nome de variável deve ter menos que 5 caracteres.\n"
+
+msgid ""
+"Warning: Syntax \"vector ^ scalar\" is obsolete. It will be removed in "
+"Scilab 6.0.\n"
+"  Use \"vector .^ scalar\" instead.\n"
+msgstr ""
 
 #, c-format
 msgid "  (cont'd) %s\n"

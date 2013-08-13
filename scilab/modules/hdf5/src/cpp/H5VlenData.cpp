@@ -121,8 +121,8 @@ void H5VlenData::printData(std::ostream & os, const unsigned int pos, const unsi
     delete &hdata;
 }
 
-void H5VlenData::toScilab(void * pvApiCtx, const int lhsPosition, int * parentList, const int listPosition) const
+void H5VlenData::toScilab(void * pvApiCtx, const int lhsPosition, int * parentList, const int listPosition, const bool flip) const
 {
-    H5Object::toScilab(pvApiCtx, lhsPosition, parentList, listPosition);
+    H5Object::toScilab(pvApiCtx, lhsPosition, parentList, listPosition, flip);
 }
 }

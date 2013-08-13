@@ -13,7 +13,7 @@ myNode = uiCreateNode('My Node')
  
        myNode(1)
  
- Tree   
+ uitree   
  
        myNode(2)
  
@@ -26,7 +26,7 @@ myNode = uiCreateNode('My Node', 'icon of My Node')
  
        myNode(1)
  
- Tree   
+ uitree   
  
        myNode(2)
  
@@ -39,7 +39,7 @@ myNode = uiCreateNode('My Node', 'icon of My Node', 'callback of My Node')
  
        myNode(1)
  
- Tree   
+ uitree   
  
        myNode(2)
  

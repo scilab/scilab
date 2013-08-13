@@ -168,19 +168,19 @@ public class Scilab {
     public boolean open() throws JavasciException {
         int res = Call_Scilab.Call_ScilabOpen(this.SCI, this.advancedMode, null, -1);
         switch (res) {
-        case 0: /* Success */
-            return true;
-        case -1:
-            throw new AlreadyRunningException("Javasci already running.");
-        case -2:
-            /* Should not occurd (processed before) */
-            throw new InitializationException("Could not find SCI.");
-        case -3:
-            throw new InitializationException("No existing directory.");
-        case 10001:
-            throw new InitializationException("Stacksize failed (not enought memory ?).");
-        default:
-            throw new InitializationException("Unknown startup error: " + res);
+            case 0: /* Success */
+                return true;
+            case -1:
+                throw new AlreadyRunningException("Javasci already running.");
+            case -2:
+                /* Should not occurd (processed before) */
+                throw new InitializationException("Could not find SCI.");
+            case -3:
+                throw new InitializationException("No existing directory.");
+            case 10001:
+                throw new InitializationException("Stacksize failed (not enought memory ?).");
+            default:
+                throw new InitializationException("Unknown startup error: " + res);
         }
     }
 
@@ -543,6 +543,27 @@ public class Scilab {
     }
 
     /**
+     * Returns a reference variable named varname<br />
+     * Throws an exception if the datatype is not managed or if the variable is not available
+     * <br />
+     * Example:<br />
+     * <code>
+     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
+     * double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};<br />
+     * ScilabDouble aOriginal = new ScilabDouble(a, aImg);<br />
+     * sci.put("a",aOriginal);<br />
+     * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<br />
+     * <br />
+     * </code>
+     * @param varname the name of the variable
+     * @return return the variable
+     * @throws UnsupportedTypeException Type not managed yet.
+     */
+    public ScilabType getByReference(String varname) throws JavasciException {
+        return getInCurrentScilabSession(varname, true);
+    }
+
+    /**
      * Returns a variable named varname in the current Scilab session<br />
      * Throws an exception if the datatype is not managed or if the variable is not available
      * <br />
@@ -560,39 +581,60 @@ public class Scilab {
      * @throws UnsupportedTypeException Type not managed yet.
      */
     public static ScilabType getInCurrentScilabSession(String varname) throws JavasciException {
+        return getInCurrentScilabSession(varname, false);
+    }
+
+    /**
+     * Returns a variable named varname in the current Scilab session<br />
+     * Throws an exception if the datatype is not managed or if the variable is not available
+     * <br />
+     * Example:<br />
+     * <code>
+     * double [][]a={{21.2, 22.0, 42.0, 39.0},{23.2, 24.0, 44.0, 40.0}};<br />
+     * double [][]aImg={{212.2, 221.0, 423.0, 393.0},{234.2, 244.0, 441.0, 407.0}};<br />
+     * ScilabDouble aOriginal = new ScilabDouble(a, aImg);<br />
+     * sci.put("a",aOriginal);<br />
+     * ScilabDouble aFromScilab = (ScilabDouble)sci.get("a");<br />
+     * <br />
+     * </code>
+     * @param varname the name of the variable
+     * @return return the variable
+     * @throws UnsupportedTypeException Type not managed yet.
+     */
+    public static ScilabType getInCurrentScilabSession(String varname, boolean byref) throws JavasciException {
         ScilabTypeEnum sciType = getVariableTypeInCurrentScilabSession(varname);
         switch (sciType) {
-        case sci_matrix:
-        case sci_boolean:
-        case sci_strings:
+            case sci_matrix:
+            case sci_boolean:
+            case sci_strings:
 
-        case sci_poly:
-        case sci_sparse:
-        case sci_boolean_sparse:
-        case sci_list:
-        case sci_tlist:
-        case sci_mlist:
-            return ScilabVariablesJavasci.getScilabVariable(varname);
-        case sci_ints:
-            ScilabIntegerTypeEnum typeInt = Call_Scilab.getIntegerPrecision(varname);
+            case sci_poly:
+            case sci_sparse:
+            case sci_boolean_sparse:
+            case sci_list:
+            case sci_tlist:
+            case sci_mlist:
+                return ScilabVariablesJavasci.getScilabVariable(varname, true, byref);
+            case sci_ints:
+                ScilabIntegerTypeEnum typeInt = Call_Scilab.getIntegerPrecision(varname);
 
-            switch (typeInt) {
-            case sci_int8:
-            case sci_uint8:
-            case sci_int16:
-            case sci_uint16:
-            case sci_int32:
-            case sci_uint32:
-                return ScilabVariablesJavasci.getScilabVariable(varname);
-            case sci_int64:
-            case sci_uint64:
-                // will be available in Scilab 6
-                throw new UnsupportedTypeException("64 bit (signed and unsigned) integer types not managed in Scilab 5.X");
+                switch (typeInt) {
+                    case sci_int8:
+                    case sci_uint8:
+                    case sci_int16:
+                    case sci_uint16:
+                    case sci_int32:
+                    case sci_uint32:
+                        return ScilabVariablesJavasci.getScilabVariable(varname, true, byref);
+                    case sci_int64:
+                    case sci_uint64:
+                        // will be available in Scilab 6
+                        throw new UnsupportedTypeException("64 bit (signed and unsigned) integer types not managed in Scilab 5.X");
 
-            }
+                }
 
-        default:
-            throw new UnsupportedTypeException("Type not managed: " + sciType);
+            default:
+                throw new UnsupportedTypeException("Type not managed: " + sciType);
         }
     }
 
@@ -638,82 +680,82 @@ public class Scilab {
         int err = notHandledError; /* -999: if the type is not handled */
 
         switch (theVariable.getType()) {
-        case sci_matrix :
-            ScilabDouble sciDouble = (ScilabDouble) theVariable;
-            if (sciDouble.isReal()) {
-                err = Call_Scilab.putDouble(varname, sciDouble.getRealPart());
-            } else {
-                err = Call_Scilab.putDoubleComplex(varname, sciDouble.getRealPart(), sciDouble.getImaginaryPart());
-            }
-            break;
-        case sci_poly :
-            ScilabPolynomial sciPoly = (ScilabPolynomial) theVariable;
-            if (sciPoly.isReal()) {
-                err = Call_Scilab.putPolynomial(varname, sciPoly.getPolyVarName(), sciPoly.getRealPart());
-            } else {
-                err = Call_Scilab.putComplexPolynomial(varname, sciPoly.getPolyVarName(), sciPoly.getRealPart(), sciPoly.getImaginaryPart());
-            }
-            break;
-        case sci_boolean :
-            ScilabBoolean sciBoolean = (ScilabBoolean) theVariable;
-            err = Call_Scilab.putBoolean(varname, sciBoolean.getData());
-            break;
-        case sci_sparse :
-            ScilabSparse sciSparse = (ScilabSparse) theVariable;
-            if (sciSparse.isReal()) {
-                err = Call_Scilab.putSparse(varname, sciSparse.getHeight(), sciSparse.getWidth(), sciSparse.getNbItemRow(), sciSparse.getScilabColPos(), sciSparse.getRealPart());
-            } else {
-                err = Call_Scilab.putComplexSparse(varname, sciSparse.getHeight(), sciSparse.getWidth(), sciSparse.getNbItemRow(), sciSparse.getScilabColPos(), sciSparse.getRealPart(), sciSparse.getImaginaryPart());
-            }
-            break;
-        case sci_boolean_sparse :
-            ScilabBooleanSparse sciBooleanSparse = (ScilabBooleanSparse) theVariable;
-            err = Call_Scilab.putBooleanSparse(varname, sciBooleanSparse.getHeight(), sciBooleanSparse.getWidth(), sciBooleanSparse.getNbItemRow(), sciBooleanSparse.getScilabColPos());
-            break;
-        case sci_ints :
-            ScilabInteger sciInteger = (ScilabInteger) theVariable;
-            switch (sciInteger.getPrec()) {
-            case sci_uint8:
-                err = Call_Scilab.putUnsignedByte(varname, sciInteger.getDataAsByte());
+            case sci_matrix :
+                ScilabDouble sciDouble = (ScilabDouble) theVariable;
+                if (sciDouble.isReal()) {
+                    err = Call_Scilab.putDouble(varname, sciDouble.getRealPart());
+                } else {
+                    err = Call_Scilab.putDoubleComplex(varname, sciDouble.getRealPart(), sciDouble.getImaginaryPart());
+                }
                 break;
-            case sci_int8:
-                err = Call_Scilab.putByte(varname, sciInteger.getDataAsByte());
+            case sci_poly :
+                ScilabPolynomial sciPoly = (ScilabPolynomial) theVariable;
+                if (sciPoly.isReal()) {
+                    err = Call_Scilab.putPolynomial(varname, sciPoly.getPolyVarName(), sciPoly.getRealPart());
+                } else {
+                    err = Call_Scilab.putComplexPolynomial(varname, sciPoly.getPolyVarName(), sciPoly.getRealPart(), sciPoly.getImaginaryPart());
+                }
                 break;
-            case sci_uint16:
-                err = Call_Scilab.putUnsignedShort(varname, sciInteger.getDataAsShort());
+            case sci_boolean :
+                ScilabBoolean sciBoolean = (ScilabBoolean) theVariable;
+                err = Call_Scilab.putBoolean(varname, sciBoolean.getData());
                 break;
-            case sci_int16:
-                err = Call_Scilab.putShort(varname, sciInteger.getDataAsShort());
+            case sci_sparse :
+                ScilabSparse sciSparse = (ScilabSparse) theVariable;
+                if (sciSparse.isReal()) {
+                    err = Call_Scilab.putSparse(varname, sciSparse.getHeight(), sciSparse.getWidth(), sciSparse.getNbItemRow(), sciSparse.getScilabColPos(), sciSparse.getRealPart());
+                } else {
+                    err = Call_Scilab.putComplexSparse(varname, sciSparse.getHeight(), sciSparse.getWidth(), sciSparse.getNbItemRow(), sciSparse.getScilabColPos(), sciSparse.getRealPart(), sciSparse.getImaginaryPart());
+                }
                 break;
-            case sci_uint32:
-                err = Call_Scilab.putUnsignedInt(varname, sciInteger.getDataAsInt());
+            case sci_boolean_sparse :
+                ScilabBooleanSparse sciBooleanSparse = (ScilabBooleanSparse) theVariable;
+                err = Call_Scilab.putBooleanSparse(varname, sciBooleanSparse.getHeight(), sciBooleanSparse.getWidth(), sciBooleanSparse.getNbItemRow(), sciBooleanSparse.getScilabColPos());
                 break;
-            case sci_int32:
-                err = Call_Scilab.putInt(varname, sciInteger.getDataAsInt());
+            case sci_ints :
+                ScilabInteger sciInteger = (ScilabInteger) theVariable;
+                switch (sciInteger.getPrec()) {
+                    case sci_uint8:
+                        err = Call_Scilab.putUnsignedByte(varname, sciInteger.getDataAsByte());
+                        break;
+                    case sci_int8:
+                        err = Call_Scilab.putByte(varname, sciInteger.getDataAsByte());
+                        break;
+                    case sci_uint16:
+                        err = Call_Scilab.putUnsignedShort(varname, sciInteger.getDataAsShort());
+                        break;
+                    case sci_int16:
+                        err = Call_Scilab.putShort(varname, sciInteger.getDataAsShort());
+                        break;
+                    case sci_uint32:
+                        err = Call_Scilab.putUnsignedInt(varname, sciInteger.getDataAsInt());
+                        break;
+                    case sci_int32:
+                        err = Call_Scilab.putInt(varname, sciInteger.getDataAsInt());
+                        break;
+                    case sci_uint64:
+                        //                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
+                    case sci_int64:
+                        //                    err = Call_Scilab.putLong(varname, sciInteger.getData_());
+                        break;
+                }
                 break;
-            case sci_uint64:
-                //                    err = Call_Scilab.putUnsignedLong(varname, sciInteger.getData_());
-            case sci_int64:
-                //                    err = Call_Scilab.putLong(varname, sciInteger.getData_());
+            case sci_strings :
+                ScilabString sciString = (ScilabString) theVariable;
+                err = Call_Scilab.putString(varname, sciString.getData());
                 break;
-            }
-            break;
-        case sci_strings :
-            ScilabString sciString = (ScilabString) theVariable;
-            err = Call_Scilab.putString(varname, sciString.getData());
-            break;
-        case sci_list :
-            ScilabList sciList = (ScilabList) theVariable;
-            err = Call_ScilabJNI.putList(varname, sciList.getSerializedObject(), 'l');
-            break;
-        case sci_tlist :
-            ScilabTList sciTList = (ScilabTList) theVariable;
-            err = Call_ScilabJNI.putList(varname, sciTList.getSerializedObject(), 't');
-            break;
-        case sci_mlist :
-            ScilabMList sciMList = (ScilabMList) theVariable;
-            err = Call_ScilabJNI.putList(varname, sciMList.getSerializedObject(), 'm');
-            break;
+            case sci_list :
+                ScilabList sciList = (ScilabList) theVariable;
+                err = Call_ScilabJNI.putList(varname, sciList.getSerializedObject(), 'l');
+                break;
+            case sci_tlist :
+                ScilabTList sciTList = (ScilabTList) theVariable;
+                err = Call_ScilabJNI.putList(varname, sciTList.getSerializedObject(), 't');
+                break;
+            case sci_mlist :
+                ScilabMList sciMList = (ScilabMList) theVariable;
+                err = Call_ScilabJNI.putList(varname, sciMList.getSerializedObject(), 'm');
+                break;
         }
 
         if (err == notHandledError) {

@@ -1,15 +1,15 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Fabrice Leray
- * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2006 - INRIA - Fabrice Leray
+* Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 /*------------------------------------------------------------------------*/
 /* file: sci_plot2d.c                                                     */
@@ -39,6 +39,9 @@ int sci_plot2d(char* fname, unsigned long fname_len)
     int* piAddrl2 = NULL;
     double* l2 = NULL;
     double* lt = NULL;
+    int iTypel1 = 0;
+    int iTypel2 = 0;
+    int lw = 0;
 
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     int test = 0, i = 0, j = 0, iskip = 0;
@@ -104,13 +107,32 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             return 1;
         }
 
-        // Retrieve a matrix of double at position 1 + iskip.
-        sciErr = getMatrixOfDouble(pvApiCtx, piAddrl2, &m2, &n2, &l2);
+        sciErr = getVarType(pvApiCtx, piAddrl2, &iTypel2);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1 + iskip);
             return 1;
+        }
+
+        // the argument can be a matrix of doubles or other
+        // If it is not a matrix of doubles, call overload
+        if (iTypel2 == sci_matrix)
+        {
+
+            // Retrieve a matrix of double at position 1 + iskip.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrl2, &m2, &n2, &l2);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1 + iskip);
+                return 1;
+            }
+        }
+        else
+        {
+            lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
+            C2F(overload)(&lw, "plot2d", 6);
+            return 0;
         }
 
         if (m2 == 1 && n2 > 1)
@@ -148,13 +170,32 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             return 1;
         }
 
-        // Retrieve a matrix of double at position 1 + iskip.
-        sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+        sciErr = getVarType(pvApiCtx, piAddrl1, &iTypel1);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1 + iskip);
             return 1;
+        }
+
+        // x can be a matrix of doubles or other
+        // If x is not a matrix of doubles, call overload
+        if (iTypel1 == sci_matrix)
+        {
+
+            // Retrieve a matrix of double at position 1 + iskip.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1 + iskip);
+                return 1;
+            }
+        }
+        else
+        {
+            lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
+            C2F(overload)(&lw, "plot2d", 6);
+            return 0;
         }
 
         /* y */
@@ -165,13 +206,32 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             return 1;
         }
 
-        // Retrieve a matrix of double at position 2 + iskip.
-        sciErr = getMatrixOfDouble(pvApiCtx, piAddrl2, &m2, &n2, &l2);
+        sciErr = getVarType(pvApiCtx, piAddrl2, &iTypel2);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2 + iskip);
             return 1;
+        }
+
+        // y can be a matrix of doubles or other
+        // If y is not a matrix of doubles, call overload
+        if (iTypel2 == sci_matrix)
+        {
+
+            // Retrieve a matrix of double at position 1 + iskip.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrl2, &m2, &n2, &l2);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2 + iskip);
+                return 1;
+            }
+        }
+        else
+        {
+            lw = 2 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
+            C2F(overload)(&lw, "plot2d", 6);
+            return 0;
         }
 
         test = (m1 * n1 == 0) ||

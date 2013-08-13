@@ -9,22 +9,26 @@
 package org.scilab.modules.types;
 
 
- /**
-   * Connector for Javasci v2.
-   * This class should <b>not</b> be used directly
-   * @see org.scilab.modules.javasci.Scilab
-   * @author DIGITEO - Sylvestre LEDRU
-   */
+/**
+  * Connector for Javasci v2.
+  * This class should <b>not</b> be used directly
+  * @see org.scilab.modules.javasci.Scilab
+  * @author DIGITEO - Sylvestre LEDRU
+  */
 public class GetScilabVariable {
 
- /**
-   * Constructor
-   */
- protected GetScilabVariable() {
-    throw new UnsupportedOperationException();
- }
-  public static void getScilabVariable(String variableName, int arg1, int arg2) {
-    GetScilabVariableJNI.getScilabVariable(variableName, arg1, arg2);
-  }
+    /**
+      * Constructor
+      */
+    protected GetScilabVariable() {
+        throw new UnsupportedOperationException();
+    }
+    public static void getScilabVariable(String variableName, int arg1, int arg2) {
+        GetScilabVariableJNI.getScilabVariable(variableName, arg1, arg2);
+    }
+
+    public static void getScilabVariableAsReference(String variableName, int arg1) {
+        GetScilabVariableJNI.getScilabVariableAsReference(variableName, arg1);
+    }
 
 }

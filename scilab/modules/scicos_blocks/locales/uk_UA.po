@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2011.
-# Yuri Chornoivan <yurchor@ukr.net>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-08-24 14:25+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-26 05:31+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 msgid "overflow error"
@@ -108,14 +108,6 @@ msgstr "час затримки=%f, останній збережений час
 
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr "Спробуйте збільшити розмір буфера у блоці затримки \n"
-
-#, c-format
-msgid "Error when opening file '%s'.\n"
-msgstr "Помилка під час спроби відкриття файла «%s».\n"
-
-#, c-format
-msgid "Write error in file '%s'.\n"
-msgstr "Помилка під час спроби запису до файла «%s».\n"
 
 msgid "Size of buffer or input size have changed!\n"
 msgstr "Розмір буфера бо розмір вхідних даних було змінено!\n"
@@ -432,6 +424,48 @@ msgstr "Підтвердити"
 
 msgid "Cancel"
 msgstr "Скасувати"
+
+msgid "Please give the discretization domain values"
+msgstr "Будь ласка, вкажіть значення області дискретизації"
+
+#, c-format
+msgid "Please give the %s operator coefficients"
+msgstr "Будь ласка, вкажіть коефіцієнти оператора %s"
+
+msgid "Please give the sign for the variable discriminant"
+msgstr "Будь ласка, вкажіть знак дискримінанта змінної"
+
+msgid "Please give the discretization method type"
+msgstr "Будь ласка, вкажіть тип методу дискретизації"
+
+msgid "Please give the discretization method degree"
+msgstr "Будь ласка, вкажіть порядок методу дискретизації"
+
+msgid "Please give the number of discretization points"
+msgstr "Будь ласка, вкажіть кількість точок дискретизації"
+
+#, c-format
+msgid "Please give the initial condition %s"
+msgstr "Будь ласка, вкажіть початкову умову %s"
+
+msgid "Please give the boundary conditions"
+msgstr "Будь ласка, вкажіть граничні умови"
+
+#, c-format
+msgid "The finite element discretization took %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The finite differences discretization took %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The finite volume discretization took %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The code generation, the compilation and link took %.2f seconds"
+msgstr ""
 
 msgid "Event output port"
 msgstr "Порт виведення даних подій"
@@ -800,3 +834,9 @@ msgstr "З&міни"
 
 msgid "&?"
 msgstr "&Довідка"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
+"%d.\n"

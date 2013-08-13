@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-07-20 14:26+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-26 12:51+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: fr\n"
 
 msgid "Polynomials"
@@ -66,6 +66,17 @@ msgstr ""
 "ou un tableau de polynômes est attendu.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument n°%d : Un tableau d'entiers ou un polynôme "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real Polynomial expected.\n"
+msgstr "%s : Type erroné de l'argument n°%d : Un polynôme réel attendu.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée : Un tableau de polynômes attendu.\n"
@@ -93,6 +104,22 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être dans l'ensemble "
 "{%s}.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument n°%d : Une matrice réelle de polynômes "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument n°%d : Une chaîne de caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for argument #%d: %s or %s expected.\n"
+msgstr "%s : Valeur erronée de l'argument n°%d : %s ou %s attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected.\n"

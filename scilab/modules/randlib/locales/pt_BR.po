@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-06-12 16:26+0000\n"
 "Last-Translator: Roberto Coelho de Berredo <rcberredo@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -123,7 +123,11 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s Wrong value for input argument #%d: %s.\n"
+msgid "%s Wrong value for input argument #%d: '%s' is unknown.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #, c-format
@@ -181,8 +185,8 @@ msgstr "P(%d) > 1\n"
 msgid "Sum of P(i) > 1\n"
 msgstr "Soma de P(i) > 1\n"
 
-msgid "Missing shape and scale for Gamma law\n"
-msgstr "Faltando forma e escala para a lei Gamma\n"
+msgid "Missing shape and rate for Gamma law\n"
+msgstr ""
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 ou R <= 0.0\n"
@@ -364,16 +368,15 @@ msgstr ""
 "                                             s4 em [1, 2147483322]"
 
 #, c-format
-msgid ""
-"\n"
-"=> be aware that you have may lost synchronization\n"
-"    between the virtual gen %d and the others !\n"
-"    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
+msgid "WARNING: %s\n"
 msgstr ""
-"\n"
-"=> tenha em mente que você pode ter perdido a sincronização\n"
-"    entre o gerador virtual %d e os demais!\n"
-"    Use grand(\"setall\", s1, s2, s3, s4) se quiser recuperá-la."
+
+#, c-format
+msgid ""
+"be aware that you may have lost synchronization\n"
+"    between the virtual generator %d and the others.\n"
+"    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."
+msgstr ""
 
 msgid ""
 "\n"
@@ -435,6 +438,30 @@ msgstr "Teoria"
 msgid "Simulation of a discrete random variable"
 msgstr "Simulação de uma variável aleatória discreta"
 
+msgid "Simulation of a discrete uniform random variable"
+msgstr ""
+
+msgid "Simulation of a Erlang random variable"
+msgstr ""
+
+msgid "macro histplot : Histogram plot"
+msgstr ""
+
+msgid "Classes"
+msgstr ""
+
+msgid "p must be < 1"
+msgstr ""
+
+msgid "Simulation of a geometric random variable"
+msgstr ""
+
+msgid "Simulation of a hyper geometric random variable"
+msgstr ""
+
+msgid "Simulation of a Poisson random variable"
+msgstr ""
+
 msgid "Random"
 msgstr "Aleatório"
 
@@ -464,3 +491,6 @@ msgstr "Variável aleatória hipergeométrica"
 
 msgid "Erlang random variable"
 msgstr "Variável aleatória de Erlang"
+
+msgid "Simulation of a Weibull random variable"
+msgstr ""

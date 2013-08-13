@@ -15,6 +15,6 @@
 //   <no arg>
 //
 function df = optimsimplex_fvvariance ( this )
-  df = variance ( this.fv(1:this.nbve) )
+    df = variance ( this.fv(1:this.nbve) )
 endfunction
 

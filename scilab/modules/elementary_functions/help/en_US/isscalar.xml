@@ -41,7 +41,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>isscalar(<varname>x</varname>)</literal> returns true if <varname>x</varname>
+            <literal>
+                isscalar(<varname>x</varname>)
+            </literal>
+            returns true if <varname>x</varname>
             is a scalar (if size(<varname>x</varname>) is 1). Note that <literal>isscalar([])</literal>
             returns false.
         </para>

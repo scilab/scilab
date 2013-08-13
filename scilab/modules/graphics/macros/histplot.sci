@@ -47,7 +47,7 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
     [lhs,rhs]=argn()
 
     if rhs == 0 then   // demo
-        histplot([-4.5:0.25:4.5],rand(1,20000,'n'),style=2,axesflag=1,..
+        histplot([-4.5:0.25:4.5],rand(1,20000,"n"),style=2,axesflag=1,..
         frameflag=1,rect=[-4.5 0 4.5 0.47]);
         deff("[y]=f(x)","y=exp(-x.*x/2)/sqrt(2*%pi);");
         x=-4.5:0.125:4.5;
@@ -71,7 +71,7 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
     end
 
     // this is the only specific optionnal argument for histplot
-    if ~exists('normalization','local') then, normalization=%t,end
+    if ~exists("normalization","local") then, normalization=%t,end
 
     // now parse optionnal arguments to be sent to plot2d
     opt_arg_seq = []
@@ -92,7 +92,7 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
         mind = min(data);
         maxd = max(data);
         if (mind == maxd) then
-            mind = mind - floor(n/2); 
+            mind = mind - floor(n/2);
             maxd = maxd + ceil(n/2);
         end
         x = linspace(mind, maxd, n+1);
@@ -121,7 +121,7 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
     if opt_arg_seq == [] then
         plot2d(X,Y)
     else
-        execstr('plot2d(X,Y'+opt_arg_seq+")")
+        execstr("plot2d(X,Y"+opt_arg_seq+")")
     end
 
 endfunction

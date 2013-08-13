@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-09-01 09:43+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -193,6 +193,10 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數矩陣或字串矩�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: impossible to get dimensions of this matrix.\n"
@@ -404,6 +408,10 @@ msgid ""
 "expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為非空矩陣或字串.\n"
 
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '.' or ',' expected.\n"
+msgstr ""
+
 #
 # File: sci_gateway/c/sci_tokens.c, line: 73
 # File: sci_gateway/c/sci_tokens.c, line: 83
@@ -547,10 +555,6 @@ msgstr "%s: 給定之算式無值.\n"
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
 msgstr "%s: 此特性尚未實作: %s.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
-msgstr "%s: 參數第 #%d個型別有誤: string array 才對.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

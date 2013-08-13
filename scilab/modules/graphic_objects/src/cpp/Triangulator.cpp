@@ -23,13 +23,31 @@ void Triangulator::determineSmallestAxis(void)
 
     for (int i = 1 ; i < numPoints; i++)
     {
-        if (inputPoints[i].x < min.x) min.x = inputPoints[i].x;
-        if (inputPoints[i].y < min.y) min.y = inputPoints[i].y;
-        if (inputPoints[i].z < min.z) min.z = inputPoints[i].z;
+        if (inputPoints[i].x < min.x)
+        {
+            min.x = inputPoints[i].x;
+        }
+        if (inputPoints[i].y < min.y)
+        {
+            min.y = inputPoints[i].y;
+        }
+        if (inputPoints[i].z < min.z)
+        {
+            min.z = inputPoints[i].z;
+        }
 
-        if (inputPoints[i].x > max.x) max.x = inputPoints[i].x;
-        if (inputPoints[i].y > max.y) max.y = inputPoints[i].y;
-        if (inputPoints[i].z > max.z) max.z = inputPoints[i].z;
+        if (inputPoints[i].x > max.x)
+        {
+            max.x = inputPoints[i].x;
+        }
+        if (inputPoints[i].y > max.y)
+        {
+            max.y = inputPoints[i].y;
+        }
+        if (inputPoints[i].z > max.z)
+        {
+            max.z = inputPoints[i].z;
+        }
     }
 
     max = minus(max, min);
@@ -94,9 +112,9 @@ double Triangulator::computeArea(void)
 
     for (int i = 0; i < numPoints; i++)
     {
-        int ip1 = (i+1) % numPoints;
+        int ip1 = (i + 1) % numPoints;
 
-        area += ((points[i].x*points[ip1].y)-(points[i].y*points[ip1].x));
+        area += ((points[i].x * points[ip1].y) - (points[i].y * points[ip1].x));
     }
 
     area *= 0.5;
@@ -108,7 +126,7 @@ void Triangulator::fillVertexIndices(void)
 {
     if (flipped)
     {
-        for (int i = numPoints-1; i >= 0; i--)
+        for (int i = numPoints - 1; i >= 0; i--)
         {
             vertexIndices.push_back(i);
         }
@@ -140,7 +158,7 @@ void Triangulator::removeColinearVertices(void)
         dp = computeDotProduct(*vim1, *vi, *vip1);
 
         if ((!compareVertices(points[*vim1], points[*vi]) && !compareVertices(points[*vi], points[*vip1])) &&
-            fabs(dp) < TOLERANCE)
+                fabs(dp) < TOLERANCE)
         {
             numColinear++;
         }
@@ -162,7 +180,7 @@ void Triangulator::removeColinearVertices(void)
 
         for (size_t i = 0; i < actualVertexIndices.size(); i++)
         {
-            tmpList.push_back(actualVertexIndices[actualVertexIndices.size()-i-1]);
+            tmpList.push_back(actualVertexIndices[actualVertexIndices.size() - i - 1]);
         }
 
         actualVertexIndices.clear();
@@ -179,7 +197,7 @@ void Triangulator::removeColinearVertices(void)
     {
         for (size_t i = 0; i < sievedPoints.size(); i++)
         {
-            points.push_back(sievedPoints[sievedPoints.size()-i-1]);
+            points.push_back(sievedPoints[sievedPoints.size() - i - 1]);
         }
     }
     else
@@ -213,8 +231,8 @@ void Triangulator::removeDuplicateVertices(void)
 
     for (size_t i = 0; i < points.size(); i++)
     {
-        int ic = (i+1) % points.size();
-        int icm1 = i;
+        int ic = ((int)i+1) % (int)points.size();
+        int icm1 = (int)i;
 
         Vector3d vi = points[icm1];
         Vector3d vip1 = points[ic];
@@ -512,12 +530,12 @@ Vector3d Triangulator::minus(Vector3d v0, Vector3d v1)
 
 double Triangulator::dot(Vector3d v0, Vector3d v1)
 {
-    return v0.x*v1.x + v0.y*v1.y + v0.z*v1.z;
+    return v0.x * v1.x + v0.y * v1.y + v0.z * v1.z;
 }
 
 Vector3d Triangulator::normalize(Vector3d v)
 {
-    double n = sqrt(v.x*v.x+v.y*v.y);
+    double n = sqrt(v.x * v.x + v.y * v.y);
 
     if (n < EPSILON)
     {
@@ -547,7 +565,7 @@ bool Triangulator::compareVertices(Vector3d v0, Vector3d v1)
         return true;
     }
     else
-    { 
+    {
         return false;
     }
 }

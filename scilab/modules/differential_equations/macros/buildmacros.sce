@@ -7,8 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 
-genlib('differential_equationlib','SCI/modules/differential_equations/macros',%f,%t);
+genlib("differential_equationlib","SCI/modules/differential_equations/macros",%f,%t);

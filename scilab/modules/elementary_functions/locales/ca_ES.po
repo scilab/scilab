@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2013-01-26 04:12+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ca\n"
 
 #, c-format
@@ -93,10 +93,29 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
 "real.\n"
 
+msgid "This usage of the third argument of gsort is obsolete."
+msgstr ""
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr ""
+
+msgid "It will no more be available in Scilab 6."
+msgstr ""
+
+msgid "Please use 'd' or 'i' instead."
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
+msgstr ""
+
+msgid "This usage of the second argument of gsort is obsolete."
+msgstr ""
+
+msgid "Please use 'r', 'c', 'g', 'lr' or 'lc' instead."
 msgstr ""
 
 #, c-format
@@ -237,6 +256,17 @@ msgstr ""
 "quadrada.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, sparse or full "
+"matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real sparse or full matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Matrix is not diagonalisable.\n"
 msgstr "%s: La matriu no es pot diagonalitzar.\n"
 
@@ -358,6 +388,28 @@ msgstr ""
 "diagonalitzar.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real, complex, boolean or "
+"polynomial matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size 1x3 or 3xN "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, sparse or full "
+"matrix or hypermatrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
 "%s: Nombre d'arguments d'entrada incorrecte: Hi ha d'haver %d o %d.\n"
@@ -475,15 +527,17 @@ msgstr ""
 "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un nombre real.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument(s) %d: real arguments expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Real scalar or matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument(s) %d: n must be a scalar.\n"
+msgid ""
+"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: If x is negative, n must be an odd integer\n"
+msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr ""
 
 #, c-format
@@ -541,6 +595,10 @@ msgstr ""
 msgid ""
 "%s: Wrong number of output matrix dimensions required: %d expected for "
 "sparse matrices.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
 msgstr ""
 
 #, c-format

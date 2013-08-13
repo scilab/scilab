@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-05-15 16:44+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-17 15:46+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: uk\n"
 
 #, c-format
@@ -33,25 +33,29 @@ msgstr "%s: не вдалося створити mlist з вхідним пар�
 msgid "%s: Can not create a tlist with input argument #%d.\n"
 msgstr "%s: не вдалося створити tlist з вхідним параметром №%d.\n"
 
-msgid " An hypermatrix extraction must have at least 2 arguments. "
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
-" Команда видобування гіперматриці має містити принаймні два параметри. "
-
-msgid " Argument is not an hypermatrix. "
-msgstr " Параметр не є гіперматрицею. "
-
-msgid " Incompatible hypermatrix extraction. "
-msgstr " Несумісне видобування гіперматриці. "
+"%s: помилкова кількість вхідних параметрів: мало бути вказано принаймні %d.\n"
 
 #, c-format
-msgid "Bad (%d th) index in hypermatrix extraction. "
-msgstr "Помилковий (%d-ий) індекс під час видобування гіперматриці. "
+msgid "%s: Wrong type for input argument(s): An hypermatrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів: мало бути вказано гіперматрицю.\n"
 
-msgid " An hypermatrix insertion must have at least 3 arguments. "
-msgstr " щоб вставити гіперматрицю, слід задати принаймні 3 параметри. "
+#, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
+"%d.\n"
 
-msgid " Bad hypermatrix insertion. "
-msgstr " Помилкова вставка гіперматриці. "
+#, c-format
+msgid "%s: Invalid index #%d in hypermatrix extraction. "
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid hypermatrix insertion.\n"
+msgstr ""
 
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr ""
@@ -78,10 +82,12 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: struct array or tlist or mlist "
+"expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
-"«struct».\n"
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано масив структур, "
+"tlist або mlist.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"

@@ -14,6 +14,12 @@
 #define NGONGRIDMATPLOTDATA_DECOMPOSER_HXX
 
 #include <string>
+#include "ColorComputer.hxx"
+
+extern "C"
+{
+#include "Matplot.h"
+}
 
 /**
  * NgonGridMatplotData decomposer class
@@ -51,7 +57,7 @@ protected :
      * @param[in] the grid's number of vertices along the y-axis.
      */
     virtual void fillGridVertices(float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask,
-        double* x, double* y, double* z, int numX, int numY);
+                                  double* x, double* y, double* z, int numX, int numY);
 
     /**
      * Determines whether a facet is valid.
@@ -135,6 +141,27 @@ public :
      * @return the number of indices actually written.
      */
     static int fillIndices(char* id, int* buffer, int bufferLength, int logMask);
+
+    template <typename T>
+    inline static void fillColorsByIndex(T * indices, float * buffer, int elementsSize, const int nbRow, const int nbCol, double * colormap, const int colormapSize)
+    {
+        float facetColor[3];
+        T index;
+        int bufferOffset = 0;
+
+        for (int j = 0; j < nbRow; j++)
+        {
+            for (int i = 0; i < nbCol; i++)
+            {
+                index = indices[nbRow - 1 + i * nbRow - j];
+                ColorComputer::getDirectColor(index - 1, colormap, colormapSize, facetColor);
+                writeFacetColorToBuffer(buffer, bufferOffset, facetColor, elementsSize);
+                bufferOffset += 4 * elementsSize;
+            }
+        }
+    }
+
+    static void getRGBAData(ImageType imagetype, DataType datatype, GLType gltype, void * data, float * buffer, int elementsSize, const int nbRow, const int nbCol, double * colormap, const int colormapSize);
 
 };
 

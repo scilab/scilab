@@ -32,27 +32,31 @@ int C2F(genprod)(int *typ, int *n, void *dx, int *incx)
 
 
     dtemp = 1;
-    if (*n <= 0) return dtemp;
+    if (*n <= 0)
+    {
+        return dtemp;
+    }
 
-    switch (*typ) {
-    case 1:
-      PROD(integer1,int);
-      break;
-    case 2:
-      PROD(integer2,int);
-      break;
-    case 4:
-      PROD(int,int) ;
-      break;
-    case 11:
-      PROD(unsigned char,int);
-      break;
-    case 12:
-      PROD(unsigned short,int);
-      break;
-    case 14:
-      PROD(unsigned int,int);
-      break;
+    switch (*typ)
+    {
+        case 1:
+            PROD(integer1, int);
+            break;
+        case 2:
+            PROD(integer2, int);
+            break;
+        case 4:
+            PROD(int, int) ;
+            break;
+        case 11:
+            PROD(unsigned char, int);
+            break;
+        case 12:
+            PROD(unsigned short, int);
+            break;
+        case 14:
+            PROD(unsigned int, int);
+            break;
     }
     return dtemp;
 }
@@ -65,27 +69,31 @@ double C2F(genprodasdouble)(int *typ, int *n, void *dx, int *incx)
 
 
     dtemp = 1.0;
-    if (*n <= 0) return dtemp;
+    if (*n <= 0)
+    {
+        return dtemp;
+    }
 
-    switch (*typ) {
-    case 1:
-      PROD(integer1,double);
-      break;
-    case 2:
-      PROD(integer2,double);
-      break;
-    case 4:
-      PROD(int,double);
-      break;
-    case 11:
-      PROD(unsigned char,double);
-      break;
-    case 12:
-      PROD(unsigned short,double);
-      break;
-    case 14:
-      PROD(unsigned int,double);
-      break;
+    switch (*typ)
+    {
+        case 1:
+            PROD(integer1, double);
+            break;
+        case 2:
+            PROD(integer2, double);
+            break;
+        case 4:
+            PROD(int, double);
+            break;
+        case 11:
+            PROD(unsigned char, double);
+            break;
+        case 12:
+            PROD(unsigned short, double);
+            break;
+        case 14:
+            PROD(unsigned int, double);
+            break;
     }
     return dtemp;
 }

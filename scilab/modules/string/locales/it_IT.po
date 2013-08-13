@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-09-30 15:53+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: it\n"
 
 msgid "WARNING : \n"
@@ -134,6 +134,10 @@ msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "singola stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: impossible to get dimensions of this matrix.\n"
@@ -341,6 +345,10 @@ msgstr ""
 "matrice di stringhe non vuota.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: '.' or ',' expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A character or a vector of single "
 "characters expected.\n"
@@ -460,12 +468,6 @@ msgstr "%s: L'espressione fornita non ha valore.\n"
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
 msgstr "%s: La seguente caratteristica non è stata sviluppata: %s.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
-"stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

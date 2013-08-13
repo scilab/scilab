@@ -30,7 +30,7 @@ double Mini(const double vect[], int n)
 {
     int i = 0;
     double vmin = LARGEST_REAL;
-    for (i = 0 ; i < n ; i++) 
+    for (i = 0 ; i < n ; i++)
     {
         /*    if (isinf(vect[i])== 0 && isnan(vect[i])==0 && vect[i] < vmin)  */
         if (finite(vect[i]) == 1 && vect[i] < vmin)

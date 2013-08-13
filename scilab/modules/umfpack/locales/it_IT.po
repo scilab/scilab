@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2011-09-01 09:29+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-17 22:18+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: it\n"
 
 #, c-format
@@ -53,17 +53,12 @@ msgstr "fattorizzazione"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
-"Cholesky factorisation"
+"Cholesky factorization"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere un "
-"valido riferimento alla fattorizzazione di Cholesky aggiuntive"
 
 #, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr ""
-"%s: Memoria insufficiente : aumentare stacksize, sono necessarie %d parole "
-"aggiuntive.\n"
 
 #, c-format
 msgid ""
@@ -79,11 +74,15 @@ msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
-"factorisation.\n"
+"%s: Wrong type for input argument #%d: not compatible with the Cholesky "
+"factorization.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: non è "
-"compatibile con la fattorizzazione di Cholesky.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
+"factorization.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: not enough memory.\n"
@@ -117,11 +116,11 @@ msgstr "non c'è spazio per immagazzinare il puntatore LU in ListNumeric"
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Si è verificato il seg. errore: %s.\n"
 
-msgid "This is not a factorisation of a square matrix"
-msgstr "Questa non è la fattorizzazione di una matrice quadrata"
+msgid "This is not a factorization of a square matrix"
+msgstr ""
 
-msgid "This is a factorisation of a singular matrix"
-msgstr "Questa è la fattorizzazione di una matrice singolare"
+msgid "This is a factorization of a singular matrix"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"

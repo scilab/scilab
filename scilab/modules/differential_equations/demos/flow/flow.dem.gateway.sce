@@ -6,8 +6,8 @@
 demopath = get_absolute_file_path("flow.dem.gateway.sce");
 
 subdemolist = ["Black hole"  ,"blackhole.dem.sce" ;
-               "Cylinder"    ,"cylinder.dem.sce"  ;
-               "Sphere"      ,"sphere.dem.sce"    ];
+"Cylinder"    ,"cylinder.dem.sce"  ;
+"Sphere"      ,"sphere.dem.sce"    ];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
 clear demopath;

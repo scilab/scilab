@@ -46,6 +46,14 @@ GRAPHICS_IMPEXP int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2
  */
 GRAPHICS_IMPEXP int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, long int l1);
 
+/**
+ * Matplot subroutine
+ *  z : of size n1*n2
+ *  the z value is interpreted as a color number inside the current colormap
+ *  z[i,j] is used as the color of a square [i-0.5,i+0.5] [j-0.5,j+0.5]
+ */
+GRAPHICS_IMPEXP int C2F(implot)(unsigned char *z, int *n1, int *n2, char *strflag, double *brect, int *aaint, BOOL flagNax, long int l1, int plottype);
+
 
 /**
  * like xgray1 :
@@ -53,5 +61,7 @@ GRAPHICS_IMPEXP int C2F(xgray1)(double *z, int *n1, int *n2, char *strflag, doub
  * grayplot is to be drawn using the current scale
  */
 GRAPHICS_IMPEXP int C2F(xgray2)(double *z, int *n1, int *n2, double *xrect);
+
+GRAPHICS_IMPEXP int C2F(implot1)(unsigned char *z, int *n1, int *n2, double *xrect, int plottype);
 
 #endif /* _GRAY_PLOT_H_ */

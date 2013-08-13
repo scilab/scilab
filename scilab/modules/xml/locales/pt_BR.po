@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-04-22 00:50+0000\n"
-"Last-Translator: Ramiro Pereira de Magalhães <ramiro.p.magalhaes@gmail.com>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-07 19:39+0000\n"
+"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -29,7 +29,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um string.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -60,15 +60,15 @@ msgstr "%s: XMLList inexistente.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s', '%s' "
-"ou '%s'.\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", "
+"\"%s\" ou \"%s\".\n"
 
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: A string or a double expected.\n"
 msgstr ""
-"%s: Dimensão incorreta para o argumento #%d: esperava-se um string ou um "
-"double.\n"
+"%s: Dimensão incorreta para o argumento de entrada #%d: esperava-se um texto "
+"ou um número real.\n"
 
 #, c-format
 msgid "%s: Unknown field: %s\n"
@@ -78,13 +78,13 @@ msgstr "%s: Campo desconhecido: %s\n"
 msgid "%s: Wrong dimension for input argument #%d: Single double expected.\n"
 msgstr ""
 "%s: Dimensão incorreta para o argumento de entrada #%d: esperava-se um único "
-"double.\n"
+"número real.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um único "
-"double.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"real.\n"
 
 #, c-format
 msgid "%s: Wrong index in the XMLList.\n"
@@ -101,37 +101,40 @@ msgid ""
 "%s: Wrong type for input argument #%d: A string or a single integer "
 "expected\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um string ou "
-"um único inteiro.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto ou "
+"um único número inteiro\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A string or a single integer "
 "expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um string ou "
-"um único inteiro.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto ou "
+"um único número inteiro.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um double.\n"
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"real.\n"
 
 #, c-format
 msgid "%s: xmlFormat must return a string.\n"
-msgstr "%s: xmlFormat deve retornar um string.\n"
+msgstr "%s: xmlFormat deve retornar um texto.\n"
 
 #, c-format
 msgid "%s: You must define %%s_xmlFormat function.\n"
-msgstr ""
+msgstr "%s: Você deve definir uma função %%s_xmlFormat.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr "%s: Espera-se ao menos %d argumentos de entrada.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se no mínimo "
+"%d.\n"
 
 #, c-format
 msgid "%s: XML Element does not exist.\n"
-msgstr "%s: Elemento XML não existe.\n"
+msgstr "%s: Elemento XML inexistente.\n"
 
 #, c-format
 msgid "%s: XML Namespace does not exist.\n"
@@ -155,7 +158,7 @@ msgstr "%s: XMLSet ou XMLList inexistente.\n"
 msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Dimensão incorreta para o argumento de entrada #%d: esperava-se um "
-"string.\n"
+"texto.\n"
 
 #, c-format
 msgid "%s: XML document does not exist.\n"
@@ -167,35 +170,39 @@ msgstr "%s: Arquivo de validação XML inexistente.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A %s expected\n"
-msgstr "%s: Tipo incorreto do argumento de entrada #%d: esperava-se %s.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se %s.\n"
 
 #, c-format
 msgid "%s: Bad input argument #%d: A valid XML name expected.\n"
 msgstr ""
+"%s: Argumento de entrada #%d inválido: esperava-se um nome XML válido.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: espera-se um string "
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um texto "
 "não-vazio.\n"
 
 #, c-format
 msgid "%s: Can not read named argument %s.\n"
-msgstr ""
+msgstr "%s: Não foi possível ler o argumento chamado %s.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%i: XMLSet, XMLList, XMLAttr or XMLElem "
 "expected.\n"
 msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%i: esperava-se um XMLSet, "
+"XMLList, XMLAttr ou XMLElem.\n"
 
 #, c-format
 msgid "%s: XMLAttr does not exist.\n"
-msgstr ""
+msgstr "%s: XMLAttr inexistente.\n"
 
 #, c-format
 msgid "%s: XMLElem does not exist.\n"
-msgstr ""
+msgstr "%s: XMLElem inexistente.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -216,6 +223,8 @@ msgid ""
 "%s: Cannot parse the string:\n"
 "%s"
 msgstr ""
+"%s: Não é possível interpretar o texto:\n"
+"%s"
 
 #, c-format
 msgid ""
@@ -237,13 +246,15 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de strings.\n"
+"de textos.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matrix nx2 or nx3 of strings "
 "expected.\n"
 msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz de textos nx2 ou nx3.\n"
 
 #, c-format
 msgid "%s: XML document does not exist\n"
@@ -255,7 +266,7 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de strings ou um XMLDoc.\n"
+"de textos ou um XMLDoc.\n"
 
 #, c-format
 msgid ""
@@ -269,14 +280,14 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um string ou "
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto ou "
 "um booleano.\n"
 
 #, c-format
 msgid ""
 "%s: The XML Document has not an URI and there is no second argument.\n"
 msgstr ""
-"%s: O documento XML não possui uma URI e não há um segundo argumento.\n"
+"%s: O documento XML não possui um URI, e não há um segundo argumento.\n"
 
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: A boolean expected.\n"
@@ -308,7 +319,7 @@ msgid ""
 "%s: Bad XPath query:\n"
 "%s"
 msgstr ""
-"%s: Consulta XPath ruim.\n"
+"%s: Consulta XPath inválida:\n"
 "%s"
 
 #, c-format
@@ -319,30 +330,32 @@ msgid "Invalid file name: "
 msgstr "Nome de arquivo incorreto: "
 
 msgid "Cannot create a parser context"
-msgstr ""
+msgstr "Não é possível criar um contexto do interpretador"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%i: A double expected.\n"
 msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%i: esperava-se um número "
+"real.\n"
 
 #, c-format
 msgid "%s: Error in getting rhs argument.\n"
-msgstr ""
+msgstr "%s: Erro ao obter o argumento à direita.\n"
 
 msgid " at line "
-msgstr ""
+msgstr " na linha "
 
 msgid "Cannot create a buffer"
-msgstr ""
+msgstr "Não é possível criar um buffer"
 
 msgid "Cannot create a reader"
-msgstr ""
+msgstr "Não é possível criar um leitor"
 
 msgid "Invalid file"
 msgstr "Arquivo inválido"
 
 msgid "Cannot parse the DTD"
-msgstr ""
+msgstr "Não é possível interpretar o DTD"
 
 msgid "Cannot create a valid context"
 msgstr "Não foi possível criar um contexto válido."
@@ -353,32 +366,33 @@ msgid ""
 "Please see help xmlValidate.\n"
 msgstr ""
 "Devido a uma limitação da libxml2, não é possível validar um documento "
-"contra seu DTD externo.\n"
-"Vide ajuda do xmlValidate.\n"
+"contra um DTD externo.\n"
+"Veja a ajuda do xmlValidate.\n"
 
 msgid "Cannot create a validation context"
 msgstr "Não foi possível criar um contexto de validação."
 
 msgid "Cannot parse the Relax NG grammar"
-msgstr ""
+msgstr "Não é possível interpretar a gramática do Relax NG"
 
 msgid "Cannot parse the schema"
-msgstr ""
+msgstr "Não é possível interpretar o esquema"
 
 msgid "Cannot read the stream"
 msgstr "Não foi possível ler o fluxo"
 
 #, c-format
 msgid "%s: No root element.\n"
-msgstr ""
+msgstr "%s: Não há elemento raiz.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%i: A string expected.\n"
 msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%i: esperava-se um texto.\n"
 
 #, c-format
 msgid "%s: Wrong type to set %s field.\n"
-msgstr ""
+msgstr "%s: Tipo incorreto para definir o campo %s.\n"
 
 #, c-format
 msgid "%s: Not valid xml for root.\n"
@@ -386,7 +400,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Field %s is not modifiable: %s\n"
-msgstr ""
+msgstr "%s: O campo %s não é modificável: %s\n"
 
 msgid "XML"
 msgstr "XML"

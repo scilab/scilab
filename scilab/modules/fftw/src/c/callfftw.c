@@ -42,24 +42,28 @@ static PROC_FFTW_PLAN_GURU_SPLIT_DFT_R2R MY_FFTW_PLAN_GURU_SPLIT_DFT_R2R = NULL;
 static PROC_FFTW_DESTROY_PLAN            MY_FFTW_DESTROY_PLAN            = NULL;
 static PROC_FFTW_EXPORT_WISDOM_TO_STRING MY_FFTW_EXPORT_WISDOM_TO_STRING = NULL;
 static PROC_FFTW_IMPORT_WISDOM_FROM_STRING MY_FFTW_IMPORT_WISDOM_FROM_STRING = NULL;
-static PROC_FFTW_FORGET_WISDOM MY_FFTW_FORGET_WISDOM=NULL;
+static PROC_FFTW_FORGET_WISDOM MY_FFTW_FORGET_WISDOM = NULL;
 /*--------------------------------------------------------------------------*/
 BOOL IsLoadedFFTW(void)
 {
     if ( (MY_FFTW_EXECUTE_SPLIT_DFT) && (MY_FFTW_PLAN_GURU_SPLIT_DFT) && (MY_FFTW_DESTROY_PLAN) &&
-        (MY_FFTW_EXPORT_WISDOM_TO_STRING) && (MY_FFTW_IMPORT_WISDOM_FROM_STRING) &&
-        (MY_FFTW_FORGET_WISDOM) ) 
-        {
-            return TRUE;
+            (MY_FFTW_EXPORT_WISDOM_TO_STRING) && (MY_FFTW_IMPORT_WISDOM_FROM_STRING) &&
+            (MY_FFTW_FORGET_WISDOM) )
+    {
+        return TRUE;
     }
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-BOOL LoadFFTWLibrary(char *libraryname)
+BOOL LoadFFTWLibrary(const char* libraryname)
 {
 
-    if (libraryname == NULL) return FALSE;
-    if (hinstLib == NULL) {
+    if (libraryname == NULL)
+    {
+        return FALSE;
+    }
+    if (hinstLib == NULL)
+    {
 #ifdef _MSC_VER
         {
             wchar_t * wclibraryname = to_wide_string(libraryname);
@@ -86,25 +90,25 @@ BOOL LoadFFTWLibrary(char *libraryname)
         MY_FFTW_DESTROY_PLAN             = NULL;
 
         MY_FFTW_EXPORT_WISDOM_TO_STRING  = NULL;
-        MY_FFTW_IMPORT_WISDOM_FROM_STRING= NULL;
+        MY_FFTW_IMPORT_WISDOM_FROM_STRING = NULL;
         MY_FFTW_FORGET_WISDOM            = NULL;
 
-        MY_FFTW_EXECUTE_SPLIT_DFT     = (PROC_FFTW_EXECUTE_SPLIT_DFT)     GetDynLibFuncPtr(hinstLib,"fftw_execute_split_dft");
-        MY_FFTW_EXECUTE_SPLIT_DFT_C2R = (PROC_FFTW_EXECUTE_SPLIT_DFT_C2R) GetDynLibFuncPtr(hinstLib,"fftw_execute_split_dft_c2r");
-        MY_FFTW_EXECUTE_SPLIT_DFT_R2C = (PROC_FFTW_EXECUTE_SPLIT_DFT_R2C) GetDynLibFuncPtr(hinstLib,"fftw_execute_split_dft_r2c");
-        MY_FFTW_EXECUTE_SPLIT_DFT_R2R = (PROC_FFTW_EXECUTE_SPLIT_DFT_R2R) GetDynLibFuncPtr(hinstLib,"fftw_execute_r2r");
+        MY_FFTW_EXECUTE_SPLIT_DFT     = (PROC_FFTW_EXECUTE_SPLIT_DFT)     GetDynLibFuncPtr(hinstLib, "fftw_execute_split_dft");
+        MY_FFTW_EXECUTE_SPLIT_DFT_C2R = (PROC_FFTW_EXECUTE_SPLIT_DFT_C2R) GetDynLibFuncPtr(hinstLib, "fftw_execute_split_dft_c2r");
+        MY_FFTW_EXECUTE_SPLIT_DFT_R2C = (PROC_FFTW_EXECUTE_SPLIT_DFT_R2C) GetDynLibFuncPtr(hinstLib, "fftw_execute_split_dft_r2c");
+        MY_FFTW_EXECUTE_SPLIT_DFT_R2R = (PROC_FFTW_EXECUTE_SPLIT_DFT_R2R) GetDynLibFuncPtr(hinstLib, "fftw_execute_r2r");
 
-        MY_FFTW_PLAN_GURU_SPLIT_DFT     = (PROC_FFTW_PLAN_GURU_SPLIT_DFT)     GetDynLibFuncPtr(hinstLib,"fftw_plan_guru_split_dft");
-        MY_FFTW_PLAN_GURU_SPLIT_DFT_C2R = (PROC_FFTW_PLAN_GURU_SPLIT_DFT_C2R) GetDynLibFuncPtr(hinstLib,"fftw_plan_guru_split_dft_c2r");
-        MY_FFTW_PLAN_GURU_SPLIT_DFT_R2C = (PROC_FFTW_PLAN_GURU_SPLIT_DFT_R2C) GetDynLibFuncPtr(hinstLib,"fftw_plan_guru_split_dft_r2c");
-        MY_FFTW_PLAN_GURU_SPLIT_DFT_R2R = (PROC_FFTW_PLAN_GURU_SPLIT_DFT_R2R) GetDynLibFuncPtr(hinstLib,"fftw_plan_guru_r2r");
+        MY_FFTW_PLAN_GURU_SPLIT_DFT     = (PROC_FFTW_PLAN_GURU_SPLIT_DFT)     GetDynLibFuncPtr(hinstLib, "fftw_plan_guru_split_dft");
+        MY_FFTW_PLAN_GURU_SPLIT_DFT_C2R = (PROC_FFTW_PLAN_GURU_SPLIT_DFT_C2R) GetDynLibFuncPtr(hinstLib, "fftw_plan_guru_split_dft_c2r");
+        MY_FFTW_PLAN_GURU_SPLIT_DFT_R2C = (PROC_FFTW_PLAN_GURU_SPLIT_DFT_R2C) GetDynLibFuncPtr(hinstLib, "fftw_plan_guru_split_dft_r2c");
+        MY_FFTW_PLAN_GURU_SPLIT_DFT_R2R = (PROC_FFTW_PLAN_GURU_SPLIT_DFT_R2R) GetDynLibFuncPtr(hinstLib, "fftw_plan_guru_r2r");
 
 
-        MY_FFTW_DESTROY_PLAN = (PROC_FFTW_DESTROY_PLAN) GetDynLibFuncPtr(hinstLib,"fftw_destroy_plan");
+        MY_FFTW_DESTROY_PLAN = (PROC_FFTW_DESTROY_PLAN) GetDynLibFuncPtr(hinstLib, "fftw_destroy_plan");
 
-        MY_FFTW_EXPORT_WISDOM_TO_STRING   = (PROC_FFTW_EXPORT_WISDOM_TO_STRING)   GetDynLibFuncPtr(hinstLib,"fftw_export_wisdom_to_string");
+        MY_FFTW_EXPORT_WISDOM_TO_STRING   = (PROC_FFTW_EXPORT_WISDOM_TO_STRING)   GetDynLibFuncPtr(hinstLib, "fftw_export_wisdom_to_string");
         MY_FFTW_IMPORT_WISDOM_FROM_STRING = (PROC_FFTW_IMPORT_WISDOM_FROM_STRING) GetDynLibFuncPtr(hinstLib, "fftw_import_wisdom_from_string");
-        MY_FFTW_FORGET_WISDOM             = (PROC_FFTW_FORGET_WISDOM) GetDynLibFuncPtr(hinstLib,"fftw_forget_wisdom");
+        MY_FFTW_FORGET_WISDOM             = (PROC_FFTW_FORGET_WISDOM) GetDynLibFuncPtr(hinstLib, "fftw_forget_wisdom");
     }
 
     return IsLoadedFFTW();
@@ -120,29 +124,65 @@ BOOL DisposeFFTWLibrary(void)
         hinstLib = NULL;
     }
 
-    if (MY_FFTW_EXECUTE_SPLIT_DFT) MY_FFTW_EXECUTE_SPLIT_DFT = NULL;
-    if (MY_FFTW_EXECUTE_SPLIT_DFT_C2R) MY_FFTW_EXECUTE_SPLIT_DFT_C2R = NULL;
-    if (MY_FFTW_EXECUTE_SPLIT_DFT_R2C) MY_FFTW_EXECUTE_SPLIT_DFT_R2C = NULL;
-    if (MY_FFTW_EXECUTE_SPLIT_DFT_R2R) MY_FFTW_EXECUTE_SPLIT_DFT_R2R = NULL;
+    if (MY_FFTW_EXECUTE_SPLIT_DFT)
+    {
+        MY_FFTW_EXECUTE_SPLIT_DFT = NULL;
+    }
+    if (MY_FFTW_EXECUTE_SPLIT_DFT_C2R)
+    {
+        MY_FFTW_EXECUTE_SPLIT_DFT_C2R = NULL;
+    }
+    if (MY_FFTW_EXECUTE_SPLIT_DFT_R2C)
+    {
+        MY_FFTW_EXECUTE_SPLIT_DFT_R2C = NULL;
+    }
+    if (MY_FFTW_EXECUTE_SPLIT_DFT_R2R)
+    {
+        MY_FFTW_EXECUTE_SPLIT_DFT_R2R = NULL;
+    }
 
-    if (MY_FFTW_PLAN_GURU_SPLIT_DFT) MY_FFTW_PLAN_GURU_SPLIT_DFT = NULL;
-    if (MY_FFTW_PLAN_GURU_SPLIT_DFT_C2R) MY_FFTW_PLAN_GURU_SPLIT_DFT_C2R = NULL;
-    if (MY_FFTW_PLAN_GURU_SPLIT_DFT_R2C) MY_FFTW_PLAN_GURU_SPLIT_DFT_R2C = NULL;
-    if (MY_FFTW_PLAN_GURU_SPLIT_DFT_R2R) MY_FFTW_PLAN_GURU_SPLIT_DFT_R2R = NULL;
+    if (MY_FFTW_PLAN_GURU_SPLIT_DFT)
+    {
+        MY_FFTW_PLAN_GURU_SPLIT_DFT = NULL;
+    }
+    if (MY_FFTW_PLAN_GURU_SPLIT_DFT_C2R)
+    {
+        MY_FFTW_PLAN_GURU_SPLIT_DFT_C2R = NULL;
+    }
+    if (MY_FFTW_PLAN_GURU_SPLIT_DFT_R2C)
+    {
+        MY_FFTW_PLAN_GURU_SPLIT_DFT_R2C = NULL;
+    }
+    if (MY_FFTW_PLAN_GURU_SPLIT_DFT_R2R)
+    {
+        MY_FFTW_PLAN_GURU_SPLIT_DFT_R2R = NULL;
+    }
 
-    if (MY_FFTW_DESTROY_PLAN) MY_FFTW_DESTROY_PLAN = NULL;
+    if (MY_FFTW_DESTROY_PLAN)
+    {
+        MY_FFTW_DESTROY_PLAN = NULL;
+    }
 
-    if (MY_FFTW_EXPORT_WISDOM_TO_STRING) MY_FFTW_EXPORT_WISDOM_TO_STRING     = NULL;
-    if (MY_FFTW_IMPORT_WISDOM_FROM_STRING) MY_FFTW_IMPORT_WISDOM_FROM_STRING = NULL;
-    if (MY_FFTW_FORGET_WISDOM) MY_FFTW_FORGET_WISDOM                         = NULL;
+    if (MY_FFTW_EXPORT_WISDOM_TO_STRING)
+    {
+        MY_FFTW_EXPORT_WISDOM_TO_STRING     = NULL;
+    }
+    if (MY_FFTW_IMPORT_WISDOM_FROM_STRING)
+    {
+        MY_FFTW_IMPORT_WISDOM_FROM_STRING = NULL;
+    }
+    if (MY_FFTW_FORGET_WISDOM)
+    {
+        MY_FFTW_FORGET_WISDOM                         = NULL;
+    }
 
     if ( !MY_FFTW_EXECUTE_SPLIT_DFT       && !MY_FFTW_EXECUTE_SPLIT_DFT_C2R     &&
-        !MY_FFTW_EXECUTE_SPLIT_DFT_R2C   && !MY_FFTW_EXECUTE_SPLIT_DFT_R2R     &&
-        !MY_FFTW_PLAN_GURU_SPLIT_DFT     && !MY_FFTW_PLAN_GURU_SPLIT_DFT_C2R   &&
-        !MY_FFTW_PLAN_GURU_SPLIT_DFT_R2C && !MY_FFTW_PLAN_GURU_SPLIT_DFT_R2R   &&
-        !MY_FFTW_DESTROY_PLAN            &&
-        !MY_FFTW_EXPORT_WISDOM_TO_STRING && !MY_FFTW_IMPORT_WISDOM_FROM_STRING &&
-        !MY_FFTW_FORGET_WISDOM )
+            !MY_FFTW_EXECUTE_SPLIT_DFT_R2C   && !MY_FFTW_EXECUTE_SPLIT_DFT_R2R     &&
+            !MY_FFTW_PLAN_GURU_SPLIT_DFT     && !MY_FFTW_PLAN_GURU_SPLIT_DFT_C2R   &&
+            !MY_FFTW_PLAN_GURU_SPLIT_DFT_R2C && !MY_FFTW_PLAN_GURU_SPLIT_DFT_R2R   &&
+            !MY_FFTW_DESTROY_PLAN            &&
+            !MY_FFTW_EXPORT_WISDOM_TO_STRING && !MY_FFTW_IMPORT_WISDOM_FROM_STRING &&
+            !MY_FFTW_FORGET_WISDOM )
     {
         return TRUE;
     }
@@ -188,7 +228,10 @@ fftw_plan call_fftw_plan_guru_split_dft (int rank, const fftw_iodim *dims, int h
     {
         return (fftw_plan)(MY_FFTW_PLAN_GURU_SPLIT_DFT)(rank, dims, howmany_rank, howmany_dims, ri, ii, ro, io, flags);
     }
-    else return NULL;
+    else
+    {
+        return NULL;
+    }
 }
 /*--------------------------------------------------------------------------*/
 fftw_plan call_fftw_plan_guru_split_dft_c2r (int rank, const fftw_iodim *dims, int howmany_rank, const fftw_iodim *howmany_dims, double *ri, double *ii, double *ro,  unsigned flags)
@@ -197,7 +240,10 @@ fftw_plan call_fftw_plan_guru_split_dft_c2r (int rank, const fftw_iodim *dims, i
     {
         return (fftw_plan)(MY_FFTW_PLAN_GURU_SPLIT_DFT_C2R)(rank, dims, howmany_rank, howmany_dims, ri, ii, ro, flags);
     }
-    else return NULL;
+    else
+    {
+        return NULL;
+    }
 }
 /*--------------------------------------------------------------------------*/
 fftw_plan call_fftw_plan_guru_split_dft_r2c (int rank, const fftw_iodim *dims, int howmany_rank, const fftw_iodim *howmany_dims, double *ri, double *ro, double *io, unsigned flags)
@@ -206,7 +252,10 @@ fftw_plan call_fftw_plan_guru_split_dft_r2c (int rank, const fftw_iodim *dims, i
     {
         return (fftw_plan)(MY_FFTW_PLAN_GURU_SPLIT_DFT_R2C)(rank, dims, howmany_rank, howmany_dims, ri, ro, io, flags);
     }
-    else return NULL;
+    else
+    {
+        return NULL;
+    }
 }
 /*--------------------------------------------------------------------------*/
 fftw_plan call_fftw_plan_guru_split_dft_r2r (int rank, const fftw_iodim *dims, int howmany_rank, const fftw_iodim *howmany_dims, double *ri, double *ro, fftw_r2r_kind *kind, unsigned flags)
@@ -215,7 +264,10 @@ fftw_plan call_fftw_plan_guru_split_dft_r2r (int rank, const fftw_iodim *dims, i
     {
         return (fftw_plan)(MY_FFTW_PLAN_GURU_SPLIT_DFT_R2R)(rank, dims, howmany_rank, howmany_dims, ri, ro, kind, flags);
     }
-    else return NULL;
+    else
+    {
+        return NULL;
+    }
 }
 
 /*--------------------------------------------------------------------------*/

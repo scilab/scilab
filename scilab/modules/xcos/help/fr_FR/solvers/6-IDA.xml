@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Scilab Enterprises - 2012 - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.
+ * The terms are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr_FR" xml:id="IDA">
+    <refnamediv>
+        <refname>IDA</refname>
+        <refpurpose>
+            <emphasis>IDA</emphasis> (abréviation de "Implicit Differential Algebraic equations system solver") est un solveur numérique fournissant une méthode efficace et stable pour résoudre des Problèmes à Valeur Initiale d'Equations Différentielles Algebriques (EDAs).
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Appelé par <link linkend="xcos">xcos</link>, <emphasis>IDA</emphasis> (abréviation de "Implicit Differential Algebraic equations system solver") est un solveur numérique fournissant une méthode efficace et stable pour résoudre des Problèmes à Valeur Initiale de la forme :
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                F(t,y,\dot{y}) = 0, \hspace{2 mm} y(t_0)=y_0, \hspace{2 mm} \dot{y}(t_0)=\dot{y}_0, \hspace{3 mm} y, \hspace{1.5 mm} \dot{y}  \hspace{1.5 mm} and \hspace{1.5 mm} F \in R^N \hspace{10 mm} (1)
+                \end{eqnarray}
+            </latex>
+        </para>
+        <para>
+        </para>
+        Avant de résoudre le problème, <emphasis>IDA</emphasis> lance une routine interne pour trouver des valeurs consistantes à 
+        <emphasis>
+            y<subscript>0</subscript>
+        </emphasis>
+        et 
+        <emphasis>
+            yPrime<subscript>0</subscript>
+        </emphasis>
+        .
+        <para>
+            Partant alors de ces 
+            <emphasis>
+                y<subscript>0</subscript>
+            </emphasis>
+            et 
+            <emphasis>
+                yPrime<subscript>0</subscript>
+            </emphasis>
+            , <emphasis>IDA</emphasis> approxime 
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            grâce à la formule <emphasis>BDF</emphasis> :
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                \sum_{i=0}^{q} \alpha_{n,i} y_{n-i} = h_n\dot{y}_{n}
+                \end{eqnarray}
+            </latex>
+            <para>
+                &#160; avec, comme dans <link linkend="CVode">CVode</link>, 
+                <emphasis>
+                    y<subscript>n</subscript>
+                </emphasis>
+                l'approximation de 
+                <emphasis>
+                    y(t<subscript>n</subscript>)
+                </emphasis>
+                ,
+                <emphasis>
+                    h<subscript>n</subscript>
+                </emphasis>
+                =
+                <emphasis>
+                    t<subscript>n</subscript> - t<subscript>n-1</subscript>
+                </emphasis>
+                la taille du pas, et les coefficients fixés, déterminés uniformément par le type de méthode, son ordre <emphasis>q</emphasis> allant de 1 à 5 et l'histoire des pas de temps.
+            </para>
+        </para>
+        <para>
+            Injecter cette formule dans <emphasis>(1)</emphasis> fournit le système :
+        </para>
+        <para>
+            <latex>
+                G(y_n) \equiv F \left( t_n, \hspace{1.5mm} y_n, \hspace{1.5mm} h_n^{-1}\sum_{i=0}^{q} \alpha_{n,i} y_{n-i} \right) = 0
+            </latex>
+        </para>
+        <para>
+            Pour lui appliquer des itérations de <emphasis>Newton</emphasis>, on le réécrit :
+        </para>
+        <para>
+            <latex>
+                J \left[y_{n(m+1)}-y_{n(m)} \right] = -G(y_{n(m)})
+            </latex>
+        </para>
+        <para>
+            &#160; avec <emphasis>J</emphasis> une approximation du Jacobien:
+        </para>
+        <para>
+            &#160; <latex>
+                J = \frac{\partial{G}}{\partial{y}} = \frac{\partial{F}}{\partial{y}}+\alpha\frac{\partial{F}}{\partial{\dot{y}}}, \hspace{4 mm} \alpha = \frac{\alpha_{n,0}}{h_n},
+            </latex>
+        </para>
+        <para>
+            &#160; <emphasis>&#x3B1;</emphasis> change quand le pas ou l'ordre de la méthode varient.
+        </para>
+        <para>
+            Un solveur direct dense est alors utilisé et on poursuit sur le prochain pas de temps.
+        </para>
+        <para>
+            <emphasis>IDA</emphasis> se sert des valeurs passées pour contrôler l'erreur locale 
+            <emphasis>
+                y<subscript>n(m)</subscript> - y<subscript>n(0)</subscript>
+            </emphasis>
+            et recalcule 
+            <emphasis>
+                h<subscript>n</subscript>
+            </emphasis>
+            si cette erreur n'est pas satisfaisante.
+        </para>
+        <para>
+            Cette fonction est appelée entre les activations, parce-qu'une activation discrète est susceptible de modifier le système.
+        </para>
+        <para>
+            Suivant la criticalité de l'événement (son effet sur le problème continu), soit le solveur poursuit avec temps initial et final différents comme si rien ne s'était passé, soit, si le système a été modifié, il faut "réinitialiser à froid" le solveur et le relancer.
+        </para>
+        <para>
+            En moyenne, <emphasis>IDA</emphasis> acecpte des tolérances juqu'à 10<superscript>-11</superscript>. Au-delà, il retourne l'erreur <emphasis>Trop de précision demandée</emphasis>.
+        </para>
+    </refsection>
+    <refsection id="Exemple_IDA">
+        <title>Exemple</title>
+        <para>
+            Le bloc 'Modelica Generic' retourne ses états continus, on peut les évaluer avec <emphasis>IDA</emphasis> en lançant l'exemple:
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/DAE_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../examples/solvers/DAE_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image localized="true"><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/examples/solvers/DAE_Example.zcos");
+// Redéfinition de messagebox() pour éviter le popup
+function messagebox(msg, title)
+ disp(title);
+ disp(msg);
+endfunction
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="LSodar">LSodar</link>
+            </member>
+            <member>
+                <link linkend="CVode">CVode</link>
+            </member>
+            <member>
+                <link linkend="RK">Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DoPri">Dormand-Prince 4(5)</link>
+            </member>
+            <member>
+                <link linkend="RKImp">Runge-Kutta Implicite 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
+            </member>
+            <member>
+                <link linkend="Comparaisons">Comparaisons</link>
+            </member>
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
+            </member>
+            <member>
+                <link linkend="ode_root">ode_root</link>
+            </member>
+            <member>
+                <link linkend="odedc">odedc</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliographie</title>
+        <para>
+            <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Documentation Sundials</ulink>
+        </para>
+    </refsection>
+</refentry>

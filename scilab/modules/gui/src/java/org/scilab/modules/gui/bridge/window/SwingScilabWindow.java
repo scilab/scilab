@@ -102,6 +102,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     private final boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
     private Dimension lastDimension;
     private Point lastPosition;
+    private boolean isRestoring;
 
     /**
      * Constructor
@@ -117,16 +118,15 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
     public SwingScilabWindow(boolean manageClosing) {
         super();
         this.uuid = UUID.randomUUID().toString();
-
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         // By default ctrl+w close the window
         ActionListener listener = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    processWindowEvent(new WindowEvent(SwingScilabWindow.this, WindowEvent.WINDOW_CLOSING));
-                }
-            };
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                processWindowEvent(new WindowEvent(SwingScilabWindow.this, WindowEvent.WINDOW_CLOSING));
+            }
+        };
         getRootPane().registerKeyboardAction(listener, ScilabKeyStroke.getKeyStroke("OSSCKEY W"), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
         // TODO : Only for testing : Must be removed
@@ -172,20 +172,20 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         }
 
         addComponentListener(new ComponentAdapter() {
-                @Override
-                public void componentResized(ComponentEvent e) {
-                    if (getExtendedState() == NORMAL) {
-                        lastDimension = getSize();
-                    }
+            @Override
+            public void componentResized(ComponentEvent e) {
+                if (getExtendedState() == NORMAL) {
+                    lastDimension = getSize();
                 }
+            }
 
-                @Override
-                public void componentMoved(ComponentEvent e) {
-                    if (getExtendedState() == NORMAL) {
-                        lastPosition = getLocation();
-                    }
+            @Override
+            public void componentMoved(ComponentEvent e) {
+                if (getExtendedState() == NORMAL) {
+                    lastPosition = getLocation();
                 }
-            });
+            }
+        });
 
         if (MAC_OS_X) {
             registerForMacOSXEvents();
@@ -196,6 +196,14 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         sciDockingListener.setAssociatedWindowId(windowUID);
 
         allScilabWindows.put(windowUID, this);
+    }
+
+    public void setIsRestoring(boolean b) {
+        isRestoring = b;
+    }
+
+    public boolean isRestoring() {
+        return isRestoring;
     }
 
     /**
@@ -323,11 +331,11 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             /* javasci bug: See bug 9544 why we are doing this check */
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
-                        @Override
-                        public void run() {
-                            raiseToFront();
-                        }
-                    });
+                    @Override
+                    public void run() {
+                        raiseToFront();
+                    }
+                });
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
@@ -508,6 +516,18 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         }
     }
 
+    public boolean compareMenuBar(MenuBar mb) {
+        if (mb == null ^ this.menuBar == null) {
+            return false;
+        }
+
+        if (mb == null && this.menuBar == null) {
+            return true;
+        }
+
+        return mb.getAsSimpleMenuBar() == this.menuBar;
+    }
+
     /**
      * Sets a Scilab ToolBar to a Scilab window
      * @param newToolBar the Scilab ToolBar to set to the Scilab window
@@ -535,6 +555,18 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         }
     }
 
+    public boolean compareToolBar(ToolBar tb) {
+        if (tb == null ^ this.toolBar == null) {
+            return false;
+        }
+
+        if (tb == null && this.toolBar == null) {
+            return true;
+        }
+
+        return tb.getAsSimpleToolBar() == this.toolBar;
+    }
+
     /**
      * Sets a Scilab InfoBar to a Scilab window
      * @param newInfoBar the Scilab InfoBar to set to the Scilab window
@@ -560,6 +592,18 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
             }
             //  else nothing to do element alredy set
         }
+    }
+
+    public boolean compareInfoBar(TextBox ib) {
+        if (ib == null ^ this.infoBar == null) {
+            return false;
+        }
+
+        if (ib == null && this.infoBar == null) {
+            return true;
+        }
+
+        return ib.getAsSimpleTextBox() == this.infoBar;
     }
 
     /**

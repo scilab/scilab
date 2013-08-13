@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:03+0100\n"
-"PO-Revision-Date: 2013-03-28 16:32+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-26 05:32+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: uk\n"
 
 msgid "X,Y,A and B"
@@ -48,6 +48,14 @@ msgstr "Pr, OMPr, P, Q і S"
 
 msgid "P,Q,S  and Xn"
 msgstr "P, Q, S і Xn"
+
+#, c-format
+msgid ""
+"%s: Warning: using non integer values for argument #%d may lead to incorrect "
+"results.\n"
+msgstr ""
+"%s: попередження: використання нецілих значень для параметра №%d може "
+"призвести до помилкових результатів.\n"
 
 msgid "X and Df"
 msgstr "X і Df"
@@ -154,6 +162,12 @@ msgstr "P, Q, X і Mean"
 msgid " Std must not be zero\n"
 msgstr " Std не повинно дорівнювати нулеві\n"
 
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A matrix of integer values "
+"expected.\n"
+msgstr ""
+
 msgid "S and Xlam"
 msgstr "S і Xlam"
 
@@ -243,15 +257,14 @@ msgstr ""
 "«%s», %d або %d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "вектора.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -269,49 +282,72 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: кількість стовпчиків мала "
 "збігатися з кількістю стовпчиків у першому.\n"
 
-msgid "histplot() : (normalized) histogram plot"
-msgstr "histplot(): (нормалізована) гістограма"
-
-msgid "Gaussian random sample histogram"
-msgstr "Гістограма вибірки ВВ, розподіленої за нормальним законом"
-
-msgid "Exact gaussian density"
-msgstr "Точна щільність нормального розподілу"
-
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgid "%s: Wrong type for input argument #%d: a real matrix expected.\n"
 msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути дійсне значення.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: значення має перебувати у "
-"інтервалі %s.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
+"дійсними елементами.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
+"%s: Wrong type for input argument #%d: an integer or a real matrix "
+"expected.\n"
 msgstr ""
-"%s: помилкові значення вхідного параметра №%d: елементи слід вказувати у "
-"порядку зростання.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано ціле число "
+"або матрицю з дійсними елементами.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати %d або "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d: мало бути %dx%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
 "%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong dimensions for input argument #%d: A column vector or matrix "
+"expected.\n"
+msgstr ""
+"%s: помилкові розмірності вхідного параметра №%d: мало бути вказано вектор-"
+"стовпчик або матрицю.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong dimensions for input argument #%d: A row vector or matrix "
+"expected.\n"
+msgstr ""
+"%s: помилкові розмірності вхідного параметра №%d: мало бути вказано вектор-"
+"рядок або матрицю.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', %d, '%s' or %d expected.\n"
+msgstr ""
+"%s: помилкова значення вхідного параметра №%d: мало бути вказано «%s», %d, "
+"«%s» або %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -341,6 +377,26 @@ msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
 "або векторний тип.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A full or sparse matrix, or an "
+"integer matrix, or an hypermat expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано заповнену або "
+"розріджену матрицю, цілочисельну матрицю або гіперматрицю.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+"%s: помилкові розмірності вхідних параметрів №%d та №%d: розмірності мали "
+"збігатися.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s', %d or %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: «%s», «%s», %d  або %d.\n"
 
 #, c-format
 msgid ""
@@ -441,13 +497,6 @@ msgstr "Кореляційне коло"
 
 msgid "Eigenvalues"
 msgstr "Власні значення"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr ""
-"%s: помилкові розмірності вхідних параметрів №%d та №%d: розмірності мали "
-"збігатися.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"

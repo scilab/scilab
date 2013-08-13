@@ -18,40 +18,40 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void shift_32_RC(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void shift_32_RC(scicos_block *block, int flag)
 {
-	int i = 0,j = 0;
+    int i = 0, j = 0;
 
-	int mu = GetInPortRows(block,1);
-	int nu = GetInPortCols(block,1);
-	long *u=Getint32InPortPtrs(block,1);
-	long *y=Getint32OutPortPtrs(block,1);
-	int *ipar = GetIparPtrs(block);
-	unsigned long k = (unsigned long)pow(2,32-1);
+    int mu = GetInPortRows(block, 1);
+    int nu = GetInPortCols(block, 1);
+    SCSINT32_COP *u = Getint32InPortPtrs(block, 1);
+    SCSINT32_COP *y = Getint32OutPortPtrs(block, 1);
+    int *ipar = GetIparPtrs(block);
+    unsigned long k = (unsigned long)pow(2, 32 - 1);
 
-	for (i=0;i<mu*nu;i++)
-	{
-		long v=u[i];
-		for(j=0;j<-ipar[0];j++)
-		{
-			y[i]=v&1;
-			if (y[i]==0)  
-			{
-				y[i]=v>>1;
-				y[i]=y[i]&(k-1);
-			}
-			else 
-			{
-				y[i]=v>>1;
-				y[i]=(y[i])|(k);
-			}
-			v=y[i];
-		}
-	}
+    for (i = 0; i < mu * nu; i++)
+    {
+         SCSINT32_COP v = u[i];
+        for (j = 0; j < -ipar[0]; j++)
+        {
+            y[i] = v & 1;
+            if (y[i] == 0)
+            {
+                y[i] = v >> 1;
+                y[i] = y[i] & (k - 1);
+            }
+            else
+            {
+                y[i] = v >> 1;
+                y[i] = (y[i]) | (k);
+            }
+            v = y[i];
+        }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

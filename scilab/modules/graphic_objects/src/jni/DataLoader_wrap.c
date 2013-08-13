@@ -1120,6 +1120,138 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_f
 }
 
 
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureData(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobject jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  JavaDirectBuffer result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = getTextureData(arg1);
+  {
+    if ((&result)->address)
+    {
+      jresult = (*jenv)->NewDirectByteBuffer(jenv, (&result)->address, (&result)->size);
+    }
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureImageType(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (int)getTextureImageType(arg1);
+  jresult = (jint)result; 
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureDataType(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (int)getTextureDataType(arg1);
+  jresult = (jint)result; 
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_getTextureGLType(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (int)getTextureGLType(arg1);
+  jresult = (jint)result; 
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_disposeTextureData(JNIEnv *jenv, jclass jcls, jstring jarg1, jobject jarg2) {
+  char *arg1 = (char *) 0 ;
+  unsigned char *arg2 = (unsigned char *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return ;
+  }
+  {
+    arg2 = (*jenv)->GetDirectBufferAddress(jenv, jarg2);
+    if (arg2 == NULL) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, "Unable to get address of direct buffer. Buffer must be allocated direct.");
+    }
+  }
+  disposeTextureData(arg1,arg2);
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_isTextureRowOrder(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jint jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (int)isTextureRowOrder(arg1);
+  jresult = (jint)result; 
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_scilab_modules_graphic_1objects_DataLoaderJNI_setABGRExt(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  int arg1 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (int)jarg1; 
+  setABGRExt(arg1);
+}
+
+
 #ifdef __cplusplus
 }
 #endif

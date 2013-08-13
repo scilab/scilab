@@ -21,12 +21,12 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
  */
 public class Table extends Uicontrol {
 
-	/**
-	 * Constructor
-	 */
-	public Table() {
-		super();
-		setStyle(__GO_UI_TABLE__);
-	}
+    /**
+     * Constructor
+     */
+    public Table() {
+        super();
+        setStyle(__GO_UI_TABLE__);
+    }
 
 }

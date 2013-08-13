@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA -
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -25,30 +25,31 @@ Type *TO;\
 
 
 
-int C2F(genextrac1)(int *typ,int *mi,int *indx,int *from,int *to)
+int C2F(genextrac1)(int *typ, int *mi, int *indx, int *from, int *to)
 {
-  static int i;
-  --indx;
-  switch (*typ) {
-  case 1:
-    EXTRAC1(integer1);
-    break;
-  case 2:
-    EXTRAC1(integer2);
-    break;
-  case 4:
-    EXTRAC1(int) ;
-    break;
-  case 11:
-    EXTRAC1(unsigned char);
-    break;
-  case 12:
-    EXTRAC1(unsigned short);
-    break;
-  case 14:
-    EXTRAC1(unsigned int);
-    break;
-  }
-  return 0;
+    static int i;
+    --indx;
+    switch (*typ)
+    {
+        case 1:
+            EXTRAC1(integer1);
+            break;
+        case 2:
+            EXTRAC1(integer2);
+            break;
+        case 4:
+            EXTRAC1(int) ;
+            break;
+        case 11:
+            EXTRAC1(unsigned char);
+            break;
+        case 12:
+            EXTRAC1(unsigned short);
+            break;
+        case 14:
+            EXTRAC1(unsigned int);
+            break;
+    }
+    return 0;
 }
 

@@ -22,6 +22,7 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
  - isrow - Check if a variable is a row vector. See bug #10456 fixed.
  - iscolumn - Check if a variable is a column vector. See bug #10456 fixed.
  - issquare - Check if a variable is a square matrix. See bug #10456 fixed.
+ - cross - Vector cross product. See bug #9941 fixed.
 
 * Add a complete set of functions to read and write any HDF5 file from Scilab.
 
@@ -37,12 +38,30 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 
 * In browsevar, allows a user to plot the variable (already available in
   editvar).
-
+  
+* Update Windows Solution to Visual Studio 2012.
 
 Syntax changes
 ===============
 
 * Vector ^ scalar syntax declared obsolete. See bug #11524
+
+
+Improvements
+=============
+
+* New calling sequence allowed for nicholschart: nicholschart(gains, phases, colors).
+  See bug #7828.
+
+* qp_solve can now take up to 5 output arguments. The last one is an error flag,
+  if it is present, then the function will issue a warning instead of an error.
+  See bug #10269.
+
+* graypolarplot has been improved in term of performances and rendering.
+  See bug #12641.
+
+* nthroot() is now vectorizable.
+  See bug #12678.
 
 
 Obsolete
@@ -65,13 +84,37 @@ Obsolete
   Use nicholschart() instead.
 
 
+Differential_equations
+======================
+
+* Netlib's Quadpack, used for definite integration, has been updated to match the upstream.
+
+
+SciNotes
+========
+
+* Autosave feature can now use %date to append the current date to the backup filename (See bug #12712).
+
+
 Xcos
 ====
 
-* Update Sundials to lastest "2.5.0", keeping our modifications
+* Updated Sundials to the "2.5.0" version, keeping our modifications
+
+* Updated JGraphX to the "2.1.0.7" version, updating our performance hooks
+
+* Added a new DAE solver : DDaskr, using BDF methods with direct Newton and preconditioned Krylov linear solvers, which includes rootfinding.
+
+* In the Modelica initialization GUI, inputs (eg. sensor) were not handled.
 
 * Bug #7350 fixed - The superblock I/O ports numbering was not updated
                     when a new port was dropped.
+
+* Bug #8570 fixed - "Region to superblock" has been renamed to 
+                    "Selection to superblock".
+
+* Bug #11518 fixed - CLR block-text was displayed out of the bounding box 
+                     when zooming.
 
 * Bug #12359 fixed - Xcos files has been converted to zcos to gain some space.
 
@@ -80,6 +123,9 @@ Xcos
 
 * Bug #12387 fixed - Setup menu option "Modelica initialize" did not blur
                      during simulation.
+
+* Bug #12414 fixed - SWITCH_m block had different behaviors
+                     for different types of inputs.
 
 * Bug #12424 fixed - Calling lincos on a Derivative block made scilab crash.
 
@@ -98,6 +144,13 @@ Xcos
 * Bug #12619 fixed - The discrete block DLR was not displaying latex formula
                      like continuous CLR block.
 
+* Bug #12651 fixed - The 'nw' scicos_simulate option did not work while
+                     passing a previous Info simulation status.
+
+* Bug #12664 fixed - Inverted pendulum french translation was wrong in the Xcos demo.
+
+* Bug #12667 fixed - 'Recent Files' menu was not localized.
+
 
 Toolbox skeleton
 =================
@@ -105,10 +158,32 @@ Toolbox skeleton
 * Add some Xcos specific content to xcos_toolbox_skeleton help pages.
 
 
+Compilation
+============
+
+* Enforce a minimal version of Flexdock (1.2.4).
+
+
 Bug fixes
 ==========
 
 * paramfplot2d: When input argument theta was column vector, an error occurred.
+
+* Bug #2267 fixed - Wrong error message when ticks locations and labels did not have the same sizes.
+
+* Bug #2416 fixed - Particular case (string([]) returns []) has been added in the string help page.
+
+* Bug #3928 fixed - An error was returned when a matrix was flipped along the third dimension.
+
+* Bug #4042 fixed - squeeze returned an hypermatrix instead of a matrix when at least one
+                    dimension was equal to 1.
+
+* Bug #4085 fixed - help page of num2cell added.
+
+* Bug #4229 fixed - delip did not return an error if one element of its first input argument
+                    was negative.
+
+* Bug #4383 fixed - csim with "step" and "impuls" now works with direct feedthrough.
 
 * Bug #4481 fixed - Help page of iir updated: frq can be a scalar.
 
@@ -123,9 +198,15 @@ Bug fixes
 
 * Bug #5539 fixed - sylv() help page was wrong in the discrete-time case.
 
+* Bug #5616 fixed - typeof(uiCreateTree(...)) returned "Tree" instead of "uitree".
+
+* Bug #5694 fixed - numdiff() help page clarified.
+
 * Bug #5779 fixed - xnumb number format was too small (+ unit test added).
 
 * Bug #6168 fixed - Help for zpbutt, zpch1, zpch2 and zpell were unclear.
+
+* Bug #6427 fixed - full([%T %F]) returned an error message.
 
 * Bug #6466 fixed - Example with vectorized input added in help pages of mprintf and msprintf.
 
@@ -137,24 +218,38 @@ Bug fixes
 
 * Bug #7026 fixed - There was no unit test for plot2d.
 
-* Bug #7206 fixed - If the second input argument of meanf function was an hypermat, this function 
+* Bug #7080 fixed - Some graphics macros did not use standard error messages.
+
+* Bug #7206 fixed - If the second input argument of meanf function was an hypermat, this function
                     returned an error.
+
+* Bug #7296 fixed - Enabled %nan, %inf and -%inf for the cdf* functions.
 
 * Bug #7486 fixed - DGELSY and ZGELSY closer to the upstream, to propose our modifications to LAPACK.
 
-* Bug #7655 fixed - An example added in help page of type, for type(X)=11 and type(X)=13.
+* Bug #7596 fixed - Same error happening in different places now yields the same error message.
 
-* Bug #7296 fixed - Enabled %nan, %inf and -%inf for the cdf* functions.
+* Bug #7648 fixed - CDF functions now issue a warning for non integer "degrees of freedom" argument.
+
+* Bug #7655 fixed - An example added in help page of type, for type(X)=11 and type(X)=13.
 
 * Bug #7684 fixed - Introduction demo splitted in subsections.
 
 * Bug #7781 fixed - The second parameter of iqr function had not effect.
 
+* Bug #7824 fixed - The properties of title function did not support an indexed color.
+
 * Bug #7826 fixed - chart tagged as obsolete.
 
 * Bug #7828 fixed - Slight improvements in nicholschart.
 
+* Bug #7848 fixed - The third argument of correl function is now optional.
+
 * Bug #7927 fixed - Output "flag" in qmr function was not well documented.
+
+* Bug #7960 fixed - plzr() could not produce pole zero plot for a simple transfer function.
+
+* Bug #8098 fixed - cumsum could not be applied to rational matrices.
 
 * Bug #8162 fixed - Area of stability of plzr was wrong for continuous systems (+unit test added).
 
@@ -163,6 +258,19 @@ Bug fixes
 * Bug #8264 fixed - Documentation for Matlab's atan2() equivalent fixed.
 
 * Bug #8319 fixed - dbphi(hypermat) and phasemag(hypermat) returned a matrix instead of a hypermatrix.
+
+* Bug #8373 fixed - clear() can now take a matrix of strings argument.
+
+* Bug #8462 fixed - bvodeS() could make Scilab unstable.
+
+* Bug #8470 fixed - bvode() displayed some output in terminal window and not in Scilab console.
+
+* Bug #8479 fixed - the latest Saxon version was not supported.
+
+* Bug #8511 fixed - sprand used rand and grand functions, and internal state of the random
+                    generator was changed.
+
+* Bug #8561 fixed - ddassl(), ddasrt(), ddaskr(): abs and rel tolerances sizes are now checked.
 
 * Bug #8597 fixed - Uncontrolled message of grand/clcg4 should be displayed as warning.
 
@@ -181,7 +289,14 @@ Bug fixes
 * Bug #8778 fixed - Call_ScilabOpen, TerminateScilab can not be called more
                     than 80 times in a loop.
 
+* Bug #8779 fixed - gsort() did not preserve order of equal elements, in lexicographic sort.
+
+* Bug #8820 fixed - Squeeze did not return a matrix when the number of dimensions
+                    of the result was less or equal to 2.
+
 * Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
+
+* Bug #8840 fixed - fileparts did not manage matrix of strings.
 
 * Bug #8856 fixed - Non regression test added for [k,l,m,...]=find(a==5).
                     Non regression test of bug #476 updated.
@@ -195,9 +310,13 @@ Bug fixes
 
 * Bug #9004 fixed - bitcmp function called with one input argument returned an error.
 
+* Bug #9020 fixed - exists function did not accept matrix as first input argument.
+
 * Bug #9059 fixed - tbx_build_macros and genlib do not stop on error.
 
 * Bug #9109 fixed - nfreq tagged as obsolete.
+
+* Bug #9385 fixed - The type checking in trigonometric functions has been added.
 
 * Bug #9459 fixed - Default values of the optional plot3d arguments were not documented.
 
@@ -207,16 +326,29 @@ Bug fixes
 
 * Bug #9780 fixed - gmres solver did not run with complex systems.
 
+* Bug #9821 fixed - getrelativefilename did not manage matrix of strings.
+
 * Bug #9851 fixed - Error message occurred because of a cut-off frequency of 0.25Hz with irr.
 
+* Bug #10146 fixed - In SciNotes, 'help on keyword' was at the end of the popup menu.
+
+* Bug #10180 fixed - det was not defined for sparse matrices.
+
 * Bug #10213 fixed - sci2exp can be impacted by format which has been mentionned in its help page.
+
+* Bug #10216 fixed - Invalid syntaxes for zeros, ones, eye, rand, like zeros(2,:).
 
 * Bug #10226 fixed - When a // <empty session> line is delete, all sessions
                      histories are folded.
 
 * Bug #10254 fixed - Slight improvements in help page of ones.
 
-* Bug #10287 fixed - An error message added for complex expression as input argument of integrate function.
+* Bug #10269 fixed - qp_solve can now take up to 5 output arguments. The last one is an error flag,
+                     if it is present, then the function will issue a warning instead of an error.
+
+* Bug #10287 fixed - Added an error message for complex expression as input argument of integrate function.
+
+* Bug #10305 fixed - Comparison of lists with empty items returned an error message.
 
 * Bug #10596 fixed - exit(xxx) from Scilab was failing.
 
@@ -224,6 +356,8 @@ Bug fixes
 
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
+
+* Bug #10866 fixed - det() was not equivalent to detr() for rational matrices.
 
 * Bug #10906 fixed - Typo in help page of cls2dls.
 
@@ -233,6 +367,8 @@ Bug fixes
 
 * Bug #11139 fixed - conj was not defined for sparse matrices (+ unit test added).
 
+* Bug #10823 fixed - fullpath returned different results on Windows and Linux for non-existent file.
+
 * Bug #11308 fixed - Calling sequences in help page of dsearch were wrong.
 
 * Bug #11343 fixed - The "isoview" figure property did not work when the axes
@@ -240,14 +376,24 @@ Bug fixes
 
 * Bug #11648 fixed - Copy graphic to clipboard did not work.
 
+* Bug #11766 fixed - nthroot has been added to the m2sci documentation.
+
+* Bug #11792 fixed - Lists can be accessed with non integer indexes (help page updated).
+
 * Bug #11869 fixed - "Environment" was not localized in preferences.
 
+* Bug #11885 fixed - Each rand has been changed to grand in genetic algorithms and simulated annealing functions.
+
 * Bug #11891 fixed - Fisher ratio could be inaccurate for one-way ANOVA.
+
+* Bug #12034 fixed - max function did not manage empty matrices.
 
 * Bug #12045 fixed - repmat returned wrong result if numbers of input matrix were not double.
 
 * Bug #12070 fixed - Removing a module can now be done in on-line mode even if
                      it installed in off-line mode.
+
+* Bug #12080 fixed - lsqrsolve always printed messages.
 
 * Bug #12085 fixed - On Windows csvWrite wrote wrong EOL.
 
@@ -257,6 +403,10 @@ Bug fixes
 
 * Bug #12163 fixed - unzoom did not work with a single input argument.
 
+* Bug #12326 fixed - There was no way to set LaTeX font size in preview.
+
+* Bug #12349 fixed - In SciNotes, when the view was splitted, removing a char made the other view jump.
+
 * Bug #12376 fixed - Exec & edit buttons in examples in help were sometimes misplaced.
 
 * Bug #12413 fixed - ATOMS packages could not be removed if ATOMS had never been on-line.
@@ -265,11 +415,15 @@ Bug fixes
 
 * Bug #12426 fixed - By using addErrorMessage, random string error could be displayed.
 
+* Bug #12433 fixed - show_pixmap function has been removed in Scilab files.
+
 * Bug #12443 fixed - Document behavior of mopen() in text file mode
                      on Windows.
 
 * Bug #12463 fixed - Bad specification for rect=[x,y,w,h] argument in french help
                      page of xstringb.
+
+* Bug #12470 fixed - Variable browser is not refreshed after loading an environment.
 
 * Bug #12473 fixed - Problems with "é" in french help page of mkdir.
 
@@ -305,6 +459,8 @@ Bug fixes
 
 * Bug #12589 fixed - Call sequence for spzeros & spones were missing in the french help pages.
 
+* Bug #12593 fixed - A wrong error message was returned when running genlib with an error in the sci file.
+
 * Bug #12606 fixed - Overloads for grand were not standard.
 
 * Bug #12613 fixed - gsort did not return correct results with %nan.
@@ -317,6 +473,8 @@ Bug fixes
 * Bug #12624 fixed - In case of errors in Scilab macros, make sure that
                      "make check-TESTS" fails correctly.
 
+* Bug #12627 fixed - At restoration a window could be out of the screen.
+
 * Bug #12629 fixed - Last example of csim help page defined a function called
                      input() (overwriting the Scilab one).
 
@@ -325,4 +483,50 @@ Bug fixes
 * Bug #12634 fixed - ATOMS modules could not be installed from an archive file
                      already existing in SCI/contrib/archives in offline mode.
 
+* Bug #12637 fixed - Some signal processing functions were not in the correct
+                     section of the help pages.
+
 * Bug #12639 fixed - justify([], position) returned an error instead of [].
+
+* Bug #12641 fixed - graypolarplot() was slow and has been fully vectorized.
+
+* Bug #12657 fixed - Computation of v1.^v2 is now done in place,
+                     when v1 and v2 are real arrays, v1 >= 0 and v2 integer.
+
+* Bug #12668 fixed - Undocking SciNotes led to an exception.
+
+* Bug #12678 fixed - nthroot() now accepts vector/matrix as second argument.
+
+* Bug #12679 fixed - Argument type check added in gcd and lcm.
+
+* Bug #12686 fixed - Error returned by diff() fixed.
+
+* Bug #12703 fixed - In SciNotes, common shortcuts 'SHIFT DELETE', 'SHIFT INSERT' (and others) added.
+
+* Bug #12705 fixed - Function members() added. It allows to find number of occurrences and linear indexes
+                     for common values between two matrices of the same type.
+
+* Bug #12706 fixed - A wrong size matrix as input argument of cross function was not detected.
+
+* Bug #12708 fixed - Incorrect display in SciNotes preferences fixed (onmouseover styles).
+
+* Bug #12712 fixed - In SciNotes, autosaving can now use %date to append the current date to the
+                     backup filename.
+
+* Bug #12715 fixed - Variable cross in pspect and cspect has been renamed because of conflicts with cross function.
+
+* Bug #12736 fixed - In SciNotes, the Completion window appeared only in first tab.
+
+* Bug #12758 fixed - Focus issue with plot3d() fixed.
+
+* Bug #12747 fixed - legendre() now accepts the -1 and 1 values for the third argument.
+
+* Bug #12772 fixed - eigs() failed when trying to solve a sparse matrix eigen value problem.
+
+* Bug #12774 fixed - Various typos fixed.
+
+* Bug #12775 fixed - Some related functions were not listed in "See also" section of routh_t help page.
+
+* Bug #12779 fixed - savewave() had a miscoding in the internal function write_wavedat().
+
+* Bug #12783 fixed - There were some inconsistent error messages in dsearch().

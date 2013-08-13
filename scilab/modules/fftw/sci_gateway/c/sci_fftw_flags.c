@@ -230,7 +230,10 @@ int sci_fftw_flags(char *fname, unsigned long fname_len)
                 {
                     for (i = 0; i < nb_flag; i++)
                     {
-                        if (strcmp(Str1[j], Str[i]) == 0) break;
+                        if (strcmp(Str1[j], Str[i]) == 0)
+                        {
+                            break;
+                        }
                     }
 
                     if (i == nb_flag)

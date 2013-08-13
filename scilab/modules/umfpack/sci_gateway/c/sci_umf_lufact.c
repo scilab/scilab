@@ -141,7 +141,7 @@ int sci_umf_lufact(char* fname, unsigned long l)
 
     SciSparseToCcsSparse(&AA, &A);
 
-    /* symbolic factorisation */
+    /* symbolic factorization */
     if (A.it == 1)
     {
         stat = umfpack_zi_symbolic(nA, mA, A.p, A.irow, A.R, A.I, &Symbolic, Control, Info);
@@ -158,7 +158,7 @@ int sci_umf_lufact(char* fname, unsigned long l)
         return 1;
     }
 
-    /* numeric factorisation */
+    /* numeric factorization */
     if (A.it == 1)
     {
         stat = umfpack_zi_numeric(A.p, A.irow, A.R, A.I, Symbolic, &Numeric, Control, Info);

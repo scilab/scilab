@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+
 /*--------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
@@ -21,21 +21,22 @@
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]={ 
-	{sci_Rand, "grand"}
+static gw_generic_table Tab[] =
+{
+    {sci_Rand, "grand"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_randlib(void)
 {
-	Rhs = Max(0, Rhs);
+    Rhs = Max(0, Rhs);
 
-    if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-	}
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
 
-	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
-	callFunctionFromGateway(Tab,SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

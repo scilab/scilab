@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:03+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-04-23 16:33+0000\n"
 "Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -97,6 +97,18 @@ msgstr ""
 msgid "Signal derivative estimate"
 msgstr ""
 
+msgid "Choose filter type and parameters"
+msgstr ""
+
+msgid "Discrete IIR filter "
+msgstr ""
+
+msgid "Discrete IIR filter : low pass  fr < 0.2"
+msgstr ""
+
+msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
+msgstr ""
+
 msgid "Minimax FIR filter"
 msgstr ""
 
@@ -105,6 +117,12 @@ msgstr ""
 
 msgid "length 33"
 msgstr "comprimento 33"
+
+msgid "Remez Triangular filter"
+msgstr ""
+
+msgid "magnitude error"
+msgstr ""
 
 msgid "Signal Processing"
 msgstr "Processamento de sinais"
@@ -145,6 +163,18 @@ msgstr ""
 msgid "Arma, Spectral power estimation"
 msgstr ""
 
+msgid "Data spectrum"
+msgstr ""
+
+msgid "magnitude"
+msgstr ""
+
+msgid "Spectral estimation"
+msgstr ""
+
+msgid "spectral power"
+msgstr ""
+
 msgid "estimates xf"
 msgstr "estima xf"
 
@@ -153,6 +183,27 @@ msgstr "estima xs"
 
 msgid "real state"
 msgstr "estado real"
+
+msgid "Windowed FIR Low pass Filter"
+msgstr ""
+
+msgid "Kaiser window,cut-off:0.2"
+msgstr ""
+
+msgid "Hamming window,cut-off:0.2,0.3"
+msgstr ""
+
+msgid "length 127"
+msgstr ""
+
+msgid "Windowed FIR Band pass Filter"
+msgstr ""
+
+msgid "Chebyshev window,cut-off:0.15,0.35"
+msgstr ""
+
+msgid "length 55"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -256,6 +307,10 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
+
+#, c-format
+msgid "%s: Filter order too small.\n"
+msgstr ""
 
 #, c-format
 msgid ""

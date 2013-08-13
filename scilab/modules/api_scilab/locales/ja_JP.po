@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:08+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-24 14:40+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ja\n"
 
 #, c-format
@@ -202,6 +202,9 @@ msgstr "APIエラー\n"
 msgid "\tin %s\n"
 msgstr "\t%s の中に\n"
 
+msgid "handle matrix"
+msgstr "ハンドル行列"
+
 msgid "int matrix"
 msgstr "int行列"
 
@@ -238,6 +241,24 @@ msgstr "%s: 項目は順番に挿入する必要があります"
 
 msgid "API_ERROR_GET_POLY_IN_LIST"
 msgstr "API_ERROR_GET_POLY_IN_LIST"
+
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr "%s: オプションの引数 name=val は末尾に置く必要があります.\n"
+
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr "%s: 認識できないオプション引数 %s です.\n"
+
+msgid "Optional argument list is empty.\n"
+msgstr "オプションの引数リストが空です.\n"
+
+msgid "Optional arguments list: \n"
+msgstr "オプションの引数リスト: \n"
+
+#, c-format
+msgid "and %s.\n"
+msgstr "と %s.\n"
 
 msgid "pointer"
 msgstr "ポインタ"
@@ -291,3 +312,7 @@ msgstr "%s: メモリ不足です.\n"
 #, c-format
 msgid "%s: Invalid variable name.\n"
 msgstr "%s: 変数名が無効です.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An integer expected.\n"
+msgstr "%s: 入力引数 %d の型が間違っています:  整数を指定してください.\n"

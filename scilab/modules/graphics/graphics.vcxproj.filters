@@ -593,9 +593,6 @@
     <ClCompile Include="sci_gateway\c\sci_set.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_show_pixmap.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_show_window.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1119,6 +1116,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_image_type_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_image_type_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

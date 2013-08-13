@@ -7,48 +7,48 @@
 
 if haveacompiler() then
 
-//           CALLING EXTERNAL FORTRAN SUBROUTINE
+    //           CALLING EXTERNAL FORTRAN SUBROUTINE
 
-foof = ['      subroutine foof(a,b,c)';
-        '      double precision  a,b,c';
-        '      c=a+b ';
-        '      return'; '       end'];
+    foof = ["      subroutine foof(a,b,c)";
+    "      double precision  a,b,c";
+    "      c=a+b ";
+    "      return"; "       end"];
 
-  mprintf('\n');
-  mprintf(gettext('Fortran subroutine to call in scilab.\n'));
-  
-  disp(foof);
+    mprintf("\n");
+    mprintf(gettext("Calling a Fortran subroutine from Scilab.\n"));
 
-// we use TMPDIR for compilation 
-	
-if ~c_link('foof') then
-  path = pwd(); 
-  chdir(TMPDIR); 
-  mputl(foof,'foof.f');
-  
-  mprintf('\n');
-  mprintf(gettext('Call ilib_for_link to build fortran subroutine.\n'));
-  
-  ilib_for_link(['foof'],'foof.f',[],"f");
-  exec loader.sce ;
-  chdir(path) 
-end	
+    disp(foof);
 
-//Z = X+Y by fortran subroutine
-X = 5;
-Y = 7;
+    // we use TMPDIR for compilation
 
-mprintf('\n');
-mprintf(gettext('Call Fortran subroutine. Z = X+Y'));
-mprintf('\n');
-mprintf(gettext('with X = %d'), X);
-mprintf('\n');
-mprintf(gettext('with Y = %d'), Y);
-mprintf('\n');
-mprintf("Z = call(''foof'', X, 1, ''d'', Y, 2, ''d'', ''out'', [1,1], 3, ''d'');");
-mprintf('\n');
-Z = call('foof', X, 1, 'd', Y, 2, 'd', 'out', [1,1], 3, 'd');
-mprintf(gettext('result Z = %d'), Z);
-mprintf('\n');
+    if ~c_link("foof") then
+        path = pwd();
+        chdir(TMPDIR);
+        mputl(foof,"foof.f");
+
+        mprintf("\n");
+        mprintf(gettext("Calling ilib_for_link to build a Fortran subroutine.\n"));
+
+        ilib_for_link(["foof"],"foof.f",[],"f");
+        exec loader.sce ;
+        chdir(path)
+    end
+
+    //Z = X+Y by fortran subroutine
+    X = 5;
+    Y = 7;
+
+    mprintf("\n");
+    mprintf(gettext("Calling Fortran subroutine. Z = X+Y"));
+    mprintf("\n");
+    mprintf(gettext("with X = %d"), X);
+    mprintf("\n");
+    mprintf(gettext("with Y = %d"), Y);
+    mprintf("\n");
+    mprintf("Z = call(''foof'', X, 1, ''d'', Y, 2, ''d'', ''out'', [1,1], 3, ''d'');");
+    mprintf("\n");
+    Z = call("foof", X, 1, "d", Y, 2, "d", "out", [1,1], 3, "d");
+    mprintf(gettext("Result Z = %d"), Z);
+    mprintf("\n");
 
 end

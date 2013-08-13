@@ -111,7 +111,10 @@ routh_t(P2)
                 <link linkend="roots">roots</link>
             </member>
             <member>
-                <link linkend="kpure">kpure</link>
+                <link linkend="evans">evans</link>
+            </member>
+            <member>
+                <link linkend="spec">spec</link>
             </member>
         </simplelist>
     </refsection>
@@ -130,10 +133,10 @@ routh_t(P2)
     <refsection>
         <title>History</title>
         <revhistory>
-           <revision>
+            <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark> A new parameter added: normalized (SEP 89).</revremark>
-           </revision>
+            </revision>
         </revhistory>
     </refsection>
 </refentry>

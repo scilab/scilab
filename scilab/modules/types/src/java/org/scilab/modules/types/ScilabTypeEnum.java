@@ -9,60 +9,62 @@
 package org.scilab.modules.types;
 
 public enum ScilabTypeEnum {
-  sci_matrix(1),
-  sci_poly(2),
-  sci_boolean(4),
-  sci_sparse(5),
-  sci_boolean_sparse(6),
-  sci_matlab_sparse(7),
-  sci_ints(8),
-  sci_handles(9),
-  sci_strings(10),
-  sci_u_function(11),
-  sci_c_function(13),
-  sci_lib(14),
-  sci_list(15),
-  sci_tlist(16),
-  sci_mlist(17),
-  sci_pointer(128),
-  sci_implicit_poly(129),
-  sci_intrinsic_function(130);
+    sci_matrix(1),
+    sci_poly(2),
+    sci_boolean(4),
+    sci_sparse(5),
+    sci_boolean_sparse(6),
+    sci_matlab_sparse(7),
+    sci_ints(8),
+    sci_handles(9),
+    sci_strings(10),
+    sci_u_function(11),
+    sci_c_function(13),
+    sci_lib(14),
+    sci_list(15),
+    sci_tlist(16),
+    sci_mlist(17),
+    sci_pointer(128),
+    sci_implicit_poly(129),
+    sci_intrinsic_function(130);
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  public static ScilabTypeEnum swigToEnum(int swigValue) {
-    ScilabTypeEnum[] swigValues = ScilabTypeEnum.class.getEnumConstants();
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (ScilabTypeEnum swigEnum : swigValues)
-      if (swigEnum.swigValue == swigValue)
-        return swigEnum;
-    throw new IllegalArgumentException("No enum " + ScilabTypeEnum.class + " with value " + swigValue);
-  }
+    public static ScilabTypeEnum swigToEnum(int swigValue) {
+        ScilabTypeEnum[] swigValues = ScilabTypeEnum.class.getEnumConstants();
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue) {
+            return swigValues[swigValue];
+        }
+        for (ScilabTypeEnum swigEnum : swigValues)
+            if (swigEnum.swigValue == swigValue) {
+                return swigEnum;
+            }
+        throw new IllegalArgumentException("No enum " + ScilabTypeEnum.class + " with value " + swigValue);
+    }
 
-  @SuppressWarnings("unused")
-  private ScilabTypeEnum() {
-    this.swigValue = SwigNext.next++;
-  }
+    @SuppressWarnings("unused")
+    private ScilabTypeEnum() {
+        this.swigValue = SwigNext.next++;
+    }
 
-  @SuppressWarnings("unused")
-  private ScilabTypeEnum(int swigValue) {
-    this.swigValue = swigValue;
-    SwigNext.next = swigValue+1;
-  }
+    @SuppressWarnings("unused")
+    private ScilabTypeEnum(int swigValue) {
+        this.swigValue = swigValue;
+        SwigNext.next = swigValue + 1;
+    }
 
-  @SuppressWarnings("unused")
-  private ScilabTypeEnum(ScilabTypeEnum swigEnum) {
-    this.swigValue = swigEnum.swigValue;
-    SwigNext.next = this.swigValue+1;
-  }
+    @SuppressWarnings("unused")
+    private ScilabTypeEnum(ScilabTypeEnum swigEnum) {
+        this.swigValue = swigEnum.swigValue;
+        SwigNext.next = this.swigValue + 1;
+    }
 
-  private final int swigValue;
+    private final int swigValue;
 
-  private static class SwigNext {
-    private static int next = 0;
-  }
+    private static class SwigNext {
+        private static int next = 0;
+    }
 }
 

@@ -7,18 +7,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-08-03 10:16+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-20 21:10+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Modul Scilabu '%s' je v režimu -nogui or -nwni zakázán.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -36,8 +44,16 @@ msgstr ""
 "%s: Špatná hodnota pro vstupní argument #%d: očekáván '%s', '%s' nebo '%s'.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekávána řetězcová matice.\n"
+
+#, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Není více paměti.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s: Špatný typ argumentu %d: Očekáváno reálné číslo.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -62,12 +78,13 @@ msgid "%s: Figure number must be given when not in '%s' mode.\n"
 msgstr "%s: Číslo obrazce musí být určeno když nejste v režimu  '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána matice obslužné rutiny.\n"
 
 #, c-format
 msgid ""
@@ -86,13 +103,16 @@ msgstr ""
 "rutina 'Figure'.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekávána matice řetězců.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr "%s: Špatný typ argumentu %d: Očekávána booleovská matice.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -263,6 +283,10 @@ msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána grafická obslužná rutina.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Handle expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
 msgstr ""
@@ -343,6 +367,37 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: At least 2 elements expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávány alespoň 2 prvky.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: First element must be a string.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: První prvek musí být řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Tree expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván strom.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Second element must be a mlist.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Druhý prvek musí být mlist.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error in the tree parsing.\n"
+msgstr "%s: Chyba ve zpracování stromu.\n"
+
+#, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Vyskytla se chyba: %s.\n"
 
@@ -364,10 +419,6 @@ msgstr ""
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr "%s: Soubor %s neexistuje.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive integers expected.\n"
@@ -418,15 +469,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána řetězcová matice.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string  expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean matrix expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekávána booleovská matice.\n"
 
 msgid "&File"
 msgstr "&Soubor"
@@ -806,6 +848,12 @@ msgstr "Písmo textu plochy"
 msgid "Custom:"
 msgstr "Vlastní:"
 
+msgid "LaTeX preview"
+msgstr ""
+
+msgid "LaTeX font size:"
+msgstr ""
+
 msgid "Web"
 msgstr "Internet"
 
@@ -1064,7 +1112,6 @@ msgstr "Pozadí Konzole..."
 msgid "No print service found."
 msgstr "Žádna služba tisku nenalezena."
 
-#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1074,7 +1121,6 @@ msgstr ""
 "míšení kontroly rozhraní a grafiky není dostupné. Zadejte %s pro více "
 "informací."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "V některých případech %s tento problém spraví"
 
@@ -1252,7 +1298,6 @@ msgstr "Uložit a spustit"
 msgid "Empty tab"
 msgstr "Prázdná karta"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1260,11 +1305,9 @@ msgstr ""
 "Karta s uuid %s nemůže být obnovena.\n"
 "Tuto chybu, prosíme, nahlaste s předchozí zprávou a přiložte soubor %s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Jste si jisti,  že chcete %s zavřít?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Jste si jisti,  že chcete %s a %s zavřít?"
 
@@ -1319,7 +1362,6 @@ msgstr "Všechny soubory obrázku PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Všechny soubory RTF (Bohatý Textový Formát)"
 
-#, c-format
 msgid "All %s files"
 msgstr "Všechny soubory %s"
 
@@ -1578,21 +1620,21 @@ msgstr ""
 " je nesprávná: %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván Strom.\n"
+msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
-msgstr "%s: Špatný typ vstupních argumentů z #%d: Očekáván Strom.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgid "%s: Wrong type for input argument #%d: String or uitree expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván Řetězec nebo Strom.\n"
 
 #, c-format
 msgid "%s: Invalid position '%s'.\n"
@@ -1613,11 +1655,6 @@ msgstr "%s: Žádný shodující se uzel.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván strom nebo Řetězec.\n"
 
 #, c-format
 msgid ""

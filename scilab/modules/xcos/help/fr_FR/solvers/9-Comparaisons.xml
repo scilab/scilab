@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Scilab Enterprises - 2012 - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.
+ * The terms are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr_FR" xml:id="Comparaisons">
+    <refnamediv>
+        <refname>Comparaisons</refname>
+        <refpurpose>
+            Cette page compare les solveurs pour déterminer lequel est le mieux adapté au le problème étudié.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Introduction</title>
+        <para>
+            Suivant le type de problème, trouver la meilleure méthode n'est pas toujours évident, on ne peut que tirer des règles générales. C'est de celles-ci que l'on parle dans cette page.
+        </para>
+        <title>Pas Fixe et pas Variable</title>
+        <para>
+            Les solveurs sont divisés en deux familles principales : celles à <emphasis>pas variable</emphasis> et celles à <emphasis>pas fixes</emphasis>.
+        </para>
+        <para>
+            Dans les méthodes à pas variable, le pas de temps peut varier suivant la dynamique du modèle et les <link linkend="Simulatemenu_Menu_entries">tolérances</link>.
+        </para>
+        <para>
+            S'il recherche un temps de simulation stable, l'utilisateur doit sélectionner un solveur à pas fixe, parce-que le temps de calcul du nouveau pas d'un solveur à pas variable ne peut pas être prédit correctement.
+        </para>
+        <para>
+            Bien que pour un problème simple (ou hautes tolérances), un solveur à pas variable peut diminuer le temps de simulation en calculant de grands pas, un solveur à aps fixe est préférable si le pas de temps idéal est connu et à peu près constant (l'utilisateur peut alors le renseigner dans <link linkend="Simulatemenu_Menu_entries">max step size</link>).
+        </para>
+        <para>
+            <!--<informaltable border="1">
+                <tr>
+                    <td align="center">
+                        <emphasis role="bold">Variable</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis role="bold">Fixed</emphasis>
+                    </td>
+                </tr>
+                <tr>
+                    <td> LSodar </td>
+                    <td> Runge-Kutta </td>
+                </tr>
+                <tr>
+                    <td> CVode </td>
+                    <td> Dormand-Prince </td>
+                </tr>
+                <tr>
+                    <td> IDA </td>
+                    <td> Implicit Runge-Kutta </td>
+                </tr>
+            </informaltable>-->
+            <emphasis role="bold">Pas Variable</emphasis>:
+            <simplelist>
+                <member>LSodar</member>
+                <member>CVode</member>
+                <member>IDA</member>
+            </simplelist>
+            <emphasis role="bold">Pas Fixe</emphasis>:
+            <simplelist>
+                <member>Runge-Kutta 4(5)</member>
+                <member>Dormand-Prince 4(5)</member>
+                <member>Runge-Kutta Implicite 4(5)</member>
+            </simplelist>
+        </para>
+        <para>
+            Les solveurs d'EDO à pas variable ne sont pas appropriés pour des applications temps réel déterministes car le surplus de calcul au passage d'un pas de temps varie au cours de l'application.
+        </para>
+        <title>Explicite et Implicite - Raideur</title>
+        <para>
+            A l'intérieur de ces deux familles, on peut distinguer les solveurs <emphasis>Explicites</emphasis> des <emphasis>Implicites</emphasis>.
+        </para>
+        <para>
+            Alors que les méthodes <emphasis>explicites</emphasis> n'utilisent que des informations du pas actuel, les <emphasis>implicites</emphasis> tentent d'estimer les dérivées à des temps futurs. Pour faire cela, elles utilisentdes solveurs non linéaires telle que itérations point-fixe, itérations fonctionnelles (non-raide) ou Newton modifiées (raide).
+        </para>
+        <para>
+            Le choix de la famille est habituellement déterminé par la <emphasis>raideur</emphasis> du problème, qui estquand il y a une différence importante entre les modules des valeurs propres extrêmesde la matrice jacobienne (mal conditionnée). C'est généralement un système sensible aux discontinuités, en cela que la précision requise n'est pas constante.
+        </para>
+        <para>
+            <emphasis role="bold">Implicites</emphasis>:
+            <simplelist>
+                <member>LSodar</member>
+                <member>CVode</member>
+                <member>IDA</member>
+                <member>Runge-Kutta Implicite 4(5)</member>
+            </simplelist>
+            <emphasis role="bold">Explicites</emphasis>:
+            <simplelist>
+                <member>Runge-Kutta 4(5)</member>
+                <member>Dormand-Prince 4(5)</member>
+            </simplelist>
+        </para>
+        <para>
+            En un mot, les <emphasis>Explicites</emphasis> calculent directement la solution, alors que les <emphasis>Implicites</emphasis> se concentrent sur la stabilité, impliquant plus d'opérations, suivant les tolérances.
+        </para>
+        <title>Alors comment choisir ?</title>
+        <para>
+            Puisqu'il n'est pas possible de savoir avec certitude si tel solveur sera efficace sur un système donné, le meilleur moyen est de lancer le plus probable et de comparer les résultats avec les autres.
+        </para>
+        <para>
+            L'utilisateur doit d'abord établir la compexité de son problème (stabilité / raideur) et s'il désire une grande précision, une simulation rapide, un temps prévisible ou un programme automatisé.
+            <para>
+                <emphasis role="bold">Précision :</emphasis> <emphasis>CVode</emphasis>,
+            </para>
+            <para>
+                <emphasis role="bold">Temps prévisible :</emphasis> Pas Fixe.
+            </para>
+            <para>
+                <emphasis role="bold">Temps de simulation :</emphasis> <emphasis>LSodar</emphasis>,
+            </para>
+            <para>
+                <emphasis role="bold">Automatisé :</emphasis> <emphasis>LSodar</emphasis>,
+            </para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples - ODEs</title>
+        <para>
+            Commençons par un exemple non-raide simple : une intégration de Sinus.
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/ODE_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.zcos");
+scs_m.props.tol(6) = 0;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            Dans le script suivant, on compare la différence de temps entre les solveurs en lançant l'exemple avec les huit solveurs tout à tour (<emphasis>IDA</emphasis> n'est pas adapté à ce genre de problème) :
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchSine.sce">
+                Ouverture du script
+            </link>
+        </para>
+        <para>
+            La console Scilab affiche :
+            <screen><![CDATA[
+Temps pour LSodar :
+ 10.1
+
+Temps pour CVode BDF/Newton :
+ 31
+
+Temps pour CVode BDF/Functional :
+ 30
+
+Temps pour CVode Adams/Newton :
+ 17.211
+
+Temps pour CVode Adams/Functional :
+ 16.305
+
+Temps pour Dormand-Prince :
+ 12.92
+
+Temps pour Runge-Kutta :
+ 7.663
+
+Temps pour Runge-Kutta implicite :
+ 10.881
+            ]]></screen>
+        </para>
+        <para>
+            Ces résultats montrent que pour un problème non-raide simple et à même précision, <emphasis>Runge-Kutta</emphasis> est le plus rapide.
+        </para>
+        <para>
+            En dépit du calcul de nouveau pas de temps, <emphasis>LSodar</emphasis> n'est pas très éloigné des solveurs à pas fixe solvers parce-qu'il détermine de larges pas de temps.
+        </para>
+        <para>
+            Des résultats, on peut extraire des facteurs de vitesse et dresser le tableau suivant :
+        </para>
+        <para>
+            <informaltable border="1">
+                <tr>
+                    <td align="center"> </td>
+                    <td align="center">
+                        <emphasis>BDF / Newton</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>BDF / Functional</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Adams / Newton</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Adams / Functional</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Dormand-Prince</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Runge-Kutta</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Runge-Kutta Implicite</emphasis>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>LSodar</emphasis>
+                    </td>
+                    <td align="center"> 3.1x </td>
+                    <td align="center"> 3x </td>
+                    <td align="center"> 1.7x </td>
+                    <td align="center"> 1.6x </td>
+                    <td align="center"> 1.3x </td>
+                    <td align="center"> 0.75x </td>
+                    <td align="center"> 1.08x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>BDF / Newton</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.1x </td>
+                    <td align="center"> 0.6x </td>
+                    <td align="center"> 0.5x </td>
+                    <td align="center"> 0.4x </td>
+                    <td align="center"> 0.25x </td>
+                    <td align="center"> 0.35x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>BDF / Functional</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.6x </td>
+                    <td align="center"> 0.5x </td>
+                    <td align="center"> 0.4x </td>
+                    <td align="center"> 0.25x </td>
+                    <td align="center"> 0.4x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Adams / Newton</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.9x </td>
+                    <td align="center"> 0.75x </td>
+                    <td align="center"> 0.45x </td>
+                    <td align="center"> 0.6x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Adams / Functional</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.8x </td>
+                    <td align="center"> 0.5x </td>
+                    <td align="center"> 0.7x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Dormand-Prince</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.6x </td>
+                    <td align="center"> 0.8x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Runge-Kutta</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 1.4x </td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>
+            Ensuite, un contrôleur basique à six états continus est testé.
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/Controller.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../demos/Controller.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/demos/Controller.zcos");
+scs_m.props.tol(6) = 0;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            Dans le script suivant, on compare la différence de temps entre les solveurs en lançant l'exemple avec les huit solveurs tout à tour (<emphasis>IDA</emphasis> n'est pas adapté à ce genre de problème) :
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchBasic.sce">
+                Ouverture du script
+            </link>
+        </para>
+        <para>
+            La console Scilab affiche :
+            <screen><![CDATA[
+Temps pour LSodar :
+ 10
+
+Temps pour CVode BDF/Newton :
+ 28.254
+
+Temps pour CVode BDF/Functional :
+ 25.545
+
+Temps pour CVode Adams/Newton :
+ 15
+
+Temps pour CVode Adams/Functional :
+ 12.1
+
+Temps pour Dormand-Prince :
+ 2.359
+
+Temps pour Runge-Kutta :
+ 1.671
+
+Temps pour Runge-Kutta implicite :
+ 5.612
+            ]]></screen>
+        </para>
+        <para>
+            Ces résultats montrent que quand la raideur apparaît légèrement, <emphasis>BDF / Newton</emphasis> commence à prendre de la vitesse. Mais le problème n'est pas encore suffisamment compliqué pour que cette méthode soit intéressante.
+        </para>
+        <para>
+            Le tableau des facteurs de vitesse :
+        </para>
+        <para>
+            <informaltable border="1">
+                <tr>
+                    <td align="center"> </td>
+                    <td align="center">
+                        <emphasis>BDF / Newton</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>BDF / Functional</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Adams / Newton</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Adams / Functional</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Dormand-Prince</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Runge-Kutta</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Runge-Kutta Implicite</emphasis>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>LSodar</emphasis>
+                    </td>
+                    <td align="center"> 2.8x </td>
+                    <td align="center"> 2.6x </td>
+                    <td align="center"> 1.5x </td>
+                    <td align="center"> 1.2x </td>
+                    <td align="center"> 0.2x </td>
+                    <td align="center"> 0.17x </td>
+                    <td align="center"> 0.5x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>BDF / Newton</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.9x </td>
+                    <td align="center"> 0.5x </td>
+                    <td align="center"> 0.4x </td>
+                    <td align="center"> 0.1x </td>
+                    <td align="center"> 0.05x </td>
+                    <td align="center"> 0.2x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>BDF / Functional</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.6x </td>
+                    <td align="center"> 0.5x </td>
+                    <td align="center"> 0.1x </td>
+                    <td align="center"> 0.07x </td>
+                    <td align="center"> 0.2x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Adams / Newton</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.8x </td>
+                    <td align="center"> 0.15x </td>
+                    <td align="center"> 0.1x </td>
+                    <td align="center"> 0.4x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Adams / Functional</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.2x </td>
+                    <td align="center"> 0.1x </td>
+                    <td align="center"> 0.5x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Dormand-Prince</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.7x </td>
+                    <td align="center"> 2.4x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Runge-Kutta</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 3.4x </td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>
+            A présent, on utilise le filtre de Kalman, contenant quinze états continus.
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/Kalman.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../demos/Kalman.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/demos/Kalman.zcos");
+scs_m.props.tol(6) = 0;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            Dans le script suivant, on compare la différence de temps entre les solveurs en lançant l'exemple avec les huit solveurs tout à tour (<emphasis>IDA</emphasis> n'est pas adapté à ce genre de problème) :
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchKalman.sce">
+                Ouverture du script
+            </link>
+        </para>
+        <para>
+            La console Scilab affiche :
+            <screen><![CDATA[
+Temps pour LSodar :
+ 10
+
+Temps pour CVode BDF/Newton :
+ 21.3
+
+Temps pour CVode BDF/Functional :
+ 15.8
+
+Temps pour CVode Adams/Newton :
+ 12.5
+
+Temps pour CVode Adams/Functional :
+ 8.67
+
+Temps pour Dormand-Prince :
+ 1.244
+
+Temps pour Runge-Kutta :
+ 0.87
+
+Temps pour Runge-Kutta implicite :
+ 4
+            ]]></screen>
+        </para>
+        <para>
+            Ces résultats indiquent que pour un problème pour conséquent (plus d'états continus implique plus d'équations), les itérations de <emphasis>Newton</emphasis> commencent à montrer de l'intérêt, elles se rapprochent des autres solveurs.
+        </para>
+        <para>
+            Le tableau des facteurs de vitesse :
+        </para>
+        <para>
+            <informaltable border="1">
+                <tr>
+                    <td align="center"> </td>
+                    <td align="center">
+                        <emphasis>BDF / Newton</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>BDF / Functional</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Adams / Newton</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Adams / Functional</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Dormand-Prince</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Runge-Kutta</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>Runge-Kutta Implicite</emphasis>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>LSodar</emphasis>
+                    </td>
+                    <td align="center"> 2.1x </td>
+                    <td align="center"> 1.6x </td>
+                    <td align="center"> 1.3x </td>
+                    <td align="center"> 0.85x </td>
+                    <td align="center"> 0.1x </td>
+                    <td align="center"> 0.1x </td>
+                    <td align="center"> 0.4x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>BDF / Newton</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.75x </td>
+                    <td align="center"> 0.6x </td>
+                    <td align="center"> 0.4x </td>
+                    <td align="center"> 0.06x </td>
+                    <td align="center"> 0.05x </td>
+                    <td align="center"> 0.2x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>BDF / Functional</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.8x </td>
+                    <td align="center"> 0.55x </td>
+                    <td align="center"> 0.08x </td>
+                    <td align="center"> 0.06x </td>
+                    <td align="center"> 0.25x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Adams / Newton</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.7x </td>
+                    <td align="center"> 0.1x </td>
+                    <td align="center"> 0.07x </td>
+                    <td align="center"> 0.3x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Adams / Functional</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.15x </td>
+                    <td align="center"> 0.1x </td>
+                    <td align="center"> 0.5x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Dormand-Prince</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 0.7x </td>
+                    <td align="center"> 3.2x </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>Runge-Kutta</emphasis>
+                    </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> </td>
+                    <td align="center"> 4.6x </td>
+                </tr>
+            </informaltable>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples - EDAs</title>
+        <para>
+            Dans cette section, on compare IDA à DDaskr.
+        </para>
+        <para>
+            Exemple : une balle rebondissante.
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../demos/ModelicaBlocks/BouncingBall_Modelica.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.zcos");
+scs_m.props.tol(6) = 100;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            Dans le script suivant, on compare la différence de temps entre les solveurs en lançant les trois solveurs tout à tour :
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchBouncing.sce">
+                Ouverture du script
+            </link>
+        </para>
+        <para>
+            La console Scilab affiche :
+            <screen><![CDATA[
+Temps pour IDA :
+ 7.5
+
+Temps pour DDaskr - Newton :
+ 5.4
+
+Temps pour DDaskr - GMRes :
+ 10.2
+            ]]></screen>
+        </para>
+        <para>
+            Ces résultats montrent que pour un problème raide, avec traversées de zéro et à même précision, <emphasis>DDaskr - Newton</emphasis> est le plus rapide.
+        </para>
+        <para>
+            La différence de temps est attribuée à l'implémentation optimale de DDaskr et à son moindre contrôle d'erreur.
+        </para>
+        <para>
+            GMRes est plus lent dû à la petitesse du problème (pas suffisamment d'états continus).
+        </para>
+        <para>
+            Des résultats on extrait les facteurs de vitesse :
+        </para>
+        <para>
+            <informaltable border="1">
+                <tr>
+                    <td align="center"> </td>
+                    <td align="center">
+                        <emphasis>IDA</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>DDaskr G</emphasis>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>DDaskr N</emphasis>
+                    </td>
+                    <td align="center"> 1.39x </td>
+                    <td align="center"> 1.9x </td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>
+            L'exemple suivant corrobore le précédent, il est plus court mais plus complet, parce-qu'il traite du remplissage et vidage d'une cuve.
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/ModelicaBlocks/Hydraulics.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../demos/ModelicaBlocks/Hydraulics.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/demos/ModelicaBlocks/Hydraulics.zcos");
+// Redefining messagebox() to avoid popup
+function messagebox(msg, title)
+ disp(title);
+ disp(msg);
+endfunction
+scs_m.props.tol(6) = 100;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            Dans le script suivant, on compare la différence de temps entre les solveurs en lançant les trois solveurs tout à tour:
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchHydraulics.sce">
+                Ouverture du script
+            </link>
+        </para>
+        <para>
+            La console Scilab affiche :
+            <screen><![CDATA[
+Temps pour IDA :
+ 3
+
+Temps pour DDaskr - Newton :
+ 0.8
+
+Temps pour DDaskr - GMRes :
+ 0.85
+            ]]></screen>
+        </para>
+        <para>
+            Des résultats on extrait les facteurs de vitesse :
+        </para>
+        <para>
+            <informaltable border="1">
+                <tr>
+                    <td align="center"> </td>
+                    <td align="center">
+                        <emphasis>IDA</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>DDaskr G</emphasis>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>DDaskr N</emphasis>
+                    </td>
+                    <td align="center"> 3.75x </td>
+                    <td align="center"> 1.06x </td>
+                </tr>
+            </informaltable>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Voir Aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="LSodar">LSodar</link>
+            </member>
+            <member>
+                <link linkend="CVode">CVode</link>
+            </member>
+            <member>
+                <link linkend="IDA">IDA</link>
+            </member>
+            <member>
+                <link linkend="RK">Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DoPri">Dormand-Prince 4(5)</link>
+            </member>
+            <member>
+                <link linkend="RKImp">Runge-Kutta Implicite 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
+            </member>
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
+            </member>
+            <member>
+                <link linkend="ode_root">ode_root</link>
+            </member>
+            <member>
+                <link linkend="odedc">odedc</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

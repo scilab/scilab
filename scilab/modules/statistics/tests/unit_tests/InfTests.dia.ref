@@ -15,6 +15,7 @@ tol = 1e-299;
 assert_checkequal(res, 1);
 assert_checkequal(res2, 0);
 [res, res2] = cdfchi("PQ", 1, inf);
+cdfchi: Warning: using non integer values for argument #3 may lead to incorrect results.
 assert_checkalmostequal(res, 0, tol);
 assert_checkalmostequal(res2, 1, tol);
 // cdfchn
@@ -22,13 +23,17 @@ assert_checkalmostequal(res2, 1, tol);
 assert_checkequal(res, 1);
 assert_checkequal(res2, 0);
 [res, res2] = cdfchn("PQ", 1, inf, 1e-10);
+cdfchn: Warning: using non integer values for argument #3 may lead to incorrect results.
 assert_checkalmostequal(res, 0, tol);
 assert_checkalmostequal(res2, 1, tol);
 // cdff
 [res, res2] = cdff("PQ", inf, 1, 1e-50);
+cdff: Warning: using non integer values for argument #4 may lead to incorrect results.
 assert_checkequal(res, 1);
 assert_checkequal(res2, 0);
 [res, res2] = cdff("PQ", 1, inf, 1e-50);
+cdff: Warning: using non integer values for argument #3 may lead to incorrect results.
+cdff: Warning: using non integer values for argument #4 may lead to incorrect results.
 assert_checkalmostequal(res, 1, tol);
 assert_checkalmostequal(res2, 0, tol);
 // cdffnc
@@ -36,6 +41,7 @@ assert_checkalmostequal(res2, 0, tol);
 assert_checkequal(res, 1);
 assert_checkequal(res2, 0);
 [res, res2] = cdffnc("PQ", 1e-10, inf, 10, 0);
+cdffnc: Warning: using non integer values for argument #3 may lead to incorrect results.
 assert_checkalmostequal(res, 0, tol);
 assert_checkalmostequal(res2, 1, tol);
 // cdfgam

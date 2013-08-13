@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -22,34 +22,37 @@
 #include "readGateway.h"
 #include "LoadFunctionsTab.h"
 #include "freeArrayOfString.h"
-/*--------------------------------------------------------------------------*/  
+/*--------------------------------------------------------------------------*/
 static int firstentryLoadTable = 0;
-/*--------------------------------------------------------------------------*/  
-extern int C2F(cvname)(int *,char *,int *, unsigned long int);
-/*--------------------------------------------------------------------------*/  
+/*--------------------------------------------------------------------------*/
+extern int C2F(cvname)(int *, char *, int *, unsigned long int);
+/*--------------------------------------------------------------------------*/
 static int Add_a_Scilab_primitive_in_hashtable(char *str, int *GATEWAY_ID, int *PRIMITIVE_ID);
 static BOOL Load_primitives_from_gateway_xml_file(char *modulename);
-/*--------------------------------------------------------------------------*/  
+/*--------------------------------------------------------------------------*/
 void unLockLoadFunctionsTab(void)
 {
     /* used in call_scilab see TerminateScilab */
     firstentryLoadTable = 0;
 }
-/*--------------------------------------------------------------------------*/  
+/*--------------------------------------------------------------------------*/
 void LoadFunctionsTab(void)
 {
     struct MODULESLIST *Modules = NULL;
-    int j=0;
+    int j = 0;
 
-    if (firstentryLoadTable != 0 ) return;
+    if (firstentryLoadTable != 0 )
+    {
+        return;
+    }
 
     Modules = getmodules();
     /**
-    * We are not freeing Modules in order to speed up the next call of 
-    * getmodule freed in sciquit.c 
+    * We are not freeing Modules in order to speed up the next call of
+    * getmodule freed in sciquit.c
     */
 
-    for (j=0;j<Modules->numberofModules;j++)
+    for (j = 0; j < Modules->numberofModules; j++)
     {
         Load_primitives_from_gateway_xml_file(Modules->ModuleList[j]);
     }
@@ -63,7 +66,7 @@ static int Add_a_Scilab_primitive_in_hashtable(char *str, int *GATEWAY_ID, int *
     int id[nsiz];
     int zero = 0;
     /* convert string name to scilab name */
-    C2F(cvname)(id,str,&zero,(unsigned long)strlen(str));
+    C2F(cvname)(id, str, &zero, (unsigned long)strlen(str));
 
     /* fptr returned by funptr are coded by this algo :( */
     /* example: funptr('clc') return 53001*/
@@ -87,7 +90,7 @@ static BOOL Load_primitives_from_gateway_xml_file(char *modulename)
         if (currentGateway)
         {
             int i = 0;
-            for (i = 0;i < currentGateway->dimLists; i++)
+            for (i = 0; i < currentGateway->dimLists; i++)
             {
                 if (currentGateway->primitivesList[i])
                 {
@@ -95,13 +98,13 @@ static BOOL Load_primitives_from_gateway_xml_file(char *modulename)
                     int PRIMITIVE_ID = currentGateway->primiviteIdList[i];
 
                     Add_a_Scilab_primitive_in_hashtable(currentGateway->primitivesList[i],
-                        &GATEWAY_ID,
-                        &PRIMITIVE_ID);
+                                                        &GATEWAY_ID,
+                                                        &PRIMITIVE_ID);
                 }
             }
 
             /* FREE struct currentGateway */
-            freeArrayOfString(currentGateway->primitivesList,currentGateway->dimLists);
+            freeArrayOfString(currentGateway->primitivesList, currentGateway->dimLists);
             if (currentGateway->primiviteIdList)
             {
                 FREE(currentGateway->primiviteIdList);

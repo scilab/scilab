@@ -21,45 +21,55 @@
 #include "expandPathVariable.h"
 #include "localization.h"
 #include "PATH_MAX.h"
+#include "warningmode.h"
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
-int sci_removedir(char *fname,unsigned long l)
+int sci_removedir(char *fname, unsigned long l)
 {
-	CheckRhs(1,1);
-	CheckLhs(0,1);
+    CheckRhs(1, 1);
+    CheckLhs(0, 1);
 
-	if (GetType(1) == sci_strings)
-	{
-		BOOL bOK = FALSE;
-		int m1 = 0, n1 = 0, l1 = 0;
-		char *expandedpath = NULL;
-		char *VarName = NULL;
+    if (GetType(1) == sci_strings)
+    {
+        BOOL bOK = FALSE;
+        int m1 = 0, n1 = 0, l1 = 0;
+        char *expandedpath = NULL;
+        char *VarName = NULL;
 
-		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		VarName = cstk(l1);
+        GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
+        VarName = cstk(l1);
 
-		expandedpath = expandPathVariable(VarName);
-		if (expandedpath)
-		{
-			if ( isdir(expandedpath) )
-			{
-				bOK = removedir(expandedpath);
-			}
+        expandedpath = expandPathVariable(VarName);
+        if (expandedpath)
+        {
+            if ( isdir(expandedpath) )
+            {
+                bOK = removedir(expandedpath);
+            }
+            else
+            {
+                if (getWarningMode())
+                {
+                    sciprint(_("%s: Warning: Directory '%s' does not exist.\n"), fname, expandedpath);
+                }
+            }
 
-			FREE(expandedpath);
-			expandedpath = NULL;
-		}
+            FREE(expandedpath);
+            expandedpath = NULL;
+        }
 
-		m1 = 1; n1 = 1;
-		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1 ,&l1);
-		*istk(l1) = bOK;
+        m1 = 1;
+        n1 = 1;
+        CreateVar(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1 , &l1);
+        *istk(l1) = bOK;
 
-		LhsVar(1)=Rhs+1;
-		PutLhsVar();
-	}
-	else
-	{
-		Scierror(999,_("%s: Wrong type for input argument: A string expected.\n"), fname);
-	}
-	return 0;
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument: A string expected.\n"), fname);
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

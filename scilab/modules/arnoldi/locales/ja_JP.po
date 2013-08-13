@@ -7,15 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-22 14:05+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-26 14:39+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ja\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s: 引数 %d の型が間違っています:  実数を指定してください.\n"
 
 #, c-format
 msgid "%s: the computation is already terminated\n"
@@ -29,6 +33,10 @@ msgstr "%s: 入力引数 %s の大きさが間違っています: 大きさ %d �
 msgid ""
 "%s: Wrong size for input argument %s: A matrix of size %dx%d expected.\n"
 msgstr "%s: 入力引数 %s の大きさが間違っています: 大きさ %dx%d の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -200,11 +208,6 @@ msgid "%s: Error with %s: unknown mode returned.\n"
 msgstr "%s: エラー %s: 未知のモードが返されました.\n"
 
 #, c-format
-msgid ""
-"%s: A - sigma * B is not inversible, try with a different value of sigma.\n"
-msgstr "%s: A - sigma * B が可逆ではありません, sigma の値を変えてみてください.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: メモリ割当エラー.\n"
 
@@ -277,9 +280,9 @@ msgstr "%s: 入力引数 #%d の型が間違っています:  opts.cholB が真�
 
 #, c-format
 msgid ""
-"%s: Impossible to use the Cholesky factorisation with complex sparse "
+"%s: Impossible to use the Cholesky factorization with complex sparse "
 "matrices.\n"
-msgstr "%s: 複素疎行列の場合,コレスキー分解を使用できません.\n"
+msgstr "%s: 複素疎行列にはコレスキー分解を使用できません.\n"
 
 #, c-format
 msgid "%s: Error with %s: info = %d.\n"

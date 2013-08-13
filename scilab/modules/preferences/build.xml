@@ -11,10 +11,10 @@
  *
  -->
 <project name="preferences" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.preferences.name}"/>
-  <property name="library.title" value="Preferences for Scilab"/>
-  <description>
-    Build the Scilab preferences module
-  </description>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.preferences.name}"/>
+    <property name="library.title" value="Preferences for Scilab"/>
+    <description>
+        Build the Scilab preferences module
+    </description>
 </project>

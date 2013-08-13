@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-28 09:29+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-26 12:57+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: fr\n"
 
 #, c-format
@@ -127,8 +127,15 @@ msgstr ""
 "'%s' ou '%s' attendu.\n"
 
 #, c-format
-msgid "%s Wrong value for input argument #%d: %s.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %s.\n"
+msgid "%s Wrong value for input argument #%d: '%s' is unknown.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s' est inconnu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
@@ -188,8 +195,8 @@ msgstr "P(%d) > 1\n"
 msgid "Sum of P(i) > 1\n"
 msgstr "Somme de P(i) > 1\n"
 
-msgid "Missing shape and scale for Gamma law\n"
-msgstr "shape et scale manquants pour la loi Gamma\n"
+msgid "Missing shape and rate for Gamma law\n"
+msgstr "Paramètres de forme et d'intensité manquants pour la loi Gamma\n"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 ou R <= 0.0\n"
@@ -381,17 +388,18 @@ msgstr ""
 "2147483322]"
 
 #, c-format
+msgid "WARNING: %s\n"
+msgstr "ATTENTION : %s\n"
+
+#, c-format
 msgid ""
-"\n"
-"=> be aware that you have may lost synchronization\n"
-"    between the virtual gen %d and the others !\n"
-"    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
+"be aware that you may have lost synchronization\n"
+"    between the virtual generator %d and the others.\n"
+"    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."
 msgstr ""
-"\n"
-"=> La synchronisation a pu être perdue\n"
-"    entre le le gen virtuel %d et les autres !\n"
-"    utilisez grand(\"setall\", s1, s2, s3, s4) si vous souhaitez retrouver "
-"la synchronisation."
+"Vous avez peut-être perdu la synchronisation\n"
+"    entre le générateur virtuel %d et les autres.\n"
+"    Utilisez grand(\"setall\", s1, s2, s3, s4) pour la retrouver."
 
 msgid ""
 "\n"
@@ -462,6 +470,30 @@ msgstr "Théorie"
 msgid "Simulation of a discrete random variable"
 msgstr "Simulation d'une variable aléatoire discrète"
 
+msgid "Simulation of a discrete uniform random variable"
+msgstr "Simulation d'une variable aléatoire uniforme discrète"
+
+msgid "Simulation of a Erlang random variable"
+msgstr "Simulation d'une variable aléatoire selon la loi de Erlang"
+
+msgid "macro histplot : Histogram plot"
+msgstr "macro histplot : Tracé d'un histogramme"
+
+msgid "Classes"
+msgstr "Classes"
+
+msgid "p must be < 1"
+msgstr "p doit être < 1"
+
+msgid "Simulation of a geometric random variable"
+msgstr "Simulation d'une variable aléatoire géométrique"
+
+msgid "Simulation of a hyper geometric random variable"
+msgstr "Simulation d'une variable aléatoire hypergéométrique"
+
+msgid "Simulation of a Poisson random variable"
+msgstr "Simulation d'une variable aléatoire selon la loi de Poisson"
+
 msgid "Random"
 msgstr "Aléatoire"
 
@@ -491,3 +523,6 @@ msgstr "Variable aléatoire hyper géométrique"
 
 msgid "Erlang random variable"
 msgstr "Variable aléatoire de Erlang"
+
+msgid "Simulation of a Weibull random variable"
+msgstr "Simulation d'une variable aléatoire selon la loi de Weibull"

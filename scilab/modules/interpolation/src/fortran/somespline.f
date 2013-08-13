@@ -379,7 +379,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       endif
       old_i = i
 
-*     eval h(t), h'(t), h"(t) and h"'(t), by a generalised Horner 's scheme
+*     eval h(t), h'(t), h"(t) and h"'(t), by a generalized Horner 's scheme
       tmxa = t - xa
       h = c2 + c3*(t - xb)
       dh = h + c3*tmxa

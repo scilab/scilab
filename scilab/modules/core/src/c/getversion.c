@@ -310,7 +310,7 @@ BOOL with_modelica_compiler(void)
     char *fullpathModelicac = searchEnv(ModelicacName, "PATH");
     if (fullpathModelicac)
     {
-        //FREE(fullpathModelicac);
+        FREE(fullpathModelicac);
         fullpathModelicac = NULL;
         return TRUE;
     }

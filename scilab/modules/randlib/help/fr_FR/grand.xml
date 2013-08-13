@@ -291,7 +291,7 @@
                 <term>gamma</term>
                 <listitem>
                     <para>
-                      <literal>Y = grand(m, n, "gam", shape, rate)</literal> génère des nombres aléatoires suivant la loi
+                        <literal>Y = grand(m, n, "gam", shape, rate)</literal> génère des nombres aléatoires suivant la loi
                         gamma de paramètres <literal>shape</literal> (réel &gt; 0) et <literal>scale</literal>
                         (réel &gt; 0). La densité est :
                     </para>
@@ -392,6 +392,11 @@
                     <para>
                         <literal>Y = grand(n, "prm", vect)</literal> génère <literal>n</literal> permutations aléatoire du
                         vecteur colonne (<literal>m x 1</literal>) <literal>vect</literal>.
+                        A cause de la structure de la pile, <varname>vect</varname> ne doit pas et ne peut pas être un vecteur ligne.
+                        Cette fonctionnalité couvre la fonction Matlab <code>randperm()</code>,
+                        car <code>randperm(n)</code> est équivalent à <code>grand(1,'prm',(1:n)')</code>
+                        et <code>randperm(n, k)</code> s'obtient grâce à
+                        <code>grand(1,'prm',(1:n)'); ans(1:k)</code>.
                     </para>
                 </listitem>
             </varlistentry>

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-08-24 14:23+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-29 09:11+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ja\n"
 
 msgid "overflow error"
@@ -102,14 +102,6 @@ msgstr "遅延後の時間は %f ですが、最後に保存された時間は %
 
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr "遅延ブロックのバッファ長を増やしてみてください \n"
-
-#, c-format
-msgid "Error when opening file '%s'.\n"
-msgstr "ファイル '%s'をオープンする際にエラー発生\n"
-
-#, c-format
-msgid "Write error in file '%s'.\n"
-msgstr "ファイル '%s'への書込みエラー.\n"
 
 msgid "Size of buffer or input size have changed!\n"
 msgstr "バッファの大きさまたは入力の大きさが変更されています!\n"
@@ -422,6 +414,48 @@ msgstr "検証"
 
 msgid "Cancel"
 msgstr "取消"
+
+msgid "Please give the discretization domain values"
+msgstr "離散化領域値を指定してください"
+
+#, c-format
+msgid "Please give the %s operator coefficients"
+msgstr "%s 演算子係数を指定してください"
+
+msgid "Please give the sign for the variable discriminant"
+msgstr "変数判別式の符号を指定してください"
+
+msgid "Please give the discretization method type"
+msgstr "離散化メソッド型を指定してください"
+
+msgid "Please give the discretization method degree"
+msgstr "離散化メソッド度を指定してください"
+
+msgid "Please give the number of discretization points"
+msgstr "離散化点の数を指定してください"
+
+#, c-format
+msgid "Please give the initial condition %s"
+msgstr "初期条件 %s を指定してください"
+
+msgid "Please give the boundary conditions"
+msgstr "境界条件を指定してください"
+
+#, c-format
+msgid "The finite element discretization took %.2f seconds"
+msgstr "有限要素離散化に %.2f 秒かかりました"
+
+#, c-format
+msgid "The finite differences discretization took %.2f seconds"
+msgstr "有限差分離散化に %.2f 秒かかりました"
+
+#, c-format
+msgid "The finite volume discretization took %.2f seconds"
+msgstr "有限容積離散化に %.2f 秒かかりました"
+
+#, c-format
+msgid "The code generation, the compilation and link took %.2f seconds"
+msgstr "コード生成, コンパイルおよびリンクに %.2f 秒かかります"
 
 msgid "Event output port"
 msgstr "出力ポートのイベント"
@@ -779,3 +813,7 @@ msgstr "編集(&E)"
 
 msgid "&?"
 msgstr "&?"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: 最大でも %d 個としてください.\n"

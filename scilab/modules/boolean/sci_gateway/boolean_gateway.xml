@@ -2,8 +2,8 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="boolean">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -19,8 +19,8 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-
-<!--
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET , Sylvestre LEDRU
  * 
@@ -31,12 +31,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-
-<!-- =================== -->
-
-<PRIMITIVE gatewayId="23" primitiveId="1" primitiveName="find" />
-<PRIMITIVE gatewayId="23" primitiveId="2" primitiveName="bool2s" />
-<PRIMITIVE gatewayId="23" primitiveId="3" primitiveName="or" />
-<PRIMITIVE gatewayId="23" primitiveId="4" primitiveName="and" />
+    
+    
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="23" primitiveId="1" primitiveName="find" />
+    <PRIMITIVE gatewayId="23" primitiveId="2" primitiveName="bool2s" />
+    <PRIMITIVE gatewayId="23" primitiveId="3" primitiveName="or" />
+    <PRIMITIVE gatewayId="23" primitiveId="4" primitiveName="and" />
 </GATEWAY>

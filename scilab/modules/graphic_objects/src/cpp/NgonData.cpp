@@ -38,12 +38,12 @@ int NgonData::getPropertyFromName(int propertyName)
 {
     switch (propertyName)
     {
-    case __GO_DATA_MODEL_NUM_GONS__ :
-        return NUM_GONS;
-    case __GO_DATA_MODEL_NUM_VERTICES_PER_GON__ :
-        return NUM_VERTICES_PER_GON;
-    default :
-        return Data3D::getPropertyFromName(propertyName);
+        case __GO_DATA_MODEL_NUM_GONS__ :
+            return NUM_GONS;
+        case __GO_DATA_MODEL_NUM_VERTICES_PER_GON__ :
+            return NUM_VERTICES_PER_GON;
+        default :
+            return Data3D::getPropertyFromName(propertyName);
     }
 
 }

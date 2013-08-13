@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-09-09 18:11+0000\n"
 "Last-Translator: Jorge Catumba <jorgerev90@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: es\n"
 
 msgid "Polynomials"
@@ -67,6 +67,15 @@ msgstr ""
 "lineal dinámico o un arreglo polinómico.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real Polynomial expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
 msgstr ""
 "%s: Tipo incorrecto de argumento de entrada: Se esperaba un arreglo "
@@ -95,6 +104,19 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Debe estar en el conjunto "
 "{%s}.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for argument #%d: %s or %s expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected.\n"

@@ -27,6 +27,6 @@
 /**
 *
 */
-void matz_cath(scicos_block *block,int flag);
+void matz_cath(scicos_block *block, int flag);
 
 #endif /* __MATZ_CATH_H__ */

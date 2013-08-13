@@ -385,7 +385,7 @@ function [rpar,ipar,ok] = poke_point(ixy,iparin,rparin)
                     a.data_bounds=[xmn1, ymn1; xmx1, ymx1];
                 end
             end
-            //drawnow();//show_pixmap();
+            //drawnow();
             //-------------------------------------------------------------------
         case "Autoscale" then
             [rpar,ipar]=AutoScale(a,xy,ipar,rpar)

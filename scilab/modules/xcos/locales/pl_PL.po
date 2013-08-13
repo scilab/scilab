@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:09+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-03 02:43+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: pl\n"
 
 #, c-format
@@ -112,12 +112,6 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano wartości "
 "logicznej.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano wektora "
-"łańcuchów.\n"
 
 #, c-format
 msgid ""
@@ -356,8 +350,8 @@ msgstr "Zamknij"
 msgid "Quit Xcos"
 msgstr "Zamknij Xcos"
 
-msgid "Recent Files"
-msgstr "Ostatnio używane pliki"
+msgid "Recent files"
+msgstr ""
 
 msgid "Edit"
 msgstr "Edycja"
@@ -894,8 +888,8 @@ msgstr ""
 msgid "Temperature Controller"
 msgstr "Sterownik temperatury"
 
-msgid "Inverted Pendulum"
-msgstr "Wahadło odwrócone"
+msgid "Inverted pendulum"
+msgstr ""
 
 msgid "Lorentz butterfly"
 msgstr "Motyl Lorenza"
@@ -1204,6 +1198,18 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: Nie udało się eksportować palety do hdf5.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: No block found.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr ""
 
@@ -1256,8 +1262,26 @@ msgstr ""
 msgid "%s: Error during block parameters update.\n"
 msgstr ""
 
+msgid "Initialisation problem"
+msgstr ""
+
+msgid "End problem"
+msgstr ""
+
 msgid "Simulation problem"
 msgstr "Problem symulacji"
 
 msgid "Error in post_xcos_simulate: ending simulation."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file '%s' for reading.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error while trying to read file contents from '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Syntax error while trying to set up context from"
 msgstr ""

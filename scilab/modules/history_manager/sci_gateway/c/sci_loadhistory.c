@@ -21,10 +21,10 @@
 #include "localization.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/
-int sci_loadhistory(char *fname,unsigned long fname_len)
+int sci_loadhistory(char *fname, unsigned long fname_len)
 {
-    CheckRhs(0,1) ;
-    CheckLhs(0,1) ;
+    CheckRhs(0, 1) ;
+    CheckLhs(0, 1) ;
 
     if (Rhs == 0)
     {
@@ -33,7 +33,7 @@ int sci_loadhistory(char *fname,unsigned long fname_len)
         {
             loadScilabHistoryFromFile(filename);
             FREE(filename);
-            filename=NULL;
+            filename = NULL;
         }
     }
     else
@@ -42,7 +42,7 @@ int sci_loadhistory(char *fname,unsigned long fname_len)
         int l1 = 0, m1 = 0, n1 = 0;
         char *Path = NULL;
 
-        GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+        GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
         Path = cstk(l1);
         line = expandPathVariable(Path);
         if (line)
@@ -53,7 +53,7 @@ int sci_loadhistory(char *fname,unsigned long fname_len)
         }
     }
 
-    /* silent truncation 
+    /* silent truncation
     if (isScilabHistoryTruncated() && getWarningMode())
     {
         sciprint(_("WARNING: history has been truncated (too big).\n"));

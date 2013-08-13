@@ -85,7 +85,8 @@ endfunction
         </para>
         <para>
             Certaines règles ont été établies quant à la syntaxe des noms de fonctions dans Scilab (voir <link linkend="names">names</link>).
-        </para> 
+        </para>
+        
         <para>Les définitions de fonctions peuvent être imbriquées.</para>
     </refsection>
     <refsection>

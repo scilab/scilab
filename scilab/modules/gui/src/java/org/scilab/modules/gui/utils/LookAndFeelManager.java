@@ -86,27 +86,26 @@ public class LookAndFeelManager {
         ret = false;
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
-                    public void run() {
-                        try {
-                            UIManager.setLookAndFeel(lookandfeel);
-                            ret = true;
-                        } catch (UnsupportedLookAndFeelException e) {
-                            System.err.println("Cannot find this look and feel:");
-                            System.err.println(e.getLocalizedMessage());
-                        } catch (ClassNotFoundException e) {
-                            System.err.println("LookAndFeel class could not be found:");
-                            System.err.println(e.getLocalizedMessage());
-                        } catch (IllegalAccessException e) {
-                            System.err.println("Illegal access while setting the Look And Feel:");
-                            System.err.println(e.getLocalizedMessage());
-                        } catch (InstantiationException e) {
-                            System.err.println("Instantiation error while setting the Look And Feel:");
-                            System.err.println(e.getLocalizedMessage());
-                        }
+                public void run() {
+                    try {
+                        UIManager.setLookAndFeel(lookandfeel);
+                        ret = true;
+                    } catch (UnsupportedLookAndFeelException e) {
+                        System.err.println("Cannot find this look and feel:");
+                        System.err.println(e.getLocalizedMessage());
+                    } catch (ClassNotFoundException e) {
+                        System.err.println("LookAndFeel class could not be found:");
+                        System.err.println(e.getLocalizedMessage());
+                    } catch (IllegalAccessException e) {
+                        System.err.println("Illegal access while setting the Look And Feel:");
+                        System.err.println(e.getLocalizedMessage());
+                    } catch (InstantiationException e) {
+                        System.err.println("Instantiation error while setting the Look And Feel:");
+                        System.err.println(e.getLocalizedMessage());
                     }
-                });
-        }
-        catch (InterruptedException e) { }
+                }
+            });
+        } catch (InterruptedException e) { }
         catch (InvocationTargetException e) {
             System.err.println(e);
         }

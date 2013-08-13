@@ -52,16 +52,16 @@ function nonisothermal_reactor()
     scf(1); //create new figure, figure_id=1
     clf    //clear previous graph
     plot(z,[cA; cB])
-    legend('Concentration of compound A','Concentration of compound B'); //make legend for lines
-    xlabel('z [m]')  //tag x axis
-    ylabel('Concentrations [mol/m3]')  //tag y axis
+    legend("Concentration of compound A","Concentration of compound B"); //make legend for lines
+    xlabel("z [m]")  //tag x axis
+    ylabel("Concentrations [mol/m3]")  //tag y axis
 
     scf(2); //figure_id=2
     clf
     plot(z,[T; Tc])
-    legend('Temperature of reaction mixture','Temperature of cooling water');
-    xlabel('z [m]')
-    ylabel('Temperature profile [oC]')
+    legend("Temperature of reaction mixture","Temperature of cooling water");
+    xlabel("z [m]")
+    ylabel("Temperature profile [oC]")
 
 endfunction
 

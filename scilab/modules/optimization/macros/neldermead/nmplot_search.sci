@@ -13,11 +13,11 @@
 //   Search the minimum with Nelder-Mead algorithm.
 //
 function this = nmplot_search (this)
-  nmplot_log ( this , "nmplot_search")
-  this = nmplot_startupfiles ( this )
-  this.nmbase = neldermead_configure ( this.nmbase , "-outputcommand" , list(nmplot_outputcmd,this) );
-  this.nmbase = neldermead_search ( this.nmbase )
-  this = nmplot_shutdownfiles ( this )
+    nmplot_log ( this , "nmplot_search")
+    this = nmplot_startupfiles ( this )
+    this.nmbase = neldermead_configure ( this.nmbase , "-outputcommand" , list(nmplot_outputcmd,this) );
+    this.nmbase = neldermead_search ( this.nmbase )
+    this = nmplot_shutdownfiles ( this )
 endfunction
 
 
@@ -29,7 +29,7 @@ endfunction
 //    name : the type of data in the file
 //
 function report = nmplot_header ( this , filename , name )
-  nmplot_log ( this , "nmplot_header")
+    nmplot_log ( this , "nmplot_header")
     report = list()
     report($+1) = sprintf("//\n")
     report($+1) = sprintf("// %s--\n" , filename)
@@ -47,45 +47,45 @@ endfunction
 //   <no arg>
 //
 function this = nmplot_startupfiles ( this )
-  nmplot_log ( this , "nmplot_startupfiles")
-    if this.simplexfn <> "" then 
-      this.simplexhandle  = mopen ( this.simplexfn , "w" )
-      header = nmplot_header ( this , this.simplexfn , "simplex" )
-      fd = this.simplexhandle
-      for i = 1:length(header)
-        mfprintf(fd,"%s\n",header(i))
-      end
-      mfprintf(fd,"history = list()\n")
+    nmplot_log ( this , "nmplot_startupfiles")
+    if this.simplexfn <> "" then
+        this.simplexhandle  = mopen ( this.simplexfn , "w" )
+        header = nmplot_header ( this , this.simplexfn , "simplex" )
+        fd = this.simplexhandle
+        for i = 1:length(header)
+            mfprintf(fd,"%s\n",header(i))
+        end
+        mfprintf(fd,"history = list()\n")
     end
-    if this.fbarfn <> "" then 
-      this.fbarhandle  = mopen ( this.fbarfn , "w" )
-      header = nmplot_header ( this , this.fbarfn , "function value average" )
-      fd = this.fbarhandle
-      for i = 1:length(header)
-        mfprintf(fd,"%s\n",header(i))
-      end
-      mfprintf(fd,"history = [\n")
+    if this.fbarfn <> "" then
+        this.fbarhandle  = mopen ( this.fbarfn , "w" )
+        header = nmplot_header ( this , this.fbarfn , "function value average" )
+        fd = this.fbarhandle
+        for i = 1:length(header)
+            mfprintf(fd,"%s\n",header(i))
+        end
+        mfprintf(fd,"history = [\n")
     end
-    if this.foptfn <> "" then 
-      this.fopthandle  = mopen ( this.foptfn , "w" )
-      header = nmplot_header ( this , this.foptfn , "function value optimum" )
-      fd = this.fopthandle
-      for i = 1:length(header)
-        mfprintf(fd,"%s\n",header(i))
-      end
-      mfprintf(fd,"history = [\n")
+    if this.foptfn <> "" then
+        this.fopthandle  = mopen ( this.foptfn , "w" )
+        header = nmplot_header ( this , this.foptfn , "function value optimum" )
+        fd = this.fopthandle
+        for i = 1:length(header)
+            mfprintf(fd,"%s\n",header(i))
+        end
+        mfprintf(fd,"history = [\n")
     end
-    if this.sigmafn <> "" then 
-      this.sigmahandle  = mopen ( this.sigmafn , "w" )
-      header = nmplot_header ( this , this.sigmafn , "maximum of oriented length" )
-      fd = this.sigmahandle
-      for i = 1:length(header)
-        mfprintf(fd,"%s\n",header(i))
-      end
-      mfprintf(fd,"history = [\n")
+    if this.sigmafn <> "" then
+        this.sigmahandle  = mopen ( this.sigmafn , "w" )
+        header = nmplot_header ( this , this.sigmafn , "maximum of oriented length" )
+        fd = this.sigmahandle
+        for i = 1:length(header)
+            mfprintf(fd,"%s\n",header(i))
+        end
+        mfprintf(fd,"history = [\n")
     end
 endfunction
-  
+
 //
 // nmplot_shutdownfiles --
 //   Close the output files to shutdown the algorithm
@@ -94,29 +94,29 @@ endfunction
 //   <no arg>
 //
 function this = nmplot_shutdownfiles ( this )
-  nmplot_log ( this , "nmplot_shutdownfiles")
-    if this.simplexfn <> "" then 
-      fd  = this.simplexhandle
-      mclose ( fd )
-      nmplot_log ( this , sprintf( "Exported Simplex history in %s",this.simplexfn))
+    nmplot_log ( this , "nmplot_shutdownfiles")
+    if this.simplexfn <> "" then
+        fd  = this.simplexhandle
+        mclose ( fd )
+        nmplot_log ( this , sprintf( "Exported Simplex history in %s",this.simplexfn))
     end
-    if this.fbarfn <> "" then 
-      fd = this.fbarhandle
-      mfprintf ( fd , "]\n" )
-      mclose ( fd )
-      nmplot_log ( this , sprintf( "Exported fbar history in %s",this.fbarfn))
+    if this.fbarfn <> "" then
+        fd = this.fbarhandle
+        mfprintf ( fd , "]\n" )
+        mclose ( fd )
+        nmplot_log ( this , sprintf( "Exported fbar history in %s",this.fbarfn))
     end
-    if this.foptfn <> "" then 
-      fd = this.fopthandle
-      mfprintf ( fd , "]\n" )
-      mclose ( fd )
-      nmplot_log ( this , sprintf( "Exported fopt history in %s",this.foptfn))
+    if this.foptfn <> "" then
+        fd = this.fopthandle
+        mfprintf ( fd , "]\n" )
+        mclose ( fd )
+        nmplot_log ( this , sprintf( "Exported fopt history in %s",this.foptfn))
     end
-    if this.sigmafn <> "" then 
-      fd = this.sigmahandle
-      mfprintf ( fd , "]\n" )
-      mclose ( fd )
-      nmplot_log ( this , sprintf( "Exported sigma history in %s",this.sigmafn))
+    if this.sigmafn <> "" then
+        fd = this.sigmahandle
+        mfprintf ( fd , "]\n" )
+        mclose ( fd )
+        nmplot_log ( this , sprintf( "Exported sigma history in %s",this.sigmafn))
     end
 endfunction
 

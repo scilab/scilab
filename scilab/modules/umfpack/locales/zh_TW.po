@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2011-09-01 09:31+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-17 22:18+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -55,21 +55,15 @@ msgstr "%s: 產生一錯誤: %s\n"
 msgid "factorization"
 msgstr "因子分解"
 
-#
-# File: sci_gateway/c/sci_taucs_chget.c, line: 79
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
-"Cholesky factorisation"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 必須有效參考到 Cholesky 分解因子"
+"Cholesky factorization"
+msgstr ""
 
-#
-# File: sci_gateway/c/sci_taucs_chget.c, line: 107
-# File: sci_gateway/c/sci_umf_luget.c, line: 218
 #, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr "%s: 記憶體耗盡 : 增加 stacksize , 須要額外之 %d words.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_taucs_chsolve.c, line: 87
@@ -89,13 +83,17 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: 不是一 Cholesky 分解因子�
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
 
-#
-# File: sci_gateway/c/sci_taucs_chsolve.c, line: 111
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: not compatible with the Cholesky "
+"factorization.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: not compatible with the Cholesky "
-"factorisation.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 與 Cholesky 分解因子不相容.\n"
+"factorization.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_taucs_chsolve.c, line: 135
@@ -151,15 +149,11 @@ msgstr "已無位置配置 ListNumeric 所需之 LU 指標(pointer)"
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: 產生錯誤: %s.\n"
 
-#
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 105
-msgid "This is not a factorisation of a square matrix"
-msgstr "這不是一方陣之因式分解"
+msgid "This is not a factorization of a square matrix"
+msgstr ""
 
-#
-# File: sci_gateway/c/sci_umf_lusolve.c, line: 110
-msgid "This is a factorisation of a singular matrix"
-msgstr "這不是一奇異矩陣之因式分解"
+msgid "This is a factorization of a singular matrix"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_umf_lusolve.c, line: 146

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-03 09:06+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-15 05:27+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: \n"
 
 #, c-format
@@ -384,6 +384,12 @@ msgstr "普通"
 msgid "Wrap lines"
 msgstr "自动换行"
 
+msgid "Background color: "
+msgstr "背景颜色： "
+
+msgid "Cursor color: "
+msgstr "光标颜色： "
+
 msgid "Keywords"
 msgstr "关键词"
 
@@ -391,7 +397,7 @@ msgid "Enable keywords colorization"
 msgstr "关键词彩色显示"
 
 msgid "Set syntax Colors"
-msgstr ""
+msgstr "设置语法颜色"
 
 msgid "Highlight corresponding brackets"
 msgstr "高亮匹配括号"
@@ -424,10 +430,10 @@ msgid "Tabulation size: "
 msgstr "制表符大小: "
 
 msgid "Use space"
-msgstr "使用空格Use space"
+msgstr "使用空格"
 
 msgid "Representation: "
-msgstr ""
+msgstr "表示符号: "
 
 msgid "Chevrons"
 msgstr ""
@@ -468,6 +474,10 @@ msgstr "文件名"
 msgid "Append filename with: "
 msgstr "文件名附加上: "
 
+#, c-format
+msgid "(%date can be used to be replaced by the current date)"
+msgstr ""
+
 msgid "Replace extension with: "
 msgstr "扩展名替换为: "
 
@@ -478,7 +488,7 @@ msgid "Source file directory"
 msgstr "源文件目录"
 
 msgid "Single directory"
-msgstr ""
+msgstr "单一目录"
 
 msgid "Choose an autosave directory"
 msgstr "选择自动保存目录"
@@ -503,15 +513,15 @@ msgstr "读取字符串时出错"
 
 #, c-format
 msgid "File not found: %s"
-msgstr ""
+msgstr "文件未找到：%s"
 
 #, c-format
 msgid "I/O error: %s"
-msgstr ""
+msgstr "I/O错误：%s"
 
 #, c-format
 msgid "The file %s has been modified by an other program. Reload it ?"
-msgstr ""
+msgstr "文件%s已被另一程序修改，重新载入？"
 
 msgid "Source of '"
 msgstr "来源之‘"
@@ -724,7 +734,7 @@ msgstr "没有发现字符串 %s"
 
 #, c-format
 msgid "The file %s does not exist. Do you want to create it?"
-msgstr ""
+msgstr "文件%s不存在，创建此文件?"
 
 msgid "close this tab"
 msgstr "关闭这个标签页"
@@ -734,11 +744,11 @@ msgstr "文件"
 
 #, c-format
 msgid "%s has been modified since last save. Save it?"
-msgstr ""
+msgstr "%s自上次保存后已经修改，保存?"
 
 #, c-format
 msgid "The file %s has been modified by another program ! Overwrite it ?"
-msgstr ""
+msgstr "文件%s已经被另一程序修改！覆盖？"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "警告：此文件已被其他程序修改"
@@ -1067,3 +1077,21 @@ msgstr "选择搜索基目录"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab模块'%s'尚未安装。\n"
+
+msgid "the last error did not occur inside a library function."
+msgstr ""
+
+msgid " on line "
+msgstr ""
+
+msgid "opening file "
+msgstr ""
+
+msgid " of the source file of the function "
+msgstr ""
+
+msgid "the source file of the function "
+msgstr "函数源文件 "
+
+msgid " was not found in any library path"
+msgstr ""

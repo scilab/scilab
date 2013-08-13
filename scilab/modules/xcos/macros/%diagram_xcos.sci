@@ -12,13 +12,13 @@
 //
 
 function %diagram_xcos(scs_m)
-// Overload function when calling xcos with a diagram
-//
-// Calling Sequence
-//  xcos(scs_m);
-//
-// Parameters
-//  scs_m: the diagram instance
+    // Overload function when calling xcos with a diagram
+    //
+    // Calling Sequence
+    //  xcos(scs_m);
+    //
+    // Parameters
+    //  scs_m: the diagram instance
 
     // allocate a local copy
     scs_m = scs_m;

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-01-23 20:34+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-06 21:08+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -25,19 +25,19 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Vyskytla se chyba: %s\n"
+
+msgid "Cannot play file."
+msgstr "Nelze přehrát soubor."
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Chyba při přidělování paměti.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Vyskytla se chyba: %s\n"
-
-msgid "Cannot play file."
-msgstr "Nelze přehrát soubor."
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
@@ -69,6 +69,30 @@ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Nelze otevřít soubor %s.\n"
 
+msgid "Index range must be specified as a scalar or a 2 elements vector."
+msgstr ""
+
+msgid "Sample limit vector must have 2 elements."
+msgstr "Vektor omezení vzorku musí mít 2 prvky."
+
+msgid "Sample limits out of range."
+msgstr "Limit vozrků mimo rozsah."
+
+msgid "Sample limits must be given in ascending order."
+msgstr "Omezení prvku musí být zadáno ve vzestupném pořadí."
+
+msgid "Error in file format."
+msgstr "Chyba ve formátu souboru."
+
+msgid "Error while reading sound file."
+msgstr "Chyba při čtení zvukového souboru."
+
+msgid "Unrecognized data format."
+msgstr "Nerozpoznaný formát dat."
+
+msgid "Truncated data file."
+msgstr "Zkrácený datový soubor."
+
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
 msgstr ""
@@ -77,6 +101,9 @@ msgstr ""
 msgid "Data array must have 1- or 2-dimensions only."
 msgstr "Datovové pole musí být pouze 1- nebo 2-rozměrné."
 
+msgid "Data clipped during write to file."
+msgstr "Data oříznuta během zápisu do souboru."
+
 msgid "Error while writing sound file."
 msgstr "Chyba při zápisu zvukového souboru."
 
@@ -84,9 +111,6 @@ msgid "Mu-law can only be used with 8 bit data. Use method='linear' instead."
 msgstr ""
 "Mu-law může být použit pouze s 8 bitovými daty. Místo toho použijte "
 "method='linear'."
-
-msgid "Unrecognized data format."
-msgstr "Nerozpoznaný formát dat."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -184,9 +208,6 @@ msgstr "Nelze číst soubor .wav s více než 16 bity na vzorek."
 
 msgid "Sample limit vector must have 2 entries."
 msgstr "Vektor limitu vzorku musí mít 2 záznamy."
-
-msgid "Sample limits out of range."
-msgstr "Limit vozrků mimo rozsah."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Neplatné limity vzorkování (použijte vzestupné pořadí)."

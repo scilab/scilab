@@ -27,59 +27,59 @@ public class VariableBrowserTabFactory extends AbstractScilabTabFactory {
     public static final String APPLICATION = "VariableBrowser";
     public static final String PACKAGE = "";
     public static final String CLASS = "org.scilab.modules.ui_data.tabfactory.VariableBrowserTabFactory";
-    
+
     private static VariableBrowserTabFactory instance;
 
     /**
      * Default constructor
      */
     public VariableBrowserTabFactory() {
-	if (instance == null) {
-	    instance = this;
-	}
+        if (instance == null) {
+            instance = this;
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     public SwingScilabTab getTab(String uuid) {
-	return VariableBrowserTab.getVariableBrowserInstance();
+        return VariableBrowserTab.getVariableBrowserInstance();
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public String getPackage() {
-	return PACKAGE;
+        return PACKAGE;
     }
 
     /**
      * {@inheritDoc}
      */
     public String getClassName() {
-	return CLASS;
+        return CLASS;
     }
 
     /**
      * {@inheritDoc}
      */
     public String getApplication() {
-	return APPLICATION;
+        return APPLICATION;
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean isAValidUUID(String uuid) {
-	return SwingScilabVariableBrowser.VARBROWSERUUID.equals(uuid);
+        return SwingScilabVariableBrowser.VARBROWSERUUID.equals(uuid);
     }
 
     /**
      * @return an instance of this factory
      */
     public static VariableBrowserTabFactory getInstance() {
-	new VariableBrowserTabFactory();
-	
-	return instance;
+        new VariableBrowserTabFactory();
+
+        return instance;
     }
 }

@@ -15,6 +15,6 @@
 //   If the key is unknown, generates an error.
 //
 function value = nmplot_get (this,key)
-  value = neldermead_get ( this.nmbase );
+    value = neldermead_get ( this.nmbase );
 endfunction
 

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2013-03-26 17:13+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -340,638 +340,6 @@ msgstr ""
 "параметр с помощью свойства FIXED (т. е., fixed=false) в модели Modelica. "
 "Это будет исправлено в следующей версии"
 
-msgid "IDA_MEM_NULL:The argument ida_mem was NULL"
-msgstr "IDA_MEM_NULL: Аргумент ida_mem был пустым значением (NULL)"
-
-msgid ""
-"IDA_ILL_INPUT: One of the input arguments was illegal. This errors message "
-"may be returned if the linear solver function initialization (called by the "
-"user after calling IDACreate) failed to set the linear solver-specific "
-"lsolve field in ida_mem."
-msgstr ""
-"IDA_ILL_INPUT: Один из входных аргументов был недопустим. Это сообщение об "
-"ошибке может быть выдано если инициализация функции решения линейных "
-"уравнений (вызванная пользователем после вызова IDACreate) не смогла "
-"установить значение поля lsolve, специфичное для решения линейных уравнений, "
-"в ida_mem."
-
-msgid "IDA_NO_MALLOC: indicating that ida_mem was not allocated."
-msgstr "IDA_NO_MALLOC: указание, что ida_mem не была выделена."
-
-msgid ""
-"IDA_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
-"tout. The default value for mxstep is MXSTEP_DEFAULT = 500."
-msgstr ""
-"IDA_TOO_MUCH_WORK: Программа решения приняла значение внутреннего шага "
-"mxstep, но не смогла достичь tout. Значение по умолчанию для mxstep равно "
-"MXSTEP_DEFAULT = 500."
-
-msgid ""
-"IDA_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
-"user for some internal step."
-msgstr ""
-"IDA_TOO_MUCH_ACC: Программа решения не смогла удовлетворить точности, "
-"затребованной пользователем для некоторого внутреннего шага."
-
-msgid ""
-"IDA_ERR_FAIL: Error test failures occurred too many times (=MXETF = 10) "
-"during one internal step or occurred with |h|=h_min"
-msgstr ""
-"IDA_ERR_FAIL: Проверка на ошибки закончилась неудачей слишком много раз "
-"(=MXETF = 10) за время одного внутреннего шага, либо это произошло при "
-"|h|=h_min"
-
-msgid ""
-"IDA_CONV_FAIL: IDACalcIC->Failed to get convergence of the Newton "
-"iterations. or IDA_solve->Convergence test failures occurred too many times "
-"(= MXNCF = 10) during one internal step. "
-msgstr ""
-"IDA_CONV_FAIL: IDACalcIC->Не удалось получить сходимость итераций Ньютона, "
-"либо IDA_solve->Проверка на сходимость закончилась неудачей слишком много "
-"раз (= MXNCF = 10) за время одного внутреннего шага. "
-
-msgid "IDA_LINIT_FAIL: The linear solver''s initialization routine failed."
-msgstr ""
-"IDA_LINIT_FAIL: Ошибка в подпрограмме инициализации программы решения "
-"линейных уравнений."
-
-msgid ""
-"IDA_LSETUP_FAIL: The linear solver''s setup routine had a non-recoverable "
-"error."
-msgstr ""
-"IDA_LSETUP_FAIL: Критическая ошибка в подпрограмме установки программы "
-"решения линейных уравнений."
-
-msgid ""
-"IDA_LSOLVE_FAIL: The linear solver''s solve routine had a non-recoverable "
-"error."
-msgstr ""
-"IDA_LSOLVE_FAIL: Критическая ошибка в подпрограмме решения программы решения "
-"линейных уравнений."
-
-msgid ""
-"IDA_RES_FAIL: The user''s residual routine returned a non-recoverable error "
-"flag."
-msgstr ""
-"IDA_RES_FAIL: Пользовательская функция невязки вернула признак критической "
-"ошибки."
-
-msgid ""
-"IDA_CONSTR_FAIL: IDACalcIC was unable to find a solution satisfying the "
-"inequality constraints."
-msgstr ""
-"IDA_CONSTR_FAIL: IDACalcIC был неспособен найти решение, удовлетворяющее "
-"ограничениям в виде неравенства."
-
-msgid ""
-"IDA_REP_RES_ERR: The user''s residual function repeatedly returned a "
-"recoverable error flag, but the solver was unable to recover."
-msgstr ""
-"IDA_REP_RES_ERR: Пользовательская функция невязки постоянно возвращает "
-"признак некритической ошибки, но программа решения не смогла восстановиться."
-
-msgid "IDA_MEM_FAIL: A memory allocation failed."
-msgstr "IDA_MEM_FAIL: Ошибка распределения памяти."
-
-msgid "IDA_BAD_T: t is not in the interval [tn-hu,tn]."
-msgstr "IDA_BAD_T: t не входит в интервал [tn-hu,tn]."
-
-msgid ""
-"IDA_BAD_EWT: Some component of the error weight vector is zero (illegal), "
-"either for the input value of y0 or a corrected value."
-msgstr ""
-"IDA_BAD_EWT: Один из компонентов вектора взвешенной ошибки равен нулю "
-"(недопустимо) либо для входного значения y0 либо для исправленного значения."
-
-msgid ""
-"IDA_FIRST_RES_FAIL: The user''s residual routine returned  a recoverable "
-"error flag on the first call, but IDACalcIC was unable to recover."
-msgstr ""
-"IDA_FIRST_RES_FAIL: Пользовательская подпрограмма вычисления невязки вернула "
-"признак некритичной ошибки при первом вызове, но IDACalcIC была неспособна "
-"восстановиться."
-
-msgid ""
-"IDA_LINESEARCH_FAIL: The Linesearch algorithm failed to find a solution with "
-"a step larger than steptol in weighted RMS norm."
-msgstr ""
-"IDA_LINESEARCH_FAIL: Алгоритм линейного поиска не смог найти решение с шагом "
-"больше, чем steptol в взвешенной среднеквадратичной норме."
-
-msgid ""
-"IDA_NO_RECOVERY: The user''s residual routine, or the linear solver''s setup "
-"or solve routine had a  recoverable error, but IDACalcIC was unable to "
-"recover."
-msgstr ""
-"IDA_NO_RECOVERY: Пользовательская подпрограмма вычисления невязки или "
-"установка программы решения линейных уравнений или подпрограмма решения "
-"имели некритическую ошибку, однако IDACalcIC было невозможно восстановить."
-
-msgid "IDA_RTFUNC_FAIL: The root founding function failed."
-msgstr "IDA_RTFUNC_FAIL: Критическая ошибка функции поиска корней."
-
-msgid "IDA_YOUT_NULL: ''yout'' = NULL illegal."
-msgstr "IDA_YOUT_NULL: Недопустимое значение ''yout'' = NULL."
-
-msgid "IDA_TRET_NULL: ''tret'' = NULL illegal."
-msgstr "IDA_TRET_NULL: Недопустимое значение ''tret'' = NULL."
-
-msgid "IDA_BAD_ITASK: Illegal value for itask."
-msgstr "IDA_BAD_ITASK: Недопустимое значение itask."
-
-msgid ""
-"IDA_NO_ESTOP: itask = IDA_NORMAL_TSTOP or itask = IDA_ONE_STEP_TSTOP but "
-"tstop was not set"
-msgstr ""
-"IDA_NO_ESTOP: itask = IDA_NORMAL_TSTOP или itask = IDA_ONE_STEP_TSTOP, но "
-"tstop не был установлен"
-
-msgid "IDA_BAD_H0: h0 and tout - t0 inconsistent."
-msgstr "IDA_BAD_H0: h0 и tout - t0 несовместны."
-
-msgid ""
-"IDA_BAD_TSTOP: tstop is behind current simulation time in the direction of "
-"integration."
-msgstr ""
-"IDA_BAD_TSTOP: tstop прежде текущего времени моделирования в направлении "
-"интегрирования."
-
-msgid "IDA_BAD_INIT_ROOT: Root found at and very near initial t."
-msgstr "IDA_BAD_INIT_ROOT: Корень найден очень близко от исходного t."
-
-msgid "IDA_NO_EFUN: itol = IDA_WF but no EwtSet function was provided."
-msgstr "IDA_NO_EFUN: itol = IDA_WF, но функция EwtSet не была указана."
-
-msgid "IDA_EWT_FAIL: The user-provide EwtSet function failed."
-msgstr ""
-"IDA_EWT_FAIL: Критическая ошибка в указанной пользователем функции EwtSet."
-
-msgid ""
-"IDACalc cannot find the initial condition at this point. If you are using a "
-"Modelica model, you can try with the initialization GUI to try with other "
-"nonlinear solvers."
-msgstr ""
-"IDACalc не может найти начальное условие в этой точке. Если вы используете "
-"модель Modelica, то можете попробовать графический пользовательский "
-"интерфейс, чтобы попробовать другие программы решения нелинейных уравнений."
-
-msgid "IDA_LSOLVE_NULL: The linear solver''s solve routine is NULL."
-msgstr ""
-"IDA_LSOLVE_NULL: Подпрограмма решения программы решения линейных уравнений "
-"является пустым значением (NULL.)"
-
-msgid "IDA_NULL_Y0: y0 = NULL illegal."
-msgstr "IDA_NULL_Y0: недопустимое значение y0 = NULL."
-
-msgid ""
-"IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
-"and IDA_WF."
-msgstr ""
-"IDA_BAD_ITOL: Недопустимое значение itol. Допустимыми значениями являются "
-"IDA_SS, IDA_SV и IDA_WF."
-
-msgid "IDA_NULL_F: user supplied ODE routine is (NULL) illegal."
-msgstr ""
-"IDA_NULL_F: Указанная пользователем подпрограмма решения ОДУ является "
-"недопустимой (NULL)."
-
-msgid "IDA_BAD_NVECTOR: A required vector operation is not implemented."
-msgstr "IDA_BAD_NVECTOR: Требуемая операция над векторами не реализована."
-
-msgid "IDA_NULL_ABSTOL: absolute tolerances is = NULL illegal."
-msgstr ""
-"IDA_NULL_ABSTOL: Значение абсолютного допуска = NULL, это недопустимо."
-
-msgid "IDA_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
-msgstr "IDA_BAD_RELTOL: недопустимый относительный допуск reltol < 0."
-
-msgid "IDA_BAD_ABSTOL: abstol has negative component(s) (illegal)."
-msgstr ""
-"IDA_BAD_ABSTOL: abstol имеет один или несколько отрицательных компонентов "
-"(недопустимо)."
-
-msgid "IDA_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
-msgstr ""
-"IDA_NULL_G: Указанная пользователем подпрограмма пересечения нуля является "
-"недопустимой (NULL)."
-
-msgid ""
-"IDA_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
-"integration"
-msgstr ""
-"IDA_BAD_TOUT: Проблема интерполяции. ''tout'' по времени слишком рано в "
-"направлении интегрирования"
-
-msgid "IDA_YP0_NULL: the derivative yp0 = NULL is illegal."
-msgstr "IDA_YP0_NULL: Недопустимое значение производной yp0 = NULL."
-
-msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
-msgstr "IDA_RES_NULL: возвращённая невязка res = NULL является недопустимой."
-
-msgid "IDA_YRET_NULL: yret = NULL illegal.."
-msgstr "IDA_YRET_NULL: Недопустимое значение yret = NULL."
-
-msgid "IDA_YPRET_NULL: yret = NULL illegal.."
-msgstr "IDA_YPRET_NULL: Недопустимое значение ypret = NULL."
-
-msgid "IDA_BAD_HINIT: yret = NULL illegal.."
-msgstr "IDA_BAD_HINIT: Недопустимое значение yret = NULL."
-
-msgid ""
-"IDA_MISSING_ID :id = NULL (''id'' defines algebraic and differential states) "
-"but suppressalg option on."
-msgstr ""
-"IDA_MISSING_ID : id = NULL (''id'' определяет алгебраическое и "
-"дифференциальное состояния),  но опция подавления включена."
-
-msgid "IDA_Y0_FAIL_CONSTR: y0 fails to satisfy constraints."
-msgstr "IDA_Y0_FAIL_CONSTR: y0 не смогла удовлетворить условиям ограничения."
-
-msgid "IDA_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
-msgstr ""
-"IDA_TOO_CLOSE: ''tout'' слишком близко к ''t0'' чтобы начать интегрирование."
-
-msgid "IDA_CLOSE_ROOTS: Root found at and very near starting time."
-msgstr "IDA_CLOSE_ROOTS: Корень найден слишком близко к начальному времени."
-
-msgid "IDA_Residual_NAN: The residual function returns NAN."
-msgstr "IDA_Residual_NAN: Функция невязки возвращает NAN."
-
-msgid "IDA_Rootfunction_NAN: The Root function returns NAN."
-msgstr "IDA_Rootfunction_NAN: Функция поиска корней возвращает NAN."
-
-msgid ""
-"CV_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
-"''tout''. The default value for mxstep is MXSTEP_DEFAULT = 500."
-msgstr ""
-"CV_TOO_MUCH_WORK: Программа поиска решения установила размер внутренних "
-"шагов mxstep, но не смогла достигнуть ''tout''. Значение по умолчанию для "
-"mxstep составляет MXSTEP_DEFAULT = 500."
-
-msgid ""
-"CV_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
-"user for some internal step"
-msgstr ""
-"CV_TOO_MUCH_ACC: Программа поиска решения не может удовлетворить требованиям "
-"точности, указанным пользователем для некоторого внутреннего шага"
-
-msgid ""
-"CV_ERR_FAILURE: Error test failures occurred too many times (=MXETF = 7) "
-"during one internal step or occurred with |h|=h_min "
-msgstr ""
-"CV_ERR_FAILURE: Слишком много раз происходили неудачные проверки на ошибки "
-"(=MXETF = 7) во время одного шага на интервале или произошли при |h|=h_min "
-
-msgid ""
-"CV_CONV_FAILURE: Convergence test failures occurred too many times (= MXNCF "
-"= 10) during one internal time step or occurred with |h| = hmin."
-msgstr ""
-"CV_CONV_FAILURE: Слишком много раз происходили неудачные проверки сходимости "
-"(= MXNCF = 10) во время одного шага на интервале времени или произошли при "
-"|h| = hmin."
-
-msgid "CV_LINIT_FAIL: The linear solver''s initialization function failed."
-msgstr ""
-"CV_LINIT_FAIL: Ошибка в функции инициализации решения линейных уравнений."
-
-msgid ""
-"CV_LSETUP_FAIL: The linear solver''s setup routine failed in an "
-"unrecoverable manner."
-msgstr ""
-"CV_LSETUP_FAIL: Критическая ошибка при установке программы решения линейных "
-"уравнений."
-
-msgid ""
-"CV_LSOLVE_FAIL: The linear solver''s solve routine failed in an "
-"unrecoverable manner."
-msgstr ""
-"CV_LSOLVE_FAIL: Критичная ошибка в работе программы решения линейных "
-"уравнений."
-
-msgid ""
-"CV_RHSFUNC_FAIL: The right-hand side function (user supplied ODE) failed in "
-"an unrecoverable manner"
-msgstr ""
-"CV_RHSFUNC_FAIL: Ошибка правосторонней функции (указанного пользователем "
-"ОДУ) по неизвестной причине."
-
-msgid ""
-"CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
-"recoverable error at the first call"
-msgstr ""
-"CV_FIRST_RHSFUNC_ERR: Правосторонняя функция (заданного пользователем ОДУ) "
-"имела при первом вызове некритичную ошибку"
-
-msgid ""
-"CV_REPTD_RHSFUNC_ERR: Convergence tests occurred too many times due to "
-"repeated recoverable errors in the right-hand side function (user supplied "
-"ODE). This error may be raised due to repeated  recoverable errors during "
-"the estimation of an initial step size."
-msgstr ""
-"CV_REPTD_RHSFUNC_ERR: Слишком много раз происходили проверки на сходимость "
-"из-за повторяющихся некритичных ошибок в правосторонней функции (указанного "
-"пользователем ОДУ). Эта ошибка может возникать из-за повторяющейся "
-"некритичной ошибки  во время оценки начального размера шага."
-
-msgid ""
-"CV_UNREC_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
-"recoverable error, but no recovery was possible."
-msgstr ""
-"CV_UNREC_RHSFUNC_ERR: В правосторонней функции (указанного пользователем "
-"ОДУ) возникла некритичная ошибка, однако восстановление невозможно."
-
-msgid ""
-"CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."
-msgstr ""
-"CV_RTFUNC_FAIL: Ошибка подпрограммы поиска корней по неизвестной причине."
-
-msgid ""
-"CV_MEM_FAIL: a memory allocation failed, including an attempt to increase "
-"maxord"
-msgstr ""
-"CV_MEM_FAIL: ошибка распределения памяти, даже при попытке увеличить maxord"
-
-msgid "CV_MEM_NULL: the cvode memory was NULL"
-msgstr "CV_MEM_NULL: память cvode была NULL"
-
-msgid ""
-"CV_ILL_INPUT: indicating an input argument was illegal. This include the "
-"situation where a component of the error weight vector becomes negative "
-"during internal time-stepping. This also includes if the linear solver "
-"function initialization (called by the user after calling CVodeCreat) failed "
-"to set the linear solver-specific ''lsolve'' field in cvode_mem. This error "
-"happens if number of root functions is positive but the return surface value "
-"is NULL. "
-msgstr ""
-"CV_ILL_INPUT: указание входного аргумента было некорректным. Сюда входит "
-"ситуация, когда компонент весового вектора ошибки становится отрицательным в "
-"течение отсчёта внутреннего времени. Кроме того, некорректность может быть "
-"связана с тем, что инициализация функции решения линейных уравнений "
-"(вызываемая пользователем после вызова CVodeCreat) не может установить поле "
-"''lsolve'', определяющее решение линейных уравнений, в cvode_mem. Эта ошибка "
-"происходит, если число корневых функций положительно, но вернувшееся "
-"значение поверхности  является неопределённым (NULL). "
-
-msgid ""
-"CV_NO_MALLOC: indicating that cvode_mem has not been allocated (i.e., "
-"CVodeMalloc has not been called)."
-msgstr ""
-"CV_NO_MALLOC: указание, что cvode_mem не было размещено в памяти (т.е., "
-"CVodeMalloc не был вызван)."
-
-msgid ""
-"CV_BAD_K: k (the order of the derivative of y to be computed) is not in the "
-"range 0, 1, ..., qu, where qu is the order last used"
-msgstr ""
-"CV_BAD_K: k (порядок производной y, которую нужно вычислить) не лежит в "
-"диапазоне 0, 1, ..., qu, где qu - это порядок, используемый в последний раз"
-
-msgid "CV_BAD_T: t is not in the interval [tn-hu,tn]."
-msgstr "CV_BAD_T: t не лежит на интервале [tn-hu,tn]."
-
-msgid ""
-"CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
-"[((d/dt)^k)y](t)."
-msgstr ""
-"CV_BAD_DKY:  Аргумент dky был NULL. dky является выходным вектором "
-"производных [((d/dt)^k)y](t)."
-
-msgid "CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
-msgstr ""
-"CV_TOO_CLOSE: ''tout''слишком близко к ''t0'' чтобы начать интегрирование."
-
-msgid "CV_YOUT_NULL: ''yout'' = NULL illegal."
-msgstr "CV_YOUT_NULL: Недопустимое значение ''yout'' = NULL."
-
-msgid "CV_TRET_NULL: ''tret'' = NULL illegal."
-msgstr "CV_TRET_NULL: Недопустимое значение ''tret'' = NULL."
-
-msgid "CV_BAD_ITASK: Illegal value for itask."
-msgstr "CV_BAD_ITASK: Некорректное значение для itask."
-
-msgid ""
-"CV_NO_ESTOP: itask = CV_NORMAL_TSTOP or itask = CV_ONE_STEP_TSTOP but tstop "
-"was not set"
-msgstr ""
-"CV_NO_ESTOP: itask = CV_NORMAL_TSTOP или itask = CV_ONE_STEP_TSTOP, но tstop "
-"не было установлено"
-
-msgid "CV_BAD_H0: h0 and tout - t0 inconsistent."
-msgstr "CV_BAD_H0: h0 и tout - t0 несовместны."
-
-msgid ""
-"CV_BAD_TSTOP: tstop is behind current simulation time in the direction of "
-"integration."
-msgstr ""
-"CV_BAD_TSTOP: Время tstop идёт прежде текущего времени моделирования в "
-"направлении интеграции."
-
-msgid "CV_BAD_INIT_ROOT: Root found at and very near initial t."
-msgstr "CV_BAD_INIT_ROOT: Корень найден слишком близко от исходного t."
-
-msgid "CV_NO_EFUN: itol = CV_WF but no EwtSet function was provided."
-msgstr "CV_NO_EFUN: itol = CV_WF, но функция EwtSet не была указана."
-
-msgid "CV_EWT_FAIL: The user-provide EwtSet function failed."
-msgstr "CV_EWT_FAIL: Ошибка функции EwtSet, предоставленной пользователем ."
-
-msgid "CV_BAD_EWT: Initial ewt has component(s) equal to zero (illegal)."
-msgstr ""
-"CV_BAD_EWT: Исходный ewt имеет компонент(ы) равный(е) нулю (недопустимо)."
-
-msgid "CV_LSOLVE_NULL: The linear solver''s solve routine is NULL."
-msgstr ""
-"CV_LSOLVE_NULL: Подпрограмма решения программы решения линейных уравнений "
-"является NULL."
-
-msgid "CV_NULL_Y0: y0 = NULL illegal."
-msgstr "CV_NULL_Y0: некорректное значение y0 = NULL."
-
-msgid ""
-"CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and "
-"CV_WF."
-msgstr ""
-"CV_BAD_ITOL: Некорректное значение для itol. Корректными значениями являются "
-"CV_SS, CV_SV и CV_WF."
-
-msgid "CV_NULL_F: user supplied ODE routine is (NULL) illegal."
-msgstr ""
-"CV_NULL_F: указанная пользоваетелм подпрограмма решения ОДУ является "
-"недопустимой (NULL)."
-
-msgid "CV_BAD_NVECTOR: A required vector operation is not implemented."
-msgstr "CV_BAD_NVECTOR: Указанная векторная операция не реализована."
-
-msgid "CV_NULL_ABSTOL: absolute tolerances is = NULL illegal."
-msgstr "CV_NULL_ABSTOL: значение абсолютного допуска = NULL недопустимо."
-
-msgid "CV_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
-msgstr ""
-"CV_BAD_RELTOL: значение относительного допуска reltol < 0 является "
-"недопустимым."
-
-msgid "CV_BAD_ABSTOL: abstol has negative component(s) (illegal)."
-msgstr ""
-"CV_BAD_ABSTOL: abstol имеет отрицательный(е) компонент(ы) (недопустимо)."
-
-msgid "CV_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
-msgstr ""
-"CV_NULL_G: указанная пользователем подпрограмма пересечения нуля является "
-"недопустимой (NULL)."
-
-msgid ""
-"CV_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
-"integration"
-msgstr ""
-"CV_BAD_TOUT: Проблема интерполяции. Время ''tout'' слишком рано в "
-"направлении интегрирования"
-
-msgid "CV_CLOSE_ROOTS: Root found at and very near starting time."
-msgstr "CV_CLOSE_ROOTS: Найденный корень очень близок к начальному времени."
-
-msgid "CV_Derivative_NAN: The Derivatives returned by blocks are NAN."
-msgstr ""
-"CV_Derivative_NAN: Производные, выданные блоками являются нечисловыми "
-"значениями (NAN)."
-
-msgid "CV_Rootfunction_NAN: The Root function returns NAN."
-msgstr "CV_Rootfunction_NAN: Функция поиска корней вернула NAN."
-
-msgid ""
-"KIN_MEM_NULL: An error in the memory allocation in KINCreate or KINMalloc."
-msgstr ""
-"KIN_MEM_NULL: Ошибка в распределении памяти в KINCreate или KINMalloc."
-
-msgid "KIN_ILL_INPUT: A supplied parameter is invalid (check error message)."
-msgstr ""
-"KIN_ILL_INPUT: Неверный указанный параметр (проверьте сообщение об ошибке)."
-
-msgid ""
-"KIN_NO_MALLOC: Additional system memory has not yet been  allocated for "
-"vector storage (forgot to call the  KINMalloc routine)"
-msgstr ""
-"KIN_NO_MALLOC: Дополнительная системная память ещё не была выделена для "
-"хранения векторов (забыли вызвать подпрограмму KINMalloc)"
-
-msgid ""
-"KIN_MEM_FAIL: An error occurred during memory allocation (either "
-"insufficient system resources are available or the vector kernel has not yet "
-"been initialized "
-msgstr ""
-"KIN_MEM_FAIL: Во время распределения памяти произошла ошибка (либо "
-"недостаточно системных ресурсов либо вектор ядра ещё не был инициализирован "
-
-msgid ""
-"KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
-"iterate sufficiently distinct  from the current iterate failure to satisfy "
-"the sufficient decrease condition could mean the current iterate is close to "
-"an approximate solution of the given nonlinear system, the finite-difference "
-" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
-"real scalar scsteptol is too large "
-msgstr ""
-"KIN_LINESEARCH_NONCONV:  Алгоритм линейного поиска не смог найти итерацию, "
-"которая достаточно отличалась от текущей итерации. Неудача в удовлетворении "
-"условию уменьшения может означать то, что текущая итерация близка к "
-"приближённому решению данной нелинейной системы, конечно-разностная "
-"аппроксимация матрично-векторного произведения  J(u)*v является неточной, "
-"либо действительный скаляр scsteptol слишком велик "
-
-msgid ""
-"KIN_MAXITER_REACHED: The maximum number of nonlinear iterations has been "
-"reached "
-msgstr ""
-"KIN_MAXITER_REACHED: Достигнуто максимальное число нелинейных итераций "
-
-msgid ""
-"KIN_MXNEWT_5X_EXCEEDE: Five consecutive steps have been taken that satisfy "
-"the following inequality:  ||uscale*p||_L2 > 0.99*mxnewtstep where p denotes "
-"the current step and mxnewtstep is a real scalar upper bound on the scaled "
-"step length such a failure may mean ||fscale*func(u)||_L2 asymptotes from "
-"above to a finite value, or the real scalar mxnewtstep is too small "
-msgstr ""
-"KIN_MXNEWT_5X_EXCEEDE: Было сделано пять последовательных шагов, которые "
-"удовлетворяют следующему неравенству:  ||uscale*p||_L2 > 0.99*mxnewtstep, "
-"где p означает текущий шаг, а mxnewtstep является вещественным скаляром, "
-"указывающим верхнюю границу масштабируемой длины шага, Причиной такой ошибки "
-"может быть то, что ||fscale*func(u)||_L2 асимптотически приближается сверху "
-"к конечному значению, или что вещественный скаляр mxnewtstep слишком мал "
-
-msgid ""
-"KIN_LINESEARCH_BCFAI: The line search algorithm (implemented in "
-"KINLineSearch) was unable to satisfy the beta-condition for MXNBCF + 1 "
-"nonlinear iterations (not necessarily consecutive), which may indicate the "
-"algorithm is making  poor progress "
-msgstr ""
-"KIN_LINESEARCH_BCFAI: Алгоритм линейного поиска (реализованный в "
-"KINLineSearch) не смог удовлетворить бета-условию для MXNBCF + 1 нелинейных "
-"итераций (не обязательно последовательных), что может указывать на то, что "
-"алгоритм плохо сходится "
-
-msgid ""
-"KIN_LINSOLV_NO_RECOVERY: The user-supplied routine psolve encountered a "
-"recoverable error, but the preconditioner is already current"
-msgstr ""
-"KIN_LINSOLV_NO_RECOVERY: Указанная пользователем подпрограмма psolve "
-"неожиданно столкнулась с некритической ошибкой, однако средство "
-"предварительной обработки уже работает"
-
-msgid ""
-"KIN_LINIT_FAIL: The linear solver initialization routine (linit) encountered "
-"an error."
-msgstr ""
-"KIN_LINIT_FAIL: Подпрограмма инициализации программы решения линейных "
-"уравнений (linit) неожиданно столкнулась с ошибкой."
-
-msgid ""
-"KIN_LSETUP_FAIL: The user-supplied routine pset (used to compute the "
-"preconditioner) encountered an unrecoverable error ."
-msgstr ""
-"KIN_LSETUP_FAIL: Указанная пользователем подпрограмма pset (используемая для "
-"вычисления матрицы предобусловливания) неожиданно столкнулась с критической "
-"ошибкой."
-
-msgid ""
-"KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the "
-"preconditioned linear system) encountered an unrecoverable error, or the "
-"linear solver routine (lsolve) encountered an error condition."
-msgstr ""
-"KIN_LSOLVE_FAIL: Либо указанная пользователем подпрограмма psolve "
-"(используемая для решения предобусловленной системы линейных уравнений) "
-"неожиданно столкнулась с критической ошибкой, либо подпрограмма решения "
-"линейных уравнений (lsolve) неожиданно столкнулась с ошибочным условием."
-
-msgid ""
-"KIN_SYSFUNC_FAIL: Error in the computing function. Please verify your model."
-msgstr ""
-"KIN_SYSFUNC_FAIL: Ошибка в функции вычисления. Пожалуйста, проверьте свою "
-"модель."
-
-msgid ""
-"KIN_FIRST_SYSFUNC_ERR: The system function failed at the first call. Please "
-"verify your model. There might be an error in the computing function, for "
-"example a function may be called with illegal inputs."
-msgstr ""
-"KIN_FIRST_SYSFUNC_ERR: Критическая ошибка системной функции при первом "
-"вызове. Пожалуйста проверьте вашу модель. Возможно есть ошибка в функции "
-"вычисления, например, функция может быть вызвана с недопустимыми входными "
-"данными."
-
-msgid ""
-"KIN_REPTD_SYSFUNC_ERR: The system function failed repeatedly. Please verify "
-"your model. There might be an error in the computing function, for example a "
-"function may be called with illegal inputs"
-msgstr ""
-"KIN_REPTD_SYSFUNC_ERR: Системная функция многократно выдаёт критическую "
-"ошибку. Пожалуйста, проверьте свою модель. Возможно есть ошибка в функции "
-"вычисления, например, функция может быть вызвана с недопустимыми параметрами"
-
-msgid ""
-"KIN_NAN_ERR: The residual function returns NAN. Please verify your model: "
-"some functions might be called with illegal inputs."
-msgstr ""
-"KIN_NAN_ERR: Функция невязки вернула NAN. Пожалуйста, проверьте свою модель: "
-"некоторые функции могут быть вызваны с недопустимыми параметрами."
-
 msgid "unknown or erroneous block"
 msgstr "неизвестный или ошибочный блок"
 
@@ -1122,9 +490,6 @@ msgstr ""
 "**** SUNDIALS.Ida: слишком много работы за время=%g (фиксированный диапазон, "
 "смените RTOL и ATOL)\n"
 
-msgid "End of activation"
-msgstr "Конец активации"
-
 #, c-format
 msgid "block %d is called "
 msgstr "вызван блок %d "
@@ -1170,6 +535,39 @@ msgid ""
 msgstr ""
 "\n"
 "Предупреждение: Функция пересечения нуля №%d возвращает NaN"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The residual function #%d returns a NaN"
+msgstr ""
+
+msgid ""
+"\n"
+"Error: Problem in the evaluation of a root function"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner evaluation function returns a NaN at index #%d."
+msgstr ""
+
+msgid ""
+"\n"
+"Error: The preconditioner evaluation function failed."
+msgstr ""
+
+msgid ""
+"\n"
+"Error: Failed to factor the preconditioner."
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner application function returns a NaN at index #%d."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1234,10 +632,6 @@ msgstr ""
 " Функция вычета возвращает NAN/Inf. \n"
 " Пожалуйста, проверьте модель: возможно, некоторые\n"
 " функции вызваны с некорректными параметрами."
-
-#, c-format
-msgid "Slider t=%10.3f, flag=%d \n"
-msgstr "Ползунок t=%10.3f, флаг=%d \n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -1335,8 +729,8 @@ msgstr ""
 msgid "Simulation parameters not set:"
 msgstr "Не установлены параметры моделирования:"
 
-msgid "Initialisation problem:"
-msgstr "Проблема инициализации:"
+msgid "Initialization problem:"
+msgstr ""
 
 msgid "Simulation problem: "
 msgstr "Проблема моделирования: "
@@ -1347,6 +741,20 @@ msgstr "Проблема завершения: "
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+msgid "Your model contains states defined in standard Scicos blocks.\n"
+msgstr ""
+
+#, c-format
+msgid "Initialisation problem in %s "
+msgstr ""
+
+#, c-format
+msgid "Initialisation problem in the %s method"
+msgstr ""
+
+msgid "Initialisation problem in the finish phase"
+msgstr ""
 
 msgid "Problem with the block generated from modelica blocks."
 msgstr "Проблема с блоком, сформированным в блоках modelica."
@@ -1382,6 +790,50 @@ msgstr "Блок подключил входной порт<br />с несовм
 #, c-format
 msgid "%s: Error: A scifunc block has not been defined."
 msgstr "%s: Ошибка: блок scifunc не определён."
+
+#, c-format
+msgid " Main Modelica : %s"
+msgstr ""
+
+msgid "No block can be activated"
+msgstr ""
+
+msgid "Problem in port size or type."
+msgstr ""
+
+msgid ""
+"No continuous-time state. Thresholds are ignored; this \n"
+"may be OK if you don't generate external events with them.\n"
+"If you want to reactivate the thresholds, then you need\n"
+"to include a block with continuous-time state in your diagram.\n"
+"   You can for example include DUMMY CLSS block (linear palette)."
+msgstr ""
+
+msgid "Diagram contains implicit blocks, compiling for implicit Solver."
+msgstr ""
+
+msgid "Algebraic loop on events."
+msgstr ""
+
+msgid "Algebraic loop."
+msgstr ""
+
+msgid "A C or Fortran block is used but not linked.\n"
+msgstr ""
+
+#, c-format
+msgid "Number of modes in block #%d cannot be determined."
+msgstr ""
+
+#, c-format
+msgid "Number of zero crossings in block #%d cannot be determined."
+msgstr ""
+
+msgid "Not enough information to find port sizes.\n"
+msgstr ""
+
+msgid "I cannot find a link with undetermined size.\n"
+msgstr ""
 
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
@@ -1433,8 +885,92 @@ msgstr ""
 "<em>Пожалуйста, обновите схему во избежание этого предупреждения.</em><br "
 "/>Входной порт блока имеет енопределённый тип:"
 
+msgid ""
+"Highlighted block(s) have connected ports \n"
+"with  sizes that cannot be determined by the context.\n"
+"What is the size of this link?"
+msgstr ""
+
+#, c-format
+msgid "the dep_ut size of the %s block is not correct.\n"
+msgstr ""
+
+msgid "Not enough information to find port type.\n"
+msgstr ""
+
+msgid "The initialization file already exists!"
+msgstr ""
+
+msgid "Do you want to overwrite it?"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "Modelica blocks are reduced to a block with:"
+msgstr ""
+
+#, c-format
+msgid "Number of differential states: %d"
+msgstr ""
+
+#, c-format
+msgid "Number of algebraic states: %d"
+msgstr ""
+
+#, c-format
+msgid "Number of discrete time states  : %d"
+msgstr ""
+
+#, c-format
+msgid "Number of zero-crossing surfaces: %d"
+msgstr ""
+
+#, c-format
+msgid "Number of modes  : %d"
+msgstr ""
+
+#, c-format
+msgid "Number of inputs : %d"
+msgstr ""
+
+#, c-format
+msgid "Number of outputs: %d"
+msgstr ""
+
+#, c-format
+msgid "Input/output dependency:[%s]"
+msgstr ""
+
+#, c-format
+msgid "Analytical Jacobian: enabled  (%%Jacobian=%s)"
+msgstr ""
+
+#, c-format
+msgid "Parameter embedding mode: enabled (%%Modelica_ParEmb=%s)"
+msgstr ""
+
+#, c-format
+msgid "Generated files path: %s"
+msgstr ""
+
+msgid "Hyper Matrix is not supported"
+msgstr ""
+
 msgid "Type not recognized"
 msgstr "Тип не опознан"
+
+msgid "Complex Matrix is not supported"
+msgstr ""
+
+msgid "Block is ignored because of undefined input(s)."
+msgstr ""
+
+msgid "Superblock should not contains any Scilab function block."
+msgstr ""
 
 msgid "Evaluation problem: value not updated from context."
 msgstr "Проблема вычисления: значение не обновлено из контекста."
@@ -1442,11 +978,32 @@ msgstr "Проблема вычисления: значение не обнов�
 msgid "Evaluation problem: Unknown block"
 msgstr "Проблема выполнения: Неизвестный блок"
 
+msgid "Cannot load dynamic library: "
+msgstr ""
+
+msgid "Can't include "
+msgstr ""
+
+msgid "This file does not exist"
+msgstr ""
+
+msgid "-------Modelica compiler error (with the translator):-------"
+msgstr ""
+
+msgid "Please read the error message in the Scilab window"
+msgstr ""
+
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr "Извините: поддерживаются только языки C или FORTRAN"
 
 msgid "Sorry file name not defined in "
 msgstr "Извините, имя файла не определено в "
+
+msgid "I/O blocks must be only used in a Super Block"
+msgstr ""
+
+msgid "This Super block input port is not connected."
+msgstr ""
 
 #, c-format
 msgid "%s: Empty diagram"
@@ -1476,6 +1033,15 @@ msgstr "%s: Неверный размер параметра блока «%s»: 
 #, c-format
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
 msgstr "%s: Неверный тип параметра блока «%s»: ожидалось %s(%s), получено %s"
+
+msgid "There are too many Modelica files.\n"
+msgstr ""
+
+msgid "-------Modelica translator error message:-----"
+msgstr ""
+
+msgid "-------XML to Modelica error:-------"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

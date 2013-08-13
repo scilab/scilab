@@ -20,6 +20,7 @@ checklhs_
 cremat_
 gettype_
 getsmat_
+getmat_
 getscalar_
 objvide_
 cresmat2_

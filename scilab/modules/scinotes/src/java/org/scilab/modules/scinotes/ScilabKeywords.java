@@ -9,28 +9,28 @@
 package org.scilab.modules.scinotes;
 
 
- /**
-   * @author Allan CORNET - DIGITEO 2009
-   * @author Calixte DENIZET
-   */
+/**
+  * @author Allan CORNET - DIGITEO 2009
+  * @author Calixte DENIZET
+  */
 public class ScilabKeywords {
 
- /**
-   * Constructor
-   */
- protected ScilabKeywords() {
-    throw new UnsupportedOperationException();
- }
-  public static String[] GetVariablesName() {
-    return ScilabKeywordsJNI.GetVariablesName();
-  }
+    /**
+      * Constructor
+      */
+    protected ScilabKeywords() {
+        throw new UnsupportedOperationException();
+    }
+    public static String[] GetVariablesName() {
+        return ScilabKeywordsJNI.GetVariablesName();
+    }
 
-  public static String[] GetFunctionsName() {
-    return ScilabKeywordsJNI.GetFunctionsName();
-  }
+    public static String[] GetFunctionsName() {
+        return ScilabKeywordsJNI.GetFunctionsName();
+    }
 
-  public static String[] GetMacrosName() {
-    return ScilabKeywordsJNI.GetMacrosName();
-  }
+    public static String[] GetMacrosName() {
+        return ScilabKeywordsJNI.GetMacrosName();
+    }
 
 }

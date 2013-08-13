@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function a=%sp_i_sp(i,j,b,a)
@@ -18,7 +18,7 @@ function a=%sp_i_sp(i,j,b,a)
         a(i)=b(:)
         a=matrix(a,m,n)
     elseif rhs == 4 then
-        // bruno (feb 20 2006) add the following cases not taken 
+        // bruno (feb 20 2006) add the following cases not taken
         // into account by the interface spops :
         if size(b,1) == 1 & size(b,2) == 1 then
             //   A(i,j) = B with B a 1x1 sparse matrix
@@ -29,8 +29,8 @@ function a=%sp_i_sp(i,j,b,a)
             [m,n] = size(a)
             a = matrix(b,m,n)
         else
-            // print an error 
-            error(msprintf(_("%s: Sparse insertion case not treated.\n"),"%sp_i_sp"));
+            // print an error
+            error(msprintf(_("%s: Sparse insertion case is not implemented.\n"),"%sp_i_sp"));
         end
     end
 endfunction

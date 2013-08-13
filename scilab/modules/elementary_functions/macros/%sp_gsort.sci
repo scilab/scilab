@@ -1,11 +1,11 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2009 - Allan CORNET
 // Copyrifht (C) 2012 - Scilab Enterprises - Adeline CARNIS
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [A, k] = %sp_gsort(A, optsort, directionsort)
@@ -14,20 +14,20 @@ function [A, k] = %sp_gsort(A, optsort, directionsort)
     // arguments by default in gsort
     select rhs
     case 1
-        optsort = 'g';
-        directionsort = 'd';
+        optsort = "g";
+        directionsort = "d";
     case 2
         // optsort can be: 'r', 'c', 'g', 'lr', 'lc'
-        pos_opts = find(optsort == ['r', 'c', 'g', 'lr', 'lc']);
+        pos_opts = find(optsort == ["r", "c", "g", "lr", "lc"]);
         if pos_opts == [] then
             error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"), "gsort", 2, "r", "c", "g", "lr", "lc"));
         end
-        directionsort = 'd';
+        directionsort = "d";
     else
         // optsort can be: 'r', 'c', 'g', 'lr', 'lc'
-        pos_opts = find(optsort == ['r', 'c', 'g', 'lr', 'lc']);
+        pos_opts = find(optsort == ["r", "c", "g", "lr", "lc"]);
         // directionsort can be: 'd' or 'i'
-        pos_direction = find(directionsort == ['d', 'i']);
+        pos_direction = find(directionsort == ["d", "i"]);
         if pos_opts == [] then
             error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"), "gsort", 2, "r", "c", "g", "lr", "lc"));
         end
@@ -38,16 +38,16 @@ function [A, k] = %sp_gsort(A, optsort, directionsort)
 
     [ij, v, mn] = spget(A);
     if mn(1) <> 1 & mn(2) <> 1 then
-        error(999,msprintf(_("%s: Wrong size for input argument #%d: sparse vectors expected.\n"), 'gsort', 1));
+        error(999,msprintf(_("%s: Wrong size for input argument #%d: sparse vectors expected.\n"), "gsort", 1));
     end
 
     if mn(1) == 1 then
-        // if A is a row vector and optsort = 'r', the result is the 
+        // if A is a row vector and optsort = 'r', the result is the
         // first input argument
-        if strcmp(optsort, 'r') == 0 |strcmp(optsort, 'lr') == 0 | v == [] then
+        if strcmp(optsort, "r") == 0 |strcmp(optsort, "lr") == 0 | v == [] then
             A = A;
             if lhs == 2 then
-                if strcmp(optsort, 'lr') == 0 | ij == [] then
+                if strcmp(optsort, "lr") == 0 | ij == [] then
                     k = 1;
                 else
                     k = ij(:,1);
@@ -77,19 +77,19 @@ function [A, k] = %sp_gsort(A, optsort, directionsort)
 
             // Sort the indices
             if last == [] & first <> [] then
-                if strcmp(directionsort, 'i')== 0 then
+                if strcmp(directionsort, "i")== 0 then
                     ij(:,2) = first(:) + dif;
                 else
                     ij(:,2) = first(:);
                 end
             elseif first == [] & last <> [] then
-                if strcmp(directionsort, 'i')== 0 then
+                if strcmp(directionsort, "i")== 0 then
                     ij(:,1) = last(:);
                 else
                     ij(:,1) = last(:) + dif;
                 end
             else
-                if strcmp(directionsort, 'i')== 0 then
+                if strcmp(directionsort, "i")== 0 then
                     ij(:,2) = [last(:); first(:) + dif];
                 else
                     ij(:,2) = [first(:); last(:) + dif];
@@ -100,12 +100,12 @@ function [A, k] = %sp_gsort(A, optsort, directionsort)
     end
 
     if mn(2) == 1 then
-        // if A is a column vector and optsort = 'c', the result is the 
+        // if A is a column vector and optsort = 'c', the result is the
         // first input argument
-        if strcmp(optsort, 'c') == 0 | strcmp(optsort, 'lc') == 0 | v == [] then
+        if strcmp(optsort, "c") == 0 | strcmp(optsort, "lc") == 0 | v == [] then
             A = A;
             if lhs == 2 then
-                if strcmp(optsort, 'lc') == 0 | ij == [] then
+                if strcmp(optsort, "lc") == 0 | ij == [] then
                     k = 1;
                 else
                     k = ij(:,2);
@@ -135,29 +135,29 @@ function [A, k] = %sp_gsort(A, optsort, directionsort)
             end
 
             // sort the indices in terms of directionsort = 'i' or 'd'
-            // if directionsort='i' and v>0, the elements are sorted in the 
+            // if directionsort='i' and v>0, the elements are sorted in the
             // increasing order, ie [0,..,v] and, conversely, in the decreasing
             // order the elements are sorted : [v,..,0]
-            // if v<0, the elements are sorted in the increasing order, 
-            // ie [v,..,0] and, conversely, in the decreasing order the 
+            // if v<0, the elements are sorted in the increasing order,
+            // ie [v,..,0] and, conversely, in the decreasing order the
             // elements are sorted : [0,..,v]
-            // And else, if v contains positive and neqative values, the 
+            // And else, if v contains positive and neqative values, the
             // elements are sorted in the increasing order,ie [v_neg,0,v_pos],
             // and conversely for the decreasing order.
             if last == [] & first <> [] then
-                if strcmp(directionsort, 'i') == 0 then
+                if strcmp(directionsort, "i") == 0 then
                     ij(:,1) = first(:) + dif;
                 else
                     ij(:,1) = first(:);
                 end
             elseif first == [] & last <> [] then
-                if strcmp(directionsort, 'i') == 0 then
+                if strcmp(directionsort, "i") == 0 then
                     ij(:,1) = last(:);
                 else
                     ij(:,1) = last(:) + dif;
                 end
             else
-                if strcmp(directionsort, 'i') == 0 then
+                if strcmp(directionsort, "i") == 0 then
                     ij(:,1) = [last(:); first(:) + dif];
                 else
                     ij(:,1) = [first(:); last(:) + dif];

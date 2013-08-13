@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:09+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-08-01 14:03+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -107,10 +107,6 @@ msgstr "Настройки соединений по умолчанию"
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался вектор строк.\n"
 
 #, c-format
 msgid ""
@@ -334,7 +330,7 @@ msgid "Export"
 msgstr "Экспортировать"
 
 msgid "Export all diagrams"
-msgstr ""
+msgstr "Экспортировать все диаграммы"
 
 msgid "Save as interface function"
 msgstr "Сохранить как интерфейсную функцию"
@@ -348,8 +344,8 @@ msgstr "Закрыть"
 msgid "Quit Xcos"
 msgstr "Выход из Xcos"
 
-msgid "Recent Files"
-msgstr "Недавние файлы"
+msgid "Recent files"
+msgstr "Последние файлы"
 
 msgid "Edit"
 msgstr "Правка"
@@ -400,7 +396,7 @@ msgid "View"
 msgstr "Вид"
 
 msgid "Fit diagram or blocks to view"
-msgstr ""
+msgstr "Подогнать масштаб диаграммы или блоков"
 
 msgid "Normal 100%"
 msgstr "Нормальный размер"
@@ -892,8 +888,8 @@ msgstr ""
 msgid "Temperature Controller"
 msgstr "Контроллер температуры"
 
-msgid "Inverted Pendulum"
-msgstr "Обратный маятник"
+msgid "Inverted pendulum"
+msgstr "Перевёрнутый маятник"
 
 msgid "Lorentz butterfly"
 msgstr "Аттрактор Лоренца"
@@ -1193,6 +1189,19 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: Не удалось экспортировать палитру в hdf5.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента %d: ожидалась матрица строковых значений.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: No block found.\n"
+msgstr "%s: Неверное значение входного аргумента №%d: блок не найден.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr "%s: Неверный тип аргумента %d: ожидалась строка."
 
@@ -1246,8 +1255,26 @@ msgstr "%s: Ошибка во время вычисления параметро
 msgid "%s: Error during block parameters update.\n"
 msgstr "%s: Ошибка во время обновления параметров блока.\n"
 
+msgid "Initialisation problem"
+msgstr "Задача инициализации"
+
+msgid "End problem"
+msgstr "Конечная задача"
+
 msgid "Simulation problem"
-msgstr ""
+msgstr "Задача моделирования"
 
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr "В post_xcos_simulate ошибка: моделирование завершается."
+
+#, c-format
+msgid "%s: Cannot open file '%s' for reading.\n"
+msgstr "%s: Не могу открыть файл '%s' на чтение.\n"
+
+#, c-format
+msgid "%s: Error while trying to read file contents from '%s'.\n"
+msgstr "%s: Ошибка при попытке прочитать содержимое файла '%s'.\n"
+
+#, c-format
+msgid "%s: Syntax error while trying to set up context from"
+msgstr "%s: Синтаксическая ошибка при попытке установить контекст из"

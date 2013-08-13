@@ -139,7 +139,7 @@ int main(int argc, char **argv)
                 }
             }
 
-	    free(argLang);
+            free(argLang);
 
         }
         else if (strcmp(argv[i], "-ns") == 0)

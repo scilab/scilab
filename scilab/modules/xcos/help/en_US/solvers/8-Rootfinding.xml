@@ -33,7 +33,7 @@
             The basic scheme used is to check for sign changes of any <emphasis>g(t)</emphasis> over each time step taken, and then (when a sign change is found) to home in on the root (or roots) with a modified secant method.
         </para>
         <para>
-            After suitable checking and adjusting has been done, the roots are to be sought within 
+            After suitable checking and adjusting has been done, the roots are to be sought within
             <emphasis>
                 [t<subscript>lo</subscript>, t<subscript>hi</subscript>]
             </emphasis>
@@ -41,19 +41,19 @@
             root to within a rather tight tolerance, given by the <emphasis>unit roudoff</emphasis>, the <emphasis>current time</emphasis> and the <emphasis>step size</emphasis>.
         </para>
         <para>
-            We then determine which root function is more likely to have its roots occur first by comparing the secant method values, and set a new value 
+            We then determine which root function is more likely to have its roots occur first by comparing the secant method values, and set a new value
             <emphasis>
                 t<subscript>mid</subscript>
             </emphasis>
-            and restrain the research interval to either 
+            and restrain the research interval to either
             <emphasis>
                 [t<subscript>lo</subscript>, t<subscript>mid</subscript>]
             </emphasis>
-            or 
+            or
             <emphasis>
                 [t<subscript>mid</subscript>, t<subscript>hi</subscript>]
             </emphasis>
-            ,following which does the sign change occur in.
+            , following which does the sign change occur in.
         </para>
         <para>
             Since the tolerance depends on the step size, the smaller it is, the more accurate the homing in will be.
@@ -77,7 +77,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            Simple example of a Sinus crossing zero several times:
+            Simple example of a Sine crossing zero several times:
         </para>
         <para>
             <programlisting language="example"><![CDATA[
@@ -100,7 +100,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
             Now, in the two following scripts, we test the computational overhead of the rootfinding with <emphasis>LSodar</emphasis>:
         </para>
         <para>
-            First, a Sinus that crosses zero every &#960; period:
+            First, a Sine function that crosses zero every &#960; period:
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/Rootfinding.sce">
                 Open the script
             </link>
@@ -130,7 +130,7 @@ Time without rootfinding:
             ]]></screen>
         </para>
         <para>
-            Following the number of zero crossings, the aspect of the function near these crossings, the tolerances, ..., the computational overhead ranges between 25% and 45%. 
+            Following the number of zero crossings, the aspect of the function near these crossings, the tolerances, ..., the computational overhead ranges between 25% and 45%.
         </para>
     </refsection>
     <refsection>
@@ -153,6 +153,9 @@ Time without rootfinding:
             </member>
             <member>
                 <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
             </member>
             <member>
                 <link linkend="Comparisons">Comparisons</link>

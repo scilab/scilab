@@ -28,10 +28,10 @@ c
       maxrhs=2
       minlhs=1
       maxlhs=1
-c     
+c
       if(.not.checkrhs(fname,minrhs,maxrhs)) return
       if(.not.checklhs(fname,minlhs,maxlhs)) return
-      
+
       if(.not.getrhsvar(1,'d', MA, NA, lA)) return
       if(.not.getrhsvar(2,'d', MB, NRHS, lB)) return
       if(MB.eq.0) then
@@ -66,7 +66,7 @@ c     Check if A and B matrices contains Inf or NaN's
       if(.not.createvar(6,'i', 1, 1, lRANK)) return
       if(.not.createvar(7,'i', 1, N, lIPIV)) return
       if(.not.createvar(8,'i', 1, N, lJPVT)) return
-      if(.not.createvar(9,'i', 1, N, lIWORK)) return       
+      if(.not.createvar(9,'i', 1, N, lIWORK)) return
       LWORKMIN = max( 4*N, min(M,N)+3*N+1, 2*min(M,N)+NRHS )
       LWORK=maxvol(10,'d')
       if(LWORK.le.LWORKMIN) then
@@ -75,18 +75,18 @@ c     Check if A and B matrices contains Inf or NaN's
          return
       endif
       if(.not.createvar(10,'d',1,LWORK,lDWORK)) return
-      
+
       EPS = dlamch('eps')
-      RCOND_thresh=EPS*10
+      RCONDthresh=EPS*10
       ANORM = dlange( '1', M, N, stk(lA), M, stk(lDWORK) )
-c     
+c
       if(M.eq.N) then
-c     
+c
 c     M = N
-c     
+c
          call DLACPY( 'F', N, N, stk(lA), N, stk(lAF), N )
 c     SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )
-         call DGETRF( N, N, stk(lAF), N, istk(lIPIV), INFO )         
+         call DGETRF( N, N, stk(lAF), N, istk(lIPIV), INFO )
 c     SUBROUTINE DGETRF( N, N, A, LDA, IPIV, INFO )
          RCOND = 0.0d0
          if(INFO.eq.0) then
@@ -96,7 +96,7 @@ c     SUBROUTINE DGECON( NORM, N, A, LDA, ANORM, RCOND, WORK,
 c     $                        IWORK, INFO )
             if(RCOND.gt.RCONDthresh) then
                call DGETRS( 'N', N, NRHS, stk(lAF), N, istk(lIPIV),
-     $              stk(lB), N, INFO ) 
+     $              stk(lB), N, INFO )
 c     SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV,
 c     B, LDB, INFO )
                call DLACPY( 'F', N, NRHS, stk(lB), N, stk(lX), N )
@@ -108,9 +108,9 @@ c     SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )
          call writebufdgesv3(buf,RCOND)
          call msgs(5,1)
       endif
-c     
+c
 c     M.ne.N or A singular
-c     
+c
       RCOND = RCONDthresh
       call DLACPY( 'F', M, NRHS, stk(lB), M, stk(lXB), max(M,N) )
 c     SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )
@@ -134,7 +134,7 @@ c     SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )
 
       lhsvar(1)=4
       return
-c     
+c
       end
 
 

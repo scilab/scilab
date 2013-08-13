@@ -78,8 +78,7 @@ public class ClosingOperationsManager {
      * @param op
      *            the closing operation
      */
-    public static void registerClosingOperation(SwingScilabTab tab,
-            ClosingOperation op) {
+    public static void registerClosingOperation(SwingScilabTab tab, ClosingOperation op) {
         if (tab != null) {
             closingOps.put(tab, op);
         }

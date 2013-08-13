@@ -9,7 +9,7 @@
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 # TODO:
-# * see if we can do more factorisation (on the lexer for example)
+# * see if we can do more factorization (on the lexer for example)
 
 ######### Common Modelica elements #############
 

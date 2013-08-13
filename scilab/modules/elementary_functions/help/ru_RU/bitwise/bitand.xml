@@ -28,14 +28,14 @@
                 <term>x :</term>
                 <listitem>
                     <para>
-                      матрица чисел двойной точности (<literal>double</literal>) размером
-                      <literal>m</literal> на <literal>n</literal>
-                      или гиперматрица чисел двойной точности размером
-                      <literal>m1</literal> на <literal>m2</literal> на ... на
-                      <literal>mm</literal> или матрица беззнаковых целых чисел
-                      (<literal>uint8</literal>, <literal>uint16</literal> или
-                      <literal>uint32</literal>) размером <literal>m</literal> на
-                      <literal>n</literal>. Должна содержать положительные целые значения.
+                        матрица чисел двойной точности (<literal>double</literal>) размером
+                        <literal>m</literal> на <literal>n</literal>
+                        или гиперматрица чисел двойной точности размером
+                        <literal>m1</literal> на <literal>m2</literal> на ... на
+                        <literal>mm</literal> или матрица беззнаковых целых чисел
+                        (<literal>uint8</literal>, <literal>uint16</literal> или
+                        <literal>uint32</literal>) размером <literal>m</literal> на
+                        <literal>n</literal>. Должна содержать положительные целые значения.
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,13 +43,13 @@
                 <term>y :</term>
                 <listitem>
                     <para>
-                      матрица чисел двойной точности размером <literal>m</literal> на
-                      <literal>n</literal> или гиперматрица чисел двойной точности
-                      размером <literal>m1</literal> на <literal>m2</literal> на ... на
-                      <literal>mm</literal> или матрица беззнаковых целых чисел
-                      (<literal>uint8</literal>, <literal>uint16</literal> или
-                      <literal>uint32</literal>) размером <literal>m</literal> на
-                      <literal>n</literal>.
+                        матрица чисел двойной точности размером <literal>m</literal> на
+                        <literal>n</literal> или гиперматрица чисел двойной точности
+                        размером <literal>m1</literal> на <literal>m2</literal> на ... на
+                        <literal>mm</literal> или матрица беззнаковых целых чисел
+                        (<literal>uint8</literal>, <literal>uint16</literal> или
+                        <literal>uint32</literal>) размером <literal>m</literal> на
+                        <literal>n</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -57,11 +57,11 @@
                 <term>z :</term>
                 <listitem>
                     <para>
-                      матрица чисел двойной точности размером <literal>m</literal> на
-                      <literal>n</literal> или гиперматрица чисел двойной точности
-                      размером <literal>m1</literal> на <literal>m2</literal> на ... на
-                      <literal>mm</literal> или матрица беззнаковых целых чисел размером
-                      <literal>m</literal> на <literal>n</literal>.
+                        матрица чисел двойной точности размером <literal>m</literal> на
+                        <literal>n</literal> или гиперматрица чисел двойной точности
+                        размером <literal>m1</literal> на <literal>m2</literal> на ... на
+                        <literal>mm</literal> или матрица беззнаковых целых чисел размером
+                        <literal>m</literal> на <literal>n</literal>.
                     </para>
                 </listitem>
             </varlistentry>

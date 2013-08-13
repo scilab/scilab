@@ -1,206 +1,206 @@
-<project name="common_qa">
-  <!--  Unitary testing + code coverage -->
-  
-  <property name="base.dir" location="../../"/>
-  
-  <!-- JAR names -->
-  <property file="${base.dir}/scilab-lib.properties"/>
-  <property file="${base.dir}/scilab-lib-doc.properties"/>
-  <!-- Configure ANT flags -->
-  <property file="${base.dir}/scilab.properties"/>
-  
-  <!-- Where we can find the test sources -->
-  <property name="test.dir" location="tests/"/>
-  <property name="src.test.dir" location="${test.dir}/java/"/>
-  <property name="report.test.dir" location="${base.dir}/reports/"/>
-  <property name="report.xml.test.dir" location="${report.test.dir}/xml/"/>
-  <property name="report.html.test.dir" location="${report.test.dir}/html/"/>
-  <property name="report.codecoverage.dir" location="${report.test.dir}/codecoverage/"/>
-  <property name="report.codecoverage.html.dir" location="${report.test.dir}/html-codecoverage/"/>
-  <property name="report.codecoverage.xml.dir" location="${report.test.dir}/xml-codecoverage/"/>
-  
-  <!-- Check style definitions -->
-  <property name="checkstyle.config.file" value="${base.dir}/checkstyle/scilab_checkstyle_convention.xml"/>
-  <property name="checkstyle.stylesheet" value="${thirdparty.dir}/checkstyle/contrib/checkstyle-noframes-sorted.xsl"/>
-  <property name="checkstyle.report.dir" value="${build.dir}/checkstyle"/>
-  <property name="checkstyle.xml.report.file" value="${checkstyle.report.dir}/checkstyle_errors.xml"/>
-  <property name="checkstyle.html.report.file" value="${checkstyle.report.dir}/checkstyle_errors.htm"/>
-  
-  <path id="unittest.classpath">
-    <pathelement location="${junit4.jar}"/>
-  </path>
-  <path id="cobertura_classpath">
-    <pathelement location="${cobertura.jar}"/>
-  </path>
-  
-  <!-- Clean test -->
-  <target name="clean-test" description="Clean test files">
-    <delete dir="${build.test.dir}"/>
-  </target>
-  
-  <target name="existing-tests">
-    <available property="test-present" file="${src.test.dir}"/>
-  </target>
-  
-  <!-- Compile test sources -->
-  <target name="compile-test" description="Build tests" depends="existing-tests, clean-test, jar" if="test-present">
-    <!-- clean the test to make sure it will build properly -->
-    <javac srcdir="${src.test.dir}" destdir="${classes.test.dir}" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6" encoding="UTF-8">
-      <classpath>
-        <path refid="unittest.classpath"/>
-        <path refid="compile.classpath"/>
-      </classpath>
-    </javac>
-  </target>
-  
-  <taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>
-  <!-- Checkstyle process -->
-  <target name="checkstyle" depends="checkstyle-init" description="Generates a report of code convention violations.">
-    <checkstyle config="${checkstyle.config.file}" failOnViolation="false">
-      <fileset dir="${src.dir}" includes="**/*.java"/>
-      <!-- Location of cache-file. -->
-      <property key="checkstyle.cache.file" file="${cache.dir}"/>
-      <formatter type="plain"/>
-      <formatter type="xml" toFile="${checkstyle.xml.report.file}"/>
-    </checkstyle>
-    <xslt in="${checkstyle.xml.report.file}" out="${checkstyle.html.report.file}" style="${checkstyle.stylesheet}"/>
-  </target>
-  <!-- Create the build directory -->
-  <target name="checkstyle-init">
-    <mkdir dir="${checkstyle.report.dir}"/>
-  </target>
-  <!-- Delete the build directory -->
-  <target name="checkstyle-clean">
-    <delete dir="${checkstyle.report.dir}"/>
-  </target>
-  
-  
-  <!-- Allows the override of the forkMode by local build.xml -->
-  <condition property="forkModeAlreadySet">
-    <isset property="junit.forkMode" />
-  </condition>
-  
-  <target name="validate">
-    <!-- Empty target to be override by other build.xml -->
-  </target>
-  
-  <taskdef classpathref="cobertura_classpath" resource="tasks.properties" />
-  
-  <target name="instrument">
-    <cobertura-instrument todir="${instrumented.classes.test.dir}" datafile="${report.test.dir}/${library.name}.ser">
-      <fileset dir="${classes.dir}">
-        <include name="**/*.class" />
-      </fileset>
-    </cobertura-instrument>
-  </target>
-  
-  <target name="codecoverage" depends="compile-test, instrument, test">
-    <cobertura-merge>
-      <fileset dir="${report.test.dir}">
-        <include name="*.ser" />
-      </fileset>
-    </cobertura-merge>
+    <project name="common_qa">
+    <!--  Unitary testing + code coverage -->
     
-    <cobertura-report format="html" destdir="${report.codecoverage.html.dir}"> 
-      
-      <fileset dir="${library.action_binding.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-      <fileset dir="${library.commons.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-      <fileset dir="${library.graph.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-      <fileset dir="${library.graphic_objects.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-      <fileset dir="${library.xcos.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-      <fileset dir="${library.types.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-      <fileset dir="${library.javasci.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-    </cobertura-report>
+    <property name="base.dir" location="../../"/>
     
-    <cobertura-report format="xml" destdir="${report.codecoverage.xml.dir}"> 
-      
-      <fileset dir="${library.action_binding.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-      <fileset dir="${library.commons.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-      <fileset dir="${library.graph.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-      <fileset dir="${library.graphic_objects.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-      <fileset dir="${library.xcos.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-      <fileset dir="${library.types.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-      <fileset dir="${library.javasci.src.dir}">
-        <include name="**/*.java" />
-      </fileset>
-    </cobertura-report>
+    <!-- JAR names -->
+    <property file="${base.dir}/scilab-lib.properties"/>
+    <property file="${base.dir}/scilab-lib-doc.properties"/>
+    <!-- Configure ANT flags -->
+    <property file="${base.dir}/scilab.properties"/>
     
-  </target>
-  
-  
-  <target name="detectForkMode" unless="forkModeAlreadySet">
-    <property name="junit.forkMode" value="perBatch"/>
-  </target>
-  
-  <target name="test" depends="existing-tests, compile-test, validate, detectForkMode" if="test-present">
-    <mkdir dir="${report.xml.test.dir}" />
-    <mkdir dir="${report.html.test.dir}" />
-    <mkdir dir="${report.codecoverage.dir}/" />
-    <junit fork="yes" forkmode="${junit.forkMode}" failureproperty="junit.failure">
-      <sysproperty key="net.sourceforge.cobertura.datafile"
-                 file="${report.test.dir}/${library.name}.ser" />
-      
-      
-      <classpath location="${instrumented.classes.test.dir}"/>
-      <classpath location="${classes.test.dir}"/>
-      
-      <classpath>
-        <path refid="unittest.classpath"/>
-        <path refid="compile.classpath"/>
+    <!-- Where we can find the test sources -->
+    <property name="test.dir" location="tests/"/>
+    <property name="src.test.dir" location="${test.dir}/java/"/>
+    <property name="report.test.dir" location="${base.dir}/reports/"/>
+    <property name="report.xml.test.dir" location="${report.test.dir}/xml/"/>
+    <property name="report.html.test.dir" location="${report.test.dir}/html/"/>
+    <property name="report.codecoverage.dir" location="${report.test.dir}/codecoverage/"/>
+    <property name="report.codecoverage.html.dir" location="${report.test.dir}/html-codecoverage/"/>
+    <property name="report.codecoverage.xml.dir" location="${report.test.dir}/xml-codecoverage/"/>
+    
+    <!-- Check style definitions -->
+    <property name="checkstyle.config.file" value="${base.dir}/checkstyle/scilab_checkstyle_convention.xml"/>
+    <property name="checkstyle.stylesheet" value="${thirdparty.dir}/checkstyle/contrib/checkstyle-noframes-sorted.xsl"/>
+    <property name="checkstyle.report.dir" value="${build.dir}/checkstyle"/>
+    <property name="checkstyle.xml.report.file" value="${checkstyle.report.dir}/checkstyle_errors.xml"/>
+    <property name="checkstyle.html.report.file" value="${checkstyle.report.dir}/checkstyle_errors.htm"/>
+    
+    <path id="unittest.classpath">
+        <pathelement location="${junit4.jar}"/>
+    </path>
+    <path id="cobertura_classpath">
         <pathelement location="${cobertura.jar}"/>
-        <pathelement location="${classes.test.dir}"/>
-        <pathelement location="${classes.dir}"/>
-      </classpath>
-      
-      
-      <!-- Where ${basedir} is the module base directory -->
-      <env key="SCI" value="${basedir}/../.."/>
-      <jvmarg value="-DtestngTests=1"/>
-      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:${base.dir}/modules/types/.libs/:${base.dir}/modules/localization/.libs/:${base.dir}/modules/commons/.libs/:${base.dir}/modules/action_binding/.libs/:${base.dir}/thirdparty/:${base.dir}/bin/:/usr/lib/jni/:/usr/lib64/jni:/usr/lib/java/:/usr/lib64/java:"/>
-      
-      <formatter type="brief" useFile="no" />
-      <formatter type="xml" />
-      
-      <batchtest fork="yes" todir="${report.xml.test.dir}" >
-        <fileset dir="tests/java/">
-          <include name="**/*.java"/>
-        </fileset>
-      </batchtest>
-    </junit>
+    </path>
     
-    <junitreport todir="${report.xml.test.dir}">
-      <fileset dir="${report.xml.test.dir}">
-        <include name="*.xml"/>
-      </fileset>
-      <report format="frames" todir="${report.html.test.dir}"/>
-    </junitreport>
+    <!-- Clean test -->
+    <target name="clean-test" description="Clean test files">
+        <delete dir="${build.test.dir}"/>
+    </target>
     
-    <fail if="junit.failure" message="Unit test(s) failed. See the report"/>
-  </target>
+    <target name="existing-tests">
+        <available property="test-present" file="${src.test.dir}"/>
+    </target>
+    
+    <!-- Compile test sources -->
+    <target name="compile-test" description="Build tests" depends="existing-tests, clean-test, jar" if="test-present">
+        <!-- clean the test to make sure it will build properly -->
+        <javac srcdir="${src.test.dir}" destdir="${classes.test.dir}" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6" encoding="UTF-8">
+            <classpath>
+                <path refid="unittest.classpath"/>
+                <path refid="compile.classpath"/>
+            </classpath>
+        </javac>
+    </target>
+    
+    <taskdef resource="checkstyletask.properties" classpathref="checkstyle.classpath"/>
+    <!-- Checkstyle process -->
+    <target name="checkstyle" depends="checkstyle-init" description="Generates a report of code convention violations.">
+        <checkstyle config="${checkstyle.config.file}" failOnViolation="false">
+            <fileset dir="${src.dir}" includes="**/*.java"/>
+            <!-- Location of cache-file. -->
+            <property key="checkstyle.cache.file" file="${cache.dir}"/>
+            <formatter type="plain"/>
+            <formatter type="xml" toFile="${checkstyle.xml.report.file}"/>
+        </checkstyle>
+        <xslt in="${checkstyle.xml.report.file}" out="${checkstyle.html.report.file}" style="${checkstyle.stylesheet}"/>
+    </target>
+    <!-- Create the build directory -->
+    <target name="checkstyle-init">
+        <mkdir dir="${checkstyle.report.dir}"/>
+    </target>
+    <!-- Delete the build directory -->
+    <target name="checkstyle-clean">
+        <delete dir="${checkstyle.report.dir}"/>
+    </target>
+    
+    
+    <!-- Allows the override of the forkMode by local build.xml -->
+    <condition property="forkModeAlreadySet">
+        <isset property="junit.forkMode" />
+    </condition>
+    
+    <target name="validate">
+        <!-- Empty target to be override by other build.xml -->
+    </target>
+    
+    <taskdef classpathref="cobertura_classpath" resource="tasks.properties" />
+    
+    <target name="instrument">
+        <cobertura-instrument todir="${instrumented.classes.test.dir}" datafile="${report.test.dir}/${library.name}.ser">
+            <fileset dir="${classes.dir}">
+                <include name="**/*.class" />
+            </fileset>
+        </cobertura-instrument>
+    </target>
+    
+    <target name="codecoverage" depends="compile-test, instrument, test">
+        <cobertura-merge>
+            <fileset dir="${report.test.dir}">
+                <include name="*.ser" />
+            </fileset>
+        </cobertura-merge>
+        
+        <cobertura-report format="html" destdir="${report.codecoverage.html.dir}"> 
+            
+            <fileset dir="${library.action_binding.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+            <fileset dir="${library.commons.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+            <fileset dir="${library.graph.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+            <fileset dir="${library.graphic_objects.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+            <fileset dir="${library.xcos.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+            <fileset dir="${library.types.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+            <fileset dir="${library.javasci.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+        </cobertura-report>
+        
+        <cobertura-report format="xml" destdir="${report.codecoverage.xml.dir}"> 
+            
+            <fileset dir="${library.action_binding.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+            <fileset dir="${library.commons.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+            <fileset dir="${library.graph.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+            <fileset dir="${library.graphic_objects.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+            <fileset dir="${library.xcos.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+            <fileset dir="${library.types.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+            <fileset dir="${library.javasci.src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+        </cobertura-report>
+        
+    </target>
+    
+    
+    <target name="detectForkMode" unless="forkModeAlreadySet">
+        <property name="junit.forkMode" value="perBatch"/>
+    </target>
+    
+    <target name="test" depends="existing-tests, compile-test, validate, detectForkMode" if="test-present">
+        <mkdir dir="${report.xml.test.dir}" />
+        <mkdir dir="${report.html.test.dir}" />
+        <mkdir dir="${report.codecoverage.dir}/" />
+        <junit fork="yes" forkmode="${junit.forkMode}" failureproperty="junit.failure">
+            <sysproperty key="net.sourceforge.cobertura.datafile"
+                 file="${report.test.dir}/${library.name}.ser" />
+            
+            
+            <classpath location="${instrumented.classes.test.dir}"/>
+            <classpath location="${classes.test.dir}"/>
+            
+            <classpath>
+                <path refid="unittest.classpath"/>
+                <path refid="compile.classpath"/>
+                <pathelement location="${cobertura.jar}"/>
+                <pathelement location="${classes.test.dir}"/>
+                <pathelement location="${classes.dir}"/>
+            </classpath>
+            
+            
+            <!-- Where ${basedir} is the module base directory -->
+            <env key="SCI" value="${basedir}/../.."/>
+            <jvmarg value="-DtestngTests=1"/>
+            <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:${base.dir}/modules/types/.libs/:${base.dir}/modules/localization/.libs/:${base.dir}/modules/commons/.libs/:${base.dir}/modules/action_binding/.libs/:${base.dir}/thirdparty/:${base.dir}/bin/:/usr/lib/jni/:/usr/lib64/jni:/usr/lib/java/:/usr/lib64/java:"/>
+            
+            <formatter type="brief" useFile="no" />
+            <formatter type="xml" />
+            
+            <batchtest fork="yes" todir="${report.xml.test.dir}" >
+                <fileset dir="tests/java/">
+                    <include name="**/*.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+        
+        <junitreport todir="${report.xml.test.dir}">
+            <fileset dir="${report.xml.test.dir}">
+                <include name="*.xml"/>
+            </fileset>
+            <report format="frames" todir="${report.html.test.dir}"/>
+        </junitreport>
+        
+        <fail if="junit.failure" message="Unit test(s) failed. See the report"/>
+    </target>
 </project>

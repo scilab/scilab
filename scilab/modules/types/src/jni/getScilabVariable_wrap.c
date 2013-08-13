@@ -213,6 +213,23 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_types_GetScilabVariableJNI_getSc
 }
 
 
+SWIGEXPORT void JNICALL Java_org_scilab_modules_types_GetScilabVariableJNI_getScilabVariableAsReference(JNIEnv *jenv, jclass jcls, jstring jarg1, jint jarg2) {
+  char *arg1 = (char *) 0 ;
+  int arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return ;
+  }
+  arg2 = (int)jarg2; 
+  getScilabVariableAsReference((char const *)arg1,arg2);
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+}
+
+
 #ifdef __cplusplus
 }
 #endif

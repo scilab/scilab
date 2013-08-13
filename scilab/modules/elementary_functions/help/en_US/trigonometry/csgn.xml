@@ -36,29 +36,41 @@
                     <para>if the real part is not equal to zero:</para>
                     <itemizedlist>
                         <listitem>
-                            <para><literal>+1</literal> if the real part of an element is positive</para>
+                            <para>
+                                <literal>+1</literal> if the real part of an element is positive
+                            </para>
                         </listitem>
                         <listitem>
-                            <para><literal>-1</literal> if the real part of an element is negative</para>
+                            <para>
+                                <literal>-1</literal> if the real part of an element is negative
+                            </para>
                         </listitem>
                     </itemizedlist>
                     <para>If the real part is equal to zero:</para>
                     <itemizedlist>
                         <listitem>
-                            <para><literal>+1</literal> if the imaginary part of an element is positive</para>
+                            <para>
+                                <literal>+1</literal> if the imaginary part of an element is positive
+                            </para>
                         </listitem>
                         <listitem>
-                            <para><literal>-1</literal> if the imaginary part of an element is negative</para>
+                            <para>
+                                <literal>-1</literal> if the imaginary part of an element is negative
+                            </para>
                         </listitem>
                     </itemizedlist>
-                    <para>if the element is equal to zero, then returns <constant>%nan</constant></para>
+                    <para>
+                        if the element is equal to zero, then returns <constant>%nan</constant>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>The <function>csgn</function> function returns the sign of a vector of real of complex values <varname>z</varname>.</para>
+        <para>
+            The <function>csgn</function> function returns the sign of a vector of real of complex values <varname>z</varname>.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

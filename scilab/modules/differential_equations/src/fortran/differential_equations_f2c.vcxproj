@@ -29,19 +29,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -309,9 +313,9 @@ cd ..
     <ClCompile Include="ddasrt.c" />
     <ClCompile Include="ddassl.c" />
     <ClCompile Include="dgbsl.c" />
-    <ClCompile Include="dqag0.c" />
     <ClCompile Include="dqags.c" />
-    <ClCompile Include="epsalg.c" />
+    <ClCompile Include="dqagse.c" />
+    <ClCompile Include="dqelg.c" />
     <ClCompile Include="ewset.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-bvode.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-dasrt.c" />
@@ -339,11 +343,11 @@ cd ..
     <ClCompile Include="lsodi.c" />
     <ClCompile Include="lsrgk.c" />
     <ClCompile Include="odeint.c" />
-    <ClCompile Include="order.c" />
+    <ClCompile Include="dqpsrt.c" />
     <ClCompile Include="prepj.c" />
     <ClCompile Include="prepji.c" />
     <ClCompile Include="prja.c" />
-    <ClCompile Include="quarul.c" />
+    <ClCompile Include="dqk21.c" />
     <ClCompile Include="rchek.c" />
     <ClCompile Include="rchek2.c" />
     <ClCompile Include="rkf45.c" />
@@ -406,9 +410,9 @@ cd ..
     <f2c_rule Include="ddasrt.f" />
     <f2c_rule Include="ddassl.f" />
     <f2c_rule Include="dgbsl.f" />
-    <f2c_rule Include="dqag0.f" />
     <f2c_rule Include="dqags.f" />
-    <f2c_rule Include="epsalg.f" />
+    <f2c_rule Include="dqagse.f" />
+    <f2c_rule Include="dqelg.f" />
     <f2c_rule Include="ewset.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-bvode.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-dasrt.f" />
@@ -436,11 +440,11 @@ cd ..
     <f2c_rule Include="lsodi.f" />
     <f2c_rule Include="lsrgk.f" />
     <f2c_rule Include="odeint.f" />
-    <f2c_rule Include="order.f" />
+    <f2c_rule Include="dqpsrt.f" />
     <f2c_rule Include="prepj.f" />
     <f2c_rule Include="prepji.f" />
     <f2c_rule Include="prja.f" />
-    <f2c_rule Include="quarul.f" />
+    <f2c_rule Include="dqk21.f" />
     <f2c_rule Include="rchek.f" />
     <f2c_rule Include="rchek2.f" />
     <f2c_rule Include="rkf45.f" />

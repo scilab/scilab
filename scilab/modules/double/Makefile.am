@@ -10,7 +10,7 @@ sci_gateway/fortran/vecmul.f \
 sci_gateway/fortran/matxpow.f \
 sci_gateway/fortran/vecimpl.f \
 sci_gateway/fortran/matldiv.f \
-sci_gateway/fortran/matsubst.f \
+sci_gateway/fortran/matsubt.f \
 sci_gateway/fortran/vecrdiv.f \
 sci_gateway/fortran/matchsgn.f \
 sci_gateway/fortran/matrdiv.f \

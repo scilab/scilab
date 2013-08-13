@@ -9,31 +9,31 @@
 
 function myTree = uiCreateTree(parentNode, varargin)
 
-	[lhs,rhs]=argn(0);
+    [lhs,rhs]=argn(0);
 
-	//Input arguments checking
-	if rhs == 0 then
-		error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "uiCreateTree",1));
-		return;
-	end
+    //Input arguments checking
+    if rhs == 0 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "uiCreateTree",1));
+        return;
+    end
 
-	if rhs >=1 then
-		// Check if parentNode is a Tree
-		if (typeof(parentNode) == 'Tree') then
-			myTree = tlist('Tree', parentNode(2));
-			// Add subTrees into myTree
-			for subTreesIndex = 1:size(varargin)
-				if (typeof(varargin(subTreesIndex)) == 'Tree') then
-					myTree(subTreesIndex + 2) = varargin(subTreesIndex)
-				else
-					error(msprintf(gettext("%s: Wrong type for input arguments from #%d: Tree expected.\n"), "uiCreateTree",2));
-					return;
-				end
-			end
-		else
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiCreateTree",1));
-			return;
-		end
-	end
+    if rhs >=1 then
+        // Check if parentNode is a Tree
+        if (typeof(parentNode) == "uitree") then
+            myTree = tlist("uitree", parentNode(2));
+            // Add subTrees into myTree
+            for subTreesIndex = 1:size(varargin)
+                if (typeof(varargin(subTreesIndex)) == "uitree") then
+                    myTree(subTreesIndex + 2) = varargin(subTreesIndex)
+                else
+                    error(msprintf(gettext("%s: Wrong type for element %d of input argument #%d: uitree expected.\n"), "uiCreateTree", subTreesIndex, 2));
+                    return;
+                end
+            end
+        else
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiCreateTree",1));
+            return;
+        end
+    end
 
 endfunction

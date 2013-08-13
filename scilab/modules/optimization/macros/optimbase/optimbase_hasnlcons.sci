@@ -12,13 +12,13 @@
 
 //
 // optimbase_hasnlcons --
-//   Returns %T if current problem has non 
+//   Returns %T if current problem has non
 //   linear constraints.
 // Arguments
 //   this : the current object
 //   hasnlcons : %T or %F (see above)
 //
 function [ this , hasnlcons ] = optimbase_hasnlcons ( this )
-  hasnlcons = ( this.nbineqconst > 0 )
+    hasnlcons = ( this.nbineqconst > 0 )
 endfunction
 

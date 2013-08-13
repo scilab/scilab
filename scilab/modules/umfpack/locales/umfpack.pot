@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/sci_res_with_prec.c, line: 169
 #, c-format
@@ -41,8 +41,8 @@ msgstr ""
 # File: sci_gateway/c/sci_taucs_chfact.c, line: 147
 # File: sci_gateway/c/sci_taucs_chget.c, line: 103
 # File: sci_gateway/c/sci_umf_luget.c, line: 320
-# File: src/c/taucs_scilab.c, line: 256
-# File: src/c/taucs_scilab.c, line: 2123
+# File: src/c/taucs_scilab.c, line: 279
+# File: src/c/taucs_scilab.c, line: 2532
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -64,7 +64,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
-"Cholesky factorisation"
+"Cholesky factorization"
 msgstr ""
 
 #
@@ -105,7 +105,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: not compatible with the Cholesky "
-"factorisation.\n"
+"factorization.\n"
 msgstr ""
 
 #
@@ -113,7 +113,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: not compatible with the Cholesky "
-"factorisation.\n"
+"factorization.\n"
 msgstr ""
 
 #
@@ -172,12 +172,12 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_umf_lusolve.c, line: 151
-msgid "This is not a factorisation of a square matrix"
+msgid "This is not a factorization of a square matrix"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_umf_lusolve.c, line: 157
-msgid "This is a factorisation of a singular matrix"
+msgid "This is a factorization of a singular matrix"
 msgstr ""
 
 #
@@ -224,28 +224,28 @@ msgid "invalid matrix"
 msgstr ""
 
 #
-# File: src/c/taucs_scilab.c, line: 128
+# File: src/c/taucs_scilab.c, line: 136
 msgid "GENMMD ordering only works on symmetric matrices.\n"
 msgstr ""
 
 #
-# File: src/c/taucs_scilab.c, line: 136
+# File: src/c/taucs_scilab.c, line: 144
 msgid "The lower part of the matrix must be represented.\n"
 msgstr ""
 
 #
-# File: src/c/taucs_scilab.c, line: 267
+# File: src/c/taucs_scilab.c, line: 290
 #, c-format
 msgid "%s: No more memory (n=%d, nnz=%d).\n"
 msgstr ""
 
 #
-# File: src/c/taucs_scilab.c, line: 588
+# File: src/c/taucs_scilab.c, line: 650
 msgid "    CC^T Factorization: Matrix is not positive definite.\n"
 msgstr ""
 
 #
-# File: src/c/taucs_scilab.c, line: 589
+# File: src/c/taucs_scilab.c, line: 651
 #, c-format
 msgid "                        nonpositive pivot in column %d\n"
 msgstr ""

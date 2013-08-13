@@ -32,9 +32,9 @@ xml:lang="ru" xml:id="isnum">
             <varlistentry>
                 <term>str</term>
                 <listitem>
-                <para>
-                    символьная строка или матрица символьных строк.
-                </para>
+                    <para>
+                        символьная строка или матрица символьных строк.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

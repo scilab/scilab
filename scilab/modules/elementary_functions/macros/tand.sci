@@ -10,25 +10,26 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function y = tand(x)
-  // Tangent of x in degrees.
-  // tand(x) = tan(x*%pi/180) in the mathematical sense
-  // But floating point numbers behave differently.
-  // For example, tand(180) = 0 while tan(pi) = -1.225D-16
-  
-  rhs = argn(2);
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"tand", 1));
-  end
+    // Tangent of x in degrees.
+    // tand(x) = tan(x*%pi/180) in the mathematical sense
+    // But floating point numbers behave differently.
+    // For example, tand(180) = 0 while tan(pi) = -1.225D-16
 
-  if ( ~isreal(x) ) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"tand",1)); 
-  end
-  // Argument reduction toward [-90,90[
-  n = round(x / 180);
-  x = x - n * 180;
-  y = tan(%pi/180*x);
-  // Set all singular points to nan
-  m = pmodulo(x + 90, 180);
-  y(m == 0) = %nan;
+    rhs = argn(2);
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"tand", 1));
+    end
+    
+    if type(x)<>1 | ~isreal(x) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"tand",1));
+    end
+
+    // Argument reduction toward [-90,90[
+    n = round(x / 180);
+    x = x - n * 180;
+    y = tan(%pi/180*x);
+    // Set all singular points to nan
+    m = pmodulo(x + 90, 180);
+    y(m == 0) = %nan;
 endfunction
 

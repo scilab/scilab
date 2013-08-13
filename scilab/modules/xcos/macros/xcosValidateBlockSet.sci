@@ -43,8 +43,8 @@ function [status, msg] = xcosValidateBlockSet(interfFunctionName)
             default_inputs_vector = labelsh;
             result = x_dialog(labelsv, default_inputs_vector);
         elseif rhs == 4 then
-            vSize = size(labelsv, '*');
-            hSize = size(labelsh, '*');
+            vSize = size(labelsv, "*");
+            hSize = size(labelsh, "*");
             if size(default_inputs_vector) <> [vSize, hSize] then
                 error(999, sprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "x_mdialog", 4, vSize, hSize));
             end;
@@ -63,7 +63,7 @@ function [status, msg] = xcosValidateBlockSet(interfFunctionName)
     // Stubbing the edit_curv method
     function [xx, yy, ok, gc] = edit_curv(xx, yy,  axis, args, gc)
         ok = %T;
-        if ~exists("gc", 'l') then
+        if ~exists("gc", "l") then
             rect=[0 0 1 1];
             axisdata=[2 10 2 10];
             gc = list(rect, axisdata);

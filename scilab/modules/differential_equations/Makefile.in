@@ -148,10 +148,10 @@ am__objects_1 = libscidifferential_equations_algo_la-dassl.lo \
 	libscidifferential_equations_algo_la-arnol.lo \
 	libscidifferential_equations_algo_la-rk4.lo
 am__objects_2 = rscar1.lo bcomp.lo lcomp.lo loren.lo prja.lo vnorm.lo \
-	lsoda.lo lsodar.lo ainvg.lo lsode.lo svcom1.lo quarul.lo \
-	solsy.lo lsodi.lo ddassl.lo order.lo epsalg.lo cfode.lo \
+	lsoda.lo lsodar.lo ainvg.lo lsode.lo svcom1.lo dqk21.lo \
+	solsy.lo lsodi.lo ddassl.lo dqpsrt.lo dqelg.lo cfode.lo \
 	rscma1.lo colnew.lo dcutet.lo xsetf.lo dgbsl.lo rkf45.lo \
-	rchek.lo dqag0.lo xerrwv.lo twodq.lo dqags.lo greatr.lo \
+	rchek.lo dqags.lo xerrwv.lo twodq.lo dqagse.lo greatr.lo \
 	hpdel.lo hpins.lo svcar1.lo rscom1.lo rksimp.lo roots.lo \
 	stoda.lo bnorm.lo rchek2.lo stode.lo vmnorm.lo prepj.lo \
 	lsdisc.lo fnorm.lo ddaskr.lo daux.lo ddasrt.lo stodi.lo \
@@ -511,12 +511,12 @@ src/fortran/lsodar.f \
 src/fortran/ainvg.f \
 src/fortran/lsode.f \
 src/fortran/svcom1.f \
-src/fortran/quarul.f \
+src/fortran/dqk21.f \
 src/fortran/solsy.f \
 src/fortran/lsodi.f \
 src/fortran/ddassl.f \
-src/fortran/order.f \
-src/fortran/epsalg.f \
+src/fortran/dqpsrt.f \
+src/fortran/dqelg.f \
 src/fortran/cfode.f \
 src/fortran/rscma1.f \
 src/fortran/colnew.f \
@@ -525,10 +525,10 @@ src/fortran/xsetf.f \
 src/fortran/dgbsl.f \
 src/fortran/rkf45.f \
 src/fortran/rchek.f \
-src/fortran/dqag0.f \
+src/fortran/dqags.f \
 src/fortran/xerrwv.f \
 src/fortran/twodq.f \
-src/fortran/dqags.f \
+src/fortran/dqagse.f \
 src/fortran/greatr.f \
 src/fortran/hpdel.f \
 src/fortran/hpins.f \
@@ -1079,8 +1079,8 @@ lsode.lo: src/fortran/lsode.f
 svcom1.lo: src/fortran/svcom1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o svcom1.lo `test -f 'src/fortran/svcom1.f' || echo '$(srcdir)/'`src/fortran/svcom1.f
 
-quarul.lo: src/fortran/quarul.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o quarul.lo `test -f 'src/fortran/quarul.f' || echo '$(srcdir)/'`src/fortran/quarul.f
+dqk21.lo: src/fortran/dqk21.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dqk21.lo `test -f 'src/fortran/dqk21.f' || echo '$(srcdir)/'`src/fortran/dqk21.f
 
 solsy.lo: src/fortran/solsy.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o solsy.lo `test -f 'src/fortran/solsy.f' || echo '$(srcdir)/'`src/fortran/solsy.f
@@ -1091,11 +1091,11 @@ lsodi.lo: src/fortran/lsodi.f
 ddassl.lo: src/fortran/ddassl.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ddassl.lo `test -f 'src/fortran/ddassl.f' || echo '$(srcdir)/'`src/fortran/ddassl.f
 
-order.lo: src/fortran/order.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o order.lo `test -f 'src/fortran/order.f' || echo '$(srcdir)/'`src/fortran/order.f
+dqpsrt.lo: src/fortran/dqpsrt.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dqpsrt.lo `test -f 'src/fortran/dqpsrt.f' || echo '$(srcdir)/'`src/fortran/dqpsrt.f
 
-epsalg.lo: src/fortran/epsalg.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o epsalg.lo `test -f 'src/fortran/epsalg.f' || echo '$(srcdir)/'`src/fortran/epsalg.f
+dqelg.lo: src/fortran/dqelg.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dqelg.lo `test -f 'src/fortran/dqelg.f' || echo '$(srcdir)/'`src/fortran/dqelg.f
 
 cfode.lo: src/fortran/cfode.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cfode.lo `test -f 'src/fortran/cfode.f' || echo '$(srcdir)/'`src/fortran/cfode.f
@@ -1121,8 +1121,8 @@ rkf45.lo: src/fortran/rkf45.f
 rchek.lo: src/fortran/rchek.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rchek.lo `test -f 'src/fortran/rchek.f' || echo '$(srcdir)/'`src/fortran/rchek.f
 
-dqag0.lo: src/fortran/dqag0.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dqag0.lo `test -f 'src/fortran/dqag0.f' || echo '$(srcdir)/'`src/fortran/dqag0.f
+dqags.lo: src/fortran/dqags.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dqags.lo `test -f 'src/fortran/dqags.f' || echo '$(srcdir)/'`src/fortran/dqags.f
 
 xerrwv.lo: src/fortran/xerrwv.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o xerrwv.lo `test -f 'src/fortran/xerrwv.f' || echo '$(srcdir)/'`src/fortran/xerrwv.f
@@ -1130,8 +1130,8 @@ xerrwv.lo: src/fortran/xerrwv.f
 twodq.lo: src/fortran/twodq.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o twodq.lo `test -f 'src/fortran/twodq.f' || echo '$(srcdir)/'`src/fortran/twodq.f
 
-dqags.lo: src/fortran/dqags.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dqags.lo `test -f 'src/fortran/dqags.f' || echo '$(srcdir)/'`src/fortran/dqags.f
+dqagse.lo: src/fortran/dqagse.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dqagse.lo `test -f 'src/fortran/dqagse.f' || echo '$(srcdir)/'`src/fortran/dqagse.f
 
 greatr.lo: src/fortran/greatr.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o greatr.lo `test -f 'src/fortran/greatr.f' || echo '$(srcdir)/'`src/fortran/greatr.f

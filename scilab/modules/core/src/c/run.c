@@ -161,7 +161,10 @@ L1: /*  Start execution of a "compiled" function  */
     lc = Lin[k + 7];
 
 L10: /* Current opcode finished handle error, interruptions,...*/
-    if (Err > 0)  return 0;
+    if (Err > 0)
+    {
+        return 0;
+    }
 
     if (C2F(basbrk).iflag)
     {
@@ -184,7 +187,10 @@ L10: /* Current opcode finished handle error, interruptions,...*/
                     Lpt[4] = Lin[k + 4];
                     Lpt[6] = k;
                     C2F(recu).macr--;
-                    if (Rstk[p - 1] == 909) Top--; /* execed function*/
+                    if (Rstk[p - 1] == 909)
+                    {
+                        Top--;    /* execed function*/
+                    }
                 }
                 /* may it will be necessary to take care of for loop variables */
             }
@@ -194,11 +200,17 @@ L10: /* Current opcode finished handle error, interruptions,...*/
         /* errcatch in exec(function,'errcatch')
           * or catched error in an external
           * or errcatch in execstr('foo()','errcatch') */
-        if (C2F(errgst).errcatch == 0) goto L999;
+        if (C2F(errgst).errcatch == 0)
+        {
+            goto L999;
+        }
         /* error under errcatch(....,'continue') */
 
         /* @TODO : replace 903 909 1001 1002 by a #define ... */
-        if (Rstk[Pt - 1] == 903 || Rstk[Pt - 1] == 909 || Rstk[Pt] == 1001 || Rstk[Pt] == 1002)  return 0;
+        if (Rstk[Pt - 1] == 903 || Rstk[Pt - 1] == 909 || Rstk[Pt] == 1001 || Rstk[Pt] == 1002)
+        {
+            return 0;
+        }
     }
     if (lc - l0 == nc)   /* is current opcodes block (if, for, .. structure) finished ?*/
     {
@@ -596,7 +608,10 @@ L47:
     if (Pstk[Pt] != 0)
     {
         Lct[8] = Ids[2 + Pt * nsiz];
-        if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
+        if (ismenu() == 1 && C2F(basbrk).interruptible)
+        {
+            goto L115;
+        }
         goto L10;
     }
     /*     fin for */
@@ -740,7 +755,10 @@ L59:
         Ids[1 + Pt * nsiz] = l0;
         Ids[2 + Pt * nsiz] = nc;
         Rstk[Pt] = 616;
-        if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
+        if (ismenu() == 1 && C2F(basbrk).interruptible)
+        {
+            goto L115;
+        }
         goto L10;
     }
     else
@@ -802,7 +820,10 @@ L66:
 
 L70:
     /* re entering run to continue macro evaluation */
-    if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
+    if (ismenu() == 1 && C2F(basbrk).interruptible)
+    {
+        goto L115;
+    }
 
 L71:
     /* reset proper values for l0 and nc if a control structure had been escaped*/
@@ -1013,10 +1034,14 @@ L101:
             if (Pt > 1)
             {
                 if (Rstk[Pt - 1] != 903 && Rstk[Pt - 1] != 909 && Rstk[Pt - 1] != 706)
+                {
                     Bot = Lin[5 + k];
+                }
             }
             else
+            {
                 Bot = Lin[5 + k];
+            }
         }
         else if (Rstk[Pt] == 503)
         {
@@ -1063,7 +1088,10 @@ L105:
         if (C2F(errgst).errcatch > 0)
         {
             /* running under errcatch(num,....) */
-            if (Rstk[Pt] != 614 && Rstk[Pt] != 615 && Rstk[Pt] != 605) C2F(errgst).err1 = 0;
+            if (Rstk[Pt] != 614 && Rstk[Pt] != 615 && Rstk[Pt] != 605)
+            {
+                C2F(errgst).err1 = 0;
+            }
             if (Pt < C2F(errgst).errpt)
             {
                 C2F(errgst).errcatch = 0;
@@ -1084,7 +1112,7 @@ L105:
         int kmac;
         for (kmac = 0; kmac < C2F(dbg).nmacs; kmac++) /* loop on table of functions containing breakpoints */
         {
-            /* does the name of the current funtion fit the registered name*/
+            /* does the name of the current function fit the registered name*/
             if (C2F(eqid)(&(C2F(vstk).idstk[kfin * nsiz]), &(C2F(dbg).macnms[kmac * nsiz])))  /* yes */
             {
                 /* test if there is a registered breakpoint at the current line*/
@@ -1115,7 +1143,10 @@ L107:
     }
     ++Lct[8];
     ++lc;
-    if (ismenu() == 1 && C2F(basbrk).interruptible) goto L115;
+    if (ismenu() == 1 && C2F(basbrk).interruptible)
+    {
+        goto L115;
+    }
 
     goto L10;
 
@@ -1180,14 +1211,22 @@ L121:
         /*  suppress loop variables if any */
         if (Rstk[Pt] == 802 || Rstk[Pt] == 612 ||
                 (Rstk[Pt] == 805 && Ids[1 + Pt * nsiz] == iselect) ||
-                (Rstk[Pt] == 616 && Pstk[Pt] == 10)) Top--;
-        if (Rstk[Pt] != 503) goto L121;
+                (Rstk[Pt] == 616 && Pstk[Pt] == 10))
+        {
+            Top--;
+        }
+        if (Rstk[Pt] != 503)
+        {
+            goto L121;
+        }
         /* recall macro to terminate the pause level */
         C2F(com).fun = 0;
         return 0;
     }
     else
+    {
         C2F(com).fun = 99;
+    }
     return 0;
 
     /*     named variable */
@@ -1270,7 +1309,7 @@ L210:
     /*     character string vector */
     if (C2F(errgst).err1 <= 0)
     {
-        n = *istk(1 + lc) * *istk(2 + lc);
+        n = *istk(1 + lc) **istk(2 + lc);
         nc = *istk(lc + 4 + n) - 1;
         ++Top;
         il = Lstk[Top] + Lstk[Top] - 1;
@@ -1323,11 +1362,17 @@ L231:
             goto L253;
         }
         /* fin points on the newly saved variable */
-        if (!(Lct[4] >= 0 && ip != semi && Fin != 0)) goto L253;
+        if (!(Lct[4] >= 0 && ip != semi && Fin != 0))
+        {
+            goto L253;
+        }
         ifin = Fin;
 L232:
         C2F(print)(istk(li), &ifin, &C2F(iop).wte);
-        if (Rstk[Pt] != 1101) goto L253;
+        if (Rstk[Pt] != 1101)
+        {
+            goto L253;
+        }
         ++Pt;
         Pstk[Pt] = li;
         Ids[1 + Pt * nsiz] = ndel;
@@ -1423,11 +1468,17 @@ L250:
         goto L253;
     }
     /*     fin points on the newly saved variable */
-    if (!(Lct[4] >= 0 && ip != semi && Fin != 0))  goto L252;
+    if (!(Lct[4] >= 0 && ip != semi && Fin != 0))
+    {
+        goto L252;
+    }
     ifin = Fin;
 L251:
     C2F(print)(istk(li), &ifin, &C2F(iop).wte);
-    if (Rstk[Pt] != 1101) goto L252;
+    if (Rstk[Pt] != 1101)
+    {
+        goto L252;
+    }
     ++Pt;
     Pstk[Pt] = li;
     Ids[1 + Pt * nsiz] = ndel;
@@ -1452,7 +1503,10 @@ L254:
 
 L252:
     /*     remove variable containing the value if required */
-    if (lastindpos != Top)   --Top;
+    if (lastindpos != Top)
+    {
+        --Top;
+    }
 
 L253:
     li += 7;

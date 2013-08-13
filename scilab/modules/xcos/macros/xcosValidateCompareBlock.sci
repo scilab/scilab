@@ -39,8 +39,8 @@ function [status, message] = xcosValidateCompareBlock(block1, block2)
     graphics1 = block1.graphics;
     graphics2 = block2.graphics;
     graphicFields = ["orig" ; "sz" ; "flip" ; "theta" ; "exprs" ;
-                     "pin" ; "pout" ; "pein" ; "peout" ; "gr_i" ;
-                     "id"; "in_implicit" ; "out_implicit"]
+    "pin" ; "pout" ; "pein" ; "peout" ; "gr_i" ;
+    "id"; "in_implicit" ; "out_implicit"]
 
     for i=1:size(graphicFields, "*")
         if or(graphics1(graphicFields(i)) <> graphics2(graphicFields(i)))
@@ -55,17 +55,17 @@ function [status, message] = xcosValidateCompareBlock(block1, block2)
     model1 = block1.model;
     model2 = block2.model;
     modelFields = [ "sim" ;
-                    "in" ; "in2" ; "intyp" ;
-                    "out" ; "out2" ; "outtyp" ;
-                    "evtin" ; "evtout" ;
-                    "state" ; "dstate" ; "odstate" ;
-                    "rpar" ; "ipar" ; "opar" ;
-                    "blocktype" ;
-                    "firing" ; "dep_ut" ;
-                    "label" ;
-                    "nzcross" ; "nmode" ;
-                    "equations"
-                  ]
+    "in" ; "in2" ; "intyp" ;
+    "out" ; "out2" ; "outtyp" ;
+    "evtin" ; "evtout" ;
+    "state" ; "dstate" ; "odstate" ;
+    "rpar" ; "ipar" ; "opar" ;
+    "blocktype" ;
+    "firing" ; "dep_ut" ;
+    "label" ;
+    "nzcross" ; "nmode" ;
+    "equations"
+    ]
     for i=1:size(modelFields, "*")
         if or(model1(modelFields(i)) <> model2(modelFields(i)))
             status = %f;

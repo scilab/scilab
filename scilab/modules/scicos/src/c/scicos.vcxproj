@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -28,19 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -98,7 +102,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;graphics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;graphics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -141,7 +145,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;graphics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;graphics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -184,7 +188,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;graphics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;graphics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -232,7 +236,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
 lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;graphics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libintl.lib;../../../../bin/blasplus.lib;../../../../bin/linpack_f.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;graphics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -262,6 +266,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="import.c" />
     <ClCompile Include="MlistGetFieldNumber.c" />
     <ClCompile Include="lsodar.c" />
+    <ClCompile Include="ddaskr.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_buildouttb.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_callblk.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_coserror.c" />
@@ -298,8 +303,6 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="scicos.c" />
     <ClCompile Include="scicos_free.c" />
     <ClCompile Include="scicos_malloc.c" />
-    <ClCompile Include="scicosclip.c" />
-    <ClCompile Include="slider.c" />
     <ClCompile Include="tree.c" />
     <ClCompile Include="var2sci.c" />
   </ItemGroup>
@@ -315,6 +318,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClInclude Include="..\..\includes\import.h" />
     <ClInclude Include="MlistGetFieldNumber.h" />
     <ClInclude Include="lsodar.h" />
+    <ClInclude Include="ddaskr.h" />
     <ClInclude Include="..\..\includes\scicos-def.h" />
     <ClInclude Include="..\..\includes\scicos.h" />
     <ClInclude Include="..\..\includes\scicos_free.h" />

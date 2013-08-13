@@ -33,8 +33,8 @@
     <refsection>
         <title>Description</title>
         <para>
-          <code>r=rdivf("d", "c")</code> returns the string <varname>r</varname> which is
-          <literal>"c/d"</literal>. Trivial simplifications such as <literal>"c/1" = "c"</literal> are performed.
+            <code>r=rdivf("d", "c")</code> returns the string <varname>r</varname> which is
+            <literal>"c/d"</literal>. Trivial simplifications such as <literal>"c/1" = "c"</literal> are performed.
         </para>
     </refsection>
     <refsection>

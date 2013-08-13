@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-22 14:59+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-29 09:09+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -313,529 +313,6 @@ msgstr ""
 "利用したパラメーターを緩めることができたかもしれません。(すなわち、fixed=false)Modelicaモデルで。これは、次のバージョンで正されるでし"
 "ょう。"
 
-msgid "IDA_MEM_NULL:The argument ida_mem was NULL"
-msgstr "IDA_MEM_NULL: 引数 ida_mem は NULL でした"
-
-msgid ""
-"IDA_ILL_INPUT: One of the input arguments was illegal. This errors message "
-"may be returned if the linear solver function initialization (called by the "
-"user after calling IDACreate) failed to set the linear solver-specific "
-"lsolve field in ida_mem."
-msgstr ""
-"IDA_ILL_INPUT: "
-"入力引数の１つは、不正でした。線形ソルバー方法の初期化でこのエラー・メッセージが返されるかもしれません。(IDACreateを呼ばれた後でユーザーによって"
-"呼ばれた)ida_memで線形ソルバーのlsolveフィールドをセットしそこねました。"
-
-msgid "IDA_NO_MALLOC: indicating that ida_mem was not allocated."
-msgstr "IDA_NO_MALLOC: ida_memは割り当てられなかったことを示します。"
-
-msgid ""
-"IDA_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
-"tout. The default value for mxstep is MXSTEP_DEFAULT = 500."
-msgstr ""
-"IDA_TOO_MUCH_WORK: "
-"ソルバーは、mxstep内蔵ステップを取りますが、toutに届かないかもしれません。mxstepのためのデフォルト値は、MXSTEP_DEFAULT = "
-"500です。"
-
-msgid ""
-"IDA_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
-"user for some internal step."
-msgstr "IDA_TOO_MUCH_ACC: ソルバーは、ある内蔵された刻みのためにユーザーの要求された正確さを満足させないかもしれません。"
-
-msgid ""
-"IDA_ERR_FAIL: Error test failures occurred too many times (=MXETF = 10) "
-"during one internal step or occurred with |h|=h_min"
-msgstr ""
-"IDA_ERR_FAIL: エラーテストの失敗は、あまりにも何度も起こりました (=MXETF = 10)内蔵刻みの間か、または |h|=h_min "
-"で起こりました"
-
-msgid ""
-"IDA_CONV_FAIL: IDACalcIC->Failed to get convergence of the Newton "
-"iterations. or IDA_solve->Convergence test failures occurred too many times "
-"(= MXNCF = 10) during one internal step. "
-msgstr ""
-"IDA_CONV_FAIL: ニュートン繰り返しの集合を得る IDACalcIC ->失敗します。または、内蔵の刻みの間に IDA_solve-"
-">集合テスト失敗 が何度も起こりました(= MXNCF = 10) "
-
-msgid "IDA_LINIT_FAIL: The linear solver''s initialization routine failed."
-msgstr "IDA_LINIT_FAIL: 線形ソルバーの初期化方法に失敗しました。"
-
-msgid ""
-"IDA_LSETUP_FAIL: The linear solver''s setup routine had a non-recoverable "
-"error."
-msgstr "IDA_LSETUP_FAIL: 線形ソルバーセットアップ方法で戻せないエラーが起きました。"
-
-msgid ""
-"IDA_LSOLVE_FAIL: The linear solver''s solve routine had a non-recoverable "
-"error."
-msgstr "IDA_LSOLVE_FAIL: 線形ソルバーを助ける方法で戻せないエラーが起きました。"
-
-msgid ""
-"IDA_RES_FAIL: The user''s residual routine returned a non-recoverable error "
-"flag."
-msgstr "IDA_RES_FAIL: ユーザーの残りの方法は、回復不能のエラーフラグを返しました。"
-
-msgid ""
-"IDA_CONSTR_FAIL: IDACalcIC was unable to find a solution satisfying the "
-"inequality constraints."
-msgstr "IDA_CONSTR_FAIL: IDACalcICは、不等制約の解決策を見つけることができませんでした。"
-
-msgid ""
-"IDA_REP_RES_ERR: The user''s residual function repeatedly returned a "
-"recoverable error flag, but the solver was unable to recover."
-msgstr ""
-"IDA_REP_RES_ERR: ユーザーの剰余関数は、回復可能なエラーフラグを繰り返しました、しかし、ソルバーは、回復することができません。"
-
-msgid "IDA_MEM_FAIL: A memory allocation failed."
-msgstr "IDA_MEM_FAIL: メモリの割り当てに失敗しました。"
-
-msgid "IDA_BAD_T: t is not in the interval [tn-hu,tn]."
-msgstr "IDA_BAD_T: t はその刻みに合いません [tn-hu,tn]."
-
-msgid ""
-"IDA_BAD_EWT: Some component of the error weight vector is zero (illegal), "
-"either for the input value of y0 or a corrected value."
-msgstr "IDA_BAD_EWT: 間違った重さベクトルの構成要素はゼロです(不正)、y０の入力値または正しい値のいずれか。"
-
-msgid ""
-"IDA_FIRST_RES_FAIL: The user''s residual routine returned  a recoverable "
-"error flag on the first call, but IDACalcIC was unable to recover."
-msgstr ""
-"IDA_FIRST_RES_FAIL: "
-"ユーザーの残りの方法は、最初の呼び出しで回復可能なエラーフラグを返しました、しかし、IDACalcICは回復することができません。"
-
-msgid ""
-"IDA_LINESEARCH_FAIL: The Linesearch algorithm failed to find a solution with "
-"a step larger than steptol in weighted RMS norm."
-msgstr ""
-"IDA_LINESEARCH_FAIL: 加重RMS標準のtol刻みよりも大きい刻みで線検索アルゴリズム解決策を見つけるのに失敗しました。"
-
-msgid ""
-"IDA_NO_RECOVERY: The user''s residual routine, or the linear solver''s setup "
-"or solve routine had a  recoverable error, but IDACalcIC was unable to "
-"recover."
-msgstr ""
-"IDA_NO_RECOVERY: "
-"ユーザーの残りの方法または線形ソルバーのセットアップ、あるいは、ソルバー方法の回復可能なエラー、しかし、IDACalcICは回復することができません。"
-
-msgid "IDA_RTFUNC_FAIL: The root founding function failed."
-msgstr "IDA_RTFUNC_FAIL: ルートの見つけた関数は失敗しました。"
-
-msgid "IDA_YOUT_NULL: ''yout'' = NULL illegal."
-msgstr "IDA_YOUT_NULL: ''yout'' = NULL 不正"
-
-msgid "IDA_TRET_NULL: ''tret'' = NULL illegal."
-msgstr "IDA_TRET_NULL: ''tret'' = NULL 不正"
-
-msgid "IDA_BAD_ITASK: Illegal value for itask."
-msgstr "IDA_BAD_ITASK: itaskの不正な値"
-
-msgid ""
-"IDA_NO_ESTOP: itask = IDA_NORMAL_TSTOP or itask = IDA_ONE_STEP_TSTOP but "
-"tstop was not set"
-msgstr ""
-"IDA_NO_ESTOP: itask = IDA_NORMAL_TSTOP または itask = IDA_ONE_STEP_TSTOP "
-"しかし、tstopはセットされませんでした"
-
-msgid "IDA_BAD_H0: h0 and tout - t0 inconsistent."
-msgstr "IDA_BAD_H0: h0とtout - t0 一貫性がありません"
-
-msgid ""
-"IDA_BAD_TSTOP: tstop is behind current simulation time in the direction of "
-"integration."
-msgstr "IDA_BAD_TSTOP: tstopは、統合の方向への現在のシミュレーション時間で遅れます。"
-
-msgid "IDA_BAD_INIT_ROOT: Root found at and very near initial t."
-msgstr "IDA_BAD_INIT_ROOT: ルートを見つけました、そしてとても近い最初の t"
-
-msgid "IDA_NO_EFUN: itol = IDA_WF but no EwtSet function was provided."
-msgstr "IDA_NO_EFUN: itol = IDA_WF しかし、いかなるEwtSet機能も提供されませんでした。"
-
-msgid "IDA_EWT_FAIL: The user-provide EwtSet function failed."
-msgstr "IDA_EWT_FAIL: ユーザー提供のEwtSet関数は失敗しました。"
-
-msgid ""
-"IDACalc cannot find the initial condition at this point. If you are using a "
-"Modelica model, you can try with the initialization GUI to try with other "
-"nonlinear solvers."
-msgstr ""
-"IDACalcは、初期状態をその点で見つけることができません。Modelicaモデルを使うか、他の非線形の解を試みるために、初期化GUIで試みることができ"
-"ます。"
-
-msgid "IDA_LSOLVE_NULL: The linear solver''s solve routine is NULL."
-msgstr "IDA_LSOLVE_NULL: 線形ソルバーの助ける手順は NULL です。"
-
-msgid "IDA_NULL_Y0: y0 = NULL illegal."
-msgstr "IDA_NULL_Y0: y0 = NULL 不正です。"
-
-msgid ""
-"IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
-"and IDA_WF."
-msgstr "IDA_BAD_ITOL: itolの値が不正です. 正しい値は IDA_SS, IDA_SV, および IDA_WFです."
-
-msgid "IDA_NULL_F: user supplied ODE routine is (NULL) illegal."
-msgstr "IDA_NULL_F: ユーザ供給の ODE 方法は (NULL) 不正です。"
-
-msgid "IDA_BAD_NVECTOR: A required vector operation is not implemented."
-msgstr "IDA_BAD_NVECTOR: 要求されたベクトル操作は装備されていません。"
-
-msgid "IDA_NULL_ABSTOL: absolute tolerances is = NULL illegal."
-msgstr "IDA_NULL_ABSTOL:  絶対許容誤差 = NULL の不正です。"
-
-msgid "IDA_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
-msgstr "IDA_BAD_RELTOL: 相対許容度は reltol < 0 で不正です."
-
-msgid "IDA_BAD_ABSTOL: abstol has negative component(s) (illegal)."
-msgstr "IDA_BAD_ABSTOL: abstolは、否定の構成要素を持っています(不正)"
-
-msgid "IDA_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
-msgstr "IDA_NULL_G: ユーザ供給のゼロ交差方法は (NULL) の不正です。"
-
-msgid ""
-"IDA_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
-"integration"
-msgstr "IDA_BAD_TOUT: 書き込み問題、''tout'' 統合の方向にあまりに遠いです"
-
-msgid "IDA_YP0_NULL: the derivative yp0 = NULL is illegal."
-msgstr "IDA_YP0_NULL: the derivative yp0 = NULL は不正です。"
-
-msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
-msgstr "IDA_RES_NULL: 残差の戻り値 res = NULL が正しくありません."
-
-msgid "IDA_YRET_NULL: yret = NULL illegal.."
-msgstr "IDA_YRET_NULL: yret = NULL 不正.."
-
-msgid "IDA_YPRET_NULL: yret = NULL illegal.."
-msgstr "IDA_YPRET_NULL: yret = NULL 不正.."
-
-msgid "IDA_BAD_HINIT: yret = NULL illegal.."
-msgstr "IDA_BAD_HINIT: yret = NULL 不正.."
-
-msgid ""
-"IDA_MISSING_ID :id = NULL (''id'' defines algebraic and differential states) "
-"but suppressalg option on."
-msgstr "IDA_MISSING_ID :id = NULL (''id'''定義代数と差分の状態)しかしsuppressalg選択"
-
-msgid "IDA_Y0_FAIL_CONSTR: y0 fails to satisfy constraints."
-msgstr "IDA_Y0_FAIL_CONSTR: y0 は制約を満足させられませんでした。"
-
-msgid "IDA_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
-msgstr "IDA_TOO_CLOSE:  開始統合に ''tout'' また ''t0'' に近いです。"
-
-msgid "IDA_CLOSE_ROOTS: Root found at and very near starting time."
-msgstr "IDA_CLOSE_ROOTS: ルートで見つけました、そしてとても近い開始時間。"
-
-msgid "IDA_Residual_NAN: The residual function returns NAN."
-msgstr "IDA_Residual_NAN: 剰余関数はNANを返します。"
-
-msgid "IDA_Rootfunction_NAN: The Root function returns NAN."
-msgstr "IDA_Rootfunction_NAN: ルート関数は NAN を返しました。"
-
-msgid ""
-"CV_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
-"''tout''. The default value for mxstep is MXSTEP_DEFAULT = 500."
-msgstr ""
-"CV_TOO_MUCH_WORK: ソルバーはmxstep内蔵刻みを取りますが ''tout'' "
-"に届かないかもしれません。mxstepのためのデフォルト値は、MXSTEP_DEFAULT = 500 です。"
-
-msgid ""
-"CV_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
-"user for some internal step"
-msgstr "CV_TOO_MUCH_ACC: ソルバが 内部積分計算でユーザ指定の精度を満たせませんでした."
-
-msgid ""
-"CV_ERR_FAILURE: Error test failures occurred too many times (=MXETF = 7) "
-"during one internal step or occurred with |h|=h_min "
-msgstr ""
-"CV_ERR_FAILURE: 1回の積分ステップにおける制限回数(=MXETF = 7) のエラーが発生したか, |h| = hmin となりました. "
-
-msgid ""
-"CV_CONV_FAILURE: Convergence test failures occurred too many times (= MXNCF "
-"= 10) during one internal time step or occurred with |h| = hmin."
-msgstr ""
-"CV_CONV_FAILURE: 1回の積分ステップにおける制限回数(=MXNCF = 10) の収束エラーが発生したか, |h| = hmin "
-"となりました."
-
-msgid "CV_LINIT_FAIL: The linear solver''s initialization function failed."
-msgstr "CV_LINIT_FAIL: 線形ソルバーの初期化手順に失敗しました"
-
-msgid ""
-"CV_LSETUP_FAIL: The linear solver''s setup routine failed in an "
-"unrecoverable manner."
-msgstr "CV_LSETUP_FAIL: 線形ソルバーのセットアップ手順は、復旧できない方法で失敗しました。"
-
-msgid ""
-"CV_LSOLVE_FAIL: The linear solver''s solve routine failed in an "
-"unrecoverable manner."
-msgstr "CV_LSOLVE_FAIL: 線形ソルバのソルバルーチンが復旧できないエラーを発生しました."
-
-msgid ""
-"CV_RHSFUNC_FAIL: The right-hand side function (user supplied ODE) failed in "
-"an unrecoverable manner"
-msgstr "CV_RHSFUNC_FAIL: 右辺側の関数(ユーザー定義のODE)が回復できないエラーを発生しました"
-
-msgid ""
-"CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
-"recoverable error at the first call"
-msgstr "CV_FIRST_RHSFUNC_ERR: 右辺の関数(ユーザ定義のODE)の初回コール時に回復可能なエラーが発生しました"
-
-msgid ""
-"CV_REPTD_RHSFUNC_ERR: Convergence tests occurred too many times due to "
-"repeated recoverable errors in the right-hand side function (user supplied "
-"ODE). This error may be raised due to repeated  recoverable errors during "
-"the estimation of an initial step size."
-msgstr ""
-"CV_REPTD_RHSFUNC_ERR: "
-"収束判定時に,右辺側の関数(ユーザ定義のODE)において回復可能なエラーの発生回数が制限値を超えました.このエラーは, "
-"時間ステップの初期推定時に回復可能なエラーを繰り返し発生したことによる可能性があります."
-
-msgid ""
-"CV_UNREC_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
-"recoverable error, but no recovery was possible."
-msgstr ""
-"CV_UNREC_RHSFUNC_ERR: "
-"右手側の関数(ユーザ供給のODE)回復可能なエラーが起きました、しかし、いかなる回復も可能ではありませんでした。"
-
-msgid ""
-"CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."
-msgstr "CV_RTFUNC_FAIL:　救解ルーチンで回復不能のエラーが発生しました."
-
-msgid ""
-"CV_MEM_FAIL: a memory allocation failed, including an attempt to increase "
-"maxord"
-msgstr "CV_MEM_FAIL: メモリー割り当てに失敗しました、maxordを増やす試みを含みます。"
-
-msgid "CV_MEM_NULL: the cvode memory was NULL"
-msgstr "CV_MEM_NULL: cvode メモリはNULLでした"
-
-msgid ""
-"CV_ILL_INPUT: indicating an input argument was illegal. This include the "
-"situation where a component of the error weight vector becomes negative "
-"during internal time-stepping. This also includes if the linear solver "
-"function initialization (called by the user after calling CVodeCreat) failed "
-"to set the linear solver-specific ''lsolve'' field in cvode_mem. This error "
-"happens if number of root functions is positive but the return surface value "
-"is NULL. "
-msgstr ""
-"CV_ILL_INPUT: 入力引数が間違っていると判定されています. "
-"これには,内部的な積分計算時に誤差重みベクトルの要素が負となるような状況も含まれています.また,(CVodeCreatをコールした後でユーザによりコールさ"
-"れた)線形ソルバ関数の初期化時にcvode_memの線形ソルバ専用のフィールド \"lsolve\" の設定に失敗したことも考えられます.このエラーは, "
-"root関数の数が正にもかかわらず,返される surface の値が NULLの場合に発生します. "
-
-msgid ""
-"CV_NO_MALLOC: indicating that cvode_mem has not been allocated (i.e., "
-"CVodeMalloc has not been called)."
-msgstr ""
-"CV_NO_MALLOC: cvode_memが割り当てられなかったことを示します(すなわち、CVodeMallocが呼ばれませんでした)"
-
-msgid ""
-"CV_BAD_K: k (the order of the derivative of y to be computed) is not in the "
-"range 0, 1, ..., qu, where qu is the order last used"
-msgstr ""
-"CV_BAD_K: k (計算するyの微分の次数) が 0.1,...,qu の範囲にありません.ただし. qu は直近に使用された次数です."
-
-msgid "CV_BAD_T: t is not in the interval [tn-hu,tn]."
-msgstr "CV_BAD_T: t はその刻みに合いません [tn-hu,tn]."
-
-msgid ""
-"CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
-"[((d/dt)^k)y](t)."
-msgstr "CV_BAD_DKY: dky引数が NULLでした. dky iは出力微分ベクトル [((d/dt)^k)y](t)です."
-
-msgid "CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
-msgstr "CV_TOO_CLOSE: 積分を開始するためには, ''tout'' が ''t0'' に接近しすぎています."
-
-msgid "CV_YOUT_NULL: ''yout'' = NULL illegal."
-msgstr "CV_YOUT_NULL: ''yout'' = NULL 不正です。"
-
-msgid "CV_TRET_NULL: ''tret'' = NULL illegal."
-msgstr "CV_TRET_NULL: ''tret'' = NULL 不正です。"
-
-msgid "CV_BAD_ITASK: Illegal value for itask."
-msgstr "CV_BAD_ITASK: itaskへの不正な値です。"
-
-msgid ""
-"CV_NO_ESTOP: itask = CV_NORMAL_TSTOP or itask = CV_ONE_STEP_TSTOP but tstop "
-"was not set"
-msgstr ""
-"CV_NO_ESTOP: itask = CV_NORMAL_TSTOP または itask = CV_ONE_STEP_TSTOP "
-"しかし、tstopはセットされませんでした"
-
-msgid "CV_BAD_H0: h0 and tout - t0 inconsistent."
-msgstr "CV_BAD_H0: h0 と tout - t0 に一貫性がありません."
-
-msgid ""
-"CV_BAD_TSTOP: tstop is behind current simulation time in the direction of "
-"integration."
-msgstr "CV_BAD_TSTOP: tstop が積分方向のカレントのシミュレーション時間を過ぎています."
-
-msgid "CV_BAD_INIT_ROOT: Root found at and very near initial t."
-msgstr "CV_BAD_INIT_ROOT:  tの初期値またはその近傍に根がみつかりました."
-
-msgid "CV_NO_EFUN: itol = CV_WF but no EwtSet function was provided."
-msgstr "CV_NO_EFUN: itol = CV_WF しかし、いかなるEwtSet関数も提供されませんでした。"
-
-msgid "CV_EWT_FAIL: The user-provide EwtSet function failed."
-msgstr "CV_EWT_FAIL: ユーザー提供のEwtSet関数は失敗しました。"
-
-msgid "CV_BAD_EWT: Initial ewt has component(s) equal to zero (illegal)."
-msgstr "CV_BAD_EWT: 最初のewtは、ゼロに等しい構成要素を持っています(不正)。"
-
-msgid "CV_LSOLVE_NULL: The linear solver''s solve routine is NULL."
-msgstr "CV_LSOLVE_FAIL: 線形ソルバのソルバルーチンがNULLです."
-
-msgid "CV_NULL_Y0: y0 = NULL illegal."
-msgstr "CV_NULL_Y0: y0 = NULL 不正です。"
-
-msgid ""
-"CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and "
-"CV_WF."
-msgstr "CV_BAD_ITOL: itolの値が不正です. 正しい値はT CV_SS, CV_SV, および CV_WFです."
-
-msgid "CV_NULL_F: user supplied ODE routine is (NULL) illegal."
-msgstr "CV_NULL_F: ユーザ定義のODE ルーチンが不正 (NULL)です。"
-
-msgid "CV_BAD_NVECTOR: A required vector operation is not implemented."
-msgstr "CV_BAD_NVECTOR: 指定されたベクトル処理は実装されていません."
-
-msgid "CV_NULL_ABSTOL: absolute tolerances is = NULL illegal."
-msgstr "CV_NULL_ABSTOL: 絶対許容誤差 = NULL の不正です。"
-
-msgid "CV_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
-msgstr "CV_BAD_RELTOL: 相対許容度 reltol < 0 は不正です。"
-
-msgid "CV_BAD_ABSTOL: abstol has negative component(s) (illegal)."
-msgstr "CV_BAD_ABSTOL: abstol は, (間違った)負の要素を有してます."
-
-msgid "CV_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
-msgstr "CV_NULL_G: ユーザ定義のゼロ交差判定ルーチンが不正 (NULL)です。"
-
-msgid ""
-"CV_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
-"integration"
-msgstr "CV_BAD_TOUT: 補間計算で問題を発生しました. \"tout\" が積分方向から後方に戻りすぎています."
-
-msgid "CV_CLOSE_ROOTS: Root found at and very near starting time."
-msgstr "CV_CLOSE_ROOTS: 開始時間またはその近傍に根がみつかりました."
-
-msgid "CV_Derivative_NAN: The Derivatives returned by blocks are NAN."
-msgstr "CV_Derivative_NAN: ブロックから返された微係数が NaN です."
-
-msgid "CV_Rootfunction_NAN: The Root function returns NAN."
-msgstr "CV_Rootfunction_NAN: root 関数がNaNを返しました."
-
-msgid ""
-"KIN_MEM_NULL: An error in the memory allocation in KINCreate or KINMalloc."
-msgstr "KIN_MEM_NULL: KINCreate または KINMalloc のメモリ割り当てエラー"
-
-msgid "KIN_ILL_INPUT: A supplied parameter is invalid (check error message)."
-msgstr "KIN_ILL_INPUT: 提供されたパラメーターは無効です(エラー・メッセージを確認してください)"
-
-msgid ""
-"KIN_NO_MALLOC: Additional system memory has not yet been  allocated for "
-"vector storage (forgot to call the  KINMalloc routine)"
-msgstr ""
-"KIN_NO_MALLOC: 追加のシステム・メモリは、まだベクトル領域のために割り当てられませんでした(KINMalloc方法の呼び出しを忘れました)"
-
-msgid ""
-"KIN_MEM_FAIL: An error occurred during memory allocation (either "
-"insufficient system resources are available or the vector kernel has not yet "
-"been initialized "
-msgstr ""
-"KIN_MEM_FAIL: "
-"メモリ割り当て中にエラーが起きました。(不十分なシステム・リソースは、利用できないか、あるいはベクトル・カーネルは、まだ初期化されませんでした) "
-
-msgid ""
-"KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
-"iterate sufficiently distinct  from the current iterate failure to satisfy "
-"the sufficient decrease condition could mean the current iterate is close to "
-"an approximate solution of the given nonlinear system, the finite-difference "
-" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
-"real scalar scsteptol is too large "
-msgstr ""
-"KIN_LINESEARCH_NONCONV:  "
-"線検索アルゴリズムは、十分な繰り返しを見つけることができません。現在は、納得させることの失敗を繰り返します。繰り返す状態が意味することができた減少は与えら"
-"れた非線形システムのおおよその解決策に近いです。領域差分法の近似値、行列ベクトル製品 J(u)*v "
-"は、不正確です、あるいは、実スカラーがあるscsteptolは、あまりにも大きいです。 "
-
-msgid ""
-"KIN_MAXITER_REACHED: The maximum number of nonlinear iterations has been "
-"reached "
-msgstr "KIN_MAXITER_REACHED: 非線形の繰り返しの最大数に達しました。 "
-
-msgid ""
-"KIN_MXNEWT_5X_EXCEEDE: Five consecutive steps have been taken that satisfy "
-"the following inequality:  ||uscale*p||_L2 > 0.99*mxnewtstep where p denotes "
-"the current step and mxnewtstep is a real scalar upper bound on the scaled "
-"step length such a failure may mean ||fscale*func(u)||_L2 asymptotes from "
-"above to a finite value, or the real scalar mxnewtstep is too small "
-msgstr ""
-"KIN_MXNEWT_5X_EXCEEDE: 以下の不平等と納得させる５回の連続刻みが取られました: "
-"pが現在の刻みを示す、||uscale*p||_L2 > 0.99*mxnewtstep "
-"そして、mxnewtstepは、本当のスカラーがある上位のはずみです。上から限りある値に ||fscale*func(u)||_L2 "
-"漸近線が失敗を意味するかもしれない目盛り刻み長さ、 あるいは、実スカラーの mxnewtstep は、あまりにも小さいです。 "
-
-msgid ""
-"KIN_LINESEARCH_BCFAI: The line search algorithm (implemented in "
-"KINLineSearch) was unable to satisfy the beta-condition for MXNBCF + 1 "
-"nonlinear iterations (not necessarily consecutive), which may indicate the "
-"algorithm is making  poor progress "
-msgstr ""
-"KIN_LINESEARCH_BCFAI: "
-"線検索アルゴリズム(KINLineSearchで装備された)はベータ状態のため納得させることができなかったです。なぜなら、MXNBCF+１回の非線形の繰り"
-"返し(必ずしも連続しない)、貧しい進歩のアルゴリズムを示すかもしれません。 "
-
-msgid ""
-"KIN_LINSOLV_NO_RECOVERY: The user-supplied routine psolve encountered a "
-"recoverable error, but the preconditioner is already current"
-msgstr ""
-"KIN_LINSOLV_NO_RECOVERY: ユーザー供給のpsolveは、回復可能なエラーに遭遇しました。しかし、現在は既に前調整です"
-
-msgid ""
-"KIN_LINIT_FAIL: The linear solver initialization routine (linit) encountered "
-"an error."
-msgstr "KIN_LINIT_FAIL: 線形ソルバーの初期化方法(linit)はエラーに遭遇しました。"
-
-msgid ""
-"KIN_LSETUP_FAIL: The user-supplied routine pset (used to compute the "
-"preconditioner) encountered an unrecoverable error ."
-msgstr "KIN_LSETUP_FAIL: ユーザー供給のpset(前調整を計算するために使用される)で回復できないエラーが起きました。"
-
-msgid ""
-"KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the "
-"preconditioned linear system) encountered an unrecoverable error, or the "
-"linear solver routine (lsolve) encountered an error condition."
-msgstr ""
-"KIN_LSOLVE_FAIL: (前処理で線形システムを解く際に使用される)ユーザ定義の "
-"psolveルーチンで回復不能のエラーが発生したか,もしくは,線形システムルーチン(lsolve)でエラー条件が発生しました."
-
-msgid ""
-"KIN_SYSFUNC_FAIL: Error in the computing function. Please verify your model."
-msgstr "KIN_SYSFUNC_FAIL: 計算方法のエラー、 どうぞモデルを確かめて下さい。"
-
-msgid ""
-"KIN_FIRST_SYSFUNC_ERR: The system function failed at the first call. Please "
-"verify your model. There might be an error in the computing function, for "
-"example a function may be called with illegal inputs."
-msgstr ""
-"KIN_FIRST_SYSFUNC_ERR: "
-"システム関数は最初の呼び出しで失敗しました。どうぞモデルを確かめて下さい。計算中の関数に間違いがあるかもしれません、例えば、関数は不法な入力で呼ばれるかも"
-"しれません。"
-
-msgid ""
-"KIN_REPTD_SYSFUNC_ERR: The system function failed repeatedly. Please verify "
-"your model. There might be an error in the computing function, for example a "
-"function may be called with illegal inputs"
-msgstr ""
-"KIN_REPTD_SYSFUNC_ERR: "
-"システム関数は繰り返し失敗しました。どうぞモデルを確かめて下さい。計算している関数に間違いはあるかもしれません、例えば、関数は不法の入力で呼ばれるかもしれ"
-"ません"
-
-msgid ""
-"KIN_NAN_ERR: The residual function returns NAN. Please verify your model: "
-"some functions might be called with illegal inputs."
-msgstr "KIN_NAN_ERR: 剰余関数は NAN を返します。どうぞモデルを確かめて下さい: いくつかの関数は、不法な入力で呼ばれました。"
-
 msgid "unknown or erroneous block"
 msgstr "未知、または誤りのあるブロック"
 
@@ -978,9 +455,6 @@ msgid ""
 "ATOL)\n"
 msgstr "**** SUNDIALS.Ida: 動作のための十分な時間=%g (硬領域, RTOLとATOLの変更)\n"
 
-msgid "End of activation"
-msgstr "有効化の終わり"
-
 #, c-format
 msgid "block %d is called "
 msgstr "ブロック %d が呼ばれました "
@@ -1026,6 +500,51 @@ msgid ""
 msgstr ""
 "\n"
 "警告: ゼロ交差判定用の関数 #%d が NaNを返しました"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The residual function #%d returns a NaN"
+msgstr ""
+"\n"
+"警告: 残差関数 #%d が NaN を返しました"
+
+msgid ""
+"\n"
+"Error: Problem in the evaluation of a root function"
+msgstr ""
+"\n"
+"エラー: ルート関数の評価時に問題が発生しました"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner evaluation function returns a NaN at index #%d."
+msgstr ""
+"\n"
+"警告: プリコンディショナ評価関数が添字 #%d で NaN を返しました."
+
+msgid ""
+"\n"
+"Error: The preconditioner evaluation function failed."
+msgstr ""
+"\n"
+"エラー: プリコンディショナ評価関数が失敗しました."
+
+msgid ""
+"\n"
+"Error: Failed to factor the preconditioner."
+msgstr ""
+"\n"
+"エラー: プリコンディショナの分解に失敗しました."
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner application function returns a NaN at index #%d."
+msgstr ""
+"\n"
+"警告: プリコンディショナアプリケーション関数が添字 #%d で NaN を返しました."
 
 #, c-format
 msgid ""
@@ -1090,10 +609,6 @@ msgstr ""
 " residual関数が NAN/inf を返しました.\n"
 "モデルを検証してください:\n"
 "誤った入力を指定して関数がコールされた可能性があります."
-
-#, c-format
-msgid "Slider t=%10.3f, flag=%d \n"
-msgstr "スライダー t=%10.3f, フラグ=%d \n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -1187,8 +702,8 @@ msgstr ""
 msgid "Simulation parameters not set:"
 msgstr "シミュレーションパラメータが設定されていません:"
 
-msgid "Initialisation problem:"
-msgstr "問題を初期化:"
+msgid "Initialization problem:"
+msgstr "初期化の問題:"
 
 msgid "Simulation problem: "
 msgstr "問題をシミュレーション: "
@@ -1199,6 +714,20 @@ msgstr "問題を終了: "
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+msgid "Your model contains states defined in standard Scicos blocks.\n"
+msgstr "モデルには標準Scicosブロックで定義された状態量が含まれます.\n"
+
+#, c-format
+msgid "Initialisation problem in %s "
+msgstr "%s の初期化問題 "
+
+#, c-format
+msgid "Initialisation problem in the %s method"
+msgstr "%s メソッドの初期化問題"
+
+msgid "Initialisation problem in the finish phase"
+msgstr "終了フェーズにおける初期化問題"
 
 msgid "Problem with the block generated from modelica blocks."
 msgstr "modelicaブロックから生成されたブロックを有する問題"
@@ -1236,6 +765,55 @@ msgstr "ブロックに型に互換性がない<br />接続済みの入力ポー
 #, c-format
 msgid "%s: Error: A scifunc block has not been defined."
 msgstr "%s: エラー: scifuncブロックは、定義されませんでした。"
+
+#, c-format
+msgid " Main Modelica : %s"
+msgstr " Main Modelica: %s"
+
+msgid "No block can be activated"
+msgstr "ブロックを有効にできません"
+
+msgid "Problem in port size or type."
+msgstr "ポートの大きさと型に問題があります."
+
+msgid ""
+"No continuous-time state. Thresholds are ignored; this \n"
+"may be OK if you don't generate external events with them.\n"
+"If you want to reactivate the thresholds, then you need\n"
+"to include a block with continuous-time state in your diagram.\n"
+"   You can for example include DUMMY CLSS block (linear palette)."
+msgstr ""
+"No continuous-time state. Thresholds are ignored; this \n"
+"may be OK if you don't generate external events with them.\n"
+"If you want to reactivate the thresholds, then you need\n"
+"to include a block with continuous-time state in your diagram.\n"
+"   You can for example include DUMMY CLSS block (linear palette)."
+
+msgid "Diagram contains implicit blocks, compiling for implicit Solver."
+msgstr "ダイアグラムには陰的ブロックが含まれています. 陰解法でコンパイル中."
+
+msgid "Algebraic loop on events."
+msgstr "イベントに代数ループがあります."
+
+msgid "Algebraic loop."
+msgstr "代数ループ"
+
+msgid "A C or Fortran block is used but not linked.\n"
+msgstr "CまたはFortranブロックが使用されていますが, リンクされていません.\n"
+
+#, c-format
+msgid "Number of modes in block #%d cannot be determined."
+msgstr "ブロック #%d のモード番号が定義されていません."
+
+#, c-format
+msgid "Number of zero crossings in block #%d cannot be determined."
+msgstr "ブロック #%d 中のゼロ交差の数を定義できませんでした."
+
+msgid "Not enough information to find port sizes.\n"
+msgstr "ポートの大きさを見つけるために十分な情報がありません.\n"
+
+msgid "I cannot find a link with undetermined size.\n"
+msgstr "大きさが未定義のリンクが見つかりません.\n"
 
 msgid "One of this block output has negative size.<br />Please check."
 msgstr "このｂロックの出力の一つの大きさが負になっています.<br />確認してください."
@@ -1277,8 +855,94 @@ msgid ""
 "port has a non-determined type:"
 msgstr "<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック入力ポートの型が一部定義されていません:"
 
+msgid ""
+"Highlighted block(s) have connected ports \n"
+"with  sizes that cannot be determined by the context.\n"
+"What is the size of this link?"
+msgstr ""
+"ハイライト表示されたブロックは,大きさがコンテキストにより定義できない接続ポートを有しています.\n"
+"このリンクの大きさは何ですか?"
+
+#, c-format
+msgid "the dep_ut size of the %s block is not correct.\n"
+msgstr "%s ブロックの dep_ut の大きさが間違っています.\n"
+
+msgid "Not enough information to find port type.\n"
+msgstr "ポートの型を定義するために十分な情報がありません.\n"
+
+msgid "The initialization file already exists!"
+msgstr "初期化ファイルが既に存在します!"
+
+msgid "Do you want to overwrite it?"
+msgstr "上書きしますか?"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "Modelica blocks are reduced to a block with:"
+msgstr "Modelicaブロックが以下のブロックに縮小されました:"
+
+#, c-format
+msgid "Number of differential states: %d"
+msgstr "微分状態量の数: %d"
+
+#, c-format
+msgid "Number of algebraic states: %d"
+msgstr "代数状態量の数: %d"
+
+#, c-format
+msgid "Number of discrete time states  : %d"
+msgstr "離散時間状態量の数: %d"
+
+#, c-format
+msgid "Number of zero-crossing surfaces: %d"
+msgstr "ゼロ交差面の数: %d"
+
+#, c-format
+msgid "Number of modes  : %d"
+msgstr "モードの数: %d"
+
+#, c-format
+msgid "Number of inputs : %d"
+msgstr "入力の数: %d"
+
+#, c-format
+msgid "Number of outputs: %d"
+msgstr "出力の数: %d"
+
+#, c-format
+msgid "Input/output dependency:[%s]"
+msgstr "入力/出力の依存性:[%s]"
+
+#, c-format
+msgid "Analytical Jacobian: enabled  (%%Jacobian=%s)"
+msgstr "解析的なヤコビアン: 有効 (%%Jacobian=%s)"
+
+#, c-format
+msgid "Parameter embedding mode: enabled (%%Modelica_ParEmb=%s)"
+msgstr "パラメータ埋込みモード: 有効 (%%Modelica_ParEmb=%s)"
+
+#, c-format
+msgid "Generated files path: %s"
+msgstr "生成されたファイルパス: %s"
+
+msgid "Hyper Matrix is not supported"
+msgstr "ハイパー行列はサポートされていません"
+
 msgid "Type not recognized"
 msgstr "認められない型"
+
+msgid "Complex Matrix is not supported"
+msgstr "複素行例はサポートされていません"
+
+msgid "Block is ignored because of undefined input(s)."
+msgstr "入力が未定義のため,ブロックは無視されます."
+
+msgid "Superblock should not contains any Scilab function block."
+msgstr "スーパーブロックにScilab関数ブロックを含めてはいけません."
 
 msgid "Evaluation problem: value not updated from context."
 msgstr "評価時の問題: 値をコンテキストから更新できません."
@@ -1286,11 +950,32 @@ msgstr "評価時の問題: 値をコンテキストから更新できません.
 msgid "Evaluation problem: Unknown block"
 msgstr "評価時の問題: 未知のブロック"
 
+msgid "Cannot load dynamic library: "
+msgstr "動的ライブラリを読み込めませんでした: "
+
+msgid "Can't include "
+msgstr "読み込めませんでした "
+
+msgid "This file does not exist"
+msgstr "このファイルは存在しません"
+
+msgid "-------Modelica compiler error (with the translator):-------"
+msgstr "-------Modelica コンパイラエラー (トランスレータ付き):-------"
+
+msgid "Please read the error message in the Scilab window"
+msgstr "Scilabウインドウのエラーメッセージを読んでください"
+
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr "すみません: C か FORTRAN言語のみがサポートされています"
 
 msgid "Sorry file name not defined in "
 msgstr "すみません、ファイル名は定義されていません "
+
+msgid "I/O blocks must be only used in a Super Block"
+msgstr "I/Oブロックはスーパーブロックでのみ使用可能です"
+
+msgid "This Super block input port is not connected."
+msgstr "このスーパーブロックの入力ポートが接続されていません."
 
 #, c-format
 msgid "%s: Empty diagram"
@@ -1318,6 +1003,15 @@ msgstr "%s: ブロックパラメータ '%s' の大きさが間違っていま�
 #, c-format
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
 msgstr "%s: ブロックパラメータ '%s' の型が間違っています:  %s(%s) を予測しましたが, %s が取得されました"
+
+msgid "There are too many Modelica files.\n"
+msgstr "Modelicaファイルが多すぎます.\n"
+
+msgid "-------Modelica translator error message:-----"
+msgstr "-------Modelica トランスレータのエラーメッセージ :-----"
+
+msgid "-------XML to Modelica error:-------"
+msgstr "-------XML  to Modelicaエラー:-------"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

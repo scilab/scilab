@@ -18,21 +18,29 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void extractor(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void extractor(scicos_block *block, int flag)
 {
-  int i = 0,j = 0;
-  if(flag==1){
-    for(i=0;i<block->nipar;++i){
-      j=block->ipar[i]-1;
-      if(j<0) j=0;
-      if(j>=block->insz[0]) j=block->insz[0]-1;
-      block->outptr[0][i]=block->inptr[0][j];
+    int i = 0, j = 0;
+    if (flag == 1)
+    {
+        for (i = 0; i < block->nipar; ++i)
+        {
+            j = block->ipar[i] - 1;
+            if (j < 0)
+            {
+                j = 0;
+            }
+            if (j >= block->insz[0])
+            {
+                j = block->insz[0] - 1;
+            }
+            block->outptr[0][i] = block->inptr[0][j];
+        }
     }
-  }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

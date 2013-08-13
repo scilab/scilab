@@ -28,19 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -282,6 +286,7 @@ lib /DEF:"$(ProjectDir)uiwidget_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\getHandleProperty\get_handle_visible_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_hidden_axis_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_hidden_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_image_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_immediate_drawing_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_info_message_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_interp_color_mode.c" />
@@ -323,6 +328,7 @@ lib /DEF:"$(ProjectDir)uiwidget_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\getHandleProperty\get_thickness_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_resizefcn_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_image_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_tag_property.c" />
     <ClCompile Include="src\c\get_ticks_utils.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_color_property.c" />
@@ -400,7 +406,6 @@ lib /DEF:"$(ProjectDir)uiwidget_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="sci_gateway\c\sci_rotate_axes.c" />
     <ClCompile Include="sci_gateway\c\sci_rubberbox.c" />
     <ClCompile Include="sci_gateway\c\sci_set.c" />
-    <ClCompile Include="sci_gateway\c\sci_show_pixmap.c" />
     <ClCompile Include="sci_gateway\c\sci_show_window.c" />
     <ClCompile Include="sci_gateway\c\sci_StringBox.c" />
     <ClCompile Include="sci_gateway\c\sci_swap_handles.c" />

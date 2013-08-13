@@ -19,7 +19,7 @@
     <refsection>
         <title>Introduction</title>
         <para>
-            Following the type of problem studied, finding out which method to use is not always obvious, only general guidelines can be established. Those are and discussed in this page.
+            Following the type of problem, finding out which method to use is not always obvious, only general guidelines can be established. Those are discussed in this page.
         </para>
         <title>Variable-size and Fixed-size</title>
         <para>
@@ -102,7 +102,7 @@
         </para>
         <title>So how to choose ?</title>
         <para>
-            Because it is not possible to know for sure wether a solver will be efficient for a given system or not, the best way is to run the most probable one on it and to compare their results.
+            Because it is not possible to know for sure whether a solver will be efficient for a given system or not, the best way is to run the most probable one on it and to compare their results.
         </para>
         <para>
             The user should first establish the complexity of his problem (stability / stiffness) and if he desires high precision, rapid simulation, predictable time or an automated program.
@@ -121,9 +121,9 @@
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Examples - ODEs</title>
         <para>
-            We will begin with a simple nonstiff example: a Sinus integration.
+            We will begin with a simple nonstiff example: a Sine integration.
         </para>
         <para>
             <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/ODE_Example.zcos">
@@ -143,7 +143,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
         </para>
         <para>
             In the following script, we compare the time difference between the solvers by running the example with the eight solvers in turn (<emphasis>IDA</emphasis> doesn't handle this kind of problem):
-            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchSinus.sce">
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchSine.sce">
                 Open the script
             </link>
         </para>
@@ -189,30 +189,30 @@ Time for implicit Runge-Kutta:
                 <tr>
                     <td align="center"> </td>
                     <td align="center">
-                        <emphasis>BDF / Newton</emphasis> 
+                        <emphasis>BDF / Newton</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>BDF / Functional</emphasis> 
+                        <emphasis>BDF / Functional</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Adams / Newton</emphasis> 
+                        <emphasis>Adams / Newton</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Adams / Functional</emphasis> 
+                        <emphasis>Adams / Functional</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Dormand-Prince</emphasis> 
+                        <emphasis>Dormand-Prince</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Runge-Kutta</emphasis> 
+                        <emphasis>Runge-Kutta</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Implicit Runge-Kutta</emphasis> 
+                        <emphasis>Implicit Runge-Kutta</emphasis>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>LSodar</emphasis> 
+                        <emphasis>LSodar</emphasis>
                     </td>
                     <td align="center"> 3.1x </td>
                     <td align="center"> 3x </td>
@@ -224,7 +224,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>BDF / Newton</emphasis> 
+                        <emphasis>BDF / Newton</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> 0.1x </td>
@@ -236,7 +236,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>BDF / Functional</emphasis> 
+                        <emphasis>BDF / Functional</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -248,7 +248,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>Adams / Newton</emphasis> 
+                        <emphasis>Adams / Newton</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -260,7 +260,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>Adams / Functional</emphasis> 
+                        <emphasis>Adams / Functional</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -272,7 +272,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>Dormand-Prince</emphasis> 
+                        <emphasis>Dormand-Prince</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -284,7 +284,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>Runge-Kutta</emphasis> 
+                        <emphasis>Runge-Kutta</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -358,30 +358,30 @@ Time for implicit Runge-Kutta:
                 <tr>
                     <td align="center"> </td>
                     <td align="center">
-                        <emphasis>BDF / Newton</emphasis> 
+                        <emphasis>BDF / Newton</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>BDF / Functional</emphasis> 
+                        <emphasis>BDF / Functional</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Adams / Newton</emphasis> 
+                        <emphasis>Adams / Newton</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Adams / Functional</emphasis> 
+                        <emphasis>Adams / Functional</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Dormand-Prince</emphasis> 
+                        <emphasis>Dormand-Prince</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Runge-Kutta</emphasis> 
+                        <emphasis>Runge-Kutta</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Implicit Runge-Kutta</emphasis> 
+                        <emphasis>Implicit Runge-Kutta</emphasis>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>LSodar</emphasis> 
+                        <emphasis>LSodar</emphasis>
                     </td>
                     <td align="center"> 2.8x </td>
                     <td align="center"> 2.6x </td>
@@ -393,7 +393,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>BDF / Newton</emphasis> 
+                        <emphasis>BDF / Newton</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> 0.9x </td>
@@ -405,7 +405,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>BDF / Functional</emphasis> 
+                        <emphasis>BDF / Functional</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -417,7 +417,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>Adams / Newton</emphasis> 
+                        <emphasis>Adams / Newton</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -429,7 +429,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>Adams / Functional</emphasis> 
+                        <emphasis>Adams / Functional</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -441,7 +441,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>Dormand-Prince</emphasis> 
+                        <emphasis>Dormand-Prince</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -453,7 +453,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>Runge-Kutta</emphasis> 
+                        <emphasis>Runge-Kutta</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -527,30 +527,30 @@ Time for implicit Runge-Kutta:
                 <tr>
                     <td align="center"> </td>
                     <td align="center">
-                        <emphasis>BDF / Newton</emphasis> 
+                        <emphasis>BDF / Newton</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>BDF / Functional</emphasis> 
+                        <emphasis>BDF / Functional</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Adams / Newton</emphasis> 
+                        <emphasis>Adams / Newton</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Adams / Functional</emphasis> 
+                        <emphasis>Adams / Functional</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Dormand-Prince</emphasis> 
+                        <emphasis>Dormand-Prince</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Runge-Kutta</emphasis> 
+                        <emphasis>Runge-Kutta</emphasis>
                     </td>
                     <td align="center">
-                        <emphasis>Implicit Runge-Kutta</emphasis> 
+                        <emphasis>Implicit Runge-Kutta</emphasis>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>LSodar</emphasis> 
+                        <emphasis>LSodar</emphasis>
                     </td>
                     <td align="center"> 2.1x </td>
                     <td align="center"> 1.6x </td>
@@ -562,7 +562,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>BDF / Newton</emphasis> 
+                        <emphasis>BDF / Newton</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> 0.75x </td>
@@ -574,7 +574,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>BDF / Functional</emphasis> 
+                        <emphasis>BDF / Functional</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -586,7 +586,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>Adams / Newton</emphasis> 
+                        <emphasis>Adams / Newton</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -598,7 +598,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>Adams / Functional</emphasis> 
+                        <emphasis>Adams / Functional</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -610,7 +610,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>Dormand-Prince</emphasis> 
+                        <emphasis>Dormand-Prince</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -622,7 +622,7 @@ Time for implicit Runge-Kutta:
                 </tr>
                 <tr>
                     <td align="center">
-                        <emphasis>Runge-Kutta</emphasis> 
+                        <emphasis>Runge-Kutta</emphasis>
                     </td>
                     <td align="center"> </td>
                     <td align="center"> </td>
@@ -631,6 +631,153 @@ Time for implicit Runge-Kutta:
                     <td align="center"> </td>
                     <td align="center"> </td>
                     <td align="center"> 4.6x </td>
+                </tr>
+            </informaltable>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples - DAEs</title>
+        <para>
+            In this section we compare IDA with DDaskr.
+        </para>
+        <para>
+            Example: a bouncing ball.
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../demos/ModelicaBlocks/BouncingBall_Modelica.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.zcos");
+// Redefining messagebox() to avoid popup
+function messagebox(msg, title)
+ disp(title);
+ disp(msg);
+endfunction
+scs_m.props.tol(6) = 100;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            In the following script, we compare the time difference between the solvers by running the example with the three solvers in turn:
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchBouncing.sce">
+                Open the script
+            </link>
+        </para>
+        <para>
+            The Scilab console displays:
+            <screen><![CDATA[
+Time for IDA:
+ 8
+
+Time for DDaskr - Newton:
+ 5.6
+
+Time for DDaskr - GMRes:
+ 6.5
+            ]]></screen>
+        </para>
+        <para>
+            This result shows that on a stiff problem, with rootfinding and for same precision required, <emphasis>DDaskr - Newton</emphasis> is fastest.
+        </para>
+        <para>
+            The difference in time is attributed to the powerful implementation of DDaskr and its least error control.
+        </para>
+        <para>
+            GMRes is slower due to the small size of the problem.
+        </para>
+        <para>
+            From the results, we can extract the speed factors:
+        </para>
+        <para>
+            <informaltable border="1">
+                <tr>
+                    <td align="center"> </td>
+                    <td align="center">
+                        <emphasis>IDA</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>DDaskr G</emphasis>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>DDaskr N</emphasis>
+                    </td>
+                    <td align="center"> 1.39x </td>
+                    <td align="center"> 1.9x </td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>
+            The next example simply corroborates the previous one, it is shorter but more thorough, since it deals with the filling and emptying of a tank.
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/ModelicaBlocks/Hydraulics.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../demos/ModelicaBlocks/Hydraulics.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/demos/ModelicaBlocks/Hydraulics.zcos");
+// Redefining messagebox() to avoid popup
+function messagebox(msg, title)
+ disp(title);
+ disp(msg);
+endfunction
+scs_m.props.tol(6) = 100;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            In the following script, we compare the time difference between the solvers by running the example with the three solvers in turn:
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/benchHydraulics.sce">
+                Open the script
+            </link>
+        </para>
+        <para>
+            The Scilab console displays:
+            <screen><![CDATA[
+Time for IDA:
+ 3
+
+Time for DDaskr - Newton:
+ 0.8
+
+Time for DDaskr - GMRes:
+ 0.85
+            ]]></screen>
+        </para>
+        <para>
+            From the results, we can extract the speed factors:
+        </para>
+        <para>
+            <informaltable border="1">
+                <tr>
+                    <td align="center"> </td>
+                    <td align="center">
+                        <emphasis>IDA</emphasis>
+                    </td>
+                    <td align="center">
+                        <emphasis>DDaskr G</emphasis>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <emphasis>DDaskr N</emphasis>
+                    </td>
+                    <td align="center"> 3.75x </td>
+                    <td align="center"> 1.06x </td>
                 </tr>
             </informaltable>
         </para>
@@ -655,6 +802,9 @@ Time for implicit Runge-Kutta:
             </member>
             <member>
                 <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
             </member>
             <member>
                 <link linkend="ode">ode</link>

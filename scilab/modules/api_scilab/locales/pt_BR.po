@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2013-01-26 04:11+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -221,6 +221,9 @@ msgstr "Erro de API:\n"
 msgid "\tin %s\n"
 msgstr "\tem %s\n"
 
+msgid "handle matrix"
+msgstr ""
+
 msgid "int matrix"
 msgstr "matriz de inteiros"
 
@@ -257,6 +260,24 @@ msgstr "%s: Os itens devem ser inseridos em ordem"
 
 msgid "API_ERROR_GET_POLY_IN_LIST"
 msgstr "API_ERROR_GET_POLY_IN_LIST"
+
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr ""
+
+msgid "Optional argument list is empty.\n"
+msgstr ""
+
+msgid "Optional arguments list: \n"
+msgstr ""
+
+#, c-format
+msgid "and %s.\n"
+msgstr ""
 
 msgid "pointer"
 msgstr "ponteiro"
@@ -315,3 +336,7 @@ msgstr "%s: Memória esgotada.\n"
 #, c-format
 msgid "%s: Invalid variable name.\n"
 msgstr "%s: O nome da variável é inválido.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An integer expected.\n"
+msgstr ""

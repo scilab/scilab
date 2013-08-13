@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:11+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-26 01:14+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -211,6 +211,9 @@ msgstr "Ошибка API:\n"
 msgid "\tin %s\n"
 msgstr "\tв %s\n"
 
+msgid "handle matrix"
+msgstr "матрица дескрипторов"
+
 msgid "int matrix"
 msgstr "целочисленная матрица"
 
@@ -247,6 +250,24 @@ msgstr "%s: элементы должны быть вставлены в пор�
 
 msgid "API_ERROR_GET_POLY_IN_LIST"
 msgstr "API_ERROR_GET_POLY_IN_LIST"
+
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr "%s: Необязательные аргументы name=val должны быть в конце.\n"
+
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr "%s: Нераспознанные необязательные аргументы %s.\n"
+
+msgid "Optional argument list is empty.\n"
+msgstr "Список необязательных аргументов пуст.\n"
+
+msgid "Optional arguments list: \n"
+msgstr "Необязательные аргументы: \n"
+
+#, c-format
+msgid "and %s.\n"
+msgstr "и %s.\n"
 
 msgid "pointer"
 msgstr "указатель"
@@ -303,3 +324,7 @@ msgstr "%s: Недостаточно памяти.\n"
 #, c-format
 msgid "%s: Invalid variable name.\n"
 msgstr "%s: Некорректное имя переменной.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An integer expected.\n"
+msgstr ""

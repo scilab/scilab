@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-09-02 08:23+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: \n"
 
 msgid "bike simulation, stable trajectory"
@@ -121,6 +121,10 @@ msgstr "%s: 第 %d 輸入參數資料型態錯誤: 應該是實數資料型態.\
 msgid ""
 "%s: Wrong value for input argument #%d: syntax error in given expression\n"
 msgstr "%s:輸入參數值有錯#%d:給定的句子中文法錯誤\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A real expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"

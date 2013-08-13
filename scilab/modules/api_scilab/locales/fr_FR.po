@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:09+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-15 13:24+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: fr\n"
 
 #, c-format
@@ -187,11 +187,11 @@ msgstr "Matrice de double"
 
 #, c-format
 msgid "stack size exceeded!\n"
-msgstr "Taille de la pile dépassée !\n"
+msgstr "Taille de la pile dépassée\n"
 
 #, c-format
 msgid "Use stacksize function to increase it.\n"
-msgstr "Utiliser la fonction stacksize pour l'augmenter.\n"
+msgstr "Utilisez la fonction stacksize pour l'augmenter.\n"
 
 #, c-format
 msgid "Memory used for variables: %d\n"
@@ -211,6 +211,9 @@ msgstr "Erreur de l'API :\n"
 #, c-format
 msgid "\tin %s\n"
 msgstr "\tdans %s\n"
+
+msgid "handle matrix"
+msgstr "Matrice de handles graphiques"
 
 msgid "int matrix"
 msgstr "Matrice d'entiers"
@@ -254,6 +257,24 @@ msgstr "%s : Les éléments doivent être insérés dans l'ordre"
 msgid "API_ERROR_GET_POLY_IN_LIST"
 msgstr "API_ERROR_GET_POLY_IN_LIST"
 
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr "%s : Le paramètre optionnel name=val doit être à la fin.\n"
+
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr "%s : Le paramètre optionnel %s n'est pas reconnu.\n"
+
+msgid "Optional argument list is empty.\n"
+msgstr "La liste d'arguments optionnels est vide.\n"
+
+msgid "Optional arguments list: \n"
+msgstr "Liste d'arguments optionnels : \n"
+
+#, c-format
+msgid "and %s.\n"
+msgstr "et %s.\n"
+
 msgid "pointer"
 msgstr "Pointeur"
 
@@ -293,8 +314,8 @@ msgstr "Matrice de chaîne de caractères étendue"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractère "
-"attendue.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : Une seule chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument \"%s\": A single string expected.\n"
@@ -313,3 +334,7 @@ msgstr "%s : Plus de mémoire disponible.\n"
 #, c-format
 msgid "%s: Invalid variable name.\n"
 msgstr "%s : Nom de variable invalide.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An integer expected.\n"
+msgstr "%s : Type erroné de l'argument n°%d : Un entier attendu.\n"

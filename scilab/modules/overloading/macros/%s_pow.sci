@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function x=%s_pow(a,p)
@@ -25,7 +25,7 @@ function x=%s_pow(a,p)
     if m*n==1&mp==np then  //a^P
         flag=or(p<>p')
         r=and(imag(p)==0)&imag(a)==0
-        if ~flag then 
+        if ~flag then
             //Hermitian matrix
             [u,s]=schur(p);
             w=a.^diag(s);
@@ -36,7 +36,7 @@ function x=%s_pow(a,p)
         else
             [s,u,bs]=bdiag(p+0*%i);
             if max(bs)>1 then
-                error(msprintf(_("%s: unable to diagonalize!"),"%s_pow"));
+                error(msprintf(_("%s: Unable to diagonalize.\n"),"%s_pow"));
             end
             w=diag(s);
             x=u*diag(a.^diag(s))*inv(u);
@@ -44,7 +44,7 @@ function x=%s_pow(a,p)
         if r then x=real(x), end
     elseif m==n&mp*np==1 then  //A^p  p non integer
         flag=or(a<>a')
-        if ~flag then 
+        if ~flag then
             //Hermitian matrix
             r=and(imag(a)==0)
             [u,s]=schur(a);
@@ -59,7 +59,7 @@ function x=%s_pow(a,p)
             r=and(imag(a)==0)
             [s,u,bs]=bdiag(a+0*%i);
             if max(bs)>1 then
-                error(msprintf(_("%s: unable to diagonalize!"),"%s_pow"));
+                error(msprintf(_("%s: Unable to diagonalize.\n"),"%s_pow"));
             end
             x=u*diag(diag(s).^p)*inv(u);
         end

@@ -67,12 +67,12 @@ public final class OpenFileInAction extends OpenAction {
         final Menu favoriteDirs = ScilabMenu.createMenu();
         ((SwingScilabMenu) favoriteDirs.getAsSimpleMenu()).addMenuListener(new MenuListener() {
 
-                public void menuCanceled(MenuEvent e) { }
-                public void menuDeselected(MenuEvent e) { }
-                public void menuSelected(MenuEvent e) {
-                    updateFavoriteDirsMenu(favoriteDirs, editor);
-                }
-            });
+            public void menuCanceled(MenuEvent e) { }
+            public void menuDeselected(MenuEvent e) { }
+            public void menuSelected(MenuEvent e) {
+                updateFavoriteDirsMenu(favoriteDirs, editor);
+            }
+        });
 
         favoriteDirs.setText(label);
         updateFavoriteDirsMenu(favoriteDirs, editor);

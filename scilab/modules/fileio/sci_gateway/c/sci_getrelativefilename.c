@@ -19,6 +19,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 /* ================================================================================== */
 // sci_getrelativefilename
@@ -27,72 +28,116 @@
 /* ================================================================================== */
 int sci_getrelativefilename(char *fname, unsigned long l)
 {
-    static int n1 = 0, m1 = 0, n2 = 0, m2 = 0;
 
-    CheckRhs(2, 2);
-    CheckLhs(1, 1);
+    SciErr sciErr;
+    int* piAddr1 = NULL;
+    int* piAddr2 = NULL;
+    int iRhs = nbInputArgument(pvApiCtx);
+    char **Input_StringMatrix_1 = NULL; //Input value
+    char **Input_StringMatrix_2 = NULL; //Input value
+    int iRows1 = 0, iRows2 = 0;
+    int iCols1 = 0, iCols2 = 0;
+    int x; //loop index
+    char **OutputStrings = NULL; //Output value
 
-    if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
+    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+    // get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
     {
-        char **param1 = NULL;
-        char **param2 = NULL;
-        char *result = (char*)MALLOC(PATH_MAX * sizeof(char));
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 0;
+    }
+    // Check type
+    if (isStringType(pvApiCtx, piAddr1) == 0)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), fname, 1);
+        return 0;
+    }
+    if (getAllocatedMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, &Input_StringMatrix_1))
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), fname, 1);
+        return 0;
+    }
 
-        GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, &param1);
+    // get variable address
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        return 0;
+    }
+    // Check type
+    if (isStringType(pvApiCtx, piAddr2) == 0)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), fname, 2);
+        return 0;
+    }
+    if (getAllocatedMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, &Input_StringMatrix_2))
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), fname, 2);
+        return 0;
+    }
 
-        if ( (n1 * m1) != 1 )
+    if (iRows1 != iRows2 || iCols1 != iCols2)
+    {
+        freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
+        freeAllocatedMatrixOfString(iRows2, iCols2, Input_StringMatrix_2);
+        Scierror(999, _("%s: Incompatible input arguments #%d and #%d: Same size expected.\n"), fname, 1, 2);
+        return 0;
+    }
+
+    OutputStrings = (char**)MALLOC(iRows1 * iCols1 * sizeof(char*));
+    if (OutputStrings == NULL)
+    {
+        freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
+        freeAllocatedMatrixOfString(iRows2, iCols2, Input_StringMatrix_2);
+        Scierror(112, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
+
+    for ( x = 0; x < iRows1 * iCols1; x++)
+    {
+        OutputStrings[x] = (char*)MALLOC(PATH_MAX * sizeof(char*));
+        if (OutputStrings[x] == NULL)
         {
-            freeArrayOfString(param1, m1 * n1);
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+            freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
+            freeAllocatedMatrixOfString(iRows2, iCols2, Input_StringMatrix_2);
+            freeAllocatedMatrixOfString(iRows1, iCols1, OutputStrings);
+            Scierror(112, _("%s: No more memory.\n"), fname);
             return 0;
         }
-
-        GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &m2, &n2, &param2);
-        if ( (n2 * m2) != 1 )
-        {
-            freeArrayOfString(param1, m1 * n1);
-            freeArrayOfString(param2, m2 * n2);
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
-            return 0;
-        }
-
         // make sure the names are not too long
-
-        if ( strlen(param1[0]) > PATH_MAX )
+        if ( strlen(Input_StringMatrix_1[x]) > PATH_MAX )
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), fname, 1, PATH_MAX);
         }
-
-        if ( strlen(param2[0]) > PATH_MAX )
+        if ( strlen(Input_StringMatrix_2[x]) > PATH_MAX )
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), fname, 2, PATH_MAX);
         }
-
-        result = getrelativefilename(param1[0], param2[0]);
-        freeArrayOfString(param1, m1 * n1);
-        freeArrayOfString(param2, m2 * n2);
-
-        m1 = (int)strlen(result);
-        CreateVarFromPtr(Rhs + 3, STRING_DATATYPE, &m1, &n1, &result);
-        LhsVar(1) = Rhs + 3;
-        if (result)
-        {
-            FREE(result);
-            result = NULL;
-        }
-        PutLhsVar();
+        OutputStrings[x] = getrelativefilename(Input_StringMatrix_1[x], Input_StringMatrix_2[x]);
     }
-    else
+
+    sciErr = createMatrixOfString(pvApiCtx, iRhs + 1, iRows1, iCols1, (char**)OutputStrings);
+    if (sciErr.iErr)
     {
-        if (GetType(1) != sci_strings)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-        }
-        else
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-        }
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
     }
+
+    AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
+
+    freeAllocatedMatrixOfString(iRows1, iCols1, OutputStrings);
+    freeAllocatedMatrixOfString(iRows1, iCols1, Input_StringMatrix_1);
+    freeAllocatedMatrixOfString(iRows2, iCols2, Input_StringMatrix_2);
+
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

@@ -6,18 +6,18 @@
 
 function bike_demo2()
 
-  thispath = get_absolute_file_path("bike2.dem.sce");
+    thispath = get_absolute_file_path("bike2.dem.sce");
 
-  exec(thispath+"macros/bike_show.sci");
-  exec(thispath+"macros/velod.sci");
-  exec(thispath+"macros/velo1.sci");
+    exec(thispath+"macros/bike_show.sci");
+    exec(thispath+"macros/velod.sci");
+    exec(thispath+"macros/velo1.sci");
 
-  x = read(thispath+"data/xdemo.dat",46,401,"(e10.4)");
+    x = read(thispath+"data/xdemo.dat",46,401,"(e10.4)");
 
-  my_handle = scf(100001);
-  clf(my_handle,"reset");
+    my_handle = scf(100001);
+    clf(my_handle,"reset");
 
-  bike_show(x(:,1:340),1.6,1.47,velo1);
+    bike_show(x(:,1:340),1.6,1.47,velo1);
 
 endfunction
 

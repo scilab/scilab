@@ -1,13 +1,13 @@
 
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1999 - INRIA - Carlos Klimann
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-// 
+//
 
 function [m]=meanf(val,fre,orient)
     //
@@ -34,21 +34,21 @@ function [m]=meanf(val,fre,orient)
     //Statistics, J.Wiley & Sons, 1990.
     //
     [lhs, rhs] = argn(0);
-    
-    if rhs == 0 | rhs == 1| rhs >= 4 then 
+
+    if rhs == 0 | rhs == 1| rhs >= 4 then
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"meanf",2,3));
     end
-    
+
     // If val is not constant, sparse, integer, hypermat
     if and(type(val) <> [1 5 8]) & typeof(val) <> "hypermat" then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A full or sparse matrix, or an integer matrix, or an hypermat expected.\n"),"meanf",1));
     end
-    
+
     // If fre is not constant, sparse, integer, hypermat
     if and(type(fre) <> [1 5 8]) & typeof(fre) <> "hypermat" then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A full or sparse matrix, or an integer matrix, or an hypermat expected.\n"),"meanf", 2));
     end
-    
+
     if or(size(val) <> size(fre)) & (size(val, "*") <> 1 & size(fre, "*") <> 1 & ~isempty(fre)) then
         error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"), "meanf", 1, 2));
     end
@@ -57,16 +57,16 @@ function [m]=meanf(val,fre,orient)
         m = %nan;
         return
     end
-    
+
     if rhs == 2 then
         m=sum(val .* fre)/sum(fre);
     elseif rhs==3 then
-        if orient=='*' then
+        if orient=="*" then
             m=sum(val .* fre)/sum(fre)
-        elseif orient=='r'|orient==1 then
-            m=sum(val .* fre,'r') ./ sum(fre,'r')
-        elseif orient=='c'|orient==2 then
-            m=sum(val .* fre,'c') ./ sum(fre,'c')
+        elseif orient=="r"|orient==1 then
+            m=sum(val .* fre,"r") ./ sum(fre,"r")
+        elseif orient=="c"|orient==2 then
+            m=sum(val .* fre,"c") ./ sum(fre,"c")
         else
             error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d.\n"),"meanf",3,"r","c",1,2)),
         end

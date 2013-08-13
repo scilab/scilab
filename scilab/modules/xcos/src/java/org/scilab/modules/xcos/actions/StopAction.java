@@ -3,11 +3,11 @@
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -69,7 +69,7 @@ public final class StopAction extends DefaultAction {
 
     /**
      * Action !!!
-     * 
+     *
      * @param e
      *            source event
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
@@ -83,7 +83,7 @@ public final class StopAction extends DefaultAction {
         if (comp.isEditing()) {
             return;
         }
-        
+
         if (!GraphActionManager.getEnable(StartAction.class)) {
             ScilabInterpreterManagement.requestScilabExec("haltscicos");
 

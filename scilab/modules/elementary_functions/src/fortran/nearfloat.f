@@ -63,10 +63,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *         p = number of digits for the mantissa = dlamch('n')
           ULP  = BASE**(1 - p)
 
-*         query if denormalised numbers are used : if yes
-*         compute TINY the smallest denormalised number > 0 :
+*         query if denormalized numbers are used : if yes
+*         compute TINY the smallest denormalized number > 0 :
 *         TINY is also the increment between 2 neighbooring
-*         denormalised numbers
+*         denormalized numbers
           if (RMIN/BASE .ne. 0.d0) then
              DENORM = .true.
              TINY = RMIN
@@ -96,7 +96,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
          endif
 
       elseif (xa .ge. RMIN) then
-*     usual case : x is a normalised floating point number
+*     usual case : x is a normalized floating point number
 *        1/ got the exponent e and the exponent part ep = base^e
          e = int( log(xa)/LNB )
          ep = BASE**e
@@ -106,7 +106,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
             e = e - 1
             ep = BASE**e
          endif
-*        also in case of xa very near RMIN and when denormalised
+*        also in case of xa very near RMIN and when denormalized
 *        number are not used, an error in e (of -1) results in a
 *        flush to 0 for ep.
          if ( ep .eq. 0.d0 ) then
@@ -146,7 +146,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
          endif
 
       elseif ( x .eq. 0.d0 ) then
-*     case x = 0  nearfloat depends if denormalised numbers are used
+*     case x = 0  nearfloat depends if denormalized numbers are used
          if (DENORM) then
             nearfloat = d*TINY
          else
@@ -154,7 +154,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
          endif
 
       else
-*     x is a denormalised number 
+*     x is a denormalized number 
          nearfloat = x + d*TINY
 
       endif

@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -29,7 +29,7 @@ static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH);
 static JavaVM *SearchCreatedJavaVMPath(void);
 
 #ifdef __APPLE__
-/* I guess Apple likes to make my life harder ... 
+/* I guess Apple likes to make my life harder ...
  * They are renaming the name of the dynamic lib especially for jni lib...
  * Therefor, I must change the name only for mac os X from dynlib
  */
@@ -46,8 +46,8 @@ static BOOL EMBEDDED_JRE = FALSE;
 /*--------------------------------------------------------------------------*/
 BOOL LoadDynLibJVM(char *SCILAB_PATH)
 {
-    /* 1. search in SCI/java/jre 
-     * 2. search in LD_LIBRARY_PATH and co (see man dlopen) 
+    /* 1. search in SCI/java/jre
+     * 2. search in LD_LIBRARY_PATH and co (see man dlopen)
      * else ERROR Java not found */
 
     BOOL bOK = FALSE;
@@ -71,7 +71,9 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
         JVMLibFullName = (char *)MALLOC((strlen(LIBJAVANAME) + strlen(SHARED_LIB_EXT) + 1) * sizeof(char));
         sprintf(JVMLibFullName, "%s%s", LIBJAVANAME, SHARED_LIB_EXT);
         if (LoadFunctionsJVM(JVMLibFullName))
+        {
             bOK = TRUE;
+        }
     }
     else
     {
@@ -130,7 +132,9 @@ static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
             return jvm;
         }
         else
+        {
             jvm = NULL;
+        }
     }
     if (JVMLibFullName)
     {
@@ -189,18 +193,22 @@ JavaVM *FindCreatedJavaVM(char *SCILAB_PATH)
     JavaVM *jvm = NULL;
 
 #ifndef __APPLE__
-/* Under Mac OS X, we are using the JVM provided by the distribution.
- * However, this might change with Java 7 since Apple will no longer provide
- * Java with Mac OS X */
+    /* Under Mac OS X, we are using the JVM provided by the distribution.
+     * However, this might change with Java 7 since Apple will no longer provide
+     * Java with Mac OS X */
     jvm = SearchCreatedJavaVMEmbedded(SCILAB_PATH);
     if (jvm)
+    {
         return jvm;
+    }
     else
     {
 #endif
         jvm = SearchCreatedJavaVMPath();
         if (jvm)
+        {
             return jvm;
+        }
 #ifndef __APPLE__
     }
 #endif

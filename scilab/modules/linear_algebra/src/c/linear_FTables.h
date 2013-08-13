@@ -19,6 +19,9 @@
 #define OK 1
 #define FAIL 0
 
-typedef struct { double r, i; } doublecmplx;
+typedef struct
+{
+    double r, i;
+} doublecmplx;
 
 #endif /* __LINEAR_FTABLES_H__ */

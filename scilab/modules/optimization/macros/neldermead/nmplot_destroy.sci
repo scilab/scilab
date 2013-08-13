@@ -13,5 +13,5 @@
 //   Destroy a Nelder-Mead plot object.
 //
 function this = nmplot_destroy (this)
-  this.nmbase = neldermead_destroy ( this.nmbase )
+    this.nmbase = neldermead_destroy ( this.nmbase )
 endfunction

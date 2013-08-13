@@ -9,15 +9,15 @@
 
 function demo_acos()
 
-  exec("SCI/modules/graphics/demos/cmplxfunc/MacCmplx.sci", -1);
-  theta = -110;
-  alpha = 75;
+    exec("SCI/modules/graphics/demos/cmplxfunc/MacCmplx.sci", -1);
+    theta = -110;
+    alpha = 75;
 
-  my_handle = scf(100001);
-  clf(my_handle,"reset");
+    my_handle = scf(100001);
+    clf(my_handle,"reset");
 
-  PlotCmplxFunc(2,%eps,"Square","Ox",41,"acos",theta,alpha,[-1,1]);
-  demo_viewCode("demo_acos.dem.sce");
+    PlotCmplxFunc(2,%eps,"Square","Ox",41,"acos",theta,alpha,[-1,1]);
+    demo_viewCode("demo_acos.dem.sce");
 
 endfunction
 

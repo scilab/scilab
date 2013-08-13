@@ -69,10 +69,10 @@
             This function is a do-nothing function. It is essentially useful to implement an evolutionnary algorithm. In an evolutionnary algorithm, we work directly on the variable and not on a binary code.
         </para>
     </refsection>
-
+    
     <refsection>
-      <title>Examples</title>
-      <programlisting role="example"><![CDATA[
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 pop_in = list();
 pop_in(1) = 2;
 
@@ -81,7 +81,7 @@ pop_out = coding_ga_identity(pop_in,'code',[])
 pop_in_2 = coding_ga_identity(pop_out,'decode',[])
 ]]></programlisting>
     </refsection>
-
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

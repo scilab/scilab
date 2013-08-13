@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 
-// 
+// Copyright (C) INRIA -
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [K,X]=lqr(P12)
@@ -14,7 +14,7 @@ function [K,X]=lqr(P12)
     //      |I   0   0|   | A    0   B  |      |I   0   0|   | A    0    B  |
     //     z|0   A'  0| - |-C'C  I   -S'|    s |0   I   0| - |-C'C -A'  -S' |
     //      |0   B'  0|   | S    0   D'D|      |0   0   0|   | S   -B'   D'D|
-    if typeof(P12)<>'state-space' then
+    if typeof(P12)<>"state-space" then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space expected.\n"),"lqr",1))
     end
 
@@ -24,7 +24,7 @@ function [K,X]=lqr(P12)
     [ny,n]=size(C1);
     if P12(7) == [] then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"),"lqr",1))
-    elseif P12(7) == 'c'
+    elseif P12(7) == "c"
         Z=0*A;I=eye(A);O=zeros(n,nu);
         bigE=[I,Z,O; ...
         Z,I,O; ...
@@ -39,12 +39,12 @@ function [K,X]=lqr(P12)
         zeros(nu,2*n), Ri];
         LA=Left*bigA;LE=Left*bigE;N=1:2*n;
         //[wsmall,ks1]=schur(LA(N,N),LE(N,N),'c');
-        [wsmall,ks1]=schur(LA(N,N),'c');
-        if ks1<>n then 
+        [wsmall,ks1]=schur(LA(N,N),"c");
+        if ks1<>n then
             error(msprintf(gettext("%s: Stable subspace is too small.\n"),"lqr"));
         end
         X12=wsmall(1:n,1:n);phi12=wsmall(n+1:$,1:n);X=phi12/X12;
-        if rcond(X12)< 1.d-5 then 
+        if rcond(X12)< 1.d-5 then
             warning(msprintf(gettext("%s: Bad conditionning.\n"),"lqr"));
         end
         K=-Ri*(B2'*X+S);
@@ -63,7 +63,7 @@ function [K,X]=lqr(P12)
         //K=u12/X12;
         //X=phi12/X12;
         //return
-    elseif P12(7) == 'd' | type(P12(7))==1 
+    elseif P12(7) == "d" | type(P12(7))==1
         I=eye(A);Z=0*I;
         Q=C1'*C1;R=D12'*D12;S=D12'*C1;
         bigE=[I,Z,0*B2; ...
@@ -80,12 +80,12 @@ function [K,X]=lqr(P12)
         Z,  I,  S'*Ri; ...
         zeros(nu,2*n), Ri];
         LA=Left*bigA;LE=Left*bigE;N=1:2*n;
-        [wsmall,ks1]=schur(LA(N,N),LE(N,N),'d');
-        if ks1<>n then 
+        [wsmall,ks1]=schur(LA(N,N),LE(N,N),"d");
+        if ks1<>n then
             error(msprintf(gettext("%s: Stable subspace is too small.\n"),"lqr"));
         end
         X12=wsmall(1:n,1:n);phi12=wsmall(n+1:$,1:n);X=phi12/X12;
-        if rcond(X12)< 1.d-5 then 
+        if rcond(X12)< 1.d-5 then
             warning(msprintf(gettext("%s: Bad conditionning.\n"),"lqr"));
         end
         K=-pinv(B2'*X*B2+R)*(B2'*X*A+S);

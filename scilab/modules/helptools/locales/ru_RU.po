@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: helptools-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-19 13:54+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-20 01:57+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -185,6 +185,9 @@ msgstr "Примеры"
 msgid "        Add here scilab instructions and comments"
 msgstr "        Добавьте сюда scilab-инструкции и комментарии"
 
+msgid "        Add here scilab instructions to generate a graphic"
+msgstr "        Добавьте сюда инструкции scilab для создания графика"
+
 msgid "See Also"
 msgstr "Смотрите также"
 
@@ -201,7 +204,7 @@ msgid "add the author name and author reference"
 msgstr "добавьте имя автора и ссылку на автора"
 
 msgid "add another author name and his/her reference"
-msgstr ""
+msgstr "добавьте имя другого автора и ссылку на него/неё"
 
 msgid "Bibliography"
 msgstr "Литература"
@@ -271,14 +274,6 @@ msgid "Building the scilab manual file ["
 msgstr "Формируется файл руководства Scilab ["
 
 #, c-format
-msgid "%s: %s has not been generated."
-msgstr "%s: %s не был сформирован."
-
-#, c-format
-msgid "%s: %s file hasn't been moved in the %s directory."
-msgstr "%s: %s файл не был перемещён в каталог %s."
-
-#, c-format
 msgid ""
 "\n"
 "Building the manual file [%s] in %s.\n"
@@ -293,6 +288,14 @@ msgid ""
 msgstr ""
 "\n"
 "Компоновка файла руководства [%s].\n"
+
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr "%s: %s не был сформирован."
+
+#, c-format
+msgid "%s: %s file hasn't been moved in the %s directory."
+msgstr "%s: %s файл не был перемещён в каталог %s."
 
 #, c-format
 msgid "%s: Please check %s, number of modules is invalid.\n"

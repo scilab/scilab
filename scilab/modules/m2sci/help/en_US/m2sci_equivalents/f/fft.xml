@@ -69,20 +69,21 @@ fft(A,-1[,...])
                         done before the call to <emphasis
                         role="bold">fft</emphasis>: one can use:
                         <emphasis role="bold">if n&gt;size(x,'*') then
-                        x($:n)=0 else x=x(1:n);end;fft(x)</emphasis>
+                            x($:n)=0 else x=x(1:n);end;fft(x)
+                        </emphasis>
                         or for simplicity call the <emphasis
                         role="bold">mtlb_fft</emphasis> emulation
                         function.
                     </para>
                     <para>
-                      The <emphasis
+                        The <emphasis
                         role="bold">Y = fft(X,[],dim)</emphasis> Matlab syntax is equivalent to <emphasis
                         role="bold">Y = fft(X,dim) </emphasis> Scilab syntax.
                     </para>
-
+                    
                 </listitem>
             </varlistentry>
-           
+            
         </variablelist>
     </refsection>
 </refentry>

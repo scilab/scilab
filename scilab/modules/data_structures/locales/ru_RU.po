@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-05-17 16:11+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-29 12:34+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -36,24 +36,25 @@ msgid "%s: Can not create a tlist with input argument #%d.\n"
 msgstr ""
 "%s: Не могу создать типизированный список (tlist) с входным аргументом №%d.\n"
 
-msgid " An hypermatrix extraction must have at least 2 arguments. "
-msgstr " Извлечение из гиперматрицы должно иметь не менее 2 параметров. "
-
-msgid " Argument is not an hypermatrix. "
-msgstr " Параметр не является гиперматрицей. "
-
-msgid " Incompatible hypermatrix extraction. "
-msgstr " Несовместимое извлеченение из гиперматрицы. "
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
 
 #, c-format
-msgid "Bad (%d th) index in hypermatrix extraction. "
-msgstr "Плохой (%d-й) индекс в извлечении из гиперматрицы. "
+msgid "%s: Wrong type for input argument(s): An hypermatrix expected.\n"
+msgstr "%s: Неверный тип входных аргументов: ожидалась гиперматрица.\n"
 
-msgid " An hypermatrix insertion must have at least 3 arguments. "
-msgstr " Вставка в гиперматрицу должна иметь не менее 3 параметров. "
+#, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось не более %d.\n"
 
-msgid " Bad hypermatrix insertion. "
-msgstr " Плохая вставка в гиперматрицу. "
+#, c-format
+msgid "%s: Invalid index #%d in hypermatrix extraction. "
+msgstr "%s: Недопустимый индекс №%d в извлечении из гиперматрицы. "
+
+#, c-format
+msgid "%s: Invalid hypermatrix insertion.\n"
+msgstr "%s: Недопустимая вставка в гиперматрицу.\n"
 
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr ""
@@ -81,8 +82,12 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался массив структур.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: struct array or tlist or mlist "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидались struct или tlist или "
+"mlist.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"

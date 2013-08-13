@@ -85,10 +85,16 @@ SEP #085: cond improvements
 SEP #086: Improvement of the regexp function
 SEP #087: New binaries: xcos scinotes
 SEP #088: Remote file access functions
-SEP #089: New parameter added at routh_t function (normalized)
+SEP #089: New argument added at routh_t function (normalized)
 SEP #090: New function to access to numerical data in HDF5 files
 SEP #091: New function daskr
-SEP #092: 
+SEP #092: New special functions
 SEP #093: New function cov
 SEP #095: New functions: ismatrix, isrow,iscolumn and issquare.
-SEP #097: New parameter added at strtod function (decimalseparator)
+SEP #096: cross function.
+SEP #097: New argument added at strtod function (decimalseparator)
+SEP #098: New output argument for qp_solve function
+SEP #099: Matrices of strings as input argument for clear
+SEP #100: Extends history size
+SEP #101: File browser
+SEP #102: members function.

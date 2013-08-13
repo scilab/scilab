@@ -14,13 +14,14 @@
 #ifndef __RIPOLE_H__
 #define __RIPOLE_H__
 
-struct ripOLE_object {
-	int debug;
-	int verbose;
-	int save_unknown_streams;
+struct ripOLE_object
+{
+    int debug;
+    int verbose;
+    int save_unknown_streams;
 
-	char *inputfile;
-	char *outputdir;
+    char *inputfile;
+    char *outputdir;
 
 };
 

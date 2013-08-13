@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-22 15:03+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-29 09:13+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ja\n"
 
 #, c-format
@@ -384,6 +384,12 @@ msgstr "標準"
 msgid "Wrap lines"
 msgstr "行を完了"
 
+msgid "Background color: "
+msgstr "背景色: "
+
+msgid "Cursor color: "
+msgstr "カーソル色: "
+
 msgid "Keywords"
 msgstr "キーワード"
 
@@ -467,6 +473,10 @@ msgstr "ファイル名"
 
 msgid "Append filename with: "
 msgstr "ファイル名に以下を追加: "
+
+#, c-format
+msgid "(%date can be used to be replaced by the current date)"
+msgstr "(%date は現在の日付に置換するために使用できます)"
 
 msgid "Replace extension with: "
 msgstr "拡張子を以下に置換: "
@@ -1067,3 +1077,21 @@ msgstr "検索用基本ディレクトリを選択"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilabモジュール '%s' はインストールされていません.\n"
+
+msgid "the last error did not occur inside a library function."
+msgstr "直近のエラーはライブラリ関数内で発生していません."
+
+msgid " on line "
+msgstr " 行目 "
+
+msgid "opening file "
+msgstr "ファイルをオープン "
+
+msgid " of the source file of the function "
+msgstr " 関数のソースファイル "
+
+msgid "the source file of the function "
+msgstr "関数のソースファイル "
+
+msgid " was not found in any library path"
+msgstr " ライブラリパス内に見つかりません"

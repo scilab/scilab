@@ -88,3 +88,5 @@ public class";
 #endif
 
 void getScilabVariable(const char * variableName, int, int);
+
+void getScilabVariableAsReference(const char * variableName, int);

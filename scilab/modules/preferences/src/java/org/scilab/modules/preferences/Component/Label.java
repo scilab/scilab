@@ -192,10 +192,14 @@ public class Label extends JLabel implements XComponent {
      */
     public final String fontFace() {
         switch (getFont().getStyle()) {
-        case Font.PLAIN :  return "plain";
-        case Font.ITALIC : return "italic";
-        case Font.BOLD :   return "bold";
-        case 3 :           return "bold italic";
+            case Font.PLAIN :
+                return "plain";
+            case Font.ITALIC :
+                return "italic";
+            case Font.BOLD :
+                return "bold";
+            case 3 :
+                return "bold italic";
         }
         return XCommonManager.NAV;
     }
@@ -230,10 +234,18 @@ public class Label extends JLabel implements XComponent {
      * @return
      */
     private int getStyle(String xFace) {
-        if (xFace.equals("plain"))       return Font.PLAIN;
-        if (xFace.equals("italic"))      return Font.ITALIC;
-        if (xFace.equals("bold"))        return Font.BOLD;
-        if (xFace.equals("bold italic")) return Font.BOLD + Font.ITALIC;
+        if (xFace.equals("plain")) {
+            return Font.PLAIN;
+        }
+        if (xFace.equals("italic")) {
+            return Font.ITALIC;
+        }
+        if (xFace.equals("bold")) {
+            return Font.BOLD;
+        }
+        if (xFace.equals("bold italic")) {
+            return Font.BOLD + Font.ITALIC;
+        }
         return -1;
     }
     /** Actuator for 'font-face' attribute.
@@ -262,8 +274,8 @@ public class Label extends JLabel implements XComponent {
      */
     public final void tooltip(String tooltip) {
         if (tooltip.equals(XCommonManager.NAV)
-            || tooltip.equals("")
-            ) {
+                || tooltip.equals("")
+           ) {
             tooltip = null;
         }
         setToolTipText(tooltip);

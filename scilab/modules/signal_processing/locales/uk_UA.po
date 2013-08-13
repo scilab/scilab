@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2010, 2011.
-# Yuri Chornoivan <yurchor@ukr.net>, 2012.
+# Yuri Chornoivan <yurchor@ukr.net>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:03+0100\n"
-"PO-Revision-Date: 2012-08-02 19:07+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-13 13:46+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: uk\n"
 
 #, c-format
@@ -103,6 +103,18 @@ msgstr "3-точкова згортка"
 msgid "Signal derivative estimate"
 msgstr "Наближена похідна сигналу"
 
+msgid "Choose filter type and parameters"
+msgstr "Виберіть тип фільтрування та параметри"
+
+msgid "Discrete IIR filter "
+msgstr "Дискретний IIR-фільтр "
+
+msgid "Discrete IIR filter : low pass  fr < 0.2"
+msgstr "Дискретний IIR-фільтр: нижні частоти < 0.2"
+
+msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
+msgstr "Дискретний IIR-фільтр за діапазоном частот 0.15 < fr < 0.25"
+
 msgid "Minimax FIR filter"
 msgstr "Мінімаксний FIR-фільтр"
 
@@ -111,6 +123,12 @@ msgstr "нижні частоти обрізання на [.23,.27]"
 
 msgid "length 33"
 msgstr "довжина 33"
+
+msgid "Remez Triangular filter"
+msgstr "Трикутний фільтр Ремеза"
+
+msgid "magnitude error"
+msgstr "помилка у амплітуді"
 
 msgid "Signal Processing"
 msgstr "Обробка сигналів"
@@ -151,6 +169,18 @@ msgstr "ARMA, двовимірна версія"
 msgid "Arma, Spectral power estimation"
 msgstr "ARMA, оцінка потужності спектра"
 
+msgid "Data spectrum"
+msgstr "Спектр даних"
+
+msgid "magnitude"
+msgstr "амплітуда"
+
+msgid "Spectral estimation"
+msgstr "Спектральне оцінювання"
+
+msgid "spectral power"
+msgstr "спектральна потужність"
+
 msgid "estimates xf"
 msgstr "оцінки xf"
 
@@ -159,6 +189,27 @@ msgstr "оцінки xs"
 
 msgid "real state"
 msgstr "поточний стан"
+
+msgid "Windowed FIR Low pass Filter"
+msgstr "Віконний фільтр низьких частот зі СІХ (FIR)"
+
+msgid "Kaiser window,cut-off:0.2"
+msgstr "Вікно Кайзера, обрізання: 0.2"
+
+msgid "Hamming window,cut-off:0.2,0.3"
+msgstr "Вікно Гаммінґа, обрізання: 0.2,0.3"
+
+msgid "length 127"
+msgstr "довжина 127"
+
+msgid "Windowed FIR Band pass Filter"
+msgstr "Віконний фільтр діапазону частот зі СІХ (FIR)"
+
+msgid "Chebyshev window,cut-off:0.15,0.35"
+msgstr "Вікно Чебишева, обрізання: 0.15,0.35"
+
+msgid "length 55"
+msgstr "довжина 55"
 
 #, c-format
 msgid ""
@@ -263,6 +314,10 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
+
+#, c-format
+msgid "%s: Filter order too small.\n"
+msgstr "%s: надто малий порядок фільтрування.\n"
 
 #, c-format
 msgid ""

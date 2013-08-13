@@ -7,11 +7,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-ierr = execstr("getrelativefilename();","errcatch");
-if ierr <> 77 then pause,end
-
-ierr = execstr("getrelativefilename([], []);","errcatch");
-if ierr <> 999 then pause,end
+// Unit test for getrelativefilename
 
 __dir1  = TMPDIR+"/dir1";
 __dir11 = TMPDIR+"/dir1/dir1.1";
@@ -29,14 +25,37 @@ mputl("", __file1);
 mputl("", __file11);
 mputl("", __file12);
 
-if getrelativefilename(__dir1, __file1) <> "file1.txt" then pause, end
-if getrelativefilename(__dir1, __file11) <> pathconvert("dir1.1/file11.txt", %f) then pause, end
-if getrelativefilename(__dir1, __file12) <> pathconvert("dir1.2/file12.txt", %f) then pause, end
+assert_checkequal(getrelativefilename(__dir1, __file1),"file1.txt");
+assert_checkequal(getrelativefilename(__dir1, __file11), pathconvert("dir1.1/file11.txt", %f));
+assert_checkequal(getrelativefilename(__dir1, __file12), pathconvert("dir1.2/file12.txt", %f));
 
-if getrelativefilename(__dir11, __file1) <> pathconvert("../file1.txt", %f) then pause, end
-if getrelativefilename(__dir11, __file11) <> "file11.txt" then pause, end
-if getrelativefilename(__dir11, __file12) <> pathconvert("../dir1.2/file12.txt", %f) then pause, end
+assert_checkequal(getrelativefilename(__dir11, __file1), pathconvert("../file1.txt", %f));
+assert_checkequal(getrelativefilename(__dir11, __file11), "file11.txt");
+assert_checkequal(getrelativefilename(__dir11, __file12), pathconvert("../dir1.2/file12.txt", %f));
 
-if getrelativefilename(__dir12, __file1) <> pathconvert("../file1.txt", %f) then pause, end;
-if getrelativefilename(__dir12, __file11) <> pathconvert("../dir1.1/file11.txt", %f) then pause, end;
-if getrelativefilename(__dir12, __file12) <> "file12.txt" then pause, end;
+assert_checkequal(getrelativefilename(__dir12, __file1), pathconvert("../file1.txt", %f));
+assert_checkequal(getrelativefilename(__dir12, __file11), pathconvert("../dir1.1/file11.txt", %f));
+assert_checkequal(getrelativefilename(__dir12, __file12), "file12.txt");
+
+
+assert_checkequal(getrelativefilename([__dir1,__dir1], [__file1,__file1]),["file1.txt", "file1.txt"]);
+assert_checkequal(getrelativefilename([__dir1,__dir1], [__file11, __file11]), [pathconvert("dir1.1/file11.txt", %f), pathconvert("dir1.1/file11.txt", %f)]);
+assert_checkequal(getrelativefilename([__dir1,__dir1], [__file12,__file12]), [pathconvert("dir1.2/file12.txt", %f), pathconvert("dir1.2/file12.txt", %f)]);
+
+assert_checkequal(getrelativefilename([__dir11,__dir11], [__file1,__file1]), [pathconvert("../file1.txt", %f), pathconvert("../file1.txt", %f)]);
+assert_checkequal(getrelativefilename([__dir11,__dir11], [__file11,__file11]), ["file11.txt", "file11.txt"]);
+assert_checkequal(getrelativefilename([__dir11,__dir11], [__file12,__file12]), [pathconvert("../dir1.2/file12.txt", %f), pathconvert("../dir1.2/file12.txt", %f)]);
+
+assert_checkequal(getrelativefilename([__dir12,__dir12], [__file1,__file1]), [pathconvert("../file1.txt", %f), pathconvert("../file1.txt", %f)]);
+assert_checkequal(getrelativefilename([__dir12,__dir12], [__file11,__file11]), [pathconvert("../dir1.1/file11.txt", %f), pathconvert("../dir1.1/file11.txt", %f)]);
+assert_checkequal(getrelativefilename([__dir12,__dir12], [__file12,__file12]), ["file12.txt","file12.txt"]);
+
+// Error messages
+errmsg1 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "getrelativefilename", 2);
+assert_checkerror("getrelativefilename()", errmsg1);
+
+errmsg2 = msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "getrelativefilename", 1);
+assert_checkerror("getrelativefilename([],[])", errmsg2);
+
+errmsg3 = msprintf(_("%s: Incompatible input arguments #%d and #%d: Same size expected.\n"), "getrelativefilename", 1, 2);
+assert_checkerror("getrelativefilename([__dir1,__dir1], __file1)", errmsg3);

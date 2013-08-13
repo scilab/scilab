@@ -5,7 +5,7 @@
             <callback instruction='org.scilab.modules.ui_data.EditVar.closeVariableEditor' type="-3"/>
         </submenu>
     </menu>
-
+    
     <menu label="&amp;?">
         <submenu label="&amp;About Scilab...">
             <callback instruction='about()' type="0"/>

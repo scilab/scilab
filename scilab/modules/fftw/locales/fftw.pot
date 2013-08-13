@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:49+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/gw_fftw.c, line: 49
 #, c-format
@@ -38,9 +38,9 @@ msgstr ""
 # File: sci_gateway/c/sci_fftw.c, line: 130
 # File: sci_gateway/c/sci_fftw_flags.c, line: 173
 # File: sci_gateway/c/sci_fftw_flags.c, line: 186
-# File: src/c/sci_data_utilities.c, line: 171
-# File: src/c/sci_data_utilities.c, line: 179
-# File: src/c/sci_data_utilities.c, line: 199
+# File: src/c/sci_data_utilities.c, line: 231
+# File: src/c/sci_data_utilities.c, line: 239
+# File: src/c/sci_data_utilities.c, line: 259
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
@@ -75,26 +75,26 @@ msgstr ""
 # File: sci_gateway/c/sci_dst.c, line: 1123
 # File: sci_gateway/c/sci_dst.c, line: 1137
 # File: sci_gateway/c/sci_dst.c, line: 1197
-# File: sci_gateway/c/sci_fftw.c, line: 246
-# File: sci_gateway/c/sci_fftw.c, line: 383
-# File: sci_gateway/c/sci_fftw.c, line: 434
-# File: sci_gateway/c/sci_fftw.c, line: 679
-# File: sci_gateway/c/sci_fftw.c, line: 690
-# File: sci_gateway/c/sci_fftw.c, line: 760
-# File: sci_gateway/c/sci_fftw.c, line: 802
-# File: sci_gateway/c/sci_fftw.c, line: 924
-# File: sci_gateway/c/sci_fftw.c, line: 952
-# File: sci_gateway/c/sci_fftw.c, line: 963
-# File: sci_gateway/c/sci_fftw.c, line: 981
-# File: sci_gateway/c/sci_fftw.c, line: 1006
-# File: sci_gateway/c/sci_fftw.c, line: 1019
-# File: sci_gateway/c/sci_fftw.c, line: 1193
-# File: sci_gateway/c/sci_fftw.c, line: 1205
-# File: sci_gateway/c/sci_fftw.c, line: 1213
-# File: sci_gateway/c/sci_fftw.c, line: 1231
-# File: sci_gateway/c/sci_fftw.c, line: 1239
-# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 112
-# File: src/c/sci_data_utilities.c, line: 294
+# File: sci_gateway/c/sci_fftw.c, line: 255
+# File: sci_gateway/c/sci_fftw.c, line: 395
+# File: sci_gateway/c/sci_fftw.c, line: 455
+# File: sci_gateway/c/sci_fftw.c, line: 709
+# File: sci_gateway/c/sci_fftw.c, line: 720
+# File: sci_gateway/c/sci_fftw.c, line: 790
+# File: sci_gateway/c/sci_fftw.c, line: 844
+# File: sci_gateway/c/sci_fftw.c, line: 975
+# File: sci_gateway/c/sci_fftw.c, line: 1003
+# File: sci_gateway/c/sci_fftw.c, line: 1014
+# File: sci_gateway/c/sci_fftw.c, line: 1032
+# File: sci_gateway/c/sci_fftw.c, line: 1060
+# File: sci_gateway/c/sci_fftw.c, line: 1073
+# File: sci_gateway/c/sci_fftw.c, line: 1259
+# File: sci_gateway/c/sci_fftw.c, line: 1271
+# File: sci_gateway/c/sci_fftw.c, line: 1279
+# File: sci_gateway/c/sci_fftw.c, line: 1297
+# File: sci_gateway/c/sci_fftw.c, line: 1305
+# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 118
+# File: src/c/sci_data_utilities.c, line: 354
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
 msgstr ""
@@ -102,7 +102,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_dct.c, line: 159
 # File: sci_gateway/c/sci_dst.c, line: 156
-# File: sci_gateway/c/sci_fftw.c, line: 178
+# File: sci_gateway/c/sci_fftw.c, line: 184
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
 msgstr ""
@@ -119,7 +119,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_dct.c, line: 230
 # File: sci_gateway/c/sci_dst.c, line: 228
-# File: sci_gateway/c/sci_fftw.c, line: 187
+# File: sci_gateway/c/sci_fftw.c, line: 193
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Array of floating point numbers expected.\n"
@@ -130,10 +130,10 @@ msgstr ""
 # File: sci_gateway/c/sci_dct.c, line: 621
 # File: sci_gateway/c/sci_dst.c, line: 380
 # File: sci_gateway/c/sci_dst.c, line: 619
-# File: sci_gateway/c/sci_fftw.c, line: 332
-# File: sci_gateway/c/sci_fftw.c, line: 555
-# File: sci_gateway/c/sci_fftw_flags.c, line: 258
-# File: src/c/sci_data_utilities.c, line: 277
+# File: sci_gateway/c/sci_fftw.c, line: 344
+# File: sci_gateway/c/sci_fftw.c, line: 585
+# File: sci_gateway/c/sci_fftw_flags.c, line: 261
+# File: src/c/sci_data_utilities.c, line: 337
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
@@ -141,7 +141,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_dct.c, line: 398
 # File: sci_gateway/c/sci_dst.c, line: 396
-# File: sci_gateway/c/sci_fftw.c, line: 348
+# File: sci_gateway/c/sci_fftw.c, line: 360
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
@@ -151,8 +151,8 @@ msgstr ""
 # File: sci_gateway/c/sci_dct.c, line: 709
 # File: sci_gateway/c/sci_dst.c, line: 406
 # File: sci_gateway/c/sci_dst.c, line: 707
-# File: sci_gateway/c/sci_fftw.c, line: 358
-# File: sci_gateway/c/sci_fftw.c, line: 643
+# File: sci_gateway/c/sci_fftw.c, line: 370
+# File: sci_gateway/c/sci_fftw.c, line: 673
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr ""
@@ -160,7 +160,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_dct.c, line: 415
 # File: sci_gateway/c/sci_dst.c, line: 413
-# File: sci_gateway/c/sci_fftw.c, line: 365
+# File: sci_gateway/c/sci_fftw.c, line: 377
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be less than %d.\n"
@@ -171,8 +171,8 @@ msgstr ""
 # File: sci_gateway/c/sci_dct.c, line: 733
 # File: sci_gateway/c/sci_dst.c, line: 420
 # File: sci_gateway/c/sci_dst.c, line: 731
-# File: sci_gateway/c/sci_fftw.c, line: 372
-# File: sci_gateway/c/sci_fftw.c, line: 667
+# File: sci_gateway/c/sci_fftw.c, line: 384
+# File: sci_gateway/c/sci_fftw.c, line: 697
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in increasing "
@@ -182,7 +182,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_dct.c, line: 648
 # File: sci_gateway/c/sci_dst.c, line: 646
-# File: sci_gateway/c/sci_fftw.c, line: 582
+# File: sci_gateway/c/sci_fftw.c, line: 612
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be greater than %d.\n"
@@ -191,7 +191,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_dct.c, line: 661
 # File: sci_gateway/c/sci_dst.c, line: 659
-# File: sci_gateway/c/sci_fftw.c, line: 595
+# File: sci_gateway/c/sci_fftw.c, line: 625
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Must be less than %d.\n"
 msgstr ""
@@ -199,7 +199,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_dct.c, line: 672
 # File: sci_gateway/c/sci_dst.c, line: 670
-# File: sci_gateway/c/sci_fftw.c, line: 606
+# File: sci_gateway/c/sci_fftw.c, line: 636
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Must be a divisor of %d.\n"
 msgstr ""
@@ -207,7 +207,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_dct.c, line: 696
 # File: sci_gateway/c/sci_dst.c, line: 694
-# File: sci_gateway/c/sci_fftw.c, line: 630
+# File: sci_gateway/c/sci_fftw.c, line: 660
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
@@ -215,7 +215,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_dct.c, line: 722
 # File: sci_gateway/c/sci_dst.c, line: 720
-# File: sci_gateway/c/sci_fftw.c, line: 656
+# File: sci_gateway/c/sci_fftw.c, line: 686
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be divisors of %d.\n"
@@ -226,8 +226,8 @@ msgstr ""
 # File: sci_gateway/c/sci_dct.c, line: 806
 # File: sci_gateway/c/sci_dst.c, line: 782
 # File: sci_gateway/c/sci_dst.c, line: 804
-# File: sci_gateway/c/sci_fftw.c, line: 718
-# File: sci_gateway/c/sci_fftw.c, line: 740
+# File: sci_gateway/c/sci_fftw.c, line: 748
+# File: sci_gateway/c/sci_fftw.c, line: 770
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d.\n"
 msgstr ""
@@ -237,37 +237,37 @@ msgstr ""
 # File: sci_gateway/c/sci_dct.c, line: 1118
 # File: sci_gateway/c/sci_dst.c, line: 1077
 # File: sci_gateway/c/sci_dst.c, line: 1113
-# File: sci_gateway/c/sci_fftw.c, line: 1096
-# File: sci_gateway/c/sci_fftw.c, line: 1127
+# File: sci_gateway/c/sci_fftw.c, line: 1159
+# File: sci_gateway/c/sci_fftw.c, line: 1190
 #, c-format
 msgid "%s: Creation of requested fftw plan failed.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_disposefftwlibrary.c, line: 36
+# File: sci_gateway/c/sci_disposefftwlibrary.c, line: 38
 # File: sci_gateway/c/sci_fftwlibraryisloaded.c, line: 35
-# File: sci_gateway/c/sci_loadfftwlibrary.c, line: 68
+# File: sci_gateway/c/sci_loadfftwlibrary.c, line: 69
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_fftw.c, line: 144
-# File: sci_gateway/c/sci_fftw.c, line: 155
+# File: sci_gateway/c/sci_fftw.c, line: 150
+# File: sci_gateway/c/sci_fftw.c, line: 161
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_fftw.c, line: 1091
-# File: sci_gateway/c/sci_fftw.c, line: 1120
-# File: sci_gateway/c/sci_fftw.c, line: 1137
-# File: sci_gateway/c/sci_fftw.c, line: 1148
-# File: sci_gateway/c/sci_fftw_flags.c, line: 271
-# File: sci_gateway/c/sci_fftw_flags.c, line: 283
-# File: sci_gateway/c/sci_fftw_flags.c, line: 290
-# File: sci_gateway/c/sci_fftw_flags.c, line: 313
-# File: sci_gateway/c/sci_fftw_flags.c, line: 321
+# File: sci_gateway/c/sci_fftw.c, line: 1154
+# File: sci_gateway/c/sci_fftw.c, line: 1183
+# File: sci_gateway/c/sci_fftw.c, line: 1200
+# File: sci_gateway/c/sci_fftw.c, line: 1214
+# File: sci_gateway/c/sci_fftw_flags.c, line: 274
+# File: sci_gateway/c/sci_fftw_flags.c, line: 286
+# File: sci_gateway/c/sci_fftw_flags.c, line: 293
+# File: sci_gateway/c/sci_fftw_flags.c, line: 316
+# File: sci_gateway/c/sci_fftw_flags.c, line: 324
 # File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 73
 # File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 94
 # File: sci_gateway/c/sci_get_fftw_wisdom.c, line: 121
@@ -283,7 +283,7 @@ msgid "%s: Wrong type for input argument #%d: A int32 expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_fftw_flags.c, line: 239
+# File: sci_gateway/c/sci_fftw_flags.c, line: 242
 #, c-format
 msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
 msgstr ""
@@ -303,19 +303,19 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 131
+# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 137
 #, c-format
 msgid "%s: Wrong value for input argument #%d: a valid wisdom expected.\n"
 msgstr ""
 
 #
-# File: src/c/sci_data_utilities.c, line: 185
+# File: src/c/sci_data_utilities.c, line: 245
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: src/c/sci_data_utilities.c, line: 240
+# File: src/c/sci_data_utilities.c, line: 300
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: An integer or a floating point number "
@@ -323,13 +323,13 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/sci_data_utilities.c, line: 288
+# File: src/c/sci_data_utilities.c, line: 348
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: src/c/sci_data_utilities.c, line: 339
+# File: src/c/sci_data_utilities.c, line: 420
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: An array of floating point or integer "

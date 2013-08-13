@@ -12,11 +12,11 @@
 //   Prints the string containing the nelder mead plot component.
 //
 function %TNMPLOT_p ( this )
-  str = string ( this )
-  srows = size(str,"r")
-  for i = 1 : srows
-    mprintf("%s\n",str(i))
-  end
+    str = string ( this )
+    srows = size(str,"r")
+    for i = 1 : srows
+        mprintf("%s\n",str(i))
+    end
 endfunction
 
 

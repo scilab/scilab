@@ -13,7 +13,7 @@
 #include "MALLOC.h"
 #include "api_scilab.h"
 #include "localization.h"
-#include "Scierror.h" 
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int getArrayOfDouble(void* _pvCtx, int *piAddr, int *ndims, int **dims, double **Ar, double **Ai)
 {
@@ -45,29 +45,53 @@ int getArrayOfDouble(void* _pvCtx, int *piAddr, int *ndims, int **dims, double *
     else if (iType == sci_mlist)
     {
         sciErr = getListItemNumber(_pvCtx, piAddr, &nItems);
-        if (nItems != 3) return 0;
+        if (nItems != 3)
+        {
+            return 0;
+        }
         /*Check if first item is ["hm","dims","entries"] */
         sciErr = getListItemAddress(_pvCtx, piAddr, 1, &piAddrChild);
         sciErr = getVarType(_pvCtx, piAddrChild, &iType);
-        if (iType != sci_strings) return 0;
+        if (iType != sci_strings)
+        {
+            return 0;
+        }
         sciErr = getVarDimension(_pvCtx, piAddrChild, &iRows, &iCols);
-        if (iRows*iCols != 3) return 0;
+        if (iRows*iCols != 3)
+        {
+            return 0;
+        }
         /* Check if first entry of the first item is "hm" */
         piOffset = piAddrChild + 4;
-        if (piOffset[1] - piOffset[0] != 2)  return 0;
+        if (piOffset[1] - piOffset[0] != 2)
+        {
+            return 0;
+        }
         piData = piOffset + iRows * iCols + 1;
-        if (piData[0] != 17 || piData[1] != 22) return 0; /* check "hm" */
+        if (piData[0] != 17 || piData[1] != 22)
+        {
+            return 0;    /* check "hm" */
+        }
         /* Get second item dims */
         sciErr = getListItemAddress(_pvCtx, piAddr, 2, &piAddrChild);
         sciErr = getVarType(_pvCtx, piAddrChild, &iType);
-        if (iType != sci_ints) return 0;
+        if (iType != sci_ints)
+        {
+            return 0;
+        }
         sciErr = getMatrixOfInteger32(_pvCtx, piAddrChild, &iRows, &iCols, dims);
-        if (sciErr.iErr)  return 0;
+        if (sciErr.iErr)
+        {
+            return 0;
+        }
         *ndims = iRows * iCols;
         /* Get thirds item entries */
         sciErr = getListItemAddress(_pvCtx, piAddr, 3, &piAddrChild);
         sciErr = getVarType(_pvCtx, piAddrChild, &iType);
-        if (iType != sci_matrix) return 0;
+        if (iType != sci_matrix)
+        {
+            return 0;
+        }
         if (isVarComplex(_pvCtx, piAddrChild))
         {
             getComplexMatrixOfDouble(_pvCtx, piAddrChild, &iRows, &iCols, Ar, Ai);
@@ -93,7 +117,10 @@ SciErr allocComplexArrayOfDouble(void* _pvCtx, int _iVar, int ndims, int *dims, 
     if (ndims == 2)
     {
         sciErr = allocComplexMatrixOfDouble( _pvCtx, _iVar, dims[0], dims[1], Ar, Ai);
-        if (sciErr.iErr) return sciErr;
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
     }
     else
     {
@@ -101,18 +128,33 @@ SciErr allocComplexArrayOfDouble(void* _pvCtx, int _iVar, int ndims, int *dims, 
         int n = 1;
         const char * hmType[] = {"hm", "dims", "entries"};
 
-        for (i = 0; i < ndims; i++)   n *= dims[i];
+        for (i = 0; i < ndims; i++)
+        {
+            n *= dims[i];
+        }
 
         sciErr = createMList(_pvCtx, _iVar, 3, &piAddr);
-        if (sciErr.iErr) return sciErr;
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
 
         sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddr, 1, 1, 3, hmType);
-        if (sciErr.iErr) return sciErr;
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
         sciErr = createMatrixOfInteger32InList(_pvCtx, _iVar, piAddr, 2, 1, ndims, dims);
-        if (sciErr.iErr) return sciErr;
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
 
         sciErr = allocComplexMatrixOfDoubleInList(_pvCtx, _iVar, piAddr, 3, n, 1, Ar, Ai);
-        if (sciErr.iErr) return sciErr;
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
     }
     return sciErr;
 }
@@ -126,7 +168,10 @@ SciErr allocArrayOfDouble(void* _pvCtx, int _iVar,  int ndims, int *dims, double
     if (ndims == 2)
     {
         sciErr = allocMatrixOfDouble( _pvCtx, _iVar, dims[0], dims[1], Ar);
-        if (sciErr.iErr) return sciErr;
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
     }
     else
     {
@@ -134,17 +179,32 @@ SciErr allocArrayOfDouble(void* _pvCtx, int _iVar,  int ndims, int *dims, double
         int n = 1;
         const char * hmType[] = {"hm", "dims", "entries"};
 
-        for (i = 0; i < ndims; i++) n *= dims[i];
+        for (i = 0; i < ndims; i++)
+        {
+            n *= dims[i];
+        }
 
         sciErr = createMList(_pvCtx,  _iVar, 3, &piAddr);
-        if (sciErr.iErr) return sciErr;
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
         sciErr = createMatrixOfStringInList(_pvCtx, _iVar, piAddr, 1, 1, 3, hmType);
-        if (sciErr.iErr) return sciErr;
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
         sciErr = createMatrixOfInteger32InList(_pvCtx, _iVar, piAddr, 2, 1, ndims, dims);
-        if (sciErr.iErr) return sciErr;
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
 
         sciErr = allocMatrixOfDoubleInList(_pvCtx, _iVar, piAddr, 3, n, 1, Ar);
-        if (sciErr.iErr) return sciErr;
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
     }
     return sciErr;
 }
@@ -298,7 +358,10 @@ SciErr getVectorIntArg(void* _pvCtx, int _iVar, char *fname, int *pndims, int **
     if (iType == sci_matrix)
     {
         sciErr = getMatrixOfDouble(_pvCtx, piAddr, &mDim, &nDim, &p_d);
-        for (i = 0; i < ndims; i++)  Dim[i] = (int)(p_d[i]);
+        for (i = 0; i < ndims; i++)
+        {
+            Dim[i] = (int)(p_d[i]);
+        }
     }
     else if (iType == sci_ints)
     {
@@ -307,27 +370,45 @@ SciErr getVectorIntArg(void* _pvCtx, int _iVar, char *fname, int *pndims, int **
         {
             case SCI_INT8 :
                 getMatrixOfInteger8(_pvCtx, piAddr, &mDim, &nDim, &p_c);
-                for (i = 0; i < ndims; i++) Dim[i]  = (int)(p_c[i]);
+                for (i = 0; i < ndims; i++)
+                {
+                    Dim[i]  = (int)(p_c[i]);
+                }
                 break;
             case SCI_INT16 :
                 getMatrixOfInteger16(_pvCtx, piAddr, &mDim, &nDim, &p_s);
-                for (i = 0; i < ndims; i++) Dim[i]  = (int)(p_s[i]);
+                for (i = 0; i < ndims; i++)
+                {
+                    Dim[i]  = (int)(p_s[i]);
+                }
                 break;
             case SCI_INT32 :
                 getMatrixOfInteger32(_pvCtx, piAddr, &mDim, &nDim, &p_i);
-                for (i = 0; i < ndims; i++)  Dim[i]  = (int)(p_i[i]);
+                for (i = 0; i < ndims; i++)
+                {
+                    Dim[i]  = (int)(p_i[i]);
+                }
                 break;
             case SCI_UINT8 :
                 getMatrixOfUnsignedInteger8(_pvCtx, piAddr, &mDim, &nDim, &p_uc);
-                for (i = 0; i < ndims; i++) Dim[i]  = (int)(p_uc[i]);
+                for (i = 0; i < ndims; i++)
+                {
+                    Dim[i]  = (int)(p_uc[i]);
+                }
                 break;
             case SCI_UINT16 :
                 getMatrixOfUnsignedInteger16(_pvCtx, piAddr, &mDim, &nDim, &p_us);
-                for (i = 0; i < ndims; i++) Dim[i]  = (int) p_us[i];
+                for (i = 0; i < ndims; i++)
+                {
+                    Dim[i]  = (int) p_us[i];
+                }
                 break;
             case SCI_UINT32 :
                 getMatrixOfUnsignedInteger32(_pvCtx, piAddr, &mDim, &nDim, &p_ui);
-                for (i = 0; i < ndims; i++) Dim[i]  = (int)(p_ui[i]);
+                for (i = 0; i < ndims; i++)
+                {
+                    Dim[i]  = (int)(p_ui[i]);
+                }
                 break;
         }
     }

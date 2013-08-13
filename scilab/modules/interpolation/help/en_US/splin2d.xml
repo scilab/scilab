@@ -137,7 +137,7 @@ n = 7;  // a regular grid with n x n interpolation points
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
 C = splin2d(x, y, z, "periodic");
-m = 50; // discretisation parameter of the evaluation grid
+m = 50; // discretization parameter of the evaluation grid
 xx = linspace(0,2*%pi,m); yy = xx;
 [XX,YY] = ndgrid(xx,yy);
 zz = interp2d(XX,YY, x, y, C);
@@ -155,7 +155,7 @@ xtitle("spline interpolation of cos(x)cos(y)"+str)
             x = linspace(0,2*%pi,n); y = x;
             z = cos(x')*cos(y);
             C = splin2d(x, y, z, "periodic");
-            m = 50; // discretisation parameter of the evaluation grid
+            m = 50; // discretization parameter of the evaluation grid
             xx = linspace(0,2*%pi,m); yy = xx;
             [XX,YY] = ndgrid(xx,yy);
             zz = interp2d(XX,YY, x, y, C);

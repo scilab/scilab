@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-09-01 15:20+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: it\n"
 
 msgid "overflow error"
@@ -106,14 +106,6 @@ msgstr "il tempo ritardato=%f , ma l'ultimo tempo immagazzinato = %f \n"
 
 msgid "Consider increasing the length of buffer in delay block \n"
 msgstr ""
-
-#, c-format
-msgid "Error when opening file '%s'.\n"
-msgstr "Errore nell'aprire il file \"%s\".\n"
-
-#, c-format
-msgid "Write error in file '%s'.\n"
-msgstr "Errore di scrittura nel file \"%s\".\n"
 
 msgid "Size of buffer or input size have changed!\n"
 msgstr "La dimensione del buffer o la dimensione dell'ingresso è cambiata!\n"
@@ -428,6 +420,48 @@ msgstr ""
 
 msgid "Cancel"
 msgstr "Annulla"
+
+msgid "Please give the discretization domain values"
+msgstr ""
+
+#, c-format
+msgid "Please give the %s operator coefficients"
+msgstr ""
+
+msgid "Please give the sign for the variable discriminant"
+msgstr ""
+
+msgid "Please give the discretization method type"
+msgstr ""
+
+msgid "Please give the discretization method degree"
+msgstr ""
+
+msgid "Please give the number of discretization points"
+msgstr ""
+
+#, c-format
+msgid "Please give the initial condition %s"
+msgstr ""
+
+msgid "Please give the boundary conditions"
+msgstr ""
+
+#, c-format
+msgid "The finite element discretization took %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The finite differences discretization took %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The finite volume discretization took %.2f seconds"
+msgstr ""
+
+#, c-format
+msgid "The code generation, the compilation and link took %.2f seconds"
+msgstr ""
 
 msgid "Event output port"
 msgstr ""
@@ -790,3 +824,7 @@ msgstr "&Modifica"
 
 msgid "&?"
 msgstr "&?"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
+msgstr ""

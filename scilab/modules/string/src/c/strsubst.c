@@ -31,7 +31,7 @@ char **strsubst(char **strings_input, int strings_dim, char *string_to_search, c
     if ( (strings_input) && (string_to_search) && (replacement_string) )
     {
         int i = 0;
-        replacedStrings = (char**)MALLOC(sizeof(char*)*strings_dim);
+        replacedStrings = (char**)MALLOC(sizeof(char*) * strings_dim);
         for (i = 0; i < strings_dim; i++)
         {
             char *str = strings_input[i];
@@ -48,7 +48,7 @@ char **strsubst_reg(char **strings_input, int strings_dim, char *string_to_searc
     if ( (strings_input) && (string_to_search) && (replacement_string) )
     {
         int i = 0;
-        replacedStrings = (char**)MALLOC(sizeof(char*)*strings_dim);
+        replacedStrings = (char**)MALLOC(sizeof(char*) * strings_dim);
         for (i = 0; i < strings_dim; i++)
         {
             char *str = strings_input[i];
@@ -66,7 +66,10 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
     char *replacedString = NULL;
     int count = 0, len = 0;
 
-    if (input_string == NULL) return NULL;
+    if (input_string == NULL)
+    {
+        return NULL;
+    }
 
     if (string_to_search == NULL || replacement_string == NULL)
     {
@@ -98,10 +101,16 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
         }
         len = count * ((int)strlen(replacement_string) - (int)strlen(string_to_search)) + (int)strlen(input_string);
     }
-    else len = (int)strlen(input_string);
+    else
+    {
+        len = (int)strlen(input_string);
+    }
 
     replacedString = MALLOC (sizeof(char) * (len + 1));
-    if (replacedString == NULL) return NULL;
+    if (replacedString == NULL)
+    {
+        return NULL;
+    }
 
     occurrence_str = input_string;
     result_str = replacedString;
@@ -112,10 +121,16 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
         {
             const char *N = NULL;
             N = replacement_string;
-            while (*N != '\0') *result_str++ = *N++;
+            while (*N != '\0')
+            {
+                *result_str++ = *N++;
+            }
             occurrence_str += len;
         }
-        else *result_str++ = *occurrence_str++;
+        else
+        {
+            *result_str++ = *occurrence_str++;
+        }
     }
     *result_str = '\0';
 
@@ -138,7 +153,10 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 
     *ierr = (int)PCRE_FINISHED_OK;
 
-    if (input_string == NULL) return NULL;
+    if (input_string == NULL)
+    {
+        return NULL;
+    }
 
     if (string_to_search == NULL || replacement_string == NULL)
     {
@@ -171,7 +189,10 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
     }
 
     wcreplacedString = (wchar_t*)MALLOC (sizeof(wchar_t) * (len + 1));
-    if (wcreplacedString == NULL) return NULL;
+    if (wcreplacedString == NULL)
+    {
+        return NULL;
+    }
 
     {
         /* converts to wide characters */

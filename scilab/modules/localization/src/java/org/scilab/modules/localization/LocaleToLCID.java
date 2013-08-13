@@ -9,20 +9,20 @@
 package org.scilab.modules.localization;
 
 
- /** 
-   * @author Allan CORNET
-   * @copyright DIGITEO 2010
-   */
+/**
+  * @author Allan CORNET
+  * @copyright DIGITEO 2010
+  */
 public class LocaleToLCID {
 
- /**
-   * Constructor
-   */
- protected LocaleToLCID() {
-    throw new UnsupportedOperationException();
- }
-  public static String convert(String pStrLocale) {
-    return LocaleToLCIDJNI.convert(pStrLocale);
-  }
+    /**
+      * Constructor
+      */
+    protected LocaleToLCID() {
+        throw new UnsupportedOperationException();
+    }
+    public static String convert(String pStrLocale) {
+        return LocaleToLCIDJNI.convert(pStrLocale);
+    }
 
 }

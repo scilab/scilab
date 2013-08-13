@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2011-09-01 09:34+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-08-01 14:02+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: ru\n"
 
 #, c-format
@@ -52,17 +52,14 @@ msgstr "разложение"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
-"Cholesky factorisation"
+"Cholesky factorization"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: Должна быть действительная "
-"ссылка на разложение Холецкого"
+"%s: Неверное значение входного аргумента №%d: должна быть корректная ссылка "
+"на разложение Холецкого"
 
 #, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr ""
-"%s: Не осталось доступной памяти : увеличьте размер стека (stacksize) "
-"необходимо %d дополнительный слов.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка распределения памяти.\n"
 
 #, c-format
 msgid ""
@@ -78,10 +75,18 @@ msgstr "%s: Неверный размер входного параметра �
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
-"factorisation.\n"
+"%s: Wrong type for input argument #%d: not compatible with the Cholesky "
+"factorization.\n"
 msgstr ""
-"%s: Неверный размер входного параметра №%d: несовместим с разложением "
+"%s: Неверный тип входного аргумента №%d: не совместим с разложением "
+"Холецкого\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
+"factorization.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: не совместим с разложением "
 "Холецкого.\n"
 
 #, c-format
@@ -116,11 +121,11 @@ msgstr "нет места для хранения LU-указателя в ListN
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Произошла ошибка: %s.\n"
 
-msgid "This is not a factorisation of a square matrix"
+msgid "This is not a factorization of a square matrix"
 msgstr "Это не разложение квадратной матрицы"
 
-msgid "This is a factorisation of a singular matrix"
-msgstr "Это не разложение вырожденной матрицы"
+msgid "This is a factorization of a singular matrix"
+msgstr "Это разложение вырожденной матрицы"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"

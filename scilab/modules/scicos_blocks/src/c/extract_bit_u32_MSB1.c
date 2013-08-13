@@ -18,26 +18,28 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void extract_bit_u32_MSB1(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void extract_bit_u32_MSB1(scicos_block *block, int flag)
 {
-   int i = 0,maxim = 0;
-   unsigned long *y = NULL,*u = NULL,ref = 0,n = 0;
-   int *ipar = NULL;
-   y=Getuint32OutPortPtrs(block,1);
-   u=Getuint32InPortPtrs(block,1);
-   ipar=GetIparPtrs(block);
-   maxim=32;
-   ref=0;
-   for(i=0;i<*ipar;i++)
-       {n=(unsigned long)pow(2,maxim-1-i);
-        ref=ref+n;}
-   *y=(*u)&(ref);
-   *y=*y>>(maxim-*ipar);
+    int i = 0, maxim = 0;
+    SCSUINT32_COP *y = NULL, *u = NULL, ref = 0, n = 0;
+    int *ipar = NULL;
+    y = Getuint32OutPortPtrs(block, 1);
+    u = Getuint32InPortPtrs(block, 1);
+    ipar = GetIparPtrs(block);
+    maxim = 32;
+    ref = 0;
+    for (i = 0; i < *ipar; i++)
+    {
+        n = (SCSUINT32_COP)pow(2, maxim - 1 - i);
+        ref = ref + n;
+    }
+    *y = (*u) & (ref);
+    *y = *y >> (maxim - *ipar);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

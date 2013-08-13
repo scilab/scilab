@@ -2,11 +2,11 @@
 
 function builder_gw_fortran()
 
-  tbx_build_gateway("skeleton_fortran", ..
-                  ["fortran_sum","sci_fsum"], ..
-                  ["sci_fsum.c"], ..
-                  get_absolute_file_path("builder_gateway_fortran.sce"), ..
-                  ["../../src/fortran/libfsum"]);
+    tbx_build_gateway("skeleton_fortran", ..
+    ["fortran_sum","sci_fsum"], ..
+    ["sci_fsum.c"], ..
+    get_absolute_file_path("builder_gateway_fortran.sce"), ..
+    ["../../src/fortran/libfsum"]);
 
 endfunction
 

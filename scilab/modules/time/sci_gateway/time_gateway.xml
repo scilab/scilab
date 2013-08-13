@@ -2,8 +2,8 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="time">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -19,8 +19,8 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-
-<!--
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Sylvestre LEDRU , Allan CORNET
  * 
@@ -31,14 +31,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!-- =================== -->
-
-<PRIMITIVE gatewayId="48" primitiveId="1" primitiveName="getdate" />
-<PRIMITIVE gatewayId="48" primitiveId="2" primitiveName="Calendar" />
-<PRIMITIVE gatewayId="48" primitiveId="3" primitiveName="timer" />
-<PRIMITIVE gatewayId="48" primitiveId="4" primitiveName="sleep" />
-<PRIMITIVE gatewayId="48" primitiveId="5" primitiveName="xpause" />
-<PRIMITIVE gatewayId="48" primitiveId="6" primitiveName="realtimeinit" />
-<PRIMITIVE gatewayId="48" primitiveId="7" primitiveName="realtime" />
+    
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="48" primitiveId="1" primitiveName="getdate" />
+    <PRIMITIVE gatewayId="48" primitiveId="2" primitiveName="Calendar" />
+    <PRIMITIVE gatewayId="48" primitiveId="3" primitiveName="timer" />
+    <PRIMITIVE gatewayId="48" primitiveId="4" primitiveName="sleep" />
+    <PRIMITIVE gatewayId="48" primitiveId="5" primitiveName="xpause" />
+    <PRIMITIVE gatewayId="48" primitiveId="6" primitiveName="realtimeinit" />
+    <PRIMITIVE gatewayId="48" primitiveId="7" primitiveName="realtime" />
 </GATEWAY>

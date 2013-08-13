@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-27 16:55+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-12 19:58+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: uk\n"
 
 #, c-format
@@ -133,8 +133,14 @@ msgstr ""
 "«%s», «%s», «%s», «%s» або «%s».\n"
 
 #, c-format
-msgid "%s Wrong value for input argument #%d: %s.\n"
-msgstr "%s: помилкове значення вхідного параметра №%d: %s.\n"
+msgid "%s Wrong value for input argument #%d: '%s' is unknown.\n"
+msgstr "%s: помилкове значення вхідного параметра ;%d: «%s» не є відомим.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
@@ -195,8 +201,8 @@ msgstr "P(%d) > 1\n"
 msgid "Sum of P(i) > 1\n"
 msgstr "Сума P(i) > 1\n"
 
-msgid "Missing shape and scale for Gamma law\n"
-msgstr "Не вказано параметри shape і scale для закону гамма-розподілу\n"
+msgid "Missing shape and rate for Gamma law\n"
+msgstr "Не вказано параметри гамма-розподілу\n"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 або R <= 0.0\n"
@@ -397,17 +403,15 @@ msgstr ""
 "2147483322]"
 
 #, c-format
+msgid "WARNING: %s\n"
+msgstr "ПОПЕРЕДЖЕННЯ: %s\n"
+
+#, c-format
 msgid ""
-"\n"
-"=> be aware that you have may lost synchronization\n"
-"    between the virtual gen %d and the others !\n"
-"    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
+"be aware that you may have lost synchronization\n"
+"    between the virtual generator %d and the others.\n"
+"    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."
 msgstr ""
-"\n"
-"=> зауважте, що синхронізацію з віртуальним генератором %d та іншими\n"
-"    генераторами може бути втрачено!\n"
-"    скористайтеся командою grand(\"setall\", s1, s2, s3, s4), якщо бажаєте "
-"її відновити."
 
 msgid ""
 "\n"
@@ -478,6 +482,30 @@ msgstr "Теорія"
 msgid "Simulation of a discrete random variable"
 msgstr "Моделювання дискретної випадкової величини"
 
+msgid "Simulation of a discrete uniform random variable"
+msgstr "Імітація дискретної випадкової величини з рівномірним розподілом"
+
+msgid "Simulation of a Erlang random variable"
+msgstr "Імінтація випадкової величини з розподілом Ерланга"
+
+msgid "macro histplot : Histogram plot"
+msgstr "макрос histplot: побудова гістограми"
+
+msgid "Classes"
+msgstr "Класи"
+
+msgid "p must be < 1"
+msgstr "p має бути < 1"
+
+msgid "Simulation of a geometric random variable"
+msgstr "Імітація випадкової величини з геометричним розподілом"
+
+msgid "Simulation of a hyper geometric random variable"
+msgstr "Імітація випадкової величини з гіпергеометричним розподілом"
+
+msgid "Simulation of a Poisson random variable"
+msgstr ""
+
 msgid "Random"
 msgstr "Випадкові величини"
 
@@ -507,3 +535,6 @@ msgstr "Випадкова величина з гіпергеометрични�
 
 msgid "Erlang random variable"
 msgstr "Випадкова величина з розподілом Ерланга"
+
+msgid "Simulation of a Weibull random variable"
+msgstr "Імітація випадкової величини з розподілом Вейбулла"

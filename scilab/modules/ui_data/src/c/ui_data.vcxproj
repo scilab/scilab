@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -28,19 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -200,7 +204,7 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_filebrowser.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_updatebrowsevar.cpp" />
     <ClCompile Include="..\cpp\FileBrowserChDir.cpp" />
-    <ClCompile Include="..\cpp\UpdateBrowseVar.cpp" />
+    <ClCompile Include="..\cpp\BrowseVarManager.cpp" />
     <ClCompile Include="..\jni\BrowseVar.cpp" />
     <ClCompile Include="..\jni\FileBrowser.cpp" />
     <ClCompile Include="..\jni\ui_data_wrap.c" />
@@ -214,7 +218,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\includes\FileBrowserChDir.h" />
     <ClInclude Include="..\..\includes\ui_data.h" />
-    <ClInclude Include="..\..\includes\UpdateBrowseVar.h" />
+    <ClInclude Include="..\..\includes\BrowseVarManager.h" />
     <ClInclude Include="..\jni\BrowseVar.hxx" />
     <ClInclude Include="..\..\includes\dynlib_ui_data.h" />
     <ClInclude Include="..\jni\EditVar.hxx" />

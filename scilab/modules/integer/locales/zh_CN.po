@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2013-01-26 04:12+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -43,9 +43,3 @@ msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s：第%d个输入参数的值错误：必须在集合{%s}中。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr "%s：输入参数的值错误：应该为‘%s’、‘%s’、‘%s’、‘%s’或‘%s’。\n"

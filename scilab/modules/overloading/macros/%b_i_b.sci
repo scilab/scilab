@@ -7,11 +7,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function M=%b_i_b(varargin)
-//insertion of a boolean matrix in an matrix of boolean for more than 2 indices
+    //insertion of a boolean matrix in an matrix of boolean for more than 2 indices
 
-  rhs=argn(2)
-  M=varargin(rhs)
-  M=mlist(['hm','dims','entries'],int32(size(M)),M(:))
-  varargin(rhs)=M;
-  M=generic_i_hm(%f,varargin(:))
+    rhs=argn(2)
+    M=varargin(rhs)
+    M=mlist(["hm","dims","entries"],int32(size(M)),M(:))
+    varargin(rhs)=M;
+    M=generic_i_hm(%f,varargin(:))
 endfunction

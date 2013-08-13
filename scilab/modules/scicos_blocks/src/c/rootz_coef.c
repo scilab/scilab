@@ -18,22 +18,25 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 extern int C2F(wprxc)();
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void rootz_coef(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void rootz_coef(scicos_block *block, int flag)
 {
-	int mu = GetInPortRows(block,1);
+    int mu = GetInPortRows(block, 1);
 
-	double *ur = GetRealInPortPtrs(block,1);
-	double *ui = GetImagInPortPtrs(block,1);
-	double *yr = GetRealOutPortPtrs(block,1);
-	double *yi = GetImagOutPortPtrs(block,1);
+    double *ur = GetRealInPortPtrs(block, 1);
+    double *ui = GetImagInPortPtrs(block, 1);
+    double *yr = GetRealOutPortPtrs(block, 1);
+    double *yi = GetImagOutPortPtrs(block, 1);
 
-	if (flag==1||flag==6) C2F(wprxc)(&mu,ur,ui,yr,yi);
+    if (flag == 1 || flag == 6)
+    {
+        C2F(wprxc)(&mu, ur, ui, yr, yi);
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

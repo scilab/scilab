@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:11+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-30 07:15+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -26,7 +26,7 @@ msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaînes de "
 "caractères attendue.\n"
 
 #, c-format
@@ -110,6 +110,19 @@ msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle attendue.\n"
 
+msgid "This usage of the third argument of gsort is obsolete."
+msgstr "Cette utilisation du troisième argument de gsort est obsolète."
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr "ATTENTION : %s\n"
+
+msgid "It will no more be available in Scilab 6."
+msgstr "Ce ne sera plus possible dans Scilab 6."
+
+msgid "Please use 'd' or 'i' instead."
+msgstr "Veuillez utiliser 'd' ou 'i' à la place."
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
@@ -117,6 +130,12 @@ msgid ""
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', '%s', '%s' ou "
 "'%s' attendu.\n"
+
+msgid "This usage of the second argument of gsort is obsolete."
+msgstr "Cette utilisation du deuxième argument de gsort est obsolète."
+
+msgid "Please use 'r', 'c', 'g', 'lr' or 'lc' instead."
+msgstr "Veuillez utiliser 'r', 'c', 'g', 'lr' ou 'lc' à la place."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -267,6 +286,21 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, sparse or full "
+"matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle ou "
+"complexe, creuse ou dense attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real sparse or full matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle creuse ou "
+"dense attendue.\n"
+
+#, c-format
 msgid "%s: Matrix is not diagonalisable.\n"
 msgstr "%s : Matrice non diagonalisable.\n"
 
@@ -379,6 +413,34 @@ msgstr ""
 "diagonalisable.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real, complex, boolean or "
+"polynomial matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle, complexe, "
+"booléenne ou polynomiale attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size 1x3 or 3xN "
+"expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice de taille "
+"1x3 ou 3xN attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, sparse or full "
+"matrix or hypermatrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice ou une "
+"hypermatrice réelle ou complexe, creuse ou dense attendue.\n"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
 
@@ -482,20 +544,23 @@ msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr "%s : Type erroné de l'argument n°%d : Un réel attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument(s) %d: real arguments expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Real scalar or matrix expected.\n"
 msgstr ""
-"%s : Type erroné de ou des argument(s) d'entrée n°%d : Des arguments réels "
-"attendus.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire réel ou une "
+"matrice attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument(s) %d: n must be a scalar.\n"
+msgid ""
+"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s : Type erroné de ou des argument(s) d'entrée n°%d : n doit être un "
-"scalaire.\n"
+"%s : Dimensions erronées des arguments d'entrée n°%d et n°%d : Mêmes "
+"dimensions attendues.\n"
 
 #, c-format
-msgid "%s: If x is negative, n must be an odd integer\n"
-msgstr "%s : si x est négatif, n doit être un entier impair\n"
+msgid "%s: If x is negative, then n must contain odd integers only.\n"
+msgstr ""
+"%s : Si x est négatif alors n ne doit contenir que des entiers impairs.\n"
 
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
@@ -559,6 +624,11 @@ msgid ""
 msgstr ""
 "%s : Nombre erroné des dimensions de matrice de sortie requises : %d attendu "
 "pour les matrices creuses.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"

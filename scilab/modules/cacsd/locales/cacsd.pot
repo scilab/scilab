@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:49+0100\n"
+"Revision-Date: 2013-07-25 15:36+0100\n"
 
 # File: sci_gateway/c/sci_contr.c, line: 72
 # File: sci_gateway/c/sci_contr.c, line: 78
@@ -55,9 +55,6 @@ msgstr ""
 # File: sci_gateway/c/sci_hinf.c, line: 247
 # File: sci_gateway/c/sci_hinf.c, line: 272
 # File: sci_gateway/c/sci_hinf.c, line: 296
-# File: sci_gateway/c/sci_linmeq.c, line: 227
-# File: sci_gateway/c/sci_linmeq.c, line: 273
-# File: sci_gateway/c/sci_linmeq.c, line: 316
 # File: sci_gateway/c/sci_linmeq.c, line: 499
 # File: sci_gateway/c/sci_mucomp.c, line: 164
 # File: sci_gateway/c/sci_mucomp.c, line: 180
@@ -140,25 +137,25 @@ msgstr ""
 # File: sci_gateway/c/sci_hinf.c, line: 355
 # File: sci_gateway/c/sci_hinf.c, line: 364
 # File: sci_gateway/c/sci_hinf.c, line: 383
-# File: sci_gateway/c/sci_linmeq.c, line: 636
-# File: sci_gateway/c/sci_linmeq.c, line: 651
-# File: sci_gateway/c/sci_linmeq.c, line: 664
-# File: sci_gateway/c/sci_linmeq.c, line: 678
-# File: sci_gateway/c/sci_linmeq.c, line: 690
-# File: sci_gateway/c/sci_linmeq.c, line: 702
-# File: sci_gateway/c/sci_linmeq.c, line: 729
-# File: sci_gateway/c/sci_linmeq.c, line: 742
-# File: sci_gateway/c/sci_linmeq.c, line: 750
-# File: sci_gateway/c/sci_linmeq.c, line: 758
-# File: sci_gateway/c/sci_linmeq.c, line: 766
-# File: sci_gateway/c/sci_linmeq.c, line: 776
-# File: sci_gateway/c/sci_linmeq.c, line: 787
-# File: sci_gateway/c/sci_linmeq.c, line: 799
-# File: sci_gateway/c/sci_linmeq.c, line: 807
-# File: sci_gateway/c/sci_linmeq.c, line: 815
-# File: sci_gateway/c/sci_linmeq.c, line: 823
-# File: sci_gateway/c/sci_linmeq.c, line: 1040
-# File: sci_gateway/c/sci_linmeq.c, line: 1102
+# File: sci_gateway/c/sci_linmeq.c, line: 633
+# File: sci_gateway/c/sci_linmeq.c, line: 648
+# File: sci_gateway/c/sci_linmeq.c, line: 661
+# File: sci_gateway/c/sci_linmeq.c, line: 675
+# File: sci_gateway/c/sci_linmeq.c, line: 687
+# File: sci_gateway/c/sci_linmeq.c, line: 699
+# File: sci_gateway/c/sci_linmeq.c, line: 726
+# File: sci_gateway/c/sci_linmeq.c, line: 739
+# File: sci_gateway/c/sci_linmeq.c, line: 747
+# File: sci_gateway/c/sci_linmeq.c, line: 755
+# File: sci_gateway/c/sci_linmeq.c, line: 763
+# File: sci_gateway/c/sci_linmeq.c, line: 773
+# File: sci_gateway/c/sci_linmeq.c, line: 784
+# File: sci_gateway/c/sci_linmeq.c, line: 796
+# File: sci_gateway/c/sci_linmeq.c, line: 804
+# File: sci_gateway/c/sci_linmeq.c, line: 812
+# File: sci_gateway/c/sci_linmeq.c, line: 820
+# File: sci_gateway/c/sci_linmeq.c, line: 1037
+# File: sci_gateway/c/sci_linmeq.c, line: 1099
 # File: sci_gateway/c/sci_mucomp.c, line: 90
 # File: sci_gateway/c/sci_mucomp.c, line: 103
 # File: sci_gateway/c/sci_mucomp.c, line: 111
@@ -237,15 +234,29 @@ msgid "%s: SB10FD exit with info = %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 233
+# File: sci_gateway/c/sci_linmeq.c, line: 227
+# File: sci_gateway/c/sci_linmeq.c, line: 273
+# File: sci_gateway/c/sci_linmeq.c, line: 316
+# File: sci_gateway/c/sci_linmeq.c, line: 347
+# File: sci_gateway/c/sci_linmeq.c, line: 379
+# File: sci_gateway/c/sci_linmeq.c, line: 407
+# File: sci_gateway/c/sci_linmeq.c, line: 440
 #, c-format
-msgid "%s: TASK must be a scalar.\n"
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_linmeq.c, line: 233
+# File: sci_gateway/c/sci_linmeq.c, line: 280
+# File: sci_gateway/c/sci_linmeq.c, line: 322
+#, c-format
+msgid "%s: %s must be a scalar.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_linmeq.c, line: 240
 #, c-format
-msgid "%s: TASK has 1, 2 or 3 the only admissible values.\n"
+msgid "%s: Wrong value for %s: %d, %d or %d expected.\n"
 msgstr ""
 
 #
@@ -255,42 +266,21 @@ msgid "%s: TASK = 1 : LINMEQ requires at least 4 input arguments.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 280
-#, c-format
-msgid "%s: TRANS must be a scalar.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_linmeq.c, line: 289
 #, c-format
-msgid "%s: TRANS has 0, 1, 2 or 3 the only admissible values.\n"
+msgid "%s: Wrong value for %s: %d, %d, %d or %d expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_linmeq.c, line: 294
 #, c-format
-msgid "%s: TRANS has 0 or 1 the only admissible values.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_linmeq.c, line: 322
-#, c-format
-msgid "%s: SCHUR must be a scalar.\n"
+msgid "%s: Wrong value for %s: %d, or %d expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_linmeq.c, line: 330
 #, c-format
-msgid "%s: SCHUR has 1 or 2 the only admissible values.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_linmeq.c, line: 347
-# File: sci_gateway/c/sci_linmeq.c, line: 379
-# File: sci_gateway/c/sci_linmeq.c, line: 407
-# File: sci_gateway/c/sci_linmeq.c, line: 440
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgid "%s: Wrong value for %s: %d or %d expected.\n"
 msgstr ""
 
 #
@@ -340,26 +330,26 @@ msgid "%s: Wrong size for input argument #%d: At most 2 elements expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 1124
-# File: sci_gateway/c/sci_linmeq.c, line: 1141
-# File: sci_gateway/c/sci_linmeq.c, line: 1162
-# File: sci_gateway/c/sci_linmeq.c, line: 1198
+# File: sci_gateway/c/sci_linmeq.c, line: 1121
+# File: sci_gateway/c/sci_linmeq.c, line: 1138
+# File: sci_gateway/c/sci_linmeq.c, line: 1159
+# File: sci_gateway/c/sci_linmeq.c, line: 1195
 #, c-format
 msgid "%s: Convergence problem...\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 1129
-# File: sci_gateway/c/sci_linmeq.c, line: 1146
-# File: sci_gateway/c/sci_linmeq.c, line: 1152
-# File: sci_gateway/c/sci_linmeq.c, line: 1167
-# File: sci_gateway/c/sci_linmeq.c, line: 1176
+# File: sci_gateway/c/sci_linmeq.c, line: 1126
+# File: sci_gateway/c/sci_linmeq.c, line: 1143
+# File: sci_gateway/c/sci_linmeq.c, line: 1149
+# File: sci_gateway/c/sci_linmeq.c, line: 1164
+# File: sci_gateway/c/sci_linmeq.c, line: 1173
 #, c-format
 msgid "%s: Problem is singular.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 1183
+# File: sci_gateway/c/sci_linmeq.c, line: 1180
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: eigenvalues must have negative real "
@@ -367,8 +357,8 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 1187
-# File: sci_gateway/c/sci_linmeq.c, line: 1193
+# File: sci_gateway/c/sci_linmeq.c, line: 1184
+# File: sci_gateway/c/sci_linmeq.c, line: 1190
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: eigenvalues modulus must be less "
@@ -376,18 +366,18 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 1223
-# File: sci_gateway/c/sci_linmeq.c, line: 1228
+# File: sci_gateway/c/sci_linmeq.c, line: 1220
+# File: sci_gateway/c/sci_linmeq.c, line: 1225
 #, c-format
-msgid "%s: Warning: the right hand sides were scaled by %lf to avoid overflow."
+msgid "%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 1233
+# File: sci_gateway/c/sci_linmeq.c, line: 1230
 #, c-format
 msgid ""
 "%s: Warning: the equation is (almost) singular. Perturbed values have been "
-"used."
+"used.\n"
 msgstr ""
 
 #
@@ -599,7 +589,7 @@ msgstr ""
 # File: macros/abinv.sci, line: 76
 # File: macros/augment.sci, line: 119
 # File: macros/augment.sci, line: 250
-# File: macros/csim.sci, line: 82
+# File: macros/csim.sci, line: 79
 # File: macros/ctr_gram.sci, line: 22
 # File: macros/damp.sci, line: 26
 # File: macros/gamitg.sci, line: 74
@@ -796,7 +786,7 @@ msgstr ""
 # File: macros/bode.sci, line: 61
 # File: macros/bode.sci, line: 68
 # File: macros/bode.sci, line: 72
-# File: macros/csim.sci, line: 91
+# File: macros/csim.sci, line: 88
 # File: macros/gainplot.sci, line: 60
 # File: macros/gainplot.sci, line: 68
 # File: macros/nyquist.sci, line: 72
@@ -866,7 +856,7 @@ msgstr ""
 # File: macros/gainplot.sci, line: 124
 # File: macros/hallchart.sci, line: 87
 # File: macros/hallchart.sci, line: 130
-# File: macros/nicholschart.sci, line: 191
+# File: macros/nicholschart.sci, line: 193
 msgid "dB"
 msgstr ""
 
@@ -1096,19 +1086,19 @@ msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
 msgstr ""
 
 #
-# File: macros/chart.sci, line: 11
-# File: macros/nicholschart.sci, line: 25
+# File: macros/chart.sci, line: 12
+# File: macros/nicholschart.sci, line: 27
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr ""
 
 #
-# File: macros/chart.sci, line: 88
+# File: macros/chart.sci, line: 89
 msgid "magnitude(y) (Db)"
 msgstr ""
 
 #
-# File: macros/chart.sci, line: 88
-# File: macros/nicholschart.sci, line: 26
+# File: macros/chart.sci, line: 89
+# File: macros/nicholschart.sci, line: 28
 msgid "phase(y) (degree)"
 msgstr ""
 
@@ -1209,20 +1199,19 @@ msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
 msgstr ""
 
 #
-# File: macros/csim.sci, line: 58
+# File: macros/csim.sci, line: 57
 #, c-format
-msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
+msgid "%s: Wrong type for input argument #%d: A proper system expected\n"
 msgstr ""
 
 #
-# File: macros/csim.sci, line: 72
-# File: macros/csim.sci, line: 78
+# File: macros/csim.sci, line: 67
 #, c-format
-msgid "%s: Direct feedthrough set to zero.\n"
+msgid "%s: Wrong type for input argument #%d: A SIMO expected.\n"
 msgstr ""
 
 #
-# File: macros/csim.sci, line: 159
+# File: macros/csim.sci, line: 156
 #, c-format
 msgid "%s: Simulation failed before final time is reached.\n"
 msgstr ""
@@ -1828,7 +1817,7 @@ msgid "%s: Incompatible input arguments #%d and #%d: "
 msgstr ""
 
 #
-# File: macros/nicholschart.sci, line: 27
+# File: macros/nicholschart.sci, line: 29
 msgid "magnitude(y) (dB)"
 msgstr ""
 

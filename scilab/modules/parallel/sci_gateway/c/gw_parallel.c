@@ -16,22 +16,22 @@
 #include "callFunctionFromGateway.h"
 
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+static gw_generic_table Tab[] =
 {
-    {sci_parallel_run,"parallel_run"}
-    ,{sci_parallel_concurrency, "parallel_concurrency"}
+    {sci_parallel_run, "parallel_run"}
+    , {sci_parallel_concurrency, "parallel_concurrency"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_parallel(void)
 {
     Rhs = Max(0, Rhs);
 
-    if(pvApiCtx == NULL)
+    if (pvApiCtx == NULL)
     {
         pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
     }
 
-    pvApiCtx->pstName = (char*)Tab[Fin-1].name;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
     callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }

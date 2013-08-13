@@ -7,22 +7,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-01-23 20:34+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-16 19:42+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d or #%d: No complex input argument "
-"expected.\n"
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
+
+#, c-format
+msgid "%s: arguments #%d and #%d have incompatible dimensions.\n"
+msgstr "%s: argumenty #%d a #%d mají nekompatibilní rozměry.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
-"%s: Chybný typ prvního vstupního argumentu #%d nebo #%d: Neočekává se "
-"komplexní vstup.\n"
+"%s: Špatný typ vstupního argumentu #%d: Očekávána matice reálných čísel.\n"
 
 #, c-format
 msgid "%s: Wrong value for input arguments: Must be > %d.\n"
@@ -31,6 +36,14 @@ msgstr "%s: Chybná hodnota vstupního argumentu: Musí být > %d.\n"
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A matrix expected.\n"
+msgstr "%s: Špatný typ argumentu %d: Očekávána matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument.\n"
@@ -43,11 +56,6 @@ msgstr "%s: Chybný typ vstupního argumentu #%d.\n"
 #, c-format
 msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
 msgstr "%s: Pouze jeden z arg1 a arg2 může být vektor.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: Chybný typ vstupního argumentu #%d: Očekávána matice reálných čísel.\n"
 
 #, c-format
 msgid ""
@@ -64,6 +72,19 @@ msgstr "%s: přetečení nebo podtečení rozšířeného rozsahu čísla\n"
 #, c-format
 msgid "%s: error number %d\n"
 msgstr "%s: Chyba číslo %d\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
+msgstr ""
+"%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for argument %d: 0, 1 or 2 expected.\n"
+msgstr "%s: Špatná hodnota argumentu %d: Očekávána 0, 1 nebo 2.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"

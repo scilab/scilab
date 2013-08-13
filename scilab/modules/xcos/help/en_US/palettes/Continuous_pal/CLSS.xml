@@ -112,7 +112,7 @@
             <latex>
                 \begin{matrix}
                 \dot{x} = A \cdot x + B \cdot u \\ 
-                \dot{y} = C \cdot x + D \cdot u
+                y = C \cdot x + D \cdot u
                 \end{matrix}
             </latex>
         </para>

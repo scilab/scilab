@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:49+0100\n"
+"Revision-Date: 2013-07-26 14:48+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 73
 #, c-format
@@ -782,20 +782,11 @@ msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_displaytree.cpp, line: 137
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Label: A string expected.\n"
-msgstr ""
-
-#
 # File: sci_gateway/cpp/sci_displaytree.cpp, line: 154
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Icon: A string expected.\n"
-msgstr ""
-
-#
 # File: sci_gateway/cpp/sci_displaytree.cpp, line: 171
 #, c-format
-msgid "%s: Wrong type for input argument #%d: callback: A string expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: A string expected.\n"
 msgstr ""
 
 #
@@ -1549,73 +1540,83 @@ msgid "Fonts"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1127
+# File: scilab_fake_localization_file.c, line: 1144
 msgid "Desktop font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1131
+# File: scilab_fake_localization_file.c, line: 1152
 msgid "Use system font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1147
+# File: scilab_fake_localization_file.c, line: 1184
 msgid "Desktop text font: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1163
+# File: scilab_fake_localization_file.c, line: 1215
 msgid "Custom font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1177
+# File: scilab_fake_localization_file.c, line: 1243
 msgid "Fonts to use:"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1180
+# File: scilab_fake_localization_file.c, line: 1249
 msgid "Desktop text font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1186
+# File: scilab_fake_localization_file.c, line: 1261
 msgid "Custom:"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1390
+# File: scilab_fake_localization_file.c, line: 1320
+msgid "LaTeX preview"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1324
+msgid "LaTeX font size:"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 1529
 msgid "Web"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1406
+# File: scilab_fake_localization_file.c, line: 1545
 msgid "Web browser and mailer"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1408
+# File: scilab_fake_localization_file.c, line: 1547
 msgid "Use default web browser"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1414
+# File: scilab_fake_localization_file.c, line: 1553
 msgid "Command for web browser: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1429
-# File: scilab_fake_localization_file.c, line: 1460
+# File: scilab_fake_localization_file.c, line: 1568
+# File: scilab_fake_localization_file.c, line: 1599
 msgid "(Don't forget to quote path containing white spaces)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1439
+# File: scilab_fake_localization_file.c, line: 1578
 msgid "Use default mailer"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1445
+# File: scilab_fake_localization_file.c, line: 1584
 msgid "Command for mailer: "
 msgstr ""
 
@@ -1998,7 +1999,6 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 72
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 152
-#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -2009,7 +2009,6 @@ msgstr ""
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 73
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 153
 # File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 163
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -2147,7 +2146,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 124
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 191
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 192
 msgid "Preview"
 msgstr ""
 
@@ -2164,70 +2163,70 @@ msgid "File already exists"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 216
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 218
 msgid "Please specify a file format"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 217
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 254
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 219
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 256
 msgid "Error on export"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 252
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 254
 msgid "Unrecognized extension '"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 253
+# File: src/java/org/scilab/modules/gui/bridge/filechooser/SwingScilabExportFileChooser.java, line: 255
 msgid ""
 "'.\n"
 " Please specify a valid file format."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 106
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 107
 msgid "Font Chooser"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 114
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 115
 msgid "Font"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 161
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 162
 msgid "Attributes"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 162
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 163
 msgid "Bold"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 164
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 165
 msgid "Italic"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 166
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 167
 msgid "Monospaced"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 178
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 179
 msgid "SciNotes compatible"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 206
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 207
 msgid "Ok"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 218
+# File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 219
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 260
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 270
 # File: src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 274
@@ -2307,7 +2306,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/tabfactory/ScilabTabFactory.java, line: 40
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -2315,13 +2313,11 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 54
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 55
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr ""
 
@@ -2413,7 +2409,6 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/SciFileFilter.java, line: 82
-#, c-format
 msgid "All %s files"
 msgstr ""
 
@@ -2439,8 +2434,8 @@ msgstr ""
 
 #
 # File: src/nogui/nogui.c, line: 34
-# File: src/nogui/nogui.c, line: 154
-# File: src/nogui/nogui.c, line: 158
+# File: src/nogui/nogui.c, line: 173
+# File: src/nogui/nogui.c, line: 178
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr ""
@@ -2452,7 +2447,7 @@ msgid "%s: Only available under 'STANDARD' mode.\n"
 msgstr ""
 
 #
-# File: src/nogui/nogui.c, line: 120
+# File: src/nogui/nogui.c, line: 126
 msgid "Error. A signal has been caught.\n"
 msgstr ""
 
@@ -2838,7 +2833,7 @@ msgstr ""
 # File: macros/tree/uiInsertNode.sci, line: 27
 # File: macros/tree/uiInsertNode.sci, line: 46
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
 
 #
@@ -2850,14 +2845,17 @@ msgstr ""
 #
 # File: macros/tree/uiCreateTree.sci, line: 29
 #, c-format
-msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 
 #
 # File: macros/tree/uiDeleteNode.sci, line: 39
+# File: macros/tree/uiFindNode.sci, line: 42
+# File: macros/tree/uiGetChildrenNode.sci, line: 40
+# File: macros/tree/uiGetParentNode.sci, line: 40
 # File: macros/tree/uiInsertNode.sci, line: 39
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgid "%s: Wrong type for input argument #%d: String or uitree expected.\n"
 msgstr ""
 
 #
@@ -2895,14 +2893,6 @@ msgstr ""
 # File: macros/tree/uiDumpTree.sci, line: 34
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
-msgstr ""
-
-#
-# File: macros/tree/uiFindNode.sci, line: 42
-# File: macros/tree/uiGetChildrenNode.sci, line: 40
-# File: macros/tree/uiGetParentNode.sci, line: 40
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
 msgstr ""
 
 #

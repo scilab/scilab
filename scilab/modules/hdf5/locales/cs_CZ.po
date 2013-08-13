@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-19 21:36+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-23 21:42+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -59,8 +59,170 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
+
+#, c-format
+msgid "%s: Invalid H5Object.\n"
+msgstr "%s: Neplatný H5Object.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo H5Object.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Není více paměti.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s: %s\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A H5Object expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván H5Object.\n"
+
+#, c-format
+msgid "%s: Cannot remove H5Object.\n"
+msgstr "%s: Nelze odstranit  H5Object.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double matrix expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána dvojitá matice.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Five row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván jeden řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: six row vector expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor s šesti řádky.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d column vector expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván sloupcový vektor %d.\n"
+
+#, c-format
+msgid "%s: Can not print H5Object: invalid object.\n"
+msgstr "%s: Nelze vypsat H5Object: Neplatný objekt.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván H5Objekt.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgstr "%s: Špatná velikost argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Can not create output argument.\n"
+msgstr "%s: Nelze vytvořit výstupní argument.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A HDF5 object expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván objekt HDF5.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván vektor reálného řádku.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Real row or column vector expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný sloupcový nebo "
+"řádkový vektor.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řádku řetězců.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row or column vector expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván  sloupcový nebo "
+"řádkový vektor.\n"
+
+#, c-format
+msgid "%s: Can not use H5Object: invalid object.\n"
+msgstr "%s: Nelze použít objekt H5Object: Neplatný objekt.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván boolean nebo řetězec.\n"
+
+#, c-format
+msgid "%s: Invalid number of arguments: more than %d expected.\n"
+msgstr "%s: Neplatný počet argumentů: Očekáváno více než %d.\n"
+
+#, c-format
+msgid "%s: Invalid access mode: %s.\n"
+msgstr "%s: Neplatný režim přístupu: %s.\n"
+
+#, c-format
+msgid "%s: Invalid number of input arguments.\n"
+msgstr "%s: Neplatný počet vstupních argumentů.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno číslo s dvojitou "
+"přesností.\n"
+
+#, c-format
+msgid "%s: Invalid number of input argument.\n"
+msgstr "%s: Neplatný počet vstupních argumentů.\n"
+
+#, c-format
+msgid "%s: Invalid path: cannot be empty.\n"
+msgstr "%s: Neplatná cesta: Nemůže být prázdné.\n"
+
+#, c-format
+msgid "%s: Second argument must be a dataset name.\n"
+msgstr "%s: Druhý argument musí být název datové sady.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána stejná velikost.\n"
+
+#, c-format
+msgid "%s: Argument 'count' is missing.\n"
+msgstr "%s: Argument 'count' chybí.\n"
+
+#, c-format
+msgid "%s: Invalid number of argument(s): %d expected.\n"
+msgstr "%s: Neplatný počet argumentů: Očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
 
 #, c-format
 msgid "%s: Unable to open file: %s\n"
@@ -74,3 +236,527 @@ msgstr ""
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: Neplatný Scilab formát HDF5.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: More than %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno více než %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo číslo s "
+"dvojitou přesností.\n"
+
+#, c-format
+msgid "%s: Only one field can be requested.\n"
+msgstr "%s: Lze zažádat pouze o jedno pole.\n"
+
+#, c-format
+msgid ""
+"%s: Error in retrieving field content:\n"
+"%s\n"
+msgstr ""
+"%s: Chyba při získávání obsahu pole:\n"
+"%s\n"
+
+#, c-format
+msgid "%s: Not an H5 Compound object.\n"
+msgstr "%s: Není složený objekt H5.\n"
+
+#, c-format
+msgid "%s: Can not print H5Object.\n"
+msgstr "%s: Nelze vypsat H5Object.\n"
+
+msgid "Invalid index."
+msgstr "Neplatný index."
+
+msgid "Dimensions"
+msgstr "Rozměry"
+
+#, c-format
+msgid "Cannot open attribute: %s"
+msgstr "Nelze otevřít vlastnost: %s"
+
+msgid "Cannot get the attribute type"
+msgstr "Nelze získat typ vlastnosti"
+
+msgid "Cannot get the attribute dataspace"
+msgstr "Nelze získat datový prostor vlastnosti"
+
+msgid "Error in retrieving data."
+msgstr "Chyba při získávání dat."
+
+#, c-format
+msgid "Attribute %s already exists."
+msgstr "Vlastnost %s již existuje."
+
+msgid "Cannot create a new attribute."
+msgstr "Nelze vytvořit novou vlastnost."
+
+msgid "Cannot write data in the attribute."
+msgstr "Nelze zapsat data do vlastnosti."
+
+msgid "Cannot copy the attribute"
+msgstr "Nelze zkopírovat vlastnost"
+
+msgid "Cannot read attribute data."
+msgstr "Nelze číst data vlastnosti"
+
+msgid "Cannot get the size of attribute list."
+msgstr "Nelze získat velikost seznamu vlasností."
+
+#, c-format
+msgid "Invalid index %d: must be between 0 and %d."
+msgstr "Neplatný index %d: musí být mezi 0 a %d."
+
+#, c-format
+msgid "Cannot open attribute at position %d."
+msgstr "Nelze otevřít vlastnost na pozici %d."
+
+msgid "Filename"
+msgstr "Název souboru"
+
+msgid "Number of elements"
+msgstr "Počet prvků"
+
+msgid "Cannot copy data to an empty pointer"
+msgstr "Nelze zkopírovat data do prázdného ukazatele"
+
+msgid "Wrong dimensions."
+msgstr "Špatné rozměry."
+
+#, c-format
+msgid "Invalid field name: %s"
+msgstr "Neplatný název pole: %s"
+
+msgid "Fields Names"
+msgstr "Názvy polí"
+
+msgid "Cannot create an hypermatrix on the stack"
+msgstr "Nelze vytvořit hypermatici v zásobníku"
+
+msgid "Cannot get the data type"
+msgstr "Nelze získat typ dat"
+
+msgid "Unknown integer datatype."
+msgstr "Neznámý datový typ celého čísla."
+
+msgid "Unknown floating-point datatype."
+msgstr "Neznámý datový typ desetinného čísla."
+
+msgid "Bitfield is too big"
+msgstr "Bitové pole je příliš velké"
+
+msgid "Cannot get data from an unknown data type."
+msgstr "Nelze získat data z neznámého typu dat."
+
+msgid "Memory to allocate is too big"
+msgstr "Paměť k přidělení je příliš velká"
+
+msgid "Cannot allocate memory to get the data"
+msgstr "Nelze přidělit paměť pro získání dat"
+
+msgid "Cannot retrieve the data from the attribute"
+msgstr "Nelze získat data z vlastnosti"
+
+#, c-format
+msgid "Cannot open the given dataset %s."
+msgstr "Nelze otevřít zadanou datovou sadu %s."
+
+#, c-format
+msgid "Cannot get the dataspace associated with dataset named %s."
+msgstr "Nelze získat datový prostor přidělený k datové sadě s názvem %s."
+
+msgid "Invalid layout"
+msgstr "Neplatné rozvržení"
+
+#, c-format
+msgid "Only %d dimensions."
+msgstr "Pouze %d rozměry."
+
+msgid "Cannot list dataset attributes."
+msgstr "Nelze vypsat vlastnosti datové sady."
+
+#, c-format
+msgid "Cannot open the dataset: %s"
+msgstr "Nelze otevřít datovou sadu: %s"
+
+msgid "Invalid source space"
+msgstr "Neplatný zdojový prostor"
+
+msgid "Invalid target space"
+msgstr "Neplatný cílový prostor"
+
+msgid "Cannot modify maximum dimensions."
+msgstr "Nelze změnit maximální rozměry."
+
+#, c-format
+msgid "Cannot modify dimension %d."
+msgstr "Nelze změnit rozměry %d."
+
+#, c-format
+msgid "Cannot set the chunk dimensions: %s"
+msgstr "Nelze nastavit rozměry kusu: %s"
+
+#, c-format
+msgid "Cannot create the dataset: %s"
+msgstr "Nelze vytvořit datovou sadu: %s"
+
+msgid "Cannot write data in the dataset."
+msgstr "Nelze zapsat data v datové sadě."
+
+msgid "unknown dataspace"
+msgstr "neznámý datový prostor"
+
+msgid "Unknown dataspace: cannot get its dimensions"
+msgstr "Neznámý datový prostor: nelze získat rozměry"
+
+msgid "Cannot select all."
+msgstr "Nelze vybrat vše."
+
+msgid "Cannot create an array of integer on the stack."
+msgstr "Nelze vytvořit pole celých čísel v zásobníku."
+
+msgid "Cannot create a string on the stack."
+msgstr "Nelze vytvořit řetězec v zásobníku."
+
+msgid "Unknown dataspace"
+msgstr "Neznámý datový prostor"
+
+msgid "Extents"
+msgstr "Rozsah"
+
+msgid "Invalid selection rank."
+msgstr "Neplatná hodnost výběru."
+
+msgid "Invalid selection."
+msgstr "Neplatná volba."
+
+msgid "Cannot get the current stack of errors."
+msgstr ""
+
+msgid "HDF5 description"
+msgstr "Popis HDF5"
+
+msgid "Exception thrown in file"
+msgstr "V souboru nastala výjimka"
+
+msgid "at line"
+msgstr "na řádku"
+
+msgid "Cannot get the link info"
+msgstr "Nelze získat informace o propojení"
+
+msgid "Cannot get the link target"
+msgstr "Nelze získat cíl propojení"
+
+msgid "Link type"
+msgstr "Typ propojení"
+
+msgid "Link name"
+msgstr "Název propojení"
+
+msgid "Link path"
+msgstr "Cesta propojení"
+
+msgid "Link target file"
+msgstr "Cílový soubor propojení"
+
+msgid "Link target path"
+msgstr "Cílová cesta propojení"
+
+msgid "Invalid hdf5 file: empty filename."
+msgstr "Neplatný soubor hdf5: prázdný název souboru."
+
+#, c-format
+msgid "Invalid hdf5 file: %s."
+msgstr "Neplatný soubor hdf5: %s."
+
+#, c-format
+msgid "Cannot open the given hdf5 file: %s."
+msgstr "Nelze otevřít zadaný soubor hdf5: %s."
+
+#, c-format
+msgid "Cannot create the given hdf5 file: %s."
+msgstr "Nelze vytvořit zadaný soubor hdf5: %s"
+
+#, c-format
+msgid ""
+"Cannot open the file: %s, an empty file with the same name already exists."
+msgstr ""
+"Nelze otevřít soubor: %s, prázdný soubor se stejným názvem již existuje."
+
+#, c-format
+msgid "Cannot append the file (not HDF5): %s."
+msgstr "Nelze připojit soubor (není HDF5): %s"
+
+msgid "Invalid flag."
+msgstr "Neplatný příznak."
+
+#, c-format
+msgid "Invalid path: %s"
+msgstr "Neplatná cesta: %s"
+
+msgid "Cannot set 'core' as driver."
+msgstr "Nelze nastavit 'core' jako ovladač."
+
+#, c-format
+msgid "Invalid filename: must contain a '%d'."
+msgstr "Neplatný název souboru: musí obsahovat '%d'."
+
+msgid "Cannot set 'family' as driver."
+msgstr "Nelze nastavit 'family' jako ovladač."
+
+msgid "Error in flushing the file."
+msgstr "Chyba ve výpisu souboru."
+
+#, c-format
+msgid "Cannot retrieve file size: %s"
+msgstr "Nelze získat velikost souboru: %s"
+
+#, c-format
+msgid "Cannot retrieve file version: %s"
+msgstr "Nelze získat verzi souboru: %s"
+
+msgid "Cannot create an integer on the stack."
+msgstr "Nelze vytvořit velé číslo v zásobníku."
+
+#, c-format
+msgid "Invalid field %s."
+msgstr "Neplatné pole %s."
+
+#, c-format
+msgid "Cannot open the group %s."
+msgstr "Nelze otebřít skupinu %s."
+
+msgid "Cannot get the links number"
+msgstr "Nelze získat  počty propojení"
+
+msgid "Cannot create a column of strings on the stack."
+msgstr "Nelze vytvořit sloupec řetězců v zásobníku."
+
+msgid "Cannot list group links."
+msgstr "Nelze vypsat propojení skupiny."
+
+msgid "Cannot list group attributes."
+msgstr "Nelze vypsat vlastnosti skupiny."
+
+msgid "Cannot list group contents"
+msgstr "Nelze vypsat obsah skupiny"
+
+#, c-format
+msgid "The group already exists: %s."
+msgstr "Skupina již existuje: %s."
+
+#, c-format
+msgid "Cannot create the group: %s."
+msgstr "Nelze vytvořit skupinu: %s."
+
+msgid "Cannot get the number of groups."
+msgstr "Nelze získat členy skupiny."
+
+msgid "Cannot get linked object"
+msgstr "Nelze získat propojený objekt"
+
+msgid "Link target name"
+msgstr "Název cíle propojení"
+
+#, c-format
+msgid "The link %s does not exist."
+msgstr "Propojení %s neexistuje."
+
+#, c-format
+msgid "Invalid link type: %s."
+msgstr "Neplatný typ propojení: %s."
+
+msgid "Cannot get the number of links."
+msgstr "Nelze získat počet propojení."
+
+msgid "Invalid operation"
+msgstr "Neplatná operace"
+
+#, c-format
+msgid "Invalid index at position %d"
+msgstr "Neplatný index na pozici %d"
+
+msgid "Cannot get the number of objects."
+msgstr "Nelze získat počet objektů."
+
+msgid "Parent group name"
+msgstr "Název nadřazené skupiny"
+
+msgid "Parent group path"
+msgstr "Cesta nadřazené skupiny"
+
+msgid "Elements type"
+msgstr "Typ prvků"
+
+msgid "Size"
+msgstr "Velikost"
+
+#, c-format
+msgid "Invalid index: %d."
+msgstr "Neplatný index: %d."
+
+#, c-format
+msgid "Cannot get object at position %d."
+msgstr "Nelze získat objekt v umístění %d."
+
+#, c-format
+msgid "Invalid name: %s."
+msgstr "Neplatný název: %s."
+
+msgid "Invalid HDF5 object"
+msgstr "Neplatný objekt HDF5."
+
+#, c-format
+msgid "Invalid field: %s"
+msgstr "Neplatné pole: %s"
+
+msgid "Cannot create a mlist on the stack."
+msgstr "Nelze vytvořit mlist v zásobníku."
+
+msgid "Cannot list names."
+msgstr "Nelze vypsat názvy."
+
+msgid "Cannot retrieve information about the object"
+msgstr "Nelze získat informace o objektu"
+
+msgid "Unknown HDF5 object"
+msgstr "Neznámý objekt HDF5"
+
+msgid "Cannot retrieve numeric index."
+msgstr "Nelze získat číselný index."
+
+msgid "Cannot open object at the given position."
+msgstr "Nelze otevřít objekt v dané pozici."
+
+msgid "Link target"
+msgstr "Cíl odkazu"
+
+msgid "Cannot free the memory associated with String data"
+msgstr "Nelze uvolnit paměť přidělenou k datům řetězce"
+
+#, c-format
+msgid "Invalid H5Type name: %s."
+msgstr "Neplatný název H5Type: %s."
+
+msgid "Unknown datatype"
+msgstr "Neznámý datový typ"
+
+msgid "Cannot get H5Object id"
+msgstr "Nelze získat id H5Objektu"
+
+msgid "Invalid object: not a dataset."
+msgstr "Neplatný objekt: není datová sada."
+
+msgid "Cannot remove a file."
+msgstr "Nelze odstranit soubor."
+
+msgid "Cannot remove root element."
+msgstr "Nelze odstranit kořenový prvek."
+
+#, c-format
+msgid "The name doesn't exist: %s."
+msgstr "Název neexistuje: %s."
+
+#, c-format
+msgid "Cannot remove the attribute: %s."
+msgstr "Nelze odstranit vlastnost: %s."
+
+#, c-format
+msgid "Cannot remove the link: %s."
+msgstr "Nelze odstranit propojení: %s."
+
+#, c-format
+msgid "The link already exists: %s."
+msgstr "Propojení již existuje: %s."
+
+#, c-format
+msgid "Cannot create the hard link: %s."
+msgstr "Nelze vytvořit pevný odkaz: %s."
+
+#, c-format
+msgid "Cannot create the soft link: %s."
+msgstr "Nelze vytvořit měkký odkaz: %s."
+
+#, c-format
+msgid "Cannot create a hard link to the external object: %s."
+msgstr ""
+
+#, c-format
+msgid "Cannot create the external link: %s."
+msgstr "Nelze vytvořit externí odkaz: %s."
+
+msgid "Cannot copy object."
+msgstr "Nelze kopírovat objekt."
+
+msgid "Invalid filter"
+msgstr "Neplatný filtr"
+
+msgid "Can only label a dataset"
+msgstr "Označit lze pouze datovou sadu"
+
+msgid "Target object is not a file"
+msgstr "Cílový objekt není soubor"
+
+msgid "Invalid location"
+msgstr "Neplatné umístění"
+
+#, c-format
+msgid "Invalid location: %s"
+msgstr "Neplatné umístění: %s"
+
+#, c-format
+msgid "Cannot mount the file: %s"
+msgstr "Nelze připojit soubor: %s"
+
+#, c-format
+msgid "Cannot unmount the file at location: %s"
+msgstr "Nelze odpojit soubor v umístění: %s"
+
+#, c-format
+msgid "Can not read input argument #%d."
+msgstr "Nelze přečíst vstupní argumentu #%d."
+
+#, c-format
+msgid "Can not get the type of input argument #%d."
+msgstr "Nelze získat typ vstupního argumentu #%d."
+
+msgid "Complex datatype not handled for now."
+msgstr "Komplexní datové typy nelze nyní zpracovat."
+
+#, c-format
+msgid "%s: Can not read input argument #%d."
+msgstr "%s: Nelze přečíst vstupní argument #%d."
+
+#, c-format
+msgid "%s: Datatype not handled for now."
+msgstr "%s: Datový typ nelze nyní zpracovat."
+
+#, c-format
+msgid "Invalid rank, must be in the interval [0, %d]."
+msgstr "Neplatná hodnost, musí být v intervalu [0, %d]."
+
+msgid "No converter found for the specified target datatype."
+msgstr "Pro zadaný cílový datový typ nenalezen žádný převaděč."
+
+msgid "Cannot create a new dataspace."
+msgstr "Nelze vytvořit nový datový prostor."
+
+msgid "Invalid target dataspace."
+msgstr "Neplatný cílový datový prostor."
+
+msgid "Cannot create the target type."
+msgstr "Nelze vytvořit cílový typ."
+
+msgid "Incompatible dimensions"
+msgstr "Nekompatibilní rozměry"
+
+msgid "References must be given as strings"
+msgstr "Odkazy musí být zadány jako řetězce"
+
+#, c-format
+msgid "Invalid path: %s."
+msgstr "Neplatná cesta: %s."

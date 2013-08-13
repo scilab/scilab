@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-02-21 12:21+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-26 22:05+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -343,8 +343,8 @@ msgid "Incorrect file or format.\n"
 msgstr "Nesprávný soubor nebo formát.\n"
 
 #, c-format
-msgid "subroutine not found: %s\n"
-msgstr "podrutina není nalezena: %s\n"
+msgid "%s: subroutine not found.\n"
+msgstr "%s: podrutina nenalezena.\n"
 
 #, c-format
 msgid "Wrong type for argument #%d: Real matrix expected.\n"
@@ -718,6 +718,15 @@ msgid "check or define function %s for overloading.\n"
 msgstr "zkontrolujte nebo určete funkci %s pro přetížení.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
+msgstr "%s: Špatný typ argumentu %d: Očekávána matice obslužné rutiny.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"
+msgstr ""
+"%s: Špatný typ argumentu #%d: Očekávána reálná nebo komplexní matice.\n"
+
+#, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Špatná velikost argumentu %d: očekáváno (%d,%d).\n"
 
@@ -749,8 +758,8 @@ msgstr ""
 "%s: Špatný typ argumentu %d: Očekávána funkce nebo řetězec (vnější funkce).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván polynom.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekávána polynomická matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
@@ -1007,6 +1016,10 @@ msgstr "%s: Vstupní argumenty by měly mít stejné formální jméno proměnn�
 
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr "Vstupní argumenty by měly mít stejné formální jméno proměnné.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Wrong value for element %s.\n"
+msgstr ""
 
 msgid "Unknown data.\n"
 msgstr "Neznámá data.\n"
@@ -1371,24 +1384,36 @@ msgstr ""
 "absolutní hodnotě.\n"
 
 #, c-format
-msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
-msgstr "%s: Počet volání %s dosáhl nebo přesáhl %s.\n"
+msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr "%s: %s: Počet volání %s dosáhlo nebo překročilo %s.\n"
+
+msgid "Warning"
+msgstr "Varování"
 
 #, c-format
 msgid ""
-"%s: %s is too small. No further reduction in the criterion is possible.\n"
-msgstr "%s: %s je příliš malé. Další snížení v kritériu není možné.\n"
+"%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+"%s: %s: %s je příliš malé. Pro toto kritérium není možné žádné další "
+"snížení.\n"
 
 #, c-format
 msgid ""
-"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
 "machine precision.\n"
 msgstr ""
-"%s: %s je příliš malé, %s je pravoúhlé ke sloupcům jakobiánu přesnosti "
-"stroje.\n"
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly: název proměnné musí být menší než 5 znaků.\n"
+
+msgid ""
+"Warning: Syntax \"vector ^ scalar\" is obsolete. It will be removed in "
+"Scilab 6.0.\n"
+"  Use \"vector .^ scalar\" instead.\n"
+msgstr ""
+"Varování: Syntaxe \"vektor ^ skalár\" je zastaralá. Bude odstraněna v Scilab "
+"6.0.\n"
+"  Místo toho použijte \"vektor .^ skalár\".\n"
 
 #, c-format
 msgid "  (cont'd) %s\n"

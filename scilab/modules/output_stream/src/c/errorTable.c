@@ -43,7 +43,7 @@ static char *defaultStringError(void);
 /*--------------------------------------------------------------------------*/
 int errorTable(int iErr)
 {
-    int errtyp = 0; /* by default error can be catched */
+    int errtyp = 0; /* by default error can be caught */
     int iValueReturned = 0;
 
     /* clean last error */
@@ -406,7 +406,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_5);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("subroutine not found: %s\n"), NameVarOnStack);
+                iValueReturned = Scierror(iErr, _("%s: subroutine not found.\n"), NameVarOnStack);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1020,23 +1020,30 @@ int errorTable(int iErr)
         /* error 145 to 199  not used */
 
         /*
-        messages from 201 to 203 and 205 to 214 are no more used by error
-        (see Scierror  in stack1.c)
+        messages from 200 to 203 and 205 to 214 are no more used by error
+        (see Scierror in stack1.c)
         */
         case 200:
         {
-            /* no message  */
-            iValueReturned = Scierror(iErr, "");
-        }
-        break;
-        case 201:
-        {
-            /* not used  */
+            /* not used */
             /* only for compatibility */
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Matrix of handle expected.\n"), NameVarOnStack, Err);
+                FREE(NameVarOnStack);
+                NameVarOnStack = NULL;
+            }
+        }
+        break;
+        case 201:
+        {
+            /* not used */
+            /* only for compatibility */
+            char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
+            if (NameVarOnStack)
+            {
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1044,7 +1051,7 @@ int errorTable(int iErr)
         break;
         case 202:
         {
-            /* not used  */
+            /* not used */
             /* only for compatibility */
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
@@ -1057,7 +1064,7 @@ int errorTable(int iErr)
         break;
         case 203:
         {
-            /* not used  */
+            /* not used */
             /* only for compatibility */
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
@@ -1166,7 +1173,7 @@ int errorTable(int iErr)
             char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
             if (NameVarOnStack)
             {
-                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Polynomial expected.\n"), NameVarOnStack, Err);
+                iValueReturned = Scierror(iErr, _("%s: Wrong type for argument #%d: Polynomial matrix expected.\n"), NameVarOnStack, Err);
                 FREE(NameVarOnStack);
                 NameVarOnStack = NULL;
             }
@@ -1576,6 +1583,14 @@ int errorTable(int iErr)
         {
             /* no message  */
             iValueReturned = Scierror(iErr, "");
+        }
+        break;
+        case 281:
+        {
+            char localbuf[3];
+            strncpy(localbuf, C2F(cha1).buf, 2);
+            localbuf[2] = '\0';
+            iValueReturned = Scierror(iErr, _("%s: Wrong value for input argument #%d: Wrong value for element %s.\n"), "bvode", 7, localbuf);
         }
         break;
 

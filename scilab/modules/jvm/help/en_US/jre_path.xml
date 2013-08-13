@@ -34,7 +34,7 @@
         <title>Description</title>
         <para>returns Java Runtime Environment used by Scilab.</para>
     </refsection>
-
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 

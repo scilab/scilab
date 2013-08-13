@@ -13,8 +13,8 @@
 //   Prints the given message.
 //
 function this = optimsimplex_log (this,msg)
-  if this.verbose == 1 then
-     mprintf("%s\n",msg);
-  end
+    if this.verbose == 1 then
+        mprintf("%s\n",msg);
+    end
 endfunction
 

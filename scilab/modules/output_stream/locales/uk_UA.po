@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 08:36+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-26 05:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: uk\n"
 
 #, c-format
@@ -365,8 +365,8 @@ msgid "Incorrect file or format.\n"
 msgstr "Помилковий файл або формат.\n"
 
 #, c-format
-msgid "subroutine not found: %s\n"
-msgstr "підпрограми не знайдено: %s\n"
+msgid "%s: subroutine not found.\n"
+msgstr "%s: підпрограму не знайдено.\n"
 
 #, c-format
 msgid "Wrong type for argument #%d: Real matrix expected.\n"
@@ -762,6 +762,18 @@ msgid "check or define function %s for overloading.\n"
 msgstr "перевірте або визначте перевантаження функції %s.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати матрицю з елементів "
+"керування.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: мало бути вказано дійсну або комплексну "
+"матрицю.\n"
+
+#, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: помилкова розмірність параметра №%d: мало бути (%d,%d).\n"
 
@@ -797,8 +809,9 @@ msgstr ""
 "(посилання на зовнішню функцію).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
-msgstr "%s: помилковий тип параметра %d: слід використовувати поліном.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: слід використовувати матрицю з поліномів.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
@@ -1078,6 +1091,10 @@ msgstr "%s: вхідні параметри повинні мати ту сам�
 
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr "Вхідні параметри повинні мати ту саму формальну назву змінної.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Wrong value for element %s.\n"
+msgstr ""
 
 msgid "Unknown data.\n"
 msgstr "Невідомі дані.\n"
@@ -1452,25 +1469,35 @@ msgstr ""
 "%s за модулем.\n"
 
 #, c-format
-msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
-msgstr "%s: кількість викликів %s досягла або перевищила %s.\n"
+msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr "%s: %s: кількість викликів %s досягла або перевищила значення %s.\n"
+
+msgid "Warning"
+msgstr "Попередження"
 
 #, c-format
 msgid ""
-"%s: %s is too small. No further reduction in the criterion is possible.\n"
+"%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
 msgstr ""
-"%s: значення %s є занадто малим. Подальший розклад за критерієм неможливий.\n"
+"%s: %s: %s є надто малим. Подальше спрощення за критерієм неможливе.\n"
 
 #, c-format
 msgid ""
-"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
 "machine precision.\n"
 msgstr ""
-"%s: значення %s занадто мале. %s є ортогональним з машинною точністю до "
-"стовпчиків матриці Якобі.\n"
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly: назва змінної має складатися не більше ніж з 4 символів.\n"
+
+msgid ""
+"Warning: Syntax \"vector ^ scalar\" is obsolete. It will be removed in "
+"Scilab 6.0.\n"
+"  Use \"vector .^ scalar\" instead.\n"
+msgstr ""
+"Попередження: синтаксичні конструкції «вектор ^ скаляр» вважаються "
+"застарілими. Їх використання буде заборонено у Scilab 6.0.\n"
+"  Слід використовувати конструкцію «вектор .^ скаляр».\n"
 
 #, c-format
 msgid "  (cont'd) %s\n"

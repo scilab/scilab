@@ -52,7 +52,7 @@ function cplxmap(z,w,varargin)
     //hold on
     [X,Y,U]=nf3d(x,y,u);
     [X,Y,V]=nf3d(x,y,v);
-    Colors = sum(V,'r');
+    Colors = sum(V,"r");
     Colors = Colors - min(Colors);
     Colors = 32*Colors/max(Colors);
     plot3d1(X,Y,list(U,Colors),varargin(:))

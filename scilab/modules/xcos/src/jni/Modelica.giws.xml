@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package name="org.scilab.modules.zcos.modelica">
+<package name="org.scilab.modules.xcos.modelica">
     <object name="Modelica">
         <method name="load" returnType="void" modifier="static">
             <parameter name="init" type="String"/>

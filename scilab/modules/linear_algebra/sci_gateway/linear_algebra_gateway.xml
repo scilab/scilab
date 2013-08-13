@@ -31,19 +31,19 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="linear_algebra">
-<PRIMITIVE gatewayId="2" primitiveId="4" primitiveName="bdiag" />
-<PRIMITIVE gatewayId="44" primitiveId="1" primitiveName="qr" />
-<PRIMITIVE gatewayId="44" primitiveId="2" primitiveName="svd" />
-<PRIMITIVE gatewayId="44" primitiveId="3" primitiveName="lsq" />
-<PRIMITIVE gatewayId="44" primitiveId="4" primitiveName="spec" />
-<PRIMITIVE gatewayId="44" primitiveId="5" primitiveName="inv" />
-<PRIMITIVE gatewayId="44" primitiveId="6" primitiveName="rcond" />
-<PRIMITIVE gatewayId="44" primitiveId="7" primitiveName="chol" />
-<PRIMITIVE gatewayId="44" primitiveId="8" primitiveName="lu" />
-<PRIMITIVE gatewayId="44" primitiveId="9" primitiveName="slash" />
-<PRIMITIVE gatewayId="44" primitiveId="10" primitiveName="backslash" />
-<PRIMITIVE gatewayId="44" primitiveId="11" primitiveName="schur" />
-<PRIMITIVE gatewayId="44" primitiveId="12" primitiveName="hess" />
-<PRIMITIVE gatewayId="44" primitiveId="13" primitiveName="det" />
-<PRIMITIVE gatewayId="44" primitiveId="14" primitiveName="balanc" />
+    <PRIMITIVE gatewayId="2" primitiveId="4" primitiveName="bdiag" />
+    <PRIMITIVE gatewayId="44" primitiveId="1" primitiveName="qr" />
+    <PRIMITIVE gatewayId="44" primitiveId="2" primitiveName="svd" />
+    <PRIMITIVE gatewayId="44" primitiveId="3" primitiveName="lsq" />
+    <PRIMITIVE gatewayId="44" primitiveId="4" primitiveName="spec" />
+    <PRIMITIVE gatewayId="44" primitiveId="5" primitiveName="inv" />
+    <PRIMITIVE gatewayId="44" primitiveId="6" primitiveName="rcond" />
+    <PRIMITIVE gatewayId="44" primitiveId="7" primitiveName="chol" />
+    <PRIMITIVE gatewayId="44" primitiveId="8" primitiveName="lu" />
+    <PRIMITIVE gatewayId="44" primitiveId="9" primitiveName="slash" />
+    <PRIMITIVE gatewayId="44" primitiveId="10" primitiveName="backslash" />
+    <PRIMITIVE gatewayId="44" primitiveId="11" primitiveName="schur" />
+    <PRIMITIVE gatewayId="44" primitiveId="12" primitiveName="hess" />
+    <PRIMITIVE gatewayId="44" primitiveId="13" primitiveName="det" />
+    <PRIMITIVE gatewayId="44" primitiveId="14" primitiveName="balanc" />
 </GATEWAY>

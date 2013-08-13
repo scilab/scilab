@@ -9,8 +9,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 // =============================================================================
 
-// Run with test_run('differential_equations', 'daskr', ['no_check_error_output']);
-
 //C-----------------------------------------------------------------------
 //C First problem.
 //C The initial value problem is..
@@ -24,14 +22,14 @@ y0=1;t=2:6;t0=1;y0d=3;
 info=list([],0,[],[],[],0,[],1,[],0,1,[],[],1);
 atol=1.d-6;rtol=0;ng=2;
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,'res1',ng,'gr1',info,'psol1','pjac1');
-if abs(nn(1)-2.47)>0.001 then pause,end
+assert_checkalmostequal(nn(1),2.47,0.001);
 y0=yy(2,2);y0d=yy(3,2);t0=nn(1);t=[3,4,5,6];
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,'res1',ng,'gr1',info,'psol1','pjac1');
-if abs(nn(1)-2.5)>0.001 then pause,end
+assert_checkalmostequal(nn(1),2.5,0.001);
 y0=yy(2,1);y0d=yy(3,1);t0=nn(1);t=[3,4,5,6];
 info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,'res1',ng,'gr1',info);
-if abs(nn(1)-2.53)>0.001 then pause,end
+assert_checkalmostequal(nn(1),2.53,0.001);
 
 // Same problem, but using macro for the derivative evaluation function 'res1'
 deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2.*log(y)+8)./t-5).*y')
@@ -40,25 +38,16 @@ deff('[rts]=gr1(t,y,yd)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
 y0=1;t=2:6;t0=1;y0d=3;
 atol=1.d-6;rtol=0;ng=2;
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res1,ng,gr1,info);
-if abs(nn(1)-2.47)>0.001 then pause,end
+assert_checkalmostequal(nn(1),2.47,0.001);
 y0=yy(2,2);y0d=yy(3,2);t0=nn(1);t=[3,4,5,6];
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res1,ng,gr1,info);
-if abs(nn(1)-2.5)>0.001 then pause,end
+assert_checkalmostequal(nn(1),2.5,0.001);
 y0=yy(2,1);y0d=yy(3,1);t0=nn(1);t=[3,4,5,6];
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res1,ng,gr1,info);
-if abs(nn(1)-2.53)>0.001 then pause,end
+assert_checkalmostequal(nn(1),2.53,0.001);
 
 // Same problem, but using macros for the preconditioner evaluation and application functions 'pjac' and 'psol'
 // pjac uses the macro res1 defined above.
-function [r, ier] = psol(wp, iwp, b)
-    ier = 0;
-    //Compute the LU factorization of R.
-    sp = sparse(iwp, wp);
-    [h, rk] = lufact(sp);
-    //Solve the system LU*X = b
-    r = lusolve(h, b);
-    ludel(h);
-endfunction
 function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
     ires = 0;
     SQuround = 1.490D-08;
@@ -74,31 +63,47 @@ function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
         ypsave = ydot(i);
         y(i) = y(i) + del;
         ydot(i) = ydot(i) + cj*del;
-        [e ires]=res1(tx, y, ydot);
-        if ires < 0 then return; end
+        [e ires] = res1(tx, y, ydot);
+        if ires < 0 then
+            ires = -1;
+            return;
+        end
         delinv = 1/del;
         for j=1:neq
             wp(nrow+j) = delinv*(e(j)-savr(j));
-            iwp(nrow+j,1) = i;
-            iwp(nrow+j,2) = j;
+            if isnan(wp(nrow+j)) then
+                ires = -1;
+                return;
+            end
+            iwp(nrow+j, 1) = i;
+            iwp(nrow+j, 2) = j;
         end
         nrow = nrow + neq;
         y(i) = ysave;
         ydot(i) = ypsave;
     end
 endfunction
+function [r, ier] = psol(wp, iwp, b)
+    ier = 0;
+    //Compute the LU factorization of R.
+    sp = sparse(iwp, wp);
+    [h, rk] = lufact(sp);
+    //Solve the system LU*X = b
+    r = lusolve(h, b);
+    ludel(h);
+endfunction
 
 y0=1;t=2:6;t0=1;y0d=3;
 info=list([],0,[],[],[],0,[],1,[],0,1,[],[],1);
 atol=1.d-6;rtol=0;ng=2;
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res1,ng,'gr1',info,psol,pjac);
-if abs(nn(1)-2.47)>0.001 then pause,end
+assert_checkalmostequal(nn(1),2.47,0.001);
 y0=yy(2,2);y0d=yy(3,2);t0=nn(1);t=[3,4,5,6];
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res1,ng,'gr1',info,psol,pjac);
-if abs(nn(1)-2.5)>0.001 then pause,end
+assert_checkalmostequal(nn(1),2.5,0.001);
 y0=yy(2,1);y0d=yy(3,1);t0=nn(1);t=[3,4,5,6];
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res1,ng,'gr1',info,psol,pjac);
-if abs(nn(1)-2.53)>0.001 then pause,end
+assert_checkalmostequal(nn(1),2.53,0.001);
 
 //C
 //C-----------------------------------------------------------------------
@@ -115,7 +120,7 @@ info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
 rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
 t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,'res2','jac2',ng,'gr2',info);
-if abs(nn(1)-81.163512)>0.001 then pause,end
+assert_checkalmostequal(nn(1),81.163512,0.001);
 
 deff('[delta,ires]=res2(t,y,ydot)',...
 'ires=0;y1=y(1),y2=y(2),delta=[ydot-[y2;100*(1-y1*y1)*y2-y1]]')
@@ -129,10 +134,10 @@ deff('s=gr2(t,y,yd)','s=y(1)')
 
 info=list([],0,[],[],[],0,[],1,[],0,1,[],[],1);
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,'gr2',info,'psol1','pjac1');
-if abs(nn(1)-81.163512)>0.009 then pause,end
+assert_checkalmostequal(nn(1),81.163512,0.009);
 deff('s=gr2(t,y,yd)','s=y(1)')
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,gr2,info,'psol1','pjac1');
-if abs(nn(1)-81.163512)>0.009 then pause,end
+assert_checkalmostequal(nn(1),81.163512,0.009);
 
 // Same problem, with psol and pjac macros
 
@@ -166,10 +171,10 @@ function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
     end
 endfunction
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,'gr2',info,psol,pjac);
-if abs(nn(1)-81.163512)>0.003 then pause,end
+assert_checkalmostequal(nn(1),81.163512,0.003);
 deff('s=gr2(t,y,yd)','s=y(1)')
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,gr2,info,psol,pjac);
-if abs(nn(1)-81.163512)>0.003 then pause,end
+assert_checkalmostequal(nn(1),81.163512,0.003);
 info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
 
 //           Hot Restart
@@ -177,7 +182,7 @@ info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
 [yy,nn,hotd]=daskr([y0,y0d],t0,t,atol,rtol,'res2','jac2',ng,'gr2',info);
 t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
 [yy,nn,hotd]=daskr([y01,y0d1],t01,t,atol,rtol,'res2','jac2',ng,'gr2',info,hotd);
-if abs(nn(1)-162.57763)>0.004 then pause,end
+assert_checkalmostequal(nn(1),162.57763,0.004);
 
 //Test of Dynamic link (Require f77!)
 //         1 making the routines

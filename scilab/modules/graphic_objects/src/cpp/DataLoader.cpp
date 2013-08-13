@@ -17,6 +17,7 @@
 
 #include "MatPlotDecomposer.hxx"
 #include "Fac3DDecomposer.hxx"
+#include "NgonGridMatplotData.hxx"
 #include "NgonGridGrayplotDataDecomposer.hxx"
 #include "NgonGridMatplotDataDecomposer.hxx"
 #include "Plot3DDecomposer.hxx"
@@ -98,20 +99,20 @@ int getDataSize(char* id)
 
     switch (iType)
     {
-    case __GO_FAC3D__ :
-        return Fac3DDecomposer::getDataSize(id);
-    case __GO_FEC__ :
-        return TriangleMeshFecDataDecomposer::getDataSize(id);
-    case __GO_GRAYPLOT__ :
-        return NgonGridGrayplotDataDecomposer::getDataSize(id);
-    case __GO_MATPLOT__ :
-        return NgonGridMatplotDataDecomposer::getDataSize(id);
-    case __GO_PLOT3D__ :
-        return Plot3DDecomposer::getDataSize(id);
-    case __GO_POLYLINE__ :
-        return PolylineDecomposer::getDataSize(id);
-    default :
-        return 0;
+        case __GO_FAC3D__ :
+            return Fac3DDecomposer::getDataSize(id);
+        case __GO_FEC__ :
+            return TriangleMeshFecDataDecomposer::getDataSize(id);
+        case __GO_GRAYPLOT__ :
+            return NgonGridGrayplotDataDecomposer::getDataSize(id);
+        case __GO_MATPLOT__ :
+            return NgonGridMatplotDataDecomposer::getDataSize(id);
+        case __GO_PLOT3D__ :
+            return Plot3DDecomposer::getDataSize(id);
+        case __GO_POLYLINE__ :
+            return PolylineDecomposer::getDataSize(id);
+        default :
+            return 0;
     }
 
 }
@@ -125,24 +126,24 @@ void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, i
 
     switch (iType)
     {
-    case __GO_FAC3D__ :
-        Fac3DDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
-        break;
-    case __GO_FEC__ :
-        TriangleMeshFecDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
-        break;
-    case __GO_GRAYPLOT__ :
-        NgonGridGrayplotDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
-        break;
-    case __GO_MATPLOT__ :
-        NgonGridMatplotDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
-        break;
-    case __GO_PLOT3D__ :
-        Plot3DDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
-        break;
-    case __GO_POLYLINE__ :
-        PolylineDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
-        break;
+        case __GO_FAC3D__ :
+            Fac3DDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
+            break;
+        case __GO_FEC__ :
+            TriangleMeshFecDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
+            break;
+        case __GO_GRAYPLOT__ :
+            NgonGridGrayplotDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
+            break;
+        case __GO_MATPLOT__ :
+            NgonGridMatplotDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
+            break;
+        case __GO_PLOT3D__ :
+            Plot3DDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
+            break;
+        case __GO_POLYLINE__ :
+            PolylineDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
+            break;
     }
 }
 
@@ -155,15 +156,15 @@ void fillTextureCoordinates(char* id, float* BUFF, int bufferLength)
 
     switch (iType)
     {
-    case __GO_FAC3D__ :
-        Fac3DDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
-        break;
-    case __GO_FEC__ :
-        TriangleMeshFecDataDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
-        break;
-    case __GO_POLYLINE__ :
-        PolylineDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
-        break;
+        case __GO_FAC3D__ :
+            Fac3DDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
+            break;
+        case __GO_FEC__ :
+            TriangleMeshFecDataDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
+            break;
+        case __GO_POLYLINE__ :
+            PolylineDecomposer::fillTextureCoordinates(id, BUFF, bufferLength);
+            break;
     }
 }
 
@@ -176,21 +177,21 @@ void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
 
     switch (iType)
     {
-    case __GO_FEC__ :
-        TriangleMeshFecDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
-        break;
-    case __GO_GRAYPLOT__ :
-        NgonGridGrayplotDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
-        break;
-    case __GO_MATPLOT__ :
-        NgonGridMatplotDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
-        break;
-    case __GO_PLOT3D__ :
-        Plot3DDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
-        break;
-    case __GO_POLYLINE__ :
-        PolylineDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
-        break;
+        case __GO_FEC__ :
+            TriangleMeshFecDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
+            break;
+        case __GO_GRAYPLOT__ :
+            NgonGridGrayplotDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
+            break;
+        case __GO_MATPLOT__ :
+            NgonGridMatplotDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
+            break;
+        case __GO_PLOT3D__ :
+            Plot3DDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
+            break;
+        case __GO_POLYLINE__ :
+            PolylineDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
+            break;
     }
 }
 
@@ -204,20 +205,20 @@ int getIndicesSize(char* id)
 
     switch (iType)
     {
-    case __GO_FAC3D__ :
-        return Fac3DDecomposer::getIndicesSize(id);
-    case __GO_FEC__ :
-        return TriangleMeshFecDataDecomposer::getIndicesSize(id);
-    case __GO_GRAYPLOT__ :
-        return NgonGridGrayplotDataDecomposer::getIndicesSize(id);
-    case __GO_MATPLOT__ :
-        return NgonGridMatplotDataDecomposer::getIndicesSize(id);
-    case __GO_PLOT3D__ :
-        return Plot3DDecomposer::getIndicesSize(id);
-    case __GO_POLYLINE__ :
-        return PolylineDecomposer::getIndicesSize(id);
-    default :
-        return 0;
+        case __GO_FAC3D__ :
+            return Fac3DDecomposer::getIndicesSize(id);
+        case __GO_FEC__ :
+            return TriangleMeshFecDataDecomposer::getIndicesSize(id);
+        case __GO_GRAYPLOT__ :
+            return NgonGridGrayplotDataDecomposer::getIndicesSize(id);
+        case __GO_MATPLOT__ :
+            return NgonGridMatplotDataDecomposer::getIndicesSize(id);
+        case __GO_PLOT3D__ :
+            return Plot3DDecomposer::getIndicesSize(id);
+        case __GO_POLYLINE__ :
+            return PolylineDecomposer::getIndicesSize(id);
+        default :
+            return 0;
     }
 }
 
@@ -231,20 +232,20 @@ int fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 
     switch (iType)
     {
-    case __GO_FAC3D__ :
-        return Fac3DDecomposer::fillIndices(id, buffer, bufferLength, logMask);
-    case __GO_FEC__ :
-        return TriangleMeshFecDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
-    case __GO_GRAYPLOT__ :
-        return NgonGridGrayplotDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
-    case __GO_MATPLOT__ :
-        return NgonGridMatplotDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
-    case __GO_PLOT3D__ :
-        return Plot3DDecomposer::fillIndices(id, buffer, bufferLength, logMask);
-    case __GO_POLYLINE__ :
-        return PolylineDecomposer::fillIndices(id, buffer, bufferLength, logMask);
-    default :
-        return 0;
+        case __GO_FAC3D__ :
+            return Fac3DDecomposer::fillIndices(id, buffer, bufferLength, logMask);
+        case __GO_FEC__ :
+            return TriangleMeshFecDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
+        case __GO_GRAYPLOT__ :
+            return NgonGridGrayplotDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
+        case __GO_MATPLOT__ :
+            return NgonGridMatplotDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
+        case __GO_PLOT3D__ :
+            return Plot3DDecomposer::fillIndices(id, buffer, bufferLength, logMask);
+        case __GO_POLYLINE__ :
+            return PolylineDecomposer::fillIndices(id, buffer, bufferLength, logMask);
+        default :
+            return 0;
     }
 }
 
@@ -257,16 +258,16 @@ int getWireIndicesSize(char* id)
 
     switch (iType)
     {
-    case __GO_FAC3D__ :
-        return Fac3DDecomposer::getWireIndicesSize(id);
-    case __GO_FEC__ :
-        return TriangleMeshFecDataDecomposer::getWireIndicesSize(id);
-    case __GO_PLOT3D__ :
-        return Plot3DDecomposer::getWireIndicesSize(id);
-    case __GO_POLYLINE__ :
-        return PolylineDecomposer::getWireIndicesSize(id);
-    default :
-        return 0;
+        case __GO_FAC3D__ :
+            return Fac3DDecomposer::getWireIndicesSize(id);
+        case __GO_FEC__ :
+            return TriangleMeshFecDataDecomposer::getWireIndicesSize(id);
+        case __GO_PLOT3D__ :
+            return Plot3DDecomposer::getWireIndicesSize(id);
+        case __GO_POLYLINE__ :
+            return PolylineDecomposer::getWireIndicesSize(id);
+        default :
+            return 0;
     }
 }
 
@@ -279,16 +280,16 @@ int fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
 
     switch (iType)
     {
-    case __GO_FAC3D__ :
-        return Fac3DDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
-    case __GO_FEC__ :
-        return TriangleMeshFecDataDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
-    case __GO_PLOT3D__ :
-        return Plot3DDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
-    case __GO_POLYLINE__ :
-        return PolylineDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
-    default :
-        return 0;
+        case __GO_FAC3D__ :
+            return Fac3DDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
+        case __GO_FEC__ :
+            return TriangleMeshFecDataDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
+        case __GO_PLOT3D__ :
+            return Plot3DDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
+        case __GO_POLYLINE__ :
+            return PolylineDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
+        default :
+            return 0;
     }
 }
 
@@ -301,4 +302,109 @@ int fillMarkIndices(char* id, int* BUFF, int bufferLength)
 {
     // TODO.
     return 0;
+}
+
+JavaDirectBuffer getTextureData(char * id)
+{
+    JavaDirectBuffer info;
+    int iType = 0;
+    int *piType = &iType;
+
+    info.address = NULL;
+    info.size = 0;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    if (iType == __GO_MATPLOT__)
+    {
+        void * address = NULL;
+        unsigned int size = 0;
+
+        if (!MatPlotDecomposer::getTextureData(id, &address, &size))
+        {
+            return info;
+        }
+        info.address = address;
+        info.size = size;
+    }
+
+    return info;
+}
+
+int getTextureImageType(char * id)
+{
+    int iType = 0;
+    int *piType = &iType;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    if (iType == __GO_MATPLOT__)
+    {
+        return MatPlotDecomposer::getTextureImageType(id);
+    }
+
+    return -1;
+}
+
+int getTextureDataType(char * id)
+{
+    int iType = 0;
+    int *piType = &iType;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    if (iType == __GO_MATPLOT__)
+    {
+        return MatPlotDecomposer::getTextureDataType(id);
+    }
+
+    return -1;
+}
+
+int getTextureGLType(char * id)
+{
+    int iType = 0;
+    int *piType = &iType;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    if (iType == __GO_MATPLOT__)
+    {
+        return MatPlotDecomposer::getTextureGLType(id);
+    }
+
+    return -1;
+}
+
+void disposeTextureData(char * id, unsigned char * buffer)
+{
+    int iType = 0;
+    int *piType = &iType;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    if (iType == __GO_MATPLOT__)
+    {
+        MatPlotDecomposer::disposeTextureData(id, buffer);
+    }
+}
+
+int isTextureRowOrder(char * id)
+{
+    int iType = 0;
+    int *piType = &iType;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    if (iType == __GO_MATPLOT__)
+    {
+        return MatPlotDecomposer::isTextureRowOrder(id);
+    }
+
+    return 0;
+}
+
+void setABGRExt(int isAvailable)
+{
+    NgonGridMatplotData::setABGRSupported(isAvailable != 0);
 }

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:12+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-07-28 15:12+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -90,12 +90,31 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 値を変換でき�
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指定してください.\n"
 
+msgid "This usage of the third argument of gsort is obsolete."
+msgstr "このgsortの3番目の引数の使用法は廃止されています."
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr "警告: %s\n"
+
+msgid "It will no more be available in Scilab 6."
+msgstr "Scilab 6 では使用できなくなります."
+
+msgid "Please use 'd' or 'i' instead."
+msgstr "代わりに 'd' または 'i' を使用してください."
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています:  '%s', '%s', '%s', '%s' または '%s'  を指定してください.\n"
+
+msgid "This usage of the second argument of gsort is obsolete."
+msgstr "このgsortの2番目の引数の使用法は廃止されています."
+
+msgid "Please use 'r', 'c', 'g', 'lr' or 'lc' instead."
+msgstr "代わりに  'r', 'c', 'g', 'lr'  または 'lc' を使用してください."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -214,6 +233,17 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複�
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが正しくありません: 正方行列を指定してください.\n"
 
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, sparse or full "
+"matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複素数, 疎行列または通常の行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real sparse or full matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実疎行列通常の行列を指定してください.\n"
+
 #
 # File: macros/atanm.sci, line: 39
 #, c-format
@@ -309,6 +339,28 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 正方行列�
 msgid ""
 "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 行列は対角可能ではありません。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real, complex, boolean or "
+"polynomial matrix expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 実数, 複素数, 論理値または多項式行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size 1x3 or 3xN "
+"expected.\n"
+msgstr "%s: 引数 #%d の大きさが間違っています: 大きさ 1x3 または 3xN の行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, sparse or full "
+"matrix or hypermatrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複素数, 疎行列または通常の行列またはハイパー行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
@@ -407,16 +459,18 @@ msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr "%s: 引数 #%d のための型が不正: 実を想定します。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument(s) %d: real arguments expected.\n"
-msgstr "%s: 引数 %d の型が間違っています: 実数の引数を指定してください.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Real scalar or matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数のスカラーまたは行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument(s) %d: n must be a scalar.\n"
-msgstr "%s: 引数 %d の型が間違っています: n にスカラーを指定してください.\n"
+msgid ""
+"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgstr "%s: 入力引数 #%dおよび#%d の大きさが間違っています: 同じ大きさで指定してください.\n"
 
 #, c-format
-msgid "%s: If x is negative, n must be an odd integer\n"
-msgstr "%s: x が負の場合, n は奇数の整数としてください\n"
+msgid "%s: If x is negative, then n must contain odd integers only.\n"
+msgstr "%s: x が負の場合, n は奇数の整数のみを含む必要があります.\n"
 
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
@@ -467,6 +521,10 @@ msgid ""
 "%s: Wrong number of output matrix dimensions required: %d expected for "
 "sparse matrices.\n"
 msgstr "%s: 出力行列の次元が間違っています: 疎行列の場合は %d 個指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"

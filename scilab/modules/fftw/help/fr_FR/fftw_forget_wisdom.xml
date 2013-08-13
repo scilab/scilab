@@ -18,7 +18,7 @@
           xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="fftw_forget_wisdom">
     <refnamediv>
         <refname>fftw_forget_wisdom</refname>
-        <refpurpose>Re-initialise le wisdom fftw</refpurpose>
+        <refpurpose>Réinitialise le wisdom fftw</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -36,7 +36,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Cette fonction re-initialise le wisdom fftw.
+            Cette fonction réinitialise le wisdom fftw.
         </para>
     </refsection>
     <refsection>

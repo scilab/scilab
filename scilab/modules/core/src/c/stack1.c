@@ -15,9 +15,11 @@
  */
 /*    Scilab Memory Management library (Stack API) */
 #include <string.h>
+#include <stdio.h>
 #include "stack-c.h"
 #include "stack1.h"
 #include "stack2.h"
+#include "stackinfo.h"
 #include "sciprint.h"
 #include "cvstr.h"
 #include "localization.h"
@@ -59,6 +61,32 @@ int C2F(getlistsmat) (char *fname, int *topk, int *spos, int *lnum, int *m, int 
 int cre_smat_from_str_i(char *fname, int *lw, int *m, int *n, char *Str[], unsigned long fname_len, int *rep);
 int cre_sparse_from_ptr_i(char *fname, int *lw, int *m, int *n, SciSparse * S, unsigned long fname_len, int *rep);
 int crelist_G(int *slw, int *ilen, int *lw, int type);
+
+static void ScierrorSeventeen()
+{
+    int Memory_used_for_variables = 0;
+    int Intermediate_Memory = 0;
+    int Total_Memory_available = 0;
+    char msgErr[bsiz];
+    char msgTmp[bsiz];
+
+    Intermediate_Memory = getIntermediateMemoryNeeded();
+    C2F(getstackinfo)(&Total_Memory_available, &Memory_used_for_variables);
+
+    strcpy(msgErr, _("stack size exceeded!\n"));
+    strcat(msgErr, _("Use stacksize function to increase it.\n"));
+
+    sprintf(msgTmp, _("Memory used for variables: %d\n"), Memory_used_for_variables);
+    strcat(msgErr, msgTmp);
+
+    sprintf(msgTmp, _("Intermediate memory needed: %d\n"), Intermediate_Memory);
+    strcat(msgErr, msgTmp);
+
+    sprintf(msgTmp, _("Total memory available: %d\n"), Total_Memory_available);
+    strcat(msgErr, msgTmp);
+
+    Scierror(17, msgErr);
+}
 
 /**********************************************************************
 * MATRICES
@@ -196,12 +224,12 @@ static int C2F(getmati) (char *fname, int *topk, int *spos, int *lw, int *it, in
     {
         if (*inlistx)
         {
-            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Real or complex matrix expected.\n"), get_fname(fname, fname_len),
-                     Rhs + (*spos - *topk), *nel);
+            Scierror(999, _("%s: Wrong type for element %d of argument #%d: Real or Complex matrix expected.\n"), get_fname(fname, fname_len),
+                     *nel, Rhs + (*spos - *topk));
         }
         else
         {
-            Scierror(201, _("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), get_fname(fname, fname_len),
+            Scierror(201, _("%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"), get_fname(fname, fname_len),
                      Rhs + (*spos - *topk));
         }
         return FALSE;
@@ -269,7 +297,7 @@ int C2F(cremat) (char *fname, int *lw, int *it, int *m, int *n, int *lr, int *lc
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     if (C2F(cremati) (fname, Lstk(*lw), it, m, n, lr, lc, &c_true, fname_len) == FALSE)
@@ -313,7 +341,7 @@ static int C2F(cremati) (char *fname, int *stlw, int *it, int *m, int *n, int *l
     Err = sadr(ix1) - *Lstk(Bot);
     if ((double)Err > -size)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     };
     if (*flagx)
@@ -509,10 +537,10 @@ static int C2F(getimati) (char *fname, int *topk, int *spos, int *lw, int *it, i
     if (*istk(il) != 8)
     {
         if (*inlistx)
-            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Int matrix expected.\n"), get_fname(fname, fname_len),
-                     Rhs + (*spos - *topk), *nel);
+            Scierror(999, _("%s: Wrong type for element %d of argument #%d: Real or Complex matrix expected.\n"), get_fname(fname, fname_len),
+                     *nel, Rhs + (*spos - *topk));
         else
-            Scierror(201, _("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), get_fname(fname, fname_len),
+            Scierror(201, _("%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"), get_fname(fname, fname_len),
                      Rhs + (*spos - *topk));
         return FALSE;
     }
@@ -573,7 +601,7 @@ int C2F(creimat) (char *fname, int *lw, int *it, int *m, int *n, int *lr, unsign
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     if (C2F(creimati) (fname, Lstk(*lw), it, m, n, lr, &c_true, fname_len) == FALSE)
@@ -599,7 +627,7 @@ int C2F(creimati) (char *fname, int *stlw, int *it, int *m, int *n, int *lr, int
     Err = sadr(ix1) - *Lstk(Bot);
     if (Err > -size)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     };
     if (*flagx)
@@ -700,8 +728,8 @@ static int C2F(getbmati) (char *fname, int *topk, int *spos, int *lw, int *m, in
     if (*istk(il) != 4)
     {
         if (*inlistx)
-            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Boolean matrix expected.\n"), get_fname(fname, fname_len),
-                     Rhs + (*spos - *topk), *nel);
+            Scierror(999, _("%s: Wrong type for element %d of argument #%d: Boolean matrix expected.\n"), get_fname(fname, fname_len),
+                     *nel, Rhs + (*spos - *topk));
         else
         {
             Scierror(208, _("%s: Wrong type for argument #%d: Boolean matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
@@ -767,7 +795,7 @@ int C2F(crebmat) (char *fname, int *lw, int *m, int *n, int *lr, unsigned long f
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
 
@@ -790,7 +818,7 @@ int C2F(fakecrebmat) (int *lw, int *m, int *n, int *lr)
 {
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), "fakecrebmat");
+        Scierror(18, _("%s: Too many variables.\n"), "fakecrebmat");
         return FALSE;
     }
     if (C2F(crebmati) ("crebmat", Lstk(*lw), m, n, lr, &c_false, 7L) == FALSE)
@@ -814,7 +842,7 @@ static int C2F(crebmati) (char *fname, int *stlw, int *m, int *n, int *lr, int *
     Err = il + 3 - iadr(*Lstk(Bot));
     if (Err > -size)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     }
     if (*flagx)
@@ -923,8 +951,8 @@ static int C2F(getsparsei) (char *fname, int *topk, int *spos, int *lw, int *it,
     if (*istk(il) != sci_sparse)
     {
         if (*inlistx)
-            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Sparse matrix expected.\n"), get_fname(fname, fname_len),
-                     Rhs + (*spos - *topk), *nellist);
+            Scierror(999, _("%s: Wrong type for element %d of argument #%d: Sparse matrix expected.\n"), get_fname(fname, fname_len),
+                     *nellist, Rhs + (*spos - *topk));
         else
         {
             Scierror(999, _("%s: Wrong type for argument #%d: Sparse matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
@@ -996,7 +1024,7 @@ int C2F(cresparse) (char *fname, int *lw, int *it, int *m, int *n, int *nel, int
 {
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
 
@@ -1022,7 +1050,7 @@ static int C2F(cresparsei) (char *fname, int *stlw, int *it, int *m, int *n, int
     Err = sadr(ix1) + *nel * (*it + 1) - *Lstk(Bot);
     if (Err > 0)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     };
     *istk(il) = sci_sparse;
@@ -1067,8 +1095,7 @@ int C2F(getlistvect) (char *fname, int *topk, int *spos, int *lnum, int *it, int
 
     if (*m != 1 && *n != 1)
     {
-        Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Vector expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk),
-                 *lnum);
+        Scierror(999, _("%s: Wrong type for element %d of argument #%d: Vector expected.\n"), get_fname(fname, fname_len), *lnum, Rhs + (*spos - *topk));
         return FALSE;
     }
     return TRUE;
@@ -1175,8 +1202,7 @@ int C2F(getlistscalar) (char *fname, int *topk, int *spos, int *lnum, int *lr, u
 
     if (m * n != 1)
     {
-        Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Scalar expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk),
-                 *lnum);
+        Scierror(999, _("%s: Wrong type for element %d of argument #%d: Scalar expected.\n"), get_fname(fname, fname_len), *lnum, Rhs + (*spos - *topk));
         return FALSE;
     }
     return TRUE;
@@ -1203,8 +1229,7 @@ int C2F(getscalar) (char *fname, int *topk, int *lw, int *lr, unsigned long fnam
 
     if (m * n != 1)
     {
-        Scierror(204, _("%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk), "min",
-                 "max");
+        Scierror(204, _("%s: Wrong type for argument #%d: Scalar expected.\n"), get_fname(fname, fname_len), Rhs + (*lw - *topk));
         return FALSE;
     };
     return TRUE;
@@ -1342,8 +1367,8 @@ static int C2F(getwsmati) (char *fname, int *topk, int *spos, int *lw, int *m, i
     {
         if (*inlistx)
         {
-            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Matrix of strings expected.\n"), get_fname(fname, fname_len),
-                     Rhs + (*spos - *topk), *nel);
+            Scierror(999, _("%s: Wrong type for element %d of argument #%d: Matrix of strings expected.\n"), get_fname(fname, fname_len),
+                     *nel, Rhs + (*spos - *topk));
         }
         else
         {
@@ -1375,12 +1400,12 @@ static int C2F(getsmati) (char *fname, int *topk, int *spos, int *lw, int *m, in
     {
         if (*inlistx)
         {
-            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): String matrix expected.\n"), get_fname(fname, fname_len),
-                     Rhs + (*spos - *topk), *nel);
+            Scierror(999, _("%s: Wrong type for element %d of argument #%d: Matrix of strings expected.\n"), get_fname(fname, fname_len),
+                     *nel, Rhs + (*spos - *topk));
         }
         else
         {
-            Scierror(201, _("%s: Wrong type for argument #%d: String matrix expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
+            Scierror(207, _("%s: Wrong type for argument #%d: Matrix of strings expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
         }
         return FALSE;
     }
@@ -1455,7 +1480,7 @@ int C2F(cresmat) (char *fname, int *lw, int *m, int *n, int *nchar, unsigned lon
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     if (C2F(cresmati) (fname, Lstk(*lw), m, n, nchar, &job, &lr, &sz, fname_len) == FALSE)
@@ -1488,7 +1513,7 @@ int C2F(cresmat1) (char *fname, int *lw, int *m, int *nchar, unsigned long fname
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     if (C2F(cresmati) (fname, Lstk(*lw), m, &n, nchar, &job, &lr, &sz, fname_len) == FALSE)
@@ -1516,7 +1541,7 @@ int C2F(cresmat2) (char *fname, int *lw, int *nchar, int *lr, unsigned long fnam
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     if (C2F(cresmati) (fname, Lstk(*lw), &m, &n, nchar, &job, lr, &sz, fname_len) == FALSE)
@@ -1552,7 +1577,7 @@ int C2F(cresmat3) (char *fname, int *lw, int *m, int *n, int *nchar, char *buffe
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     if (C2F(cresmati) (fname, Lstk(*lw), m, n, nchar, &job, &lr, &sz, fname_len) == FALSE)
@@ -1581,7 +1606,7 @@ int C2F(cresmat4) (char *fname, int *lw, int *m, int *nchar, int *lr, unsigned l
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     nnchar = 0;
@@ -1595,7 +1620,7 @@ int C2F(cresmat4) (char *fname, int *lw, int *m, int *nchar, int *lr, unsigned l
     Err = sadr(ix1) - *Lstk(Bot);
     if (Err > 0)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     }
     *istk(il) = sci_strings;
@@ -1652,7 +1677,7 @@ int C2F(cresmati) (char *fname, int *stlw, int *m, int *n, int *nchar, int *job,
     Err = sadr(ix1) - *Lstk(Bot);
     if (Err > 0)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     };
 
@@ -1720,7 +1745,7 @@ int cre_smat_from_str_i(char *fname, int *lw, int *m, int *n, char *Str[], unsig
     Err = sadr(ix1) - *Lstk(Bot);
     if (Err > 0)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     };
     *istk(il) = sci_strings;
@@ -1768,7 +1793,7 @@ int cre_smat_from_str(char *fname, int *lw, int *m, int *n, char *Str[], unsigne
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
 
@@ -1821,7 +1846,7 @@ int cre_sparse_from_ptr_i(char *fname, int *lw, int *m, int *n, SciSparse * S, u
     Err = sadr(ix1) - *Lstk(Bot);
     if (Err > -size)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     };
     *istk(il) = sci_sparse;
@@ -1859,7 +1884,7 @@ int cre_sparse_from_ptr(char *fname, int *lw, int *m, int *n, SciSparse * Str, u
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
 
@@ -1967,7 +1992,7 @@ int C2F(crestringi) (char *fname, int *stlw, int *nchar, int *ilrs, unsigned lon
     Err = sadr(ix1) - *Lstk(Bot);
     if (Err > 0)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     };
     *istk(il) = sci_strings;
@@ -2028,7 +2053,7 @@ int C2F(smatj) (char *fname, int *lw, int *j, unsigned long fname_len)
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     ix1 = *lw - 1;
@@ -2053,7 +2078,7 @@ int C2F(smatj) (char *fname, int *lw, int *j, unsigned long fname_len)
     Err = sadr(ix1) - *Lstk(Bot);
     if (Err > 0)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     }
     *istk(il2) = sci_strings;
@@ -2189,7 +2214,7 @@ int C2F(lmatj) (char *fname, int *lw, int *j, unsigned long fname_len)
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     ix1 = *lw - 1;
@@ -2363,10 +2388,9 @@ int C2F(pmatj) (char *fname, int *lw, int *j, unsigned long fname_len)
     int incj;
     int ix, l, m, n, namel;
     int l2, m2, n2, lc, il, lj, it, lr, il2, ilp;
-
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     ix1 = *lw - 1;
@@ -2395,7 +2419,7 @@ int C2F(pmatj) (char *fname, int *lw, int *j, unsigned long fname_len)
     Err = l2 + n2 * (it + 1) - *Lstk(Bot);
     if (Err > 0)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     }
     C2F(icopy) (&cx4, istk(il + 3 + 1), &cx1, istk(il2 + 3 + 1), &cx1);
@@ -2441,7 +2465,7 @@ int C2F(crewmat) (char *fname, int *lw, int *m, int *lr, unsigned long fname_len
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     il = iadr(*Lstk(*lw));
@@ -2471,14 +2495,14 @@ int C2F(crewimat) (char *fname, int *lw, int *m, int *n, int *lr, unsigned long 
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     il = iadr(*Lstk(*lw));
     Err = il + 3 - iadr(*Lstk(Bot));
     if (Err > -size)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     }
     *istk(il) = 4;
@@ -2581,7 +2605,7 @@ int C2F(crepointer) (char *fname, int *lw, int *lr, unsigned long fname_len)
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     if (C2F(crepointeri) (fname, Lstk(*lw), lr, &c_true, fname_len) == FALSE)
@@ -2605,7 +2629,7 @@ static int C2F(crepointeri) (char *fname, int *stlw, int *lr, int *flagx, unsign
     Err = sadr(ix1) + 2 - *Lstk(Bot);
     if (Err > 0)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     };
     if (*flagx)
@@ -2706,8 +2730,8 @@ int C2F(getlistvectrow) (char *fname, int *topk, int *spos, int *lnum, int *it, 
     }
     if (*m != 1)
     {
-        Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Row vector expected.\n"), get_fname(fname, fname_len),
-                 Rhs + (*spos - *topk), *lnum);
+        Scierror(999, _("%s: Wrong type for element %d of argument #%d: Row vector expected.\n"), get_fname(fname, fname_len),
+                 *lnum, Rhs + (*spos - *topk));
         return FALSE;
     }
     return TRUE;
@@ -2887,11 +2911,11 @@ static int C2F(getpointeri) (char *fname, int *topk, int *spos, int *lw, int *lr
         /* used to be sci_lufact_pointer before Scilab 5.2 */
         sciprint("----%d\n", *istk(il));
         if (*inlistx)
-            Scierror(197, _("%s: Wrong type for argument #%d (List element: %d): Boxed pointer expected.\n"), get_fname(fname, fname_len),
-                     Rhs + (*spos - *topk), *nel);
+            Scierror(197, _("%s: Wrong type for element %d of argument #%d: Pointer expected.\n"), get_fname(fname, fname_len),
+                     *nel, Rhs + (*spos - *topk));
         else
         {
-            Scierror(198, _("%s: Wrong type for argument #%d: Boxed pointer expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
+            Scierror(198, _("%s: Wrong type for argument #%d: Pointer expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));
         }
         return FALSE;
     }
@@ -2913,7 +2937,7 @@ int C2F(mspcreate) (int *lw, int *m, int *n, int *nzMax, int *it)
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), "");
+        Scierror(18, _("%s: Too many variables.\n"), "");
         return FALSE;
     }
 
@@ -2928,7 +2952,7 @@ int C2F(mspcreate) (int *lw, int *m, int *n, int *nzMax, int *it)
     Err = sadr(ix1) - *Lstk(Bot);
     if (Err > -size)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), "");
+        ScierrorSeventeen();
         return FALSE;
     };
     *istk(il) = sci_matlab_sparse;
@@ -3063,13 +3087,13 @@ int C2F(vcopyobj) (char *fname, int *lw, int *lwd, unsigned long fname_len)
     l1 = *Lstk(*lwd);
     if (*lwd + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     Err = *Lstk(*lwd) + lv - *Lstk(Bot);
     if (Err > 0)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     }
     /* check for overlaping region */
@@ -3352,7 +3376,7 @@ int C2F(getexternal) (char *fname, int *topk, int *lw, char *namex, int *typex, 
                 (*setfun) (namex, &irep);   /* , name_len); */
                 if (irep == 1)
                 {
-                    Scierror(50, _("%s: entry point %s not found in predefined tables or link table.\n"), get_fname(fname, fname_len), namex);
+                    Scierror(50, _("%s: Subroutine '%s' not found.\n"), get_fname(fname, fname_len), namex);
                     ret_value = FALSE;
                 }
             }
@@ -3443,14 +3467,14 @@ int C2F(credata) (char *fname, int *lw, int m, unsigned long fname_len)
     lr = *Lstk(*lw);
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
 
     Err = lr - *Lstk(Bot);
     if (Err > -m)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     };
     /*  *Lstk(*lw +1) = lr + 1 + m/sizeof(double);  */
@@ -3478,7 +3502,7 @@ static int C2F(crehmati) (char *fname, int *stlw, int *m, int *n, int *lr, int *
     Err = sadr(ix1) - *Lstk(Bot);
     if ((double)Err > -size)
     {
-        Scierror(17, _("%s: stack size exceeded (Use stacksize function to increase it).\n"), get_fname(fname, fname_len));
+        ScierrorSeventeen();
         return FALSE;
     };
     if (*flagx)
@@ -3543,7 +3567,7 @@ int C2F(crehmat) (char *fname, int *lw, int *m, int *n, int *lr, unsigned long f
 
     if (*lw + 1 >= Bot)
     {
-        Scierror(18, _("%s: Too many names.\n"), get_fname(fname, fname_len));
+        Scierror(18, _("%s: Too many variables.\n"), get_fname(fname, fname_len));
         return FALSE;
     }
     if (C2F(crehmati) (fname, Lstk(*lw), m, n, lr, &c_true, fname_len) == FALSE)
@@ -3618,8 +3642,8 @@ static int C2F(gethmati) (char *fname, int *topk, int *spos, int *lw, int *m, in
     if (*istk(il) != sci_handles)
     {
         if (*inlistx)
-            Scierror(999, _("%s: Wrong type for argument #%d (List element: %d): Matrix of handle expected.\n"), get_fname(fname, fname_len),
-                     Rhs + (*spos - *topk), *nel);
+            Scierror(999, _("%s: Wrong type for element %d of argument #%d: Matrix of handle expected.\n"), get_fname(fname, fname_len),
+                     *nel, Rhs + (*spos - *topk));
         else
         {
             Scierror(200, _("%s: Wrong type for argument #%d: Matrix of handle expected.\n"), get_fname(fname, fname_len), Rhs + (*spos - *topk));

@@ -22,6 +22,6 @@ grand('setsd',123456,123456,123456,123456);
 warning("on");
 grand('setgen',"clcg4");
 grand('setsd',123456,123456,123456,123456);
-WARNING: be aware that you have may lost synchronization
-    between the virtual gen %d and the others !
-    use grand("setall", s1, s2, s3, s4) if you want recover it.
+WARNING: be aware that you may have lost synchronization
+    between the virtual generator %d and the others.
+    use grand("setall", s1, s2, s3, s4) if you want to recover it.

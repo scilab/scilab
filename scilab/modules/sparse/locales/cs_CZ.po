@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-05-22 20:16+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-30 20:50+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 
 #, c-format
 msgid "sparse: panic in file `%s' at line %d.\n"
@@ -232,6 +232,30 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: %s=%d, což se neshoduje s "
 "velikostí %s: %d.\n"
 
+msgid "  Possible matrix is not positive definite."
+msgstr "  Možná matice není kladně definitivní."
+
+msgid "Non-positive diagonal encountered, matrix is not positive definite."
+msgstr ""
+
+msgid "Insufficient working storage in blkfct, temp(*)."
+msgstr ""
+
+msgid "Insufficient working storage in blkfct, iwork(*)."
+msgstr ""
+
+msgid " SYMFCT requires PERM to be neqns x 1"
+msgstr " SYMFCT vyžaduje aby PERM bylo neqns x 1"
+
+msgid " SYMFCT requires INVN to be neqns x 1"
+msgstr " SYMFCT vyžaduje aby INVN bylo neqns x 1"
+
+msgid " SYMFCT requires CACHSZ  to be 1 x 1"
+msgstr " SYMFCT vyžaduje aby CACHSZ bylo 1 x 1"
+
+msgid " Insufficient working storage in sfinit"
+msgstr " Nedostatečné pracovní úložiště v sfinit"
+
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno alespoň %d.\n"
@@ -346,11 +370,34 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A transpose of the function %s "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána transpozice funkce %s.\n"
+
+#, c-format
+msgid ""
 "%s : Calling qmr(A,Ap) is deprecated. Please see qmr documentation for more "
 "details.\n"
 msgstr ""
 "%s: Volání qmr(A,Ap) je zastaralé. Prosím prohlédněte si dokumentaci pro "
 "další podrobnosti.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex, full or sparse "
+"column vector expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván reálný, komplexní, celý "
+"nebo řídký sloupcový vektor.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex, full or sparse, "
+"square matrix or a function expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána reálná, komplexní, nebo "
+"čtvercová matice, či funkce.\n"
 
 #, c-format
 msgid ""
@@ -362,11 +409,38 @@ msgstr ""
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A transpose of the function "
+"expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána transpozice funkce.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong prototype of input argument #%d: If M1 is function, use the header "
+"M1(x,t) instead M1(x).\n"
+msgstr ""
+"%s: Špatný prototyp vstupního argumentu #%d: Pokud M1 je funkce, použijte "
+"hlavičku M1(x,t) namísto M1(x).\n"
+
+#, c-format
+msgid ""
 "%s : Calling qmr(...,M2,M2p) is deprecated. Please see qmr documentation for "
 "more details.\n"
 msgstr ""
 "%s: Volání qmr(...,M2,M2p) je zastaralé. Prosím prohlédněte si dokumentaci "
 "pro další podrobnosti.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong prototype of input argument #%d: If M2 is function, use the header "
+"M2(x,t) instead M2(x).\n"
+msgstr ""
+"%s: Špatný prototyp vstupního argumentu #%d: Pokud M2 je funkce, použijte "
+"hlavičku M2(x,t) namísto M2(x).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

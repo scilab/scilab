@@ -4,7 +4,7 @@
 try
     v = getversion("scilab");
 catch
-    v = [ 5 0 ]; // or older 
+    v = [ 5 0 ]; // or older
 end
 if (v(1) <= 5) & (v(2) < 3) then
     // new API in scilab 5.3

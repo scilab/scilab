@@ -7,15 +7,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-11-12 18:11+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: it\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -23,6 +35,14 @@ msgid ""
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "numero %d di colonne.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
@@ -63,6 +83,22 @@ msgstr "%s: Il problema di minimizzazione non ha soluzione.\n"
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr "%s: Q non è definita positiva e simmetrica.\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s: Warning: The minimization problem has no solution. The results may be "
+"inaccurate.\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"%s: Warning: Q is not symmetric positive definite. The results may be "
+"inaccurate.\n"
+"\n"
+msgstr ""
 
 msgid "m must be at least one.\n"
 msgstr "m deve essere almeno uno.\n"
@@ -134,6 +170,12 @@ msgid "Error in dspev, info = %d.\n"
 msgstr "Errore in dspev, info = %d.\n"
 
 msgid "Non linear data fitting"
+msgstr ""
+
+msgid "Experimental data"
+msgstr ""
+
+msgid "Fitting function"
 msgstr ""
 
 msgid "LQV"
@@ -371,6 +413,9 @@ msgstr "Disegno del contorno (attendere) ...\n"
 msgid "Defining McKinnon function...\n"
 msgstr "Definizione della funzione di McKinnon in corso...\n"
 
+msgid "Error: function expects a two dimensional input\n"
+msgstr ""
+
 #, c-format
 msgid "x0 = %s\n"
 msgstr "x0 = %s\n"
@@ -484,6 +529,26 @@ msgid "%s: Wrong type for input argument #%s: external expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%s è di tipo sbagliato: ne era atteso uno "
 "esterno\n"
+
+#, c-format
+msgid "%s: Jacobian cannot be a list, parameters must be set in G."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong measurement matrix."
+msgstr ""
+
+#, c-format
+msgid "%s: Initial guess must be a column vector."
+msgstr ""
+
+#, c-format
+msgid "%s: Weighting matrix must be square."
+msgstr ""
+
+#, c-format
+msgid "%s: With hard coded function, user must give output size of G."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -642,6 +707,14 @@ msgstr ""
 "vincoli di uguaglianza."
 
 #, c-format
+msgid "%s: Jacobian cannot be a list, parameters must be set in fun."
+msgstr ""
+
+#, c-format
+msgid "%s: With hard coded function, user must give output size of fun."
+msgstr ""
+
+#, c-format
 msgid "%s: initial guess is feasible."
 msgstr "%s: l'ipotesi iniziale è plausibile."
 
@@ -744,6 +817,143 @@ msgstr "%s: potrebbe non essere limitata inferiormente"
 #, c-format
 msgid "%s: optimal solution found"
 msgstr "%s: trovata una soluzione ottimale"
+
+msgid "Welcome to LMITOOL"
+msgstr ""
+
+msgid "LMITOOL is a Scilab package for LMI optimization"
+msgstr ""
+
+msgid "It can solve the following problem"
+msgstr ""
+
+msgid "   minimize  f(X1,...,XM)  "
+msgstr ""
+
+msgid "subject to the LME constraints: "
+msgstr ""
+
+msgid "   Gi(X1,...,XM)=0,  i=1,2,...,p,"
+msgstr ""
+
+msgid "and the LMI constraints:  "
+msgstr ""
+
+msgid "   Hj(X1,...,XM)>=0,  j=1,2,...,q."
+msgstr ""
+
+msgid "where"
+msgstr ""
+
+msgid ""
+"X1,...,XM are unknown real matrices, referred to as the unknown matrices,"
+msgstr ""
+
+msgid ""
+"f is the objective function, a linear scalar function of the entries of the "
+"X's,"
+msgstr ""
+
+msgid "Gi's are affine matrix functions of the entries of the X's,"
+msgstr ""
+
+msgid "Hj's are affine symmetric matrix functions of the entries of the X's."
+msgstr ""
+
+msgid ""
+"These functions are parameterized by the entries of known data matrices "
+"D1,...,DN."
+msgstr ""
+
+msgid "For a detailed description and examples consult: "
+msgstr ""
+
+msgid ""
+"          'LMITOOL: a Package for LMI Optimization in Scilab, User's Guide' "
+msgstr ""
+
+msgid ""
+"LMITOOL uses Semidefinite Programming package SP developed by L. "
+"Vandenberghe and S. Boyd."
+msgstr ""
+
+msgid "LMI problem name: "
+msgstr ""
+
+msgid "Names of unknown matrices: "
+msgstr ""
+
+msgid "Names of data matrices: "
+msgstr ""
+
+msgid "Problem definition"
+msgstr ""
+
+msgid "LMITOOL will generate a skeleton of the functions needed"
+msgstr ""
+
+msgid " (see User's Guide for details). For that, you need to specify:"
+msgstr ""
+
+msgid "1- Name of your problem which will be given to the solver function,"
+msgstr ""
+
+msgid "2- Names of unknown matrices or list of unknown matrices,"
+msgstr ""
+
+msgid "3- Names of data matrices or list of data matrices."
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "File not generated by lmitool or badly modified."
+msgstr ""
+
+msgid "Function definitions: "
+msgstr ""
+
+msgid "Here is a skeleton of the functions you should edit."
+msgstr ""
+
+msgid "You can edit in this window or click on 'ok'."
+msgstr ""
+
+msgid "Save and edit the skeleton later through your favorite editor."
+msgstr ""
+
+msgid "Name of the file where to save the solver function"
+msgstr ""
+
+msgid "and the evaluation function"
+msgstr ""
+
+msgid "(Will overwrite if a file with the same name already exists)."
+msgstr ""
+
+msgid "functions saved in "
+msgstr ""
+
+msgid "    To solve your problem, you need to "
+msgstr ""
+
+msgid "1- edit file "
+msgstr ""
+
+msgid "2- load (and compile) your functions:"
+msgstr ""
+
+msgid " and call "
+msgstr ""
+
+msgid " function:"
+msgstr ""
+
+msgid "3- Define "
+msgstr ""
+
+msgid "To check the result, use [LME,LMI,OBJ]="
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -1005,6 +1215,11 @@ msgid ""
 msgstr ""
 "%s: Non sono disponibili opzioni prestabilite: la funzione '%s' non esiste "
 "nel percorso."
+
+#, c-format
+msgid ""
+"%s: Hard coded function not allowed, create a Scilab function using call."
+msgstr ""
 
 #, c-format
 msgid ""

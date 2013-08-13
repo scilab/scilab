@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-03-04 09:35+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-17 22:18+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16718)\n"
 "Language: \n"
 
 #, c-format
@@ -47,13 +47,12 @@ msgstr "因式分解"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
-"Cholesky factorisation"
-msgstr "%s：输入参数#%d的值错误：必须是一个Cholesky因式分解的参考（reference）"
+"Cholesky factorization"
+msgstr ""
 
 #, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr "%s：内存不足：请增加stacksize，需再增加%d个数值存储。\n"
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -67,9 +66,15 @@ msgstr "%s：输入参数#%d的大小错误。\n"
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: not compatible with the Cholesky "
+"factorization.\n"
+msgstr ""
+
+#, c-format
+msgid ""
 "%s: Wrong size for input argument #%d: not compatible with the Cholesky "
-"factorisation.\n"
-msgstr "%s：输入参数#%d的大小错误：跟Cholesky因式分解不兼容。\n"
+"factorization.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: not enough memory.\n"
@@ -101,11 +106,11 @@ msgstr "在ListNumeric中没有空间来存储LU pointer"
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s：发生一个错误：%s。\n"
 
-msgid "This is not a factorisation of a square matrix"
-msgstr "这不是一个方阵的因式分解"
+msgid "This is not a factorization of a square matrix"
+msgstr ""
 
-msgid "This is a factorisation of a singular matrix"
-msgstr "这是一个奇异阵的因式分解"
+msgid "This is a factorization of a singular matrix"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
