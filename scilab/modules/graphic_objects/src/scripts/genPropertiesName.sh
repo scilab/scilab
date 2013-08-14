@@ -39,7 +39,7 @@ generateJavaFile()
     echo "public class GraphicObjectProperties {" >> $OutFile
     echo ""  >> $OutFile
 
-    awk 'BEGIN {num=0} (NF > 0) {printf "public static final int %s = %d;\n", $1, num; num++}' < $PropertiesFile >> $OutFile
+    awk 'BEGIN {num=0} (NF > 0) {printf "    public static final int %s = %d;\n", $1, num; num++}' < $PropertiesFile >> $OutFile
 
     echo ""  >> $OutFile
     echo "}"  >> $OutFile
