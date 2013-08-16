@@ -546,6 +546,9 @@ Bug fixes
 
 * Bug #12816 fixed - Numbers pasted in editvar were not parsed according to locale.
 
+* Bug #12823 fixed - In help generation (toolbox) links were not correctly handled.
+
 * Bug #12836 fixed - There was an error in strcmpi documentation.
 
 * Bug #12840 fixed - Fix typo in number_properties.xml.
+

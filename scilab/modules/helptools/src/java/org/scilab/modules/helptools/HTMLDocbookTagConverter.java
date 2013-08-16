@@ -1020,7 +1020,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         String type = attributes.get("type");
         String id;
         if (type != null && type.equals("scilab")) {
-            if (this.type == GenerationType.JAVAHELP) {
+            if (this.type == GenerationType.JAVAHELP || this.type == GenerationType.HTML) {
                 id = resolvScilabLink(link);
             } else {
                 return contents;
@@ -1032,9 +1032,21 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         }
 
         if (id == null) {
-            warnings++;
-            System.err.println("Warning (should be fixed): invalid internal link to " + link + " in " + currentFileName + "\nat line " + locator.getLineNumber());
-            return null;
+            if (isToolbox) {
+                if (this.type == GenerationType.HTML) {
+                    id = urlBase + link;
+                    if (linkToTheWeb) {
+                        id += ".html";
+                    }
+                }
+                if (this.type == GenerationType.JAVAHELP) {
+                    id = urlBase + link;
+                }
+            } else {
+                warnings++;
+                System.err.println("Warning (should be fixed): invalid internal link to " + link + " in " + currentFileName + "\nat line " + locator.getLineNumber());
+                return null;
+            }
         }
 
         Stack<DocbookElement> stack = getStack();
@@ -1082,6 +1094,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         if (pos == -1) {
             return null;
         }
+
         String first = link.substring(0, pos);
         String second = link.substring(pos + 1);
         String[] toks = first.split("\\.");
