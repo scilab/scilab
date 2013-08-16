@@ -163,6 +163,7 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
      */
     public static SwingScilabTab createCommandHistoryTab() {
         browserTab = new CommandHistory();
+        WindowsConfigurationManager.restorationFinished(browserTab);
 
         return browserTab;
     }
@@ -248,7 +249,6 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
                     scilabHistoryTree.mustFire = true;
                     scilabHistoryTree.fireTreeExpanded(pathRoot);
 
-                    WindowsConfigurationManager.restorationFinished(getBrowserTab());
                     scrollAtBottom();
                 }
             });

@@ -454,6 +454,8 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                                         }
                                     }
                                 }
+
+                                window.pack();
                                 window.setVisible(true);
                                 window.requestFocus();
                                 window.toFront();
@@ -471,6 +473,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                 });
             } else {
                 window.setIsRestoring(false);
+                window.pack();
                 window.setVisible(true);
             }
         }
