@@ -108,6 +108,7 @@ import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.waitbar.SwingScilabWaitBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.ged.Inspector;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -597,6 +598,11 @@ public final class SwingView implements GraphicView {
                             e.printStackTrace();
                         }
                     }
+
+                    //try close the Property List (GED)
+                    try {
+                        Inspector.getInspector().close();
+                    } catch (NullPointerException e) { }
                     break;
                 case Progressbar:
                 case Waitbar:
