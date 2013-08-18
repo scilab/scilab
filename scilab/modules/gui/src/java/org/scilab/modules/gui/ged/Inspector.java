@@ -28,7 +28,7 @@ import org.scilab.modules.gui.window.ScilabWindow;
 */
 public class Inspector {
     private static Inspector instance;
-    public static SwingInspector inspectorTab;
+    private static SwingInspector inspectorTab;
 
     /**
     * Constructor.
@@ -122,5 +122,15 @@ public class Inspector {
      */
     public void setVisible(boolean status) {
         inspectorTab.setVisible(status);
+    }
+
+    /**
+    * Set title.
+    * @param title string
+    */
+    public static void setTitle(String title) {
+        try {
+            inspectorTab.setTitle(MessagesGED.quick_ged + ": " + title);
+        } catch (NullPointerException npe) { }
     }
 }

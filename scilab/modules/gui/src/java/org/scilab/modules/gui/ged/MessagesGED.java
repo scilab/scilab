@@ -34,6 +34,7 @@ public class MessagesGED {
     public static final String plot3d = Messages.gettext("Plot3D");
     public static final String fac3d = Messages.gettext("Fac3D");
     public static final String grayplot = Messages.gettext("Grayplot");
+    public static final String matplot = Messages.gettext("Matplot");
 
     //Base Properties - Labels
     public static final String anti_alising = Messages.gettext("Anti-alising");

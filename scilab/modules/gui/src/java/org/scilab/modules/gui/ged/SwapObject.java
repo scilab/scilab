@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos CARDINOT
+ * Copyright (C) 2012 2013 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,7 +14,6 @@ package org.scilab.modules.gui.ged;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.editor.AxesHandler;
-import org.scilab.modules.gui.ged.actions.ShowHide;
 import org.scilab.modules.gui.ged.graphic_objects.axes.Axes;
 import org.scilab.modules.gui.ged.graphic_objects.figure.Figure;
 import org.scilab.modules.gui.ged.graphic_objects.imageplot.Imageplot;
@@ -42,35 +41,49 @@ public class SwapObject {
                 /*not implemented yet */
                 break;
             case FAC3D:
-                fac3d(objectID);
+                Surface fac3d = new Surface();
+                fac3d.initSections(objectID);
+                SwingInspector.setPanel(fac3d, MessagesGED.fac3d);
                 break;
             case GRAYPLOT:
-                grayplot(objectID);
+                Imageplot grayplot = new Imageplot();
+                grayplot.initSections(objectID);
+                SwingInspector.setPanel(grayplot, MessagesGED.grayplot);
                 break;
             case LEGEND:
-                legend(objectID);
+                Legend legend = new Legend();
+                legend.initSections(objectID);
+                SwingInspector.setPanel(legend, MessagesGED.legend);
+                break;
+            case MATPLOT:
+                Imageplot matplot = new Imageplot();
+                matplot.initSections(objectID);
+                SwingInspector.setPanel(matplot, MessagesGED.matplot);
                 break;
             case PLOT3D:
-                plot3d(objectID);
+                Surface plot3d = new Surface();
+                plot3d.initSections(objectID);
+                SwingInspector.setPanel(plot3d, MessagesGED.plot3d);
                 break;
             case POLYLINE:
-                polyline(objectID);
+                Polyline polyline = new Polyline();
+                polyline.initSections(objectID);
+                SwingInspector.setPanel(polyline, MessagesGED.polyline);
                 break;
             default:
-                axesORfigure(objectID, clickX, clickY);
+                //If the user clicks on an axis, return axesID
+                String axesID = getAxesClicked(objectID, clickX, clickY);
+                if (axesID != null) {
+                    Axes axes = new Axes();
+                    axes.initSections(axesID);
+                    SwingInspector.setPanel(axes, MessagesGED.axes);
+                } else {
+                    Figure figure = new Figure();
+                    figure.initSections(objectID);
+                    SwingInspector.setPanel(figure, MessagesGED.figure);
+                }
                 break;
         }
-    }
-
-    /**
-    * Prepare the panel to receive a new JPanel.
-    */
-    private void adjust() {
-        //Resets the panel.
-        SwingInspector.pReceive.removeAll();
-        SwingInspector.pReceive.repaint();
-        //Resets the Show/Hide button.
-        ShowHide.setStatus(false);
     }
 
     /**
@@ -79,145 +92,34 @@ public class SwapObject {
     * @param objectID Enters the identification of object.
     * @param clickX x coordinate of mouse.
     * @param clickY y coordinate of mouse.
+    * @return if axes, return true
     */
-    private void axesORfigure(String objectID, Integer clickX, Integer clickY) {
-        Integer[] position = new Integer[2];
-        position[0] = clickX;
-        position[1] = clickY;
+    private String getAxesClicked(String objectID, Integer clickX, Integer clickY) {
+        Integer[] position = new Integer[] {clickX, clickY};
         String axesID = AxesHandler.clickedAxes(objectID, position);
         Double[] axesMargins = (Double[]) GraphicController.getController()
                                .getProperty(axesID, GraphicObjectProperties.__GO_MARGINS__);
-        Double left, right, top, bottom;
 
-        left = axesMargins[0];
-        right = axesMargins[1];
-        top = axesMargins[2];
-        bottom = axesMargins[3];
+        Double left = axesMargins[0];
+        Double right = axesMargins[1];
+        Double top = axesMargins[2];
+        Double bottom = axesMargins[3];
 
-        Integer[] axesSize = (Integer[])GraphicController.getController()
+        Integer[] axesSize = (Integer[]) GraphicController.getController()
                              .getProperty(objectID, GraphicObjectProperties.__GO_AXES_SIZE__);
-        Integer x, y;
 
-        x = axesSize[0];
-        y = axesSize[1];
+        Integer x = axesSize[0];
+        Integer y = axesSize[1];
 
-        Double leftBorder, rightBorder, bottomBorder, topBorder;
-
-        leftBorder = left * x;
-        rightBorder = x - right * x;
-        bottomBorder = bottom * y;
-        topBorder = y - top * y;
+        Double leftBorder = left * x;
+        Double rightBorder = x - right * x;
+        Double bottomBorder = bottom * y;
+        Double topBorder = y - top * y;
 
         if (position[0] > leftBorder && position[0] < rightBorder && position[1] > bottomBorder && position[1] < topBorder) {
-            axes(axesID);
+            return axesID;
         } else {
-            figure(objectID);
+            return null;
         }
-    }
-
-    /**
-    * Loads the properties of the axis.
-    *
-    * @param axesID Enters the identification of axis.
-    */
-    private void axes(String axesID) {
-        adjust();
-        Axes axes = new Axes();
-        axes.initSections(axesID);
-        SwingInspector.pReceive.add(axes, "");
-        try {
-            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.axes);
-        } catch (NullPointerException npe) { }
-    }
-
-    /**
-    * Loads the properties of the figure.
-    *
-    * @param objectID Enters the identification of figure.
-    */
-    private void figure(String objectID) {
-        adjust();
-        Figure figure = new Figure();
-        figure.initSections(objectID);
-        SwingInspector.pReceive.add(figure, "");
-        try {
-            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.figure);
-        } catch (NullPointerException npe) { }
-    }
-
-    /**
-    * Loads the properties of the legend.
-    *
-    * @param objectID Enters the identification of legend.
-    */
-    private void legend(String objectID) {
-        adjust();
-        Legend legend = new Legend();
-        legend.initSections(objectID);
-        SwingInspector.pReceive.add(legend, "");
-        try {
-            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.legend);
-        } catch (NullPointerException npe) { }
-    }
-
-    /**
-    * Loads the properties of the polyline.
-    *
-    * @param objectID Enters the identification of polyline.
-    */
-    private void polyline(String objectID) {
-        adjust();
-        Polyline polyline = new Polyline();
-        polyline.initSections(objectID);
-        //Load the polyline panel.
-        SwingInspector.pReceive.add(polyline, "");
-        try {
-            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.polyline);
-        } catch (NullPointerException npe) { }
-    }
-
-    /**
-    * Loads the properties of the plot3d.
-    *
-    * @param objectID Enters the identification of surface.
-    */
-    private void plot3d(String objectID) {
-        adjust();
-        Surface surface = new Surface();
-        surface.initSections(objectID);
-        SwingInspector.pReceive.add(surface, "");
-        try {
-            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.plot3d);
-        } catch (NullPointerException npe) { }
-    }
-
-    /**
-    * Loads the properties of the fac3d.
-    *
-    * @param objectID Enters the identification of surface.
-    */
-    private void fac3d(String objectID) {
-        adjust();
-        Surface surface = new Surface();
-        surface.initSections(objectID);
-        SwingInspector.pReceive.add(surface, "");
-        try {
-            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.fac3d);
-        } catch (NullPointerException npe) { }
-    }
-
-    /**
-    * Loads the properties of the grayplot.
-    *
-    * @param objectID Enters the identification of surface.
-    */
-    private void grayplot(String objectID) {
-        adjust();
-        Imageplot imageplot = new Imageplot();
-        imageplot.initSections(objectID);
-        SwingInspector.pReceive.add(imageplot, "");
-        try {
-            Inspector.inspectorTab.setTitle(MessagesGED.quick_ged + ": " + MessagesGED.grayplot);
-        } catch (NullPointerException npe) { }
     }
 }

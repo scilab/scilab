@@ -27,6 +27,7 @@ public enum SelectionEnum {
     DATATIP,
     PLOT3D,
     GRAYPLOT,
+    MATPLOT,
     FAC3D,
     AXES_OR_FIGURE;
 
@@ -43,6 +44,8 @@ public enum SelectionEnum {
                 return FAC3D;
             case GraphicObjectProperties.__GO_GRAYPLOT__:
                 return GRAYPLOT;
+            case GraphicObjectProperties.__GO_MATPLOT__:
+                return MATPLOT;
             default:
                 return null;
         }
