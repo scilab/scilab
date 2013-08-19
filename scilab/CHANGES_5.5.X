@@ -537,3 +537,5 @@ Bug fixes
 * Bug #12790 fixed - Links to zcos files in doc were broken.
 
 * Bug #12808 fixed - Add missing </td> in doc generation (note, warning, ...).
+
+* Bug #12816 fixed - Numbers pasted in editvar were not parsed according to locale.

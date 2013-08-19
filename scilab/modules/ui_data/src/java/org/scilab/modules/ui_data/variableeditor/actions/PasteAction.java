@@ -17,6 +17,8 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.text.ParsePosition;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -74,6 +76,15 @@ public final class PasteAction extends CommonCallBack {
         JTable table = editor.getCurrentTable();
         int col = table.getSelectedColumn();
         int row = table.getSelectedRow();
+
+        if (col == -1) {
+            col = 0;
+        }
+
+        if (row == -1) {
+            row = 0;
+        }
+
         table.setColumnSelectionInterval(col, col);
         table.setRowSelectionInterval(row, row);
         String str = "";
@@ -85,15 +96,26 @@ public final class PasteAction extends CommonCallBack {
         } catch (IOException ex2) {
             System.err.println(ex2);
         }
+
         StringTokenizer rElems = new StringTokenizer(str, "\n");
         int countRows = rElems.countTokens();
         Vector vr = new Vector(countRows);
+        NumberFormat format = NumberFormat.getInstance();
+        ParsePosition position = new ParsePosition(0);
+        format.setParseIntegerOnly(false);
         for (int i = 0; i < countRows; i++) {
             StringTokenizer cElems = new StringTokenizer(rElems.nextToken(), "\t");
             int countCols = cElems.countTokens();
             Vector vc = new Vector(countCols);
             for (int j = 0; j < countCols; j++) {
-                vc.addElement(cElems.nextToken());
+                String ss = cElems.nextToken();
+                Number x = format.parse(ss, position);
+                if (position.getIndex() == ss.length()) {
+                    vc.addElement(x.toString());
+                } else {
+                    vc.addElement(ss);
+                }
+                position.setIndex(0);
             }
             vr.addElement(vc);
         }
