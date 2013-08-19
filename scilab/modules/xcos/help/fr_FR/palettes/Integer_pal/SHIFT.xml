@@ -360,13 +360,13 @@
             </emphasis>
             à 0.5 s dans le sous-menu <emphasis>Configurer</emphasis> du menu
             <emphasis>Simulation</emphasis>.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos" align="center" valign="middle"/>

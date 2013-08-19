@@ -223,7 +223,7 @@
         <refsection id="Example_1_PID">
             <title>Exemple 1</title>
             <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_1_Example.zcos">
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_1_Example.zcos">
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_1_Example.zcos" valign="middle"/>
@@ -235,7 +235,7 @@
         <refsection id="Example_2_PID">
             <title>Exemple 2</title>
             <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_2_Example.zcos">
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_2_Example.zcos">
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_2_Example.zcos" valign="middle"/>
@@ -247,7 +247,7 @@
         <refsection id="Example_3_PID">
             <title>Exemple 3</title>
             <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_3_Example.zcos">
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_3_Example.zcos">
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_3_Example.zcos" valign="middle"/>

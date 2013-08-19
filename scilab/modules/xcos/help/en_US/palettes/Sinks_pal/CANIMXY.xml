@@ -304,7 +304,7 @@
     </refsection>
     <refsection id="Example_CANIMXY">
         <title>Animated point viewer example</title>
-        <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/CANIMXY_Example.zcos">
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/CANIMXY_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
                     <imagedata align="center" fileref="../../../../examples/sinks_pal/CANIMXY_Example.zcos" valign="middle"/>

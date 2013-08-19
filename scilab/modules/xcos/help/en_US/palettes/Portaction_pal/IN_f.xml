@@ -214,7 +214,7 @@
         <para>
             In the following example the Super block is an amplitude modulator. The IN_f block is used as a modulation signal input. Its data type is defined by the input type of the gain block that is a scalar double data type.
         </para>
-        <para><link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/en_US/IN_f_en_US.zcos">
+        <para><link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/IN_f_en_US.zcos">
                 Open this example in Xcos
             </link>
         </para>

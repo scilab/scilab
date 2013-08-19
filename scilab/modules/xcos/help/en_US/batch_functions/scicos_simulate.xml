@@ -120,7 +120,7 @@
     <refsection id="Examples_scicos_simulate">
         <title>Examples</title>
         <para>
-            The xcos diagram in <link type="scilab" linkend="scilab.zcos/xcos/demos/batch_simulation.zcos">SCI/modules/xcos/demos/batch_simulation.zcos</link>.
+            The xcos diagram in <link type="scilab" linkend="scilab.xcos/xcos/demos/batch_simulation.zcos">SCI/modules/xcos/demos/batch_simulation.zcos</link>.
             <mediaobject>
                 <imageobject>
                     <imagedata align="center" fileref="../../../demos/batch_simulation.zcos"/>

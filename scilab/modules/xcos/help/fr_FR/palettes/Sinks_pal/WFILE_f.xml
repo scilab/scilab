@@ -308,7 +308,7 @@
         <para>
             Dans cet exemple le bloc est utilisé pour enregistrer la sortie et son inverse du générateur d'onde sinusoïdale. Un multiplexeur forme le vecteur d'entrée  du bloc WFILE_f qui
             enregistre les données dans le fichier <emphasis>"TMPDIR/wfile_f.text"</emphasis>. Ensuite, vous pouvez lire ces données avec le bloc <link linkend="RFILE_f">RFILE_f</link>.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/fr_FR/wfile_f_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/fr_FR/wfile_f_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
             .

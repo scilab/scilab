@@ -233,7 +233,7 @@
     </refsection>
     <refsection id="Example_AFFICH_m">
         <title>Example</title>
-        <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/AFFICH_m_Example.zcos">
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/AFFICH_m_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
                     <imagedata align="center" fileref="../../../../examples/sinks_pal/AFFICH_m_Example.zcos" valign="middle"/>

@@ -259,7 +259,7 @@
     <refsection id="Example_SWITCH2_m">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/signalrouting_pal/SWITCH2_m_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SWITCH2_m_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SWITCH2_m_Example.zcos" valign="middle"/>

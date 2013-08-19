@@ -190,7 +190,7 @@
                 <literal>t= 3 s</literal>
             </emphasis>
             .
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/fr_FR/CLKOUTV_f_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/CLKOUTV_f_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
             .

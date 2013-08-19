@@ -534,4 +534,6 @@ Bug fixes
 
 * Bug #12783 fixed - There were some inconsistent error messages in dsearch().
 
+* Bug #12790 fixed - Links to zcos files in doc were broken.
+
 * Bug #12808 fixed - Add missing </td> in doc generation (note, warning, ...).

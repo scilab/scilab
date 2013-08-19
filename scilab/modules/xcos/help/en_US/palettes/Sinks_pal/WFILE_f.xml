@@ -291,14 +291,14 @@
             In this example the block is used to record the output and its inverse of the sine wave generator. A multiplexer form the input vector of the WFILE_f block which record the data in
             the file <emphasis>"TMPDIR/wfile_f.text"</emphasis>. Then you can read these data with the block
             <link linkend="RFILE_f">RFILE_f</link>.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/en_US/wfile_f_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/en_US/wfile_f_en_US.zcos">
                 Open this example in Xcos
             </link>
             .
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/en_US/wfile_f_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/en_US/wfile_f_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/sinks_pal/en_US/wfile_f_en_US.zcos" align="center" valign="middle"/>

@@ -261,7 +261,7 @@
     <refsection id="Example_EXTRACT">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/matrix_pal/EXTRACT_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/EXTRACT_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/matrix_pal/EXTRACT_Example.zcos" valign="middle"/>

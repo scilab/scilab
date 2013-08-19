@@ -63,7 +63,7 @@
     <refsection>
         <title>Exemples et Analyse du temps de calcul</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/demos/Threshold_ZeroCrossing.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/demos/Threshold_ZeroCrossing.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../demos/Threshold_ZeroCrossing.zcos" valign="middle"/>
