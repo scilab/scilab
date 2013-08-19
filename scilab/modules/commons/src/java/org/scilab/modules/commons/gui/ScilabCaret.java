@@ -62,6 +62,10 @@ public class ScilabCaret extends DefaultCaret {
         this.mustAdjustVisibility = mustAdjustVisibility;
     }
 
+    public boolean getMustAdjustVisibility() {
+        return this.mustAdjustVisibility;
+    }
+
     /**
      * @param active the color of the selection when it is active
      * @param inactive the color of the selection when it is inactive

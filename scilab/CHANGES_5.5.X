@@ -565,6 +565,8 @@ Bug fixes
 
 * Bug #12823 fixed - In help generation (toolbox) links were not correctly handled.
 
+* Bug #12833 fixed - In SciNotes, there was no autoscroll when searching a pattern.
+
 * Bug #12836 fixed - There was an error in strcmpi documentation.
 
 * Bug #12839 fixed - Typo fixes in Core doc: getVariablesOnStack().
