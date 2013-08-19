@@ -539,6 +539,8 @@ Bug fixes
 
 * Bug #12775 fixed - Some related functions were not listed in "See also" section of routh_t help page.
 
+* Bug #12778 fixed - Insertion of an empty matrix in an integer matrix led to a wrong result.
+
 * Bug #12779 fixed - savewave() had a miscoding in the internal function write_wavedat().
 
 * Bug #12783 fixed - There were some inconsistent error messages in dsearch().
