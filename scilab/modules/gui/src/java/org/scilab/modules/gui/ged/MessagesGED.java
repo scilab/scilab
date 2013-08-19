@@ -27,6 +27,7 @@ public class MessagesGED {
     public static final String hide = Messages.gettext("Hide");
     public static final String show = Messages.gettext("Show");
     public static final String axes = Messages.gettext("Axes");
+    public static final String datatip = Messages.gettext("Datatip");
     public static final String polyline = Messages.gettext("Polyline");
     public static final String figure = Messages.gettext("Figure");
     public static final String legend = Messages.gettext("Legend");
@@ -39,6 +40,7 @@ public class MessagesGED {
     //Base Properties - Labels
     public static final String anti_alising = Messages.gettext("Anti-alising");
     public static final String auto_clear = Messages.gettext("Auto Clear");
+    public static final String auto_orientation = Messages.gettext("Auto Orientation");
     public static final String auto_scale = Messages.gettext("Auto Scale");
     public static final String auto_resize = Messages.gettext("Auto Resize");
     public static final String axes_visible = Messages.gettext("Axes Visible");
@@ -48,8 +50,10 @@ public class MessagesGED {
     public static final String fill_mode = Messages.gettext("Fill Mode");
     public static final String immediate_drawing = Messages.gettext("Immediate Drawing");
     public static final String isometric_view = Messages.gettext("Isometric View");
+    public static final String label_mode = Messages.gettext("Label Mode");
     public static final String line_mode = Messages.gettext("Line Mode");
     public static final String mark_mode = Messages.gettext("Mark Mode");
+    public static final String orientation = Messages.gettext("Orientation");
     public static final String visible = Messages.gettext("Visible");
     public static final String base_properties = Messages.gettext("Base Properties");
     public static final String on = Messages.gettext("On");
@@ -180,6 +184,7 @@ public class MessagesGED {
     public static final String reverse = Messages.gettext("Reverse");
 
     //Label - Labels
+    public static final String box_mode = Messages.gettext("Box Mode");
     public static final String label = Messages.gettext("Label");
     public static final String title_page = Messages.gettext("Title Page");
     public static final String axis_title = Messages.gettext("Axis Title");

@@ -15,6 +15,7 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.editor.AxesHandler;
 import org.scilab.modules.gui.ged.graphic_objects.axes.Axes;
+import org.scilab.modules.gui.ged.graphic_objects.datatip.Datatip;
 import org.scilab.modules.gui.ged.graphic_objects.figure.Figure;
 import org.scilab.modules.gui.ged.graphic_objects.imageplot.Imageplot;
 import org.scilab.modules.gui.ged.graphic_objects.legend.Legend;
@@ -38,7 +39,9 @@ public class SwapObject {
     public SwapObject(SelectionEnum selected, String objectID, Integer clickX, Integer clickY) {
         switch (selected) {
             case DATATIP:
-                /*not implemented yet */
+                Datatip datatip = new Datatip();
+                datatip.initSections(objectID);
+                SwingInspector.setPanel(datatip, MessagesGED.datatip);
                 break;
             case FAC3D:
                 Surface fac3d = new Surface();

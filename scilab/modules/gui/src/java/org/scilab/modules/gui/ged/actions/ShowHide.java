@@ -17,6 +17,7 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.ged.MessagesGED;
 import org.scilab.modules.gui.ged.SwingInspector;
 import org.scilab.modules.gui.ged.graphic_objects.axes.HideAxes;
+import org.scilab.modules.gui.ged.graphic_objects.datatip.HideDatatip;
 import org.scilab.modules.gui.ged.graphic_objects.figure.HideFigure;
 import org.scilab.modules.gui.ged.graphic_objects.imageplot.HideImageplot;
 import org.scilab.modules.gui.ged.graphic_objects.legend.HideLegend;
@@ -113,6 +114,7 @@ public class ShowHide extends CommonCallBack {
      */
     public static void action(boolean hide) {
         new HideAxes(hide);
+        new HideDatatip(hide);
         new HideFigure(hide);
         new HideImageplot(hide);
         new HideLegend(hide);

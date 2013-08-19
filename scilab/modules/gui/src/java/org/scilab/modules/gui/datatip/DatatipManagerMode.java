@@ -22,7 +22,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
  * @author Gustavo Barbosa Libotte
  */
 public class DatatipManagerMode {
-
+    private static DatatipManagerMode instance;
     private String selectedTip;
     private Integer markColor;
 
@@ -32,6 +32,7 @@ public class DatatipManagerMode {
     private static String datatipMessage = Messages.gettext("Left click on the curve creates a datatip and right click on the datatip removes it.");
 
     public DatatipManagerMode() {
+        instance = this;
         selectedTip = null;
         figureUid = null;
         datatipManagerModeStatus = false;
@@ -44,6 +45,30 @@ public class DatatipManagerMode {
         } else {
             GraphicController.getController().setProperty(figureUid, GraphicObjectProperties.__GO_INFO_MESSAGE__, datatipMessage);
         }
+    }
+
+    /**
+    * Get instance
+    * @return instance
+    */
+    public static DatatipManagerMode getInstance() {
+        return instance;
+    }
+
+    /**
+    * Get the actual color of mark
+    * @return markColor
+    */
+    public Integer getMarkColor() {
+        return markColor;
+    }
+
+    /**
+    * Set mark color
+    * @param newColor scilab color
+    */
+    public void setMarkColor(Integer newColor) {
+        markColor = newColor;
     }
 
     /**
