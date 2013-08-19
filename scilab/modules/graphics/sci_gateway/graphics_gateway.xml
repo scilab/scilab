@@ -87,4 +87,6 @@
     <PRIMITIVE gatewayId="7" primitiveId="69" primitiveName="rotate_axes"/>
     <PRIMITIVE gatewayId="7" primitiveId="70" primitiveName="is_handle_valid"/>
     <PRIMITIVE gatewayId="7" primitiveId="71" primitiveName="captions"/>
+	<PRIMITIVE gatewayId="7" primitiveId="72" primitiveName="light_create"/>
+    <PRIMITIVE gatewayId="7" primitiveId="73" primitiveName="light_delete"/>
 </GATEWAY>

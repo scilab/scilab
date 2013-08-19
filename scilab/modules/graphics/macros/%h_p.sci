@@ -207,10 +207,6 @@ function %h_p(h)
             "ambient_color = "+sci2exp(h.ambient_color)
             "diffuse_color = "+sci2exp(h.diffuse_color)
             "specular_color = "+sci2exp(h.specular_color)
-            "lighting = "+sci2exp(h.lighting)
-            "light_type = "+sci2exp(h.light_type)
-            "light_position = "+sci2exp(h.light_position)
-            "light_direction = "+sci2exp(h.light_direction)
             "user_data = "+fmtuser_data(h.user_data)
             "tag = "+h.tag
             ]
@@ -931,6 +927,20 @@ function %h_p(h)
             t=[t;
             "Children: "+fmtchildren(h.children)
             "ShowHiddenHandles: "+sci2exp(h.showhiddenhandles)
+            ]
+			// Light
+            // =====================================================================
+
+        case "Light"
+            t=[t;
+            "parent: "+h.parent.type
+            "visible = "+sci2exp(h.visible)
+            "light_type = "+sci2exp(h.light_type)
+            "light_position = "+sci2exp(h.light_position)
+            "light_direction = "+sci2exp(h.light_direction)
+            "ambient_color = "+sci2exp(h.ambient_color)
+            "diffuse_color = "+sci2exp(h.diffuse_color)
+            "specular_color= "+sci2exp(h.specular_color)
             ]
         end
     end

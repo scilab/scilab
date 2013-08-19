@@ -185,7 +185,6 @@ int get_diffuse_color_property(void* _pvCtx, char* pobjUID);
 int get_specular_color_property(void* _pvCtx, char* pobjUID);
 int get_color_material_property(void* _pvCtx, char* pobjUID);
 int get_material_shininess_property(void* _pvCtx, char* pobjUID);
-int get_lighting_property(void* _pvCtx, char* pobjUID);
 int get_light_type_property(void* _pvCtx, char* pobjUID);
 int get_light_direction_property(void* _pvCtx, char* pobjUID);
 int get_light_position_property(void* _pvCtx, char* pobjUID);

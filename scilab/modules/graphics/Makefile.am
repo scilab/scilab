@@ -333,7 +333,6 @@ src/c/getHandleProperty/get_diffuse_color_property.c \
 src/c/getHandleProperty/get_specular_color_property.c \
 src/c/getHandleProperty/get_color_material_property.c \
 src/c/getHandleProperty/get_material_shininess_property.c \
-src/c/getHandleProperty/get_lighting_property.c \
 src/c/getHandleProperty/get_light_type_property.c \
 src/c/getHandleProperty/get_light_direction_property.c \
 src/c/getHandleProperty/get_light_position_property.c \
@@ -342,10 +341,10 @@ src/c/getHandleProperty/set_diffuse_color_property.c \
 src/c/getHandleProperty/set_specular_color_property.c \
 src/c/getHandleProperty/set_color_material_property.c \
 src/c/getHandleProperty/set_material_shininess_property.c \
-src/c/getHandleProperty/set_lighting_property.c \
 src/c/getHandleProperty/set_light_type_property.c \
 src/c/getHandleProperty/set_light_direction_property.c \
-src/c/getHandleProperty/set_light_position_property.c
+src/c/getHandleProperty/set_light_position_property.c \
+src/c/Light.c
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
@@ -409,7 +408,9 @@ sci_gateway/c/sci_fec.c \
 sci_gateway/c/sci_rubberbox.c \
 sci_gateway/c/sci_rotate_axes.c \
 sci_gateway/c/sci_is_handle_valid.c \
-sci_gateway/c/sci_Legend.c
+sci_gateway/c/sci_Legend.c \
+sci_gateway/c/sci_light_create.c \
+sci_gateway/c/sci_light_delete.c
 
 libscigraphics_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \

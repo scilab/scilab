@@ -21,6 +21,7 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
+
 /**
  * Sets the type of the light.
  */

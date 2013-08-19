@@ -12,20 +12,19 @@
 
 package org.scilab.modules.graphic_objects.lighting;
 
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Light class
  * @author Pedro SOUZA
  */
-public class Light extends ColorTriplet {
+public class Light extends GraphicObject {
 
-    public enum LightProperty {ENABLED, POSITION, DIRECTION, TYPE};
+    public enum LightProperty {POSITION, DIRECTION, TYPE};
     
     public enum LightType {DIRECTIONAL, POINT};
-
-    /** enables lighting */
-    boolean enabled;
 
     /** light position */
     Double[] position;
@@ -35,42 +34,37 @@ public class Light extends ColorTriplet {
 
     /** light type */
     LightType type;
+    
+    /** the light color */
+    ColorTriplet lightColor;
 
     public Light() {
         super();
-        enabled = false;
-        ambient[0] = ambient[1] = ambient[2] = 1.0;
-        diffuse[0] = diffuse[1] = diffuse[2] = 1.0;
-        specular[0] = specular[1] = specular[2] = 1.0;
+        lightColor = new ColorTriplet();
 
         position = new Double[] {0.0, 0.0, 1.0};
         direction = new Double[] {0.0, 0.0, 1.0};
         type = LightType.POINT;
+        
+        Double[] white = new Double[] {1.0, 1.0, 1.0};
+        setAmbientColor(white);
+        setDiffuseColor(white);
+        setSpecularColor(white);
     }
 
     /** copy contructor */
     public Light(Light other) {
-        super((ColorTriplet)other);
+        super();
         position = new Double[3];
         direction = new Double[3];
-        enabled = other.enabled;
         type = other.type;
+        lightColor = new ColorTriplet(other.lightColor);
         setPosition(other.position);
         setDirection(other.direction);
     }
-
-    /** enables/disables lighting */
-    public UpdateStatus setEnable(Boolean status) {
-        if (enabled != status) {
-            enabled = status;
-            return UpdateStatus.Success;
-        }
-        return UpdateStatus.NoChange;
-    }
-
-    /** returns lighting status */
-    public Boolean isEnable() {
-        return enabled;
+    
+    @Override
+    public void accept(Visitor visitor) {
     }
 
     /** returns the light's position */
@@ -112,7 +106,7 @@ public class Light extends ColorTriplet {
     }
 
     /** Sets the light's type from an integer */
-    public UpdateStatus setTypeAsInteger(Integer i) {
+    public UpdateStatus setLightTypeAsInteger(Integer i) {
         if (i >= 0 && i < LightType.values().length) {
             if (this.type != LightType.values()[i]) {
                 this.type = LightType.values()[i];
@@ -124,12 +118,12 @@ public class Light extends ColorTriplet {
     }
 
     /** Get the light's type as integer */
-    public Integer getTypeAsInteger() {
+    public Integer getLightTypeAsInteger() {
         return type.ordinal();
     }
 
     /** Sets the light's type */
-    public UpdateStatus setType(LightType type) {
+    public UpdateStatus setLightType(LightType type) {
         if (this.type != type) {
             this.type = type;
             return UpdateStatus.Success;
@@ -138,8 +132,127 @@ public class Light extends ColorTriplet {
     }
 
     /** Get the light's type */
-    public LightType getType() {
+    public LightType getLightType() {
         return type;
     }
+    
+    /**
+     * Returns the enum associated to a property name
+     * @param propertyName the property name
+     * @return the property enum
+     */
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+            case __GO_AMBIENTCOLOR__ :
+                return ColorTriplet.ColorTripletProperty.AMBIENTCOLOR;
+            case __GO_DIFFUSECOLOR__ :
+                return ColorTriplet.ColorTripletProperty.DIFFUSECOLOR;
+            case __GO_SPECULARCOLOR__ :
+                return ColorTriplet.ColorTripletProperty.SPECULARCOLOR;
+            case __GO_LIGHT_TYPE__ :
+                return LightProperty.TYPE;
+            case __GO_LIGHT_POSITION__ :
+                return LightProperty.POSITION;
+            case __GO_LIGHT_DIRECTION__ :
+                return LightProperty.DIRECTION;
+            default :
+                return super.getPropertyFromName(propertyName);
+        }
+    }
+    /**
+     * Fast property get method
+     * @param property the property to get
+     * @return the property value
+     */
+    public Object getProperty(Object property) {
+       if (property instanceof ColorTriplet.ColorTripletProperty) {
+            ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
+            switch (cp) {
+                case AMBIENTCOLOR:
+                    return getAmbientColor();
+                case DIFFUSECOLOR:
+                    return getDiffuseColor();
+                case SPECULARCOLOR:
+                    return getSpecularColor();
+            }
+        } else if (property instanceof LightProperty) {
+            LightProperty lp = (LightProperty)property;
+            switch (lp) {
+                case TYPE:
+                    return getLightTypeAsInteger();
+                case POSITION:
+                    return getPosition();
+                case DIRECTION:
+                    return getDirection();
+            }
+        }
 
+        return super.getProperty(property);
+    }
+
+    /**
+     * Fast property set method
+     * @param property the property to set
+     * @param value the property value
+     * @return true if the property has been set, false otherwise
+     */
+    public UpdateStatus setProperty(Object property, Object value) {
+        if (property instanceof ColorTriplet.ColorTripletProperty) {
+            ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
+            switch (cp) {
+                case AMBIENTCOLOR:
+                    return setAmbientColor((Double[])value);
+                case DIFFUSECOLOR:
+                    return setDiffuseColor((Double[])value);
+                case SPECULARCOLOR:
+                    return setSpecularColor((Double[])value);
+            }
+        } else if (property instanceof LightProperty) {
+            LightProperty lp = (LightProperty)property;
+            switch (lp) {
+                case TYPE:
+                    return setLightTypeAsInteger((Integer)value);
+                case POSITION:
+                    return setPosition((Double[])value);
+                case DIRECTION:
+                    return setDirection((Double[])value);
+            }
+        }
+
+        return super.setProperty(property, value);
+    }
+
+    /** returns the ambient color of the light*/
+    public Double[] getAmbientColor() {
+        return lightColor.getAmbientColor();
+    }
+
+    /** Sets the ambient color */
+    public UpdateStatus setAmbientColor(Double[] color) {
+        return lightColor.setAmbientColor(color);
+    }
+
+    /** returns the dffuse color of the light*/
+    public Double[] getDiffuseColor() {
+        return lightColor.getDiffuseColor();
+    }
+
+    /** Sets the diffuse color of the light*/
+    public UpdateStatus setDiffuseColor(Double[] color) {
+        return lightColor.setDiffuseColor(color);
+    }
+
+    /** returns the specular color of the light*/
+    public Double[] getSpecularColor() {
+        return lightColor.getSpecularColor();
+    }
+
+    /** Sets the specular color of the light*/
+    public UpdateStatus setSpecularColor(Double[] color) {
+        return lightColor.setSpecularColor(color);
+    }
+
+    public Integer getType() {
+        return __GO_LIGHT__;
+    }
 }

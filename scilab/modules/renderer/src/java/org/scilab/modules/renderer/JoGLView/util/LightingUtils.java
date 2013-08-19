@@ -16,6 +16,9 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.lightning.Light;
 import org.scilab.forge.scirenderer.lightning.LightManager;
 
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+
 /**
  * Utility functions to setup lighting.
  * @author Pedro SOUZA
@@ -42,36 +45,6 @@ public class LightingUtils {
     }
 
     /**
-     * Setup the give light.
-     * @param manager the light manager.
-     * @param light the light.
-     */
-    public static void setLight(LightManager manager, org.scilab.modules.graphic_objects.lighting.Light light) {
-
-        if (manager == null) return;
-        setLightingEnable(manager, light.isEnable());
-
-        Light sciLight = manager.getLight(0);
-        Double[] color = light.getAmbientColor();
-        sciLight.setAmbientColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
-        color = light.getDiffuseColor();
-        sciLight.setDiffuseColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
-        color = light.getSpecularColor();
-        sciLight.setSpecularColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
-
-        switch (light.getTypeAsInteger()) {
-            case 0: //directional
-                sciLight.setDirection(new Vector3d(light.getDirection()));
-                break;
-            case 1: //point
-                sciLight.setPosition(new Vector3d(light.getPosition()));
-                break;
-            default:
-                break;
-        }
-    }
-
-    /**
      * Enables/disables lighting.
      * @param manager the light manager.
      * @param status the status.
@@ -81,5 +54,60 @@ public class LightingUtils {
         manager.setLightningEnable(status.booleanValue());
         Light light = manager.getLight(0);
         light.setEnable(status.booleanValue());
+    }
+
+
+    public static void setupLights(LightManager manager, org.scilab.modules.graphic_objects.axes.Axes axes) {
+
+        if (manager == null) return;
+        
+        boolean hasLight = false;
+        int index = 0;
+        
+        for (String child : axes.getChildren()) {
+            GraphicObject object = GraphicController.getController().getObjectFromId(child);
+            if (object instanceof org.scilab.modules.graphic_objects.lighting.Light) {
+                hasLight |= setLight(manager, (org.scilab.modules.graphic_objects.lighting.Light)object, index++);
+            }
+            if (index >= manager.getLightNumber()) break;
+        }
+        for (int i = index; i < manager.getLightNumber(); ++i) {
+            manager.getLight(i).setEnable(false);
+        }
+        manager.setLightningEnable(hasLight);
+    }
+
+    /**
+     * Setup the give light.
+     * @param manager the light manager.
+     * @param light the light.
+     * @param index the light index.
+     * @return the light status.
+     */
+    public static boolean setLight(LightManager manager, org.scilab.modules.graphic_objects.lighting.Light light, int index) {
+
+        boolean status = light.getVisible();
+        Light sciLight = manager.getLight(index);
+        if (status) {
+            Double[] color = light.getAmbientColor();
+            sciLight.setAmbientColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
+            color = light.getDiffuseColor();
+            sciLight.setDiffuseColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
+            color = light.getSpecularColor();
+            sciLight.setSpecularColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
+
+            switch (light.getLightTypeAsInteger()) {
+                case 0: //directional
+                    sciLight.setDirection(new Vector3d(light.getDirection()));
+                    break;
+                case 1: //point
+                    sciLight.setPosition(new Vector3d(light.getPosition()));
+                    break;
+                default:
+                    break;
+            }
+        }
+        sciLight.setEnable(status);
+        return status;
     }
 }

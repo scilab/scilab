@@ -194,6 +194,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\c\sci_light_create.c" />
+    <ClCompile Include="sci_gateway\c\sci_light_delete.c" />
     <ClCompile Include="src\c\Axes.c" />
     <ClCompile Include="src\c\axesScale.c" />
     <ClCompile Include="src\c\BasicAlgos.c" />
@@ -286,7 +288,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_size_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_legend_location_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_lighting_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_light_direction_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_light_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_light_type_property.c" />
@@ -327,7 +328,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_diffuse_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_resizefcn_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_lighting_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_light_direction_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_light_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_light_type_property.c" />
@@ -373,6 +373,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="sci_gateway\c\gw_graphics.c" />
     <ClCompile Include="src\c\InitObjects.c" />
     <ClCompile Include="src\c\Interaction.c" />
+    <ClCompile Include="src\c\Light.c" />
     <ClCompile Include="src\c\loadTextRenderingAPI.c" />
     <ClCompile Include="src\c\math_graphics.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MinSpace</Optimization>
@@ -586,6 +587,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="includes\BasicAlgos.h" />
     <ClInclude Include="includes\BuildObjects.h" />
     <ClInclude Include="includes\Champ.h" />
+    <ClInclude Include="includes\Light.h" />
     <ClInclude Include="src\c\CheckScilabXgc.h" />
     <ClInclude Include="src\c\getHandleProperty\CheckTicksProperty.h" />
     <ClInclude Include="includes\CloneObjects.h" />

@@ -362,7 +362,7 @@
 #define __GO_COLORMATERIAL__               297
 #define __GO_MATERIAL_SHININESS__          301
 
-#define __GO_LIGHTING__                    302
+#define __GO_LIGHT__                       302
 #define __GO_LIGHT_TYPE__                  303
 #define __GO_LIGHT_DIRECTION__             304
 #define __GO_LIGHT_POSITION__              305

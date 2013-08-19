@@ -586,7 +586,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     /* Front-facing triangles */
                     Appearance appearance = new Appearance();
                     appearance.setMaterial(LightingUtils.getMaterial(fac3d.getMaterial()));
-                    LightingUtils.setLight(drawingTools.getLightManager(), currentAxes.getLight());
+                    LightingUtils.setupLights(drawingTools.getLightManager(), currentAxes);
 
                     if (fac3d.getColorMode() != 0) {
                         geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
@@ -678,7 +678,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     /* Front-facing triangles */
                     Appearance appearance = new Appearance();
                     appearance.setMaterial(LightingUtils.getMaterial(plot3d.getMaterial()));
-                    LightingUtils.setLight(drawingTools.getLightManager(), currentAxes.getLight());
+                    LightingUtils.setupLights(drawingTools.getLightManager(), currentAxes);
 
                     if (plot3d.getColorFlag() == 1) {
                         geometry.setColors(dataManager.getColorBuffer(plot3d.getIdentifier()));

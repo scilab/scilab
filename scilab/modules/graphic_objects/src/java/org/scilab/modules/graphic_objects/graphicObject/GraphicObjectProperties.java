@@ -363,7 +363,7 @@ public class GraphicObjectProperties {
     public static final int __GO_COLORMATERIAL__ =          297;
     public static final int __GO_MATERIAL_SHININESS__ =     301;
 
-    public static final int __GO_LIGHTING__ =               302;
+    public static final int __GO_LIGHT__ =                  302;
     public static final int __GO_LIGHT_TYPE__ =             303;
     public static final int __GO_LIGHT_DIRECTION__ =        304;
     public static final int __GO_LIGHT_POSITION__ =         305;

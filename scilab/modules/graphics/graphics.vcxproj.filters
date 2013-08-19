@@ -1136,9 +1136,6 @@
     <ClCompile Include="src\c\getHandleProperty\get_light_type_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\get_lighting_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_specular_color_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1160,9 +1157,6 @@
     <ClCompile Include="src\c\getHandleProperty\set_light_type_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_lighting_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_specular_color_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1170,6 +1164,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_material_shininess_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\Light.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_light_create.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_light_delete.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1313,6 +1316,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\c\loadTextRenderingAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

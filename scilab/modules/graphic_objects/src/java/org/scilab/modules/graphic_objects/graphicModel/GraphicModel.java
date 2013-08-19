@@ -34,6 +34,7 @@ import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
 import org.scilab.modules.graphic_objects.surface.Plot3d;
+import org.scilab.modules.graphic_objects.lighting.Light;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.uibar.progressionbar.Progressionbar;
 import org.scilab.modules.graphic_objects.uibar.waitbar.Waitbar;
@@ -308,6 +309,9 @@ public final class GraphicModel {
                 break;
             case WAITBAR:
                 createdObject = new Waitbar();
+                break;
+            case LIGHT:
+                createdObject = new Light();
                 break;
             case UNKNOWNOBJECT:
                 createdObject = null;

@@ -143,9 +143,6 @@ public class Axes extends GraphicObject {
     /** Default ClippableProperty */
     private ClippableProperty clipProperty;
 
-    /** light properties */
-    private Light light;
-
 
     /** Constructor */
     public Axes() {
@@ -167,7 +164,6 @@ public class Axes extends GraphicObject {
         mark = new Mark();
         arcDrawingMethod = ArcDrawingMethod.LINES;
         clipProperty = new ClippableProperty();
-        light = new Light();
     }
 
     public Axes clone() {
@@ -200,7 +196,6 @@ public class Axes extends GraphicObject {
         copy.line = new Line(this.line);
         copy.mark = new Mark(this.mark);
         copy.clipProperty = new ClippableProperty(this.clipProperty);
-        copy.light = new Light(this.light);
         copy.setValid(true);
 
         return copy;
@@ -372,20 +367,6 @@ public class Axes extends GraphicObject {
                 return ClippablePropertyType.CLIPBOXSET;
             case __GO_ARC_DRAWING_METHOD__ :
                 return ArcProperty.ARCDRAWINGMETHOD;
-            case __GO_AMBIENTCOLOR__ :
-                return ColorTriplet.ColorTripletProperty.AMBIENTCOLOR;
-            case __GO_DIFFUSECOLOR__ :
-                return ColorTriplet.ColorTripletProperty.DIFFUSECOLOR;
-            case __GO_SPECULARCOLOR__ :
-                return ColorTriplet.ColorTripletProperty.SPECULARCOLOR;
-            case __GO_LIGHTING__ :
-                return LightProperty.ENABLED;
-            case __GO_LIGHT_TYPE__ :
-                return LightProperty.TYPE;
-            case __GO_LIGHT_POSITION__ :
-                return LightProperty.POSITION;
-            case __GO_LIGHT_DIRECTION__ :
-                return LightProperty.DIRECTION;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -575,28 +556,6 @@ public class Axes extends GraphicObject {
             }
         } else if (property == ArcProperty.ARCDRAWINGMETHOD) {
             return getArcDrawingMethod();
-        } else if (property instanceof ColorTriplet.ColorTripletProperty) {
-            ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
-            switch (cp) {
-                case AMBIENTCOLOR:
-                    return getLightAmbientColor();
-                case DIFFUSECOLOR:
-                    return getLightDiffuseColor();
-                case SPECULARCOLOR:
-                    return getLightSpecularColor();
-            }
-        } else if (property instanceof LightProperty) {
-            LightProperty lp = (LightProperty)property;
-            switch (lp) {
-                case ENABLED:
-                    return isLightEnable();
-                case TYPE:
-                    return getLightType();
-                case POSITION:
-                    return getLightPosition();
-                case DIRECTION:
-                    return getLightDirection();
-            }
         }
 
         return super.getProperty(property);
@@ -781,28 +740,6 @@ public class Axes extends GraphicObject {
             }
         } else if (property == ArcProperty.ARCDRAWINGMETHOD) {
             return setArcDrawingMethod((Integer) value);
-        } else if (property instanceof ColorTriplet.ColorTripletProperty) {
-            ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
-            switch (cp) {
-                case AMBIENTCOLOR:
-                    return setLightAmbientColor((Double[])value);
-                case DIFFUSECOLOR:
-                    return setLightDiffuseColor((Double[])value);
-                case SPECULARCOLOR:
-                    return setLightSpecularColor((Double[])value);
-            }
-        } else if (property instanceof LightProperty) {
-            LightProperty lp = (LightProperty)property;
-            switch (lp) {
-                case ENABLED:
-                    return setLightEnable((Boolean) value);
-                case TYPE:
-                    return setLightType((Integer)value);
-                case POSITION:
-                    return setLightPosition((Double[])value);
-                case DIRECTION:
-                    return setLightDirection((Double[])value);
-            }
         }
 
         return super.setProperty(property, value);
@@ -2368,123 +2305,6 @@ public class Axes extends GraphicObject {
         return UpdateStatus.NoChange;
     }
 
-    /**
-     * @return the ambient color of the light.
-     */
-    public Double[] getLightAmbientColor() {
-        return light.getAmbientColor();
-    }
-
-    /**
-     * @param color the new ambient color of the light.
-     */
-    public UpdateStatus setLightAmbientColor(Double[] color) {
-        return light.setAmbientColor(color);
-    }
-
-    /**
-     * @return the light's difuse color.
-     */
-    public Double[] getLightDiffuseColor() {
-        return light.getDiffuseColor();
-    }
-
-    /**
-     * @param color the new diffuse color of the light.
-     */
-    public UpdateStatus setLightDiffuseColor(Double[] color) {
-        return light.setDiffuseColor(color);
-    }
-
-    /**
-     * @return the specular color of the light.
-     */
-    public Double[] getLightSpecularColor() {
-        return light.getSpecularColor();
-    }
-
-    /**
-     * @param color the new specular color of the light.
-     */
-    public UpdateStatus setLightSpecularColor(Double[] color) {
-        return light.setSpecularColor(color);
-    }
-
-    /**
-     * @return true if lighting is enabled.
-     */
-    public Boolean isLightEnable() {
-        return light.isEnable();
-    }
-
-    /**
-     * @param status lighting status (on/off).
-     */
-    public UpdateStatus setLightEnable(Boolean status) {
-        return light.setEnable(status);
-    }
-
-    /**
-     * @return the type of the light.
-     */
-    public Integer getLightType() {
-        return light.getTypeAsInteger();
-    }
-
-    /**
-     * @param the new type of the light.
-     */
-    public UpdateStatus setLightType(Integer type) {
-        return light.setTypeAsInteger(type);
-    }
-
-    /**
-     * @return the position of the light.
-     */
-    public Double[] getLightPosition() {
-        return light.getPosition();
-    }
-
-    /**
-     * @param the new position of the light.
-     */
-    public UpdateStatus setLightPosition(Double[] pos) {
-        return light.setPosition(pos);
-    }
-
-    /**
-     * @return the direction of the light.
-     */
-    public Double[] getLightDirection() {
-        return light.getDirection();
-    }
-
-    /**
-     * @param the new direction of the light.
-     */
-    public UpdateStatus setLightDirection(Double[] dir) {
-        return light.setDirection(dir);
-    }
-
-    /**
-     * @return the light.
-     */
-    public Light getLight() {
-        return light;
-    }
-
-    /**
-     * @param the new light.
-     */
-    public void setLight(Light light) {
-        if (light != null) {
-            this.light = light;
-        }
-    }
-
-    /**
-     * @return Type as String
-     */
     public Integer getType() {
         return GraphicObjectProperties.__GO_AXES__;
     }

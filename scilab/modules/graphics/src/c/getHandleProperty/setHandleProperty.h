@@ -185,7 +185,6 @@ int set_diffuse_color_property(void* _pvCtx, char* pobj, void* _pvData, int valu
 int set_specular_color_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_color_material_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_material_shininess_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
-int set_lighting_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_light_type_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_light_direction_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_light_position_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
