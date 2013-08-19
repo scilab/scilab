@@ -19,8 +19,8 @@
 x = 1.e8 *  rand(100, 3);
 M = mvvacov(x);
 WARNING: Feature mvvacov is obsolete.
-WARNING: Please use cov instead.
-WARNING: This feature will be permanently removed in Scilab 6.0.0
+         Please use cov instead.
+         This feature will be permanently removed in Scilab 6.0.0
 
 [m, n] = size(M);
 assert_checkequal(M-M', zeros(m, n));

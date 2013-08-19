@@ -24,26 +24,26 @@
 x=matrix([5 2:8],2,4);
 if (msd(x)-3.5)                  >= %eps then bugmes();quit;end
 WARNING: Feature msd is obsolete.
-WARNING: Please use stdev instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use stdev instead.
+         This feature will be permanently removed in Scilab 5.5.1
 
 if norm(msd(x,1)-[3 1 1 1]/2)    >= %eps then bugmes();quit;end
 WARNING: Feature msd is obsolete.
-WARNING: Please use stdev instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use stdev instead.
+         This feature will be permanently removed in Scilab 5.5.1
 
 if norm(msd(x,'r')-[3 1 1 1]/2)  >= %eps then bugmes();quit;end
 WARNING: Feature msd is obsolete.
-WARNING: Please use stdev instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use stdev instead.
+         This feature will be permanently removed in Scilab 5.5.1
 
 if norm(msd(x,2)-sqrt([2;5]))    >= %eps then bugmes();quit;end
 WARNING: Feature msd is obsolete.
-WARNING: Please use stdev instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use stdev instead.
+         This feature will be permanently removed in Scilab 5.5.1
 
 if norm(msd(x,'c')-sqrt([2;5]))  >= %eps then bugmes();quit;end
 WARNING: Feature msd is obsolete.
-WARNING: Please use stdev instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use stdev instead.
+         This feature will be permanently removed in Scilab 5.5.1
 

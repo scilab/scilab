@@ -273,6 +273,8 @@ Scilab Bug Fixes
 
 * Bug #12785 fixed - plot did not allow int data as first argument.
 
+* Bug #12803 fixed - warning(['foo','bar']) printed two 'WARNING: '.
+
 * Bug #12819 fixed - Link to contributors website page fixed in the help pages.
 
 * Bug #12880 fixed - A warning is displayed when transposing arguments of plot.
