@@ -2287,7 +2287,7 @@ int C2F(getilist) (char *fname, int *topk, int *lw, int *n, int *ix, int *ili, u
 }
 
 /**********************************************************************
-* POLYNOMS
+* POLYNOMES
 **********************************************************************/
 
 /*------------------------------------------------
@@ -3260,7 +3260,7 @@ int C2F(stackinfo) (int *lw, int *typ)
 /*------------------------------------------------
 * allmat :
 *  checks if object at position lw is a matrix
-*  (scalar,string,polynom)
+*  (scalar,string,polynomial)
 *  In :
 *     fname,topk,lw
 *  Out :

@@ -928,7 +928,7 @@ int iIsComplex(int _iVar)
 /**
 	GetRhsPolyVar
 
-	returns array of coeff of polynom matrix
+	returns array of coeff of polynomial matrix
 	example :
 
 	In			:
@@ -938,7 +938,7 @@ int iIsComplex(int _iVar)
 	_piRows		: Matrix lines
 	_piCols		: Matrix columns
 	_piPow		: Array of max pow for each polymon in the matrix ( size = iRows * iCols )
-	_piReal		: Returns a pointer on array of coeff of polynom matrix ( size = sum of _piPow )
+	_piReal		: Returns a pointer on array of coeff of polynomial matrix ( size = sum of _piPow )
 
 	Warning		: if _piPow == NULL, this fonction return _piRows and _piCols with good values to alloc array of Pow and array of Values.
 */
@@ -951,8 +951,8 @@ void GetRhsPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, i
 /**
 	GetRhsCPolyVar
 
-	returns array of coeff of complex polynom matrix
-	_piImg		: Returns a pointer on array of img coeff of polynom matrix ( size = sum of _piPow )
+	returns array of coeff of complex polynomial matrix
+	_piImg		: Returns a pointer on array of img coeff of polynomial matrix ( size = sum of _piPow )
 
 */
 void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg)
@@ -1510,13 +1510,13 @@ int	iAllocComplexMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdb
     return _iAllocMatrixDoubleOrComplex(_iPos, 1, _iRows,  _iCols, _pdblRealData, _pdblImgData);
 }
 
-/*Reserve space in stack for a matrix of polynom*/
+/*Reserve space in stack for a polynomial matrix*/
 int iAllocMatrixOfPoly(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData)
 {
     return iAllocComplexMatrixOfPoly(_iNewVal, 0, _piVarName, _iRows, _iCols, _piPow, _pdblRealData, NULL);
 }
 
-/*Reserve space in stack for a matrix of complex polynom*/
+/*Reserve space in stack for a complex polynomial matrix*/
 int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData)
 {
     int iNewPos			= Top - Rhs + _iNewVal;
@@ -2461,7 +2461,7 @@ int iListAllocMatrixOfPoly(int _iVar, int* _piParent, int _iItemPos, int** _piVa
     return iListAllocComplexMatrixOfPoly(_iVar, _piParent, _iItemPos, 0, _piVarName, _iRows, _iCols, _piPow, _pdblRealData, NULL);
 }
 
-/*Reserve space in stack for a matrix of complex polynom*/
+/*Reserve space in stack for a complex polynomial matrix*/
 int iListAllocComplexMatrixOfPoly(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData)
 {
     int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVar));
@@ -2705,5 +2705,3 @@ int iGetHandleFromPointer(int* _piAddr, int *_piRows, int *_piCols, int** _piHan
 {
     return 0;
 }
-
-
