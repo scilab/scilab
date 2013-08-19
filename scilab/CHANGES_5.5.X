@@ -41,6 +41,10 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
   
 * Update Windows Solution to Visual Studio 2012.
 
+* The histplot command can now be used with the option polygon=%t/%f to add the
+  frequency polygon chart (thanks to Mehran Khorshidi).
+
+
 Syntax changes
 ===============
 

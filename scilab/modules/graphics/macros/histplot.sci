@@ -3,6 +3,7 @@
 // Copyright (C) Bruno Pincon
 // Copyright (C) 2010 - Samuel Gougeon
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2013 - A. Khorshidi (new option)
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -11,7 +12,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,normalization)
+function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,normalization,polygon)
     // histplot(n,data,<opt_arg_seq>)
     // draws histogram of entries in  data put into n classes
     //
@@ -72,6 +73,7 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
 
     // this is the only specific optionnal argument for histplot
     if ~exists("normalization","local") then, normalization=%t,end
+    if ~exists("polygon","local") then, polygon=%f,end
 
     // now parse optionnal arguments to be sent to plot2d
     opt_arg_seq = []
@@ -108,6 +110,12 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
 
     if normalization then y=y ./ (p *(x(2:$)-x(1:$-1))),end
 
+    if polygon then
+        xmid=(x(1:$-1)+x(2:$))/2;...
+        xp=[x(1)-(x(2)-x(1))/2 xmid x($)+(x($)-x($-1))/2];...
+        yp=[0 y 0];
+    end // new lines
+
     // now form the polyline
     //    X = [x1 x1 x2 x2 x2 x3 x3 x3  x4 ...   xn xn+1 xn+1]'
     //    Y = [0  y1 y1 0  y2 y2 0  y3  y3 ... 0 yn yn   0 ]'
@@ -120,13 +128,10 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
 
     if opt_arg_seq == [] then
         plot2d(X,Y)
+        if polygon then plot(xp,yp,"b-o"), end // new line
     else
         execstr("plot2d(X,Y"+opt_arg_seq+")")
+        if polygon then plot(xp,yp,"r-o"), end // new line
     end
 
 endfunction
-
-
-
-
-
