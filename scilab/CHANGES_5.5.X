@@ -590,6 +590,8 @@ Bug fixes
 
 * Bug #12816 fixed - Numbers pasted in editvar were not parsed according to locale.
 
+* Bug #12818 fixed - Segfault in set function with invalid property values dimension.
+
 * Bug #12823 fixed - In help generation (toolbox) links were not correctly handled.
 
 * Bug #12827 fixed - Cacsd doc: noisgen() improved.
