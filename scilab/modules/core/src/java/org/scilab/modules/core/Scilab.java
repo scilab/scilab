@@ -92,6 +92,8 @@ public class Scilab {
      */
     public Scilab(int mode) {
         Scilab.mode = mode;
+        ScilabConstants.setMode(mode);
+
         DockingManager.setDockableFactory(ScilabTabFactory.getInstance());
 
         /*
