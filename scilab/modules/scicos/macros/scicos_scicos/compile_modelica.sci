@@ -114,7 +114,7 @@ function [ok,name,nipar,nrpar,nopar,nz,nx,nx_der,nx_ns,nin,nout,nm,ng,dep_u]=com
     [nipar,nrpar,nopar,nz,nx,nx_der,nx_ns,nin,nout,nm,ng,dep_u]=reading_incidence(incidence)
     depu(dep_u)="T";  depu(~dep_u)="F";depu=strcat(depu);
 
-    messagebox([_("Modelica blocks are reduced to a block with:") ;
+    txt = [_("Modelica blocks are reduced to a block with:") ;
     msprintf(_("Number of differential states: %d"),nx_der);
     msprintf(_("Number of algebraic states: %d"),nx-nx_der);
     msprintf(_("Number of discrete time states  : %d"),nz);
@@ -127,7 +127,13 @@ function [ok,name,nipar,nrpar,nopar,nz,nx,nx_der,nx_ns,nin,nout,nm,ng,dep_u]=com
     msprintf(_("Parameter embedding mode: enabled (%%Modelica_ParEmb=%s)"),sci2exp(%Modelica_ParEmb))
     ""
     msprintf(_("Generated files path: %s"),outpath)
-    ""],"info");
+    ""];
+
+    if getscilabmode() == "STD" then
+        messagebox(txt, "info");
+    else
+        disp(txt);
+    end
 
     //compile and link the generated C file
     ok=Link_modelica_C(Cfile)

@@ -33,6 +33,8 @@ import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 
+import com.mxgraph.model.mxCell;
+
 /**
  * Protected class which decode model fields of a block.
  *
@@ -40,8 +42,13 @@ import org.scilab.modules.xcos.port.control.ControlPort;
  */
 // CSOFF: ClassDataAbstractionCoupling
 final class BlockModelElement extends BlockPartsElement {
-    static final List<String> DATA_FIELD_NAMES = asList("model", "sim", "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout", "state", "dstate",
+    /*
+     * "uid" have been added on the 5.5.0 cycle. It is not checked to be compatible with older versions.
+     */
+    protected static final List<String> DATA_FIELD_NAMES = asList("model", "sim", "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout", "state", "dstate",
             "odstate", "rpar", "ipar", "opar", "blocktype", "firing", "dep_ut", "label", "nzcross", "nmode", "equations");
+    protected static final List<String> DATA_FIELD_NAMES_FULL = asList("model", "sim", "in", "in2", "intyp", "out", "out2", "outtyp", "evtin", "evtout", "state", "dstate",
+            "odstate", "rpar", "ipar", "opar", "blocktype", "firing", "dep_ut", "label", "nzcross", "nmode", "equations", "uid");
 
     private static final int CTRL_PORT_INDEX = DATA_FIELD_NAMES.indexOf("evtin");
     private static final int CMD_PORT_INDEX = DATA_FIELD_NAMES.indexOf("evtout");
@@ -272,6 +279,20 @@ final class BlockModelElement extends BlockPartsElement {
         // equation
         field++;
         into.setEquations(data.get(field));
+
+        // uid
+        // compatibility check, for pre-5.5.0 diagrams
+        field++;
+        if (field >= data.size()) {
+            return;
+        }
+        final ScilabType uid = data.get(field);
+        if (uid instanceof ScilabString) {
+            final String id = ((ScilabString) uid).getData()[0][0];
+            if (id != null && !id.isEmpty()) {
+                into.setId(id);
+            }
+        }
     }
 
     /**
@@ -296,7 +317,7 @@ final class BlockModelElement extends BlockPartsElement {
         int field = 0;
 
         // we test if the structure as enough field
-        if (data.size() != DATA_FIELD_NAMES.size()) {
+        if (data.size() < DATA_FIELD_NAMES.size()) {
             throw new WrongStructureException(DATA_FIELD_NAMES);
         }
 
@@ -311,10 +332,10 @@ final class BlockModelElement extends BlockPartsElement {
         final String[] header = ((ScilabString) data.get(field)).getData()[0];
 
         // Checking for the field names
-        if (header.length != DATA_FIELD_NAMES.size()) {
+        if (header.length < DATA_FIELD_NAMES.size()) {
             throw new WrongStructureException(DATA_FIELD_NAMES);
         }
-        for (int i = 0; i < header.length; i++) {
+        for (int i = 0; i < DATA_FIELD_NAMES.size(); i++) {
             if (!header[i].equals(DATA_FIELD_NAMES.get(i))) {
                 throw new WrongStructureException(DATA_FIELD_NAMES);
             }
@@ -458,6 +479,8 @@ final class BlockModelElement extends BlockPartsElement {
         if (!(data.get(field) instanceof ScilabTList) && !isEmptyField(data.get(field))) {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
+
+        // uid not checked, introduced in Scilab 5.5.0
     }
 
     // CSON: CyclomaticComplexity
@@ -584,7 +607,13 @@ final class BlockModelElement extends BlockPartsElement {
         data.set(field, new ScilabBoolean(dependsOnUandT));
 
         field++; // label
-        data.set(field, new ScilabString(from.getId()));
+        final XcosDiagram parent = from.getParentDiagram();
+        if (parent != null) {
+            final mxCell identifier = parent.getCellIdentifier(from);
+            if (identifier != null && identifier.getValue() != null) {
+                data.set(field, new ScilabString(identifier.getValue().toString()));
+            }
+        }
 
         field++; // nzcross
         property = from.getNbZerosCrossing();
@@ -607,6 +636,10 @@ final class BlockModelElement extends BlockPartsElement {
         }
         data.set(field, property);
 
+        field++; // uid
+        property = new ScilabString(from.getId());
+        data.set(field, property);
+
         data = (ScilabMList) afterEncode(from, data);
 
         return data;
@@ -621,7 +654,7 @@ final class BlockModelElement extends BlockPartsElement {
      * @return the new element
      */
     private ScilabMList allocateElement() {
-        ScilabMList element = new ScilabMList(DATA_FIELD_NAMES.toArray(new String[0]));
+        ScilabMList element = new ScilabMList(DATA_FIELD_NAMES_FULL.toArray(new String[0]));
         element.add(new ScilabList()); // sim
         addSizedPortVector(element, ScilabDouble.class, getInSize()); // in
         addSizedPortVector(element, ScilabDouble.class, getInSize()); // in2
@@ -644,6 +677,7 @@ final class BlockModelElement extends BlockPartsElement {
         element.add(new ScilabDouble()); // nzcross
         element.add(new ScilabDouble()); // nmode
         element.add(new ScilabList()); // equations
+        element.add(new ScilabString("")); // uid
         return element;
     }
 }

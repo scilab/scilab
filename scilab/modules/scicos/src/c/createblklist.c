@@ -53,8 +53,6 @@ int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int funtyp)
     double *xd = NULL;
     double *g = NULL;
 
-    /* set length of block list -please update me-                           */
-    static int nblklst = 40;
     /* set string of first element of scilab Blocks tlist -please update me- */
     static char *str_blklst[] = { "scicos_block", "nevprt"  , "funpt" , "type"  ,
                                   "scsptr"      , "nz"      , "z"     , "noz"   ,
@@ -65,8 +63,12 @@ int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int funtyp)
                                   "rpar"        , "nipar"   , "ipar"  , "nopar" ,
                                   "oparsz"      , "opartyp" , "opar"  , "ng"    ,
                                   "g"           , "ztyp"    , "jroot" , "label" ,
-                                  "work"        , "nmode"   , "mode"  , "xprop"
+                                  "work"        , "nmode"   , "mode"  , "xprop" ,
+                                  "uid"
                                 };
+
+    /* auto length of block list */
+    static int nblklst = sizeof(str_blklst) / sizeof(str_blklst[0]);
 
     /* char ptr for str2sci - see below - */
     char **str1;
@@ -498,6 +500,26 @@ int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int funtyp)
 
     /* 40 - xprop */
     C2F(itosci)(Blocks[0].xprop, (j = Blocks[0].nx, &j), (k = 1, &k));
+    if (C2F(scierr)() != 0)
+    {
+        return 0;
+    }
+
+    /* 41 - uid */
+    if ((str1 = MALLOC(sizeof(char*))) == NULL )
+    {
+        return 0;
+    }
+    if ((str1[0] = MALLOC(sizeof(char) * (strlen(Blocks[0].uid) + 1))) == NULL )
+    {
+        FREE(str1);
+        return 0;
+    }
+    (str1[0])[strlen(Blocks[0].uid)] = '\0';
+    strncpy(str1[0], Blocks[0].uid, strlen(Blocks[0].uid));
+    str2sci(str1, 1, 1);
+    FREE(str1[0]);
+    FREE(str1);
     if (C2F(scierr)() != 0)
     {
         return 0;

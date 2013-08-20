@@ -129,6 +129,9 @@ Xcos
 
 * JGraphX updated to the "2.1.0.7" version, updating our performance hooks.
 
+* API changed in the scicos_block4 interface: the uid value is not available
+  inside the simulation function.
+
 * Bug #7350 fixed - The I/O ports numbering of a superblock was not updated
                     when a new port was dropped.
 

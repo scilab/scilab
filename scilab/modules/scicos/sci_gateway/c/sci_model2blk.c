@@ -2316,6 +2316,63 @@ int sci_model2blk(char *fname, unsigned long fname_len)
         }
     }
 
+    /* uids */
+    /* 23 : model.uid  */
+    n            = MlistGetFieldNumber(il1, "uid");
+    ilh          = (int *) (listentry(il1, n));
+    mh           = ilh[1];
+    nh           = ilh[2];
+    Block.uid  = "";
+    if (mh * nh != 0)
+    {
+        len_str  = ilh[5] - 1;
+        if (len_str != 0)
+        {
+            if ((Block.uid = (char *) MALLOC((len_str + 1) * sizeof(char))) == NULL)
+            {
+                for (j = 0; j < Block.nin; j++)
+                {
+                    FREE(Block.inptr[j]);
+                }
+                FREE(Block.inptr);
+                FREE(Block.insz);
+                for (j = 0; j < Block.nout; j++)
+                {
+                    FREE(Block.outptr[j]);
+                }
+                FREE(Block.outptr);
+                FREE(Block.outsz);
+                FREE(Block.evout);
+                FREE(Block.x);
+                FREE(Block.xd);
+                FREE(Block.xprop);
+                FREE(Block.res);
+                FREE(Block.z);
+                FREE(Block.ozsz);
+                FREE(Block.oztyp);
+                for (j = 0; j < Block.noz; j++)
+                {
+                    FREE(Block.ozptr[j]);
+                }
+                FREE(Block.rpar);
+                FREE(Block.ipar);
+                FREE(Block.oparsz);
+                FREE(Block.opartyp);
+                for (j = 0; j < Block.nopar; j++)
+                {
+                    FREE(Block.oparptr[j]);
+                }
+                FREE(Block.label);
+                FREE(Block.g);
+                FREE(Block.jroot);
+                Scierror(888, _("%s : Allocation error.\n"), fname);
+                return 0;
+            }
+            Block.uid[len_str] = '\0';
+            C2F(cvstr)(&len_str, &ilh[6], Block.uid, (j = 1, &j), len_str);
+        }
+    }
+
     /* work */
     if ((Block.work = (void **) MALLOC(sizeof(void *))) == NULL)
     {

@@ -658,7 +658,7 @@ err:
 static int sci2var(void *x, void *y, int typ_var)
 {
     /************************************
-     * variables and constants définition
+     * variables and constants definition
      ************************************/
     /* counter and address variable declaration */
     int err, i, j;

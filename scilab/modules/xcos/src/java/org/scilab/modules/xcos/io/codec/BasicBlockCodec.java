@@ -196,6 +196,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
             if (superBlock.getChild() != null) {
                 superBlock.getChild().setContainer(superBlock);
             }
+            superBlock.invalidateRpar();
         }
 
         // update style to replace direction by rotation and add the
