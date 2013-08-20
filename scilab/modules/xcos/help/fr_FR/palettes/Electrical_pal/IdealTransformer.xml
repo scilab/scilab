@@ -197,7 +197,7 @@
     <refsection id="Example_IdealTransformer">
         <title>Exemple d'utilisation du Transformateur idéal</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/electrical_pal/IdealTransformer_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/electrical_pal/IdealTransformer_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/electrical_pal/IdealTransformer_Example.zcos" valign="middle"/>

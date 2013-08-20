@@ -201,7 +201,7 @@
             shown in the following figure, where you can see the use of the CLKINV_f block as event input of the internal
             square wave generator.
         </para>
-        <para><link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/en_US/CLKINV_f_en_US.zcos">
+        <para><link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/CLKINV_f_en_US.zcos">
                 Open this example in Xcos
             </link>
         </para>

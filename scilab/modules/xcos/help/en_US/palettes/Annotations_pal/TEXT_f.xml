@@ -219,7 +219,7 @@
         <para>
             The figure below shows some examples of text annotations. The first shows the result obtained with a LaTeX
             expression, the second the text is an ordered HTML list.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/annotations_pal/en_US/text_f_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/annotations_pal/en_US/text_f_en_US.zcos">
                 Open this example in Xcos
             </link>
             and select <emphasis>Format</emphasis> then <emphasis>Edit...</emphasis> in the pop-up menu to change the text parameters.

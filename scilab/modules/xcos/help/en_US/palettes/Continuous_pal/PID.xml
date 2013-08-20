@@ -320,7 +320,7 @@
                 Ur(t).
             </para>
             <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_1_Example.zcos">
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_1_Example.zcos">
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_1_Example.zcos" valign="middle"/>
@@ -336,7 +336,7 @@ xcos_simulate(scs_m, 4);
         <refsection id="Example_2_PID">
             <title>Example 2</title>
             <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_2_Example.zcos">
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_2_Example.zcos">
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_2_Example.zcos" valign="middle"/>
@@ -352,7 +352,7 @@ xcos_simulate(scs_m, 4);
         <refsection id="Example_3_PID">
             <title>Example 3</title>
             <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_3_Example.zcos">
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_3_Example.zcos">
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_3_Example.zcos" valign="middle"/>

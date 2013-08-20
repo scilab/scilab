@@ -205,7 +205,7 @@
         <title>Exemple</title>
         <para>
             Dans l'exemple suivant le Super bloc englobe deux non linéarités. Le bloc OUT_f est la sortie du signal non linéaire.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/fr_FR/OUT_f_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/OUT_f_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
             .

@@ -277,13 +277,13 @@
         <para>
             Le but de cet exemple est de coder deux chiffres décimaux dans un seul octet. Il fait exactement
             le travail inverse de l'exemple du bloc <link linkend="EXTRACTBITS">EXTRACTBITS</link>.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/INTMUL_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/INTMUL_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/INTMUL_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/INTMUL_fr_FR.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/integer_pal/fr_FR/INTMUL_fr_FR.zcos" valign="middle"/>

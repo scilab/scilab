@@ -274,7 +274,7 @@
     <refsection id="Example_TCLSS">
         <title>Exemple</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/TCLSS_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/TCLSS_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/continuous_pal/TCLSS_Example.zcos" valign="middle"/>

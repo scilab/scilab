@@ -227,7 +227,7 @@
     <refsection id="Example_BACKLASH">
         <title>Exemple</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/discontinuities_pal/BACKLASH_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/BACKLASH_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/discontinuities_pal/BACKLASH_Example.zcos" valign="middle"/>

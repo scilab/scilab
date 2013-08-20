@@ -142,7 +142,7 @@
                     </para>
                     <para>
                         <latex>
-                            $X(k) = 2\sum_{i=1}^{n} {A(i) \cos\frac{\pi i k}{n+1}},
+                            $X(k) = 2 \sum_{i=1}^{n} {A(i) \cos\frac{\pi i k}{n+1}},
                             k=1\ldots n$
                         </latex>
                     </para>
@@ -155,7 +155,7 @@
                     </para>
                     <para>
                         <latex>
-                            $X(k) =2 \sum_{i=1}^{n} {A(i) \cos\frac{\pi ( i
+                            $X(k) = 2 \sum_{i=1}^{n} {A(i) \cos\frac{\pi ( i
                             -1/2) k}{n}}, k=1\ldots n$
                         </latex>
                     </para>
@@ -168,7 +168,7 @@
                     </para>
                     <para>
                         <latex>
-                            $X(k) = (-1)^{k-1}X(n)+ 2 \sum_{i=1}^{n-1} {A(i) \cos\frac{\pi  i (k-1/2)}{n}}, k=1\ldots n$
+                            $X(k) = (-1)^{k-1}A(n) + 2 \sum_{i=1}^{n-1} {A(i) \cos\frac{\pi  i (k-1/2)}{n}}, k=1\ldots n$
                         </latex>
                     </para>
                 </listitem>
@@ -182,7 +182,7 @@
                     </para>
                     <para>
                         <latex>
-                            $X(k) =2 \sum_{i=1}^{n} {A(i) \cos\frac{\pi (i
+                            $X(k) = 2 \sum_{i=1}^{n} {A(i) \cos\frac{\pi (i
                             -1/2)(k-1/2)}{n}}, k=1\ldots n$
                         </latex>
                     </para>

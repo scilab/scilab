@@ -211,7 +211,7 @@
         <title>Example</title>
         <para>
             The following example calculate an arbitrary expression with multiple different configuration or blocks.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos">
                 Open this example in Xcos
             </link>
         </para>
@@ -220,7 +220,7 @@
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos" align="center" valign="middle"/>

@@ -287,13 +287,13 @@
             les dates des événements, nous utilisons un bloc TIME_f et un multiplexeur pour former le vecteur d'entrée du bloc WRITEC_f
             qui enregistre les données dans le fichier <emphasis>"TMPDIR/writec_f.datas"</emphasis>. Vous pouvez ensuite lire les ces
             données avec le bloc <link linkend="READC_f">READC_f</link>.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
             .
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos" valign="middle"/>

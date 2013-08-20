@@ -137,7 +137,7 @@
             Le bloc 'Modelica Generic' retourne ses états continus, on peut les évaluer avec <emphasis>IDA</emphasis> en lançant l'exemple:
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/DAE_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/DAE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../examples/solvers/DAE_Example.zcos" valign="middle"/>
