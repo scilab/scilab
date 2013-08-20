@@ -351,7 +351,7 @@ u_0(t)
             systems Palette.
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/CLSS_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/CLSS_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/continuous_pal/CLSS_Example.zcos" valign="middle"/>

@@ -213,7 +213,7 @@
         <title>Example</title>
         <para>
             The following example translate the sine input signal to a different range and cut part of it.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/lookuptables_pal/en_US/INTRPLBLK_f_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/lookuptables_pal/en_US/INTRPLBLK_f_en_US.zcos">
                 Open this example in Xcos.
             </link>
         </para>
@@ -222,7 +222,7 @@
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/lookuptables_pal/en_US/INTRPLBLK_f_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/lookuptables_pal/en_US/INTRPLBLK_f_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/lookuptables_pal/en_US/INTRPLBLK_f_en_US.zcos" align="center" valign="middle"/>

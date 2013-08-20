@@ -1702,7 +1702,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleNote(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabNote.png\"/></td><td valign=\"top\">" + encloseContents("div", "note", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabNote.png\"/></td><td valign=\"top\">" + encloseContents("div", "note", contents) + "</td></tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {
@@ -1719,7 +1719,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleWarning(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabWarning.png\"/></td><td valign=\"top\">" + encloseContents("div", "warning", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabWarning.png\"/></td><td valign=\"top\">" + encloseContents("div", "warning", contents) + "</td></tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {
@@ -1736,7 +1736,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleCaution(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabCaution.png\"/></td><td valign=\"top\">" + encloseContents("div", "caution", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabCaution.png\"/></td><td valign=\"top\">" + encloseContents("div", "caution", contents) + "</td></tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {
@@ -1753,7 +1753,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleTip(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabTip.png\"/></td><td valign=\"top\">" + encloseContents("div", "tip", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabTip.png\"/></td><td valign=\"top\">" + encloseContents("div", "tip", contents) + "</td></tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {
@@ -1770,7 +1770,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleImportant(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabImportant.png\"/></td><td valign=\"top\">" + encloseContents("div", "important", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabImportant.png\"/></td><td valign=\"top\">" + encloseContents("div", "important", contents) + "</td></tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {

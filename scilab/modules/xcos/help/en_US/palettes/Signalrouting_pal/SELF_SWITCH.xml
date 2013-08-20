@@ -163,7 +163,7 @@
     <refsection id="Example_SELF_SWITCH">
         <title>Examples</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/signalrouting_pal/SELF_SWITCH_on_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SELF_SWITCH_on_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SELF_SWITCH_on_Example.zcos" valign="middle"/>
@@ -172,7 +172,7 @@
             </link>
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/signalrouting_pal/SELF_SWITCH_off_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SELF_SWITCH_off_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SELF_SWITCH_off_Example.zcos" valign="middle"/>

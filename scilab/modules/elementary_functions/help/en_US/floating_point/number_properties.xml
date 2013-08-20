@@ -33,9 +33,9 @@
             prescribe by IEEE 754). Numbers of <literal>F</literal> are of the
             form:
         </para>
-        <programlisting><![CDATA[ 
-sign * m * b^e
- ]]></programlisting>
+        <para>
+            <code>sign * m * b^e</code>
+        </para>
         <para>
             <literal>e</literal> is the exponent and <literal>m</literal> the
             mantissa:

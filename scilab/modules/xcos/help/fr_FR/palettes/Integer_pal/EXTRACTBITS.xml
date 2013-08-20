@@ -487,13 +487,13 @@
         <para>
             Dans le schéma suivant, deux chiffres décimaux sont codés sur un seul octet. Le diagramme décode
             l'entrée pour obtenir deux chiffres séparés.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/EXTRACTBITS_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/EXTRACTBITS_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/EXTRACTBITS_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/EXTRACTBITS_fr_FR.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/integer_pal/fr_FR/EXTRACTBITS_fr_FR.zcos" valign="middle"/>

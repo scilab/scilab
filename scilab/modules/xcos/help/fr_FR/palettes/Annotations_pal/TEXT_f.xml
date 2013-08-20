@@ -211,7 +211,7 @@
         <title>Exemple</title>
         <para>
             La figure ci-dessous montre quelques exemples d'annotations.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/annotations_pal/fr_FR/text_f_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/annotations_pal/fr_FR/text_f_fr_FR.zcos">
                 Ouvrez cet exemple dans Xcos
             </link>
             et sélectionnez <emphasis>Format</emphasis> puis <emphasis>Edition</emphasis> dans le menu contextuel pour changer les paramètres du texte.

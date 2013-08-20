@@ -261,7 +261,7 @@
         <para>The following is an example of a system with deadband.
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/discontinuities_pal/en_US/deadband_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/en_US/deadband_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/discontinuities_pal/en_US/deadband_en_US.zcos" valign="middle"/>

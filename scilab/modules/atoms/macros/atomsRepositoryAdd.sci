@@ -28,7 +28,36 @@ function nbAdd = atomsRepositoryAdd(url,section)
     repositories         = []; // Column vector that contains user repositories
     currentRepositories  = atomsRepositoryList();
     currentRepositories  = currentRepositories(:,1);
-    valid_url_pattern    = "/^((((H|h)(T|t)|(F|f))(T|t)(P|p)((S|s)?))\:\/\/)([a-zA-Z0-9]+)([\.][a-zA-Z0-9\-]+)*(\:[0-9]{1,5})*(\/($|[a-zA-Z0-9\.\,\;\?\''\\\+&amp;%\$#\=~_\-]+))*$/";
+    // from https://gist.github.com/dperini/729294
+    // with unicode support, private and local address removed
+    valid_url_pattern    = "/^" +..
+    ..// protocol identifier
+    "(?:(?:https?|ftp):\/\/)" +..
+    ..// user:pass authentication
+    "(?:\S+(?::\S*)?@)?" +..
+    "(?:" +..
+    ..// IP address dotted notation octets
+    ..// excludes loopback network 0.0.0.0
+    ..// excludes reserved space >= 224.0.0.0
+    ..// excludes network & broacast addresses
+    ..// (first & last IP address of each class)
+    "(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])" +..
+    "(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}" +..
+    "(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))" +..
+    "|" +..
+    ..// host name
+    "(?:(?:[a-z0-9]+-?)*[a-z0-9]+)" +..
+    ..// domain name
+    "(?:\.(?:[a-z0-9]+-?)*[a-z0-9]+)*" +..
+    ..// TLD identifier
+    "(?:\.(?:[a-z]{2,}))" +..
+    ")" +..
+    ..// port number
+    "(?::\d{2,5})?" +..
+    ..// resource path
+    "(?:\/[^\s]*)?" +..
+    "$/i";
+
 
     // Check number of input arguments
     // =========================================================================

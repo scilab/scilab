@@ -108,7 +108,7 @@ function repositories = atomsRepositoryList(section)
         repositories    = [];
 
         for i=1:size(repositories_in(:,1),"*")
-            if regexp(repositories_in(i,1),"/^(http|ftp):\/\//","o") <> 1 then
+            if regexp(repositories_in(i,1),"/^(https?|ftp):\/\//","o") <> 1 then
                 repositories = [ repositories ; repositories_in(i,:) ];
             end
         end

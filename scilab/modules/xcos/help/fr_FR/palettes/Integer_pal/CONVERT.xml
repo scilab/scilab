@@ -298,12 +298,12 @@
         <title>Exemple</title>
         <para>
             Cet exemple montre la propagation du bit de signe pendant une conversion d'int8 à int16.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/CONVERT_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/CONVERT_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/CONVERT_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/CONVERT_fr_FR.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/integer_pal/fr_FR/CONVERT_fr_FR.zcos" valign="middle"/>

@@ -52,12 +52,12 @@
         <title>Description</title>
         <para>
             <code>res = strcmpi(string_one, string_two)</code> returns an
-            integral value indicating the relationship between the strings.
+            integral value indicating the relationship between the strings. The two strings are compared in using the <emphasis role="bold">lexicographical order</emphasis>.
         </para>
         <para>
             The value is <literal>0</literal> if <varname>string_one</varname>
-            is equal to <varname>string_two</varname> (case independently) and
-            <literal>1</literal> indicates the opposite.
+            is equal to <varname>string_two</varname> (case independently),
+            <literal>1</literal> if <varname>string_one</varname> is greater than <varname>string_two</varname> and <literal>-1</literal> else.
         </para>
     </refsection>
     <refsection>

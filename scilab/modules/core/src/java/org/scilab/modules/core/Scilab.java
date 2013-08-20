@@ -45,6 +45,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.LookAndFeelManager;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 
 /**
  * Main Class for Scilab
@@ -91,6 +92,8 @@ public class Scilab {
      */
     public Scilab(int mode) {
         Scilab.mode = mode;
+        ScilabConstants.setMode(mode);
+
         DockingManager.setDockableFactory(ScilabTabFactory.getInstance());
 
         /*
@@ -188,6 +191,8 @@ public class Scilab {
 
             SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
             SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
+
+            WindowsConfigurationManager.restorationFinished(consoleTab);
 
             mainView = SwingScilabWindow.allScilabWindows.get(consoleTab.getParentWindowId());
         } else {

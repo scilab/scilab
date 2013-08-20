@@ -238,7 +238,7 @@
     </refsection>
     <refsection id="Example_HYSTERESIS">
         <title>Exemple d'utilisation du relais Hystérèsis</title>
-        <link type="scilab" linkend="scilab.zcos/xcos/examples/discontinuities_pal/HYSTERESIS_Example.zcos">
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/HYSTERESIS_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
                     <imagedata align="center" fileref="../../../../examples/discontinuities_pal/HYSTERESIS_Example.zcos" valign="middle"/>

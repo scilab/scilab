@@ -288,7 +288,7 @@
         <para>
             The goal of this example is to code two decimals digits in an only byte. It makes exactly the inverse work of the example of 
             the <link linkend="EXTRACTBITS">EXTRACTBITS</link> block.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/INTMUL_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/INTMUL_en_US.zcos">
                 Open this example in Xcos
             </link>
         </para>

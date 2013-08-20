@@ -126,7 +126,7 @@
             We will begin with a simple nonstiff example: a Sine integration.
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/ODE_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/ODE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.zcos" valign="middle"/>
@@ -298,7 +298,7 @@ Time for implicit Runge-Kutta:
         </para>
         <para>
             Next, a basic controller with six continuous states is tested.
-            <link type="scilab" linkend="scilab.zcos/xcos/demos/Controller.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/demos/Controller.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../demos/Controller.zcos" valign="middle"/>
@@ -467,7 +467,7 @@ Time for implicit Runge-Kutta:
         </para>
         <para>
             Now, we use Kalman's filter, which contains fifteen continuous states.
-            <link type="scilab" linkend="scilab.zcos/xcos/demos/Kalman.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/demos/Kalman.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../demos/Kalman.zcos" valign="middle"/>
@@ -644,7 +644,7 @@ Time for implicit Runge-Kutta:
             Example: a bouncing ball.
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../demos/ModelicaBlocks/BouncingBall_Modelica.zcos" valign="middle"/>
@@ -719,7 +719,7 @@ Time for DDaskr - GMRes:
             The next example simply corroborates the previous one, it is shorter but more thorough, since it deals with the filling and emptying of a tank.
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/demos/ModelicaBlocks/Hydraulics.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/demos/ModelicaBlocks/Hydraulics.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../demos/ModelicaBlocks/Hydraulics.zcos" valign="middle"/>

@@ -211,7 +211,7 @@
     <refsection id="Example_DELAY_f">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/discrete_pal/en_US/DELAY_f_1_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/en_US/DELAY_f_1_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/discrete_pal/en_US/DELAY_f_1_en_US.zcos" valign="middle"/>
@@ -225,7 +225,7 @@ xcos_simulate(scs_m, 4);
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/discrete_pal/en_US/DELAY_f_2_en_US.zcos" align="center" valign="middle"/>

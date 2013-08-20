@@ -197,7 +197,7 @@
     <refsection id="Example_ABS_VALUE">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/mathoperations_pal/ABS_VALUE_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/ABS_VALUE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/mathoperations_pal/ABS_VALUE_Example.zcos"/>

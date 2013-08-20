@@ -198,13 +198,13 @@
         <para>
             This diagram shows the output of the SAWTOOTH_f block with an event period of 2 seconds and an offset
             of 1 second on event generation.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/sawtooth_f_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/sawtooth_f_en_US.zcos">
                 Open this example in Xcos
             </link>
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/sawtooth_f_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/sawtooth_f_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/sources_pal/en_US/sawtooth_f_en_US.zcos" align="center" valign="middle"/>
