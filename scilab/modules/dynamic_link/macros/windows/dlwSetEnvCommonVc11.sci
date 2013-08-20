@@ -175,8 +175,8 @@ function newINCLUDE = getNewINCLUDEx64(INCLUDE, msvsPath, sdkPath, bIsExpress)
 
     newINCLUDE = newINCLUDE + ..
     sdkPath + "\include" + pathsep() + INCLUDE + ..
-    getenv("PROGRAMFILES") + "\Windows Kits\8.0\Include\um;" + ..
-    getenv("PROGRAMFILES") + "\Windows Kits\8.0\Include\shared;";
+    getenv("PROGRAMFILES(X86)") + "\Windows Kits\8.0\Include\um;" + ..
+    getenv("PROGRAMFILES(X86)") + "\Windows Kits\8.0\Include\shared;";
 
 endfunction
 //=============================================================================
