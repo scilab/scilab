@@ -126,8 +126,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -172,10 +170,6 @@ public final class ScilabVariables {
      * @param indexes
      *            an integer array with the indexes of the (sub)*-list which
      *            will contain the data
-     * @param data
-     *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -220,8 +214,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -266,8 +258,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -312,8 +302,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -358,8 +346,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -404,8 +390,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -450,8 +434,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -496,8 +478,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -542,8 +522,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
