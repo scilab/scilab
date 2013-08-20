@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -227,9 +227,6 @@
     <ClCompile Include="src\jni\UserData_wrap.c" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
