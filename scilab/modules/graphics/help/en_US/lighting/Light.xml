@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Pedro SOUZA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" scilab:needs-examples="no" xml:id="Light">
+    <refnamediv>
+        <refname>Light</refname>
+        <refpurpose>Light overview</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The light object contains the properties to change lighting appearance.
+            Lights aren't visible in the axes but they affect the surface appearance.
+        </para>
+        <para>
+            Lights can be created using <link linkend="light_create">light_create</link> function,
+             and deleted using <link linkend="light_delete">light_delete</link> function.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Light properties list</title>
+        <variablelist>
+            <varlistentry>
+                <term>visible: </term>
+                <listitem>
+                    <para>This field defines if the light is enabled <literal>"on"</literal>
+                    or disabled <literal>"off"</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>light_type: </term>
+                <listitem>
+                    <para>This field defines the type of light used. There are two
+                        types avaiable:<literal>"directional"</literal> and <literal>"point"</literal>.
+                        Directional lights are positioned infinitely far from the surface
+                        thus emitting parallel rays.
+                        Point lights are defined as a point in space thus emitting rays in all
+                        directions.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>light_direction: </term>
+                <listitem>
+                    <para>This field defines the ray direction for directional light.
+                        The direction can be chaged using a 3 element vector <literal>"[x, y, z]"</literal> 
+                        representing a vector starting from the origin.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>light_position: </term>
+                <listitem>
+                    <para>This field defines the light position for point light.
+                        The position can be changed using a 3 element vector <literal>"[x, y, z]"</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ambient_color: </term>
+                <listitem>
+                    <para>This field defines the ambient color of the light.
+                        The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal> 
+                        with each element in the range [0, 1].
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>diffuse_color: </term>
+                <listitem>
+                    <para>This field defines the diffuse color of the light.
+                        The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal> 
+                        with each element in the range [0, 1].
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>specular_color: </term>
+                <listitem>
+                    <para>This field defines the specular color of the light.
+                        The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal> 
+                        with each element in the range [0, 1].
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+plot3d();
+l = light_create();
+l.ambient_color = [0.2, 0.2, 0.2];
+         ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="Lighting">Lighting</link>
+            </member>
+            <member>
+                <link linkend="light_create">light_create</link>
+            </member>
+            <member>
+                <link linkend="light_delete">light_delete</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

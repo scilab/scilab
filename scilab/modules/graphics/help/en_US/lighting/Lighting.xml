@@ -24,10 +24,12 @@
              and computationaly expesive, one uses a simplified model.
         </para>
         <para>
-            A light is represented by its colors: ambient, diffuse and specular.
+            A light is represented mainly by its colors: ambient, diffuse and specular. It can
+            be created using <link linkend="light_create">light_create</link> function,
+             and deleted using <link linkend="light_delete">light_delete</link> function.
         </para>
         <para>
-            A surface material properties is represented also by its colors
+            The surface material properties is represented also by its colors
             (ambient, diffuse and specular) and it shininess level.
             The surface contains the <literal>color_material</literal> property that enables
             the use of the surface color as the diffuse color.
@@ -54,19 +56,19 @@
         </listitem>
 
 		<para>
-			Following one can compare the surface with and without lighting enabled:
+			Following one can compare the surface with and without lighting:
 		</para>
         <para>
             <inlinemediaobject>
 				<imageobject>
-					<imagedata fileref="../images/lighting_on.png"/>
+					<imagedata fileref="../../images/lighting_on.png"/>
 				</imageobject>
 			</inlinemediaobject>
         </para>
         <para>
             <inlinemediaobject>
 				<imageobject>
-					<imagedata fileref="../images/lighting_off.png"/>
+					<imagedata fileref="../../images/lighting_off.png"/>
 				</imageobject>
 			</inlinemediaobject>
 		</para>
@@ -74,14 +76,13 @@
     </refsection>
     <refsection>
         <title>Lighting properties list</title>
-        <para> Axes properties </para>
+        <para> Light properties </para>
         <variablelist>
             <varlistentry>
-                <term>lighting: </term>
+                <term>visible: </term>
                 <listitem>
-                    <para>This field is use to enable lighting. Its default
-                        value is <literal>"off"</literal> if the value is <literal>"on"</literal>
-                        all surfaces in this axes will be lit.
+                    <para>This field defines if the light is enabled <literal>"on"</literal>
+                    or disabled <literal>"off"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -196,12 +197,10 @@
 		</para>
         <programlisting role="example"><![CDATA[
 plot3d();
-a=gca();
 s=gce();
 s.color_flag=0;
 s.thickness=0;
-//enable lighting
-a.lighting="on";
+light = light_create();
 //change diffuse color to orange
 s.diffuse_color = [1, 0.6, 0];
 s.color_material="off";
@@ -213,14 +212,26 @@ s.ambient_color = [0.3, 0.1, 0];
 			</para>
 		    <programlisting role="example"><![CDATA[
 plot3d();
-a=gca();
 s=gce();
+light = light_create();
 s.color_flag=0;
 s.thickness=0;
-//enable lighting
-a.lighting="on";
-a.light_type = "directional";
-a.light_direction = [0 0 1];
+light.light_type = "directional";
+light.light_direction = [0 0 1];
          ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="Light">Light</link>
+            </member>
+            <member>
+                <link linkend="light_create">light_create</link>
+            </member>
+            <member>
+                <link linkend="light_delete">light_delete</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>
