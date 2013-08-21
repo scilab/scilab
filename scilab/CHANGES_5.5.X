@@ -428,6 +428,9 @@ Bug fixes
 
 * Bug #12085 fixed - On Windows csvWrite wrote wrong EOL.
 
+* Bug #12114 fixed - libstdc++ is now compiled as static instead of using the
+                     library from thirdparty.
+
 * Bug #12118 fixed - ode() could take complex externals.
 
 * Bug #12143 fixed - "stop entity picker" (ged(11)) returned an error message.

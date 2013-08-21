@@ -535,13 +535,13 @@ case "$CXX" in
             DEBUG_CXXFLAGS="-DNDEBUG"
         fi
         COMPILER_CXXFLAGS="-fno-stack-protector " # bug 3131
-        COMPILER_LDFLAGS="-lstdc++"
+#        COMPILER_LDFLAGS="-lstdc++"
     ;;
 
     clang-* | clang)
         # clang linker expect an explict declaration
-        # until the http://libcxx.llvm.org/ release, we select the GNU one.
-        COMPILER_LDFLAGS="-lstdc++"
+        # until the http://libcxx.llvm.org/ release, we select the GNU one.
+#        COMPILER_LDFLAGS="-lstdc++"
     ;;
 esac
 
@@ -1741,6 +1741,8 @@ LT_PREREQ([2.2.7])
 AC_PROG_LIBTOOL([shared dlopen])
 AM_PROG_LIBTOOL
 
+# Eliminate -lstdc++ addition to postdeps for cross compiles.
+postdeps_CXX=`echo " $postdeps_CXX " | sed 's, -lstdc++ ,,g'`
 
 # Avoid to link all the dep from others libraries (*.la included by LIBADD)
 link_all_deplibs=no
