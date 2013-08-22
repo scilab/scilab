@@ -95,14 +95,25 @@ int sci_light_create(char *fname, unsigned long fname_len)
 
         if ((opts[6].iPos != -1) && (opts[6].iType == sci_strings) && (opts[6].iCols * opts[6].iRows == 1))
         {
-            piBool = &visible;
-            sciErr = getMatrixOfBoolean(pvApiCtx, opts[6].piAddr, &nbRow, &nbCol, &piBool);
+            sciErr = getMatrixOfString(pvApiCtx, opts[6].piAddr, &nbRow, &nbCol, &length, NULL);
+            if (length < 15 && !sciErr.iErr)
+            {
+                sciErr = getMatrixOfString(pvApiCtx, opts[6].piAddr, &nbRow, &nbCol, &length, &pStr);
+                if (stricmp(str, "on") == 0)
+                {
+                    visible = 1;
+                }
+                else if (stricmp(str, "off") == 0)
+                {
+                    visible = 0;
+                }
+            }
         }
 
         if ((opts[5].iPos != -1) && (opts[5].iType == sci_strings) && (opts[5].iCols * opts[5].iRows == 1))
         {
             sciErr = getMatrixOfString(pvApiCtx, opts[5].piAddr, &nbRow, &nbCol, &length, NULL);
-            if (length < 15)
+            if (length < 15 && !sciErr.iErr)
             {
                 sciErr = getMatrixOfString(pvApiCtx, opts[5].piAddr, &nbRow, &nbCol, &length, &pStr);
                 if (stricmp(str, "directional") == 0)

@@ -204,9 +204,6 @@ function %h_p(h)
             "arc_drawing_method = " + sci2exp(h.arc_drawing_method)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
-            "ambient_color = "+sci2exp(h.ambient_color)
-            "diffuse_color = "+sci2exp(h.diffuse_color)
-            "specular_color = "+sci2exp(h.specular_color)
             "user_data = "+fmtuser_data(h.user_data)
             "tag = "+h.tag
             ]

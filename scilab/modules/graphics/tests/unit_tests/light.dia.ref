@@ -1,0 +1,144 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Pedro SOUZA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// test Light object
+// Check each default property
+figure();
+a=gca();
+light = light_create();
+assert_checkequal(light.type, "Light");
+assert_checkequal(light.parent.type, "Axes");
+assert_checkequal(light.children, []);
+assert_checkequal(light.visible, "on");
+assert_checkequal(light.light_type, "point");
+clf();
+subplot(2, 1, 1);
+a1=gca();
+subplot(2, 1, 2);
+a2=gca();
+light = light_create(a1);
+assert_checkequal(light.type, "Light");
+assert_checkequal(light.parent.type, "Axes");
+assert_checkequal(light.parent.UID, a1.UID);
+assert_checkequal(light.children, []);
+assert_checkequal(light.visible, "on");
+assert_checkequal(light.light_type, "point");
+clf();
+a=gca();
+light = light_create(a, visible="off", type="directional", position=[5 4 3], direction=[2 1 0], ambient_color=[0.3 0.3 0.3], diffuse_color=[0.2 0.2 0.2], specular_color=[0.1 0.1 0.1]);
+assert_checkequal(light.type, "Light");
+assert_checkequal(light.parent.type, "Axes");
+assert_checkequal(light.children, []);
+assert_checkequal(light.visible, "off");
+assert_checkequal(light.light_type, "directional");
+assert_checktrue(light.light_position - [5 4 3] < 1d-7);
+assert_checktrue(light.light_direction - [2 1 0] < 1d-7);
+assert_checktrue(light.ambient_color - [0.3 0.3 0.3] < 1d-7);
+assert_checktrue(light.diffuse_color - [0.2 0.2 0.2] < 1d-7);
+assert_checktrue(light.specular_color - [0.1 0.1 0.1] < 1d-7);
+// check valid parameter type
+errmsg=msprintf(_("Wrong type for ''%s'' property: Real matrix expected.\n"), "ambient_color");
+ierr = execstr("light.ambient_color = ''asd''", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong type for ''%s'' property: Real matrix expected.\n"), "diffuse_color");
+ierr = execstr("light.diffuse_color = ''asd''", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong type for ''%s'' property: Real matrix expected.\n"), "specular_color");
+ierr = execstr("light.specular_color = ''asd''", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong type for ''%s'' property: Real matrix expected.\n"), "light_position");
+ierr = execstr("light.light_position = ''asd''", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong type for ''%s'' property: Real matrix expected.\n"), "light_direction");
+ierr = execstr("light.light_direction = ''asd''", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong type for ''%s'' property: String expected.\n"),  "light_type");
+ierr = execstr("light.light_type = 0", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+// check parameter  vector size
+errmsg=msprintf(_("Wrong size for ''%s'' property: %d elements expected.\n"), "ambient_color", 3);
+ierr = execstr("light.ambient_color = [1 1]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong size for ''%s'' property: %d elements expected.\n"), "diffuse_color", 3);
+ierr = execstr("light.diffuse_color = [1 1]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong size for ''%s'' property: %d elements expected.\n"), "specular_color", 3);
+ierr = execstr("light.specular_color = [1 1]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong size for ''%s'' property: %d elements expected.\n"), "light_position", 3);
+ierr = execstr("light.light_position = [1 1]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong size for ''%s'' property: %d elements expected.\n"), "light_direction", 3);
+ierr = execstr("light.light_direction = [1 1]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+// check parameter bounds
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "ambient_color");
+ierr = execstr("light.ambient_color = [-1 0 0]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "ambient_color");
+ierr = execstr("light.ambient_color = [0 -1 0]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "ambient_color");
+ierr = execstr("light.ambient_color = [0 0 -1]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "ambient_color");
+ierr = execstr("light.ambient_color = [1.5 0 0]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "ambient_color");
+ierr = execstr("light.ambient_color = [0 1.5 0]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "ambient_color");
+ierr = execstr("light.ambient_color = [0 0 1.5]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+////////
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "diffuse_color");
+ierr = execstr("light.diffuse_color = [-1 0 0]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "diffuse_color");
+ierr = execstr("light.diffuse_color = [0 -1 0]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "diffuse_color");
+ierr = execstr("light.diffuse_color = [0 0 -1]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "diffuse_color");
+ierr = execstr("light.diffuse_color = [1.5 0 0]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "diffuse_color");
+ierr = execstr("light.diffuse_color = [0 1.5 0]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "diffuse_color");
+ierr = execstr("light.diffuse_color = [0 0 1.5]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+/////////////
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "specular_color");
+ierr = execstr("light.specular_color = [-1 0 0]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "specular_color");
+ierr = execstr("light.specular_color = [0 -1 0]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "specular_color");
+ierr = execstr("light.specular_color = [0 0 -1]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "specular_color");
+ierr = execstr("light.specular_color = [1.5 0 0]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "specular_color");
+ierr = execstr("light.specular_color = [0 1.5 0]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong values for ''%s'' property: values between [0, 1] expected.\n"), "specular_color");
+ierr = execstr("light.specular_color = [0 0 1.5]", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+// check light_type input
+errmsg=msprintf(_("Wrong value for ''%s'' property: ''directional'' or ''point'' expected.\n"), "light_type");
+ierr = execstr("light.light_type = ''pointt''", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+errmsg=msprintf(_("Wrong value for ''%s'' property: ''directional'' or ''point'' expected.\n"), "light_type");
+ierr = execstr("light.light_type = ''ddirectional''", "errcatch");
+assert_checkequal(lasterror(), errmsg);
+light_delete(light);
+assert_checkequal(a.children, []);
+close();
