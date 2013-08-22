@@ -1064,7 +1064,8 @@ if test "$rest" = "yes"; then
                 ;;
             *)
                 foundUnknownArg=1
-          # Do nothing. Gives unknown args to Scilab binaries if -a is provided
+                wrongArg=$sciarg
+                # Do nothing. Gives unknown args to Scilab binaries if -args is provided
                 ;;
         esac
     done
@@ -1073,6 +1074,8 @@ if test "$rest" = "yes"; then
 # If the argument -a is not provided (extraarg) and we found unknown args
 # fail and provide help
     if test -z "$extraarg" -a -n "$foundUnknownArg"; then
+        echo "Unknown argument: $wrongArg"
+        echo ""
         do_help
     fi
 
