@@ -7,10 +7,14 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function [f,g,ind]=NDcost(x,ind,fun,varargin)
-    //external for optim
-    //computes gradient using Code differentiation
-    if argn(2)<4 then varargin=list(),end
-    f=fun(x,varargin(:))
-    g=derivative(list(fun,varargin(:)),x)
+function [f, g, ind] = NDcost(x, ind, fun, varargin)
+    // external for optim()
+    // Computes the gradient of 'fun' at 'x' using code differentiation
+    if argn(2) < 4 then
+        f = fun(x);
+        g = derivative(fun, x);
+    else
+        f = fun(x, varargin(:));
+        g = derivative(list(fun, varargin(:)), x);
+    end
 endfunction

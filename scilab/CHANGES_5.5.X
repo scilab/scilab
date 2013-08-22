@@ -511,6 +511,8 @@ Bug fixes
 
 * Bug #12686 fixed - Error returned by diff() fixed.
 
+* Bug #12702 fixed - When no extra parameters were needed in the cost function, NDcost did not work.
+
 * Bug #12703 fixed - In SciNotes, common shortcuts 'SHIFT DELETE', 'SHIFT INSERT' (and others) added.
 
 * Bug #12705 fixed - Function members() added. It allows to find number of occurrences and linear indexes
