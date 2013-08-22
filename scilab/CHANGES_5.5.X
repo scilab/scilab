@@ -44,6 +44,8 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 * The histplot command can now be used with the option polygon=%t/%f to add the
   frequency polygon chart (thanks to Mehran Khorshidi).
 
+* Switch to the CeCILL 2.1 license
+
 
 Syntax changes
 ===============
