@@ -67,7 +67,11 @@ public class LightingUtils {
         for (String child : axes.getChildren()) {
             GraphicObject object = GraphicController.getController().getObjectFromId(child);
             if (object instanceof org.scilab.modules.graphic_objects.lighting.Light) {
-                hasLight |= setLight(manager, (org.scilab.modules.graphic_objects.lighting.Light)object, index++);
+                //setup only visible lights
+                if (((org.scilab.modules.graphic_objects.lighting.Light)object).getVisible()) {
+                    setLight(manager, (org.scilab.modules.graphic_objects.lighting.Light)object, index++);
+                    hasLight = true;
+                }
             }
             if (index >= manager.getLightNumber()) break;
         }
@@ -82,32 +86,29 @@ public class LightingUtils {
      * @param manager the light manager.
      * @param light the light.
      * @param index the light index.
-     * @return the light status.
      */
-    public static boolean setLight(LightManager manager, org.scilab.modules.graphic_objects.lighting.Light light, int index) {
+    public static void setLight(LightManager manager, org.scilab.modules.graphic_objects.lighting.Light light, int index) {
 
-        boolean status = light.getVisible();
         Light sciLight = manager.getLight(index);
-        if (status) {
-            Double[] color = light.getAmbientColor();
-            sciLight.setAmbientColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
-            color = light.getDiffuseColor();
-            sciLight.setDiffuseColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
-            color = light.getSpecularColor();
-            sciLight.setSpecularColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
 
-            switch (light.getLightTypeAsInteger()) {
-                case 0: //directional
-                    sciLight.setDirection(new Vector3d(light.getDirection()));
-                    break;
-                case 1: //point
-                    sciLight.setPosition(new Vector3d(light.getPosition()));
-                    break;
-                default:
-                    break;
-            }
+        Double[] color = light.getAmbientColor();
+        sciLight.setAmbientColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
+        color = light.getDiffuseColor();
+        sciLight.setDiffuseColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
+        color = light.getSpecularColor();
+        sciLight.setSpecularColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
+
+        switch (light.getLightTypeAsInteger()) {
+            case 0: //directional
+                sciLight.setDirection(new Vector3d(light.getDirection()));
+                break;
+            case 1: //point
+                sciLight.setPosition(new Vector3d(light.getPosition()));
+                break;
+            default:
+                break;
         }
-        sciLight.setEnable(status);
-        return status;
+
+        sciLight.setEnable(true);
     }
 }
