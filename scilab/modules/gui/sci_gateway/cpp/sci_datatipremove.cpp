@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Gustavo Barbosa Libotte
+ * Copyright (C) 2012 - Gustavo Barbosa Libotte <gustavolibotte@gmail.com>
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,10 +35,6 @@ using namespace org_scilab_modules_gui_datatip;
 
 int sci_datatipremove(char *fname, unsigned long fname_len)
 {
-
-    SciErr sciErr;
-    CheckInputArgument(pvApiCtx, 1, 2);
-    CheckOutputArgument(pvApiCtx, 0, 1);
     int nbRow = 0, nbCol = 0;
     char* pFigureUID = NULL;
     char* datatipUID = NULL;
@@ -48,8 +44,14 @@ int sci_datatipremove(char *fname, unsigned long fname_len)
     double* pdblReal = NULL;
     int indexPos = 0;
     int *status = NULL;
+    int iType = 0;
+    int *piType = &iType;
 
-    if (Rhs == 1)
+    SciErr sciErr;
+    CheckInputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
+
+    if (nbInputArgument(pvApiCtx) == 1)
     {
 
         pFigureUID = (char*)getCurrentFigure();
@@ -64,10 +66,27 @@ int sci_datatipremove(char *fname, unsigned long fname_len)
 
         datatipUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
 
-        DatatipDelete::datatipRemoveProgramHandler(getScilabJavaVM(), (char*)datatipUID, (char*)pFigureUID);
+        if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
+        {
+            getGraphicObjectProperty(datatipUID, __GO_TYPE__, jni_int, (void**) &piType);
+            if (iType == __GO_DATATIP__)
+            {
+                DatatipDelete::datatipRemoveProgramHandler(getScilabJavaVM(), (char*)datatipUID, (char*)pFigureUID);
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A datatip handle expected.\n"), fname, 1);
+                return FALSE;
+            }
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A graphic handle expected.\n"), fname, 1);
+            return FALSE;
+        }
 
     }
-    else if (Rhs == 2)
+    else if (nbInputArgument(pvApiCtx) == 2)
     {
 
         GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
@@ -80,34 +99,61 @@ int sci_datatipremove(char *fname, unsigned long fname_len)
 
         polylineUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
 
-        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
-        if (sciErr.iErr)
+        if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
-            printError(&sciErr, 0);
-            return 0;
-        }
+            getGraphicObjectProperty(polylineUID, __GO_TYPE__, jni_int, (void**) &piType);
+            if (iType == __GO_POLYLINE__)
+            {
 
-        sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &nbRow, &nbCol, &pdblReal);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 0;
-        }
+                sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 0;
+                }
 
-        if (nbRow * nbCol == 1)
-        {
+                sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &nbRow, &nbCol, &pdblReal);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 0;
+                }
 
-            indexPos = (int) pdblReal[0];
+                if (checkInputArgumentType(pvApiCtx, 2, sci_matrix))
+                {
 
-            DatatipDelete::datatipRemoveProgramIndex(getScilabJavaVM(), (char*)polylineUID, indexPos);
+                    if (nbRow * nbCol == 1)
+                    {
 
+                        indexPos = (int) pdblReal[0];
+
+                        DatatipDelete::datatipRemoveProgramIndex(getScilabJavaVM(), (char*)polylineUID, indexPos);
+
+                    }
+                    else
+                    {
+
+                        Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), fname, 2);
+                        return FALSE;
+
+                    }
+                }
+                else
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), fname, 2);
+                    return FALSE;
+                }
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A polyline handle expected.\n"), fname, 1);
+                return FALSE;
+            }
         }
         else
         {
-
-            Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A graphic handle expected.\n"), fname, 1);
             return FALSE;
-
         }
 
     }

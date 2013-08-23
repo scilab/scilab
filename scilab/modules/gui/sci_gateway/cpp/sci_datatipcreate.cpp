@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Gustavo Barbosa Libotte
+ * Copyright (C) 2012 - Gustavo Barbosa Libotte <gustavolibotte@gmail.com>
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -41,64 +41,80 @@ int sci_datatipcreate(char *fname, unsigned long fname_len)
     int stkAdr = 0;
     int indexPoint = 0;
     char* datatip_handler = NULL;
-    char* pstFigureUID = NULL;
+    char* polylineUID = NULL;
     double* pdblReal = NULL;
+    int iType = 0;
+    int *piType = &iType;
+
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 2, 2);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
-    if (Rhs == 2)
+    if (nbInputArgument(pvApiCtx) == 2)
     {
-
-        /* Get Polyline Handler */
         GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
+        polylineUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
 
-        if (nbRow * nbCol != 1)
+        if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
+            getGraphicObjectProperty(polylineUID, __GO_TYPE__, jni_int, (void**) &piType);
+            if (iType == __GO_POLYLINE__)
+            {
+                if (checkInputArgumentType(pvApiCtx, 2, sci_matrix))
+                {
+                    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return 0;
+                    }
+
+                    sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &nbRow, &nbCol, &pdblReal);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return 0;
+                    }
+
+                    if (nbRow * nbCol == 1)
+                    {
+                        indexPoint = (int) pdblReal[0];
+                        datatip_handler = DatatipCreate::createDatatipProgramIndex(getScilabJavaVM(), (char*)polylineUID, indexPoint);
+
+                    }
+                    else if (nbRow * nbCol == 2)
+                    {
+                        datatip_handler = DatatipCreate::createDatatipProgramCoord(getScilabJavaVM(), (char*)polylineUID, pdblReal, 2);
+                    }
+                    else
+                    {
+                        Scierror(999, _("%s: Wrong size for input argument #%d: matrix 1x2 expected.\n"), fname, 2);
+                        return FALSE;
+                    }
+                }
+                else
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A integer or matrix of double expected.\n"), fname, 2);
+                    return FALSE;
+                }
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: Polyline handler expected.\n"), fname, 1);
+                return FALSE;
+            }
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: Object handler expected.\n"), fname, 1);
             return FALSE;
-        }
-
-        pstFigureUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
-
-        /* Get Second Input Argument - Index Or Coordinates*/
-        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 0;
-        }
-
-        sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &nbRow, &nbCol, &pdblReal);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 0;
-        }
-
-        if (nbRow * nbCol == 1)
-        {
-
-            /* Create Datatip Using "datatip_handle = datatipCreate(polyline_handle,index)" */
-
-            indexPoint = (int) pdblReal[0];
-
-            datatip_handler = DatatipCreate::createDatatipProgramIndex(getScilabJavaVM(), (char*)pstFigureUID, indexPoint);
-
-        }
-        else if (nbRow * nbCol == 2)
-        {
-
-            /* Create Datatip Using "datatip_handle = datatipCreate(polyline_handle,pt)" */
-
-            datatip_handler = DatatipCreate::createDatatipProgramCoord(getScilabJavaVM(), (char*)pstFigureUID, pdblReal, 2);
         }
 
     }
     else
     {
 
-        Scierror(999, _("%s: Wrong number for input argument: %d expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
         return FALSE;
     }
 
