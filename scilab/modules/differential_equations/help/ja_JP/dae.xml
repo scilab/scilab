@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -18,7 +18,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis> y=dae(initial,t0,t,res) 
+        <synopsis> y=dae(initial,t0,t,res)
             [y [,hd]]=dae(initial,t0,t [,rtol, [atol]],res [,jac] [,hd])
             [y,rd]=dae("root",initial,t0,t,res,ng,surface)
             [y ,rd [,hd]]=dae("root",initial,t0,t [,rtol, [atol]],res [,jac], ng, surface [,hd])
@@ -82,7 +82,7 @@
                 <term>res</term>
                 <listitem>
                     <para>
-                        <link linkend="external" role="" version="">外部ルーチン</link>. 
+                        <link linkend="external" role="" version="">外部ルーチン</link>.
                         <literal>g(t,y,ydot)</literal>の値を計算します. 以下のようになります
                     </para>
                     <variablelist>
@@ -93,7 +93,7 @@
                                     <literal>[r,ires]=res(t,x,xdot)</literal> とする
                                     必要があり,<literal>res</literal> は
                                     残差<literal>r=g(t,x,xdot)</literal> とエラーフラグ
-                                    <literal>ires</literal>を返す必要があります. 
+                                    <literal>ires</literal>を返す必要があります.
                                     <literal>res</literal>が<literal>r</literal>の計算に
                                     成功した場合には<literal>ires = 0</literal>,
                                     <literal>(t,x,xdot)</literal>のローカルな残差が定義されない
@@ -109,13 +109,13 @@
                                     関数にパラメータを指定する際に使用されます.
                                     以下のような形式とします:
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 list(res,p1,p2,...)
  ]]></programlisting>
                                 <para>
                                     ただし,ここで関数<literal>res</literal>の呼び出し手順は以下のようになります
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 r=res(t,y,ydot,p1,p2,...)
  ]]></programlisting>
                                 <para>
@@ -203,7 +203,7 @@ r=res(t,y,ydot,p1,p2,...)
                 <term>jac</term>
                 <listitem>
                     <para>
-                        <link linkend="external" role="" version="">外部ルーチン</link>. 
+                        <link linkend="external" role="" version="">外部ルーチン</link>.
                         指定したパラメータの値 <literal>cj</literal>を用いて
                         <literal>dg/dx+cj*dg/dxdot</literal>の値を計算します. 以下のようになります
                     </para>
@@ -228,15 +228,15 @@ r=res(t,y,ydot,p1,p2,...)
                                     関数にパラメータを指定する際に使用されます.
                                     以下のような形式とします:
                                 </para>
-                                <programlisting role=""><![CDATA[  
-list(jac,p1,p2,...)               
+                                <programlisting role=""><![CDATA[
+list(jac,p1,p2,...)
  ]]></programlisting>
                                 <para>
                                     ただしこの場合の関数<literal>jac</literal>の呼び出し手順は
                                     以下となります
                                 </para>
-                                <programlisting role=""><![CDATA[ 
-r=jac(t,x,xdot,p1,p2,...)      
+                                <programlisting role=""><![CDATA[
+r=jac(t,x,xdot,p1,p2,...)
  ]]></programlisting>
                                 <para>
                                     この場合でも<literal>jac</literal> は,
@@ -289,9 +289,9 @@ r=jac(t,x,xdot,p1,p2,...)
                 <term>surface</term>
                 <listitem>
                     <para>
-                        <link linkend="external" role="" version="">外部ルーチン</link>. 
+                        <link linkend="external" role="" version="">外部ルーチン</link>.
                         <literal>ng</literal>個の要素を有する列ベクトル
-                        <literal>surface(t,x)</literal>の値を計算します. 
+                        <literal>surface(t,x)</literal>の値を計算します.
                         各要素は面(surface)を定義します.
                     </para>
                     <variablelist>
@@ -312,14 +312,14 @@ r=jac(t,x,xdot,p1,p2,...)
                                     関数にパラメータを指定する際に使用されます.
                                     以下のような形式とします:
                                 </para>
-                                <programlisting role=""><![CDATA[  
+                                <programlisting role=""><![CDATA[
 list(surface,p1,p2,...)
  ]]></programlisting>
                                 <para>
                                     ただしこの場合の関数<literal>surface</literal>の呼び出し手順は
                                     以下となります
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 r=surface(t,x,p1,p2,...)
  ]]></programlisting>
                             </listitem>
@@ -358,7 +358,7 @@ r=surface(t,x,p1,p2,...)
                                 <para>
                                     ただし,<literal>t</literal>, x, rpar, ipar は
                                     上記と同じ定義を有し,<literal>ng </literal> は
-                                    surfacesの数, <literal>nx</literal> は状態量の次元, 
+                                    surfacesの数, <literal>nx</literal> は状態量の次元,
                                     r は結果の配列です.
                                 </para>
                             </listitem>
@@ -379,7 +379,7 @@ r=surface(t,x,p1,p2,...)
             <varlistentry>
                 <term>hd</term>
                 <listitem>
-                    <para>実数のベクトル, 
+                    <para>実数のベクトル,
                         <literal>dae</literal> コンテキストを保持する出力.
                         (ホットスタートで)積分を再開するための入力引数として使用可能です.
                     </para>
@@ -389,7 +389,7 @@ r=surface(t,x,p1,p2,...)
                 <term>y</term>
                 <listitem>
                     <para>
-                        実数の行列. 
+                        実数の行列.
                         <literal>
                             <link linkend="daeoptions">%DAEOPTIONS</link>(2)=1
                         </literal>
@@ -411,7 +411,7 @@ r=surface(t,x,p1,p2,...)
             <link linkend="dassl">dassl</link> および <link linkend="dasrt">dasrt</link>
             関数の上位に構築されたゲートウエイです.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 g(t,x,xdot)=0
 x(t0)=x0  and   xdot(t0)=xdot0
  ]]></programlisting>
@@ -437,7 +437,7 @@ x(t0)=x0  and   xdot(t0)=xdot0
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Scilabコードを使用する例
 function [r,ires]=chemres(t,y,yd)
     r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
@@ -476,9 +476,9 @@ code=['#include <math.h>'
       ' '
       'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
       '{ groot[0] = y[0];}']
-mputl(code,TMPDIR+'/t22.c') 
+mputl(code,TMPDIR+'/t22.c')
 //-2- コンパイルの後,ロード
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',[],TMPDIR+'/t22loader.sce');
 exec(TMPDIR+'/t22loader.sce')
 //-3- 実行
 rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];

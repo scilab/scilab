@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -18,7 +18,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis> y=dae(initial,t0,t,res) 
+        <synopsis> y=dae(initial,t0,t,res)
             [y [,hd]]=dae(initial,t0,t [,rtol, [atol]],res [,jac] [,hd])
             [y,rd]=dae("root",initial,t0,t,res,ng,surface)
             [y ,rd [,hd]]=dae("root",initial,t0,t [,rtol, [atol]],res [,jac], ng, surface [,hd])
@@ -50,7 +50,7 @@
                 <listitem>
                     <para>escalar real ou vetor. Fornece instantes para os quais você
                         deseja uma solução. Note que você pode obter soluções para cada
-                        ponto de passo de dae fazendo 
+                        ponto de passo de dae fazendo
                         <literal>
                             <link linkend="daeoptions">%DAEOPTIONS</link>(2)=1
                         </literal>
@@ -109,13 +109,13 @@
                                 <para>Esta forma é utilizada para passar parâmetros à função.
                                     Deve ser como segue:
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 list(res,p1,p2,...)
  ]]></programlisting>
                                 <para>Onde a seqüência de chamamento da função
                                     <literal>res</literal> é agora
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 r=res(t,y,ydot,p1,p2,...)
  ]]></programlisting>
                                 <para>
@@ -190,14 +190,14 @@ r=res(t,y,ydot,p1,p2,...)
                                         <para>
                                             <literal>rpar</literal> é o array de valores de
                                             parâmetros em ponto flutuante, necessário, mas não pode
-                                            ser definido pela função <literal>dae</literal> 
+                                            ser definido pela função <literal>dae</literal>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
                                             <literal>ipar</literal> é o array de valores de
                                             parâmetros inteiros, necessário, mas não pode ser definido
-                                            pela função <literal>dae</literal> 
+                                            pela função <literal>dae</literal>
                                         </para>
                                     </listitem>
                                 </itemizedlist>
@@ -232,13 +232,13 @@ r=res(t,y,ydot,p1,p2,...)
                                 <para>Esta forma é utilizada para passar parâmetros à função.
                                     Deve ser como segue:
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 list(jac,p1,p2,...)
  ]]></programlisting>
                                 <para>Onde a seqüência de chamamento da função
                                     <literal>jac</literal> é agora
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 r=jac(t,x,xdot,p1,p2,...)
  ]]></programlisting>
                                 <para>
@@ -317,13 +317,13 @@ r=jac(t,x,xdot,p1,p2,...)
                                 <para>Esta forma é utilizada para passar parâmetros à função.
                                     Deve ser como segue:
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 list(surface,p1,p2,...)
  ]]></programlisting>
                                 <para>Onde a seqüência de chamamento da função
                                     <literal>surface</literal> é agora
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 r=surface(t,x,p1,p2,...)
  ]]></programlisting>
                             </listitem>
@@ -398,7 +398,7 @@ r=surface(t,x,p1,p2,...)
                 <term>y</term>
                 <listitem>
                     <para>
-                        matriz de reais. Se 
+                        matriz de reais. Se
                         <literal>
                             <link linkend="daeoptions">%DAEOPTIONS</link>(2)=1
                         </literal>
@@ -419,7 +419,7 @@ r=surface(t,x,p1,p2,...)
             funções <link linkend="dassl">dassl</link> e <link linkend="dasrt">dasrt</link> designada para equações diferenciais
             implícitas.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 g(t,x,xdot)=0
 x(t0)=x0  e   xdot(t0)=xdot0
  ]]></programlisting>
@@ -435,7 +435,7 @@ x(t0)=x0  e   xdot(t0)=xdot0
                 initial
             </literal>
             ,pode ser tanto uma derivada compatível satisfazendo
-            g(t,x0,xdot0)=0 ou um valor aproximado . No último caso 
+            g(t,x0,xdot0)=0 ou um valor aproximado . No último caso
             <literal>
                 <link linkend="daeoptions">%DAEOPTIONS</link>(7) deve ser ajustado para
                 1.
@@ -448,7 +448,7 @@ x(t0)=x0  e   xdot(t0)=xdot0
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Exemplo com um código Scilab
 function [r,ires]=chemres(t,y,yd)
   r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
@@ -487,10 +487,10 @@ code=['#include &lt;math.h&gt;'
       ' '
       'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
       '{ groot[0] = y[0];}']
-mputl(code,TMPDIR+'/t22.c') 
+mputl(code,TMPDIR+'/t22.c')
 
 //-2- compilando e carregando
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',[],TMPDIR+'/t22loader.sce');
 exec(TMPDIR+'/t22loader.sce')
 
 //-3- executando
