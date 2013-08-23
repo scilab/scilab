@@ -13,28 +13,34 @@
 
 package org.scilab.modules.gui.datatip;
 
-
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 import org.scilab.modules.renderer.CallRenderer;
 import org.scilab.modules.gui.editor.AxesHandler;
 import org.scilab.modules.gui.editor.CommonHandler;
+
+import org.scilab.modules.gui.datatip.OrthogonalProjection;
+
 import java.lang.Math;
 
 /** Common datatip functions*/
 public class DatatipCommon {
 
+    static int i, j;
+
     public static class Segment {
         public int pointIndex;
-        public double x0, y0, x1, y1;
+        public double x0, y0, z0, x1, y1, z1;
         public Segment() {}
-        public Segment(int index, double x0, double x1, double y0, double y1) {
+        public Segment(int index, double x0, double x1, double y0, double y1, double z0, double z1) {
             pointIndex = index;
             this.x0 = x0;
             this.x1 = x1;
             this.y0 = y0;
             this.y1 = y1;
+            this.z0 = z0;
+            this.z1 = z1;
         }
     }
 
@@ -44,6 +50,82 @@ public class DatatipCommon {
      */
     public static Segment getSegment(double x, String polyline) {
         return getSegment(x, polyline, 0);
+    }
+
+
+    /*
+     * Given a polyline and a position (x , y) in 2d view
+     * return the segment from the polyline that this point belongs
+     */
+    public static Segment getSegment3dView(double x, double y, String polyline) {
+
+        double[][] polylineData = getPolylineDataMatrix (polyline);
+
+        Double[][] polylineDataBackup = backupPolylineData(polylineData);
+
+        String axesUid = (String)GraphicController.getController().getProperty(polyline, __GO_PARENT_AXES__);
+        double[][] geom3dCoords = getGeom3dCoords (axesUid, polylineData);
+        polylineData = geom3dCoords;
+
+        double[][] tempPoints = new double[polylineData.length][2];
+        for (i = 0 ; i < tempPoints.length ; i++) {
+            tempPoints[i][0] = x;
+            tempPoints[i][1] = y;
+        }
+
+        double[][] dataDiff = new double[tempPoints.length][2];
+        for (i = 0 ; i < dataDiff.length ; i++) {
+            dataDiff[i][0] = Math.pow((polylineData[i][0] - tempPoints[i][0]), 2);
+            dataDiff[i][1] = Math.pow((polylineData[i][1] - tempPoints[i][1]), 2);
+        }
+
+        double[] sumDataDiff = new double[dataDiff.length];
+        for (i = 0 ; i < sumDataDiff.length ; i++) {
+            sumDataDiff[i] = dataDiff[i][0] + dataDiff[i][1];
+        }
+
+        int indMin = 0;
+        double minElem = sumDataDiff[0];
+        for (i = 1 ; i < sumDataDiff.length ; i++) {
+            if (sumDataDiff[i] < minElem) {
+                minElem = sumDataDiff[i];
+                indMin = i;
+            }
+        }
+
+        Double[] pointCalc = new Double[] {polylineDataBackup[indMin][0], polylineDataBackup[indMin][1], polylineDataBackup[indMin][2]};
+
+        if (indMin < (polylineDataBackup.length - 1)) {
+
+            Double[] diffPointsXY = new Double[3];
+            if (indMin < polylineDataBackup.length) {
+                diffPointsXY[0] = polylineDataBackup[indMin + 1][0] - pointCalc[0];
+                diffPointsXY[1] = polylineDataBackup[indMin + 1][1] - pointCalc[1];
+                diffPointsXY[2] = polylineDataBackup[indMin + 1][2] - pointCalc[2];
+            } else {
+                diffPointsXY[0] = pointCalc[0] - polylineDataBackup[indMin - 1][0];
+                diffPointsXY[1] = pointCalc[1] - polylineDataBackup[indMin - 1][1];
+                diffPointsXY[2] = pointCalc[2] - polylineDataBackup[indMin - 1][2];
+            }
+
+            double norm_diffPointsXY = Math.sqrt((Math.pow(diffPointsXY[0], 2)) + (Math.pow(diffPointsXY[1], 2)) + (Math.pow(diffPointsXY[2], 2)));
+
+            for (i = 0; i < diffPointsXY.length ; i++) {
+                diffPointsXY[i] = (diffPointsXY[i] / norm_diffPointsXY) / Math.pow(10, 4);
+            }
+
+            Double[] datatipNewPos = new Double[3];
+            datatipNewPos[0] = pointCalc[0] + diffPointsXY[0];
+            datatipNewPos[1] = pointCalc[1] + diffPointsXY[1];
+            datatipNewPos[2] = pointCalc[2] + diffPointsXY[2];
+
+            return new Segment(0, datatipNewPos[0], 0.0, datatipNewPos[1], 0.0, datatipNewPos[2], 0.0);
+
+        } else {
+
+            return new Segment(0, pointCalc[0], 0.0, pointCalc[1], 0.0, pointCalc[2], 0.0);
+
+        }
     }
 
 
@@ -92,7 +174,7 @@ public class DatatipCommon {
             index = (index + offset + 1) < dataX.length ? (index + offset) : dataX.length - 2;
             //check lower bound
             index = (index + offset) >= 0 ? index : 0;
-            return new Segment(index, dataX[index], dataX[index + 1], dataY[index], dataY[index + 1]);
+            return new Segment(index, dataX[index], dataX[index + 1], dataY[index], dataY[index + 1], 0.0, 0.0);
         }
         return null;
     }
@@ -122,6 +204,35 @@ public class DatatipCommon {
                 return new Double[] {seg.x1, seg.y1, 0.0};
             }
         }
+    }
+
+    /*
+     * Return the interpolated position (x, y, z)
+     * that the segment (x, y) belongs in the polyline
+     */
+    public static Double[] Interpolate3dView(double x, double y, Segment seg, String polyline) {
+
+        double[][] polylineData = getPolylineDataMatrix (polyline);
+
+        Double[][] polylineDataBackup = backupPolylineData(polylineData);
+
+        String axesUid = (String)GraphicController.getController().getProperty(polyline, __GO_PARENT_AXES__);
+        double[][] geom3dCoords = getGeom3dCoords (axesUid, polylineData);
+        polylineData = geom3dCoords;
+
+        double[] coefProj = OrthogonalProjection.orthogonalProj(polylineData, new double[] {x, y});
+
+        int ind = (int) coefProj[0];
+        double coef = coefProj[1];
+
+        Double[] datatipNewPos = new Double[3];
+
+        datatipNewPos[0] = polylineDataBackup[ind][0] + ((polylineDataBackup[ind + 1][0] - polylineDataBackup[ind][0]) * coef);
+        datatipNewPos[1] = polylineDataBackup[ind][1] + ((polylineDataBackup[ind + 1][1] - polylineDataBackup[ind][1]) * coef);
+        datatipNewPos[2] = polylineDataBackup[ind][2] + ((polylineDataBackup[ind + 1][2] - polylineDataBackup[ind][2]) * coef);
+
+        return datatipNewPos;
+
     }
 
     /*
@@ -155,6 +266,7 @@ public class DatatipCommon {
         }
         return position;
     }
+
     /*
      * Given a pixel coordinate return the transformed axis coordinate, in the view scale
      * (don't transfor it back if log scale is used)
@@ -188,5 +300,55 @@ public class DatatipCommon {
             return temp;
         }
         return data;
+    }
+
+    private static double[][] getPolylineDataMatrix (String polyline) {
+        double[] DataX = (double[]) PolylineData.getDataX(polyline);
+        double[] DataY = (double[]) PolylineData.getDataY(polyline);
+        double[] DataZ = (double[]) PolylineData.getDataZ(polyline);
+
+        double[][] polylineDataMatrix = new double[DataX.length][3];
+
+        for (i = 0 ; i < polylineDataMatrix.length ; i++) {
+            for (j = 0 ; j < polylineDataMatrix[0].length ; j++) {
+                if (j == 0) {
+                    polylineDataMatrix[i][j] = DataX[i];
+                } else if (j == 1) {
+                    polylineDataMatrix[i][j] = DataY[i];
+                } else {
+                    polylineDataMatrix[i][j] = DataZ[i];
+                }
+            }
+        }
+
+        return polylineDataMatrix;
+    }
+
+    private static Double[][] backupPolylineData(double[][] polylineData) {
+        Double[][] polylineBackup = new Double[polylineData.length][3];
+        for (i = 0 ; i < polylineData.length ; i++) {
+            for (j = 0 ; j < polylineData[0].length ; j++) {
+                polylineBackup[i][j] = (Double) polylineData[i][j];
+            }
+        }
+
+        return polylineBackup;
+    }
+
+    private static double[][] getGeom3dCoords (String axesUid, double[][] polylineData) {
+        double[] tempCoords = new double[3];
+        double[][] geom3d = new double[polylineData.length][3];
+
+        for (i = 0 ; i < polylineData.length ; i++) {
+            for (j = 0 ; j < polylineData[0].length ; j++) {
+                tempCoords[j] = polylineData[i][j];
+            }
+            double[] view2dCoords = CallRenderer.get2dViewCoordinates(axesUid, tempCoords);
+            geom3d[i][0] = view2dCoords[0];
+            geom3d[i][1] = view2dCoords[1];
+            geom3d[i][2] = view2dCoords[2];
+        }
+
+        return geom3d;
     }
 }
