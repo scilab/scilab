@@ -134,6 +134,7 @@ c
       e1r=2.0d0*max(abs(e1),abs(e2))*dlamch('p')
       n = 0
       l=l1
+c     This code is wrongly optimized by gfortran 4.8.1
  52   if (st*(stk(l)-e2).gt.0.0d+0) then
          if (abs(stk(l)-e2).lt.e1r) n=n+1
          go to 53

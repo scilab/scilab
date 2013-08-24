@@ -100,10 +100,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@MAINTAINER_MODE_FALSE@am__append_1 = libscidouble.la
 DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.am $(top_srcdir)/config/mkinstalldirs \
 	$(top_srcdir)/config/depcomp
-@NEED_JAVA_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/double
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -160,18 +161,21 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidouble_la_etcdir)" \
 	"$(DESTDIR)$(libscidouble_la_rootdir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
-libscidouble_la_LIBADD =
-am__objects_1 = libscidouble_la-gw_double.lo
-am__objects_2 = vecldiv.lo vecmul.lo matxpow.lo vecimpl.lo matldiv.lo \
-	matsubt.lo vecrdiv.lo matchsgn.lo matrdiv.lo matrc.lo \
-	matpow.lo matins1.lo matins2.lo matcmp.lo matmult.lo \
-	matext1.lo matext2.lo mattr.lo matcc.lo mattrc.lo matadd.lo
-am_libscidouble_la_OBJECTS = $(am__objects_1) $(am__objects_2)
-libscidouble_la_OBJECTS = $(am_libscidouble_la_OBJECTS)
+libdummy_double_la_LIBADD =
+am_libdummy_double_la_OBJECTS = vecimpl.lo
+libdummy_double_la_OBJECTS = $(am_libdummy_double_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
+libscidouble_la_DEPENDENCIES = libdummy-double.la
+am__objects_1 = libscidouble_la-gw_double.lo
+am__objects_2 = vecldiv.lo vecmul.lo matxpow.lo matldiv.lo matsubt.lo \
+	vecrdiv.lo matchsgn.lo matrdiv.lo matrc.lo matpow.lo \
+	matins1.lo matins2.lo matcmp.lo matmult.lo matext1.lo \
+	matext2.lo mattr.lo matcc.lo mattrc.lo matadd.lo
+am_libscidouble_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+libscidouble_la_OBJECTS = $(am_libscidouble_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscidouble_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscidouble_la_rpath = -rpath $(pkglibdir)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -223,8 +227,9 @@ AM_V_F77LD = $(am__v_F77LD_@AM_V@)
 am__v_F77LD_ = $(am__v_F77LD_@AM_DEFAULT_V@)
 am__v_F77LD_0 = @echo "  F77LD   " $@;
 am__v_F77LD_1 = 
-SOURCES = $(libscidouble_la_SOURCES)
-DIST_SOURCES = $(libscidouble_la_SOURCES)
+SOURCES = $(libdummy_double_la_SOURCES) $(libscidouble_la_SOURCES)
+DIST_SOURCES = $(libdummy_double_la_SOURCES) \
+	$(libscidouble_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -515,7 +520,6 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_double.c
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/vecldiv.f \
 sci_gateway/fortran/vecmul.f \
 sci_gateway/fortran/matxpow.f \
-sci_gateway/fortran/vecimpl.f \
 sci_gateway/fortran/matldiv.f \
 sci_gateway/fortran/matsubt.f \
 sci_gateway/fortran/vecrdiv.f \
@@ -534,8 +538,8 @@ sci_gateway/fortran/matcc.f \
 sci_gateway/fortran/mattrc.f \
 sci_gateway/fortran/matadd.f
 
+noinst_LTLIBRARIES = libdummy-double.la $(am__append_1)
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscidouble.la
-@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscidouble.la
 libscidouble_la_CPPFLAGS = -I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 $(AM_CPPFLAGS)
@@ -545,6 +549,8 @@ libscidouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidouble_la_CPPFLAGS)
+libscidouble_la_LIBADD = libdummy-double.la
+libdummy_double_la_SOURCES = sci_gateway/fortran/vecimpl.f
 
 #### Target ######
 modulename = double
@@ -578,7 +584,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -711,6 +717,9 @@ clean-pkglibLTLIBRARIES:
 	  rm -f $${locs}; \
 	}
 
+libdummy-double.la: $(libdummy_double_la_OBJECTS) $(libdummy_double_la_DEPENDENCIES) $(EXTRA_libdummy_double_la_DEPENDENCIES) 
+	$(AM_V_F77LD)$(F77LINK)  $(libdummy_double_la_OBJECTS) $(libdummy_double_la_LIBADD) $(LIBS)
+
 libscidouble.la: $(libscidouble_la_OBJECTS) $(libscidouble_la_DEPENDENCIES) $(EXTRA_libscidouble_la_DEPENDENCIES) 
 	$(AM_V_F77LD)$(F77LINK) $(am_libscidouble_la_rpath) $(libscidouble_la_OBJECTS) $(libscidouble_la_LIBADD) $(LIBS)
 
@@ -767,9 +776,6 @@ vecmul.lo: sci_gateway/fortran/vecmul.f
 
 matxpow.lo: sci_gateway/fortran/matxpow.f
 	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matxpow.lo `test -f 'sci_gateway/fortran/matxpow.f' || echo '$(srcdir)/'`sci_gateway/fortran/matxpow.f
-
-vecimpl.lo: sci_gateway/fortran/vecimpl.f
-	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o vecimpl.lo `test -f 'sci_gateway/fortran/vecimpl.f' || echo '$(srcdir)/'`sci_gateway/fortran/vecimpl.f
 
 matldiv.lo: sci_gateway/fortran/matldiv.f
 	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o matldiv.lo `test -f 'sci_gateway/fortran/matldiv.f' || echo '$(srcdir)/'`sci_gateway/fortran/matldiv.f
@@ -1084,6 +1090,11 @@ uninstall-am: uninstall-libscidouble_la_etcDATA \
 	uninstall-am uninstall-libscidouble_la_etcDATA \
 	uninstall-libscidouble_la_rootDATA uninstall-pkglibLTLIBRARIES
 
+
+# Following lines are extracted from a processed Makefile.in
+# Take care while modifying : append -O0 after all commons options
+vecimpl.lo: sci_gateway/fortran/vecimpl.f
+	$(AM_V_F77)$(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o vecimpl.lo `test -f 'sci_gateway/fortran/vecimpl.f' || echo '$(srcdir)/'`sci_gateway/fortran/vecimpl.f
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test
