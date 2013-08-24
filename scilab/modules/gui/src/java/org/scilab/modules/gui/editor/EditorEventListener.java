@@ -105,8 +105,6 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     }
 
     public void mouseEntered(MouseEvent arg0) {
-        Component canvas = (Component)arg0.getComponent();
-        canvas.requestFocusInWindow();
     }
 
     public void mouseExited(MouseEvent arg0) {
