@@ -110,3 +110,4 @@ SEP #111: /* RESERVED */
 SEP #112: variance and variancef can now return the mean of the input in a new output argument and take the a priori mean as input.
 SEP #113: resize_matrix hypermatrices support.
 SEP #114: New function jcreatejar.
+SEP #115: New function bode_asymp.

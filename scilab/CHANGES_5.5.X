@@ -862,6 +862,9 @@ Scilab Bug Fixes
 * Bug #12791 fixed - More information is now given in case of failure during the ATOMS
                     autoload step.
 
+* Bug #12793 fixed - Improved the bode() plots with a new option "rad" to convert plot into rad/s
+                     and a new function bode_asymp() to draw the system asymptotes.
+
 * Bug #12794 fixed - calfrq.sci code did not follow Scilab standard.
 
 * Bug #12795 fixed - Typos fixed in CACSD help page.
