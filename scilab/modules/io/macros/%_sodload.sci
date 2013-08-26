@@ -131,6 +131,8 @@ function %_sodload(%__filename__, varargin)
             h = createuicontextmenu(item);
         case "uicontrol"
             h = createuicontrol(item);
+        case "Light"
+            h = createLight(item);
         else
             error("handle of type " + item.type + " unhandled");
             h = [];
@@ -765,6 +767,21 @@ function %_sodload(%__filename__, varargin)
             else
                 set(h, fields(i), uicontrolProperties(fields(i)));
             end
+        end
+    endfunction
+	
+    //
+    // LIGHT
+    //
+    function h = createLight(lightProperties)
+        fields = fieldnames(lightProperties);
+        fields(1) = [];
+
+        h = light_create();
+        fields(fields=="children") = [];
+
+        for i = 1:size(fields, "*")
+            set(h, fields(i), lightProperties(fields(i)));
         end
     endfunction
 

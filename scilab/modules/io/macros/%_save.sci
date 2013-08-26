@@ -149,6 +149,8 @@ function [] = %_save(%__filename__, varargin)
             item = extractuicontextmenu(h);
         case "uicontrol"
             item = extractuicontrol(h);
+        case "Light"
+            item = extractLight(h);
         else
             error("handle of type " + h.type + " unhandled");
             item = [];
@@ -812,6 +814,28 @@ function [] = %_save(%__filename__, varargin)
             else
                 returneduicontrol(fields(%__i__)) = h(fields(%__i__));
             end
+        end
+    endfunction
+	
+    //
+    // LIGHT
+    //
+    function returnedLight = extractLight(h)
+        returnedLight = tlist([
+		"ScilabSingleHandle", ...
+        "type", ...
+        "visible", ...
+        "light_type", ...
+        "light_position", ...
+        "light_direction", ...
+        "ambient_color", ...
+        "diffuse_color", ...
+        "specular_color"]);
+
+        fields = fieldnames(returnedLight);
+
+        for %__i__ = 1:size(fields, "*")
+            returnedLight(fields(%__i__)) = h(fields(%__i__));
         end
     endfunction
 
