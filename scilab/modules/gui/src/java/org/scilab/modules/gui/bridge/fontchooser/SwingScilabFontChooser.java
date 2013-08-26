@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -72,9 +72,9 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
 
     private final JList fontSizeList;
     private final String[] availableFontSizes = {"8", "10", "11", "12",
-                           "13", "14", "16", "18", "20",
-                           "24", "30", "36", "40",
-                           "48", "60", "72"
+                                                 "13", "14", "16", "18", "20",
+                                                 "24", "30", "36", "40",
+                                                 "48", "60", "72"
                                                 };
 
     private final boolean calledFromScinotes;

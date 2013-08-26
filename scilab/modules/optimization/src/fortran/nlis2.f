@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine nlis2 (simul,prosca,n,xn,fn,fpn,t,tmin,tmax,d,d2,g,gd,
      1     amd,amf,imp,io,logic,nap,napmax,x,tol,a,tps,tnc,gg,izs,rzs

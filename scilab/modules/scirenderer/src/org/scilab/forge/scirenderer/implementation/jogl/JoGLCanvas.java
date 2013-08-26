@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.jogl;
@@ -177,10 +177,10 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
     public void redrawAndWait() {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
-                    public void run() {
-                        autoDrawable.display();
-                    }
-                });
+                public void run() {
+                    autoDrawable.display();
+                }
+            });
         } catch (Exception e) { }
     }
 
@@ -239,12 +239,12 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
 
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
-                    public void run() {
-                        context.makeCurrent();
-                        image[0] = Screenshot.readToBufferedImage(autoDrawable.getWidth(), autoDrawable.getHeight());
-                        context.release();
-                    }
-                });
+                public void run() {
+                    context.makeCurrent();
+                    image[0] = Screenshot.readToBufferedImage(autoDrawable.getWidth(), autoDrawable.getHeight());
+                    context.release();
+                }
+            });
         } catch (InterruptedException e) {
 
         } catch (InvocationTargetException e) {
