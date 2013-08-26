@@ -55,5 +55,6 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"funcprot", &sci_funcprot, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"mode", &sci_mode, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"where", &sci_where, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"getmemory", &sci_getmemory, MODULE_NAME));
     return 1;
 }

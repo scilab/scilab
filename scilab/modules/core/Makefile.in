@@ -317,7 +317,8 @@ am__objects_8 = libscicore_la-core_gw.lo \
 	libscicore_la-sci_stacksize.lo libscicore_la-sci_format.lo \
 	libscicore_la-sci_sciargs.lo libscicore_la-sci_ieee.lo \
 	libscicore_la-sci_funcprot.lo libscicore_la-sci_mode.lo \
-	libscicore_la-sci_typename.lo libscicore_la-sci_where.lo
+	libscicore_la-sci_typename.lo libscicore_la-sci_where.lo \
+	libscicore_la-sci_getmemory.lo
 am_libscicore_la_OBJECTS = $(am__objects_6) $(am__objects_7) \
 	$(am__objects_8)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -788,7 +789,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_funcprot.cpp \
 	sci_gateway/cpp/sci_mode.cpp \
 	sci_gateway/cpp/sci_typename.cpp \
-	sci_gateway/cpp/sci_where.cpp
+	sci_gateway/cpp/sci_where.cpp \
+	sci_gateway/cpp/sci_getmemory.cpp
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
@@ -1137,6 +1139,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_funcprot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_getdebuginfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_getmd5.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_getmemory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_getmodules.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_getos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_getscilabmode.Plo@am__quote@
@@ -1892,6 +1895,13 @@ libscicore_la-sci_where.lo: sci_gateway/cpp/sci_where.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_where.cpp' object='libscicore_la-sci_where.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_where.lo `test -f 'sci_gateway/cpp/sci_where.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_where.cpp
+
+libscicore_la-sci_getmemory.lo: sci_gateway/cpp/sci_getmemory.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_getmemory.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getmemory.Tpo -c -o libscicore_la-sci_getmemory.lo `test -f 'sci_gateway/cpp/sci_getmemory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getmemory.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicore_la-sci_getmemory.Tpo $(DEPDIR)/libscicore_la-sci_getmemory.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_getmemory.cpp' object='libscicore_la-sci_getmemory.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_getmemory.lo `test -f 'sci_gateway/cpp/sci_getmemory.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getmemory.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
