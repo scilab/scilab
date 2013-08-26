@@ -549,7 +549,7 @@ ccode=['#include <math.h>'
        '}']
 mputl(ccode,TMPDIR+'/myode.c') //create the C file
 // Compile
-ilib_for_link('myode','myode.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');
+ilib_for_link('myode','myode.c',[],'c',[],TMPDIR+'/loader.sce');
 exec(TMPDIR+'/loader.sce') //incremental linking
 y0=0;
 t0=0;

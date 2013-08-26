@@ -594,7 +594,6 @@ function allnames=not_yet_converted()
     "ishghandle";
     "isjava";
     "iskeyword";
-    "ismember";
     "ismethod";
     "isobject";
     "isocaps";

@@ -254,12 +254,12 @@
         <title>Exemple</title>
         <para>
             Ci-dessous un cas simple d'utilisation du bloc.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/BITCLEAR_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/BITCLEAR_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/BITCLEAR_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/BITCLEAR_fr_FR.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/integer_pal/fr_FR/BITCLEAR_fr_FR.zcos" valign="middle"/>

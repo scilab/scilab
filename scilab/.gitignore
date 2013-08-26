@@ -167,6 +167,9 @@ modules/types/src/jni/sci_types_wrap.c
 *.gcno
 *.gcda
 
+# Automake tests generated files
+*.trs
+
 # clang / scan-build generated temporary files
 modules/*/*.plist
 

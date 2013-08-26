@@ -11,6 +11,7 @@
 
 package org.scilab.forge.scirenderer.implementation.jogl.texture;
 
+import com.jogamp.opengl.util.texture.TextureIO;
 import com.jogamp.opengl.util.awt.TextureRenderer;
 import com.jogamp.opengl.util.texture.TextureCoords;
 
@@ -23,16 +24,23 @@ import org.scilab.forge.scirenderer.texture.AbstractTexture;
 import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.forge.scirenderer.texture.TextureManager;
+import org.scilab.forge.scirenderer.texture.TextureDataProvider;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationManager;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
 import javax.media.opengl.GLContext;
 
+import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
+import javax.media.opengl.GL2ES1;
+import javax.media.opengl.GL2GL3;
+import javax.media.opengl.GLProfile;
 import java.awt.AlphaComposite;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.Collection;
 import java.util.HashSet;
@@ -73,9 +81,10 @@ public class JoGLTextureManager implements TextureManager {
     public void draw(JoGLDrawingTools drawingTools, Texture texture) throws SciRendererException {
         if ((texture instanceof JoGLTexture) && (allTextures.contains((JoGLTexture) texture))) {
             final JoGLTexture jt = (JoGLTexture) texture;
-            jt.preDraw(drawingTools);
-            jt.draw(drawingTools);
-            jt.postDraw(drawingTools);
+            if (jt.preDraw(drawingTools)) {
+                jt.draw(drawingTools);
+                jt.postDraw(drawingTools);
+            }
         }
     }
 
@@ -87,12 +96,13 @@ public class JoGLTextureManager implements TextureManager {
                     data.rewind();
                     float[] position = {0, 0, 0, 1};
                     final JoGLTexture jt = (JoGLTexture) texture;
-                    jt.preDraw(drawingTools);
-                    while (data.remaining() >= 4) {
-                        data.get(position);
-                        jt.draw(drawingTools, anchor, new Vector3d(position), rotationAngle);
+                    if (jt.preDraw(drawingTools)) {
+                        while (data.remaining() >= 4) {
+                            data.get(position);
+                            jt.draw(drawingTools, anchor, new Vector3d(position), rotationAngle);
+                        }
+                        jt.postDraw(drawingTools);
                     }
-                    jt.postDraw(drawingTools);
                 }
             }
         }
@@ -143,15 +153,22 @@ public class JoGLTextureManager implements TextureManager {
      */
     public class JoGLTexture extends AbstractTexture implements Texture {
         private com.jogamp.opengl.util.texture.Texture[] textures;
+        private JoGLTextureData[] textureData;
         private int wCuts;
         private int hCuts;
         private double sfactor = 1;
         private double tfactor = 1;
+        private ByteBuffer buffer;
+        private TextureDataProvider.ImageType previousType;
 
         /**
          * Default constructor.
          */
         public JoGLTexture() {
+        }
+
+        public final boolean isRowMajorOrder() {
+            return getDataProvider().isRowMajorOrder();
         }
 
         /**
@@ -178,7 +195,6 @@ public class JoGLTextureManager implements TextureManager {
                         textures[0].setTexParameteri(gl, GL2.GL_TEXTURE_WRAP_S, GL2.GL_CLAMP_TO_EDGE);
                         textures[0].setTexParameteri(gl, GL2.GL_TEXTURE_WRAP_T, GL2.GL_CLAMP_TO_EDGE);
                     }
-                    gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_MODE, GL2.GL_REPLACE);
                     textures[0].bind(gl);
 
                     /* sfactor and tfactor are useful to have the correct texture coordinates when the texture
@@ -212,48 +228,104 @@ public class JoGLTextureManager implements TextureManager {
 
             if (isValid() && !upToDate) {
                 GL2 gl = drawingTools.getGl().getGL2();
-                releaseTextures(gl);
 
                 Dimension textureSize = getDataProvider().getTextureSize();
                 int maxSize = drawingTools.getGLCapacity().getMaximumTextureSize();
                 wCuts = (int) Math.ceil(textureSize.getWidth() / maxSize);
                 hCuts = (int) Math.ceil(textureSize.getHeight() / maxSize);
+                ByteBuffer newBuffer = getDataProvider().getData();
+                TextureDataProvider.ImageType newType = getDataProvider().getImageType();
 
-                textures = new com.jogamp.opengl.util.texture.Texture[wCuts * hCuts];
-                int k = 0;
-                for (int i = 0; i < wCuts; i++) {
-                    for (int j = 0; j < hCuts; j++) {
-                        int x = i * maxSize;
-                        int y = j * maxSize;
-                        int width = getSubTextureSize((i == (wCuts - 1)), textureSize.width, maxSize);
-                        int height = getSubTextureSize((j == (hCuts - 1)), textureSize.height, maxSize);
+                if (newBuffer != null && textureSize.width != 0 && textureSize.height != 0) {
+                    boolean hasChanged = false;
+                    if (newBuffer != buffer || newType != previousType) {
+                        releaseTextures(gl);
+                        if (newBuffer != null) {
+                            textures = new com.jogamp.opengl.util.texture.Texture[wCuts * hCuts];
+                            textureData = new JoGLTextureData[wCuts * hCuts];
+                        }
+                        buffer = newBuffer;
+                        previousType = newType;
+                        hasChanged = true;
+                    }
 
-                        TextureRenderer renderer = new TextureRenderer(width, height, true, false);
-                        Graphics2D g2d = renderer.createGraphics();
-                        g2d.setComposite(AlphaComposite.Src);
-                        g2d.drawImage(getDataProvider().getSubImage(x, y, width, height), null, 0, 0);
-                        g2d.dispose();
-                        renderer.markDirty(0, 0, width, height);
-                        textures[k] = renderer.getTexture();
-
-                        k++;
+                    if (newBuffer != null || buffer != null) {
+                        if (wCuts == 1 && hCuts == 1) {
+                            if (hasChanged) {
+                                if (isRowMajorOrder()) {
+                                    textureData[0] = new JoGLTextureData(gl.getGLProfile(), newType, buffer, textureSize.width, textureSize.height);
+                                } else {
+                                    textureData[0] = new JoGLTextureData(gl.getGLProfile(), newType, buffer, textureSize.height, textureSize.width);
+                                }
+                                try {
+                                    textures[0] = TextureIO.newTexture(textureData[0]);
+                                } catch (Exception e) {
+                                    System.err.println(e);
+                                }
+                            } else {
+                                try {
+                                    textures[0].updateSubImage(gl, textureData[0], 0, 0, 0);
+                                } catch (Exception e) {
+                                    System.err.println(e);
+                                }
+                            }
+                        } else {
+                            int k = 0;
+                            for (int i = 0; i < wCuts; i++) {
+                                for (int j = 0; j < hCuts; j++) {
+                                    if (hasChanged) {
+                                        final int x = i * maxSize;
+                                        final int y = j * maxSize;
+                                        final int width = getSubTextureSize((i == (wCuts - 1)), textureSize.width, maxSize);
+                                        final int height = getSubTextureSize((j == (hCuts - 1)), textureSize.height, maxSize);
+                                        if (isRowMajorOrder()) {
+                                            textureData[k] = new JoGLTextureData(gl.getGLProfile(), newType, buffer, width, height, x, y, textureSize.width, textureSize.height);
+                                        } else {
+                                            textureData[k] = new JoGLTextureData(gl.getGLProfile(), newType, buffer, height, width, y, x, textureSize.height, textureSize.width);
+                                        }
+                                        textures[k] = TextureIO.newTexture(textureData[k]);
+                                    } else {
+                                        textures[k].updateSubImage(gl, textureData[k], 0, 0, 0);
+                                    }
+                                    k++;
+                                }
+                            }
+                        }
                     }
                 }
-                upToDate = true;
+                if (textures != null) {
+                    upToDate = true;
+                }
             }
         }
 
         private void releaseTextures(GL2 gl) {
             if (textures != null) {
                 for (com.jogamp.opengl.util.texture.Texture texture : textures) {
-                    texture.destroy(gl);
+                    if (texture != null) {
+                        texture.destroy(gl);
+                    }
                 }
                 textures = null;
             }
+
+            if (textureData != null) {
+                for (JoGLTextureData td : textureData) {
+                    if (td != null) {
+                        td.destroy();
+                    }
+                }
+                textureData = null;
+            }
         }
 
-        public void preDraw(JoGLDrawingTools drawingTools) throws SciRendererException {
+        public boolean preDraw(JoGLDrawingTools drawingTools) throws SciRendererException {
             checkData(drawingTools);
+
+            if (textures == null) {
+                return false;
+            }
+
             final GL2 gl = drawingTools.getGl().getGL2();
 
             gl.glMatrixMode(GL2.GL_TEXTURE);
@@ -265,7 +337,6 @@ public class JoGLTextureManager implements TextureManager {
             gl.glLoadIdentity();
 
             gl.glEnable(GL2.GL_TEXTURE_2D);
-
             gl.glEnable(GL2.GL_BLEND);
             gl.glBlendFunc(GL2.GL_ONE, GL2.GL_ONE_MINUS_SRC_ALPHA);
 
@@ -287,8 +358,9 @@ public class JoGLTextureManager implements TextureManager {
                     textures[k].setTexParameteri(gl, GL2.GL_TEXTURE_WRAP_S, GL2.GL_CLAMP_TO_EDGE);
                     textures[k].setTexParameteri(gl, GL2.GL_TEXTURE_WRAP_T, GL2.GL_CLAMP_TO_EDGE);
                 }
-                textures[k].bind(gl);
             }
+
+            return true;
         }
 
         public void draw(JoGLDrawingTools drawingTools, AnchorPosition anchor, Vector3d position, double rotationAngle) throws SciRendererException {
@@ -338,6 +410,7 @@ public class JoGLTextureManager implements TextureManager {
 
             gl.glMatrixMode(GL2.GL_PROJECTION);
             gl.glPopMatrix();
+
             gl.glMatrixMode(GL2.GL_TEXTURE);
             gl.glPopMatrix();
         }
@@ -352,30 +425,73 @@ public class JoGLTextureManager implements TextureManager {
             final Dimension textureSize = getDataProvider().getTextureSize();
             final GL2 gl = drawingTools.getGl().getGL2();
 
-            if (textureSize != null) {
-                int k = 0;
-                for (int i = 0; i < wCuts; i++) {
-                    for (int j = 0; j < hCuts; j++) {
-                        final int x = i * maxSize;
-                        final int y = j * maxSize;
-                        final int width = getSubTextureSize((i == (wCuts - 1)), textureSize.width, maxSize);
-                        final int height = getSubTextureSize((j == (hCuts - 1)), textureSize.height, maxSize);
+            if (textureSize != null && textures != null) {
+                if (wCuts == 1 && hCuts == 1) {
+                    final TextureCoords coords;
+                    if (isRowMajorOrder()) {
+                        coords = textures[0].getSubImageTexCoords(0, 0, textureSize.width, textureSize.height);
+                    } else {
+                        coords = textures[0].getSubImageTexCoords(0, 0, textureSize.height, textureSize.width);
+                    }
+                    textures[0].bind(gl);
 
-                        // if the texture has been transformed in a power-of-two texture we need to have the correct coords.
-                        final TextureCoords coords = textures[k].getSubImageTexCoords(0, 0, width, height);
+                    gl.glBegin(GL2.GL_QUADS);
+                    gl.glTexCoord2f(coords.left(), coords.bottom());
+                    if (isRowMajorOrder()) {
+                        gl.glVertex2f(0, 0);
+                    } else {
+                        gl.glVertex2f(textureSize.width, textureSize.height);
+                    }
+                    gl.glTexCoord2f(coords.right(), coords.bottom());
+                    gl.glVertex2f(textureSize.width, 0);
+                    gl.glTexCoord2f(coords.right(), coords.top());
+                    if (isRowMajorOrder()) {
+                        gl.glVertex2f(textureSize.width, textureSize.height);
+                    } else {
+                        gl.glVertex2f(0, 0);
+                    }
+                    gl.glTexCoord2f(coords.left(), coords.top());
+                    gl.glVertex2f(0, textureSize.height);
+                    gl.glEnd();
+                } else {
+                    int k = 0;
+                    for (int i = 0; i < wCuts; i++) {
+                        for (int j = 0; j < hCuts; j++) {
+                            final int x = i * maxSize;
+                            final int y = j * maxSize;
+                            final int width = getSubTextureSize((i == (wCuts - 1)), textureSize.width, maxSize);
+                            final int height = getSubTextureSize((j == (hCuts - 1)), textureSize.height, maxSize);
 
-                        gl.glBegin(GL2.GL_QUADS);
-                        gl.glTexCoord2f(coords.left(), coords.bottom());
-                        gl.glVertex2f(x, y);
-                        gl.glTexCoord2f(coords.right(), coords.bottom());
-                        gl.glVertex2f(x + width, y);
-                        gl.glTexCoord2f(coords.right(), coords.top());
-                        gl.glVertex2f(x + width, y + height);
-                        gl.glTexCoord2f(coords.left(), coords.top());
-                        gl.glVertex2f(x, y + height);
-                        gl.glEnd();
+                            // if the texture has been transformed in a power-of-two texture we need to have the correct coords.
+                            final TextureCoords coords;
+                            if (isRowMajorOrder()) {
+                                coords = textures[k].getSubImageTexCoords(0, 0, width, height);
+                            } else {
+                                coords = textures[k].getSubImageTexCoords(0, 0, height, width);
+                            }
+                            textures[k].bind(gl);
 
-                        k++;
+                            gl.glBegin(GL2.GL_QUADS);
+                            gl.glTexCoord2f(coords.left(), coords.top());
+                            gl.glVertex2f(x, textureSize.height - y);
+                            gl.glTexCoord2f(coords.right(), coords.top());
+                            if (isRowMajorOrder()) {
+                                gl.glVertex2f(x + width, textureSize.height - y);
+                            } else {
+                                gl.glVertex2f(x, textureSize.height - y - height);
+                            }
+                            gl.glTexCoord2f(coords.right(), coords.bottom());
+                            gl.glVertex2f(x + width, textureSize.height - y - height);
+                            gl.glTexCoord2f(coords.left(), coords.bottom());
+                            if (isRowMajorOrder()) {
+                                gl.glVertex2f(x, textureSize.height - y - height);
+                            } else {
+                                gl.glVertex2f(x + width, textureSize.height - y);
+                            }
+                            gl.glEnd();
+
+                            k++;
+                        }
                     }
                 }
             }
@@ -413,12 +529,12 @@ public class JoGLTextureManager implements TextureManager {
 
         private int getAsGLWrappingMode(Texture.Wrap wrappingMode) {
             switch (wrappingMode) {
-                case CLAMP:
-                    return GL2.GL_CLAMP_TO_EDGE;
-                case REPEAT:
-                    return GL2.GL_REPEAT;
-                default:
-                    return GL2.GL_REPEAT;
+            case CLAMP:
+                return GL2.GL_CLAMP_TO_EDGE;
+            case REPEAT:
+                return GL2.GL_REPEAT;
+            default:
+                return GL2.GL_REPEAT;
             }
         }
 
@@ -426,27 +542,27 @@ public class JoGLTextureManager implements TextureManager {
             int returnedValue;
             if (mipmap) {
                 switch (filter) {
-                    case LINEAR:
-                        returnedValue = GL2.GL_LINEAR_MIPMAP_LINEAR;
-                        break;
-                    case NEAREST:
-                        returnedValue = GL2.GL_NEAREST_MIPMAP_NEAREST;
-                        break;
-                    default:
-                        returnedValue = GL2.GL_NEAREST;
-                        break;
+                case LINEAR:
+                    returnedValue = GL2.GL_LINEAR_MIPMAP_LINEAR;
+                    break;
+                case NEAREST:
+                    returnedValue = GL2.GL_NEAREST_MIPMAP_NEAREST;
+                    break;
+                default:
+                    returnedValue = GL2.GL_NEAREST;
+                    break;
                 }
             } else {
                 switch (filter) {
-                    case LINEAR:
-                        returnedValue = GL2.GL_LINEAR;
-                        break;
-                    case NEAREST:
-                        returnedValue = GL2.GL_NEAREST;
-                        break;
-                    default:
-                        returnedValue = GL2.GL_NEAREST;
-                        break;
+                case LINEAR:
+                    returnedValue = GL2.GL_LINEAR;
+                    break;
+                case NEAREST:
+                    returnedValue = GL2.GL_NEAREST;
+                    break;
+                default:
+                    returnedValue = GL2.GL_NEAREST;
+                    break;
                 }
             }
             return returnedValue;
@@ -454,6 +570,7 @@ public class JoGLTextureManager implements TextureManager {
 
         /** Called when gl context is gone. */
         public void glReload() {
+            buffer = null;
             textures = null;
             upToDate = false;
         }
@@ -466,20 +583,20 @@ public class JoGLTextureManager implements TextureManager {
         protected double getAnchorDeltaX(AnchorPosition anchor) {
             int spriteWidth = getDataProvider().getTextureSize().width;
             switch (anchor) {
-                case LEFT:
-                case LOWER_LEFT:
-                case UPPER_LEFT:
-                    return 0;
-                case UP:
-                case CENTER:
-                case DOWN:
-                    return -spriteWidth / 2f;
-                case RIGHT:
-                case LOWER_RIGHT:
-                case UPPER_RIGHT:
-                    return -spriteWidth;
-                default:
-                    return 0;
+            case LEFT:
+            case LOWER_LEFT:
+            case UPPER_LEFT:
+                return 0;
+            case UP:
+            case CENTER:
+            case DOWN:
+                return -spriteWidth / 2f;
+            case RIGHT:
+            case LOWER_RIGHT:
+            case UPPER_RIGHT:
+                return -spriteWidth;
+            default:
+                return 0;
             }
         }
 
@@ -491,21 +608,216 @@ public class JoGLTextureManager implements TextureManager {
         protected double getAnchorDeltaY(AnchorPosition anchor) {
             int spriteHeight = getDataProvider().getTextureSize().height;
             switch (anchor) {
-                case UPPER_LEFT:
-                case UP:
-                case UPPER_RIGHT:
-                    return -spriteHeight;
-                case LEFT:
-                case CENTER:
-                case RIGHT:
-                    return -spriteHeight / 2f;
-                case LOWER_LEFT:
-                case DOWN:
-                case LOWER_RIGHT:
-                    return 0;
-                default:
-                    return 0;
+            case UPPER_LEFT:
+            case UP:
+            case UPPER_RIGHT:
+                return -spriteHeight;
+            case LEFT:
+            case CENTER:
+            case RIGHT:
+                return -spriteHeight / 2f;
+            case LOWER_LEFT:
+            case DOWN:
+            case LOWER_RIGHT:
+                return 0;
+            default:
+                return 0;
             }
+        }
+    }
+
+    private static class JoGLTextureData extends com.jogamp.opengl.util.texture.TextureData {
+
+        private ByteBuffer data;
+        private int shift;
+
+        public JoGLTextureData(GLProfile glp, TextureDataProvider.ImageType type, ByteBuffer data, int width, int height, int x, int y, int totalWidth, int totalHeight) {
+            super(glp);
+            this.data = data;
+            this.mipmap = false;
+            this.width = width;
+            this.height = height;
+            this.mustFlipVertically = true;
+            this.shift = ((x == 0 && y == 0) || data.capacity() == 0) ? 0 : (data.capacity() / (totalWidth * totalHeight) * (x + y * totalWidth));
+            this.rowLength = totalWidth;
+
+            switch (type) {
+            case RGB:
+                this.internalFormat = GL2.GL_RGB;
+                setPixelFormat(GL.GL_RGB);
+                setPixelType(GL2.GL_UNSIGNED_BYTE);
+                this.alignment = 1;
+                break;
+            case RGB_RGBA:
+                this.internalFormat = GL2.GL_RGB;
+                setPixelFormat(GL.GL_RGBA);
+                setPixelType(GL2.GL_UNSIGNED_INT_8_8_8_8);
+                this.alignment = 4;
+                break;
+            case BGR:
+                this.internalFormat = GL2GL3.GL_RGB;
+                setPixelFormat(GL2GL3.GL_BGR);
+                setPixelType(GL.GL_UNSIGNED_BYTE);
+                this.alignment = 1;
+                break;
+            case GRAY:
+                this.internalFormat = GL.GL_LUMINANCE;
+                setPixelFormat(GL.GL_LUMINANCE);
+                setPixelType(GL.GL_UNSIGNED_BYTE);
+                this.alignment = 1;
+                break;
+            case GRAY_16:
+                this.internalFormat = GL2.GL_LUMINANCE16;
+                setPixelFormat(GL2.GL_LUMINANCE);
+                setPixelType(GL2.GL_UNSIGNED_SHORT);
+                this.alignment = 2;
+                break;
+            case RGBA:
+                this.internalFormat = GL2.GL_RGBA;
+                setPixelFormat(GL2.GL_RGBA);
+                setPixelType(GL2.GL_UNSIGNED_INT_8_8_8_8);
+                this.alignment = 4;
+                break;
+            case RGBA_REV:
+                this.internalFormat = GL2.GL_RGBA;
+                setPixelFormat(GL2.GL_RGBA);
+                setPixelType(GL2.GL_UNSIGNED_INT_8_8_8_8_REV);
+                this.alignment = 4;
+                break;
+            case ABGR:
+                this.internalFormat = GL2.GL_RGBA;
+                setPixelFormat(GL2.GL_ABGR_EXT);
+                setPixelType(GL.GL_UNSIGNED_BYTE);
+                this.alignment = 1;
+                break;
+            case RGB_332:
+                this.internalFormat = GL2.GL_R3_G3_B2;
+                setPixelFormat(GL2.GL_RGB);
+                setPixelType(GL2.GL_UNSIGNED_BYTE_3_3_2);
+                this.alignment = 1;
+                break;
+            case RED:
+                this.internalFormat = GL2.GL_RED;
+                setPixelFormat(GL2.GL_RED);
+                setPixelType(GL2.GL_UNSIGNED_BYTE);
+                this.alignment = 1;
+                break;
+            case GREEN:
+                this.internalFormat = GL2.GL_RGB8;
+                setPixelFormat(GL2.GL_GREEN);
+                setPixelType(GL2.GL_UNSIGNED_BYTE);
+                this.alignment = 1;
+                break;
+            case BLUE:
+                this.internalFormat = GL2.GL_RGB8;
+                setPixelFormat(GL2.GL_BLUE);
+                setPixelType(GL2.GL_UNSIGNED_BYTE);
+                this.alignment = 1;
+                break;
+            case INTENSITY:
+                this.internalFormat = GL2.GL_INTENSITY;
+                setPixelFormat(GL2.GL_LUMINANCE);
+                setPixelType(GL2.GL_UNSIGNED_BYTE);
+                this.alignment = 1;
+                break;
+            case RGBA_4444:
+                this.internalFormat = GL2.GL_RGBA4;
+                setPixelFormat(GL2.GL_RGBA);
+                setPixelType(GL2.GL_UNSIGNED_SHORT_4_4_4_4);
+                this.alignment = 2;
+                break;
+            case RGBA_5551:
+                this.internalFormat = GL2.GL_RGB5_A1;
+                setPixelFormat(GL2.GL_RGBA);
+                setPixelType(GL2.GL_UNSIGNED_SHORT_5_5_5_1);
+                this.alignment = 2;
+                break;
+            case RGB_FLOAT:
+                this.internalFormat = GL2ES1.GL_RGB16F;
+                setPixelFormat(GL2.GL_RGB);
+                setPixelType(GL2.GL_FLOAT);
+                this.alignment = 4;
+                break;
+            case RGBA_FLOAT:
+                this.internalFormat = GL2.GL_RGBA16F;
+                setPixelFormat(GL2.GL_RGBA);
+                setPixelType(GL2.GL_FLOAT);
+                this.alignment = 4;
+                break;
+            case GRAY_FLOAT:
+                this.internalFormat = GL2.GL_LUMINANCE16F;
+                setPixelFormat(GL2.GL_LUMINANCE);
+                setPixelType(GL2.GL_FLOAT);
+                this.alignment = 4;
+                break;
+            case RED_16:
+                this.internalFormat = GL2.GL_RGB16;
+                setPixelFormat(GL2.GL_RED);
+                setPixelType(GL2.GL_UNSIGNED_SHORT);
+                this.alignment = 2;
+                break;
+            case GREEN_16:
+                this.internalFormat = GL2.GL_RGB16;
+                setPixelFormat(GL2.GL_GREEN);
+                setPixelType(GL2.GL_UNSIGNED_SHORT);
+                this.alignment = 2;
+                break;
+            case BLUE_16:
+                this.internalFormat = GL2.GL_RGB16;
+                setPixelFormat(GL2.GL_BLUE);
+                setPixelType(GL2.GL_UNSIGNED_SHORT);
+                this.alignment = 2;
+                break;
+            case RED_FLOAT:
+                this.internalFormat = GL2ES1.GL_RGB16F;
+                setPixelFormat(GL2.GL_RED);
+                setPixelType(GL2.GL_FLOAT);
+                this.alignment = 4;
+                break;
+            case GREEN_FLOAT:
+                this.internalFormat = GL2ES1.GL_RGB16F;
+                setPixelFormat(GL2.GL_GREEN);
+                setPixelType(GL2.GL_FLOAT);
+                this.alignment = 4;
+                break;
+            case BLUE_FLOAT:
+                this.internalFormat = GL2ES1.GL_RGB16F;
+                setPixelFormat(GL2.GL_BLUE);
+                setPixelType(GL2.GL_FLOAT);
+                this.alignment = 4;
+                break;
+            case RGBA_BYTE:
+                this.internalFormat = GL2.GL_RGBA;
+                setPixelFormat(GL2.GL_RGBA);
+		setPixelType(GL2.GL_UNSIGNED_BYTE);
+                this.alignment = 1;
+                break;
+            }
+        }
+
+        public JoGLTextureData(GLProfile glp, TextureDataProvider.ImageType type, ByteBuffer data, int width, int height) {
+            this(glp, type, data, width, height, 0, 0, width, height);
+        }
+
+        public ByteBuffer getBuffer() {
+            if (shift == 0) {
+                return data;
+            } else {
+                data.position(shift);
+                ByteBuffer b = data.slice();
+                data.rewind();
+
+                return b;
+            }
+        }
+
+        public void setData(ByteBuffer data) {
+            this.data = data;
+        }
+
+        public void destroy() {
+            super.destroy();
+            this.data = null;
         }
     }
 }

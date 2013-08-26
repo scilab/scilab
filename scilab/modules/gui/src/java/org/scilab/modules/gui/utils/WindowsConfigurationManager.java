@@ -266,25 +266,27 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param window the window
      */
     public static void saveWindowProperties(SwingScilabWindow window) {
-        readDocument();
+        if (ScilabConstants.isGUI()) {
+            readDocument();
 
-        Element root = doc.getDocumentElement();
-        Element win = createNode(root, "Window", new Object[] {"uuid", window.getUUID(),
-                                 "x", (int) window.getLastPosition().getX(),
-                                 "y", (int) window.getLastPosition().getY(),
-                                 "width", (int) window.getLastDimension().getWidth(),
-                                 "height", (int) window.getLastDimension().getHeight(),
-                                 "state", window.getExtendedState()
-                                                              });
-        LayoutNode layoutNode = window.getDockingPort().exportLayout();
-        LayoutNodeSerializer serializer = new LayoutNodeSerializer();
-        win.appendChild(serializer.serialize(doc, layoutNode));
+            Element root = doc.getDocumentElement();
+            Element win = createNode(root, "Window", new Object[] {"uuid", window.getUUID(),
+                                     "x", (int) window.getLastPosition().getX(),
+                                     "y", (int) window.getLastPosition().getY(),
+                                     "width", (int) window.getLastDimension().getWidth(),
+                                     "height", (int) window.getLastDimension().getHeight(),
+                                     "state", window.getExtendedState()
+                                                                  });
+            LayoutNode layoutNode = window.getDockingPort().exportLayout();
+            LayoutNodeSerializer serializer = new LayoutNodeSerializer();
+            win.appendChild(serializer.serialize(doc, layoutNode));
 
-        for (Dockable dockable : (Set<Dockable>) window.getDockingPort().getDockables()) {
-            saveTabProperties((SwingScilabTab) dockable, false);
+            for (Dockable dockable : (Set<Dockable>) window.getDockingPort().getDockables()) {
+                saveTabProperties((SwingScilabTab) dockable, false);
+            }
+
+            writeDocument();
         }
-
-        writeDocument();
     }
 
     /**
@@ -366,6 +368,32 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         window.setExtendedState(((Integer) attrs.get("state")).intValue());
 
         return window;
+    }
+
+    public static SwingScilabWindow restoreWindow(String uuid) {
+        String winuuid = UUID.randomUUID().toString();
+        SwingScilabWindow win = new SwingScilabWindow();
+        win.setUUID(winuuid);
+        win.setIsRestoring(true);
+
+        final SwingScilabTab tab = ScilabTabFactory.getInstance().getTab(uuid);
+        win.addTab(tab);
+        BarUpdater.forceUpdateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
+
+        win.pack();
+        win.setVisible(true);
+        win.requestFocus();
+        win.toFront();
+        win.setIsRestoring(false);
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                ActiveDockableTracker.requestDockableActivation(tab);
+            }
+        });
+
+        return win;
     }
 
     /**
@@ -454,6 +482,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                                         }
                                     }
                                 }
+
                                 window.setVisible(true);
                                 window.requestFocus();
                                 window.toFront();
@@ -510,7 +539,9 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param uuid the win uuid
      */
     public static final void removeWin(String uuid) {
-        alreadyRestoredWindows.remove(uuid);
+        if (ScilabConstants.isGUI()) {
+            alreadyRestoredWindows.remove(uuid);
+        }
     }
 
     /**
@@ -621,8 +652,27 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param uuid the tab uuid to restore
      */
     private static final void startRestoration(String uuid) {
+        if (!ScilabConstants.isGUI()) {
+            readDocument();
+            Element root = doc.getDocumentElement();
+            Element e = ScilabXMLUtilities.getElementsWithAttributeEquals(root, "uuid", uuid).get(0);
+            if (e != null) {
+                String winuuid = e.getAttribute("winuuid");
+                if (!winuuid.isEmpty() && !winuuid.equals(NULLUUID)) {
+                    List<Element> elements = ScilabXMLUtilities.getElementsWithAttributeEquals(root, "winuuid", winuuid);
+                    for (Element ee : elements) {
+                        if (ee.getNodeName().equals("Console")) {
+                            restoreWindow(uuid);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
         Set<Element> list = createDescendantTabs(uuid);
         list = createAdjacentTabs(list);
+
         List<String> wins = new ArrayList<String>();
         List<String> tabsWithoutWin = new ArrayList<String>();
         for (Element e : list) {
@@ -908,34 +958,36 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param nullWin if true, the winuuid will be set to 0 (the tab is not docked)
      */
     public static void saveTabProperties(SwingScilabTab tab, boolean nullWin) {
-        readDocument();
+        if (ScilabConstants.isGUI()) {
+            readDocument();
 
-        ScilabTabFactory factory = ScilabTabFactory.getInstance();
-        String uuid = tab.getPersistentId();
-        Element root = doc.getDocumentElement();
+            ScilabTabFactory factory = ScilabTabFactory.getInstance();
+            String uuid = tab.getPersistentId();
+            Element root = doc.getDocumentElement();
 
-        String app = factory.getApplication(uuid);
-        if (app.isEmpty()) {
-            return;
+            String app = factory.getApplication(uuid);
+            if (app.isEmpty()) {
+                return;
+            }
+
+            String winuuid;
+            if (nullWin) {
+                winuuid = NULLUUID;
+            } else {
+                winuuid = tab.getParentWindowUUID();
+            }
+
+            Dimension dim = tab.getSize();
+
+            createNode(root, app, new Object[] {"winuuid", winuuid,
+                                                "uuid", uuid,
+                                                "load", factory.getPackage(uuid),
+                                                "factory", factory.getClassName(uuid),
+                                                "width", (int) dim.getWidth(),
+                                                "height", (int) dim.getHeight()
+                                               });
+            writeDocument();
         }
-
-        String winuuid;
-        if (nullWin) {
-            winuuid = NULLUUID;
-        } else {
-            winuuid = tab.getParentWindowUUID();
-        }
-
-        Dimension dim = tab.getSize();
-
-        createNode(root, app, new Object[] {"winuuid", winuuid,
-                                            "uuid", uuid,
-                                            "load", factory.getPackage(uuid),
-                                            "factory", factory.getClassName(uuid),
-                                            "width", (int) dim.getWidth(),
-                                            "height", (int) dim.getHeight()
-                                           });
-        writeDocument();
     }
 
     /**
@@ -943,24 +995,26 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * and validate the different windows.
      */
     public static void clean() {
-        readDocument();
+        if (ScilabConstants.isGUI()) {
+            readDocument();
 
-        validateWindows();
+            validateWindows();
 
-        Element root = doc.getDocumentElement();
-        NodeList list = root.getElementsByTagName("Window");
-        int len = getNodeListLength(list);
-        for (int i = 0; i < len; i++) {
-            if (list.item(i) instanceof Element) {
-                String uuid = ((Element) list.item(i)).getAttribute("uuid");
-                List<Element> elements = ScilabXMLUtilities.getElementsWithAttributeEquals(root, "winuuid", uuid);
-                if (elements == null || elements.size() == 0) {
-                    root.removeChild(list.item(i));
-                    removeWin(uuid);
+            Element root = doc.getDocumentElement();
+            NodeList list = root.getElementsByTagName("Window");
+            int len = getNodeListLength(list);
+            for (int i = 0; i < len; i++) {
+                if (list.item(i) instanceof Element) {
+                    String uuid = ((Element) list.item(i)).getAttribute("uuid");
+                    List<Element> elements = ScilabXMLUtilities.getElementsWithAttributeEquals(root, "winuuid", uuid);
+                    if (elements == null || elements.size() == 0) {
+                        root.removeChild(list.item(i));
+                        removeWin(uuid);
+                    }
                 }
             }
+            writeDocument();
         }
-        writeDocument();
     }
 
     /**
@@ -969,13 +1023,15 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param childUUID the child tab uuid
      */
     public static final void makeDependency(String parentUUID, String childUUID) {
-        readDocument();
+        if (ScilabConstants.isGUI()) {
+            readDocument();
 
-        Element e = getElementWithUUID(doc.getDocumentElement(), childUUID);
-        if (e != null) {
-            e.setAttribute("depends", parentUUID);
+            Element e = getElementWithUUID(doc.getDocumentElement(), childUUID);
+            if (e != null) {
+                e.setAttribute("depends", parentUUID);
+            }
+            writeDocument();
         }
-        writeDocument();
     }
 
     /**
@@ -983,13 +1039,15 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param childUUID the child tab uuid
      */
     public static void removeDependency(String childUUID) {
-        readDocument();
+        if (ScilabConstants.isGUI()) {
+            readDocument();
 
-        Element e = getElementWithUUID(doc.getDocumentElement(), childUUID);
-        if (e != null) {
-            e.removeAttribute("depends");
+            Element e = getElementWithUUID(doc.getDocumentElement(), childUUID);
+            if (e != null) {
+                e.removeAttribute("depends");
+            }
+            writeDocument();
         }
-        writeDocument();
     }
 
     /**
@@ -1022,7 +1080,10 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             }
         }
 
-        writeDocument();
+        if (ScilabConstants.isGUI()) {
+            writeDocument();
+        }
+
         doc = null;
 
         return true;

@@ -97,3 +97,4 @@ SEP #098: New output argument for qp_solve function
 SEP #099: Matrices of strings as input argument for clear
 SEP #100: Extends history size
 SEP #101: File browser
+SEP #102: members function.

@@ -10,10 +10,11 @@ c
       subroutine intones(id)
       INCLUDE 'stack.h'
       integer id(nsiz)
+      logical  getmat
 
       integer tops
       double precision s
-      integer iadr,sadr
+      integer iadr,sadr, mattyp1, areadr1, aimadr1
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -48,6 +49,10 @@ c     ones sans argument
          if(istk(il).lt.0) il=iadr(istk(il+1))
          m=istk(il+1)
          n=istk(il+2)
+         if(m.eq.-1.and.n.eq.-1) then !To avoid ones(:)
+            call error(21)
+            return
+         endif
 c     ones(matrice)
       elseif(rhs.eq.2) then
 c     ones(m,n)
@@ -56,6 +61,18 @@ c     ones(m,n)
          top=top-1
          call getdimfromvar(top,1,m)
          if(err.gt.0.or.err1.gt.0) return
+         if (.not.getmat('ones', tops, top-rhs+2, 
+     +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #1 
+         if(u1.ne.u1.and.v1.ne.v1) then !detect nan because isanan does not work here
+            call error(21) !To avoid ones(:,5)
+            return
+         endif
+         if (.not.getmat('ones', tops, top-rhs+3, 
+     +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #2
+         if(u1.ne.u1.and.v1.ne.v1) then !detect nan because isanan does not work here
+            call error(21) !To avoid ones(5,:)
+            return
+         endif
       endif
 c
       mn=m*n

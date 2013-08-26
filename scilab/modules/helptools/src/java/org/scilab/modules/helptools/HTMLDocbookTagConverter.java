@@ -14,7 +14,6 @@ package org.scilab.modules.helptools;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.Character.UnicodeBlock;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Date;
@@ -22,25 +21,23 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.regex.Pattern;
 
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-
-import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.helptools.image.ImageConverter;
-import org.scilab.modules.helptools.image.LaTeXImageConverter;
-import org.scilab.modules.helptools.image.MathMLImageConverter;
-import org.scilab.modules.helptools.image.ScilabImageConverter;
-import org.scilab.modules.helptools.image.SVGImageConverter;
-import org.scilab.modules.helptools.image.XcosImageConverter;
-import org.scilab.modules.helptools.scilab.ScilabLexer;
-import org.scilab.modules.helptools.scilab.HTMLScilabCodeHandler;
-import org.scilab.modules.helptools.scilab.AbstractScilabCodeHandler;
-import org.scilab.modules.helptools.XML.XMLLexer;
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.helptools.XML.HTMLXMLCodeHandler;
+import org.scilab.modules.helptools.XML.XMLLexer;
 import org.scilab.modules.helptools.c.CLexer;
 import org.scilab.modules.helptools.c.HTMLCCodeHandler;
+import org.scilab.modules.helptools.external.HTMLMathMLHandler;
+import org.scilab.modules.helptools.external.HTMLSVGHandler;
+import org.scilab.modules.helptools.external.HTMLScilabHandler;
+import org.scilab.modules.helptools.image.Image;
+import org.scilab.modules.helptools.image.ImageConverter;
 import org.scilab.modules.helptools.java.JavaLexer;
+import org.scilab.modules.helptools.scilab.AbstractScilabCodeHandler;
+import org.scilab.modules.helptools.scilab.HTMLScilabCodeHandler;
+import org.scilab.modules.helptools.scilab.ScilabLexer;
 import org.scilab.modules.localization.Messages;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 /**
  * Class to convert DocBook to HTML
@@ -55,30 +52,31 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     private static final String VERSION = Messages.gettext("Version");
     private static final String DESCRIPTION = Messages.gettext("Description");
 
-    private StringBuilder buffer = new StringBuilder(8192);
+    private final StringBuilder buffer = new StringBuilder(8192);
     private int latexCompt = 1;
-    private String imageDir;
-    private String urlBase;
-    private boolean linkToTheWeb;
     private boolean hasExamples;
     private int warnings;
     private int nbFiles;
-    protected String outName;
+
+    private final String imageDir;
+    protected String urlBase;
+    protected boolean linkToTheWeb;
+    protected final String outName;
     protected String outImages;
 
-    protected Map<String, String> mapId;
-    protected Map<String, String> tocitem;
-    protected HTMLDocbookLinkResolver.TreeId tree;
-    protected Map<String, HTMLDocbookLinkResolver.TreeId> mapTreeId;
-    protected Map<String, String> mapIdPurpose;
-    protected Map<String, String> mapIdRefname;
+    protected final Map<String, String> mapId;
+    protected final Map<String, String> tocitem;
+    protected final HTMLDocbookLinkResolver.TreeId tree;
+    protected final Map<String, HTMLDocbookLinkResolver.TreeId> mapTreeId;
+    protected final Map<String, String> mapIdPurpose;
+    protected final Map<String, String> mapIdRefname;
 
-    protected TemplateHandler templateHandler;
+    protected final TemplateHandler templateHandler;
 
-    protected ScilabLexer scilabLexer;
-    protected XMLLexer xmlLexer;
-    protected CLexer cLexer;
-    protected JavaLexer javaLexer;
+    protected final ScilabLexer scilabLexer;
+    protected final XMLLexer xmlLexer;
+    protected final CLexer cLexer;
+    protected final JavaLexer javaLexer;
 
     protected String bookTitle = "";
     protected String partTitle = "";
@@ -94,31 +92,28 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected String prependToProgramListing;
     protected String currentId;
     protected String indexFilename = "index" /*UUID.randomUUID().toString()*/ + ".html";
-    protected String language;
+    protected final String language;
 
-    protected boolean isToolbox;
-    protected final GenerationType type;
+    protected final boolean isToolbox;
+    protected final Backend type;
 
     /**
      * Constructor
      * @param inName the name of the input stream
-     * @param outName the output directory
-     * @param primConf the file containing the primitives of Scilab
-     * @param macroConf the file containing the macros of Scilab
-     * @param template the template to use
-     * @param version the version
-     * @param imageDir the image directory (relative to outName)
-     * @param isToolbox is true when compile a toolbox' help
-     * @param urlBase the base url for external link
+     * @param sciDocMain provide useful doc generation properties
+     * @param imgConvert the shared image converter for all generation
      */
-    public HTMLDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, boolean isToolbox, String urlBase, String language, GenerationType type) throws IOException, SAXException {
-        super(inName);
+    public HTMLDocbookTagConverter(String inName, SciDocMain sciDocMain, ImageConverter imgConvert) throws IOException, SAXException {
+        super(inName, imgConvert);
 
-        this.version = version;
-        this.imageDir = imageDir;
-        this.outName = outName + File.separator;
+        this.version = sciDocMain.getConf().getVersion();
+        this.imageDir = sciDocMain.getImagedir();
+        this.outName = sciDocMain.getOutputDirectory() + File.separator;
         this.outImages = this.outName;
+
+        imgConvert.setDocbookTagConverter(this);
         HTMLDocbookLinkResolver resolver = new HTMLDocbookLinkResolver(inName);
+
         mapId = resolver.getMapId();
         tocitem = resolver.getToc();
         tree = resolver.getTree();
@@ -126,12 +121,18 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         mapIdPurpose = resolver.getMapIdPurpose();
         mapIdRefname = resolver.getMapIdRefname();
 
-        scilabLexer = new ScilabLexer(primConf, macroConf);
-        this.urlBase = urlBase;
-        this.linkToTheWeb = urlBase != null && !urlBase.equals("scilab://");
-        this.isToolbox = isToolbox;
-        this.language = language;
-        this.type = type;
+        this.isToolbox = sciDocMain.isToolbox();
+        this.language = sciDocMain.getLanguage();
+        this.type = sciDocMain.getFormat();
+
+        if (isToolbox) {
+            urlBase = sciDocMain.getConf().getWebSiteURL() + language + "/";
+            linkToTheWeb = true;
+        } else {
+            urlBase = null;
+            linkToTheWeb = false;
+        }
+
         if (isToolbox) {// we generate a toolbox's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
                 public String getLink(String id) {
@@ -157,16 +158,19 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             });
         }
 
+        scilabLexer = new ScilabLexer(sciDocMain.getConf().getBuiltins(), sciDocMain.getConf().getMacros());
         xmlLexer = new XMLLexer();
         cLexer = new CLexer();
         javaLexer = new JavaLexer();
+
+        final String template = sciDocMain.getConf().getTemplate(sciDocMain.getFormat().toString().toLowerCase());
         File tpl = new File(template);
+        if (!tpl.isFile()) {
+            final String msg = "Could not find template document: " + template;
+            System.err.println(msg);
+            throw new RuntimeException();
+        }
         templateHandler = new TemplateHandler(this, tpl, language);
-        ImageConverter.registerExternalImageConverter(LaTeXImageConverter.getInstance(this));
-        ImageConverter.registerExternalImageConverter(MathMLImageConverter.getInstance(this));
-        ImageConverter.registerExternalImageConverter(SVGImageConverter.getInstance(this));
-        ImageConverter.registerExternalImageConverter(ScilabImageConverter.getInstance(this));
-        ImageConverter.registerExternalImageConverter(XcosImageConverter.getInstance(this));
     }
 
     public static boolean containsCJK(CharSequence seq) {
@@ -217,16 +221,31 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * Get the type of the generation
      * @return the generation type
      */
-    public final GenerationType getGenerationType() {
+    public final Backend getGenerationType() {
         return type;
-    }
-
-    public String getBaseImagePath() {
-        return "";
     }
 
     public String getLanguage() {
         return language;
+    }
+
+    @Override
+    public void registerAllExternalXMLHandlers() {
+        super.registerAllExternalXMLHandlers();
+
+        registerExternalXMLHandler(new HTMLMathMLHandler(outName, imageDir));
+        registerExternalXMLHandler(new HTMLSVGHandler(outName, imageDir));
+        registerExternalXMLHandler(new HTMLScilabHandler(outName, imageDir));
+    }
+
+    @Override
+    public void install() {
+        super.install();
+
+        ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/scilab_code.css"), new File(outName + "/scilab_code.css"));
+        ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/xml_code.css"), new File(outName + "/xml_code.css"));
+        ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/c_code.css"), new File(outName + "/c_code.css"));
+        ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/style.css"), new File(outName + "/style.css"));
     }
 
     /**
@@ -334,6 +353,38 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             nbFiles++;
             templateHandler.generateFileFromTemplate(outName + fileName, id, contents);
         }
+    }
+
+
+
+    /**
+     * @param code the code to translate
+     * @param img image information
+     * @param fileName the filename
+     * @param attrs the attribute of the image
+     * @return the HTML code to insert the image
+     */
+    public String generateCode(Image img, String fileName, Map<String, String> attrs, final String tooltipString) {
+        String style = attrs.get("style");
+        String top = "";
+        boolean display = style != null && style.equals("display");
+
+        if (!display) {
+            top = "top:" + img.descent + "px;";
+        }
+
+        String alignAttr = attrs.get("align");
+        String align = "";
+        String div = "div";
+        if (alignAttr != null) {
+            align = " style=\'text-align:" + alignAttr + "\'";
+        } else if (display) {
+            align = " style=\'text-align:center\'";
+        } else {
+            div = "span";
+        }
+
+        return "<" + div + align + "><img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'/></" + div + ">";
     }
 
     /**
@@ -551,6 +602,118 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         buffer.append("</span>\n");
 
         return buffer.toString();
+    }
+
+    @Override
+    public String generateImageCode(String code, String fileName, Map<String, String> attrs) {
+        final String imageTag = "<img src=\'" + fileName + "\'/>";
+        if (getGenerationType() == Backend.WEB) {
+            /* Prepare the code for the html inclusion */
+            code = convertCode(code);
+            /* Provide a tooltip */
+            return "<div rel='tooltip' title='" + code + "'>" + imageTag + "</div>";
+        } else {
+            /* No tooltip in the javahelp browser ...
+             * too limited html capabilities */
+            return imageTag;
+        }
+    }
+
+    private static final String convertCode(String code) {
+        if (code == null || code.length() == 0) {
+            return "";
+        }
+
+        StringBuffer buffer = new StringBuffer(2 * code.length());
+        int start = 0;
+        int end = code.length() - 1;
+        char c = code.charAt(0);
+
+        // first we trim
+        while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
+            if (start < end) {
+                c = code.charAt(++start);
+            } else {
+                break;
+            }
+        }
+        c = code.charAt(end);
+        while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
+            if (end > 0) {
+                c = code.charAt(--end);
+            } else {
+                break;
+            }
+        }
+
+        // replace chars by their html entities equivalent
+        for (int j = start; j <= end; j++) {
+            c = code.charAt(j);
+            switch (c) {
+                case '&':
+                    buffer.append("&amp;");
+                    break;
+                case '<':
+                    buffer.append("&lt;");
+                    break;
+                case '>':
+                    buffer.append("&gt;");
+                    break;
+                case '\n':
+                    buffer.append("<br />");
+                    break;
+                case '\'':
+                    buffer.append("&#039;");
+                    break;
+                case '\"':
+                    buffer.append("&quot;");
+                    break;
+                default:
+                    buffer.append(c);
+            }
+        }
+
+        return buffer.toString();
+    }
+
+    @Override
+    public String generateImageCode(Image img, String fileName, Map<String, String> attrs) {
+        String style = attrs.get("style");
+        String top = "";
+        boolean display = style != null && style.equals("display");
+
+        if (!display) {
+            top = "top:" + img.descent + "px;";
+        }
+
+        String alignAttr = attrs.get("align");
+        String align = "";
+        String div = "div";
+        if (alignAttr != null) {
+            align = " style=\'text-align:" + alignAttr + "\'";
+        } else if (display) {
+            align = " style=\'text-align:center\'";
+        } else {
+            div = "span";
+        }
+
+        return "<" + div + align + "><img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'/></" + div + ">";
+    }
+
+    @Override
+    public String generateImageCode(String fileName, Map<String, String> attrs) {
+        String alignAttr = attrs.get("align");
+
+        final StringBuilder str = new StringBuilder(128);
+        if (alignAttr != null) {
+            str.append("<div style=\'text-align:").append(alignAttr).append("\'>");
+        }
+        str.append("<img src=\'").append(fileName).append("\'/>");
+        if (alignAttr != null) {
+            str.append("</div>");
+        }
+
+        return str.toString();
     }
 
     public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
@@ -1020,7 +1183,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         String type = attributes.get("type");
         String id;
         if (type != null && type.equals("scilab")) {
-            if (this.type == GenerationType.JAVAHELP) {
+            if (this.type == Backend.JAVAHELP || this.type == Backend.HTML) {
                 id = resolvScilabLink(link);
             } else {
                 return contents;
@@ -1032,9 +1195,21 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         }
 
         if (id == null) {
-            warnings++;
-            System.err.println("Warning (should be fixed): invalid internal link to " + link + " in " + currentFileName + "\nat line " + locator.getLineNumber());
-            return null;
+            if (isToolbox) {
+                if (this.type == Backend.HTML) {
+                    id = urlBase + link;
+                    if (linkToTheWeb) {
+                        id += ".html";
+                    }
+                }
+                if (this.type == Backend.JAVAHELP) {
+                    id = urlBase + link;
+                }
+            } else {
+                warnings++;
+                System.err.println("Warning (should be fixed): invalid internal link to " + link + " in " + currentFileName + "\nat line " + locator.getLineNumber());
+                return null;
+            }
         }
 
         Stack<DocbookElement> stack = getStack();
@@ -1082,6 +1257,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         if (pos == -1) {
             return null;
         }
+
         String first = link.substring(0, pos);
         String second = link.substring(pos + 1);
         String[] toks = first.split("\\.");
@@ -1177,7 +1353,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         if (fs == null) {
             attributes.put("fontsize", "16");
         }
-        return ImageConverter.getImageByCode(currentFileName, contents, attributes, "image/latex", f, imageDir + "/" + f.getName(), getBaseImagePath(), locator.getLineNumber(), language, isLocalized);
+
+        return getImageConverter().getImageByCode(currentFileName, contents, attributes, "image/latex", f, imageDir + "/" + f.getName(), getBaseImagePath(), locator.getLineNumber(), language, isLocalized);
     }
 
     /**
@@ -1304,7 +1481,6 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleInformaltable(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String bgcolor = attributes.get("bgcolor");
         String border = attributes.get("border");
         String cellpadding = attributes.get("cellpadding");
         String width = attributes.get("width");
@@ -1339,7 +1515,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                 throw new SAXException("The given fileref is not on an existing image file:\n" + fileref + " [" + file + "]");
             }
 
-            return ImageConverter.getImageByFile(attributes, path, fileref, outImages, imageDir, getBaseImagePath());
+            return getImageConverter().getImageByFile(attributes, path, fileref, outImages, imageDir, getBaseImagePath());
         }  catch (URISyntaxException e) {
             System.err.println(e);
         }
@@ -1702,7 +1878,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleNote(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabNote.png\"/></td><td valign=\"top\">" + encloseContents("div", "note", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabNote.png\"/></td><td valign=\"top\">" + encloseContents("div", "note", contents) + "</td></tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {
@@ -1719,7 +1895,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleWarning(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabWarning.png\"/></td><td valign=\"top\">" + encloseContents("div", "warning", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabWarning.png\"/></td><td valign=\"top\">" + encloseContents("div", "warning", contents) + "</td></tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {
@@ -1736,7 +1912,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleCaution(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabCaution.png\"/></td><td valign=\"top\">" + encloseContents("div", "caution", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabCaution.png\"/></td><td valign=\"top\">" + encloseContents("div", "caution", contents) + "</td></tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {
@@ -1753,7 +1929,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleTip(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabTip.png\"/></td><td valign=\"top\">" + encloseContents("div", "tip", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabTip.png\"/></td><td valign=\"top\">" + encloseContents("div", "tip", contents) + "</td></tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {
@@ -1770,7 +1946,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleImportant(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabImportant.png\"/></td><td valign=\"top\">" + encloseContents("div", "important", contents) + "</tr></table>";
+        String code = "<table><tr><td valign=\"top\"><img src=\"" + getBaseImagePath() + "ScilabImportant.png\"/></td><td valign=\"top\">" + encloseContents("div", "important", contents) + "</td></tr></table>";
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + code;
         } else {

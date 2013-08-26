@@ -20,8 +20,9 @@ import java.nio.charset.Charset;
 import java.util.Iterator;
 
 import org.xml.sax.SAXException;
-
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.helptools.image.ImageConverter;
 
 /**
@@ -37,28 +38,54 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
     /**
      * Constructor
      * @param inName the name of the input stream
-     * @param outName the output directory
-     * @param primConf the file containing the primitives of Scilab
-     * @param macroConf the file containing the macros of Scilab
-     * @param template the template to use
-     * @param version the version
-     * @param imageDir the image directory (relative to outName)
-     * @param isToolbox is true when compile a toolbox' help
-     * @param urlBase the base url for external link
+     * @param sciDocMain provide useful doc generation properties
+     * @param imgConvert the shared image converter for all generation
      */
-    public JavaHelpDocbookTagConverter(String inName, String outName, String[] primConf, String[] macroConf, String template, String version, String imageDir, boolean isToolbox, String urlBase, String language) throws IOException, SAXException {
-        super(inName, outName, primConf, macroConf, template, version, imageDir, isToolbox, urlBase, language, HTMLDocbookTagConverter.GenerationType.JAVAHELP);
+    public JavaHelpDocbookTagConverter(String inName, SciDocMain sciDocMain, ImageConverter imgConvert) throws IOException, SAXException {
+        super(inName, sciDocMain, imgConvert);
+
+        urlBase = "scilab://";
+        linkToTheWeb = false;
+
         if (!isToolbox) {
             this.outImages = ScilabConstants.SCI.getPath() + "/modules/helptools/images";
             File dir = new File(this.outImages);
             if (!dir.exists()) {
                 dir.mkdir();
             }
-            ImageConverter.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
         }
+
         prependToProgramListing = "<table border=\"0\" width=\"100%\"><tr><td width=\"98%\">";
         appendToProgramListing = "</td><td valign=\"top\"><a href=\"scilab://scilab.execexample/\"><img src=\"" + getBaseImagePath() + "ScilabExecute.png\" border=\"0\"/></a></td><td valign=\"top\"><a href=\"scilab://scilab.editexample/\"><img src=\"" + getBaseImagePath() + "ScilabEdit.png\" border=\"0\"/></a></td><td></td></tr></table>";
         appendForExecToProgramListing = "</td><td valign=\"top\"><a href=\"scilab://scilab.execexample/\"><img src=\"" + getBaseImagePath() + "ScilabExecute.png\" border=\"0\"/></a></td><td></td></tr></table>";
+    }
+
+    @Override
+    public void install() {
+        super.install();
+
+        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("media-playback-start")), new File(outImages + "/ScilabExecute.png"));
+        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("accessories-text-editor")), new File(outImages + "/ScilabEdit.png"));
+        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-information")), new File(outImages + "/ScilabNote.png"));
+        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-warning")), new File(outImages + "/ScilabWarning.png"));
+        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-warning")), new File(outImages + "/ScilabCaution.png"));
+        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-information")), new File(outImages + "/ScilabTip.png"));
+        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("emblem-important")), new File(outImages + "/ScilabImportant.png"));
+        if (!isToolbox) {
+            ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/pages/error.html"), new File(outName + "/ScilabErrorPage.html"));
+            File homepage = new File(SCI + "/modules/helptools/data/pages/homepage-" + language + ".html");
+            if (!homepage.isFile()) {
+                /* could not find the localized homepage. Switch to english */
+                homepage = new File(SCI + "/modules/helptools/data/pages/homepage-en_US.html");
+            }
+            ScilabCommonsUtils.copyFile(homepage, new File(outName + "/ScilabHomePage.html"));
+
+            File homepageImage = new File(SCI + "/modules/helptools/data/pages/ban-" + language + ".png");
+            if (!homepageImage.isFile()) {
+                homepageImage = new File(SCI + "/modules/helptools/data/pages/ban-en_US.png");
+            }
+            ScilabCommonsUtils.copyFile(homepageImage, new File(outImages + "/ban_en_US.png"));
+        }
     }
 
     /**
@@ -106,7 +133,7 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
             outIndex.close();
 
             if (!isToolbox) {
-                ImageConverter.saveMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
+                getImageConverter().saveMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
             }
         } catch (IOException e) {
             fatalExceptionOccurred(e);

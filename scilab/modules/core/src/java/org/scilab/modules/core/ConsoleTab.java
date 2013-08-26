@@ -20,6 +20,7 @@ import javax.swing.JTextArea;
 
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
 import org.scilab.modules.gui.ScilabTermination;
 import org.scilab.modules.gui.bridge.CallScilabBridge;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -138,7 +139,6 @@ public class ConsoleTab {
         ScilabConsole.getConsole().setMaxOutputSize(ConfigManager.getMaxOutputSize());
         consoleTab.addMember(ScilabConsole.getConsole());
         ((SwingScilabTab) consoleTab.getAsSimpleTab()).setAssociatedXMLIDForHelp("console");
-        WindowsConfigurationManager.restorationFinished((SwingScilabTab) consoleTab.getAsSimpleTab());
 
         MenuBar menuBar = ScilabMenuBar.createMenuBar();
         ((SwingScilabTab) consoleTab.getAsSimpleTab()).setMenuBar(menuBar);

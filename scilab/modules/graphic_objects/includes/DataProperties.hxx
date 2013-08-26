@@ -58,5 +58,13 @@
 
 #define MATPLOT_BOUNDS          30
 #define MATPLOT_TYPE            31
+#define MATPLOT_VIDEO_MODE      32
+#define MATPLOT_GL_TYPE         33
+#define MATPLOT_DATA_INFOS      34
+#define MATPLOT_DATA_TYPE       35
+#define MATPLOT_DATA_ORDER      36
+#define MATPLOT_IMAGE_TYPE      37
+#define MATPLOT_IMAGE_DATA      38
+#define MATPLOT_IMAGE_DATASIZE  39
 
 #endif

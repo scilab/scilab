@@ -36,14 +36,15 @@ public class ScilabSparse implements ScilabType {
 
     private static final int VERSION = 0;
 
-    private int rows;
-    private int cols;
-    private int nbItem;
-    private int[] nbItemRow;
-    private int[] colPos;
-    private double[] realPart;
-    private double[] imaginaryPart;
-    private String varName;
+    protected int rows;
+    protected int cols;
+    protected int nbItem;
+    protected int[] nbItemRow;
+    protected int[] colPos;
+    protected double[] realPart;
+    protected double[] imaginaryPart;
+    protected String varName;
+    protected boolean byref;
 
     /**
      * Default constructor
@@ -356,6 +357,13 @@ public class ScilabSparse implements ScilabType {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public boolean isReference() {
+        return false;
+    }
+
+    /**
      * Return the type of Scilab
      *
      * @return the type of Scilab
@@ -382,7 +390,232 @@ public class ScilabSparse implements ScilabType {
      * @return true, if the data are real only.
      */
     public boolean isReal() {
-        return (imaginaryPart == null);
+        return imaginaryPart == null;
+    }
+
+    /**
+     * Get the element in column position
+     * @param i the position
+     * @return the column position
+     */
+    public int getColPosElement(final int i) {
+        return colPos[i];
+    }
+
+    /**
+     * Set the element in column position
+     * @param i the position
+     * @param x the column position
+     */
+    public void setColPosElement(final int i, final int x) {
+        colPos[i] = x;
+    }
+
+    /**
+     * Get the number of non-null item in row i
+     * @param i the row
+     * @return the number of non-null items
+     */
+    public int getNbItemElement(final int i) {
+        return nbItemRow[i];
+    }
+
+    /**
+     * Set the number of non-null item in row i
+     * @param i the row
+     * @param x the number of non-null items
+     */
+    public void setNbItemElement(final int i, final int x) {
+        nbItemRow[i] = x;
+    }
+
+    /**
+     * Get the real element at position i
+     * @param i the position
+     * @return a real
+     */
+    public double getRealElement(final int i) {
+        return realPart[i];
+    }
+
+    /**
+     * Get the real element at position (i, j) in the sparse matrix
+     * @param i the row index
+     * @param j the column index
+     * @return a real
+     */
+    public double getRealElement(final int i, final int j) {
+        if (getNbItemElement(i) == 0) {
+            return 0;
+        }
+
+        int prev = 0;
+        for (int k = 0; k < i; k++) {
+            prev += getNbItemElement(k);
+        }
+
+        for (int k = prev; k < prev + getNbItemElement(i); k++) {
+            if (getColPosElement(k) == j) {
+                return getRealElement(k);
+            }
+        }
+
+        return 0;
+    }
+
+    /**
+     * Get the imaginary element at position i
+     * @param i the position
+     * @return a real
+     */
+    public double getImaginaryElement(final int i) {
+        return imaginaryPart[i];
+    }
+
+    /**
+     * Get the imanginary element at position (i, j) in the sparse matrix
+     * @param i the row index
+     * @param j the column index
+     * @return a real
+     */
+    public double getImaginaryElement(final int i, final int j) {
+        if (getNbItemElement(i) == 0) {
+            return 0;
+        }
+
+        int prev = 0;
+        for (int k = 0; k < i; k++) {
+            prev += getNbItemElement(k);
+        }
+
+        for (int k = prev; k < prev + getNbItemElement(i); k++) {
+            if (getColPosElement(k) == j) {
+                return getImaginaryElement(k);
+            }
+        }
+
+        return 0;
+    }
+
+    /**
+     * Get the real and imaginary elements at position i
+     * @param i the position
+     * @return a 2-array containing real and imaginary part
+     */
+    public double[] getElement(final int i) {
+        if (isReal()) {
+            return new double[] {realPart[i], 0};
+        } else {
+            return new double[] {realPart[i], imaginaryPart[i]};
+        }
+    }
+
+    /**
+     * Get the real and imanginary element at position (i, j) in the sparse matrix
+     * @param i the row index
+     * @param j the column index
+     * @return a 2-array containing real and imaginary parts
+     */
+    public double[] getElement(final int i, final int j) {
+        if (isReal()) {
+            return new double[] {getRealElement(i, j), 0};
+        } else {
+            if (getNbItemElement(i) == 0) {
+                return new double[] {0, 0};
+            }
+
+            int prev = 0;
+            for (int k = 0; k < i; k++) {
+                prev += getNbItemElement(k);
+            }
+
+            for (int k = prev; k < prev + getNbItemElement(i); k++) {
+                if (getColPosElement(k) == j) {
+                    return new double[] {getRealElement(k), getImaginaryElement(k)};
+                }
+            }
+
+            return new double[] {0, 0};
+        }
+    }
+
+    /**
+     * Set the real element at position i
+     * @param i the position
+     * @param x the value to set
+     */
+    public void setRealElement(final int i, final double x) {
+        realPart[i] = x;
+    }
+
+    /**
+     * Set the real element at position (i, j) in sparse matrix
+     * Take care only an already non-null element can be set
+     * @param i the row index
+     * @param j the column index
+     * @param x the value to set
+     */
+    public void setRealElement(final int i, final int j, final double x) {
+        if (getNbItemElement(i) == 0) {
+            return;
+        }
+
+        int prev = 0;
+        for (int k = 0; k < i; k++) {
+            prev += getNbItemElement(k);
+        }
+
+        for (int k = prev; k < prev + getNbItemElement(i); k++) {
+            if (getColPosElement(k) == j) {
+                setRealElement(k, x);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Set the imaginary element at position i
+     * @param i the position
+     * @param x the value to set
+     */
+    public void setImaginaryElement(final int i, final double x) {
+        imaginaryPart[i] = x;
+    }
+
+    /**
+     * Set the imaginary element at position (i, j) in sparse matrix
+     * Take care only an already non-null element can be set
+     * @param i the row index
+     * @param j the column index
+     * @param x the value to set
+     */
+    public void setImaginaryElement(final int i, final int j, final double x) {
+        if (getNbItemElement(i) == 0) {
+            return;
+        }
+
+        int prev = 0;
+        for (int k = 0; k < i; k++) {
+            prev += getNbItemElement(k);
+        }
+
+        for (int k = prev; k < prev + getNbItemElement(i); k++) {
+            if (getColPosElement(k) == j) {
+                setImaginaryElement(k, x);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Set the real and imaginary elements at position i
+     * @param i the position
+     * @param x the real part to set
+     * @param y the imaginary part to set
+     */
+    public void setElement(final int i, final double x, final double y) {
+        setRealElement(i, x);
+        setImaginaryElement(i, y);
     }
 
     /**
@@ -602,6 +835,14 @@ public class ScilabSparse implements ScilabType {
     public boolean equals(Object obj) {
         if (obj instanceof ScilabSparse) {
             ScilabSparse sciSparse = (ScilabSparse) obj;
+            if (isEmpty() && sciSparse.isEmpty()) {
+                return true;
+            }
+
+            if (this.getWidth() != sciSparse.getWidth() || this.getHeight() != sciSparse.getHeight()) {
+                return false;
+            }
+
             if (this.getNbNonNullItems() == sciSparse.getNbNonNullItems() && compareNbItemRow(this.getNbItemRow(), sciSparse.getNbItemRow())
                     && Arrays.equals(this.getColPos(), sciSparse.getColPos())) {
                 if (this.isReal() && sciSparse.isReal()) {
@@ -667,9 +908,9 @@ public class ScilabSparse implements ScilabType {
      */
     public Object getSerializedObject() {
         if (isReal()) {
-            return new Object[] { new int[] { getHeight(), getWidth() }, nbItemRow, getScilabColPos(), realPart };
+            return new Object[] { new int[] { getHeight(), getWidth() }, getNbItemRow(), getScilabColPos(), getRealPart() };
         } else {
-            return new Object[] { new int[] { getHeight(), getWidth() }, nbItemRow, getScilabColPos(), realPart, imaginaryPart };
+            return new Object[] { new int[] { getHeight(), getWidth() }, getNbItemRow(), getScilabColPos(), getRealPart(), getImaginaryPart() };
         }
     }
 
@@ -717,13 +958,14 @@ public class ScilabSparse implements ScilabType {
         StringBuilder result = new StringBuilder();
 
         if (isEmpty()) {
-            result.append("[]");
-            return result.toString();
+            return "[]";
         }
 
         result.append("sparse([");
         int j = 0;
         int prev = 0;
+        int[] nbItemRow = getNbItemRow();
+        int[] colPos = getColPos();
         for (int i = 0; i < nbItemRow.length; i++) {
             for (; j < prev + nbItemRow[i]; j++) {
                 result.append(Integer.toString(i + 1));
@@ -737,14 +979,16 @@ public class ScilabSparse implements ScilabType {
         }
 
         result.append("], [");
+        boolean real = isReal();
         for (int i = 0; i < nbItem; i++) {
-            if (isReal()) {
-                result.append(Double.toString(realPart[i]));
-            } else {
-                result.append(Double.toString(realPart[i]));
-                if (imaginaryPart[i] != 0) {
-                    result.append("+");
-                    result.append(Double.toString(imaginaryPart[i]));
+            result.append(Double.toString(getRealElement(i)));
+            if (!real) {
+                final double y = getImaginaryElement(i);
+                if (y != 0) {
+                    if (y > 0) {
+                        result.append("+");
+                    }
+                    result.append(Double.toString(y));
                     result.append("*%i");
                 }
             }

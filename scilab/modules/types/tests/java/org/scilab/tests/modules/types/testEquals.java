@@ -199,7 +199,7 @@ public class testEquals {
         assertTrue(emptyMatrix.getHeight() == 0);
         assertTrue(emptyMatrix.getWidth() == 0);
         assertTrue(emptyMatrix.isEmpty() == true);
-        assertTrue(emptyMatrix.toString().equals("int([])") == true);
+        assertTrue(emptyMatrix.toString().equals("[]") == true);
         assertTrue(emptyMatrix.getType() == ScilabTypeEnum.sci_ints);
         emptyMatrix.setData(a, true);
         assertTrue(emptyMatrix.getType() == ScilabTypeEnum.sci_ints);

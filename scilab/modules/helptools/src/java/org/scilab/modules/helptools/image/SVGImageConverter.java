@@ -16,29 +16,24 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringReader;
 import java.util.Map;
 
-import org.apache.batik.transcoder.TranscoderException;
 import org.apache.batik.transcoder.TranscoderInput;
 import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.Transcoder;
 import org.apache.batik.transcoder.image.ImageTranscoder;
 import org.apache.batik.transcoder.image.PNGTranscoder;
-
-import org.scilab.modules.helptools.HTMLDocbookTagConverter;
+import org.scilab.modules.helptools.DocbookTagConverter;
 
 /**
  * SVG to PNG converter
  */
 public class SVGImageConverter implements ExternalImageConverter {
+    private final DocbookTagConverter conv;
 
-    private static SVGImageConverter instance;
-    private final HTMLDocbookTagConverter conv;
-
-    private SVGImageConverter(HTMLDocbookTagConverter conv) {
+    public SVGImageConverter(DocbookTagConverter conv) {
         this.conv = conv;
     }
 
@@ -57,22 +52,10 @@ public class SVGImageConverter implements ExternalImageConverter {
     }
 
     /**
-     * Since this a singleton class...
-     * @return this
-     */
-    public static ExternalImageConverter getInstance(HTMLDocbookTagConverter conv) {
-        if (instance == null) {
-            instance = new SVGImageConverter(conv);
-        }
-
-        return instance;
-    }
-
-    /**
      * {@inheritDoc}
      */
     public String convertToImage(String currentFile, String svg, Map<String, String> attributes, File imageFile, String imageName) {
-        return convertToPNG(new TranscoderInput(new StringReader(svg)), imageFile, imageName);
+        return convertToPNG(new TranscoderInput(new StringReader(svg)), attributes, imageFile, imageName);
     }
 
     /**
@@ -80,7 +63,7 @@ public class SVGImageConverter implements ExternalImageConverter {
      */
     public String convertToImage(File svg, Map<String, String> attributes, File imageFile, String imageName) {
         try {
-            return convertToPNG(new TranscoderInput(new FileInputStream(svg)), imageFile, conv.getBaseImagePath() + imageName);
+            return convertToPNG(new TranscoderInput(new FileInputStream(svg)), attributes, imageFile, conv.getBaseImagePath() + imageName);
         } catch (FileNotFoundException e) {
             System.err.println("Problem when exporting SVG to " + imageFile + "!\n" + e.toString());
         }
@@ -91,7 +74,7 @@ public class SVGImageConverter implements ExternalImageConverter {
     /**
      * Make really the conversion from svg to png
      */
-    private static String convertToPNG(TranscoderInput input, File imageFile, String imageName) {
+    private String convertToPNG(TranscoderInput input, Map<String, String> attributes, File imageFile, String imageName) {
         Transcoder trans = new PNGTranscoder();
         trans.addTranscodingHint(ImageTranscoder.KEY_FORCE_TRANSPARENT_WHITE, Boolean.TRUE);
 
@@ -101,7 +84,7 @@ public class SVGImageConverter implements ExternalImageConverter {
             trans.transcode(input, output);
             os.flush();
             os.close();
-            return "<img src=\'" + imageName + "\'/>";
+            return conv.generateImageCode(conv.getBaseImagePath() + imageName, attributes);
         } catch (Exception e) {
             System.err.println("Problem when exporting SVG to " + imageFile + "!\n" + e.toString());
         }

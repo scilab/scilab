@@ -112,4 +112,67 @@ int sciReturnStringMatrix(void* _pvCtx, char * values[], int nbRow, int nbCol ) 
  */
 int sciReturnUserData(void* _pvCtx, const int * userData, int userDataSize ) ;
 
+/**
+ * copy a matrix stored has a double hypermatrix
+ * into a Scilab matrix in the stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occurred.
+ */
+int sciReturnHypermatOfDouble(void* _pvCtx, int dims[], int ndims, double values[]);
+
+/**
+ * copy a matrix stored has a int8 hypermatrix
+ * into a Scilab matrix in the stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occurred.
+ */
+int sciReturnHypermatOfInteger8(void* _pvCtx, int dims[], int ndims, char values[]);
+
+/**
+ * copy a matrix stored has a uint8 hypermatrix
+ * into a Scilab matrix in the stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occurred.
+ */
+int sciReturnHypermatOfUnsignedInteger8(void* _pvCtx, int dims[], int ndims, unsigned char values[]);
+
+/**
+ * copy a matrix stored has a int8 array
+ * into a Scilab matrix in the stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occurred.
+ */
+int sciReturnMatrixOfInteger8(void* _pvCtx, char values[], int nbRow, int nbCol);
+
+/**
+ * copy a matrix stored has a uint8 array
+ * into a Scilab matrix in the stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occurred.
+ */
+int sciReturnMatrixOfUnsignedInteger8(void* _pvCtx, unsigned char values[], int nbRow, int nbCol);
+
+/**
+ * copy a matrix stored has a int16 array
+ * into a Scilab matrix in the stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occurred.
+ */
+int sciReturnMatrixOfInteger16(void* _pvCtx, short values[], int nbRow, int nbCol);
+
+/**
+ * copy a matrix stored has a uint16 array
+ * into a Scilab matrix in the stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occurred.
+ */
+int sciReturnMatrixOfUnsignedInteger16(void* _pvCtx, unsigned short values[], int nbRow, int nbCol);
+
+/**
+ * copy a matrix stored has a int32 array
+ * into a Scilab matrix in the stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occurred.
+ */
+int sciReturnMatrixOfInteger32(void* _pvCtx, int values[], int nbRow, int nbCol);
+
+/**
+ * copy a matrix stored has a uint32 array
+ * into a Scilab matrix in the stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occurred.
+ */
+int sciReturnMatrixOfUnsignedInteger32(void* _pvCtx, unsigned int values[], int nbRow, int nbCol);
+
 #endif /* _RETURN_PROPERTY_H_ */

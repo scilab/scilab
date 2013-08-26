@@ -52,6 +52,9 @@ public class ScilabConstants {
     /** Escape double quote symbol */
     public static final char QUOTE = '\"';
 
+    /** 2 is for GUI **/
+    public static int mode;
+
     /*
      * Static constructor
      */
@@ -78,5 +81,13 @@ public class ScilabConstants {
 
     /** This class is a static singleton, thus it must not be instantiated */
     protected ScilabConstants() { }
+
+    public static void setMode(int mode) {
+        ScilabConstants.mode = mode;
+    }
+
+    public static boolean isGUI() {
+        return ScilabConstants.mode == 2;
+    }
 
 }

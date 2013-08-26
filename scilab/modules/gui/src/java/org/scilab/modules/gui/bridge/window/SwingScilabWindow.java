@@ -494,13 +494,14 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
         if (newMenuBar == null) {
             if (this.menuBar != null) {
                 this.menuBar = null;
-                super.setJMenuBar(null);
+                setJMenuBar(null);
             }
             // else nothing to do both are null
         } else {
             if (this.menuBar != newMenuBar.getAsSimpleMenuBar()) {
                 this.menuBar = newMenuBar.getAsSimpleMenuBar();
-                super.setJMenuBar((SwingScilabMenuBar) newMenuBar.getAsSimpleMenuBar());
+
+                setJMenuBar((SwingScilabMenuBar) newMenuBar.getAsSimpleMenuBar());
             }
             //  else nothing to do element alredy set
         }

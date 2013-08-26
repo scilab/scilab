@@ -230,52 +230,23 @@ extern "C"
 
         try
         {
-            if (exportFormat == "javaHelp" || exportFormat == "html" || exportFormat == "chm" || exportFormat == "web")
-            {
-                org_scilab_modules_helptools::SciDocMain * doc = new org_scilab_modules_helptools::SciDocMain(getScilabJavaVM());
+            org_scilab_modules_helptools::SciDocMain * doc = new org_scilab_modules_helptools::SciDocMain(getScilabJavaVM());
 
-                if (doc->setOutputDirectory((char *)outputDirectory.c_str()))
-                {
-                    doc->setWorkingLanguage((char *)language.c_str());
-                    doc->setExportFormat((char *)exportFormat.c_str());
-                    doc->setIsToolbox(Rhs == 4);
-                    fileToExec = doc->process((char *)masterXML.c_str(), (char *)styleSheet.c_str());
-                }
-                else
-                {
-                    Scierror(999, _("%s: Could find or create the working directory %s.\n"), fname, outputDirectory.c_str());
-                    return FALSE;
-                }
-                if (doc != NULL)
-                {
-                    delete doc;
-                }
-
-            }
-            else if (exportFormat == "jar-only")
+            if (doc->setOutputDirectory((char *)outputDirectory.c_str()))
             {
-                org_scilab_modules_helptools::SciDocMain::generateJavahelp(getScilabJavaVM(), (char *)outputDirectory.c_str(), (char *)language.c_str(), Rhs == 4);
+                doc->setWorkingLanguage((char *)language.c_str());
+                doc->setExportFormat((char *)exportFormat.c_str());
+                doc->setIsToolbox(Rhs == 4);
+                fileToExec = doc->process((char *)masterXML.c_str(), (char *)styleSheet.c_str());
             }
             else
             {
-                org_scilab_modules_helptools::BuildDocObject * doc = new org_scilab_modules_helptools::BuildDocObject(getScilabJavaVM());
-
-                if (doc->setOutputDirectory((char *)outputDirectory.c_str()))
-                {
-                    doc->setWorkingLanguage((char *)language.c_str());
-                    doc->setExportFormat((char *)exportFormat.c_str());
-                    doc->process((char *)masterXML.c_str(), (char *)styleSheet.c_str());
-                }
-                else
-                {
-                    Scierror(999, _("%s: Could find or create the working directory %s.\n"), fname, outputDirectory.c_str());
-                    return FALSE;
-                }
-                if (doc != NULL)
-                {
-                    delete doc;
-                }
-
+                Scierror(999, _("%s: Could find or create the working directory %s.\n"), fname, outputDirectory.c_str());
+                return FALSE;
+            }
+            if (doc != NULL)
+            {
+                delete doc;
             }
         }
         catch (GiwsException::JniException ex)

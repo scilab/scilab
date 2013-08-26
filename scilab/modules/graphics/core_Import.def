@@ -38,6 +38,15 @@ sciReturnRowVector
 sciReturnStringMatrix
 sciReturnString
 sciReturnUserData
+sciReturnMatrixOfUnsignedInteger32
+sciReturnMatrixOfInteger32
+sciReturnMatrixOfUnsignedInteger16
+sciReturnMatrixOfInteger16
+sciReturnMatrixOfUnsignedInteger8
+sciReturnMatrixOfInteger8
+sciReturnHypermatOfDouble
+sciReturnHypermatOfUnsignedInteger8
+sciReturnHypermatOfInteger8
 stack_
 vartype_
 vstk_

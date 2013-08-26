@@ -39,7 +39,7 @@ then
     echo "  git config --add xmlindent.ignored 'scilab/Visual-Studio-settings/*.xml' "
     echo "  git config --add xmlindent.ignored 'scilab/checkstyle/*.xml' "
     echo
-    
+
     XMLINDENT_IGNORED=""
 else
     XMLINDENT_IGNORED="$(find $(git config --get-all xmlindent.ignored))"
@@ -77,9 +77,9 @@ then
     echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/MatchingBlockScanner.java' "
     echo "  git config --add astyle.ignored 'scilab/modules/scinotes/src/java/org/scilab/modules/scinotes/ScilabLexer.java' "
     echo "  git config --add astyle.ignored 'scilab/modules/scicos/src/scicos_sundials/*' "
-    
+
     echo
-    
+
     ASTYLE_IGNORED=""
 else
     ASTYLE_IGNORED="$(find $(git config --get-all astyle.ignored))"
@@ -97,55 +97,34 @@ indent() {
         local against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
     fi
 
-    # loop on modified files
-    git diff --cached --name-only $against |while read file;
-    do
-        local ext=$(expr "$file" : ".*\(\..*\)")
-        case $ext in
-        .xcos|.xml|.xsl)
-            __indent_xml;
-        ;;
-        .h|.c|.hxx|.cpp)
-            __indent_C;
-        ;;
-        .java)
-            __indent_java;
-        ;;
-        .sce|.sci)
-            __indent_scilab;
-        ;;
-        esac
-    done
+    # get the modified files per kind filtering out ignored files and call the
+    # __indent_XXX helper
+
+    FILES=$(git diff --cached --name-only $against |grep -E "\.(xcos|xml|xsl)$" |grep -v -F "$XMLINDENT_IGNORED")
+    [ -z "$FILES" ] || __indent_xml;
+
+    FILES=$(git diff --cached --name-only $against |grep -E "\.(h|c|hxx|cpp)$" |grep -v -F "$ASTYLE_IGNORED")
+    [ -z "$FILES" ] || __indent_C;
+
+    FILES=$(git diff --cached --name-only $against |grep -E "\.java$" |grep -v -F "$ASTYLE_IGNORED")
+    [ -z "$FILES" ] || __indent_java;
+
+    FILES=$(git diff --cached --name-only $against |grep -E "\.(sce|sci|tst)$")
+    [ -z "$FILES" ] || __indent_scilab;
 
     return 0;
 }
 
 # Indent the file with xmlindent if this is an xcos file
 __indent_xml() {
-
     if test ! -x "$XMLINDENT"
     then
         return 1;
     fi
-    if test ! -f $file
-    then
-        return 2;
-    fi
 
-    # ignored globs
-    if test -n "$XMLINDENT_IGNORED"
-    then
-        echo $XMLINDENT_IGNORED |grep -q $file
-        if test $? -eq 0
-        then
-            echo "Formatting" $file    ": ignored"
-            return 3;
-        fi
-    fi
-
-    echo "Formatting" $file
-    "$XMLINDENT" -w -i 4 "$file" || return 4;
-    git add "$file" || return 5;
+    echo "Formatting" "$FILES"
+    "$XMLINDENT" -w -i 4 $FILES || return 2;
+    git add $FILES || return 3;
 }
 
 # Pre process before the indent
@@ -154,29 +133,14 @@ __pre_indent() {
     then
         return 1;
     fi
-    if test ! -f $file
-    then
-        return 2;
-    fi
 
-    # ignored globs
-    if test -n "$ASTYLE_IGNORED"
-    then
-        echo $ASTYLE_IGNORED |grep -q "$file"
-        if test $? -eq 0
-        then
-            echo "Indenting" $file    ": ignored"
-            return 3;
-        fi
-    fi
-
-    echo "Indenting" $file
+    echo "Indenting" $FILES
     return 0;
 }
 
 # post process after the indent
 __post_indent() {
-    git add "$file"
+    git add $FILES
 }
 
 COMMON_ASTYLE_ARGS="--pad-header --suffix=none --pad-oper --indent-col1-comments --indent-switches --indent=spaces=4 --add-brackets --formatted"
@@ -184,7 +148,7 @@ COMMON_ASTYLE_ARGS="--pad-header --suffix=none --pad-oper --indent-col1-comments
 # Indent the file with `astyle' if this is a C/CPP file
 __indent_C() {
     __pre_indent || return 1
-    $ASTYLE $COMMON_ASTYLE_ARGS --style=bsd "$file" || return 2
+    $ASTYLE $COMMON_ASTYLE_ARGS --style=bsd $FILES || return 2
     __post_indent || return 3
     return 0
 }
@@ -192,7 +156,7 @@ __indent_C() {
 # Indent the file with `astyle' if this is a Java file
 __indent_java() {
     __pre_indent || return 1
-    $ASTYLE $COMMON_ASTYLE_ARGS --style=java "$file" || return 2
+    $ASTYLE $COMMON_ASTYLE_ARGS --style=java $FILES || return 2
     __post_indent || return 3
     return 0
 }
@@ -200,20 +164,30 @@ __indent_java() {
 # Indent the file with `scinotes' if this is a Scilab file
 __indent_scilab() {
     __pre_indent || return 1
+
+    TMPFILE="scinotes_indent.sce"
+    echo "files = [" >$TMPFILE
+    printf "'%s'\n" $FILES >>$TMPFILE
+    echo "];" >>$TMPFILE
+
+    echo "scinotes(files, ['indent','trailing','quote'])" >>$TMPFILE
+    echo "exit(0)" >>$TMPFILE
+
     if test -f scilab/scilab-bin; then
-        scilab/bin/scinotes -indent "$file" || return 2
+        scilab/bin/scilab -nw -f $TMPFILE || return 2
     else
         if test -f scilab/bin/WScilex.exe; then
-            scilab/bin/scilex.exe -e "scinotes('$file', ['indent','trailing','quote'])" || return 2
+            scilab/bin/scilex.exe -f $TMPFILE || return 2
         else
             echo "Scilab has not been built."
+            rm $TMPFILE
             return 4
         fi
     fi
+    rm $TMPFILE
 
     __post_indent || return 3
     return 0
 }
 
 indent
-

@@ -179,7 +179,7 @@
     <refsection id="Example_MIN_f">
         <title>Exemple</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/mathoperations_pal/MIN_f_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/MIN_f_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/mathoperations_pal/MIN_f_Example.zcos" valign="middle"/>

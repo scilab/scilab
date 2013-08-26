@@ -65,6 +65,13 @@ void getGraphicObjectProperty(char const* _pstID, int _iName, _ReturnType_ _retu
             || _iName == __GO_DATA_MODEL_Y_DIMENSIONS__
             || _iName == __GO_DATA_MODEL_MATPLOT_BOUNDS__
             || _iName == __GO_DATA_MODEL_MATPLOT_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_DATA_INFOS__
+            || _iName == __GO_DATA_MODEL_MATPLOT_DATA_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_DATA_ORDER__
+            || _iName == __GO_DATA_MODEL_MATPLOT_GL_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__
+            || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_DATASIZE__
        )
     {
         DataController::getGraphicObjectProperty(_pstID, _iName, _pvData);
@@ -166,6 +173,13 @@ void releaseGraphicObjectProperty(int _iName, void * _pvData, enum _ReturnType_ 
             || _iName == __GO_DATA_MODEL_Y_DIMENSIONS__
             || _iName == __GO_DATA_MODEL_MATPLOT_BOUNDS__
             || _iName == __GO_DATA_MODEL_MATPLOT_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_DATA_INFOS__
+            || _iName == __GO_DATA_MODEL_MATPLOT_DATA_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_DATA_ORDER__
+            || _iName == __GO_DATA_MODEL_MATPLOT_GL_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__
+            || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__
+            || _iName == __GO_DATA_MODEL_MATPLOT_IMAGE_DATASIZE__
        )
     {
         // passed by reference, do not free them

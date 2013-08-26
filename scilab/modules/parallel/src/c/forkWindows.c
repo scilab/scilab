@@ -74,28 +74,6 @@ typedef struct _THREAD_BASIC_INFORMATION
     KPRIORITY               BasePriority;
 } THREAD_BASIC_INFORMATION, *PTHREAD_BASIC_INFORMATION;
 /*--------------------------------------------------------------------------*/
-typedef enum _THREAD_INFORMATION_CLASS
-{
-    ThreadBasicInformation,
-    ThreadTimes,
-    ThreadPriority,
-    ThreadBasePriority,
-    ThreadAffinityMask,
-    ThreadImpersonationToken,
-    ThreadDescriptorTableEntry,
-    ThreadEnableAlignmentFaultFixup,
-    ThreadEventPair,
-    ThreadQuerySetWin32StartAddress,
-    ThreadZeroTlsCell,
-    ThreadPerformanceCount,
-    ThreadAmILastThread,
-    ThreadIdealProcessor,
-    ThreadPriorityBoost,
-    ThreadSetTlsArrayAddress,
-    ThreadIsIoPending,
-    ThreadHideFromDebugger
-} THREAD_INFORMATION_CLASS, *PTHREAD_INFORMATION_CLASS;
-/*--------------------------------------------------------------------------*/
 typedef enum _SYSTEM_INFORMATION_CLASS { SystemHandleInformation = 0x10 } SYSTEM_INFORMATION_CLASS;
 /*--------------------------------------------------------------------------*/
 typedef NTSTATUS (NTAPI *ZwWriteVirtualMemory_t)(IN HANDLE               ProcessHandle,
@@ -172,7 +150,7 @@ static int child_entry(void)
 /*--------------------------------------------------------------------------*/
 static BOOL haveLoadedFunctionsForFork(void)
 {
-    HANDLE ntdll = GetModuleHandle("ntdll");
+    HMODULE ntdll = GetModuleHandle("ntdll");
     if (ntdll == NULL)
     {
         return FALSE;
@@ -270,9 +248,9 @@ int fork(void)
     ZwCreateThread(&hThread, THREAD_ALL_ACCESS, &oa, hProcess, &cid, &context, &stack, TRUE);
 
     /* copy exception table */
-    ZwQueryInformationThread(NtCurrentThread(), ThreadBasicInformation, &tbi, sizeof tbi, 0);
+    ZwQueryInformationThread(NtCurrentThread(), ThreadMemoryPriority, &tbi, sizeof tbi, 0);
     tib = (PNT_TIB)tbi.TebBaseAddress;
-    ZwQueryInformationThread(hThread, ThreadBasicInformation, &tbi, sizeof tbi, 0);
+    ZwQueryInformationThread(hThread, ThreadMemoryPriority, &tbi, sizeof tbi, 0);
     ZwWriteVirtualMemory(hProcess, tbi.TebBaseAddress, &tib->ExceptionList, sizeof tib->ExceptionList, 0);
 
     /* start (resume really) the child */

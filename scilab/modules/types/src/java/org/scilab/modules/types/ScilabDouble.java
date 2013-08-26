@@ -47,10 +47,11 @@ public class ScilabDouble implements ScilabType {
 
     private static final int VERSION = 0;
 
-    private double[][] realPart;
-    private double[][] imaginaryPart;
-    private String varName;
-    private boolean swaped;
+    protected double[][] realPart;
+    protected double[][] imaginaryPart;
+    protected String varName;
+    protected boolean swaped;
+    transient protected boolean byref;
 
     /**
      * Default constructor
@@ -155,6 +156,13 @@ public class ScilabDouble implements ScilabType {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public boolean isReference() {
+        return byref;
+    }
+
+    /**
      * Check if the current data doesn't have an imaginary part.
      *
      * @return true, if the data are real only.
@@ -216,6 +224,84 @@ public class ScilabDouble implements ScilabType {
     }
 
     /**
+     * Get the element at position (i, j) in the real part
+     * @param i the first coordinate
+     * @param j the second coordinate
+     * @return the corresponding double
+     */
+    public double getRealElement(final int i, final int j) {
+        return realPart[i][j];
+    }
+
+    /**
+     * Get the element at position (i, j) in the imaginary part
+     * @param i the first coordinate
+     * @param j the second coordinate
+     * @return the corresponding double
+     */
+    public double getImaginaryElement(final int i, final int j) {
+        return imaginaryPart[i][j];
+    }
+
+    /**
+     * Get the complex at position (i, j) as a 2-length row-vector
+     * @param i the first coordinate
+     * @param j the second coordinate
+     * @return the corresponding complex
+     */
+    public double[] getElement(final int i, final int j) {
+        return new double[] {getRealElement(i, j), getImaginaryElement(i, j)};
+    }
+
+    /**
+     * Set the element at position (i, j) in the real part
+     * @param i the first coordinate
+     * @param j the second coordinate
+     * @param x the new value
+     */
+    public void setRealElement(final int i, final int j, final double x) {
+        realPart[i][j] = x;
+    }
+
+    /**
+     * Set the element at position (i, j) in the imaginary part
+     * @param i the first coordinate
+     * @param j the second coordinate
+     * @param x the new value
+     */
+    public void setImaginaryElement(final int i, final int j, final double x) {
+        imaginaryPart[i][j] = x;
+    }
+
+    /**
+     * Set the element at position (i, j)
+     * @param i the first coordinate
+     * @param j the second coordinate
+     * @param x the new value for real part
+     * @param y the new value for imaginary part
+     */
+    public void setElement(final int i, final int j, final double x, final double y) {
+        realPart[i][j] = x;
+        imaginaryPart[i][j] = y;
+    }
+
+    /**
+     * Get the raw data
+     * @return the real part
+     */
+    public Object getRawRealPart() {
+        return realPart;
+    }
+
+    /**
+     * Get the raw data
+     * @return the imaginary part
+     */
+    public Object getRawImaginaryPart() {
+        return imaginaryPart;
+    }
+
+    /**
      * Get complex matrix as a serialized form
      *
      * @return the serialized matrix with complex values
@@ -225,8 +311,8 @@ public class ScilabDouble implements ScilabType {
         double[] serializedComplexMatrix = new double[size * 2];
         for (int i = 0; i < this.getHeight(); i++) {
             for (int j = 0; j < this.getWidth(); j++) {
-                serializedComplexMatrix[j * this.getHeight() + i] = realPart[i][j];
-                serializedComplexMatrix[size + j * this.getHeight() + i] = imaginaryPart[i][j];
+                serializedComplexMatrix[j * this.getHeight() + i] = getRealElement(i, j);
+                serializedComplexMatrix[size + j * this.getHeight() + i] = getImaginaryElement(i, j);
             }
         }
 
@@ -238,9 +324,9 @@ public class ScilabDouble implements ScilabType {
      */
     public Object getSerializedObject() {
         if (isReal()) {
-            return new Object[] { realPart };
+            return new Object[] { getRealPart() };
         } else {
-            return new Object[] { realPart, imaginaryPart };
+            return new Object[] { getRealPart(), getImaginaryPart() };
         }
     }
 
@@ -275,21 +361,25 @@ public class ScilabDouble implements ScilabType {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof ScilabDouble) {
-            ScilabDouble sciDouble = ((ScilabDouble) obj);
+            ScilabDouble sciDouble = (ScilabDouble) obj;
             if (isEmpty() && sciDouble.isEmpty()) {
                 return true;
             }
 
-            if (this.isReal() && sciDouble.isReal()) {
-                return Arrays.deepEquals(this.getRealPart(), sciDouble.getRealPart());
-            } else {
-                /* Complex */
-                return Arrays.deepEquals(this.getRealPart(), sciDouble.getRealPart())
-                       && Arrays.deepEquals(this.getImaginaryPart(), sciDouble.getImaginaryPart());
+            if (this.getWidth() != sciDouble.getWidth() || this.getHeight() != sciDouble.getHeight()) {
+                return false;
             }
-        } else {
-            return false;
+
+            if (this.isReal() && sciDouble.isReal()) {
+                return ScilabTypeUtils.equalsDouble(this.getRawRealPart(), this.isSwaped(), sciDouble.getRawRealPart(), sciDouble.isSwaped());
+            } else if (!this.isReal() && !sciDouble.isReal()) {
+                /* Complex */
+                return ScilabTypeUtils.equalsDouble(this.getRawRealPart(), this.isSwaped(), sciDouble.getRawRealPart(), sciDouble.isSwaped())
+                       && ScilabTypeUtils.equalsDouble(this.getRawImaginaryPart(), this.isSwaped(), sciDouble.getRawImaginaryPart(), sciDouble.isSwaped());
+            }
         }
+
+        return false;
     }
 
     @Override
@@ -310,8 +400,8 @@ public class ScilabDouble implements ScilabType {
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeInt(VERSION);
-        out.writeObject(realPart);
-        out.writeObject(imaginaryPart);
+        out.writeObject(getRealPart());
+        out.writeObject(getImaginaryPart());
         out.writeObject(varName);
         out.writeBoolean(swaped);
     }
@@ -332,15 +422,19 @@ public class ScilabDouble implements ScilabType {
         }
 
         result.append("[");
+        final boolean real = isReal();
         for (int i = 0; i < getHeight(); ++i) {
             for (int j = 0; j < getWidth(); ++j) {
-                if (isReal()) {
-                    result.append(Double.toString(realPart[i][j]));
-                } else {
-                    result.append(Double.toString(realPart[i][j]));
-                    result.append(" + ");
-                    result.append(Double.toString(imaginaryPart[i][j]));
-                    result.append(" * %i");
+                result.append(Double.toString(getRealElement(i, j)));
+                if (!real) {
+                    final double y = getImaginaryElement(i, j);
+                    if (y != 0) {
+                        if (y > 0) {
+                            result.append(" + ");
+                        }
+                        result.append(Double.toString(y));
+                        result.append(" * %i");
+                    }
                 }
                 if (j != getWidth() - 1) {
                     result.append(", ");
@@ -354,5 +448,4 @@ public class ScilabDouble implements ScilabType {
 
         return result.toString();
     }
-
 }

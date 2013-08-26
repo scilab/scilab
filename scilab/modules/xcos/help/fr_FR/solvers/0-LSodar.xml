@@ -77,7 +77,7 @@
     <refsection>
         <title>Exemples</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/ODE_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/ODE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.zcos" valign="middle"/>

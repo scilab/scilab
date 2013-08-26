@@ -1,6 +1,7 @@
 #! /bin/sh
 ##  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 ##  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+##  Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
 ##
 ##  This file must be used under the terms of the CeCILL.
 ##  This source file is licensed as described in the file COPYING, which
@@ -31,42 +32,31 @@ main()
 
 generateJavaFile()
 {
-    if test "$PropertiesFile" -ot "$OutFile"; then
-        exit 0
-    fi
-	echo "-- Building includes/graphicObjectProperties.h --"
+    echo "-- Building includes/graphicObjectProperties.java --"
     generateHeader
     echo "package org.scilab.modules.graphic_objects.graphicObject;" >> $OutFile
     echo ""  >> $OutFile
     echo "public class GraphicObjectProperties {" >> $OutFile
     echo ""  >> $OutFile
 
-    sed -e "s/@DECLARE@/    public static final int/g" \
-        -e "s/@EQUAL@/=/g" \
-        -e "s/ @END@/;/g" $PropertiesFile >> $OutFile
+    awk 'BEGIN {num=0} (NF > 0) {printf "    public static final int %s = %d;\n", $1, num; num++}' < $PropertiesFile >> $OutFile
 
     echo ""  >> $OutFile
     echo "}"  >> $OutFile
-
 }
 
 generateCFile()
 {
-    if test "$PropertiesFile" -ot "$OutFile"; then
-        exit 0
-    fi
-    echo "-- Building GraphicObjectProperties.java --"
-     generateHeader
-     echo "#ifndef  __GRAPHIC_OBJECT_PROPERTIES_H__" >> $OutFile
-     echo "#define __GRAPHIC_OBJECT_PROPERTIES_H__" >> $OutFile
-     echo ""  >> $OutFile
-
-     sed -e "s/@DECLARE@/#define/g" \
-         -e "s/@EQUAL@/    /g" \
-         -e "s/ @END@//g" $PropertiesFile >> $OutFile
-
-     echo ""  >> $OutFile
-     echo "#endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */" >> $OutFile
+    echo "-- Building GraphicObjectProperties.h --"
+    generateHeader
+    echo "#ifndef  __GRAPHIC_OBJECT_PROPERTIES_H__" >> $OutFile
+    echo "#define __GRAPHIC_OBJECT_PROPERTIES_H__" >> $OutFile
+    echo ""  >> $OutFile
+    
+    awk 'BEGIN {num=0} (NF > 0) {printf "#define %s %d\n", $1, num; num++}' < $PropertiesFile >> $OutFile
+    
+    echo ""  >> $OutFile
+    echo "#endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */" >> $OutFile
 }
 
 generateHeader()

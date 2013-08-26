@@ -137,7 +137,7 @@
             The 'Modelica Generic' block returns its continuous states, we can evaluate them with <emphasis>IDA</emphasis> by running the example:
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/DAE_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/DAE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../examples/solvers/DAE_Example.zcos" valign="middle"/>

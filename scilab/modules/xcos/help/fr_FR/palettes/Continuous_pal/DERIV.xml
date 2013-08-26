@@ -182,7 +182,7 @@
         <para>Les formes d'onde de l'entrée et de la sortie du bloc DERIVATIVE sont montrées ci-dessous :</para>
         
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/DERIV_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/DERIV_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/continuous_pal/DERIV_Example.zcos"/>

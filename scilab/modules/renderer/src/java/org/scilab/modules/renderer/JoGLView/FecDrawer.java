@@ -184,6 +184,7 @@ class FecDrawer {
          */
         public FecColorTexture(Fec fec) {
             this.fec = fec;
+            this.imageType = ImageType.RGBA_BYTE;
         }
 
         @Override
