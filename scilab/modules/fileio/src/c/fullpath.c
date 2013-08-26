@@ -33,31 +33,7 @@ static int normalizePath(char *path);
 char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
 {
 #if defined(_MSC_VER)
-    char *returnedFullPath = NULL;
-
-    wchar_t *wPath = to_wide_string((char *)_Path);
-    wchar_t *wFullPath = (wchar_t *) MALLOC(sizeof(wchar_t) * _SizeInBytes);
-
-    _wfullpath(wFullPath, wPath, _SizeInBytes);
-    returnedFullPath = wide_string_to_UTF8(wFullPath);
-    if (returnedFullPath)
-    {
-        strcpy(_FullPath, returnedFullPath);
-        FREE(returnedFullPath);
-        returnedFullPath = NULL;
-    }
-
-    if (wPath)
-    {
-        FREE(wPath);
-        wPath = NULL;
-    }
-    if (wFullPath)
-    {
-        FREE(wFullPath);
-        wFullPath = NULL;
-    }
-
+    _fullpath(_FullPath, _Path, _SizeInBytes);
     return _FullPath;
 #else
     char *rp = NULL;
@@ -77,9 +53,9 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
         char * _Path_start;
         char * _FullPath_start;
         char* pstWorkingPath = NULL;
-        
+
         //if argument is a relative path, add currentdir at start
-        if(_Path[0] != '/')
+        if (_Path[0] != '/')
         {
             int ierr = 0;
             char* pstCurrentPath = scigetcwd(&ierr);
@@ -91,12 +67,12 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
         else
         {
             pstWorkingPath = strdup(_Path);
-        }        
-        
+        }
+
         _Path_tmp = (char *)MALLOC(sizeof(char) * (lenPath + 1));
         _Path_start = (char *)MALLOC(sizeof(char) * (lenPath + 1));
         _FullPath_start = (char *)MALLOC(sizeof(char) * (lenFullPath + 1));
-//First case(1): fullpath(TMPDIR+"/a/b/c"), second case(2): fullpath("a/b/c") or third case(3): fullpath("../a/b")
+        //First case(1): fullpath(TMPDIR+"/a/b/c"), second case(2): fullpath("a/b/c") or third case(3): fullpath("../a/b")
         strcpy(_Path_start, pstWorkingPath); // _Path_start=TMPDIR+"/a/b/c" (1) or _Path_start="a/b/c" (2) or _Path_start="../a/b/c" (3)
         strcpy(_FullPath_start, _FullPath); // _Fullpath_Start=TMPDIR+"/a" (1) or _FullPath_start=SCI+"/a" (2) or _FullPath_start=../SCI+"/a" (3)
         strtok(_Path_start, "/"); // _Path_start=/tmp  (1) or _Path_start="a" (2) or _Path_start="a/b/c" (3)
@@ -116,7 +92,7 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
         {
             strcpy(_Path_tmp, pstWorkingPath); //_Path_tmp="a/b/c" (2) or _Path_tmp="../a/b/c" (3)
             strtok(_Path_tmp, "./"); // _Path_tmp becomes a (2) or ../a (3)
-            toadd=strsub(pstWorkingPath, _Path_tmp, ""); // to add = "/b/c"
+            toadd = strsub(pstWorkingPath, _Path_tmp, ""); // to add = "/b/c"
             strcat(_FullPath, toadd); //_FullPath=_Fullpath+toadd
             FREE(_Path_tmp);
             _Path_tmp = NULL;
@@ -125,10 +101,10 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
             FREE(_FullPath_start);
             _FullPath_start = NULL;
         }
-   
+
         FREE(pstWorkingPath);
     }
-    
+
     lenFullPath = (int)strlen(_FullPath);
     addFileSep = ((lenFullPath > 1) && (!isDirSeparator(_FullPath[lenFullPath - 1])) && haveFileSep);
     if (addFileSep)
@@ -149,51 +125,18 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
 /*--------------------------------------------------------------------------*/
 wchar_t *get_full_pathW(wchar_t * _wcFullPath, const wchar_t * _wcPath, size_t _SizeInBytes)
 {
-    wchar_t *wcResult = NULL;
+    char* pstPath = (char*)MALLOC(sizeof(char) * _SizeInBytes);
+    char* pstFullPath = (char*)MALLOC(sizeof(char) * _SizeInBytes);
+    wchar_t* pwstFullPath = NULL;
 
-#if defined(_MSC_VER)
-    if (_wcPath)
-    {
-        wcResult = (wchar_t *) MALLOC(sizeof(wchar_t) * _SizeInBytes);
-        if (wcResult)
-        {
-            _wfullpath(wcResult, _wcPath, _SizeInBytes);
-            wcscpy(_wcFullPath, wcResult);
-        }
-    }
-#else
-    if (_wcPath)
-    {
-        char *_Path = wide_string_to_UTF8(_wcPath);
+    pstPath = wide_string_to_UTF8(_wcPath);
+    get_full_path(pstFullPath, pstPath, _SizeInBytes);
+    pwstFullPath = to_wide_string(pstFullPath);
+    wcscpy(_wcFullPath, pwstFullPath);
 
-        if (_Path)
-        {
-            char *_FullPath = (char *)MALLOC(sizeof(char) * (_SizeInBytes));
-
-            if (_FullPath)
-            {
-                char *rp = NULL;
-
-                rp = realpath(_Path, _FullPath);
-                if (!rp)
-                {
-                    strcpy(_FullPath, _Path);
-                    normalizePath(_FullPath);
-                }
-                wcResult = to_wide_string(_FullPath);
-                if (wcResult)
-                {
-                    wcscpy(_wcFullPath, wcResult);
-                }
-                FREE(_FullPath);
-                _FullPath = NULL;
-            }
-            FREE(_Path);
-            _Path = NULL;
-        }
-    }
-#endif
-    return wcResult;
+    FREE(pstPath);
+    FREE(pwstFullPath);
+    return _wcFullPath;
 }
 
 /*--------------------------------------------------------------------------*/
