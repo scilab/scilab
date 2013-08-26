@@ -22,15 +22,12 @@ extern "C"
 #include <stdio.h>
 #include <string.h>
 #include "MALLOC.h"
-    //#include "removedir.h"
-    //#include "isdir.h"
 #include "expandPathVariable.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "newest.h"
 }
 /*--------------------------------------------------------------------------*/
-
 
 types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -92,10 +89,16 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
         {
             if (in[iNbrString]->isString() == FALSE)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A String(s) expected.\n"), "newest", iNbrString);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "newest", iNbrString + 1);
                 return types::Function::Error;
             }
             pwcsStringInput[iNbrString] = in[iNbrString]->getAs<types::String>()->get(0);
+        }
+
+        if (in[1]->getAs<types::String>()->isScalar() == false)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), "newest", 2);
+            return types::Function::Error;
         }
 
         iRet = newest(pwcsStringInput, iNbrString);
