@@ -60,6 +60,7 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, 
     int  argcount = 0, lpath = 0;
     InitScriptType pathtype = SCILAB_SCRIPT;
     char *path = NULL;
+    BOOL bHideConsole = TRUE;
 
     forbiddenToUseScilab();
 
@@ -128,6 +129,7 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, 
             strcat(Msg, "-nogui: start Scilab without GUI,tcl/tk and user interaction (batch mode).\n");
             strcat(Msg, "-texmacs: reserved for WinTeXMacs.\n");
             strcat(Msg, "-version: print product version and exit.\n");
+            strcat(Msg, "-keepconsole: keep native console box opened.\n");
 
             MessageBox(NULL, Msg, "Help", MB_ICONINFORMATION);
             exit(1);
@@ -235,6 +237,10 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, 
                 char *language = my_argv[argcount + 1];
                 setLanguageFromCommandLine(language);
             }
+            else if ( _stricmp(ArgTmp, "-keepconsole") == 0)
+            {
+                bHideConsole = FALSE;
+            }
         }
 
 #ifndef _DEBUG
@@ -249,7 +255,15 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, 
 
     CreateScilabHiddenWndThread();
     CreateScilabConsole(sci_show_banner);
-    HideScilex(); /* hide console window */
+
+    if (bHideConsole)
+    {
+        HideScilex(); /* hide console window */
+    }
+    else
+    {
+        ShowScilex();
+    }
 
     createInnosetupMutex();
     return sci_windows_main (&startupf, path, (InitScriptType)pathtype, &lpath, memory);

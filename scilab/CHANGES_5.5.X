@@ -50,6 +50,9 @@ BDF methods with direct and preconditioned Krylov linear solvers, based on ODEPA
 
 * Windows Solution updated to Visual Studio 2012.
 
+* -keepconsole option added for Scilab Windows to facilitate debugging.
+  Calling Scilab with this optin will leave the console box window opened at startup.
+
 * License update: switch to the CeCILL 2.1.
 
 
