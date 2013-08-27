@@ -123,6 +123,12 @@
     <ClCompile Include="sci_gateway\cpp\sci_jgetinfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_jinvoke_db.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jni\ScilabOperations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\cpp\JavaOptionsHelper.hxx">
@@ -177,6 +183,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\gw_external_objects_java.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\jni\ScilabOperations.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
