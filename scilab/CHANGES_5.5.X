@@ -556,6 +556,8 @@ Bug fixes
 
 * Bug #12836 fixed - There was an error in strcmpi documentation.
 
+* Bug #12839 fixed - Typo fixes in Core doc: getVariablesOnStack().
+
 * Bug #12840 fixed - Fix typo in number_properties.xml.
 
 * Bug #12852 fixed - Visual Studio 2012 SDK configuration is incorrect.
