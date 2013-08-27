@@ -50,7 +50,7 @@ Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int _iRetCo
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "getrelativefilename", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "getrelativefilename", 1);
         return types::Function::Error;
     }
 
@@ -58,7 +58,7 @@ Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int _iRetCo
 
     if (in[1]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "getrelativefilename", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "getrelativefilename", 2);
         return types::Function::Error;
     }
 
