@@ -557,6 +557,8 @@ Bug fixes
 
 * Bug #12813 fixed - flipdim() function extended to any type of input data.
 
+* Bug #12814 fixed - Elementary_functions: improvement of pertrans() doc.
+
 * Bug #12816 fixed - Numbers pasted in editvar were not parsed according to locale.
 
 * Bug #12823 fixed - In help generation (toolbox) links were not correctly handled.

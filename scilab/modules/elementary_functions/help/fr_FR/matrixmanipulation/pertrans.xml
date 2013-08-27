@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2013 - Samuel GOUGEON
+ * Copyright (C) 2013 - Paul Bignier
  * Copyright (C) 2008 - INRIA
  *
  * This file must be used under the terms of the CeCILL.
@@ -11,22 +11,22 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="pertrans" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="pertrans" xml:lang="fr">
     <refnamediv>
         <refname>pertrans</refname>
-        <refpurpose>Transposition with reference to the 2nd diagonal</refpurpose>
+        <refpurpose>Transposition selon la seconde diagonale</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Séquence d'appel</title>
         <synopsis>[Y] = pertrans(X)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>X, Y</term>
                 <listitem>
-                    <para>square or rectangular matrices of any data type</para>
+                    <para>matrices carrées ou rectangulaires de n'importe quel type</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -34,25 +34,25 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>Y = pertrans(X)</literal> returns the simultaneous permutation and transposition of
-            <literal>X</literal>, i.e. the symmetric of <literal>X</literal>
-            with reference to the second diagonal (utility function).
+            <literal>Y = pertrans(X)</literal> retourne les permutation et transposition simulanées de
+            <literal>X</literal>, i.e. le symétrique de <literal>X</literal>
+            selon la seconde diagonale (fonction utilitaire).
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-// Square matrix:
+// Matrice carrée:
 A = matrix(1:25, 5, 5);
 pertrans(A)
 
-// Rectangular matrix:
+// Matrice rectangulaire:
 A = grand(5, 3, "uin", 0, 9);
 pertrans(A)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="quote">transposition</link>
