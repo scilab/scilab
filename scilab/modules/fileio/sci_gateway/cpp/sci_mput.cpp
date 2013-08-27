@@ -60,6 +60,8 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "mput", 2);
             return Function::Error;
         }
+
+        FREE(pstType);
         pstType = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
 
     }
