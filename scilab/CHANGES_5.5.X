@@ -563,6 +563,8 @@ Bug fixes
 
 * Bug #12814 fixed - Elementary_functions: improvement of pertrans() doc.
 
+* Bug #12815 fixed - levin() redefined cov() as a variable.
+
 * Bug #12816 fixed - Numbers pasted in editvar were not parsed according to locale.
 
 * Bug #12823 fixed - In help generation (toolbox) links were not correctly handled.
