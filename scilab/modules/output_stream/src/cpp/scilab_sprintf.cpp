@@ -331,6 +331,8 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
     {
         pwstOutput[j] = os_wcsdup(pwstFirstOutput + iStart);
     }
+
+    FREE(pwstFirstOutput);
     return pwstOutput;
 }
 /*--------------------------------------------------------------------------*/
