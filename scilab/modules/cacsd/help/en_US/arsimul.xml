@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - JPC
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -70,8 +70,8 @@
                 <term>up, yp</term>
                 <listitem>
                     <para>
-                        optional parameter which describe the past.  <literal>up=[ u_0,u_{-1},...,u_{s-1}]</literal>; 
-                        <literal>yp=[ y_0,y_{-1},...,y_{r-1}];</literal>   <literal>ep=[ e_0,e_{-1},...,e_{r-1}]</literal>; 
+                        optional parameter which describe the past.  <literal>up=[ u_0,u_{-1},...,u_{s-1}]</literal>;
+                        <literal>yp=[ y_0,y_{-1},...,y_{r-1}];</literal>   <literal>ep=[ e_0,e_{-1},...,e_{r-1}]</literal>;
                         if they are omitted, the past value are supposed to be zero
                     </para>
                 </listitem>
@@ -89,10 +89,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            simulation of an n-dimensional armax process 
+            simulation of an n-dimensional armax process
             <literal>A(z^-1) z(k)= B(z^-1)u(k) + D(z^-1)*sig*e(k)</literal>
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 A(z)= Id+a1*z+...+a_r*z^r;  ( r=0  => A(z)=Id)
 B(z)= b0+b1*z+...+b_s z^s;  ( s=-1 => B(z)=[])
 D(z)= Id+d1*z+...+d_t z^t;  ( t=0  => D(z)=Id)
@@ -104,12 +104,13 @@ D(z)= Id+d1*z+...+d_t z^t;  ( t=0  => D(z)=Id)
     <refsection>
         <title>Method</title>
         <para>
-            a state-space representation is constructed and ode with the option  "discr" is used to compute z
+            a state-space representation is constructed and an ode with the option
+            <literal>"discrete"</literal> is used to compute <literal>z</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=[1,-2.851,2.717,-0.865].*.eye(2,2)
 b=[0,1,1,1].*.[1;1];
 d=[1,0.7,0.2].*.eye(2,2);
@@ -119,5 +120,4 @@ u=rand(1,10,'normal');
 y=arsimul(ar,u)
  ]]></programlisting>
     </refsection>
-    
 </refentry>
