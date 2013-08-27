@@ -28,18 +28,18 @@
             Une simplification rationnelle est effectuée après chaque opération sur les fractions rationnelles. Il est possible de changer cela avec la fonction <literal>simp_mode</literal>.
         </para>
         <para>
-            <literal>simp_mod(%t)</literal> passe en mode de simplification systématique.
+            <literal>simp_mode(%t)</literal> passe en mode de simplification systématique.
         </para>
         <para>
-            <literal>simp_mod(%f)</literal> empêche les simplifications.
+            <literal>simp_mode(%f)</literal> empêche les simplifications.
         </para>
         <para>
-            <literal>mod=simp_mod()</literal> renvoie dans mod le mode de simplification courant.
+            <literal>mod=simp_mode()</literal> renvoie dans mod le mode de simplification courant.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 mod=simp_mode()
 simp_mode(%f);hns=s/s

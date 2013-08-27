@@ -40,19 +40,19 @@
             できます.
         </para>
         <para>
-            <literal>simp_mod(%t)</literal> は,有理数の簡単化をオンにします.
+            <literal>simp_mode(%t)</literal> は,有理数の簡単化をオンにします.
         </para>
         <para>
-            <literal>simp_mod(%f)</literal> は,有理数の簡単化をオフにします.
+            <literal>simp_mode(%f)</literal> は,有理数の簡単化をオフにします.
         </para>
         <para>
-            <literal>mod=simp_mod()</literal> は,カレントの
+            <literal>mod=simp_mode()</literal> は,カレントの
             有理数の簡単化モードをmodに返します.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 mod=simp_mode()
 simp_mode(%f);hns=s/s

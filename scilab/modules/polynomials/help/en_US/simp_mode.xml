@@ -40,19 +40,19 @@
             <literal>simp_mode</literal> function.
         </para>
         <para>
-            <literal>simp_mod(%t)</literal> set rational simplification mode on
+            <literal>simp_mode(%t)</literal> set rational simplification mode on
         </para>
         <para>
-            <literal>simp_mod(%f)</literal> set rational simplification mode off
+            <literal>simp_mode(%f)</literal> set rational simplification mode off
         </para>
         <para>
-            <literal>mod=simp_mod()</literal> returns in mod the current rational
+            <literal>mod=simp_mode()</literal> returns in mod the current rational
             simplification mode
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 mod=simp_mode()
 simp_mode(%f);hns=s/s
