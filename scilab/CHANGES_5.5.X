@@ -544,7 +544,9 @@ Bug fixes
 
 * Bug #12790 fixed - Links to zcos files in doc were broken.
 
-* Bug #12795 fixed - Typo fixes in Cacsd doc.
+* Bug #12794 fixed - calfrq.sci code did not follow Scilab standard.
+
+* Bug #12795 fixed - Typo fixes in CACSD doc.
 
 * Bug #12800 fixed - Typo fix in Polynomials doc.
 
