@@ -31,6 +31,7 @@ import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvas;
 import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvasFactory;
 import org.scilab.forge.scirenderer.implementation.g2d.clipping.G2DClippingManager;
 import org.scilab.forge.scirenderer.implementation.g2d.motor.Motor3D;
+import org.scilab.forge.scirenderer.implementation.g2d.lighting.G2DLightManager;
 
 /**
  *
@@ -41,7 +42,7 @@ import org.scilab.forge.scirenderer.implementation.g2d.motor.Motor3D;
 public class G2DDrawingTools implements DrawingTools {
 
     private final TransformationManager transformationManager;
-    //private final G2DLightManager lightManager;
+    private final G2DLightManager lightManager;
     private final G2DClippingManager clippingManager;
     private final G2DCanvas g2dCanvas;
 
@@ -51,7 +52,7 @@ public class G2DDrawingTools implements DrawingTools {
      */
     G2DDrawingTools(G2DCanvas canvas) {
         this.transformationManager = new TransformationManagerImpl(canvas);
-        //this.lightManager = new G2DLightManager(this);
+        this.lightManager = new G2DLightManager(this);
         this.clippingManager = new G2DClippingManager(this);
         this.g2dCanvas = canvas;
 
@@ -83,8 +84,7 @@ public class G2DDrawingTools implements DrawingTools {
 
     @Override
     public LightManager getLightManager() {
-        return null;
-        //return lightManager;
+        return lightManager;
     }
 
     @Override

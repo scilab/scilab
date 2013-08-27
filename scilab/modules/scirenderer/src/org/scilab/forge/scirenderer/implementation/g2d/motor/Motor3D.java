@@ -36,6 +36,13 @@ import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
+import org.scilab.forge.scirenderer.tranformations.Vector3f;
+
+import org.scilab.forge.scirenderer.lightning.Light;
+import org.scilab.forge.scirenderer.lightning.LightManager;
+import org.scilab.forge.scirenderer.implementation.g2d.lighting.G2DLight;
+import org.scilab.forge.scirenderer.implementation.g2d.lighting.G2DLightManager;
+import org.scilab.forge.scirenderer.shapes.appearance.Material;
 
 /**
  * @author Calixte DENIZET
@@ -182,8 +189,11 @@ public class Motor3D {
             image = ((G2DTextureManager.G2DTexture) texture).getImage();
         }
 
+        G2DLightManager lm = (G2DLightManager)drawingTools.getLightManager();
+        lm.setMaterial(appearance.getMaterial());
+
         if (geometry.getFillDrawingMode() != Geometry.FillDrawingMode.NONE) {
-            addTriangles(vertexBuffer, normalBuffer, colorBuffer, appearance.getFillColor(), indicesBuffer, textureCoordinatesBuffer, image, texture, geometry.getFillDrawingMode());
+            addTriangles(vertexBuffer, normalBuffer, colorBuffer, appearance.getFillColor(), indicesBuffer, textureCoordinatesBuffer, image, texture, geometry.getFillDrawingMode(), lm);
         }
 
         if (geometry.getLineDrawingMode() != Geometry.LineDrawingMode.NONE) {
@@ -313,6 +323,7 @@ public class Motor3D {
             if (textureCoords != null) {
                 ta = new Vector3d[ind.length];
             }
+
             for (int i = 0; i < ind.length; i++) {
                 va[i] = verticesArray[ind[i]];
                 ca[i] = colorsArray[ind[i]];
@@ -402,7 +413,7 @@ public class Motor3D {
      * @param indices a buffer containg the index of the vertices to retrieve
      * @param drawingMode the drawing mode
      */
-    private void addTriangles(FloatBuffer vertices, FloatBuffer normals, FloatBuffer colors, Color defaultColor, IntBuffer indices, FloatBuffer textureCoords, final BufferedImage image, Texture texture, Geometry.FillDrawingMode drawingMode) {
+    private void addTriangles(FloatBuffer vertices, FloatBuffer normals, FloatBuffer colors, Color defaultColor, IntBuffer indices, FloatBuffer textureCoords, final BufferedImage image, Texture texture, Geometry.FillDrawingMode drawingMode, G2DLightManager lightManager) {
         Object[] arrays = getArrays(vertices, colors, defaultColor, textureCoords, indices);
         Vector3d[] verticesArray = (Vector3d[]) arrays[0];
         Color[] colorsArray = (Color[]) arrays[1];
@@ -414,6 +425,8 @@ public class Motor3D {
         if (texture != null) {
             filter = texture.getMagnificationFilter();
         }
+        
+       colorsArray = applyLighting(vertices, normals, indices, colorsArray, lightManager);
 
         switch (drawingMode) {
             case TRIANGLE_FAN :
@@ -530,5 +543,38 @@ public class Motor3D {
         }
 
         return c;
+    }
+
+    /**
+     * Perform per-vertex lighting
+     */
+    private Color[] applyLighting(FloatBuffer vertices, FloatBuffer normals, IntBuffer index, Color[] colors, G2DLightManager lightManager) {
+
+        if (!lightManager.isLightningEnable() || vertices == null || normals == null
+            || index == null || colors == null) {
+            return colors;
+        }
+
+        Material mat = lightManager.getMaterial();
+        if (mat == null) {
+            return colors;
+        }
+
+
+        Vector3f[] vertexArray = LightHelper.getIndexedVector3f(vertices, index, G2DElementsBuffer.ELEMENT_SIZE);
+        Vector3f[] normalArray = LightHelper.getIndexedVector3f(normals, index, G2DElementsBuffer.ELEMENT_SIZE);
+
+
+        Color[] outColors = new Color[colors.length];
+        boolean first = true;
+        for (int i = 0; i < lightManager.getLightNumber(); ++i) {
+            G2DLight l = (G2DLight)lightManager.getLight(i);
+
+            if (l == null || !l.isEnable()) continue;
+
+            outColors = LightHelper.applyLight(l, mat, vertexArray, normalArray, colors, outColors, !first);
+            first = false;
+        }
+        return outColors;
     }
 }
