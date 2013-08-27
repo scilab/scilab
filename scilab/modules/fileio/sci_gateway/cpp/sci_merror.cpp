@@ -15,20 +15,16 @@
 #include "function.hxx"
 #include "string.hxx"
 #include "double.hxx"
-#include "bool.hxx"
 #include "filemanager.hxx"
 
 extern "C"
 {
 #include <stdio.h>
 #include <string.h>
-#include "warningmode.h"
-#include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
 }
 /*--------------------------------------------------------------------------*/
-
 
 Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -59,14 +55,15 @@ Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, types::t
     }
     else
     {
-        if (getWarningMode())
+        if (in.size() == 0)
         {
-            sciprint(_("%ls: Cannot check the end of file whose descriptor is %d: File is not active.\n"), L"merror", iFile);
+            iRet = 22;
         }
-
-        types::Bool* pOut = new types::Bool(0);
-        out.push_back(pOut);
-        return types::Function::OK;
+        else
+        {
+            Scierror(999, _("%s: Cannot read file whose descriptor is %d: File is not active.\n"), "merror", iFile);
+            return types::Function::Error;
+        }
     }
 
     types::Double* pDoubleOut = new types::Double(2, dimsArray);
@@ -76,7 +73,7 @@ Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, types::t
     if (_iRetCount == 2)
     {
         types::String* pStringOut = new types::String(2, dimsArray);
-        pStringOut->set(0, to_wide_string(strerror(iRet)));
+        pStringOut->set(0, strerror(iRet));
         out.push_back(pStringOut);
     }
 
