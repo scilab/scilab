@@ -47,9 +47,15 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
     if (in.size() == 2)
     {
         //number of lines
-        if (in[1]->isDouble() == false || in[1]->getAs<Double>()->getSize() != 1)
+        if (in[1]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "mgetl", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Integer expected.\n"), "mgetl", 2);
+            return Function::Error;
+        }
+
+        if (in[1]->getAs<Double>()->isScalar() == false)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: Integer expected.\n"), "mgetl", 2);
             return Function::Error;
         }
         iLinesExcepted = static_cast<int>(in[1]->getAs<Double>()->get(0));
