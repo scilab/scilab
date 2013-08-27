@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA -
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,59 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="noisegen">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="noisegen">
     <refnamediv>
         <refname>noisegen</refname>
-        <refpurpose>noise generation</refpurpose>
+        <refpurpose>génération de bruit</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Séquence d'appel</title>
         <synopsis>b = noisegen(pas, Tmax, sig)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>pas</term>
                 <listitem>
-                    <para>real scalar, the time increment</para>
+                    <para>scalaire réel, le pas de temps</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Tmax</term>
                 <listitem>
-                    <para>real scalar, the final time of the interval of noise generation</para>
+                    <para>scalaire réel, le temps final de l'intervalle de génération</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>sig</term>
                 <listitem>
-                    <para>real scalar, the standard deviation of the noise</para>
+                    <para>scalaire réel, l'écart-type du bruit</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+	<refsection>
         <title>Description</title>
         <para>
-            <literal>noisegen()</literal> generates a Scilab function <literal>b = Noise(t)</literal>
-            where <literal>Noise(t)</literal> is a piecewise constant function
-            (constant on  <literal>[k*pas, (k+1)*pas]</literal>). The value on each constant
-            interval are random values from i.i.d Gaussian variables of
-            standard deviation <literal>sig</literal>. The function is constant for <literal>t&lt; = 0</literal> and
+			<literal>noisegen()</literal> génère une fonction Scilab <literal>b = Noise(t)</literal>
+            où <literal>Noise(t)</literal> est une fonction constante par morceaux
+            (constante sur  <literal>[k*pas, (k+1)*pas]</literal>). Les valeurs de chaque intervalle
+            constant sont aléatoires, i.i.d Gaussiennes à écart-type <literal>sig</literal>.
+            La fonction est constante à <literal>t&lt; = 0</literal> et
             <literal>t&gt; = Tmax</literal>.
         </para>
         <para>
             <note>
-                Note: Random number generator functions such as <link linkend="rand">rand</link> and
-                <link linkend="grand">grand</link> are another alternative to generate noises
-                from a wide variety of probability distribution (see example 2 below).
+            Remarque: des fonctions de génération aléatoires telles que <link linkend="rand">rand</link> et
+			<link linkend="grand">grand</link> sont une alternative à la génération de bruit
+			contenant un large panel de lois de distribution(voir exemple 2 ce-dessous).
             </note>
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
-        Example #1: noisegen()
+        <title>Exemples</title>
+			Exemple #1: noisegen()
         <programlisting role="example"><![CDATA[
 noisegen(0.5, 30, 1.0);
 x = -5:0.01:35;
@@ -75,31 +75,31 @@ plot(x, y);
             y = feval(x, Noise);
             plot(x, y);
         </scilab:image>
-        Example #2: rand()
-        <programlisting role="example"><![CDATA[
-// Plot a zero mean gaussian white noise with the variance 1.
-// To use a different variance, multiply rand() by the square root of the variance.
+			Exemple #2: rand()
+                <programlisting role="example"><![CDATA[
+// Tracer un bruit blanc gaussien de moyenne nulle à variance 1.
+// Pour utiliser une variance différente, multiplier rand() par la racine carrée de la variance.
 t = 0:.5:30;
-sig = 1; // Standard deviation of the white gaussian noise
+sig = 1; // Ecart-type du bruit blanc gaussien.
 noise = sig*rand(t, "normal");
 plot2d2(t, noise)
  ]]></programlisting>
-        <scilab:image>
+                <scilab:image>
             t = 0:.5:30;
-            sig = 1;
-            noise = sig*rand(t, "normal");
-            plot2d2(t, noise)
-        </scilab:image>
+			sig = 1;
+			noise = sig*rand(t, "normal");
+			plot2d2(t, noise)
+                </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Vori aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="rand">rand</link>
             </member>
             <member>
                 <link linkend="grand">grand</link>
-            </member>
+			</member>
         </simplelist>
     </refsection>
 </refentry>

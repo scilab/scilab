@@ -567,6 +567,8 @@ Bug fixes
 
 * Bug #12823 fixed - In help generation (toolbox) links were not correctly handled.
 
+* Bug #12827 fixed - Cacsd doc: noisgen() improved.
+
 * Bug #12830 fixed - In SciNotes, it was not possible to replace from the caret position.
 
 * Bug #12831 fixed - In SciNotes toolbar, there was no button to open code navigator.
