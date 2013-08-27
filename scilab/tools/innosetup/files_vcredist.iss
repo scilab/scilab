@@ -1,6 +1,6 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) DIGITEO - 2010 - Allan CORNET
+; Copyright (C) Scilab Enterprises - 2013 - Antoine ELIAS
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -12,7 +12,9 @@
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
 ;
 ;-------------------------------------------------------------------------------
-Name: full; Description: {cm:DescriptionFullInstall}
-Name: custom; Description: {cm:DescriptionCustomInstall}; Flags: iscustom
-Name: cli; Description: {cm:DescriptionCLIInstall};
-;-------------------------------------------------------------------------------
+
+#ifdef SCILAB_X64
+Source: tools\innosetup\VCREDIST2012\vcredist_x64.exe; DestDir: {tmp}; Flags: deleteafterinstall ignoreversion
+#else
+Source: tools\innosetup\VCREDIST2012\vcredist_x86.exe; DestDir: {tmp}; Flags: deleteafterinstall ignoreversion
+#endif

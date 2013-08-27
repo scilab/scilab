@@ -11,8 +11,7 @@
 function bOK = dlwIsVc11Pro()
     bOK = %f;
     try
-        if winqueryreg('key', 'HKLM', ...
-            'Software\Microsoft\DevDiv\vc\Servicing\11.0') <> []  & ...
+        if winqueryreg('HKLM', 'Software\Microsoft\DevDiv\vs\Servicing\11.0\devenv', "install") == 1  & ...
                 dlwIsVc11Express() == %f then
             bOK = %t;
         end
