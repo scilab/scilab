@@ -80,25 +80,11 @@ Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int _iRetCo
             Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), "getrelativefilename", 1, PATH_MAX);
             return types::Function::Error;
         }
-        if (!isdirW(wcsAbsDir))
-        {
-            char* pstAbs = wide_string_to_UTF8(wcsAbsDir);
-            Scierror(999, _("%s: Directory '%s' doesn't exists.\n"), "getrelativefilename", pstAbs);
-            FREE(pstAbs);
-            return types::Function::Error;
-        }
 
         wcsAbsFile = expandPathVariableW(pStrFile->get(i));
         if (wcslen(wcsAbsFile) > PATH_MAX)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: Must be less than %d characters.\n"), "getrelativefilename", 2, PATH_MAX);
-            return types::Function::Error;
-        }
-        if (!FileExistW(wcsAbsFile))
-        {
-            char* pstAbs = wide_string_to_UTF8(wcsAbsFile);
-            Scierror(999, _("%s: File '%s' doesn't exists.\n"), "getrelativefilename", pstAbs);
-            FREE(pstAbs);
             return types::Function::Error;
         }
 
