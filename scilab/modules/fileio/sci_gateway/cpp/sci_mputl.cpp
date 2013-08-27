@@ -59,7 +59,7 @@ Function::ReturnValue sci_mputl(typed_list &in, int _iRetCount, typed_list &out)
 
         if (iErr)
         {
-            char* pst = wide_string_to_UTF8(expandedFileName);
+            char* pst = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
             switch (iErr)
             {
                 case MOPEN_NO_MORE_LOGICAL_UNIT:
@@ -81,6 +81,7 @@ Function::ReturnValue sci_mputl(typed_list &in, int _iRetCount, typed_list &out)
             FREE(pst);
             return Function::Error;
         }
+
         bCloseFile = true;
     }
     else
