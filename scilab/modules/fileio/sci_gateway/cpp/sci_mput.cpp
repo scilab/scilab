@@ -163,6 +163,12 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
         free(pData);
     }
 
+    if (iErr)
+    {
+        Scierror(10000, "");
+        return types::Function::Error;
+    }
+
     return Function::OK;
 }
 /*--------------------------------------------------------------------------*/
