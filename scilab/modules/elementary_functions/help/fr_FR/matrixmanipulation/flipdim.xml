@@ -11,30 +11,30 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="flipdim" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="flipdim" xml:lang="fr">
     <refnamediv>
         <refname>flipdim</refname>
-        <refpurpose>flip x components along a given dimension</refpurpose>
+        <refpurpose>
+            retourne les éléments de <literal>x</literal> selon une dimension
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Séquence d'appel</title>
         <synopsis>y = flipdim(x, dim)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>x, y</term>
-                
                 <listitem>
-                    <para>scalars, vectors, matrices, or hypermatrices of any type, of same sizes</para>
-                    
+                    <para>scalaires, vecteurs, matrices, ou hypermatrices de n'importe quel type, de même taille</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>dim</term>
                 <listitem>
-                    <para>a positive integer</para>
+                    <para>entier positif</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -42,58 +42,56 @@
     <refsection>
         <title>Description</title>
         <para>
-            Given <literal>x</literal>, a scalar/vector/matrix/hypermatrix of any type and
-            <literal>dim</literal> a positive integer, this function flips the x
-            components along the dimension number <literal>dim</literal> of
-            <literal>x</literal> (<literal>x</literal> and <literal>y</literal> have
-            the same size)
+            A partir de <literal>x</literal>, un scalaire/vecteur/matrice/hypermatrice de n'importe quel type et
+            <literal>dim</literal> un entier positif, cette fonction retourne les éléments de
+            <literal>x</literal> selon le nombre dimension <literal>dim</literal> de
+            <literal>x</literal> (<literal>x</literal> et <literal>y</literal> ont la même taille)
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-// Example 1: flip x components along the first dimension
+// Exemple 1 : selon la première dimension
 x = [1 2 3 4; 5 6 7 8];
 dim = 1;
 y = flipdim(x, dim)
 
-// Example 2: flip x components along the second dimension
+// Exemple 2 : selon la deuxième dimension
 dim = 2;
 y = flipdim(x, dim)
 
-// Example 3: flip x components along the third dimension
+// Exemple 3 : selon la troisième dimension
 x = matrix(1:24, [3 2 4]);
 dim = 3;
 y = flipdim(x, dim)
 
-// Example 4: the first example with complex
+// Exemple 4 : premier exemple, mais avec des complexes
 x = [1+%i 2*%i 3 4; 5 6-%i 7 8*%pi*%i];
 dim = 1;
 y = flipdim(x, dim)
 
-// Integer-encoded numbers:
+// Entiers :
 x = int16(grand(4, 3, 2, "uin", -9, 9));
 y = flipdim(x, 1)
 
-// Booleans:
+// Booléens :
 x = (grand(3, 4, "uin", -9, 9) > 0);
 y = flipdim(x, 2)
 
-// Texts:
+// Textes :
 x = matrix(strsplit("a":"x", 1:23), 4, 6);
 x = x+x;
 flipdim(x, 2)
 
-// Polynomials:
+// Polynômes :
 x = inv_coeff(grand(3, 9, "uin", 0, 3), 2);
 flipdim(x, 1)
 
-// Rationals:
-n = inv_coeff(grand(3, 9, "uin", 0, 3), 2);
+// Rationals :
+n = inv_coeff(grand(3, 9, "uin", 0 ,3), 2);
 d = inv_coeff(grand(3, 9, "uin", 0, 3), 2);
 r = n./d;
 flipdim(r, 2)
-
  ]]></programlisting>
     </refsection>
     <refsection>
@@ -101,7 +99,7 @@ flipdim(r, 2)
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark>Extension from decimals to any type: booleans, integer-encoded numbers, texts, polynomials and rationals.</revremark>
+                <revremark>Extension de décimaux à tout type: booléens, entiers, textes, polynômes et rationals.</revremark>
             </revision>
         </revhistory>
     </refsection>
