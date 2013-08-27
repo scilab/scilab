@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) ????-2008 - INRIA
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,30 +10,30 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="macrovar">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="macrovar">
     <refnamediv>
         <refname>macrovar</refname>
-        <refpurpose>variables of function</refpurpose>
+        <refpurpose>variables d'une fonction</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>vars = macrovar(function)</synopsis>
+        <title>Séquence d'appel</title>
+        <synopsis>vars = macrovar(fonction)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>vars</term>
                 <listitem>
                     <para>
-                        list,  <literal>list(in, out, nolocal, called, locals)</literal>
+                        liste,  <literal>list(in, out, nolocal, called, locals)</literal>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>function</term>
+                <term>fonction</term>
                 <listitem>
-                    <para>name of a function</para>
+                    <para>nom de la fonction</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -41,36 +41,36 @@
     <refsection>
         <title>Description</title>
         <para>
-            Returns in a list the set of variables used by a function.
-            <literal>vars</literal> is a list made of five column vectors of character strings:
+            Retourne dans une liste l'ensemble des variables utilisées par une fonction.
+            <literal>vars</literal> est une liste de cinq vecteurs colonnes de chaînes de caractères:
         </para>
         <simplelist type="inline">
             <member>
-                <literal>in</literal>: input variables (<literal>vars(1)</literal>)
+                <literal>in</literal>: paramètres d'entrée (<literal>vars(1)</literal>)
             </member>
             <member>
-                <literal>out</literal>: output variables (<literal>vars(2)</literal>)
+                <literal>out</literal>: paramètres de sortie (<literal>vars(2)</literal>)
             </member>
             <member>
-                <literal>nolocal</literal>: referenced variables which are not defined inside the function and which are not functions (<literal>vars(3)</literal>)
+                <literal>nolocal</literal>: variables référencées qui ne sont pas définies dans la fonction et qui ne sont pas des fonctions (<literal>vars(3)</literal>)
             </member>
             <member>
-                <literal>called</literal>: names of functions called (<literal>vars(4)</literal>)
+                <literal>called</literal>: noms des fonctions appelées (<literal>vars(4)</literal>)
             </member>
             <member>
-                <literal>locals</literal>: local variables (<literal>vars(5)</literal>)
+                <literal>locals</literal>: variables locales (<literal>vars(5)</literal>)
             </member>
         </simplelist>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 deff('y = f(x1, x2)', 'loc = 1; y = a*x1+x2-loc');
 vars = macrovar(f)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir Aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="string">string</link>
