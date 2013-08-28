@@ -197,6 +197,7 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipmove.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_display.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_interp.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_orient.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_style.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_toggle.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_manager_mode.cpp" />
@@ -215,6 +216,7 @@
     <ClCompile Include="..\jni\DatatipDrag.cpp" />
     <ClCompile Include="..\jni\DatatipManager.cpp" />
     <ClCompile Include="..\jni\EditorManager.cpp" />
+    <ClCompile Include="..\jni\DatatipOrientation.cpp" />
     <ClCompile Include="..\jni\StartGED.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolTooltipString.cpp" />
     <ClCompile Include="..\jni\ScilabTermination_wrap.c" />
@@ -471,6 +473,7 @@
     <ClInclude Include="..\jni\DatatipDelete.hxx" />
     <ClInclude Include="..\jni\DatatipDrag.hxx" />
     <ClInclude Include="..\jni\DatatipManager.hxx" />
+    <ClInclude Include="..\jni\DatatipOrientation.hxx" />
     <ClInclude Include="..\jni\EditorManager.hxx" />
     <ClInclude Include="..\jni\StartGED.hxx" />
     <ClInclude Include="..\cpp\CallClipboard.hxx" />

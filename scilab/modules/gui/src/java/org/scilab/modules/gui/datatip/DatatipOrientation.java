@@ -18,6 +18,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import org.scilab.modules.gui.editor.AxesHandler;
 import org.scilab.modules.renderer.CallRenderer;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
  * Orientate the datatip for "upper left", "upper right", "lower left" or "lower right" according to the quadrant position.
@@ -88,7 +89,7 @@ public class DatatipOrientation {
         }
 
         String axesUid = (String)GraphicController.getController().getProperty(datatip, __GO_PARENT_AXES__);
-        if (AxesHandler.isZoomBoxEnabled(axesUid)){
+        if (AxesHandler.isZoomBoxEnabled(axesUid)) {
             bounds = (Double[])GraphicController.getController().getProperty(axesUid, __GO_ZOOM_BOX__);
         } else {
             bounds = (Double[])GraphicController.getController().getProperty(axesUid, __GO_DATA_BOUNDS__);
@@ -138,17 +139,52 @@ public class DatatipOrientation {
      * @return the flipped orientation
      */
     private static Integer flipOrientation(Integer orientation) {
-        switch(orientation) {
-            /* top left*/
-            case 0: return 3;
-            /* top right*/
-            case 1: return 2;
-            /* bottom left*/
-            case 2: return 1;
-            /* bottom right*/
-            case 3: return 0;
-            /* do nothing*/
-            default: return orientation;
+        switch (orientation) {
+                /* top left*/
+            case 0:
+                return 3;
+                /* top right*/
+            case 1:
+                return 2;
+                /* bottom left*/
+            case 2:
+                return 1;
+                /* bottom right*/
+            case 3:
+                return 0;
+                /* do nothing*/
+            default:
+                return orientation;
         }
+    }
+
+    /**
+     * Setup the datatip orientation by program.
+     *
+     * @param datatipUid the datatip uid.
+     * @param datatipOrientation String with datatip orientation.
+     * @param datatipOrientationNum Integer with datatip orientation to set property.
+     */
+    public static void datatipSetOrientation (String datatipUid, String datatipOrientation, int datatipOrientationNum) {
+
+        if (datatipOrientationNum == 0) {
+            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, datatipOrientationNum);
+        } else if (datatipOrientationNum == 1) {
+            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, datatipOrientationNum);
+        } else if (datatipOrientationNum == 2) {
+            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, datatipOrientationNum);
+        } else if (datatipOrientationNum == 3) {
+            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, datatipOrientationNum);
+        } else if (datatipOrientationNum == 4) {
+            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, true);
+        } else {
+            String errorMsg = "error(msprintf(_( \"%s: Unknown input argument #%d: ''%s'' is not valid.\n\"),\"datatipSetOrientation\",2,\"" + datatipOrientation + "\"));";
+            InterpreterManagement.requestScilabExec(errorMsg);
+        }
+
     }
 }

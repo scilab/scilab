@@ -79,4 +79,5 @@
     <PRIMITIVE gatewayId="25" primitiveId="46" primitiveName="datatipSetStyle" />
     <PRIMITIVE gatewayId="25" primitiveId="47" primitiveName="datatipSetDisplay" />
     <PRIMITIVE gatewayId="25" primitiveId="48" primitiveName="datatipSetInterp" />
+    <PRIMITIVE gatewayId="25" primitiveId="49" primitiveName="datatipSetOrientation" />
 </GATEWAY>

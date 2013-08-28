@@ -56,4 +56,11 @@
         <method name="datatipSetStyleWindow" returnType="int" modifier="static">
         </method>
     </object>
+    <object name="DatatipOrientation">
+        <method name="datatipSetOrientation" returnType="void" modifier="static">
+            <parameter name="datatipUid" type="String"/>
+            <parameter name="datatipOrientation" type="String"/>
+            <parameter name="datatipOrientationNum" type="int"/>
+        </method>
+    </object>
 </package>
