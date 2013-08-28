@@ -71,7 +71,8 @@ static gw_generic_table Tab[] =
     {sci_datatip_toggle, "datatipToggle"},
     {sci_datatipmove, "datatipMove"},
     {sci_datatip_set_style, "datatipSetStyle"},
-    {sci_datatip_set_display, "datatipSetDisplay"}
+    {sci_datatip_set_display, "datatipSetDisplay"},
+    {sci_datatip_set_interp, "datatipSetInterp"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)

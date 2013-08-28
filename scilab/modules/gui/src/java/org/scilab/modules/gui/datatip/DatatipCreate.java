@@ -183,6 +183,16 @@ public class DatatipCreate {
         return newDatatip;
     }
 
+    /**
+    * Set the datatip interpolation mode.
+    *
+    * @param datatipUid datatip unique identifier.
+    * @param interpMode boolean for the interpolation mode.
+    */
+    private static void datatipSetInterp(String datatipUid, boolean interpMode) {
 
+        GraphicController.getController().setProperty(datatipUid, GraphicObjectProperties.__GO_DATATIP_INTERP_MODE__, interpMode);
+
+    }
 
 }

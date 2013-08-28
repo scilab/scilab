@@ -213,7 +213,8 @@ sci_gateway/cpp/sci_datatip_manager_mode.cpp \
 sci_gateway/cpp/sci_datatip_toggle.cpp \
 sci_gateway/cpp/sci_datatipmove.cpp \
 sci_gateway/cpp/sci_datatip_set_style.cpp \
-sci_gateway/cpp/sci_datatip_set_display.cpp
+sci_gateway/cpp/sci_datatip_set_display.cpp \
+sci_gateway/cpp/sci_datatip_set_interp.cpp
 
 libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \

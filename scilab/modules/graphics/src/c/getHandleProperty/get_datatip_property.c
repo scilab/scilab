@@ -116,18 +116,18 @@ int get_tip_auto_orientation_property(void* _pvCtx, char* pobjUID)
  */
 int get_tip_interp_mode_property(void* _pvCtx, char* pobjUID)
 {
-    int tip_auto_orientation;
-    int *piTip_auto_orientation = &tip_auto_orientation;
+    int tip_interp_mode;
+    int *piTip_interp_mode = &tip_interp_mode;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATATIP_INTERP_MODE__, jni_bool, (void **)&piTip_auto_orientation);
+    getGraphicObjectProperty(pobjUID, __GO_DATATIP_INTERP_MODE__, jni_bool, (void **)&piTip_interp_mode);
 
-    if (piTip_auto_orientation == NULL)
+    if (piTip_interp_mode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_interp_mode");
         return -1;
     }
 
-    if (tip_auto_orientation)
+    if (tip_interp_mode)
     {
         return sciReturnString(_pvCtx, "on");
     }
