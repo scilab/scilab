@@ -42,27 +42,29 @@
             </varlistentry>
         </variablelist>
     </refsection>
-	<refsection>
+    <refsection>
         <title>Description</title>
         <para>
-			<literal>noisegen()</literal> génère une fonction Scilab <literal>b = Noise(t)</literal>
+            <literal>noisegen()</literal> génère une fonction Scilab <literal>b = Noise(t)</literal>
             où <literal>Noise(t)</literal> est une fonction constante par morceaux
-            (constante sur  <literal>[k*pas, (k+1)*pas]</literal>). Les valeurs de chaque intervalle
+            (constante sur <literal>[k*pas, (k+1)*pas]</literal>). Les valeurs de chaque intervalle
             constant sont aléatoires, i.i.d Gaussiennes à écart-type <literal>sig</literal>.
-            La fonction est constante à <literal>t&lt; = 0</literal> et
-            <literal>t&gt; = Tmax</literal>.
+            La fonction est constante pour <literal>t &lt;= 0</literal> et
+            <literal>t &gt;= Tmax</literal>.
         </para>
         <para>
             <note>
-            Remarque: des fonctions de génération aléatoires telles que <link linkend="rand">rand</link> et
-			<link linkend="grand">grand</link> sont une alternative à la génération de bruit
-			contenant un large panel de lois de distribution(voir exemple 2 ce-dessous).
+                Remarque: des fonctions de génération aléatoires telles que <link linkend="rand">rand</link> et
+                <link linkend="grand">grand</link> sont une alternative à la génération de bruit
+                contenant un large panel de lois de distribution (voir exemple 2 ci-dessous).
             </note>
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-			Exemple #1: noisegen()
+        <para>
+            Exemple #1: noisegen()
+        </para>
         <programlisting role="example"><![CDATA[
 noisegen(0.5, 30, 1.0);
 x = -5:0.01:35;
@@ -75,21 +77,23 @@ plot(x, y);
             y = feval(x, Noise);
             plot(x, y);
         </scilab:image>
-			Exemple #2: rand()
-                <programlisting role="example"><![CDATA[
+        <para>
+            Exemple #2: rand()
+        </para>
+        <programlisting role="example"><![CDATA[
 // Tracer un bruit blanc gaussien de moyenne nulle à variance 1.
 // Pour utiliser une variance différente, multiplier rand() par la racine carrée de la variance.
 t = 0:.5:30;
 sig = 1; // Ecart-type du bruit blanc gaussien.
 noise = sig*rand(t, "normal");
-plot2d2(t, noise)
+plot2d2(t, noise);
  ]]></programlisting>
-                <scilab:image>
+        <scilab:image>
             t = 0:.5:30;
-			sig = 1;
-			noise = sig*rand(t, "normal");
-			plot2d2(t, noise)
-                </scilab:image>
+            sig = 1;
+            noise = sig*rand(t, "normal");
+            plot2d2(t, noise)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Vori aussi</title>
@@ -99,7 +103,7 @@ plot2d2(t, noise)
             </member>
             <member>
                 <link linkend="grand">grand</link>
-			</member>
+            </member>
         </simplelist>
     </refsection>
 </refentry>
