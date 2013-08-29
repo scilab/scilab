@@ -287,6 +287,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
     if ((work = (double *)MALLOC(lw * sizeof(double))) == NULL)
     {
         Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+        return 1;
     }
     /* change the sign of  C and b.*/
     *ierr = 0;
@@ -311,6 +312,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
             FREE(work);
             work = NULL;
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            return 1;
         }
         if ((ind = (int *)MALLOC((m + Sp.nel) * sizeof(int))) == NULL)
         {
@@ -319,6 +321,7 @@ int sci_qp_solve(char *fname, unsigned long fname_len)
             FREE(R);
             R = NULL;
             Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+            return 1;
         }
 
         // Transpose the sparse matrix A
