@@ -62,7 +62,7 @@ Function::ReturnValue sci_mclearerr(types::typed_list &in, int _iRetCount, types
     {
         if (getWarningMode())
         {
-            sciprint(_("%ls: Cannot check the end of file whose descriptor is %d: File is not active.\n"), "mclearerr", iFile);
+            sciprint(_("%s: Cannot check the end of file whose descriptor is %d: File is not active.\n"), "mclearerr", iFile);
         }
     }
 
