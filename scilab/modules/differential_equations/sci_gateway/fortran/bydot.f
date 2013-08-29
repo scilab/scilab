@@ -119,6 +119,12 @@ c
       niv=niv-1
 c+    
 c     transfer of output parameters of external to fortran
+      isComplex = istk(iadr(lstk(top))+3)
+      if(isComplex.eq.1) then
+        buf='ode: external must be real.'
+        call error(9999)
+        return
+      endif
       call btof(ydot,n)
       if(err.gt.0.or.err1.gt.0) return
 c     normal return iero set to 0
@@ -136,4 +142,3 @@ c
       endif
       return
       end
-
