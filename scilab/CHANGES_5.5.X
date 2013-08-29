@@ -137,6 +137,8 @@ Xcos
 
 * Bug #12460 fixed - xcosPalGenerateAllIcons sometimes crashed Scilab.
 
+* Bug #12461 fixed - Cancelling zoom out by zooming in did not fully work.
+
 * Bug #12561 fixed - SELECT_m and RELAY_f no more behaved as expected.
 
 * Bug #12568 fixed - "Recent files" menu entry should be placed next to the
