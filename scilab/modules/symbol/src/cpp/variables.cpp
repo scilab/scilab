@@ -70,15 +70,15 @@ void Variables::put(const Symbol& _key, types::InternalType& _iT, int _iLevel)
                     return;
                 }
 
+                //increase ref
+                _iT.IncreaseRef();
+
                 (*itBox)->m_pIT->DecreaseRef();
                 if ((*itBox)->m_pIT->isDeletable())
                 {
                     delete (*itBox)->m_pIT;
                 }
 
-
-                //increase ref
-                _iT.IncreaseRef();
                 //update value
                 (*itBox)->m_pIT = &_iT;
                 bInserted = true;
