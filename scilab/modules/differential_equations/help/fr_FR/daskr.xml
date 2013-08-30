@@ -251,7 +251,7 @@ integer ny, ng
                 <listitem>
                     <para>
                         liste contenant <literal>14</literal> éléments. La valeur par défaut est
-                        <literal>list([], 0, [], [], [], 0, [], 0, [], 0, [], [], [], 1)</literal>.
+                        <literal>list([], 0, [], [], [], 0, [], 0, [], 0, 0, [], [], 1)</literal>.
                     </para>
                     <variablelist>
                         <varlistentry>
