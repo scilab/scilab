@@ -199,6 +199,8 @@ Xcos
 
 * Bug #12868 fixed - There were several problems with PULSE_SC block.
 
+* Bug #12869 fixed - min and max were not defined but used in Xcos generated code.
+
 * Bug #12873 fixed - Scicos_flat produced an unexpected error after a diagram
                      load.
 
