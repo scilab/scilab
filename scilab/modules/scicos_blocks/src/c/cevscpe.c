@@ -744,9 +744,11 @@ static char *getSegs(char *pAxeUID, scicos_block * block, int input)
         }
         else
         {
+            int iMarkSize = 4;
             color = -color;
             setGraphicObjectProperty(pSegs, __GO_MARK_MODE__, &b__true, jni_bool, 1);
             setGraphicObjectProperty(pSegs, __GO_MARK_STYLE__, &color, jni_int, 1);
+            setGraphicObjectProperty(pSegs, __GO_MARK_SIZE__, &iMarkSize, jni_int, 1);
         }
 
         {

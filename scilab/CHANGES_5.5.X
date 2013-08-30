@@ -165,6 +165,8 @@ Xcos
 
 * Bug #12868 fixed - There were several problems with the PULSE_SC block.
 
+* Bug #12874 fixed - CSCOPE marks size were too small.
+
 
 Toolbox skeleton
 =================

@@ -987,12 +987,14 @@ static char *getPolyline(char *pAxeUID, scicos_block * block, int input, int row
         }
         else
         {
+            int iMarkSize = 4;
             color = -color;
 
             LOG("%s: %s at %d at %d to %d\n", "cmscope", "set mark mode", input, row, -color);
 
             setGraphicObjectProperty(pPolyline, __GO_MARK_MODE__, &b__true, jni_bool, 1);
             setGraphicObjectProperty(pPolyline, __GO_MARK_STYLE__, &color, jni_int, 1);
+            setGraphicObjectProperty(pPolyline, __GO_MARK_SIZE__, &iMarkSize, jni_int, 1);
         }
 
         {
