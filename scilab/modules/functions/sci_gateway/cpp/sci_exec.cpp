@@ -215,6 +215,16 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                     k++;
                 }
                 while (k != LExp.end() && (*k)->location_get().first_line == iLastLine);
+
+                // In case where the line ends by spaces, iCurrentCol is not reset
+                // by printExp because we don't know if that's the end of the expression
+                // before go out of the loop. So we have to reset column count
+                // and print a new line before manage the next line.
+                if (iCurrentCol != 0)
+                {
+                    iCurrentCol = 0;
+                    printLine("", "", true);
+                }
             }
             else
             {
