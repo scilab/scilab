@@ -38,7 +38,7 @@ assert_checktrue(stdeviation <= 1d-8);
 
 
 // Import diagram
-assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/Controller.zcos"));
+assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/ODE/Controller.zcos"));
 
 // Set solver to LSodar + run LSodar + save results
 scs_m.props.tol(6) = 0;                                    // Set solver to LSodar
