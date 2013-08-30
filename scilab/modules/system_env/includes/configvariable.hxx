@@ -342,6 +342,15 @@ private :
 public :
     static void setFuncprot(int _iFuncprot);
     static int getFuncprot();
+
+    // where
+private :
+    static std::list< std::pair<int, std::wstring> > m_Where;
+public :
+    static void where_begin(int _iLineNum, std::wstring _wstName);
+    static void where_end();
+    static std::list< std::pair<int, std::wstring> >& getWhere();
+
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

@@ -967,3 +967,27 @@ int ConfigVariable::getFuncprot()
 /*
 ** \}
 */
+
+/*
+** where
+** \{
+*/
+
+std::list< std::pair<int, std::wstring> > ConfigVariable::m_Where;
+
+void ConfigVariable::where_begin(int _iLineNum, std::wstring _wstName)
+{
+    m_Where.push_back(std::pair<int, std::wstring>(_iLineNum, _wstName));
+}
+void ConfigVariable::where_end()
+{
+    m_Where.pop_back();
+}
+std::list< std::pair<int, std::wstring> >& ConfigVariable::getWhere()
+{
+    return m_Where;
+}
+
+/*
+** \}
+*/

@@ -283,7 +283,7 @@ am__objects_8 = libscicore_la-core_gw.lo \
 	libscicore_la-sci_stacksize.lo libscicore_la-sci_format.lo \
 	libscicore_la-sci_sciargs.lo libscicore_la-sci_ieee.lo \
 	libscicore_la-sci_funcprot.lo libscicore_la-sci_mode.lo \
-	libscicore_la-sci_typename.lo
+	libscicore_la-sci_typename.lo libscicore_la-sci_where.lo
 am_libscicore_la_OBJECTS = $(am__objects_6) $(am__objects_7) \
 	$(am__objects_8)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -693,7 +693,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_ieee.cpp \
 	sci_gateway/cpp/sci_funcprot.cpp \
 	sci_gateway/cpp/sci_mode.cpp \
-	sci_gateway/cpp/sci_typename.cpp
+	sci_gateway/cpp/sci_typename.cpp \
+	sci_gateway/cpp/sci_where.cpp
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
@@ -1052,6 +1053,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_type.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_typename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_warning.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_where.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_who.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_with_module.Plo@am__quote@
 
@@ -1782,6 +1784,13 @@ libscicore_la-sci_typename.lo: sci_gateway/cpp/sci_typename.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_typename.cpp' object='libscicore_la-sci_typename.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_typename.lo `test -f 'sci_gateway/cpp/sci_typename.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_typename.cpp
+
+libscicore_la-sci_where.lo: sci_gateway/cpp/sci_where.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_where.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_where.Tpo -c -o libscicore_la-sci_where.lo `test -f 'sci_gateway/cpp/sci_where.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_where.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_where.Tpo $(DEPDIR)/libscicore_la-sci_where.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_where.cpp' object='libscicore_la-sci_where.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_where.lo `test -f 'sci_gateway/cpp/sci_where.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_where.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

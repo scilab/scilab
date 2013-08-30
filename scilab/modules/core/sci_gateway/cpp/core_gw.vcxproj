@@ -203,6 +203,7 @@
     <ClCompile Include="sci_stacksize.cpp" />
     <ClCompile Include="sci_typename.cpp" />
     <ClCompile Include="sci_warning.cpp" />
+    <ClCompile Include="sci_where.cpp" />
     <ClCompile Include="sci_who.cpp" />
     <ClCompile Include="sci_with_module.cpp" />
   </ItemGroup>

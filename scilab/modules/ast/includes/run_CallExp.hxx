@@ -120,8 +120,12 @@ void visitprivate(const CallExp &e)
             ConfigVariable::resetError();
             //update verbose";" flag
             ConfigVariable::setVerbose(e.is_verbose());
+            // add line and function name in where
+            ConfigVariable::where_begin((int)e.location_get().first_line, pCall->getName());
             //call function
             types::Function::ReturnValue Ret = pCall->call(in, opt, iRetCount, out, this);
+            // remove the last call from where
+            ConfigVariable::where_end();
             expected_setSize(iSaveExpectedSize);
             result_clear();
 
@@ -173,6 +177,9 @@ void visitprivate(const CallExp &e)
         }
         catch (ScilabMessage sm)
         {
+            // remove the last call from where
+            ConfigVariable::where_end();
+
             //clear input parameters
             for (unsigned int k = 0; k < in.size(); k++)
             {
