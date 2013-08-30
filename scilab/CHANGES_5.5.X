@@ -122,6 +122,7 @@ Xcos
 ====
 
 * New DAE solver: DDaskr, using BDF methods with direct Newton and preconditioned Krylov linear solvers, which includes rootfinding.
+  It is available from the dae() function.
 
 * In Modelica initialization GUI, inputs (eg. sensor) were not handled.
 
