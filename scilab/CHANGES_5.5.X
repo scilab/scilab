@@ -187,6 +187,8 @@ Xcos
 
 * Bug #12874 fixed - CSCOPE marks size were too small.
 
+* Bug #12877 fixed - Incorrect output port dimension and types in GENSIN_f, GENSQR_f, STEP_FUNCTION and STEP blocks
+
 
 Toolbox skeleton
 =================

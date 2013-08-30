@@ -54,7 +54,9 @@ function [x,y,typ]=STEP(job,arg1,arg2)
                 end
             end
             if ok then
-                [model,graphics,ok]=check_io(model,graphics,[],size(fi,"*"),1,1)
+              model.out2=1;
+              model.outtype=1;
+              [model,graphics,ok]=check_io(model,graphics,[],size(fi,"*"),1,1)
             end
             if ok then
                 model.firing=temps
@@ -76,6 +78,8 @@ function [x,y,typ]=STEP(job,arg1,arg2)
         model.evtin=1
         model.evtout=1
         model.out=1
+        model.out2=1;
+        model.outtype=1;
         model.firing=1
         model.rpar=rpar
         model.blocktype="c"

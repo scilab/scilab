@@ -50,6 +50,11 @@ function [x,y,typ]=GENSIN_f(job,arg1,arg2)
             if ok then
                 [model,graphics,ok]=check_io(model,graphics,[],1,[],[])
                 model.rpar=[M;F;P]
+                //next two lines to fix invalid properties in scilab version
+                //prior 5.5.0
+                model.out2=1;
+                model.outtype=1;
+
                 graphics.exprs=exprs;
                 x.graphics=graphics;x.model=model
                 break
@@ -61,6 +66,8 @@ function [x,y,typ]=GENSIN_f(job,arg1,arg2)
         model.sim="gensin"
         model.in=[]
         model.out=1
+        model.out2=1
+        model.outtype=1
         model.rpar=[1;1;0]
         model.blocktype="c"
         model.dep_ut=[%f %t]

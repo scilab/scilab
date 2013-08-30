@@ -43,6 +43,11 @@ function [x,y,typ]=GENSQR_f(job,arg1,arg2)
             if ~ok then break,end
             graphics.exprs=exprs
             model.dstate=Amplitude
+            //next two lines to fix invalid properties in scilab version
+            //prior 5.5.0
+            model.out2=1;
+            model.outtype=1;
+
             x.graphics=graphics;x.model=model
             break
         end
@@ -50,8 +55,10 @@ function [x,y,typ]=GENSQR_f(job,arg1,arg2)
         Amplitude=1
         model=scicos_model()
         model.sim="gensqr"
-        model.out=1
-        model.evtin=1
+        model.out=1;
+        model.out2=1;
+        model.outtype=1;
+        model.evtin=1;
         model.dstate=Amplitude
         model.blocktype="d"
         model.dep_ut=[%f %f]
