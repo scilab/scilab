@@ -51,6 +51,8 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 
 * Switch to the CeCILL 2.1 license
 
+* Allow the usage of the '$' keyword in the part function.
+
 
 Syntax changes
 ===============
