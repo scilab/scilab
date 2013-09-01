@@ -144,7 +144,7 @@ int sci_light_create(char *fname, unsigned long fname_len)
 
         if ((opts[1].iPos != -1) && (opts[1].iType == sci_matrix) && (opts[1].iCols * opts[1].iRows == 3))
         {
-            sciErr = getMatrixOfDouble(pvApiCtx, opts[4].piAddr, &nbRow, &nbCol, &diffuse_color);
+            sciErr = getMatrixOfDouble(pvApiCtx, opts[1].piAddr, &nbRow, &nbCol, &diffuse_color);
         }
 
         if ((opts[4].iPos != -1) && (opts[4].iType == sci_matrix) && (opts[4].iCols * opts[4].iRows == 3))
