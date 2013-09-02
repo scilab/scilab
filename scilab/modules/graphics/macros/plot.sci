@@ -9,20 +9,21 @@
 
 function plot(varargin)
     // Try to build a new better parser that could manage things like:
-    // plot(x,y,'X',1:10); // where X stands for Xdata (Matlab recognize
-    //it and treats it well...
+    // plot(x,y,'X',1:10); // where X stands for Xdata (Matlab recognizes
+    //it and treats it well...)
 
     [lhs,rhs]=argn(0);
 
     if ~rhs
         //LineSpec and PropertySpec examples:
         t = 0:%pi/20:2*%pi;
+        tt = t';
         clf();
         drawlater();
         subplot(211);
-        plot(t,sin(t),"ro-.",t,cos(t),"cya+",t,abs(sin(t)),"--mo");
+        plot(tt, sin(tt), "ro-.", tt, cos(tt), "cya+", tt, abs(sin(tt)), "--mo");
         subplot(212);
-        plot([t ;t],[sin(t) ;cos(t)],"xdat",[1:2]);
+        plot([t ;t],[sin(t); cos(t)],"xdat",[1:2]);
         drawnow();
         return;
     end
@@ -245,10 +246,11 @@ function plot(varargin)
             [X,Y] = checkXYPair(typeOfPlot,ListArg(xyIndexLineSpec(i,1)),ListArg(xyIndexLineSpec(i,2)),current_figure,cur_draw_mode)
         else
             if or(size(ListArg(xyIndexLineSpec(1,2)))==1)  // If this is a vector
-                X=1:length(ListArg(xyIndexLineSpec(1,2))); // insert an abcsissa vector of same length,
+                X=(1:length(ListArg(xyIndexLineSpec(1,2))))'; // insert an abcsissa vector of same length,
             else                                  // if this is a matrix,
-                X=1:size(ListArg(xyIndexLineSpec(1,2)),1); // insert an abcsissa vector with
+                X=(1:size(ListArg(xyIndexLineSpec(1,2)),1))'; // insert an abcsissa vector with same size
             end
+            // In both cases (matrix/vector), transpose it now so no warning is issued in checkXYPair().
             [X,Y] = checkXYPair(typeOfPlot,X,ListArg(xyIndexLineSpec(1,2)),current_figure,cur_draw_mode)
         end
 
@@ -448,5 +450,3 @@ function plot(varargin)
     ResetFigureDDM(current_figure, cur_draw_mode)
 
 endfunction
-
-
