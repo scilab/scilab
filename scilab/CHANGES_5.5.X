@@ -407,6 +407,8 @@ Bug fixes
 
 * Bug #11891 fixed - Fisher ratio could be inaccurate for one-way ANOVA.
 
+* Bug #11997 fixed - In case of invalid variable name, save function return error instead of compatibility warning.
+*
 * Bug #12034 fixed - max function did not manage empty matrices.
 
 * Bug #12045 fixed - repmat returned wrong result if numbers of input matrix were not double.

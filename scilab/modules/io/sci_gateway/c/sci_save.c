@@ -14,6 +14,7 @@
 #include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
+#include "scierror.h"
 #include "sciprint.h"
 #include "warningmode.h"
 /*--------------------------------------------------------------------------*/
@@ -27,6 +28,8 @@ int sci_save(char *fname, unsigned long fname_len)
 
     int* piAddr1    = NULL;
     int iType1      = 0;
+    BOOL bWarning   = TRUE;
+    int iErrorRhs = 0;
 
     CheckRhs(1, 100000);
     CheckLhs(0, 1);
@@ -107,6 +110,8 @@ int sci_save(char *fname, unsigned long fname_len)
                         // Try old save because here the input variable can be of type "string" but not a variable name
                         // Ex: a=""; save(filename, a);
                         iOldSave = TRUE;
+                        bWarning = FALSE;
+                        iErrorRhs = i;
                         break;
                     }
 
@@ -142,14 +147,23 @@ int sci_save(char *fname, unsigned long fname_len)
 
     if (iOldSave)
     {
-        //show warning only for variable save, not for environment.
-        if (getWarningMode() && Rhs > 1)
+        if (bWarning)
         {
-            sciprint(_("%s: Scilab 6 will not support the file format used.\n"), _("Warning"));
-            sciprint(_("%s: Please quote the variable declaration. Example, save('myData.sod',a) becomes save('myData.sod','a').\n"), _("Warning"));
-            sciprint(_("%s: See help('save') for the rational.\n"), _("Warning"));
+            //show warning only for variable save, not for environment
+            if (getWarningMode() && Rhs > 1)
+            {
+                sciprint(_("%s: Scilab 6 will not support the file format used.\n"), _("Warning"));
+                sciprint(_("%s: Please quote the variable declaration. Example, save('myData.sod',a) becomes save('myData.sod','a').\n"), _("Warning"));
+                sciprint(_("%s: See help('save') for the rational.\n"), _("Warning"));
+            }
+
+            C2F(intsave)();
         }
-        C2F(intsave)();
+        else
+        {
+            Scierror(248, _("Wrong value for argument #%d: Valid variable name expected.\n"), iErrorRhs);
+            return 0;
+        }
     }
 
     return 0;
