@@ -16,5 +16,5 @@ function [v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15,v16,..
     v="v"
     args=strcat(v(ones(lhs,1))+string(1:lhs)',",")
     buf=read(%io(1),1,1,"(a)")
-    execstr("["+args+"]=sscanf(buf,frmt)")
+    execstr("["+args+"]=msscanf(buf,frmt)")
 endfunction

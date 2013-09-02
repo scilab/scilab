@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -37,8 +37,8 @@
                 <term>file</term>
                 <listitem>
                     <para>
-                        символьная строка, указывающая имя файла, или целое число, 
-                        указывающее логическое устройство, возвращённое функцией 
+                        символьная строка, указывающая имя файла, или целое число,
+                        указывающее логическое устройство, возвращённое функцией
                         <function>mopen</function>.
                     </para>
                 </listitem>
@@ -53,7 +53,7 @@
             </warning>
         </para>
         <para>
-            Функция <function>fscanf</function> считывает символьные данные в файле, определённом аргументом <varname>file</varname>, интерпретирует их в соответствии с форматом <varname>format</varname>, и возвращает преобразованные результаты.  
+            Функция <function>fscanf</function> считывает символьные данные в файле, определённом аргументом <varname>file</varname>, интерпретирует их в соответствии с форматом <varname>format</varname>, и возвращает преобразованные результаты.
         </para>
         <para>
             Параметр <varname>format</varname> содержит спецификации преобразования, используемые для интерпретации ввода.
@@ -87,7 +87,7 @@
                 <link linkend="scanf">scanf</link>
             </member>
             <member>
-                <link linkend="sscanf">sscanf</link>
+                <link linkend="msscanf">msscanf</link>
             </member>
             <member>
                 <link linkend="mfscanf">mfscanf</link>

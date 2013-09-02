@@ -89,6 +89,7 @@ Obsolete
 * chart() tagged as obsolete. Will be removed for Scilab 5.5.1.
   Use nicholschart() instead.
 
+* sscanf is obsolete, use msscanf instead.
 
 Differential_equations
 ======================
