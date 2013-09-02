@@ -6,7 +6,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine dasrti(fname)
 c ====================================================================
@@ -109,7 +109,7 @@ c     --------------------------------
       endif
       if(.not.getrvect(fname,topk,top-rhs+5,m5,n5,lrtol))return
       m5 = m5*n5
-      if(m5.ne.m4) then
+      if(m5.ne.m4.or.(m5.ne.1.and.m5.ne.neq)) then
          call error(60)
          return
       endif

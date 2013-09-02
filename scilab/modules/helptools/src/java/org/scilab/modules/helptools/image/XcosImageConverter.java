@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,17 +16,15 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import org.scilab.modules.helptools.HTMLDocbookTagConverter;
+import org.scilab.modules.helptools.DocbookTagConverter;
 
 /**
  * Xcos schema to PNG converter
  */
 public class XcosImageConverter implements ExternalImageConverter {
+    private final DocbookTagConverter conv;
 
-    private static XcosImageConverter instance;
-    private final HTMLDocbookTagConverter conv;
-
-    private XcosImageConverter(HTMLDocbookTagConverter conv) {
+    public XcosImageConverter(DocbookTagConverter conv) {
         this.conv = conv;
     }
 
@@ -44,30 +42,13 @@ public class XcosImageConverter implements ExternalImageConverter {
     }
 
     /**
-     * Since this a singleton class...
-     *
-     * @return this
-     */
-    public static XcosImageConverter getInstance(HTMLDocbookTagConverter conv) {
-        if (instance == null) {
-            instance = new XcosImageConverter(conv);
-        }
-
-        return instance;
-    }
-
-    public static XcosImageConverter getInstance() {
-        return instance;
-    }
-
-    /**
      * {@inheritDoc}
      *
      * Redirect to the scilab code implementation.
      */
     @Override
     public String convertToImage(String currentFile, String code, Map<String, String> attributes, File imageFile, String imageName) {
-        return ScilabImageConverter.getInstance().convertToImage(currentFile, code, attributes, imageFile, imageName);
+        return conv.getImageConverter().getScilabImageConverter().convertToImage(currentFile, code, attributes, imageFile, imageName);
     }
 
     /**
@@ -77,7 +58,7 @@ public class XcosImageConverter implements ExternalImageConverter {
     public String convertToImage(File schema, Map<String, String> attributes, File imageFile, String imageName) {
         try {
             final String name = schema.getName();
-            return convertToPNG(name, schema.getAbsolutePath(), imageFile, imageName);
+            return convertToPNG(name, schema.getAbsolutePath(), attributes, imageFile, imageName);
         } catch (Exception e) {
             e.printStackTrace();
             System.err.printf("Problem when exporting Xcos schema %s !\n%s\n", schema, e.toString());
@@ -86,7 +67,7 @@ public class XcosImageConverter implements ExternalImageConverter {
         return null;
     }
 
-    private final String convertToPNG(final String helpID, final String xcosFile, final File imageFile, final String imageName) throws Exception {
+    private final String convertToPNG(final String helpID, final String xcosFile, Map<String, String> attributes, final File imageFile, final String imageName) throws Exception {
         /*
          * use a delegate method to avoid a static dependency
          */
@@ -94,19 +75,6 @@ public class XcosImageConverter implements ExternalImageConverter {
         final Method convertToPNG = export.getDeclaredMethod("convertToPNG", String.class, String.class, File.class, String.class);
         convertToPNG.invoke(null, helpID, xcosFile, imageFile, imageName);
 
-        return getHTMLCodeToReturn(helpID, "<img src=\'" + conv.getBaseImagePath() + imageName + "\'/>");
-    }
-
-    public String getHTMLCodeToReturn(String filename, String imageTag) {
-        if (conv.getGenerationType() == HTMLDocbookTagConverter.GenerationType.WEB) {
-            /* Provide a tooltip */
-            return "<div rel='tooltip' title='" + filename + "'>" + imageTag + "</div>";
-        } else {
-            /*
-             * No tooltip in the javahelp browser ... too limited html
-             * capabilities
-             */
-            return imageTag;
-        }
+        return conv.generateImageCode(xcosFile, conv.getBaseImagePath() + imageName, attributes);
     }
 }

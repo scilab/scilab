@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // =============================================================================
 // WAVE Audio File Format
@@ -178,7 +178,7 @@ function savewave(filename,x,rate,nbits)
             // Determine if a pad-byte is appended to data chunk:
             %v2_1$1 = total_samples * BytesPerSample;
             if ( %v2_1$1 - fix(%v2_1$1./2).*2 ) then
-                mput(0,fid,"uc");
+                mput(0,"uc",fid);
             end
         else
             // Unknown wave-format for data.

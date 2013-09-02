@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -348,32 +348,30 @@ public class SetupDialog extends JDialog {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (((JButton) e.getSource()).hasFocus()) {
-                    try {
-                        /*
-                         * FIXME This logic must be deported to a vetoable
-                         * handler
-                         */
-                        int solverSelectedIndex = solver.getSelectedIndex();
-                        if (solverSelectedIndex >= 0.0 && solverSelectedIndex <= solver.getModel().getSize() - 4) {
-                            parameters.setSolver(solverSelectedIndex);
-                        } else {
-                            parameters.setSolver(solverSelectedIndex + 92); // IDA = 8+92 = 100, DDaskr-Newton = 9+92 = 101, DDaskr-GMRes = 102
-                        }
-
-                        parameters.setFinalIntegrationTime(((BigDecimal) integration.getValue()).doubleValue());
-                        parameters.setRealTimeScaling(((BigDecimal) rts.getValue()).doubleValue());
-                        parameters.setIntegratorAbsoluteTolerance(((BigDecimal) integrator.getValue()).doubleValue());
-                        parameters.setIntegratorRelativeTolerance(((BigDecimal) integratorRel.getValue()).doubleValue());
-                        parameters.setToleranceOnTime(((BigDecimal) toleranceOnTime.getValue()).doubleValue());
-                        parameters.setMaxIntegrationTimeInterval(((BigDecimal) maxIntegrationTime.getValue()).doubleValue());
-                        parameters.setMaximumStepSize(((BigDecimal) maxStepSize.getValue()).doubleValue());
-
-                        dispose();
-
-                    } catch (PropertyVetoException ex) {
-                        Logger.getLogger(SetupAction.class.getName()).severe(ex.toString());
+                try {
+                    /*
+                     * FIXME This logic must be deported to a vetoable
+                     * handler
+                     */
+                    int solverSelectedIndex = solver.getSelectedIndex();
+                    if (solverSelectedIndex >= 0.0 && solverSelectedIndex <= solver.getModel().getSize() - 4) {
+                        parameters.setSolver(solverSelectedIndex);
+                    } else {
+                        parameters.setSolver(solverSelectedIndex + 92); // IDA = 8+92 = 100, DDaskr-Newton = 9+92 = 101, DDaskr-GMRes = 102
                     }
+
+                    parameters.setFinalIntegrationTime(((BigDecimal) integration.getValue()).doubleValue());
+                    parameters.setRealTimeScaling(((BigDecimal) rts.getValue()).doubleValue());
+                    parameters.setIntegratorAbsoluteTolerance(((BigDecimal) integrator.getValue()).doubleValue());
+                    parameters.setIntegratorRelativeTolerance(((BigDecimal) integratorRel.getValue()).doubleValue());
+                    parameters.setToleranceOnTime(((BigDecimal) toleranceOnTime.getValue()).doubleValue());
+                    parameters.setMaxIntegrationTimeInterval(((BigDecimal) maxIntegrationTime.getValue()).doubleValue());
+                    parameters.setMaximumStepSize(((BigDecimal) maxStepSize.getValue()).doubleValue());
+
+                    dispose();
+
+                } catch (PropertyVetoException ex) {
+                    Logger.getLogger(SetupAction.class.getName()).severe(ex.toString());
                 }
             }
         });

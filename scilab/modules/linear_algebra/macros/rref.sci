@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [A,jb]=rref(A,tol)
     //R = rref(A) produces the reduced row echelon form of A.
@@ -39,7 +39,7 @@ function [A,jb]=rref(A,tol)
         if exists(fun)==1 then
             execstr("[A,jb]="+fun+"(A)")
         else
-            error(msprintf(gettext("%s: Type not defined %s. Check argument or define function %s."),"rref",n,fun));
+            error(msprintf(gettext("%s: Function not defined for type ''%s''. Check argument or define function %s."),"rref",n,fun));
         end
     end
 endfunction

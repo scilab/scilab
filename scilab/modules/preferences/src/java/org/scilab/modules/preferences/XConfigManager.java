@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -202,7 +202,7 @@ public final class XConfigManager extends XCommonManager {
         tbxs.appendChild(body);
 
         List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
-        for (ToolboxInfos info: infos) {
+        for (ToolboxInfos info : infos) {
             String filename = new File(info.getPrefFile()).getName();
             String tbxTag = info.getName().replace(' ', '_');
             String tbxFile = ScilabConstants.SCIHOME.toString() + "/" + filename;
@@ -232,7 +232,7 @@ public final class XConfigManager extends XCommonManager {
         if (toolboxes != null && toolboxes.getLength() != 0) {
             tbxs = (Element) toolboxes.item(0);
             List<ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
-            for (ToolboxInfos info: infos) {
+            for (ToolboxInfos info : infos) {
                 String tbxTag = info.getName().replace(' ', '_');
                 NodeList list = tbxs.getElementsByTagName(tbxTag);
                 if (list != null && list.getLength() != 0) {

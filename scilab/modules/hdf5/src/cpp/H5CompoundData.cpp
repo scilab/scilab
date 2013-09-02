@@ -6,10 +6,11 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
+#include "H5Options.hxx"
 #include "H5CompoundData.hxx"
 #include "H5DataFactory.hxx"
 
@@ -49,9 +50,9 @@ H5CompoundData::~H5CompoundData()
     H5Tclose(type);
 }
 
-void H5CompoundData::toScilab(void * pvApiCtx, const int lhsPosition, int * parentList, const int listPosition) const
+void H5CompoundData::toScilab(void * pvApiCtx, const int lhsPosition, int * parentList, const int listPosition, const bool flip) const
 {
-    H5Object::toScilab(pvApiCtx, lhsPosition, parentList, listPosition);
+    H5Object::toScilab(pvApiCtx, lhsPosition, parentList, listPosition, flip);
 }
 
 bool H5CompoundData::isCompound() const
@@ -62,7 +63,7 @@ bool H5CompoundData::isCompound() const
 void H5CompoundData::getAccessibleAttribute(const std::string & _name, const int pos, void * pvApiCtx) const
 {
     H5Data & data = getData(_name);
-    data.toScilab(pvApiCtx, pos);
+    data.toScilab(pvApiCtx, pos, 0, 0, H5Options::isReadFlip());
 
     if (data.mustDelete())
     {

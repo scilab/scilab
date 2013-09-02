@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #include <string.h>
@@ -43,7 +43,7 @@ static char *defaultStringError(void);
 /*--------------------------------------------------------------------------*/
 int errorTable(int iErr)
 {
-    int errtyp = 0; /* by default error can be catched */
+    int errtyp = 0; /* by default error can be caught */
     int iValueReturned = 0;
 
     /* clean last error */
@@ -1583,6 +1583,14 @@ int errorTable(int iErr)
         {
             /* no message  */
             iValueReturned = Scierror(iErr, "");
+        }
+        break;
+        case 281:
+        {
+            char localbuf[3];
+            strncpy(localbuf, C2F(cha1).buf, 2);
+            localbuf[2] = '\0';
+            iValueReturned = Scierror(iErr, _("%s: Wrong value for input argument #%d: Wrong value for element %s.\n"), "bvode", 7, localbuf);
         }
         break;
 

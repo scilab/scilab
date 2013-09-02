@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -348,10 +348,8 @@ static bool read_string(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo
         _pInfo->iSize += (int)strlen(pstData[i]) * 4;
     }
 
-    for (int i = 0 ; i < iSize ; i++)
-    {
-        free(pstData[i]);
-    }
+
+    freeStringMatrix(_iDatasetId, pstData);
     FREE(pstData);
     //always full double size
     _pInfo->iSize += (8 - (_pInfo->iSize % 8));

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function blocks = xcosPalGenerateAllIcons(path)
     // 0. Check number of arguments
@@ -21,7 +21,7 @@ function blocks = xcosPalGenerateAllIcons(path)
         error(sprintf(gettext("%s: Wrong type for argument %d: Matrix of strings expected.\n"), "xcosPalGenerateAllIcons", 1));
     end
     // 2. Check size
-    if size(path, "*")<>1 then
+    if and(size(path)<>1) then
         error(sprintf(gettext("%s: Wrong size for input argument #%d: Vector expected.\n"), "xcosPalGenerateAllIcons" , 1));
     end
 

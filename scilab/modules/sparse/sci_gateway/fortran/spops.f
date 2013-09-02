@@ -6,7 +6,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       subroutine spops
 c     
 c     operations on sparse matrices
@@ -1164,7 +1164,7 @@ c     .     reshape to column vector via spmat (reshape is named matrix in scila
 *** le bug etait du au fait que  stk(l2) (remplace par stk(lr)) est remanie 
 *** (via une permutation) et donc pb si arg2 est passe par reference
 
-*** il faudrait peut utiliser spreshape maintenant
+*** il faudrait peut-être utiliser spreshape maintenant
                call dspmat(m2,n2,stk(lr),nel2,istk(irc2),m2*n2
      $              ,istk(ircr),istk(iw))  
             else

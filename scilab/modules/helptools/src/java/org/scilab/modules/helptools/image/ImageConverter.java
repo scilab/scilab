@@ -6,14 +6,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.helptools.image;
 
 import java.awt.Graphics2D;
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -23,10 +22,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.StringReader;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.channels.FileChannel;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,10 +30,10 @@ import java.util.TreeMap;
 import javax.activation.MimetypesFileTypeMap;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 import org.scilab.modules.commons.ScilabCommonsUtils;
+import org.scilab.modules.helptools.Converter;
+import org.scilab.modules.helptools.DocbookTagConverter;
 
 /**
  * Class to handle the image conversion
@@ -48,11 +43,12 @@ public final class ImageConverter {
 
     private static final String MD5_FILE = "images_md5.txt";
 
-    private static Map<String, ExternalImageConverter> externalConverters = new HashMap<String, ExternalImageConverter>();
-    private static MimetypesFileTypeMap mimeMap = new MimetypesFileTypeMap();
-    private static Map<String, String> md5s;
+    private DocbookTagConverter conv;
+    private Map<String, ExternalImageConverter> externalConverters = new HashMap<String, ExternalImageConverter>();
+    private MimetypesFileTypeMap mimeMap = new MimetypesFileTypeMap();
+    private Map<String, String> md5s = null;
 
-    static {
+    public ImageConverter() {
         mimeMap.addMimeTypes("type=image/latex exts=tex,latex");
         mimeMap.addMimeTypes("type=image/mathml exts=mml,mathml");
         mimeMap.addMimeTypes("type=image/svg exts=svg");
@@ -60,21 +56,33 @@ public final class ImageConverter {
         mimeMap.addMimeTypes("type=image/scilab-xcos exts=xcos,zcos");
     }
 
+    public void setDocbookTagConverter(DocbookTagConverter conv) {
+        this.conv = conv;
+    }
+
     /**
      * Register a new ExternalImageConverter
      * @param c the converter to register
      */
-    public static void registerExternalImageConverter(ExternalImageConverter c) {
+    public void registerExternalImageConverter(ExternalImageConverter c) {
         if (c != null) {
             externalConverters.put(c.getMimeType(), c);
         }
     }
 
     /**
+     * Get the current Scilab image converter
+     * @return a Scilab image converter
+     */
+    public ScilabImageConverter getScilabImageConverter() {
+        return (ScilabImageConverter) externalConverters.get("image/scilab");
+    }
+
+    /**
      * Load file containing md5s
      * @param dir the directory where to find the file
      */
-    public static void loadMD5s(String dir) {
+    public void loadMD5s(String dir) {
         md5s = getMD5s(dir);
     }
 
@@ -82,9 +90,8 @@ public final class ImageConverter {
      * Save file containing md5s
      * @param dir the directory where to find the file
      */
-    public static void saveMD5s(String dir) {
+    public void saveMD5s(String dir) {
         writeMD5s(dir, md5s);
-        md5s = null;
     }
 
     /**
@@ -92,7 +99,7 @@ public final class ImageConverter {
      * @param code the code to compare
      * @param file the file name of the future image
      */
-    public static boolean compareMD5(String code, String file) {
+    public boolean compareMD5(String code, String file) {
         if (md5s != null && code != null && file != null && !file.isEmpty()) {
             code = code.trim().replaceAll("[ \t]*[\n]+[ \t]*", "");
             String md5 = ScilabCommonsUtils.getMD5(code);
@@ -186,9 +193,9 @@ public final class ImageConverter {
      * @param path the current XML file which is parsed
      * @param image the filename
      * @param destDir the destination directory
-     * @return the HTML code to insert the image
+     * @return true if the code has been rendered into {@code imageFile}
      */
-    public static String getImageByFile(Map<String, String> attrs, String path, String image, String outputDir, String destDir, String baseImagePath) {
+    public String getImageByFile(Map<String, String> attrs, String path, String image, String outputDir, String destDir, String baseImagePath) {
         File f = new File(image);
         if (!f.isAbsolute()) {
             f = new File(path + File.separator + image);
@@ -196,21 +203,21 @@ public final class ImageConverter {
 
         String destFile = outputDir + File.separator + destDir + File.separator + f.getName();
 
-        ExternalImageConverter conv = externalConverters.get(mimeMap.getContentType(f));
-        if (conv != null) {
+        ExternalImageConverter imgConv = externalConverters.get(mimeMap.getContentType(f));
+        if (imgConv != null) {
             destFile += ".png";
         }
         File imageFile = new File(destFile);
         String imageName = destDir + "/" + imageFile.getName();
 
         if (f.lastModified() > imageFile.lastModified()) {
-            if (conv != null) {
-                return conv.convertToImage(f, attrs, imageFile, imageName);
+            if (imgConv != null) {
+                return imgConv.convertToImage(f, attrs, imageFile, imageName);
             }
             copyImageFile(f, outputDir + File.separator + destDir);
         }
 
-        return "<img src=\'" + baseImagePath + imageName + "\'/>";
+        return conv.generateImageCode(conv.getBaseImagePath() + imageName, attrs);
     }
 
     /**
@@ -218,11 +225,11 @@ public final class ImageConverter {
      * @param attrs the attribute of the image
      * @param mime type
      * @param imageFile the filename
-     * @return the HTML code to insert the image
+     * @return true if the code has been rendered into {@code imageFile}
      */
-    public static String getImageByCode(String currentFile, String code, Map<String, String> attrs, String mime, File imageFile, String imageName, String baseImagePath, int lineNumber, String language, boolean isLocalized) {
-        ExternalImageConverter conv = externalConverters.get(mime);
-        if (conv == null) {
+    public String getImageByCode(String currentFile, String code, Map<String, String> attrs, String mime, File imageFile, String imageName, String baseImagePath, int lineNumber, String language, boolean isLocalized) {
+        ExternalImageConverter imgConv = externalConverters.get(mime);
+        if (imgConv == null) {
             System.err.println("In file " + currentFile + " at line " + lineNumber + ": invalid code:\n" + code);
             return null;
         }
@@ -231,48 +238,18 @@ public final class ImageConverter {
             md5s.remove(imageFile.getName());
         }
 
+        File current = new File(currentFile);
         if (!compareMD5(code, imageFile.getName())) {
-            File current = new File(currentFile);
             if (isLocalized || language.equals("en_US")) {
                 System.err.println("Info: Create image " + imageFile.getName() + " from line " + lineNumber + " in " + current.getName());
             } else if (!language.equals("en_US") && imageFile.exists()) {
                 System.err.println("Warning: Overwrite image " + imageFile.getName() + " from line " + lineNumber + " in " + current.getName() + ". Check the code or use scilab:localized=\"true\" attribute.");
             }
 
-            return conv.convertToImage(currentFile, code, attrs, imageFile, imageName);
+            return imgConv.convertToImage(currentFile, code, attrs, imageFile, imageName);
         }
 
-        return "<img src=\'" + baseImagePath + imageName + "\'/>";
-    }
-
-    /**
-     * @param code the code to translate
-     * @param img image information
-     * @param fileName the filename
-     * @param attrs the attribute of the image
-     * @return the HTML code to insert the image
-     */
-    public static String generateCode(Image img, String fileName, Map<String, String> attrs) {
-        String style = attrs.get("style");
-        String top = "";
-        boolean display = style != null && style.equals("display");
-
-        if (!display) {
-            top = "top:" + img.descent + "px;";
-        }
-
-        String alignAttr = attrs.get("align");
-        String align = "";
-        String div = "div";
-        if (alignAttr != null) {
-            align = " style=\'text-align:" + alignAttr + "\'";
-        } else if (display) {
-            align = " style=\'text-align:center\'";
-        } else {
-            div = "span";
-        }
-
-        return "<" + div + align + "><img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'/></" + div + ">";
+        return conv.generateImageCode(conv.getBaseImagePath() + imageName, attrs);
     }
 
     /**

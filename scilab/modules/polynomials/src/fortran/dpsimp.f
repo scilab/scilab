@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       subroutine dpsimp(a,na,b,nb,a1,na1,b1,nb1,w,ierr)
 c!    but
 c     Etant donnes une fraction rationnelle donnee par ses polynomes
@@ -165,9 +165,9 @@ c
       nb1=nden
       return
  20   a1(1)=0.0d+0
-      call dcopy(nb+1, b, 1, b1, 1)                         
+      b1(1)=1.0d+0
       na1=1
-      nb1=nb+1
+      nb1=1
       return
  30   if(nz.eq.0) then
          call dcopy(na1+1,a(la0),1,a1,1)

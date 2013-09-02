@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -229,7 +229,7 @@ char* clonePolyline(char* sourcePolyline)
                                          &foreground, &background, &markStyle, &markForeground, &markBackground,
                                          lineMode, fillMode, markMode, interpShaded);
 
-    /* These properties must be aditionally set as this is not done by allocatePolyline */
+    /* These properties must be additionally set as this is not done by allocatePolyline */
     setGraphicObjectProperty(clonedPolylineUID, __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
     setGraphicObjectProperty(clonedPolylineUID, __GO_LINE_THICKNESS__, &lineThickness, jni_double, 1);
 

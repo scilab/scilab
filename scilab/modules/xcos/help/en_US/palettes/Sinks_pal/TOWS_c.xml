@@ -241,7 +241,7 @@
     <refsection id="Example_TOWS_c">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/TOWS_c_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/TOWS_c_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/sinks_pal/TOWS_c_Example.zcos" valign="middle"/>

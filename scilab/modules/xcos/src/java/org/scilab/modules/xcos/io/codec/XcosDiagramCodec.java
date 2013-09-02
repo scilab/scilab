@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -54,11 +54,11 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
     // The non saved fields are hardcoded and can have the same name.
     // CSOFF: MultipleStringLiterals
     private static final String[] DIAGRAM_IGNORED_FIELDS = { "stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel", "savedFile",
-                                  "multiplicities", "opened", "modified", "undoManager", "background"
+                                                             "multiplicities", "opened", "modified", "undoManager", "background"
                                                            };
     private static final String[] SUPERBLOCKDIAGRAM_IGNORED_FIELDS = { "stylesheet", "parentTab", "viewPort", "viewPortMenu", "view", "selectionModel",
-                                  "multiplicities", "opened", "modified", "undoManager", "savedFile", "container", "integratorAbsoluteTolerance", "integratorRelativeTolerance",
-                                  "maxIntegrationTimeInterval", "toleranceOnTime", "background"
+                                                                       "multiplicities", "opened", "modified", "undoManager", "savedFile", "container", "integratorAbsoluteTolerance", "integratorRelativeTolerance",
+                                                                       "maxIntegrationTimeInterval", "toleranceOnTime", "background"
                                                                      };
 
     // CSON: MultipleStringLiterals

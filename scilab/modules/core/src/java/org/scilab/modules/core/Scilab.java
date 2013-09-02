@@ -11,7 +11,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -45,7 +45,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.LookAndFeelManager;
-import org.scilab.modules.gui.utils.ToolBarBuilder;
+import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 
 /**
  * Main Class for Scilab
@@ -64,8 +64,6 @@ public class Scilab {
 
     /** Index of windows vista version */
     private static final double VISTA_VERSION = 6.0;
-
-    private static final String MAINTOOLBARXMLFILE = ScilabConstants.SCI + "/modules/gui/etc/main_toolbar.xml";
 
     private static final String ENABLE_JAVA2D_OPENGL_PIPELINE = "sun.java2d.opengl";
     private static final String ENABLE = "true";
@@ -94,6 +92,8 @@ public class Scilab {
      */
     public Scilab(int mode) {
         Scilab.mode = mode;
+        ScilabConstants.setMode(mode);
+
         DockingManager.setDockableFactory(ScilabTabFactory.getInstance());
 
         /*
@@ -189,18 +189,11 @@ public class Scilab {
             String consoleId = GraphicController.getController().askObject(Type.JAVACONSOLE);
             MenuBarBuilder.buildConsoleMenuBar(consoleId);
 
-            ToolBar toolBar = ToolBarBuilder.buildToolBar(MAINTOOLBARXMLFILE);
-            TextBox infoBar = ScilabTextBox.createTextBox();
-
-            toolBar.setVisible(false); // Enabled in scilab.start
-
             SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
             SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
-            consoleTab.setToolBar(toolBar);
-            consoleTab.setInfoBar(infoBar);
-            ScilabConsole.getConsole().addMenuBar(consoleTab.getMenuBar());
-            ScilabConsole.getConsole().addToolBar(toolBar);
-            ScilabConsole.getConsole().addInfoBar(infoBar);
+
+            WindowsConfigurationManager.restorationFinished(consoleTab);
+
             mainView = SwingScilabWindow.allScilabWindows.get(consoleTab.getParentWindowId());
         } else {
             GraphicController.getController().askObject(Type.CONSOLE);

@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -237,6 +237,37 @@ int sci_editvar(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         Scierror(4, _("%s: Undefined variable: %s.\n"), fname, pStVarOne);
+        FREE(pStVarOne);
+        return 0;
+    }
+
+    /* Workaround to check for permanent variable.
+     * TODO: in Scilab 6.0, use an API specific function for write protection. */
+    if (strcmp(pStVarOne, "$")			    == 0 ||
+            strcmp(pStVarOne, "%e")		== 0 ||
+            strcmp(pStVarOne, "%eps")   	== 0 ||
+            strcmp(pStVarOne, "%fftw") 	== 0 ||
+            strcmp(pStVarOne, "%f")		== 0 ||
+            strcmp(pStVarOne, "%F")		== 0 ||
+            strcmp(pStVarOne, "%gui")		== 0 ||
+            strcmp(pStVarOne, "%i")		== 0 ||
+            strcmp(pStVarOne, "%io")		== 0 ||
+            strcmp(pStVarOne, "%inf")		== 0 ||
+            strcmp(pStVarOne, "%nan")		== 0 ||
+            strcmp(pStVarOne, "%pi")		== 0 ||
+            strcmp(pStVarOne, "%s")		== 0 ||
+            strcmp(pStVarOne, "%tk")		== 0 ||
+            strcmp(pStVarOne, "%t")		== 0 ||
+            strcmp(pStVarOne, "%T")		== 0 ||
+            strcmp(pStVarOne, "%z")		== 0 ||
+            strcmp(pStVarOne, "evoid")	    == 0 ||
+            strcmp(pStVarOne, "home")		== 0 ||
+            strcmp(pStVarOne, "PWD")		== 0 ||
+            strcmp(pStVarOne, "SCI")		== 0 ||
+            strcmp(pStVarOne, "SCIHOME")	== 0 ||
+            strcmp(pStVarOne, "TMPDIR")	== 0 )
+    {
+        Scierror(13, _("Redefining permanent variable.\n"), fname);
         FREE(pStVarOne);
         return 0;
     }

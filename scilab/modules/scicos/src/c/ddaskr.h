@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -74,6 +74,7 @@ typedef struct DDaskrMemRec
     int lrw;
     int * iwork;
     int liw;
+    int maxnhIC;
     DDASErrHandlerFn ehfun;
     DDASRootFn g_fun;
     int ng_fun;
@@ -109,6 +110,9 @@ int DDaskrSetMaxStep (void * ddaskr_mem, realtype hmax);
 // Specifying the time beyond which the integration is not to proceed
 int DDaskrSetStopTime (void * ddaskr_mem, realtype tcrit);
 
+// Sets the maximum number of steps in an integration interval
+int DDaskrSetMaxNumSteps (void * ddaskr_mem, int maxnh);
+
 // Sets the maximum number of Jacobian or preconditioner evaluations
 int DDaskrSetMaxNumJacsIC (void * ddaskr_mem, int maxnj);
 
@@ -116,7 +120,7 @@ int DDaskrSetMaxNumJacsIC (void * ddaskr_mem, int maxnj);
 int DDaskrSetMaxNumItersIC (void * ddaskr_mem, int maxnit);
 
 // Sets the maximum number of values of the artificial stepsize parameter H to be tried
-int DDaskrSetMaxNumStepsIC (void * ddaskr_mem, int maxnh);
+int DDaskrSetMaxNumStepsIC (void * ddaskr_mem, int MaxnhIC);
 
 // Sets the flag to turn off the linesearch algorithm
 int DDaskrSetLineSearchOffIC (void * ddaskr_mem, int lsoff);

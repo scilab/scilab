@@ -3,12 +3,12 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dae" xml:lang="en">
@@ -18,7 +18,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis> y=dae(initial,t0,t,res) 
+        <synopsis> y=dae(initial,t0,t,res)
             [y [,hd]]=dae(initial,t0,t [,rtol, [atol]],res [,jac] [,hd])
             [y,rd]=dae("root",initial,t0,t,res,ng,surface)
             [y ,rd [,hd]]=dae("root",initial,t0,t [,rtol, [atol]],res [,jac], ng, surface [,hd])
@@ -50,7 +50,7 @@
                 <listitem>
                     <para>a real scalar or vector. Gives instants for which you want the
                         solution. Note that you can get solution at each dae's step point by
-                        setting 
+                        setting
                         <literal>
                             <link linkend="daeoptions">%DAEOPTIONS</link>(2)=1
                         </literal>
@@ -117,13 +117,13 @@
                                 <para>This form of external is used to pass parameters to the
                                     function. It must be as follows:
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <programlisting role="no-scilab-exec"><![CDATA[
 list(res,p1,p2,...)
  ]]></programlisting>
                                 <para>where the calling sequence of the function
                                     <literal>res</literal> is now
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <programlisting role="no-scilab-exec"><![CDATA[
 r=res(t,y,ydot,p1,p2,...)
  ]]></programlisting>
                                 <para>
@@ -243,14 +243,14 @@ r=res(t,y,ydot,p1,p2,...)
                                 <para>This form of external is used to pass parameters to the
                                     function. It must be as follows:
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[  
-list(jac,p1,p2,...)               
+                                <programlisting role="no-scilab-exec"><![CDATA[
+list(jac,p1,p2,...)
  ]]></programlisting>
                                 <para>where the calling sequence of the function
                                     <literal>jac</literal> is now
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[ 
-r=jac(t,x,xdot,p1,p2,...)      
+                                <programlisting role="no-scilab-exec"><![CDATA[
+r=jac(t,x,xdot,p1,p2,...)
  ]]></programlisting>
                                 <para>
                                     <literal>jac</literal> still returns
@@ -328,13 +328,13 @@ r=jac(t,x,xdot,p1,p2,...)
                                     This form of <link linkend="external">external</link> is used to pass parameters to the
                                     function. It must be as follows:
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[  
+                                <programlisting role="no-scilab-exec"><![CDATA[
 list(surface,p1,p2,...)
  ]]></programlisting>
                                 <para>where the calling sequence of the function
                                     <literal>surface</literal> is now
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <programlisting role="no-scilab-exec"><![CDATA[
 r=surface(t,x,p1,p2,...)
  ]]></programlisting>
                             </listitem>
@@ -390,7 +390,7 @@ r=surface(t,x,p1,p2,...)
                 <term>rd</term>
                 <listitem>
                     <para>
-                        a vector with two entries <literal>[times num]</literal> where 
+                        a vector with two entries <literal>[times num]</literal> where
                         <literal>times</literal> is the value of the time at which the
                         surface is crossed, <literal>num</literal> is the number of the
                         crossed surface
@@ -410,7 +410,7 @@ r=surface(t,x,p1,p2,...)
                 <term>y</term>
                 <listitem>
                     <para>
-                        a real matrix. If 
+                        a real matrix. If
                         <literal>
                             <link linkend="daeoptions">%DAEOPTIONS</link>(2)=1
                         </literal>
@@ -431,12 +431,12 @@ r=surface(t,x,p1,p2,...)
             <link linkend="dassl">dassl</link> and <link linkend="dasrt">dasrt</link>
             function designed for implicit differential equations integration.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 g(t,x,xdot)=0
 x(t0)=x0  and   xdot(t0)=xdot0
  ]]></programlisting>
         <para>
-            If <literal>xdot0</literal> is not given in the <emphasis>initial</emphasis>      
+            If <literal>xdot0</literal> is not given in the <emphasis>initial</emphasis>
             argument, the <literal>dae</literal> function tries to compute it solving
             <literal>g(t,x0,xdot0)=0</literal>.
         </para>
@@ -452,7 +452,7 @@ x(t0)=x0  and   xdot(t0)=xdot0
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Example with Scilab code
 function [r,ires]=chemres(t,y,yd)
     r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
@@ -506,7 +506,7 @@ cd TMPDIR;
 mputl(code, 't22.c')
 
 //-2- compile and load them
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c','Makefile','t22loader.sce');
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',[],'t22loader.sce');
 exec('t22loader.sce')
 
 //-3- run
@@ -553,7 +553,7 @@ code=['#include <math.h>'
 previous_dir = pwd();
 cd TMPDIR;
 mputl(code, 't22.c')
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c','Makefile','t22loader.sce');
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',[],'t22loader.sce');
 exec('t22loader.sce')
 rtol=[1.d-6;1.d-6];
 atol=[1.d-6;1.d-4];

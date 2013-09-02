@@ -6,7 +6,7 @@
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
 *  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -592,6 +592,41 @@ int readStringMatrix(int _iDatasetId, char **_pstData)
 
     //Read the data.
     status = H5Dread(_iDatasetId, typeId, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pstData);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    status = H5Tclose(typeId);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    return 0;
+}
+
+int freeStringMatrix(int _iDatasetId, char** _pstData)
+{
+    herr_t status;
+    hid_t typeId;
+    hid_t space;
+
+    typeId = H5Tcopy(H5T_C_S1);
+    status = H5Tset_size(typeId, H5T_VARIABLE);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    space = H5Dget_space (_iDatasetId);
+    status = H5Dvlen_reclaim (typeId, space, H5P_DEFAULT, _pstData);
+    if (status < 0)
+    {
+        return -1;
+    }
+
+    status = H5Sclose(space);
     if (status < 0)
     {
         return -1;

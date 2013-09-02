@@ -517,13 +517,13 @@
         <para>
             In the  following diagram, two decimal digit numbers are coded on an only byte.
             The diagram decode the input to obtain two separate digits.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/EXTRACTBITS_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/EXTRACTBITS_en_US.zcos">
                 Open this example in Xcos
             </link>
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/EXTRACTBITS_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/EXTRACTBITS_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/integer_pal/en_US/EXTRACTBITS_en_US.zcos" align="center" valign="middle"/>

@@ -27,7 +27,7 @@ SCICOS_BLOCKS_IMPEXP void matmul_i32s(scicos_block *block, int flag)
 {
     if ((flag == 1) | (flag == 6))
     {
-        long *u1, *u2, *y;
+        SCSINT32_COP *u1, *u2, *y;
         double k, C, D;
         int mu1, nu1, nu2, i, j, l, ji, jl, il;
         int *ipar;
@@ -57,15 +57,15 @@ SCICOS_BLOCKS_IMPEXP void matmul_i32s(scicos_block *block, int flag)
                 }
                 if ((D) > ((k / 2) - 1))
                 {
-                    y[jl] = (long)((k / 2) - 1);
+                    y[jl] = (SCSINT32_COP)((k / 2) - 1);
                 }
                 else if ((D) < -((k / 2)))
                 {
-                    y[jl] = -(long)((k / 2));
+                    y[jl] = -(SCSINT32_COP)((k / 2));
                 }
                 else
                 {
-                    y[jl] = (long)(D);
+                    y[jl] = (SCSINT32_COP)(D);
                 }
             }
         }

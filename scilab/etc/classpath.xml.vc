@@ -28,7 +28,7 @@ The option is "disableUnderMode" and can be:
 <classpaths>
 
 <!-- Mandatory on startup -->
-<path value="$SCILAB/thirdparty/flexdock-1.2.3.jar"/>
+<path value="$SCILAB/thirdparty/flexdock-1.2.4.jar"/>
 <path value="$SCILAB/thirdparty/skinlf.jar"/>
 <path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
 <path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
@@ -87,7 +87,7 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>
 </path>
-<path value="$SCILAB/thirdparty/saxon.jar" load="onUse">
+<path value="$SCILAB/thirdparty/saxon9he.jar" load="onUse">
 	<load on="documentationGeneration"/>
 </path>
 <path value="$SCILAB/thirdparty/batik-all-1.7.jar" load="onUse">

@@ -170,7 +170,7 @@
                 <term>"root":</term>
                 <listitem>
                     <para>解を得る機能を有するODE ソルバ. ODEPACKパッケージの
-                        <literal>lsodar</literal> ソルバが使用されます. 
+                        <literal>lsodar</literal> ソルバが使用されます.
                         使用されているのは<literal>lsoda</literal> ソルバを改変したもので,
                         指定したベクトル関数の根を見つけることができます.
                         詳細は <link linkend="ode_root">ode_root</link> のヘルプを参照してください.
@@ -195,7 +195,7 @@
                 <para>
                     <literal>ode</literal>の最も簡単なコールは次のようになります:
                     <literal>y=ode(y0,t0,t,f)</literal> ただし <literal>y0</literal> は
-                    初期条件のベクトル,<literal>t0</literal> は初期時間, 
+                    初期条件のベクトル,<literal>t0</literal> は初期時間,
                     <literal>t</literal> は解<literal>y</literal>を計算する時間のベクトル,
                     <literal>y</literal>は解ベクトルの行列<literal>y=[y(t(1)),y(t(2)),...]</literal>
                     です.
@@ -209,22 +209,22 @@
                 <itemizedlist>
                     <listitem>
                         <para>
-                            <literal>f</literal> が Scilab 関数の場合, 
+                            <literal>f</literal> が Scilab 関数の場合,
                             その構文は <literal>ydot = f(t,y)</literal>となります.
                             ただし,<literal>t</literal>は実数スカラー(時間),
-                            <literal>y</literal> は実数ベクトル (状態量), 
+                            <literal>y</literal> は実数ベクトル (状態量),
                             <literal>ydot</literal>は実数ベクトル (dy/dt)です.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <literal>f</literal> が文字列の場合, 
+                            <literal>f</literal> が文字列の場合,
                             FortranサブルーチンまたはC関数の名前が参照されます.
                             すなわち,<literal>ode(y0,t0,t,"fex")</literal>がコマンドの
                             場合,サブルーチン<literal>fex</literal>がコールされます.
                         </para>
                         <para>Fortranルーチンは以下の呼び出し手順とする
-                            必要があります: <literal>fex(n,t,y,ydot)</literal>, 
+                            必要があります: <literal>fex(n,t,y,ydot)</literal>,
                             ただし n は整数, t は倍精度実数, y と ydot は倍精度ベクトルです.
                         </para>
                         <para>C 関数は以下のプロトタイプとする必要があります:
@@ -274,7 +274,7 @@
             </listitem>
             <listitem>
                 <para>オプションの入力パラメータとして次の
-                    解の誤差を指定できます: 
+                    解の誤差を指定できます:
                     相対および絶対推定誤差の閾値である
                     <literal>rtol</literal> および <literal>atol</literal>.
                     <literal>y(i)</literal>の指定誤差は次のようになります:
@@ -302,7 +302,7 @@
                 </para>
                 <para>
                     <literal>jac</literal> が関数の場合,
-                    構文は 
+                    構文は
                     <literal>J=jac(t,y)</literal>とする必要があります.
                 </para>
                 <para>
@@ -318,13 +318,13 @@
                     以下の呼び出し手順となります:
                 </para>
                 <para>Fortranの場合:</para>
-                <programlisting role=""><![CDATA[ 
-subroutine fex(n,t,y,ml,mu,J,nrpd) 
+                <programlisting role=""><![CDATA[
+subroutine fex(n,t,y,ml,mu,J,nrpd)
 integer n,ml,mu,nrpd
 double precision t,y(*),J(*)
  ]]></programlisting>
                 <para>Cの場合:</para>
-                <programlisting role=""><![CDATA[ 
+                <programlisting role=""><![CDATA[
 void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
  ]]></programlisting>
                 <para>
@@ -357,7 +357,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // ---------- Simple one dimension ODE (Scilab function external)
 // dy/dt=y^2-y sin(t)+cos(t), y(0)=0
 function ydot=f(t,y),ydot=y^2-y*sin(t)+cos(t),endfunction
@@ -372,7 +372,7 @@ ccode=['#include <math.h>'
        '  ydot[0]=y[0]*y[0]-y[0]*sin(*t)+cos(*t);'
        '}']
 mputl(ccode,TMPDIR+'/myode.c') //create the C file
-ilib_for_link('myode','myode.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compile
+ilib_for_link('myode','myode.c',[],'c',[],TMPDIR+'/loader.sce');//compile
 exec(TMPDIR+'/loader.sce') //incremental linking
 y0=0;t0=0;t=0:0.1:%pi;
 y=ode(y0,t0,t,'myode');
@@ -380,7 +380,7 @@ y=ode(y0,t0,t,'myode');
 // ---------- Simulation of dx/dt = A x(t) + B u(t) with u(t)=sin(omega*t),
 // x0=[1;0]
 // solution x(t) desired at t=0.1, 0.2, 0.5 ,1.
-// A and u function are passed to RHS function in a list. 
+// A and u function are passed to RHS function in a list.
 // B and omega are passed as global variables
 function xdot=linear(t,x,A,u),xdot=A*x+B*u(t),endfunction
 function ut=u(t),ut=sin(omega*t),endfunction
@@ -389,22 +389,22 @@ ode([1;0],0,[0.1,0.2,0.5,1],list(linear,A,u))
 
 // ---------- Matrix notation Integration of the Riccati differential equation
 // Xdot=A'*X + X*A - X'*B*X + C , X(0)=Identity
-// Solution at t=[1,2] 
-function Xdot=ric(t,X),Xdot=A'*X+X*A-X'*B*X+C,endfunction  
+// Solution at t=[1,2]
+function Xdot=ric(t,X),Xdot=A'*X+X*A-X'*B*X+C,endfunction
 A=[1,1;0,2]; B=[1,0;0,1]; C=[1,0;0,1];
 t0=0;t=0:0.1:%pi;
 X=ode(eye(A),0,t,ric)
 
 // ---------- Matrix notation, Computation of exp(A)
 A=[1,1;0,2];
-function xdot=f(t,x),xdot=A*x;,endfunction 
+function xdot=f(t,x),xdot=A*x;,endfunction
 ode(eye(A),0,1,f)
 ode("adams",eye(A),0,1,f)
 
 // ---------- Matrix notation, Computation of exp(A) with stiff matrix, Jacobian given
 A=[10,0;0,-1];
-function xdot=f(t,x),xdot=A*x,endfunction 
-function J=Jacobian(t,y),J=A,endfunction 
+function xdot=f(t,x),xdot=A*x,endfunction
+function J=Jacobian(t,y),J=A,endfunction
 ode("stiff",[0;1],0,1,f,Jacobian)
  ]]></programlisting>
     </refsection>

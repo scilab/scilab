@@ -109,7 +109,7 @@ assert_checkequal(H.den, 2*s);
 
 H=h-h;
 assert_checkequal(H.num, 0*z);
-assert_checkequal(H.den, 4*s);
+assert_checkequal(H.den, 1*s^0);
 
 H=h-1;
 assert_checkequal(H.num, 1-2*s);
@@ -419,7 +419,7 @@ assert_checkequal(H(:,:,2), rlist([0 0;0 0], [1 1;1 1]));
 // *
 clear H;H(1,1,2)=h;H(1:2,1,1)=%s;H=H*h;
 assert_checkequal(H(:,:,1), [s*h;s*h]);
-assert_checkequal(H(:,:,2), [h*h; 0*h]);
+assert_checkequal(H(:,:,2), [h*h; 0/1]);
 
 clear H;H(1,1,2)=h;H(1:2,1,1)=%s;H=H*2;
 assert_checkequal(H(:,:,1), rlist([s*2;s*2], [1;1]));
@@ -440,11 +440,11 @@ assert_checkequal(H(:,:,2), [h*s;0]);
 // .*
 clear H;H(1,1,2)=h;H(1:2,1,1)=%s;H=H.*h;
 assert_checkequal(H(:,:,1), [s*h;s*h]);
-assert_checkequal(H(:,:,2), [h*h;0*h]);
+assert_checkequal(H(:,:,2), [h*h;0/1]);
 
 clear H;H(1,1,2)=h;H(1:2,1,1)=%s;H=h.*H;
 assert_checkequal(H(:,:,1), [s*h;s*h]);
-assert_checkequal(H(:,:,2), [h*h;0*h]);
+assert_checkequal(H(:,:,2), [h*h;0/1]);
 
 clear H;H(1,1,2)=h;H(1:2,1,1)=%s;H=H.*2;
 assert_checkequal(H(:,:,1), rlist([s*2;s*2], [1;1]));

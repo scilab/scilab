@@ -14,8 +14,8 @@
 //
 // <-- Short Description -->
 // grand returns non-empty matrix for negative size argument
-errMsg1 = msprintf(_("%s: Wrong value for input argument #1: Positive scalar expected.\n"),"grand");
-errMsg2 = msprintf(_("%s: Wrong value for input argument #2: Positive scalar expected.\n"),"grand");
+errMsg1 = msprintf(_("%s: Wrong value for input argument #%d: Positive scalar expected.\n"),"grand",1);
+errMsg2 = msprintf(_("%s: Wrong value for input argument #%d: Positive scalar expected.\n"),"grand",2);
 assert_checkequal(grand(1,0,'def'),[]);
 assert_checkerror("grand(-1,1,""def"");", errMsg1);
 assert_checkerror("grand(1,-1,""def"");", errMsg2);

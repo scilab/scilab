@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -137,7 +137,7 @@ int sci_gsort(char *fname, unsigned long fname_len)
             if (getWarningMode())
             {
                 sciprint(_("WARNING: %s\n"), _("This usage of the third argument of gsort is obsolete."));
-                sciprint(_("WARNING: %s\n"), _("It will be more strict in Scilab 6."));
+                sciprint(_("WARNING: %s\n"), _("It will no more be available in Scilab 6."));
                 sciprint(_("WARNING: %s\n"), _("Please use 'd' or 'i' instead."));
             }
         }
@@ -174,7 +174,7 @@ int sci_gsort(char *fname, unsigned long fname_len)
             if (getWarningMode())
             {
                 sciprint(_("WARNING: %s\n"), _("This usage of the second argument of gsort is obsolete."));
-                sciprint(_("WARNING: %s\n"), _("It will be more strict in Scilab 6."));
+                sciprint(_("WARNING: %s\n"), _("It will no more be available in Scilab 6."));
                 sciprint(_("WARNING: %s\n"), _("Please use 'r', 'c', 'g', 'lr' or 'lc' instead."));
             }
         }

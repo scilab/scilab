@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -49,6 +49,7 @@ import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.commons.xml.XConfigurationEvent;
 import org.scilab.modules.commons.xml.XConfigurationListener;
+import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -92,6 +93,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
     private static boolean mustInvalidate;
     private static boolean mustSave = true;
+    private static int layoutId;
 
     static {
         try {
@@ -118,7 +120,6 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             Method registerFinalHook = scilab.getDeclaredMethod("registerFinalHook", Runnable.class);
             registerFinalHook.invoke(null, runnable);
 
-
             defaultWinAttributes.put("x", new Integer(DEFAULTX));
             defaultWinAttributes.put("y", new Integer(DEFAULTY));
             defaultWinAttributes.put("height", new Integer(DEFAULTHEIGHT));
@@ -143,7 +144,13 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
     public void configurationChanged(XConfigurationEvent e) {
         if (e.getModifiedPaths().contains(LAYOUT_PATH)) {
-            mustInvalidate = true;
+            Options options = getOptions();
+            if (options.id != layoutId) {
+                mustInvalidate = true;
+                layoutId = options.id;
+            }
+
+            mustSave = options.mustSave;
         }
     }
 
@@ -179,6 +186,11 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         if (doc == null) {
             createUserCopy();
             doc = ScilabXMLUtilities.readDocument(USER_WINDOWS_CONFIG_FILE);
+            Options options = getOptions();
+            if (mustSave) {
+                mustSave = options.mustSave;
+            }
+            layoutId = options.id;
         }
 
         if (doc == null && !oneTry) {
@@ -254,25 +266,27 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param window the window
      */
     public static void saveWindowProperties(SwingScilabWindow window) {
-        readDocument();
+        if (ScilabConstants.isGUI()) {
+            readDocument();
 
-        Element root = doc.getDocumentElement();
-        Element win = createNode(root, "Window", new Object[] {"uuid", window.getUUID(),
-                                 "x", (int) window.getLastPosition().getX(),
-                                 "y", (int) window.getLastPosition().getY(),
-                                 "width", (int) window.getLastDimension().getWidth(),
-                                 "height", (int) window.getLastDimension().getHeight(),
-                                 "state", window.getExtendedState()
-                                                              });
-        LayoutNode layoutNode = window.getDockingPort().exportLayout();
-        LayoutNodeSerializer serializer = new LayoutNodeSerializer();
-        win.appendChild(serializer.serialize(doc, layoutNode));
+            Element root = doc.getDocumentElement();
+            Element win = createNode(root, "Window", new Object[] {"uuid", window.getUUID(),
+                                     "x", (int) window.getLastPosition().getX(),
+                                     "y", (int) window.getLastPosition().getY(),
+                                     "width", (int) window.getLastDimension().getWidth(),
+                                     "height", (int) window.getLastDimension().getHeight(),
+                                     "state", window.getExtendedState()
+                                                                  });
+            LayoutNode layoutNode = window.getDockingPort().exportLayout();
+            LayoutNodeSerializer serializer = new LayoutNodeSerializer();
+            win.appendChild(serializer.serialize(doc, layoutNode));
 
-        for (Dockable dockable : (Set<Dockable>) window.getDockingPort().getDockables()) {
-            saveTabProperties((SwingScilabTab) dockable, false);
+            for (Dockable dockable : (Set<Dockable>) window.getDockingPort().getDockables()) {
+                saveTabProperties((SwingScilabTab) dockable, false);
+            }
+
+            writeDocument();
         }
-
-        writeDocument();
     }
 
     /**
@@ -318,6 +332,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         }
 
         SwingScilabWindow window = new SwingScilabWindow();
+        window.setVisible(false);
 
         final String localUUID;
         if (preserveUUID) {
@@ -355,6 +370,32 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         return window;
     }
 
+    public static SwingScilabWindow restoreWindow(String uuid) {
+        String winuuid = UUID.randomUUID().toString();
+        SwingScilabWindow win = new SwingScilabWindow();
+        win.setUUID(winuuid);
+        win.setIsRestoring(true);
+
+        final SwingScilabTab tab = ScilabTabFactory.getInstance().getTab(uuid);
+        win.addTab(tab);
+        BarUpdater.forceUpdateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
+
+        win.pack();
+        win.setVisible(true);
+        win.requestFocus();
+        win.toFront();
+        win.setIsRestoring(false);
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                ActiveDockableTracker.requestDockableActivation(tab);
+            }
+        });
+
+        return win;
+    }
+
     /**
      * Restore a window with a given uuid
      *
@@ -374,6 +415,8 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         if (window == null) {
             return null;
         }
+
+        window.setIsRestoring(true);
 
         if (restoreTab) {
             if (!nullUUID) {
@@ -397,7 +440,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             // Be sur that the main tab will have the focus.
             // Get the elder tab and activate it
             final SwingScilabTab mainTab = ClosingOperationsManager.getElderTab(new ArrayList(Arrays.asList(tabs)));
-            BarUpdater.updateBars(mainTab.getParentWindowId(), mainTab.getMenuBar(), mainTab.getToolBar(), mainTab.getInfoBar(), mainTab.getName(), mainTab.getWindowIcon());
+            BarUpdater.forceUpdateBars(mainTab.getParentWindowId(), mainTab.getMenuBar(), mainTab.getToolBar(), mainTab.getInfoBar(), mainTab.getName(), mainTab.getWindowIcon());
 
             if (!ScilabConsole.isExistingConsole() && tabs.length == 1 && tabs[0].getPersistentId().equals(NULLUUID)) {
                 // null uuid is reserved to the console and in NW mode, there is no console.
@@ -423,8 +466,6 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                 }
             }
 
-            window.setVisible(true);
-
             if (requestFocus) {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
@@ -442,19 +483,24 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                                     }
                                 }
 
+                                window.setVisible(true);
+                                window.requestFocus();
                                 window.toFront();
-                                mainTab.requestFocusInWindow();
-                                while (!mainTab.hasFocus()) {
-                                    Thread.yield();
-                                    mainTab.requestFocusInWindow();
-                                }
-
-                                ActiveDockableTracker.requestDockableActivation(mainTab);
+                                window.setIsRestoring(false);
+                                SwingUtilities.invokeLater(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ActiveDockableTracker.requestDockableActivation(mainTab);
+                                    }
+                                });
                             }
                         });
                         t.start();
                     }
                 });
+            } else {
+                window.setIsRestoring(false);
+                window.setVisible(true);
             }
         }
 
@@ -493,7 +539,9 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param uuid the win uuid
      */
     public static final void removeWin(String uuid) {
-        alreadyRestoredWindows.remove(uuid);
+        if (ScilabConstants.isGUI()) {
+            alreadyRestoredWindows.remove(uuid);
+        }
     }
 
     /**
@@ -604,8 +652,27 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param uuid the tab uuid to restore
      */
     private static final void startRestoration(String uuid) {
+        if (!ScilabConstants.isGUI()) {
+            readDocument();
+            Element root = doc.getDocumentElement();
+            Element e = ScilabXMLUtilities.getElementsWithAttributeEquals(root, "uuid", uuid).get(0);
+            if (e != null) {
+                String winuuid = e.getAttribute("winuuid");
+                if (!winuuid.isEmpty() && !winuuid.equals(NULLUUID)) {
+                    List<Element> elements = ScilabXMLUtilities.getElementsWithAttributeEquals(root, "winuuid", winuuid);
+                    for (Element ee : elements) {
+                        if (ee.getNodeName().equals("Console")) {
+                            restoreWindow(uuid);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
         Set<Element> list = createDescendantTabs(uuid);
         list = createAdjacentTabs(list);
+
         List<String> wins = new ArrayList<String>();
         List<String> tabsWithoutWin = new ArrayList<String>();
         for (Element e : list) {
@@ -891,34 +958,36 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param nullWin if true, the winuuid will be set to 0 (the tab is not docked)
      */
     public static void saveTabProperties(SwingScilabTab tab, boolean nullWin) {
-        readDocument();
+        if (ScilabConstants.isGUI()) {
+            readDocument();
 
-        ScilabTabFactory factory = ScilabTabFactory.getInstance();
-        String uuid = tab.getPersistentId();
-        Element root = doc.getDocumentElement();
+            ScilabTabFactory factory = ScilabTabFactory.getInstance();
+            String uuid = tab.getPersistentId();
+            Element root = doc.getDocumentElement();
 
-        String app = factory.getApplication(uuid);
-        if (app.isEmpty()) {
-            return;
+            String app = factory.getApplication(uuid);
+            if (app.isEmpty()) {
+                return;
+            }
+
+            String winuuid;
+            if (nullWin) {
+                winuuid = NULLUUID;
+            } else {
+                winuuid = tab.getParentWindowUUID();
+            }
+
+            Dimension dim = tab.getSize();
+
+            createNode(root, app, new Object[] {"winuuid", winuuid,
+                                                "uuid", uuid,
+                                                "load", factory.getPackage(uuid),
+                                                "factory", factory.getClassName(uuid),
+                                                "width", (int) dim.getWidth(),
+                                                "height", (int) dim.getHeight()
+                                               });
+            writeDocument();
         }
-
-        String winuuid;
-        if (nullWin) {
-            winuuid = NULLUUID;
-        } else {
-            winuuid = tab.getParentWindowUUID();
-        }
-
-        Dimension dim = tab.getSize();
-
-        createNode(root, app, new Object[] {"winuuid", winuuid,
-                                            "uuid", uuid,
-                                            "load", factory.getPackage(uuid),
-                                            "factory", factory.getClassName(uuid),
-                                            "width", (int) dim.getWidth(),
-                                            "height", (int) dim.getHeight()
-                                           });
-        writeDocument();
     }
 
     /**
@@ -926,24 +995,26 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * and validate the different windows.
      */
     public static void clean() {
-        readDocument();
+        if (ScilabConstants.isGUI()) {
+            readDocument();
 
-        validateWindows();
+            validateWindows();
 
-        Element root = doc.getDocumentElement();
-        NodeList list = root.getElementsByTagName("Window");
-        int len = getNodeListLength(list);
-        for (int i = 0; i < len; i++) {
-            if (list.item(i) instanceof Element) {
-                String uuid = ((Element) list.item(i)).getAttribute("uuid");
-                List<Element> elements = ScilabXMLUtilities.getElementsWithAttributeEquals(root, "winuuid", uuid);
-                if (elements == null || elements.size() == 0) {
-                    root.removeChild(list.item(i));
-                    removeWin(uuid);
+            Element root = doc.getDocumentElement();
+            NodeList list = root.getElementsByTagName("Window");
+            int len = getNodeListLength(list);
+            for (int i = 0; i < len; i++) {
+                if (list.item(i) instanceof Element) {
+                    String uuid = ((Element) list.item(i)).getAttribute("uuid");
+                    List<Element> elements = ScilabXMLUtilities.getElementsWithAttributeEquals(root, "winuuid", uuid);
+                    if (elements == null || elements.size() == 0) {
+                        root.removeChild(list.item(i));
+                        removeWin(uuid);
+                    }
                 }
             }
+            writeDocument();
         }
-        writeDocument();
     }
 
     /**
@@ -952,13 +1023,15 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param childUUID the child tab uuid
      */
     public static final void makeDependency(String parentUUID, String childUUID) {
-        readDocument();
+        if (ScilabConstants.isGUI()) {
+            readDocument();
 
-        Element e = getElementWithUUID(doc.getDocumentElement(), childUUID);
-        if (e != null) {
-            e.setAttribute("depends", parentUUID);
+            Element e = getElementWithUUID(doc.getDocumentElement(), childUUID);
+            if (e != null) {
+                e.setAttribute("depends", parentUUID);
+            }
+            writeDocument();
         }
-        writeDocument();
     }
 
     /**
@@ -966,13 +1039,15 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param childUUID the child tab uuid
      */
     public static void removeDependency(String childUUID) {
-        readDocument();
+        if (ScilabConstants.isGUI()) {
+            readDocument();
 
-        Element e = getElementWithUUID(doc.getDocumentElement(), childUUID);
-        if (e != null) {
-            e.removeAttribute("depends");
+            Element e = getElementWithUUID(doc.getDocumentElement(), childUUID);
+            if (e != null) {
+                e.removeAttribute("depends");
+            }
+            writeDocument();
         }
-        writeDocument();
     }
 
     /**
@@ -1005,7 +1080,10 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             }
         }
 
-        writeDocument();
+        if (ScilabConstants.isGUI()) {
+            writeDocument();
+        }
+
         doc = null;
 
         return true;
@@ -1043,6 +1121,10 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         return length;
     }
 
+    private static final Options getOptions() {
+        return XConfiguration.get(Options.class, XConfiguration.getXConfigurationDocument(), LAYOUT_PATH)[0];
+    }
+
 
     /**
      * Inner interface used to have something to execute when the restoration is finished
@@ -1053,5 +1135,18 @@ public class WindowsConfigurationManager implements XConfigurationListener {
          * Stuff to do when the restoration is ended
          */
         public void finish();
+    }
+
+    @XConfAttribute
+    private static class Options {
+
+        public boolean mustSave;
+        public int id;
+
+        @XConfAttribute(tag = "layouts", attributes = {"id", "save-desktop"})
+        private void set(int id, boolean mustSave) {
+            this.id = id;
+            this.mustSave = mustSave;
+        }
     }
 }

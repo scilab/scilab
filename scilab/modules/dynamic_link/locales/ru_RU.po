@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-13 16:00+0000\n"
+"PO-Revision-Date: 2013-07-30 12:57+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16753)\n"
 "Language: ru\n"
 
 #, c-format
@@ -185,13 +185,13 @@ msgstr "%s не является точкой входа.\n"
 msgid "Linking %s.\n"
 msgstr "Компоновка %s.\n"
 
-msgid "C Function to call in scilab.\n"
-msgstr "C-функция, которую нужно вызвать в Scilab.\n"
+msgid "Calling a C function from Scilab.\n"
+msgstr "Вызов C-функции из Scilab.\n"
 
-msgid "Call ilib_for_link to build C function.\n"
-msgstr "Вызов ilib_for_link для формирования C-функции.\n"
+msgid "Calling ilib_for_link to build C function.\n"
+msgstr "Вызов ilib_for_link для сборки C-функции.\n"
 
-msgid "Call C function. Z = X+Y"
+msgid "Calling C function. Z = X+Y"
 msgstr "Вызов C-функции. Z = X+Y"
 
 #, c-format
@@ -203,17 +203,17 @@ msgid "with Y = %d"
 msgstr "с Y = %d"
 
 #, c-format
-msgid "result Z = %d"
-msgstr "результат: Z = %d"
+msgid "Result Z = %d"
+msgstr "Результат Z = %d"
 
-msgid "Fortran subroutine to call in scilab.\n"
-msgstr "Fortran-процедура, которую нужно вызвать в Scilab.\n"
+msgid "Calling a Fortran subroutine from Scilab.\n"
+msgstr "Вызов подпрограммы Fortran из Scilab.\n"
 
-msgid "Call ilib_for_link to build fortran subroutine.\n"
-msgstr "Вызов ilib_for_link для формирования Fortran-процедуры.\n"
+msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
+msgstr "Вызов ilib_for_link для сборки подпрограммы Fortran.\n"
 
-msgid "Call Fortran subroutine. Z = X+Y"
-msgstr "Вфзов Fortran-процедуры. Z = X+Y"
+msgid "Calling Fortran subroutine. Z = X+Y"
+msgstr "Вызов подпрограммы Fortran Z = X+Y"
 
 msgid "Dynamic link"
 msgstr "Динамическая компоновка"
@@ -238,11 +238,16 @@ msgstr "Компилятор Microsoft Visual Studio C x86 Compiler не най�
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr "Не найдены Intel Fortran Compiler 9, 10, 11 или 12."
 
-msgid "Microsoft Visual Studio C 2008 or more x64 Compiler not installed."
+msgid ""
+"Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
 msgstr ""
+"Компилятор Microsoft Visual Studio C 2008 (или более ранний) x64 Compiler не "
+"установлен."
 
-msgid "Microsoft Visual Studio C 2008 or more Compiler not found."
-msgstr "Компилятор Microsoft Visual Studio C 2008 Compiler не найден."
+msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
+msgstr ""
+"Компилятор Microsoft Visual Studio C 2008 (или более ранний) Compiler не "
+"найден."
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -72,7 +72,7 @@ public final class SciNotesCompletionAction extends CompletionAction {
      */
     public SciNotesCompletionAction(JComponent textPane, SciNotes editor) {
         this.editor = editor;
-        configuration = new SciNotesCompletionConfiguration(textPane);
+        configuration = new SciNotesCompletionConfiguration();
     }
 
     /**
@@ -97,8 +97,9 @@ public final class SciNotesCompletionAction extends CompletionAction {
      */
     public void actionPerformed(ActionEvent actionEvent) {
         if (configuration == null) {
-            configuration = new SciNotesCompletionConfiguration(editor.getTextPane());
+            configuration = new SciNotesCompletionConfiguration();
         }
+        configuration.getCompletionWindow().setGraphicalContext(editor.getTextPane());
         super.actionPerformed(actionEvent);
     }
 
@@ -338,11 +339,11 @@ public final class SciNotesCompletionAction extends CompletionAction {
          * Constructor
          * @param textPane where to complete
          */
-        public SciNotesCompletionConfiguration(JComponent textPane) {
+        public SciNotesCompletionConfiguration() {
             scm.setInputParsingManager(xipm);
             cwi = new SciNotesCompletionWindow(editor, scm);
             cwi.setInputParsingManager(xipm);
-            cwi.setGraphicalContext(textPane);
+            cwi.setGraphicalContext(editor.getTextPane());
         }
 
         /**

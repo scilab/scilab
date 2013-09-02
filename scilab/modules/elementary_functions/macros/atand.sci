@@ -7,7 +7,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function z = atand(x,y)
     //Inverse tangent, result in degrees.
@@ -17,11 +17,12 @@ function z = atand(x,y)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"atand", 1));
     end
 
-    if ~isreal(x)
+    if type(x) <> 1 | ~isreal(x) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"atand",1));
     end
+
     if argn(2)==2 then
-        if ~isreal(y)
+        if type(y) <> 1 | ~isreal(y) then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"atand",2));
         end
         z = 180/%pi*atan(x,y);

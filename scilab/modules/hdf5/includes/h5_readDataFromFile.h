@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -49,6 +49,7 @@ HDF5_SCILAB_IMPEXP int readDoubleMatrix(int _iDatasetId, double *_pdblData);
 HDF5_SCILAB_IMPEXP int readDoubleComplexMatrix(int _iDatasetId, double *_pdblReal, double *_pdblImg);
 
 HDF5_SCILAB_IMPEXP int readStringMatrix(int _iDatasetId, char **_pstData);
+HDF5_SCILAB_IMPEXP int freeStringMatrix(int _iDatasetId, char** _pstData);
 
 HDF5_SCILAB_IMPEXP int readBooleanMatrix(int _iDatasetId, int* _piData);
 

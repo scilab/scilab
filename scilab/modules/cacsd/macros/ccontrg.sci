@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 function [K]=ccontrg(PP,r,Gamma);
@@ -205,19 +205,14 @@ function [go,xo]=parrt(a,b,c,rx,cx);
     //compute xo
     if nnz1==0 then
         xo(rc,cb)=0;
-
     else
         unz=u(:,nd+1:ra);
         vnz=v(:,nd+1:ca);
         s=s(nd+1:ra,nd+1:ca);
-        for i=1:nnz1, s(i,i)=s(i,i)/dd(i+nd); end
-
-        cross=diag(dd)\(s(nd+1:ra,nd+1:ca))';
-
-        //cross  now contains the nonsingular part of s / (gs I - s' * s)
-
+        for i=1:nnz1
+            s(i,i)=s(i,i)/dd(i+nd);
+        end
         xo=-c*vnz*s'*unz'*b;
-
     end
 endfunction
 

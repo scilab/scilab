@@ -197,14 +197,14 @@
         <title>Example</title>
         <para>
             A simple example of CLOCK_c block event output.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/clock_c_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/clock_c_en_US.zcos">
                 Open this example in Xcos
             </link>
             .
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/clock_c_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/clock_c_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/sources_pal/en_US/clock_c_en_US.zcos" align="center" valign="middle"/>

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-18 02:42+0000\n"
+"PO-Revision-Date: 2013-07-26 14:44+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16753)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -84,40 +84,32 @@ msgid "%s: SB10FD exit with info = %d.\n"
 msgstr "%s: SB10FD は info = %d で終了しました.\n"
 
 #, c-format
-msgid "%s: TASK must be a scalar.\n"
-msgstr "%s: TASK はスカラーにしてください.\n"
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません: 実数値を指定してください.\n"
 
 #, c-format
-msgid "%s: TASK has 1, 2 or 3 the only admissible values.\n"
-msgstr "%s: TASK には 1, 2 または 3のみを指定可能です.\n"
+msgid "%s: %s must be a scalar.\n"
+msgstr "%s: %s はスカラーにしてください.\n"
+
+#, c-format
+msgid "%s: Wrong value for %s: %d, %d or %d expected.\n"
+msgstr "%s: %s の値が間違っています: %d, %d または %d を指定してください.\n"
 
 #, c-format
 msgid "%s: TASK = 1 : LINMEQ requires at least 4 input arguments.\n"
 msgstr "%s: TASK = 1 : LINMEQ には4以上の入力引数を指定してください.\n"
 
 #, c-format
-msgid "%s: TRANS must be a scalar.\n"
-msgstr "%s: TRANS はスカラーにしてください.\n"
+msgid "%s: Wrong value for %s: %d, %d, %d or %d expected.\n"
+msgstr "%s: %s の値が間違っています: %d, %d, %d または %d を指定してください.\n"
 
 #, c-format
-msgid "%s: TRANS has 0, 1, 2 or 3 the only admissible values.\n"
-msgstr "%s: TRANS には 0,1, 2 または 3のみを指定可能です.\n"
+msgid "%s: Wrong value for %s: %d, or %d expected.\n"
+msgstr "%s: %s の値が間違っています: %d または %d を指定してください.\n"
 
 #, c-format
-msgid "%s: TRANS has 0 or 1 the only admissible values.\n"
-msgstr "%s: TRANS には 0 または 1のみを指定可能です.\n"
-
-#, c-format
-msgid "%s: SCHUR must be a scalar.\n"
-msgstr "%s: SCHUR にはスカラーを指定してください.\n"
-
-#, c-format
-msgid "%s: SCHUR has 1 or 2 the only admissible values.\n"
-msgstr "%s: SCHUR には 1 または 2のみを指定可能です.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s: 入力引数 #%d の型が正しくありません: 実数値を指定してください.\n"
+msgid "%s: Wrong value for %s: %d or %d expected.\n"
+msgstr "%s: %s の値が間違っています: %d または %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
@@ -168,15 +160,14 @@ msgid ""
 msgstr "%s: 引数 #%d の値が間違っています: 固有値の絶対値は1より小さい必要があります.\n"
 
 #, c-format
-msgid ""
-"%s: Warning: the right hand sides were scaled by %lf to avoid overflow."
-msgstr "%s: 警告: オーバーフローを避けるため, 右辺が %lf でスケーリングされました."
+msgid "%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"
+msgstr "%s: 警告: オーバーフローを避けるために入力引数は %lf でスケールされました.\n"
 
 #, c-format
 msgid ""
 "%s: Warning: the equation is (almost) singular. Perturbed values have been "
-"used."
-msgstr "%s: 警告: 方程式が特異に近くなっています.  摂動した値が使用されました."
+"used.\n"
+msgstr "%s: 警告: 方程式が(ほぼ)特異です.  摂動した値が指定されました.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A complex expected.\n"
@@ -619,12 +610,12 @@ msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
 msgstr "%s: 入力引数 #%d の値が正しくありません: 可検出なシステムを指定してください.\n"
 
 #, c-format
-msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
-msgstr "%s: 直達項をそのゼロ次の係数に設定します.\n"
+msgid "%s: Wrong type for input argument #%d: A proper system expected\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: プロパーな系を指定してください\n"
 
 #, c-format
-msgid "%s: Direct feedthrough set to zero.\n"
-msgstr "%s: 直達項をゼロに設定します.\n"
+msgid "%s: Wrong type for input argument #%d: A SIMO expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  SIMOを指定してください.\n"
 
 #, c-format
 msgid "%s: Simulation failed before final time is reached.\n"

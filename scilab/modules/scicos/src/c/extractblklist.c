@@ -275,7 +275,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                     break;
 
                 case 84  :
-                    if ((Block->ozptr[i] = (long *) MALLOC(mh2 * nh2 * sizeof(long))) == NULL)
+                    if ((Block->ozptr[i] = (SCSINT32_COP *) MALLOC(mh2 * nh2 * sizeof(SCSINT32_COP))) == NULL)
                     {
                         FREE(Block->z);
                         FREE(Block->ozsz);
@@ -287,9 +287,9 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                         *ierr = -39;
                         return 0;
                     }
-                    memcpy((long *)Block->ozptr[i], \
-                           (long *)(&ilh2[4]), \
-                           mh2 * nh2 * sizeof(long));
+                    memcpy((SCSINT32_COP *)Block->ozptr[i], \
+                           (SCSINT32_COP *)(&ilh2[4]), \
+                           mh2 * nh2 * sizeof(SCSINT32_COP));
                     break;
 
                 case 82  :
@@ -329,7 +329,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                     break;
 
                 case 814 :
-                    if ((Block->ozptr[i] = (unsigned long *) MALLOC(mh2 * nh2 * sizeof(unsigned long))) == NULL)
+                    if ((Block->ozptr[i] = (SCSUINT32_COP *) MALLOC(mh2 * nh2 * sizeof(SCSUINT32_COP))) == NULL)
                     {
                         FREE(Block->z);
                         FREE(Block->ozsz);
@@ -341,9 +341,9 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                         *ierr = -39;
                         return 0;
                     }
-                    memcpy((unsigned long *)Block->ozptr[i], \
-                           (unsigned long *)(&ilh2[4]), \
-                           mh2 * nh2 * sizeof(unsigned long));
+                    memcpy((SCSUINT32_COP *)Block->ozptr[i], \
+                           (SCSUINT32_COP *)(&ilh2[4]), \
+                           mh2 * nh2 * sizeof(SCSUINT32_COP));
                     break;
 
                 case 812 :
@@ -706,7 +706,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                     break;
 
                 case 84  :
-                    if ((Block->inptr[i] = (long *) MALLOC(mh2 * nh2 * sizeof(long))) == NULL)
+                    if ((Block->inptr[i] = (SCSINT32_COP *) MALLOC(mh2 * nh2 * sizeof(SCSINT32_COP))) == NULL)
                     {
                         FREE(Block->z);
                         FREE(Block->ozsz);
@@ -727,9 +727,9 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                         *ierr = -39;
                         return 0;
                     }
-                    memcpy((long *)Block->inptr[i], \
-                           (long *)(&ilh2[4]), \
-                           mh2 * nh2 * sizeof(long));
+                    memcpy((SCSINT32_COP *)Block->inptr[i], \
+                           (SCSINT32_COP *)(&ilh2[4]), \
+                           mh2 * nh2 * sizeof(SCSINT32_COP));
                     break;
 
                 case 82  :
@@ -787,7 +787,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                     break;
 
                 case 814 :
-                    if ((Block->inptr[i] = (unsigned long *) MALLOC(mh2 * nh2 * sizeof(unsigned long))) == NULL)
+                    if ((Block->inptr[i] = (SCSUINT32_COP *) MALLOC(mh2 * nh2 * sizeof(SCSUINT32_COP))) == NULL)
                     {
                         FREE(Block->z);
                         FREE(Block->ozsz);
@@ -808,9 +808,9 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                         *ierr = -39;
                         return 0;
                     }
-                    memcpy((unsigned long *)Block->inptr[i], \
-                           (unsigned long *)(&ilh2[4]), \
-                           mh2 * nh2 * sizeof(unsigned long));
+                    memcpy((SCSUINT32_COP *)Block->inptr[i], \
+                           (SCSUINT32_COP *)(&ilh2[4]), \
+                           mh2 * nh2 * sizeof(SCSUINT32_COP));
                     break;
 
                 case 812 :
@@ -1088,7 +1088,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                     break;
 
                 case 84  :
-                    if ((Block->outptr[i] = (long *) MALLOC(mh2 * nh2 * sizeof(long))) == NULL)
+                    if ((Block->outptr[i] = (SCSINT32_COP *) MALLOC(mh2 * nh2 * sizeof(SCSINT32_COP))) == NULL)
                     {
                         FREE(Block->z);
                         FREE(Block->ozsz);
@@ -1115,9 +1115,9 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                         *ierr = -39;
                         return 0;
                     }
-                    memcpy((long *)Block->outptr[i], \
-                           (long *)(&ilh2[4]), \
-                           mh2 * nh2 * sizeof(long));
+                    memcpy((SCSINT32_COP *)Block->outptr[i], \
+                           (SCSINT32_COP *)(&ilh2[4]), \
+                           mh2 * nh2 * sizeof(SCSINT32_COP));
                     break;
 
                 case 82  :
@@ -1187,7 +1187,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                     break;
 
                 case 814 :
-                    if ((Block->outptr[i] = (unsigned long *) MALLOC(mh2 * nh2 * sizeof(unsigned long))) == NULL)
+                    if ((Block->outptr[i] = (SCSUINT32_COP *) MALLOC(mh2 * nh2 * sizeof(SCSUINT32_COP))) == NULL)
                     {
                         FREE(Block->z);
                         FREE(Block->ozsz);
@@ -1214,9 +1214,9 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                         *ierr = -39;
                         return 0;
                     }
-                    memcpy((unsigned long *)Block->outptr[i], \
-                           (unsigned long *)(&ilh2[4]), \
-                           mh2 * nh2 * sizeof(unsigned long));
+                    memcpy((SCSUINT32_COP *)Block->outptr[i], \
+                           (SCSUINT32_COP *)(&ilh2[4]), \
+                           mh2 * nh2 * sizeof(SCSUINT32_COP));
                     break;
 
                 case 812 :
@@ -1978,7 +1978,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                     break;
 
                 case 84  :
-                    if ((Block->oparptr[i] = (long *) MALLOC(mh2 * nh2 * sizeof(long))) == NULL)
+                    if ((Block->oparptr[i] = (SCSINT32_COP *) MALLOC(mh2 * nh2 * sizeof(SCSINT32_COP))) == NULL)
                     {
                         FREE(Block->z);
                         FREE(Block->ozsz);
@@ -2015,9 +2015,9 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                         *ierr = -39;
                         return 0;
                     }
-                    memcpy((long *)Block->oparptr[i], \
-                           (long *)(&ilh2[4]), \
-                           mh2 * nh2 * sizeof(long));
+                    memcpy((SCSINT32_COP *)Block->oparptr[i], \
+                           (SCSINT32_COP *)(&ilh2[4]), \
+                           mh2 * nh2 * sizeof(SCSINT32_COP));
                     break;
 
                 case 82  :
@@ -2107,7 +2107,7 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                     break;
 
                 case 814 :
-                    if ((Block->oparptr[i] = (unsigned long *) MALLOC(mh2 * nh2 * sizeof(unsigned long))) == NULL)
+                    if ((Block->oparptr[i] = (SCSUINT32_COP *) MALLOC(mh2 * nh2 * sizeof(SCSUINT32_COP))) == NULL)
                     {
                         FREE(Block->z);
                         FREE(Block->ozsz);
@@ -2144,9 +2144,9 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
                         *ierr = -39;
                         return 0;
                     }
-                    memcpy((unsigned long *)Block->oparptr[i], \
-                           (unsigned long *)(&ilh2[4]), \
-                           mh2 * nh2 * sizeof(unsigned long));
+                    memcpy((SCSUINT32_COP *)Block->oparptr[i], \
+                           (SCSUINT32_COP *)(&ilh2[4]), \
+                           mh2 * nh2 * sizeof(SCSUINT32_COP));
                     break;
 
                 case 812 :

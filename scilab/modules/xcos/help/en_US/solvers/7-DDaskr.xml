@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.
  * The terms are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="DDaskr">
     <refnamediv>
@@ -158,14 +158,14 @@
             The 'Modelica Generic' block returns its continuous states, we can evaluate them with <emphasis>DDaskr</emphasis> by running the example:
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/DAE_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/DAE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../examples/solvers/DAE_Example.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+            <scilab:image localized="true"><![CDATA[
 loadScicos();
 loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/DAE_Example.zcos");

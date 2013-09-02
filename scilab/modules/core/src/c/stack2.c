@@ -11,7 +11,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
  */
@@ -3207,7 +3207,7 @@ int C2F(putlhsvar) ()
     {
         nbvars1 = Max(nbvars1, LhsVar(k));
     }
-    /* check if output variabe are in increasing order in the stack */
+    /* check if output variables are in increasing order in the stack */
     lcres = TRUE;
     ibufprec = 0;
     for (ix = 1; ix <= Lhs; ++ix)

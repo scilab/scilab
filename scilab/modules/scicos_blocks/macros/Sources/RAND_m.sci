@@ -50,12 +50,12 @@ function [x,y,typ]=RAND_m(job,arg1,arg2)
             else
                 out=size(a)
                 if typ==1 then
-                    junction_name="rndblk_m";
+                    function_name="rndblk_m";
                     model.rpar=[real(a(:));real(b(:))]
                     model.dstate=[seed_c(1);0*real(a(:))]
                     ot=1
                 elseif typ==2 then
-                    junction_name="rndblkz_m";
+                    function_name="rndblkz_m";
                     ot=2
                     model.rpar=[real(a(:));imag(a(:));real(b(:));imag(b(:))]
                     model.dstate=[seed_c(:);0*[real(a(:));imag(a(:))]]
@@ -63,7 +63,7 @@ function [x,y,typ]=RAND_m(job,arg1,arg2)
                 if ok then
                     [model,graphics,ok]=set_io(model,graphics,list([],[]),list(out,ot),1,[])
                     if ok then
-                        model.sim=list(junction_name,4)
+                        model.sim=list(function_name,4)
                         graphics.exprs=exprs
                         model.ipar=flag
                         x.graphics=graphics;x.model=model
@@ -77,10 +77,10 @@ function [x,y,typ]=RAND_m(job,arg1,arg2)
         b=1
         dt=0
         flag=0
-        junction_name="rndblk_m";
+        function_name="rndblk_m";
         funtyp=4;
         model=scicos_model()
-        model.sim=list(junction_name,funtyp)
+        model.sim=list(function_name,funtyp)
         model.in=[]
         model.in2=[]
         model.intyp=[]

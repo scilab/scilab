@@ -8,7 +8,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -177,7 +177,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int clipState = 2;
         if (nbInputArgument(pvApiCtx) != 5 && nbInputArgument(pvApiCtx) != 2)
         {
-            Scierror(999, _("%s: Wrong number of input argument: %d or %d expected.\n"), fname, 2, 5);
+            Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 5);
             return 1;
         }
 
@@ -243,7 +243,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         char *subwinUID = NULL;
         if (nbInputArgument(pvApiCtx) != 3)
         {
-            Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
             return -1;
         }
 
@@ -417,7 +417,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         double fontSize = xx[1];
         if (nbInputArgument(pvApiCtx) != 3)
         {
-            Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
             return -1;
         }
 
@@ -486,7 +486,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int figurePosition[2];
         if (nbInputArgument(pvApiCtx) != 2)
         {
-            Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return -1;
         }
         getOrCreateDefaultSubwin();
@@ -500,7 +500,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int figureSize[2];
         if (nbInputArgument(pvApiCtx) != 2 && nbInputArgument(pvApiCtx) != 3)
         {
-            Scierror(999, _("%s: Wrong number of input argument: %d or %d expected.\n"), fname, 2, 3);
+            Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 3);
             return -1;
         }
         getOrCreateDefaultSubwin();

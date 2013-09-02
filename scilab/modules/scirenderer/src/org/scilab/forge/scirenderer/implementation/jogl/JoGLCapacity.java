@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.jogl;
@@ -35,6 +35,9 @@ public class JoGLCapacity {
     /** Accumulation buffer presence */
     private boolean accumulationBufferPresent = false;
 
+    /** ABGR extension */
+    private boolean hasABGRExtension = false;
+
     /**
      * Default constructor.
      * The constructor is package because, only {@link JoGLDrawingTools} use this class.
@@ -62,6 +65,8 @@ public class JoGLCapacity {
         } else {
             accumulationBufferPresent = true;
         }
+
+        hasABGRExtension = gl.isExtensionAvailable("GL_EXT_abgr");
     }
 
     /**
@@ -91,5 +96,9 @@ public class JoGLCapacity {
 
     public boolean isAccumulationBufferPresent() {
         return accumulationBufferPresent;
+    }
+
+    public boolean isABRExtensionPresent() {
+        return hasABGRExtension;
     }
 }

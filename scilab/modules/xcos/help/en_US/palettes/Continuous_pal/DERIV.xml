@@ -204,7 +204,7 @@
             below:
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/DERIV_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/DERIV_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/continuous_pal/DERIV_Example.zcos"/>

@@ -1,5 +1,7 @@
 
-CeCILL FREE SOFTWARE LICENSE AGREEMENT
+  CeCILL FREE SOFTWARE LICENSE AGREEMENT
+
+Version 2.1 dated 2013-06-21
 
 
     Notice
@@ -8,27 +10,27 @@ This Agreement is a Free Software license agreement that is the result
 of discussions between its authors in order to ensure compliance with
 the two main principles guiding its drafting:
 
-    * firstly, compliance with the principles governing the distribution
-      of Free Software: access to source code, broad rights granted to
-      users,
-    * secondly, the election of a governing law, French law, with which
-      it is conformant, both as regards the law of torts and
-      intellectual property law, and the protection that it offers to
-      both authors and holders of the economic rights over software.
+  * firstly, compliance with the principles governing the distribution
+    of Free Software: access to source code, broad rights granted to users,
+  * secondly, the election of a governing law, French law, with which it
+    is conformant, both as regards the law of torts and intellectual
+    property law, and the protection that it offers to both authors and
+    holders of the economic rights over software.
 
-The authors of the CeCILL (for Ce[a] C[nrs] I[nria] L[ogiciel] L[ibre])
-license are:
+The authors of the CeCILL (for Ce[a] C[nrs] I[nria] L[ogiciel] L[ibre]) 
+license are: 
 
-Commissariat à l'Energie Atomique - CEA, a public scientific, technical
-and industrial research establishment, having its principal place of
-business at 25 rue Leblanc, immeuble Le Ponant D, 75015 Paris, France.
+Commissariat à l'énergie atomique et aux énergies alternatives - CEA, a
+public scientific, technical and industrial research establishment,
+having its principal place of business at 25 rue Leblanc, immeuble Le
+Ponant D, 75015 Paris, France.
 
 Centre National de la Recherche Scientifique - CNRS, a public scientific
 and technological establishment, having its principal place of business
 at 3 rue Michel-Ange, 75794 Paris cedex 16, France.
 
 Institut National de Recherche en Informatique et en Automatique -
-INRIA, a public scientific and technological establishment, having its
+Inria, a public scientific and technological establishment, having its
 principal place of business at Domaine de Voluceau, Rocquencourt, BP
 105, 78153 Le Chesnay cedex, France.
 
@@ -39,8 +41,8 @@ The purpose of this Free Software license agreement is to grant users
 the right to modify and redistribute the software governed by this
 license within the framework of an open source distribution model.
 
-The exercising of these rights is conditional upon certain obligations
-for users so as to preserve this status for all subsequent redistributions.
+The exercising of this right is conditional upon certain obligations for
+users so as to preserve this status for all subsequent redistributions.
 
 In consideration of access to the source code and the rights to copy,
 modify and redistribute granted by the license, users are provided only
@@ -62,6 +64,10 @@ removed herefrom.
 
 This Agreement may apply to any or all software for which the holder of
 the economic rights decides to submit the use thereof to its provisions.
+
+Frequently asked questions can be found on the official website of the
+CeCILL licenses family (http://www.cecill.info/index.en.html) for any 
+necessary clarification.
 
 
     Article 1 - DEFINITIONS
@@ -117,6 +123,12 @@ that they both execute in the same address space.
 GNU GPL: means the GNU General Public License version 2 or any
 subsequent version, as published by the Free Software Foundation Inc.
 
+GNU Affero GPL: means the GNU Affero General Public License version 3 or
+any subsequent version, as published by the Free Software Foundation Inc.
+
+EUPL: means the European Union Public License version 1.1 or any
+subsequent version, as published by the European Commission.
+
 Parties: mean both the Licensee and the Licensor.
 
 These expressions may be used both in singular and plural form.
@@ -126,8 +138,8 @@ These expressions may be used both in singular and plural form.
 
 The purpose of the Agreement is the grant by the Licensor to the
 Licensee of a non-exclusive, transferable and worldwide license for the
-Software as set forth in Article 5 hereinafter for the whole term of the
-protection granted by the rights over said Software. 
+Software as set forth in Article 5 <#scope> hereinafter for the whole
+term of the protection granted by the rights over said Software.
 
 
     Article 3 - ACCEPTANCE
@@ -136,18 +148,17 @@ protection granted by the rights over said Software.
 conditions of this Agreement upon the occurrence of the first of the
 following events:
 
-    * (i) loading the Software by any or all means, notably, by
-      downloading from a remote server, or by loading from a physical
-      medium;
-    * (ii) the first time the Licensee exercises any of the rights
-      granted hereunder.
+  * (i) loading the Software by any or all means, notably, by
+    downloading from a remote server, or by loading from a physical medium;
+  * (ii) the first time the Licensee exercises any of the rights granted
+    hereunder.
 
 3.2 One copy of the Agreement, containing a notice relating to the
 characteristics of the Software, to the limited warranty, and to the
 fact that its use is restricted to experienced users has been provided
 to the Licensee prior to its acceptance as set forth in Article 3.1
-hereinabove, and the Licensee hereby acknowledges that it has read and
-understood it.
+<#accepting> hereinabove, and the Licensee hereby acknowledges that it
+has read and understood it.
 
 
     Article 4 - EFFECTIVE DATE AND TERM
@@ -156,7 +167,7 @@ understood it.
       4.1 EFFECTIVE DATE
 
 The Agreement shall become effective on the date when it is accepted by
-the Licensee as set forth in Article 3.1.
+the Licensee as set forth in Article 3.1 <#accepting>.
 
 
       4.2 TERM
@@ -186,18 +197,18 @@ The Licensee is authorized to use the Software, without any limitation
 as to its fields of application, with it being hereinafter specified
 that this comprises:
 
-   1. permanent or temporary reproduction of all or part of the Software
-      by any or all means and in any or all form.
+ 1. permanent or temporary reproduction of all or part of the Software
+    by any or all means and in any or all form.
 
-   2. loading, displaying, running, or storing the Software on any or
-      all medium.
+ 2. loading, displaying, running, or storing the Software on any or all
+    medium.
 
-   3. entitlement to observe, study or test its operation so as to
-      determine the ideas and principles behind any or all constituent
-      elements of said Software. This shall apply when the Licensee
-      carries out any or all loading, displaying, running, transmission
-      or storage operation as regards the Software, that it is entitled
-      to carry out hereunder.
+ 3. entitlement to observe, study or test its operation so as to
+    determine the ideas and principles behind any or all constituent
+    elements of said Software. This shall apply when the Licensee
+    carries out any or all loading, displaying, running, transmission or
+    storage operation as regards the Software, that it is entitled to
+    carry out hereunder.
 
 
       5.2 ENTITLEMENT TO MAKE CONTRIBUTIONS
@@ -230,16 +241,17 @@ The Licensee is authorized to distribute true copies of the Software in
 Source Code or Object Code form, provided that said distribution
 complies with all the provisions of the Agreement and is accompanied by:
 
-   1. a copy of the Agreement,
+ 1. a copy of the Agreement,
 
-   2. a notice relating to the limitation of both the Licensor's
-      warranty and liability as set forth in Articles 8 and 9,
+ 2. a notice relating to the limitation of both the Licensor's warranty
+    and liability as set forth in Articles 8 and 9,
 
 and that, in the event that only the Object Code of the Software is
-redistributed, the Licensee allows future Licensees unhindered access to
-the full Source Code of the Software by indicating how to access it, it
-being understood that the additional cost of acquiring the Source Code
-shall not exceed the cost of transferring the data.
+redistributed, the Licensee allows effective access to the full Source
+Code of the Software for a period of at least three years from the
+distribution of the Software, it being understood that the additional
+acquisition cost of the Source Code shall not exceed the cost of the
+data transfer.
 
 
         5.3.2 DISTRIBUTION OF MODIFIED SOFTWARE
@@ -252,17 +264,19 @@ The Licensee is authorized to distribute the Modified Software, in
 source code or object code form, provided that said distribution
 complies with all the provisions of the Agreement and is accompanied by:
 
-   1. a copy of the Agreement,
+ 1. a copy of the Agreement,
 
-   2. a notice relating to the limitation of both the Licensor's
-      warranty and liability as set forth in Articles 8 and 9,
+ 2. a notice relating to the limitation of both the Licensor's warranty
+    and liability as set forth in Articles 8 and 9,
 
-and that, in the event that only the object code of the Modified
-Software is redistributed, the Licensee allows future Licensees
-unhindered access to the full source code of the Modified Software by
-indicating how to access it, it being understood that the additional
-cost of acquiring the source code shall not exceed the cost of
-transferring the data.
+and, in the event that only the object code of the Modified Software is
+redistributed,
+
+ 3. a note stating the conditions of effective access to the full source
+    code of the Modified Software for a period of at least three years
+    from the distribution of the Modified Software, it being understood
+    that the additional acquisition cost of the source code shall not
+    exceed the cost of the data transfer.
 
 
         5.3.3 DISTRIBUTION OF EXTERNAL MODULES
@@ -272,17 +286,17 @@ conditions of this Agreement do not apply to said External Module, that
 may be distributed under a separate license agreement.
 
 
-        5.3.4 COMPATIBILITY WITH THE GNU GPL
+        5.3.4 COMPATIBILITY WITH OTHER LICENSES
 
 The Licensee can include a code that is subject to the provisions of one
-of the versions of the GNU GPL in the Modified or unmodified Software,
-and distribute that entire code under the terms of the same version of
-the GNU GPL.
+of the versions of the GNU GPL, GNU Affero GPL and/or EUPL in the
+Modified or unmodified Software, and distribute that entire code under
+the terms of the same version of the GNU GPL, GNU Affero GPL and/or EUPL.
 
 The Licensee can include the Modified or unmodified Software in a code
 that is subject to the provisions of one of the versions of the GNU GPL,
-and distribute that entire code under the terms of the same version of
-the GNU GPL.
+GNU Affero GPL and/or EUPL and distribute that entire code under the
+terms of the same version of the GNU GPL, GNU Affero GPL and/or EUPL.
 
 
     Article 6 - INTELLECTUAL PROPERTY
@@ -297,7 +311,7 @@ and no one shall be entitled to modify the terms and conditions for the
 distribution of said Initial Software.
 
 The Holder undertakes that the Initial Software will remain ruled at
-least by this Agreement, for the duration set forth in Article 4.2.
+least by this Agreement, for the duration set forth in Article 4.2 <#term>.
 
 
       6.2 OVER THE CONTRIBUTIONS
@@ -319,17 +333,17 @@ govern its distribution.
 
 The Licensee expressly undertakes:
 
-   1. not to remove, or modify, in any manner, the intellectual property
-      notices attached to the Software;
+ 1. not to remove, or modify, in any manner, the intellectual property
+    notices attached to the Software;
 
-   2. to reproduce said notices, in an identical manner, in the copies
-      of the Software modified or not.
+ 2. to reproduce said notices, in an identical manner, in the copies of
+    the Software modified or not.
 
 The Licensee undertakes not to directly or indirectly infringe the
-intellectual property rights of the Holder and/or Contributors on the
-Software and to take, where applicable, vis-à-vis its staff, any and all
-measures required to ensure respect of said intellectual property rights
-of the Holder and/or Contributors.
+intellectual property rights on the Software of the Holder and/or
+Contributors, and to take, where applicable, vis-à-vis its staff, any
+and all measures required to ensure respect of said intellectual
+property rights of the Holder and/or Contributors.
 
 
     Article 7 - RELATED SERVICES
@@ -390,13 +404,13 @@ or properties.
 
 9.2 The Licensor hereby represents, in good faith, that it is entitled
 to grant all the rights over the Software (including in particular the
-rights set forth in Article 5).
+rights set forth in Article 5 <#scope>).
 
 9.3 The Licensee acknowledges that the Software is supplied "as is" by
 the Licensor without any other express or tacit warranty, other than
-that provided for in Article 9.2 and, in particular, without any warranty 
-as to its commercial value, its secured, safe, innovative or relevant
-nature.
+that provided for in Article 9.2 <#good-faith> and, in particular,
+without any warranty as to its commercial value, its secured, safe,
+innovative or relevant nature.
 
 Specifically, the Licensor does not warrant that the Software is free
 from any error, that it will operate without interruption, that it will
@@ -411,7 +425,7 @@ arising out of any or all proceedings for infringement that may be
 instituted in respect of the use, modification and redistribution of the
 Software. Nevertheless, should such proceedings be instituted against
 the Licensee, the Licensor shall provide it with technical and legal
-assistance for its defense. Such technical and legal assistance shall be
+expertise for its defense. Such technical and legal expertise shall be
 decided on a case-by-case basis between the relevant Licensor and the
 Licensee pursuant to a memorandum of understanding. The Licensor
 disclaims any and all liability as regards the Licensee's use of the
@@ -488,7 +502,8 @@ address new issues encountered by Free Software.
 
 12.3 Any Software distributed under a given version of the Agreement may
 only be subsequently distributed under the same version of the Agreement
-or a subsequent version, subject to the provisions of Article 5.3.4.
+or a subsequent version, subject to the provisions of Article 5.3.4
+<#compatibility>.
 
 
     Article 13 - GOVERNING LAW AND JURISDICTION
@@ -502,5 +517,3 @@ occurrence, and unless emergency proceedings are necessary, the
 disagreements or disputes shall be referred to the Paris Courts having
 jurisdiction, by the more diligent Party.
 
-
-Version 2.0 dated 2006-09-05.

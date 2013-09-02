@@ -35,9 +35,9 @@ function [x,y,typ]=MATZCONJ(job,arg1,arg2)
         x=arg1
     case "define" then
         model=scicos_model()
-        junction_name="matz_conj";
+        function_name="matz_conj";
         funtyp=4;
-        model.sim=list(junction_name,funtyp)
+        model.sim=list(function_name,funtyp)
         model.in=-1
         model.in2=-2
         model.intyp=2

@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -58,5 +58,13 @@
 
 #define MATPLOT_BOUNDS          30
 #define MATPLOT_TYPE            31
+#define MATPLOT_VIDEO_MODE      32
+#define MATPLOT_GL_TYPE         33
+#define MATPLOT_DATA_INFOS      34
+#define MATPLOT_DATA_TYPE       35
+#define MATPLOT_DATA_ORDER      36
+#define MATPLOT_IMAGE_TYPE      37
+#define MATPLOT_IMAGE_DATA      38
+#define MATPLOT_IMAGE_DATASIZE  39
 
 #endif

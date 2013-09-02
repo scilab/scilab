@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -131,7 +131,7 @@ public class XcosOptions {
         }
 
         @XConfAttribute(tag = "xcos-simulation", attributes = { "final-integration-time", "integrator-absolute-tolerance", "integrator-relative-tolerance",
-                        "tolerance-on-time", "max-integration-interval", "real-time-scaling", "solver", "max-step-size", "trace"
+                                                                "tolerance-on-time", "max-integration-interval", "real-time-scaling", "solver", "max-step-size", "trace"
                                                               })
         private void set(final String finalIntegrationTime, final String integratorAbsoluteTolerance, final String integratorRelativeTolerance,
                          final String toleranceOnTime, final String maxIntegrationTimeInterval, final String realTimeScaling, final int solver,

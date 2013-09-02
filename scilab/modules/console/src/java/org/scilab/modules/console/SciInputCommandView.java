@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -250,7 +250,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
                 if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
                         && e.getKeyCode() == KeyEvent.VK_DELETE
-                && e.getKeyChar() != KeyEvent.VK_DELETE) {
+                        && e.getKeyChar() != KeyEvent.VK_DELETE) {
                     // Fix for bug 7238
                     e.setKeyCode(KeyEvent.VK_DECIMAL);
                 }

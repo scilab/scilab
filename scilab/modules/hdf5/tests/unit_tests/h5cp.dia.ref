@@ -4,20 +4,20 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- ENGLISH IMPOSED -->
+//
 // <-- CLI SHELL MODE -->
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): 2 to 4 expected."), "h5cp");
+msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "h5cp", 2, 4);
 assert_checkerror("h5cp()",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): 2 to 4 expected."), "h5cp");
+msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "h5cp", 2, 4);
 assert_checkerror("h5cp(42)",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #1: A string expected."), "h5cp");
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5cp", 1);
 assert_checkerror("h5cp(12.0,14.0)",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #2: A string expected."), "h5cp");
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5cp", 2);
 assert_checkerror("h5cp(""12.0"",14.0)",msgerr,999);
-msgerr = msprintf(gettext("%s: Invalid hdf5 file: %s."), "h5cp", "12.0");
+msgerr = msprintf(gettext("%s: %s\n"), "h5cp", msprintf(gettext("Invalid hdf5 file: %s."), "12.0"));
 assert_checkerror("h5cp(""12.0"",""14.0"")",msgerr,999);
 a = h5open(TMPDIR + "/test.h5");
-msgerr = msprintf(gettext("%s: Invalid hdf5 file: empty filename."), "h5cp");
+msgerr = msprintf(gettext("%s: %s\n"), "h5cp", gettext("Invalid hdf5 file: empty filename."));
 assert_checkerror("h5cp(a,""14.0"")",msgerr,999);
 b = h5open(TMPDIR + "/test1.h5");
 c = h5open(TMPDIR + "/test2.h5");

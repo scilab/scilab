@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -134,7 +134,7 @@ int sci_displaytree(char *fname, unsigned long fname_len)
 
     if (getAllocatedSingleString(pvApiCtx, piAddrLabel, &strLabel))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Label: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for element %d of input argument #%d: A string expected.\n"), fname, 3, 1);
         return 1;
     }
 
@@ -151,7 +151,7 @@ int sci_displaytree(char *fname, unsigned long fname_len)
 
     if (getAllocatedSingleString(pvApiCtx, piAddrIcon, &strIcon))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Icon: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for element %d of input argument #%d: A string expected.\n"), fname, 4, 1);
         return 1;
     }
 
@@ -168,7 +168,7 @@ int sci_displaytree(char *fname, unsigned long fname_len)
 
     if (getAllocatedSingleString(pvApiCtx, piAddrCallback, &strCallback))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: callback: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for element %d of input argument #%d: A string expected.\n"), fname, 5, 1);
         return 1;
     }
 

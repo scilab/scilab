@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -52,7 +52,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 157
+#define NB_PROPERTIES 158
 
 /**
 * list of all property names and associated functions in scilab
@@ -216,7 +216,8 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
     {"showhiddenhandles", SetConsoleShowHiddenHandles},
     {"resizefcn", set_figure_resizefcn_property},
     {"tooltipstring", SetUicontrolTooltipString},
-    {"closerequestfcn", set_figure_closerequestfcn_property}
+    {"closerequestfcn", set_figure_closerequestfcn_property},
+    {"image_type", set_image_type_property}
 };
 
 /*--------------------------------------------------------------------------*/

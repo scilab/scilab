@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -2136,9 +2136,12 @@ public class CallScilabBridge {
     public static void setToolbarVisible(String parentUID, boolean status) {
         SwingScilabTab parentTab = (SwingScilabTab) SwingView.getFromId(parentUID);
         if (parentTab != null) {
-            parentTab.getToolBar().getAsSimpleToolBar().setVisible(status);
-            BarUpdater.updateBars(parentTab.getParentWindowId(), parentTab.getMenuBar(),
-                                  parentTab.getToolBar(), parentTab.getInfoBar(), parentTab.getName(), parentTab.getWindowIcon());
+            boolean oldStatus = parentTab.getToolBar().getAsSimpleToolBar().isVisible();
+            if (oldStatus != status) {
+                parentTab.getToolBar().getAsSimpleToolBar().setVisible(status);
+                BarUpdater.updateBars(parentTab.getParentWindowId(), parentTab.getMenuBar(),
+                                      parentTab.getToolBar(), parentTab.getInfoBar(), parentTab.getName(), parentTab.getWindowIcon());
+            }
         }
     }
 

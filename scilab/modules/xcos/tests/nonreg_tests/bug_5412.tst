@@ -18,7 +18,7 @@
 
 // Start xcos
 // Add a block (CONST_m for example)
-// Select it --> Right clic --> Region to superblock
+// Select it --> Right clic --> Selection to superblock
 // Edit the superblock (Double clic on it)
 // Simulation >> Set context and enter some text --> Click OK
 // Check the superblock is indicated as modified

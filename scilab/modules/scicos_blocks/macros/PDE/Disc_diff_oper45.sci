@@ -20,7 +20,7 @@
 //
 
 function M=Disc_diff_oper45(N,h,DF_type)
-    // Cette fonction construit l'ecriture de la discritisation de l'operateur d2u/dtdx //
+    // Cette fonction construit l'ecriture de la discretisation de l'operateur d2u/dtdx //
     // ou de l'operateur du/dx sous forme matricielle.                                  //
     // sortie :                                                                         //
     //    - M (Double) : est la matrice elementaire de discretisation de l'operateur    //

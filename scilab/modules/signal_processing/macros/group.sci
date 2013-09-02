@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
     //Calculate the group delay of a digital filter
@@ -24,7 +24,7 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
     //  tg   :Values of group delay evaluated on the grid fr
     //  fr   :Grid of frequency values where group delay is evaluated
     //
-    //In the coefficient polynomial form the tranfer funtion is
+    //In the coefficient polynomial form the tranfer function is
     //formulated by the following expression:
     //
     //       h(z)=prod(a1i+a2i*z+z**2)/prod(b1i+b2i*z+z^2)

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.ui_data.variablebrowser;
@@ -81,6 +81,7 @@ public final class ScilabVariableBrowser implements VariableBrowser {
                 window.setLocation(0, 0);
                 window.setSize(500, 500);
                 window.setVisible(true);
+                window.toFront();
             }
         }
         return instance;
@@ -98,7 +99,6 @@ public final class ScilabVariableBrowser implements VariableBrowser {
                 }
             });
         }
-        ScilabVariableBrowser.updateVariableBrowser();
     }
 
     /**
@@ -107,8 +107,7 @@ public final class ScilabVariableBrowser implements VariableBrowser {
     public static void updateVariableBrowser() {
         if (instance != null) {
             SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, browserTab);
-            window.setVisible(true);
-            window.toFront();
+            window.repaint();
         }
     }
 
