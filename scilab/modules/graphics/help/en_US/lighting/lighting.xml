@@ -20,13 +20,13 @@
         <para>
             Lighting in scilab aproximates real world lighting where the appearence of
             a surface is given by interactions between light rays and the material properties of the
-             surface. Because simulate real world lighting is complex
-             and computationaly expesive, one uses a simplified model.
+            surface. Because simulate real world lighting is complex
+            and computationaly expesive, one uses a simplified model.
         </para>
         <para>
             A light is represented mainly by its colors: ambient, diffuse and specular. It can
             be created using <link linkend="light_create">light_create</link> function,
-             and deleted using <link linkend="light_delete">light_delete</link> function.
+            and deleted using <link linkend="light_delete">light_delete</link> function.
         </para>
         <para>
             The surface material properties is represented also by its colors
@@ -39,39 +39,39 @@
         </para>
         <listitem>
             <para>
-            Ambient color models the light received indirect by the surface and
-            is independent of the surface normal or light direction.
-            </para>
-        </listitem>
-            <listitem>
-            <para>
-            Diffuse color models the light received directly, and thus it's dependent
-            of the light ray direction and the surface normal.
+                Ambient color models the light received indirect by the surface and
+                is independent of the surface normal or light direction.
             </para>
         </listitem>
         <listitem>
             <para>
-            Specular color defines the specular highlight color.
+                Diffuse color models the light received directly, and thus it's dependent
+                of the light ray direction and the surface normal.
             </para>
         </listitem>
-
-		<para>
-			Following one can compare the surface with and without lighting:
-		</para>
+        <listitem>
+            <para>
+                Specular color defines the specular highlight color.
+            </para>
+        </listitem>
+        
         <para>
-          <scilab:image>
-            plot3d();
-            s=gce();
-            light = light_create();
-          </scilab:image>
+            Following one can compare the surface with and without lighting:
         </para>
         <para>
-          <scilab:image>
-            plot3d();
-            s=gce();
-          </scilab:image>
-		</para>
-
+            <scilab:image>
+                plot3d();
+                s=gce();
+                light = light_create();
+            </scilab:image>
+        </para>
+        <para>
+            <scilab:image>
+                plot3d();
+                s=gce();
+            </scilab:image>
+        </para>
+        
     </refsection>
     <refsection>
         <title>Lighting properties list</title>
@@ -80,8 +80,9 @@
             <varlistentry>
                 <term>visible: </term>
                 <listitem>
-                    <para>This field defines if the light is enabled <literal>"on"</literal>
-                    or disabled <literal>"off"</literal>.
+                    <para>
+                        This field defines if the light is enabled <literal>"on"</literal>
+                        or disabled <literal>"off"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -89,7 +90,7 @@
                 <term>light_type: </term>
                 <listitem>
                     <para>This field defines the type of light used. There are two
-                        types avaiable:<literal>"directional"</literal> and <literal>"point"</literal>.
+                        types available:<literal>"directional"</literal> and <literal>"point"</literal>.
                         Directional lights are positioned infinitely far from the surface
                         thus emitting parallel rays.
                         Point lights are defined as a point in space thus emitting rays in all
@@ -191,9 +192,9 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-		<para>
-			Point light without color_material:
-		</para>
+        <para>
+            Point light without color_material:
+        </para>
         <programlisting role="example"><![CDATA[
 plot3d();
 s=gce();
@@ -206,10 +207,10 @@ s.color_material="off";
 //black spots turn dark orange
 s.ambient_color = [0.3, 0.1, 0];
          ]]></programlisting>
-			<para>
-				Directional light:
-			</para>
-		    <programlisting role="example"><![CDATA[
+        <para>
+            Directional light:
+        </para>
+        <programlisting role="example"><![CDATA[
 plot3d();
 s=gce();
 light = light_create();

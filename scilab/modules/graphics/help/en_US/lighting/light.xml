@@ -23,7 +23,7 @@
         </para>
         <para>
             Lights can be created using <link linkend="light_create">light_create</link> function,
-             and deleted using <link linkend="light_delete">light_delete</link> function.
+            and deleted using <link linkend="light_delete">light_delete</link> function.
         </para>
     </refsection>
     <refsection>
@@ -32,8 +32,9 @@
             <varlistentry>
                 <term>visible: </term>
                 <listitem>
-                    <para>This field defines if the light is enabled <literal>"on"</literal>
-                    or disabled <literal>"off"</literal>.
+                    <para>
+                        This field defines if the light is enabled <literal>"on"</literal>
+                        or disabled <literal>"off"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -41,7 +42,7 @@
                 <term>light_type: </term>
                 <listitem>
                     <para>This field defines the type of light used. There are two
-                        types avaiable:<literal>"directional"</literal> and <literal>"point"</literal>.
+                        types available:<literal>"directional"</literal> and <literal>"point"</literal>.
                         Directional lights are positioned infinitely far from the surface
                         thus emitting parallel rays.
                         Point lights are defined as a point in space thus emitting rays in all
@@ -98,9 +99,9 @@
     <refsection>
         <title>Examples</title>
         <scilab:image>
-plot3d();
-l = light_create();
-l.ambient_color = [0.2, 0.2, 0.2];
+            plot3d();
+            l = light_create();
+            l.ambient_color = [0.2, 0.2, 0.2];
         </scilab:image>
         <programlisting role="example"><![CDATA[
 plot3d();
