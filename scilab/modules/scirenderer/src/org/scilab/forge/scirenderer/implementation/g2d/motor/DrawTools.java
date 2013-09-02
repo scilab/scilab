@@ -64,12 +64,14 @@ public final class DrawTools {
         g2d.setColor(t.colors[0]);
         g2d.fill(contour);
 
+
         float[] col = t.colors[1].getComponents(null);
         GradientPaint gp = new GradientPaint((float) v1[0], (float) v1[1], t.colors[1], (float) pv1[0], (float) pv1[1], new Color(col[0], col[1], col[2], 0.0f));
         g2d.setPaint(gp);
         g2d.fill(contour);
 
-        col = t.colors[1].getComponents(null);
+
+        col = t.colors[2].getComponents(null);
         gp = new GradientPaint((float) v2[0], (float) v2[1], t.colors[2], (float) pv2[0], (float) pv2[1], new Color(col[0], col[1], col[2], 0.0f));
         g2d.setPaint(gp);
         g2d.fill(contour);
