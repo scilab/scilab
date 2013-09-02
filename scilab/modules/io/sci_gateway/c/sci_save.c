@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
-#include "scierror.h"
+#include "Scierror.h"
 #include "sciprint.h"
 #include "warningmode.h"
 /*--------------------------------------------------------------------------*/
