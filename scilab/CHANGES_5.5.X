@@ -91,6 +91,8 @@ Obsolete
 
 * sscanf is obsolete, use msscanf instead.
 
+* fscanf is obsolete, use mfscanf for files opened with mopen or read for files opened with file instead.
+
 Differential_equations
 ======================
 
