@@ -93,6 +93,8 @@ Obsolete
 
 * fscanf is obsolete, use mfscanf for files opened with mopen or read for files opened with file instead.
 
+* fprintf is obsolete, use mfprintf for files opened with mopen or write for files opened with file instead.
+
 Differential_equations
 ======================
 
