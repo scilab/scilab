@@ -10,9 +10,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" scilab:needs-examples="no" xml:id="Light">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" scilab:needs-examples="no" xml:id="light">
     <refnamediv>
-        <refname>Light</refname>
+        <refname>light</refname>
         <refpurpose>Light overview</refpurpose>
     </refnamediv>
     <refsection>
@@ -97,6 +97,11 @@
     </refsection>
     <refsection>
         <title>Examples</title>
+        <scilab:image>
+plot3d();
+l = light_create();
+l.ambient_color = [0.2, 0.2, 0.2];
+        </scilab:image>
         <programlisting role="example"><![CDATA[
 plot3d();
 l = light_create();
@@ -107,7 +112,7 @@ l.ambient_color = [0.2, 0.2, 0.2];
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="Lighting">Lighting</link>
+                <link linkend="lighting">lighting</link>
             </member>
             <member>
                 <link linkend="light_create">light_create</link>

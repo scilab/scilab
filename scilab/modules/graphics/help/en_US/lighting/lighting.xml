@@ -10,9 +10,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" scilab:needs-examples="no" xml:id="Lighting">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" scilab:needs-examples="no" xml:id="lighting">
     <refnamediv>
-        <refname>Lighting</refname>
+        <refname>lighting</refname>
         <refpurpose>Lighting overview</refpurpose>
     </refnamediv>
     <refsection>
@@ -59,18 +59,17 @@
 			Following one can compare the surface with and without lighting:
 		</para>
         <para>
-            <inlinemediaobject>
-				<imageobject>
-					<imagedata fileref="../../images/lighting_on.png"/>
-				</imageobject>
-			</inlinemediaobject>
+          <scilab:image>
+            plot3d();
+            s=gce();
+            light = light_create();
+          </scilab:image>
         </para>
         <para>
-            <inlinemediaobject>
-				<imageobject>
-					<imagedata fileref="../../images/lighting_off.png"/>
-				</imageobject>
-			</inlinemediaobject>
+          <scilab:image>
+            plot3d();
+            s=gce();
+          </scilab:image>
 		</para>
 
     </refsection>
@@ -224,7 +223,7 @@ light.light_direction = [0 0 1];
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="Light">Light</link>
+                <link linkend="light">light</link>
             </member>
             <member>
                 <link linkend="light_create">light_create</link>

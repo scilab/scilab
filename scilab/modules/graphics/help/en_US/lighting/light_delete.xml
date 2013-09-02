@@ -53,7 +53,7 @@ light_delete(l);
                 <link linkend="light_create">light_create</link>
             </member>
             <member>
-                <link linkend="Light">Light</link>
+                <link linkend="light">light</link>
             </member>
         </simplelist>
     </refsection>
