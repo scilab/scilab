@@ -497,6 +497,8 @@ Bug fixes
 
 * Bug #12593 fixed - A wrong error message was returned when running genlib with an error in the sci file.
 
+* Bug #12600 fixed - mput did not manage unsigned integer.
+
 * Bug #12606 fixed - Overloads for grand were not standard.
 
 * Bug #12613 fixed - gsort did not return correct results with %nan.
