@@ -199,6 +199,8 @@ Bug fixes
 
 * Bug #2416 fixed - Particular case (string([]) returns []) has been added in the string help page.
 
+* Bug #3511 fixed - strindex did not return all occurrences in regexp mode.
+
 * Bug #3928 fixed - An error was returned when a matrix was flipped along the third dimension.
 
 * Bug #4042 fixed - squeeze returned an hypermatrix instead of a matrix when at least one
