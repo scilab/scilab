@@ -54,8 +54,6 @@ if regexp('abcc'                                    ,'/^abc/'                   
 if regexp('aabc'                                    ,'/^abc$/'                               ) <>  []  then bugmes();quit;end
 if regexp('aabc'                                    ,'/abc$/'                                ) <>  2   then bugmes();quit;end
 if regexp('aabcd'                                   ,'/abc$/'                                ) <>  []  then bugmes();quit;end
-if regexp('abc'                                     ,'/^/'                                   ) <>  []  then bugmes();quit;end
-if regexp('abc'                                     ,'/$/'                                   ) <>  []  then bugmes();quit;end
 if regexp('abc'                                     ,'/a.c/'                                 ) <>  1   then bugmes();quit;end
 if regexp('axc'                                     ,'/a.c/'                                 ) <>  1   then bugmes();quit;end
 if regexp('axyzc'                                   ,'/a.*c/'                                ) <>  1   then bugmes();quit;end
@@ -176,8 +174,6 @@ if regexp('ABCC'                                    ,'/^abc$/i'                 
 if regexp('ABCC'                                    ,'/^abc/i'                               ) <>  1   then bugmes();quit;end
 if regexp('AABC'                                    ,'/^abc$/i'                              ) <>  []  then bugmes();quit;end
 if regexp('AABC'                                    ,'/abc$/i'                               ) <>  2   then bugmes();quit;end
-if regexp('ABC'                                     ,'/^/i'                                  ) <>  []  then bugmes();quit;end
-if regexp('ABC'                                     ,'/$/i'                                  ) <>  []  then bugmes();quit;end
 if regexp('ABC'                                     ,'/a.c/i'                                ) <>  1   then bugmes();quit;end
 if regexp('AXC'                                     ,'/a.c/i'                                ) <>  1   then bugmes();quit;end
 if regexp('AXYZC'                                   ,'/a.*?c/i'                              ) <>  1   then bugmes();quit;end
