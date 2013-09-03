@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.jogl.texture;
@@ -529,12 +529,12 @@ public class JoGLTextureManager implements TextureManager {
 
         private int getAsGLWrappingMode(Texture.Wrap wrappingMode) {
             switch (wrappingMode) {
-            case CLAMP:
-                return GL2.GL_CLAMP_TO_EDGE;
-            case REPEAT:
-                return GL2.GL_REPEAT;
-            default:
-                return GL2.GL_REPEAT;
+                case CLAMP:
+                    return GL2.GL_CLAMP_TO_EDGE;
+                case REPEAT:
+                    return GL2.GL_REPEAT;
+                default:
+                    return GL2.GL_REPEAT;
             }
         }
 
@@ -542,27 +542,27 @@ public class JoGLTextureManager implements TextureManager {
             int returnedValue;
             if (mipmap) {
                 switch (filter) {
-                case LINEAR:
-                    returnedValue = GL2.GL_LINEAR_MIPMAP_LINEAR;
-                    break;
-                case NEAREST:
-                    returnedValue = GL2.GL_NEAREST_MIPMAP_NEAREST;
-                    break;
-                default:
-                    returnedValue = GL2.GL_NEAREST;
-                    break;
+                    case LINEAR:
+                        returnedValue = GL2.GL_LINEAR_MIPMAP_LINEAR;
+                        break;
+                    case NEAREST:
+                        returnedValue = GL2.GL_NEAREST_MIPMAP_NEAREST;
+                        break;
+                    default:
+                        returnedValue = GL2.GL_NEAREST;
+                        break;
                 }
             } else {
                 switch (filter) {
-                case LINEAR:
-                    returnedValue = GL2.GL_LINEAR;
-                    break;
-                case NEAREST:
-                    returnedValue = GL2.GL_NEAREST;
-                    break;
-                default:
-                    returnedValue = GL2.GL_NEAREST;
-                    break;
+                    case LINEAR:
+                        returnedValue = GL2.GL_LINEAR;
+                        break;
+                    case NEAREST:
+                        returnedValue = GL2.GL_NEAREST;
+                        break;
+                    default:
+                        returnedValue = GL2.GL_NEAREST;
+                        break;
                 }
             }
             return returnedValue;
@@ -583,20 +583,20 @@ public class JoGLTextureManager implements TextureManager {
         protected double getAnchorDeltaX(AnchorPosition anchor) {
             int spriteWidth = getDataProvider().getTextureSize().width;
             switch (anchor) {
-            case LEFT:
-            case LOWER_LEFT:
-            case UPPER_LEFT:
-                return 0;
-            case UP:
-            case CENTER:
-            case DOWN:
-                return -spriteWidth / 2f;
-            case RIGHT:
-            case LOWER_RIGHT:
-            case UPPER_RIGHT:
-                return -spriteWidth;
-            default:
-                return 0;
+                case LEFT:
+                case LOWER_LEFT:
+                case UPPER_LEFT:
+                    return 0;
+                case UP:
+                case CENTER:
+                case DOWN:
+                    return -spriteWidth / 2f;
+                case RIGHT:
+                case LOWER_RIGHT:
+                case UPPER_RIGHT:
+                    return -spriteWidth;
+                default:
+                    return 0;
             }
         }
 
@@ -608,20 +608,20 @@ public class JoGLTextureManager implements TextureManager {
         protected double getAnchorDeltaY(AnchorPosition anchor) {
             int spriteHeight = getDataProvider().getTextureSize().height;
             switch (anchor) {
-            case UPPER_LEFT:
-            case UP:
-            case UPPER_RIGHT:
-                return -spriteHeight;
-            case LEFT:
-            case CENTER:
-            case RIGHT:
-                return -spriteHeight / 2f;
-            case LOWER_LEFT:
-            case DOWN:
-            case LOWER_RIGHT:
-                return 0;
-            default:
-                return 0;
+                case UPPER_LEFT:
+                case UP:
+                case UPPER_RIGHT:
+                    return -spriteHeight;
+                case LEFT:
+                case CENTER:
+                case RIGHT:
+                    return -spriteHeight / 2f;
+                case LOWER_LEFT:
+                case DOWN:
+                case LOWER_RIGHT:
+                    return 0;
+                default:
+                    return 0;
             }
         }
     }
@@ -642,156 +642,156 @@ public class JoGLTextureManager implements TextureManager {
             this.rowLength = totalWidth;
 
             switch (type) {
-            case RGB:
-                this.internalFormat = GL2.GL_RGB;
-                setPixelFormat(GL.GL_RGB);
-                setPixelType(GL2.GL_UNSIGNED_BYTE);
-                this.alignment = 1;
-                break;
-            case RGB_RGBA:
-                this.internalFormat = GL2.GL_RGB;
-                setPixelFormat(GL.GL_RGBA);
-                setPixelType(GL2.GL_UNSIGNED_INT_8_8_8_8);
-                this.alignment = 4;
-                break;
-            case BGR:
-                this.internalFormat = GL2GL3.GL_RGB;
-                setPixelFormat(GL2GL3.GL_BGR);
-                setPixelType(GL.GL_UNSIGNED_BYTE);
-                this.alignment = 1;
-                break;
-            case GRAY:
-                this.internalFormat = GL.GL_LUMINANCE;
-                setPixelFormat(GL.GL_LUMINANCE);
-                setPixelType(GL.GL_UNSIGNED_BYTE);
-                this.alignment = 1;
-                break;
-            case GRAY_16:
-                this.internalFormat = GL2.GL_LUMINANCE16;
-                setPixelFormat(GL2.GL_LUMINANCE);
-                setPixelType(GL2.GL_UNSIGNED_SHORT);
-                this.alignment = 2;
-                break;
-            case RGBA:
-                this.internalFormat = GL2.GL_RGBA;
-                setPixelFormat(GL2.GL_RGBA);
-                setPixelType(GL2.GL_UNSIGNED_INT_8_8_8_8);
-                this.alignment = 4;
-                break;
-            case RGBA_REV:
-                this.internalFormat = GL2.GL_RGBA;
-                setPixelFormat(GL2.GL_RGBA);
-                setPixelType(GL2.GL_UNSIGNED_INT_8_8_8_8_REV);
-                this.alignment = 4;
-                break;
-            case ABGR:
-                this.internalFormat = GL2.GL_RGBA;
-                setPixelFormat(GL2.GL_ABGR_EXT);
-                setPixelType(GL.GL_UNSIGNED_BYTE);
-                this.alignment = 1;
-                break;
-            case RGB_332:
-                this.internalFormat = GL2.GL_R3_G3_B2;
-                setPixelFormat(GL2.GL_RGB);
-                setPixelType(GL2.GL_UNSIGNED_BYTE_3_3_2);
-                this.alignment = 1;
-                break;
-            case RED:
-                this.internalFormat = GL2.GL_RED;
-                setPixelFormat(GL2.GL_RED);
-                setPixelType(GL2.GL_UNSIGNED_BYTE);
-                this.alignment = 1;
-                break;
-            case GREEN:
-                this.internalFormat = GL2.GL_RGB8;
-                setPixelFormat(GL2.GL_GREEN);
-                setPixelType(GL2.GL_UNSIGNED_BYTE);
-                this.alignment = 1;
-                break;
-            case BLUE:
-                this.internalFormat = GL2.GL_RGB8;
-                setPixelFormat(GL2.GL_BLUE);
-                setPixelType(GL2.GL_UNSIGNED_BYTE);
-                this.alignment = 1;
-                break;
-            case INTENSITY:
-                this.internalFormat = GL2.GL_INTENSITY;
-                setPixelFormat(GL2.GL_LUMINANCE);
-                setPixelType(GL2.GL_UNSIGNED_BYTE);
-                this.alignment = 1;
-                break;
-            case RGBA_4444:
-                this.internalFormat = GL2.GL_RGBA4;
-                setPixelFormat(GL2.GL_RGBA);
-                setPixelType(GL2.GL_UNSIGNED_SHORT_4_4_4_4);
-                this.alignment = 2;
-                break;
-            case RGBA_5551:
-                this.internalFormat = GL2.GL_RGB5_A1;
-                setPixelFormat(GL2.GL_RGBA);
-                setPixelType(GL2.GL_UNSIGNED_SHORT_5_5_5_1);
-                this.alignment = 2;
-                break;
-            case RGB_FLOAT:
-                this.internalFormat = GL2ES1.GL_RGB16F;
-                setPixelFormat(GL2.GL_RGB);
-                setPixelType(GL2.GL_FLOAT);
-                this.alignment = 4;
-                break;
-            case RGBA_FLOAT:
-                this.internalFormat = GL2.GL_RGBA16F;
-                setPixelFormat(GL2.GL_RGBA);
-                setPixelType(GL2.GL_FLOAT);
-                this.alignment = 4;
-                break;
-            case GRAY_FLOAT:
-                this.internalFormat = GL2.GL_LUMINANCE16F;
-                setPixelFormat(GL2.GL_LUMINANCE);
-                setPixelType(GL2.GL_FLOAT);
-                this.alignment = 4;
-                break;
-            case RED_16:
-                this.internalFormat = GL2.GL_RGB16;
-                setPixelFormat(GL2.GL_RED);
-                setPixelType(GL2.GL_UNSIGNED_SHORT);
-                this.alignment = 2;
-                break;
-            case GREEN_16:
-                this.internalFormat = GL2.GL_RGB16;
-                setPixelFormat(GL2.GL_GREEN);
-                setPixelType(GL2.GL_UNSIGNED_SHORT);
-                this.alignment = 2;
-                break;
-            case BLUE_16:
-                this.internalFormat = GL2.GL_RGB16;
-                setPixelFormat(GL2.GL_BLUE);
-                setPixelType(GL2.GL_UNSIGNED_SHORT);
-                this.alignment = 2;
-                break;
-            case RED_FLOAT:
-                this.internalFormat = GL2ES1.GL_RGB16F;
-                setPixelFormat(GL2.GL_RED);
-                setPixelType(GL2.GL_FLOAT);
-                this.alignment = 4;
-                break;
-            case GREEN_FLOAT:
-                this.internalFormat = GL2ES1.GL_RGB16F;
-                setPixelFormat(GL2.GL_GREEN);
-                setPixelType(GL2.GL_FLOAT);
-                this.alignment = 4;
-                break;
-            case BLUE_FLOAT:
-                this.internalFormat = GL2ES1.GL_RGB16F;
-                setPixelFormat(GL2.GL_BLUE);
-                setPixelType(GL2.GL_FLOAT);
-                this.alignment = 4;
-                break;
-            case RGBA_BYTE:
-                this.internalFormat = GL2.GL_RGBA;
-                setPixelFormat(GL2.GL_RGBA);
-		setPixelType(GL2.GL_UNSIGNED_BYTE);
-                this.alignment = 1;
-                break;
+                case RGB:
+                    this.internalFormat = GL2.GL_RGB;
+                    setPixelFormat(GL.GL_RGB);
+                    setPixelType(GL2.GL_UNSIGNED_BYTE);
+                    this.alignment = 1;
+                    break;
+                case RGB_RGBA:
+                    this.internalFormat = GL2.GL_RGB;
+                    setPixelFormat(GL.GL_RGBA);
+                    setPixelType(GL2.GL_UNSIGNED_INT_8_8_8_8);
+                    this.alignment = 4;
+                    break;
+                case BGR:
+                    this.internalFormat = GL2GL3.GL_RGB;
+                    setPixelFormat(GL2GL3.GL_BGR);
+                    setPixelType(GL.GL_UNSIGNED_BYTE);
+                    this.alignment = 1;
+                    break;
+                case GRAY:
+                    this.internalFormat = GL.GL_LUMINANCE;
+                    setPixelFormat(GL.GL_LUMINANCE);
+                    setPixelType(GL.GL_UNSIGNED_BYTE);
+                    this.alignment = 1;
+                    break;
+                case GRAY_16:
+                    this.internalFormat = GL2.GL_LUMINANCE16;
+                    setPixelFormat(GL2.GL_LUMINANCE);
+                    setPixelType(GL2.GL_UNSIGNED_SHORT);
+                    this.alignment = 2;
+                    break;
+                case RGBA:
+                    this.internalFormat = GL2.GL_RGBA;
+                    setPixelFormat(GL2.GL_RGBA);
+                    setPixelType(GL2.GL_UNSIGNED_INT_8_8_8_8);
+                    this.alignment = 4;
+                    break;
+                case RGBA_REV:
+                    this.internalFormat = GL2.GL_RGBA;
+                    setPixelFormat(GL2.GL_RGBA);
+                    setPixelType(GL2.GL_UNSIGNED_INT_8_8_8_8_REV);
+                    this.alignment = 4;
+                    break;
+                case ABGR:
+                    this.internalFormat = GL2.GL_RGBA;
+                    setPixelFormat(GL2.GL_ABGR_EXT);
+                    setPixelType(GL.GL_UNSIGNED_BYTE);
+                    this.alignment = 1;
+                    break;
+                case RGB_332:
+                    this.internalFormat = GL2.GL_R3_G3_B2;
+                    setPixelFormat(GL2.GL_RGB);
+                    setPixelType(GL2.GL_UNSIGNED_BYTE_3_3_2);
+                    this.alignment = 1;
+                    break;
+                case RED:
+                    this.internalFormat = GL2.GL_RED;
+                    setPixelFormat(GL2.GL_RED);
+                    setPixelType(GL2.GL_UNSIGNED_BYTE);
+                    this.alignment = 1;
+                    break;
+                case GREEN:
+                    this.internalFormat = GL2.GL_RGB8;
+                    setPixelFormat(GL2.GL_GREEN);
+                    setPixelType(GL2.GL_UNSIGNED_BYTE);
+                    this.alignment = 1;
+                    break;
+                case BLUE:
+                    this.internalFormat = GL2.GL_RGB8;
+                    setPixelFormat(GL2.GL_BLUE);
+                    setPixelType(GL2.GL_UNSIGNED_BYTE);
+                    this.alignment = 1;
+                    break;
+                case INTENSITY:
+                    this.internalFormat = GL2.GL_INTENSITY;
+                    setPixelFormat(GL2.GL_LUMINANCE);
+                    setPixelType(GL2.GL_UNSIGNED_BYTE);
+                    this.alignment = 1;
+                    break;
+                case RGBA_4444:
+                    this.internalFormat = GL2.GL_RGBA4;
+                    setPixelFormat(GL2.GL_RGBA);
+                    setPixelType(GL2.GL_UNSIGNED_SHORT_4_4_4_4);
+                    this.alignment = 2;
+                    break;
+                case RGBA_5551:
+                    this.internalFormat = GL2.GL_RGB5_A1;
+                    setPixelFormat(GL2.GL_RGBA);
+                    setPixelType(GL2.GL_UNSIGNED_SHORT_5_5_5_1);
+                    this.alignment = 2;
+                    break;
+                case RGB_FLOAT:
+                    this.internalFormat = GL2ES1.GL_RGB16F;
+                    setPixelFormat(GL2.GL_RGB);
+                    setPixelType(GL2.GL_FLOAT);
+                    this.alignment = 4;
+                    break;
+                case RGBA_FLOAT:
+                    this.internalFormat = GL2.GL_RGBA16F;
+                    setPixelFormat(GL2.GL_RGBA);
+                    setPixelType(GL2.GL_FLOAT);
+                    this.alignment = 4;
+                    break;
+                case GRAY_FLOAT:
+                    this.internalFormat = GL2.GL_LUMINANCE16F;
+                    setPixelFormat(GL2.GL_LUMINANCE);
+                    setPixelType(GL2.GL_FLOAT);
+                    this.alignment = 4;
+                    break;
+                case RED_16:
+                    this.internalFormat = GL2.GL_RGB16;
+                    setPixelFormat(GL2.GL_RED);
+                    setPixelType(GL2.GL_UNSIGNED_SHORT);
+                    this.alignment = 2;
+                    break;
+                case GREEN_16:
+                    this.internalFormat = GL2.GL_RGB16;
+                    setPixelFormat(GL2.GL_GREEN);
+                    setPixelType(GL2.GL_UNSIGNED_SHORT);
+                    this.alignment = 2;
+                    break;
+                case BLUE_16:
+                    this.internalFormat = GL2.GL_RGB16;
+                    setPixelFormat(GL2.GL_BLUE);
+                    setPixelType(GL2.GL_UNSIGNED_SHORT);
+                    this.alignment = 2;
+                    break;
+                case RED_FLOAT:
+                    this.internalFormat = GL2ES1.GL_RGB16F;
+                    setPixelFormat(GL2.GL_RED);
+                    setPixelType(GL2.GL_FLOAT);
+                    this.alignment = 4;
+                    break;
+                case GREEN_FLOAT:
+                    this.internalFormat = GL2ES1.GL_RGB16F;
+                    setPixelFormat(GL2.GL_GREEN);
+                    setPixelType(GL2.GL_FLOAT);
+                    this.alignment = 4;
+                    break;
+                case BLUE_FLOAT:
+                    this.internalFormat = GL2ES1.GL_RGB16F;
+                    setPixelFormat(GL2.GL_BLUE);
+                    setPixelType(GL2.GL_FLOAT);
+                    this.alignment = 4;
+                    break;
+                case RGBA_BYTE:
+                    this.internalFormat = GL2.GL_RGBA;
+                    setPixelFormat(GL2.GL_RGBA);
+                    setPixelType(GL2.GL_UNSIGNED_BYTE);
+                    this.alignment = 1;
+                    break;
             }
         }
 

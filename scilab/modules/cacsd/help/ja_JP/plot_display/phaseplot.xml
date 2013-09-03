@@ -7,7 +7,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="phaseplot">
@@ -50,7 +50,7 @@
             <varlistentry>
                 <term>step</term>
                 <listitem>
-                    <para>実スカラー: 周波数離散化刻み (指数スケール)). 
+                    <para>実スカラー: 周波数離散化刻み (指数スケール)).
                         指定しない場合、このアルゴリズムは、
                         適用型周波数刻みを使用します.
                     </para>
@@ -73,7 +73,7 @@
             <varlistentry>
                 <term>db</term>
                 <listitem>
-                    <para>n x m 配列: 
+                    <para>n x m 配列:
                         <literal>frq</literal>に対応する大きさ. この引数が使用されない場合、
                         <literal>phaseplot</literal>は<literal>gainplot</literal>および
                         <literal>bode</literal>と同じ呼び出し手順となります.
@@ -86,7 +86,7 @@
                     <para>
                         n x m 配列:  <literal>frq</literal>に対応する位相[deg].
                         <literal>phaseplot</literal>関数は曲線
-                        <literal>frq(i,:)</literal> 対 <literal>phi(i,:)</literal>
+                        <literal>phi(i,:)</literal> 対 <literal>frq(i,:)</literal>
                         をプロットします.
                     </para>
                 </listitem>
@@ -96,8 +96,8 @@
                 <listitem>
                     <para>n x m 複素数配列.
                         <literal>phaseplot</literal> 関数は,曲線
-                        <literal>frq(i,:)</literal> 対
-                        <literal>phase(repf(i,:))</literal> をプロットします.
+                        <literal>phase(repf(i,:))</literal> 対
+                        <literal>frq(i,:)</literal> をプロットします.
                     </para>
                 </listitem>
             </varlistentry>
@@ -112,10 +112,10 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <literal>phaseplot(sl,...)</literal> の場合, 
+                    <literal>phaseplot(sl,...)</literal> の場合,
                 </para>
                 <para>
-                    <literal>sl</literal> 
+                    <literal>sl</literal>
                     は連続系または離散系SIMOとすることができます.
                     多出力の場合,出力は異なる記号でプロットされます.
                 </para>
@@ -125,7 +125,7 @@
                         <para>
                             上限および下限周波数[Hz]
                             <literal>fmin</literal>, <literal>fmax</literal>および
-                            周波数刻み(オプション) <literal>step</literal>. 
+                            周波数刻み(オプション) <literal>step</literal>.
                             <literal>fmin</literal> および
                             <literal>fmax</literal>のデフォルト値は,
                             <literal>sl</literal>が連続系の場合
@@ -150,7 +150,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <literal>phaseplot(frq,...)</literal> の場合 
+                    <literal>phaseplot(frq,...)</literal> の場合
                 </para>
                 <para>
                     この場合,事前に計算された周波数応答により周波数位相プロットを

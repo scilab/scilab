@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -439,7 +439,7 @@ public final class MainPanel extends JPanel {
             public void tableChanged(TableModelEvent e) {
                 if (e instanceof TerminalTableModel.TerminalTableModelEvent
                         && ((TerminalTableModel.TerminalTableModelEvent) e)
-                .isAfterCommit()) {
+                        .isAfterCommit()) {
                     final int rowIndex = e.getFirstRow();
                     final int columnIndex = e.getColumn();
 
@@ -450,7 +450,7 @@ public final class MainPanel extends JPanel {
                                                       rowIndex);
 
                         if (terminal.getKind().equals("fixed_parameter")
-                        || terminal.getKind().equals("variable")) {
+                                || terminal.getKind().equals("variable")) {
                             final double data = (Double) getData(WEIGHT,
                                                                  terminal);
                             final boolean isFixed = data >= 1.0;
@@ -473,7 +473,7 @@ public final class MainPanel extends JPanel {
             @Override
             public void tableChanged(TableModelEvent e) {
                 if (e instanceof TerminalTableModel.TerminalTableModelEvent
-                && !embeddedParametersButton.isSelected()) {
+                        && !embeddedParametersButton.isSelected()) {
                     final int rowIndex = e.getFirstRow();
                     final int columnIndex = e.getColumn();
 

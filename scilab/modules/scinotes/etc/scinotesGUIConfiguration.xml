@@ -186,6 +186,7 @@
         <separator/>
         <button action="scinotes-find" tooltip="Find/Replace" icon="edit-find-replace"/>
         <button action="scinotes-incremental-search" tooltip="Incremental Search" icon="go-bottom"/>
+        <button action="scinotes-code-navigator" tooltip="Code Navigator" icon="code-navigator"/>
         <separator/>
         <button action="scinotes-execute-scilab" tooltip="Execute" icon="media-playback-start"/>
         <button action="scinotes-save-execute" tooltip="Save and execute" icon="save-and-execute"/>

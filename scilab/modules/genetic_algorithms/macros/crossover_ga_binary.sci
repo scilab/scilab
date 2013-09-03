@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [Crossed_Indiv1, Crossed_Indiv2] = crossover_ga_binary(Indiv1,Indiv2,param)
     if ~isdef("param","local") then

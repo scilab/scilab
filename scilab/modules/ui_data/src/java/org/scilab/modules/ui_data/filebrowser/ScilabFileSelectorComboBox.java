@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -102,7 +102,7 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
                 int code = e.getKeyCode();
                 if (code == KeyEvent.VK_DOWN || code == KeyEvent.VK_KP_DOWN || code == KeyEvent.VK_PAGE_DOWN
                         || code == KeyEvent.VK_UP || code == KeyEvent.VK_KP_UP || code == KeyEvent.VK_PAGE_UP
-                || code == KeyEvent.VK_END || code == KeyEvent.VK_BEGIN) {
+                        || code == KeyEvent.VK_END || code == KeyEvent.VK_BEGIN) {
                     disableUpdateCombo = true;
                 } else {
                     disableUpdateCombo = false;

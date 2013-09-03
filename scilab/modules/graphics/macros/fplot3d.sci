@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function fplot3d(xr,yr,f,theta,alpha,leg,flag,ebox)
     // fplot3d(xr,yr,f,teta,alpha,leg,[flag,ebox])

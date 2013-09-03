@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="debug">
     <refnamediv>
         <refname>debug</refname>
-        <refpurpose>niveau de déboggage</refpurpose>
+        <refpurpose>niveau de débogage</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -32,8 +32,8 @@
         <title>Description</title>
         <para>
             Pour les valeurs 0,1,2,3,4 de <literal>level-int</literal> ,
-            <literal>debug</literal> définit différents niveaux de déboggage. Ces niveaux
-            sont ciblés sur le déboggage de l'interpréteur et non des scripts Scilab,
+            <literal>debug</literal> définit différents niveaux de débogage. Ces niveaux
+            sont ciblés sur le débogage de l'interpréteur et non des scripts Scilab,
             et sont dédiés aux experts de Scilab.
         </para>
     </refsection>

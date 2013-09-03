@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -1813,7 +1813,12 @@ public class SciNotes extends SwingScilabTab {
     public ScilabEditorPane getTextPane() {
         try {
             EditorComponent c = (EditorComponent) tabPane.getSelectedComponent();
-            return c.getEditorPane();
+            ScilabEditorPane pane = c.getEditorPane();
+            if (ScilabEditorPane.getFocusedPane() == pane.getOtherPaneInSplit()) {
+                return pane.getOtherPaneInSplit();
+            }
+
+            return pane;
         } catch (NullPointerException e) {
             return null;
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -1831,7 +1836,12 @@ public class SciNotes extends SwingScilabTab {
     public ScilabEditorPane getTextPane(int index) {
         try {
             EditorComponent c = (EditorComponent) tabPane.getComponentAt(index);
-            return c.getEditorPane();
+            ScilabEditorPane pane = c.getEditorPane();
+            if (ScilabEditorPane.getFocusedPane() == pane.getOtherPaneInSplit()) {
+                return pane.getOtherPaneInSplit();
+            }
+
+            return pane;
         } catch (NullPointerException e) {
             return null;
         } catch (ArrayIndexOutOfBoundsException e) {

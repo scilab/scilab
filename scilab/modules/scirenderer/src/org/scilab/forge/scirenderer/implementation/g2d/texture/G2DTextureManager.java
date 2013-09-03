@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.texture;
@@ -120,326 +120,326 @@ public class G2DTextureManager implements TextureManager {
                 final ByteOrder order = ByteOrder.nativeOrder();
 
                 switch (type) {
-                case RGB: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    ibuffer = new int[buffer.capacity() / 3];
-                    int k = 0;
-                    for (int i = 0; i < buffer.capacity(); i += 3) {
-                        ibuffer[k++] = ((buffer.get(i) & 0xFF) << 16) | ((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i + 2) & 0xFF);
-                    }
-                    break;
-                }
-                case RGB_RGBA: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    ibuffer = new int[buffer.capacity() / 4];
-                    int k = 0;
-                    if (order == ByteOrder.LITTLE_ENDIAN) {
-                        for (int i = 0; i < buffer.capacity(); i += 4) {
-                            ibuffer[k++] = ((buffer.get(i + 3) & 0xFF) << 16) | ((buffer.get(i + 2) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF);
-                        }
-                    } else {
-                        for (int i = 0; i < buffer.capacity(); i += 4) {
+                    case RGB: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        ibuffer = new int[buffer.capacity() / 3];
+                        int k = 0;
+                        for (int i = 0; i < buffer.capacity(); i += 3) {
                             ibuffer[k++] = ((buffer.get(i) & 0xFF) << 16) | ((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i + 2) & 0xFF);
                         }
+                        break;
                     }
-                    break;
-                }
-                case BGR: {
-                    imageType = BufferedImage.TYPE_INT_BGR;
-                    ibuffer = new int[buffer.capacity() / 3];
-                    int k = 0;
-                    for (int i = 0; i < buffer.capacity(); i += 3) {
-                        ibuffer[k++] = ((buffer.get(i) & 0xFF) << 16) | ((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i + 2) & 0xFF);
-                    }
-                    break;
-                }
-                case GRAY: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    ibuffer = new int[buffer.capacity()];
-                    for (int i = 0; i < buffer.capacity(); i++) {
-                        final int c = buffer.get(i) & 0xFF;
-                        ibuffer[i] = (c << 16) | (c << 8) | c;
-                    }
-                    break;
-                }
-                case GRAY_16: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    ibuffer = new int[buffer.capacity() / 2];
-                    int k = 0;
-                    if (order == ByteOrder.LITTLE_ENDIAN) {
-                        for (int i = 0; i < buffer.capacity(); i += 2) {
-                            final int c = (((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i) & 0xFF)) / 257;
-                            ibuffer[k++] = (c << 16) | (c << 8) | c;
+                    case RGB_RGBA: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        ibuffer = new int[buffer.capacity() / 4];
+                        int k = 0;
+                        if (order == ByteOrder.LITTLE_ENDIAN) {
+                            for (int i = 0; i < buffer.capacity(); i += 4) {
+                                ibuffer[k++] = ((buffer.get(i + 3) & 0xFF) << 16) | ((buffer.get(i + 2) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF);
+                            }
+                        } else {
+                            for (int i = 0; i < buffer.capacity(); i += 4) {
+                                ibuffer[k++] = ((buffer.get(i) & 0xFF) << 16) | ((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i + 2) & 0xFF);
+                            }
                         }
-                    } else {
-                        for (int i = 0; i < buffer.capacity(); i += 2) {
-                            final int c = (((buffer.get(i) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF)) / 257;
-                            ibuffer[k++] = (c << 16) | (c << 8) | c;
-                        }
+                        break;
                     }
-                    break;
-                }
-                case RGBA: {
-                    imageType = BufferedImage.TYPE_INT_ARGB;
-                    ibuffer = new int[buffer.capacity() / 4];
-                    if (order == ByteOrder.LITTLE_ENDIAN) {
+                    case BGR: {
+                        imageType = BufferedImage.TYPE_INT_BGR;
+                        ibuffer = new int[buffer.capacity() / 3];
+                        int k = 0;
+                        for (int i = 0; i < buffer.capacity(); i += 3) {
+                            ibuffer[k++] = ((buffer.get(i) & 0xFF) << 16) | ((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i + 2) & 0xFF);
+                        }
+                        break;
+                    }
+                    case GRAY: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        ibuffer = new int[buffer.capacity()];
+                        for (int i = 0; i < buffer.capacity(); i++) {
+                            final int c = buffer.get(i) & 0xFF;
+                            ibuffer[i] = (c << 16) | (c << 8) | c;
+                        }
+                        break;
+                    }
+                    case GRAY_16: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        ibuffer = new int[buffer.capacity() / 2];
+                        int k = 0;
+                        if (order == ByteOrder.LITTLE_ENDIAN) {
+                            for (int i = 0; i < buffer.capacity(); i += 2) {
+                                final int c = (((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i) & 0xFF)) / 257;
+                                ibuffer[k++] = (c << 16) | (c << 8) | c;
+                            }
+                        } else {
+                            for (int i = 0; i < buffer.capacity(); i += 2) {
+                                final int c = (((buffer.get(i) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF)) / 257;
+                                ibuffer[k++] = (c << 16) | (c << 8) | c;
+                            }
+                        }
+                        break;
+                    }
+                    case RGBA: {
+                        imageType = BufferedImage.TYPE_INT_ARGB;
+                        ibuffer = new int[buffer.capacity() / 4];
+                        if (order == ByteOrder.LITTLE_ENDIAN) {
+                            int k = 0;
+                            for (int i = 0; i < buffer.capacity(); i += 4) {
+                                ibuffer[k++] = ((buffer.get(i) & 0xFF) << 24) | ((buffer.get(i + 3) & 0xFF) << 16) | ((buffer.get(i + 2) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF);
+                            }
+                        } else {
+                            int k = 0;
+                            for (int i = 0; i < buffer.capacity(); i += 4) {
+                                ibuffer[k++] = ((buffer.get(i + 3) & 0xFF) << 24) | ((buffer.get(i) & 0xFF) << 16) | ((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i + 2) & 0xFF);
+                            }
+                        }
+                        break;
+                    }
+                    case RGBA_REV: {
+                        imageType = BufferedImage.TYPE_INT_ARGB;
+                        ibuffer = new int[buffer.capacity() / 4];
+                        if (order == ByteOrder.BIG_ENDIAN) {
+                            int k = 0;
+                            for (int i = 0; i < buffer.capacity(); i += 4) {
+                                ibuffer[k++] = ((buffer.get(i) & 0xFF) << 24) | ((buffer.get(i + 3) & 0xFF) << 16) | ((buffer.get(i + 2) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF);
+                            }
+                        } else {
+                            int k = 0;
+                            for (int i = 0; i < buffer.capacity(); i += 4) {
+                                ibuffer[k++] = ((buffer.get(i + 3) & 0xFF) << 24) | ((buffer.get(i) & 0xFF) << 16) | ((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i + 2) & 0xFF);
+                            }
+                        }
+                        break;
+                    }
+                    case ABGR: {
+                        imageType = BufferedImage.TYPE_INT_ARGB;
+                        ibuffer = new int[buffer.capacity() / 4];
                         int k = 0;
                         for (int i = 0; i < buffer.capacity(); i += 4) {
                             ibuffer[k++] = ((buffer.get(i) & 0xFF) << 24) | ((buffer.get(i + 3) & 0xFF) << 16) | ((buffer.get(i + 2) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF);
                         }
-                    } else {
+                        break;
+                    }
+                    case RGB_332: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        ibuffer = new int[buffer.capacity()];
+                        for (int i = 0; i < buffer.capacity(); i++) {
+                            final int c = buffer.get(i) & 0xFF;
+                            ibuffer[i] = ((((c >> 5) & 0x7) * 255 / 7) << 16) | ((((c >> 2) & 0x7) * 255 / 7) << 8) | ((c & 0x3) * 255 / 3);
+                        }
+                        break;
+                    }
+                    case RED: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        ibuffer = new int[buffer.capacity()];
+                        for (int i = 0; i < buffer.capacity(); i++) {
+                            ibuffer[i] = (buffer.get(i) & 0xFF) << 16;
+                        }
+                        break;
+                    }
+                    case GREEN: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        ibuffer = new int[buffer.capacity()];
+                        for (int i = 0; i < buffer.capacity(); i++) {
+                            ibuffer[i] = (buffer.get(i) & 0xFF) << 8;
+                        }
+                        break;
+                    }
+                    case BLUE: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        ibuffer = new int[buffer.capacity()];
+                        for (int i = 0; i < buffer.capacity(); i++) {
+                            ibuffer[i] = (buffer.get(i) & 0xFF);
+                        }
+                        break;
+                    }
+                    case INTENSITY: {
+                        imageType = BufferedImage.TYPE_INT_ARGB;
+                        ibuffer = new int[buffer.capacity()];
+                        for (int i = 0; i < buffer.capacity(); i++) {
+                            final int c = buffer.get(i) & 0xFF;
+                            ibuffer[i] = (c << 24) | (c << 16) | (c << 8) | c;
+                        }
+                        break;
+                    }
+                    case RGBA_4444: {
+                        imageType = BufferedImage.TYPE_INT_ARGB;
+                        ibuffer = new int[buffer.capacity() / 2];
+                        int k = 0;
+                        if (order == ByteOrder.LITTLE_ENDIAN) {
+                            for (int i = 0; i < buffer.capacity(); i += 2) {
+                                int c = buffer.get(i) & 0xFF;
+                                final int B = ((c >> 4) & 0xF) * 0x11;
+                                final int A = (c & 0xF) * 0x11;
+                                c = buffer.get(i + 1) & 0xFF;
+                                final int R = ((c >> 4) & 0xF) * 0x11;
+                                final int G = (c & 0xF) * 0x11;
+                                ibuffer[k++] = (A << 24) | (R << 16) | (G << 8) | B;
+                            }
+                        } else {
+                            for (int i = 0; i < buffer.capacity(); i += 2) {
+                                int c = buffer.get(i + 1) & 0xFF;
+                                final int B = ((c >> 4) & 0xF) * 0x2F;
+                                final int A = (c & 0xF) * 0x2F;
+                                c = buffer.get(i) & 0xFF;
+                                final int R = ((c >> 4) & 0xF) * 0x2F;
+                                final int G = (c & 0xF) * 0x2F;
+                                ibuffer[k++] = (A << 24) | (R << 16) | (G << 8) | B;
+                            }
+                        }
+                        break;
+                    }
+                    case RGBA_5551: {
+                        imageType = BufferedImage.TYPE_INT_ARGB;
+                        ibuffer = new int[buffer.capacity() / 2];
+                        int k = 0;
+                        if (order == ByteOrder.LITTLE_ENDIAN) {
+                            for (int i = 0; i < buffer.capacity(); i += 2) {
+                                int c = buffer.get(i) & 0xFF;
+                                final int B = (((c >> 1) & 0x1F) * 0xFF) / 0x1F;
+                                final int A = (c & 0x1) * 0xFF;
+                                int G = (c >> 6) & 0x3;
+                                c = buffer.get(i + 1) & 0xFF;
+                                final int R = (((c >> 3) & 0x1F) * 0xFF) / 0x1F;
+                                G = (((c & 0x7) << 2 | G) * 0xFF) / 0x1F;
+                                ibuffer[k++] = (A << 24) | (R << 16) | (G << 8) | B;
+                            }
+                        } else {
+                            for (int i = 0; i < buffer.capacity(); i += 2) {
+                                int c = buffer.get(i + 1) & 0xFF;
+                                final int B = (((c >> 1) & 0x1F) * 0xFF) / 0x1F;
+                                final int A = (c & 0x1) * 0xFF;
+                                int G = (c >> 6) & 0x3;
+                                c = buffer.get(i) & 0xFF;
+                                final int R = (((c >> 3) & 0x1F) * 0xFF) / 0x1F;
+                                G = (((c & 0x7) << 2 | G) * 0xFF) / 0x1F;
+                                ibuffer[k++] = (A << 24) | (R << 16) | (G << 8) | B;
+                            }
+                        }
+                        break;
+                    }
+                    case RGB_FLOAT: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        FloatBuffer fbuffer = buffer.asFloatBuffer();
+                        ibuffer = new int[fbuffer.capacity() / 3];
+                        int k = 0;
+                        for (int i = 0; i < fbuffer.capacity(); i += 3) {
+                            ibuffer[k++] = (toColorComp(fbuffer.get(i)) << 16) | (toColorComp(buffer.get(i + 1)) << 8) | toColorComp(buffer.get(i + 2));
+                        }
+                        break;
+                    }
+                    case RGBA_FLOAT: {
+                        imageType = BufferedImage.TYPE_INT_ARGB;
+                        buffer.order(order);
+                        FloatBuffer fbuffer = buffer.asFloatBuffer();
+                        ibuffer = new int[fbuffer.capacity() / 4];
+                        int k = 0;
+                        for (int i = 0; i < fbuffer.capacity(); i += 4) {
+                            ibuffer[k++] = (toColorComp(fbuffer.get(i + 3)) << 24) | (toColorComp(fbuffer.get(i)) << 16) | (toColorComp(fbuffer.get(i + 1)) << 8) | toColorComp(fbuffer.get(i + 2));
+                        }
+                        break;
+                    }
+                    case GRAY_FLOAT: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        buffer.order(order);
+                        FloatBuffer fbuffer = buffer.asFloatBuffer();
+                        ibuffer = new int[fbuffer.capacity()];
+                        for (int i = 0; i < fbuffer.capacity(); i++) {
+                            final int c = toColorComp(fbuffer.get(i));
+                            ibuffer[i] = (c << 16) | (c << 8) | c;
+                        }
+                        break;
+                    }
+                    case RED_16: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        ibuffer = new int[buffer.capacity() / 2];
+                        int k = 0;
+                        if (order == ByteOrder.LITTLE_ENDIAN) {
+                            for (int i = 0; i < buffer.capacity(); i += 2) {
+                                final int c = (((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i) & 0xFF)) / 257;
+                                ibuffer[k++] = c << 16;
+                            }
+                        } else {
+                            for (int i = 0; i < buffer.capacity(); i += 2) {
+                                final int c = (((buffer.get(i) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF)) / 257;
+                                ibuffer[k++] = c << 16;
+                            }
+                        }
+                        break;
+                    }
+                    case GREEN_16: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        ibuffer = new int[buffer.capacity() / 2];
+                        int k = 0;
+                        if (order == ByteOrder.LITTLE_ENDIAN) {
+                            for (int i = 0; i < buffer.capacity(); i += 2) {
+                                final int c = (((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i) & 0xFF)) / 257;
+                                ibuffer[k++] = c << 8;
+                            }
+                        } else {
+                            for (int i = 0; i < buffer.capacity(); i += 2) {
+                                final int c = (((buffer.get(i) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF)) / 257;
+                                ibuffer[k++] = c << 8;
+                            }
+                        }
+                        break;
+                    }
+                    case BLUE_16: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        ibuffer = new int[buffer.capacity() / 2];
+                        int k = 0;
+                        if (order == ByteOrder.LITTLE_ENDIAN) {
+                            for (int i = 0; i < buffer.capacity(); i += 2) {
+                                final int c = (((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i) & 0xFF)) / 257;
+                                ibuffer[k++] = c;
+                            }
+                        } else {
+                            for (int i = 0; i < buffer.capacity(); i += 2) {
+                                final int c = (((buffer.get(i) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF)) / 257;
+                                ibuffer[k++] = c;
+                            }
+                        }
+                        break;
+                    }
+                    case RED_FLOAT: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        buffer.order(order);
+                        FloatBuffer fbuffer = buffer.asFloatBuffer();
+                        ibuffer = new int[fbuffer.capacity()];
+                        for (int i = 0; i < fbuffer.capacity(); i++) {
+                            ibuffer[i] = toColorComp(fbuffer.get(i)) << 16;
+                        }
+                        break;
+                    }
+                    case GREEN_FLOAT: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        buffer.order(order);
+                        FloatBuffer fbuffer = buffer.asFloatBuffer();
+                        ibuffer = new int[fbuffer.capacity()];
+                        for (int i = 0; i < fbuffer.capacity(); i++) {
+                            ibuffer[i] = toColorComp(fbuffer.get(i)) << 8;
+                        }
+                        break;
+                    }
+                    case BLUE_FLOAT: {
+                        imageType = BufferedImage.TYPE_INT_RGB;
+                        buffer.order(order);
+                        FloatBuffer fbuffer = buffer.asFloatBuffer();
+                        ibuffer = new int[fbuffer.capacity()];
+                        for (int i = 0; i < fbuffer.capacity(); i++) {
+                            ibuffer[i] = toColorComp(fbuffer.get(i));
+                        }
+                        break;
+                    }
+                    case RGBA_BYTE: {
+                        imageType = BufferedImage.TYPE_INT_ARGB;
+                        ibuffer = new int[buffer.capacity() / 4];
                         int k = 0;
                         for (int i = 0; i < buffer.capacity(); i += 4) {
                             ibuffer[k++] = ((buffer.get(i + 3) & 0xFF) << 24) | ((buffer.get(i) & 0xFF) << 16) | ((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i + 2) & 0xFF);
                         }
+                        break;
                     }
-                    break;
-                }
-                case RGBA_REV: {
-                    imageType = BufferedImage.TYPE_INT_ARGB;
-                    ibuffer = new int[buffer.capacity() / 4];
-                    if (order == ByteOrder.BIG_ENDIAN) {
-                        int k = 0;
-                        for (int i = 0; i < buffer.capacity(); i += 4) {
-                            ibuffer[k++] = ((buffer.get(i) & 0xFF) << 24) | ((buffer.get(i + 3) & 0xFF) << 16) | ((buffer.get(i + 2) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF);
-                        }
-                    } else {
-                        int k = 0;
-                        for (int i = 0; i < buffer.capacity(); i += 4) {
-                            ibuffer[k++] = ((buffer.get(i + 3) & 0xFF) << 24) | ((buffer.get(i) & 0xFF) << 16) | ((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i + 2) & 0xFF);
-                        }
-                    }
-                    break;
-                }
-                case ABGR: {
-                    imageType = BufferedImage.TYPE_INT_ARGB;
-                    ibuffer = new int[buffer.capacity() / 4];
-                    int k = 0;
-                    for (int i = 0; i < buffer.capacity(); i += 4) {
-                        ibuffer[k++] = ((buffer.get(i) & 0xFF) << 24) | ((buffer.get(i + 3) & 0xFF) << 16) | ((buffer.get(i + 2) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF);
-                    }
-                    break;
-                }
-                case RGB_332: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    ibuffer = new int[buffer.capacity()];
-                    for (int i = 0; i < buffer.capacity(); i++) {
-                        final int c = buffer.get(i) & 0xFF;
-                        ibuffer[i] = ((((c >> 5) & 0x7) * 255 / 7) << 16) | ((((c >> 2) & 0x7) * 255 / 7) << 8) | ((c & 0x3) * 255 / 3);
-                    }
-                    break;
-                }
-                case RED: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    ibuffer = new int[buffer.capacity()];
-                    for (int i = 0; i < buffer.capacity(); i++) {
-                        ibuffer[i] = (buffer.get(i) & 0xFF) << 16;
-                    }
-                    break;
-                }
-                case GREEN: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    ibuffer = new int[buffer.capacity()];
-                    for (int i = 0; i < buffer.capacity(); i++) {
-                        ibuffer[i] = (buffer.get(i) & 0xFF) << 8;
-                    }
-                    break;
-                }
-                case BLUE: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    ibuffer = new int[buffer.capacity()];
-                    for (int i = 0; i < buffer.capacity(); i++) {
-                        ibuffer[i] = (buffer.get(i) & 0xFF);
-                    }
-                    break;
-                }
-                case INTENSITY: {
-                    imageType = BufferedImage.TYPE_INT_ARGB;
-                    ibuffer = new int[buffer.capacity()];
-                    for (int i = 0; i < buffer.capacity(); i++) {
-                        final int c = buffer.get(i) & 0xFF;
-                        ibuffer[i] = (c << 24) | (c << 16) | (c << 8) | c;
-                    }
-                    break;
-                }
-                case RGBA_4444: {
-                    imageType = BufferedImage.TYPE_INT_ARGB;
-                    ibuffer = new int[buffer.capacity() / 2];
-                    int k = 0;
-                    if (order == ByteOrder.LITTLE_ENDIAN) {
-                        for (int i = 0; i < buffer.capacity(); i += 2) {
-                            int c = buffer.get(i) & 0xFF;
-                            final int B = ((c >> 4) & 0xF) * 0x11;
-                            final int A = (c & 0xF) * 0x11;
-                            c = buffer.get(i + 1) & 0xFF;
-                            final int R = ((c >> 4) & 0xF) * 0x11;
-                            final int G = (c & 0xF) * 0x11;
-                            ibuffer[k++] = (A << 24) | (R << 16) | (G << 8) | B;
-                        }
-                    } else {
-                        for (int i = 0; i < buffer.capacity(); i += 2) {
-                            int c = buffer.get(i + 1) & 0xFF;
-                            final int B = ((c >> 4) & 0xF) * 0x2F;
-                            final int A = (c & 0xF) * 0x2F;
-                            c = buffer.get(i) & 0xFF;
-                            final int R = ((c >> 4) & 0xF) * 0x2F;
-                            final int G = (c & 0xF) * 0x2F;
-                            ibuffer[k++] = (A << 24) | (R << 16) | (G << 8) | B;
-                        }
-                    }
-                    break;
-                }
-                case RGBA_5551: {
-                    imageType = BufferedImage.TYPE_INT_ARGB;
-                    ibuffer = new int[buffer.capacity() / 2];
-                    int k = 0;
-                    if (order == ByteOrder.LITTLE_ENDIAN) {
-                        for (int i = 0; i < buffer.capacity(); i += 2) {
-                            int c = buffer.get(i) & 0xFF;
-                            final int B = (((c >> 1) & 0x1F) * 0xFF) / 0x1F;
-                            final int A = (c & 0x1) * 0xFF;
-                            int G = (c >> 6) & 0x3;
-                            c = buffer.get(i + 1) & 0xFF;
-                            final int R = (((c >> 3) & 0x1F) * 0xFF) / 0x1F;
-                            G = (((c & 0x7) << 2 | G) * 0xFF) / 0x1F;
-                            ibuffer[k++] = (A << 24) | (R << 16) | (G << 8) | B;
-                        }
-                    } else {
-                        for (int i = 0; i < buffer.capacity(); i += 2) {
-                            int c = buffer.get(i + 1) & 0xFF;
-                            final int B = (((c >> 1) & 0x1F) * 0xFF) / 0x1F;
-                            final int A = (c & 0x1) * 0xFF;
-                            int G = (c >> 6) & 0x3;
-                            c = buffer.get(i) & 0xFF;
-                            final int R = (((c >> 3) & 0x1F) * 0xFF) / 0x1F;
-                            G = (((c & 0x7) << 2 | G) * 0xFF) / 0x1F;
-                            ibuffer[k++] = (A << 24) | (R << 16) | (G << 8) | B;
-                        }
-                    }
-                    break;
-                }
-                case RGB_FLOAT: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    FloatBuffer fbuffer = buffer.asFloatBuffer();
-                    ibuffer = new int[fbuffer.capacity() / 3];
-                    int k = 0;
-                    for (int i = 0; i < fbuffer.capacity(); i += 3) {
-                        ibuffer[k++] = (toColorComp(fbuffer.get(i)) << 16) | (toColorComp(buffer.get(i + 1)) << 8) | toColorComp(buffer.get(i + 2));
-                    }
-                    break;
-                }
-                case RGBA_FLOAT: {
-                    imageType = BufferedImage.TYPE_INT_ARGB;
-                    buffer.order(order);
-                    FloatBuffer fbuffer = buffer.asFloatBuffer();
-                    ibuffer = new int[fbuffer.capacity() / 4];
-                    int k = 0;
-                    for (int i = 0; i < fbuffer.capacity(); i += 4) {
-                        ibuffer[k++] = (toColorComp(fbuffer.get(i + 3)) << 24) | (toColorComp(fbuffer.get(i)) << 16) | (toColorComp(fbuffer.get(i + 1)) << 8) | toColorComp(fbuffer.get(i + 2));
-                    }
-                    break;
-                }
-                case GRAY_FLOAT: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    buffer.order(order);
-                    FloatBuffer fbuffer = buffer.asFloatBuffer();
-                    ibuffer = new int[fbuffer.capacity()];
-                    for (int i = 0; i < fbuffer.capacity(); i++) {
-                        final int c = toColorComp(fbuffer.get(i));
-                        ibuffer[i] = (c << 16) | (c << 8) | c;
-                    }
-                    break;
-                }
-                case RED_16: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    ibuffer = new int[buffer.capacity() / 2];
-                    int k = 0;
-                    if (order == ByteOrder.LITTLE_ENDIAN) {
-                        for (int i = 0; i < buffer.capacity(); i += 2) {
-                            final int c = (((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i) & 0xFF)) / 257;
-                            ibuffer[k++] = c << 16;
-                        }
-                    } else {
-                        for (int i = 0; i < buffer.capacity(); i += 2) {
-                            final int c = (((buffer.get(i) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF)) / 257;
-                            ibuffer[k++] = c << 16;
-                        }
-                    }
-                    break;
-                }
-                case GREEN_16: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    ibuffer = new int[buffer.capacity() / 2];
-                    int k = 0;
-                    if (order == ByteOrder.LITTLE_ENDIAN) {
-                        for (int i = 0; i < buffer.capacity(); i += 2) {
-                            final int c = (((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i) & 0xFF)) / 257;
-                            ibuffer[k++] = c << 8;
-                        }
-                    } else {
-                        for (int i = 0; i < buffer.capacity(); i += 2) {
-                            final int c = (((buffer.get(i) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF)) / 257;
-                            ibuffer[k++] = c << 8;
-                        }
-                    }
-                    break;
-                }
-                case BLUE_16: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    ibuffer = new int[buffer.capacity() / 2];
-                    int k = 0;
-                    if (order == ByteOrder.LITTLE_ENDIAN) {
-                        for (int i = 0; i < buffer.capacity(); i += 2) {
-                            final int c = (((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i) & 0xFF)) / 257;
-                            ibuffer[k++] = c;
-                        }
-                    } else {
-                        for (int i = 0; i < buffer.capacity(); i += 2) {
-                            final int c = (((buffer.get(i) & 0xFF) << 8) | (buffer.get(i + 1) & 0xFF)) / 257;
-                            ibuffer[k++] = c;
-                        }
-                    }
-                    break;
-                }
-                case RED_FLOAT: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    buffer.order(order);
-                    FloatBuffer fbuffer = buffer.asFloatBuffer();
-                    ibuffer = new int[fbuffer.capacity()];
-                    for (int i = 0; i < fbuffer.capacity(); i++) {
-                        ibuffer[i] = toColorComp(fbuffer.get(i)) << 16;
-                    }
-                    break;
-                }
-                case GREEN_FLOAT: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    buffer.order(order);
-                    FloatBuffer fbuffer = buffer.asFloatBuffer();
-                    ibuffer = new int[fbuffer.capacity()];
-                    for (int i = 0; i < fbuffer.capacity(); i++) {
-                        ibuffer[i] = toColorComp(fbuffer.get(i)) << 8;
-                    }
-                    break;
-                }
-                case BLUE_FLOAT: {
-                    imageType = BufferedImage.TYPE_INT_RGB;
-                    buffer.order(order);
-                    FloatBuffer fbuffer = buffer.asFloatBuffer();
-                    ibuffer = new int[fbuffer.capacity()];
-                    for (int i = 0; i < fbuffer.capacity(); i++) {
-                        ibuffer[i] = toColorComp(fbuffer.get(i));
-                    }
-                    break;
-                }
-                case RGBA_BYTE: {
-                    imageType = BufferedImage.TYPE_INT_ARGB;
-                    ibuffer = new int[buffer.capacity() / 4];
-                    int k = 0;
-                    for (int i = 0; i < buffer.capacity(); i += 4) {
-                        ibuffer[k++] = ((buffer.get(i + 3) & 0xFF) << 24) | ((buffer.get(i) & 0xFF) << 16) | ((buffer.get(i + 1) & 0xFF) << 8) | (buffer.get(i + 2) & 0xFF);
-                    }
-                    break;
-                }
                 }
 
                 ImageBuffer ib1;

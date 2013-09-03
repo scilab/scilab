@@ -67,5 +67,5 @@ scicos_simulate(scs_m);   // IDA
 
  Flat Modelica : TMPDIR/Platform_imf.mo
  Simulation C code :TMPDIR/Platform_im.c
-assert_checkalmostequal(res.values, IDA_val_ref, [], 1d-7);
+assert_checkalmostequal(res.values, IDA_val_ref, [], 1d-6);
 assert_checkalmostequal(res.time, IDA_time_ref);
