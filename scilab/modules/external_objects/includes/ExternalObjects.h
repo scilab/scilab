@@ -16,7 +16,7 @@
 
 #define __USE_DEPRECATED_STACK_FUNCTIONS__
 
-//#define EODEBUG
+#define EODEBUG
 
 #define FIELDS_LENGTH 3
 

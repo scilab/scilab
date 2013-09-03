@@ -15,7 +15,8 @@
 #ifndef __SCILABGATEWAYOPTIONS_HXX__
 #define __SCILABGATEWAYOPTIONS_HXX__
 
-extern "C" {
+extern "C"
+{
 #include "api_scilab.h"
 }
 

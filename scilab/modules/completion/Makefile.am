@@ -29,6 +29,16 @@ src/c/completeLine_wrap_java.c
 
 COMPLETION_CXX_SOURCES = src/cpp/FieldsManager.cpp \
                          src/cpp/XMLFieldsGetter.cpp \
+                         src/cpp/XMLDocFieldsGetter.cpp \
+                         src/cpp/XMLElemFieldsGetter.cpp \
+                         src/cpp/XMLAttrFieldsGetter.cpp \
+                         src/cpp/XMLNsFieldsGetter.cpp \
+                         src/cpp/XMLListFieldsGetter.cpp \
+                         src/cpp/XMLSetFieldsGetter.cpp \
+                         src/cpp/EOFieldsGetter.cpp \
+                         src/cpp/UnknownMlistFieldsGetter.cpp \
+                         src/cpp/StructFieldsGetter.cpp \
+                         src/cpp/HandleFieldsGetter.cpp \
                          src/cpp/getfields.cpp
 
 # List of the gateway c files
@@ -47,7 +57,8 @@ libscicompletion_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/xml/includes/ \
-    -I$(top_srcdir)/modules/xml/src/cpp \
+    -I$(top_srcdir)/modules/xml/src/cpp/ \
+    -I$(top_srcdir)/modules/external_objects/includes \
     $(JAVA_JNI_INCLUDE) \
     $(XML_FLAGS) \
     $(COMPLETION_FLAGS) \

@@ -21,12 +21,6 @@
 #include "OptionsHelper.hxx"
 #include "dynlib_external_objects_scilab.h"
 
-extern "C" {
-#include "api_scilab.h"
-#include "stack-c.h"
-#include "localization.h"
-}
-
 namespace org_modules_external_objects
 {
 class EXTERNAL_OBJECTS_SCILAB_IMPEXP ScilabObjects
@@ -80,6 +74,7 @@ public:
     {
         if (row == 0 || col == 0)
         {
+            // Empty matrix is plugged on null object
             return 0;
         }
         else if (row == 1 && col == 1)
@@ -98,6 +93,7 @@ public:
     {
         if (row == 0 || col == 0)
         {
+            // Empty matrix is plugged on null object
             return 0;
         }
         else if (row == 1 && col == 1)
@@ -112,10 +108,30 @@ public:
         return wrapper.wrapBool(data, row, col, isRef);
     }
 
+    inline static int wrapFloat(const int row, const int col, double * data, const ScilabAbstractEnvironmentWrapper & wrapper, const bool isRef)
+    {
+        if (row == 0 || col == 0)
+        {
+            // Empty matrix is plugged on null object
+            return 0;
+        }
+        else if (row == 1 && col == 1)
+        {
+            return wrapper.wrapFloat(data, isRef);
+        }
+        else if (row == 1)
+        {
+            return wrapper.wrapFloat(data, col, isRef);
+        }
+
+        return wrapper.wrapFloat(data, row, col, isRef);
+    }
+
     inline static int wrap(const int row, const int col, double * real, double * imag, const ScilabAbstractEnvironmentWrapper & wrapper, const bool isRef)
     {
         if (row == 0 || col == 0)
         {
+            // Empty matrix is plugged on null object
             return 0;
         }
         else if (row == 1 && col == 1)

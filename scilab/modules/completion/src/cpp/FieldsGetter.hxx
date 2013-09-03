@@ -41,7 +41,7 @@ public :
      * @param typeName the type name
      * @param mlist the mlist addr
      */
-    virtual const char ** getFieldsName(const std::string & typeName, int * mlist) const = 0;
+    virtual const char ** getFieldsName(const std::string & typeName, int * mlist, char ** fieldPath, const int fieldPathLen, int * fieldsSize) const = 0;
 };
 }
 

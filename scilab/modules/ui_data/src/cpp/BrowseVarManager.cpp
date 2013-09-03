@@ -307,14 +307,15 @@ static std::set < string > createScilabDefaultVariablesSet()
                      "TICTOC",
                      "%helps_modules",
                      "%_atoms_cache",
-                     "evoid" // Constant for external object
+                     "evoid", // Constant for external object
+                     "jvoid" // Constant for external object Java (jims)
                    };
     int i = 0;
 
-#define NBELEMENT 33
+#define NBELEMENT 35
     std::set < string > ScilabDefaultVariables;
 
-    for (i = 0; i <= NBELEMENT; i++)
+    for (i = 0; i < NBELEMENT; i++)
     {
         ScilabDefaultVariables.insert(arr[i]);
     }

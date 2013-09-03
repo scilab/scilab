@@ -15,6 +15,7 @@
 #define __SCILABABSTRACTENVIRONMENT_HXX__
 
 #include <string>
+#include <vector>
 
 #include "ExternalObjects.h"
 #include "OptionsHelper.hxx"
@@ -196,6 +197,16 @@ public:
     virtual void getaccessiblemethods(int id, const ScilabStringStackAllocator & allocator) = 0;
 
     /**
+     * Get all the accessible methods (public ones) in the given object (used in completion)
+     * @param id the object id
+     * @return the methods
+     */
+    virtual std::vector<std::string> getCompletion(int id, char ** fieldPath, const int fieldPathLen)
+    {
+        return std::vector<std::string>();
+    }
+
+    /**
      * Get all the accessible fields (public ones) in the given object
      * @param id the object id
      * @param pos the position in the Scilab stack where to put the names
@@ -230,6 +241,18 @@ public:
     virtual void disabletrace() = 0;
 
     virtual void writeLog(const std::string & fun, const std::string str, ...) const = 0;
+
+    /**
+     * Remove the object with the given id
+     * @param id the object id
+     */
+    virtual void removeobject(const int * ids, const int length)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            removeobject(ids[i]);
+        }
+    }
 };
 }
 #endif //__SCILABABSTRACTENVIRONMENT_HXX__

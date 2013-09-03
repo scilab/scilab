@@ -1,0 +1,168 @@
+# Czech translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2012-08-24 20:23+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"Language-Team: Czech <cs@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 16335)\n"
+
+msgid "Exception thrown in file"
+msgstr "V souboru nastala výjimka"
+
+msgid "at line"
+msgstr "na řádku"
+
+#, c-format
+msgid "Invalid environment: identifier %d is invalid"
+msgstr "Neplatné prostředí: identifikátor %d je neplatný"
+
+msgid "Invalid environment"
+msgstr "Neplatné prostředí"
+
+msgid "Cannot allocate memory"
+msgstr "Nelze přidělit paměť"
+
+msgid "Invalid variable: cannot retrieve the data"
+msgstr "Neplatná proměnná: nelze získat data"
+
+msgid "Invalid variable: cannot create data"
+msgstr "Neplatná proměnná: nelze vytvořit data"
+
+msgid "External Class expected"
+msgstr "Očekávána externí třída"
+
+msgid "Incompatible External Objects"
+msgstr "Nekompatibilní externí objekty"
+
+msgid "External object expected"
+msgstr "Očekáván externí objekt"
+
+msgid "Unable to wrap. Unmanaged datatype ?"
+msgstr "Nelze zabalit. Nespravovaný datový typ?"
+
+msgid "Invalid String"
+msgstr "Neplatný řetězec"
+
+msgid "A single string expected"
+msgstr "Očekáván jeden řetězec"
+
+msgid "A single String expected"
+msgstr "Očekáván jeden řetězec"
+
+#, c-format
+msgid "Wrong type for argument #%d: A string expected."
+msgstr "Špatný typ argumentu &%d: Očekáván řetězec."
+
+#, c-format
+msgid "Cannot open the given file %s."
+msgstr "Nelze otevřít zadaný soubor %s."
+
+#, c-format
+msgid "Wrong number of arguments : more than %d expected."
+msgstr "Špatný počet argumentů : Očekáváno více než %d"
+
+#, c-format
+msgid "A strictly positive integer is expected at position %d."
+msgstr "Na pozici %d je očekáván striktně kladné celé číslo."
+
+msgid "Invalid name"
+msgstr "Neplatný název"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A String expected."
+msgstr "Špatný typ vstupního argumentu #%d: Očekáván řetězec."
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr "Neplatný rozměr argumentu #%d: Očekáván řádek nebo sloupec."
+
+msgid "The argument must be 'rc' or 'cr'."
+msgstr "Argument musí být 'rc' nebo 'cr'."
+
+#, c-format
+msgid "Invalid dimensions for input argument #%d: A single string expected."
+msgstr "Neplatné rozměry argumentu #%d: Očekáván jeden řetězec."
+
+msgid "Invalid dimensions: arguments #2 and #3 must have the same."
+msgstr "Neplatné rozměry: argumenty #2 a #3 musí být stejné."
+
+msgid "Invalid variable: cannot create the data"
+msgstr "Neplatná proměnná: nelze vytvořit data"
+
+#, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr "Špatný typ vstupního argumentu #%d: Očekáván externí objekt."
+
+msgid "Incompatible External Object"
+msgstr "Nekompatibilní externí objekt"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A string expected."
+msgstr "Špatný typ vstupního argumentu #%d: Očekáván řetězec."
+
+#, c-format
+msgid "Wrong type for input argument #%d: A boolean expected."
+msgstr "Špatný typ vstupního argumentu #%d: Očekáván boolean."
+
+#, c-format
+msgid "Wrong type for input argument #%d: A single boolean expected."
+msgstr "Špatný typ vstupního argumentu #%d: Očekáván jeden boolean."
+
+#, c-format
+msgid "Wrong type for input argument #%d: An External Object expected."
+msgstr "Špatný typ vstupního argumentu #%d: Očekáván externí objekt."
+
+msgid "Cannot create the identifier"
+msgstr "Nelze vytvořit identifikátor"
+
+msgid "The class name cannot end with a dot."
+msgstr "Název třídy nemůže končit tečkou."
+
+msgid "The class name cannot start with a dot."
+msgstr "Název třídy nemůže začínat tečkou."
+
+msgid "A variable with this name is already existing"
+msgstr "Proměnná s tímto názvem již existuje"
+
+msgid "Bad number of output arguments"
+msgstr "Špatný počet výstupních argumentů"
+
+msgid "Wrong number of arguments : more than 2 arguments expected"
+msgstr "Špatný počet argumentů : očekávány více než 2 argumenty"
+
+msgid "Cannot invoke on null object"
+msgstr "Nelze volat prázdný objekt"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A List expected."
+msgstr "Špatný typ vstupního argumentu #%d: Očekáván seznam."
+
+#, c-format
+msgid "Wrong type for input argument #%d: An Integer32 expected."
+msgstr "Špatný typ vstupního argumentu #%d: Očekáváno 32bitové celé číslo."
+
+msgid "Cannot invoke on null object."
+msgstr "Nelze volat prázdný objekt."
+
+msgid "Wrong number of arguments : more than 1 argument expected"
+msgstr "Špatný počet argumentů : očekáván více než 1 argument"
+
+msgid "Wrong number of arguments : more than 1 argument expected."
+msgstr "Špatný počet argumentů : očekáván více než 1 argument."
+
+#, c-format
+msgid "Cannot wrap argument %d."
+msgstr "Nelze zabalit argument %d."
+
+msgid "Can only wrap as a reference to a named variable"
+msgstr "Lze zabalit pouze jako odkaz na pojmenovanou proměnnou"

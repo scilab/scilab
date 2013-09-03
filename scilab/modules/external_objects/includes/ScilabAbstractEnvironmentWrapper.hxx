@@ -117,11 +117,11 @@ public:
     virtual int wrap(char ** x, int xSize, int xSizeCol, const bool isRef) const = 0;
 
 
-    virtual int wrap(float * x, const bool isRef) const = 0;
+    virtual int wrapFloat(double * x, const bool isRef) const = 0;
 
-    virtual int wrap(float * x, int xSize, const bool isRef) const = 0;
+    virtual int wrapFloat(double * x, int xSize, const bool isRef) const = 0;
 
-    virtual int wrap(float * x, int xSize, int xSizeCol, const bool isRef) const = 0;
+    virtual int wrapFloat(double * x, int xSize, int xSizeCol, const bool isRef) const = 0;
 
 
     virtual int wrapBool(int * x, const bool isRef) const = 0;

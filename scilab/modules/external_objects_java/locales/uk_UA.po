@@ -1,0 +1,186 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# Yuri Chornoivan <yurchor@ukr.net>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2012-08-24 14:21+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 16335)\n"
+"Language: uk\n"
+
+msgid "Exception thrown in file"
+msgstr "Під час обробки файла сталося виключення"
+
+msgid "at line"
+msgstr "у рядку"
+
+#, c-format
+msgid "Invalid environment: identifier %d is invalid"
+msgstr "Некоректне середовище: ідентифікатор %d є некоректним"
+
+msgid "Invalid environment"
+msgstr "Некоректне середовище"
+
+msgid "Cannot allocate memory"
+msgstr "Не вдалося розподілити пам’ять"
+
+msgid "Invalid variable: cannot retrieve the data"
+msgstr "Некоректна змінна: не вдалося отримати дані"
+
+msgid "Invalid variable: cannot create data"
+msgstr "Некоректна змінна: не вдалося створити дані"
+
+msgid "External Class expected"
+msgstr "Мало бути вказано зовнішній клас"
+
+msgid "Incompatible External Objects"
+msgstr "Несумісні зовнішні об’єкти"
+
+msgid "External object expected"
+msgstr "Мало бути вказано зовнішній об’єкт"
+
+msgid "Unable to wrap. Unmanaged datatype ?"
+msgstr "Не вдалося додати до обгортки. Некерований тип даних?"
+
+msgid "Invalid String"
+msgstr "Некоректний рядок"
+
+msgid "A single string expected"
+msgstr "Мало бути вказано одинарний рядок"
+
+msgid "A single String expected"
+msgstr "Мало бути вказано одинарний рядок"
+
+#, c-format
+msgid "Wrong type for argument #%d: A string expected."
+msgstr ""
+"Помилковий тип вхідного параметра №#%d: слід використовувати тип «string»."
+
+#, c-format
+msgid "Cannot open the given file %s."
+msgstr "Не вдалося відрити вказаний файл %s."
+
+#, c-format
+msgid "Wrong number of arguments : more than %d expected."
+msgstr "Помилкова кількість параметрів: мало бути більше за %d."
+
+#, c-format
+msgid "A strictly positive integer is expected at position %d."
+msgstr "У позиції %d мало бути вказано строго додатне ціле число."
+
+msgid "Invalid name"
+msgstr "Некоректна назва"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A String expected."
+msgstr ""
+"Помилковий тип вхідного параметра №%d: слід використовувати тип «string»."
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr ""
+"Помилкова розмірність параметра №%d: мало бути вказано рядок або стовпчик."
+
+msgid "The argument must be 'rc' or 'cr'."
+msgstr "Параметр повинен мати значення 'rc' або 'cr'."
+
+#, c-format
+msgid "Invalid dimensions for input argument #%d: A single string expected."
+msgstr ""
+"Помилкова розмірність вхідного параметра №%d: мало бути використано "
+"одинарний рядок."
+
+msgid "Invalid dimensions: arguments #2 and #3 must have the same."
+msgstr ""
+"Некоректні розмірності: параметри №2 і №3 повинні мати однакову розмірність."
+
+msgid "Invalid variable: cannot create the data"
+msgstr "Некоректна змінна: не вдалося створити дані"
+
+#, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr ""
+"Помилковий тип вхідного параметра №%d: мало бути використано зовнішній "
+"об’єкт."
+
+msgid "Incompatible External Object"
+msgstr "Несумісний зовнішній об’єкт"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A string expected."
+msgstr ""
+"Помилковий тип вхідного параметра №%d: слід використовувати тип «string»."
+
+#, c-format
+msgid "Wrong type for input argument #%d: A boolean expected."
+msgstr ""
+"Помилковий тип вхідного параметра №%d: слід використовувати тип «boolean»."
+
+#, c-format
+msgid "Wrong type for input argument #%d: A single boolean expected."
+msgstr ""
+"Помилковий тип вхідного параметра №%d: слід використовувати одинарне булеве "
+"значення."
+
+#, c-format
+msgid "Wrong type for input argument #%d: An External Object expected."
+msgstr ""
+"Помилковий тип вхідного параметра №%d: мало бути використано зовнішній "
+"об’єкт."
+
+msgid "Cannot create the identifier"
+msgstr "Не вдалося створити ідентифікатор"
+
+msgid "The class name cannot end with a dot."
+msgstr "Назва класу не повинна завершуватися крапкою."
+
+msgid "The class name cannot start with a dot."
+msgstr "Назва класу не повинна починатися з крапки."
+
+msgid "A variable with this name is already existing"
+msgstr "Змінна з цією назвою вже існує"
+
+msgid "Bad number of output arguments"
+msgstr "Помилкова кількість вихідних параметрів"
+
+msgid "Wrong number of arguments : more than 2 arguments expected"
+msgstr "Помилкова кількість параметрів: мало бути більше за 2."
+
+msgid "Cannot invoke on null object"
+msgstr "Викликати порожні об’єкти не можна"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A List expected."
+msgstr ""
+"Помилковий тип вхідного параметра №%d: слід використовувати тип списку."
+
+#, c-format
+msgid "Wrong type for input argument #%d: An Integer32 expected."
+msgstr ""
+"Помилковий тип вхідного параметра №%d: мало бути ціле 32-бітове число."
+
+msgid "Cannot invoke on null object."
+msgstr "Викликати порожні об’єкти не можна."
+
+msgid "Wrong number of arguments : more than 1 argument expected"
+msgstr "Помилкова кількість параметрів: мало бути більше за 1"
+
+msgid "Wrong number of arguments : more than 1 argument expected."
+msgstr "Помилкова кількість параметрів: мало бути більше за 1."
+
+#, c-format
+msgid "Cannot wrap argument %d."
+msgstr "Не вдалося огорнути параметр %d."
+
+msgid "Can only wrap as a reference to a named variable"
+msgstr "Обгортання можливе лише як посилання на іменовану змінну"

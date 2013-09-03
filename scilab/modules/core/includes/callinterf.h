@@ -93,6 +93,7 @@
 /* 69 */                        #include "dynamic_gateways.h" /* preferences */
 /* 70 */                        #include "dynamic_gateways.h" /* graphic_objects */
 /* 71 */                        #include "dynamic_gateways.h" /* external_objects */
+/* 72 */                        #include "dynamic_gateways.h" /* external_objects_java */
 
 
 /** table of interfaces **/

@@ -186,21 +186,21 @@ int ScilabGateway::objectInsert(char * fname, const int envId, void * pvApiCtx)
                 delete[] args;
                 throw;
             }
+        }
 
-            args[Rhs - 2] = idObjB;
+        args[Rhs - 2] = idObjB;
 
-            try
-            {
-                env.insert(idObjA, args, Rhs - 1);
-            }
-            catch (std::exception & e)
-            {
-                ScilabObjects::removeTemporaryVars(envIdA, tmpvarB);
-                ScilabObjects::removeTemporaryVars(envIdA, tmpvar);
-                delete[] tmpvar;
-                delete[] args;
-                throw;
-            }
+        try
+        {
+            env.insert(idObjA, args, Rhs - 1);
+        }
+        catch (std::exception & e)
+        {
+            ScilabObjects::removeTemporaryVars(envIdA, tmpvarB);
+            ScilabObjects::removeTemporaryVars(envIdA, tmpvar);
+            delete[] tmpvar;
+            delete[] args;
+            throw;
         }
 
         ScilabObjects::removeTemporaryVars(envIdA, tmpvar);
