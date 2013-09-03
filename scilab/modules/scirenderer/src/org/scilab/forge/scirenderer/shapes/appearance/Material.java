@@ -25,8 +25,8 @@ public class Material {
     private Color diffuse;
     /** specular color */
     private Color specular;
-    /** shinines level */
-    private float shinines;
+    /** shininess level */
+    private float shininess;
     
     /**
      * @param the new ambient color;.
@@ -52,8 +52,8 @@ public class Material {
     /**
      * @param the new shinines.
      */
-    public void setShinines(float s) {
-        shinines = s;
+    public void setShininess(float s) {
+        shininess = s;
     }
 
     /**
@@ -78,10 +78,10 @@ public class Material {
     }
 
     /**
-     * @return the shinines.;
+     * @return the shininess.
      */
-    public float getShinines() {
-        return shinines;
+    public float getShininess() {
+        return shininess;
     }
 
     /**

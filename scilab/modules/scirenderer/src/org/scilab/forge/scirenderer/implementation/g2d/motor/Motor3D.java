@@ -425,8 +425,8 @@ public class Motor3D {
         if (texture != null) {
             filter = texture.getMagnificationFilter();
         }
-        
-       colorsArray = applyLighting(vertices, normals, indices, colorsArray, lightManager);
+
+        colorsArray = applyLighting(vertices, normals, indices, colorsArray, lightManager);
 
         switch (drawingMode) {
             case TRIANGLE_FAN :
@@ -551,7 +551,7 @@ public class Motor3D {
     private Color[] applyLighting(FloatBuffer vertices, FloatBuffer normals, IntBuffer index, Color[] colors, G2DLightManager lightManager) {
 
         if (!lightManager.isLightningEnable() || vertices == null || normals == null
-            || index == null || colors == null) {
+                || index == null || colors == null) {
             return colors;
         }
 
@@ -559,7 +559,6 @@ public class Motor3D {
         if (mat == null) {
             return colors;
         }
-
 
         Vector3f[] vertexArray = LightHelper.getIndexedVector3f(vertices, index, G2DElementsBuffer.ELEMENT_SIZE);
         Vector3f[] normalArray = LightHelper.getIndexedVector3f(normals, index, G2DElementsBuffer.ELEMENT_SIZE);

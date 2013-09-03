@@ -54,6 +54,10 @@ public class Vector3f {
         return new Vector3f(x - v.x, y - v.y, z - v.z);
     }
 
+    public Vector3f negate() {
+        return new Vector3f(-x, -y, -z);
+    }
+
     public Vector3f times(float d) {
         return new Vector3f(x * d, y * d, z * d);
     }

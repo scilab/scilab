@@ -89,7 +89,7 @@ public class JoGLLightManager implements LightManager {
             }
             drawingTools.getGl().glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT, material.getAmbientColor().getComponents(null), 0);
             drawingTools.getGl().glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_SPECULAR, material.getSpecularColor().getComponents(null), 0);
-            drawingTools.getGl().glMaterialf(GL2.GL_FRONT_AND_BACK, GL2.GL_SHININESS, material.getShinines());
+            drawingTools.getGl().glMaterialf(GL2.GL_FRONT_AND_BACK, GL2.GL_SHININESS, material.getShininess());
             float[] f = {0.0f, 0.0f, 0.0f, 0.0f};
             drawingTools.getGl().glMaterialfv(GL2.GL_FRONT_AND_BACK, GL2.GL_EMISSION, f, 0);
         }

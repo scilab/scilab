@@ -8,12 +8,13 @@
  * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  */
- 
+
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
 
 import java.awt.Color;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+
 
 import org.scilab.forge.scirenderer.tranformations.Vector3f;
 import org.scilab.forge.scirenderer.implementation.g2d.lighting.G2DLight;
@@ -43,8 +44,8 @@ public class LightHelper {
         }
 
         Vector3f[] ret = new Vector3f[floats.length / stride];
-        for (int i = 0; i < floats.length; i+= stride) {
-            ret[i] = new Vector3f(floats[i], floats[i+1], floats[i+2]);
+        for (int i = 0; i < floats.length; i += stride) {
+            ret[i] = new Vector3f(floats[i], floats[i + 1], floats[i + 2]);
         }
         return ret;
     }
@@ -79,7 +80,7 @@ public class LightHelper {
 
         Vector3f[] ret = new Vector3f[idx.length];
         for (int i = 0; i < idx.length; ++i) {
-            ret[i] = new Vector3f(floats[stride*idx[i]], floats[stride*idx[i]+1], floats[stride*idx[i]+2]);
+            ret[i] = new Vector3f(floats[stride * idx[i]], floats[stride * idx[i] + 1], floats[stride * idx[i] + 2]);
         }
         return ret;
     }
@@ -119,10 +120,10 @@ public class LightHelper {
         for (int i = 0; i < colors.length; ++i) {
 
             if (directional) {
-                ndotl = normals[i].getNormalized().scalar(light);
-            }else {
+                ndotl = normals[i].scalar(light);
+            } else {
                 Vector3f ray = light.minus(vertices[i]).getNormalized();
-                ndotl = normals[i].getNormalized().scalar(ray);
+                ndotl = normals[i].scalar(ray);
             }
             ndotl = clamp(ndotl);
             Color c = getColorProduct(colors[i], diffuse);
@@ -134,7 +135,7 @@ public class LightHelper {
         }
         return output;
     }
-    
+
     /**
      * Apply diffuse light to the output colors
      * @param light the light position or direction.
@@ -151,10 +152,10 @@ public class LightHelper {
         for (int i = 0; i < output.length; ++i) {
 
             if (directional) {
-                ndotl = normals[i].getNormalized().scalar(light);
-            }else {
+                ndotl = normals[i].scalar(light);
+            } else {
                 Vector3f ray = light.minus(vertices[i]).getNormalized();
-                ndotl = normals[i].getNormalized().scalar(ray);
+                ndotl = normals[i].scalar(ray);
             }
             ndotl = clamp(ndotl);
             if (additive) {
@@ -166,10 +167,24 @@ public class LightHelper {
         return output;
     }
 
-    public static Color[] applySpecular(Vector3f camera, Vector3f light, boolean directional, Vector3f[] vertices, Vector3f[] normals, Color specular, Color[] output, boolean additive) {
+    public static Color[] applySpecular(Vector3f camera, Vector3f light, float shininess, boolean directional, Vector3f[] vertices, Vector3f[] normals, Color specular, Color[] output, boolean additive) {
         for (int i = 0; i < output.length; ++i) {
-            if (additive) {
+            Vector3f R;
+            Vector3f view = camera.minus(vertices[i]).getNormalized();
+            if (directional) {
+                R = reflect(light.negate(), normals[i]);
             } else {
+                Vector3f ray = light.minus(vertices[i]).getNormalized();
+                R = reflect(ray.negate(), normals[i]);
+            }
+            R = R.getNormalized();
+            float s = R.scalar(view);
+            s = s < 0.0f ? 0.0f : s;
+            s = (float)Math.pow((double)s, (double)shininess);
+            if (additive) {
+                output[i] = getColorSum(getColorProduct(specular, s), output[i]);
+            } else {
+                output[i] = getColorProduct(specular, s);
             }
         }
         return output;
@@ -191,13 +206,17 @@ public class LightHelper {
         Color diffuse = getColorProduct(mat.getDiffuseColor(), light.getDiffuseColor());
         Color specular = getColorProduct(mat.getSpecularColor(), light.getSpecularColor());
 
+        for (int i = 0; i < normals.length; ++i) {
+            normals[i] = normals[i].getNormalized();
+        }
+
         Color[] finalColor = applyAmbient(ambient, output, additive);
 
         float[] v;
         if (light.isPoint()) {
             v = light.getPosition().getDataAsFloatArray();
         } else {
-            v = light.getDirection().getDataAsFloatArray();  
+            v = light.getDirection().getDataAsFloatArray();
         }
 
         Vector3f vec = new Vector3f(v[0], v[1], v[2]);
@@ -208,8 +227,7 @@ public class LightHelper {
             finalColor = applyDiffuse(vec, !light.isPoint(), vertices, normals, diffuse, finalColor, true);
         }
 
-        //TODO: how to retrieve Camera position?
-        //finalColor = performSpecular(null, null, false, vertices, normals, specular, finalColor, true);
+        //finalColor = applySpecular(new Vector3f(), vec, mat.getShininess(), !light.isPoint(), vertices, normals, specular, finalColor, true);
 
         return finalColor;
     }
@@ -247,5 +265,9 @@ public class LightHelper {
         f = f < 0.0f ? 0.0f : f;
         f = f > 1.0f ? 1.0f : f;
         return f;
+    }
+
+    static Vector3f reflect(Vector3f I, Vector3f N) {
+        return I.minus(N.times(2 * I.scalar(N)));
     }
 }

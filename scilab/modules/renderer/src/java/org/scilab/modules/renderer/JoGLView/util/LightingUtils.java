@@ -39,7 +39,7 @@ public class LightingUtils {
         color = m.getSpecularColor();
         mtl.setSpecularColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
         mtl.setColorMaterialEnable(m.getColorMaterialMode().booleanValue());
-        mtl.setShinines(m.getShininess().floatValue());
+        mtl.setShininess(m.getShininess().floatValue());
 
         return mtl;
     }
@@ -60,10 +60,10 @@ public class LightingUtils {
     public static void setupLights(LightManager manager, org.scilab.modules.graphic_objects.axes.Axes axes) {
 
         if (manager == null) return;
-        
+
         boolean hasLight = false;
         int index = 0;
-        
+
         for (String child : axes.getChildren()) {
             GraphicObject object = GraphicController.getController().getObjectFromId(child);
             if (object instanceof org.scilab.modules.graphic_objects.lighting.Light) {
