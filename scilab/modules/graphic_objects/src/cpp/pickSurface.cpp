@@ -221,7 +221,36 @@ double pickSurface(char * uid, double x, double y,  double z, double dx, double 
 
         QuadTestAndSaveZ(bounds, P0, P1, P2, P3, direction, point, mx, my, mz, mw, lastZ);
     }
+    if (type == __GO_MATPLOT__)
+    {
+        double* scale = NULL;
+        double* translate = NULL;
+        double zShift = 0.;
+        double* pdZShift = &zShift;
+        double mbounds[4];
+        int numX = 0;
+        int* piNumX = &numX;
+        int numY = 0;
+        int* piNumY = &numY;
 
+        getGraphicObjectProperty(uid, __GO_MATPLOT_SCALE__, jni_double_vector, (void**) &scale);
+        getGraphicObjectProperty(uid, __GO_MATPLOT_TRANSLATE__, jni_double_vector, (void**) &translate);
+        getGraphicObjectProperty(uid, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_double, (void**) &pdZShift);
+        getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);
+        getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piNumY);
+
+        mbounds[0] = translate[0];
+        mbounds[1] = translate[1];
+        mbounds[2] = mbounds[0] + (numX - 1) * scale[0];
+        mbounds[3] = mbounds[1] + (numY - 1) * scale[1];
+
+        Vec3 P0 = Vec3(mbounds[0],      mbounds[1],      zShift);
+        Vec3 P1 = Vec3(mbounds[2],		mbounds[1],      zShift);
+        Vec3 P2 = Vec3(mbounds[2],      mbounds[3],      zShift);
+        Vec3 P3 = Vec3(mbounds[0],      mbounds[3],      zShift);
+
+        QuadTestAndSaveZ(bounds, P0, P1, P2, P3, direction, point, mx, my, mz, mw, lastZ);
+    }
     return lastZ;
 
 }

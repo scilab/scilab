@@ -144,8 +144,8 @@ public class DatatipCommon {
                                             (Boolean)GraphicController.getController().getProperty(axes, __GO_Y_AXIS_LOG_FLAG__)
                                            };
 
-        dataX = toLogScale(dataX, logFlags[0]);
-        dataY = toLogScale(dataY, logFlags[1]);
+        dataX = CommonHandler.toLogScale(dataX, logFlags[0]);
+        dataY = CommonHandler.toLogScale(dataY, logFlags[1]);
         if (dataX != null) {
             for (int i = 0; i < dataX.length - 1; ++i) {
                 double min = Math.min(dataX[i], dataX[i + 1]);
@@ -276,30 +276,6 @@ public class DatatipCommon {
         String axes = AxesHandler.clickedAxes(figure, pos);
         double[] position = {1.0 * pos[0], 1.0 * pos[1], 0.0};
         return CallRenderer.get2dViewFromPixelCoordinates(axes, position);
-    }
-
-    static double[] toLogScale(double[] data, boolean logScale) {
-
-        if (logScale) {
-            double[] temp = new double[data.length];
-            for (int i = 0; i < data.length; i++) {
-                temp[i] = Math.log10(data[i]);
-            }
-            return temp;
-        }
-        return data;
-    }
-
-    static double[] toInverseLogScale(double[] data, boolean logScale) {
-
-        if (logScale) {
-            double[] temp = new double[data.length];
-            for (int i = 0; i < data.length; i++) {
-                temp[i] = Math.pow(10., data[i]);
-            }
-            return temp;
-        }
-        return data;
     }
 
     private static double[][] getPolylineDataMatrix (String polyline) {

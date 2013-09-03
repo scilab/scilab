@@ -325,6 +325,30 @@ public class CommonHandler {
         return value;
     }
 
+    public static double[] toLogScale(double[] data, boolean logScale) {
+
+        if (logScale) {
+            double[] temp = new double[data.length];
+            for (int i = 0; i < data.length; i++) {
+                temp[i] = Math.log10(data[i]);
+            }
+            return temp;
+        }
+        return data;
+    }
+
+    public static double[] toInverseLogScale(double[] data, boolean logScale) {
+
+        if (logScale) {
+            double[] temp = new double[data.length];
+            for (int i = 0; i < data.length; i++) {
+                temp[i] = Math.pow(10., data[i]);
+            }
+            return temp;
+        }
+        return data;
+    }
+
     /**
      * Used to compute the correct position to insert a point
      * R1: Given index i, it calculates the straight line between the points i and i+1 from curPolyline
@@ -344,12 +368,12 @@ public class CommonHandler {
         double[] dataz = (double[])PolylineData.getDataZ(polyline);
         String axes = (String)GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
         Axes obj = (Axes)GraphicController.getController().getObjectFromId(axes);
-		//Points of R1
+        //Points of R1
         double[] c3d1 = AxesDrawer.compute3dViewCoordinates(obj, new double[] { point2d[0], point2d[1], 1.0});
         double[] c3d2 = AxesDrawer.compute3dViewCoordinates(obj, new double[] { point2d[0], point2d[1], 0.0});
         //Points of R2
         double[] p3d1 = {datax[i], datay[i], dataz[i]};
-        double[] p3d2 = {datax[i+1], datay[i+1], dataz[i+1]};
+        double[] p3d2 = {datax[i + 1], datay[i + 1], dataz[i + 1]};
 
         /*
          * Computes the intersection between the lines
@@ -367,23 +391,25 @@ public class CommonHandler {
     }
 
     private static double dot(double[] p, double[] q) {
-        return p[0]*q[0] + p[1]*q[1] + p[2]*q[2];
+        return p[0] * q[0] + p[1] * q[1] + p[2] * q[2];
     }
 
     private static double[] cross(double[] p, double[] q) {
-        return new double[]{ p[1]*q[2] - p[2]*q[1], p[2]*q[0] - p[0]*q[2], p[0]*q[1] - p[1]*q[0]};
+        return new double[] { p[1] * q[2] - p[2] * q[1], p[2] * q[0] - p[0] * q[2], p[0] * q[1] - p[1] * q[0]};
     }
 
     private static double[] minus(double[] p, double[] q) {
-        return new double[]{ p[0] - q[0], p[1] - q[1], p[2] - q[2]};
+        return new double[] { p[0] - q[0], p[1] - q[1], p[2] - q[2]};
     }
-	
+
     private static double[] plus(double[] p, double[] q) {
-        return new double[]{ p[0] + q[0], p[1] + q[1], p[2] + q[2]};
+        return new double[] { p[0] + q[0], p[1] + q[1], p[2] + q[2]};
     }
-	
+
     private static double[] scalar(double[] p, double v) {
-        p[0] *= v; p[1] *= v; p[2] *= v;
+        p[0] *= v;
+        p[1] *= v;
+        p[2] *= v;
         return p;
     }
 }
