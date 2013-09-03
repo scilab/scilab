@@ -455,7 +455,7 @@
         <para>228 "Reference to the cleared global variable %s" (referência à
             variável global limpa %s)
         </para>
-        <para>229 "Operands of / and \\ operations must not contain NaN of Inf."
+        <para>229 "Operands of / and \\ operations must not contain NaN or Inf."
             (operandos de / e \\ não devem conter NaN ou Inf)
         </para>
         <para>230 "semidef fails" (semidef falhou)</para>
