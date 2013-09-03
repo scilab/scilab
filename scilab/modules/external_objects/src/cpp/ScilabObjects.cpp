@@ -692,6 +692,8 @@ int ScilabObjects::getMListType(int * mlist, void * pvApiCtx)
     int rows, cols;
     int type;
 
+    // OK it's crappy... but it works and it is performant...
+
     if (mlist[0] == 0)
     {
         return EXTERNAL_VOID;
