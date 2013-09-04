@@ -64,7 +64,7 @@ protected :
         char ** cpy = (char **)MALLOC(sizeof(char *) * size);
         for (int i = 0; i < size; i++)
         {
-            cpy[i] = strdup(arr[i]);
+            cpy[i] = os_strdup(arr[i]);
         }
 
         return const_cast<const char **>(cpy);

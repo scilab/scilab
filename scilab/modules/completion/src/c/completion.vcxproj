@@ -112,7 +112,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/libxml2;../../../../libs/intl;../../../string/includes;../../../ast/includes;../../../types/includes;../../../xml/includes;../../../xml/src/cpp;../../../api_scilab/includes;../../../core/includes;../../../operations/includes;../../../dynamic_link/includes;../../../localization/includes;../../../output_stream/includes;../../../fileio/includes;../../../graphics/includes;../../../symbol/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/libxml2;../../../../libs/intl;../../../string/includes;../../../ast/includes;../../../types/includes;../../../xml/includes;../../../xml/src/cpp;../../../api_scilab/includes;../../../core/includes;../../../operations/includes;../../../dynamic_link/includes;../../../localization/includes;../../../output_stream/includes;../../../fileio/includes;../../../graphics/includes;../../../symbol/includes;../../../external_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>

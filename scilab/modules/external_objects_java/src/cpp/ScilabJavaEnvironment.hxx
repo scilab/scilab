@@ -25,8 +25,8 @@ extern "C"
 #include <jni.h>
 #ifdef _MSC_VER
 #include <Windows.h>
-#include "strdup_windows.h"
 #endif
+#include "os_strdup.h"
 }
 
 //#include "PythonVariablesScope.hxx"
@@ -326,11 +326,11 @@ private:
         std::size_t pos = str.find_first_of("\n");
         while (pos != std::string::npos)
         {
-            buf.push_back(strdup(str.substr(prev, pos - prev).c_str()));
+            buf.push_back(os_strdup(str.substr(prev, pos - prev).c_str()));
             prev = pos + 1;
             pos = str.find_first_of("\n", prev);
         }
-        buf.push_back(strdup(str.substr(prev).c_str()));
+        buf.push_back(os_strdup(str.substr(prev).c_str()));
 
         std::vector<char *>::iterator last = buf.end();
         for (std::vector<char *>::iterator i = buf.end() - 1; i >= buf.begin(); i--)

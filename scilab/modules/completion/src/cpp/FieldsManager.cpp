@@ -24,7 +24,7 @@
 extern "C" {
 #include "api_scilab.h"
 #include "Scierror.h"
-//#include "code2str.h"
+    //#include "code2str.h"
 }
 
 #include <iostream>
@@ -132,7 +132,7 @@ finish :
     ret = (char **) malloc(sizeof(char *) **len);
     for (int i = 0; i < *len; i++)
     {
-        ret[i] = strdup(v.at(*len - i - 1).c_str());
+        ret[i] = os_strdup(v.at(*len - i - 1).c_str());
     }
 
 

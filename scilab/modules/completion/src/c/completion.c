@@ -213,7 +213,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
                     /* do a copy of dictionary of Variables */
                     for ( i = 0; i < sizedictionaryVariables; i++)
                     {
-                        ListWordsTmp[i] = strdup(dictionaryVariables[i]);
+                        ListWordsTmp[i] = os_strdup(dictionaryVariables[i]);
                     }
 
                     for ( i = 0; i < sizedictionaryVariables; i++)
@@ -235,7 +235,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
                         {
                             if (ListWordsTmp[i])
                             {
-                                ListWords[k] = strdup(ListWordsTmp[i]);
+                                ListWords[k] = os_strdup(ListWordsTmp[i]);
                                 if (k <= sizeListWords)
                                 {
                                     k++;

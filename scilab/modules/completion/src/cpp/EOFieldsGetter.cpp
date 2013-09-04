@@ -51,7 +51,7 @@ const char ** EOFieldsGetter::getFieldsName(const std::string & typeName, int * 
 
     for (int i = 0; i < *fieldsSize; i++)
     {
-        ret[i] = strdup(fields.at(i).c_str());
+        ret[i] = os_strdup(fields.at(i).c_str());
     }
 
     return ret;
