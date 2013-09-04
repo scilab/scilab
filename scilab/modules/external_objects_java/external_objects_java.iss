@@ -20,6 +20,8 @@
 Source: bin\EXTERNAL_OBJECTS_JAVA.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: bin\EXTERNAL_OBJECTS_JAVA.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
+Source: thirdparty\ecj.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;
 Source: modules\{#EXTERNAL_OBJECTS_JAVA}\sci_gateway\{#EXTERNAL_OBJECTS_JAVA}_gateway.xml; DestDir: {app}\modules\{#EXTERNAL_OBJECTS_JAVA}\sci_gateway; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#EXTERNAL_OBJECTS_JAVA}\includes\*.h; DestDir: {app}\modules\{#EXTERNAL_OBJECTS_JAVA}\includes; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
