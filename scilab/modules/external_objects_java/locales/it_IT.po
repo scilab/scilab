@@ -1,0 +1,182 @@
+# Italian translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2012-10-12 08:11+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 16335)\n"
+
+msgid "Exception thrown in file"
+msgstr "Eccezione lanciata nel file"
+
+msgid "at line"
+msgstr "alla riga"
+
+#, c-format
+msgid "Invalid environment: identifier %d is invalid"
+msgstr "Ambiente non valido: l'identificatore %d non è valido"
+
+msgid "Invalid environment"
+msgstr "Ambiente non valido"
+
+msgid "Cannot allocate memory"
+msgstr "Impossibile allocare della memoria"
+
+msgid "Invalid variable: cannot retrieve the data"
+msgstr "Variabile non valida: impossibile ottenere i dati"
+
+msgid "Invalid variable: cannot create data"
+msgstr "Variabile non valida: impossibile creare i dati"
+
+msgid "External Class expected"
+msgstr "Era attesa una classe esterna"
+
+msgid "Incompatible External Objects"
+msgstr "Oggetti esterni non compatibili"
+
+msgid "External object expected"
+msgstr "Era atteso un oggetto esterno"
+
+msgid "Unable to wrap. Unmanaged datatype ?"
+msgstr "Impossibile incapsulare i dati, tipo di dato non gestito?"
+
+msgid "Invalid String"
+msgstr "Stringa non valida"
+
+msgid "A single string expected"
+msgstr "Era attesa una singola stringa"
+
+msgid "A single String expected"
+msgstr "Era attesa una singola stringa"
+
+#, c-format
+msgid "Wrong type for argument #%d: A string expected."
+msgstr "L'argomento #%d è di tipo sbagliato: era attesa una stringa."
+
+#, c-format
+msgid "Cannot open the given file %s."
+msgstr "Impossibile aprire il file %s."
+
+#, c-format
+msgid "Wrong number of arguments : more than %d expected."
+msgstr "Il numero degli argomenti è sbagliato: ne erano attesi più di %d."
+
+#, c-format
+msgid "A strictly positive integer is expected at position %d."
+msgstr "Era atteso un intero strettamente positivo alla posizione %d."
+
+msgid "Invalid name"
+msgstr "Nome non valido"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A String expected."
+msgstr "L'argomento #%d è di tipo sbagliato: era attesa una stringa."
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr ""
+"L'argomento #%d ha una dimensione non valida: era attesa una riga o una "
+"colonna."
+
+msgid "The argument must be 'rc' or 'cr'."
+msgstr "L'argomento deve essere 'rc' o 'cr'."
+
+#, c-format
+msgid "Invalid dimensions for input argument #%d: A single string expected."
+msgstr ""
+"L'argomento in ingresso #%d ha delle dimensioni non valide: era attesa una "
+"singola stringa."
+
+msgid "Invalid dimensions: arguments #2 and #3 must have the same."
+msgstr "Dimensioni non valide: gli argomenti #2 e #3 devono averle uguali."
+
+msgid "Invalid variable: cannot create the data"
+msgstr "Variabile non valida: impossibile creare i dati"
+
+#, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr ""
+"L'argomento in ingresso #%d è di tipo sbagliato: era atteso un oggetto "
+"esterno."
+
+msgid "Incompatible External Object"
+msgstr "Oggetto esterno non compatibile"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A string expected."
+msgstr ""
+"L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa."
+
+#, c-format
+msgid "Wrong type for input argument #%d: A boolean expected."
+msgstr ""
+"L'argomento in ingresso #%d è di tipo sbagliato: era atteso un booleano."
+
+#, c-format
+msgid "Wrong type for input argument #%d: A single boolean expected."
+msgstr ""
+"L'argomento in ingresso #%d è di tipo sbagliato: era atteso un singolo "
+"booleano."
+
+#, c-format
+msgid "Wrong type for input argument #%d: An External Object expected."
+msgstr ""
+"L'argomento in ingresso #%d è di tipo sbagliato: era atteso un oggetto "
+"esterno."
+
+msgid "Cannot create the identifier"
+msgstr "Impossibile creare l'identificatore"
+
+msgid "The class name cannot end with a dot."
+msgstr "Il nome di una classe non può finire con un punto."
+
+msgid "The class name cannot start with a dot."
+msgstr "Il nome di una classe non può iniziare con un punto."
+
+msgid "A variable with this name is already existing"
+msgstr "Esiste già una variabile con questo nome"
+
+msgid "Bad number of output arguments"
+msgstr "Il numero degli argomenti in uscita è sbagliato"
+
+msgid "Wrong number of arguments : more than 2 arguments expected"
+msgstr "Il numero degli argomenti è sbagliato: ne erano attesi più di 2"
+
+msgid "Cannot invoke on null object"
+msgstr "Impossibile invocare su oggetti nulli"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A List expected."
+msgstr ""
+"L'argomento in ingresso #%d è di tipo sbagliato: era attesa una lista."
+
+#, c-format
+msgid "Wrong type for input argument #%d: An Integer32 expected."
+msgstr ""
+"L'argomento in ingresso #%d è di tipo sbagliato: era atteso un integer32."
+
+msgid "Cannot invoke on null object."
+msgstr "Impossibile invocare su un oggetto nullo."
+
+msgid "Wrong number of arguments : more than 1 argument expected"
+msgstr "Il numero degli argomenti è sbagliato: era atteso più di 1 argomento"
+
+msgid "Wrong number of arguments : more than 1 argument expected."
+msgstr "Il numero degli argomenti è sbagliato: era atteso più di 1 argomento"
+
+#, c-format
+msgid "Cannot wrap argument %d."
+msgstr "Impossibile incapsulare l'argomento %d"
+
+msgid "Can only wrap as a reference to a named variable"
+msgstr ""

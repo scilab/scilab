@@ -6,7 +6,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution. The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
 #### Target ######
@@ -57,6 +57,7 @@ EXTERNAL_OBJECTS_CPP_SOURCES = src/cpp/ScilabEnvironments.cpp \
 			       src/cpp/getRepresentation.cpp \
 			       src/cpp/import.cpp \
 			       src/cpp/invoke.cpp \
+			       src/cpp/invoke_asref.cpp \
 			       src/cpp/invoke_lu.cpp \
 			       src/cpp/trace.cpp \
 			       src/cpp/newInstance.cpp \
@@ -73,7 +74,8 @@ EXTERNAL_OBJECTS_CPP_SOURCES = src/cpp/ScilabEnvironments.cpp \
 			       src/cpp/getEnvId.cpp \
 			       src/cpp/ScilabOptionsSetter.cpp \
 			       src/cpp/ScilabAutoCleaner.cpp \
-			       src/cpp/ExternalObjectsFunction.cpp
+			       src/cpp/ExternalObjectsFunction.cpp \
+			       src/cpp/wrapInFloat.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_external_objects.c
 

@@ -202,7 +202,17 @@
     <ClCompile Include="..\cpp\FieldsManager.cpp" />
     <ClCompile Include="..\cpp\getfields.cpp" />
     <ClCompile Include="..\cpp\getfieldsdictionary.cpp" />
+    <ClCompile Include="..\cpp\EOFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\HandleFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\StructFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\UnknownMlistFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\XMLAttrFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\XMLDocFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\XMLElemFieldsGetter.cpp" />
     <ClCompile Include="..\cpp\XMLFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\XMLListFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\XMLNsFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\XMLSetFieldsGetter.cpp" />
     <ClCompile Include="completeLine.c" />
     <ClCompile Include="completeLine_wrap_java.c" />
     <ClCompile Include="completion.c" />
@@ -219,9 +229,19 @@
     <ClInclude Include="..\..\includes\completeLine.h" />
     <ClInclude Include="..\..\includes\getfields.h" />
     <ClInclude Include="..\..\includes\toolsdictionary.h" />
+    <ClInclude Include="..\cpp\EOFieldsGetter.hxx" />
     <ClInclude Include="..\cpp\FieldsGetter.hxx" />
     <ClInclude Include="..\cpp\FieldsManager.hxx" />
+    <ClInclude Include="..\cpp\HandleFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\StructFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\UnknownMlistFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\XMLAttrFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\XMLDocFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\XMLElemFieldsGetter.hxx" />
     <ClInclude Include="..\cpp\XMLFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\XMLListFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\XMLNsFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\XMLSetFieldsGetter.hxx" />
     <ClInclude Include="completeLine_wrap_java.h" />
     <ClInclude Include="..\..\includes\completion.h" />
     <ClInclude Include="completion_generic.h" />
@@ -251,6 +271,9 @@
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external_objects\external_objects.vcxproj">
+      <Project>{3142e52c-309a-41d9-bd12-7b7e9e3bdd44}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>

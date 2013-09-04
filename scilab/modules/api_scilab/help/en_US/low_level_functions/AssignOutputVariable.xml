@@ -36,7 +36,7 @@
         <title>Description</title>
         <para>
             A C gateway function which specifies which variables created inside
-            the C interface will be returned as an output argumen into Scilab.
+            the C interface will be returned as an output argument into Scilab.
         </para>
     </refsection>
     <refsection>

@@ -1,0 +1,176 @@
+# French translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2012-08-31 08:11+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 16335)\n"
+
+msgid "Exception thrown in file"
+msgstr "Une exception a été lancée dans le fichier"
+
+msgid "at line"
+msgstr "à la ligne"
+
+#, c-format
+msgid "Invalid environment: identifier %d is invalid"
+msgstr "Environnement invalide : l'identifiant %d est invalide"
+
+msgid "Invalid environment"
+msgstr "Environnement invalide"
+
+msgid "Cannot allocate memory"
+msgstr "Impossible d'allouer de la mémoire"
+
+msgid "Invalid variable: cannot retrieve the data"
+msgstr "Variable invalide : Impossible de récupérer les données"
+
+msgid "Invalid variable: cannot create data"
+msgstr "Variable invalide : Impossible de créer les données"
+
+msgid "External Class expected"
+msgstr "Une classe externe attendue"
+
+msgid "Incompatible External Objects"
+msgstr "Objets externes incompatibles"
+
+msgid "External object expected"
+msgstr "Un objet externe attendu"
+
+msgid "Unable to wrap. Unmanaged datatype ?"
+msgstr "Impossible d'interfacer. Type de données non pris en charge ?"
+
+msgid "Invalid String"
+msgstr "Chaîne de caractères invalide"
+
+msgid "A single string expected"
+msgstr "Une chaîne de caractères attendue"
+
+msgid "A single String expected"
+msgstr "Une chaîne de caractères attendue"
+
+#, c-format
+msgid "Wrong type for argument #%d: A string expected."
+msgstr "Type erroné de l'argument n°%d : Une chaîne de caractères attendue."
+
+#, c-format
+msgid "Cannot open the given file %s."
+msgstr "Impossible d'ouvrir le fichier %s"
+
+#, c-format
+msgid "Wrong number of arguments : more than %d expected."
+msgstr "Nombre erroné d'arguments : Plus de %d attendus."
+
+#, c-format
+msgid "A strictly positive integer is expected at position %d."
+msgstr "Un entier strictement positif est attendu à la position% d."
+
+msgid "Invalid name"
+msgstr "Nom invalide"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A String expected."
+msgstr ""
+"Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères attendue."
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr ""
+"Dimension invalide de l'argument n°%d : Une ligne ou une colonne attendue."
+
+msgid "The argument must be 'rc' or 'cr'."
+msgstr "L'argument doit être 'rc' ou 'cr'."
+
+#, c-format
+msgid "Invalid dimensions for input argument #%d: A single string expected."
+msgstr ""
+"Dimensions invalides de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue."
+
+msgid "Invalid dimensions: arguments #2 and #3 must have the same."
+msgstr ""
+"Dimensions invalides : Les arguments n°2 et n°3 doivent avoir les mêmes "
+"dimensions."
+
+msgid "Invalid variable: cannot create the data"
+msgstr "Variable invalide : Impossible de créer les données"
+
+#, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr "Type erroné de l'argument d'entrée n°%d : Un objet externe attendu."
+
+msgid "Incompatible External Object"
+msgstr "Objet externe incompatible"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A string expected."
+msgstr ""
+"Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères attendue."
+
+#, c-format
+msgid "Wrong type for input argument #%d: A boolean expected."
+msgstr "Type erroné de l'argument d'entrée n°%d : Un booléen attendu."
+
+#, c-format
+msgid "Wrong type for input argument #%d: A single boolean expected."
+msgstr "Type erroné de l'argument d'entrée n°%d : Un booléen attendu."
+
+#, c-format
+msgid "Wrong type for input argument #%d: An External Object expected."
+msgstr "Type erroné de l'argument d'entrée n°%d : Un objet externe attendu."
+
+msgid "Cannot create the identifier"
+msgstr "Impossible de créer l'identifiant"
+
+msgid "The class name cannot end with a dot."
+msgstr "Le nom de classe ne peut pas se terminer par un point."
+
+msgid "The class name cannot start with a dot."
+msgstr "Le nom de classe ne peut pas commencer par un point."
+
+msgid "A variable with this name is already existing"
+msgstr "Une variable portant ce nom existe déjà"
+
+msgid "Bad number of output arguments"
+msgstr "Nombre erroné d'arguments de sortie"
+
+msgid "Wrong number of arguments : more than 2 arguments expected"
+msgstr "Nombre erroné d'arguments : Plus de deux arguments attendus"
+
+msgid "Cannot invoke on null object"
+msgstr "Impossible d'appeler sur l'objet null"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A List expected."
+msgstr "Type erroné de l'argument n°%d : Une liste attendue."
+
+#, c-format
+msgid "Wrong type for input argument #%d: An Integer32 expected."
+msgstr "Type erroné de l'argument d'entrée n°%d : Un Integer32 attendu."
+
+msgid "Cannot invoke on null object."
+msgstr "Impossible d'appeler sur l'objet null."
+
+msgid "Wrong number of arguments : more than 1 argument expected"
+msgstr "Nombre erroné d'arguments : Plus d'un argument attendu"
+
+msgid "Wrong number of arguments : more than 1 argument expected."
+msgstr "Nombre erroné d'arguments : Plus d'un argument attendu"
+
+#, c-format
+msgid "Cannot wrap argument %d."
+msgstr "Impossible d'interfacer l'argument n°%d."
+
+msgid "Can only wrap as a reference to a named variable"
+msgstr ""
+"Il est seulement possible de lier une référence à une variable nommée"

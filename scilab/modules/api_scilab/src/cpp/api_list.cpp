@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 * Please note that piece of code will be rewrited for the Scilab 6 family
 * However, the API (profile of the functions in the header files) will be
@@ -2225,7 +2225,67 @@ static void updateListOffset(void* _pvCtx, int _iVar, int *_piCurrentNode, int _
 static void updateCommunListOffset(void* _pvCtx, int _iVar, const char* _pstName, int *_piCurrentNode, int _iItemPos, int *_piEnd)
 {
     // FIXME
+#if 0
+    if (_pstName == NULL)
+    {
+        int iLocalVar = _iVar - Top + Rhs;
+        iMaxDepth = getDepthList(iLocalVar);
+        if (iMaxDepth == 0)
+        {
+            return;
+        }
 
+        piParent = (int**)MALLOC(sizeof(int*) * iMaxDepth);
+        getListAdressses(iLocalVar, piParent);
+    }
+    else
+    {
+        iMaxDepth = getDepthNamedList(_pstName);
+        if (iMaxDepth == 0)
+        {
+            return;
+        }
+
+        piParent = (int**)MALLOC(sizeof(int*) * iMaxDepth);
+        getNamedListAdressses(_pstName, piParent);
+    }
+    //    }
+
+    for (i = iMaxDepth - 2 ; i >= 0 ; i--)
+    {
+        int j     = 0;
+        int iItem   = piParent[i][1];
+        int *piOffset = piParent[i] + 2;
+        int *piData  = piOffset + iItem + 1 + !(iItem % 2);
+
+        //for all nodes
+        for (j = iItem - 1 ; j >= 0 ; j--)
+        {
+            if (piOffset[j] == -1)
+            {
+                continue;
+            }
+
+            int* piItem = piData + ((piOffset[j] - 1) * 2);
+
+            if (piItem == piParent[i + 1])
+            {
+                int iOffset = 0;
+                iOffset  = piOffset[j] + (int)((_piEnd - piItem + 1) / 2);
+                piOffset[j + 1] = iOffset;
+                break;
+            }
+            //else
+            //{
+            // break;
+            // //if this item is not the last of the parent list
+            // //we don't need to continue to check the uppers levels
+            //}
+        }
+    }
+
+    FREE(piParent);
+#endif
 }
 
 static void closeList(int _iVar, int *_piEnd)

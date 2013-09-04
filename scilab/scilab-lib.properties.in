@@ -123,6 +123,10 @@ library.preferences.dir=${modules.dir}/preferences/${build.jar.dir}/
 library.preferences.src.dir=${modules.dir}/preferences/${library.src.path}
 library.preferences.name=org.scilab.modules.preferences.jar
 
+library.external_objects_java.dir=${modules.dir}/external_objects_java/${build.jar.dir}/
+library.external_objects_java.src.dir=${modules.dir}/external_objects_java/${library.src.path}
+library.external_objects_java.name=org.scilab.modules.external_objects_java.jar
+
 build_javasci=@JAVASCI_ENABLE@
 
 build_xcos=@xcos_ENABLE@

@@ -5,7 +5,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 if GUI
 #List of the c files
@@ -31,7 +31,17 @@ src/cpp/completionDictionary.cpp \
 src/cpp/FieldsManager.cpp \
 src/cpp/XMLFieldsGetter.cpp \
 src/cpp/getfields.cpp \
-src/cpp/getfieldsdictionary.cpp
+src/cpp/getfieldsdictionary.cpp \
+src/cpp/XMLDocFieldsGetter.cpp \
+src/cpp/XMLElemFieldsGetter.cpp \
+src/cpp/XMLAttrFieldsGetter.cpp \
+src/cpp/XMLNsFieldsGetter.cpp \
+src/cpp/XMLListFieldsGetter.cpp \
+src/cpp/XMLSetFieldsGetter.cpp \
+src/cpp/EOFieldsGetter.cpp \
+src/cpp/UnknownMlistFieldsGetter.cpp \
+src/cpp/StructFieldsGetter.cpp \
+src/cpp/HandleFieldsGetter.cpp
 
 # List of the gateway c files
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_completion.cpp
@@ -55,6 +65,7 @@ libscicompletion_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/operations/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/external_objects/includes \
     $(JAVA_JNI_INCLUDE) \
     $(XML_FLAGS) \
     $(COMPLETION_FLAGS) \

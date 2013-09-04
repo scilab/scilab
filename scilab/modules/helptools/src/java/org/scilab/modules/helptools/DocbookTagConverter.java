@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,29 +26,35 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.helptools.external.ExternalXMLHandler;
+import org.scilab.modules.helptools.image.Image;
+import org.scilab.modules.helptools.image.ImageConverter;
+import org.scilab.modules.helptools.image.LaTeXImageConverter;
+import org.scilab.modules.helptools.image.MathMLImageConverter;
+import org.scilab.modules.helptools.image.SVGImageConverter;
+import org.scilab.modules.helptools.image.ScilabImageConverter;
+import org.scilab.modules.helptools.image.XcosImageConverter;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import org.scilab.modules.helptools.external.ExternalXMLHandler;
-import org.scilab.modules.helptools.external.HTMLMathMLHandler;
-import org.scilab.modules.helptools.external.HTMLScilabHandler;
-import org.scilab.modules.helptools.external.HTMLSVGHandler;
-
 /**
  * Class the convert a DocBook xml file
  * @author Calixte DENIZET
  */
-public class DocbookTagConverter extends DefaultHandler {
+public abstract class DocbookTagConverter extends DefaultHandler implements Converter {
 
     private static final String DOCBOOKURI = "http://docbook.org/ns/docbook";
-    private static final Class[] argsType = new Class[] {Map.class, String.class};
+    private static final Class<?>[] argsType = new Class[] {Map.class, String.class};
+    protected static final String SCI = ScilabConstants.SCI.getPath();
 
     private Map<String, Method> mapMeth = new HashMap<String, Method>();
     private Map<String, ExternalXMLHandler> externalHandlers = new HashMap<String, ExternalXMLHandler>();
     private List<DocbookTagConverter> converters;
+    private final ImageConverter imgConvert;
     private final File in;
     private DocbookElement baseElement = new DocbookElement(null, null, null);
     private Stack<DocbookElement> stack = new Stack<DocbookElement>();
@@ -78,12 +84,19 @@ public class DocbookTagConverter extends DefaultHandler {
      * Constructor
      * @param in the input file path
      */
-    public DocbookTagConverter(String in) throws IOException {
+    public DocbookTagConverter(String in, final ImageConverter imgConvert) throws IOException {
         if (in != null && !in.isEmpty()) {
             this.in = new File(in);
         } else {
             this.in = null;
         }
+
+        this.imgConvert = imgConvert;
+        imgConvert.registerExternalImageConverter(new LaTeXImageConverter(this));
+        imgConvert.registerExternalImageConverter(new MathMLImageConverter(this));
+        imgConvert.registerExternalImageConverter(new SVGImageConverter(this));
+        imgConvert.registerExternalImageConverter(new ScilabImageConverter(this));
+        imgConvert.registerExternalImageConverter(new XcosImageConverter(this));
     }
 
     /**
@@ -91,10 +104,44 @@ public class DocbookTagConverter extends DefaultHandler {
      * @param in the inputstream
      * @param inName the name of the input file
      */
-    public DocbookTagConverter(String inName, DocbookElement elem) throws IOException {
-        this(inName);
+    public DocbookTagConverter(String inName, DocbookElement elem, final ImageConverter imgConvert) throws IOException {
+        this(inName, imgConvert);
         baseElement = elem;
     }
+
+    public ImageConverter getImageConverter() {
+        return imgConvert;
+    }
+
+    public String getBaseImagePath() {
+        return "";
+    }
+
+    /**
+     * Hook used by {@link ImageConverter}s to emit format specific code from any docbook image element
+     * @param code the code to translate
+     * @param fileName the filename
+     * @param attrs the attribute of the image
+     * @return a {@link Converter} specific code which embed the image and the source code
+     */
+    public abstract String generateImageCode(String code, String fileName, Map<String, String> attrs);
+
+    /**
+     * Hook used by {@link ImageConverter}s to emit format specific code from any docbook image element
+     * @param img image information
+     * @param fileName the filename
+     * @param attrs the attribute of the image
+     * @return a {@link Converter} specific code which embed the image and the source code
+     */
+    public abstract String generateImageCode(Image img, String fileName, Map<String, String> attrs);
+
+    /**
+     * Hook used by {@link ImageConverter}s to emit format specific code from any docbook image element
+     * @param fileName the filename
+     * @param attrs the attribute of the image
+     * @return a {@link Converter} specific code which embed the image and the source code
+     */
+    public abstract String generateImageCode(String fileName, Map<String, String> attrs);
 
     /**
      * Handle the tag
@@ -104,7 +151,7 @@ public class DocbookTagConverter extends DefaultHandler {
      * @return the HTML code
      * @throws UnhandledDocbookTagException if an handled tga is encountered
      */
-    public String handleDocbookTag(String tag, Map attributes, String contents) throws SAXException {
+    public String handleDocbookTag(String tag, Map<String, String> attributes, String contents) throws SAXException {
         if (tag != null && tag.length() > 0) {
             Method method = mapMeth.get(tag);
             if (method == null) {
@@ -173,11 +220,28 @@ public class DocbookTagConverter extends DefaultHandler {
      * Register an XMLHandler for external XML
      * @param h the external XML handler
      */
-    public void registerExternalXMLHandler(ExternalXMLHandler h) {
+    protected void registerExternalXMLHandler(ExternalXMLHandler h) {
         if (externalHandlers.get(h.getURI()) == null) {
             externalHandlers.put(h.getURI(), h);
             h.setConverter(this);
         }
+    }
+
+    /**
+     * Register all needed External XML Handler.
+     */
+    @Override
+    public void registerAllExternalXMLHandlers() {
+    }
+
+    /**
+     * Unregister all External XML Handler
+     */
+    public void unregisterAllExternalXMLHandler() {
+        for (ExternalXMLHandler h : externalHandlers.values()) {
+            h.setConverter(null);
+        }
+        externalHandlers.clear();
     }
 
     /**
@@ -241,14 +305,22 @@ public class DocbookTagConverter extends DefaultHandler {
     }
 
     /**
+     * Install not converted files (templates, images) to the converted directory
+     */
+    public void install() {
+    }
+
+    /**
      * {@inheritDoc}
      */
     public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
         currentFileName = systemId;
         currentBaseName = new File(systemId).getName();
-        HTMLMathMLHandler.getInstance().resetCompt();
-        HTMLSVGHandler.getInstance().resetCompt();
-        HTMLScilabHandler.getInstance().resetCompt();
+
+        for (ExternalXMLHandler h : externalHandlers.values()) {
+            h.resetCompt();
+        }
+
         if (converters != null) {
             for (DocbookTagConverter conv : converters) {
                 conv.resolveEntity(publicId, systemId);
@@ -486,7 +558,6 @@ public class DocbookTagConverter extends DefaultHandler {
      * @return a trimed StringBuilder
      */
     private static StringBuilder trim(StringBuilder buf) {
-        int start = 0;
         int i = 0;
         int end = buf.length();
         char c;

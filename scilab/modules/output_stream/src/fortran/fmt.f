@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       subroutine fmt(a,maxc,typ,n1,n2)
 c!but
 c     ce sous programme determine le format d'ecriture le plus court

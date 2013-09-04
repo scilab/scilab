@@ -14,7 +14,9 @@
             <varlistentry>
                 <term>ve</term>
                 <listitem>
-                    <para>une matrice de booléens de même taille que <varname>name</varname> </para>
+                    <para>
+                        une matrice de booléens de même taille que <varname>name</varname>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -26,8 +28,11 @@
             <varlistentry>
                 <term>where</term>
                 <listitem>
-                    <para>une chaîne de caractères optionnelle valant par défaut
-                        <literal>'all'</literal>
+                    <para>
+                        chaîne de caractères, peut valoir <literal>'l'</literal> (pour <literal>"local"</literal>),
+                        <literal>'n'</literal> (pour <literal>"nolocal"</literal>) ou
+                        <literal>'a'</literal> (pour <literal>"all"</literal>). Par défaut, vaut
+                        <literal>'a'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,35 +50,38 @@
             renvoyer un résultat dépendant de l'environnement courant !
         </para>
         <para>
-            <literal>isdef(name,'local')</literal> renvoie <literal>%T</literal>
+            <literal>isdef(name, 'l')</literal> renvoie <literal>%T</literal>
             si la variable nommée <literal>name</literal> existe dans l'environnement
             local de la fonction courante et <literal>%F</literal> sinon.
         </para>
         <para>
-            <literal>isdef(name,'nolocal')</literal> renvoie
+            <literal>isdef(name, 'n')</literal> renvoie
             <literal>%T</literal> si la variable nommée <literal>name</literal> existe
             dans l'environnement appelant (y compris le niveau global) de la fonction
             courante et <literal>%F</literal> sinon.
         </para>
+        <para>
+            Remarque : seule la première lettre de l'option <literal>where</literal> est prise en compte.
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
-A=1; B=2; C=3; D=4;
+        <programlisting role="example"><![CDATA[
+A = 1; B = 2; C = 3; D = 4;
 isdef(['A', 'B'; 'C', 'D'] )
 clear A, B, C, D;
 isdef(['A', 'B'; 'C', 'D')
 
 function level1()
   function level2()
-    disp(isdef(["a", "b"],"all"));
-    disp(isdef(["a", "b"],"local"));
-    disp(isdef(["a", "b"],"nolocal"));
+    disp(isdef(["a", "b"], "a"));
+    disp(isdef(["a", "b"], "l"));
+    disp(isdef(["a", "b"], "n"));
   endfunction
   level2()
 endfunction
 function go()
-  a=1;
+  a = 1;
   level1()
 endfunction
 go()

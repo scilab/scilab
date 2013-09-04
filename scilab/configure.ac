@@ -8,7 +8,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
 dnl Process this file with autoconf to produce a configure script.
@@ -66,6 +66,7 @@ AC_CONFIG_HEADERS([modules/core/includes/machine.h])
 # strip executable
 AM_PROG_INSTALL_STRIP
 AC_PROG_LN_S
+AM_PROG_AR
 
 AC_CUSTOM_LARGE_FILE
 
@@ -80,7 +81,7 @@ AC_LIB_RPATH
 # if the version is different
 AM_MAINTAINER_MODE
 
-AM_INIT_AUTOMAKE([-Wall foreign]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
+AM_INIT_AUTOMAKE([-Wall foreign serial-tests]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
 
 AC_CANONICAL_HOST
 
@@ -1959,6 +1960,7 @@ modules/history_browser/Makefile
 modules/preferences/Makefile
 modules/xml/Makefile
 modules/external_objects/Makefile
+modules/external_objects_java/Makefile
 modules/Makefile
 Makefile
 scilab.pc

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -133,7 +133,7 @@ char *createtempfilename(const char* prefix, int bShortFormat);
 /* JavaDoc */
 %javamethodmodifiers getScilabIeeeMode() "
  /**
-   * returns the Scilab ieee mode 
+   * returns the Scilab ieee mode
    * @return ieee mode
    */
 public";
@@ -142,7 +142,7 @@ int getieee(void);
 /* JavaDoc */
 %javamethodmodifiers setScilabIeeeMode(int) "
  /**
-   * Set the Scilab ieee mode 
+   * Set the Scilab ieee mode
    */
 public";
 void setieee(int);
@@ -150,7 +150,7 @@ void setieee(int);
 /* JavaDoc */
 %javamethodmodifiers setformat(const char *, int) "
  /**
-   * Set the Scilab ieee mode 
+   * Set the Scilab ieee mode
    */
 public";
 void setformat(const char * format, int width);
@@ -158,7 +158,7 @@ void setformat(const char * format, int width);
 /* JavaDoc */
 %javamethodmodifiers getformat() "
  /**
-   * returns the Scilab format (\"v\" or \"e\") 
+   * returns the Scilab format (\"v\" or \"e\")
    * @return format
    */
 public";
@@ -167,7 +167,7 @@ char * getformat();
 /* JavaDoc */
 %javamethodmodifiers getformatwidth() "
  /**
-   * returns the Scilab format width 
+   * returns the Scilab format width
    * @return format
    */
 public";
@@ -176,7 +176,7 @@ int getformatwidth();
 /* JavaDoc */
 %javamethodmodifiers getScilabVersionMajor() "
  /**
-   * returns the Scilab version major number 
+   * returns the Scilab version major number
    * @return version major
    */
 public";
@@ -185,7 +185,7 @@ int getScilabVersionMajor();
 /* JavaDoc */
 %javamethodmodifiers getScilabVersionMinor() "
  /**
-   * returns the Scilab version minor number 
+   * returns the Scilab version minor number
    * @return version minor
    */
 public";
@@ -194,7 +194,7 @@ int getScilabVersionMinor();
 /* JavaDoc */
 %javamethodmodifiers getScilabVersionMaintenance() "
  /**
-   * returns the Scilab version maintenance number 
+   * returns the Scilab version maintenance number
    * @return version maintenance
    */
 public";
@@ -203,7 +203,7 @@ int getScilabVersionMaintenance();
 /* JavaDoc */
 %javamethodmodifiers getScilabVersionTimestamp() "
  /**
-   * returns the Scilab version timestamp number 
+   * returns the Scilab version timestamp number
    * @return version timestamp
    */
 public";

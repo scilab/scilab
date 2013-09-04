@@ -1,12 +1,12 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -41,14 +41,14 @@ struct cpu_struct ** readBlasSpec(wchar_t *blasspec_filename,int *sizeArrayRetur
 
 					free(shortfilename); shortfilename = NULL;
 
-					xmlKeepBlanksDefault(0); 
+					xmlKeepBlanksDefault(0);
 
 					if (BlasSpecxmlDocPtr)
 					{
 						xpathCtxt = xmlXPathNewContext(BlasSpecxmlDocPtr);
 						xpathObj = xmlXPathEval((const xmlChar*)XPATH, xpathCtxt);
 
-						if(xpathObj && xpathObj->nodesetval->nodeMax) 
+						if(xpathObj && xpathObj->nodesetval->nodeMax)
 						{
 							/* the Xpath has been understood and there are node */
 							CPUS_BLAS_SPEC = (struct cpu_struct **) malloc(sizeof(struct cpu_struct *) * xpathObj->nodesetval->nodeNr);
@@ -64,13 +64,13 @@ struct cpu_struct ** readBlasSpec(wchar_t *blasspec_filename,int *sizeArrayRetur
 										while(attrib != NULL)
 										{
 											if (xmlStrEqual (attrib->name, (const xmlChar*) "cpu_manufacturer"))
-											{ 
+											{
 												/* we found the tag cpu_manufacturer */
 												CPUS_BLAS_SPEC[i]->cpu_vendor = toWideString((char*)attrib->children->content);
 											}
 
 											if (xmlStrEqual (attrib->name, (const xmlChar*) "cpu_family"))
-											{ 
+											{
 												/* we found the tag cpu_family */
 												if (strcmp((char*)attrib->children->content, "*") == 0)
 												{
@@ -83,7 +83,7 @@ struct cpu_struct ** readBlasSpec(wchar_t *blasspec_filename,int *sizeArrayRetur
 											}
 
 											if (xmlStrEqual (attrib->name, (const xmlChar*) "cpu_model"))
-											{ 
+											{
 												/* we found the tag cpu_model */
 												if (strcmp((char*)attrib->children->content, "*") == 0)
 												{
@@ -96,13 +96,13 @@ struct cpu_struct ** readBlasSpec(wchar_t *blasspec_filename,int *sizeArrayRetur
 											}
 
 											if (xmlStrEqual (attrib->name, (const xmlChar*) "dll_filename"))
-											{ 
+											{
 												/* we found the tag dll_filename */
 												CPUS_BLAS_SPEC[i]->dll_filename = toWideString((char*)attrib->children->content);
 											}
 
 											if (xmlStrEqual (attrib->name, (const xmlChar*) "comments"))
-											{ 
+											{
 												/* we found the tag comments */
 												CPUS_BLAS_SPEC[i]->comments = toWideString((char*)attrib->children->content);
 											}
@@ -141,7 +141,7 @@ wchar_t *GetXmlFileEncoding(const wchar_t *wcfilename)
 			doc = xmlParseFile(shortfilename);
 
 			free(shortfilename); shortfilename = NULL;
-			if (doc) 
+			if (doc)
 			{
 				if (doc->encoding)
 				{
@@ -153,7 +153,7 @@ wchar_t *GetXmlFileEncoding(const wchar_t *wcfilename)
 	}
 	return encoding;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 char *getshortpathname(wchar_t *wclongpathname,BOOL *convertok)
 {
 	char *ShortName = NULL;
@@ -168,7 +168,7 @@ char *getshortpathname(wchar_t *wclongpathname,BOOL *convertok)
 
 		ptwShortName = (wchar_t*)calloc((length + 1),sizeof(wchar_t));
 
-		if (ptwShortName) 
+		if (ptwShortName)
 		{
 			/* second converts path */
 			if ( GetShortPathNameW(wclongpathname, ptwShortName, length) )
@@ -198,4 +198,4 @@ char *getshortpathname(wchar_t *wclongpathname,BOOL *convertok)
 	}
 	return ShortName;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

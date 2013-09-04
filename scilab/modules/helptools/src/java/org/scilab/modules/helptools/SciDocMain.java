@@ -6,42 +6,51 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.helptools;
 
 import java.io.File;
-
+import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.helptools.Converter.Backend;
+import org.scilab.modules.helptools.image.ImageConverter;
 import org.xml.sax.SAXException;
 
-import org.scilab.modules.commons.ScilabCommonsUtils;
-import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
-import org.scilab.modules.helptools.external.HTMLMathMLHandler;
-import org.scilab.modules.helptools.external.HTMLScilabHandler;
-import org.scilab.modules.helptools.external.HTMLSVGHandler;
-import org.scilab.modules.helptools.image.ImageConverter;
-import org.scilab.modules.helptools.image.ScilabImageConverter;
-
 /**
- * Class to convert DocBook to HTML
+ * Class to convert DocBook
  * @author Calixte DENIZET
  */
 public final class SciDocMain {
-
-    private static final String SCI = ScilabConstants.SCI.getPath();
-
+    /**
+     * The output directory
+     */
     private String outputDirectory;
+    /**
+     * The target language as locale string descriptor (en_US, fr_FR, ...)
+     */
     private String language;
-    private String format;
-    private String template;
-    private String version;
-    private String imagedir;
-    private String[] sciprim;
-    private String[] scimacro;
+    /**
+     * Target format
+     */
+    private Backend format;
+    /**
+     * Image directory relative to the outputDirectory
+     */
+    private String imagedir = ".";
+    /**
+     * The configuration of the current generation
+     */
+    private SciDocConfiguration conf = new SciDocConfiguration();
+    /**
+     * True if the documentation should be generated for a toolbox, false for Scilab
+     */
     private boolean isToolbox;
+
+    /*
+     * GIWS Exported methods
+     */
 
     /**
      * Set the directory where files must be exported
@@ -82,20 +91,29 @@ public final class SciDocMain {
      * @param format the format (among the list CHM, HTML, PDF, JH, PS)
      */
     public void setExportFormat(String format) {
-        this.format = format;
+        final String f = format.toUpperCase().replace('-', '_');
+        try {
+            this.format = Enum.valueOf(Backend.class, f);
+            return;
+        } catch (IllegalArgumentException e) {
+        }
+
+        Backend[] values = Backend.values();
+        final StringBuilder str = new StringBuilder();
+        str.append('[');
+        str.append(values[0]);
+        for (int i = 1; i < values.length; i++) {
+            str.append(',').append(' ');
+            str.append(values[i].toString().toLowerCase());
+        }
+        str.append(']');
+        System.err.printf("%s is not a supported format : one of %s expected.\n", format.toString(), str);
+
     }
 
     /* Stylesheet is useless and just kept to keep the consistency with
      * builddoc V1 */
     public String process(String sourceDoc, String styleSheet)  {
-        SciDocConfiguration conf = new SciDocConfiguration();
-        template = conf.getTemplate(format.toLowerCase());
-        /* TODO: make this file generated at build time of Scilab */
-        sciprim = conf.getBuiltins();
-        scimacro = conf.getMacros();
-        version = conf.getVersion();
-        imagedir = ".";//the path must be relative to outputDirectory
-        String imageOut = outputDirectory;
         String fileToExec = null;
 
         if (!new File(sourceDoc).isFile()) {
@@ -103,76 +121,42 @@ public final class SciDocMain {
             return null;
         }
 
-        if (!new File(template).isFile()) {
-            System.err.println("Could not find template document: " + template);
-            return null;
-        }
-
         try {
-            DocbookTagConverter converter = null;
-            String urlBase = null;
+            Converter converter = null;
+            ImageConverter imgConvert = new ImageConverter();
 
-            if (format.equalsIgnoreCase("javahelp")) {
-                converter = new JavaHelpDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, "scilab://", language);
-                if (!isToolbox) {
-                    imageOut = ((JavaHelpDocbookTagConverter) converter).outImages;
-                }
-            } else {
-                if (isToolbox) {
-                    urlBase = conf.getWebSiteURL() + language + "/";
-                }
-                if (format.equalsIgnoreCase("html")) {
-                    converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, urlBase, language, HTMLDocbookTagConverter.GenerationType.HTML);
-                } else if (format.equalsIgnoreCase("web")) {
-                    converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, urlBase, language, HTMLDocbookTagConverter.GenerationType.WEB);
-                    ImageConverter.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
-                } else if (format.equalsIgnoreCase("chm")) {
-                    converter = new CHMDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, conf.getWebSiteURL(), isToolbox, urlBase, language);
-                }
+            switch (format) {
+                case JAVAHELP:
+                    imgConvert.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
+                    converter = new JavaHelpDocbookTagConverter(sourceDoc, this, imgConvert);
+                    break;
+                case HTML:
+                    converter = new HTMLDocbookTagConverter(sourceDoc, this, imgConvert);
+                    break;
+                case WEB:
+                    imgConvert.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
+                    converter = new HTMLDocbookTagConverter(sourceDoc, this, imgConvert);
+                    break;
+                case CHM:
+                    imgConvert.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
+                    converter = new CHMDocbookTagConverter(sourceDoc, this, imgConvert);
+                    break;
+                case JAR_ONLY:
+                    converter = new JarOnlyConverter(this);
+                    break;
+                default:
+                    System.err.printf("%s is not a supported format.\n", format);
+                    return null;
             }
 
-            converter.registerExternalXMLHandler(HTMLMathMLHandler.getInstance(imageOut, imagedir));
-            converter.registerExternalXMLHandler(HTMLSVGHandler.getInstance(imageOut, imagedir));
-            converter.registerExternalXMLHandler(HTMLScilabHandler.getInstance(imageOut, imagedir));
+            converter.registerAllExternalXMLHandlers();
+
             converter.convert();
 
-            HTMLMathMLHandler.clean();
-            HTMLSVGHandler.clean();
-            HTMLScilabHandler.clean();
+            converter.install();
 
-            fileToExec = ScilabImageConverter.getFileWithScilabCode();
-
-            ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/scilab_code.css"), new File(outputDirectory + "/scilab_code.css"));
-            ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/xml_code.css"), new File(outputDirectory + "/xml_code.css"));
-            ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/c_code.css"), new File(outputDirectory + "/c_code.css"));
-            ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/css/style.css"), new File(outputDirectory + "/style.css"));
-            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("media-playback-start")), new File(imageOut + "/ScilabExecute.png"));
-            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("accessories-text-editor")), new File(imageOut + "/ScilabEdit.png"));
-            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-information")), new File(imageOut + "/ScilabNote.png"));
-            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-warning")), new File(imageOut + "/ScilabWarning.png"));
-            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-warning")), new File(imageOut + "/ScilabCaution.png"));
-            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-information")), new File(imageOut + "/ScilabTip.png"));
-            ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("emblem-important")), new File(imageOut + "/ScilabImportant.png"));
-            if (format.equalsIgnoreCase("javahelp")) {
-                if (!isToolbox) {
-                    ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/pages/error.html"), new File(outputDirectory + "/ScilabErrorPage.html"));
-                    File homepage = new File(SCI + "/modules/helptools/data/pages/homepage-" + language + ".html");
-                    if (!homepage.isFile()) {
-                        /* could not find the localized homepage. Switch to english */
-                        homepage = new File(SCI + "/modules/helptools/data/pages/homepage-en_US.html");
-                    }
-                    ScilabCommonsUtils.copyFile(homepage, new File(outputDirectory + "/ScilabHomePage.html"));
-
-                    File homepageImage = new File(SCI + "/modules/helptools/data/pages/ban-" + language + ".png");
-                    if (!homepageImage.isFile()) {
-                        homepageImage = new File(SCI + "/modules/helptools/data/pages/ban-en_US.png");
-                    }
-                    ScilabCommonsUtils.copyFile(homepageImage, new File(imageOut + "/ban_en_US.png"));
-                }
-
-                if (fileToExec == null) {
-                    generateJavahelp(outputDirectory, language, isToolbox);
-                }
+            if (imgConvert.getScilabImageConverter() != null) {
+                fileToExec = imgConvert.getScilabImageConverter().getFileWithScilabCode();
             }
 
         } catch (SAXException e) {
@@ -186,10 +170,31 @@ public final class SciDocMain {
         return fileToExec;
     }
 
-    public static void generateJavahelp(String outputDirectory, String language, boolean isToolbox) {
-        BuildJavaHelp.buildJavaHelp(outputDirectory, language);
-        if (!isToolbox) {
-            BuildJavaHelp.buildJarImages(SCI + "/modules/helptools/images", SCI + "/modules/helptools/jar");
-        }
+    /*
+     * Getters
+     */
+
+    public String getOutputDirectory() {
+        return outputDirectory;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public Backend getFormat() {
+        return format;
+    }
+
+    public String getImagedir() {
+        return imagedir;
+    }
+
+    public SciDocConfiguration getConf() {
+        return conf;
+    }
+
+    public boolean isToolbox() {
+        return isToolbox;
     }
 }

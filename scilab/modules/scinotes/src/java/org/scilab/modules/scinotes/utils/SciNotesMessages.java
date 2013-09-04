@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -153,6 +153,7 @@ public class SciNotesMessages {
     public static final String SCOPE = Messages.gettext("Scope");
     public static final String ALL = Messages.gettext("All");
     public static final String SELECTED_LINES = Messages.gettext("Selected lines");
+    public static final String SELECT_FROM_CARET = Messages.gettext("Select from caret");
     public static final String OPTIONS = Messages.gettext("Options");
     public static final String CASE_SENSITIVE = Messages.gettext("Case sensitive");
     public static final String CIRCULAR_SEARCH = Messages.gettext("Circular search");

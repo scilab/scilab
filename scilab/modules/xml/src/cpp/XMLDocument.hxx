@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,14 +18,17 @@
 #include <cstring>
 #include <string>
 
-#include "xml.h"
+#include "dynlib_xml_scilab.h"
 
 extern "C"
 {
+#include "xml.h"
 #ifndef XML_XPATH_CHECKNS
 #define XML_XPATH_CHECKNS
 #endif
 }
+
+#include "XMLObject.hxx"
 
 namespace org_modules_xml
 {
@@ -41,7 +44,7 @@ class XMLValidation;
  * Class to wrap a xmlDoc
  * @see http://xmlsoft.org/html/libxml-tree.html#xmlDoc
  */
-class XMLDocument: public XMLObject
+class XML_SCILAB_IMPEXP XMLDocument: public XMLObject
 {
     static std::list < XMLDocument * >&openDocs;
     xmlDoc *document;

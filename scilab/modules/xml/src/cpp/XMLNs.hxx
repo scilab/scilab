@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,6 +16,8 @@
 #include <string>
 
 #include "xml.h"
+
+#include "dynlib_xml_scilab.h"
 
 namespace org_modules_xml
 {
@@ -30,7 +32,7 @@ class XMLObject;
  * Class to wrap a namespace xmlNs.
  * @see http://xmlsoft.org/html/libxml-tree.html#xmlNs
  */
-class XMLNs: public XMLObject
+class XML_SCILAB_IMPEXP XMLNs: public XMLObject
 {
     const XMLObject & parent;
     xmlNs *ns;

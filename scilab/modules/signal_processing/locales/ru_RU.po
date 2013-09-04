@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 14:06+0000\n"
+"PO-Revision-Date: 2013-08-02 00:19+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16718)\n"
+"X-Generator: Launchpad (build 16753)\n"
 "Language: ru\n"
 
 #, c-format
@@ -111,7 +111,7 @@ msgid "Discrete IIR filter : low pass  fr < 0.2"
 msgstr "Дискретный БИХ-фильтр : нижняя частота пропускания  fr < 0.2"
 
 msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
-msgstr ""
+msgstr "Дискретный полосовой БИХ-фильтр 0.15 < fr < 0.25"
 
 msgid "Minimax FIR filter"
 msgstr "Минимаксный КИХ-фильтр"
@@ -123,10 +123,10 @@ msgid "length 33"
 msgstr "длина 33"
 
 msgid "Remez Triangular filter"
-msgstr ""
+msgstr "Треугольный фильтр по методу Ремеза"
 
 msgid "magnitude error"
-msgstr ""
+msgstr "ошибка абсолютной величины"
 
 msgid "Signal Processing"
 msgstr "Обработка сигналов"
@@ -170,10 +170,10 @@ msgstr ""
 "Оценка спектральной мощности, модель авторегрессионного скользящего среднего"
 
 msgid "Data spectrum"
-msgstr ""
+msgstr "Спектр данных"
 
 msgid "magnitude"
-msgstr ""
+msgstr "абсолютная величина"
 
 msgid "Spectral estimation"
 msgstr "Спектральная оценка"
@@ -191,25 +191,25 @@ msgid "real state"
 msgstr "истинное состояние"
 
 msgid "Windowed FIR Low pass Filter"
-msgstr ""
+msgstr "КИХ-фильтр низких частот с оконной обработкой"
 
 msgid "Kaiser window,cut-off:0.2"
-msgstr ""
+msgstr "Кайзеровское окно, отсечка: 0.2"
 
 msgid "Hamming window,cut-off:0.2,0.3"
-msgstr ""
+msgstr "Окно Хэмминга, отсечка:0.2, 0.3"
 
 msgid "length 127"
-msgstr ""
+msgstr "длина 127"
 
 msgid "Windowed FIR Band pass Filter"
-msgstr ""
+msgstr "полосовой КИХ-фильтр с оконной обработкой"
 
 msgid "Chebyshev window,cut-off:0.15,0.35"
-msgstr ""
+msgstr "Окно Чебышёва, отсечка:0.15, 0.35"
 
 msgid "length 55"
-msgstr ""
+msgstr "длина 55"
 
 #, c-format
 msgid ""
