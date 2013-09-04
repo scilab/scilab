@@ -91,7 +91,7 @@ c     checking variable tol (number 5)
       else
          ftol=1.d-8
          xtol=1.d-8
-         gtol=1.d-5
+         gtol=1.d-8
          maxfev=1000
          epsfcn=0
          factor=100.0d0
@@ -219,5 +219,3 @@ c
  999  continue
       return
       end
-
-
