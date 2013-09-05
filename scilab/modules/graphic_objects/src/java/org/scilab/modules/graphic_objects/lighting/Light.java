@@ -46,8 +46,9 @@ public class Light extends GraphicObject {
         direction = new Double[] {0.0, 0.0, 1.0};
         type = LightType.POINT;
         
+        Double[] dark_gray = new Double[] {0.1, 0.1, 0.1};
         Double[] white = new Double[] {1.0, 1.0, 1.0};
-        setAmbientColor(white);
+        setAmbientColor(dark_gray);
         setDiffuseColor(white);
         setSpecularColor(white);
     }
