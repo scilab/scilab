@@ -53,7 +53,6 @@
 ;-------------------------------------------------------------------------------
 [Files]
 #include BinariesSourcePath + "\tools\innosetup\files.iss"
-#include BinariesSourcePath + "\tools\innosetup\files_vcredist.iss"
 ;
 ;-------------------------------------------------------------------------------
 [Icons]
@@ -77,7 +76,6 @@
 [Run]
 ;-------------------------------------------------------------------------------
 #include BinariesSourcePath + "\tools\innosetup\run.iss"
-#include BinariesSourcePath + "\tools\innosetup\run_vcredist.iss"
 ;-------------------------------------------------------------------------------
 [UninstallDelete]
 #include BinariesSourcePath + "\tools\innosetup\uninstalldelete.iss"

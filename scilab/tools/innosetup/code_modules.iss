@@ -115,6 +115,7 @@ begin
         ModulesXmlFileLines[i] := '<module name="graph" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="javasci" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
+        ModulesXmlFileLines[i] := '<module name="external_objects_java" activate="yes"/>'; i := i + 1;
     end;
 
     ModulesXmlFileLines[i] := '<!-- Scinotes dependencies -->'; i := i + 1;

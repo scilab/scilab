@@ -51,6 +51,7 @@
 #include BinariesSourcePath + "\modules\renderer\renderer.iss"
 #include BinariesSourcePath + "\modules\graphic_export\graphic_export.iss"
 #include BinariesSourcePath + "\modules\external_objects\external_objects.iss"
+#include BinariesSourcePath + "\modules\external_objects_java\external_objects_java.iss"
 #include BinariesSourcePath + "\modules\sound\sound.iss"
 #include BinariesSourcePath + "\modules\tclsci\tclsci.iss"
 #include BinariesSourcePath + "\modules\arnoldi\arnoldi.iss"
