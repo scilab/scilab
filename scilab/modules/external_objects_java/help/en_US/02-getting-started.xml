@@ -326,4 +326,16 @@ jcompile(ls(directory + "/*.java"))
             From this point you should understand how to interface Scilab and Java libraries, utilize the full power of Java under the Scilab scripting environment.
         </para>
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function introduced. Based on the 'JIMS' module. The main difference in the behavior compared to the JIMS module is that <link linkend="jautoUnwrap">jautoUnwrap</link> is enabled by default.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
+
