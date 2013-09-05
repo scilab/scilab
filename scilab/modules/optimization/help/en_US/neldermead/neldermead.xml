@@ -179,6 +179,11 @@
                                                 a 1-by-1 matrix of doubles, positive, integer value,
                                                 the number of variables to optimize (default numberofvariables = 0).
                                             </para>
+                                            <para>
+                                                This does not need to be set if <literal>-x0</literal> key has been set before,
+                                                because the <literal>-x0</literal> key sets <literal>-numberofvariables</literal>
+                                                to the size of the column vector <literal>x0</literal>.
+                                            </para>
                                         </listitem>
                                     </varlistentry>
                                     <varlistentry>
