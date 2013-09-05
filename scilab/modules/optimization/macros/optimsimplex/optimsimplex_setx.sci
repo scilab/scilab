@@ -16,6 +16,20 @@
 //   ive : vertex index
 //
 function this = optimsimplex_setx ( this , ive , x )
+    if typeof(this) <> "TSIMPLEX" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_setx", 1));
+    end
+    if type(ive) <> 1 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "optimsimplex_setx", 2));
+    end
+    if type(x) <> 1 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "optimsimplex_setx", 3));
+    end
+    if or(size(ive) <> [1 1]) then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: A real scalar expected.\n"), "optimsimplex_setx", 2));
+    end
+    if ive-floor(ive) <> 0 then
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer expected.\n"), "optimsimplex_setx", 2));
+    end
     this.x ( ive , 1:this.n ) = x(1:this.n);
 endfunction
-

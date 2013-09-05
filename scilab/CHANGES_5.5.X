@@ -29,6 +29,8 @@ Scilab Bug Fixes
 
 * Bug #9110 fixed - Examples and references to other functions added in the Statistics help pages.
 
+* Bug #9627 fixed - Arguments checking added in optimsimplex_* functions.
+
 * Bug #9697 fixed - Printed information for optim "qn" and "gc" with bounds and imp=1 fixed.
 
 * Bug #10175 fixed - Clearer example added for sp2adj to adj2sp conversion (and backwards conversion).
