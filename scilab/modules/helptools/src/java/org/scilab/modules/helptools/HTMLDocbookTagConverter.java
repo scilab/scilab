@@ -233,9 +233,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     public void registerAllExternalXMLHandlers() {
         super.registerAllExternalXMLHandlers();
 
-        registerExternalXMLHandler(new HTMLMathMLHandler(outName, imageDir));
-        registerExternalXMLHandler(new HTMLSVGHandler(outName, imageDir));
-        registerExternalXMLHandler(new HTMLScilabHandler(outName, imageDir));
+        registerExternalXMLHandler(new HTMLMathMLHandler(outImages, imageDir));
+        registerExternalXMLHandler(new HTMLSVGHandler(outImages, imageDir));
+        registerExternalXMLHandler(new HTMLScilabHandler(outImages, imageDir));
     }
 
     @Override

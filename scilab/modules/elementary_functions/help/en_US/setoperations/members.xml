@@ -116,7 +116,7 @@
             In normal mode, <literal>%nan</literal> are supported in <literal>N</literal> but not in <literal>H</literal>. In <literal>"rows"</literal> or <literal>"cols"</literal> modes, <literal>%nan</literal> are supported everywhere.
         </para>
         <para>
-            In normal element-wise mode, members(..) uses <link type="scilab" linkend="dsearch">dsearch(..)</link> to fastly proceed with booleans, integer-encoded numbers (any length 8-16-32 bits signed or not), and real numbers. For complex numbers, texts, and polynomials, a slower and more memory-consuming algorithm is used. For better performances with these types of data, for big <literal>N</literal> or/and <literal>H</literal>, the user may priorly increase the <link type="scilab" linkend="scilab.help/stacksize">stacksize(..)</link>. For long calculations, a progression bar is displayed.
+            In normal element-wise mode, members(..) uses <link linkend="dsearch">dsearch(..)</link> to fastly proceed with booleans, integer-encoded numbers (any length 8-16-32 bits signed or not), and real numbers. For complex numbers, texts, and polynomials, a slower and more memory-consuming algorithm is used. For better performances with these types of data, for big <literal>N</literal> or/and <literal>H</literal>, the user may priorly increase the <link linkend="stacksize">stacksize(..)</link>. For long calculations, a progression bar is displayed.
         </para>
     </refsection>
     <refsection>
@@ -187,16 +187,16 @@ H = [ "Hello" "Bonjour" "Allo"
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link type="scilab" linkend="scilab.help/dsearch">dsearch</link>
+                <link linkend="dsearch">dsearch</link>
             </member>
             <member>
-                <link type="scilab" linkend="scilab.help/intersect">intersect</link>
+                <link linkend="intersect">intersect</link>
             </member>
             <member>
-                <link type="scilab" linkend="scilab.help/find">find</link>
+                <link linkend="find">find</link>
             </member>
             <member>
-                <link type="scilab" linkend="scilab.help/vectorfind">vectorfind</link>
+                <link linkend="vectorfind">vectorfind</link>
             </member>
         </simplelist>
     </refsection>
