@@ -28,7 +28,7 @@ wchar_t* mgetstr(int _iFileId, int _iSizeToRead)
 
     if (pF != NULL)
     {
-        if (static_cast<int>(pF->getFileModeAsDouble()) % 2 == 0) //to determine if the file have been opened with binary or text mode
+        if (pF->getFileModeAsInt() % 2 == 0) //to determine if the file have been opened with binary or text mode
         {
             int iSizeRead = 0;
             pwstOut = (wchar_t*)MALLOC((_iSizeToRead + 1) * sizeof(wchar_t));

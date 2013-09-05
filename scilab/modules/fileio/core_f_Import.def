@@ -1,0 +1,11 @@
+	LIBRARY    core_f.dll
+
+
+EXPORTS
+;
+;core
+;
+clunit_
+read_inter_
+rewind_inter_
+backspace_inter_

@@ -122,7 +122,10 @@ src/fortran/itosci.f \
 src/fortran/stackr2d.f \
 src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \
-src/fortran/isinstring.f
+src/fortran/isinstring.f \
+src/fortran/read_inter.f \
+src/fortran/rewind_inter.f \
+src/fortran/backspace_inter.f
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f

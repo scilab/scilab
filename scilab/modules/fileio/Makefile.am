@@ -10,12 +10,7 @@ FILEIO_C_SOURCES = \
     src/c/do_xxscanf.c \
     src/c/findfiles.c \
     src/c/Status2Mode.c \
-    src/c/addfile.c \
-    src/c/delfile.c \
     src/c/filesmanagement.c \
-    src/c/getfiledesc.c \
-    src/c/getfileinfo.c \
-    src/c/getfiletype.c \
     src/c/mgeti.c \
     src/c/mputi.c \
     src/c/readline.c \
@@ -112,7 +107,12 @@ FILEIO_CPP_SOURCES = \
 	src/cpp/mseek.cpp \
 	src/cpp/mtell.cpp \
 	src/cpp/newest.cpp \
-	src/cpp/scilab_sscanf.cpp
+	src/cpp/scilab_sscanf.cpp \
+    src/cpp/addfile.cpp \
+    src/cpp/delfile.cpp \
+    src/cpp/getfiledesc.cpp \
+    src/cpp/getfileinfo.cpp \
+    src/cpp/getfiletype.cpp
 
 libscifileio_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
@@ -148,7 +148,7 @@ endif
 
 
 
-libscifileio_algo_la_SOURCES = $(FILEIO_C_SOURCES) $(FILEIO_CPP_SOURCES)
+libscifileio_algo_la_SOURCES = $(FILEIO_C_SOURCES) $(FILEIO_CPP_SOURCES) $(FILEIO_FORTRAN_SOURCES)
 libscifileio_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscifileio_algo_la_CPPFLAGS = $(libscifileio_la_CPPFLAGS)
 libscifileio_algo_la_LDFLAGS = $(CURL_LIBS)

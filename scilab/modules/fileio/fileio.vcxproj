@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -123,10 +123,10 @@ lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilocalization.lib;sciconsole.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core_f.lib;core.lib;scilocalization.lib;sciconsole.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -209,11 +209,15 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp\addfile.cpp" />
+    <ClCompile Include="src\cpp\delfile.cpp" />
+    <ClCompile Include="src\cpp\getfiledesc.cpp" />
+    <ClCompile Include="src\cpp\getfileinfo.cpp" />
+    <ClCompile Include="src\cpp\getfiletype.cpp" />
     <ClCompile Include="src\cpp\scilab_sscanf.cpp" />
     <ClCompile Include="sci_gateway\c\sci_getURL.c" />
     <ClCompile Include="sci_gateway\c\sci_splitURL.c" />
     <ClCompile Include="sci_gateway\c\sci_tempname.c" />
-    <ClCompile Include="src\c\addfile.c" />
     <ClCompile Include="src\c\basename.c" />
     <ClCompile Include="src\c\cluni0.c" />
     <ClCompile Include="src\c\convert_tools.c" />
@@ -221,7 +225,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="src\c\createdirectory.c" />
     <ClCompile Include="src\c\createtempfilename.c" />
     <ClCompile Include="src\c\deleteafile.c" />
-    <ClCompile Include="src\c\delfile.c" />
     <ClCompile Include="src\c\DllmainFileio.c" />
     <ClCompile Include="src\c\dlManager.c" />
     <ClCompile Include="src\c\do_xxscanf.c" />
@@ -236,9 +239,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="src\c\fscanfMat.c" />
     <ClCompile Include="src\c\fullpath.c" />
     <ClCompile Include="src\c\getdrives.c" />
-    <ClCompile Include="src\c\getfiledesc.c" />
-    <ClCompile Include="src\c\getfileinfo.c" />
-    <ClCompile Include="src\c\getfiletype.c" />
     <ClCompile Include="src\c\getFullFilename.c" />
     <ClCompile Include="src\c\getlongpathname.c" />
     <ClCompile Include="src\c\getrelativefilename.c" />
@@ -273,6 +273,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ResourceCompile Include="src\c\fileio.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="core_f_Import.def" />
     <None Include="core_Import.def" />
     <None Include="locales\fileio.pot" />
     <None Include="Localization_Import.def" />

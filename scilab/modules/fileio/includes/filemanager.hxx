@@ -33,6 +33,7 @@ public :
     static File*                getFile(int _iID);
     static int                  getCurrentFile();
     static int                  addFile(File* _file);
+    static int                  getFirstFreeFileID();
     static void                 deleteFile(int _iID);
     static int                  getOpenedCount();
     static wchar_t**            getTypesAsString();

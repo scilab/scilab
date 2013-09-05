@@ -26,7 +26,8 @@ File::File()
     m_fileDesc = NULL;
     m_iSwap = 0;
     m_pstMode = L"";
-    m_iType = 0;
+    m_iFortranMode = -1; // see clunit.f
+    m_iType = 0; // 1 : fortran open   2 : c open
     m_stFilename = L"";
 }
 
@@ -54,37 +55,73 @@ std::wstring& File::getFileMode()
     return m_pstMode;
 }
 
-double File::getFileModeAsDouble()
+int File::getFileModeAsInt()
 {
-    double dblMode  = 0;
-    double dblPlus  = 0;
-    double dblBin   = 0;
+    int iMode  = 0;
+    int iPlus  = 0;
+    int iBin   = 0;
 
     for (int i = 0 ; i < wcslen(m_pstMode.c_str()) ; i++)
     {
         if (m_pstMode[i] == L'r')
         {
-            dblMode = 1;
+            iMode = 1;
         }
         else if (m_pstMode[i] == L'w')
         {
-            dblMode = 2;
+            iMode = 2;
         }
         else if (m_pstMode[i] == L'a')
         {
-            dblMode = 3;
+            iMode = 3;
         }
         else if (m_pstMode[i] == L'+')
         {
-            dblPlus = 1;
+            iPlus = 1;
         }
         else if (m_pstMode[i] == L'b')
         {
-            dblBin = 1;
+            iBin = 1;
         }
     }
 
-    return 100 * dblMode + 10 * dblPlus + dblBin;
+    return 100 * iMode + 10 * iPlus + iBin;
+}
+
+void File::setFileModeAsInt(int _iMode)
+{
+    int iMode  = (int)(_iMode / 100);
+    int iPlus  = (int)((_iMode - iMode * 100) / 10);
+    int iBin   = _iMode - iMode * 100 - iPlus * 10;
+
+    m_pstMode = L"";
+
+    switch(iMode)
+    {
+        case 2 : m_pstMode += L"w"; break;
+        case 3 : m_pstMode += L"a"; break;
+        default: m_pstMode += L"r"; // default mode "rb"
+    }
+
+    if(iPlus)
+    {
+        m_pstMode += L"+";
+    }
+
+    if(iBin)
+    {
+        m_pstMode += L"b";
+    }
+}
+
+void File::setFileFortranMode(int _iMode)
+{
+    m_iFortranMode = _iMode;
+}
+
+int File::getFileFortranMode()
+{
+    return m_iFortranMode;
 }
 
 void File::setFileSwap(int _iSwap)

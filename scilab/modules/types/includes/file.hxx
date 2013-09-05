@@ -26,7 +26,10 @@ public :
 
     void                        setFileMode(std::wstring _pstMode);
     std::wstring&               getFileMode();
-    double                      getFileModeAsDouble();
+    void                        setFileModeAsInt(int _iMode);
+    int                         getFileModeAsInt();
+    void                        setFileFortranMode(int _iMode);
+    int                         getFileFortranMode();
 
     void                        setFileDesc(FILE* _fileDesc);
     FILE*                       getFiledesc();
@@ -51,6 +54,7 @@ private :
     FILE*                       m_fileDesc;
     int                         m_iSwap; /* swap status for each file */
     std::wstring                m_pstMode; /* mode for each file */
+    int                         m_iFortranMode; /* mode for file opened with fortran open*/
     int                         m_iType; /* type (Fortran,C) for each file must be zero initialized */
     std::wstring                m_stFilename; /* name for each file */
 

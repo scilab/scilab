@@ -83,12 +83,8 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     iFile = static_cast<int>(in[size - 2]->getAs<types::Double>()->get(0));
     switch (iFile)
     {
-        case 0:
-            // stderr
-            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mfscanf", iFile);
-            return types::Function::Error;
-        case 6:
-            // stdout
+        case 0: // stderr
+        case 6: // stdout
             Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mfscanf", iFile);
             return types::Function::Error;
         default :

@@ -248,7 +248,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 /*--------------------------------------------------------------------------*/
 wchar_t* getLine(wchar_t* _pstLine, int _iLineSize, File* _pFile)
 {
-    if (static_cast<int>(_pFile->getFileModeAsDouble()) % 2 == 1)
+    if (_pFile->getFileModeAsInt() % 2 == 1)
     {
         //binary mode
         return fgetws(_pstLine, _iLineSize, _pFile->getFiledesc());

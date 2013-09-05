@@ -93,6 +93,25 @@ int FileManager::addFile(types::File* _file)
     return iNewId;
 }
 
+int FileManager::getFirstFreeFileID()
+{
+    //find first free space
+    for (int i = 0 ; i < m_fileList.size() ; i++)
+    {
+        if (m_fileList[i] == NULL)
+        {
+            m_iCurrentFile = i;
+            return i;
+        }
+    }
+
+    //no free space, add at the end
+    m_fileList.push_back(NULL);
+    int iNewId = static_cast<int>(m_fileList.size());
+    m_iCurrentFile = iNewId;
+    return iNewId;
+}
+
 void FileManager::deleteFile(int _iID)
 {
     if (_iID <= m_fileList.size())
@@ -193,7 +212,7 @@ double* FileManager::getModes()
     {
         if (m_fileList[i] != NULL)
         {
-            pdblModes[iFileIndex++] = m_fileList[i]->getFileModeAsDouble();
+            pdblModes[iFileIndex++] = (double)(m_fileList[i]->getFileModeAsInt());
         }
     }
 

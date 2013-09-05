@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
+ * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,11 +13,9 @@
  */
 
 /*--------------------------------------------------------------------------*/
-#include <string.h>
 #include "funcmanager.hxx"
 #include "context.hxx"
 #include "io_gw.hxx"
-#include "setenvvar.hxx"
 #include "filemanager.hxx"
 #include "string.hxx"
 
@@ -25,33 +24,30 @@ extern "C"
 #include "os_wcsdup.h"
 #include "localization.h"
 #include "Scierror.h"
-}
-/*
-#include <string.h>
-#include "gw_io.h"
-#include "stack-c.h"
-#include "api_scilab.h"
-#include "FileExist.h"
 #include "MALLOC.h"
-#include "charEncoding.h"
-#include "filesmanagement.h"
-#include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
-*/
-/*--------------------------------------------------------------------------*/
-#define FILE_OPEN_STR "open"
-#define FILE_OLD_STR "old"
-/*--------------------------------------------------------------------------*/
+#include "FileExist.h"
+#include "mclose.h"
+#include "mseek.h"
 
-using namespace types;
-
-Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out);
-Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out);
+    extern int C2F(clunit)(int* , char*, int*, int);
+    extern int C2F(rewind_inter)(int*);
+    extern int C2F(backspace_inter)(int*);
+    extern int C2F(read_inter)(int*, char*, int);
+}
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out);
+types::Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out);
+/*--------------------------------------------------------------------------*/
+types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    types::String* pSAction = NULL;
+
+    if (in.size() > 6)
+    {
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "file", 0, 6);
+        return types::Function::Error;
+    }
+
     if (in.size() == 0)
     {
         return sci_file_no_rhs(in, _iRetCount, out);
@@ -61,265 +57,312 @@ Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typ
     {
         return sci_file_one_rhs(in, _iRetCount, out);
     }
-    return Function::OK;
-}
 
-//int sci_file(char *fname, void* pvApiCtx)
-//{
-//	if (Rhs == 0)
-//	{
-//		return sci_file_no_rhs(fname, pvApiCtx);
-//	}
-//
-//	if (Rhs == 1)
-//	{
-//		return sci_file_one_rhs(fname, pvApiCtx);
-//	}
-//
-//	if (Rhs >= 3)
-//	{
-//		SciErr sciErr;
-//
-//		int *piAddressVarOne = NULL;
-//		int *piAddressVarTwo = NULL;
-//		int *piAddressVarThree = NULL;
-//
-//		int iType1 = 0;
-//		int iType2 = 0;
-//		int iType3 = 0;
-//
-//		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-//		if(sciErr.iErr)
-//		{
-//			printError(&sciErr, 0);
-//			return 0;
-//		}
-//
-//		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-//		if(sciErr.iErr)
-//		{
-//			printError(&sciErr, 0);
-//			return 0;
-//		}
-//
-//		sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddressVarThree);
-//		if(sciErr.iErr)
-//		{
-//			printError(&sciErr, 0);
-//			return 0;
-//		}
-//
-//		sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-//		if(sciErr.iErr)
-//		{
-//			printError(&sciErr, 0);
-//			return 0;
-//		}
-//
-//		sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-//		if(sciErr.iErr)
-//		{
-//			printError(&sciErr, 0);
-//			return 0;
-//		}
-//
-//		sciErr = getVarType(pvApiCtx, piAddressVarThree, &iType3);
-//		if(sciErr.iErr)
-//		{
-//			printError(&sciErr, 0);
-//			return 0;
-//		}
-//
-//		if ( (iType1 == sci_strings) && (iType2 == sci_strings) && (iType3 == sci_strings) )
-//		{
-//			char *pStVarOne = NULL;
-//			int lenStVarOne = 0;
-//
-//			wchar_t *pStVarTwo = NULL;
-//			int lenStVarTwo = 0;
-//
-//			char *pStVarThree = NULL;
-//			int lenStVarThree = 0;
-//
-//			int m1 = 0, n1 = 0;
-//			int m2 = 0, n2 = 0;
-//			int m3 = 0, n3 = 0;
-//
-//			sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
-//			if(sciErr.iErr)
-//			{
-//				printError(&sciErr, 0);
-//				return 0;
-//			}
-//
-//			if ( (m1 != n1) && (n1 != 1) )
-//			{
-//				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-//				return 0;
-//			}
-//
-//			sciErr = getVarDimension(pvApiCtx, piAddressVarTwo, &m2, &n2);
-//			if(sciErr.iErr)
-//			{
-//				printError(&sciErr, 0);
-//				return 0;
-//			}
-//
-//			if ( (m2 != n2) && (n2 != 1) )
-//			{
-//				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
-//				return 0;
-//			}
-//
-//			sciErr = getVarDimension(pvApiCtx, piAddressVarThree, &m3, &n3);
-//			if(sciErr.iErr)
-//			{
-//				printError(&sciErr, 0);
-//				return 0;
-//			}
-//
-//			if ( (m3 != n3) && (n3 != 1) )
-//			{
-//				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
-//				return 0;
-//			}
-//
-//			// get lenStVarOne value
-//			sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
-//			if(sciErr.iErr)
-//			{
-//				printError(&sciErr, 0);
-//				return 0;
-//			}
-//
-//			// get value of first argument
-//			pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
-//			if (pStVarOne == NULL)
-//			{
-//				Scierror(999,_("%s: Memory allocation error.\n"),fname);
-//				return 0;
-//			}
-//
-//			sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
-//			if(sciErr.iErr)
-//			{
-//				FREE(pStVarOne); pStVarOne = NULL;
-//				printError(&sciErr, 0);
-//				return 0;
-//			}
-//
-//			if (strcmp(pStVarOne, FILE_OPEN_STR) == 0)
-//			{
-//				FREE(pStVarOne); pStVarOne = NULL;
-//
-//				// get lenStVarThree value
-//				sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &m3, &n3, &lenStVarThree, &pStVarThree);
-//				if(sciErr.iErr)
-//				{
-//					printError(&sciErr, 0);
-//					return 0;
-//				}
-//
-//				// get value of third argument
-//				pStVarThree = (char*)MALLOC(sizeof(char)*(lenStVarThree + 1));
-//				if (pStVarThree == NULL)
-//				{
-//					Scierror(999,_("%s: Memory allocation error.\n"),fname);
-//					return 0;
-//				}
-//
-//				sciErr = getMatrixOfString(pvApiCtx, piAddressVarThree, &m3, &n3, &lenStVarThree, &pStVarThree);
-//				if(sciErr.iErr)
-//				{
-//					FREE(pStVarThree); pStVarThree = NULL;
-//					printError(&sciErr, 0);
-//					return 0;
-//				}
-//
-//				if (strcmp(pStVarThree, FILE_OLD_STR) == 0)
-//				{
-//					FREE(pStVarThree); pStVarThree = NULL;
-//
-//					// get lenStVarTwo value
-//					sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
-//					if(sciErr.iErr)
-//					{
-//						printError(&sciErr, 0);
-//						return 0;
-//					}
-//
-//					// get value of second argument
-//					pStVarTwo = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarTwo + 1));
-//					if (pStVarTwo == NULL)
-//					{
-//						Scierror(999,_("%s: Memory allocation error.\n"),fname);
-//						return 0;
-//					}
-//
-//					sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
-//					if(sciErr.iErr)
-//					{
-//						FREE(pStVarTwo); pStVarTwo = NULL;
-//						printError(&sciErr, 0);
-//						return 0;
-//					}
-//
-//					if (!FileExistW(pStVarTwo))
-//					{
-//						if (Lhs == 2)
-//						{
-//							double dOutErrCode = 240.;
-//							int m_out = 1,  n_out = 1;
-//
-//							sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
-//							if(sciErr.iErr)
-//							{
-//								printError(&sciErr, 0);
-//								return 0;
-//							}
-//
-//							sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 2, m_out, n_out, &dOutErrCode);
-//							if(sciErr.iErr)
-//							{
-//								printError(&sciErr, 0);
-//								return 0;
-//							}
-//
-//							LhsVar(2) = Rhs + 2;
-//							LhsVar(1) = Rhs + 1;
-//							C2F(putlhsvar)();
-//						}
-//						else
-//						{
-//							char *filename = wide_string_to_UTF8(pStVarTwo);
-//							if (filename)
-//							{
-//								Scierror(240, _("%s: The file \"%s\" does not exist.\n"),fname, filename);
-//								FREE(filename);
-//								filename = NULL;
-//							}
-//							else
-//							{
-//								Scierror(240, _("%s: The file does not exist.\n"),fname);
-//							}
-//						}
-//						return 0;
-//					}
-//
-//					FREE(pStVarTwo); pStVarTwo = NULL;
-//				}
-//
-//				FREE(pStVarThree); pStVarThree = NULL;
-//			}
-//
-//			FREE(pStVarOne); pStVarOne = NULL;
-//		}
-//	}
-//
-//	C2F(intfile)();
-//	return 0;
-//}
-///*--------------------------------------------------------------------------*/
+    // get action
+    if (in[0]->isString() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "file", 1);
+        return types::Function::Error;
+    }
+
+    pSAction = in[0]->getAs<types::String>();
+
+    if (pSAction->isScalar() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d : A single string expected.\n"), "file", 1);
+        return types::Function::Error;
+    }
+
+    if (wcscmp(pSAction->get(0), L"open") == 0)
+    {
+        types::String* pSPath   = NULL;
+        types::String* pSOption = NULL;
+        types::Double* pSRecl   = NULL;
+
+        int iStatus = 0;
+        int iAccess = 0;
+        int iForm   = 0;
+        int iRecl   = 0;
+
+        int piMode[2] = {0, 0};
+
+        // get path
+        if (in[1]->isString() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "file", 2);
+            return types::Function::Error;
+        }
+
+        pSPath = in[1]->getAs<types::String>();
+
+        if (pSPath->isScalar() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d : A single string expected.\n"), "file", 2);
+            return types::Function::Error;
+        }
+
+        // get optional inputs
+        for (int i = 2; i < in.size(); i++)
+        {
+            if (in[i]->isString())
+            {
+                pSOption = in[i]->getAs<types::String>();
+            }
+            else if (i != 2 && in[i]->isDouble())
+            {
+                pSRecl = in[i]->getAs<types::Double>();
+                if (pSRecl->isScalar() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "file", i + 1);
+                    return types::Function::Error;
+                }
+
+                iRecl = (int)pSRecl->get(0);
+                piMode[1] = iRecl;
+                continue;
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "file", i + 1);
+                return types::Function::Error;
+            }
+
+            if (pSOption->isScalar() == false)
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d : A single string expected.\n"), "file", i + 1);
+                return types::Function::Error;
+            }
+
+            if (wcscmp(pSOption->get(0), L"new") == 0)
+            {
+                iStatus = 0;
+            }
+            else if (wcscmp(pSOption->get(0), L"old") == 0)
+            {
+                iStatus = 1;
+                // file must already exists.
+                if (FileExistW(pSPath->get(0)) == false)
+                {
+                    if (_iRetCount == 2)
+                    {
+                        out.push_back(types::Double::Empty());
+                        out.push_back(new types::Double(240));
+                        return types::Function::OK;
+                    }
+                    else
+                    {
+                        char* pstrFilename = wide_string_to_UTF8(pSPath->get(0));
+                        if (pstrFilename)
+                        {
+                            Scierror(240, _("%s: The file \"%s\" does not exist.\n"), "file", pstrFilename);
+                            FREE(pstrFilename);
+                            pstrFilename = NULL;
+                        }
+                        else
+                        {
+                            Scierror(240, _("%s: The file does not exist.\n"), "file");
+                        }
+
+                        return types::Function::Error;
+                    }
+                }
+            }
+            else if (wcscmp(pSOption->get(0), L"scratch") == 0)
+            {
+                iStatus = 2;
+            }
+            else if (wcscmp(pSOption->get(0), L"unknown") == 0)
+            {
+                iStatus = 3;
+            }
+            else if (wcscmp(pSOption->get(0), L"sequential") == 0)
+            {
+                iAccess = 0;
+            }
+            else if (wcscmp(pSOption->get(0), L"direct") == 0)
+            {
+                iAccess = 1;
+            }
+            else if (wcscmp(pSOption->get(0), L"formatted") == 0)
+            {
+                iForm = 0;
+            }
+            else if (wcscmp(pSOption->get(0), L"unformatted") == 0)
+            {
+                iForm = 1;
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "file", i + 1);
+                return types::Function::Error;
+            }
+        }
+
+        piMode[0] = iStatus + 10 * (iAccess + 10 * iForm);
+        int lunit = 0; // file unit. 0 mean we open the file by this name.
+        char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
+        int iErr = C2F(clunit)(&lunit, pstFilename, piMode, (int)strlen(pstFilename));
+        if (iErr)
+        {
+            if (_iRetCount == 1)
+            {
+                switch (iErr)
+                {
+                    case 65  :
+                        Scierror(iErr, _("%s: %d logical unit already used.\n"), "file", lunit);
+                        break;
+                    case 66  :
+                        Scierror(iErr, _("%s: Too many files opened!\n"), "file");
+                        break;
+                    case 67  :
+                        Scierror(iErr, _("%s: Unknown file format.\n"), "file");
+                        break;
+                    case 240 :
+                        Scierror(iErr, _("%s: File \"%s\" already exists or directory write access denied.\n"), "file", pstFilename);
+                        break;
+                    case 241 :
+                        Scierror(iErr, _("%s: File \"%s\" does not exist or read access denied.\n"), "file", pstFilename);
+                        break;
+                    default  :
+                        Scierror(iErr, _("%s: Can not open File \"%s\"\n"), "file", pstFilename);
+                }
+
+                return types::Function::Error;
+            }
+            else
+            {
+                out.push_back(types::Double::Empty());
+                out.push_back(new types::Double((double)iErr));
+                return types::Function::OK;
+            }
+        }
+
+        out.push_back(new types::Double((double)lunit));
+        if (_iRetCount == 2)
+        {
+            out.push_back(new types::Double(0.0));
+        }
+
+        FREE(pstFilename);
+    }
+    else if (wcscmp(pSAction->get(0), L"close") == 0 ||
+             wcscmp(pSAction->get(0), L"rewind") == 0 ||
+             wcscmp(pSAction->get(0), L"backspace") == 0 ||
+             wcscmp(pSAction->get(0), L"last") == 0)
+    {
+        if (_iRetCount != 1)
+        {
+            Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "file", 1);
+            return types::Function::Error;
+        }
+
+        if (in.size() != 2)
+        {
+            Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "file", 2);
+            return types::Function::Error;
+        }
+
+        if (in[1]->isDouble() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "file", 2);
+            return types::Function::Error;
+        }
+
+        types::Double* pDblFileUnit = in[1]->getAs<types::Double>();
+        double* pdblUnit = pDblFileUnit->get();
+
+        if (wcscmp(pSAction->get(0), L"close") == 0)
+        {
+            for (int i = 0; i < pDblFileUnit->getSize(); i++)
+            {
+                int iErr = mclose((int)(pdblUnit[i]));
+                if (iErr)
+                {
+                    Scierror(999, _("%s: Cannot close file %d.\n"), "file", (int)pdblUnit[i]);
+                    return types::Function::Error;
+                }
+            }
+        }
+        else if (wcscmp(pSAction->get(0), L"rewind") == 0)
+        {
+            int iFileUnit = (int)pdblUnit[0];
+            types::File* pFile = FileManager::getFile(iFileUnit);
+
+            if (pFile && pFile->getFileType() == 2)
+            {
+                mseek(iFileUnit, 0, SEEK_SET);
+            }
+            else if (pFile && pFile->getFileType() == 1)
+            {
+                C2F(rewind_inter)(&iFileUnit);
+            }
+            else
+            {
+                Scierror(67, _("%s: Unknown file format.\n"), "file");
+                return types::Function::Error;
+            }
+        }
+        else if (wcscmp(pSAction->get(0), L"backspace") == 0)
+        {
+            int iFileUnit = (int)pdblUnit[0];
+            types::File* pFile = FileManager::getFile(iFileUnit);
+
+            if (pFile && pFile->getFileType() == 2)
+            {
+                Scierror(999, _("%s: Wrong input argument #%d.\n"), "file", 1);
+                return types::Function::Error;
+            }
+            else if (pFile && pFile->getFileType() == 1)
+            {
+                C2F(backspace_inter)(&iFileUnit);
+            }
+            else
+            {
+                Scierror(67, _("%s: Unknown file format.\n"), "file");
+                return types::Function::Error;
+            }
+        }
+        else if (wcscmp(pSAction->get(0), L"last") == 0)
+        {
+            int iFileUnit = (int)pdblUnit[0];
+            types::File* pFile = FileManager::getFile(iFileUnit);
+
+            if (pFile && pFile->getFileType() == 2)
+            {
+                mseek(iFileUnit, 0, SEEK_END);
+            }
+            else if (pFile && pFile->getFileType() == 1)
+            {
+                int iErr = 0;
+                while (iErr == 0)
+                {
+                    iErr = C2F(read_inter)(&iFileUnit, "(a)", 1L);
+                }
+
+                if (iErr == 2)
+                {
+                    Scierror(999, _("%s: \n"), "file");
+                    return types::Function::Error;
+                }
+
+                C2F(backspace_inter)(&iFileUnit);
+            }
+            else
+            {
+                Scierror(67, _("%s: Unknown file format.\n"), "file");
+                return types::Function::Error;
+            }
+        }
+    }
+    else
+    {
+        Scierror(49, _("%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", \"%s\" \n"), "file", 1, "open", "close", "rewind", "backspace", "last");
+        return types::Function::Error;
+    }
+
+    return types::Function::OK;
+}
+/*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iCount = FileManager::getOpenedCount();
@@ -453,7 +496,14 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 
     if (_iRetCount > 3) /* mod */
     {
-        out.push_back(new Double(pF->getFileModeAsDouble()));
+        if (pF->getFileType() == 1)
+        {
+            out.push_back(new Double((double)pF->getFileFortranMode()));
+        }
+        else // if(pF->getFileType() == 2)
+        {
+            out.push_back(new Double((double)pF->getFileModeAsInt()));
+        }
     }
 
     if (_iRetCount > 4) /* swap */
@@ -462,202 +512,3 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
     }
     return Function::OK;
 }
-//static int sci_file_one_rhs(char *fname, void* pvApiCtx)
-//{
-//	SciErr sciErr;
-//
-//	int iID = 0;
-//	int m1 = 0, n1 = 0;
-//	int iType = 0;
-//	int *piAddressVarOne = NULL;
-//	double *pdVarOne = NULL;
-//
-//	int m_out = 0;
-//	int n_out = 0;
-//
-//	/* get Address of inputs */
-//	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-//	if(sciErr.iErr)
-//	{
-//		printError(&sciErr, 0);
-//		return 0;
-//	}
-//
-//	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-//	if(sciErr.iErr)
-//	{
-//		printError(&sciErr, 0);
-//		return 0;
-//	}
-//
-//	/* check input type */
-//	if ( iType != sci_matrix )
-//	{
-//		Scierror(201,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname,1);
-//		return 0;
-//	}
-//
-//	sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarOne,&m1,&n1,&pdVarOne);
-//	if(sciErr.iErr)
-//	{
-//		printError(&sciErr, 0);
-//		return 0;
-//	}
-//
-//	if( n1 != 1 || m1 != 1)
-//	{
-//		Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,1);
-//		return 0;
-//	}
-//
-//	iID = (int) *pdVarOne;
-//
-//	if (*pdVarOne != (double)iID)
-//	{
-//		Scierror(999,_("%s: Wrong value for input argument #%d: A integer expected.\n"),fname,1);
-//		return 0;
-//	}
-//
-//	/* Lhs = 0 ID */
-//	if (GetFileTypeOpenedInScilab(iID) != 0)
-//	{
-//		m_out = 1;
-//		n_out = 1;
-//		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, pdVarOne);
-//	}
-//	else
-//	{
-//		/* returns [] */
-//		m_out = 0;
-//		n_out = 0;
-//		sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, NULL);
-//	}
-//
-//	if(sciErr.iErr)
-//	{
-//		printError(&sciErr, 0);
-//		return 0;
-//	}
-//
-//	LhsVar(1) = Rhs + 1;
-//
-//	if (Lhs > 1) /* Type */
-//	{
-//		if (GetFileTypeOpenedInScilab(iID) != 0)
-//		{
-//			char *TypeIdAsString = GetFileTypeOpenedInScilabAsString(iID);
-//			m_out = 1;
-//			n_out = 1;
-//			sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, m_out, n_out, &TypeIdAsString);
-//			FREE(TypeIdAsString);
-//			TypeIdAsString = NULL;
-//		}
-//		else
-//		{
-//			/* returns [] */
-//			m_out = 0;
-//			n_out = 0;
-//			sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 2, m_out, n_out, NULL);
-//		}
-//
-//		if(sciErr.iErr)
-//		{
-//			printError(&sciErr, 0);
-//			return 0;
-//		}
-//
-//		LhsVar(2) = Rhs + 2;
-//	}
-//
-//	if (Lhs > 2) /* name */
-//	{
-//		if (GetFileTypeOpenedInScilab(iID) != 0)
-//		{
-//			char *filename = NULL;
-//			m_out = 1;
-//			n_out = 1;
-//			if (GetFileNameOpenedInScilab(iID) == NULL)
-//			{
-//				filename = os_strdup("");
-//			}
-//			else
-//			{
-//				filename = os_strdup(GetFileNameOpenedInScilab(iID));
-//			}
-//
-//			sciErr = createMatrixOfString(pvApiCtx, Rhs + 3, m_out, n_out, &filename);
-//			FREE(filename);
-//			filename = NULL;
-//		}
-//		else
-//		{
-//			/* returns [] */
-//			m_out = 0;
-//			n_out = 0;
-//			sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 3, m_out, n_out, NULL);
-//		}
-//
-//		if(sciErr.iErr)
-//		{
-//			printError(&sciErr, 0);
-//			return 0;
-//		}
-//
-//		LhsVar(3) = Rhs + 3;
-//	}
-//
-//	if (Lhs > 3)  /* mod */
-//	{
-//		if (GetFileTypeOpenedInScilab(iID) != 0)
-//		{
-//			double ModeId = (double)GetFileModeOpenedInScilab(iID);
-//			m_out = 1;
-//			n_out = 1;
-//			sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 4, m_out, n_out, &ModeId);
-//		}
-//		else
-//		{
-//			/* returns [] */
-//			m_out = 0;
-//			n_out = 0;
-//			sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 4, m_out, n_out, NULL);
-//		}
-//
-//		if(sciErr.iErr)
-//		{
-//			printError(&sciErr, 0);
-//			return 0;
-//		}
-//
-//		LhsVar(4) = Rhs + 4;
-//	}
-//
-//	if (Lhs > 4) /* swap */
-//	{
-//		if (GetFileTypeOpenedInScilab(iID) != 0)
-//		{
-//			double SwapId = (double)GetSwapStatus(iID);
-//			m_out = 1;
-//			n_out = 1;
-//			sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 5, m_out, n_out, &SwapId);
-//		}
-//		else
-//		{
-//			/* returns [] */
-//			m_out = 0;
-//			n_out = 0;
-//			sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 5, m_out, n_out, NULL);
-//		}
-//
-//		if(sciErr.iErr)
-//		{
-//			printError(&sciErr, 0);
-//			return 0;
-//		}
-//		LhsVar(5) = Rhs + 5;
-//	}
-//
-//	C2F(putlhsvar)();
-//	return 0;
-//}
-/*--------------------------------------------------------------------------*/

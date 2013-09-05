@@ -46,7 +46,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     unsigned int iNumberPercent     = 0;
     unsigned int iNumberCols        = 0;
     int nbrOfLines                  = 0;
-    double dfileMode                = 0;
+    int ifileMode                   = 0;
     wchar_t* wcsInput               = NULL;
     wchar_t** wcsStringToWrite      = NULL;
     ArgumentPosition* pArgs         = NULL;
@@ -121,14 +121,21 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
             return types::Function::Error;
         default:
             isSTD = FALSE;
-            dfileMode = FileManager::getFile(iFile)->getFileModeAsDouble();
+            types::File* pFile = FileManager::getFile(iFile);
+            // file opened with fortran open function
+            if (pFile->getFileType() == 1)
+            {
+                Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mfprintf", iFile);
+                return types::Function::Error;
+            }
+            ifileMode = pFile->getFileModeAsInt();
             break;
     }
 
     /* checks file mode */
     /* bug 3898 */
     /* read only attrib 1xx*/
-    if ((dfileMode >= 100) && (dfileMode < 200) && !isSTD)
+    if ((ifileMode >= 100) && (ifileMode < 200) && !isSTD)
     {
         Scierror(999, _("%s: Wrong file mode: READ only.\n"), "mfprintf");
         return types::Function::Error;

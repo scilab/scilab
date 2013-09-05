@@ -33,14 +33,20 @@ long int mtell(int fd)
         return offset;
     }
 
+    FILE* fa = pF->getFiledesc();
+    if (fa == NULL)
+    {
+        return -1;
+    }
+
 #ifdef _MSC_VER
 #if _WIN64
-    offset = (long)_ftelli64(pF->getFiledesc()) ;
+    offset = (long)_ftelli64(fa) ;
 #else
-    offset = ftell(pF->getFiledesc()) ;
+    offset = ftell(fa) ;
 #endif
 #else
-    offset = ftell(pF->getFiledesc()) ;
+    offset = ftell(fa) ;
 #endif
 
     return offset;

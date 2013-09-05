@@ -44,7 +44,13 @@ mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings, BOOL _CR
         pF = FileManager::getFile(_iFileId);
         if (pF)
         {
-            if (pF->getFileModeAsDouble() >= 100 && pF->getFileModeAsDouble() < 200)
+            // file opened with fortran open function
+            if (pF->getFileType() == 1)
+            {
+                return MPUTL_ERROR;
+            }
+
+            if (pF->getFileModeAsInt() >= 100 && pF->getFileModeAsInt() < 200)
             {
                 return MPUTL_NO_WRITE_RIGHT;
             }
