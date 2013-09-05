@@ -83,6 +83,9 @@ Improvements
 * nthroot is now vectorizable.
   See bug #12678.
 
+* New optional output argument for routh_t.
+  See bug #12829.
+
 
 Obsolete
 =========
@@ -654,6 +657,8 @@ Bug Fixes
 
 * Bug #12800 fixed - Typo fixed in Polynomials help page.
 
+* Bug #12804 fixed - Typos fixed in routh_t help page.
+
 * Bug #12807 fixed - Display of showprofile improved.
 
 * Bug #12808 fixed - Add missing </td> in documentation generation (note, warning, ...).
@@ -671,6 +676,10 @@ Bug Fixes
 * Bug #12823 fixed - In help generation (toolbox) links were not correctly handled.
 
 * Bug #12827 fixed - noisgen help page improved.
+
+* Bug #12828 fixed - routh_t gave a wrong result if the first element of a row was zero.
+
+* Bug #12829 fixed - New optional output argument added for routh_t function.
 
 * Bug #12830 fixed - In SciNotes, it was not possible to execute a replace action from the caret position.
 
