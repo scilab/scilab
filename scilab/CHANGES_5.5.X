@@ -633,3 +633,5 @@ Bug fixes
 * Bug #12859 fixed - Core doc: fix optional argument of isdef().
 
 * Bug #12863 fixed - size(state-space, "r") returned an error.
+
+* Bug #12875 fixed - phasemag() returned an error for input vector containing zeros.
