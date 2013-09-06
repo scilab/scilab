@@ -42,8 +42,15 @@ function this = optimbase_configure (this,key,value)
         optimbase_typereal ( value , "value" , 3 );
         [n,m] = size(value);
         if m<>1 then
-            errmsg = msprintf(gettext("%s: The x0 vector is expected to be a column matrix, but current shape is %d x %d"),"optimbase_configure",n,m);
-            error(errmsg);
+            if n==1 then // Allowing row vectors by transposing them into column vectors
+                value = value';
+                temp = m; // Switch the sizes in case we want to reuse them later in this function
+                m = n;
+                n = temp;
+            else
+                errmsg = msprintf(gettext("%s: The x0 vector is expected to be a column matrix, but current shape is %d x %d"),"optimbase_configure",n,m);
+                error(errmsg);
+            end
         end
         this.x0 = value;
         this.numberofvariables = n; // Setting x0 also sets the size of the system
