@@ -34,7 +34,7 @@ bin_PROGRAMS		= scilab-bin scilab-cli-bin
 bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli \
 bin/scinotes bin/xcos
 
-CC = $(OPENMPI_CC)
+CXX = $(OPENMPI_CXX)
 
 if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript

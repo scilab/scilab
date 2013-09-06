@@ -539,8 +539,6 @@ case "$CXX" in
 
 esac
 
-AC_CHECK_STDCPP_STATIC()
-
 #### 64 bits detection
 IS_64_BITS_CPU=false
 case "$host" in
@@ -1812,6 +1810,13 @@ AH_BOTTOM([
 # Define the standard extension of a dynamic library
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
 
+
+#########
+## Make sure that the libstdc++ and libgcc can be compiled as static
+#########
+
+AC_CHECK_STDCPP_STATIC()
+
 #################
 ## stop on warning
 #################
@@ -2107,6 +2112,7 @@ if test "$with_openmpi" != "no"; then
    echo "OpenMPI Configuration:"
    echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
    echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
+   echo "OpenMPI C++ Compiler ... = $OPENMPI_CXX"
    echo "OpenMPI F77 Compiler ... = $MPIF77"
 else
    echo "Not using MPI"

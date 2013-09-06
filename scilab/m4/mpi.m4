@@ -44,11 +44,16 @@ AC_DEFUN([AC_OPENMPI], [
 		if test "x$MPICC" = "xno"; then
 				AC_MSG_ERROR([Unable to find mpicc in the path. Please check your installation of openmpi (example : openmpi & openmpi-dev with Debian)])
 		fi
+		AC_CHECK_PROGS(OPENMPI_CXX,mpicxx,no)
+		if test "x$MPICXX" = "xno"; then
+				AC_MSG_ERROR([Unable to find mpicxx in the path. Please check your installation of openmpi (example : openmpi & openmpi-dev with Debian)])
+		fi
 #fi
 saved_cflags=$CFLAGS
 saved_LIBS="$LIBS"
 
 CFLAGS=`$OPENMPI_CC --showme:compile`
+CXXFLAGS=`$OPENMPI_CXX --showme:compile`
 LIBS=`$OPENMPI_CC --showme:link`
 
 AC_CHECK_HEADER([mpi.h],
