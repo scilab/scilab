@@ -44,6 +44,8 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 * The histplot command can now be used with the option polygon=%t/%f to add the
   frequency polygon chart (thanks to Mehran Khorshidi).
 
+* Multi level completion on mlist, struct, XML structures...
+
 * Switch to the CeCILL 2.1 license
 
 
@@ -89,6 +91,11 @@ Obsolete
 * chart() tagged as obsolete. Will be removed for Scilab 5.5.1.
   Use nicholschart() instead.
 
+* sscanf is obsolete, use msscanf instead.
+
+* fscanf is obsolete, use mfscanf for files opened with mopen or read for files opened with file instead.
+
+* fprintf is obsolete, use mfprintf for files opened with mopen or write for files opened with file instead.
 
 Differential_equations
 ======================
@@ -275,6 +282,8 @@ Bug fixes
 
 * Bug #8264 fixed - Documentation for Matlab's atan2() equivalent fixed.
 
+* Bug #8211 fixed - Finalize 'parameters' module demo
+
 * Bug #8319 fixed - dbphi(hypermat) and phasemag(hypermat) returned a matrix instead of a hypermatrix.
 
 * Bug #8373 fixed - clear() can now take a matrix of strings argument.
@@ -406,6 +415,8 @@ Bug fixes
 
 * Bug #11891 fixed - Fisher ratio could be inaccurate for one-way ANOVA.
 
+* Bug #11997 fixed - In case of invalid variable name, save function return error instead of compatibility warning.
+*
 * Bug #12034 fixed - max function did not manage empty matrices.
 
 * Bug #12045 fixed - repmat returned wrong result if numbers of input matrix were not double.
@@ -416,6 +427,9 @@ Bug fixes
 * Bug #12080 fixed - lsqrsolve always printed messages.
 
 * Bug #12085 fixed - On Windows csvWrite wrote wrong EOL.
+
+* Bug #12114 fixed - libstdc++ is now compiled as static instead of using the
+                     library from thirdparty.
 
 * Bug #12118 fixed - ode() could take complex externals.
 
@@ -482,6 +496,8 @@ Bug fixes
 * Bug #12589 fixed - Call sequence for spzeros & spones were missing in the french help pages.
 
 * Bug #12593 fixed - A wrong error message was returned when running genlib with an error in the sci file.
+
+* Bug #12600 fixed - mput did not manage unsigned integer.
 
 * Bug #12606 fixed - Overloads for grand were not standard.
 
@@ -578,6 +594,8 @@ Bug fixes
 * Bug #12815 fixed - levin() redefined cov() as a variable.
 
 * Bug #12816 fixed - Numbers pasted in editvar were not parsed according to locale.
+
+* Bug #12818 fixed - Segfault in set function with invalid property values dimension.
 
 * Bug #12823 fixed - In help generation (toolbox) links were not correctly handled.
 

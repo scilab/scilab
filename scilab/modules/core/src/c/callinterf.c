@@ -108,7 +108,8 @@ static OpTab Interfaces[INTERFACES_MAX] =
     /* 69  */ {gw_dynamic_preferences},
     /* 70  */ {gw_dynamic_graphic_objects},
     /* 71  */ {gw_dynamic_external_objects},
-    /* 72  */ {gw_dynamic_mpi}
+    /* 72  */ {gw_dynamic_external_objects_java},
+    /* 73  */ {gw_dynamic_mpi}
 };
 /*--------------------------------------------------------------------------*/
 /**

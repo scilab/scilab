@@ -117,8 +117,5 @@ en_US.NextButtonClickwpReadyMsg3 = Impossible to download CHM files (files will 
 en_US.DescriptionHelpScilabCHM = Scilab Help
 en_US.ScilabCHM = modules\helptools\chm\scilab_en_US_help.chm
 ;
-en_US.VCREDIST = Installation of Microsoft Visual C++ 2012 Redistributable Package
-
-;
 ;-------------------------------------------------------------------------------
 ;

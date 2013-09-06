@@ -13,25 +13,23 @@
 Source: bin\blasplus.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\blasplus.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
+
 #ifndef SCILAB_X64
-; JRE x86 requires this files
-Source: bin\msvcr71.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\msvcr71.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 #endif
-;
-#ifdef SCILAB_X64
-Source: bin\msvcrt.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-;
-;used by libifcoremd
-Source: bin\msvcr80.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\msvcm80.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\msvcp80.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\Microsoft.VC80.CRT.manifest; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-#endif
-;
-Source: bin\msvcr100.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\msvcp100.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-;
+
+;Visual C++ 2012 redist libraries
+Source: bin\msvcp110.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\msvcr110.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\vccorlib110.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+
+;Visual C++ 2010 redist libraries
+Source: bin\msvcr100.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\msvcp100.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+
+
+;MKL
 Source: bin\LIBMMD.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libifcoremd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libifcorertd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

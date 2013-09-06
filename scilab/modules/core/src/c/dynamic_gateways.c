@@ -479,6 +479,22 @@ int gw_dynamic_external_objects(void)
                               &ptr_gw_external_objects);
 }
 /*--------------------------------------------------------------------------*/
+/* external_objects_java module */
+#define EXTERNAL_OBJECTS_JAVA_MODULE_NAME "external_objects_java"
+static DynLibHandle hExternal_Objects_JavaLib = NULL;
+static PROC_GATEWAY ptr_gw_external_objects_java = NULL;
+static char* dynlibname_external_objects_java = NULL;
+static char* gatewayname_external_objects_java = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_external_objects_java(void)
+{
+    return gw_dynamic_generic(EXTERNAL_OBJECTS_JAVA_MODULE_NAME,
+                              &dynlibname_external_objects_java,
+                              &gatewayname_external_objects_java,
+                              &hExternal_Objects_JavaLib,
+                              &ptr_gw_external_objects_java);
+}
+/*--------------------------------------------------------------------------*/
 void freeAllDynamicGateways(void)
 {
     freeDynamicGateway(&dynlibname_special_functions,
@@ -607,10 +623,16 @@ void freeAllDynamicGateways(void)
                        &hExternal_ObjectsLib,
                        &ptr_gw_external_objects);
 
+    freeDynamicGateway(&dynlibname_external_objects_java,
+                       &gatewayname_external_objects_java,
+                       &hExternal_Objects_JavaLib,
+                       &ptr_gw_external_objects_java);
+
     freeDynamicGateway(&dynlibname_mpi,
                        &gatewayname_mpi,
                        &hMpiLib,
                        &ptr_gw_mpi);
+
 }
 /*--------------------------------------------------------------------------*/
 

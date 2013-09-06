@@ -10,4 +10,5 @@
 // TODO : make this '71' more dynamic (with a funptr)
 intppty(71);
 evoid = mlist(["_EVoid", "_EnvId", "_id"], int32(0), int32(0));
+enull = mlist(["_EObj", "_EnvId", "_id"], int32(0), int32(0));
 load("SCI/modules/external_objects/macros/lib");

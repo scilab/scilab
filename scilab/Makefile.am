@@ -43,6 +43,11 @@ endif
 scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS) $(OPENMPI_LIBS)
 scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS) $(OPENMPI_LIBS)
 
+scilab_bin_LDFLAGS += -static-libstdc++
+# -static-libgfortran
+scilab_cli_bin_LDFLAGS += -static-libstdc++
+#-static-libgfortran
+
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
@@ -57,12 +62,12 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
 
-scilab_bin_SOURCES		= $(top_srcdir)/modules/console/src/c/others/mainscic.c
+scilab_bin_SOURCES		= $(top_srcdir)/modules/console/src/c/others/mainscic.cpp
 
 scilab_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
-scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.c
+scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.cpp
 
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
 scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
@@ -146,7 +151,7 @@ $(top_builddir)/Version.incl
 valgrinddir=$(pkgdatadir)/tools/profiling
 valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
-macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep
+macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep check-libstdcpp-dep
 	-@( cd $(top_builddir) ; \
 	echo "$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
 	$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
@@ -160,6 +165,14 @@ if !IS_MACOSX
 		echo "Found dependency from scilab-cli-bin to libjvm found"; exit 2;\
 	fi
 endif
+
+
+check-libstdcpp-dep:
+# Check that scilab-cli does not have a dependency on libstdc++ (should be static)
+	@ldd .libs/scilab-bin .libs/scilab-cli-bin modules/.libs/libscilab*0 |grep libstdc++ > /dev/null; \
+	if test $$? == 0; then \
+		echo "Found dependency from scilab-cli-bin to libstdc++ found"; exit 2;\
+	fi
 
 # Build the public Javadoc (javasci v2 and Java/Scilab types)
 # This is not done in the module itself because its needs also the "types"

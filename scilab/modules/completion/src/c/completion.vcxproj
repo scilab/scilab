@@ -84,7 +84,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes;../../../external_objects/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -112,7 +112,7 @@ lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes;../../../external_objects/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -138,7 +138,7 @@ lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes;../../../external_objects/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -171,7 +171,7 @@ lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes;../../../external_objects/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -198,9 +198,19 @@ lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\EOFieldsGetter.cpp" />
     <ClCompile Include="..\cpp\FieldsManager.cpp" />
     <ClCompile Include="..\cpp\getfields.cpp" />
+    <ClCompile Include="..\cpp\HandleFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\StructFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\UnknownMlistFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\XMLAttrFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\XMLDocFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\XMLElemFieldsGetter.cpp" />
     <ClCompile Include="..\cpp\XMLFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\XMLListFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\XMLNsFieldsGetter.cpp" />
+    <ClCompile Include="..\cpp\XMLSetFieldsGetter.cpp" />
     <ClCompile Include="completeLine.c" />
     <ClCompile Include="completeLine_wrap_java.c" />
     <ClCompile Include="completion.c" />
@@ -220,9 +230,19 @@ lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
   <ItemGroup>
     <ClInclude Include="..\..\includes\completeLine.h" />
     <ClInclude Include="..\..\includes\getfields.h" />
+    <ClInclude Include="..\cpp\EOFieldsGetter.hxx" />
     <ClInclude Include="..\cpp\FieldsGetter.hxx" />
     <ClInclude Include="..\cpp\FieldsManager.hxx" />
+    <ClInclude Include="..\cpp\HandleFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\StructFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\UnknownMlistFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\XMLAttrFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\XMLDocFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\XMLElemFieldsGetter.hxx" />
     <ClInclude Include="..\cpp\XMLFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\XMLListFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\XMLNsFieldsGetter.hxx" />
+    <ClInclude Include="..\cpp\XMLSetFieldsGetter.hxx" />
     <ClInclude Include="completeLine_wrap_java.h" />
     <ClInclude Include="..\..\includes\completion.h" />
     <ClInclude Include="completion_generic.h" />
@@ -256,6 +276,9 @@ lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external_objects\external_objects.vcxproj">
+      <Project>{3142e52c-309a-41d9-bd12-7b7e9e3bdd44}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>

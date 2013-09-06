@@ -116,7 +116,7 @@
             <literal>%nan</literal> est toujours admis dans <literal>N</literal>, mais pas dans <literal>H</literal> en mode normal.
         </para>
         <para>
-            En mode normal (élément par élément), members(..) utilise la fonction <link type="scilab" linkend="scilab.help/dsearch">dsearch(..)</link> afin de traiter efficacement les tableaux de booléens, d'entiers encodés (de tous formats : 8-16-32 bits signés ou non), ou de nombres réels. Le traitement des tableaux de nombres complexes, de polynômes ou de textes est réalisé par un algorithme plus lent et gourmand en mémoire vive. Pour de meilleures performances avec ces types de données, en particulier si <literal>N</literal> ou/et <literal>H</literal> sont de grandes tailles, l'utilisateur peut préalablement augmenter la taille de la pile dévolue aux variables en utilisant <link type="scilab" linkend="scilab.help/stacksize">stacksize(..)</link>. Lorsque le traitement est long, une jauge de progression est affichée.
+            En mode normal (élément par élément), members(..) utilise la fonction <link linkend="dsearch">dsearch(..)</link> afin de traiter efficacement les tableaux de booléens, d'entiers encodés (de tous formats : 8-16-32 bits signés ou non), ou de nombres réels. Le traitement des tableaux de nombres complexes, de polynômes ou de textes est réalisé par un algorithme plus lent et gourmand en mémoire vive. Pour de meilleures performances avec ces types de données, en particulier si <literal>N</literal> ou/et <literal>H</literal> sont de grandes tailles, l'utilisateur peut préalablement augmenter la taille de la pile dévolue aux variables en utilisant <link linkend="stacksize">stacksize(..)</link>. Lorsque le traitement est long, une jauge de progression est affichée.
         </para>
     </refsection>
     <refsection>
@@ -187,16 +187,16 @@ H = [ "Hello" "Bonjour" "Allo"
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link type="scilab" linkend="scilab.help/dsearch">dsearch</link>
+                <link linkend="dsearch">dsearch</link>
             </member>
             <member>
-                <link type="scilab" linkend="scilab.help/intersect">intersect</link>
+                <link linkend="intersect">intersect</link>
             </member>
             <member>
-                <link type="scilab" linkend="scilab.help/find">find</link>
+                <link linkend="find">find</link>
             </member>
             <member>
-                <link type="scilab" linkend="scilab.help/vectorfind">vectorfind</link>
+                <link linkend="vectorfind">vectorfind</link>
             </member>
         </simplelist>
     </refsection>

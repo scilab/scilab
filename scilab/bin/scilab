@@ -295,7 +295,9 @@ set_macosx_java_vm () {
     # For Mac OS X, Since path are different from the JVM normal tree,
     # don't need to detect the CPU
     JAVA_SHLIB="libjava.jnilib"
-    JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
+    if test -z "$JAVA_HOME"; then
+      JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
+    fi
     DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
 
 }
@@ -716,7 +718,7 @@ check_macosx_version()
             case $macosxMinorVersion in
                 7|8)
                    # We force to install JRE on Lion
-                   /usr/libexec/java_home --request
+                   /usr/libexec/java_home --request > /dev/null
                    ;;
                 6)
 

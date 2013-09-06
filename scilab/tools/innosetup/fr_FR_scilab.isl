@@ -116,8 +116,5 @@ fr_FR.NextButtonClickwpReadyMsg3 = Impossible de télécharger les fichiers d'aide
 fr_FR.DescriptionHelpScilabCHM = Aide Scilab
 fr_FR.ScilabCHM = modules\helptools\chm\scilab_fr_FR_help.chm
 ;
-fr_FR.VCREDIST = Installation du package redistribuable Microsoft Visual C++ 2012
-
-;
 ;-------------------------------------------------------------------------------
 ;

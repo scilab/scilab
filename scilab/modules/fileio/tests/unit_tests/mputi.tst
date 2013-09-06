@@ -44,10 +44,14 @@ ref_usl = hex2dec(["7B" "00" "6E" "B2" "40" "E2"]);
 //integer in long ( little endian )
 writedata("l", list(s8, s16, s32));
 assert_checkequal(readdata("l", 12), ref_l);
+writedata("i", list(s8, s16, s32));
+assert_checkequal(readdata("i", 12), ref_l);
 
 //integer in little endian long
 writedata("ll", list(s8, s16, s32));
 assert_checkequal(readdata("ll", 12), ref_ll);
+writedata("il", list(s8, s16, s32));
+assert_checkequal(readdata("il", 12), ref_ll);
 
 //integer in short
 writedata("s", list(s8, s16, s32));
@@ -60,6 +64,8 @@ assert_checkequal(readdata("sl", 6), ref_sl);
 //integer in unsigned long
 writedata("ul", list(u8, u16, u32));
 assert_checkequal(readdata("ul", 12), ref_ul);
+writedata("ui", list(u8, u16, u32));
+assert_checkequal(readdata("ui", 12), ref_ul);
 
 //integer in unsigned short
 writedata("us", list(u8, u16, u32));
@@ -68,6 +74,8 @@ assert_checkequal(readdata("us", 6), ref_us);
 //integer in big endian long
 writedata("lb", list(s8, s16, s32));
 assert_checkequal(readdata("lb", 12), ref_lb);
+writedata("ib", list(s8, s16, s32));
+assert_checkequal(readdata("ib", 12), ref_lb);
 
 //integer in big endian short
 writedata("sb", list(s8, s16, s32));
@@ -76,6 +84,8 @@ assert_checkequal(readdata("sb", 6), ref_sb);
 //unsigned integer in unsigned big endian long
 writedata("ulb", list(u8, u16, u32));
 assert_checkequal(readdata("ulb", 12), ref_ulb);
+writedata("uib", list(u8, u16, u32));
+assert_checkequal(readdata("uib", 12), ref_ulb);
 
 //unsigned integer in unsigned big endian short
 writedata("usb", list(u8, u16, u32));
@@ -84,6 +94,8 @@ assert_checkequal(readdata("usb", 6), ref_usb);
 //unsigned integer in unsigned little endian long
 writedata("ull", list(u8, u16, u32));
 assert_checkequal(readdata("ull", 12), ref_ull);
+writedata("uil", list(u8, u16, u32));
+assert_checkequal(readdata("uil", 12), ref_ull);
 
 //unsigned integer in unsigned little endian short
 writedata("usl", list(u8, u16, u32));

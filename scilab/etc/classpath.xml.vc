@@ -27,166 +27,175 @@ The option is "disableUnderMode" and can be:
 
 <classpaths>
 
-<!-- Mandatory on startup -->
-<path value="$SCILAB/thirdparty/flexdock-1.2.4.jar"/>
-<path value="$SCILAB/thirdparty/skinlf.jar"/>
-<path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
-<path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
-<path value="$SCILAB/thirdparty/jhall.jar"/>
+    <!-- Mandatory on startup -->
+    <path value="$SCILAB/thirdparty/flexdock-1.2.4.jar"/>
+    <path value="$SCILAB/thirdparty/skinlf.jar"/>
+    <path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
+    <path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
+    <path value="$SCILAB/thirdparty/jhall.jar"/>
 
-<!-- Load when needed -->
+    <!-- Load when needed -->
 
-<path value="$SCILAB/thirdparty/jrosetta-API.jar" load="onUse">
+    <path value="$SCILAB/thirdparty/jrosetta-API.jar" load="onUse">
         <load on="Console" />
         <load on="SciNotes" />
-</path>
-<path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="onUse">
+    </path>
+    <path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="onUse">
         <load on="Console" />
         <load on="SciNotes" />
-</path>
+    </path>
 
-<path value="$SCILAB/thirdparty/jgraphx.jar" load="onUse">
-	<load on="Xcos"/>
-	<load on="documentationGeneration"/>
-</path>
+    <path value="$SCILAB/thirdparty/jgraphx.jar" load="onUse">
+        <load on="Xcos"/>
+        <load on="documentationGeneration"/>
+    </path>
 
-<path value="$SCILAB/modules/scirenderer/jar/scirenderer.jar" load="onUse">
-    <load on="graphics"/>
-    <load on="graphic_ojects"/>
-    <load on="Xcos"/>
-</path>
+    <path value="$SCILAB/modules/scirenderer/jar/scirenderer.jar" load="onUse">
+        <load on="graphics"/>
+        <load on="graphic_ojects"/>
+        <load on="Xcos"/>
+    </path>
 
-<path value="$SCILAB/thirdparty/jogl2.jar" load="onUse">
-	<load on="graphics"/>
-	<load on="graphic_export"/>
-	<load on="Xcos"/>
-</path>
+    <path value="$SCILAB/thirdparty/jogl2.jar" load="onUse">
+        <load on="graphics"/>
+        <load on="graphic_export"/>
+        <load on="Xcos"/>
+    </path>
 
-<path value="$SCILAB/thirdparty/gluegen2-rt.jar" load="onUse">
-	<load on="graphics"/>
-	<load on="graphic_export"/>
-	<load on="Xcos"/>
-</path>
+    <path value="$SCILAB/thirdparty/gluegen2-rt.jar" load="onUse">
+        <load on="graphics"/>
+        <load on="graphic_export"/>
+        <load on="Xcos"/>
+    </path>
 
-<!-- Temp. loaded at startup -->
-<path value="$SCILAB/modules/types/jar/org.scilab.modules.types.jar"/>
-<!-- END -->
+    <!-- Temp. loaded at startup -->
+    <path value="$SCILAB/modules/types/jar/org.scilab.modules.types.jar"/>
+    <!-- END -->
 
-<!-- Documentation (not mandatory) -->
-<path value="$SCILAB/thirdparty/jeuclid-core.jar" load="onUse">
-	<load on="documentationGeneration"/>
-	<load on="graphics_mathml_textrendering"/>
-	<load on="xcos_mathml_rendering"/>
-</path>
+    <!-- Documentation (not mandatory) -->
+    <path value="$SCILAB/thirdparty/jeuclid-core.jar" load="onUse">
+        <load on="documentationGeneration"/>
+        <load on="graphics_mathml_textrendering"/>
+        <load on="xcos_mathml_rendering"/>
+    </path>
 
-<path value="$SCILAB/thirdparty/jlatexmath-fop-1.0.2.jar" load="onUse">
-	<load on="documentationGeneration"/>
-	<load on="pdf_ps_eps_graphic_export"/>
-</path>
-<path value="$SCILAB/thirdparty/fop.jar" load="onUse">
-	<load on="documentationGeneration"/>
-	<load on="pdf_ps_eps_graphic_export"/>
-</path>
-<path value="$SCILAB/thirdparty/saxon9he.jar" load="onUse">
-	<load on="documentationGeneration"/>
-</path>
-<path value="$SCILAB/thirdparty/batik-all-1.7.jar" load="onUse">
-	<load on="documentationGeneration"/>
-	<load on="graphics_mathml_textrendering"/>
-	<load on="svg_graphic_export"/>
-	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="Xcos"/>
-</path>
-<path value="$SCILAB/thirdparty/xml-apis-ext.jar" load="onUse">
-	<load on="documentationGeneration"/>
-	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="Xcos"/>
-</path>
+    <path value="$SCILAB/thirdparty/jlatexmath-fop-1.0.2.jar" load="onUse">
+        <load on="documentationGeneration"/>
+        <load on="pdf_ps_eps_graphic_export"/>
+    </path>
+    <path value="$SCILAB/thirdparty/fop.jar" load="onUse">
+        <load on="documentationGeneration"/>
+        <load on="pdf_ps_eps_graphic_export"/>
+    </path>
+    <path value="$SCILAB/thirdparty/saxon9he.jar" load="onUse">
+        <load on="documentationGeneration"/>
+    </path>
+    <path value="$SCILAB/thirdparty/batik-all-1.7.jar" load="onUse">
+        <load on="documentationGeneration"/>
+        <load on="graphics_mathml_textrendering"/>
+        <load on="svg_graphic_export"/>
+        <load on="pdf_ps_eps_graphic_export"/>
+        <load on="Xcos"/>
+    </path>
+    <path value="$SCILAB/thirdparty/xml-apis-ext.jar" load="onUse">
+        <load on="documentationGeneration"/>
+        <load on="pdf_ps_eps_graphic_export"/>
+        <load on="Xcos"/>
+    </path>
 
-<!-- PDF doc generation -->
-<path value="$SCILAB/thirdparty/commons-io.jar" load="onUse">
-	<load on="documentationGeneration"/>
-	<load on="graphics_mathml_textrendering"/>
-	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="Xcos"/>
-</path>
+    <!-- PDF doc generation -->
+    <path value="$SCILAB/thirdparty/commons-io.jar" load="onUse">
+        <load on="documentationGeneration"/>
+        <load on="graphics_mathml_textrendering"/>
+        <load on="pdf_ps_eps_graphic_export"/>
+        <load on="Xcos"/>
+    </path>
 
-<!-- PDF doc generation (dep of jeuclid) -->
-<path value="$SCILAB/thirdparty/xmlgraphics-commons-1.4.jar" load="onUse">
-	<load on="documentationGeneration"/>
-	<load on="graphics_mathml_textrendering"/>
-	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="Xcos"/>
-</path>
-<path value="$SCILAB/thirdparty/avalon-framework.jar" load="onUse">
-	<load on="documentationGeneration"/>
-	<load on="pdf_ps_eps_graphic_export"/>
-</path>
+    <!-- PDF doc generation (dep of jeuclid) -->
+    <path value="$SCILAB/thirdparty/xmlgraphics-commons-1.4.jar" load="onUse">
+        <load on="documentationGeneration"/>
+        <load on="graphics_mathml_textrendering"/>
+        <load on="pdf_ps_eps_graphic_export"/>
+        <load on="Xcos"/>
+    </path>
+    <path value="$SCILAB/thirdparty/avalon-framework.jar" load="onUse">
+        <load on="documentationGeneration"/>
+        <load on="pdf_ps_eps_graphic_export"/>
+    </path>
 
-<path value="$SCILAB/thirdparty/jlatexmath-1.0.2.jar" load="onUse">
-  	<load on="documentationGeneration"/>
-	<load on="graphics_latex_textrendering"/>
-	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="Xcos"/>
-</path>
+    <path value="$SCILAB/thirdparty/jlatexmath-1.0.2.jar" load="onUse">
+        <load on="documentationGeneration"/>
+        <load on="graphics_latex_textrendering"/>
+        <load on="pdf_ps_eps_graphic_export"/>
+        <load on="Xcos"/>
+    </path>
 
-<!-- helptools module doc generation -->
-<path value="$SCILAB/modules/helptools/jar/org.scilab.modules.helptools.jar" load="onUse">
-	<load on="documentationGeneration"/>
-	<load on="copyAsHTMLinScinotes"/>
-</path>
+    <!-- helptools module doc generation -->
+    <path value="$SCILAB/modules/helptools/jar/org.scilab.modules.helptools.jar" load="onUse">
+        <load on="documentationGeneration"/>
+        <load on="copyAsHTMLinScinotes"/>
+    </path>
 
-<!-- Mandatory on startup -->
-<path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
-<path value="$SCILAB/modules/commons/jar/org.scilab.modules.commons.jar"/>
+    <!-- Mandatory on startup -->
+    <path value="$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
+    <path value="$SCILAB/modules/commons/jar/org.scilab.modules.commons.jar"/>
 
-<!-- Console GUI dep -->
-<path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar" disableUnderMode="NW"/>
-<path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar" load="onUse">
+    <!-- Console GUI dep -->
+    <path value="$SCILAB/modules/history_manager/jar/org.scilab.modules.history_manager.jar" disableUnderMode="NW"/>
+    <path value="$SCILAB/modules/completion/jar/org.scilab.modules.completion.jar" load="onUse">
         <load on="Console"/>
         <load on="SciNotes"/>
-</path>
+    </path>
 
-<path value="$SCILAB/modules/console/jar/org.scilab.modules.console.jar"/>
+    <path value="$SCILAB/modules/console/jar/org.scilab.modules.console.jar"/>
 
-<path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar"/>
-<path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar"/>
+    <path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar"/>
+    <path value="$SCILAB/modules/action_binding/jar/org.scilab.modules.action_binding.jar"/>
 
-<path value="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar"/>
-<path value="$SCILAB/modules/gui/etc"/> <!-- Scilab Flexdock theme -->
-<path value="$SCILAB/modules/gui/images/icons/"/> <!-- Scilab Flexdock icons -->
+    <path value="$SCILAB/modules/gui/jar/org.scilab.modules.gui.jar"/>
+    <path value="$SCILAB/modules/gui/etc"/>
+    <!-- Scilab Flexdock theme -->
+    <path value="$SCILAB/modules/gui/images/icons/"/>
+    <!-- Scilab Flexdock icons -->
 
-<path value="$SCILAB/modules/preferences/jar/org.scilab.modules.preferences.jar"/>
+    <path value="$SCILAB/modules/preferences/jar/org.scilab.modules.preferences.jar"/>
 
-<path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
+    <path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
 
-<path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar"/>
+    <path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar"/>
 
-<path value="$SCILAB/modules/core/jar/org.scilab.modules.core.jar"/>
+    <path value="$SCILAB/modules/core/jar/org.scilab.modules.core.jar"/>
 
-<!-- scinotes module -->
-<path value="$SCILAB/modules/scinotes/jar/org.scilab.modules.scinotes.jar" load="onUse">
-	<load on="SciNotes"/>
-</path>
+    <!-- scinotes module -->
+    <path value="$SCILAB/modules/scinotes/jar/org.scilab.modules.scinotes.jar" load="onUse">
+        <load on="SciNotes"/>
+    </path>
 
-<!-- Xcos module -->
-<path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
-	<load on="Xcos"/>
-	<load on="documentationGeneration"/>
-</path>
+    <!-- Xcos module -->
+    <path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
+        <load on="Xcos"/>
+        <load on="documentationGeneration"/>
+    </path>
 
-<path value="$SCILAB/modules/graph/jar/org.scilab.modules.graph.jar" load="onUse">
-	<load on="Xcos"/>
-	<load on="documentationGeneration"/>
-</path>
+    <path value="$SCILAB/modules/graph/jar/org.scilab.modules.graph.jar" load="onUse">
+        <load on="Xcos"/>
+        <load on="documentationGeneration"/>
+    </path>
 
-<!-- TO DO Load only when we need -->
-<path value="$SCILAB/modules/graphic_objects/jar/org.scilab.modules.graphic_objects.jar"/>
+    <!-- TO DO Load only when we need -->
+    <path value="$SCILAB/modules/graphic_objects/jar/org.scilab.modules.graphic_objects.jar"/>
 
-<!-- TO DO Load only when we need -->
-<path value="$SCILAB/modules/ui_data/jar/org.scilab.modules.ui_data.jar"/>
-<path value="$SCILAB/modules/javasci/jar/org.scilab.modules.javasci.jar"/>
+    <!-- TO DO Load only when we need -->
+    <path value="$SCILAB/modules/ui_data/jar/org.scilab.modules.ui_data.jar"/>
+    <path value="$SCILAB/modules/javasci/jar/org.scilab.modules.javasci.jar"/>
 
-<path value="$SCILAB/modules/history_browser/jar/org.scilab.modules.history_browser.jar" disableUnderMode="NW"/>
+    <path value="$SCILAB/modules/history_browser/jar/org.scilab.modules.history_browser.jar" disableUnderMode="NW"/>
+
+
+    <path value="$SCILAB/modules/external_objects_java/jar/org.scilab.modules.external_objects_java.jar" />
+
+    <path value="$SCILAB/thirdparty/ecj.jar" load="onUse">
+        <load on="external_objects_java"/>
+    </path>
 
 </classpaths>

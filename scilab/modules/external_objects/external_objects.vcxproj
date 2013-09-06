@@ -271,6 +271,7 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\import.cpp" />
     <ClCompile Include="src\cpp\invoke.cpp" />
     <ClCompile Include="src\cpp\invoker.cpp" />
+    <ClCompile Include="src\cpp\invoke_asref.cpp" />
     <ClCompile Include="src\cpp\invoke_lu.cpp" />
     <ClCompile Include="src\cpp\newInstance.cpp" />
     <ClCompile Include="src\cpp\objectExtract.cpp" />
@@ -289,6 +290,7 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\unwrapremove.cpp" />
     <ClCompile Include="src\cpp\wrap.cpp" />
     <ClCompile Include="src\cpp\wrapAsRef.cpp" />
+    <ClCompile Include="src\cpp\wrapInFloat.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">

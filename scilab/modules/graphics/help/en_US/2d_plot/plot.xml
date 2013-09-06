@@ -29,7 +29,7 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>a real matrice or vector. If omitted, it is assumed to be the
+                    <para>a real matrix or vector. If omitted, it is assumed to be the
                         vector <literal>1:n</literal> where <literal>n</literal> is the number of curve
                         points given by the <literal>y</literal> parameter.
                     </para>
@@ -39,7 +39,7 @@
                 <term>y</term>
                 <listitem>
                     <para>
-                        a real matrice or vector. <literal>y</literal> can also be a
+                        a real matrix or vector. <literal>y</literal> can also be a
                         function defined as a macro or a primitive.
                     </para>
                 </listitem>
