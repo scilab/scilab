@@ -8,7 +8,13 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [plist, err] = add_param(list_name, param_name, param_value)
+
     [nargout, nargin] = argn();
+
+    if nargin <> 3 then
+        error(sprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "add_param", 3));
+    end
+
     if typeof(list_name) == "plist" then
         if ~is_param(list_name, param_name) then
             setfield(1, [getfield(1, list_name) param_name], list_name);
@@ -28,4 +34,5 @@ function [plist, err] = add_param(list_name, param_name, param_value)
         error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), "add_param", 1, "plist"));
     end
     plist = list_name;
+
 endfunction
