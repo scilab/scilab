@@ -16,6 +16,7 @@ Source: bin\blasplus.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 
 #ifndef SCILAB_X64
 Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\msvcr71.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 #endif
 
 ;Visual C++ 2012 redist libraries
