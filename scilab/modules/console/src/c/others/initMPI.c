@@ -10,7 +10,10 @@
  *
  */
 
-#include <mpi.h>
+#include <stdio.h>
+#include <mpi.h>                        // for MPI_Error_string, MPI_Init, etc
+#include <stddef.h>                     // for NULL
+#include "localization.h"               // for _
 
 MPI_Errhandler errhdl;
 
@@ -34,4 +37,5 @@ int initScilabMPI()
         /* MPI Not yet initialized */
         MPI_Init(NULL, NULL);
     }
+    return 0;
 }

@@ -50,6 +50,7 @@ AC_DEFUN([AC_OPENMPI], [
 		fi
 #fi
 saved_cflags=$CFLAGS
+saved_cxxflags=$CXXFLAGS
 saved_LIBS="$LIBS"
 
 CFLAGS=`$OPENMPI_CC --showme:compile`
@@ -57,7 +58,7 @@ CXXFLAGS=`$OPENMPI_CXX --showme:compile`
 LIBS=`$OPENMPI_CC --showme:link`
 
 AC_CHECK_HEADER([mpi.h],
-	[OPENMPI_CFLAGS=$CFLAGS],
+	[OPENMPI_CFLAGS=$CFLAGS; OPENMPI_CXXFLAGS=$CXXFLAGS],
 	[AC_MSG_ERROR([Cannot find headers of the library OpenMPI. Please install the dev package (Debian : openmpi-dev)])])
 
 AC_CHECK_LIB([mpi], [MPI_Init],
@@ -65,18 +66,14 @@ AC_CHECK_LIB([mpi], [MPI_Init],
                [AC_MSG_ERROR([openmpi : library missing. (Cannot find symbol MPI_Init in -lmpi). Check if OpenMPI is installed])]
                )
 
-#OPENMPI_CPPFLAGS="-I$openmpi_dir/include"
-#OPENMPI_LDFLAGS="-L$openmpi_dir/lib/"
-
-#OPENMPI_HEADER="$openmpi_dir/include/mpi.h"
-#OPENMPI_DIR="$openmpi_dir"
-
 AC_DEFINE([ENABLE_MPI],[],[Have MPI features])
 
 LIBS="$saved_LIBS"
 CFLAGS=$saved_cflags
+CXXFLAGS=$saved_cppflags
 
-AC_SUBST(OPENMPI_FLAGS)
+AC_SUBST(OPENMPI_CFLAGS)
+AC_SUBST(OPENMPI_CXXFLAGS)
 AC_SUBST(OPENMPI_LIBS)
 
 #CFLAGS="$CFLAGS $OPENMPI_FLAGS"

@@ -82,7 +82,9 @@ scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la 
 if MPI
 CXX = $(OPENMPI_CXX)
 scilab_bin_SOURCES += $(top_srcdir)/modules/console/src/c/others/initMPI.c
+scilab_bin_CPPFLAGS += $(OPENMPI_CXXFLAGS)
 scilab_cli_bin_SOURCES += $(top_srcdir)/modules/console/src/c/others/initMPI.c
+scilab_cli_bin_CPPFLAGS += $(OPENMPI_CXXFLAGS)
 endif
 
 

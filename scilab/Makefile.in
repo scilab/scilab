@@ -116,11 +116,13 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT)
 #-static-libgfortran
 @IS_MACOSX_TRUE@am__append_6 = -framework Cocoa
 @MPI_TRUE@am__append_7 = $(top_srcdir)/modules/console/src/c/others/initMPI.c
-@MPI_TRUE@am__append_8 = $(top_srcdir)/modules/console/src/c/others/initMPI.c
+@MPI_TRUE@am__append_8 = $(OPENMPI_CXXFLAGS)
+@MPI_TRUE@am__append_9 = $(top_srcdir)/modules/console/src/c/others/initMPI.c
+@MPI_TRUE@am__append_10 = $(OPENMPI_CXXFLAGS)
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_9 = localization
-@COMPILATION_TESTS_TRUE@am__append_10 = check-java
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_11 = localization
+@COMPILATION_TESTS_TRUE@am__append_12 = check-java
 DIST_COMMON = $(top_srcdir)/Makefile.call_scilab.am \
 	$(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
@@ -628,8 +630,9 @@ OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
 OPENMPI_CC = @OPENMPI_CC@
+OPENMPI_CFLAGS = @OPENMPI_CFLAGS@
 OPENMPI_CXX = @OPENMPI_CXX@
-OPENMPI_FLAGS = @OPENMPI_FLAGS@
+OPENMPI_CXXFLAGS = @OPENMPI_CXXFLAGS@
 OPENMPI_LIBS = @OPENMPI_LIBS@
 OPENMP_CFLAGS = @OPENMP_CFLAGS@
 OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
@@ -778,10 +781,9 @@ scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(am__append_2) \
 scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(am__append_3) \
 	$(am__append_5)
 scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
-                    -I$(top_srcdir)/modules/console/includes/ \
-                    -I$(top_srcdir)/modules/localization/includes/ \
-                    $(AM_CPPFLAGS)
-
+	-I$(top_srcdir)/modules/console/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ $(AM_CPPFLAGS) \
+	$(am__append_8)
 # --no-undefined --relax
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
@@ -795,11 +797,12 @@ scilab_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS)
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES =  \
 	$(top_srcdir)/modules/console/src/c/others/mainscic.cpp \
-	$(am__append_8)
-scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
+	$(am__append_9)
+scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS) \
+	$(am__append_10)
 scilab_cli_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_9) $(am__append_10)
+TARGETS_ALL = macros $(am__append_11) $(am__append_12)
 
 # check is performed with scilab, so use the serial-tests on purpose
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
