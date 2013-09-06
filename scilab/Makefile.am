@@ -34,8 +34,6 @@ bin_PROGRAMS		= scilab-bin scilab-cli-bin
 bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli \
 bin/scinotes bin/xcos
 
-CXX = $(OPENMPI_CXX)
-
 if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
@@ -80,6 +78,12 @@ scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.cpp
 
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
 scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
+
+if MPI
+CXX = $(OPENMPI_CXX)
+scilab_bin_SOURCES += $(top_srcdir)/modules/console/src/c/others/initMPI.c
+scilab_cli_bin_SOURCES += $(top_srcdir)/modules/console/src/c/others/initMPI.c
+endif
 
 
 if NEED_JAVA

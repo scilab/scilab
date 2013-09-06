@@ -71,6 +71,8 @@ AC_CHECK_LIB([mpi], [MPI_Init],
 #OPENMPI_HEADER="$openmpi_dir/include/mpi.h"
 #OPENMPI_DIR="$openmpi_dir"
 
+AC_DEFINE([ENABLE_MPI],[],[Have MPI features])
+
 LIBS="$saved_LIBS"
 CFLAGS=$saved_cflags
 

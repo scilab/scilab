@@ -155,7 +155,7 @@ AC_PROG_GREP
 
 AC_ARG_WITH(fink_prefix,
 AC_HELP_STRING([--with-fink-prefix],[Provide a fink prefix. Default: /sw/ ]))
-# Need MacosX Version to specify some path.                                  
+# Need MacosX Version to specify some path.
 case "$host_os" in
      *Darwin* | *darwin*)
      	      AC_GET_MACOSX_VERSION
@@ -1352,19 +1352,22 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 ## MPI
 #################
 
-# Not in Scilab 5.0
+# Disable by default the build of MPI:
+# * It is hard to package
+# * People are administrating cluster know about rebuilding packages
+# * They use their own MPI library
 AC_ARG_WITH(mpi,
-    AC_HELP_STRING([--without-mpi],[compile with MPI library]))
+    AC_HELP_STRING([--with-mpi],[compile with MPI library]))
 
 MPI_ENABLE=no
-if test "$with_mpi" != no; then
+if test "$with_mpi" == yes; then
    AC_OPENMPI()
    # We will have to detect other implementation of OpenMPI
    MPI_ENABLE=yes
 fi
 AC_SUBST(MPI_ENABLE)
 
-AM_CONDITIONAL(MPI, test "$with_mpi" != no)
+AM_CONDITIONAL(MPI, test "$with_mpi" == yes)
 
 #################
 ## OpenMP
