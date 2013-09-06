@@ -383,6 +383,9 @@ Bug Fixes
 
 * Bug #9109 fixed - nfreq tagged as obsolete.
 
+* Bug #9208 fixed - Added three optional output arguments to optim(),
+                    to retrieve #iterations, #evaluations and a termination indicator.
+
 * Bug #9385 fixed - The type checking in trigonometric functions has been added.
 
 * Bug #9394 fixed - is_params recognized "plist" as an existing field.

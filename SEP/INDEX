@@ -98,3 +98,6 @@ SEP #099: Matrices of strings as input argument for clear
 SEP #100: Extends history size
 SEP #101: File browser
 SEP #102: members function.
+SEP #103: Localization : allow multiple domains and add addlocalizationdomain function.
+SEP #104: /* RESERVED */
+SEP #105: Three new optional output arguments to optim().
