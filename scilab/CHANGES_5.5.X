@@ -357,6 +357,9 @@ Bug fixes
 
 * Bug #9459 fixed - Default values of the optional plot3d arguments were not documented.
 
+* Bug #9538 fixed - optimbase_checkshape() only allowed row vectors as return from the cost function.
+                    Column vectors now allowed by transposing them.
+
 * Bug #9577 fixed - Setting neldermead_configure("-numberofvariables") is now optional,
                     setting neldermead_configure("-x0") does it implicitly.
 
