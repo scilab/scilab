@@ -43,10 +43,19 @@ endif
 scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS) $(OPENMPI_LIBS)
 scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS) $(OPENMPI_LIBS)
 
-scilab_bin_LDFLAGS += -static-libstdc++
+if USE_STATIC_SYSTEM_LIB
+scilab_bin_LDFLAGS += -static-libstdc++ -static-libgcc
 # -static-libgfortran
-scilab_cli_bin_LDFLAGS += -static-libstdc++
+scilab_cli_bin_LDFLAGS += -static-libstdc++ -static-libgcc
 #-static-libgfortran
+else
+# Clang (for example) needs an explicit reference to the lib
+scilab_bin_LDFLAGS += -lstdc++
+# -static-libgfortran
+scilab_cli_bin_LDFLAGS += -lstdc++
+#-static-libgfortran
+endif
+
 
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
@@ -82,17 +91,6 @@ endif
 if IS_SOLARIS
 # The binary itself needs this dep
 	scilab_bin_LDADD += $(BLAS_LIBS)
-endif
-
-if ENABLE_STATIC
-scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group $(AM_LDFLAGS)
-scilab_static_bin_CFLAGS  = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a` $(AM_CFLAGS)
-
-#-static
-bin_PROGRAMS	   		+= scilab-static-bin
-scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
-
-scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 endif
 
 LANG_DOMAIN=scilab
@@ -168,11 +166,15 @@ endif
 
 
 check-libstdcpp-dep:
+if USE_STATIC_SYSTEM_LIB
 # Check that scilab-cli does not have a dependency on libstdc++ (should be static)
 	@ldd .libs/scilab-bin .libs/scilab-cli-bin modules/.libs/libscilab*0 |grep libstdc++ > /dev/null; \
 	if test $$? == 0; then \
 		echo "Found dependency from scilab-cli-bin to libstdc++ found"; exit 2;\
 	fi
+else
+	echo "libstdc++ presence test skipped"
+endif
 
 # Build the public Javadoc (javasci v2 and Java/Scilab types)
 # This is not done in the module itself because its needs also the "types"
