@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -89,8 +89,9 @@
             <varname>filename</varname>. Первые нечисловые строчки файла
             возвращаются в переменной <varname>text</varname>, если это
             запрошено, а все оставшиеся строчки должны иметь одинаковое
-            количество столбцов (разделителем столбцов предполагается пробел
-            или символы табуляции). Количество столбцов матрицы должно
+            количество столбцов (разделителем столбцов могут быть либо
+            пробелы либо символы табуляции, если же есть и те и другие,
+            то, по умолчанию, будут выбраны пробелы). Количество столбцов матрицы должно
             соответствовать количеству столбцов, обнаруженных в файле
             <varname>filename</varname>, а количество строк получается при
             обнаружении конца файла (EOF) во входном файле. Эта функция
@@ -107,14 +108,14 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"> 
+        <programlisting role="example">
             fd = mopen(TMPDIR + "/Mat", "w");
             mfprintf(fd, "Какой-то текст.....\n");
             mfprintf(fd, "Ещё какой-то текст...\n");
             a = rand(6,6);
             for i = 1:6 ,
             for j = 1:6, mfprintf(fd, "%5.2f ", a(i,j));end;
-            mfprintf(fd, "\n"); 
+            mfprintf(fd, "\n");
             end
             mclose(fd);
             a1 = fscanfMat(TMPDIR + "/Mat")
