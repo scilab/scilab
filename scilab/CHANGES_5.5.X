@@ -78,6 +78,8 @@ Improvements
 Obsolete
 =========
 
+* Scilab 5.5.X family will be the latest one working under Windows XP/2003.
+
 * The third argument of poly function will be more strict.
     Only the following strings will be allowed : "roots", "coeff", "c", "r".
 
@@ -99,6 +101,7 @@ Obsolete
 * fscanf is obsolete, use mfscanf for files opened with mopen or read for files opened with file instead.
 
 * fprintf is obsolete, use mfprintf for files opened with mopen or write for files opened with file instead.
+
 
 Differential_equations
 ======================
