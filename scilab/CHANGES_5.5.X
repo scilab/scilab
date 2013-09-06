@@ -376,6 +376,8 @@ Bug Fixes
 
 * Bug #9385 fixed - The type checking in trigonometric functions has been added.
 
+* Bug #9394 fixed - is_params recognized "plist" as an existing field.
+
 * Bug #9395 fixed - add_params did not check its input arguments.
 
 * Bug #9396 fixed - add_params accepted duplicate keys.
