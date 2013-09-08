@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Pedro SOUZA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -54,24 +54,22 @@
                 Specular color defines the specular highlight color.
             </para>
         </listitem>
-        
+
         <para>
             Following one can compare the surface with and without lighting:
         </para>
         <para>
             <scilab:image>
                 plot3d();
-                s=gce();
                 light = light_create();
             </scilab:image>
         </para>
         <para>
             <scilab:image>
                 plot3d();
-                s=gce();
             </scilab:image>
         </para>
-        
+
     </refsection>
     <refsection>
         <title>Lighting properties list</title>
@@ -164,7 +162,7 @@
                 <term>ambient_color: </term>
                 <listitem>
                     <para>This field defines the ambient color of the surface.
-                        The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal> 
+                        The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
                         with each element in the range [0, 1].
                     </para>
                 </listitem>
@@ -173,7 +171,7 @@
                 <term>diffuse_color: </term>
                 <listitem>
                     <para>This field defines the diffuse color of the surface.
-                        The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal> 
+                        The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
                         with each element in the range [0, 1]. Notice that this field is
                         only used when color_material is disabled.
                     </para>
@@ -183,7 +181,7 @@
                 <term>specular_color: </term>
                 <listitem>
                     <para>This field defines the specular color of the surface.
-                        The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal> 
+                        The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
                         with each element in the range [0, 1].
                     </para>
                 </listitem>
@@ -200,12 +198,13 @@ plot3d();
 s=gce();
 s.color_flag=0;
 s.thickness=0;
+s.hiddencolor = -1;
 light = light_create();
 //change diffuse color to orange
 s.diffuse_color = [1, 0.6, 0];
 s.color_material="off";
 //black spots turn dark orange
-s.ambient_color = [0.3, 0.1, 0];
+s.ambient_color = [1, 0.6, 0];
          ]]></programlisting>
         <para>
             Directional light:
@@ -218,6 +217,9 @@ s.color_flag=0;
 s.thickness=0;
 light.light_type = "directional";
 light.light_direction = [0 0 1];
+light.diffuse_color = [1 0.9 0.9];
+light.ambient_color = [0.5 0.4 0.4];
+light.specular_color = [0.5 0.3 0.7];
          ]]></programlisting>
     </refsection>
     <refsection role="see also">
