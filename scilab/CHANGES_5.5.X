@@ -96,6 +96,8 @@ Obsolete
 * chart() tagged as obsolete. Will be removed for Scilab 5.5.1.
   Use nicholschart() instead.
 
+* dft removed, use fft instead.
+
 * sscanf is obsolete, use msscanf instead.
 
 * fscanf is obsolete, use mfscanf for files opened with mopen or read for files opened with file instead.
