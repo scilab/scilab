@@ -104,6 +104,25 @@ public class LightHelper {
     }
 
     /**
+     * Apply the given ambient color to the output.
+     * @param ambient the ambient color.
+     * @param input the input color.
+     * @param output the color vector to apply the ambient color.
+     * @param additive if true the ambient color is added to output.
+     * @return the resulting color vector.
+     */
+    public static Color[] applyAmbient(Color ambient,Color[] input, Color[] output, boolean additive) {
+        for (int i = 0; i < output.length; ++i) {
+            if (additive) {
+                output[i] = getColorSum(getColorProduct(ambient, input[i]), output[i]);
+            } else {
+                output[i] = getColorProduct(ambient, input[i]);
+            }
+        }
+        return output;
+    }
+
+    /**
      * Apply diffuse light to the output colors
      * @param light the light position or direction.
      * @param directional if true the vector light is considered a direction otherwise a position.
@@ -168,8 +187,10 @@ public class LightHelper {
     }
 
     public static Color[] applySpecular(Vector3f camera, Vector3f light, float shininess, boolean directional, Vector3f[] vertices, Vector3f[] normals, Color specular, Color[] output, boolean additive) {
+
         for (int i = 0; i < output.length; ++i) {
             Vector3f R;
+
             Vector3f view = camera.minus(vertices[i]).getNormalized();
             if (directional) {
                 R = reflect(light.negate(), normals[i]);
@@ -179,7 +200,7 @@ public class LightHelper {
             }
             R = R.getNormalized();
             float s = R.scalar(view);
-            s = s < 0.0f ? 0.0f : s;
+            s = clamp(s);
             s = (float)Math.pow((double)s, (double)shininess);
             if (additive) {
                 output[i] = getColorSum(getColorProduct(specular, s), output[i]);
@@ -210,7 +231,12 @@ public class LightHelper {
             normals[i] = normals[i].getNormalized();
         }
 
-        Color[] finalColor = applyAmbient(ambient, output, additive);
+        Color[] finalColor;
+        if (mat.isColorMaterialEnable()) {
+            finalColor = applyAmbient(light.getAmbientColor(), colors, output, additive);
+        } else {
+            finalColor = applyAmbient(ambient, output, additive);
+        }
 
         float[] v;
         if (light.isPoint()) {
@@ -227,7 +253,7 @@ public class LightHelper {
             finalColor = applyDiffuse(vec, !light.isPoint(), vertices, normals, diffuse, finalColor, true);
         }
 
-        //finalColor = applySpecular(new Vector3f(), vec, mat.getShininess(), !light.isPoint(), vertices, normals, specular, finalColor, true);
+        //finalColor = applySpecular(???, vec, mat.getShininess(), !light.isPoint(), vertices, normals, specular, finalColor, true);
 
         return finalColor;
     }
