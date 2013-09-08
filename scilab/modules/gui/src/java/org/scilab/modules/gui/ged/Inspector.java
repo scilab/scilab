@@ -36,9 +36,9 @@ public class Inspector {
     * @param selected Indicates which property window will open.
     * @param objectID Enters the identification of object.
     */
-    public Inspector(SelectionEnum selected , String objectID, Integer clickX, Integer clickY) {
+    public Inspector(String objectID) {
         TextBox infobar = ScilabTextBox.createTextBox();
-        inspectorTab = new SwingInspector(selected , objectID, clickX, clickY);
+        inspectorTab = new SwingInspector(objectID);
         inspectorTab.addInfoBar(infobar);
     }
 
@@ -48,9 +48,9 @@ public class Inspector {
      * @param objectID Enters the identification of object.
      * @return the instance.
      */
-    public static SwingInspector createInspectorTab(SelectionEnum selected, String objectID, Integer clickX, Integer clickY) {
+    public static SwingInspector createInspectorTab(String objectID) {
         if (instance == null) {
-            instance = new Inspector(selected, objectID, clickX, clickY);
+            instance = new Inspector(objectID);
         }
 
         return inspectorTab;
@@ -76,15 +76,14 @@ public class Inspector {
     /**
     * Initializes the Inspector with the docking system.
     *
-    * @param selected Indicates which property window will open initially.
     * @param objectID Enters the identification of object.
     * @return Shows the lightGED was generated.
     */
-    public static Inspector getInspector(SelectionEnum selected, String objectID, Integer clickX, Integer clickY) {
+    public static Inspector getInspector(String objectID) {
         if (instance == null) {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingInspector.INSPECTORUUID);
             if (!success) {
-                InspectorTab.getInspectorInstance(selected, objectID, clickX, clickY);
+                InspectorTab.getInspectorInstance(objectID);
                 SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
                 window.addTab(inspectorTab);
                 window.setLocation(0, 0);
@@ -96,7 +95,7 @@ public class Inspector {
                                        (SwingScilabWindow.class, (SwingInspector) inspectorTab);
             window.setVisible(true);
             window.toFront();
-            new SwapObject(selected, objectID, clickX, clickY);
+            new SwapObject(objectID);
         }
         return instance;
     }
@@ -122,15 +121,5 @@ public class Inspector {
      */
     public void setVisible(boolean status) {
         inspectorTab.setVisible(status);
-    }
-
-    /**
-    * Set title.
-    * @param title string
-    */
-    public static void setTitle(String title) {
-        try {
-            inspectorTab.setTitle(MessagesGED.quick_ged + ": " + title);
-        } catch (NullPointerException npe) { }
     }
 }

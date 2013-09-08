@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Marcos CARDINOT
+ * Copyright (C) 2012-2013 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -41,6 +41,7 @@ import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import org.scilab.modules.graphic_objects.PolylineData;
+import org.scilab.modules.gui.ged.actions.ShowHide;
 
 /**
 * Preconfigured components in Grid Bag Constraints
@@ -155,6 +156,7 @@ public class ContentLayout extends JPanel {
                                final JColorChooser colorChooser,
                                JButton ok,
                                final JLabel colorField,
+                               final String objectID,
                                final String parentFigure,
                                final String packClass,
                                final String method,
@@ -191,14 +193,16 @@ public class ContentLayout extends JPanel {
                 Integer scilabColor = ColorMapHandler.getScilabColor(red, green, blue, parentFigure);
 
                 try {
-                    Class partypes[] = new Class[1];
+                    Class partypes[] = new Class[2];
                     partypes[0] = Integer.TYPE;
+                    partypes[1] = String.class;
 
                     Class cls = Class.forName("org.scilab.modules.gui.ged.graphic_objects." + packClass);
                     Method meth = cls.getMethod(method, partypes);
 
-                    Object arglist[] = new Object[1];
+                    Object arglist[] = new Object[2];
                     arglist[0] = new Integer(scilabColor);
+                    arglist[1] = new String(objectID);
 
                     meth.invoke(methobj, arglist);
                 } catch (Throwable e) {
@@ -221,8 +225,7 @@ public class ContentLayout extends JPanel {
                              JButton dataButton,
                              JLabel dataLabel,
                              int column,
-                             int row,
-                             String objectID) {
+                             int row) {
         fieldPanel.setBackground(new Color(255, 255, 255));
         fieldPanel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         fieldPanel.setPreferredSize(new Dimension(5, 20));
@@ -484,12 +487,21 @@ public class ContentLayout extends JPanel {
     * @param message Title of section
     * @param section Position of section - [1,n] 1=top n=bottom
     */
-    public void addHeader(JPanel mpanel, JPanel spanel, JToggleButton tbutton,
-                            JLabel label, JSeparator separator, String message) {
+    public void addHeader(JPanel mpanel, final JPanel spanel, final JToggleButton tbutton, String message, final String type) {
+        JLabel label = new JLabel();
+        JSeparator separator = new JSeparator();
+        mpanel.setName(message);
         addSHbutton(mpanel, tbutton, 0, 0);
         addSectionTitle(mpanel, label, message, 0);
         addSeparator(mpanel, separator, 1);
         spanel.setLayout(new GridBagLayout());
+        tbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                spanel.setVisible(!tbutton.isSelected());
+                ShowHide.checkAllButtons(type);
+            }
+        });
 
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
@@ -528,7 +540,7 @@ public class ContentLayout extends JPanel {
     * @param row Row number
     * @return Next free row
     */
-    public int addInnerPanel(JPanel gpanel, JPanel ipanel, JToggleButton tbutton, JLabel label,
+    public void addInnerPanel(JPanel gpanel, JPanel ipanel, JToggleButton tbutton, JLabel label,
                         JTextField field, String message, int row) {
         tbutton.setSelected(true);
         ipanel.setVisible(false);
@@ -545,8 +557,6 @@ public class ContentLayout extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 0.1;
         gpanel.add(ipanel, gbc);
-
-        return row + 2;
     }
 
     /**

@@ -11,30 +11,82 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects;
 
+import javax.swing.JPanel;
+import javax.swing.JToggleButton;
+import org.scilab.modules.gui.ged.ContentLayout;
+
 /**
 * Interface for sections of property list (GED).
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public interface SimpleSection {
+public abstract class SimpleSection extends ContentLayout {
+    private JToggleButton bSection;
+    private JPanel pSection;
 
     /**
-    * Construct all the components.
+    * Initializes the properties and the icons of the buttons.
+    * @param sectionName name of section
+    * @param objectName name of object
     */
-    void constructComponents();
+    public SimpleSection(String sectionName, String objectName) {
+        bSection = new JToggleButton();
+        pSection = new JPanel();
+        initMainPanel(sectionName, objectName);
+    }
 
     /**
     * Insert show/hide button, title and main JPanel of group.
+    * @param sectionName name of section
+    * @param objectName name of object
     */
-    void initMainPanel();
+    private void initMainPanel(String sectionName, String objectName) {
+        this.addHeader(this, pSection, bSection, sectionName, objectName);
+    }
 
     /**
     * Initilialize the components of the section.
+    * @param objectID uid.
     */
-    void initComponents();
+    public abstract void initComponents(String objectID);
 
     /**
-    * Loads the current properties of section.
-    * @param objectID Enters the identification of polyline.
+    * Set Jpanel of Section.
+    * @param panel JPanel
     */
-    void loadProperties(String objectID);
+    public void setSectionPanel(JPanel panel) {
+        pSection = panel;
+    }
+
+    /**
+    * Get Jpanel of Section.
+    * @return jpanel
+    */
+    public JPanel getSectionPanel() {
+        return pSection;
+    }
+
+    /**
+    * Set Show/Hide Button of Section.
+    * @param button JToggleButton
+    */
+    public void setSectionButton(JToggleButton button) {
+        bSection = button;
+    }
+
+    /**
+    * Get Status of Main Jpanel.
+    * @return visibility
+    */
+    public boolean getStatus() {
+        return pSection.isVisible();
+    }
+
+    /**
+    * Set Visibility of Property Group.
+    * @param visible boolean
+    */
+    public void setVisibility(boolean visible) {
+        pSection.setVisible(visible);
+        bSection.setSelected(!visible);
+    }
 }

@@ -117,7 +117,7 @@ public class GEDPicker {
             return ret.toArray(new String[ret.size()]);
         }
 
-        if (isInsideAxes(position)) {
+        if (isInsideAxes(figureUID, position)) {
             return new String[] { axesUID };
         } else {
             return new String[] { figureUID };
@@ -185,17 +185,17 @@ public class GEDPicker {
         double[] oldPoint = new double[3];
 
         if (CommonHandler.isLineEnabled(obj)) {
-            System.out.println("lineEnable");
+               //System.out.println("lineEnable");
             if (!default2dView) {
                 oldPoint = AxesDrawer.compute2dViewCoordinates(axes, new double[] { datax[0], datay[0], dataz[0] });
-                System.out.println("NotDefault");
+                //System.out.println("NotDefault");
             }
 
             for (Integer i = 0; i < (datax.length - 1); ++i) {
                 if (!default2dView) {
                     double[] newPoint = AxesDrawer.compute2dViewCoordinates(axes, new double[] {datax[i + 1], datay[i + 1], dataz[i + 1]});
                     if (isInRange(oldPoint[0], newPoint[0], oldPoint[1], newPoint[1], c2d[0], c2d[1], dx, dy)) {
-                        System.out.println("in");
+                        //System.out.println("in");
                         return true;
                     }
                     oldPoint = newPoint;
@@ -449,12 +449,12 @@ public class GEDPicker {
 
         double dx = Math.abs(c2d[0] - c2d2[0]);
         double dy = Math.abs(c2d[1] - c2d2[1]);
-        System.out.println("Click: " + c2d[0] + "," + c2d[1]);
+        //System.out.println("Click: " + c2d[0] + "," + c2d[1]);
         for (int i = 0; i < base.length; i++) {
             double[] ch2d = AxesDrawer.compute2dViewCoordinates(axes, base[i]);
             double[] ch2d2 = AxesDrawer.compute2dViewCoordinates(axes, arrows[i]);
-            System.out.println("P1: " + ch2d[0] + "," + ch2d[1]);
-            System.out.println("P2: " + ch2d2[0] + "," + ch2d2[1]);
+            //System.out.println("P1: " + ch2d[0] + "," + ch2d[1]);
+            //System.out.println("P2: " + ch2d2[0] + "," + ch2d2[1]);
             if (isInRange(ch2d[0], ch2d2[0], ch2d[1], ch2d2[1], c2d[0], c2d[1], dx, dy)) {
                 return true;
             }
@@ -508,19 +508,18 @@ public class GEDPicker {
         return false;
     }
 
-    boolean isInsideAxes(Integer[] position) {
-
+    boolean isInsideAxes(String figureUID, Integer[] position) {
         Double[] rotAngles = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
         boolean default2dView = (rotAngles[0] == 0.0 && rotAngles[1] == 270.0);
-        if (default2dView) {
+//        if (default2dView) {
             Double[] dataBounds = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_DATA_BOUNDS__);
             double[] c2d = AxesDrawer.compute2dViewFromPixelCoordinates(axes, new double[] { 1.0 * position[0], 1.0 * position[1], 0.0 });
             if (c2d[0] >= dataBounds[0] && c2d[0] <= dataBounds[1] && c2d[1] >= dataBounds[2] && c2d[1] <= dataBounds[3]) {
                 return true;
             }
-        } else {
+  //      } else {
             //TODO: Add check when it is in 3d view
-        }
+  //      }
         return false;
     }
 

@@ -19,142 +19,82 @@ import java.awt.event.WindowEvent;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTable;
-import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
 
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.PolylineData;
-import org.scilab.modules.gui.ged.ContentLayout;
 import org.scilab.modules.gui.ged.graphic_objects.SimpleSection;
 import org.scilab.modules.gui.ged.MessagesGED;
 
 /**
-* Construction and startup of all components of the section: Position.
+* Construction and startup of all components of the section: Shift.
 *
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Position extends Polyline implements SimpleSection {
+public class Shift extends SimpleSection {
+    private JPanel sectionPanel;
+    private static Shift instance;
     private String currentpolyline;
-    private ContentLayout layout = new ContentLayout();
 
-    private static JToggleButton bPosition;
-    private JLabel lPosition;
-    private JSeparator sPosition;
-    private static JPanel pPosition;
-    private JLabel lMarkSizeUnit;
-    private JComboBox cMarkSizeUnit;
-    private JLabel lShiftX;
-    private JLabel cShiftX;
-    private JButton bShiftX;
-    private JPanel pShiftX;
-    private JLabel lShiftY;
-    private JLabel cShiftY;
-    private JButton bShiftY;
-    private JPanel pShiftY;
-    private JLabel lShiftZ;
-    private JLabel cShiftZ;
-    private JButton bShiftZ;
-    private JPanel pShiftZ;
-    private JDialog shiftDialog;
-    private JScrollPane shiftScroll;
-    private JTable shiftTable;
-    private JButton refresh;
-    private JButton ok;
+    private JLabel lShiftX = new JLabel();
+    private JLabel cShiftX = new JLabel();
+    private JButton bShiftX = new JButton();
+    private JPanel pShiftX = new JPanel();
+    private JLabel lShiftY = new JLabel();
+    private JLabel cShiftY = new JLabel();
+    private JButton bShiftY = new JButton();
+    private JPanel pShiftY = new JPanel();
+    private JLabel lShiftZ = new JLabel();
+    private JLabel cShiftZ = new JLabel();
+    private JButton bShiftZ = new JButton();
+    private JPanel pShiftZ = new JPanel();
+    private JDialog shiftDialog = new JDialog();
+    private JScrollPane shiftScroll = new JScrollPane();
+    private JTable shiftTable = new JTable();
+    private JButton refresh = new JButton();
+    private JButton ok = new JButton();
 
     /**
     * Initializes the properties and the icons of the buttons.
-    * @param objectID Enters the identification of polyline.
+    * @param objectID Enters the identification of object.
     */
-    public Position(String objectID) {
-        constructComponents();
-        initMainPanel();
-        initComponents();
-        loadProperties(objectID);
+    public Shift(String objectID) {
+        super(MessagesGED.shift, "polyline");
+        instance = this;
+        currentpolyline = objectID;
+        sectionPanel = getSectionPanel();
+        initComponents(objectID);
+        updateShiftTable(0);
+        updateShiftTable(1);
+        updateShiftTable(2);
     }
 
     /**
-    * Construct the Components.
-    */
-    @Override
-    public final void constructComponents() {
-        bPosition = new JToggleButton();
-        lPosition = new JLabel();
-        sPosition = new JSeparator();
-        pPosition = new JPanel();
-
-        lMarkSizeUnit = new JLabel();
-        cMarkSizeUnit = new JComboBox();
-        lShiftX = new JLabel();
-        cShiftX = new JLabel();
-        bShiftX = new JButton();
-        pShiftX = new JPanel();
-        lShiftY = new JLabel();
-        cShiftY = new JLabel();
-        bShiftY = new JButton();
-        pShiftY = new JPanel();
-        lShiftZ = new JLabel();
-        cShiftZ = new JLabel();
-        bShiftZ = new JButton();
-        pShiftZ = new JPanel();
-        shiftDialog = new JDialog();
-        shiftScroll = new JScrollPane();
-        shiftTable = new JTable();
-        refresh = new JButton();
-        ok = new JButton();
+     * Get instance
+     * @return instance
+     */
+    public static Shift getInstance() {
+        return instance;
     }
 
     /**
-    * Insert show/hide button, title and main JPanel of section.
+    * Add all the properties in this section.
+    * @param objectID uid
     */
     @Override
-    public final void initMainPanel() {
-        String SECTIONNAME = MessagesGED.position;
-        this.setName(SECTIONNAME);
-
-        layout.addHeader(this, pPosition, bPosition, lPosition, sPosition, SECTIONNAME);
-        bPosition.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                pPosition.setVisible(!bPosition.isSelected());
-                HidePolyline.checkAllButtons();
-            }
-        });
-    }
-
-    /**
-    * Initialize the Components.
-    */
-    @Override
-    public final void initComponents() {
-        int ROW = 0;
-        int LEFTMARGIN = 16; //to inner components
-        int COLUMN = 0; //first column
-
-        //Components of the property: Mark Size Unit.
-        layout.addLabelComboBox(pPosition, lMarkSizeUnit, MessagesGED.mark_size_unit,
-                                cMarkSizeUnit, new String[] {MessagesGED.point, MessagesGED.tabulated},
-                                LEFTMARGIN, COLUMN, ROW++);
-        cMarkSizeUnit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                GraphicController.getController().setProperty(
-                        currentpolyline, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__,
-                        cMarkSizeUnit.getSelectedIndex());
-            }
-        });
+    public final void initComponents(String objectID) {
+        int row = 0;
+        final int leftmargin = 16; //to inner components
+        int column = 0; //first column
 
         //Components of the property: X Shift.
         shiftDialog();
-        layout.addJLabel(pPosition, lShiftX, MessagesGED.x_shift, COLUMN, ROW, LEFTMARGIN);
-        layout.addDataField(pPosition, pShiftX, bShiftX, cShiftX, COLUMN+1, ROW, currentpolyline);
+        addJLabel(sectionPanel, lShiftX, MessagesGED.x_shift, column, row, leftmargin);
+        addDataField(sectionPanel, pShiftX, bShiftX, cShiftX, column+1, row);
         bShiftX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -162,11 +102,11 @@ public class Position extends Polyline implements SimpleSection {
                 shiftDialog.setVisible(true);
             }
         });
-        ROW++;
+        row++;
 
         //Components of the property: Y Shift.
-        layout.addJLabel(pPosition, lShiftY, MessagesGED.y_shift, COLUMN, ROW, LEFTMARGIN);
-        layout.addDataField(pPosition, pShiftY, bShiftY, cShiftY, COLUMN+1, ROW, currentpolyline);
+        addJLabel(sectionPanel, lShiftY, MessagesGED.y_shift, column, row, leftmargin);
+        addDataField(sectionPanel, pShiftY, bShiftY, cShiftY, column+1, row);
         bShiftY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -174,11 +114,11 @@ public class Position extends Polyline implements SimpleSection {
                 shiftDialog.setVisible(true);
             }
         });
-        ROW++;
+        row++;
 
         //Components of the property: Z Shift.
-        layout.addJLabel(pPosition, lShiftZ, MessagesGED.z_shift, COLUMN, ROW, LEFTMARGIN);
-        layout.addDataField(pPosition, pShiftZ, bShiftZ, cShiftZ, COLUMN+1, ROW, currentpolyline);
+        addJLabel(sectionPanel, lShiftZ, MessagesGED.z_shift, column, row, leftmargin);
+        addDataField(sectionPanel, pShiftZ, bShiftZ, cShiftZ, column+1, row);
         bShiftZ.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -186,14 +126,14 @@ public class Position extends Polyline implements SimpleSection {
                 shiftDialog.setVisible(true);
             }
         });
-        ROW++;
+        row++;
     }
 
     /**
      * Implement Shift Editor
      */
     private void shiftDialog() {
-        layout.addShiftDialog(shiftDialog, shiftScroll, shiftTable, refresh, ok);
+        addShiftDialog(shiftDialog, shiftScroll, shiftTable, refresh, ok);
         shiftDialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent evt) {
@@ -230,26 +170,6 @@ public class Position extends Polyline implements SimpleSection {
                 shiftTableEvent(evt);
             }
         });
-    }
-
-    /**
-    * Loads the current properties of the section.
-    * @param objectID Enters the identification of polyline.
-    */
-    @Override
-    public final void loadProperties(String objectID) {
-        if (objectID != null) {
-            currentpolyline = objectID;
-
-            //Get the current status of the property: Mark Size Unit
-            cMarkSizeUnit.setSelectedIndex((Integer) GraphicController.getController()
-                                .getProperty(currentpolyline, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__));
-
-            //Get the current status of the property: Shift
-            updateShiftTable(0);
-            updateShiftTable(1);
-            updateShiftTable(2);
-        }
     }
 
     /**
@@ -351,22 +271,5 @@ public class Position extends Polyline implements SimpleSection {
             }
         }
         return data;
-    }
-
-    /**
-    * Get Status of Main Jpanel.
-    * @return visibility
-    */
-    public static boolean getStatus() {
-        return pPosition.isVisible();
-    }
-
-    /**
-    * Set Visibility of Property Group.
-    * @param visible boolean
-    */
-    public static void setVisibility(boolean visible) {
-        pPosition.setVisible(visible);
-        bPosition.setSelected(!visible);
     }
 }

@@ -34,6 +34,7 @@ import org.scilab.modules.gui.utils.WindowsConfigurationManager;
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
 public class SwingInspector extends SwingScilabTab {
+    private static SwingInspector instance;
     private JScrollPane desktop;
     private static JPanel pReceive;
     private MenuBar menuBar;
@@ -51,11 +52,11 @@ public class SwingInspector extends SwingScilabTab {
     /**
     * Constructor
     *
-    * @param selected Indicates which property window will open.
     * @param objectID Enters the identification of object.
     */
-    public SwingInspector(SelectionEnum selected, String objectID, Integer clickX, Integer clickY) {
+    public SwingInspector(String objectID) {
         super(MessagesGED.quick_ged, INSPECTORUUID);
+        instance = this;
 
         setAssociatedXMLIDForHelp("quickged");
 
@@ -67,7 +68,7 @@ public class SwingInspector extends SwingScilabTab {
         toolBar.addSeparator();
 
         guiComponents();
-        new SwapObject(selected, objectID, clickX, clickY);
+        new SwapObject(objectID);
 
         setContentPane(desktop);
         WindowsConfigurationManager.restorationFinished(this);
@@ -142,8 +143,6 @@ public class SwingInspector extends SwingScilabTab {
         ShowHide.setStatus(false);
         //Insert panel
         pReceive.add(panel, "");
-        try {
-            Inspector.setTitle(title);
-        } catch (NullPointerException npe) { }
+        instance.setTitle(MessagesGED.property_list + ": " + title);
     }
 }

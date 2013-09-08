@@ -16,13 +16,6 @@ import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.ged.MessagesGED;
 import org.scilab.modules.gui.ged.SwingInspector;
-import org.scilab.modules.gui.ged.graphic_objects.axes.HideAxes;
-import org.scilab.modules.gui.ged.graphic_objects.datatip.HideDatatip;
-import org.scilab.modules.gui.ged.graphic_objects.figure.HideFigure;
-import org.scilab.modules.gui.ged.graphic_objects.imageplot.HideImageplot;
-import org.scilab.modules.gui.ged.graphic_objects.legend.HideLegend;
-import org.scilab.modules.gui.ged.graphic_objects.polyline.HidePolyline;
-import org.scilab.modules.gui.ged.graphic_objects.surface.HideSurface;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 
@@ -113,13 +106,162 @@ public class ShowHide extends CommonCallBack {
      * @param hide Boolean.
      */
     public static void action(boolean hide) {
-        new HideAxes(hide);
-        new HideDatatip(hide);
-        new HideFigure(hide);
-        new HideImageplot(hide);
-        new HideLegend(hide);
-        new HidePolyline(hide);
-        new HideSurface(hide);
+        axes(hide);
+        datatip(hide);
+        figure(hide);
+        imageplot(hide);
+        legend(hide);
+        polyline(hide);
+        surface(hide);
+    }
+
+    public static void axes(boolean hide) {
+        try {
+            org.scilab.modules.gui.ged.graphic_objects.axes.BaseProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.axes.Box.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.axes.Camera.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.axes.Tick.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.axes.Label.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.axes.Position.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.axes.Style.getInstance().setVisibility(!hide);
+        } catch (NullPointerException e1) {
+        } catch (NoSuchMethodError e2) { }
+    }
+
+    public static void datatip(boolean hide) {
+        try {
+            org.scilab.modules.gui.ged.graphic_objects.datatip.BaseProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.datatip.DataProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.datatip.Label.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.datatip.Mark.getInstance().setVisibility(!hide);
+        } catch (NullPointerException e1) {
+        } catch (NoSuchMethodError e2) { }
+    }
+
+    public static void figure(boolean hide) {
+        try {
+            org.scilab.modules.gui.ged.graphic_objects.figure.BaseProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.figure.DataProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.figure.Control.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.figure.Style.getInstance().setVisibility(!hide);
+        } catch (NullPointerException e1) {
+        } catch (NoSuchMethodError e2) { }
+    }
+
+    public static void imageplot(boolean hide) {
+        try {
+            org.scilab.modules.gui.ged.graphic_objects.imageplot.BaseProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.imageplot.DataProperties.getInstance().setVisibility(!hide);
+        } catch (NullPointerException e1) {
+        } catch (NoSuchMethodError e2) { }
+    }
+
+    public static void legend(boolean hide) {
+        try {
+            org.scilab.modules.gui.ged.graphic_objects.legend.BaseProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.legend.DataProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.legend.Font.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.legend.Position.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.legend.Style.getInstance().setVisibility(!hide);
+        } catch (NullPointerException e1) {
+        } catch (NoSuchMethodError e2) { }
+    }
+
+    public static void polyline(boolean hide) {
+        try {
+            org.scilab.modules.gui.ged.graphic_objects.polyline.BaseProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.polyline.DataProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.polyline.Mark.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.polyline.Shift.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.polyline.Style.getInstance().setVisibility(!hide);
+        } catch (NullPointerException e1) {
+        } catch (NoSuchMethodError e2) { }
+    }
+
+    public static void surface(boolean hide) {
+        try {
+            org.scilab.modules.gui.ged.graphic_objects.surface.BaseProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.surface.DataProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.surface.Mark.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.surface.Style.getInstance().setVisibility(!hide);
+        } catch (NullPointerException e1) {
+        } catch (NoSuchMethodError e2) { }
+    }
+
+    /**
+     * Check the status of the buttons of all sections.
+     * Updates the button's icon in the toolbar
+     */
+    public static void checkAllButtons(String type) {
+        try {
+            if("axes".equals(type)) {
+                boolean A = org.scilab.modules.gui.ged.graphic_objects.axes.BaseProperties.getInstance().getStatus();
+                boolean B = org.scilab.modules.gui.ged.graphic_objects.axes.Box.getInstance().getStatus();
+                boolean C = org.scilab.modules.gui.ged.graphic_objects.axes.Camera.getInstance().getStatus();
+                boolean D = org.scilab.modules.gui.ged.graphic_objects.axes.Tick.getInstance().getStatus();
+                boolean E = org.scilab.modules.gui.ged.graphic_objects.axes.Label.getInstance().getStatus();
+                boolean F = org.scilab.modules.gui.ged.graphic_objects.axes.Position.getInstance().getStatus();
+                boolean G = org.scilab.modules.gui.ged.graphic_objects.axes.Style.getInstance().getStatus();
+                if (A && B && C && D && E && F && G)
+                    setStatus(false);
+                else if (!A && !B && !C && !D && !E && !F && !G)
+                    setStatus(true);
+            } else if("datatip".equals(type)) {
+                boolean BP = org.scilab.modules.gui.ged.graphic_objects.datatip.BaseProperties.getInstance().getStatus();
+                boolean DP = org.scilab.modules.gui.ged.graphic_objects.datatip.DataProperties.getInstance().getStatus();
+                boolean LA = org.scilab.modules.gui.ged.graphic_objects.datatip.Label.getInstance().getStatus();
+                boolean MK = org.scilab.modules.gui.ged.graphic_objects.datatip.Mark.getInstance().getStatus();
+                if (BP && DP && LA && MK)
+                    setStatus(false);
+                else if (!BP && !DP && !LA && !MK)
+                    setStatus(true);
+            } else if("figure".equals(type)) {
+                boolean BP = org.scilab.modules.gui.ged.graphic_objects.figure.BaseProperties.getInstance().getStatus();
+                boolean DP = org.scilab.modules.gui.ged.graphic_objects.figure.DataProperties.getInstance().getStatus();
+                boolean CT = org.scilab.modules.gui.ged.graphic_objects.figure.Control.getInstance().getStatus();
+                boolean ST = org.scilab.modules.gui.ged.graphic_objects.figure.Style.getInstance().getStatus();
+                if (BP && DP && CT && ST)
+                    setStatus(false);
+                else if (!BP && !DP && !CT && !ST)
+                    setStatus(true);
+            } else if("imageplot".equals(type)) {
+                boolean BP = org.scilab.modules.gui.ged.graphic_objects.imageplot.BaseProperties.getInstance().getStatus();
+                boolean DP = org.scilab.modules.gui.ged.graphic_objects.imageplot.DataProperties.getInstance().getStatus();
+                if (BP && DP)
+                    setStatus(false);
+                else if (!BP && !DP)
+                    setStatus(true);
+            } else if("legend".equals(type)) {
+                boolean BP = org.scilab.modules.gui.ged.graphic_objects.legend.BaseProperties.getInstance().getStatus();
+                boolean DP = org.scilab.modules.gui.ged.graphic_objects.legend.DataProperties.getInstance().getStatus();
+                boolean FT = org.scilab.modules.gui.ged.graphic_objects.legend.Font.getInstance().getStatus();
+                boolean PO = org.scilab.modules.gui.ged.graphic_objects.legend.Position.getInstance().getStatus();
+                boolean ST = org.scilab.modules.gui.ged.graphic_objects.legend.Style.getInstance().getStatus();
+                if (BP && DP && FT && PO && ST)
+                    setStatus(false);
+                else if (!BP && !DP && !FT && !PO && !ST)
+                    setStatus(true);
+            } else if("polyline".equals(type)) {
+                boolean BP = org.scilab.modules.gui.ged.graphic_objects.polyline.BaseProperties.getInstance().getStatus();
+                boolean DP = org.scilab.modules.gui.ged.graphic_objects.polyline.DataProperties.getInstance().getStatus();
+                boolean MK = org.scilab.modules.gui.ged.graphic_objects.polyline.Mark.getInstance().getStatus();
+                boolean SH = org.scilab.modules.gui.ged.graphic_objects.polyline.Shift.getInstance().getStatus();
+                boolean ST = org.scilab.modules.gui.ged.graphic_objects.polyline.Style.getInstance().getStatus();
+                if (BP && DP && MK && SH && ST)
+                    setStatus(false);
+                else if (!BP && !DP && !MK && !SH && !ST)
+                    setStatus(true);
+            } else if("surface".equals(type)) {
+                boolean BP = org.scilab.modules.gui.ged.graphic_objects.surface.BaseProperties.getInstance().getStatus();
+                boolean DP = org.scilab.modules.gui.ged.graphic_objects.surface.DataProperties.getInstance().getStatus();
+                boolean MK = org.scilab.modules.gui.ged.graphic_objects.surface.Mark.getInstance().getStatus();
+                boolean ST = org.scilab.modules.gui.ged.graphic_objects.surface.Style.getInstance().getStatus();
+                if (BP && DP && MK && ST)
+                    setStatus(false);
+                else if (!BP && !DP && !MK && !ST)
+                    setStatus(true);
+            }
+        } catch (NoSuchMethodError e2) { }
     }
 
     /**

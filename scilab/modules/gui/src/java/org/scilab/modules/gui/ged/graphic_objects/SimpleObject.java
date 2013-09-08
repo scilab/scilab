@@ -11,34 +11,77 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects;
 
+import java.awt.Dimension;
+import java.util.Arrays;
+import javax.swing.Box;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.gui.ged.ContentLayout;
+
 /**
 * Interface for objects of property list (GED).
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public interface SimpleObject {
+public abstract class SimpleObject extends ContentLayout {
+    private String objectID;
 
     /**
-    * Initializes all sections (JPanel's).
-    * @param objectID Enters the identification of object.
+    * Constructor
+    * @param objectID uid.
     */
-    void initSections(String objectID);
+    public SimpleObject(String objectID) {
+        this.objectID = objectID;
+    }
+
+    /**
+    * Get the name of all sections.
+    * @return sections name
+    */
+    public abstract String[] getSectionsName();
 
     /**
     * Get the position of section for current language (alphabetic order).
     * @param section Name of section.
     * @return position
     */
-    int getPosition(String section);
+    public final int getPosition(String section) {
+        String [] sectionsName = getSectionsName();
+        Arrays.sort(sectionsName);
+        return Arrays.binarySearch(sectionsName, section);
+    }
+
+    /**
+     * Add a vertical filler - makes the jpanels are always on top.
+     * @param sectionsName name of sections
+     */
+    public void fillerV(String[] sectionsName) {
+        Box.Filler filler = new Box.Filler(new Dimension(1, 1), new Dimension(1, 1), new Dimension(1, 32767));
+        this.addFiller(this, filler, sectionsName.length);
+    }
 
     /**
     * Set the Object ID.
     * @param objectID Enters the identification of object.
     */
-    void setObjectID(String objectID);
+    public final void setObjectID(String objectID) {
+        this.objectID = objectID;
+    }
 
     /**
     * Get the Object ID.
     * @return Object ID
     */
-    String getObjectID();
+    public final String getObjectID() {
+        return objectID;
+    }
+
+    /**
+    * Get Parent Figure (ID).
+    * @param objectID Enters the identification of object.
+    * @return FigreID
+    */
+    public final String getFigueID(String objectID) {
+        return (String) GraphicController.getController()
+                .getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+    }
 }

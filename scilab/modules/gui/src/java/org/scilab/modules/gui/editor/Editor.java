@@ -28,6 +28,7 @@ import org.scilab.modules.gui.datatip.DatatipManager;
 import org.scilab.modules.gui.editor.ScilabClipboard;
 import org.scilab.modules.gui.editor.SystemClipboard;
 import org.scilab.modules.gui.editor.PolylineHandler;
+import org.scilab.modules.gui.editor.GEDPicker;
 import org.scilab.modules.gui.editor.LabelHandler;
 import org.scilab.modules.gui.editor.LegendHandler;
 import org.scilab.modules.gui.editor.action.EditorHistory;
@@ -39,7 +40,6 @@ import org.scilab.modules.gui.editor.action.ActionTextEdit;
 import org.scilab.modules.gui.editor.action.ActionPasteStyle;
 import org.scilab.modules.gui.editor.action.ActionHide;
 import org.scilab.modules.gui.ged.Inspector;
-import org.scilab.modules.gui.ged.SelectionEnum;
 import org.scilab.modules.gui.ged.SwapObject;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
@@ -762,25 +762,11 @@ public class Editor {
     * Starts the GED with the property selected by user.
     */
     public void onClickGED() {
-        if (lastClick[0] != 0 && lastClick[1] != 0) {
-
-            /*first try pick datatip*/
-            if (DatatipManager.getFromUid(figureUid).pickAndHighlight(lastClick[0], lastClick[1])) {
-                Inspector.getInspector(SelectionEnum.DATATIP , DatatipManager.getFromUid(figureUid).getSelectedTip(), 0, 0);
-            } else {
-
-                String picked = tryPickAnyObject(lastClick);
-                if (picked != null) {
-                    setSelected(picked);
-                }
-                if (getSelected() != null) {
-                    Inspector.getInspector(SelectionEnum.objectToEnum(selected) , selected, 0, 0);
-                } else {
-                    Inspector.getInspector(SelectionEnum.AXES_OR_FIGURE, figureUid, lastClick[0], lastClick[1]);
-                }
-            }
+        if (DatatipManager.getFromUid(figureUid).pickAndHighlight(lastClick[0], lastClick[1])) {
+            Inspector.getInspector(DatatipManager.getFromUid(figureUid).getSelectedTip());
         } else {
-            Inspector.getInspector(SelectionEnum.AXES_OR_FIGURE, figureUid, 1, 1);
+            String[] objects = (new GEDPicker()).pick(figureUid, lastClick);
+            Inspector.getInspector(objects[objects.length-1]);
         }
     }
 

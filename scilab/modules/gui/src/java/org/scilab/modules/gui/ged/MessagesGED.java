@@ -24,6 +24,7 @@ public class MessagesGED {
     public static final String file = Messages.gettext("File");
     //Inspector - Labels
     public static final String quick_ged = Messages.gettext("Quick GED");
+    public static final String property_list = Messages.gettext("Property List");
     public static final String hide = Messages.gettext("Hide");
     public static final String show = Messages.gettext("Show");
     public static final String axes = Messages.gettext("Axes");
@@ -38,6 +39,10 @@ public class MessagesGED {
     public static final String matplot = Messages.gettext("Matplot");
 
     //Base Properties - Labels
+    public static final String auto_ticks = Messages.gettext("Auto Ticks");
+    public static final String tick = Messages.gettext("Tick");
+    public static final String lines = Messages.gettext("Lines");
+    public static final String nurbs = Messages.gettext("Nurbs");
     public static final String anti_alising = Messages.gettext("Anti-alising");
     public static final String auto_clear = Messages.gettext("Auto Clear");
     public static final String auto_orientation = Messages.gettext("Auto Orientation");
@@ -79,6 +84,13 @@ public class MessagesGED {
     public static final String choose_color = Messages.gettext("Choose a Color");
 
     //Style/Appearance - Labels
+    public static final String background = Messages.gettext("Background");
+    public static final String foreground = Messages.gettext("Foreground");
+    public static final String grid_position = Messages.gettext("Grid Position");
+    public static final String x_grid_color = Messages.gettext("X Grid Color");
+    public static final String y_grid_color = Messages.gettext("Y Grid Color");
+    public static final String back_half = Messages.gettext("Back Half");
+    public static final String hidden_axes = Messages.gettext("Hidden Axes");
     public static final String style_appearance = Messages.gettext("Style/Appearance");
     public static final String background_color = Messages.gettext("Background Color");
     public static final String foreground_color = Messages.gettext("Foreground Color");
@@ -117,6 +129,7 @@ public class MessagesGED {
     public static final String mark_style = Messages.gettext("Mark Style");
 
     //Data - Labels
+    public static final String _3_Components = Messages.gettext("3 Components");
     public static final String data_properties = Messages.gettext("Data Properties");
     public static final String data_mapping = Messages.gettext("Data Mapping");
     public static final String direct = Messages.gettext("Direct");
@@ -174,6 +187,8 @@ public class MessagesGED {
 
     //Axis Rulers - Labels
     public static final String axis_rulers = Messages.gettext("Axis Rulers");
+    public static final String x_location = Messages.gettext("X Location");
+    public static final String y_location = Messages.gettext("Y Location");
     public static final String location = Messages.gettext("Location");
     public static final String bottom = Messages.gettext("bottom");
     public static final String middle = Messages.gettext("middle");
@@ -197,6 +212,7 @@ public class MessagesGED {
     public static final String fractional_font = Messages.gettext("Fractional Font");
 
     //Position - Labels
+    public static final String sub_ticks = Messages.gettext("Sub Ticks");
     public static final String coordinates = Messages.gettext("Coordinates");
     public static final String x_coordinate = Messages.gettext("X Coordinate");
     public static final String y_coordinate = Messages.gettext("Y Coordinate");

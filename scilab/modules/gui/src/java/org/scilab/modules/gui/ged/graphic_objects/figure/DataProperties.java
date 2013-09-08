@@ -11,274 +11,64 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects.figure;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.JToggleButton;
-
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.gui.ged.ContentLayout;
-
 import org.scilab.modules.gui.ged.MessagesGED;
 import org.scilab.modules.gui.ged.graphic_objects.SimpleSection;
+import org.scilab.modules.gui.ged.graphic_objects.properties.Figure;
+import org.scilab.modules.gui.ged.graphic_objects.properties.GraphicObject;
 
 /**
 * Construction and startup of all components of the section: DataProperties.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class DataProperties extends Figure implements SimpleSection {
-    private String currentFigure;
-    private ContentLayout layout = new ContentLayout();
-
-    private static JToggleButton bDataProperties;
-    private JLabel lDataProperties;
-    private JSeparator sDataProperties;
-    private static JPanel pDataProperties;
-    private JLabel lFigureID;
-    private JTextField cFigureID;
-    private JLabel lFigureName;
-    private JTextField cFigureName;
-    private JLabel lInfoMessage;
-    private JTextField cInfoMessage;
-    private JLabel lTag;
-    private JTextField cTag;
-    private JLabel lUserData;
-    private JTextField cUserData;
+public class DataProperties extends SimpleSection {
+    private static DataProperties instance;
+    private JPanel sectionPanel;
+    private Figure figure = new Figure();
+    private GraphicObject graphicObject = new GraphicObject();
 
     /**
     * Initializes the properties and the icons of the buttons.
-    * @param objectID Enters the identification of figure.
+    * @param objectID Enters the identification of object.
     */
     public DataProperties(String objectID) {
-        constructComponents();
-        initMainPanel();
-        initComponents();
-        loadProperties(objectID);
+        super(MessagesGED.data_properties, "figure");
+        instance = this;
+        sectionPanel = getSectionPanel();
+        initComponents(objectID);
     }
 
     /**
-    * Construct the Components.
-    */
-    @Override
-    public final void constructComponents() {
-        bDataProperties = new JToggleButton();
-        lDataProperties = new JLabel();
-        sDataProperties = new JSeparator();
-        pDataProperties = new JPanel();
-
-        lFigureID = new JLabel();
-        cFigureID = new JTextField();
-        lFigureName = new JLabel();
-        cFigureName = new JTextField();
-        lInfoMessage = new JLabel();
-        cInfoMessage = new JTextField();
-        lTag = new JLabel();
-        cTag = new JTextField();
-        lUserData = new JLabel();
-        cUserData = new JTextField();
+     * Get instance
+     * @return instance
+     */
+    public static DataProperties getInstance() {
+        return instance;
     }
 
     /**
-    * Insert show/hide button, title and main JPanel of section.
+    * Add all the properties in this section.
+    * @param objectID uid
     */
     @Override
-    public final void initMainPanel() {
-        String SECTIONNAME = MessagesGED.data_properties;
-        this.setName(SECTIONNAME);
+    public final void initComponents(String objectID) {
+        int row = 0;
+        final int leftmargin = 16; //to inner components
+        int column = 0; //first column
 
-        layout.addHeader(this, pDataProperties, bDataProperties, lDataProperties, sDataProperties, SECTIONNAME);
-        bDataProperties.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                pDataProperties.setVisible(!bDataProperties.isSelected());
-                HideFigure.checkAllButtons();
-            }
-        });
-    }
-
-    /**
-    * Initialize the Components.
-    */
-    @Override
-    public final void initComponents() {
-        int ROW = 0;
-        int LEFTMARGIN = 16; //to inner components
-        int COLUMN = 0; //first column
-
-        //Components of the property: Figure ID.
-        layout.addLabelTextField(pDataProperties, lFigureID, MessagesGED.figure_id,
-                                 cFigureID, true, LEFTMARGIN, COLUMN, ROW++);
-        cFigureID.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                updateFigureID();
-            }
-        });
-        cFigureID.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent evt) {
-                updateFigureID();
-            }
-        });
+        //Components of the property: Figure ID
+        figure.figureID(sectionPanel, row++, column, leftmargin, objectID);
 
         //Components of the property: Figure Name.
-        layout.addLabelTextField(pDataProperties, lFigureName, MessagesGED.figure_name,
-                                 cFigureName, true, LEFTMARGIN, COLUMN, ROW++);
-        cFigureName.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                updateFigureName();
-            }
-        });
-        cFigureName.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent evt) {
-                updateFigureName();
-            }
-        });
+        figure.figureName(sectionPanel, row++, column, leftmargin, objectID);
 
         //Components of the property: Info Message.
-        layout.addLabelTextField(pDataProperties, lInfoMessage, MessagesGED.info_message,
-                                 cInfoMessage, true, LEFTMARGIN, COLUMN, ROW++);
-        cInfoMessage.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                updateInfoMessage();
-            }
-        });
-        cInfoMessage.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent evt) {
-                updateInfoMessage();
-            }
-        });
+        figure.infoMessage(sectionPanel, row++, column, leftmargin, objectID);
 
         //Components of the property: Tag.
-        layout.addLabelTextField(pDataProperties, lTag, MessagesGED.tag,
-                                 cTag, true, LEFTMARGIN, COLUMN, ROW++);
-        cTag.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                updateTag();
-            }
-        });
-        cTag.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent evt) {
-                updateTag();
-            }
-        });
+        graphicObject.tag(sectionPanel, row++, column, leftmargin, objectID);
 
         //Components of the property: User Data.
-        layout.addLabelTextField(pDataProperties, lUserData, MessagesGED.user_data,
-                                 cUserData, true, LEFTMARGIN, COLUMN, ROW++);
-        cUserData.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                updateUserData();
-            }
-        });
-        cUserData.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent evt) {
-                updateUserData();
-            }
-        });
-    }
-
-    /**
-    * Loads the current properties of the section.
-    * @param objectID Enters the identification of Figure.
-    */
-    @Override
-    public final void loadProperties(String objectID) {
-        if (objectID != null) {
-            currentFigure = objectID;
-
-            // Get the current status of the property: Figure ID
-            cFigureID.setText(((Integer) GraphicController.getController()
-                                .getProperty(currentFigure, GraphicObjectProperties.__GO_ID__)).toString());
-
-            // Get the current status of the property: Figure Name
-            cFigureName.setText((String) GraphicController.getController()
-                                .getProperty(currentFigure, GraphicObjectProperties.__GO_NAME__));
-
-            // Get the current status of the property: Info Message
-            cInfoMessage.setText((String) GraphicController.getController()
-                                .getProperty(currentFigure, GraphicObjectProperties.__GO_INFO_MESSAGE__));
-
-            // Get the current status of the property: Tag
-            cTag.setText((String) GraphicController.getController()
-                                .getProperty(currentFigure, GraphicObjectProperties.__GO_TAG__));
-
-            // Get the current status of the property: User Data
-            cUserData.setText((String) GraphicController.getController()
-                                .getProperty(currentFigure, GraphicObjectProperties.__GO_USER_DATA__));
-        }
-    }
-
-    /**
-    * Updates the property: Figure ID.
-    */
-    private void updateFigureID() {
-        int setfigureID = Integer.parseInt(cFigureID.getText());
-        GraphicController.getController()
-                .setProperty(currentFigure, GraphicObjectProperties.__GO_ID__, setfigureID);
-    }
-
-    /**
-    * Updates the property: Figure Name.
-    */
-    private void updateFigureName() {
-        GraphicController.getController()
-                .setProperty(currentFigure, GraphicObjectProperties.__GO_NAME__, cFigureName.getText());
-    }
-
-    /**
-    * Updates the property: Info Message.
-    */
-    private void updateInfoMessage() {
-        GraphicController.getController().setProperty(
-                currentFigure, GraphicObjectProperties.__GO_INFO_MESSAGE__, cInfoMessage.getText());
-    }
-
-    /**
-    * Updates the property: Tag.
-    */
-    private void updateTag() {
-        GraphicController.getController().setProperty(
-                currentFigure, GraphicObjectProperties.__GO_TAG__, cTag.getText());
-    }
-
-    /**
-    * Updates the property: User Data.
-    */
-    private void updateUserData() {
-        GraphicController.getController().setProperty(
-                currentFigure, GraphicObjectProperties.__GO_USER_DATA__, cUserData.getText());
-    }
-
-    /**
-    * Get Status of Main Jpanel.
-    * @return visibility
-    */
-    public static boolean getStatus() {
-        return pDataProperties.isVisible();
-    }
-
-    /**
-    * Set Visibility of Property Group.
-    * @param visible boolean
-    */
-    public static void setVisibility(boolean visible) {
-        pDataProperties.setVisible(visible);
-        bDataProperties.setSelected(!visible);
+        graphicObject.userData(sectionPanel, row++, column, leftmargin);
     }
 }

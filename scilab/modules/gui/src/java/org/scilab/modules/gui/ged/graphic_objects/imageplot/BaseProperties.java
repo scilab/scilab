@@ -11,132 +11,48 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects.imageplot;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.JToggleButton;
-
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-
-import org.scilab.modules.gui.ged.ContentLayout;
 import org.scilab.modules.gui.ged.MessagesGED;
 import org.scilab.modules.gui.ged.graphic_objects.SimpleSection;
+import org.scilab.modules.gui.ged.graphic_objects.properties.GraphicObject;
 
 /**
 * Construction and startup of all components of the section: Base Properties.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class BaseProperties extends Imageplot implements SimpleSection {
-    private String currentImageplot;
-    private ContentLayout layout = new ContentLayout();
-
-    private static JToggleButton bBaseProperties;
-    private static JPanel pBaseProperties;
-    private JLabel lBaseProperties;
-    private JSeparator sBaseProperties;
-    private JLabel lVisible;
-    private JComboBox cVisible;
+public class BaseProperties extends SimpleSection {
+    private JPanel sectionPanel;
+    private GraphicObject graphicObject = new GraphicObject();
+    private static BaseProperties instance;
 
     /**
     * Initializes the properties and the icons of the buttons.
     * @param objectID Enters the identification of imageplot.
     */
     public BaseProperties(String objectID) {
-        constructComponents();
-        initMainPanel();
-        initComponents();
-        loadProperties(objectID);
+        super(MessagesGED.base_properties, "imageplot");
+        instance = this;
+        sectionPanel = getSectionPanel();
+        initComponents(objectID);
     }
 
     /**
-    * Construct the Components.
+     * Get instance
+     * @return instance
+     */
+    public static BaseProperties getInstance() {
+        return instance;
+    }
+
+    /**
+    * Add all the properties in this section.
+    * @param objectID uid
     */
     @Override
-    public final void constructComponents() {
-        bBaseProperties = new JToggleButton();
-        lBaseProperties = new JLabel();
-        sBaseProperties = new JSeparator();
-        pBaseProperties = new JPanel();
-        lVisible = new JLabel();
-        cVisible = new JComboBox();
-    }
-
-    /**
-    * Insert show/hide button, title and main JPanel of section.
-    */
-    @Override
-    public final void initMainPanel() {
-        String SECTIONNAME = MessagesGED.base_properties;
-        this.setName(SECTIONNAME);
-        layout.addHeader(this, pBaseProperties, bBaseProperties, lBaseProperties, sBaseProperties, SECTIONNAME);
-        bBaseProperties.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                pBaseProperties.setVisible(!bBaseProperties.isSelected());
-                HideImageplot.checkAllButtons();
-            }
-        });
-    }
-
-    /**
-    * Initialize the Components.
-    */
-    @Override
-    public final void initComponents() {
-        String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
-        int ROW = 0;
-        int LEFTMARGIN = 16; //to inner components
-        int COLUMN = 0; //first column
-
-        //Components of the property: Visible.
-        layout.addLabelComboBox(pBaseProperties, lVisible, MessagesGED.visible,
-                                cVisible, messageOffOn, LEFTMARGIN, COLUMN, ROW++);
-        cVisible.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                GraphicController.getController().setProperty(
-                    currentImageplot, GraphicObjectProperties.__GO_VISIBLE__,
-                    cVisible.getSelectedIndex() == 0 ? false : true);
-            }
-        });
-    }
-
-    /**
-    * Loads the current properties of the section.
-    * @param objectID Enters the identification of imageplot.
-    */
-    @Override
-    public final void loadProperties(String objectID) {
-        if (objectID != null) {
-            currentImageplot = objectID;
-            boolean enable;
-
-            // Get the current status of the property: Visible
-            enable = (Boolean) GraphicController.getController()
-                    .getProperty(currentImageplot, GraphicObjectProperties.__GO_VISIBLE__);
-            cVisible.setSelectedIndex(enable?1:0);
-        }
-    }
-
-    /**
-    * Get Status of Main Jpanel.
-    * @return visibility
-    */
-    public static boolean getStatus() {
-        return pBaseProperties.isVisible();
-    }
-
-    /**
-    * Set Visibility of Property Group.
-    * @param visible boolean
-    */
-    public static void setVisibility(boolean visible) {
-        pBaseProperties.setVisible(visible);
-        bBaseProperties.setSelected(!visible);
+    public final void initComponents(String objectID) {
+        int row = 0;
+        final int leftmargin = 16; //to inner components
+        int column = 0; //first column
+        graphicObject.visible(sectionPanel, row++, column, leftmargin, objectID);
     }
 }

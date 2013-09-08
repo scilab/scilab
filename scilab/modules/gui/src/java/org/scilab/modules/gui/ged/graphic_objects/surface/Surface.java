@@ -11,95 +11,45 @@
  */
 package org.scilab.modules.gui.ged.graphic_objects.surface;
 
-import java.awt.Dimension;
-import java.util.Arrays;
-import javax.swing.Box.Filler;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.gui.ged.ContentLayout;
 import org.scilab.modules.gui.ged.graphic_objects.SimpleObject;
 
 /**
 * Properties of the surface.
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
-public class Surface extends ContentLayout implements SimpleObject {
-    private String objectID;
-    private ContentLayout layout = new ContentLayout();
-    private String [] sections;
-    private BaseProperties baseProperties;
-    private DataProperties dataProperties;
+public class Surface extends SimpleObject {
+    private BaseProperties base;
+    private DataProperties data;
     private Mark mark;
     private Style style;
 
     /**
     * Initializes all sections (JPanel's) and Add in Main JPanel of Object.
-    * @param objectID Enters the identification of surface.
+    * @param objectID Enters the identification of object.
     */
-    @Override
-    public final void initSections(String objectID) {
-        setObjectID(objectID);
-        baseProperties = new BaseProperties(objectID);
-        dataProperties = new DataProperties(objectID);
+    public Surface(String objectID) {
+        super(objectID);
+        base = new BaseProperties(objectID);
+        data = new DataProperties(objectID);
         mark = new Mark(objectID);
         style = new Style(objectID);
-
-        layout.addSectionPanel(this, baseProperties, getPosition(baseProperties.getName()));
-        layout.addSectionPanel(this, dataProperties, getPosition(dataProperties.getName()));
-        layout.addSectionPanel(this, mark, getPosition(mark.getName()));
-        layout.addSectionPanel(this, style, getPosition(style.getName()));
-        fillerV();
+        addSectionPanel(this, base, getPosition(base.getName()));
+        addSectionPanel(this, data, getPosition(data.getName()));
+        addSectionPanel(this, mark, getPosition(mark.getName()));
+        addSectionPanel(this, style, getPosition(style.getName()));
+        this.fillerV(getSectionsName());
     }
 
     /**
-    * Get the position of section for current language (alphabetic order).
-    * @param section Name of section.
-    * @return position
+    * Get the name of all sections.
+    * @return sections name
     */
     @Override
-    public final int getPosition(String section) {
-        sections = new String[] {
-            baseProperties.getName(),
-            dataProperties.getName(),
-            mark.getName(),
-            style.getName()
-        };
-        Arrays.sort(sections);
-        return Arrays.binarySearch(sections, section);
-    }
-
-    /**
-     * Add a vertical filler - makes the jpanels are always on top.
-     */
-    private void fillerV() {
-        Filler filler = new Filler(new Dimension(1, 1), new Dimension(1, 1), new Dimension(1, 32767));
-        layout.addFiller(this, filler, sections.length);
-    }
-
-    /**
-    * Set the Object ID.
-    * @param objectID Enters the identification of object.
-    */
-    @Override
-    public final void setObjectID(String objectID) {
-        this.objectID = objectID;
-    }
-
-    /**
-    * Get the Object ID.
-    * @return Object ID
-    */
-    @Override
-    public final String getObjectID() {
-        return objectID;
-    }
-
-    /**
-    * Get Parent Figure (ID).
-    * @param objectID Enters the identification of object.
-    * @return FigreID
-    */
-    public final String getFigueID(String objectID) {
-        return (String) GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+    public final String[] getSectionsName() {
+        return new String[] {
+                base.getName(),
+                data.getName(),
+                mark.getName(),
+                style.getName()};
     }
 }

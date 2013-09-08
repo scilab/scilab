@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-package org.scilab.modules.gui.ged.graphic_objects.surface;
+package org.scilab.modules.gui.ged.graphic_objects.polyline;
 
 import javax.swing.JColorChooser;
 import javax.swing.JPanel;
@@ -36,10 +36,10 @@ public class Mark extends SimpleSection {
 
     /**
     * Receives and passes the objectID to the parent class.
-    * @param objectID Enters the identification of surface.
+    * @param objectID Enters the identification of object.
     */
     public Mark(String objectID) {
-        super(MessagesGED.mark, "surface");
+        super(MessagesGED.mark, "polyline");
         instance = this;
         sectionPanel = getSectionPanel();
         chooserMarkBackground = new JColorChooser();
