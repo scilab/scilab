@@ -29,6 +29,8 @@ import javax.swing.JMenuBar;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
+import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * JDialog wrapper
@@ -39,6 +41,8 @@ public class UIDialog extends UIComponent {
     private ImageIcon icon;
     private Boolean visible;
     private UIComponent parentWindow;
+    protected UICallback oncloseAction;
+    protected boolean oncloseEnable = true;
 
     /**
      * {@inheritDoc}
@@ -56,16 +60,16 @@ public class UIDialog extends UIComponent {
         return win;
     }
 
-    @UIComponentAnnotation(attributes = {"title", "width", "height", "posX", "posY", "background", "icon", "visible", "parent", "modal"})
-    public Object newInstance(String title, int width, int height, int posX, int posY, Color background, ImageIcon icon, boolean visible, UIComponent parent, boolean modal) {
+    @UIComponentAnnotation(attributes = {"title", "width", "height", "posX", "posY", "background", "icon", "visible", "owner", "modal"})
+    public Object newInstance(String title, int width, int height, int posX, int posY, Color background, ImageIcon icon, boolean visible, UIComponent owner, boolean modal) {
         this.visible = visible;
         this.icon = icon;
-        this.parentWindow = parent;
+        this.parentWindow = owner;
 
-        if (parent == null) {
+        if (owner == null) {
             win = new JDialog();
         } else {
-            Object c = parent.getComponent();
+            Object c = owner.getComponent();
             if (c instanceof Frame) {
                 win = new JDialog((Frame) c, modal);
             } else if (c instanceof Dialog) {
@@ -99,6 +103,12 @@ public class UIDialog extends UIComponent {
         }
 
         win.addWindowListener(new WindowAdapter() {
+
+            public void windowClosing(WindowEvent e) {
+                if (oncloseEnable && oncloseAction != null) {
+                    UIWidgetTools.execAction(UIDialog.this.oncloseAction);
+                }
+            }
 
             public void windowClosed(WindowEvent e) {
                 win.removeWindowListener(this);
@@ -137,16 +147,18 @@ public class UIDialog extends UIComponent {
      * @param b if true the dialog is made visible
      */
     public void setVisible(boolean b) {
-        if (parentWindow != null && parentWindow.getComponent() instanceof Component) {
-            ScreenInfo.center(win, (Component) parentWindow.getComponent());
-        } else {
-            ScreenInfo.center(win, null);
-        }
+        if (b) {
+            if (parentWindow != null && parentWindow.getComponent() instanceof Component) {
+                ScreenInfo.center(win, (Component) parentWindow.getComponent());
+            } else {
+                ScreenInfo.center(win, null);
+            }
 
-        if (!win.isVisible() && b) {
-            win.pack();
+            if (!win.isVisible()) {
+                win.invalidate();
+                win.pack();
+            }
         }
-
         win.setVisible(b);
     }
 
@@ -242,6 +254,50 @@ public class UIDialog extends UIComponent {
      */
     public int getPosY() {
         return win.getY();
+    }
+
+    /**
+     * Check if onclose event is enabled
+     * @return true if the event is enabled
+     */
+    public boolean getOncloseEnable() {
+        return oncloseEnable;
+    }
+
+    /**
+     * Enable onclose event
+     * @param b if true enable onclose event
+     */
+    public void setOncloseEnable(boolean b) {
+        if (oncloseEnable != b) {
+            oncloseEnable = b;
+            if (oncloseEnable && oncloseAction != null) {
+                win.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+            } else {
+                win.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            }
+        }
+    }
+
+    /**
+     * Get the callback
+     * @return the callback
+     */
+    public UICallback getOnclose() {
+        return oncloseAction;
+    }
+
+    /**
+     * Set the onclose callback
+     * @param oncloseAction the callback string
+     */
+    public void setOnclose(final String oncloseAction) {
+        this.oncloseAction = UICallback.newInstance(this, oncloseAction);
+        if (oncloseEnable && this.oncloseAction != null) {
+            win.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        } else {
+            win.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        }
     }
 }
 

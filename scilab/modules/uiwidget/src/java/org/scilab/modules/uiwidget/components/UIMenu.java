@@ -17,21 +17,24 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Icon;
 import javax.swing.JMenu;
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * JMenu wrapper
  */
 public class UIMenu extends UIComponent {
 
-    private JMenu menu;
-    private ActionListener clicklistener;
-    private String clickaction;
-    private boolean onclickEnable = true;
+    protected JMenu menu;
+    protected ActionListener clicklistener;
+    protected UICallback clickaction;
+    protected boolean onclickEnable = true;
+    protected String text;
 
     /**
      * {@inheritDoc}
@@ -49,15 +52,46 @@ public class UIMenu extends UIComponent {
         return menu;
     }
 
-    @UIComponentAnnotation(attributes = {"text", "icon"})
-    public Object newInstance(String text, Icon icon) {
+    @UIComponentAnnotation(attributes = {"text", "icon", "mnemonic"})
+    public Object newInstance(String text, Icon icon, KeyStroke mnemonic) {
         menu = new JMenu(text);
 
         if (icon != null) {
             menu.setIcon(icon);
         }
 
+        if (mnemonic == null) {
+            setText(text);
+        } else {
+            setMnemonic(mnemonic);
+        }
+
+        setMnemonic(mnemonic);
+
         return menu;
+    }
+
+    /**
+     * Set the mnemonic
+     * @param mnemonic the mnemonic
+     */
+    public void setMnemonic(KeyStroke mnemonic) {
+        if (mnemonic != null) {
+            menu.setMnemonic(mnemonic.getKeyCode());
+        }
+    }
+
+    /**
+     * Get the mnemonic
+     * @return the mnemonic
+     */
+    public KeyStroke getMnemonic() {
+        int mnemonic = menu.getMnemonic();
+        if (mnemonic > 0) {
+            return KeyStroke.getKeyStroke(mnemonic, 0);
+        }
+
+        return null;
     }
 
     /**
@@ -82,7 +116,7 @@ public class UIMenu extends UIComponent {
      * Get the onclick action
      * @return the action
      */
-    public String getOnclick() {
+    public UICallback getOnclick() {
         return this.clickaction;
     }
 
@@ -96,13 +130,13 @@ public class UIMenu extends UIComponent {
             clicklistener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     if (onclickEnable) {
-                        UIWidgetTools.execAction(UIMenu.this, UIMenu.this.clickaction);
+                        UIWidgetTools.execAction(UIMenu.this.clickaction);
                     }
                 }
             };
             menu.addActionListener(clicklistener);
         }
-        this.clickaction = action;
+        this.clickaction = UICallback.newInstance(this, action);
     }
 
     /**
@@ -119,5 +153,61 @@ public class UIMenu extends UIComponent {
      */
     public void setOnclickEnable(boolean b) {
         onclickEnable = b;
+    }
+
+    /**
+     * Alias for setText
+     */
+    public void setLabel(String label) {
+        setText(label);
+    }
+
+    /**
+     * Alias for getText
+     */
+    public String getLabel() {
+        return getText();
+    }
+
+    /**
+     * Alias for setText
+     */
+    public void setString(String label) {
+        setText(label);
+    }
+
+    /**
+     * Alias for getText
+     */
+    public String getString() {
+        return getText();
+    }
+
+    /**
+     * Set the button text
+     * @param text the button text
+     */
+    public void setText(String text) {
+        boolean containsMnemonic = UITools.setTextAndMnemonic(text, menu);
+        if (containsMnemonic) {
+            this.text = text;
+        } else {
+            if (this.text != null) {
+                menu.setMnemonic(0);
+            }
+            this.text = null;
+        }
+    }
+
+    /**
+     * Get the button text
+     * @return the button text
+     */
+    public String getText() {
+        if (this.text == null) {
+            return menu.getText();
+        }
+
+        return this.text;
     }
 }

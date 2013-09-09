@@ -28,6 +28,9 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.font.TextAttribute;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -39,9 +42,11 @@ import java.util.EventListener;
 import java.util.Set;
 import java.util.TreeMap;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -50,20 +55,29 @@ import javax.swing.RootPaneContainer;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
+import org.flexdock.view.View;
 import org.xml.sax.Attributes;
 
+import org.scilab.modules.commons.ScilabCommonsUtils;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.utils.ScilabRelief;
+import org.scilab.modules.uiwidget.callback.UICallback;
 import org.scilab.modules.uiwidget.components.NoLayout;
 import org.scilab.modules.uiwidget.components.UIFocusListener;
 import org.scilab.modules.uiwidget.components.UIMouseListener;
 import org.scilab.modules.uiwidget.components.UITab;
 import org.scilab.modules.uiwidget.components.UITools;
-
+import org.scilab.modules.uiwidget.callback.UICallback;
 import org.scilab.modules.types.ScilabType;
 
 /**
  * Main class to handle Java components.
  */
 public abstract class UIComponent {
+
+    static {
+        ScilabCommonsUtils.loadOnUse("graphics");
+    }
 
     private static final MouseAdapter NOMOUSE = new MouseAdapter() { };
     private static final KeyEventDispatcher NOKEY = new KeyEventDispatcher() {
@@ -74,12 +88,12 @@ public abstract class UIComponent {
 
     private static int UID = 0;
 
-    private Object component;
-    private Object modifiableComponent;
+    protected Object component;
+    protected Object modifiableComponent;
     private boolean thisOrComponent = true;
     private String id;
     private int uid;
-    private UIComponent root;
+    protected UIComponent root;
     protected UIComponent parent;
     protected Map<String, ButtonGroup> buttonGroups;
     protected Map<String, UIComponent> children;
@@ -89,12 +103,16 @@ public abstract class UIComponent {
     protected UIFocusListener focusListener;
     protected String path;
     protected Map<String, String> constraint;
-    protected Rectangle position = new Rectangle();
+    protected Map<String, String> uistyle;
     protected String tabTitle;
     protected boolean enableEvents = true;
+    protected String relief;
+    protected UITools.FontUnit fontUnit = UITools.FontUnit.POINTS;
+
+    protected NoLayout.NoLayoutConstraint nolayoutconstraint;
 
     /**
-     * Default empty constrructor
+     * Default empty constructor
      */
     protected UIComponent() { }
 
@@ -106,12 +124,11 @@ public abstract class UIComponent {
         this.parent = parent;
         this.uid = UID++;
 
-        if (parent != null) {
-            this.root = parent.root;
+        if (this.parent != null) {
+            this.root = this.parent.root;
         } else {
             this.root = this;
         }
-
         UILocator.add(this);
         registerToParent();
     }
@@ -196,7 +213,7 @@ public abstract class UIComponent {
      */
     public static final UIComponent getUIComponent(String pack, String name, ConvertableMap attributes, final UIComponent parent, Map<String, Map<String, String>> style) throws UIWidgetException {
         try {
-            Class clazz = Class.forName(pack + "." + name);
+            Class clazz = UIClassFinder.findClass(pack, name);
             final Constructor constructor = clazz.getConstructor(UIComponent.class);
             final UIComponent[] arr = new UIComponent[1];
 
@@ -208,20 +225,35 @@ public abstract class UIComponent {
                         public void run() {
                             try {
                                 arr[0] = (UIComponent) constructor.newInstance(parent);
+                            } catch (InvocationTargetException e) {
+                                System.err.println(e.getCause());
+                                e.getCause().printStackTrace();
                             } catch (Exception e) {
                                 System.err.println(e);
+                                e.printStackTrace();
                             }
                         }
                     });
+                } catch (InvocationTargetException e) {
+                    System.err.println(e.getCause());
+                    e.getCause().printStackTrace();
+                    return null;
                 } catch (Exception e) {
                     System.err.println(e);
+                    e.printStackTrace();
                     return null;
                 }
             }
             UIComponent ui = arr[0];
-            String id = (String) attributes.get(String.class, "id", null);
+            String id = null;
+            if (attributes.containsKey("id")) {
+                id = (String) attributes.get(String.class, "id", null);
+                attributes.remove("id");
+            } else if (attributes.containsKey("tag")) {
+                id = (String) attributes.get(String.class, "tag", null);
+                attributes.remove("tag");
+            }
             ui.setId(id);
-            attributes.remove("id");
             ui.setMapStyle(style);
             String tabTitle = (String) attributes.get(String.class, "tab-title", null);
             if (tabTitle != null) {
@@ -229,6 +261,12 @@ public abstract class UIComponent {
                 attributes.remove("tab-title");
             }
             ui.createNewInstance(attributes);
+            try {
+                //ui.getPropertiesPairs();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             return ui;
         } catch (ClassNotFoundException e) {
             throw new UIWidgetException("Cannot find the class " + pack + "." + name);
@@ -243,10 +281,26 @@ public abstract class UIComponent {
         } catch (IllegalArgumentException e) {
             throw new UIWidgetException("Cannot instantiate the class " + pack + "." + name + ":\n" + e.getMessage());
         } catch (InvocationTargetException e) {
-            //System.err.println(e);
+            System.err.println(e);
             e.getTargetException().printStackTrace();
             throw new UIWidgetException("Cannot instantiate the class " + pack + "." + name + ":\n" + e.getCause());
         }
+    }
+
+    public void setNoLayoutConstraint(double x, double y, double width, double height) {
+        if (nolayoutconstraint == null) {
+            nolayoutconstraint = new NoLayout.NoLayoutConstraint();
+        }
+        nolayoutconstraint.setPoint(x, y);
+        nolayoutconstraint.setDims(width, height);
+    }
+
+    public void setNoLayoutConstraint(double width, double height) {
+        if (nolayoutconstraint == null) {
+            nolayoutconstraint = new NoLayout.NoLayoutConstraint();
+            nolayoutconstraint.setPoint(0, 0);
+        }
+        nolayoutconstraint.setDims(width, height);
     }
 
     /**
@@ -268,17 +322,34 @@ public abstract class UIComponent {
      * @param o the component
      */
     public void setComponent(Object o) {
-        this.component = o;
-        if (o instanceof JComponent) {
-            JComponent jc = (JComponent) o;
-            Dimension d = jc.getPreferredSize();
-            this.position = new Rectangle(0, 0, d.width, d.height);
+        if (this.component != o) {
+            if (this.component != null) {
+                this.modifiableComponent = null;
+            }
+            this.component = o;
+
+            initialize();
         }
     }
 
     /**
-     * Set the cursor
-     * @param cursor the cursor
+     * Initialize the component if mandatory
+     */
+    protected void initialize() {
+
+    }
+
+    /**
+     * Get the Scilab representation as used in %h_p.sci
+     * @return an array of string to be evstr
+     */
+    public String[] getScilabRepresentation() {
+        return null;
+    }
+
+    /**
+     * Enable events
+     * @param b if true events are enabled
      */
     public void setEnableEvents(boolean b) {
         if (b != this.enableEvents) {
@@ -299,6 +370,34 @@ public abstract class UIComponent {
                 }
             }
             this.enableEvents = b;
+        }
+    }
+
+    /**
+     * Check if events are enabled
+     * @return true if the events are enabled
+     */
+    public boolean getEnableEvents() {
+        return this.enableEvents;
+    }
+
+    public void setScreenShot(String file) {
+        Component c = null;
+        if (component instanceof JFrame) {
+            c = ((JFrame) component).getRootPane();
+        } else if (component instanceof Component) {
+            c = (Component) component;
+        }
+
+        if (c != null) {
+            BufferedImage image = new BufferedImage(c.getWidth(), c.getHeight(), BufferedImage.TYPE_INT_RGB);
+            c.paint(image.getGraphics());
+
+            try {
+                ImageIO.write(image, "png", new File(file));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -396,7 +495,35 @@ public abstract class UIComponent {
      * @return the UIComponent name
      */
     public String getType() {
+        return "UIWidget";
+    }
+
+    /**
+     * @return the UIComponent name
+     */
+    public String getStyle() {
         return this.getClass().getSimpleName();
+    }
+
+    /**
+     * @return the component visibility
+     */
+    public boolean getHandleVisible() {
+        if (component instanceof Component) {
+            return ((Component) component).isVisible();
+        }
+
+        return false;
+    }
+
+    /**
+     * Set component visibility
+     * @param b true to make it visible
+     */
+    public void setHandleVisible(boolean b) {
+        if (component instanceof Component) {
+            ((Component) component).setVisible(b);
+        }
     }
 
     /**
@@ -404,6 +531,14 @@ public abstract class UIComponent {
      */
     public int getUid() {
         return uid;
+    }
+
+    /**
+     * Check the component validity
+     * @return true if the component is valid
+     */
+    public boolean isValid() {
+        return component != null;
     }
 
     /**
@@ -427,14 +562,35 @@ public abstract class UIComponent {
      * @param d the size
      */
     public void setSize(Dimension d) throws UIWidgetException {
-        position.width = d.width;
-        position.height = d.height;
-        Container p = getJComponent().getParent();
-        if (p != null) {
-            p.invalidate();
-            p.doLayout();
-            p.repaint();
+        if (getComponent() instanceof Component) {
+            Component c = (Component) getComponent();
+            Container p = c.getParent();
+            if (p != null && p.getLayout() instanceof NoLayout) {
+                setNoLayoutConstraint((double) d.width, (double) d.height);
+                if (p != null && p.isVisible()) {
+                    p.invalidate();
+                    p.validate();
+                    p.repaint();
+                }
+            } else {
+                if (!c.getSize().equals(d)) {
+                    JFrame win = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, c);
+                    if (win != null) {
+                        win.setPreferredSize(null);
+                        if (c instanceof SwingScilabTab) {
+                            c.setPreferredSize(d);
+                        } else {
+                            c.setSize(d);
+                        }
+                        if (win.isVisible()) {
+                            win.invalidate();
+                            win.pack();
+                        }
+                    }
+                }
+            }
         }
+
     }
 
     /**
@@ -483,8 +639,11 @@ public abstract class UIComponent {
      */
     public void setParent(UIComponent parent) throws UIWidgetException {
         if (parent != this.parent) {
-            if (parent != null && parent.children != null && id != null) {
-                parent.children.remove(id);
+            if (this.parent != null && this.parent.children != null && id != null) {
+                this.parent.children.remove(id);
+            }
+            if (this.parent != null && this.parent.childrenList != null) {
+                this.parent.childrenList.remove(this);
             }
             if (isRoot() && buttonGroups != null) {
                 if (parent.root.buttonGroups == null) {
@@ -513,10 +672,16 @@ public abstract class UIComponent {
      * Set the root element
      * @param root the root element
      */
-    private void setRoot(UIComponent root) {
+    private void setRoot(final UIComponent root) {
         this.root = root;
-        for (UIComponent c : childrenList) {
-            c.setRoot(root);
+        if (childrenList != null) {
+            for (UIComponent c : childrenList) {
+                if (root == null) {
+                    c.setRoot(this);
+                } else {
+                    c.setRoot(root);
+                }
+            }
         }
     }
 
@@ -540,7 +705,6 @@ public abstract class UIComponent {
             if (!isRoot() && this.id != null && parent.children != null) {
                 parent.children.remove(this.id);
             }
-            String old = this.id;
             UILocator.removeFromCachedPaths(this);
             this.id = id;
             invalidateUIPath();
@@ -688,7 +852,11 @@ public abstract class UIComponent {
      * @return the corresponding UIComponent
      */
     public UIComponent getUIComponent(final String id) {
-        return children.get(id);
+        if (children != null) {
+            return children.get(id);
+        }
+
+        return null;
     }
 
     /**
@@ -700,16 +868,31 @@ public abstract class UIComponent {
      * Remove the UIComponent from differents cache and delete its children
      */
     public void remove() {
+        UIComponent oldParent = parent;
         remove(true);
+
+        if (oldParent != null) {
+            if (oldParent.component instanceof JComponent) {
+                JComponent jc = (JComponent) oldParent.component;
+                jc.revalidate();
+                jc.repaint();
+            }  else if (oldParent.component instanceof Container) {
+                Container container = (Container) oldParent.component;
+                container.invalidate();
+                container.validate();
+                container.repaint();
+            }
+        }
     }
 
     /**
      * Remove the UIComponent from differents cache and delete its children
      * @param removeFromParent if true remove this from its parent
      */
-    public void remove(boolean removeFromParent) {
+    private void remove(boolean removeFromParent) {
         UserData.removeUIWidgetUserData(uid);
         UILocator.remove(this);
+        UIComponent oldParent = parent;
         if (childrenList != null) {
             for (UIComponent ui : childrenList) {
                 ui.remove(false);
@@ -765,7 +948,6 @@ public abstract class UIComponent {
      * Finish the UIComponent creation
      */
     public void finish() {
-
     }
 
     /**
@@ -777,23 +959,39 @@ public abstract class UIComponent {
             Component comp = (Component) component;
             Container parent = comp.getParent();
             if (parent != null) {
-                LayoutManager layout = parent.getLayout();
-                Object constraint = null;
-                if (layout instanceof GridBagLayout) {
-                    constraint = ((GridBagLayout) layout).getConstraints(comp);
-                } else if (layout instanceof BorderLayout) {
-                    constraint = ((BorderLayout) layout).getConstraints(comp);
-                } else if (layout instanceof NoLayout) {
-                    constraint = ((NoLayout) layout).getConstraints(comp);
+                boolean hasChanged = false;
+                if ((parent instanceof View) && (c instanceof Container)) {
+                    // Flexdock needs a special treatment...
+                    View v = (View) parent;
+                    if (v.getContentPane() == comp) {
+                        v.setContentPane((Container) c);
+                        hasChanged = true;
+                    }
                 }
 
-                if (constraint != null) {
-                    parent.remove(comp);
-                    parent.add(c, constraint);
-                } else {
-                    int pos = parent.getComponentZOrder(comp);
-                    parent.remove(comp);
-                    parent.add(c, pos);
+                if (!hasChanged) {
+                    LayoutManager layout = parent.getLayout();
+                    Object constraint = null;
+                    if (layout instanceof GridBagLayout) {
+                        constraint = ((GridBagLayout) layout).getConstraints(comp);
+                    } else if (layout instanceof BorderLayout) {
+                        constraint = ((BorderLayout) layout).getConstraints(comp);
+                    } else if (layout instanceof NoLayout) {
+                        constraint = ((NoLayout) layout).getConstraints(comp);
+                    }
+
+                    if (constraint != null) {
+                        parent.remove(comp);
+                        parent.add(c, constraint);
+                    } else {
+                        int pos = parent.getComponentZOrder(comp);
+                        parent.remove(comp);
+                        if (pos > parent.getComponentCount()) {
+                            parent.add(c, -1);
+                        } else {
+                            parent.add(c, pos);
+                        }
+                    }
                 }
 
                 parent.doLayout();
@@ -841,9 +1039,26 @@ public abstract class UIComponent {
     public UIComponent[] getChildren() {
         if (childrenList != null && !childrenList.isEmpty()) {
             return childrenList.toArray(new UIComponent[childrenList.size()]);
-        } else {
-            return null;
         }
+
+        return null;
+    }
+
+    /**
+     * Get the uistyle
+     * @return uistyle as String
+     */
+    public String getUIStyle() {
+        if (uistyle != null) {
+            String str = "";
+            for (Map.Entry<String, String> entry : uistyle.entrySet()) {
+                str += entry.getKey() + ":" + entry.getValue();
+            }
+
+            return str;
+        }
+
+        return null;
     }
 
     /**
@@ -859,6 +1074,7 @@ public abstract class UIComponent {
      * @param style a map
      */
     public void setUiStyle(Map<String, String> style) throws UIWidgetException {
+        this.uistyle = style;
         Object c = getModifiableComponent();
         if (c instanceof JComponent) {
             ((JComponent) c).setFont(UITools.getFont(((JComponent) c).getFont(), style));
@@ -943,6 +1159,28 @@ public abstract class UIComponent {
     }
 
     /**
+     * Set the font unit
+     * @param name the font name
+     */
+    public void setFontUnits(UITools.FontUnit unit) throws UIWidgetException {
+        // TODO: actuellement ds uic, fontunit est ignore et est dc egale a PIXELS
+        double ratio = UITools.FontUnit.getRatio(fontUnit, UITools.FontUnit.PIXELS);//unit);
+        if (ratio != 1) {
+            this.fontUnit = unit;
+            Font f = getFont();
+            if (f != null) {
+                Map<TextAttribute, Object> map = (Map<TextAttribute, Object>) f.getAttributes();
+                map.put(TextAttribute.SIZE, new Double(f.getSize2D() * ratio));
+                setFont(new Font(map));
+            }
+        }
+    }
+
+    public String getFontUnits() {
+        return UITools.FontUnit.getAsString(this.fontUnit);
+    }
+
+    /**
      * Set the font name
      * @param name the font name
      */
@@ -962,7 +1200,8 @@ public abstract class UIComponent {
     public String getFontName() throws UIWidgetException {
         Font f = getFont();
         if (f != null) {
-            return f.getFontName();
+            Map<TextAttribute, Object> map = (Map<TextAttribute, Object>) f.getAttributes();
+            return (String) map.get(TextAttribute.FAMILY);
         }
 
         return null;
@@ -973,10 +1212,11 @@ public abstract class UIComponent {
      * @param size the font size
      */
     public void setFontSize(double size) throws UIWidgetException {
+        double ratio = UITools.FontUnit.getRatio(fontUnit);
         Font f = getFont();
         if (f != null) {
             Map<TextAttribute, Object> map = (Map<TextAttribute, Object>) f.getAttributes();
-            map.put(TextAttribute.SIZE, Double.isNaN(size) ? new Double(12.0) : new Double(size));
+            map.put(TextAttribute.SIZE, (Double.isNaN(size) || size < 0 || Double.isInfinite(size)) ? new Double(12.0 * ratio) : new Double(size * ratio));
             setFont(new Font(map));
         }
     }
@@ -988,7 +1228,8 @@ public abstract class UIComponent {
     public double getFontSize() throws UIWidgetException {
         Font f = getFont();
         if (f != null) {
-            return f.getSize2D();
+            double ratio = UITools.FontUnit.getRatio(fontUnit);
+            return Math.round(f.getSize2D() / ratio);
         }
 
         return -1;
@@ -1050,10 +1291,33 @@ public abstract class UIComponent {
         if (f != null) {
             Map<TextAttribute, Object> map = (Map<TextAttribute, Object>) f.getAttributes();
             Float fl = (Float) map.get(TextAttribute.POSTURE);
-            return UITools.mapTextAttribute.get(fl);
+            if (fl == null || fl == TextAttribute.POSTURE_REGULAR) {
+                return "normal";
+            } else {
+                return "italic";
+            }
         }
 
         return null;
+    }
+
+    /**
+     * Set the component relief
+     * @param relief a string which represents the relief
+     */
+    public void setRelief(String relief) throws UIWidgetException {
+        if (relief != null) {
+            getJComponent().setBorder(ScilabRelief.getBorderFromRelief(relief));
+            this.relief = relief;
+        }
+    }
+
+    /**
+     * Get the relief
+     * @return the relief
+     */
+    public String getRelief() {
+        return this.relief;
     }
 
     /**
@@ -1062,6 +1326,7 @@ public abstract class UIComponent {
      */
     public void setFont(Font f) throws UIWidgetException {
         getModifiableJComponent().setFont(f);
+        getJComponent().revalidate();
     }
 
     /**
@@ -1072,25 +1337,184 @@ public abstract class UIComponent {
         return getModifiableJComponent().getFont();
     }
 
+    public void setUnits(String[] unit) throws UIWidgetException {
+        if (unit != null) {
+            boolean mustLayout = false;
+            if (unit.length >= 4) {
+                final int[] units = new int[4];
+                for (int i = 0; i < 4; i++) {
+                    if (unit[i].equals("%") || unit[i].equalsIgnoreCase("n") || unit[i].equalsIgnoreCase("normalized")) {
+                        units[i] = 1;
+                    } else if (unit[i].equals("pt") || unit[i].equalsIgnoreCase("points")) {
+                        units[i] = 2;
+                    } else {
+                        units[i] = 0;
+                    }
+                }
+
+                if (this.nolayoutconstraint == null) {
+                    this.nolayoutconstraint = new NoLayout.NoLayoutConstraint();
+                }
+
+                this.nolayoutconstraint.setUnit(units[0], units[1], units[2], units[3]);
+                mustLayout = true;
+            } else if (unit.length == 1) {
+                int u = 0;
+                if (!unit[0].isEmpty()) {
+                    if (unit[0].equalsIgnoreCase("points")) {
+                        u = 2;
+                    } else if (unit[0].equalsIgnoreCase("normalized")) {
+                        u = 1;
+                    }
+                }
+
+                if (this.nolayoutconstraint == null) {
+                    this.nolayoutconstraint = new NoLayout.NoLayoutConstraint();
+                }
+
+                this.nolayoutconstraint.setUnit(u, u, u, u);
+                mustLayout = true;
+            }
+
+            if (mustLayout) {
+                Container p = getJComponent().getParent();
+                if (p != null && p.getLayout() instanceof NoLayout) {
+                    p.invalidate();
+                    p.doLayout();
+                    p.repaint();
+                }
+            }
+        }
+    }
+
+    /**
+     * Get the position unit (when NoLayout has been set)
+     * @return the units
+     */
+    public String[] getUnits() throws UIWidgetException {
+        String[] ret;
+        boolean allTheSame = true;
+        for (int i = 1; i < 4; i++) {
+            if (nolayoutconstraint.unit[i] != nolayoutconstraint.unit[0]) {
+                allTheSame = false;
+                break;
+            }
+        }
+
+        if (allTheSame) {
+            ret = new String[1];
+            switch (nolayoutconstraint.unit[0]) {
+                case 1:
+                    ret[0] = "normalized";
+                    break;
+                case 2:
+                    ret[0] = "points";
+                    break;
+                default:
+                    ret[0] = "pixels";
+                    break;
+            }
+        } else {
+            ret = new String[4];
+            for (int i = 0; i < 4; i++) {
+                switch (nolayoutconstraint.unit[i]) {
+                    case 1:
+                        ret[i] = "%";
+                        break;
+                    case 2:
+                        ret[i] = "pt";
+                        break;
+                    default:
+                        ret[i] = "px";
+                        break;
+                }
+            }
+        }
+
+        return ret;
+    }
+
+    /**
+     * Get the constraint when no layout
+     * @return the constraint
+     */
+    public NoLayout.NoLayoutConstraint getNoLayoutConstraint() {
+        return nolayoutconstraint;
+    }
+
+    private void setNoLayoutConstraint(Rectangle2D.Double r) {
+        if (this.nolayoutconstraint == null) {
+            this.nolayoutconstraint = new NoLayout.NoLayoutConstraint();
+        }
+
+        this.nolayoutconstraint.setPoint(r.x, r.y);
+        this.nolayoutconstraint.setDims(r.width, r.height);
+        this.nolayoutconstraint.setUnit(0, 0, 0, 0);
+    }
+
+    /**
+     * Set the location
+     * @param p the location
+     */
+    public void setLocation(Point p) throws UIWidgetException {
+        if (p != null) {
+            Rectangle2D.Double pos = getPosition();
+            if (pos != null) {
+                setPosition(new Rectangle2D.Double(p.x, p.y, pos.width, pos.height));
+            }
+        }
+    }
+
     /**
      * Set the position (when NoLayout has been set)
      * @param r the position
      */
-    public void setPosition(Rectangle r) throws UIWidgetException {
-        Container p = getJComponent().getParent();
-        if (p == null || p.getLayout() instanceof NoLayout) {
-            position.x = r.x;
-            position.y = r.y;
-            if (position.width != r.width || position.height != r.height) {
-                position.width = r.width;
-                position.height = r.height;
-                getJComponent().setSize(position.width, position.height);
-                getJComponent().revalidate();
+    public void setPosition(Rectangle2D.Double r) throws UIWidgetException {
+        if (r != null) {
+            if (getComponent() == null) {
+                setNoLayoutConstraint(r);
+                return;
             }
-            if (p != null) {
-                p.invalidate();
-                p.doLayout();
-                p.repaint();
+
+            if (getComponent() instanceof Component) {
+                Component c = (Component) getComponent();
+                Container p = c.getParent();
+                if (c instanceof JFrame) {
+                    JFrame win = (JFrame) c;
+                    win.setLocation((int) r.x, (int) r.y);
+                    Dimension dim = win.getSize();
+                    if (dim.width != (int) r.width || dim.height != (int) r.height) {
+                        win.setPreferredSize(new Dimension((int) r.width, (int) r.height));
+                        if (win.isVisible()) {
+                            win.invalidate();
+                            win.pack();
+                            win.repaint();
+                        }
+                    }
+                } else if (p == null || p.getLayout() instanceof NoLayout) {
+                    if (this.nolayoutconstraint == null) {
+                        this.nolayoutconstraint = new NoLayout.NoLayoutConstraint();
+                    }
+
+                    this.nolayoutconstraint.setPoint(r.x, r.y);
+                    if (this.nolayoutconstraint.bounds.width != r.width || this.nolayoutconstraint.bounds.height != r.height) {
+                        this.nolayoutconstraint.setDims(r.width, r.height);
+                        if (p == null) {
+                            c.setSize((int) r.width, (int) r.height);
+                            c.invalidate();
+                            c.validate();
+                        }
+                    }
+                    if (p != null && p.isVisible()) {
+                        p.invalidate();
+                        p.validate();
+                        p.repaint();
+                    }
+                } else if (p.getLayout() == null) {
+                    c.setSize((int) r.width, (int) r.height);
+                    c.invalidate();
+                    c.validate();
+                }
             }
         }
     }
@@ -1099,16 +1523,21 @@ public abstract class UIComponent {
      * Get the position
      * @return the position
      */
-    public Rectangle getPosition() throws UIWidgetException {
-        Container p = getJComponent().getParent();
-        if (p == null || p.getLayout() instanceof NoLayout) {
-            return position;
+    public Rectangle2D.Double getPosition() throws UIWidgetException {
+        if (getComponent() instanceof Component) {
+            Component c = (Component) getComponent();
+            Container p = c.getParent();
+            if (p != null && p.getLayout() instanceof NoLayout) {
+                return this.nolayoutconstraint.bounds;
+            }
+
+            Dimension d = c.getSize();
+            Point pt = c.getLocation();
+
+            return new Rectangle2D.Double(pt.x, pt.y, d.width, d.height);
         }
 
-        Dimension d = getJComponent().getSize();
-        Point pt = getJComponent().getLocation();
-
-        return new Rectangle(pt.x, pt.y, d.width, d.height);
+        return null;
     }
 
     /**
@@ -1163,14 +1592,9 @@ public abstract class UIComponent {
             }
         } else if (component instanceof JComponent && b) {
             JComponent c = (JComponent) component;
-            Container parent = c.getParent();
-            int pos = parent.getComponentZOrder(c);
-            parent.remove(c);
-            JScrollPane scroll = new JScrollPane(c);
-            parent.add(scroll, pos);
-            parent.doLayout();
-            parent.repaint();
-            component = scroll;
+            JScrollPane scroll = new JScrollPane();
+            replaceBy(scroll);
+            scroll.getViewport().setView(c);
             modifiableComponent = c;
         }
     }
@@ -1367,7 +1791,7 @@ public abstract class UIComponent {
      * Set the component constraints
      * @param constraint a string containing layout constraints (CSS style)
      */
-    public void setConstraint(String constraint) {
+    public void setConstraint(String constraint) throws UIWidgetException {
         setConstraint(StyleParser.parseLine(constraint));
     }
 
@@ -1375,8 +1799,31 @@ public abstract class UIComponent {
      * Set the component constraints
      * @param constraint a map containing layout constraints
      */
-    public void setConstraint(Map<String, String> constraint) {
+    public void setConstraint(Map<String, String> constraint) throws UIWidgetException {
         this.constraint = constraint;
+        Container p = getJComponent().getParent();
+        if (p != null && !(p.getLayout() instanceof NoLayout) && getParent() != null) {
+            getParent().add(this);
+            p.invalidate();
+            p.validate();
+        }
+    }
+
+    /**
+     * Get the constraint
+     * @return constraint as String
+     */
+    public String getConstraint() {
+        if (constraint != null) {
+            String str = "";
+            for (Map.Entry<String, String> entry : constraint.entrySet()) {
+                str += entry.getKey() + ":" + entry.getValue();
+            }
+
+            return str;
+        }
+
+        return null;
     }
 
     /**
@@ -1506,7 +1953,7 @@ public abstract class UIComponent {
      * Get onmouseclick action
      * @return the command to execute
      */
-    public String getOnmouseclick() {
+    public UICallback getOnmouseclick() {
         if (mouseListener != null) {
             return mouseListener.getOnmouseclick();
         }
@@ -1518,7 +1965,7 @@ public abstract class UIComponent {
      * Get onmouseover action
      * @return the command to execute
      */
-    public String getOnmouseover() {
+    public UICallback getOnmouseover() {
         if (mouseListener != null) {
             return mouseListener.getOnmouseover();
         }
@@ -1530,7 +1977,7 @@ public abstract class UIComponent {
      * Get onmouseenter action
      * @return the command to execute
      */
-    public String getOnmouseenter() {
+    public UICallback getOnmouseenter() {
         if (mouseListener != null) {
             return mouseListener.getOnmouseenter();
         }
@@ -1542,7 +1989,7 @@ public abstract class UIComponent {
      * Get onmouseexit action
      * @return the command to execute
      */
-    public String getOnmouseexit() {
+    public UICallback getOnmouseexit() {
         if (mouseListener != null) {
             return mouseListener.getOnmouseexit();
         }
@@ -1554,7 +2001,7 @@ public abstract class UIComponent {
      * Get onmousepress action
      * @return the command to execute
      */
-    public String getOnmousepress() {
+    public UICallback getOnmousepress() {
         if (mouseListener != null) {
             return mouseListener.getOnmousepress();
         }
@@ -1566,7 +2013,7 @@ public abstract class UIComponent {
      * Get onmouserelease action
      * @return the command to execute
      */
-    public String getOnmouserelease() {
+    public UICallback getOnmouserelease() {
         if (mouseListener != null) {
             return mouseListener.getOnmouserelease();
         }
@@ -1578,7 +2025,7 @@ public abstract class UIComponent {
      * Get onmousedrag action
      * @return the command to execute
      */
-    public String getOnmousedrag() {
+    public UICallback getOnmousedrag() {
         if (mouseListener != null) {
             return mouseListener.getOnmousedrag();
         }
@@ -1590,7 +2037,7 @@ public abstract class UIComponent {
      * Get onmousewheel action
      * @return the command to execute
      */
-    public String getOnmousewheel() {
+    public UICallback getOnmousewheel() {
         if (mouseListener != null) {
             return mouseListener.getOnmousewheel();
         }
@@ -1811,7 +2258,7 @@ public abstract class UIComponent {
      * Get onfocusgain action
      * @return the command to execute
      */
-    public String getOnfocusgain() {
+    public UICallback getOnfocusgain() {
         if (focusListener != null) {
             return focusListener.getOnfocusgain();
         }
@@ -1823,7 +2270,7 @@ public abstract class UIComponent {
      * Get onfocusloss action
      * @return the command to execute
      */
-    public String getOnfocusloss() {
+    public UICallback getOnfocusloss() {
         if (focusListener != null) {
             return focusListener.getOnfocusloss();
         }
@@ -2073,7 +2520,10 @@ public abstract class UIComponent {
             UIMethodFinder.getSetter(getModifiableComponent().getClass(), map);
         }
 
-        System.out.println(map);
+        System.out.println(this.getClass() + ": (" + map.size() + " entries)");
+        for (Map.Entry<String, Method> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " --> " + entry.getValue());
+        }
 
         return null;
     }
@@ -2134,15 +2584,26 @@ public abstract class UIComponent {
                                     component = new JScrollPane((JComponent) modifiableComponent);
                                 } catch (Exception e) {
                                     System.err.println(e);
+                                    e.printStackTrace();
                                 }
                             }
                         });
                     } catch (Exception e) {
                         System.err.println(e);
+                        e.printStackTrace();
                     }
                 }
                 uselessAttrs.remove("scrollable");
             }
+        }
+
+        if (uselessAttrs.contains("position")) {
+            if (attributes instanceof StringMap) {
+                setNoLayoutConstraint(StringConverters.getObjectFromValue(Rectangle2D.Double.class, (String) attributes.get("position")));
+            } else {
+                setNoLayoutConstraint(ScilabTypeConverters.getObjectFromValue(Rectangle2D.Double.class, (ScilabType) attributes.get("position")));
+            }
+            uselessAttrs.remove("position");
         }
 
         setAttributesAndStyle(attributes, uselessAttrs);
@@ -2170,8 +2631,26 @@ public abstract class UIComponent {
                             } catch (UIWidgetException e) { }
                         }
                     }
+
+                    if (component instanceof JComponent && nolayoutconstraint == null) {
+                        JComponent jc = (JComponent) component;
+                        Dimension d = jc.getPreferredSize();
+                        setNoLayoutConstraint(0, 0, (double) d.width, (double) d.height);
+                        nolayoutconstraint.setUnit(0, 0, 0, 0);
+                    }
                 }
             });
+        } else {
+            if (component instanceof JComponent && nolayoutconstraint == null) {
+                UIAccessTools.execOnEDT(new Runnable() {
+                    public void run() {
+                        JComponent jc = (JComponent) component;
+                        Dimension d = jc.getPreferredSize();
+                        setNoLayoutConstraint(0, 0, (double) d.width, (double) d.height);
+                        nolayoutconstraint.setUnit(0, 0, 0, 0);
+                    }
+                });
+            }
         }
 
         if (style != null) {
@@ -2179,6 +2658,7 @@ public abstract class UIComponent {
             if (id != null) {
                 elementStyle = style.get("#" + id);
             }
+
             if (elementStyle == null) {
                 String styleClass = (String) attributes.get(String.class, "class", null);
                 if (styleClass != null) {
@@ -2197,6 +2677,7 @@ public abstract class UIComponent {
                             setUiStyle(new HashMap<String, String>(es));
                         } catch (UIWidgetException e) {
                             System.err.println(e);
+                            e.printStackTrace();
                         }
                     }
                 });

@@ -12,8 +12,9 @@
 
 package org.scilab.modules.uiwidget.components;
 
-import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
+import javax.swing.JRadioButton;
 
+import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
@@ -24,18 +25,46 @@ public class Radiobutton extends ScilabWidget {
     }
 
     public Object newInstance() {
-        widget = new SwingScilabRadioButton();
-        setMin(0);
-        setMax(1);
+        JRadioButton radio = new JRadioButton();
+        radio.setContentAreaFilled(false);
+        radio.setOpaque(true);
 
-        return widget;
+        return radio;
     }
 
-    public double getValue() {
-        if (((SwingScilabRadioButton) widget).isSelected()) {
-            return getMin();
+    public void setHorizontalAlignment(String halign) {
+        super.setHorizontalAlignment(halign);
+        JRadioButton radio = (JRadioButton) getModifiableComponent();
+        radio.setHorizontalAlignment(ScilabAlignment.toSwingAlignment(halign));
+    }
+
+    public void setString(String[][] strs) {
+        JRadioButton radio = (JRadioButton) getModifiableComponent();
+        String s = getSingleString(strs);
+        if (s != null) {
+            radio.setText(s);
+            super.setString(strs);
+        }
+    }
+
+    public double[] getValue() {
+        if (((JRadioButton) getModifiableComponent()).isSelected()) {
+            return new double[] {getMin()};
         } else {
-            return getMax();
+            return new double[] {getMax()};
+        }
+    }
+
+    public void setCallback(String callback) {
+        JRadioButton radio = (JRadioButton) getModifiableComponent();
+        if (commonCallBack != null) {
+            radio.removeActionListener(commonCallBack);
+        }
+
+        super.setCallback(callback);
+
+        if (commonCallBack != null) {
+            radio.addActionListener(commonCallBack);
         }
     }
 }

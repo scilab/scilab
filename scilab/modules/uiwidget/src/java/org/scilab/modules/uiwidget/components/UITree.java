@@ -37,23 +37,27 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * JTree wrapper
  */
 public class UITree extends UIComponent {
 
-    private JTree tree;
-    private DefaultTreeModel model;
-    private DefaultMutableTreeNode root;
-    private boolean oneditEnable = true;
-    private String oneditAction;
-    private DefaultTreeCellRenderer renderer;
-    private JCheckBox cbrenderer;
-    private JCheckBox cbeditor;
-    private Icon leafIcon;
-    private Icon openIcon;
-    private Icon closedIcon;
+    // TODO: ajouter un onclick sur les noeuds
+
+    protected JTree tree;
+    protected DefaultTreeModel model;
+    protected DefaultMutableTreeNode root;
+    protected boolean oneditEnable = true;
+    protected UICallback oneditAction;
+    protected CellEditorListener listener;
+    protected DefaultTreeCellRenderer renderer;
+    protected JCheckBox cbrenderer;
+    protected JCheckBox cbeditor;
+    protected Icon leafIcon;
+    protected Icon openIcon;
+    protected Icon closedIcon;
 
     /**
      * {@inheritDoc}
@@ -326,12 +330,31 @@ public class UITree extends UIComponent {
     }
 
     /**
+     * Remove a listener
+     */
+    protected void removeListener() {
+        if (listener != null) {
+            tree.getCellEditor().removeCellEditorListener(listener);
+            listener = null;
+        }
+    }
+
+    /**
+     * Get the onedit action
+     * @return the action
+     */
+    public UICallback getOnedit() {
+        return oneditAction;
+    }
+
+    /**
      * Set the onedit action
      * @param the action
      */
     public void setOnedit(final String action) {
         if (this.oneditAction == null && tree.isEditable()) {
-            tree.getCellEditor().addCellEditorListener(new CellEditorListener() {
+            removeListener();
+            listener = new CellEditorListener() {
                 public void editingStopped(ChangeEvent e) {
                     if (oneditEnable) {
                         Object value = tree.getCellEditor().getCellEditorValue();
@@ -347,9 +370,10 @@ public class UITree extends UIComponent {
                 }
 
                 public void editingCanceled(ChangeEvent e) { }
-            });
+            };
+            tree.getCellEditor().addCellEditorListener(listener);
         }
-        this.oneditAction = action;
+        this.oneditAction = UICallback.newInstance(UINode.class, action);
     }
 
     /**

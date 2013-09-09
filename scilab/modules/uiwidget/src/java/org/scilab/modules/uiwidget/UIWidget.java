@@ -24,6 +24,8 @@ import java.util.Set;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.graphic_objects.GraphicObjectBuilder;
+import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabInteger;
 import org.scilab.modules.types.ScilabHandle;
 import org.scilab.modules.types.ScilabStackPutter;
@@ -93,6 +95,15 @@ public class UIWidget {
     }
 
     /**
+     * Get the roots component
+     * @param stackPos the position where to put the result
+     */
+    public static void getRoots(int stackPos) {
+        UIComponent[] roots = UILocator.getRoots();
+        ObjectToScilabConverters.putOnScilabStack(roots, stackPos);
+    }
+
+    /**
      * Get a property value of the UIComponent with the given handle and ut the result on the Scilab stack.
      * @param uid the handle
      * @param property the property name
@@ -134,26 +145,7 @@ public class UIWidget {
         if (comp != null) {
             UIAccessTools.execOnEDT(new Runnable() {
                 public void run() {
-                    UIComponent p = comp.getParent();
                     comp.remove();
-
-                    if (p != null) {
-                        try {
-                            Object c = p.getComponent();
-                            if (c != null) {
-                                if (c instanceof JComponent) {
-                                    JComponent jc = (JComponent) c;
-                                    jc.revalidate();
-                                    jc.repaint();
-                                } else if (c instanceof Container) {
-                                    Container co = (Container) c;
-                                    co.invalidate();
-                                    co.validate();
-                                    co.repaint();
-                                }
-                            }
-                        } catch (Exception e) { }
-                    }
                 }
             });
         }
@@ -168,6 +160,10 @@ public class UIWidget {
                 UILocator.removeAll();
             }
         });
+
+        UIClassFinder.clearCache();
+        UIMethodFinder.clearCache();
+        UILocator.clearCache();
     }
 
     /**
@@ -206,6 +202,20 @@ public class UIWidget {
      * Arguments have been previously retrieved (in the gateway)
      * @param uid the handle
      */
+    public static void uiset(final String path) throws Exception {
+        final int uid = getUidFromPath(path);
+        if (uid == -1) {
+            throw new Exception("Invalid path");
+        }
+
+        uiset(uid);
+    }
+
+    /**
+     * Set a property on the given UIComponent
+     * Arguments have been previously retrieved (in the gateway)
+     * @param uid the handle
+     */
     public static void uiset(final int uid) throws Exception {
         final UIComponent comp = UILocator.get(uid);
 
@@ -214,10 +224,11 @@ public class UIWidget {
         }
 
         final List<ScilabType> args = handler.getArgumentList();
-        final List<String> proprName = new ArrayList<String>();
-        final List<ScilabType> values = new ArrayList<ScilabType>();
+        final int size = args.size();
+        final List<String> proprName = new ArrayList<String>(size / 2);
+        final List<ScilabType> values = new ArrayList<ScilabType>(size / 2);
 
-        for (int i = 0; i < args.size(); i += 2) {
+        for (int i = 0; i < size; i += 2) {
             ScilabType arg = args.get(i);
             if (arg.getType() != ScilabTypeEnum.sci_strings || arg.isEmpty()) {
                 throw new Exception(String.format("Invalid argument: A property name expected"));
@@ -239,12 +250,26 @@ public class UIWidget {
         }
 
         if (arg.getType() == ScilabTypeEnum.sci_strings) {
-            return UILocator.get(((ScilabString) arg).getData()[0][0]);
+            String path = ((ScilabString) arg).getData()[0][0];
+            return UILocator.get(path);
         }
 
         if (arg.getType() == ScilabTypeEnum.sci_handles) {
             ScilabHandle hdl = (ScilabHandle) arg;
-            return UILocator.get((int) (-hdl.getData()[0][0] - 1));
+            long id = hdl.getData()[0][0];
+            return getUIComponent(id);
+        }
+
+        return null;
+    }
+
+    /**
+     * Get an UIComponent corresponding to arg
+     * @param arg the argument
+     */
+    public static UIComponent getUIComponent(long hdl) {
+        if (hdl < 0) {
+            return UILocator.get((int) (-hdl - 1));
         }
 
         return null;
@@ -256,17 +281,17 @@ public class UIWidget {
      */
     public static int uiwidget() throws Exception {
         final List<ScilabType> args = handler.getArgumentList();
-        final List<String> proprName = new ArrayList<String>();
         final ScilabTypeMap attributes = new ScilabTypeMap();
         UIComponent parent = null;
         ScilabType arg;
         int start = 0;
+        final int size = args.size();
 
-        if (args.size() == 0) {
+        if (size == 0) {
             throw new Exception("Invalid number of arguments");
         }
 
-        if (args.size() % 2 == 1) {
+        if (size % 2 == 1) {
             start = 1;
             // First argument is the parent id
             arg = args.get(0);
@@ -276,19 +301,23 @@ public class UIWidget {
             }
         }
 
-        for (int i = start; i < args.size(); i += 2) {
+        for (int i = start; i < size; i += 2) {
             arg = args.get(i);
             if (arg.getType() != ScilabTypeEnum.sci_strings || arg.isEmpty()) {
                 throw new Exception(String.format("Invalid %d-th argument: A property name expected", i));
             }
             String propr = ((ScilabString) arg).getData()[0][0];
             if (propr != null && !propr.isEmpty()) {
-                if (propr.equalsIgnoreCase("id") || propr.equalsIgnoreCase("style") || propr.equalsIgnoreCase("constraint")) {
+                if (propr.equalsIgnoreCase("id") || propr.equalsIgnoreCase("tag") || propr.equalsIgnoreCase("style") || propr.equalsIgnoreCase("constraint")) {
                     arg = args.get(i + 1);
                     if (arg.getType() != ScilabTypeEnum.sci_strings || arg.isEmpty()) {
                         throw new Exception(String.format("Invalid %d-th argument: A String expected", i + 1));
                     }
                     attributes.put(propr.toLowerCase(), arg);
+                } else if (propr.equalsIgnoreCase("parent")) {
+                    if (parent == null) {
+                        parent = getUIComponent(args.get(i + 1));
+                    }
                 } else {
                     attributes.put(propr, args.get(i + 1));
                 }

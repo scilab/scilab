@@ -24,6 +24,7 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * JRadioButton wrapper
@@ -33,7 +34,7 @@ public class UIRadio extends UIComponent {
     private JRadioButton radio;
     private String buttonGroup;
     private AbstractAction clicklistener;
-    private String onclickAction;
+    private UICallback onclickAction;
     private boolean onclickEnable = true;
 
     /**
@@ -153,7 +154,7 @@ public class UIRadio extends UIComponent {
      * Get the onclick action
      * @return the action
      */
-    public String getOnclick() {
+    public UICallback getOnclick() {
         return onclickAction;
     }
 
@@ -161,19 +162,19 @@ public class UIRadio extends UIComponent {
      * Set the onclick action
      * @param the action
      */
-    public void setOnclick(final String onclickAction) {
+    public void setOnclick(final String action) {
         if (this.onclickAction == null) {
             removeActionListener();
             clicklistener = new AbstractAction() {
                 public void actionPerformed(ActionEvent e) {
                     if (onclickEnable) {
-                        UIWidgetTools.execAction(UIRadio.this, UIRadio.this.onclickAction);
+                        UIWidgetTools.execAction(UIRadio.this.onclickAction);
                     }
                 }
             };
             radio.addActionListener(clicklistener);
         }
-        this.onclickAction = onclickAction;
+        this.onclickAction = UICallback.newInstance(this, action);
     }
 
     /**

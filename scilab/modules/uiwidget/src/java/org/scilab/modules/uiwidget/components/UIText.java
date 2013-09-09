@@ -31,16 +31,20 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * JEditorPane wrapper
  */
 public class UIText extends UIComponent {
 
-    private JEditorPane editor;
-    private boolean onurlclickEnable = true;
-    private String action;
-    private boolean horizontalScroll;
+    // TODO: add callback pr l'edition genre onedit, onselection...
+
+    protected JEditorPane editor;
+    protected boolean onurlclickEnable = true;
+    protected UICallback action;
+    protected HyperlinkListener hyperlinkListener;
+    protected boolean horizontalScroll;
 
     /**
      * {@inheritDoc}
@@ -159,20 +163,40 @@ public class UIText extends UIComponent {
         }
     }
 
-    public void setOnurlclick(final String action) {
-        if (this.action == null) {
-            editor.addHyperlinkListener(new HyperlinkListener() {
-                public void hyperlinkUpdate(HyperlinkEvent e) {
-                    if (onurlclickEnable && e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                        UIWidgetTools.execAction(UIText.this, UIText.this.action, e.getURL());
-                    }
-                }
-            });
+    /**
+     * Remove a listener
+     */
+    protected void removeHyperlinkListener() {
+        if (hyperlinkListener != null) {
+            editor.removeHyperlinkListener(hyperlinkListener);
+            hyperlinkListener = null;
         }
-        this.action = action;
     }
 
-    public String getOnurlclick() {
+    /**
+     * {@inheritDoc}
+     */
+    public void remove() {
+        removeHyperlinkListener();
+        super.remove();
+    }
+
+    public void setOnurlclick(final String action) {
+        if (this.action == null) {
+            removeHyperlinkListener();
+            hyperlinkListener = new HyperlinkListener() {
+                public void hyperlinkUpdate(HyperlinkEvent e) {
+                    if (onurlclickEnable && e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                        UIWidgetTools.execAction(UIText.this.action, "\"" + e.getURL() + "\"");
+                    }
+                }
+            };
+            editor.addHyperlinkListener(hyperlinkListener);
+        }
+        this.action = UICallback.newInstance(this, action);
+    }
+
+    public UICallback getOnurlclick() {
         return action;
     }
 

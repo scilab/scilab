@@ -33,6 +33,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
+import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -50,7 +51,7 @@ import org.scilab.modules.uiwidget.UILayoutFactory;
 public class UIPanel extends UIComponent {
 
     protected JPanel panel;
-    protected GridBagConstraints gbc;
+    protected GridBagConstraints gbc = new GridBagConstraints();
     protected ImageIcon backgroundImage;
     protected ImageFill imageStyle;
     protected List<Component> enabledComponents;
@@ -94,9 +95,11 @@ public class UIPanel extends UIComponent {
                             g.drawImage(im.getImage(), 0, 0, getWidth(), getHeight(), this);
                             break;
                         case REPEAT:
-                            Image img = im.getImage();
-                            for (int x = 0; x <= getWidth(); x += im.getIconWidth()) {
-                                for (int y = 0; y <= getHeight(); y += im.getIconHeight()) {
+                            final Image img = im.getImage();
+                            final int w = im.getIconWidth();
+                            final int h = im.getIconHeight();
+                            for (int x = 0; x <= getWidth(); x += w) {
+                                for (int y = 0; y <= getHeight(); y += h) {
                                     g.drawImage(img, x, y, this);
                                 }
                             }
@@ -125,6 +128,16 @@ public class UIPanel extends UIComponent {
      * @param enable a boolean
      */
     public void setEnable(boolean enable) {
+        setEnable(panel, enable, enabledComponents);
+    }
+
+    /**
+     * Enable a JPanel and all its descendants. The list enabledComponents will contains all the enabled children components.
+     * @param panel the JPanel
+     * @param enable the enable status
+     * @param enabledComponents when enable is false, the list will contains enabled components
+     */
+    public static void setEnable(JPanel panel, boolean enable, List<Component> enabledComponents) {
         if (panel.isEnabled() != enable) {
             if (enable) {
                 for (Component c : enabledComponents) {
@@ -135,7 +148,7 @@ public class UIPanel extends UIComponent {
             } else {
                 changeBorderColor(panel, panel.getBackground().darker());
                 enabledComponents.add(panel);
-                disableDescendants(panel);
+                disableDescendants(panel, enabledComponents);
             }
             if (panel.getParent() instanceof JTabbedPane) {
                 JTabbedPane tab = (JTabbedPane) panel.getParent();
@@ -164,7 +177,7 @@ public class UIPanel extends UIComponent {
      * Disable the descendants of the given container
      * @param container the container
      */
-    private void disableDescendants(Container container) {
+    private static void disableDescendants(Container container, List<Component> enabledComponents) {
         for (Component c : container.getComponents()) {
             if (c.isEnabled()) {
                 enabledComponents.add(c);
@@ -172,7 +185,7 @@ public class UIPanel extends UIComponent {
                 changeBorderColor(c, c.getBackground().darker());
             }
             if (c instanceof Container) {
-                disableDescendants((Container) c);
+                disableDescendants((Container) c, enabledComponents);
             }
         }
     }
@@ -226,39 +239,40 @@ public class UIPanel extends UIComponent {
         return imageStyle;
     }
 
+    public static void addToPanel(final Container panel, final UIComponent c, final GridBagConstraints gbc) throws UIWidgetException {
+        if (panel != null && c != null && c.isValid()) {
+            final Component comp = (Component) c.getComponent();
+            final LayoutManager layout = panel.getLayout();
+            UIAccessTools.execOnEDT(new Runnable() {
+                public void run() {
+                    if (layout instanceof BorderLayout) {
+                        String constraint = c.getLayoutConstraint() == null ? "c" : c.getLayoutConstraint().get("position");
+                        panel.add(comp, UILayoutFactory.BorderConstants.get(constraint));
+                    } else if (layout instanceof GridBagLayout) {
+                        if (c.getLayoutConstraint() == null) {
+                            System.err.println("Invalid layout constraint: must not be empty" + c);
+                            return;
+                        }
+                        add(panel, gbc, comp, c.getLayoutConstraint());
+                    } else if (layout instanceof NoLayout) {
+                        // In Swing (see JComponent::paintChildren), children are painted in reverse order
+                        // to keep uicontrol compatibility, first added is first painted !
+                        panel.add(comp, c.getNoLayoutConstraint(), 0);
+                    } else {
+                        panel.add(comp);
+                    }
+                }
+            });
+        }
+    }
+
     /**
      * {@inheritDoc}
      */
     public void add(final UIComponent c) throws UIWidgetException {
         Object o = c.getComponent();
         if (o instanceof Component && !(o instanceof JPopupMenu)) {
-            final Component comp = (Component) o;
-            final LayoutManager layout = panel.getLayout();
-            UIAccessTools.execOnEDT(new Runnable() {
-                public void run() {
-                    try {
-                        if (layout instanceof BorderLayout) {
-                            String constraint = c.getLayoutConstraint() == null ? "c" : c.getLayoutConstraint().get("position");
-                            panel.add(comp, UILayoutFactory.BorderConstants.get(constraint));
-                        } else if (layout instanceof GridBagLayout) {
-                            if (gbc == null) {
-                                gbc = new GridBagConstraints();
-                            }
-                            if (c.getLayoutConstraint() == null) {
-                                System.err.println("Invalid layout constraint: must not be empty");
-                                return;
-                            }
-                            add(panel, gbc, comp, c.getLayoutConstraint());
-                        } else if (layout instanceof NoLayout) {
-                            panel.add(comp, c.getPosition());
-                        } else {
-                            panel.add(comp);
-                        }
-                    } catch (UIWidgetException e) {
-                        System.err.println(e);
-                    }
-                }
-            });
+            addToPanel(panel, c, gbc);
         } else {
             super.add(c);
         }
@@ -289,7 +303,7 @@ public class UIPanel extends UIComponent {
      * @param c the component to add
      * @param attrs the cnosstraints attributes
      */
-    private static final void add(JPanel base, GridBagConstraints gbc, Component c, Map<String, String> attrs) {
+    private static final void add(Container base, GridBagConstraints gbc, Component c, Map<String, String> attrs) {
         gbc.gridx = StringConverters.getObjectFromValue(int.class, attrs.get("gridx"), 1) - 1;
         gbc.gridy = StringConverters.getObjectFromValue(int.class, attrs.get("gridy"), 1) - 1;
         gbc.gridwidth = StringConverters.getObjectFromValue(int.class, attrs.get("gridwidth"), 1);
@@ -319,3 +333,7 @@ public class UIPanel extends UIComponent {
         base.add(c, gbc);
     }
 }
+/*
+
+
+*/

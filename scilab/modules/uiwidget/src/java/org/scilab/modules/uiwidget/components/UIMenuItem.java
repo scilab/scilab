@@ -25,17 +25,19 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * JMenuItem wrapper
  */
 public class UIMenuItem extends UIComponent {
 
-    private MenuType type = MenuType.NORMAL;
-    private JMenuItem menu;
-    private ActionListener clicklistener;
-    private String clickaction;
-    private boolean onclickEnable = true;
+    protected MenuType type = MenuType.NORMAL;
+    protected JMenuItem menu;
+    protected ActionListener clicklistener;
+    protected UICallback clickaction;
+    protected boolean onclickEnable = true;
+    protected String text;
 
     public enum MenuType {
         NORMAL, RADIO, CHECK;
@@ -68,8 +70,8 @@ public class UIMenuItem extends UIComponent {
         return menu;
     }
 
-    @UIComponentAnnotation(attributes = {"text", "icon", "accelerator", "type", "selected"})
-    public Object newInstance(String text, Icon icon, KeyStroke accel, MenuType type, boolean selected) {
+    @UIComponentAnnotation(attributes = {"text", "icon", "accelerator", "menu-type", "selected", "mnemonic"})
+    public Object newInstance(String text, Icon icon, KeyStroke accel, MenuType type, boolean selected, KeyStroke mnemonic) {
         this.type = type;
         switch (type) {
             case NORMAL:
@@ -91,14 +93,43 @@ public class UIMenuItem extends UIComponent {
             menu.setAccelerator(accel);
         }
 
+        if (mnemonic == null) {
+            setText(text);
+        } else {
+            setMnemonic(mnemonic);
+        }
+
         return menu;
+    }
+
+    /**
+     * Set the mnemonic
+     * @param mnemonic the mnemonic
+     */
+    public void setMnemonic(KeyStroke mnemonic) {
+        if (mnemonic != null) {
+            menu.setMnemonic(mnemonic.getKeyCode());
+        }
+    }
+
+    /**
+     * Get the mnemonic
+     * @return the mnemonic
+     */
+    public KeyStroke getMnemonic() {
+        int mnemonic = menu.getMnemonic();
+        if (mnemonic > 0) {
+            return KeyStroke.getKeyStroke(mnemonic, 0);
+        }
+
+        return null;
     }
 
     /**
      * Set the menu type
      * @param type the menu type
      */
-    public void setType(MenuType type) {
+    public void setMenuType(MenuType type) {
         if (this.type != type) {
             this.type = type;
             JMenuItem mi = null;
@@ -116,8 +147,19 @@ public class UIMenuItem extends UIComponent {
 
             mi.setIcon(menu.getIcon());
             mi.setAccelerator(menu.getAccelerator());
+            mi.setMnemonic(menu.getMnemonic());
+            mi.setForeground(menu.getForeground());
+            mi.setBackground(menu.getBackground());
+            mi.setEnabled(menu.isEnabled());
+            mi.setVisible(menu.isVisible());
 
             replaceBy(mi);
+            if (clicklistener != null) {
+                menu.removeActionListener(clicklistener);
+                mi.addActionListener(clicklistener);
+            }
+
+            menu = mi;
         }
     }
 
@@ -125,8 +167,25 @@ public class UIMenuItem extends UIComponent {
      * Get the menu type
      * @return menu type
      */
-    public String getType() {
+    public String getMenuType() {
         return type.getAsString();
+    }
+
+    /**
+     * Set a checked menu
+     * @param b true if the menu must be checked
+     */
+    public void setChecked(boolean b) {
+        setMenuType(MenuType.CHECK);
+        menu.setSelected(b);
+    }
+
+    /**
+     * Get the menu state
+     * @return true if the menu is checked
+     */
+    public boolean getChecked() {
+        return menu.isSelected();
     }
 
     /**
@@ -151,7 +210,7 @@ public class UIMenuItem extends UIComponent {
      * Get the onclick action
      * @return the action
      */
-    public String getOnclick() {
+    public UICallback getOnclick() {
         return this.clickaction;
     }
 
@@ -165,13 +224,13 @@ public class UIMenuItem extends UIComponent {
             clicklistener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     if (onclickEnable) {
-                        UIWidgetTools.execAction(UIMenuItem.this, UIMenuItem.this.clickaction);
+                        UIWidgetTools.execAction(UIMenuItem.this.clickaction);
                     }
                 }
             };
             menu.addActionListener(clicklistener);
         }
-        this.clickaction = action;
+        this.clickaction = UICallback.newInstance(this, action);
     }
 
     /**
@@ -188,5 +247,61 @@ public class UIMenuItem extends UIComponent {
      */
     public void setOnclickEnable(boolean b) {
         onclickEnable = b;
+    }
+
+    /**
+     * Alias for setText
+     */
+    public void setLabel(String label) {
+        setText(label);
+    }
+
+    /**
+     * Alias for getText
+     */
+    public String getLabel() {
+        return getText();
+    }
+
+    /**
+     * Alias for setText
+     */
+    public void setString(String label) {
+        setText(label);
+    }
+
+    /**
+     * Alias for getText
+     */
+    public String getString() {
+        return getText();
+    }
+
+    /**
+     * Set the button text
+     * @param text the button text
+     */
+    public void setText(String text) {
+        boolean containsMnemonic = UITools.setTextAndMnemonic(text, menu);
+        if (containsMnemonic) {
+            this.text = text;
+        } else {
+            if (this.text != null) {
+                menu.setMnemonic(0);
+            }
+            this.text = null;
+        }
+    }
+
+    /**
+     * Get the button text
+     * @return the button text
+     */
+    public String getText() {
+        if (this.text == null) {
+            return menu.getText();
+        }
+
+        return this.text;
     }
 }

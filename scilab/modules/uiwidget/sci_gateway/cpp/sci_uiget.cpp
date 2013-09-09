@@ -24,6 +24,7 @@ extern "C"
 #include "freeArrayOfString.h"
 #include "expandPathVariable.h"
 #include "getScilabJavaVM.h"
+#include "stricmp.h"
 }
 
 using namespace org_scilab_modules_uiwidget;
@@ -67,6 +68,18 @@ int sci_uiget(char *fname, unsigned long fname_len)
             return 0;
         }
 
+        if (nbIn == 1 && !strcmp(str, "/"))
+        {
+            // we get all the root components
+            freeAllocatedSingleString(str);
+            UIWidget::getRoots(getScilabJavaVM(), nbIn + 1);
+
+            AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+            ReturnArguments(pvApiCtx);
+
+            return 0;
+        }
+
         uid = UIWidget::getUidFromPath(getScilabJavaVM(), str);
         freeAllocatedSingleString(str);
     }
@@ -103,7 +116,7 @@ int sci_uiget(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
-        if (!strcmp(str, "userdata") || !strcmp(str, "user_data"))
+        if (!stricmp(str, "userdata") || !stricmp(str, "user_data"))
         {
             UserDataHandler::get(uid, pvApiCtx, nbIn + 1);
         }

@@ -17,6 +17,7 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,8 +28,6 @@ import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.types.ScilabTypeEnum;
 
-import org.scilab.modules.gui.events.callback.ScilabCallBack;
-import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -38,6 +37,31 @@ import org.scilab.modules.gui.utils.Size;
 public final class ScilabTypeConverters {
 
     static final Map<Class, ScilabTypeConverter> converters = new HashMap<Class, ScilabTypeConverter>();
+    static final Map<Class, Class<? extends ScilabType>> preferred = new HashMap<Class, Class<? extends ScilabType>>();
+
+    static {
+        preferred.put(byte.class, ScilabInteger.class);
+        preferred.put(byte[].class, ScilabInteger.class);
+        preferred.put(byte[][].class, ScilabInteger.class);
+        preferred.put(short.class, ScilabInteger.class);
+        preferred.put(short[].class, ScilabInteger.class);
+        preferred.put(short[][].class, ScilabInteger.class);
+        preferred.put(int.class, ScilabInteger.class);
+        preferred.put(int[].class, ScilabInteger.class);
+        preferred.put(int[][].class, ScilabInteger.class);
+        preferred.put(long.class, ScilabInteger.class);
+        preferred.put(long[].class, ScilabInteger.class);
+        preferred.put(long[][].class, ScilabInteger.class);
+        preferred.put(boolean.class, ScilabBoolean.class);
+        preferred.put(boolean[].class, ScilabBoolean.class);
+        preferred.put(boolean[][].class, ScilabBoolean.class);
+        preferred.put(String.class, ScilabString.class);
+        preferred.put(String[].class, ScilabString.class);
+        preferred.put(String[][].class, ScilabString.class);
+        preferred.put(double.class, ScilabDouble.class);
+        preferred.put(double[].class, ScilabDouble.class);
+        preferred.put(double[][].class, ScilabDouble.class);
+    }
 
     /**
      * Register a converter for a target class
@@ -155,7 +179,7 @@ public final class ScilabTypeConverters {
                 if (value == null || value.getType() != ScilabTypeEnum.sci_matrix || value.isEmpty()) {
                     return Double.NaN;
                 }
-                return((ScilabDouble) value).getRealPart()[0][0];
+                return ((ScilabDouble) value).getRealPart()[0][0];
             }
         });
         converters.put(float.class, new ScilabTypeConverter() {
@@ -243,6 +267,23 @@ public final class ScilabTypeConverters {
                 return ret;
             }
         });
+        converters.put(Integer[].class, new ScilabTypeConverter() {
+            public Integer[] convert(ScilabType value) {
+                if (value == null || value.getType() != ScilabTypeEnum.sci_matrix || value.isEmpty()) {
+                    return null;
+                }
+                double[][] s = ((ScilabDouble) value).getRealPart();
+                int r = s.length;
+                int c = s[0].length;
+                Integer[] ret = new Integer[r * c];
+                for (int i = 0; i < r; i++) {
+                    for (int j = 0; j < c; j++) {
+                        ret[j + c * i] = (int) s[i][j];
+                    }
+                }
+                return ret;
+            }
+        });
         converters.put(double[].class, new ScilabTypeConverter() {
             public double[] convert(ScilabType value) {
                 if (value == null || value.getType() != ScilabTypeEnum.sci_matrix || value.isEmpty()) {
@@ -260,6 +301,23 @@ public final class ScilabTypeConverters {
                 return ret;
             }
         });
+        converters.put(Double[].class, new ScilabTypeConverter() {
+            public Double[] convert(ScilabType value) {
+                if (value == null || value.getType() != ScilabTypeEnum.sci_matrix || value.isEmpty()) {
+                    return null;
+                }
+                double[][] s = ((ScilabDouble) value).getRealPart();
+                int r = s.length;
+                int c = s[0].length;
+                Double[] ret = new Double[r * c];
+                for (int i = 0; i < r; i++) {
+                    for (int j = 0; j < c; j++) {
+                        ret[j + c * i] = s[i][j];
+                    }
+                }
+                return ret;
+            }
+        });
         converters.put(Color.class, new ScilabTypeConverter() {
             public Color convert(ScilabType value) {
                 if (value == null || value.isEmpty()) {
@@ -267,7 +325,7 @@ public final class ScilabTypeConverters {
                 }
 
                 if (value.getType() == ScilabTypeEnum.sci_matrix) {
-                    // We exepect to have [a,b,c,d] or [a;b;c;d]
+                    // We expect to have [a,b,c,d] or [a;b;c;d]
                     // So the structure of the ScilabDouble is depending if we have a row or a col
                     double[][] data = ((ScilabDouble) value).getRealPart();
                     try {
@@ -353,6 +411,39 @@ public final class ScilabTypeConverters {
                             return new Rectangle((int) data[0][0], (int) data[1][0], (int) data[2][0], (int) data[3][0]);
                         } else if (data.length == 1 && data[0].length >= 4) {
                             return new Rectangle((int) data[0][0], (int) data[0][1], (int) data[0][2], (int) data[0][3]);
+                        }
+                    } catch (IllegalArgumentException e) {
+                        return null;
+                    }
+                }
+
+                return null;
+            }
+        });
+        converters.put(Rectangle2D.Double.class, new ScilabTypeConverter() {
+            public Rectangle2D.Double convert(ScilabType value) {
+                if (value == null || value.isEmpty()) {
+                    return null;
+                }
+
+                if (value.getType() == ScilabTypeEnum.sci_matrix) {
+                    double[][] data = ((ScilabDouble) value).getRealPart();
+                    try {
+                        if (data.length >= 4 && data[0].length == 1) {
+                            return new Rectangle2D.Double(data[0][0], data[1][0], data[2][0], data[3][0]);
+                        } else if (data.length == 1 && data[0].length >= 4) {
+                            return new Rectangle2D.Double(data[0][0], data[0][1], data[0][2], data[0][3]);
+                        }
+                    } catch (IllegalArgumentException e) {
+                        return null;
+                    }
+                } else if (value.getType() == ScilabTypeEnum.sci_ints) {
+                    long[][] data = ((ScilabInteger) value).getData();
+                    try {
+                        if (data.length >= 4 && data[0].length == 1) {
+                            return new Rectangle2D.Double((double) data[0][0], (double) data[1][0], (double) data[2][0], (double) data[3][0]);
+                        } else if (data.length == 1 && data[0].length >= 4) {
+                            return new Rectangle2D.Double((double) data[0][0], (double) data[0][1], (double) data[0][2], (double) data[0][3]);
                         }
                     } catch (IllegalArgumentException e) {
                         return null;
@@ -494,12 +585,13 @@ public final class ScilabTypeConverters {
                 return null;
             }
         });
-        converters.put(CommonCallBack.class, new ScilabTypeConverter() {
-            public CommonCallBack convert(ScilabType value) {
-                if (value == null || value.getType() != ScilabTypeEnum.sci_strings || value.isEmpty()) {
+        converters.put(UIComponent.class, new ScilabTypeConverter() {
+            public UIComponent convert(ScilabType value) {
+                if (value == null || value.isEmpty() || value.getType() != ScilabTypeEnum.sci_handles) {
                     return null;
                 }
-                return ScilabCallBack.create(((ScilabString) value).getData()[0][0]);
+
+                return UIWidget.getUIComponent(value);
             }
         });
     }

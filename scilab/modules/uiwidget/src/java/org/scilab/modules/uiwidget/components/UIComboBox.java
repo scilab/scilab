@@ -30,6 +30,7 @@ import javax.swing.ListCellRenderer;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * JComboBox wrapper
@@ -39,7 +40,7 @@ public class UIComboBox extends UIComponent {
     protected JComboBox combo;
     protected ActionListener listener;
     protected boolean onchangeEnable = true;
-    protected String action;
+    protected UICallback action;
     protected Vector<Object> vector;
     protected ListCellRenderer defaultRenderer;
     protected MyComboBoxModel model;
@@ -252,7 +253,7 @@ public class UIComboBox extends UIComponent {
      * Get the onchange action
      * @return the action
      */
-    public String getOnchange() {
+    public UICallback getOnchange() {
         return action;
     }
 
@@ -266,13 +267,13 @@ public class UIComboBox extends UIComponent {
             listener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     if (onchangeEnable && combo.getSelectedItem() != null) {
-                        UIWidgetTools.execAction(UIComboBox.this, UIComboBox.this.action, "\"" + combo.getSelectedItem().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+                        UIWidgetTools.execAction(UIComboBox.this.action, "\"" + combo.getSelectedItem().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
                     }
                 }
             };
             combo.addActionListener(listener);
         }
-        this.action = action;
+        this.action = UICallback.newInstance(this, action);
     }
 
     /**

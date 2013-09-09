@@ -13,10 +13,13 @@
 package org.scilab.modules.uiwidget;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.scilab.modules.types.ScilabType;
 
 /**
  * TODO:
@@ -32,6 +35,17 @@ import java.util.Map;
 public final class UIMethodFinder {
 
     private static final Map<Class, MethodsInfo> info = new HashMap<Class, MethodsInfo>();
+
+    /**
+     * Clear the cache
+     */
+    public static void clearCache() {
+        for (Map.Entry<Class, MethodsInfo> entry : info.entrySet()) {
+            entry.getValue().clear();
+        }
+
+        info.clear();
+    }
 
     /**
      * Find a adder
@@ -83,7 +97,7 @@ public final class UIMethodFinder {
      * @param baseClass the class where to search
      * @return the corresponding method
      */
-    public static Method findSetter(final String name, final Class baseClass) {
+    public static List<Method> getSetterMethods(final String name, final Class baseClass) {
         MethodsInfo i = info.get(baseClass);
         if (i == null) {
             i = getInterestingMethods(baseClass);
@@ -92,10 +106,126 @@ public final class UIMethodFinder {
 
         List<Method> methods = i.setters.get(name);
         if (methods == null || methods.isEmpty()) {
-            return null;
+            // The name is not good but maybe it is just a case problem.
+            for (Map.Entry<String, List<Method>> entry : i.setters.entrySet()) {
+                if (name.equalsIgnoreCase(entry.getKey())) {
+                    methods = entry.getValue();
+                    break;
+                }
+            }
+
+            if (methods != null) {
+                i.setters.put(name, methods);
+            } else {
+                return null;
+            }
         }
 
-        return methods.get(0);
+        return methods;
+    }
+
+    /**
+     * Find a setter
+     * @param name the base setter name (e.g. foo for setFoo)
+     * @param baseClass the class where to search
+     * @return the corresponding method
+     */
+    public static Method findSetter(final String name, final Class baseClass) {
+        List<Method> methods = getSetterMethods(name, baseClass);
+
+        if (methods != null) {
+            return methods.get(0);
+        }
+
+        return null;
+    }
+
+    /**
+     * Find a setter
+     * @param name the base setter name (e.g. foo for setFoo)
+     * @param baseClass the class where to search
+     * @return the corresponding method
+     */
+    public static Method findSetter(final String name, final Class baseClass, final ScilabType arg) {
+        List<Method> methods = getSetterMethods(name, baseClass);
+
+        if (methods != null) {
+            final Class argClass = arg.getClass();
+            final int r = arg.getHeight();
+            final int c = arg.getWidth();
+            Method potential = null;
+            for (Method m : methods) {
+                Class argType = m.getParameterTypes()[0];
+                if (argType.isAssignableFrom(arg.getClass())) {
+                    return m;
+                }
+                Class<? extends ScilabType> st = ScilabTypeConverters.preferred.get(argType);
+                if (st == argClass) {
+                    if (!argType.isArray()) {
+                        if (r == 1 && c == 1) {
+                            return m;
+                        } else {
+                            potential = m;
+                        }
+                    } else {
+                        if (argType.getComponentType().isArray()) {
+                            if (r != 1 && c != 1) {
+                                return m;
+                            } else {
+                                potential = m;
+                            }
+                        } else {
+                            if (r == 1 || c == 1) {
+                                return m;
+                            } else {
+                                potential = m;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (potential == null) {
+                return methods.get(0);
+            } else {
+                return potential;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Find a getter
+     * @param name the base getter name (e.g. foo for getFoo)
+     * @param baseClass the class where to search
+     * @return the corresponding method
+     */
+    public static List<Method> getGetterMethods(final String name, final Class baseClass) {
+        MethodsInfo i = info.get(baseClass);
+        if (i == null) {
+            i = getInterestingMethods(baseClass);
+            info.put(baseClass, i);
+        }
+
+        List<Method> methods = i.getters.get(name);
+        if (methods == null || methods.isEmpty()) {
+            // The name is not good but maybe it is just a case problem.
+            for (Map.Entry<String, List<Method>> entry : i.getters.entrySet()) {
+                if (name.equalsIgnoreCase(entry.getKey())) {
+                    methods = entry.getValue();
+                    break;
+                }
+            }
+
+            if (methods != null) {
+                i.getters.put(name, methods);
+            } else {
+                return null;
+            }
+        }
+
+        return methods;
     }
 
     /**
@@ -105,18 +235,12 @@ public final class UIMethodFinder {
      * @return the corresponding method
      */
     public static Method findGetter(final String name, final Class baseClass) {
-        MethodsInfo i = info.get(baseClass);
-        if (i == null) {
-            i = getInterestingMethods(baseClass);
-            info.put(baseClass, i);
+        List<Method> methods = getGetterMethods(name, baseClass);
+        if (methods != null) {
+            return methods.get(0);
         }
 
-        List<Method> methods = i.getters.get(name);
-        if (methods == null) {
-            return null;
-        }
-
-        return methods.get(0);
+        return null;
     }
 
     /**
@@ -142,25 +266,26 @@ public final class UIMethodFinder {
         while (base != null) {
             Method[] methods = base.getDeclaredMethods();
             for (Method m : methods) {
-                String name = m.getName();
-                Class[] argsTypes = m.getParameterTypes();
-                int len = argsTypes.length;
-                if (len == 0) {
-                    if (name.startsWith("get") || name.startsWith("is")) {
-                        info.add(name, m, info.getters);
-                    }
-                } else {
-                    if (name == ni) {
-                        if (m.getAnnotation(UIComponentAnnotation.class) != null) {
-                            checkMethod(m);
-                            info.newers.add(m);
+                int modifiers = m.getModifiers();
+                if (Modifier.isPublic(modifiers)) {
+                    String name = m.getName();
+                    Class[] argsTypes = m.getParameterTypes();
+                    int len = argsTypes.length;
+                    if (len == 0) {
+                        if (name.startsWith("get") || name.startsWith("is")) {
+                            info.add(name, m, info.getters);
                         }
-                    } else if (len == 1) {
-                        if (name == add) {
-                            checkMethod(m);
-                            info.adders.add(m);
-                        } else if (name.startsWith("set")) {
-                            if (StringConverters.containConverter(argsTypes[0])) {
+                    } else {
+                        if (name == ni) {
+                            if (m.getAnnotation(UIComponentAnnotation.class) != null) {
+                                checkMethod(m);
+                                info.newers.add(m);
+                            }
+                        } else if (len == 1) {
+                            if (name == add) {
+                                checkMethod(m);
+                                info.adders.add(m);
+                            } else if (name.startsWith("set") && (StringConverters.containConverter(argsTypes[0]) || ScilabType.class.isAssignableFrom(argsTypes[0]))) {
                                 info.add(name, m, info.setters);
                             }
                         }
@@ -219,6 +344,19 @@ public final class UIMethodFinder {
             }
             checkMethod(m);
             ms.add(m);
+        }
+
+        void clear() {
+            for (Map.Entry<String, List<Method>> entry : getters.entrySet()) {
+                entry.getValue().clear();
+            }
+            getters.clear();
+            for (Map.Entry<String, List<Method>> entry : setters.entrySet()) {
+                entry.getValue().clear();
+            }
+            setters.clear();
+            adders.clear();
+            newers.clear();
         }
     }
 }

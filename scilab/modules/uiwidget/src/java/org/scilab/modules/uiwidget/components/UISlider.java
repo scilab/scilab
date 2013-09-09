@@ -23,13 +23,14 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 public class UISlider extends UIComponent {
 
     private JSlider slider;
     private ChangeListener listener;
     private boolean onchangeEnable = true;
-    private String action;
+    private UICallback action;
 
     public enum Orientation {
         HORIZONTAL (SwingConstants.HORIZONTAL),
@@ -79,30 +80,41 @@ public class UISlider extends UIComponent {
         slider.setMinorTickSpacing(increment);
     }
 
-    public void remove() {
+    /**
+     * Remove the onclick listener
+     */
+    protected void removeListener() {
         if (listener != null) {
             slider.removeChangeListener(listener);
             listener = null;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void remove() {
+        removeListener();
         super.remove();
     }
 
-    public String getOnchange() {
+    public UICallback getOnchange() {
         return action;
     }
 
     public void setOnchange(final String action) {
         if (this.action == null) {
+            removeListener();
             listener = new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
                     if (onchangeEnable) {
-                        UIWidgetTools.execAction(UISlider.this, UISlider.this.action, slider.getValue());
+                        UIWidgetTools.execAction(UISlider.this.action, slider.getValue());
                     }
                 }
             };
             slider.addChangeListener(listener);
         }
-        this.action = action;
+        this.action = UICallback.newInstance(this, action);
     }
 
     public boolean getOnchangeEnable() {

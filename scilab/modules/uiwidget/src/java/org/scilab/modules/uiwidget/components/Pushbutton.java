@@ -12,8 +12,10 @@
 
 package org.scilab.modules.uiwidget.components;
 
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import java.awt.Color;
 
+import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
@@ -24,8 +26,46 @@ public class Pushbutton extends ScilabWidget {
     }
 
     public Object newInstance() {
-        widget = new SwingScilabPushButton();
+        return new SwingScilabPushButton();
+    }
 
-        return widget;
+    public void initialize() {
+        super.initialize();
+        try {
+            setBackgroundColor(new Color(0.6f, 0.6f, 0.6f));
+            setRelief(ScilabRelief.RAISED);
+        } catch (UIWidgetException e) { }
+    }
+
+    public void setHorizontalAlignment(String halign) {
+        super.setHorizontalAlignment(halign);
+        SwingScilabPushButton button = (SwingScilabPushButton) getModifiableComponent();
+        button.setHorizontalAlignment(halign);
+    }
+
+    public void setString(String[][] strs) {
+        SwingScilabPushButton button = (SwingScilabPushButton) getModifiableComponent();
+        String s = getSingleString(strs);
+        if (s != null) {
+            button.setText(s);
+            super.setString(strs);
+        }
+    }
+
+    public void setCallback(String callback) {
+        SwingScilabPushButton button = (SwingScilabPushButton) getModifiableComponent();
+        if (commonCallBack != null) {
+            button.removeActionListener(commonCallBack);
+        }
+
+        super.setCallback(callback);
+
+        if (commonCallBack != null) {
+            button.addActionListener(commonCallBack);
+        }
+    }
+
+    public String getStyle() {
+        return "pushbutton";
     }
 }

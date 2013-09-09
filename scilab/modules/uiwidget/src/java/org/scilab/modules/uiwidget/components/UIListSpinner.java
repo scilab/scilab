@@ -23,6 +23,7 @@ import javax.swing.event.ChangeListener;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * JSpinner wrapper
@@ -33,7 +34,7 @@ public class UIListSpinner extends UIComponent {
     private ChangeListener listener;
     private List<Object> values;
     private SpinnerListModel model;
-    private String action;
+    private UICallback action;
     private boolean onchangeEnable = true;
 
     /**
@@ -91,7 +92,7 @@ public class UIListSpinner extends UIComponent {
      * Get the onchange action
      * @return the action
      */
-    public String getOnchange() {
+    public UICallback getOnchange() {
         return action;
     }
 
@@ -105,13 +106,13 @@ public class UIListSpinner extends UIComponent {
             listener = new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
                     if (onchangeEnable && spinner.getValue() != null) {
-                        UIWidgetTools.execAction(UIListSpinner.this, UIListSpinner.this.action, "\"" + spinner.getValue().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+                        UIWidgetTools.execAction(UIListSpinner.this.action, "\"" + spinner.getValue().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
                     }
                 }
             };
             spinner.addChangeListener(listener);
         }
-        this.action = action;
+        this.action = UICallback.newInstance(this, action);
     }
 
     /**

@@ -12,8 +12,10 @@
 
 package org.scilab.modules.uiwidget.components;
 
-import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
+import javax.swing.SwingUtilities;
 
+import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
@@ -24,8 +26,40 @@ public class Text extends ScilabWidget {
     }
 
     public Object newInstance() {
-        widget = new SwingScilabTextBox();
+        SwingScilabLabel label = new SwingScilabLabel();
 
-        return widget;
+        return label;
+    }
+
+    public void setHorizontalAlignment(String halign) {
+        super.setHorizontalAlignment(halign);
+        SwingScilabLabel label = (SwingScilabLabel) getModifiableComponent();
+        label.setHorizontalAlignment(halign);
+    }
+
+    public void setVerticalAlignment(String valign) {
+        super.setVerticalAlignment(valign);
+        SwingScilabLabel label = (SwingScilabLabel) getModifiableComponent();
+        label.setVerticalAlignment(valign);
+    }
+
+    public void setString(String[][] strs) {
+        final SwingScilabLabel label = (SwingScilabLabel) getModifiableComponent();
+        String[] s = getRowString(strs);
+        if (s != null) {
+            StringBuffer buffer = new StringBuffer();
+            for (int i = 0; i < s.length - 1; i++) {
+                buffer.append(s[i]).append("\n");
+            }
+            buffer.append(s[s.length - 1]);
+            label.setText(buffer.toString());
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    label.getVerticalScrollBar().setValue(0);
+                    label.getVerticalScrollBar().setUnitIncrement(label.getFont().getSize());
+                }
+            });
+            super.setString(strs);
+        }
     }
 }

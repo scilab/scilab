@@ -24,6 +24,7 @@ import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.net.MalformedURLException;
@@ -57,6 +58,7 @@ import org.scilab.modules.uiwidget.components.UISlider;
 import org.scilab.modules.uiwidget.components.UIProgressBar;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -266,11 +268,15 @@ public final class StringConverters {
                 String[] toks = str.split("[ +]");
                 StringBuilder buffer = new StringBuilder();
                 for (int i = 0; i < toks.length - 1; i++) {
-                    buffer.append(toks[i].toLowerCase());
-                    buffer.append(" ");
+                    if (toks[i].equalsIgnoreCase("OSSCKEY")) {
+                        buffer.append("OSSCKEY ");
+                    } else {
+                        buffer.append(toks[i].toLowerCase());
+                        buffer.append(" ");
+                    }
                 }
                 buffer.append(toks[toks.length - 1].toUpperCase());
-                return KeyStroke.getKeyStroke(buffer.toString());
+                return ScilabKeyStroke.getKeyStroke(buffer.toString());
             }
         });
         converters.put(ImageIcon.class, new StringConverter() {
@@ -279,30 +285,42 @@ public final class StringConverters {
                     return null;
                 }
 
+                ImageIcon icon = null;
+
                 if (str.lastIndexOf('.') == -1) {
                     String path = ScilabSwingUtilities.findIcon(str);
                     if (path != null) {
                         try {
                             BufferedImage img = ImageIO.read(new File(path));
-                            return new ImageIcon(img);
+                            icon = new ImageIcon(img);
                         } catch (Exception e) {
                             return null;
                         }
                     }
                 }
 
-                try {
-                    URL url = new URL(str);
-                    BufferedImage img = ImageIO.read(url);
-                    return new ImageIcon(img);
-                } catch (Exception e) { }
-
-                try {
-                    BufferedImage img = ImageIO.read(new File(UIWidgetTools.getFile(str).getAbsolutePath()));
-                    return new ImageIcon(img);
-                } catch (Exception e) {
-                    return null;
+                if (icon == null) {
+                    try {
+                        URL url = new URL(str);
+                        BufferedImage img = ImageIO.read(url);
+                        icon = new ImageIcon(img);
+                    } catch (Exception e) { }
                 }
+
+                if (icon == null) {
+                    try {
+                        BufferedImage img = ImageIO.read(new File(UIWidgetTools.getFile(str).getAbsolutePath()));
+                        icon = new ImageIcon(img);
+                    } catch (Exception e) {
+                        return null;
+                    }
+                }
+
+                if (icon != null) {
+                    icon.setDescription(str);
+                }
+
+                return icon;
             }
         });
         converters.put(Icon.class, converters.get(ImageIcon.class));
@@ -606,12 +624,31 @@ public final class StringConverters {
                         try {
                             ints[i] = (int) Double.parseDouble(toks[i]);
                         } catch (NumberFormatException ee) {
-                            ints[i] = 0;;
+                            ints[i] = 0;
                         }
                     }
                 }
 
                 return new Rectangle(ints[0], ints[1], ints[2], ints[3]);
+            }
+        });
+        converters.put(Rectangle2D.Double.class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null || str.isEmpty()) {
+                    return null;
+                }
+
+                final double[] d = new double[4];
+                String[] toks = str.split("[ ,;]");
+                for (int i = 0; i < toks.length && i < 4; i++) {
+                    try {
+                        d[i] = (int) Double.parseDouble(toks[i]);
+                    } catch (NumberFormatException ee) {
+                        d[i] = 0;
+                    }
+                }
+
+                return new Rectangle2D.Double(d[0], d[1], d[2], d[3]);
             }
         });
         converters.put(Dimension.class, new StringConverter() {
@@ -683,6 +720,61 @@ public final class StringConverters {
                 return ints;
             }
         });
+        converters.put(Integer[].class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null || str.isEmpty()) {
+                    return null;
+                }
+
+                String[] toks = str.split("[ ,;]");
+                Integer[] ints = new Integer[toks.length];
+                for (int i = 0; i < toks.length; i++) {
+                    try {
+                        ints[i] = Integer.parseInt(toks[i]);
+                    } catch (NumberFormatException e) {
+                        try {
+                            ints[i] = (int) Double.parseDouble(toks[i]);
+                        } catch (NumberFormatException ee) {
+                            ints[i] = 0;
+                        }
+                    }
+                }
+
+                return ints;
+            }
+        });
+        converters.put(int[][].class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null || str.isEmpty()) {
+                    return null;
+                }
+
+                int rows = 0;
+                for (int i = 0; i < str.length(); i++) {
+                    if (str.charAt(i) == ';') {
+                        rows++;
+                    }
+                }
+
+                String[] toks = str.split("[ ,;]");
+                int[][] ints = new int[rows][toks.length / rows];
+                for (int i = 0; i < rows; i++) {
+                    for (int j = 0; j < toks.length / rows; j++) {
+                        try {
+                            ints[i][j] = Integer.parseInt(toks[i * rows + j]);
+                        } catch (NumberFormatException e) {
+                            try {
+                                ints[i][j] = (int) Double.parseDouble(toks[i * rows + j]);
+                            } catch (NumberFormatException ee) {
+                                ints[i][j] = 0;
+                            }
+                        }
+                    }
+                }
+
+                return ints;
+            }
+        });
         converters.put(double[].class, new StringConverter() {
             public Object convert(String str) {
                 if (str == null || str.isEmpty()) {
@@ -696,6 +788,53 @@ public final class StringConverters {
                         dbls[i] = Double.parseDouble(toks[i]);
                     } catch (NumberFormatException e) {
                         dbls[i] = 0;
+                    }
+                }
+
+                return dbls;
+            }
+        });
+        converters.put(Double[].class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null || str.isEmpty()) {
+                    return null;
+                }
+
+                String[] toks = str.split("[ ,;]");
+                Double[] dbls = new Double[toks.length];
+                for (int i = 0; i < toks.length; i++) {
+                    try {
+                        dbls[i] = Double.parseDouble(toks[i]);
+                    } catch (NumberFormatException e) {
+                        dbls[i] = new Double(0);
+                    }
+                }
+
+                return dbls;
+            }
+        });
+        converters.put(double[][].class, new StringConverter() {
+            public Object convert(String str) {
+                if (str == null || str.isEmpty()) {
+                    return null;
+                }
+
+                int rows = 0;
+                for (int i = 0; i < str.length(); i++) {
+                    if (str.charAt(i) == ';') {
+                        rows++;
+                    }
+                }
+
+                String[] toks = str.split("[ ,;]");
+                double[][] dbls = new double[rows][toks.length / rows];
+                for (int i = 0; i < rows; i++) {
+                    for (int j = 0; j < toks.length / rows; j++) {
+                        try {
+                            dbls[i][j] = Double.parseDouble(toks[i * rows + j]);
+                        } catch (NumberFormatException e) {
+                            dbls[i][j] = 0;
+                        }
                     }
                 }
 
@@ -834,6 +973,11 @@ public final class StringConverters {
                 }
 
                 return UICursorFactory.getCursor(str);
+            }
+        });
+        converters.put(UITools.FontUnit.class, new StringConverter() {
+            public Object convert(String str) {
+                return UITools.FontUnit.fromString(str);
             }
         });
     }

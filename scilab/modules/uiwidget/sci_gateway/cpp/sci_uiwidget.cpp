@@ -12,6 +12,7 @@
 
 #include "UIWidgetTools.hxx"
 #include "UIWidget.hxx"
+#include "UserDataHandler.hxx"
 #include "ScilabToJava.hxx"
 
 extern "C"
@@ -24,8 +25,8 @@ extern "C"
 #include "freeArrayOfString.h"
 #include "expandPathVariable.h"
 #include "getScilabJavaVM.h"
+#include "stricmp.h"
 }
-
 
 using namespace org_scilab_modules_uiwidget;
 
@@ -36,8 +37,9 @@ int sci_uiwidget(char * fname, unsigned long fname_len)
 
     SciErr err;
     int * addr = 0;
+    char * str = 0;
     const int nbIn = nbInputArgument(pvApiCtx);
-    int uid = -1;
+    std::vector<int> indexes;
 
     CheckOutputArgument(pvApiCtx, 1, 1);
 
@@ -69,17 +71,37 @@ int sci_uiwidget(char * fname, unsigned long fname_len)
 
         try
         {
-            uid = UIWidget::uiwidgetLoad(getScilabJavaVM(), expandedPath);
+            UIWidget::uiwidgetLoad(getScilabJavaVM(), expandedPath);
         }
         catch (const GiwsException::JniException & e)
         {
             Scierror(999, _("%s: %s\n"), fname, e.getJavaDescription().c_str());
             return 0;
         }
+
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
+
+        return 0;
     }
     else
     {
-        for (int i = 1; i <= nbIn; i++)
+        int uid = -1;
+        const int start = nbIn % 2 + 1;
+        int userDataPos = -1;
+
+        if (start == 2)
+        {
+            err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
+            if (err.iErr)
+            {
+                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+                return 0;
+            }
+            org_modules_types::ScilabToJava::sendVariable("", addr, false, handlerId, pvApiCtx);
+        }
+
+        for (int i = start; i <= nbIn; i += 2)
         {
             err = getVarAddressFromPosition(pvApiCtx, i, &addr);
             if (err.iErr)
@@ -87,7 +109,33 @@ int sci_uiwidget(char * fname, unsigned long fname_len)
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
                 return 0;
             }
-            org_modules_types::ScilabToJava::sendVariable("", addr, false, handlerId, pvApiCtx);
+            if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+            {
+                Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, i);
+                return 0;
+            }
+            if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+                return 0;
+            }
+            if (!stricmp(str, "userdata") || !stricmp(str, "user_data"))
+            {
+                userDataPos = i + 1;
+            }
+            else
+            {
+                org_modules_types::ScilabToJava::sendStringVariable("", indexes, 1, 1, &str, false, false, handlerId);
+                err = getVarAddressFromPosition(pvApiCtx, i + 1, &addr);
+                if (err.iErr)
+                {
+                    freeAllocatedSingleString(str);
+                    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i + 1);
+                    return 0;
+                }
+                org_modules_types::ScilabToJava::sendVariable("", addr, false, handlerId, pvApiCtx);
+            }
+            freeAllocatedSingleString(str);
         }
 
         try
@@ -99,20 +147,23 @@ int sci_uiwidget(char * fname, unsigned long fname_len)
             Scierror(999, _("%s: %s\n"), fname, e.getJavaDescription().c_str());
             return 0;
         }
-    }
 
+        if (uid != -1)
+        {
+            if (userDataPos != -1)
+            {
+                UserDataHandler::put(uid, userDataPos);
+            }
 
-    if (uid != -1)
-    {
-        UIWidgetTools::createOnScilabStack(uid, nbIn + 1, pvApiCtx);
-        AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
-        ReturnArguments(pvApiCtx);
+            UIWidgetTools::createOnScilabStack(uid, nbIn + 1, pvApiCtx);
+            AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+            ReturnArguments(pvApiCtx);
+        }
+        else
+        {
+            Scierror(999, _("%s: Invalid object.\n"), fname);
+        }
 
-        return 0;
-    }
-    else
-    {
-        Scierror(999, _("%s: Invalid object.\n"), fname);
         return 0;
     }
 }

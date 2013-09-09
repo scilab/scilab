@@ -12,11 +12,17 @@
 
 package org.scilab.modules.uiwidget;
 
+import java.awt.Component;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  * Class to help to locate a component given its path composed of ids
@@ -26,6 +32,15 @@ public final class UILocator {
     private static final Map<String, UIComponent> roots = new HashMap<String, UIComponent>();
     private static final Map<String, UIComponent> pathToUI = new HashMap<String, UIComponent>();
     private static final Map<Integer, UIComponent> uids = new HashMap<Integer, UIComponent>();
+
+    /**
+     * Clear the caches
+     */
+    public static void clearCache() {
+        roots.clear();
+        pathToUI.clear();
+        uids.clear();
+    }
 
     /**
      * Add a root component
@@ -38,6 +53,22 @@ public final class UILocator {
                 roots.put(id, ui);
             }
         }
+    }
+
+    public static UIComponent findWindow(final UIComponent ui) {
+        if (ui.getComponent() instanceof Component) {
+            Component c = (Component) ui.getComponent();
+            JFrame win = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, c);
+            if (win != null) {
+                for (Map.Entry<String, UIComponent> entry : roots.entrySet()) {
+                    if (entry.getValue().component == win) {
+                        return entry.getValue();
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -111,6 +142,15 @@ public final class UILocator {
     }
 
     /**
+     * Get the roots component
+     * @return an array containing the root components.
+     */
+    public static UIComponent[] getRoots() {
+        Collection<UIComponent> values = roots.values();
+        return values.toArray(new UIComponent[values.size()]);
+    }
+
+    /**
      * Get a component corresponding to the given path.
      * The path is constituted of ids separated by '/'.
      * It is possible to use '..' and '*' to make the navigation easier.
@@ -120,7 +160,6 @@ public final class UILocator {
     public static UIComponent get(final String path) {
         boolean putInCache = true;
         UIComponent ui = pathToUI.get(path);
-        int start = 0;
         if (ui != null) {
             return ui;
         }
@@ -130,9 +169,8 @@ public final class UILocator {
             return null;
         }
 
-        UIComponent root;
         String base = pathElements.get(0);
-        root = roots.get(base);
+        UIComponent root = roots.get(base);
 
         if (root == null) {
             // Not a root element: we look after it in the tree

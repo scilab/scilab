@@ -24,9 +24,11 @@ public @interface UIComponentAnnotation {
      * For example,
      * <code>
      * @UIComponentAnnotation(attributes={"a", "b"})
-     * void foo(String one, int tow) { ... }
+     * void foo(String one, int two) { ... }
      * </code>
      * The value of attribute "a" is converted into a String and passed as "one" argument,...
      */
-public String[] attributes() default {""};
+public String[] attributes() default {
+        ""
+    };
 }

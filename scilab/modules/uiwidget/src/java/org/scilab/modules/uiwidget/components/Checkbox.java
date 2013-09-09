@@ -12,8 +12,9 @@
 
 package org.scilab.modules.uiwidget.components;
 
-import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
+import javax.swing.JCheckBox;
 
+import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
@@ -24,18 +25,46 @@ public class Checkbox extends ScilabWidget {
     }
 
     public Object newInstance() {
-        widget = new SwingScilabCheckBox();
-        setMin(0);
-        setMax(1);
+        JCheckBox checkbox = new JCheckBox();
+        checkbox.setContentAreaFilled(false);
+        checkbox.setOpaque(true);
 
-        return widget;
+        return checkbox;
     }
 
-    public double getValue() {
-        if (((SwingScilabCheckBox) widget).isSelected()) {
-            return getMin();
+    public void setHorizontalAlignment(String halign) {
+        super.setHorizontalAlignment(halign);
+        JCheckBox checkbox = (JCheckBox) getModifiableComponent();
+        checkbox.setHorizontalAlignment(ScilabAlignment.toSwingAlignment(halign));
+    }
+
+    public void setString(String[][] strs) {
+        JCheckBox checkbox = (JCheckBox) getModifiableComponent();
+        String s = getSingleString(strs);
+        if (s != null) {
+            checkbox.setText(s);
+            super.setString(strs);
+        }
+    }
+
+    public double[] getValue() {
+        if (((JCheckBox) getModifiableComponent()).isSelected()) {
+            return new double[] {getMin()};
         } else {
-            return getMax();
+            return new double[] {getMax()};
+        }
+    }
+
+    public void setCallback(String callback) {
+        JCheckBox checkbox = (JCheckBox) getModifiableComponent();
+        if (commonCallBack != null) {
+            checkbox.removeActionListener(commonCallBack);
+        }
+
+        super.setCallback(callback);
+
+        if (commonCallBack != null) {
+            checkbox.addActionListener(commonCallBack);
         }
     }
 }

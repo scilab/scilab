@@ -19,13 +19,29 @@ import javax.swing.JSeparator;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
+/**
+ * JSeparator wrapper
+ */
 public class UISeparator extends UIComponent {
 
+    /**
+     * {@inheritDoc}
+     */
     public UISeparator(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         return new JSeparator();
+    }
+
+    public static UISeparator getNewSeparator(UIComponent parent) throws UIWidgetException {
+        UISeparator sep = new UISeparator(parent);
+        sep.setComponent(sep.newInstance());
+
+        return sep;
     }
 }

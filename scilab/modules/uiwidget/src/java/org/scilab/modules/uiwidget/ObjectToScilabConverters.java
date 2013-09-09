@@ -16,8 +16,10 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Insets;
+import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
@@ -25,9 +27,11 @@ import java.util.Map;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.types.ScilabHandle;
 import org.scilab.modules.types.ScilabStackPutter;
+import org.scilab.modules.uiwidget.callback.UICallback;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -48,7 +52,7 @@ public final class ObjectToScilabConverters {
      */
     public static void putOnScilabStack(Object o, int stackPos) {
         if (o == null) {
-            ScilabStackPutter.put(stackPos, new double[0], false);
+            ScilabStackPutter.putEmpty(stackPos);
         } else {
             final Class clazz = o.getClass();
             ObjectConverter converter;
@@ -63,7 +67,7 @@ public final class ObjectToScilabConverters {
             }
 
             if (converter == null) {
-                ScilabStackPutter.put(stackPos, new double[0], false);
+                ScilabStackPutter.putEmpty(stackPos);
             } else {
                 converter.convert(o, stackPos);
             }
@@ -111,7 +115,7 @@ public final class ObjectToScilabConverters {
         });
         converters.put(int[][].class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
-                ScilabStackPutter.put(stackPos, (int[][]) o, false, false);
+                ScilabStackPutter.put(stackPos, (int[][]) o, false, true);
             }
         });
         converters.put(Double.class, new ObjectConverter() {
@@ -124,9 +128,19 @@ public final class ObjectToScilabConverters {
                 ScilabStackPutter.put(stackPos, (double[]) o, false);
             }
         });
+        converters.put(Double[].class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                Double[] d = (Double[]) o;
+                double[] dd = new double[d.length];
+                for (int i = 0; i < dd.length; i++) {
+                    dd[i] = d[i];
+                }
+                ScilabStackPutter.put(stackPos, dd, false);
+            }
+        });
         converters.put(double[][].class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
-                ScilabStackPutter.put(stackPos, (double[][]) o, false);
+                ScilabStackPutter.put(stackPos, (double[][]) o, true);
             }
         });
         converters.put(Boolean.class, new ObjectConverter() {
@@ -141,7 +155,7 @@ public final class ObjectToScilabConverters {
         });
         converters.put(boolean[][].class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
-                ScilabStackPutter.put(stackPos, (boolean[][]) o, false);
+                ScilabStackPutter.put(stackPos, (boolean[][]) o, true);
             }
         });
         converters.put(Float.class, new ObjectConverter() {
@@ -161,7 +175,7 @@ public final class ObjectToScilabConverters {
         });
         converters.put(String[][].class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
-                ScilabStackPutter.put(stackPos, (String[][]) o, false);
+                ScilabStackPutter.put(stackPos, (String[][]) o, true);
             }
         });
         converters.put(Object.class, new ObjectConverter() {
@@ -188,7 +202,7 @@ public final class ObjectToScilabConverters {
                         strs[i][j] = ob == null ? "" : ob.toString();
                     }
                 }
-                ScilabStackPutter.put(stackPos, strs, false);
+                ScilabStackPutter.put(stackPos, strs, true);
             }
         });
         converters.put(Color.class, new ObjectConverter() {
@@ -211,6 +225,15 @@ public final class ObjectToScilabConverters {
                 ScilabStackPutter.put(stackPos, ((ImageIcon) o).getDescription());
             }
         });
+        converters.put(LayoutManager.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                if (o instanceof LayoutManager) {
+                    ScilabStackPutter.put(stackPos, UILayoutFactory.getStringRepresentation((LayoutManager) o));
+                } else {
+                    ScilabStackPutter.put(stackPos, "Cannot convert " + o.toString());
+                }
+            }
+        });
         converters.put(Insets.class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
                 Insets i = (Insets) o;
@@ -221,6 +244,12 @@ public final class ObjectToScilabConverters {
             public void convert(Object o, int stackPos) {
                 Rectangle r = (Rectangle) o;
                 ScilabStackPutter.put(stackPos, new double[] {(double) r.x, (double) r.y, (double) r.width, (double) r.height} , false);
+            }
+        });
+        converters.put(Rectangle2D.Double.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                Rectangle2D.Double r = (Rectangle2D.Double) o;
+                ScilabStackPutter.put(stackPos, new double[] {r.x, r.y, r.width, r.height} , false);
             }
         });
         converters.put(Dimension.class, new ObjectConverter() {
@@ -284,6 +313,30 @@ public final class ObjectToScilabConverters {
         converters.put(Cursor.class, new ObjectConverter() {
             public void convert(Object o, int stackPos) {
                 ScilabStackPutter.put(stackPos, UICursorFactory.getString((Cursor) o));
+            }
+        });
+        converters.put(KeyStroke.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                KeyStroke ks = (KeyStroke) o;
+                String s = o.toString();
+                int pos = s.lastIndexOf(' ');
+                if (pos != -1) {
+                    String key = s.substring(pos + 1);
+                    pos = s.lastIndexOf(' ', pos - 1);
+                    if (pos != -1) {
+                        s = s.substring(0, pos);
+                        ScilabStackPutter.put(stackPos, s + " " + key);
+                    } else {
+                        ScilabStackPutter.put(stackPos, key);
+                    }
+                } else {
+                    ScilabStackPutter.put(stackPos, new double[0], false);
+                }
+            }
+        });
+        converters.put(UICallback.class, new ObjectConverter() {
+            public void convert(Object o, int stackPos) {
+                ScilabStackPutter.put(stackPos, o.toString());
             }
         });
     }

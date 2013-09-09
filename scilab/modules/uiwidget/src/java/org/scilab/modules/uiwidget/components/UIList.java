@@ -33,6 +33,7 @@ import javax.swing.ListSelectionModel;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * JList wrapper
@@ -45,7 +46,7 @@ public class UIList extends UIComponent {
     private MyListModel model;
     private Vector<Object> vector;
     private boolean isFinished;
-    private String action;
+    private UICallback action;
 
     /**
      * {@inheritDoc}
@@ -357,7 +358,7 @@ public class UIList extends UIComponent {
      * Get the onclick action
      * @return the action
      */
-    public String getOnclick() {
+    public UICallback getOnclick() {
         return action;
     }
 
@@ -370,12 +371,14 @@ public class UIList extends UIComponent {
             removeListener();
             listener = new MouseAdapter() {
                 public void mouseClicked(MouseEvent e) {
-                    UIWidgetTools.execAction(UIList.this, UIList.this.action, "\"" + list.getSelectedValue().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+                    if (onclickEnable) {
+                        UIWidgetTools.execAction(UIList.this.action, "\"" + list.getSelectedValue().toString().replaceAll("\"", "\"\"").replaceAll("\'", "\'\'") + "\"");
+                    }
                 }
             };
             list.addMouseListener(listener);
         }
-        this.action = action;
+        this.action = UICallback.newInstance(this, action);
     }
 
     /**

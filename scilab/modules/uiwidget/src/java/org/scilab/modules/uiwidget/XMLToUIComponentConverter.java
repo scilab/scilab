@@ -402,9 +402,9 @@ public class XMLToUIComponentConverter extends DefaultHandler {
         if (css != null && !css.isEmpty()) {
             String[] files = css.split("[ ,;]");
             for (String f : files) {
-                File file = new File(f);
+                File file = UIWidgetTools.getFile(f);
                 if (file.exists() && file.canRead()) {
-                    Map<String, Map<String, String>> s = StyleParser.parseFile(f);
+                    Map<String, Map<String, String>> s = StyleParser.parseFile(file.getAbsolutePath());
                     if (style == null) {
                         style = s;
                     } else {

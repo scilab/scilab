@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uiwidget" xml:lang="en">
+    <refnamediv>
+        <refname>uiwidget</refname>
+        <refpurpose>Create a new uiwidget</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            uiwidget(path, p_1, v_1, p_2, v_2, ...)
+            uiwidget(handle, p_1, v_1, p_2, v_2, ...)
+            uiwidget(p_1, v_1, p_2, v_2, ...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>a string, the path to the parent component to modify.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>handle</term>
+                <listitem>
+                    <para>a handle, the parent handle.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>p_i</term>
+                <listitem>
+                    <para>a string, a property name.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>v_i</term>
+                <listitem>
+                    <para>a Scilab value, the value associated to the property p_i.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If uiwidget is called with a first argument equals to a path or a handle, then a new uiwidget is created and add to the given parent. If the first argument is a property name, then a new root uiwidget (i.e. it has no parent) is created.
+        </para>
+        <para>
+            Each uiwidget should have an id (or tag) property if it is necessary to modify one of its properties. An uiwidget cannot have two children with the same id, but it is possible with two uiwidgets which don't have the same parent.
+        </para>
+        <para>
+            If an uiwidget and all of its predecessors have an id, then it is possible to use a path to identify it. For example, th path "/foo/bar/toto" corresponds to the uiwidget with id "toto" which has a parent with id "bar" which has itself a parent with id "foo".The uiwidget with id "foo" is a root one, typically it is a window. It is possible to use '..' and '*' in a path. For example "/foo/bar/../titi" is equivalent to "/foo/titi" and "/foo/*/titi" is equivalent "/foo/a/b/c/d/titi" or "/foo/bar/titi".  
+        </para>
+        <para>
+            One of the property must be "Style" (or "style") to give the uiwidget type. The first letter of a property name can upper or lower case and name like "foo-bar" is equivalent to "fooBar" or "FooBar".
+        </para>
+        <para>
+            The values can be string or other Scilab type. For example, if a property is associated to a boolean, the value can be "true" or "on" or %t. 
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Callback called when an url is clicked
+function onurlclick_cb(obj, url)
+    obj.url = url;
+endfunction
+
+function open_cb(obj)
+    f =uigetfile("*.sci", "SCI");
+    if ~isempty(f) & ~isempty(fileinfo(f)) then
+	// we can use the joker '*' since there is only one id "ed" under mywin.
+        uiset("/mywin/*/ed", "text", mgetl(f));
+    end
+endfunction
+
+function close_cb(obj)
+    delete(uiget("/mywin"));
+endfunction 
+
+function about_ok_cb(obj)
+    delete(uiget("/about"));
+endfunction 
+
+function help_ok_cb(obj)
+    delete(uiget("/help"));
+    kwd = uiget("/help/p1/keyword", "text");
+    if ~isempty(kwd) then
+        url = "jar:file:" + SCI + "/modules/helptools/jar/scilab_en_US_help.jar!/scilab_en_US_help/" + kwd + ".html";
+	uiset("/mywin/*/web", "url", url);
+    end
+endfunction 
+
+function about_cb(obj)
+    win = uiwidget("style", "UIDialog", "width", 300, "height", 200, "visible", %f, "icon", "scilab", "title", "About", "id", "about", "modal", %t, "owner", "/mywin");
+    p1 = uiwidget(win, "style", "UIPanel", "id", "p1", "layout", "name:gridbag");
+    uiwidget(p1, "style", "UILabel", "text", "This is an about box", "constraint", "insets:10,10,0,0; gridx:1; gridy:1; anchor:west");
+    uiwidget(p1, "style", "UILabel", "text", "Please visit our website:", "constraint", "insets:0,10,0,0; gridx:1; gridy:2; anchor:west");
+    uiwidget(p1, "style", "UILabel", "text", "www.scilab.org", "link", "http://www.scilab.org", "foreground", [0,0,255], "constraint", "gridx:1; gridy:3; anchor:center", "font", "underline:true; color:blue");
+    uiwidget(p1, "style", "UIButton", "text", "Ok", "constraint", "insets:0,0,10,0;gridx:1; gridy:4; anchor:center", "onclick", "about_ok_cb");
+    uiset(win, "visible", %t);
+endfunction
+
+function help_cb(obj)
+    win = uiwidget("style", "UIDialog", "width", 300, "height", 200, "visible", %f, "icon", "scilab", "title", "Open help", "id", "help", "modal", %t, "owner", "/mywin");
+    p1 = uiwidget(win, "style", "UIPanel", "id", "p1", "layout", "name:gridbag");
+    uiwidget(p1, "style", "UILabel", "text", "Function name", "constraint", "insets:10,10,0,0; fill:none; weightx:0.1; gridx:1; gridy:1; anchor:west");
+    uiwidget(p1, "style", "UITextfield", "constraint", "insets:10,0,0,0; gridx:2; gridy:1; weightx:1; fill:horizontal; anchor:east", "id", "keyword", "onenter", "help_ok_cb");
+    uiwidget(p1, "style", "UIButton", "text", "Ok", "constraint", "insets:0,0,10,0;gridx:1; fill:none; gridy:2; gridwidth:2; anchor:center", "onclick", "help_ok_cb");
+    uiset(win, "visible", %t);
+endfunction
+
+win = uiwidget("style", "UIFrame", "width", 800, "height", 700, "visible", %f, "icon", "scilab", "id", "mywin");
+bar = uiwidget(win, "style", "UIMenuBar", "id", "menubar");
+menu = uiwidget(bar, "style", "UIMenu", "id", "file_menu", "text", "File");
+uiwidget(menu, "style", "UIMenuItem", "id", "open", "text", "Open", "icon", "document-open", "onclick", "open_cb", "accelerator", "ctrl O");
+uiwidget(menu, "style", "UIMenuItem", "id", "close", "text", "Close", "onclick", "close_cb", "accelerator", "ctrl W");
+menu = uiwidget(bar, "style", "UIMenu", "id", "help_menu", "text", "?");
+uiwidget(menu, "style", "UIMenuItem", "id", "about", "text", "About", "icon", "dialog-information", "onclick", "about_cb", "accelerator", "shift F1");
+uiwidget(menu, "style", "UIMenuItem", "id", "help", "text", "Help", "icon", "help-browser", "onclick", "help_cb", "accelerator", "F1");
+
+p1 = uiwidget(win, "style", "UIPanel", "id", "p1", "layout", "name:border");
+p2 = uiwidget(p1, "style", "UIPanel", "id", "p2", "layout", "name:grid; rows:1; cols:2", "constraint", "position:center");
+ed = uiwidget(p2, "style", "UIScilabCode", "id", "ed", "text", mgetl(get_function_path("sinh")));
+url = "jar:file:" + SCI + "/modules/helptools/jar/scilab_en_US_help.jar!/scilab_en_US_help/sinh.html";
+web = uiwidget(p2, "style", "UIText", "id", "web", "url", url, "editable", %f, "scrollable", %t, "onurlclick", "onurlclick_cb");
+
+win.visible = %t;
+]]></programlisting>
+    </refsection>
+     
+</refentry>

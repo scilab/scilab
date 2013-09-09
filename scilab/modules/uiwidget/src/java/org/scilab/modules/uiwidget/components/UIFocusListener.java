@@ -20,6 +20,7 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 import org.scilab.modules.uiwidget.UIListener;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * FocusListener wrapper
@@ -102,9 +103,9 @@ public class UIFocusListener extends UIListener {
      * Get the onfocusgain command
      * @return the command
      */
-    public String getOnfocusgain() {
+    public UICallback getOnfocusgain() {
         if (gain != null) {
-            return gain.command;
+            return gain.callback;
         }
 
         return null;
@@ -123,9 +124,9 @@ public class UIFocusListener extends UIListener {
      * Get the onfocusloss command
      * @return the command
      */
-    public String getOnfocusloss() {
+    public UICallback getOnfocusloss() {
         if (loss != null) {
-            return loss.command;
+            return loss.callback;
         }
 
         return null;
@@ -203,13 +204,13 @@ public class UIFocusListener extends UIListener {
             case GAIN:
                 return new FocusAction(uicomp, command) {
                     public void action(FocusEvent e) {
-                        UIWidgetTools.execAction(this.uicomp, this.command);
+                        UIWidgetTools.execAction(this.callback);
                     }
                 };
             case LOSS:
                 return new FocusAction(uicomp, command) {
                     public void action(FocusEvent e) {
-                        UIWidgetTools.execAction(this.uicomp, this.command);
+                        UIWidgetTools.execAction(this.callback);
                     }
                 };
             default:
@@ -222,7 +223,7 @@ public class UIFocusListener extends UIListener {
      */
     protected static abstract class FocusAction {
 
-        String command;
+        UICallback callback;
         UIComponent uicomp;
 
         /**
@@ -232,7 +233,7 @@ public class UIFocusListener extends UIListener {
          */
         FocusAction(UIComponent uicomp, String command) {
             this.uicomp = uicomp;
-            this.command = command;
+            this.callback = UICallback.newInstance(uicomp, command);
         }
 
         /**

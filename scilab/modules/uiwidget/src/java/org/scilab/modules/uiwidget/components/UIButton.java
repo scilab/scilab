@@ -23,25 +23,34 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.KeyStroke;
+
+import org.flexdock.view.Titlebar;
 
 import org.scilab.modules.uiwidget.StringConverters;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * JButton wrapper
  */
 public class UIButton extends UIComponent {
 
-    private JButton button;
-    private JPopupMenu menu;
-    private Action menuAction;
-    private boolean hasRolloverIcon;
-    private ActionListener clicklistener;
-    private String clickaction;
-    private boolean onclickEnable = true;
+    private static int action_id = 0;
+
+    protected JButton button;
+    protected JPopupMenu menu;
+    protected Action menuAction;
+    protected boolean hasRolloverIcon;
+    protected ActionListener clicklistener;
+    protected UICallback clickaction;
+    protected boolean onclickEnable = true;
+    protected boolean blueRollover = false;
+    protected String text;
+    protected AbstractAction actionForTab;
 
     public enum Relief {
         NONE,
@@ -117,15 +126,53 @@ public class UIButton extends UIComponent {
         return button;
     }
 
-    @UIComponentAnnotation(attributes = {"text", "icon"})
-    public Object newInstance(String text, Icon icon) {
+    @UIComponentAnnotation(attributes = {"text", "icon", "mnemonic"})
+    public Object newInstance(String text, Icon icon, KeyStroke mnemonic) {
         if (icon == null) {
             button = new JButton(text);
+            //button.setVisible(true);
+            //button.setBounds(10,10,100,100);
         } else {
             button = new JButton(text, icon);
         }
 
+        if (mnemonic == null) {
+            setText(text);
+        } else {
+            setMnemonic(mnemonic);
+        }
+
         return button;
+    }
+
+    /**
+     * Set the defaults
+     */
+    public void setDefaults() {
+        button.setFocusable(false);
+    }
+
+    /**
+     * Set the mnemonic
+     * @param mnemonic the mnemonic
+     */
+    public void setMnemonic(KeyStroke mnemonic) {
+        if (mnemonic != null) {
+            button.setMnemonic(mnemonic.getKeyCode());
+        }
+    }
+
+    /**
+     * Get the mnemonic
+     * @return the mnemonic
+     */
+    public KeyStroke getMnemonic() {
+        int mnemonic = button.getMnemonic();
+        if (mnemonic > 0) {
+            return KeyStroke.getKeyStroke(mnemonic, 0);
+        }
+
+        return null;
     }
 
     /**
@@ -139,15 +186,49 @@ public class UIButton extends UIComponent {
     }
 
     /**
-     * Set Rollover
-     * @param b if true enable default rollover
+     * Set a blue rollover
+     * @param b if true enable the default rollover
      */
-    public void setRollover(boolean b) {
+    public void setBlueRollover(boolean b) {
         Icon icon = button.getIcon();
+        blueRollover = false;
         if (icon != null && !hasRolloverIcon && b) {
             button.setRolloverEnabled(true);
             button.setRolloverIcon(UITools.getRolloverIcon(icon));
+            blueRollover = true;
         }
+    }
+
+    /**
+     * @return true if the blue rollover is enabled
+     */
+    public boolean getBlueRollover() {
+        return blueRollover;
+    }
+
+    /**
+     * Set the button icon
+     * @param icon the icon
+     */
+    public void setIcon(Icon icon) {
+        button.setIcon(icon);
+        if (blueRollover && icon != null) {
+            button.setRolloverIcon(UITools.getRolloverIcon(icon));
+        }
+        if (actionForTab != null) {
+            actionForTab.putValue(Action.SMALL_ICON, button.getIcon());
+        }
+    }
+
+    public void setEnabled(boolean b) {
+        button.setEnabled(b);
+        if (actionForTab != null) {
+            actionForTab.setEnabled(b);
+        }
+    }
+
+    public void setEnable(boolean b) {
+        setEnabled(b);
     }
 
     /**
@@ -228,6 +309,12 @@ public class UIButton extends UIComponent {
      */
     public void remove() {
         removeClickListener();
+        if (actionForTab != null) {
+            Titlebar tb = (Titlebar) actionForTab.getValue("TITLEBAR");
+            if (tb != null) {
+                tb.removeAction((String) actionForTab.getValue(Action.NAME));
+            }
+        }
         super.remove();
     }
 
@@ -235,7 +322,7 @@ public class UIButton extends UIComponent {
      * Get the onclick action
      * @return the action
      */
-    public String getOnclick() {
+    public UICallback getOnclick() {
         return this.clickaction;
     }
 
@@ -249,13 +336,13 @@ public class UIButton extends UIComponent {
             clicklistener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     if (onclickEnable) {
-                        UIWidgetTools.execAction(UIButton.this, UIButton.this.clickaction);
+                        UIWidgetTools.execAction(UIButton.this.clickaction);
                     }
                 }
             };
             button.addActionListener(clicklistener);
         }
-        this.clickaction = action;
+        this.clickaction = UICallback.newInstance(this, action);
     }
 
     /**
@@ -278,27 +365,148 @@ public class UIButton extends UIComponent {
      * Alias for setText
      */
     public void setLabel(String label) {
-        button.setText(label);
+        setText(label);
     }
 
     /**
      * Alias for getText
      */
     public String getLabel() {
-        return button.getText();
+        return getText();
     }
 
     /**
      * Alias for setText
      */
     public void setString(String label) {
-        button.setText(label);
+        setText(label);
     }
 
     /**
      * Alias for getText
      */
     public String getString() {
-        return button.getText();
+        return getText();
+    }
+
+    /**
+     * Set the button text
+     * @param text the button text
+     */
+    public void setText(String text) {
+        boolean containsMnemonic = UITools.setTextAndMnemonic(text, button);
+        if (containsMnemonic) {
+            this.text = text;
+        } else {
+            if (this.text != null) {
+                button.setMnemonic(0);
+            }
+            this.text = null;
+        }
+    }
+
+    /**
+     * Get the button text
+     * @return the button text
+     */
+    public String getText() {
+        if (this.text == null) {
+            return button.getText();
+        }
+
+        return this.text;
+    }
+
+    /**
+     * Get the action
+     * @return the action
+     */
+    public Action getAction() {
+        if (actionForTab == null) {
+            actionForTab = new AbstractAction() {
+                public void actionPerformed(ActionEvent e) {
+                    if (clicklistener != null) {
+                        clicklistener.actionPerformed(e);
+                    }
+                }
+            };
+            String str = getId();
+            if (str == null || str.isEmpty()) {
+                str = button.getText();
+                if (str == null || str.isEmpty()) {
+                    str = "button_" + (action_id++);
+                }
+            }
+            actionForTab.putValue(Action.NAME, str);
+            actionForTab.putValue(Action.SMALL_ICON, button.getIcon());
+        }
+
+        return actionForTab;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String[] getScilabRepresentation() {
+        return new String[] {
+                   "\"Alignment = \"+h.alignment",
+                   "\"BackgroundColor = \"+sci2exp(h.backgroundColor, 0)",
+                   "\"BlueRollover = \"+sci2exp(h.blueRollover)",
+                   "\"Border = \"+fmtuser_data(h.border)",
+                   "\"BorderPainted = \"+sci2exp(h.borderPainted)",
+                   "\"Bounds = \"+sci2exp(h.bounds,0)",
+                   "\"ForegroundColor = \"+sci2exp(h.foreground,0)",
+                   "\"Constraint = \"+fmtuser_data(h.constraint)",
+                   "\"ContentAreaFilled = \"+sci2exp(h.contentAreaFilled)",
+                   "\"Cursor = \"+fmtuser_data(h.cursor)",
+                   "\"DisabledIcon = \"+fmtuser_data(h.disabledIcon)",
+                   "\"DisabledSelectedIcon = \"+fmtuser_data(h.disabledSelectedIcon)",
+                   "\"DoubleBuffered = \"+sci2exp(h.doubleBuffered)",
+                   "\"EnableEvents = \"+sci2exp(h.enableEvents)",
+                   "\"Enabled = \"+sci2exp(h.enabled)",
+                   "\"Focusable = \"+sci2exp(h.focusable)",
+                   "\"Font = \"+h.font",
+                   "\"FontAngle = \"+h.fontAngle",
+                   "\"FontSize = \"+sci2exp(h.fontSize)",
+                   "\"FontWeight = \"+h.fontWeight",
+                   "\"HorizontalAlignment = \"+h.horizontalAlignment",
+                   "\"Icon = \"+fmtuser_data(h.icon)",
+                   "\"IconTextGap = \"+sci2exp(h.iconTextGap)",
+                   "\"Id = \"+sci2exp(h.id)",
+                   "\"Location = \"+sci2exp(h.location,0)",
+                   "\"Margin = \"+sci2exp(h.margin,0)",
+                   "\"MaximumSize = \"+sci2exp(h.maximumSize,0)",
+                   "\"MinimumSize = \"+sci2exp(h.minimumSize,0)",
+                   "\"Mnemonic = \"+h.mnemonic",
+                   "\"Onclick = \"+fmtuser_data(h.onclick)",
+                   "\"OnclickEnable = \"+sci2exp(h.onclickEnable)",
+                   "\"Onfocusgain = \"+fmtuser_data(h.onfocusgain)",
+                   "\"OnfocusgainEnable = \"+sci2exp(h.onfocusgainEnable)",
+                   "\"Onfocusloss = \"+fmtuser_data(h.onfocusloss)",
+                   "\"OnfocuslossEnable = \"+sci2exp(h.onfocuslossEnable)",
+                   "\"Onmouseenter = \"+fmtuser_data(h.onmouseenter)",
+                   "\"OnmouseenterEnable = \"+sci2exp(h.onmouseenterEnable)",
+                   "\"Onmouseexit = \"+fmtuser_data(h.onmouseexit)",
+                   "\"OnmouseexitEnable = \"+sci2exp(h.onmouseexitEnable)",
+                   "\"Onmouseover = \"+fmtuser_data(h.onmouseover)",
+                   "\"OnmouseoverEnable = \"+sci2exp(h.onmouseoverEnable)",
+                   "\"Opaque = \"+sci2exp(h.opaque)",
+                   "\"Parent = \"+h.parent.type",
+                   "\"Position = \"+sci2exp(h.position,0)",
+                   "\"PreferredSize = \"+sci2exp(h.preferredSize,0)",
+                   "\"PressedIcon = \"+fmtuser_data(h.pressedIcon)",
+                   "\"Relief = \"+h.relief",
+                   "\"RolloverEnabled = \"+sci2exp(h.rolloverEnabled)",
+                   "\"RolloverIcon = \"+fmtuser_data(h.rolloverIcon)",
+                   "\"Selected = \"+sci2exp(h.selected)",
+                   "\"SelectedIcon = \"+fmtuser_data(h.selectedIcon)",
+                   "\"Style = \"+h.style",
+                   "\"Tag = \"+sci2exp(h.tag)",
+                   "\"Text = \"+fmtuser_data(h.text)",
+                   "\"TooltipText = \"+fmtuser_data(h.tooltipText)",
+                   "\"Uistyle = \"+fmtuser_data(h.uistyle)",
+                   "\"Units = \"+sci2exp(h.units,0)",
+                   "\"Visible = \"+sci2exp(h.visible)"
+               };
     }
 }

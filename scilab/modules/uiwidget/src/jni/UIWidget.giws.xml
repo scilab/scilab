@@ -12,6 +12,9 @@
         <method name="uiset" returnType="void" modifier="static" >
             <parameter name="uid" type="int"/>
         </method>
+        <method name="uiset" returnType="void" modifier="static" >
+            <parameter name="path" type="String"/>
+        </method>
         <method name="uiisValid" returnType="boolean" modifier="static" >
             <parameter name="uid" type="int"/>
         </method>
@@ -25,6 +28,9 @@
         <method name="getUIWidgetHandler" returnType="int" modifier="static" />
         <method name="getUidFromPath" returnType="int" modifier="static" >
             <parameter name="path" type="String"/>
+        </method>
+        <method name="getRoots" returnType="void" modifier="static" >
+            <parameter name="stackPos" type="int"/>
         </method>
     </object>
 </package>

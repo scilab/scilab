@@ -24,6 +24,7 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * JCheckBox wrapper
@@ -33,7 +34,7 @@ public class UICheckbox extends UIComponent {
     private JCheckBox checkbox;
     private String buttonGroup;
     private AbstractAction clicklistener;
-    private String onclickAction;
+    private UICallback onclickAction;
     private boolean onclickEnable = true;
 
     /**
@@ -153,7 +154,7 @@ public class UICheckbox extends UIComponent {
      * Get the onclick action
      * @return the action
      */
-    public String getOnclick() {
+    public UICallback getOnclick() {
         return onclickAction;
     }
 
@@ -167,13 +168,13 @@ public class UICheckbox extends UIComponent {
             clicklistener = new AbstractAction() {
                 public void actionPerformed(ActionEvent e) {
                     if (onclickEnable) {
-                        UIWidgetTools.execAction(UICheckbox.this, UICheckbox.this.onclickAction);
+                        UIWidgetTools.execAction(UICheckbox.this.onclickAction);
                     }
                 }
             };
             checkbox.addActionListener(clicklistener);
         }
-        this.onclickAction = onclickAction;
+        this.onclickAction = UICallback.newInstance(this, onclickAction);
     }
 
     /**

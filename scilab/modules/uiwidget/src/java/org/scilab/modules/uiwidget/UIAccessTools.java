@@ -108,7 +108,7 @@ public final class UIAccessTools {
             throw new UIWidgetException("No attribute " + name + " in " + clazz.getSimpleName());
         }
 
-        execOnEDT(new Runnable() {
+        UIAccessTools.execOnEDT(new Runnable() {
             public void run() {
                 try {
                     UIAccessTools.invokeSetter(method, obj, value);
@@ -128,7 +128,7 @@ public final class UIAccessTools {
     public static final void setPropertyViaReflection(final Object obj, final String name, final ScilabType value) throws UIWidgetException {
         Class clazz = obj.getClass();
         String methName = getSetterName(name);
-        final Method method = UIMethodFinder.findSetter(methName, clazz);
+        final Method method = UIMethodFinder.findSetter(methName, clazz, value);
 
         if (method == null) {
             throw new UIWidgetException("No attribute " + name + " in " + clazz.getSimpleName());
@@ -137,7 +137,7 @@ public final class UIAccessTools {
         UIAccessTools.execOnEDT(new Runnable() {
             public void run() {
                 try {
-                    invokeSetter(method, obj, value);
+                    UIAccessTools.invokeSetter(method, obj, value);
                 } catch (Exception e) {
                     System.err.println(e);
                 }
@@ -180,7 +180,12 @@ public final class UIAccessTools {
      */
     public static final void invokeSetter(final Method m, final Object obj, final ScilabType value) throws UIWidgetException {
         try {
-            m.invoke(obj, ScilabTypeConverters.getObjectFromValue(m.getParameterTypes()[0], value));
+            Class argType = m.getParameterTypes()[0];
+            if (argType == value.getClass()) {
+                m.invoke(obj, value);
+            } else {
+                m.invoke(obj, ScilabTypeConverters.getObjectFromValue(argType, value));
+            }
         } catch (IllegalAccessException e) {
             // Should not occur
             System.err.println(e);
@@ -404,7 +409,7 @@ public final class UIAccessTools {
         buffer.append(prefix).append(Character.toUpperCase(chars[0]));
         int start = 1;
         for (int i = 1; i < chars.length; i++) {
-            if (chars[i] == '-') {
+            if (chars[i] == '-' || chars[i] == '_') {
                 if (start < i) {
                     buffer.append(chars, start, i - start);
                 }

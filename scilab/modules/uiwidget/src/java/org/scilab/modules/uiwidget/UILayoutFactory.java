@@ -25,6 +25,8 @@ import java.util.Map;
 
 import javax.swing.BoxLayout;
 
+import org.scilab.modules.uiwidget.components.NoLayout;
+
 /**
  * LayoutManager factory
  */
@@ -103,6 +105,11 @@ public final class UILayoutFactory {
     private static final Map<String, LayoutCreator> creators = new HashMap<String, LayoutCreator>();
 
     static {
+        creators.put("nolayout", new LayoutCreator() {
+            public LayoutManager create(Container c, Map<String, String> map) {
+                return new NoLayout();
+            }
+        });
         creators.put("border", new LayoutCreator() {
             public LayoutManager create(Container c, Map<String, String> map) {
                 BorderLayout layout = new BorderLayout();
@@ -214,6 +221,112 @@ public final class UILayoutFactory {
                 return new GridBagLayout();
             }
         });
+    }
+
+    /**
+     * Get a string representation of the given layout
+     * @param layout the layout
+     * @return the string representation
+     */
+    public static String getStringRepresentation(LayoutManager layout) {
+        if (layout instanceof BorderLayout) {
+            BorderLayout border = (BorderLayout) layout;
+            int hgap = border.getHgap();
+            int vgap = border.getVgap();
+
+            String ret = "name:border";
+            if (hgap != 0) {
+                ret += "; hgap:" + Integer.toString(hgap);
+            }
+            if (vgap != 0) {
+                ret += "; vgap:" + Integer.toString(vgap);
+            }
+
+            return ret;
+        } else if (layout instanceof BoxLayout) {
+            BoxLayout box = (BoxLayout) layout;
+            int axis = box.getAxis();
+
+            String ret = "name:box";
+            if (axis == BoxLayout.X_AXIS) {
+                ret += "; axis:x";
+            } else {
+                ret += "; axis:y";
+            }
+
+            return ret;
+        } else if (layout instanceof CardLayout) {
+            CardLayout card = (CardLayout) layout;
+            int hgap = card.getHgap();
+            int vgap = card.getVgap();
+
+            String ret = "name:card";
+            if (hgap != 0) {
+                ret += "; hgap:" + Integer.toString(hgap);
+            }
+            if (vgap != 0) {
+                ret += "; vgap:" + Integer.toString(vgap);
+            }
+
+            return ret;
+        } else if (layout instanceof FlowLayout) {
+            FlowLayout flow = (FlowLayout) layout;
+            int hgap = flow.getHgap();
+            int vgap = flow.getVgap();
+            int alignment = flow.getAlignment();
+
+            String ret = "name:flow";
+            if (hgap != 0) {
+                ret += "; hgap:" + Integer.toString(hgap);
+            }
+            if (vgap != 0) {
+                ret += "; vgap:" + Integer.toString(vgap);
+            }
+
+            switch (alignment) {
+                case FlowLayout.LEADING:
+                    ret += "; alignment:leading";
+                    break;
+                case FlowLayout.LEFT:
+                    ret += "; alignment:left";
+                    break;
+                case FlowLayout.RIGHT:
+                    ret += "; alignment:right";
+                    break;
+                case FlowLayout.TRAILING:
+                    ret += "; alignment:trailing";
+                    break;
+                default:
+                    ret += "; alignment:center";
+            }
+
+            return ret;
+        } else if (layout instanceof GridLayout) {
+            GridLayout grid = (GridLayout) layout;
+            int hgap = grid.getHgap();
+            int vgap = grid.getVgap();
+            int rows = grid.getRows();
+            int columns = grid.getColumns();
+
+            String ret = "name:grid";
+            if (hgap != 0) {
+                ret += "; hgap:" + Integer.toString(hgap);
+            }
+            if (vgap != 0) {
+                ret += "; vgap:" + Integer.toString(vgap);
+            }
+
+            ret += "; rows:" + Integer.toString(rows);
+            ret += "; cols:" + Integer.toString(columns);
+
+            return ret;
+        } else if (layout instanceof GridBagLayout) {
+            return "name:gridbag";
+        } else if (layout instanceof NoLayout) {
+            return "name:nolayout";
+        }
+
+        return "unknown";
     }
 
     /**

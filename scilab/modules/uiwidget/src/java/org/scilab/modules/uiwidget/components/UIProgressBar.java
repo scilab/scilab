@@ -23,12 +23,17 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
+/**
+ * JProgressBar wrapper
+ */
 public class UIProgressBar extends UIComponent {
 
-    private JProgressBar bar;
-    private boolean onchangeEnable = true;
-    private String action;
+    protected JProgressBar bar;
+    protected ChangeListener listener;
+    protected boolean onchangeEnable = true;
+    protected UICallback action;
 
     public enum Orientation {
         HORIZONTAL (SwingConstants.HORIZONTAL),
@@ -66,17 +71,49 @@ public class UIProgressBar extends UIComponent {
         return bar;
     }
 
-    public void setOnchange(final String action) {
+    /**
+     * Remove a listener
+     */
+    protected void removeListener() {
+        if (listener != null) {
+            bar.removeChangeListener(listener);
+            listener = null;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void remove() {
+        removeListener();
+        super.remove();
+    }
+
+    /**
+     * Get the onchange action
+     * @return the action
+     */
+    public UICallback getOnchange() {
+        return action;
+    }
+
+    /**
+     * Set the onchange action
+     * @param the action
+     */
+    public void setOnchange(String action) {
         if (this.action == null) {
-            bar.addChangeListener(new ChangeListener() {
+            removeListener();
+            listener = new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
                     if (onchangeEnable) {
-                        UIWidgetTools.execAction(UIProgressBar.this, UIProgressBar.this.action, bar.getValue());
+                        UIWidgetTools.execAction(UIProgressBar.this.action, bar.getValue());
                     }
                 }
-            });
+            };
+            bar.addChangeListener(listener);
         }
-        this.action = action;
+        this.action = UICallback.newInstance(this, action);
     }
 
     public void setString(String str) {
@@ -88,6 +125,18 @@ public class UIProgressBar extends UIComponent {
         }
     }
 
+    /**
+     * Check if the onchange is enabled
+     * @return true if enabled
+     */
+    public boolean getOnchangeEnable() {
+        return onchangeEnable;
+    }
+
+    /**
+     * Set if the onchange is enabled
+     * @param b true if enabled
+     */
     public void setOnchangeEnable(boolean b) {
         onchangeEnable = b;
     }

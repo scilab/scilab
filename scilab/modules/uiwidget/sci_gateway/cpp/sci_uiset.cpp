@@ -27,6 +27,7 @@ extern "C"
 #include "freeArrayOfString.h"
 #include "expandPathVariable.h"
 #include "getScilabJavaVM.h"
+#include "stricmp.h"
 }
 
 using namespace org_scilab_modules_uiwidget;
@@ -40,6 +41,7 @@ int sci_uiset(char *fname, unsigned long fname_len)
     const int nbIn = nbInputArgument(pvApiCtx);
     int * addr = 0;
     char * str = 0;
+    char * path = 0;
     int uid = -1;
     std::vector<int> indexes;
     bool varSentToJava = false;
@@ -65,20 +67,11 @@ int sci_uiset(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
+        if (getAllocatedSingleString(pvApiCtx, addr, &path) != 0)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
-
-        uid = UIWidget::getUidFromPath(getScilabJavaVM(), str);
-        freeAllocatedSingleString(str);
-    }
-
-    if (uid == -1)
-    {
-        Scierror(999, _("%s: The handle is not valid.\n"), fname);
-        return 0;
     }
 
     for (int i = 2; i < nbIn; i += 2)
@@ -87,16 +80,28 @@ int sci_uiset(char *fname, unsigned long fname_len)
         err = getVarAddressFromPosition(pvApiCtx, i, &addr);
         if (err.iErr)
         {
+            if (path)
+            {
+                freeAllocatedSingleString(path);
+            }
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
             return 0;
         }
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
+            if (path)
+            {
+                freeAllocatedSingleString(path);
+            }
             Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, i);
             return 0;
         }
         if (getAllocatedSingleString(pvApiCtx, addr, &str) != 0)
         {
+            if (path)
+            {
+                freeAllocatedSingleString(path);
+            }
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
@@ -110,6 +115,10 @@ int sci_uiset(char *fname, unsigned long fname_len)
             err = getVarAddressFromPosition(pvApiCtx, i + 1, &addr);
             if (err.iErr)
             {
+                if (path)
+                {
+                    freeAllocatedSingleString(path);
+                }
                 freeAllocatedSingleString(str);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i + 1);
                 return 0;
@@ -124,12 +133,24 @@ int sci_uiset(char *fname, unsigned long fname_len)
     {
         try
         {
-            UIWidget::uiset(getScilabJavaVM(), uid);
+            if (path)
+            {
+                UIWidget::uiset(getScilabJavaVM(), path);
+            }
+            else
+            {
+                UIWidget::uiset(getScilabJavaVM(), uid);
+            }
         }
         catch (const GiwsException::JniException & e)
         {
             Scierror(999, _("%s: %s\n"), fname, e.getJavaDescription().c_str());
         }
+    }
+
+    if (path)
+    {
+        freeAllocatedSingleString(path);
     }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;

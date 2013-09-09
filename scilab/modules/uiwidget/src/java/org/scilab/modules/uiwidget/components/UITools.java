@@ -23,6 +23,7 @@ import java.awt.Graphics2D;
 import java.awt.Font;
 import java.awt.Paint;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.font.TextAttribute;
 import java.awt.image.ColorModel;
 import java.awt.image.Raster;
@@ -30,6 +31,7 @@ import java.awt.image.WritableRaster;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.AbstractButton;
 import javax.swing.Icon;
 import javax.swing.UIManager;
 
@@ -37,22 +39,79 @@ import org.scilab.modules.uiwidget.StringConverters;
 
 public class UITools {
 
+    public enum FontUnit {
+        POINTS, PIXELS, NORMALIZED;
+
+        public static String getAsString(FontUnit u) {
+            switch (u) {
+                case POINTS:
+                    return "points";
+                case PIXELS:
+                    return "pixels";
+                case NORMALIZED:
+                    return "normalized";
+                default:
+                    return "points";
+            }
+        }
+
+        public static FontUnit fromString(String s) {
+            if (s == null || s.isEmpty()) {
+                return POINTS;
+            }
+
+            if (s.equalsIgnoreCase("pixels")) {
+                return PIXELS;
+            }
+
+            if (s.equalsIgnoreCase("normalized")) {
+                return NORMALIZED;
+            }
+
+            return POINTS;
+        }
+
+        public static double getRatio(FontUnit unit) {
+            switch (unit) {
+                case POINTS:
+                    return ((double) Toolkit.getDefaultToolkit().getScreenResolution()) / 72.;
+                case PIXELS:
+                    return 1.d;
+                case NORMALIZED:
+                    // Don't know what to return here... TODO: ask to Vincent
+                    return 1.d;
+                default:
+                    return 1.d;
+            }
+        }
+
+        public static double getRatio(FontUnit old, FontUnit niou) {
+            if (old == niou) {
+                return 1.d;
+            }
+            double oldR = getRatio(old);
+            double niouR = getRatio(niou);
+
+            return niouR / oldR;
+        }
+    }
+
     private static final Composite rolloverComposite = new Composite() {
         public CompositeContext createContext(ColorModel srcColorModel, ColorModel dstColorModel, RenderingHints hints) {
             return new CompositeContext() {
                 public void dispose() { }
 
                 public void compose(Raster src, Raster dstIn, WritableRaster dstOut) {
+                    int[] srcPixels = new int[4];
                     for (int x = 0; x < dstOut.getWidth(); x++) {
                         for (int y = 0; y < dstOut.getHeight(); y++) {
-                            int[] srcPixels = new int[4];
                             src.getPixel(x, y, srcPixels);
                             // Ignore transparent pixels
                             if (srcPixels[3] != 0) {
                                 // Lighten each color by 1/2, and increasing the blue
-                                srcPixels[0] = srcPixels[0] / 2;
-                                srcPixels[1] = srcPixels[1] / 2;
-                                srcPixels[2] = srcPixels[2] / 2 + 68;
+                                srcPixels[0] = (srcPixels[0] & 0xFF) / 2;
+                                srcPixels[1] = (srcPixels[1] & 0xFF) / 2;
+                                srcPixels[2] = (srcPixels[2] & 0xFF) / 2 + 68;
                                 dstOut.setPixel(x, y, srcPixels);
                             }
                         }
@@ -174,7 +233,7 @@ public class UITools {
         mapTextAttribute.put(TextAttribute.WEIGHT_ULTRABOLD, "ultra-bold");
         mapTextAttribute.put(TextAttribute.POSTURE_OBLIQUE, "italic");
         mapTextAttribute.put(TextAttribute.POSTURE_REGULAR, "regular");
-        mapTextAttribute.put(null, null);
+        mapTextAttribute.put(null, "regular");
     }
 
     public enum FontWeight {
@@ -289,6 +348,28 @@ public class UITools {
         }
 
         return new Font(map);
+    }
+
+    public static boolean setTextAndMnemonic(String text, AbstractButton button) {
+        if (text != null) {
+            final int len = text.length();
+            for (int i = 0; i < len; i++) {
+                final char c = text.charAt(i);
+                char n;
+                if (c == '&' && i < len - 1 && (n = text.charAt(i + 1)) != '&') {
+                    text = text.substring(0, i) + text.substring(i + 1);
+                    text.replaceAll("&&", "&");
+                    button.setText(text);
+                    button.setMnemonic((int) n);
+
+                    return true;
+                }
+            }
+
+            button.setText(text);
+        }
+
+        return false;
     }
 
     public static Icon getColoredIcon(Dimension dim, Color color, Color border) {

@@ -25,23 +25,34 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
+/**
+ * JSpinner wrapper
+ */
 public class UINumberSpinner extends UIComponent {
 
-    private static final String defaultDoublePattern = ((JSpinner.NumberEditor) new JSpinner(new SpinnerNumberModel(0., 0., 0., 0.)).getEditor()).getFormat().toPattern();
-    private static final String defaultIntPattern = ((JSpinner.NumberEditor) new JSpinner(new SpinnerNumberModel(0, 0, 0, 0)).getEditor()).getFormat().toPattern();
+    protected static final String defaultDoublePattern = ((JSpinner.NumberEditor) new JSpinner(new SpinnerNumberModel(0., 0., 0., 0.)).getEditor()).getFormat().toPattern();
+    protected static final String defaultIntPattern = ((JSpinner.NumberEditor) new JSpinner(new SpinnerNumberModel(0, 0, 0, 0)).getEditor()).getFormat().toPattern();
 
-    private JSpinner spinner;
-    private SpinnerNumberModel model;
-    private ChangeListener listener;
-    private String action;
-    private String type;
-    private String unit;
+    protected JSpinner spinner;
+    protected SpinnerNumberModel model;
+    protected ChangeListener changeListener;
+    protected UICallback onchangeAction;
+    protected boolean onchangeEnable = true;
+    protected String type;
+    protected String unit;
 
+    /**
+     * {@inheritDoc}
+     */
     public UINumberSpinner(UIComponent parent) throws UIWidgetException {
         super(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Object newInstance() {
         model = new SpinnerNumberModel();
         spinner = new JSpinner(model);
@@ -49,6 +60,9 @@ public class UINumberSpinner extends UIComponent {
         return spinner;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @UIComponentAnnotation(attributes = {"type", "value", "min", "max", "step", "unit"})
     public Object newInstance(String type, String value, String min, String max, String step, String unit) {
         Number v, mi, ma, s;
@@ -147,10 +161,18 @@ public class UINumberSpinner extends UIComponent {
         return spinner;
     }
 
+    /**
+     * Get the spinner type (double or integer)
+     * @return the spiiner type
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Set the spinner type (double or integer)
+     * @param type the spinner type
+     */
     public void setType(String type) {
         if (type != null && !this.type.equalsIgnoreCase(type)) {
             if (type.equalsIgnoreCase("double")) {
@@ -173,6 +195,10 @@ public class UINumberSpinner extends UIComponent {
         }
     }
 
+    /**
+     * Set the spinner value
+     * @param value the value
+     */
     public void setValue(double value) {
         if (type.equals("double")) {
             spinner.setValue(value);
@@ -181,6 +207,10 @@ public class UINumberSpinner extends UIComponent {
         }
     }
 
+    /**
+     * Get the spinner value
+     * @return the value
+     */
     public double getValue() {
         if (type.equals("double")) {
             return (Double) spinner.getValue();
@@ -189,11 +219,19 @@ public class UINumberSpinner extends UIComponent {
         }
     }
 
-    public String getUnit() {
+    /**
+     * Get the spinner unit
+     * @return the unit
+     */
+    public String getSpinnerUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
+    /**
+     * Set the spinner unit
+     * @param unit the unit
+     */
+    public void setSpinnerUnit(String unit) {
         if (type.equals("double")) {
             if (unit != null && !unit.isEmpty()) {
                 spinner.setEditor(new JSpinner.NumberEditor(spinner, defaultDoublePattern + " " + unit));
@@ -211,6 +249,10 @@ public class UINumberSpinner extends UIComponent {
         this.unit = unit;
     }
 
+    /**
+     * Set the min value
+     * @param value the min value
+     */
     public void setMin(double value) {
         if (type.equals("double")) {
             model.setMinimum(value);
@@ -219,6 +261,10 @@ public class UINumberSpinner extends UIComponent {
         }
     }
 
+    /**
+     * Get min value for this spinner
+     * @return the min
+     */
     public double getMin() {
         if (type.equals("double")) {
             return (Double) model.getMinimum();
@@ -227,6 +273,10 @@ public class UINumberSpinner extends UIComponent {
         }
     }
 
+    /**
+     * Set the max value
+     * @param value the max value
+     */
     public void setMax(double value) {
         if (type.equals("double")) {
             model.setMaximum(value);
@@ -235,6 +285,10 @@ public class UINumberSpinner extends UIComponent {
         }
     }
 
+    /**
+     * Get max value for this spinner
+     * @return the max
+     */
     public double getMax() {
         if (type.equals("double")) {
             return (Double) model.getMaximum();
@@ -243,6 +297,10 @@ public class UINumberSpinner extends UIComponent {
         }
     }
 
+    /**
+     * Set the step value
+     * @param value the step value
+     */
     public void setStep(double value) {
         if (type.equals("double")) {
             model.setStepSize(value);
@@ -251,6 +309,10 @@ public class UINumberSpinner extends UIComponent {
         }
     }
 
+    /**
+     * Get step value for this spinner
+     * @return the step
+     */
     public double getStep() {
         if (type.equals("double")) {
             return (Double) model.getStepSize();
@@ -259,28 +321,64 @@ public class UINumberSpinner extends UIComponent {
         }
     }
 
-    public void removeListener() {
-        if (listener != null) {
-            spinner.removeChangeListener(listener);
-            listener = null;
+    /**
+     * Remove change listener
+     */
+    protected void removeChangeListener() {
+        if (changeListener != null) {
+            spinner.removeChangeListener(changeListener);
+            changeListener = null;
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void remove() {
-        removeListener();
+        removeChangeListener();
         super.remove();
     }
 
+    /**
+     * Check if the onchange is enabled
+     * @return true if enabled
+     */
+    public boolean getOnchangeEnable() {
+        return onchangeEnable;
+    }
+
+    /**
+     * Set if the onchange is enabled
+     * @param b true if enabled
+     */
+    public void setOnchangeEnable(boolean b) {
+        onchangeEnable = b;
+    }
+
+    /**
+     * Get the onchange action
+     * @return action
+     */
+    public UICallback getOnchange() {
+        return onchangeAction;
+    }
+
+    /**
+     * Set the onchange action
+     * @param action the action
+     */
     public void setOnchange(final String action) {
-        if (this.action == null) {
-            removeListener();
-            listener = new ChangeListener() {
+        if (this.onchangeAction == null) {
+            removeChangeListener();
+            changeListener = new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
-                    UIWidgetTools.execAction(UINumberSpinner.this, UINumberSpinner.this.action, spinner.getValue());
+                    if (onchangeEnable) {
+                        UIWidgetTools.execAction(UINumberSpinner.this.onchangeAction, spinner.getValue());
+                    }
                 }
             };
-            spinner.addChangeListener(listener);
+            spinner.addChangeListener(changeListener);
         }
-        this.action = action;
+        this.onchangeAction = UICallback.newInstance(this, action);
     }
 }

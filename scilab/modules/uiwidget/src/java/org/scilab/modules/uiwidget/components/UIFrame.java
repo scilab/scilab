@@ -27,15 +27,21 @@ import javax.swing.JMenuBar;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIComponentAnnotation;
 import org.scilab.modules.uiwidget.UIWidgetException;
+import org.scilab.modules.uiwidget.UIWidgetTools;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * JFrame wrapper
  */
 public class UIFrame extends UIComponent {
 
+    // TODO: regarder un peu ce qui ce fait ds UIScilabWindow qui est plus finalisee que celle ci
+
     private JFrame win;
     private ImageIcon icon;
     private boolean visible;
+    protected UICallback oncloseAction;
+    protected boolean oncloseEnable = true;
 
     /**
      * {@inheritDoc}
@@ -80,6 +86,12 @@ public class UIFrame extends UIComponent {
 
         win.addWindowListener(new WindowAdapter() {
 
+            public void windowClosing(WindowEvent e) {
+                if (oncloseEnable && oncloseAction != null) {
+                    UIWidgetTools.execAction(UIFrame.this.oncloseAction);
+                }
+            }
+
             public void windowClosed(WindowEvent e) {
                 win.removeWindowListener(this);
                 UIFrame.this.remove();
@@ -89,6 +101,9 @@ public class UIFrame extends UIComponent {
         return win;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void add(JComponent c) {
         if (c instanceof JMenuBar) {
             win.setJMenuBar((JMenuBar) c);
@@ -101,13 +116,17 @@ public class UIFrame extends UIComponent {
      * {@inheritDoc}
      */
     public void finish() {
-        win.validate();
+        win.invalidate();
         win.pack();
         win.setVisible(visible);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setVisible(boolean b) {
         if (!win.isVisible() && b) {
+            win.invalidate();
             win.pack();
         }
 
@@ -123,8 +142,8 @@ public class UIFrame extends UIComponent {
     }
 
     /**
-     * Set the dialog icon
-     * @param icon the dialog icon
+     * Set the frame icon
+     * @param icon the frame icon
      */
     public void setIcon(ImageIcon icon) {
         if (icon != null) {
@@ -132,79 +151,152 @@ public class UIFrame extends UIComponent {
         } else {
             win.setIconImage(null);
         }
+
+        this.icon = icon;
     }
 
     /**
-     * Get the dialog icon
-     * @return the dialog icon
+     * Get the frame icon
+     * @return the frame icon
      */
     public ImageIcon getIcon() {
         return icon;
     }
 
     /**
-     * Get the dialog title
-     * @return the dialog title
+     * Get the frame title
+     * @return the frame title
      */
     public String getTitle() {
         return win.getName();
     }
 
     /**
-     * Set the dialog title
-     * @param title the dialog title
+     * Set the frame title
+     * @param title the frame title
      */
     public void setTitle(String title) {
         win.setName(title);
     }
 
     /**
-     * Set the dialog width
-     * @param width the dialog width
+     * Set the frame width
+     * @param width the frame width
      */
     public void setWidth(int width) {
-        win.setSize(new Dimension(width, win.getHeight()));
-        win.validate();
+        Dimension prev = win.getSize();
+        if (prev.width != width) {
+            win.setPreferredSize(new Dimension(width, win.getHeight()));
+            if (win.isVisible()) {
+                win.pack();
+                win.repaint();
+            }
+        }
     }
 
     /**
-     * Set the dialog height
-     * @param height the dialog height
+     * Set the frame height
+     * @param height the frame height
      */
     public void setHeight(int height) {
-        win.setSize(new Dimension(win.getWidth(), height));
-        win.validate();
+        Dimension prev = win.getSize();
+        if (prev.height != height) {
+            win.setPreferredSize(new Dimension(win.getWidth(), height));
+            if (win.isVisible()) {
+                win.pack();
+                win.repaint();
+            }
+        }
     }
 
     /**
-     * Set the dialog posX
-     * @param posX the dialog posX
+     * Set the frame size
+     * @param d the frame size
+     */
+    public void setSize(Dimension d) {
+        Dimension prev = win.getSize();
+        if (!prev.equals(d)) {
+            win.setPreferredSize(d);
+            if (win.isVisible()) {
+                win.pack();
+                win.repaint();
+            }
+        }
+    }
+
+    /**
+     * Set the frame posX
+     * @param posX the frame posX
      */
     public void setPosX(int posX) {
         win.setLocation(posX, win.getY());
     }
 
     /**
-     * Set the dialog posY
-     * @param posY the dialog posY
+     * Set the frame posY
+     * @param posY the frame posY
      */
     public void setPosY(int posY) {
         win.setLocation(win.getX(), posY);
     }
 
     /**
-     * Get the dialog posX
-     * @return the dialog posX
+     * Get the frame posX
+     * @return the frame posX
      */
     public int getPosX() {
         return win.getX();
     }
 
     /**
-     * Get the dialog posY
-     * @return the dialog posY
+     * Get the frame posY
+     * @return the frame posY
      */
     public int getPosY() {
         return win.getY();
+    }
+
+    /**
+     * Check if onclose event is enabled
+     * @return true if the event is enabled
+     */
+    public boolean getOncloseEnable() {
+        return oncloseEnable;
+    }
+
+    /**
+     * Enable onclose event
+     * @param b if true enable onclose event
+     */
+    public void setOncloseEnable(boolean b) {
+        if (oncloseEnable != b) {
+            oncloseEnable = b;
+            if (oncloseEnable && oncloseAction != null) {
+                win.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            } else {
+                win.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            }
+        }
+    }
+
+    /**
+     * Get the callback
+     * @return the callback
+     */
+    public UICallback getOnclose() {
+        return oncloseAction;
+    }
+
+    /**
+     * Set the onclose callback
+     * @param oncloseAction the callback string
+     */
+    public void setOnclose(final String oncloseAction) {
+        this.oncloseAction = UICallback.newInstance(this, oncloseAction);
+        if (oncloseEnable && this.oncloseAction != null) {
+            win.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        } else {
+            win.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        }
     }
 }

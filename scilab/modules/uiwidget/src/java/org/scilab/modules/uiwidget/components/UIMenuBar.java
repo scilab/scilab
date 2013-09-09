@@ -12,8 +12,12 @@
 
 package org.scilab.modules.uiwidget.components;
 
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
+import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 
@@ -22,7 +26,7 @@ import org.scilab.modules.uiwidget.UIWidgetException;
  */
 public class UIMenuBar extends UIComponent {
 
-    private JMenuBar bar;
+    protected MenuBar bar;
 
     /**
      * {@inheritDoc}
@@ -35,8 +39,63 @@ public class UIMenuBar extends UIComponent {
      * {@inheritDoc}
      */
     public Object newInstance() {
-        bar = new JMenuBar();
+        bar = ScilabMenuBar.createMenuBar();
 
-        return bar;
+        return bar.getAsSimpleMenuBar();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void add(final UIComponent c) throws UIWidgetException {
+        SwingScilabMenuBar menubar = (SwingScilabMenuBar) bar.getAsSimpleMenuBar();
+        Object o = c.getComponent();
+        if (o instanceof JMenu) {
+            menubar.add((JMenu) o);
+        } else if (c instanceof Menu) {
+            menubar.add(((Menu) c).button);
+        } else {
+            super.add(c);
+        }
+
+        if (menubar.isVisible()) {
+            menubar.revalidate();
+            menubar.repaint();
+        }
+    }
+
+    public void removeMenu(String menuName) {
+        UIComponent menu = getNamedMenu(menuName);
+        if (menu != null) {
+            menu.remove();
+        }
+    }
+
+    public void enableMenu(String menuName, boolean enabled) {
+        UIComponent menu = getNamedMenu(menuName);
+        if (menu != null) {
+            try {
+                menu.setEnable(enabled);
+            } catch (Exception e) { }
+        }
+    }
+
+    private UIComponent getNamedMenu(String menuName) {
+        if (childrenList != null) {
+            for (UIComponent child : childrenList) {
+                String label = null;
+                if (child instanceof Menu) {
+                    label = ((Menu) child).getLabel();
+                } else if (child instanceof UIMenu) {
+                    label = ((UIMenu) child).getLabel();
+                }
+
+                if (label != null && label.equals(menuName)) {
+                    return child;
+                }
+            }
+        }
+
+        return null;
     }
 }

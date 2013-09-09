@@ -45,7 +45,7 @@ public class UIWidgetHandler implements ScilabVariablesHandler {
      * Handle the Scilab's variable
      * @param var the Scilab's var
      */
-    public void handle(ScilabType var) {
+    public synchronized void handle(ScilabType var) {
         list.add(var);
     }
 
@@ -53,7 +53,7 @@ public class UIWidgetHandler implements ScilabVariablesHandler {
      * Get the list containing the retrieved arguments
      * @return the list of arguments
      */
-    public List<ScilabType> getArgumentList() {
+    public synchronized List<ScilabType> getArgumentList() {
         List<ScilabType> ret = list;
         list = new ArrayList<ScilabType>();
 

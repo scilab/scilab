@@ -21,6 +21,7 @@ import org.scilab.modules.uiwidget.UIComponent;
 import org.scilab.modules.uiwidget.UIWidgetException;
 import org.scilab.modules.uiwidget.UIWidgetTools;
 import org.scilab.modules.uiwidget.UIListener;
+import org.scilab.modules.uiwidget.callback.UICallback;
 
 /**
  * Various mouse Listeners wrappers
@@ -131,9 +132,9 @@ public class UIMouseListener extends UIListener {
      * Get the onmouseclick command
      * @return the command
      */
-    public String getOnmouseclick() {
+    public UICallback getOnmouseclick() {
         if (clicked != null) {
-            return clicked.command;
+            return clicked.callback;
         }
 
         return null;
@@ -143,9 +144,9 @@ public class UIMouseListener extends UIListener {
      * Get the onmouseover command
      * @return the command
      */
-    public String getOnmouseover() {
+    public UICallback getOnmouseover() {
         if (moved != null) {
-            return moved.command;
+            return moved.callback;
         }
 
         return null;
@@ -155,9 +156,9 @@ public class UIMouseListener extends UIListener {
      * Get the onmouseenter command
      * @return the command
      */
-    public String getOnmouseenter() {
+    public UICallback getOnmouseenter() {
         if (entered != null) {
-            return entered.command;
+            return entered.callback;
         }
 
         return null;
@@ -167,9 +168,9 @@ public class UIMouseListener extends UIListener {
      * Get the onmouseexit command
      * @return the command
      */
-    public String getOnmouseexit() {
+    public UICallback getOnmouseexit() {
         if (exited != null) {
-            return exited.command;
+            return exited.callback;
         }
 
         return null;
@@ -179,9 +180,9 @@ public class UIMouseListener extends UIListener {
      * Get the onmousepress command
      * @return the command
      */
-    public String getOnmousepress() {
+    public UICallback getOnmousepress() {
         if (pressed != null) {
-            return pressed.command;
+            return pressed.callback;
         }
 
         return null;
@@ -191,9 +192,9 @@ public class UIMouseListener extends UIListener {
      * Get the onmouserelease command
      * @return the command
      */
-    public String getOnmouserelease() {
+    public UICallback getOnmouserelease() {
         if (released != null) {
-            return released.command;
+            return released.callback;
         }
 
         return null;
@@ -203,9 +204,9 @@ public class UIMouseListener extends UIListener {
      * Get the onmousedrag command
      * @return the command
      */
-    public String getOnmousedrag() {
+    public UICallback getOnmousedrag() {
         if (dragged != null) {
-            return dragged.command;
+            return dragged.callback;
         }
 
         return null;
@@ -215,9 +216,9 @@ public class UIMouseListener extends UIListener {
      * Get the onmousewheel command
      * @return the command
      */
-    public String getOnmousewheel() {
+    public UICallback getOnmousewheel() {
         if (wheelmoved != null) {
-            return wheelmoved.command;
+            return wheelmoved.callback;
         }
 
         return null;
@@ -539,49 +540,49 @@ public class UIMouseListener extends UIListener {
             case CLICKED:
                 return new MouseAction(uicomp, command) {
                     public void action(MouseEvent e) {
-                        UIWidgetTools.execAction(this.uicomp, this.command, e.getButton(), e.getClickCount(), e.getX(), e.getY());
+                        UIWidgetTools.execAction(this.callback, e.getButton(), e.getClickCount(), e.getX(), e.getY());
                     }
                 };
             case MOVED:
                 return new MouseAction(uicomp, command) {
                     public void action(MouseEvent e) {
-                        UIWidgetTools.execAction(this.uicomp, this.command, e.getX(), e.getY());
+                        UIWidgetTools.execAction(this.callback, e.getX(), e.getY());
                     }
                 };
             case DRAGGED:
                 return new MouseAction(uicomp, command) {
                     public void action(MouseEvent e) {
-                        UIWidgetTools.execAction(this.uicomp, this.command, e.getXOnScreen(), e.getYOnScreen(), e.getX(), e.getY());
+                        UIWidgetTools.execAction(this.callback, e.getXOnScreen(), e.getYOnScreen(), e.getX(), e.getY());
                     }
                 };
             case EXITED:
                 return new MouseAction(uicomp, command) {
                     public void action(MouseEvent e) {
-                        UIWidgetTools.execAction(this.uicomp, this.command);
+                        UIWidgetTools.execAction(this.callback);
                     }
                 };
             case ENTERED:
                 return new MouseAction(uicomp, command) {
                     public void action(MouseEvent e) {
-                        UIWidgetTools.execAction(this.uicomp, this.command);
+                        UIWidgetTools.execAction(this.callback);
                     }
                 };
             case PRESSED:
                 return new MouseAction(uicomp, command) {
                     public void action(MouseEvent e) {
-                        UIWidgetTools.execAction(this.uicomp, this.command, e.getButton(), e.getClickCount(), e.getX(), e.getY());
+                        UIWidgetTools.execAction(this.callback, e.getButton(), e.getClickCount(), e.getX(), e.getY());
                     }
                 };
             case RELEASED:
                 return new MouseAction(uicomp, command) {
                     public void action(MouseEvent e) {
-                        UIWidgetTools.execAction(this.uicomp, this.command, e.getButton(), e.getClickCount(), e.getX(), e.getY());
+                        UIWidgetTools.execAction(this.callback, e.getButton(), e.getClickCount(), e.getX(), e.getY());
                     }
                 };
             case WHEEL:
                 return new MouseAction(uicomp, command) {
                     public void action(MouseEvent e) {
-                        UIWidgetTools.execAction(this.uicomp, this.command, ((MouseWheelEvent) e).getWheelRotation());
+                        UIWidgetTools.execAction(this.callback, ((MouseWheelEvent) e).getWheelRotation());
                     }
                 };
             default:
@@ -594,7 +595,7 @@ public class UIMouseListener extends UIListener {
      */
     protected static abstract class MouseAction {
 
-        String command;
+        UICallback callback;
         UIComponent uicomp;
 
         /**
@@ -604,7 +605,7 @@ public class UIMouseListener extends UIListener {
          */
         MouseAction(UIComponent uicomp, String command) {
             this.uicomp = uicomp;
-            this.command = command;
+            this.callback = UICallback.newInstance(uicomp, command);
         }
 
         /**
