@@ -24,12 +24,17 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
  **/
 public final class GraphicObjectBuilder {
 
-    public static Figure createNewFigureWithAxes(Integer id) {
+    public final static Figure createNewFigureWithAxes(Integer id) {
+        return createNewFigureWithAxes(id, false);
+    }
+
+    public final static Figure createNewFigureWithAxes(Integer id, boolean updateMVC) {
         final int[] props = new int[] {GraphicObjectProperties.__GO_X_AXIS_LABEL__, GraphicObjectProperties.__GO_Y_AXIS_LABEL__, GraphicObjectProperties.__GO_Z_AXIS_LABEL__, GraphicObjectProperties.__GO_TITLE__};
+        GraphicController controller = GraphicController.getController();
         String figureModelUID = GraphicModel.getModel().getFigureModel().getIdentifier();
         String axesModelUID = GraphicModel.getModel().getAxesModel().getIdentifier();
-        String newFID = GraphicController.getController().createUID().toString();
-        String newAID = GraphicController.getController().createUID().toString();
+        String newFID = controller.createUID().toString();
+        String newAID = controller.createUID().toString();
         GraphicModel.getModel().cloneObject(figureModelUID, newFID);
         GraphicModel.getModel().cloneObject(axesModelUID, newAID);
 
@@ -42,7 +47,7 @@ public final class GraphicObjectBuilder {
         for (Integer type : props) {
             final double[] position = new double[] {1, 1, 1};
             String modelLabelUID = CallGraphicController.getGraphicObjectPropertyAsString(axesModelUID, type);
-            String pobjUID = GraphicController.getController().createUID().toString();
+            String pobjUID = controller.createUID().toString();
             GraphicModel.getModel().cloneObject(modelLabelUID, pobjUID);
             ScilabNativeView.ScilabNativeView__createObject(pobjUID);
             CallGraphicController.setGraphicObjectProperty(pobjUID, GraphicObjectProperties.__GO_POSITION__, position);
@@ -54,10 +59,16 @@ public final class GraphicObjectBuilder {
             CallGraphicController.setGraphicObjectRelationship(newAID, pobjUID);
         }
 
-        ScilabNativeView.ScilabNativeView__createObject(newFID);
-        ScilabNativeView.ScilabNativeView__createObject(newAID);
+        if (updateMVC) {
+            controller.objectCreated(newAID);
+            controller.objectCreated(newFID);
+            controller.objectUpdate(newFID, GraphicObjectProperties.__GO_ID__);
+        } else {
+            ScilabNativeView.ScilabNativeView__createObject(newFID);
+            ScilabNativeView.ScilabNativeView__createObject(newAID);
+            ScilabNativeView.ScilabNativeView__updateObject(newFID, GraphicObjectProperties.__GO_ID__);
+        }
 
-        ScilabNativeView.ScilabNativeView__updateObject(newFID, GraphicObjectProperties.__GO_ID__);
         ScilabNativeView.ScilabNativeView__setCurrentObject(newAID);
         ScilabNativeView.ScilabNativeView__setCurrentSubWin(newAID);
         ScilabNativeView.ScilabNativeView__setCurrentFigure(newFID);
@@ -65,10 +76,10 @@ public final class GraphicObjectBuilder {
         int[] axesSize = CallGraphicController.getGraphicObjectPropertyAsIntegerVector(figureModelUID, GraphicObjectProperties.__GO_AXES_SIZE__);
         CallGraphicController.setGraphicObjectProperty(newFID, GraphicObjectProperties.__GO_AXES_SIZE__, axesSize);
 
-        return (Figure) GraphicController.getController().getObjectFromId(newFID);
+        return (Figure) controller.getObjectFromId(newFID);
     }
 
-    public static String constructRectangles(String pparentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline) {
+    public final static String constructRectangles(String pparentsubwinUID, double x, double y, double height, double width, int foreground, int background, int isfilled, int isline) {
         double[] clipRegion;
         int visible = 0;
         int clipRegionSet = 0;
@@ -139,7 +150,7 @@ public final class GraphicObjectBuilder {
         return pobjUID;
     }
 
-    public static int cloneGraphicContext(String sourceIdentifier, String destIdentifier) {
+    public final static int cloneGraphicContext(String sourceIdentifier, String destIdentifier) {
         int lineMode = 0;
         int foreground = 0;
         int lineStyle = 0;

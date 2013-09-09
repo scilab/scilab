@@ -10,6 +10,11 @@
  *
  */
 
+/**
+ * Windows: swig -java -package org.scilab.modules.graphic_objects -outdir ../java/org/scilab/modules/graphic_objects/ ScilabNativeView.i
+ * Other: Use the option --enable-build-swig to the configure
+*/
+
 %module ScilabNativeView
 
 %pragma(java) jniclasscode=%{
