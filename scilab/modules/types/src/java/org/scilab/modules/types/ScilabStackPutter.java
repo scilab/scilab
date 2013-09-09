@@ -45,12 +45,22 @@ public final class ScilabStackPutter {
     private final static boolean[][] rowBoolean = new boolean[][] { null };
 
     /**
+     * Put an empty matrix to given stack position
+     * @param stackPos position
+     * @return true if the operation succeeded.
+     */
+    public static final boolean putEmpty(final int stackPos) {
+	return put(stackPos, new double[0], false);
+    }
+
+    /**
      * Put a ScilabType at the given position in the Scilab stack
      * @param stackPos position
      * @param var the variable
+     * @return true if the operation succeeded.
      */
     public static final boolean put(final int stackPos, final ScilabType var) {
-        return GetScilabVariableJNI.putVarOnStack(stackPos, var.getSerializedObject(), var.getType().swigValue(), var.isSwaped()) == 0;
+        return var == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, var.getSerializedObject(), var.getType().swigValue(), var.isSwaped()) == 0;
     }
 
     /**
@@ -73,7 +83,7 @@ public final class ScilabStackPutter {
      */
     public static final boolean put(final int stackPos, final double[] d, final boolean swap) {
         rowDouble[0][0] = d;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, rowDouble, ScilabTypeEnum.sci_matrix.swigValue(), swap) == 0;
+        return d == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, rowDouble, ScilabTypeEnum.sci_matrix.swigValue(), swap) == 0;
     }
 
     /**
@@ -85,7 +95,7 @@ public final class ScilabStackPutter {
      */
     public static final boolean put(final int stackPos, final double[][] d, final boolean swap) {
         matDouble[0] = d;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, matDouble, ScilabTypeEnum.sci_matrix.swigValue(), swap) == 0;
+        return d == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, matDouble, ScilabTypeEnum.sci_matrix.swigValue(), swap) == 0;
     }
 
     /**
@@ -112,7 +122,7 @@ public final class ScilabStackPutter {
     public static final boolean put(final int stackPos, final double[] r, final double[] c, final boolean swap) {
         rowComplex[0][0] = r;
         rowComplex[0][1] = c;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, rowComplex, ScilabTypeEnum.sci_matrix.swigValue(), swap) == 0;
+        return (r == null || c == null) ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, rowComplex, ScilabTypeEnum.sci_matrix.swigValue(), swap) == 0;
     }
 
     /**
@@ -126,7 +136,7 @@ public final class ScilabStackPutter {
     public static final boolean put(final int stackPos, final double[][] r, final double[][] c, final boolean swap) {
         matComplex[0] = r;
         matComplex[1] = c;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, matComplex, ScilabTypeEnum.sci_matrix.swigValue(), swap) == 0;
+        return (r == null || c == null) ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, matComplex, ScilabTypeEnum.sci_matrix.swigValue(), swap) == 0;
     }
 
     /**
@@ -151,7 +161,7 @@ public final class ScilabStackPutter {
     public static final boolean put(final int stackPos, final byte[] b, final boolean unsigned, final boolean swap) {
         ((int[]) rowByte[0])[0] = unsigned ? ScilabIntegerTypeEnum.sci_uint8.swigValue() : ScilabIntegerTypeEnum.sci_int8.swigValue();
         ((byte[][]) rowByte[1])[0] = b;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, rowByte, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
+        return b == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, rowByte, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
     }
 
     /**
@@ -164,7 +174,7 @@ public final class ScilabStackPutter {
     public static final boolean put(final int stackPos, final byte[][] b, final boolean unsigned, final boolean swap) {
         ((int[]) matByte[0])[0] = unsigned ? ScilabIntegerTypeEnum.sci_uint8.swigValue() : ScilabIntegerTypeEnum.sci_int8.swigValue();
         matByte[1] = b;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, matByte, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
+        return b == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, matByte, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
     }
 
     /**
@@ -189,7 +199,7 @@ public final class ScilabStackPutter {
     public static final boolean put(final int stackPos, final short[] s, final boolean unsigned, final boolean swap) {
         ((int[]) rowShort[0])[0] = unsigned ? ScilabIntegerTypeEnum.sci_uint16.swigValue() : ScilabIntegerTypeEnum.sci_int16.swigValue();
         ((short[][]) rowShort[1])[0] = s;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, rowShort, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
+        return s == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, rowShort, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
     }
 
     /**
@@ -202,7 +212,7 @@ public final class ScilabStackPutter {
     public static final boolean put(final int stackPos, final short[][] s, final boolean unsigned, final boolean swap) {
         ((int[]) matShort[0])[0] = unsigned ? ScilabIntegerTypeEnum.sci_uint16.swigValue() : ScilabIntegerTypeEnum.sci_int16.swigValue();
         matShort[1] = s;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, matShort, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
+        return s == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, matShort, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
     }
 
     /**
@@ -227,7 +237,7 @@ public final class ScilabStackPutter {
     public static final boolean put(final int stackPos, final int[] i, final boolean unsigned, final boolean swap) {
         ((int[]) rowInt[0])[0] = unsigned ? ScilabIntegerTypeEnum.sci_uint32.swigValue() : ScilabIntegerTypeEnum.sci_int32.swigValue();
         ((int[][]) rowInt[1])[0] = i;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, rowInt, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
+        return i == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, rowInt, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
     }
 
     /**
@@ -240,7 +250,7 @@ public final class ScilabStackPutter {
     public static final boolean put(final int stackPos, final int[][] i, final boolean unsigned, final boolean swap) {
         ((int[]) matInt[0])[0] = unsigned ? ScilabIntegerTypeEnum.sci_uint32.swigValue() : ScilabIntegerTypeEnum.sci_int32.swigValue();
         matInt[1] = i;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, matInt, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
+        return i == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, matInt, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
     }
 
     /**
@@ -265,7 +275,7 @@ public final class ScilabStackPutter {
     public static final boolean put(final int stackPos, final long[] l, final boolean unsigned, final boolean swap) {
         ((int[]) rowLong[0])[0] = unsigned ? ScilabIntegerTypeEnum.sci_uint64.swigValue() : ScilabIntegerTypeEnum.sci_int64.swigValue();
         ((long[][]) rowLong[1])[0] = l;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, rowLong, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
+        return l == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, rowLong, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
     }
 
     /**
@@ -278,7 +288,7 @@ public final class ScilabStackPutter {
     public static final boolean put(final int stackPos, final long[][] l, final boolean unsigned, final boolean swap) {
         ((int[]) matLong[0])[0] = unsigned ? ScilabIntegerTypeEnum.sci_uint64.swigValue() : ScilabIntegerTypeEnum.sci_int64.swigValue();
         matLong[1] = l;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, matLong, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
+        return l == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, matLong, ScilabTypeEnum.sci_ints.swigValue(), swap) == 0;
     }
 
     /**
@@ -289,7 +299,7 @@ public final class ScilabStackPutter {
      */
     public static final boolean put(final int stackPos, final String s) {
         singleString[0][0] = s;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, singleString, ScilabTypeEnum.sci_strings.swigValue(), false) == 0;
+        return s == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, singleString, ScilabTypeEnum.sci_strings.swigValue(), false) == 0;
     }
 
     /**
@@ -301,7 +311,7 @@ public final class ScilabStackPutter {
      */
     public static final boolean put(final int stackPos, final String[] s, final boolean swap) {
         rowString[0] = s;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, rowString, ScilabTypeEnum.sci_strings.swigValue(), swap) == 0;
+        return s == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, rowString, ScilabTypeEnum.sci_strings.swigValue(), swap) == 0;
     }
 
     /**
@@ -312,7 +322,7 @@ public final class ScilabStackPutter {
      * @return true if the operation succeeded
      */
     public static final boolean put(final int stackPos, final String[][] s, final boolean swap) {
-        return GetScilabVariableJNI.putVarOnStack(stackPos, s, ScilabTypeEnum.sci_strings.swigValue(), swap) == 0;
+        return s == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, s, ScilabTypeEnum.sci_strings.swigValue(), swap) == 0;
     }
 
     /**
@@ -335,7 +345,7 @@ public final class ScilabStackPutter {
      */
     public static final boolean put(final int stackPos, final boolean[] b, final boolean swap) {
         rowBoolean[0] = b;
-        return GetScilabVariableJNI.putVarOnStack(stackPos, rowBoolean, ScilabTypeEnum.sci_boolean.swigValue(), swap) == 0;
+        return b == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, rowBoolean, ScilabTypeEnum.sci_boolean.swigValue(), swap) == 0;
     }
 
     /**
@@ -346,6 +356,6 @@ public final class ScilabStackPutter {
      * @return true if the operation succeeded
      */
     public static final boolean put(final int stackPos, final boolean[][] b, final boolean swap) {
-        return GetScilabVariableJNI.putVarOnStack(stackPos, b, ScilabTypeEnum.sci_boolean.swigValue(), swap) == 0;
+        return b == null ? putEmpty(stackPos) : GetScilabVariableJNI.putVarOnStack(stackPos, b, ScilabTypeEnum.sci_boolean.swigValue(), swap) == 0;
     }
 }
