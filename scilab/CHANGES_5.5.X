@@ -50,6 +50,8 @@ Scilab Bug Fixes
 
 * Bug #5886 fixed - There was no property labels_font_style on axis.
 
+* Bug #6305 fixed - dsearch function did not work with integers, strings and hypermatrices.
+
 * Bug #6306 fixed - It is now possible to compute an histogram instead of plotting it
                     with new function histc(). Besides, histplot can now return the computed data.
 

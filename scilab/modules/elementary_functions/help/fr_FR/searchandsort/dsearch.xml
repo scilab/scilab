@@ -11,30 +11,30 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
- -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"   xmlns:scilab="http://www.scilab.org"  xml:id="dsearch" xml:lang="en">
+ --> 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"   xmlns:scilab="http://www.scilab.org"  xml:id="dsearch" xml:lang="fr">
     <refnamediv>
         <refname>dsearch</refname>
         <refpurpose>
-            distribute, locate and count elements of a matrix or hypermatrix in given categories
+            répartit, localise et compte les éléments d'une matrice en catégories données
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Séquence d'appel</title>
         <synopsis>
             [i_bin [,counts [,outside]]] = dsearch(X, bins )
             [i_bin [,counts [,outside]]] = dsearch(X, bins , pm )
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
                     <para>
-                        matrix or hypermatrix of reals, encoded integers, or texts: The entries to categorize. 
-						Complex numbers and polynomials are not supported.
+                        matrice ou hypermatrice de nombres réels, d'entiers encodés, ou de textes : éléments à catégoriser. 
+						Les nombres complexes et les polynômes ne sont pas admis.
                     </para>
                 </listitem>
             </varlistentry>
@@ -42,15 +42,15 @@
                 <term>bins</term>
                 <listitem>
                     <para>
-                        row or column vector defining categories, of same type as <varname>X</varname> (for encoded integers in <varname>X</varname>, <varname>bins</varname> may be decimals).
+                        vecteur ligne ou colonne définissant les catégories, de même type que <varname>X</varname> (Si <varname>X</varname> contient des entiers encodés, <varname>bins</varname> peut être de type décimal).
 						<itemizedlist>
 							<listitem>
-								Discrete case (pm="d"): <varname>bins</varname> are distinct values to which <varname>X</varname> entries must be identified. If <varname>X</varname> is numeric (reals or encoded integers), <varname>bins</varname> must be sorted in strictly increasing order.
+								Cas discret (pm="d"): <varname>bins</varname> contient les valeurs auxquelles les éléments de <varname>X</varname> doivent être identifiés. Si <varname>X</varname> est numérique (nombres réels ou entiers encodés), <varname>bins</varname> doit être préalablement trié par ordre croissant, et sans doublons.
 							</listitem>
 							<listitem>
-								Continuous case (default, pm="c"): <varname>bins</varname> are bounds of contiguous intervals: <literal>I1 = [bins(1), bins(2)]</literal>, <literal>I2 = (bins(2), bins(3)]</literal>,..., <literal>In = (bins(n), bins(n+1)]</literal>. Note that entries from <varname>X</varname> just equal to bins(1) are included in <literal>I1</literal>.
-								The values in <varname>bins</varname> must be in strictly increasing order: bins(1) &lt; bins(2) &lt; ... &lt; bins(n). 
-								For text processing, the case-sensitive lexicographic order is considered.
+								Cas continu (par défaut, pm="c"): <varname>bins</varname> contient les bornes d'intervalles <literal>Ik</literal> contigus : <literal>I1 = [bins(1), bins(2)]</literal>, <literal>I2 = (bins(2), bins(3)]</literal>,..., <literal>In = (bins(n), bins(n+1)]</literal>. Noter que <literal>I1</literal> est fermé à gauche, alors que les <literal>I(k>1)</literal> sont semi-ouverts à gauche.
+								Les bornes <varname>bins</varname> doivent être préalablement triées en ordre strictement croissant : bins(1) &lt; bins(2) &lt; ... &lt; bins(n). 
+								Pour le traitement du texte, l'ordre lexicographique sensible à la casse est considéré.
 							</listitem>
 						</itemizedlist>
 					</para>
@@ -60,7 +60,7 @@
                 <term>pm</term>
                 <listitem>
                     <para>
-                        "c" (continuous, default) or "d" (discrete): processing mode. In continuous mode, <varname>bins</varname> defines the bounds of contiguous intervals considered as categories. In discrete mode, <varname>bins</varname> provides the values to which entries from <varname>X</varname> must be identified.
+                        "c" (continu, par défaut) ou "d" (discrêt): mode de traitement. En mode continu, <varname>bins</varname> spécifie les bornes d'intervalles contigus définissant les catégories à considérer. En mode discrêt, <varname>bins</varname> fournit les valeurs auxquelles les éléments de <varname>X</varname> doivent être individuellement identifiés.
                     </para>
                 </listitem>
             </varlistentry>
@@ -68,16 +68,16 @@
                 <term>i_bin</term>
                 <listitem>
                     <para>
-                        matrix or hypermatrix with same sizes than <varname>X</varname>: <literal>i_bin(k)</literal> is the index of the category to which <varname>X(k)</varname> belongs. If <varname>X(k)</varname> belongs to none of the categories, <literal>i_bin(k) = 0</literal>
+                        Matrice ou hypermatrice de mêmes tailles que <varname>X</varname>: <literal>i_bin(k)</literal> donne le n° de la catégorie à laquelle <varname>X(k)</varname> appartient. Si <varname>X(k)</varname> n'appartient à aucune catégorie, <literal>i_bin(k) = 0</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>counts</term>
-                <listitem>number of X entries in respective bins.
-                    <para>Continuous case (pm="c"): counts(i) elements of <varname>X</varname> belong to the interval <literal>Ik</literal> as defined above (see the <varname>bins</varname> parameter). Elements of <varname>X</varname> just equal to bins(1) are included in counts(1). <varname>counts</varname> has the size of <varname>bins</varname> - 1
+                <listitem>Nombre d'éléments de X dans les catégories respectives.
+                    <para>Cas continu(pm="c"): counts(i) éléments de <varname>X</varname> appartiennent à l'intervalle <literal>Ik</literal> tel que défini ci-dessus (voir le paramètre <varname>bins</varname>). Les éléments de <varname>X</varname> juste égaux à bins(1) sont comptés dans counts(1). <varname>counts</varname> est un vecteur de même taille que <varname>bins</varname>, - 1.
 					</para>
-					<para>Discrete case (pm="d"): <literal>counts(i)</literal> elements of <varname>X</varname> are equal to <literal>bins(i)</literal>
+					<para>Cas discrêt(pm="d"): <literal>counts(i)</literal> indique le nombre d'éléments de <varname>X</varname> égaux à <literal>bins(i)</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -85,7 +85,7 @@
                 <term>outside</term>
                 <listitem>
                     <para>
-                        Total number of X entries belonging to none of the <literal>bins</literal>.
+                        Nombre total d'éléments de X n'appartenant à aucune catégorie <literal>bins</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -94,19 +94,19 @@
     <refsection>
         <title>Description</title>
         <para>
-            For each <varname>X(i)</varname> entry, <varname>dsearch</varname> locates the value <literal>bins(j)</literal> or the interval <literal>(bins(j), bins(j+1)]</literal> defined  by <varname>bins</varname> and containing or equal to <varname>X(i)</varname>. Then it returns <literal>i_bin(i) = j</literal> or 0 whether no bin equals or contains it. (the first interval includes <literal>bins(1)</literal>). The population of each bin is returned through <varname>counts</varname>. The total number of unbinned entries is returned in <varname>outside</varname> (therefore <literal>outside = sum(bool2s(i_bin==0))</literal>).
+            Pour chaque élément <varname>X(i)</varname>, la fonction <varname>dsearch</varname> détermine la valeur <literal>bins(j)</literal> ou l'intervalle <literal>(bins(j), bins(j+1)]</literal> égale à ou contenant <varname>X(i)</varname>. Elle retourne <literal>i_bin(i) = j</literal>, ou 0 si aucune valeur ou intervalle ne convient (le premier intervalle inclut <literal>bins(1)</literal> à gauche). L'effectif de chaque de chaque catégorie est retourné dans le vecteur <varname>counts</varname>. Le nombre d'éléments de <varname>X</varname> n'allant dans aucune catégorie est retourné dans <varname>outside</varname> (donc <literal>outside = sum(bool2s(i_bin==0))</literal>).
 		</para>
         <para>
-			<literal>dsearch(..)</literal> can be overloaded.			
-            The default pm="c" option can be used to compute the empirical histogram of a function given a dataset.
+			<literal>dsearch(..)</literal> peut être surchargée.
+            Le mode pm="c" par défaut peut être utilisé pour calculer l'histogramme empirique d'une fonction appliquée à un ensemble de points donnés.
         </para>
     </refsection>
 	
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 		
-// DISCRETE values of TEXT
-// -----------------------
+// TEXTES en valeurs PARTICULIERES
+// -------------------------------
 i = grand(4,6,"uin",0,7)+97;
 T = matrix(strsplit(ascii(i),1:length(i)-1), size(i));
 T(T=="f") = "#";
@@ -115,31 +115,31 @@ T
 bins = [ strsplit(ascii(97+(7:-1:0)),1:7)' "AA"]
 [i_bin, counts, outside] = dsearch(T, bins, "d")
 
-// BINNING TEXTS in LEXICOGRAPHIC INTERVALS
-// ----------------------------------------
-// generating a random matrix of text
+// TEXTES categorisés par INTERVALLES LEXICOGRAPHIQUES
+// ---------------------------------------------------
+// Génération d'une matrice texte aléatoire
 nL = 3; nC = 5; L  = 3;
 s = ascii(grand(1,nL*nC*L,"uin",0,25)+97);
 T = matrix(strsplit(s, L:L:nL*nC*L-1), nL, nC);
-// generating random bins bounds
+// Génération d'intervalles lexicographiques aléatoires ordonnés
 L  = 2; nC = 6;
 s = ascii(grand(1,nC*L,"uin",0,25)+97);
 bins = unique(matrix(strsplit(s, L:L:nC*L-1), 1, nC))
 T
 [i_bin, counts, outside] = dsearch(T, bins)
-    ]]></programlisting>
+    ]]>
+	</programlisting>
 	
         <para>
-            In the following example, we consider 3 intervals <literal>I1 = [5,11]</literal>, 
+            Dans l'exemple suivant, considérons 3 intervalles <literal>I1 = [5,11]</literal>, 
             <literal>I2 = (11,15]</literal> and <literal>I3 = (15,20]</literal>.
-            We are looking for the location of the entries of <literal>X = [11 13 1 7 5 2 9]</literal> 
-            in these intervals.
+            Nous recherchons les n° des intervalles respectifs auxquels les éléments de <literal>X = [11 13 1 7 5 2 9]</literal> appartiennent.
         </para>
         <programlisting role="example"><![CDATA[ 
 [i_bin, counts, outside] = dsearch([11 13 1 7 5 2 9], [5 11 15 20])
     ]]></programlisting>
         <para>
-            Displayed output:
+            Résultat affiché :
         </para>
         <screen><![CDATA[ 
 -->[i_bin, counts, outside] = dsearch([11 13 1 7 5 2 9], [5 11 15 20])
@@ -151,44 +151,44 @@ T
     1.    2.    0.    1.    1.    0.    1.
     ]]></screen>
         <para>
-            Indeed,
+            En effet,
         </para>
         <itemizedlist>
             <listitem>
-                <para>X(1)=11 is in the interval I1, hence i_bin(1)=1.</para>
+                <para>X(1)=11 est dans l'intervalle I1, donc i_bin(1)=1.</para>
             </listitem>
             <listitem>
-                <para> X(2)=13 is in the interval I2, hence i_bin(2)=2.</para>
+                <para>X(2)=13 est dans l'intervalle I2, donc i_bin(2)=2.</para>
             </listitem>
             <listitem>
-                <para> X(3)=1 belongs to none of defined intervals, hence i_bin(3)=0.</para>
+                <para>X(3)=1 n'appartient à aucun des intervalles définis, donc i_bin(3)=0.</para>
             </listitem>
             <listitem>
-                <para> X(4)=7 is in the interval I1, hence i_bin(4)=1.</para>
+                <para>X(4)=7 est dans l'intervalle I1, donc i_bin(4)=1.</para>
             </listitem>
             <listitem>
                 <para>...</para>
             </listitem>
             <listitem>
-                <para> There are four X entries (5, 7, 9 and 11) in I1, hence counts(1)=4.</para>
+                <para>4 éléments de X (5, 7, 9 et 11) appartiennent à I1, donc counts(1)=4.</para>
             </listitem>
             <listitem>
-                <para> There is only one X entry (13) in I2, hence counts(2)=1.</para>
+                <para>Seul un élément de X (13) est dans I2, donc counts(2)=1.</para>
             </listitem>
             <listitem>
-                <para> There is no X entry in I3, hence counts(3)=0.</para>
+                <para>Aucun élément de X est dans I3, donc counts(3)=0.</para>
             </listitem>
             <listitem>
-                <para> There are two X entries (i.e. 1, 2) which belong to none of defined intervals, hence outside=2.</para>
+                <para>Deux éléments de X (i.e. 1, 2) n'appartiennent à aucun intervalle défini, donc outside=2.</para>
             </listitem>
         </itemizedlist>
         <programlisting role="example"><![CDATA[ 
-// Numbers in DISCRETE categories (having specific values)
-// ------------------------------
+// Nombres à identifier à des valeurs discrêtes
+// --------------------------------------------
 [i_bin, counts, outside] = dsearch([11 13 1 7 5 2 9], [5 11 15 20],"d" )
     ]]></programlisting>
         <para>
-            displays
+            affiche
         </para>
         <screen><![CDATA[ 
 -->[i_bin, counts, outside] = dsearch([11 13 1 7 5 2 9], [5 11 15 20], "d" )
@@ -200,17 +200,17 @@ T
     2.    0.    0.    0.    1.    0.    0.
     ]]></screen>
         <para>
-            Indeed,
+            En effet,
         </para>
         <itemizedlist>
             <listitem>
                 <para>
-                    X(1)=11 is in the set <literal>bins</literal> at position #2, hence i_bin(1)=2.
+                    <literal>X(1)=11</literal> égale <literal>bins(2)</literal>, donc <literal>i_bin(1)=2</literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    X(2)=13 is not in the set <literal>bins</literal>, hence i_bin(2)=0.
+                    <literal>X(2)=13</literal> ne correspond à aucune des valeurs de <literal>bins</literal>, donc <literal>i_bin(2)=0</literal>.
                 </para>
             </listitem>
             <listitem>
@@ -218,28 +218,27 @@ T
             </listitem>
             <listitem>
                 <para>
-                    X(7)=9 is not in the set <literal>bins</literal>, hence i_bin(7)=0.
+                    <literal>X(7)=9</literal> ne correspond à aucune des valeurs de <literal>bins</literal>, donc <literal>i_bin(7)=0</literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    There is only one entry X (i.e. 5) equal to 5, hence counts(1)=1.
+                    Un seul élément de X vaut <literal>bin(1)=5</literal>, donc <literal>counts(1)=1</literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    There are no entries matching <literal>bins(4)</literal>, hence counts(4)=0.
+                    Aucun élément de X ne vaut <literal>bins(4)=20</literal>, donc <literal>counts(4)=0</literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    There are five X entries (i.e. 13, 1, 7, 2, 9) which are not in the set <literal>bins</literal>, hence outside=5.
+                    5 éléments de X (i.e. 13, 1, 7, 2, 9) ne sont identiables à aucun des éléments de <literal>bins</literal>, donc <literal>outside=5</literal>.
                 </para>
             </listitem>
         </itemizedlist>
         <para>
-            Numbers in <literal>bins</literal> must be in increasing order, whatever is the processing mode (continuous or discrete).
-            If this is not the case, an error is generated:
+            Les nombres dans <literal>bins</literal> doivent être rangés par ordre strictement croissant, que le mode de traitement soit continu ou discrêt. Dans le cas contraire, une erreur se produit.
         </para>
         <screen><![CDATA[ 
 -->dsearch([11 13 1 7 5 2 9], [2 1])
@@ -251,17 +250,16 @@ dsearch   : the array s (arg 2) is not well ordered
     ]]></screen>
     </refsection>
     <refsection>
-        <title>Advanced Examples</title>
+        <title>Exemples avancés</title>
         <para>
-            In the following example, we compare the empirical histogram of uniform
-            random numbers in [0,1) with the uniform distribution function.
-            To perform this comparison, we use the default search algorithm based on intervals (pm="c").
-            We generate X as a collection of m=50 000 uniform random numbers in the range [0,1).
-            We consider the n=10 values equally equally spaced values in the [0,1] range and
-            consider the associated intervals.
-            Then we count the number of entries in X which fall in the intervals:
-            this is the empirical histogram of the uniform distribution function.
-            The expectation for counts/m is equal to 1/(n-1).
+            Dans l'exemple suivant, l'histogramme empirique d'un tirage aléatoire à distribution uniforme sur [0, 1]
+			est comparé avec la fonction de distribution théorique uniforme.
+            A cette fin, une catégorisation par intervalles contigus est utilisée (pm="c").
+            Une matrice X  de m=50000 nombres aléatoires à ditribution uniforme sur [0,1[ sont générés.
+			n=10 bornes régulièrement espacées sur [0,1] sont générées et partionnent ce domaine 
+			en n-1=9 intervalles de largeurs identiques.
+			dsearch() classe et dénombre les effectifs de X dans chaque intervalle.
+			La valeur de counts(i)/m attendue (pour m -> inf) vaut 1/(n-1).
         </para>
         <programlisting role="example"><![CDATA[
 m = 50000 ;
@@ -290,11 +288,10 @@ xtitle("Uniform random numbers","X","P(X)");
             xtitle("Uniform random numbers","X","P(X)");
         </scilab:image>
         <para>
-            In the following example, we compare the histogram of binomially distributed
-            random numbers with the binomial probability distribution function B(N,p),
-            with N=8 and p=0.5.
-            To perform this comparison, we use the discrete search algorithm based on
-            a set (pm="d").
+            Dans l'exemple suivant, l'histogramme d'un tirage aléatoire à distribution binomiale
+            est comparé avec la fonction de distribution de probabilité binomiale théorique B(N,p),
+            avec N=8 et p=0.5.
+            A cette fin, dsearch() est utilisée en mode discret ("pm="d").
         </para>
         <programlisting role="example"><![CDATA[ 
 N = 8 ; 
@@ -308,8 +305,8 @@ Pexa = binomial(p,N);
 scf() ; 
 plot(bins, Pexp, "bo");
 plot(bins, Pexa', "r-");
-xtitle("Binomial distribution B(8,0.5)","X","P(X)");
-legend(["Experiment","Expectation"]);
+xtitle("Distribution binomiale B(8,0.5)","X","P(X)");
+legend(["Tirage","Théorie"]);
 ]]></programlisting>
         <scilab:image>
             N = 8 ; 
@@ -323,16 +320,15 @@ legend(["Experiment","Expectation"]);
             scf() ; 
             plot(bins, Pexp, "bo");
             plot(bins, Pexa',"r-");
-            xtitle("Binomial distribution B(8,0.5)","X","P(X)");
-            legend(["Experiment","Expectation"]);
+            xtitle("Distribution binomiale B(8,0.5)","X","P(X)");
+            legend(["Tirage","Théorie"]);
         </scilab:image>
         <para>
-            In the following example, we use piecewise Hermite polynomials to 
-            interpolate a dataset.
+            Autre exemple : utilisons maintenant une série de polynômes de Hermite définis par morceaux pour interpoler un ensemble depoints.
         </para>
         <programlisting role="example"><![CDATA[ 
 
-      // define Hermite base functions
+      // Définition de la base des fonctions de Hermite :
       function y=Ll(t,k,x)
         // Lagrange left on Ik
         y=(t-x(k+1))./(x(k)-x(k+1))
@@ -360,14 +356,14 @@ legend(["Experiment","Expectation"]);
       X = linspace(0, 1, 200)';
       i_bin = dsearch(X, x);
 
-      // plot the curve
+      // Affichage de la courbe :
       Y = y(i_bin).*Hl(X,i_bin) + y(i_bin+1).*Hr(X,i_bin) + d(i_bin).*Kl(X,i_bin) + d(i_bin+1).*Kr(X,i_bin);
       scf();
       plot(X,Y,"k-");
       plot(x,y,"bo")
-      xtitle("Hermite piecewise polynomial");
-      legend(["Polynomial","Data"]);
-      // NOTE : it can be verified by adding these ones :
+      xtitle("Polynôme de Hermite par morceaux");
+      legend(["Polynôme d''interpolation","Données à interpoler"]);
+      // NOTE : pour vérifier, décommenter et exécuter la ligne suivante
       // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
       ]]></programlisting>
         <scilab:image>
@@ -401,13 +397,13 @@ legend(["Experiment","Expectation"]);
             scf();
             plot(X,Y,"k-");
             plot(x,y,"bo")
-            xtitle("Hermite piecewise polynomial");
-            legend(["Polynomial","Data"]);
+            xtitle("Polynôme de Hermite par morceaux");
+            legend(["Polynôme d''interpolation","Données à interpoler"]);
         </scilab:image>
     </refsection>
 	
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="find">find</link>
@@ -420,13 +416,12 @@ legend(["Experiment","Expectation"]);
             </member>
         </simplelist>
     </refsection>
-	
     <refsection>
-        <title>History</title>
+        <title>Historique</title>
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark>Extension to hypermatrices, encoded integers, and text.</revremark>
+                <revremark>Extension aux hypermatrices, aux entiers encodés, et au traitement du texte.</revremark>
             </revision>
         </revhistory>
     </refsection>
