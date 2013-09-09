@@ -46,6 +46,7 @@ function this = optimbase_configure (this,key,value)
             error(errmsg);
         end
         this.x0 = value;
+        this.numberofvariables = n; // Setting x0 also sets the size of the system
     case "-maxfunevals" then
         optimbase_typereal ( value , "value" , 3 );
         optimbase_checkscalar ( "optimbase_configure" , value , "value" , 3 )
@@ -215,4 +216,3 @@ function optimbase_checkoption ( funname , var , varname , ivar , expectedopt )
         error(errmsg);
     end
 endfunction
-

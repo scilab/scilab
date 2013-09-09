@@ -22,6 +22,10 @@ function [phi,db]=phasemag(z,mod)
     //compute first phase value in  (-pi, pi]
     phi1=atan(imag(z(:,1)),real(z(:,1)))
     //compute phase increments in (-pi, pi]
+    ind = find(z==0);
+    if ind <> [] then
+        z(ind) = 1; // To avoid division by 0 (0 and 1 have the same phase)
+    end
     z2=z(:,2:$)./z(:,1:$-1)
     dphi=atan(imag(z2),real(z2))
     phi=cumsum([phi1 dphi],2)

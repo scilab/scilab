@@ -27,7 +27,9 @@
 #include "BOOL.h"
 #include "pcre_error.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "charEncoding.h"
+#include "sort_inter.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -35,15 +37,10 @@
 #define CHAR_S "s"
 #define CHAR_R "r"
 /*------------------------------------------------------------------------*/
-struct In
-{
-    int data;
-    int position;
-} ;
 /*------------------------------------------------------------------------*/
-int cmp( const void *a , const void *b)
+int cmp(In left, In right)
 {
-    return (*(struct In *)a).data > (*(struct In *)b).data ? 1 : -1;
+    return left.data < right.data;
 }
 /*------------------------------------------------------------------------*/
 int sci_strindex(char *fname, unsigned long fname_len)
@@ -131,7 +128,7 @@ int sci_strindex(char *fname, unsigned long fname_len)
         wchar_t **wStrings_Input2 = NULL;
         int m2n2 = 0; /* m2 * n2 */
 
-        struct In *values = NULL;
+        In *values = NULL;
 
         int nbValues = 0;
         int nbposition = 0;
@@ -177,60 +174,136 @@ int sci_strindex(char *fname, unsigned long fname_len)
 
         if ( (int)wcslen(wStrings_Input1) == 0 )
         {
-            values = (struct In*)MALLOC(sizeof(struct In));
+            values = (In*)MALLOC(sizeof(In));
         }
         else
         {
-            values = (struct In *)MALLOC( sizeof(struct In) * ( wcslen(wStrings_Input1) ) * m2n2);
+            values = (In *)MALLOC( sizeof(In) * ( wcslen(wStrings_Input1) ) * m2n2);
         }
 
         if (bStrindex_with_pattern)
         {
             int x = 0;
-            pcre_error_code w = PCRE_FINISHED_OK;
+            pcre_error_code answer = PCRE_FINISHED_OK;
 
             int Output_Start = 0;
             int Output_End = 0;
 
-            /* We use pcre library */
+            int wcOutput_Start = 0;
+            int wcstart_point = 0;
+            int wcOutput_End = 0;
+
             for (x = 0; x < m2n2; ++x)
             {
-                w = pcre_private(Strings_Input1[0], Strings_Input2[x], &Output_Start, &Output_End, NULL, NULL);
-                if ( w == PCRE_FINISHED_OK)
+                char *save = strdup(Strings_Input2[x]);
+                if (save)
                 {
-                    char *partStr = strdup(Strings_Input1[0]);
-                    wchar_t *wcpartStr = NULL;
-                    partStr[Output_Start] = '\0';
-                    wcpartStr = to_wide_string(partStr);
-                    values[nbValues++].data = (int)wcslen(wcpartStr) + 1; /* adding the answer into the outputmatrix */
-                    values[nbposition++].position = x + 1;      /* The number according to the str2 matrix */
+                    char *pointer = Strings_Input1[0];
+                    wcstart_point = 0;
 
-                    if (partStr)
+                    do
                     {
-                        FREE(partStr);
-                        partStr = NULL;
+                        strcpy(save, Strings_Input2[x]);
+                        Output_Start = 0;
+                        Output_End = 0;
+
+                        answer = pcre_private(pointer, save, &Output_Start, &Output_End, NULL, NULL);
+                        if ( answer == PCRE_FINISHED_OK )
+                        {
+                            /* Start = End means that we matched a position and 0 characters.
+                            * Matching 0 characters, for us, means no match.
+                            */
+                            if (Output_Start != Output_End)
+                            {
+                                char *	strOutput_Start = strdup(pointer);
+                                char *  strOutput_End =  strdup(pointer);
+
+                                wchar_t *wcstrOutput_Start = NULL;
+                                wchar_t *wcstrOutput_End = NULL;
+
+                                /* calculates positions with wide characters */
+                                strOutput_Start[Output_Start] = '\0';
+                                strOutput_End[Output_End] = '\0';
+
+                                wcstrOutput_Start = to_wide_string(strOutput_Start);
+                                wcstrOutput_End = to_wide_string(strOutput_End);
+
+                                if (wcstrOutput_Start)
+                                {
+                                    wcOutput_Start = (int)wcslen(wcstrOutput_Start);
+                                    FREE(wcstrOutput_Start);
+                                    wcstrOutput_Start = NULL;
+                                }
+                                else
+                                {
+                                    wcOutput_Start = 0;
+                                }
+
+                                if (wcstrOutput_End)
+                                {
+                                    wcOutput_End = (int)wcslen(wcstrOutput_End);
+                                    FREE(wcstrOutput_End);
+                                    wcstrOutput_End = NULL;
+                                }
+                                else
+                                {
+                                    wcOutput_End = 0;
+                                }
+
+                                if (strOutput_Start)
+                                {
+                                    FREE(strOutput_Start);
+                                    strOutput_Start = NULL;
+                                }
+                                if (strOutput_End)
+                                {
+                                    FREE(strOutput_End);
+                                    strOutput_End = NULL;
+                                }
+
+                                /*adding the answer into the outputmatrix*/
+                                values[nbValues].data = wcOutput_Start + wcstart_point + 1;
+                                values[nbValues].position = x + 1;
+                                nbValues++;
+                            }
+                            else if (Output_End == 0 && *pointer != '\0')
+                            {
+                                /* Avoid an infinite loop */
+                                pointer++;
+                            }
+
+                            pointer = &pointer[Output_End];
+                            wcstart_point = wcstart_point + wcOutput_End;
+                        }
+                        else
+                        {
+                            if (answer != NO_MATCH)
+                            {
+                                pcre_error(fname, answer);
+                                freeArrayOfString(Strings_Input1, m1n1);
+                                freeArrayOfString(Strings_Input2, m2n2);
+                                return 0;
+                            }
+                        }
                     }
-                    if (wcpartStr)
+                    while ( (answer == PCRE_FINISHED_OK) && (*pointer != '\0'));
+
+                    if (save)
                     {
-                        FREE(wcpartStr);
-                        wcpartStr = NULL;
+                        FREE(save);
+                        save = NULL;
                     }
                 }
                 else
                 {
-                    if (w != NO_MATCH)
-                    {
-                        freeArrayOfString(Strings_Input1, m1n1);
-                        freeArrayOfString(Strings_Input2, m2n2);
-                        pcre_error(fname, w);
-                        return 0;
-                    }
-                    break;
+                    freeArrayOfString(Strings_Input1, m1n1);
+                    freeArrayOfString(Strings_Input2, m2n2);
+                    Scierror(999, _("%s: No more memory.\n"), fname);
+                    return 0;
                 }
             }
 
-            qsort(values, nbValues, sizeof(values[0]), cmp);
-
+            sort_inert(values, values + nbValues, cmp);
         }
         else
         {
@@ -273,7 +346,7 @@ int sci_strindex(char *fname, unsigned long fname_len)
                     while (pCur != NULL && *pCur != 0); //Plus tard
 
                     /* values are sorted */
-                    qsort(values, nbValues, sizeof(values[0]), cmp);
+                    sort_inert(values, values + nbValues, cmp);
                 }
             }
         }
@@ -296,8 +369,8 @@ int sci_strindex(char *fname, unsigned long fname_len)
         {
             numRow   = 1;
             outIndex = 0;
-            CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &numRow, &nbposition, &outIndex);
-            for ( i = 0 ; i < nbposition ; i++ )
+            CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &numRow, &nbValues, &outIndex);
+            for ( i = 0 ; i < nbValues ; i++ )
             {
                 stk(outIndex)[i] = (double)values[i].position ;
             }

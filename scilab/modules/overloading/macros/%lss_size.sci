@@ -16,8 +16,11 @@ function [m,n,nx]=%lss_size(x,flag)
     [a,b,c,d]=x(2:5);[m,w]=size([c,d]),[w,n]=size([b;d]);
     if rhs==2 then
         if type(flag)==10 then
-            if part(flag,1)=="r" then flag=1;end
-            if part(flag,1)=="c" then flag=2;end
+            if part(flag,1)=="r" then
+                flag=1;
+            elseif part(flag,1)=="c" then
+                flag=2;
+            end
         end
     end
     if lhs==1

@@ -24,6 +24,9 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
  - issquare - Check if a variable is a square matrix. See bug #10456 fixed.
  - cross - Vector cross product. See bug #9941 fixed.
 
+* Based on the external module 'JIMS', Scilab provides functions to interact
+  with Java objects.
+
 * Add a complete set of functions to read and write any HDF5 file from Scilab.
 
 * The Variable Browser shows also the size of integers and the user type of
@@ -75,6 +78,8 @@ Improvements
 Obsolete
 =========
 
+* Scilab 5.5.X family will be the latest one working under Windows XP/2003.
+
 * The third argument of poly function will be more strict.
     Only the following strings will be allowed : "roots", "coeff", "c", "r".
 
@@ -96,6 +101,7 @@ Obsolete
 * fscanf is obsolete, use mfscanf for files opened with mopen or read for files opened with file instead.
 
 * fprintf is obsolete, use mfprintf for files opened with mopen or write for files opened with file instead.
+
 
 Differential_equations
 ======================
@@ -195,6 +201,8 @@ Bug fixes
 * Bug #2267 fixed - Wrong error message when ticks locations and labels did not have the same sizes.
 
 * Bug #2416 fixed - Particular case (string([]) returns []) has been added in the string help page.
+
+* Bug #3511 fixed - strindex did not return all occurrences in regexp mode.
 
 * Bug #3928 fixed - An error was returned when a matrix was flipped along the third dimension.
 
@@ -347,9 +355,14 @@ Bug fixes
 
 * Bug #9459 fixed - Default values of the optional plot3d arguments were not documented.
 
+* Bug #9577 fixed - Setting neldermead_configure("-numberofvariables") is now optional,
+                    setting neldermead_configure("-x0") does it implicitly.
+
 * Bug #9601 fixed - Cylinder demo failed with a bad value.
 
 * Bug #9691 fixed - "imp" option of optim was poorly documented.
+
+* Bug #9694 fixed - Example in optim() help page fixed to display correct counters.
 
 * Bug #9780 fixed - gmres solver did not run with complex systems.
 
@@ -618,3 +631,7 @@ Bug fixes
 * Bug #12858 fixed - Typo in French doc for debug() and pause().
 
 * Bug #12859 fixed - Core doc: fix optional argument of isdef().
+
+* Bug #12863 fixed - size(state-space, "r") returned an error.
+
+* Bug #12875 fixed - phasemag() returned an error for input vector containing zeros.
