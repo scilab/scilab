@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 #include "fileio_gw.hxx"
 #include "string.hxx"
-#include "cell.hxx"
+#include "mlist.hxx"
 #include "filemanager.hxx"
 #include "double.hxx"
 #include "function.hxx"
@@ -28,6 +28,7 @@ extern "C"
 #include "mgetl.h"
 #include "do_xxscanf.h"
 #include "scanf_functions.h"
+#include "StringConvert.h"
 }
 
 types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -35,7 +36,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     int iFile                   = -1; //default file : last opened file
     int size                    = (int)in.size();
     int iNiter                  = 1;
-    //int iLinesRead              = 0;
+    int iLinesRead              = 0;
     int iErr                    = 0;
     wchar_t* wcsFormat          = NULL;
     int dimsArray[2]            = {1, 1};
@@ -95,6 +96,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     }
 
     wcsFormat = in[size - 1]->getAs<types::String>()->get(0);
+    StringConvertW(wcsFormat);
 
     types::File* pFile = FileManager::getFile(iFile);
     if (pFile == NULL)
@@ -103,15 +105,27 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
+    // file opened with fortran open function
+    if (pFile->getFileType() == 1)
+    {
+        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mfscanf", iFile);
+        return types::Function::Error;
+    }
+
+    if (iNiter == -1)
+    {
+        iNiter = pFile->getCountLines();
+    }
+
     FILE* fDesc = pFile->getFiledesc();
     nrow = iNiter;
-    //nrow = iLinesRead;
-    while (++rowcount < iNiter)
+    while ((iNiter > 0 && ++rowcount < iNiter))
     {
         if ((iNiter >= 0) && (rowcount >= iNiter))
         {
             break;
         }
+
         // get data
         int err = do_xxscanf(L"mfscanf", fDesc, wcsFormat, &args, NULL, &retval, buf, type);
         if (err < 0)
@@ -125,12 +139,6 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
             switch (err)
             {
                 case DO_XXPRINTF_MISMATCH:
-                    if (iNiter >= 0)
-                    {
-                        Free_Scan(rowcount, ncol, type_s, &data);
-                        Scierror(999, _("%s: Data mismatch.\n"), "mfscanf");
-                        return types::Function::Error;
-                    }
                     break;
 
                 case DO_XXPRINTF_MEM_LACK:
@@ -139,11 +147,14 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                     return types::Function::Error;
                     break;
             }
+
             if (err == DO_XXPRINTF_MISMATCH)
             {
                 break;
             }
         }
+
+        iLinesRead++;
     }
 
     unsigned int uiFormatUsed = 0;
@@ -154,8 +165,8 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
             case SF_C:
             case SF_S:
             {
-                types::String* ps = new types::String(iNiter, 1);
-                for (int j = 0 ; j < iNiter ; j++)
+                types::String* ps = new types::String(iLinesRead, 1);
+                for (int j = 0 ; j < iLinesRead ; j++)
                 {
                     ps->set(j, data[i + ncol * j].s);
                 }
@@ -172,8 +183,8 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
             case SF_LF:
             case SF_F:
             {
-                types::Double* p = new types::Double(iNiter, 1);
-                for (int j = 0; j < iNiter; j++)
+                types::Double* p = new types::Double(iLinesRead, 1);
+                for (int j = 0; j < iLinesRead; j++)
                 {
                     p->set(j, data[i + ncol * j].d);
                 }
@@ -298,13 +309,21 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                     }
                 }
 
-                int dimsArrayOfCell[2] = {1, (int)pITTemp->size()};
-                types::Cell* pCell = new types::Cell(2, dimsArrayOfCell);
+                types::MList* pMList = new types::MList();
+                pMList->append(new types::String(L"cblock"));
                 for (int i = 0 ; i < pITTemp->size() ; i++)
                 {
-                    pCell->set(i, (*pITTemp)[i]);
+                    pMList->append((*pITTemp)[i]);
                 }
-                out.push_back(pCell);
+                out.push_back(pMList);
+
+                //                int dimsArrayOfCell[2] = {1, (int)pITTemp->size()};
+                //                types::Cell* pCell = new types::Cell(2, dimsArrayOfCell);
+                //                for (int i = 0 ; i < pITTemp->size() ; i++)
+                //                {
+                //                    pCell->set(i, (*pITTemp)[i]);
+                //                }
+                //                out.push_back(pCell);
             }
         }
     }

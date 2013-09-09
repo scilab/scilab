@@ -66,27 +66,27 @@ if n<>1|a<>123 then pause,end
 if n<>1|a<>12 then pause,end
 [n,a]=Fscanf('123','%5hd');
 
-//------------- test format %n 
-// Note that %n returned values are not counted in n 
+//------------- test format %n
+// Note that %n returned values are not counted in n
 s1='123 45.67 pipo';s2=' foo';
 [n,a,b,c,d,e]=Fscanf(s1+s2,'%d%lf%s%n%s');
 if n<>4|a<>123|b<>45.67|c<>'pipo'|d<>length(s1)|e<>'foo' then pause,end
 
-//------------- test format %u 
+//------------- test format %u
 [n,a]=Fscanf('+123','%u');
 if n<>1|a<>123 then pause,end
 [n,a]=Fscanf(' 123','%2u');
 if n<>1|a<>12 then pause,end
 [n,a]=Fscanf('+123','%5u');
 if n<>1|a<>123 then pause,end
-//------------- test format %lu 
+//------------- test format %lu
 [n,a]=Fscanf('+123','%lu');
 if n<>1|a<>123 then pause,end
 [n,a]=Fscanf(' 123','%2lu');
 if n<>1|a<>12 then pause,end
 [n,a]=Fscanf('+123','%5lu');
 if n<>1|a<>123 then pause,end
-//------------- test format %hu 
+//------------- test format %hu
 [n,a]=Fscanf('+123','%hu');
 if n<>1|a<>123 then pause,end
 [n,a]=Fscanf(' 123','%2hu');
@@ -166,8 +166,8 @@ if n<>1|a<>'12' then pause,end
 if n<>1|a<>'123' then pause,end
 
 //------------- test format %c
-//XXXX : attention a finir .... il faut ? scaner \n comme 
-//un seul caractere  
+//XXXX : attention a finir .... il faut ? scaner \n comme
+//un seul caractere
 [n,a,b,c,d]=Fscanf(' 12\n','%c%c%c%c');
 if n<>4|a<>' '|b<>'1'|c<>'2' then pause,end
 
@@ -179,11 +179,11 @@ if n<>2|a<>'012345abc'|b<>'zoo' then pause,end
 [n,a,b]=Fscanf('012345abczoo','%[^c]c%s');
 if n<>2|a<>'012345ab'|b<>'zoo' then pause,end
 
-//------------- test ignoring arguments 
+//------------- test ignoring arguments
 [n,a,b]=Fscanf('123 4 pipo poo','%*s%s%*s%s');
 if n<>2|a<>'4'|b<>'poo' then pause,end
 
-//------------- test [ * ^ 
+//------------- test [ * ^
 [n,a]=Fscanf('123 4 pipo poo','%[^\n]\n');
 if n<>1|a<>'123 4 pipo poo' then pause,end
 
@@ -191,7 +191,7 @@ if n<>1|a<>'123 4 pipo poo' then pause,end
 if n<>1|a<>'poo' then pause,end
 
 
-//------------- test composed directives 
+//------------- test composed directives
 [n,a]=Fscanf('123 4','123%le');
 if n<>1|a<>4 then pause,end
 [n,a,b,c]=Fscanf('xxxxx 4 test 23.45','xxxxx%d%s%le');
@@ -199,7 +199,7 @@ if n<>3|a<>4|b<>'test'|c<>23.45 then pause,end
 [n,a,b]=Fscanf('123 456','%le%le');
 if n<>2|a<>123|b<>456 then pause,end
 
-//------------- test mismatch 
+//------------- test mismatch
 [n,a]=Fscanf('123 poo','123%le');
 if n<>0 then pause,end
 
@@ -207,34 +207,34 @@ if n<>0 then pause,end
 [n,a]=Fscanf('123','123%le');
 if n<>-1 then pause,end
 
-//------------- test with matrix scan 
+//------------- test with matrix scan
 
-n=5
+n=5;
 A=int(10*rand(n,n));
 A1=strcat(string(A),' ','c');
 tmpf=TMPDIR+'/fscanf.rep';
 mputl(A1,tmpf);
 
 F='%d';F=strcat(F(ones(1,n)),' ');
-// all lines read as int we scan a 5x5 matrix 
+// all lines read as int we scan a 5x5 matrix
 fd=mopen(tmpf,'r');A2=mfscanf(-1,fd,F);mclose(fd);
 if norm(A2-A) > %eps then pause, end
-// read just 2 lines 
+// read just 2 lines
 fd=mopen(tmpf,'r');A2=mfscanf(2,fd,F);mclose(fd);
 if norm(A2-A(1:2,:)) > %eps then pause, end
-// explicit columns we scan five columns 
+// explicit columns we scan five columns
 fd=mopen(tmpf,'r');[n,a,b,c,d,e]=mfscanf(-1,fd,F);mclose(fd);
-if n<>5 then pause, end 
+if n<>5 then pause, end
 if norm([a,b,c,d,e]-A) > %eps then pause, end
 // all lines read as int but we scan only 2 columns using %*[^\n] to ignore the rest
 fd=mopen(tmpf,'r');A2=mfscanf(-1,fd,'%d%d%*[^\n]\n');mclose(fd);
 if norm(A2-A(:,1:2)) > %eps then pause, end
 
-// all lines read as string 
+// all lines read as string
 F='%s';F=strcat(F(ones(1,n)),' ');
 fd=mopen(tmpf,'r');A2=mfscanf(-1,fd,F);mclose(fd);
 if A2<>string(A) then pause, end
-// read just 2 lines 
+// read just 2 lines
 fd=mopen(tmpf,'r');A2=mfscanf(2,fd,F);mclose(fd);
 if A2<>string(A(1:2,:))  then pause, end
 

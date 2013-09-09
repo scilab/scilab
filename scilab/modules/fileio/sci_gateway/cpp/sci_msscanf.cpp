@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 #include "fileio_gw.hxx"
 #include "string.hxx"
-#include "cell.hxx"
+#include "mlist.hxx"
 #include "function.hxx"
 #include "double.hxx"
 
@@ -270,13 +270,21 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                     }
                 }
 
-                int dimsArrayOfCell[2] = {1, (int)pITTemp->size()};
-                types::Cell* pCell = new types::Cell(2, dimsArrayOfCell);
-                for (int i = 0; i < pITTemp->size(); i++)
+                types::MList* pMList = new types::MList();
+                pMList->append(new types::String(L"cblock"));
+                for (int i = 0 ; i < pITTemp->size() ; i++)
                 {
-                    pCell->set(i, (*pITTemp)[i]);
+                    pMList->append((*pITTemp)[i]);
                 }
-                out.push_back(pCell);
+                out.push_back(pMList);
+
+                //                int dimsArrayOfCell[2] = {1, (int)pITTemp->size()};
+                //                types::Cell* pCell = new types::Cell(2, dimsArrayOfCell);
+                //                for (int i = 0; i < pITTemp->size(); i++)
+                //                {
+                //                    pCell->set(i, (*pITTemp)[i]);
+                //                }
+                //                out.push_back(pCell);
             }
         }
     }

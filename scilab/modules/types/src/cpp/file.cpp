@@ -9,8 +9,14 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-
+#include <fstream>
 #include "file.hxx"
+
+extern "C"
+{
+#include "charEncoding.h"
+#include "MALLOC.h"
+}
 
 namespace types
 {
@@ -126,4 +132,22 @@ std::wstring File::getFilename()
 {
     return m_stFilename;
 }
+
+int File::getCountLines()
+{
+    char* pstFileName = wide_string_to_UTF8(m_stFilename.c_str());
+    std::ifstream in(pstFileName);
+    std::string stLine;
+    int iLines = 0;
+
+    while (std::getline(in, stLine))
+    {
+        iLines++;
+    }
+
+    in.close();
+    FREE(pstFileName);
+    return iLines;
+}
+
 }
