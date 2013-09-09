@@ -21,19 +21,19 @@
 y0=1;t=2:6;t0=1;y0d=3;
 info=list([],0,[],[],[],0,[],1,[],0,1,[],[],1);
 atol=1.d-6;rtol=0;ng=2;
-[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,'res1',ng,'gr1',info,'psol1','pjac1');
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,"res1",ng,"gr1",info,"psol1","pjac1");
 assert_checkalmostequal(nn(1),2.47,0.001);
 y0=yy(2,2);y0d=yy(3,2);t0=nn(1);t=[3,4,5,6];
-[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,'res1',ng,'gr1',info,'psol1','pjac1');
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,"res1",ng,"gr1",info,"psol1","pjac1");
 assert_checkalmostequal(nn(1),2.5,0.001);
 y0=yy(2,1);y0d=yy(3,1);t0=nn(1);t=[3,4,5,6];
 info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
-[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,'res1',ng,'gr1',info);
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,"res1",ng,"gr1",info);
 assert_checkalmostequal(nn(1),2.53,0.001);
 
 // Same problem, but using macro for the derivative evaluation function 'res1'
-deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2.*log(y)+8)./t-5).*y')
-deff('[rts]=gr1(t,y,yd)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
+deff("[delta,ires]=res1(t,y,ydot)","ires=0;delta=ydot-((2.*log(y)+8)./t-5).*y")
+deff("[rts]=gr1(t,y,yd)","rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]")
 
 y0=1;t=2:6;t0=1;y0d=3;
 atol=1.d-6;rtol=0;ng=2;
@@ -96,13 +96,13 @@ endfunction
 y0=1;t=2:6;t0=1;y0d=3;
 info=list([],0,[],[],[],0,[],1,[],0,1,[],[],1);
 atol=1.d-6;rtol=0;ng=2;
-[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res1,ng,'gr1',info,psol,pjac);
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res1,ng,"gr1",info,psol,pjac);
 assert_checkalmostequal(nn(1),2.47,0.001);
 y0=yy(2,2);y0d=yy(3,2);t0=nn(1);t=[3,4,5,6];
-[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res1,ng,'gr1',info,psol,pjac);
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res1,ng,"gr1",info,psol,pjac);
 assert_checkalmostequal(nn(1),2.5,0.001);
 y0=yy(2,1);y0d=yy(3,1);t0=nn(1);t=[3,4,5,6];
-[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res1,ng,'gr1',info,psol,pjac);
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res1,ng,"gr1",info,psol,pjac);
 assert_checkalmostequal(nn(1),2.53,0.001);
 
 //C
@@ -119,24 +119,24 @@ assert_checkalmostequal(nn(1),2.53,0.001);
 info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
 rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
 t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
-[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,'res2','jac2',ng,'gr2',info);
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,"res2","jac2",ng,"gr2",info);
 assert_checkalmostequal(nn(1),81.163512,0.001);
 
-deff('[delta,ires]=res2(t,y,ydot)',...
-'ires=0;y1=y(1),y2=y(2),delta=[ydot-[y2;100*(1-y1*y1)*y2-y1]]')
-[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,'jac2',ng,'gr2',info);
-deff('J=jac2(t,y,ydot,c)','y1=y(1);y2=y(2);J=[c,-1;200*y1*y2+1,c-100*(1-y1*y1)]')
-[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,'gr2',info);
-deff('s=gr2(t,y,yd)','s=y(1)')
+deff("[delta,ires]=res2(t,y,ydot)",...
+"ires=0;y1=y(1),y2=y(2),delta=[ydot-[y2;100*(1-y1*y1)*y2-y1]]")
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,"jac2",ng,"gr2",info);
+deff("J=jac2(t,y,ydot,c)","y1=y(1);y2=y(2);J=[c,-1;200*y1*y2+1,c-100*(1-y1*y1)]")
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,"gr2",info);
+deff("s=gr2(t,y,yd)","s=y(1)")
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,gr2,info);
 
 // Same problem, with psol and pjac example routines
 
 info=list([],0,[],[],[],0,[],1,[],0,1,[],[],1);
-[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,'gr2',info,'psol1','pjac1');
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,"gr2",info,"psol1","pjac1");
 assert_checkalmostequal(nn(1),81.163512,0.009);
-deff('s=gr2(t,y,yd)','s=y(1)')
-[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,gr2,info,'psol1','pjac1');
+deff("s=gr2(t,y,yd)","s=y(1)")
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,gr2,info,"psol1","pjac1");
 assert_checkalmostequal(nn(1),81.163512,0.009);
 
 // Same problem, with psol and pjac macros
@@ -170,88 +170,56 @@ function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
         ydot(i) = ypsave;
     end
 endfunction
-[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,'gr2',info,psol,pjac);
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,"gr2",info,psol,pjac);
 assert_checkalmostequal(nn(1),81.163512,0.003);
-deff('s=gr2(t,y,yd)','s=y(1)')
+deff("s=gr2(t,y,yd)","s=y(1)")
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,gr2,info,psol,pjac);
 assert_checkalmostequal(nn(1),81.163512,0.003);
 info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
 
 //           Hot Restart
 
-[yy,nn,hotd]=daskr([y0,y0d],t0,t,atol,rtol,'res2','jac2',ng,'gr2',info);
-t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
-[yy,nn,hotd]=daskr([y01,y0d1],t01,t,atol,rtol,'res2','jac2',ng,'gr2',info,hotd);
+[yy,nn,hotd]=daskr([y0,y0d],t0,t,atol,rtol,"res2","jac2",ng,"gr2",info);
+t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(3:4,qq);y0d1=yy(4:5,qq);
+[yy,nn,hotd]=daskr([y01,y0d1],t01,t,atol,rtol,"res2","jac2",ng,"gr2",info,hotd);
 assert_checkalmostequal(nn(1),162.57763,0.004);
 
-//Test of Dynamic link (Require f77!)
-//         1 making the routines
-res22=[...
-'      SUBROUTINE RES22(T,Y,YDOT,DELTA,IRES,RPAR,IPAR)';
-'      IMPLICIT DOUBLE PRECISION (A-H,O-Z)';
-'      INTEGER NEQ';
-'      DIMENSION Y(*), YDOT(*), DELTA(*)';
-'      NEQ=2';
-'      CALL F2(NEQ,T,Y,DELTA)';
-'      DO 10 I = 1,NEQ';
-'         DELTA(I) = YDOT(I) - DELTA(I)';
-' 10   CONTINUE';
-'      RETURN';
-'      END';
-'      SUBROUTINE F2 (NEQ, T, Y, YDOT)';
-'      IMPLICIT DOUBLE PRECISION (A-H,O-Z)';
-'      INTEGER NEQ';
-'      DOUBLE PRECISION T, Y, YDOT';
-'      DIMENSION Y(*), YDOT(*)';
-'      YDOT(1) = Y(2)';
-'      YDOT(2) = 100.0D0*(1.0D0 - Y(1)*Y(1))*Y(2) - Y(1)';
-'      RETURN';
-'      END';]
+// Same with C code
+ilib_verbose(0);
 
-jac22=[...
-'      SUBROUTINE JAC22 (T, Y, ydot, PD, CJ, RPAR, IPAR)';
-' ';
-'      IMPLICIT DOUBLE PRECISION (A-H,O-Z)';
-'      INTEGER  NROWPD';
-'      DOUBLE PRECISION T, Y, PD';
-'      PARAMETER (NROWPD=2)';
-'      DIMENSION Y(2), PD(NROWPD,2)';
-'      PD(1,1) = 0.0D0';
-'      PD(1,2) = 1.0D0';
-'      PD(2,1) = -200.0D0*Y(1)*Y(2) - 1.0D0';
-'      PD(2,2) = 100.0D0*(1.0D0 - Y(1)*Y(1))';
-'      PD(1,1) = CJ - PD(1,1)';
-'      PD(1,2) =    - PD(1,2)';
-'      PD(2,1) =    - PD(2,1)';
-'      PD(2,2) = CJ - PD(2,2)';
-'      RETURN';
-'      END';]
+cd TMPDIR;
+mkdir("daskr_test1");
+cd("daskr_test1");
 
+code=["#include <math.h>"
+"void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)"
+"{res[0] = yd[0] - y[1];"
+" res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}"
+" "
+"void jac22(double *t,double *y,double *yd,double *pd,double *cj,double *rpar,int *ipar)"
+"{pd[0]=*cj - 0.0;"
+" pd[1]=    - (-200.0*y[0]*y[1] - 1.0);"
+" pd[2]=    - 1.0;"
+" pd[3]=*cj - (100.0*(1.0 - y[0]*y[0]));}"
+" "
+"void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)"
+"{ groot[0] = y[0];}"];
+mputl(code,"t22.c") ;
+ilib_for_link(["res22" "jac22" "gr22"],"t22.c","","c");
+exec("loader.sce");
 
-gr22=[...
-'      SUBROUTINE GR22 (NEQ, T, Y, NG, GROOT, RPAR, IPAR)';
-'      IMPLICIT DOUBLE PRECISION (A-H,O-Z)';
-'      INTEGER NEQ, NG';
-'      DOUBLE PRECISION T, Y, GROOT';
-'      DIMENSION Y(*), GROOT(*)';
-'      GROOT(1) = Y(1)';
-'      RETURN';
-'      END';]
+rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
+t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
+info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
+// Hot restart
+t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(3:4,qq);y0d1=yy(4:5,qq);
+[yy,nn,hotd]=daskr([y01,y0d1],t01,t,atol,rtol,"res22","jac22",ng,"gr22",info,hotd);
 
-//Uncomment lines below: link may be machine dependent if some f77 libs are
-//needed for linking
-//unix_g('cd /tmp;rm -f /tmp/res22.f');unix_g('cd /tmp;rm -f /tmp/gr22.f');
-//unix_g('cd /tmp;rm -f /tmp/jac22.f');
-//write('/tmp/res22.f',res22);write('/tmp/gr22.f',gr22);write('/tmp/jac22.f',jac22)
-//unix_g("cd /tmp;make /tmp/res22.o");unix_g('cd /tmp;make /tmp/gr22.o');
-//unix_g('cd /tmp;make /tmp/jac22.o');
-//          2  Linking the routines
-//link('/tmp/res22.o','res22');link('/tmp/jac22.o','jac22');link('/tmp/gr22.o','gr22')
-//rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
-//t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
-//          3 Calling the routines by dasrt
-//[yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,'res22','jac22',ng,'gr22',info);
-// hot restart
-//[yy,nn,hotd]=dasrt([y0,y0d],t0,t,atol,rtol,'res22','jac22',ng,'gr22',info);
-//t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
-//[yy,nn,hotd]=dasrt([y01,y0d1],t01,t,atol,rtol,'res22','jac22',ng,'gr22',info,hotd);
+rtol=[1.d-6;1.d-6];
+atol=[1.d-6;1.d-4];
+t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,"res22","jac22",ng,"gr22",info);
+// Hot restart
+[yy,nn,hotd]=daskr([y0,y0d],t0,t,atol,rtol,"res22","jac22",ng,"gr22",info);
+t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(3:4,qq);y0d1=yy(4:5,qq);
+[yy,nn,hotd]=daskr([y01,y0d1],t01,t,atol,rtol,"res22","jac22",ng,"gr22",info,hotd);
