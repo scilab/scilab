@@ -52,45 +52,45 @@
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 // Exemple 1 : selon la première dimension
-x = [1 2 3 4; 5 6 7 8];
-dim = 1;
+x = [1 2 3 4; 5 6 7 8]
+dim = 1
 y = flipdim(x, dim)
 
 // Exemple 2 : selon la deuxième dimension
-dim = 2;
+dim = 2
 y = flipdim(x, dim)
 
 // Exemple 3 : selon la troisième dimension
-x = matrix(1:24, [3 2 4]);
-dim = 3;
+x = matrix(1:24, [3 2 4])
+dim = 3
 y = flipdim(x, dim)
 
 // Exemple 4 : premier exemple, mais avec des complexes
-x = [1+%i 2*%i 3 4; 5 6-%i 7 8*%pi*%i];
-dim = 1;
+x = [1+%i 2*%i 3 4; 5 6-%i 7 8*%pi*%i]
+dim = 1
 y = flipdim(x, dim)
 
 // Entiers :
-x = int16(grand(4, 3, 2, "uin", -9, 9));
+x = int16(grand(4, 3, 2, "uin", -9, 9))
 y = flipdim(x, 1)
 
 // Booléens :
-x = (grand(3, 4, "uin", -9, 9) > 0);
+x = (grand(3, 4, "uin", -9, 9) > 0)
 y = flipdim(x, 2)
 
 // Textes :
 x = matrix(strsplit("a":"x", 1:23), 4, 6);
-x = x+x;
+x = x+x
 flipdim(x, 2)
 
 // Polynômes :
-x = inv_coeff(grand(3, 9, "uin", 0, 3), 2);
+x = inv_coeff(grand(3, 9, "uin", 0, 3), 2)
 flipdim(x, 1)
 
 // Rationals :
 n = inv_coeff(grand(3, 9, "uin", 0 ,3), 2);
 d = inv_coeff(grand(3, 9, "uin", 0, 3), 2);
-r = n./d;
+r = n./d
 flipdim(r, 2)
  ]]></programlisting>
     </refsection>
