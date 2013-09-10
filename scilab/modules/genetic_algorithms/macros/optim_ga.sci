@@ -67,7 +67,6 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(ga_f, pop_s
     for i=1:length(Pop)
         FObj_Pop(i) = _ga_f(Pop(i));
     end
-    Total_FObj = FObj_Pop;
 
     if (nargout==4) then
         fobj_pop_init = FObj_Pop;
@@ -99,7 +98,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(ga_f, pop_s
                 Index = Index + 1;
             end
             Indiv1(j)      = Pop(Index);
-            FObj_Indiv1(j) = Total_FObj(Index);
+            FObj_Indiv1(j) = FObj_Pop(Index);
             // Selection of the second individual in the couple
             Shoot = grand(1,1,"def")*Wheel($);
             Index = 1;
@@ -107,7 +106,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(ga_f, pop_s
                 Index = Index + 1;
             end
             Indiv2(j)      = Pop(Index);
-            FObj_Indiv2(j) = Total_FObj(Index);
+            FObj_Indiv2(j) = FObj_Pop(Index);
         end
         //
         // Crossover
