@@ -57,6 +57,9 @@ public abstract class ContextUpdate extends BasicBlock {
     private static final Logger LOG_LOCAL = Logger.getLogger(ContextUpdate.class.getName());
     private static final long serialVersionUID = 6076826729067963560L;
 
+    private static final double DEFAULT_WIDTH = 20.0;
+    private static final double DEFAULT_HEIGHT = 20.0;
+
     /**
      * Implement a listener which update the value and refresh the view when the
      * index of the port change.
@@ -399,6 +402,12 @@ public abstract class ContextUpdate extends BasicBlock {
     @Override
     protected void setDefaultValues() {
         super.setDefaultValues();
+
+        /*
+         * Update the default parameters accordingly to the reference instance
+         */
+        getGeometry().setHeight(DEFAULT_HEIGHT);
+        getGeometry().setWidth(DEFAULT_WIDTH);
 
         /*
          * Fill parameters with non empty values.
