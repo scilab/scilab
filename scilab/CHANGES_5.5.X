@@ -38,6 +38,12 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 
 * In browsevar, allows a user to plot the variable (already available in
   editvar).
+  
+* Added lighting effect for plot of surfaces. Lighting can be enabled
+  creating light objects or disabled deleting them. The following functions
+  were introduced:
+  - light_create - Creates a light object
+  - light_delete - Deletes the given light.
 
 
 Syntax changes
