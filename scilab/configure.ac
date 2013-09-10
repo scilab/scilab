@@ -2111,7 +2111,7 @@ echo "  ARPACK LIBS ........... = $ARPACK_LIBS"
 echo ""
 
 
-if test "$with_openmpi" != "no"; then
+if test "$with_mpi" == yes; then
    echo "OpenMPI Configuration:"
    echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
    echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
