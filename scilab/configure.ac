@@ -135,11 +135,15 @@ AC_ARG_ENABLE(compilation-tests,
 AC_ARG_WITH(gui,
     AC_HELP_STRING([--without-gui],[Disable the Scilab Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
 
-AC_ARG_ENABLE(build-swig,
-    AC_HELP_STRING([--enable-build-swig],[Regenerate Java => C wrappers produces by Swig (A Java Development Kit (JDK) is mandatory for this option)]))
+AC_ARG_WITH(build-swig,
+    AC_HELP_STRING([--enable-build-swig=path],[Regenerate Java => C and Scilab => C wrappers produces by Swig]),
+    [with_build_swig=$withval],
+	[with_build_swig=no]
+	)
+
 
 AC_ARG_ENABLE(build-giws,
-    AC_HELP_STRING([--enable-build-giws],[Regenerate C/C++ => Java wrappers produces by Giws (A Java Development Kit (JDK) is mandatory for this option)]))
+    AC_HELP_STRING([--enable-build-giws],[Regenerate C/C++ => Java wrappers produces by Giws]))
 
 
 ################################################
@@ -1103,11 +1107,13 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
     fi
     AC_SUBST(JAVAC_DEBUG)
 
-    if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
+    if test "$with_build_swig" != no -a "$with_build_swig" != ""; then
         SWIG_PROG()
         SWIG_ENABLE_JAVA()
+        SWIG_ENABLE_SCILAB()
         AC_SUBST(SWIG_BIN)
         AC_SUBST(SWIG_JAVA)
+        AC_SUBST(SWIG_SCILAB)
 
     fi
 
@@ -1130,7 +1136,7 @@ AC_SUBST(JAVA_ENABLE)
 AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
-AM_CONDITIONAL(SWIG, test "$enable_build_swig" != no -a "$enable_build_swig" != "")
+AM_CONDITIONAL(SWIG, test "$with_build_swig" != no -a "$with_build_swig" != "")
 AM_CONDITIONAL(GIWS, test "$enable_build_giws" != no  -a "$enable_build_giws" != "")
 
 ##############################################################
