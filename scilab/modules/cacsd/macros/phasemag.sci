@@ -35,10 +35,7 @@ function [phi,db]=phasemag(z,mod)
     end
     phi=phi*180/%pi //transform in degree
 
-    if typeof(z) == "hypermat" & typeof(phi) <> "hypermat" then
-        phi_temp=phi;
-        phi = mlist(["hm","dims","entries"]);
-        phi("dims") = [size(phi_temp,1) size(phi_temp,2)];
-        phi("entries") = matrix(phi_temp,size(phi_temp,1)*size(phi_temp,2),1);
+    if typeof(z) == "hypermat" then
+        phi = matrix(phi, size(z));
     end
 endfunction
