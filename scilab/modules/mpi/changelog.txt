@@ -1,6 +1,0 @@
-module_skeleton (0.1-1) stable; urgency=medium
-
-  * First version of the module
-
- -- Sylvestre Ledru <sylvestre.ledru@inria.fr>  Tue, 13 Mar 2007 13:37:08D +0200
-

@@ -51,7 +51,7 @@ libscimpi_la_SOURCES =   $(GATEWAY_C_SOURCES)  $(MPI_C_SOURCES)
 
 #### mpi : Conf files ####
 libscimpi_la_rootdir = $(mydatadir)
-libscimpi_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+libscimpi_la_root_DATA = readme.txt
 
 #### mpi : init scripts #### 
 libscimpi_la_etcdir = $(mydatadir)/etc
