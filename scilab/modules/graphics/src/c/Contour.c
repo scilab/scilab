@@ -66,6 +66,7 @@ static int Gn1, Gn2;
 
 static double* Gxcont = NULL;
 static double* Gycont = NULL;
+static int currentContSize = 0;
 
 static void InitValues(double *x, double *y, double *z, int n1, int n2)
 {
@@ -425,9 +426,9 @@ static int contourI(ptr_level_f func, double *x, double *y, double *z, double *z
     n5 =  2 * (n1) + 2 * (n2) - 3;
     /* Allocation */
     Gcont_size = 0; /** initialize the array indices for storing contours **/
-    xbd_cont = MALLOC(n5 * sizeof(int));
-    ybd_cont = MALLOC(n5 * sizeof(int));
-    itg_cont = MALLOC(n1 * n2 * sizeof(int));
+    xbd_cont = (int*)MALLOC(n5 * sizeof(int));
+    ybd_cont = (int*)MALLOC(n5 * sizeof(int));
+    itg_cont = (int*)MALLOC(n1 * n2 * sizeof(int));
     if ((xbd_cont == NULL) && n5 != 0)
     {
         check = 0;
@@ -520,7 +521,7 @@ int C2F(contourif)(double *x, double *y, double *z, int *n1, int *n2, int *flagn
 
     if (*flagnz == 0)
     {
-        if ((zconst = MALLOC((*nz) * sizeof(double))) == 0)
+        if ((zconst = (double*)MALLOC((*nz) * sizeof(double))) == 0)
         {
             Scierror(999, _("%s: No more memory.\n"), "contourif");
             return -1;
@@ -681,13 +682,17 @@ static void GContStore2(int ival, double Cont, double xncont, double yncont)
         n = Gcont_size + 2;
         if (Gxcont == NULL)
         {
-            Gxcont = MALLOC(n * sizeof(double));
-            Gycont = MALLOC(n * sizeof(double));
+            Gxcont = (double*)MALLOC(n * sizeof(double));
+            Gycont = (double*)MALLOC(n * sizeof(double));
         }
         else
         {
-            Gxcont = REALLOC(Gxcont, n * sizeof(double));
-            Gycont = REALLOC(Gycont, n * sizeof(double));
+            if (n > currentContSize)
+            {
+                currentContSize = (int)(n * 1.1);
+                Gxcont = (double*)REALLOC(Gxcont, currentContSize * sizeof(double));
+                Gycont = (double*)REALLOC(Gycont, currentContSize * sizeof(double));
+            }
         }
         if ((Gxcont == NULL) && n != 0)
         {
@@ -711,13 +716,17 @@ static void GContStore2(int ival, double Cont, double xncont, double yncont)
         n = Gcont_size + 1;
         if (Gxcont == NULL)
         {
-            Gxcont = MALLOC(n * sizeof(double));
-            Gycont = MALLOC(n * sizeof(double));
+            Gxcont = (double*)MALLOC(n * sizeof(double));
+            Gycont = (double*)MALLOC(n * sizeof(double));
         }
         else
         {
-            Gxcont = REALLOC(Gxcont, n * sizeof(double));
-            Gycont = REALLOC(Gycont, n * sizeof(double));
+            if (n > currentContSize)
+            {
+                currentContSize = (int)(n * 1.1);
+                Gxcont = (double*)REALLOC(Gxcont, currentContSize * sizeof(double));
+                Gycont = (double*)REALLOC(Gycont, currentContSize * sizeof(double));
+            }
         }
         if ((Gxcont == NULL) && n != 0)
         {

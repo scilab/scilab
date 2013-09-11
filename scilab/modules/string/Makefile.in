@@ -186,7 +186,8 @@ am__objects_1 = libscistring_algo_la-convstr.lo \
 	libscistring_algo_la-stringToComplex.lo \
 	libscistring_algo_la-complex_array.lo \
 	libscistring_algo_la-isascii.lo libscistring_algo_la-isnum.lo
-am__objects_2 = libscistring_algo_la-stripblanks.lo
+am__objects_2 = libscistring_algo_la-stripblanks.lo \
+	libscistring_algo_la-sort_inter.lo
 am_libscistring_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscistring_algo_la_OBJECTS = $(am_libscistring_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -569,7 +570,10 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-STRING_CPP_SOURCES = src/cpp/stripblanks.cpp
+STRING_CPP_SOURCES = \
+    src/cpp/stripblanks.cpp \
+    src/cpp/sort_inter.cpp
+
 STRING_C_SOURCES = \
 src/c/convstr.c \
 src/c/men_Sutils.c \
@@ -626,7 +630,7 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_isdigit.cpp \
     sci_gateway/cpp/sci_isascii.cpp \
     sci_gateway/cpp/sci_strsplit.cpp \
-    sci_gateway/cpp/sci_isnum.cpp 
+    sci_gateway/cpp/sci_isnum.cpp
 
 libscistring_la_CFLAGS = $(PCRE_CFLAGS) \
 	-I$(srcdir)/src/c \
@@ -872,6 +876,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-pcre_error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-pcre_private.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-scistrtostr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-sort_inter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-stringToComplex.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-stringToDouble.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-stringsCompare.Plo@am__quote@
@@ -1134,6 +1139,13 @@ libscistring_algo_la-stripblanks.lo: src/cpp/stripblanks.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/stripblanks.cpp' object='libscistring_algo_la-stripblanks.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscistring_algo_la-stripblanks.lo `test -f 'src/cpp/stripblanks.cpp' || echo '$(srcdir)/'`src/cpp/stripblanks.cpp
+
+libscistring_algo_la-sort_inter.lo: src/cpp/sort_inter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscistring_algo_la-sort_inter.lo -MD -MP -MF $(DEPDIR)/libscistring_algo_la-sort_inter.Tpo -c -o libscistring_algo_la-sort_inter.lo `test -f 'src/cpp/sort_inter.cpp' || echo '$(srcdir)/'`src/cpp/sort_inter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscistring_algo_la-sort_inter.Tpo $(DEPDIR)/libscistring_algo_la-sort_inter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sort_inter.cpp' object='libscistring_algo_la-sort_inter.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscistring_algo_la-sort_inter.lo `test -f 'src/cpp/sort_inter.cpp' || echo '$(srcdir)/'`src/cpp/sort_inter.cpp
 
 libscistring_la-sci_stripblanks.lo: sci_gateway/cpp/sci_stripblanks.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscistring_la-sci_stripblanks.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_stripblanks.Tpo -c -o libscistring_la-sci_stripblanks.lo `test -f 'sci_gateway/cpp/sci_stripblanks.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_stripblanks.cpp

@@ -113,6 +113,12 @@
     <ClCompile Include="complex_array.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_strindex.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\sort_inter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">
@@ -252,6 +258,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="isnum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\sort_inter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

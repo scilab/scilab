@@ -302,4 +302,16 @@ jcompile("com.foo.Inspector",javacode);
         </screen>
         When looking at the class of these wrapped matrices, it is clear that Java stores them as arrays of the appropriate size. When working with 2D matrices, the data in these equivalent Java arrays can be stored in are column-major (default) or row-major mode. In column-major mode, the first array contains a pointer to each of the columns. Whereas in row-major mode, the first array contains the pointers to each row of data. For more information see <link linkend="jautoTranspose">jautoTranspose</link>.
     </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function introduced. Based on the 'JIMS' module. The main difference in the behavior compared to the JIMS module is that <link linkend="jautoUnwrap">jautoUnwrap</link> is enabled by default.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
+

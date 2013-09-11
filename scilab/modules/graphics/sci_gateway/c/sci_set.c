@@ -171,7 +171,11 @@ int sci_set(char *fname, void *pvApiCtx)
                                     strcmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
                                     stricmp(pstProperty, "tooltipstring") != 0) /* Added for uicontrols */
                             {
-                                getAllocatedSingleString(pvApiCtx, piAddr3, (char**)&_pvData);
+                                if (getAllocatedSingleString(pvApiCtx, piAddr3, (char**)&_pvData))
+                                {
+                                    Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, 3);
+                                    return 1;
+                                }
                                 iRows3 = (int)strlen((char*)_pvData);
                                 iCols3 = 1;
                             }
@@ -301,12 +305,12 @@ int sci_set(char *fname, void *pvApiCtx)
             /* 'figure_style' for compatibility but do nothing */
             /* others values must return a error */
             char *propertiesSupported[NB_PROPERTIES_SUPPORTED] = { "current_entity",
-                    "hdl",
-                    "current_figure",
-                    "current_axes",
-                    "figure_style",
-                    "default_values",
-                    "auto_clear"
+                                                                   "hdl",
+                                                                   "current_figure",
+                                                                   "current_axes",
+                                                                   "figure_style",
+                                                                   "default_values",
+                                                                   "auto_clear"
                                                                  };
 
             int i = 0;

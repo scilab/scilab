@@ -24,6 +24,9 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
  - issquare - Check if a variable is a square matrix. See bug #10456 fixed.
  - cross - Vector cross product. See bug #9941 fixed.
 
+* Based on the external module 'JIMS', Scilab provides functions to interact
+  with Java objects.
+
 * Add a complete set of functions to read and write any HDF5 file from Scilab.
 
 * The Variable Browser shows also the size of integers and the user type of
@@ -47,6 +50,8 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 * Multi level completion on mlist, struct, XML structures...
 
 * Switch to the CeCILL 2.1 license
+
+* Allow the usage of the '$' keyword in the part function.
 
 
 Syntax changes
@@ -75,6 +80,8 @@ Improvements
 Obsolete
 =========
 
+* Scilab 5.5.X family will be the latest one working under Windows XP/2003.
+
 * The third argument of poly function will be more strict.
     Only the following strings will be allowed : "roots", "coeff", "c", "r".
 
@@ -91,11 +98,14 @@ Obsolete
 * chart() tagged as obsolete. Will be removed for Scilab 5.5.1.
   Use nicholschart() instead.
 
+* dft removed, use fft instead.
+
 * sscanf is obsolete, use msscanf instead.
 
 * fscanf is obsolete, use mfscanf for files opened with mopen or read for files opened with file instead.
 
 * fprintf is obsolete, use mfprintf for files opened with mopen or write for files opened with file instead.
+
 
 Differential_equations
 ======================
@@ -195,6 +205,8 @@ Bug fixes
 * Bug #2267 fixed - Wrong error message when ticks locations and labels did not have the same sizes.
 
 * Bug #2416 fixed - Particular case (string([]) returns []) has been added in the string help page.
+
+* Bug #3511 fixed - strindex did not return all occurrences in regexp mode.
 
 * Bug #3928 fixed - An error was returned when a matrix was flipped along the third dimension.
 
@@ -347,9 +359,20 @@ Bug fixes
 
 * Bug #9459 fixed - Default values of the optional plot3d arguments were not documented.
 
+* Bug #9537 fixed - optimbase_configure() only allowed row vectors as initial value.
+                    Column vectors now allowed by transposing them.
+
+* Bug #9538 fixed - optimbase_checkshape() only allowed row vectors as return from the cost function.
+                    Column vectors now allowed by transposing them.
+
+* Bug #9577 fixed - Setting neldermead_configure("-numberofvariables") is now optional,
+                    setting neldermead_configure("-x0") does it implicitly.
+
 * Bug #9601 fixed - Cylinder demo failed with a bad value.
 
 * Bug #9691 fixed - "imp" option of optim was poorly documented.
+
+* Bug #9694 fixed - Example in optim() help page fixed to display correct counters.
 
 * Bug #9780 fixed - gmres solver did not run with complex systems.
 
@@ -428,6 +451,9 @@ Bug fixes
 
 * Bug #12085 fixed - On Windows csvWrite wrote wrong EOL.
 
+* Bug #12114 fixed - libstdc++ is now compiled as static instead of using the
+                     library from thirdparty.
+
 * Bug #12118 fixed - ode() could take complex externals.
 
 * Bug #12143 fixed - "stop entity picker" (ged(11)) returned an error message.
@@ -494,6 +520,8 @@ Bug fixes
 
 * Bug #12593 fixed - A wrong error message was returned when running genlib with an error in the sci file.
 
+* Bug #12600 fixed - mput did not manage unsigned integer.
+
 * Bug #12606 fixed - Overloads for grand were not standard.
 
 * Bug #12613 fixed - gsort did not return correct results with %nan.
@@ -554,6 +582,8 @@ Bug fixes
 
 * Bug #12747 fixed - legendre() now accepts the -1 and 1 values for the third argument.
 
+* Bug #12749 fixed - Help page of fscanfMat function updated.
+
 * Bug #12758 fixed - Focus issue with plot3d() fixed.
 
 * Bug #12761 fixed - The https:// protocol was not supported on ATOMS.
@@ -590,6 +620,8 @@ Bug fixes
 
 * Bug #12816 fixed - Numbers pasted in editvar were not parsed according to locale.
 
+* Bug #12818 fixed - Segfault in set function with invalid property values dimension.
+
 * Bug #12823 fixed - In help generation (toolbox) links were not correctly handled.
 
 * Bug #12827 fixed - Cacsd doc: noisgen() improved.
@@ -611,3 +643,7 @@ Bug fixes
 * Bug #12858 fixed - Typo in French doc for debug() and pause().
 
 * Bug #12859 fixed - Core doc: fix optional argument of isdef().
+
+* Bug #12863 fixed - size(state-space, "r") returned an error.
+
+* Bug #12875 fixed - phasemag() returned an error for input vector containing zeros.

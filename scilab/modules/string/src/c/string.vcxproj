@@ -256,6 +256,7 @@ lib /DEF:"$(ProjectDir)system_env_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\sort_inter.cpp" />
     <ClCompile Include="convstr.c" />
     <ClCompile Include="cvstr.c" />
     <ClCompile Include="DllMainString.c" />
@@ -344,6 +345,7 @@ lib /DEF:"$(ProjectDir)system_env_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="..\cpp\stripblanks.hxx" />
     <ClInclude Include="..\..\includes\stringToComplex.h" />
     <ClInclude Include="..\..\includes\complex_array.h" />
+    <ClInclude Include="..\cpp\sort_inter.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="convstr.h" />
     <ClInclude Include="CreateEmptystr.h" />

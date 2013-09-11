@@ -41,6 +41,20 @@ endif
 scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS)
 scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS)
 
+if USE_STATIC_SYSTEM_LIB
+scilab_bin_LDFLAGS += -static-libstdc++ -static-libgcc
+# -static-libgfortran
+scilab_cli_bin_LDFLAGS += -static-libstdc++ -static-libgcc
+#-static-libgfortran
+else
+# Clang (for example) needs an explicit reference to the lib
+scilab_bin_LDFLAGS += -lstdc++
+# -static-libgfortran
+scilab_cli_bin_LDFLAGS += -lstdc++
+#-static-libgfortran
+endif
+
+
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
@@ -113,17 +127,6 @@ if IS_SOLARIS
 	scilab_bin_LDADD += $(BLAS_LIBS)
 endif
 
-if ENABLE_STATIC
-scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group $(AM_LDFLAGS)
-scilab_static_bin_CFLAGS  = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a` $(AM_CFLAGS)
-
-#-static
-bin_PROGRAMS	   		+= scilab-static-bin
-scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
-
-scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
-endif
-
 LANG_DOMAIN=scilab
 
 TARGETS_ALL=macros
@@ -181,7 +184,7 @@ $(top_builddir)/Version.incl
 valgrinddir=$(pkgdatadir)/tools/profiling
 valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
-macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep
+macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep check-libstdcpp-dep
 	-@( cd $(top_builddir) ; \
 	echo "$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
 	$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
@@ -194,6 +197,18 @@ if !IS_MACOSX
 	if test $$? == 0; then \
 		echo "Found dependency from scilab-cli-bin to libjvm found"; exit 2;\
 	fi
+endif
+
+
+check-libstdcpp-dep:
+if USE_STATIC_SYSTEM_LIB
+# Check that scilab-cli does not have a dependency on libstdc++ (should be static)
+	@ldd .libs/scilab-bin .libs/scilab-cli-bin modules/.libs/libscilab*0 |grep libstdc++ > /dev/null; \
+	if test $$? == 0; then \
+		echo "Found dependency from scilab-cli-bin to libstdc++ found"; exit 2;\
+	fi
+else
+	echo "libstdc++ presence test skipped"
 endif
 
 # Build the public Javadoc (javasci v2 and Java/Scilab types)

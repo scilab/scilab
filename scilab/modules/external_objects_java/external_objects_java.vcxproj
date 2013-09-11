@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../java/jdk/include;../../java/jdk/include/win32;../../libs/intl;../windows_tools/includes;../commons/src/jni;../external_objects/includes;../api_scilab/includes;../core/includes;../localization/includes;../output_stream/includes;../jvm/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../java/jdk/include;../../java/jdk/include/win32;../../libs/intl;../windows_tools/includes;../commons/src/jni;../external_objects/includes;../api_scilab/includes;../core/includes;../localization/includes;../output_stream/includes;../jvm/includes;%(AdditionalIncludeDirectories);../string/includes;../operations/includes;../system_env/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -109,7 +109,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../java/jdk/include;../../java/jdk/include/win32;../../libs/intl;../windows_tools/includes;../commons/src/jni;../external_objects/includes;../api_scilab/includes;../core/includes;../localization/includes;../output_stream/includes;../jvm/includes;../string/includes;../operations/includes;../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../java/jdk/include;../../java/jdk/include/win32;../../libs/intl;../windows_tools/includes;../commons/src/jni;../external_objects/includes;../api_scilab/includes;../core/includes;../localization/includes;../output_stream/includes;../jvm/includes;../string/includes;../operations/includes;../system_env/includes;%(AdditionalIncludeDirectories);../string/includes;../operations/includes;../system_env/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -136,7 +136,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../java/jdk/include;../../java/jdk/include/win32;../../libs/intl;../windows_tools/includes;../commons/src/jni;../external_objects/includes;../api_scilab/includes;../core/includes;../localization/includes;../output_stream/includes;../jvm/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../java/jdk/include;../../java/jdk/include/win32;../../libs/intl;../windows_tools/includes;../commons/src/jni;../external_objects/includes;../api_scilab/includes;../core/includes;../localization/includes;../output_stream/includes;../jvm/includes;%(AdditionalIncludeDirectories);../string/includes;../operations/includes;../system_env/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -171,7 +171,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../java/jdk/include;../../java/jdk/include/win32;../../libs/intl;../windows_tools/includes;../commons/src/jni;../external_objects/includes;../api_scilab/includes;../core/includes;../localization/includes;../output_stream/includes;../jvm/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../java/jdk/include;../../java/jdk/include/win32;../../libs/intl;../windows_tools/includes;../commons/src/jni;../external_objects/includes;../api_scilab/includes;../core/includes;../localization/includes;../output_stream/includes;../jvm/includes;%(AdditionalIncludeDirectories);../string/includes;../operations/includes;../system_env/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

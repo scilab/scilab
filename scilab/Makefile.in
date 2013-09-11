@@ -103,21 +103,26 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
-	$(am__EXEEXT_1)
+bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT)
 @IS_MACOSX_TRUE@am__append_1 = bin/checkmacosx.applescript
-@IS_MACOSX_TRUE@am__append_2 = -framework Cocoa
-@IS_MACOSX_TRUE@am__append_3 = $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+@USE_STATIC_SYSTEM_LIB_TRUE@am__append_2 = -static-libstdc++ -static-libgcc
+# -static-libgfortran
+@USE_STATIC_SYSTEM_LIB_TRUE@am__append_3 = -static-libstdc++ -static-libgcc
+#-static-libgfortran
+# Clang (for example) needs an explicit reference to the lib
+@USE_STATIC_SYSTEM_LIB_FALSE@am__append_4 = -lstdc++
+# -static-libgfortran
+@USE_STATIC_SYSTEM_LIB_FALSE@am__append_5 = -lstdc++
+#-static-libgfortran
+@IS_MACOSX_TRUE@am__append_6 = -framework Cocoa
+@IS_MACOSX_TRUE@am__append_7 = $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
 
 # Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
-@GUI_TRUE@am__append_4 = $(top_builddir)/modules/jvm/libscijvm.la
-
-#-static
-@ENABLE_STATIC_TRUE@am__append_5 = scilab-static-bin
+@GUI_TRUE@am__append_8 = $(top_builddir)/modules/jvm/libscijvm.la
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_6 = localization
-@COMPILATION_TESTS_TRUE@am__append_7 = check-java
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_9 = localization
+@COMPILATION_TESTS_TRUE@am__append_10 = check-java
 DIST_COMMON = $(top_srcdir)/Makefile.call_scilab.am \
 	$(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
@@ -180,7 +185,6 @@ CONFIG_CLEAN_FILES = scilab.pc etc/modules.xml etc/classpath.xml \
 	modules/helptools/etc/SciDocConf.xml \
 	modules/core/includes/version.h
 CONFIG_CLEAN_VPATH_FILES =
-@ENABLE_STATIC_TRUE@am__EXEEXT_1 = scilab-static-bin$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" \
 	"$(DESTDIR)$(rootdir)" "$(DESTDIR)$(valgrinddir)"
@@ -264,7 +268,7 @@ am_scilab_bin_OBJECTS = scilab_bin-scilab.$(OBJEXT) $(am__objects_1)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
-scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(am__append_4) \
+scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(am__append_8) \
 	$(top_builddir)/modules/libscilab.la $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 scilab_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -278,20 +282,6 @@ scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) \
 scilab_cli_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(AM_CXXFLAGS) $(CXXFLAGS) $(scilab_cli_bin_LDFLAGS) \
-	$(LDFLAGS) -o $@
-am__scilab_static_bin_SOURCES_DIST =  \
-	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-	$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
-@IS_MACOSX_TRUE@am__objects_2 =  \
-@IS_MACOSX_TRUE@	scilab_static_bin-initMacOSXEnv.$(OBJEXT)
-am__objects_3 = scilab.$(OBJEXT) $(am__objects_2)
-@ENABLE_STATIC_TRUE@am_scilab_static_bin_OBJECTS = $(am__objects_3)
-scilab_static_bin_OBJECTS = $(am_scilab_static_bin_OBJECTS)
-@ENABLE_STATIC_TRUE@scilab_static_bin_DEPENDENCIES =  \
-@ENABLE_STATIC_TRUE@	$(top_builddir)/modules/libscilab.la
-scilab_static_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
-	$(AM_CXXFLAGS) $(CXXFLAGS) $(scilab_static_bin_LDFLAGS) \
 	$(LDFLAGS) -o $@
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
@@ -381,7 +371,7 @@ SOURCES = $(call_scilab_c_SOURCES) \
 	$(call_scilab_readwritecomplexmatrix_SOURCES) \
 	$(call_scilab_readwritematrix_SOURCES) \
 	$(call_scilab_readwritestring_SOURCES) $(scilab_bin_SOURCES) \
-	$(scilab_cli_bin_SOURCES) $(scilab_static_bin_SOURCES)
+	$(scilab_cli_bin_SOURCES)
 DIST_SOURCES = $(call_scilab_c_SOURCES) \
 	$(call_scilab_c_DisableInteractiveMode_SOURCES) \
 	$(call_scilab_c_getlastjob_SOURCES) \
@@ -390,8 +380,7 @@ DIST_SOURCES = $(call_scilab_c_SOURCES) \
 	$(call_scilab_readwritecomplexmatrix_SOURCES) \
 	$(call_scilab_readwritematrix_SOURCES) \
 	$(call_scilab_readwritestring_SOURCES) \
-	$(am__scilab_bin_SOURCES_DIST) $(scilab_cli_bin_SOURCES) \
-	$(am__scilab_static_bin_SOURCES_DIST)
+	$(am__scilab_bin_SOURCES_DIST) $(scilab_cli_bin_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive cscopelist-recursive \
 	ctags-recursive dvi-recursive html-recursive info-recursive \
 	install-data-recursive install-dvi-recursive \
@@ -783,8 +772,9 @@ AM_LDFLAGS = $(SCI_LDFLAGS)
 changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X CHANGES_5.5.X CHANGES_6.0.X
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
 	bin/scinotes bin/xcos $(am__append_1)
-scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(am__append_2)
-scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS)
+scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(am__append_2) $(am__append_4) \
+	$(am__append_6)
+scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS) $(am__append_3) $(am__append_5)
 scilab_bin_CPPFLAGS = \
 -I$(top_srcdir)/modules/console/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
@@ -814,13 +804,13 @@ $(AM_CPPFLAGS)
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
 scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-	$(am__append_3)
+	$(am__append_7)
 
 # BLAS_LIBS & LAPACK_LIBS are explicitly linked at the end. Unlike Scilab 5 in which the binary
 # is in C, Scilab 6 main is in C++. For some reasons (ie, I don't know why), libtool places blas and
 # lapack at the beginning of the order of the link. This caused some issues with the overload of the
 # xerbla function
-scilab_bin_LDADD = $(COMMON_LIBS) $(am__append_4) \
+scilab_bin_LDADD = $(COMMON_LIBS) $(am__append_8) \
 	$(top_builddir)/modules/libscilab.la $(BLAS_LIBS) \
 	$(LAPACK_LIBS) $(FLIBS)
 
@@ -830,12 +820,8 @@ scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
 
 # See the comment about scilab_bin_LDADD (relative to BLAS_LIBS & LAPACK_LIBS)
 scilab_cli_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
-@ENABLE_STATIC_TRUE@scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group $(AM_LDFLAGS)
-@ENABLE_STATIC_TRUE@scilab_static_bin_CFLAGS = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a` $(AM_CFLAGS)
-@ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
-@ENABLE_STATIC_TRUE@scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_6) $(am__append_7)
+TARGETS_ALL = macros $(am__append_9) $(am__append_10)
 
 # check is performed with scilab, so use the serial-tests on purpose
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
@@ -1114,10 +1100,6 @@ scilab-bin$(EXEEXT): $(scilab_bin_OBJECTS) $(scilab_bin_DEPENDENCIES) $(EXTRA_sc
 scilab-cli-bin$(EXEEXT): $(scilab_cli_bin_OBJECTS) $(scilab_cli_bin_DEPENDENCIES) $(EXTRA_scilab_cli_bin_DEPENDENCIES) 
 	@rm -f scilab-cli-bin$(EXEEXT)
 	$(AM_V_CXXLD)$(scilab_cli_bin_LINK) $(scilab_cli_bin_OBJECTS) $(scilab_cli_bin_LDADD) $(LIBS)
-
-scilab-static-bin$(EXEEXT): $(scilab_static_bin_OBJECTS) $(scilab_static_bin_DEPENDENCIES) $(EXTRA_scilab_static_bin_DEPENDENCIES) 
-	@rm -f scilab-static-bin$(EXEEXT)
-	$(AM_V_CXXLD)$(scilab_static_bin_LINK) $(scilab_static_bin_OBJECTS) $(scilab_static_bin_LDADD) $(LIBS)
 install-binSCRIPTS: $(bin_SCRIPTS)
 	@$(NORMAL_INSTALL)
 	@list='$(bin_SCRIPTS)'; test -n "$(bindir)" || list=; \
@@ -1168,11 +1150,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_readwritecomplexmatrix-readwritecomplexmatrix.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_readwritematrix-readwritematrix.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/call_scilab_readwritestring-readwritestring.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_bin-initMacOSXEnv.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_bin-scilab.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_cli_bin-scilab.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_static_bin-initMacOSXEnv.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -1321,20 +1301,6 @@ scilab_bin-initMacOSXEnv.obj: $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o scilab_bin-initMacOSXEnv.obj `if test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; fi`
 
-scilab_static_bin-initMacOSXEnv.o: $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_static_bin_CFLAGS) $(CFLAGS) -MT scilab_static_bin-initMacOSXEnv.o -MD -MP -MF $(DEPDIR)/scilab_static_bin-initMacOSXEnv.Tpo -c -o scilab_static_bin-initMacOSXEnv.o `test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab_static_bin-initMacOSXEnv.Tpo $(DEPDIR)/scilab_static_bin-initMacOSXEnv.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' object='scilab_static_bin-initMacOSXEnv.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_static_bin_CFLAGS) $(CFLAGS) -c -o scilab_static_bin-initMacOSXEnv.o `test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
-
-scilab_static_bin-initMacOSXEnv.obj: $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_static_bin_CFLAGS) $(CFLAGS) -MT scilab_static_bin-initMacOSXEnv.obj -MD -MP -MF $(DEPDIR)/scilab_static_bin-initMacOSXEnv.Tpo -c -o scilab_static_bin-initMacOSXEnv.obj `if test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab_static_bin-initMacOSXEnv.Tpo $(DEPDIR)/scilab_static_bin-initMacOSXEnv.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c' object='scilab_static_bin-initMacOSXEnv.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_static_bin_CFLAGS) $(CFLAGS) -c -o scilab_static_bin-initMacOSXEnv.obj `if test -f '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/c/initMacOSXEnv.c'; fi`
-
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
@@ -1383,20 +1349,6 @@ scilab_cli_bin-scilab.obj: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab_cli_bin-scilab.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(scilab_cli_bin_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab_cli_bin-scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
-
-scilab.o: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab.o -MD -MP -MF $(DEPDIR)/scilab.Tpo -c -o scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab.Tpo $(DEPDIR)/scilab.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab.o `test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp' || echo '$(srcdir)/'`$(top_srcdir)/modules/core/src/cpp/scilab.cpp
-
-scilab.obj: $(top_srcdir)/modules/core/src/cpp/scilab.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT scilab.obj -MD -MP -MF $(DEPDIR)/scilab.Tpo -c -o scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/scilab.Tpo $(DEPDIR)/scilab.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$(top_srcdir)/modules/core/src/cpp/scilab.cpp' object='scilab.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o scilab.obj `if test -f '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; then $(CYGPATH_W) '$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/core/src/cpp/scilab.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -2022,7 +1974,7 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 
 all-local: $(TARGETS_ALL)
 
-macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep
+macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep check-libstdcpp-dep
 	-@( cd $(top_builddir) ; \
 	echo "$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
 	$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
@@ -2033,6 +1985,14 @@ check-jvm-dep:
 @IS_MACOSX_FALSE@	if test $$? == 0; then \
 @IS_MACOSX_FALSE@		echo "Found dependency from scilab-cli-bin to libjvm found"; exit 2;\
 @IS_MACOSX_FALSE@	fi
+
+check-libstdcpp-dep:
+# Check that scilab-cli does not have a dependency on libstdc++ (should be static)
+@USE_STATIC_SYSTEM_LIB_TRUE@	@ldd .libs/scilab-bin .libs/scilab-cli-bin modules/.libs/libscilab*0 |grep libstdc++ > /dev/null; \
+@USE_STATIC_SYSTEM_LIB_TRUE@	if test $$? == 0; then \
+@USE_STATIC_SYSTEM_LIB_TRUE@		echo "Found dependency from scilab-cli-bin to libstdc++ found"; exit 2;\
+@USE_STATIC_SYSTEM_LIB_TRUE@	fi
+@USE_STATIC_SYSTEM_LIB_FALSE@	echo "libstdc++ presence test skipped"
 
 # Build the public Javadoc (javasci v2 and Java/Scilab types)
 # This is not done in the module itself because its needs also the "types"

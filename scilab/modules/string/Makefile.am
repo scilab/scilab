@@ -3,7 +3,9 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-STRING_CPP_SOURCES = src/cpp/stripblanks.cpp
+STRING_CPP_SOURCES = \
+    src/cpp/stripblanks.cpp \
+    src/cpp/sort_inter.cpp
 
 STRING_C_SOURCES = \
 src/c/convstr.c \
@@ -61,7 +63,7 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_isdigit.cpp \
     sci_gateway/cpp/sci_isascii.cpp \
     sci_gateway/cpp/sci_strsplit.cpp \
-    sci_gateway/cpp/sci_isnum.cpp 
+    sci_gateway/cpp/sci_isnum.cpp
 
 libscistring_la_CFLAGS= $(PCRE_CFLAGS) \
 	-I$(srcdir)/src/c \

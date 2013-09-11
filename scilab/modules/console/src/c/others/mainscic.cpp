@@ -14,6 +14,7 @@
 #include <unistd.h>             /* isatty */
 #include <stdlib.h>             /* stdin */
 #include <stdio.h>
+extern "C" {
 #include "core_math.h"
 #include "version.h"
 #include "realmain.h"           /* realmain */
@@ -36,7 +37,7 @@
 #if defined(linux) && defined(__i386__)
 #include "setPrecisionFPU.h"
 #endif
-
+}
 /*--------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 8000000
 /*--------------------------------------------------------------------------*/
@@ -233,9 +234,10 @@ int main(int argc, char **argv)
 }
 
 /*--------------------------------------------------------------------------*/
-
+extern "C" {
 /* Defined without include to avoid useless header dependency */
 BOOL isItTheDisabledLib(void);
+}
 
 static void checkForLinkerErrors(void)
 {

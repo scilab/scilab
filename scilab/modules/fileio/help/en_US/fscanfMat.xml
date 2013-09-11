@@ -83,7 +83,8 @@
             matrix from a text file. The first non-numeric lines of the file are
             returned in <varname>text</varname> if requested and all the remaining
             lines must have the same number of columns (column separator are assumed
-            to be white spaces or tab characters). The number of columns of the matrix
+            to be either white spaces or tab characters, if there are the both, white 
+            spaces are chosen by default). The number of columns of the matrix
             will follow the number of columns found in the file and the number of
             lines is fetched by detecting eof in the input file. This function can be
             used to read back numerical data saved with the
