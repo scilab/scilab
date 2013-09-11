@@ -78,6 +78,7 @@ const char ** StructFieldsGetter::getFieldsName(int * mlist, char ** fieldPath, 
         memcpy(fields, pstData + 2, sizeof(char *) **fieldsSize);
         FREE(pstData[0]);
         FREE(pstData[1]);
+        FREE(pstData);
 
         return fields;
     }
@@ -97,6 +98,8 @@ const char ** StructFieldsGetter::getFieldsName(int * mlist, char ** fieldPath, 
             return FieldsManager::getFields(itemAddr, fieldPath, fieldPathLen, fieldsSize);
         }
     }
+
+    freeArrayOfString(pstData, rc);
 
     return 0;
 }

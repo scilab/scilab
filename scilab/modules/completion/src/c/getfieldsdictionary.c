@@ -91,16 +91,18 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
         getVarAddressFromName(pvApiCtx, fieldPath[0], &piAddr);
         if (sciErr.iErr)
         {
+            freeArrayOfString(fieldPath, fieldPathLen);
             return NULL;
         }
 
         fields = (char**)getFields(piAddr, fieldPath, fieldPathLen, &fieldsSize);
+        freeArrayOfString(fieldPath, fieldPathLen);
         if (!fields)
         {
             return NULL;
         }
 
-        _fields = (char**)MALLOC(sizeof(char *) * fieldsSize);
+        _fields = (char**)MALLOC(sizeof(char *) * (fieldsSize + 1));
         last = 0;
 
         for (i = 0; i < fieldsSize ; i++)
@@ -120,6 +122,7 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
 
         *size = last;
         qsort(_fields, *size, sizeof(char*), cmpNames);
+        _fields[last] = NULL; // don't forget, it SWIG is using first NULL item to guess array size
 
         return _fields;
     }

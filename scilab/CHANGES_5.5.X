@@ -647,3 +647,5 @@ Bug fixes
 * Bug #12863 fixed - size(state-space, "r") returned an error.
 
 * Bug #12875 fixed - phasemag() returned an error for input vector containing zeros.
+
+* Bug #12909 fixed - Completion on (mt)list led to a crash.

@@ -128,12 +128,14 @@ char ** FieldsManager::getFieldPath(const char * _str, int * len)
 finish :
 
     *len = (int)v.size();
-    ret = (char **) malloc(sizeof(char *) **len);
-    for (int i = 0; i < *len; i++)
+    if (*len != 0)
     {
-        ret[i] = strdup(v.at(*len - i - 1).c_str());
+        ret = (char **) malloc(sizeof(char *) **len);
+        for (int i = 0; i < *len; i++)
+        {
+            ret[i] = strdup(v.at(*len - i - 1).c_str());
+        }
     }
-
 
     return ret;
 }
