@@ -19,7 +19,6 @@
 #include "MALLOC.h"
 
 /**
- * SCILAB function : mpi_comm_size, fin = 3
  * This function returns the rank of a process
  */
 int sci_mpi_comm_size(char *fname, unsigned long fname_len)

@@ -18,17 +18,10 @@
 #include "localization.h"
 
 /**
- * SCILAB function : mpi_get_processor_name, fin = 3
  * This function returns the rank of a process
  */
 int sci_mpi_get_processor_name(char *fname, unsigned long fname_len)
 {
-    MPI_Comm comm = 0;
-    int *piAddr = NULL;
-    int iRows = 1;
-    int iCols = 1;
-    int iRows2 = 1;
-    int iCols2 = 1;
     int iSizeProcessorName;
     char processorName[MPI_MAX_PROCESSOR_NAME];
     int iRet = 0;

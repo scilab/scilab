@@ -26,13 +26,12 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
     int iRet = 0;
     int *piAddr = NULL;
     int *piAddr2 = NULL;
-    int iType = 0;
 
     int *piBuffer = NULL;
     int iBufferSize = 0;
     double rootID = 0;
     int rank = 0;
-    
+
     CheckInputArgument(pvApiCtx, 2, 2);
     CheckOutputArgument(pvApiCtx, 1, 1);
 

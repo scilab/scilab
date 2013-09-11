@@ -16,11 +16,9 @@
 #include "api_scilab.h"
 
 /**
- * SCILAB function : mpi_comm_rank, fin = 7
  * This function returns the rank of a process within
  * the specified communicator.
  */
-
 int sci_mpi_comm_rank (char *fname, unsigned long fname_len)
 {
     int comm_rank = 0;

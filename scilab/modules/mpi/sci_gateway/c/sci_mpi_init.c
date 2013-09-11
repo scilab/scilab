@@ -9,16 +9,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include <stdio.h>
-#include "api_scilab.h"
-#include "stack-c.h"
-#include "gw_mpi.h"
-#include "sci_mpi.h"
+#include <stdio.h>                      // for NULL, fprintf, stderr
 #include "MALLOC.h"
+#include "BOOL.h"                       // for ::TRUE, ::FALSE, BOOL
+#include "api_scilab.h"                 // for pvApiCtx, etc
+#include "mpi.h"                        // for MPI_Request, etc
+#include "sci_mpi.h"                    // for REQUEST_MAXSIZE, etc
+
 
 /**
- * SCILAB function : mpi_init, fin = 1
- * This function init the mpi env
+ * This function init the MPI env
  */
 MPI_Errhandler errhdl;
 
@@ -30,7 +30,7 @@ void MPIErrHandler(MPI_Comm * comm, int *errorcode, ...)
 
     MPI_Error_string(*errorcode, buffer, &resultlen);
     buffer[resultlen] = 0;
-    printf("Erreur mpi : %s\n", buffer);
+    fprintf(stderr, "MPI internal error: %s\n", buffer);
 }
 
 BOOL mpi_initialized = FALSE;

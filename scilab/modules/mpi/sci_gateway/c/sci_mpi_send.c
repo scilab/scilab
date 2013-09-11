@@ -26,7 +26,6 @@ int sci_mpi_send(char *fname, unsigned long fname_len)
     int iRet = 0;
     int *piAddr = NULL;
     int *piAddr2 = NULL;
-    int iType = 0;
 
     int *piBuffer = NULL;
     int iBufferSize = 0;

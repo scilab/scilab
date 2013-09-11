@@ -29,7 +29,6 @@ int sci_mpi_isend(char *fname, unsigned long fname_len)
     int *piAddr = NULL;
     int *piAddr2 = NULL;
     int *piAddr3 = NULL;
-    int iType = 0;
 
     int *piBuffer = NULL;
     int iBufferSize = 0;

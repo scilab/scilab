@@ -18,10 +18,6 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 
-/******************************************
- * SCILAB function : mpi_finalize, fin = 2
- ******************************************/
-
 static void mpi_finalize_internal()
 {
     FREE(listRequestPointer);

@@ -20,9 +20,6 @@
 #include "serialization.h"
 #include "deserialization.h"
 
-#define TAG 0
-
-
 int sci_mpi_wait(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
@@ -33,7 +30,6 @@ int sci_mpi_wait(char *fname, unsigned long fname_len)
     double NodeID = 0;
     int iRequestID;
     double dblRequestID;
-    int iRank = 0;
 
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
@@ -87,7 +83,7 @@ int sci_mpi_wait(char *fname, unsigned long fname_len)
     FREE(piBuffer);
     if (iRet)
     {
-        Scierror(999, _("%s: Unable to deserialize data !\n"), fname);
+        Scierror(999, _("%s: Unable to deserialize data!\n"), fname);
         return 0;
     }
 

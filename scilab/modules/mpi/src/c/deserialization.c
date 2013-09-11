@@ -243,7 +243,6 @@ static int deserialize_sparse(void *_pvCtx, int *_piBuffer, int _iBufferSize, BO
     double *pdblR = NULL;
     double *pdblI = NULL;
     int iSize = 0;
-    void *pvData = NULL;
 
     iSize = 5 + iRows + iItemCount;
     if (_bData)
