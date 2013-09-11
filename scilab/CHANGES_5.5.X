@@ -317,6 +317,9 @@ Bug Fixes
 
 * Bug #8373 fixed - clear can now handle a matrix of strings argument.
 
+* Bug #8415 fixed - optim_moga, optim_nsga, optim_nsga2 can now take list as input arguments,
+                    as explained in their help page.
+
 * Bug #8462 fixed - bvodeS could make Scilab unstable.
 
 * Bug #8470 fixed - bvode displayed some output in terminal window and not in Scilab console.
