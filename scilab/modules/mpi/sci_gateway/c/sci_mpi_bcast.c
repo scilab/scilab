@@ -9,9 +9,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+#include "api_scilab.h"
 #include <stdio.h>
 #include <mpi.h>
-#include "api_scilab.h"
 #include "gw_mpi.h"
 #include "Scierror.h"
 #include "MALLOC.h"
@@ -31,6 +32,8 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
     int iBufferSize = 0;
     double rootID = 0;
 
+    int length = 0;
+
     CheckInputArgument(pvApiCtx, 2, 2);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
@@ -38,106 +41,62 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
     if (getScalarDouble(pvApiCtx, piAddr2, &rootID))
     {
-        return 1;
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), fname, 1);
+        return 0;
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    sciErr = getVarType(pvApiCtx, piAddr, &iType);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
-    }
-
-    switch (iType)
-    {
-        case sci_matrix:
-            iRet = serialize_double(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
-            break;
-        case sci_strings:
-            iRet = serialize_string(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
-            break;
-        case sci_boolean:
-            iRet = serialize_boolean(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
-            break;
-        case sci_sparse:
-            iRet = serialize_sparse(pvApiCtx, piAddr, &piBuffer, &iBufferSize, TRUE);
-            break;
-        case sci_boolean_sparse:
-            iRet = serialize_sparse(pvApiCtx, piAddr, &piBuffer, &iBufferSize, FALSE);
-            break;
-        case sci_ints:
-            iRet = serialize_int(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
-            break;
-        default:
-            Scierror(999, _("%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"), fname, iType);
-            break;
-    }
-
+    iRet = serialize_to_mpi(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
     if (iRet)
     {
-        printf("pas reussi a seraliser\n");
+        Scierror(999, _("Unable to serialize data\n"));
+        return 0;
     }
-    int rank, length;
-    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
     /* First, send the size of the data as broadcast */
-    iRet = MPI_Bcast(&iBufferSize, 1, MPI_INT, rootID, MPI_COMM_WORLD);
-
-    /* Second, restore the data with the right size */
-    iRet = MPI_Bcast(piBuffer, iBufferSize, MPI_INT, rootID, MPI_COMM_WORLD);
-
+    iRet = MPI_Bcast(&iBufferSize, 1, MPI_INT, (int)rootID, MPI_COMM_WORLD);
     if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];
-        int length_of_error_string;
-
-        printf("ICI \n");
-        fflush(NULL);
+        int length_of_error_string = 0;
         MPI_Error_string(iRet, error_string, &length_of_error_string);
-        Scierror(999, "%s: Could not broadcast the variable to the node %d: %s\n", fname, rootID, error_string);
-        return 1;
+        Scierror(999, _("%s: Could not broadcast the variable to the node %d: %s\n"), fname, rootID, error_string);
+        return 0;
     }
 
-    switch (piBuffer[0])
+    /* Second, restore the data with the right size */
+    iRet = MPI_Bcast(piBuffer, iBufferSize, MPI_INT, (int)rootID, MPI_COMM_WORLD);
+    if (iRet != MPI_SUCCESS)
     {
-        case sci_matrix:
-            iRet = deserialize_double(pvApiCtx, piBuffer, iBufferSize);
-            break;
-        case sci_strings:
-            iRet = deserialize_string(pvApiCtx, piBuffer, iBufferSize);
-            break;
-        case sci_boolean:
-            iRet = deserialize_boolean(pvApiCtx, piBuffer, iBufferSize);
-            break;
-        case sci_sparse:
-            iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, TRUE);
-            break;
-        case sci_boolean_sparse:
-            iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, FALSE);
-            break;
-        case sci_ints:
-            iRet = deserialize_int(pvApiCtx, piBuffer, iBufferSize);
-            break;
-        default:
-            return 1;
-            break;
+        char error_string[MPI_MAX_ERROR_STRING];
+        int length_of_error_string = 0;
+        MPI_Error_string(iRet, error_string, &length_of_error_string);
+        Scierror(999, _("%s: Could not broadcast the variable to the node %d: %s\n"), fname, rootID, error_string);
+        return 0;
     }
 
-    //    free(piBuffer);
+    iRet = deserialize_from_mpi(pvApiCtx, piBuffer, iBufferSize);
+    FREE(piBuffer);
+    if (iRet)
+    {
+        Scierror(999, _("%s: Unable to deserialize data !\n"), fname);
+        return 0;
+    }
 
-    AssignOutputVariable(pvApiCtx, 1) = 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);
     return 0;
 }

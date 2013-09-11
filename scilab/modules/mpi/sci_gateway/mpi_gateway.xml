@@ -22,15 +22,15 @@
  Don't touch if you do not know what you are doing
 -->
     <!-- =================== -->
-    <PRIMITIVE gatewayId="72" primitiveId="1" primitiveName="MPI_Init"/>
-    <PRIMITIVE gatewayId="72" primitiveId="2" primitiveName="MPI_Finalize"/>
-    <PRIMITIVE gatewayId="72" primitiveId="3" primitiveName="MPI_Comm_size"/>
-    <PRIMITIVE gatewayId="72" primitiveId="4" primitiveName="MPI_Comm_rank"/>
-    <PRIMITIVE gatewayId="72" primitiveId="5" primitiveName="MPI_Recv"/>
-    <PRIMITIVE gatewayId="72" primitiveId="6" primitiveName="MPI_Send"/>
-    <PRIMITIVE gatewayId="72" primitiveId="7" primitiveName="MPI_Get_processor_name"/>
-    <PRIMITIVE gatewayId="72" primitiveId="8" primitiveName="MPI_Bcast"/>
-    <PRIMITIVE gatewayId="72" primitiveId="9" primitiveName="MPI_Irecv"/>
-    <PRIMITIVE gatewayId="72" primitiveId="10" primitiveName="MPI_Isend"/>
-    <PRIMITIVE gatewayId="72" primitiveId="11" primitiveName="MPI_Wait"/>
+    <PRIMITIVE gatewayId="73" primitiveId="1" primitiveName="MPI_Init"/>
+    <PRIMITIVE gatewayId="73" primitiveId="2" primitiveName="MPI_Finalize"/>
+    <PRIMITIVE gatewayId="73" primitiveId="3" primitiveName="MPI_Comm_size"/>
+    <PRIMITIVE gatewayId="73" primitiveId="4" primitiveName="MPI_Comm_rank"/>
+    <PRIMITIVE gatewayId="73" primitiveId="5" primitiveName="MPI_Recv"/>
+    <PRIMITIVE gatewayId="73" primitiveId="6" primitiveName="MPI_Send"/>
+    <PRIMITIVE gatewayId="73" primitiveId="7" primitiveName="MPI_Get_processor_name"/>
+    <PRIMITIVE gatewayId="73" primitiveId="8" primitiveName="MPI_Bcast"/>
+    <PRIMITIVE gatewayId="73" primitiveId="9" primitiveName="MPI_Irecv"/>
+    <PRIMITIVE gatewayId="73" primitiveId="10" primitiveName="MPI_Isend"/>
+    <PRIMITIVE gatewayId="73" primitiveId="11" primitiveName="MPI_Wait"/>
 </GATEWAY>

@@ -12,13 +12,12 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "sci_types.h"
-#include "BOOL.h"
 #include "api_scilab.h"
-#include "stack1.h"
+#include "BOOL.h"
 #include "MALLOC.h"
+#include "deserialization.h"
 
-int deserialize_double(void *_pvCtx, int *_piBuffer, int _iBufferSize)
+static int deserialize_double(void *_pvCtx, int *_piBuffer, int _iBufferSize)
 {
     SciErr sciErr;
     int iRows = _piBuffer[1];
@@ -41,11 +40,11 @@ int deserialize_double(void *_pvCtx, int *_piBuffer, int _iBufferSize)
 
     if (iComplex)
     {
-        sciErr = createComplexMatrixOfDouble(_pvCtx, 1, iRows, iCols, pdblR, pdblI);
+        sciErr = createComplexMatrixOfDouble(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, pdblR, pdblI);
     }
     else
     {
-        sciErr = createMatrixOfDouble(_pvCtx, 1, iRows, iCols, pdblR);
+        sciErr = createMatrixOfDouble(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, pdblR);
     }
 
     if (sciErr.iErr)
@@ -57,7 +56,7 @@ int deserialize_double(void *_pvCtx, int *_piBuffer, int _iBufferSize)
     return 0;
 }
 
-int deserialize_string(void *_pvCtx, int *_piBuffer, int _iBufferSize)
+static int deserialize_string(void *_pvCtx, int *_piBuffer, int _iBufferSize)
 {
     SciErr sciErr;
     int i = 0;
@@ -90,22 +89,23 @@ int deserialize_string(void *_pvCtx, int *_piBuffer, int _iBufferSize)
         printf("Bad buffer size: \n\tReceived: %d\n\tExpected: %d\n", _iBufferSize, iSize);
         return 1;
     }
-    pstData = (char **)malloc(iRows * iCols * sizeof(char *));
+    pstData = (char **)MALLOC(iRows * iCols * sizeof(char *));
 
     for (i = 0; i < iRows * iCols; i++)
     {
-        pstData[i] = (char *)malloc((piInLen[i] + 1) * sizeof(char));
+        pstData[i] = (char *)MALLOC((piInLen[i] + 1) * sizeof(char));
         memcpy(pstData[i], pstInData, piInLen[i]);
         pstData[i][piInLen[i]] = 0;
         pstInData += piInLen[i];
     }
 
-    sciErr = createMatrixOfString(_pvCtx, 1, iRows, iCols, (const char * const *)pstData);
+    sciErr = createMatrixOfString(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (const char * const *)pstData);
     for (i = 0; i < iRows * iCols; i++)
     {
-        free(pstData[i]);
+        FREE(pstData[i]);
     }
-    free(pstData);
+
+    FREE(pstData);
 
     if (sciErr.iErr)
     {
@@ -116,7 +116,7 @@ int deserialize_string(void *_pvCtx, int *_piBuffer, int _iBufferSize)
     return 0;
 }
 
-int deserialize_boolean(void *_pvCtx, int *_piBuffer, int _iBufferSize)
+static int deserialize_boolean(void *_pvCtx, int *_piBuffer, int _iBufferSize)
 {
     SciErr sciErr;
     int iRows = _piBuffer[1];
@@ -133,7 +133,7 @@ int deserialize_boolean(void *_pvCtx, int *_piBuffer, int _iBufferSize)
     }
 
     piBool = _piBuffer + 4;
-    sciErr = createMatrixOfBoolean(_pvCtx, 1, iRows, iCols, piBool);
+    sciErr = createMatrixOfBoolean(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, piBool);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -143,7 +143,7 @@ int deserialize_boolean(void *_pvCtx, int *_piBuffer, int _iBufferSize)
     return 0;
 }
 
-int deserialize_int(void *_pvCtx, int *_piBuffer, int _iBufferSize)
+static int deserialize_int(void *_pvCtx, int *_piBuffer, int _iBufferSize)
 {
     SciErr sciErr;
     int iRows = _piBuffer[1];
@@ -194,29 +194,29 @@ int deserialize_int(void *_pvCtx, int *_piBuffer, int _iBufferSize)
     switch (iPrecision)
     {
         case SCI_INT8:
-            sciErr = createMatrixOfInteger8(_pvCtx, 1, iRows, iCols, (char *)pvData);
+            sciErr = createMatrixOfInteger8(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (char *)pvData);
             break;
         case SCI_UINT8:
-            sciErr = createMatrixOfUnsignedInteger8(_pvCtx, 1, iRows, iCols, (unsigned char *)pvData);
+            sciErr = createMatrixOfUnsignedInteger8(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (unsigned char *)pvData);
             break;
         case SCI_INT16:
-            sciErr = createMatrixOfInteger16(_pvCtx, 1, iRows, iCols, (short *)pvData);
+            sciErr = createMatrixOfInteger16(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (short *)pvData);
             break;
         case SCI_UINT16:
-            sciErr = createMatrixOfUnsignedInteger16(_pvCtx, 1, iRows, iCols, (unsigned short *)pvData);
+            sciErr = createMatrixOfUnsignedInteger16(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (unsigned short *)pvData);
             break;
         case SCI_INT32:
-            sciErr = createMatrixOfInteger32(_pvCtx, 1, iRows, iCols, (int *)pvData);
+            sciErr = createMatrixOfInteger32(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (int *)pvData);
             break;
         case SCI_UINT32:
-            sciErr = createMatrixOfUnsignedInteger32(_pvCtx, 1, iRows, iCols, (unsigned int *)pvData);
+            sciErr = createMatrixOfUnsignedInteger32(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (unsigned int *)pvData);
             break;
             /*
                 case SCI_INT64 :
-                    sciErr = createMatrixOfInteger64(_pvCtx, 1, iRows, iCols, (long long*)pvData);
+                    sciErr = createMatrixOfInteger64(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (long long*)pvData);
                     break;
                 case SCI_UINT64 :
-                    sciErr = createMatrixOfUnsignedInteger64(_pvCtx, 1, iRows, iCols, (unsigned long long*)pvData);
+                    sciErr = createMatrixOfUnsignedInteger64(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (unsigned long long*)pvData);
                     break;
             */
         default:
@@ -231,7 +231,7 @@ int deserialize_int(void *_pvCtx, int *_piBuffer, int _iBufferSize)
     return 0;
 }
 
-int deserialize_sparse(void *_pvCtx, int *_piBuffer, int _iBufferSize, BOOL _bData)
+static int deserialize_sparse(void *_pvCtx, int *_piBuffer, int _iBufferSize, BOOL _bData)
 {
     SciErr sciErr;
     int iRows = _piBuffer[1];
@@ -266,16 +266,16 @@ int deserialize_sparse(void *_pvCtx, int *_piBuffer, int _iBufferSize, BOOL _bDa
         if (iComplex)
         {
             pdblI = pdblR + iItemCount;
-            sciErr = createComplexSparseMatrix(_pvCtx, 1, iRows, iCols, iItemCount, piRowCount, piColPos, pdblR, pdblI);
+            sciErr = createComplexSparseMatrix(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, iItemCount, piRowCount, piColPos, pdblR, pdblI);
         }
         else
         {
-            sciErr = createSparseMatrix(_pvCtx, 1, iRows, iCols, iItemCount, piRowCount, piColPos, pdblR);
+            sciErr = createSparseMatrix(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, iItemCount, piRowCount, piColPos, pdblR);
         }
     }
     else
     {
-        sciErr = createBooleanSparseMatrix(_pvCtx, 1, iRows, iCols, iItemCount, piRowCount, piColPos);
+        sciErr = createBooleanSparseMatrix(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, iItemCount, piRowCount, piColPos);
     }
 
     if (sciErr.iErr)
@@ -285,3 +285,26 @@ int deserialize_sparse(void *_pvCtx, int *_piBuffer, int _iBufferSize, BOOL _bDa
     }
     return 0;
 }
+
+int deserialize_from_mpi(void *_pvCtx, int *_piBuffer, int _iBufferSize)
+{
+    switch (*_piBuffer)
+    {
+        case sci_matrix:
+            return deserialize_double(pvApiCtx, _piBuffer, _iBufferSize);
+        case sci_strings:
+            return deserialize_string(pvApiCtx, _piBuffer, _iBufferSize);
+        case sci_boolean:
+            return deserialize_boolean(pvApiCtx, _piBuffer, _iBufferSize);
+        case sci_sparse:
+            return deserialize_sparse(pvApiCtx, _piBuffer, _iBufferSize, TRUE);
+        case sci_boolean_sparse:
+            return deserialize_sparse(pvApiCtx, _piBuffer, _iBufferSize, FALSE);
+        case sci_ints:
+            return deserialize_int(pvApiCtx, _piBuffer, _iBufferSize);
+        default:
+            return -1; //unknow type
+    }
+}
+
+

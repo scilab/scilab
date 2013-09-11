@@ -14,6 +14,7 @@
 #include "stack-c.h"
 #include "gw_mpi.h"
 #include "sci_mpi.h"
+#include "MALLOC.h"
 
 /**
  * SCILAB function : mpi_init, fin = 1
@@ -42,15 +43,14 @@ static void mpi_init_internal()
         return;
     }
 
-    request = (MPI_Request *)calloc(REQUEST_MAXSIZE, sizeof(MPI_Request));
-    listRequestPointer = (int)calloc(REQUEST_MAXSIZE, sizeof(int));
-    listRequestPointerSize = (int)calloc(REQUEST_MAXSIZE, sizeof(int));
+    request = (MPI_Request *)MALLOC(REQUEST_MAXSIZE * sizeof(MPI_Request));
+    listRequestPointer = (int**)MALLOC(REQUEST_MAXSIZE * sizeof(int*));
+    listRequestPointerSize = (int*)MALLOC(REQUEST_MAXSIZE * sizeof(int));
     for (i = 0; i < REQUEST_MAXSIZE; i++)
     {
-        request[i] = MPI_REQUEST_NULL;
+        request[i] = 0;
         listRequestPointer[i] = NULL;
-        listRequestPointerSize[i] = NULL;
-        i++;
+        listRequestPointerSize[i] = 0;
     }
 
     mpi_initialized = TRUE;
@@ -70,8 +70,6 @@ int sci_mpi_init(char *fname, unsigned long fname_len)
         /* MPI Not yet initialized */
         MPI_Init(NULL, NULL);
         MPI_Comm_create_errhandler(MPIErrHandler, &errhdl);
-
-        printf("MPI_INIT : init done\n");
     }
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

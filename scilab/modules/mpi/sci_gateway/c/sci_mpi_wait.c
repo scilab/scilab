@@ -28,89 +28,70 @@ int sci_mpi_wait(char *fname, unsigned long fname_len)
     SciErr sciErr;
     int iRet = 0;
     int *piAddr = NULL;
-    int *piAddr2 = NULL;
-    int iType = 0;
-    int iRows = 0;
-    int iCols = 0;
     int *piBuffer = NULL;
     int iBufferSize = 0;
     double NodeID = 0;
-    double RequestID;
+    int iRequestID;
+    double dblRequestID;
+    int iRank = 0;
 
-    CheckInputArgument(pvApiCtx, 1, 2);
+    CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
-    if (getScalarDouble(pvApiCtx, piAddr, &RequestID))
+    if (getScalarDouble(pvApiCtx, piAddr, &dblRequestID))
     {
-        return 1;
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), fname, 1);
+        return 0;
     }
 
-    if (RequestID < 0)
+    iRequestID = (int)dblRequestID;
+
+    if (iRequestID < 0)
     {
         Scierror(999, _("%s: Wrong values for input argument #%d: Positive value expected.\n"), fname, 1);
         return 0;
     }
 
-    iRet = MPI_Wait(&request[(int)RequestID], MPI_STATUS_IGNORE); /* TODO: MPI_COMM_WORLD should be changed */
+    iRet = MPI_Wait(&request[iRequestID], MPI_STATUS_IGNORE); /* TODO: MPI_COMM_WORLD should be changed */
     if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];
         int length_of_error_string;
 
         MPI_Error_string(iRet, error_string, &length_of_error_string);
-        Scierror(999, "%s: Failed to wait for the \n", fname, NodeID, error_string);
-        return 1;
+        Scierror(999, _("%s: Failed to wait %d: %s\n"), fname, NodeID, error_string);
+        return 0;
     }
 
     /* Restore the list */
-    piBuffer = listRequestPointer[(int)RequestID];
-    iBufferSize = listRequestPointerSize[(int)RequestID];
-    switch (piBuffer[0])
+    piBuffer = listRequestPointer[iRequestID];
+    iBufferSize = listRequestPointerSize[iRequestID];
+
+    if (iBufferSize == 0)
     {
-        case sci_matrix:
-            iRet = deserialize_double(pvApiCtx, piBuffer, iBufferSize);
-            break;
-        case sci_strings:
-            iRet = deserialize_string(pvApiCtx, piBuffer, iBufferSize);
-            break;
-        case sci_boolean:
-            iRet = deserialize_boolean(pvApiCtx, piBuffer, iBufferSize);
-            break;
-        case sci_sparse:
-            iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, TRUE);
-            break;
-        case sci_boolean_sparse:
-            iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, FALSE);
-            break;
-        case sci_ints:
-            iRet = deserialize_int(pvApiCtx, piBuffer, iBufferSize);
-            break;
-        default:
-            return 1;
-            break;
+        //wait on sender not on receiver
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
+        return 0;
     }
 
-    free(piBuffer);
+    iRet = deserialize_from_mpi(pvApiCtx, piBuffer, iBufferSize);
+    FREE(piBuffer);
     if (iRet)
     {
-        return 1;
+        Scierror(999, _("%s: Unable to deserialize data !\n"), fname);
+        return 0;
     }
 
-
-    /* free(piBuffer); */
-    /* if (createScalarDouble(pvApiCtx, 1, !iRet)) */
-    /* { */
-    /*     return 1; */
-    /* } */
-
-    AssignOutputVariable(pvApiCtx, 1) = 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);
     return 0;
 }

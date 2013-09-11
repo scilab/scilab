@@ -10,8 +10,13 @@
  *
  */
 
-int serialize_double(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize);
-int serialize_string(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize);
-int serialize_boolean(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize);
-int serialize_int(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize);
-int serialize_sparse(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize, BOOL _bData);
+/**
+ * Serialize a Scilab variable to mpi data
+ *
+ * @param _pvCtx The runtime context
+ * @param _piBuffer The buffer
+ * @param _iBufferSize The size of the buffer
+ * @return 0 in case of success
+ */
+
+int serialize_to_mpi(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize);

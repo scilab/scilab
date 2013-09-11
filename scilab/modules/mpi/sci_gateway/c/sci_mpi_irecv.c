@@ -31,8 +31,8 @@ int sci_mpi_irecv(char *fname, unsigned long fname_len)
     int *piAddr3 = NULL;
     double Tag = 0;
     double Rank = 0;
-    double RequestID = 0;
-
+    int iRequestID = 0;
+    double dblRequestID = 0;
     MPI_Status status;
 
     CheckInputArgument(pvApiCtx, 3, 3);
@@ -43,12 +43,14 @@ int sci_mpi_irecv(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
     }
 
     if (getScalarDouble(pvApiCtx, piAddr1, &Rank))
     {
-        return 1;
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), fname, 1);
+        return 0;
     }
 
     //Tag
@@ -56,128 +58,81 @@ int sci_mpi_irecv(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
         return 0;
     }
 
     if (getScalarDouble(pvApiCtx, piAddr2, &Tag))
     {
-        return 1;
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), fname, 2);
+        return 0;
     }
 
 
     // Request
-
     sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
         return 0;
     }
 
-    if (getScalarDouble(pvApiCtx, piAddr3, &RequestID))
+    if (getScalarDouble(pvApiCtx, piAddr3, &dblRequestID))
     {
-        return 1;
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), fname, 3);
+        return 0;
     }
 
-    if (RequestID < 0)
+    iRequestID = (int)dblRequestID;
+    if (iRequestID < 0)
     {
         Scierror(999, _("%s: Wrong values for input argument #%d: Positive value expected.\n"), fname, 3);
         return 0;
     }
-    /*
-        iRet = mpi_my_recv(&piBuffer, &iBufferSize);
-        if(iRet)
-        {
-            return 1;
-        }
-    */
 
-    iRet = MPI_Probe(Rank, Tag, MPI_COMM_WORLD, &status);
+    iRet = MPI_Probe((int)Rank, (int)Tag, MPI_COMM_WORLD, &status);
     if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];
         int length_of_error_string;
-
         MPI_Error_string(iRet, error_string, &length_of_error_string);
-        Scierror(999, "%s: MPI_Probe failed. Rank %d / Tag %d: %s\n", fname, Rank, Tag, error_string);
-        return 1;
+        Scierror(999, _("%s: MPI_Probe failed. Rank %d / Tag %d: %s\n"), fname, Rank, Tag, error_string);
+        return 0;
     }
 
-    if (MPI_Get_count(&status, MPI_INT, &iBufferSize) != MPI_SUCCESS)
+    iRet = MPI_Get_count(&status, MPI_INT, &iBufferSize);
+    if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];
         int length_of_error_string;
-
         MPI_Error_string(iRet, error_string, &length_of_error_string);
-        Scierror(999, "%s: MPI_Get_count failed. Rank %d / Tag %d: %s\n", fname, Rank, Tag, error_string);
-        return 1;
+        Scierror(999, _("%s: MPI_Get_count failed. Rank %d / Tag %d: %s\n"), fname, Rank, Tag, error_string);
+        return 0;
     }
 
     piBuffer = (int *)MALLOC(sizeof(int) * iBufferSize);
     if (piBuffer == NULL)
     {
         Scierror(999, "%s: Could not create the received variable.\n", fname);
-        return 1;
+        return 0;
     }
 
-    /* Recuperer le nom de la variable et la mettre dans listRequestVarName */
-    /* char *varName=(char*)malloc(1024*sizeof(char)); */
-    /* getVarNameFromPosition(pvApiCtx, 1, varName); */
-    /* printf("varName %s\n", varName); */
-
-    //    listRequestPointer[(int)RequestID]=(char*)malloc(1024*sizeof(char));
-    //    getVarNameFromPosition(pvApiCtx, 1, listRequestPointer[(int)RequestID]);
-    //    printf("varName %s\n", listRequestPointer[(int)RequestID]);
-
-
-    iRet = MPI_Irecv(piBuffer, iBufferSize, MPI_INT, Rank, Tag, MPI_COMM_WORLD, &request[(int)RequestID]);
-
+    iRet = MPI_Irecv(piBuffer, iBufferSize, MPI_INT, (int)Rank, (int)Tag, MPI_COMM_WORLD, &request[iRequestID]);
     if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];
         int length_of_error_string;
-
         MPI_Error_string(iRet, error_string, &length_of_error_string);
-        Scierror(999, "%s: MPI_Irecv failed. Rank %d / Tag %d: %s\n", fname, Rank, Tag, error_string);
-
-        return 1;
+        Scierror(999, _("%s: MPI_Irecv failed. Rank %d / Tag %d: %s\n"), fname, Rank, Tag, error_string);
+        return 0;
     }
 
     /* Store the pointer piBuffer */
-    listRequestPointer[(int)RequestID] = piBuffer;
-    listRequestPointerSize[(int)RequestID] = iBufferSize;
-    /*
-        switch (piBuffer[0])
-        {
-        case sci_matrix:
-            iRet = deserialize_double(pvApiCtx, piBuffer, iBufferSize);
-            break;
-        case sci_strings:
-            iRet = deserialize_string(pvApiCtx, piBuffer, iBufferSize);
-            break;
-        case sci_boolean:
-            iRet = deserialize_boolean(pvApiCtx, piBuffer, iBufferSize);
-            break;
-        case sci_sparse:
-            iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, TRUE);
-            break;
-        case sci_boolean_sparse:
-            iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, FALSE);
-            break;
-        case sci_ints:
-            iRet = deserialize_int(pvApiCtx, piBuffer, iBufferSize);
-            break;
-        default:
-            return 1;
-            break;
-        }
+    listRequestPointer[iRequestID] = piBuffer;
+    listRequestPointerSize[iRequestID] = iBufferSize;
 
-        if (iRet)
-        {
-            return 1;
-        }
-    */
-    AssignOutputVariable(pvApiCtx, 1) = 1;
+    AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
     return 0;
 }

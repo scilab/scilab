@@ -13,28 +13,14 @@
 #ifndef __GW_MPI__
 #define __GW_MPI__
 
-#ifdef _MSC_VER
-#include <windows.h>
-#include <stdio.h>
-#endif
+#include "dynlib_mpi.h"
 
-#include <string.h>
-#include "machine.h"
-#include "api_scilab.h"
-#include "stack-c.h"
-
-int gw_mpi(void);
+MPI_IMPEXP int gw_mpi(void);
 
 typedef int (*MPI_Interf) (char *fname, unsigned long l);
-
-typedef struct table_struct
-{
-    MPI_Interf f;  /** function **/
-    char *name;    /** its name **/
-} MPITable;
-
-// Declaration of all the profile function declared and
-// used in sci_gateway
+/*--------------------------------------------------------------------------*/
+/* interface for the previous function Table */
+/*--------------------------------------------------------------------------*/
 int sci_mpi_init(char *fname, unsigned long fname_len);
 int sci_mpi_finalize(char *fname, unsigned long fname_len);
 int sci_mpi_comm_size(char *fname, unsigned long fname_len);
@@ -46,11 +32,4 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len);
 int sci_mpi_irecv(char *fname, unsigned long fname_len);
 int sci_mpi_isend(char *fname, unsigned long fname_len);
 int sci_mpi_wait(char *fname, unsigned long fname_len);
-
-/*
-int intsmpi_comm_size (char *fname,unsigned long fname_len));
-
-int intsmpi_irecv (char *fname,unsigned long fname_len));
-int intsmpi_isend (char *fname,unsigned long fname_len));
-*/
 #endif /*  __GW_MPI__ */

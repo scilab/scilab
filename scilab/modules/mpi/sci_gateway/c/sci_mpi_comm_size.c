@@ -16,6 +16,7 @@
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "MALLOC.h"
 
 /**
  * SCILAB function : mpi_comm_size, fin = 3
@@ -23,58 +24,42 @@
  */
 int sci_mpi_comm_size(char *fname, unsigned long fname_len)
 {
+    SciErr sciErr;
     int comm_size;
-    MPI_Comm comm = NULL;
+    MPI_Comm comm = MPI_COMM_WORLD;
     int *piAddr = NULL;
-    int iRows = 1;
-    int iCols = 1;
-    int iRows2 = 1;
-    int iCols2 = 1;
-    double *pdblReal = NULL;
+    double dblReal = 0;
 
     CheckInputArgument(pvApiCtx, 0, 1);            // Check the parameters of the function ... Here 0 or 1
     CheckOutputArgument(pvApiCtx, 1, 1);            // The output of the function (1 parameter)
-    if (Rhs == 1)
-    {
-        int typevar;
 
-        getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-
-        getVarType(pvApiCtx, piAddr, &typevar);
-        if (typevar == sci_matrix)
-        {
-            getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
-            // TODO manage scierr
-            comm = (MPI_Comm) (int)pdblReal;
-        }
-        else
-        {
-            // TODO: update error message
-            Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 1);
-        }
-    }
-    else
+    if (nbInputArgument(pvApiCtx) == 1)
     {
-        comm = MPI_COMM_WORLD;
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+            return 0;
+        }
+
+        if (getScalarDouble(pvApiCtx, piAddr, &dblReal))
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), fname, 1);
+            return 0;
+        }
+
+        comm = (MPI_Comm)(int)dblReal;
     }
+
     MPI_Comm_size(comm, &comm_size);
-
-    double *pdblReal1 = (double *)malloc(sizeof(double) * iRows2 * iCols2);
-
-    pdblReal1[0] = (double)comm_size;
-
-    SciErr iRet = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows2, iCols2, pdblReal1);
-
-    if (iRet.iErr)
+    if (createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, (double)comm_size))
     {
-        // TODO: update error message
-        Scierror(999, "error in the creation of the variable");
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
     }
-    free(pdblReal1);
-    //  CreateVar(1, "d", &m1, &n1 ,&l1); // Create the space in the stack for comm_size
-    //  *stk(l1)=(double)comm_size; // Copy comm_size into the stack
 
-    AssignOutputVariable(pvApiCtx, 1) = Rhs + 1;
-    C2F(putlhsvar) ();
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }

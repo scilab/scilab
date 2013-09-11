@@ -10,13 +10,11 @@
  *
  */
 #include "gw_mpi.h"
-#ifdef _MSC_VER
-#include <Windows.h>
-#include "ExceptionMessage.h"
-#endif
-#include "machine.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
+#include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/
-static MPITable Tab[] =
+static gw_generic_table Tab[] =
 {
     {sci_mpi_init, "MPI_Init"},
     {sci_mpi_finalize, "MPI_Finalize"},
@@ -31,39 +29,18 @@ static MPITable Tab[] =
     {sci_mpi_wait, "MPI_Wait"}
 
 };
-
-/*static MPITable Tab[]=
-{
-	{intsmpi_send,"mpi_send"},
-	{intsmpi_recv,"mpi_recv"},
-	{intsmpi_isend,"mpi_isend"},
-	{intsmpi_irecv,"mpi_irecv"},
-	{intsmpi_init,"mpi_init"},
-	{intsmpi_finalize,"mpi_finalize"},
-	{intsmpi_comm_rank,"mpi_comm_rank"},
-	{intsmpi_comm_size,"mpi_comm_size"}
-};*/
 /*-----------------------------------------------------------------------------------*/
 int gw_mpi(void)
 {
     Rhs = Max(0, Rhs);
 
-#ifdef _MSC_VER
-#ifndef _DEBUG
-    _try
+    if (pvApiCtx == NULL)
     {
-        (*(Tab[Fin - 1].f)) (Tab[Fin - 1].name, strlen(Tab[Fin - 1].name));
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
     }
-    _except(EXCEPTION_EXECUTE_HANDLER)
-    {
-        ExceptionMessage(GetExceptionCode(), Tab[Fin - 1].name);
-    }
-#else
-    (*(Tab[Fin - 1].f)) (Tab[Fin - 1].name, strlen(Tab[Fin - 1].name));
-#endif
-#else
-    (*(Tab[Fin - 1].f)) (Tab[Fin - 1].name, strlen(Tab[Fin - 1].name));
-#endif
+
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }
 

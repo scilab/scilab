@@ -1,16 +1,15 @@
-num = mpi_comm_rank()
+MPI_Init();
+rnk = MPI_Comm_rank()
+sizeNodes =	MPI_Comm_size();
+SLV = rnk;
+Master = ~ SLV;
 
-N =  mpi_comm_size()
-
-src  = modulo(num+N-1, N)
-
-dest = modulo(num+1, N)
-
-
-if ((modulo(num,2) == 0)) then 
-	mpi_send(num,dest,1001)
-	res = mpi_recv(src,1001)
-else 
-	res = mpi_recv(src,1001)
-	mpi_send(num,dest,1001)
+if Master then
+    disp("Master");
+    MPI_Send(rand(10,10), 1);
+else
+    val = MPI_Recv(0, 0);
+    disp(val, rnk)
 end
+
+MPI_Finalize();

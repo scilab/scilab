@@ -11,13 +11,12 @@
  */
 #include <string.h>
 #include <stdio.h>
-#include "sci_types.h"
-#include "BOOL.h"
 #include "api_scilab.h"
-#include "stack1.h"
+#include "BOOL.h"
 #include "MALLOC.h"
+#include "serialization.h"
 
-int serialize_double(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)
+static int serialize_double(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)
 {
     SciErr sciErr;
     int iRows = 0;
@@ -84,7 +83,7 @@ int serialize_double(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBuffer
         piOut[2] = iCols;
         piOut[3] = 0;           //not complex
 
-        //move 'p' to first complex value
+        //move 'p' to first value
         p = (double *)(piOut + 4);
         iSize = iRows * iCols;
         C2F(dcopy) (&iSize, pdblR, &iOne, p, &iOne);
@@ -95,7 +94,7 @@ int serialize_double(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBuffer
     return 0;
 }
 
-int serialize_string(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)
+static int serialize_string(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)
 {
     int iErr = 0;
     int i = 0;
@@ -116,7 +115,7 @@ int serialize_string(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBuffer
 
     for (i = 0; i < iRows * iCols; i++)
     {
-        iOutLen += strlen(pstData[i]);
+        iOutLen += (int)strlen(pstData[i]);
     }
 
     if (iOutLen % 4)
@@ -146,7 +145,7 @@ int serialize_string(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBuffer
 
     for (i = 0; i < iRows * iCols; i++)
     {
-        piOutLen[i] = strlen(pstData[i]);
+        piOutLen[i] = (int)strlen(pstData[i]);
     }
 
     p = (char *)(piOut + 4 + iRows * iCols);
@@ -161,7 +160,7 @@ int serialize_string(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBuffer
     return 0;
 }
 
-int serialize_boolean(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)
+static int serialize_boolean(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)
 {
     SciErr sciErr;
     int iRows = 0;
@@ -201,7 +200,7 @@ int serialize_boolean(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBuffe
     return 0;
 }
 
-int serialize_int(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)
+static int serialize_int(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)
 {
     SciErr sciErr;
     int iPrecision = 0;
@@ -240,12 +239,12 @@ int serialize_int(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSiz
     {
         iItemSize = sizeof(int);
     }
-/*
-    else if(iPrecision == SCI_INT64 || iPrecision == SCI_UINT64)
-    {
-        iItemSize = sizeof(long long);
-    }
-*/
+    /*
+        else if(iPrecision == SCI_INT64 || iPrecision == SCI_UINT64)
+        {
+            iItemSize = sizeof(long long);
+        }
+    */
     //check and adjust alignement on integer
     iOutLen = iRows * iCols;
     if ((iOutLen * iItemSize) % sizeof(int))
@@ -271,49 +270,49 @@ int serialize_int(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSiz
 
     switch (iPrecision)
     {
-    case SCI_INT8:
+        case SCI_INT8:
         {
             sciErr = getMatrixOfInteger8(_pvCtx, _piAddr, &iRows, &iCols, (char **)&pvData);
             break;
         }
-    case SCI_UINT8:
+        case SCI_UINT8:
         {
             sciErr = getMatrixOfUnsignedInteger8(_pvCtx, _piAddr, &iRows, &iCols, (unsigned char **)&pvData);
             break;
         }
-    case SCI_INT16:
+        case SCI_INT16:
         {
             sciErr = getMatrixOfInteger16(_pvCtx, _piAddr, &iRows, &iCols, (short **)&pvData);
             break;
         }
-    case SCI_UINT16:
+        case SCI_UINT16:
         {
             sciErr = getMatrixOfUnsignedInteger16(_pvCtx, _piAddr, &iRows, &iCols, (unsigned short **)&pvData);
             break;
         }
-    case SCI_INT32:
+        case SCI_INT32:
         {
             sciErr = getMatrixOfInteger32(_pvCtx, _piAddr, &iRows, &iCols, (int **)&pvData);
             break;
         }
-    case SCI_UINT32:
+        case SCI_UINT32:
         {
             sciErr = getMatrixOfUnsignedInteger32(_pvCtx, _piAddr, &iRows, &iCols, (unsigned int **)&pvData);
             break;
         }
-/*
-    case SCI_INT64 :
-    { 
-        sciErr = getMatrixOfInteger64(_pvCtx, _piAddr, &iRows, &iCols, (long long**)&pvData);
-        break;
-    }
-    case SCI_UINT64 :
-    { 
-        sciErr = getMatrixOfUnsignedInteger64(_pvCtx, _piAddr, &iRows, &iCols, (unsigned long long**)&pvData);
-        break;
-        }
-*/ default:
-        return 1;
+        /*
+            case SCI_INT64 :
+            {
+                sciErr = getMatrixOfInteger64(_pvCtx, _piAddr, &iRows, &iCols, (long long**)&pvData);
+                break;
+            }
+            case SCI_UINT64 :
+            {
+                sciErr = getMatrixOfUnsignedInteger64(_pvCtx, _piAddr, &iRows, &iCols, (unsigned long long**)&pvData);
+                break;
+                }
+        */ default:
+            return 1;
     }
 
     if (sciErr.iErr)
@@ -329,7 +328,7 @@ int serialize_int(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSiz
     return 0;
 }
 
-int serialize_sparse(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize, BOOL _bData)
+static int serialize_sparse(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize, BOOL _bData)
 {
     int iRet = 0;
     int iRows = 0;
@@ -346,7 +345,8 @@ int serialize_sparse(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBuffer
     int iOutLen = 0;
 
     if (_bData)
-    {                           //sparse
+    {
+        //sparse
 
         iComplex = isVarComplex(_pvCtx, _piAddr);
         if (iComplex)
@@ -359,7 +359,8 @@ int serialize_sparse(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBuffer
         }
     }
     else
-    {                           //boolean sparse
+    {
+        //boolean sparse
         iRet = getAllocatedBooleanSparseMatrix(_pvCtx, _piAddr, &iRows, &iCols, &iItemCount, &piRowCount, &piColPos);
     }
 
@@ -404,4 +405,32 @@ int serialize_sparse(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBuffer
     *_piBuffer = piOut;
     *_piBufferSize = iOutLen;
     return 0;
+}
+
+int serialize_to_mpi(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)
+{
+    switch (*_piAddr)
+    {
+        case sci_matrix:
+            return serialize_double(pvApiCtx, _piAddr, _piBuffer, _piBufferSize);
+            break;
+        case sci_strings:
+            return serialize_string(pvApiCtx, _piAddr, _piBuffer, _piBufferSize);
+            break;
+        case sci_boolean:
+            return serialize_boolean(pvApiCtx, _piAddr, _piBuffer, _piBufferSize);
+            break;
+        case sci_sparse:
+            return serialize_sparse(pvApiCtx, _piAddr, _piBuffer, _piBufferSize, TRUE);
+            break;
+        case sci_boolean_sparse:
+            return serialize_sparse(pvApiCtx, _piAddr, _piBuffer, _piBufferSize, FALSE);
+            break;
+        case sci_ints:
+            return serialize_int(pvApiCtx, _piAddr, _piBuffer, _piBufferSize);
+            break;
+        default:
+            return -1;
+            break;
+    }
 }

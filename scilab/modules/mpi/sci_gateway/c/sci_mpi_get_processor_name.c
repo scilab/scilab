@@ -23,7 +23,7 @@
  */
 int sci_mpi_get_processor_name(char *fname, unsigned long fname_len)
 {
-    MPI_Comm comm = NULL;
+    MPI_Comm comm = 0;
     int *piAddr = NULL;
     int iRows = 1;
     int iCols = 1;
@@ -31,21 +31,28 @@ int sci_mpi_get_processor_name(char *fname, unsigned long fname_len)
     int iCols2 = 1;
     int iSizeProcessorName;
     char processorName[MPI_MAX_PROCESSOR_NAME];
+    int iRet = 0;
 
     CheckInputArgument(pvApiCtx, 0, 0);
     CheckOutputArgument(pvApiCtx, 1, 1);            // The output of the function (1 parameter)
 
-    MPI_Get_processor_name(processorName, &iSizeProcessorName);
-
-    int iRet = createSingleString(pvApiCtx, Rhs + 1, processorName);
-
-    if (iRet)
+    iRet = MPI_Get_processor_name(processorName, &iSizeProcessorName);
+    if (iRet != MPI_SUCCESS)
     {
-        // TODO: update error message
-        Scierror(999, "error in the creation of the variable");
+        char error_string[MPI_MAX_ERROR_STRING];
+        int length_of_error_string;
+        MPI_Error_string(iRet, error_string, &length_of_error_string);
+        Scierror(999, _("%s: Could not get processor name: %s\n"), fname, error_string);
+        return 0;
     }
 
-    AssignOutputVariable(pvApiCtx, 1) = Rhs + 1;
-    C2F(putlhsvar) ();
+    if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, processorName))
+    {
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }

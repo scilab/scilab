@@ -14,6 +14,9 @@
 #include "gw_mpi.h"
 #include "sci_mpi.h"
 #include "Scierror.h"
+#include "localization.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 
 /******************************************
  * SCILAB function : mpi_finalize, fin = 2
@@ -21,33 +24,30 @@
 
 static void mpi_finalize_internal()
 {
-    free(listRequestPointer);
-    free(listRequestPointerSize);
-    free(request);
+    FREE(listRequestPointer);
+    FREE(listRequestPointerSize);
+    FREE(request);
 }
 
 int sci_mpi_finalize(char *fname, unsigned long fname_len)
 {
-    int iRet;
+    int iRet = 0;
     CheckInputArgument(pvApiCtx, 0, 0);
     CheckOutputArgument(pvApiCtx, 1, 1);
     mpi_finalize_internal();
     iRet = MPI_Finalize();
     if (iRet != MPI_SUCCESS)
     {
-        printf("ici %d\n", iRet);
         char error_string[MPI_MAX_ERROR_STRING];
         int length_of_error_string;
-
         MPI_Error_string(iRet, error_string, &length_of_error_string);
-        Scierror(999, "%s: Could not finalize the MPI instance: %s\n", fname, error_string);
-        return 1;
+        Scierror(999, _("%s: Could not finalize the MPI instance: %s\n"), fname, error_string);
+        return 0;
     }
 
     // TODO: catch les erreurs
     AssignOutputVariable(pvApiCtx, 1) = 0;
-    C2F(putlhsvar) ();
-
+    ReturnArguments(pvApiCtx);
     return 0;
 
 }
