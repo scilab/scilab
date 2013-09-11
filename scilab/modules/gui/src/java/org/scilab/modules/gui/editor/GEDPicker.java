@@ -185,7 +185,7 @@ public class GEDPicker {
         double[] oldPoint = new double[3];
 
         if (CommonHandler.isLineEnabled(obj)) {
-               //System.out.println("lineEnable");
+            //System.out.println("lineEnable");
             if (!default2dView) {
                 oldPoint = AxesDrawer.compute2dViewCoordinates(axes, new double[] { datax[0], datay[0], dataz[0] });
                 //System.out.println("NotDefault");
@@ -424,7 +424,31 @@ public class GEDPicker {
      */
     boolean getRectangle(String obj, Integer[] position) {
 
-        //TODO:
+        Double[] upperLeft = (Double[])GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_UPPER_LEFT_POINT__);
+        Double height = (Double)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_HEIGHT__);
+        Double width = (Double)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_WIDTH__);
+        double[] pos = { position[0] * 1.0, position[1] * 1.0, 0.0 };
+        double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axesUID, pos);
+
+        double[] c3d1 = AxesDrawer.compute3dViewCoordinates(axes, c2d);
+        c2d[2] += 1.0;
+        double[] c3d2 = AxesDrawer.compute3dViewCoordinates(axes, c2d);
+
+        Vector3d v0 = new Vector3d(c3d1);
+        Vector3d v1 = new Vector3d(c3d2);
+        Vector3d c = v1.minus(v0);
+
+        if (c.getZ() == 0) {
+            return false;
+        }
+
+        double u = upperLeft[2] - (v0.getZ() / c.getZ());
+        Vector3d point = v0.plus(c.times(u));
+
+        if (point.getX() >= upperLeft[0] && point.getX() <= (upperLeft[0] + width)
+                && point.getY() <= upperLeft[1] && point.getY() >= (upperLeft[1] - height)) {
+            return true;
+        }
         return false;
     }
 
@@ -511,15 +535,15 @@ public class GEDPicker {
     boolean isInsideAxes(String figureUID, Integer[] position) {
         Double[] rotAngles = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_ROTATION_ANGLES__);
         boolean default2dView = (rotAngles[0] == 0.0 && rotAngles[1] == 270.0);
-//        if (default2dView) {
-            Double[] dataBounds = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_DATA_BOUNDS__);
-            double[] c2d = AxesDrawer.compute2dViewFromPixelCoordinates(axes, new double[] { 1.0 * position[0], 1.0 * position[1], 0.0 });
-            if (c2d[0] >= dataBounds[0] && c2d[0] <= dataBounds[1] && c2d[1] >= dataBounds[2] && c2d[1] <= dataBounds[3]) {
-                return true;
-            }
-  //      } else {
-            //TODO: Add check when it is in 3d view
-  //      }
+        //        if (default2dView) {
+        Double[] dataBounds = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_DATA_BOUNDS__);
+        double[] c2d = AxesDrawer.compute2dViewFromPixelCoordinates(axes, new double[] { 1.0 * position[0], 1.0 * position[1], 0.0 });
+        if (c2d[0] >= dataBounds[0] && c2d[0] <= dataBounds[1] && c2d[1] >= dataBounds[2] && c2d[1] <= dataBounds[3]) {
+            return true;
+        }
+        //      } else {
+        //TODO: Add check when it is in 3d view
+        //      }
         return false;
     }
 
