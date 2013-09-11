@@ -649,3 +649,6 @@ Bug fixes
 * Bug #12875 fixed - phasemag() returned an error for input vector containing zeros.
 
 * Bug #12909 fixed - Completion on (mt)list led to a crash.
+
+* Bug #12911 fixed - eig Matlab-equivalent help page updated.
+

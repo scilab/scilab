@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_eig">
@@ -34,7 +34,7 @@ eig
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-spec - bdiag
+spec ; bdiag 
 ]]></programlisting>
                 </td>
             </tr>
@@ -46,7 +46,7 @@ spec - bdiag
             <varlistentry>
                 <term>eig(A)</term>
                 <listitem>
-                    <para>Scilab equivalent for eig(A) is spec(A). Scilab eigen vector matrix can differ from Matlab one.</para>
+                    <para>Scilab equivalent for eig(A) is spec(A). Scilab eigenvector matrix can differ from Matlab one.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -68,6 +68,16 @@ spec - bdiag
         </variablelist>
     </refsection>
     <refsection>
+        <title>Additional Remarks</title>
+        <para>
+            <note>
+                If matrix <varname>B</varname> is nonsingular, the generalized eigenvalues can be computed 
+                as the eigenvalues of the matrix <latex>B^{-1}A</latex> i.e. <code>d=spec(B^-1*A)</code>. 
+            </note>
+        </para>
+    </refsection>
+     
+    <refsection>
         <title>Examples</title>
         <informaltable border="1" width="100%">
             <tr>
@@ -83,6 +93,9 @@ spec - bdiag
                     <programlisting role="example"><![CDATA[
 d = eig(A,'balance')
 [V,D] = eig(A,'balance')
+[V,D] = eig(A,'balance')
+d = eig(A,B)
+d = eig(A,B)
 d = eig(A,B)
 [V,D] = eig(A,B)
 ]]></programlisting>
@@ -90,9 +103,12 @@ d = eig(A,B)
                 <td>
                     <programlisting role="example"><![CDATA[
 d = spec(A)
-[V,D] = bdiag(A+%i,1/%eps)
-[al,be] = spec(A); d = al./be;
-[al,be,V] = spec(A); D = spec(al./be);
+[D,V]=bdiag(A)
+[V,D] = spec(A)
+[al,be] = spec(A,B); d = al./be;
+d = spec(A,B)
+d = spec(inv(B)*A)
+[al,be,V] = spec(A,B); D = diag(al./be);
 ]]></programlisting>
                 </td>
             </tr>
