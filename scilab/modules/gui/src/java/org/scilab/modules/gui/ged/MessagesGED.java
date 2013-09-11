@@ -27,11 +27,13 @@ public class MessagesGED {
     public static final String property_list = Messages.gettext("Property List");
     public static final String hide = Messages.gettext("Hide");
     public static final String show = Messages.gettext("Show");
+    public static final String arc = Messages.gettext("Arc");
     public static final String axes = Messages.gettext("Axes");
     public static final String datatip = Messages.gettext("Datatip");
     public static final String polyline = Messages.gettext("Polyline");
     public static final String figure = Messages.gettext("Figure");
     public static final String legend = Messages.gettext("Legend");
+    public static final String segs = Messages.gettext("Segs");
     public static final String surface = Messages.gettext("Surface");
     public static final String plot3d = Messages.gettext("Plot3D");
     public static final String fac3d = Messages.gettext("Fac3D");
@@ -84,6 +86,8 @@ public class MessagesGED {
     public static final String choose_color = Messages.gettext("Choose a Color");
 
     //Style/Appearance - Labels
+    public static final String arrow_size = Messages.gettext("Arrow Size");
+    public static final String colors = Messages.gettext("Colors");
     public static final String background = Messages.gettext("Background");
     public static final String foreground = Messages.gettext("Foreground");
     public static final String grid_position = Messages.gettext("Grid Position");
@@ -143,6 +147,7 @@ public class MessagesGED {
     public static final String figure_name = Messages.gettext("Figure Name");
     public static final String info_message = Messages.gettext("Info Message");
     public static final String units = Messages.gettext("Units");
+    public static final String upper_left_point = Messages.gettext("Upper Left Point");
     public static final String user_data = Messages.gettext("User Data");
     public static final String x_label = Messages.gettext("X Label");
     public static final String y_label = Messages.gettext("Y Label");
