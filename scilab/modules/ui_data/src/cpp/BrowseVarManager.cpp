@@ -308,11 +308,13 @@ static std::set < string > createScilabDefaultVariablesSet()
                      "%helps_modules",
                      "%_atoms_cache",
                      "evoid", // Constant for external object
-                     "jvoid" // Constant for external object Java (jims)
+                     "jvoid", // Constant for external object Java (jims)
+                     "jnull", // Constant for external object Java (jims)
+                     "enull"  // Constant for external object
                    };
     int i = 0;
 
-#define NBELEMENT 35
+#define NBELEMENT 37
     std::set < string > ScilabDefaultVariables;
 
     for (i = 0; i < NBELEMENT; i++)
