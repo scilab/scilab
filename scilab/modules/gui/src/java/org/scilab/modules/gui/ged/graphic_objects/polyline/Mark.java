@@ -73,12 +73,12 @@ public class Mark extends SimpleSection {
         //Components of the property: Mark Background.
         contouredObject.markBackgroundColor(sectionPanel, markStyleRenderer, chooserMarkBackground,
                                             row++, column, leftmargin,
-                                            objectID, parentFigure, "surface.Mark", this);
+                                            objectID, parentFigure, "polyline.Mark", this);
 
         //Components of the property: Mark Foreground.
         contouredObject.markForegroundColor(sectionPanel, markStyleRenderer, chooserMarkForeground,
                                             row++, column, leftmargin,
-                                            objectID, parentFigure, "surface.Mark", this);
+                                            objectID, parentFigure, "polyline.Mark", this);
 
         //Components of the property: Mark Size.
         contouredObject.markSize(sectionPanel, row++, column, leftmargin, objectID);
