@@ -9,7 +9,7 @@
 // This test sends a matrix of double [42,41] and, on each slave,
 // it adds +1 to each element
 // and send it back to the master
-// 
+//
 
 MPI_Init();
 rnk =    MPI_Comm_rank();
@@ -24,9 +24,9 @@ if Master
 
     for slaveId = 1:sizeNodes-1
         dense=[ %T, %F, %T, %F
-                %F, %T, %F, %T
-                %T, %F, %T, %F
-                %F, %T, %F, %T];
+        %F, %T, %F, %T
+        %T, %F, %T, %F
+        %F, %T, %F, %T];
         value = sparse(dense);
         MPI_Send(value, slaveId)
     end
@@ -41,11 +41,11 @@ else
     tag=0;
     value=MPI_Recv(rankSource, tag)
     value = ~value;
-    
+
     // Send back to the master
     MPI_Send(value,0)
 
 end
 
 MPI_Finalize()
-
+exit();

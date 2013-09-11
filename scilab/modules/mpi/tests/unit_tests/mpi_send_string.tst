@@ -6,7 +6,7 @@
 // =============================================================================
 //
 // <-- MPI TEST -->
-// 
+//
 
 MPI_Init();
 rnk =    MPI_Comm_rank();
@@ -29,7 +29,7 @@ if Master
         tag=0
         valueBack=MPI_Recv(slaveId, tag);
         assert_checkequal(size(valueBack), [1,1]);
-           assert_checkequal(valueBack, strcat(value))
+        assert_checkequal(valueBack, strcat(value))
     end
 else
     disp("SLAVE: Processor "+string(rnk))
@@ -37,11 +37,9 @@ else
     tag=0;
     value=MPI_Recv(rankSource, tag)
     value = strcat(value);
-    disp(value)
     // Send back to the master
     MPI_Send(value,0)
-
 end
 
 MPI_Finalize()
-
+exit();

@@ -6,9 +6,9 @@
 // =============================================================================
 //
 // <-- MPI TEST -->
+//
 
 MPI_Init();
-
 assert_checktrue(MPI_Comm_rank() == 0 | MPI_Comm_rank() == 1);
 assert_checkequal(MPI_Comm_size(), 2);
 
@@ -17,3 +17,4 @@ assert_checkequal(size(name), [1, 1]);
 assert_checktrue(length(name)>0);
 
 MPI_Finalize();
+exit();
