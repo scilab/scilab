@@ -31,9 +31,8 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
     int *piBuffer = NULL;
     int iBufferSize = 0;
     double rootID = 0;
-
-    int length = 0;
-
+    int rank = 0;
+    
     CheckInputArgument(pvApiCtx, 2, 2);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
@@ -59,11 +58,24 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    iRet = serialize_to_mpi(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
-    if (iRet)
+    iRet = MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    if(iRet != MPI_SUCCESS)
     {
-        Scierror(999, _("Unable to serialize data\n"));
+        char error_string[MPI_MAX_ERROR_STRING];
+        int length_of_error_string = 0;
+        MPI_Error_string(iRet, error_string, &length_of_error_string);
+        Scierror(999, _("%s: Could not get comm rank to the node %d: %s\n"), fname, rootID, error_string);
         return 0;
+    }    
+
+    if (rank == rootID)
+    {
+        iRet = serialize_to_mpi(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
+        if (iRet)
+        {
+            Scierror(999, _("Unable to serialize data\n"));
+            return 0;
+        }
     }
 
     /* First, send the size of the data as broadcast */
@@ -77,6 +89,11 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
         return 0;
     }
 
+    if (rank != rootID)
+    {
+        piBuffer = (int*)MALLOC(sizeof(int) * iBufferSize);
+    }
+    
     /* Second, restore the data with the right size */
     iRet = MPI_Bcast(piBuffer, iBufferSize, MPI_INT, (int)rootID, MPI_COMM_WORLD);
     if (iRet != MPI_SUCCESS)
