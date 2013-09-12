@@ -53,6 +53,9 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 
 * Allow the usage of the '$' keyword in the part function.
 
+* UIWidget
+
+TODO
 
 Syntax changes
 ===============
