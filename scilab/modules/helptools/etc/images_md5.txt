@@ -430,6 +430,7 @@ _LaTeX_dst.xml_6.png=caa2ed7797bbc39b3a28cb86ce6ce771
 _LaTeX_dst.xml_7.png=55a049b8f161ae7cfeb0197d75aff967
 _LaTeX_dst.xml_8.png=e0b5525d8028e14e0b966cc618e3891f
 _LaTeX_dst.xml_9.png=55a049b8f161ae7cfeb0197d75aff967
+_LaTeX_eig.xml_1.png=2547e4ad6c49d3508def1b1e6cdc420c
 _LaTeX_erf.xml_1.png=e64af8badd1634f233888753939db01d
 _LaTeX_erfc.xml_1.png=be98f7db5bd298ff2c38bce2e7bb90dd
 _LaTeX_erfcx.xml_1.png=3e69185b6882d8edc7e54d751156dc18
