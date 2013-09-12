@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -73,20 +74,20 @@ public class Axes extends ContentLayout {
         JLabel lAutoClear = new JLabel();
         final JComboBox cAutoClear = new JComboBox();
         addLabelComboBox(panel, lAutoClear, MessagesGED.auto_clear,
-                                cAutoClear, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cAutoClear, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cAutoClear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_AUTO_CLEAR__,
-                        cAutoClear.getSelectedIndex() == 0 ? false : true);
+                    UID, GraphicObjectProperties.__GO_AUTO_CLEAR__,
+                    cAutoClear.getSelectedIndex() == 0 ? false : true);
             }
         });
         // Get the current status of the property: Auto Clear
         boolean enable = (Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_AUTO_CLEAR__);
-        cAutoClear.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_AUTO_CLEAR__);
+        cAutoClear.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -102,20 +103,20 @@ public class Axes extends ContentLayout {
         final JComboBox cAutoScale = new JComboBox();
 
         addLabelComboBox(panel, lAutoScale, MessagesGED.auto_scale,
-                                cAutoScale, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cAutoScale, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cAutoScale.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_AUTO_SCALE__,
-                        cAutoScale.getSelectedIndex() == 0 ? false : true);
+                    UID, GraphicObjectProperties.__GO_AUTO_SCALE__,
+                    cAutoScale.getSelectedIndex() == 0 ? false : true);
             }
         });
         // Get the current status of the property: Auto Scale
         boolean enable = (Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_AUTO_SCALE__);
-        cAutoScale.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_AUTO_SCALE__);
+        cAutoScale.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -133,36 +134,36 @@ public class Axes extends ContentLayout {
         final JCheckBox cAutoTicksY = new JCheckBox();
         final JCheckBox cAutoTicksZ = new JCheckBox();
         addLabel3CheckBox(panel, lAutoTicks, MessagesGED.auto_ticks,
-                cAutoTicks, cAutoTicksX, cAutoTicksY, cAutoTicksZ, LEFTMARGIN, COLUMN, ROW++);
+                          cAutoTicks, cAutoTicksX, cAutoTicksY, cAutoTicksZ, LEFTMARGIN, COLUMN, ROW++);
         cAutoTicksX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_X_AXIS_AUTO_TICKS__,
-                        cAutoTicksX.isSelected());
+                    UID, GraphicObjectProperties.__GO_X_AXIS_AUTO_TICKS__,
+                    cAutoTicksX.isSelected());
             }
         });
         cAutoTicksY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_Y_AXIS_AUTO_TICKS__,
-                        cAutoTicksY.isSelected());
+                    UID, GraphicObjectProperties.__GO_Y_AXIS_AUTO_TICKS__,
+                    cAutoTicksY.isSelected());
             }
         });
         cAutoTicksZ.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_Z_AXIS_AUTO_TICKS__,
-                        cAutoTicksZ.isSelected());
+                    UID, GraphicObjectProperties.__GO_Z_AXIS_AUTO_TICKS__,
+                    cAutoTicksZ.isSelected());
             }
         });
         // Get the current status of the property: Auto Ticks
         cAutoTicksX.setSelected((Boolean) GraphicController.getController()
                                 .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_AUTO_TICKS__));
         cAutoTicksY.setSelected((Boolean) GraphicController.getController()
-                                 .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_AUTO_TICKS__));
+                                .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_AUTO_TICKS__));
         cAutoTicksZ.setSelected((Boolean) GraphicController.getController()
                                 .getProperty(UID, GraphicObjectProperties.__GO_Z_AXIS_AUTO_TICKS__));
     }
@@ -193,7 +194,7 @@ public class Axes extends ContentLayout {
         cAxesBoundsY = new JTextField();
 
         addInnerPanel(panel, pAxesBounds, bAxesBounds, lAxesBounds,
-                cAxesBounds, MessagesGED.axes_bounds, ROW);
+                      cAxesBounds, MessagesGED.axes_bounds, ROW);
         bAxesBounds.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -203,7 +204,7 @@ public class Axes extends ContentLayout {
         int rowAxesBounds = 0;
         //Axes Bounds - X Left
         addLabelTextField(pAxesBounds, lAxesBoundsX, MessagesGED.x_left,
-                                 cAxesBoundsX, true, LEFTMARGINIP, COLUMNIP, rowAxesBounds++);
+                          cAxesBoundsX, true, LEFTMARGINIP, COLUMNIP, rowAxesBounds++);
         cAxesBoundsX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -218,7 +219,7 @@ public class Axes extends ContentLayout {
         });
         //Axes Bounds - Y Up
         addLabelTextField(pAxesBounds, lAxesBoundsY, MessagesGED.y_up,
-                                 cAxesBoundsY, true, LEFTMARGINIP, COLUMNIP, rowAxesBounds++);
+                          cAxesBoundsY, true, LEFTMARGINIP, COLUMNIP, rowAxesBounds++);
         cAxesBoundsY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -233,7 +234,7 @@ public class Axes extends ContentLayout {
         });
         //Axes Bounds - Height
         addLabelTextField(pAxesBounds, lAxesBoundsHeight, MessagesGED.height,
-                                 cAxesBoundsHeight, true, LEFTMARGINIP, COLUMNIP, rowAxesBounds++);
+                          cAxesBoundsHeight, true, LEFTMARGINIP, COLUMNIP, rowAxesBounds++);
         cAxesBoundsHeight.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -248,7 +249,7 @@ public class Axes extends ContentLayout {
         });
         //Axes Bounds - Width
         addLabelTextField(pAxesBounds, lAxesBoundsWidth, MessagesGED.width,
-                                 cAxesBoundsWidth, true, LEFTMARGINIP, COLUMNIP, rowAxesBounds++);
+                          cAxesBoundsWidth, true, LEFTMARGINIP, COLUMNIP, rowAxesBounds++);
         cAxesBoundsWidth.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -263,7 +264,7 @@ public class Axes extends ContentLayout {
         });
         //Get the current status of the property: Axes Bounds
         Double[] currentAxesBounds = (Double []) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_AXES_BOUNDS__);
+                                     .getProperty(UID, GraphicObjectProperties.__GO_AXES_BOUNDS__);
         cAxesBoundsX.setText(currentAxesBounds[0].toString());
         cAxesBoundsY.setText(currentAxesBounds[1].toString());
         cAxesBoundsWidth.setText(currentAxesBounds[2].toString());
@@ -276,7 +277,7 @@ public class Axes extends ContentLayout {
     */
     public void titleAxesBounds() {
         cAxesBounds.setText(" [" + cAxesBoundsX.getText() + " , " + cAxesBoundsY.getText() + " , "
-                                 + cAxesBoundsWidth.getText() + " , " + cAxesBoundsHeight.getText() + "]");
+                            + cAxesBoundsWidth.getText() + " , " + cAxesBoundsHeight.getText() + "]");
     }
 
     /**
@@ -289,7 +290,7 @@ public class Axes extends ContentLayout {
         value[2] = Double.parseDouble(cAxesBoundsWidth.getText());
         value[3] = Double.parseDouble(cAxesBoundsHeight.getText());
         GraphicController.getController()
-                .setProperty(UID, GraphicObjectProperties.__GO_AXES_BOUNDS__, value);
+        .setProperty(UID, GraphicObjectProperties.__GO_AXES_BOUNDS__, value);
         titleAxesBounds();
     }
 
@@ -308,38 +309,38 @@ public class Axes extends ContentLayout {
         final JCheckBox cAxesVisibleY = new JCheckBox();
         final JCheckBox cAxesVisibleZ = new JCheckBox();
         addLabel3CheckBox(panel, lAxesVisible, MessagesGED.axes_visible,
-                cAxesVisible, cAxesVisibleX, cAxesVisibleY, cAxesVisibleZ, LEFTMARGIN, COLUMN, ROW++);
+                          cAxesVisible, cAxesVisibleX, cAxesVisibleY, cAxesVisibleZ, LEFTMARGIN, COLUMN, ROW++);
         cAxesVisibleX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_X_AXIS_VISIBLE__,
-                        cAxesVisibleX.isSelected());
+                    UID, GraphicObjectProperties.__GO_X_AXIS_VISIBLE__,
+                    cAxesVisibleX.isSelected());
             }
         });
         cAxesVisibleY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_Y_AXIS_VISIBLE__,
-                        cAxesVisibleY.isSelected());
+                    UID, GraphicObjectProperties.__GO_Y_AXIS_VISIBLE__,
+                    cAxesVisibleY.isSelected());
             }
         });
         cAxesVisibleZ.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_Z_AXIS_VISIBLE__,
-                        cAxesVisibleZ.isSelected());
+                    UID, GraphicObjectProperties.__GO_Z_AXIS_VISIBLE__,
+                    cAxesVisibleZ.isSelected());
             }
         });
         // Get the current status of the property: Axes Visible
         cAxesVisibleX.setSelected((Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_VISIBLE__));
+                                  .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_VISIBLE__));
         cAxesVisibleY.setSelected((Boolean) GraphicController.getController()
-                                 .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_VISIBLE__));
+                                  .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_VISIBLE__));
         cAxesVisibleZ.setSelected((Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_Z_AXIS_VISIBLE__));
+                                  .getProperty(UID, GraphicObjectProperties.__GO_Z_AXIS_VISIBLE__));
     }
 
     /**
@@ -358,39 +359,39 @@ public class Axes extends ContentLayout {
         final JCheckBox cAxesReverseZ = new JCheckBox();
 
         addLabel3CheckBox(panel, lAxesReverse, MessagesGED.axes_reverse,
-                cAxesReverse, cAxesReverseX, cAxesReverseY, cAxesReverseZ, LEFTMARGIN, COLUMN, ROW++);
+                          cAxesReverse, cAxesReverseX, cAxesReverseY, cAxesReverseZ, LEFTMARGIN, COLUMN, ROW++);
         cAxesReverseX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_X_AXIS_REVERSE__,
-                        cAxesReverseX.isSelected());
+                    UID, GraphicObjectProperties.__GO_X_AXIS_REVERSE__,
+                    cAxesReverseX.isSelected());
             }
         });
         cAxesReverseY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_Y_AXIS_REVERSE__,
-                        cAxesReverseY.isSelected());
+                    UID, GraphicObjectProperties.__GO_Y_AXIS_REVERSE__,
+                    cAxesReverseY.isSelected());
             }
         });
         cAxesReverseZ.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_Z_AXIS_REVERSE__,
-                        cAxesReverseZ.isSelected());
+                    UID, GraphicObjectProperties.__GO_Z_AXIS_REVERSE__,
+                    cAxesReverseZ.isSelected());
             }
         });
 
         // Get the current status of the property: Axes Reverse
         cAxesReverseX.setSelected((Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_REVERSE__));
+                                  .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_REVERSE__));
         cAxesReverseY.setSelected((Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_REVERSE__));
+                                  .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_REVERSE__));
         cAxesReverseZ.setSelected((Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_Z_AXIS_REVERSE__));
+                                  .getProperty(UID, GraphicObjectProperties.__GO_Z_AXIS_REVERSE__));
     }
 
     /**
@@ -420,7 +421,7 @@ public class Axes extends ContentLayout {
         JLabel lLocationY = new JLabel();
         final JComboBox cLocationY = new JComboBox();
         addLabelComboBox(panel, lLocationY, MessagesGED.y_location, cLocationY,
-                         new String[] {"middle", "origin","left", "right"},
+                         new String[] {"middle", "origin", "left", "right"},
                          LEFTMARGIN, COLUMN, ROW++);
         cLocationY.addActionListener(new ActionListener() {
             @Override
@@ -433,10 +434,10 @@ public class Axes extends ContentLayout {
 
         // Get the current status of the property: Axis Location
         cLocationX.setSelectedIndex((Integer) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_LOCATION__));
+                                    .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_LOCATION__));
 
         cLocationY.setSelectedIndex((Integer) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_LOCATION__) - 2);
+                                    .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_LOCATION__) - 2);
     }
 
     /**
@@ -452,20 +453,21 @@ public class Axes extends ContentLayout {
         final JComboBox cBox = new JComboBox();
 
         addLabelComboBox(panel, lBox, MessagesGED.box,
-                                cBox, new String[] {MessagesGED.off, MessagesGED.on,
-                                                    MessagesGED.hidden_axes, MessagesGED.back_half},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cBox, new String[] {MessagesGED.off, MessagesGED.on,
+                                             MessagesGED.hidden_axes, MessagesGED.back_half
+                                            },
+                         LEFTMARGIN, COLUMN, ROW++);
         cBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_BOX_TYPE__,
-                        cBox.getSelectedIndex());
+                    UID, GraphicObjectProperties.__GO_BOX_TYPE__,
+                    cBox.getSelectedIndex());
             }
         });
         //Get the current status of the property: Box Type
         cBox.setSelectedIndex((Integer) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_BOX_TYPE__));
+                              .getProperty(UID, GraphicObjectProperties.__GO_BOX_TYPE__));
     }
 
     /**
@@ -480,20 +482,20 @@ public class Axes extends ContentLayout {
         JLabel lFilled = new JLabel();
         final JComboBox cFilled = new JComboBox();
         addLabelComboBox(panel, lFilled, MessagesGED.filled,
-                                cFilled, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cFilled, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cFilled.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_FILLED__,
-                        cFilled.getSelectedIndex() == 0 ? false : true);
+                    UID, GraphicObjectProperties.__GO_FILLED__,
+                    cFilled.getSelectedIndex() == 0 ? false : true);
             }
         });
         // Get the current status of the property: Filled
         boolean enable = (Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_FILLED__);
-        cFilled.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_FILLED__);
+        cFilled.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -509,19 +511,19 @@ public class Axes extends ContentLayout {
         final JComboBox cGridPosition = new JComboBox();
 
         addLabelComboBox(panel, lGridPosition, MessagesGED.grid_position,
-                                cGridPosition, new String[] {MessagesGED.background, MessagesGED.foreground},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cGridPosition, new String[] {MessagesGED.background, MessagesGED.foreground},
+                         LEFTMARGIN, COLUMN, ROW++);
         cGridPosition.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_GRID_POSITION__,
-                        cGridPosition.getSelectedIndex());
+                    UID, GraphicObjectProperties.__GO_GRID_POSITION__,
+                    cGridPosition.getSelectedIndex());
             }
         });
         //Get the current status of the property: Grid Position
         cGridPosition.setSelectedIndex((Integer) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_GRID_POSITION__));
+                                       .getProperty(UID, GraphicObjectProperties.__GO_GRID_POSITION__));
     }
 
     /**
@@ -543,7 +545,7 @@ public class Axes extends ContentLayout {
         JButton okButton = new JButton();
 
         String parentFigure = (String) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+                              .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
         addColorDialog(dialog, chooser, okButton, cgridColor, UID,
                        parentFigure, "properties.Axes", "setGridColorX", this);
@@ -552,13 +554,13 @@ public class Axes extends ContentLayout {
                            dialog, cgridColor, pgridColor, bgridColor,
                            LEFTMARGIN, COLUMN, ROW++);
 
-            // Get the current status of the property: X Axis Grid Color
-            Integer scilabColor = (Integer) GraphicController.getController()
-                  .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_GRID_COLOR__);
-            Double[] rgbColor = ColorMapHandler.getRGBcolor(parentFigure, scilabColor);
-            cgridColor.setBackground(new Color(rgbColor[0].intValue(),
-                                               rgbColor[1].intValue(),
-                                               rgbColor[2].intValue()));
+        // Get the current status of the property: X Axis Grid Color
+        Integer scilabColor = (Integer) GraphicController.getController()
+                              .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_GRID_COLOR__);
+        Double[] rgbColor = ColorMapHandler.getRGBcolor(parentFigure, scilabColor);
+        cgridColor.setBackground(new Color(rgbColor[0].intValue(),
+                                           rgbColor[1].intValue(),
+                                           rgbColor[2].intValue()));
     }
 
     /**
@@ -568,7 +570,7 @@ public class Axes extends ContentLayout {
     */
     public void setGridColorX(int scilabColor, java.lang.String UID) {
         GraphicController.getController().setProperty(
-                UID, GraphicObjectProperties.__GO_X_AXIS_GRID_COLOR__, scilabColor);
+            UID, GraphicObjectProperties.__GO_X_AXIS_GRID_COLOR__, scilabColor);
     }
 
     /**
@@ -590,7 +592,7 @@ public class Axes extends ContentLayout {
         JButton okButton = new JButton();
 
         String parentFigure = (String) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+                              .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
         addColorDialog(dialog, chooser, okButton, cgridColor, UID,
                        parentFigure, "properties.Axes", "setGridColorY", this);
@@ -599,13 +601,13 @@ public class Axes extends ContentLayout {
                            dialog, cgridColor, pgridColor, bgridColor,
                            LEFTMARGIN, COLUMN, ROW++);
 
-            // Get the current status of the property: Y Axis Grid Color
-            Integer scilabColor = (Integer) GraphicController.getController()
-                  .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_GRID_COLOR__);
-            Double[] rgbColor = ColorMapHandler.getRGBcolor(parentFigure, scilabColor);
-            cgridColor.setBackground(new Color(rgbColor[0].intValue(),
-                                               rgbColor[1].intValue(),
-                                               rgbColor[2].intValue()));
+        // Get the current status of the property: Y Axis Grid Color
+        Integer scilabColor = (Integer) GraphicController.getController()
+                              .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_GRID_COLOR__);
+        Double[] rgbColor = ColorMapHandler.getRGBcolor(parentFigure, scilabColor);
+        cgridColor.setBackground(new Color(rgbColor[0].intValue(),
+                                           rgbColor[1].intValue(),
+                                           rgbColor[2].intValue()));
     }
 
     /**
@@ -615,7 +617,7 @@ public class Axes extends ContentLayout {
     */
     public void setGridColorY(int scilabColor, java.lang.String UID) {
         GraphicController.getController().setProperty(
-                UID, GraphicObjectProperties.__GO_Y_AXIS_GRID_COLOR__, scilabColor);
+            UID, GraphicObjectProperties.__GO_Y_AXIS_GRID_COLOR__, scilabColor);
     }
 
     /**
@@ -637,7 +639,7 @@ public class Axes extends ContentLayout {
         JButton okButton = new JButton();
 
         String parentFigure = (String) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+                              .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
 
         addColorDialog(colorDialog, colorChooser, okButton, cHiddenAxisColor, UID,
                        parentFigure, "properties.ContouredObject", "setHiddenAxisColor", this);
@@ -646,13 +648,13 @@ public class Axes extends ContentLayout {
                            colorDialog, cHiddenAxisColor, pHiddenAxisColor, bHiddenAxisColor,
                            LEFTMARGIN, COLUMN, ROW++);
 
-            // Get the current status of the property: Hidden Axis Color
-            Integer scilabColor = (Integer) GraphicController.getController()
-                  .getProperty(UID, GraphicObjectProperties.__GO_HIDDEN_AXIS_COLOR__);
-            Double[] rgbColor = ColorMapHandler.getRGBcolor(parentFigure, scilabColor);
-            cHiddenAxisColor.setBackground(new Color(rgbColor[0].intValue(),
-                                                     rgbColor[1].intValue(),
-                                                     rgbColor[2].intValue()));
+        // Get the current status of the property: Hidden Axis Color
+        Integer scilabColor = (Integer) GraphicController.getController()
+                              .getProperty(UID, GraphicObjectProperties.__GO_HIDDEN_AXIS_COLOR__);
+        Double[] rgbColor = ColorMapHandler.getRGBcolor(parentFigure, scilabColor);
+        cHiddenAxisColor.setBackground(new Color(rgbColor[0].intValue(),
+                                       rgbColor[1].intValue(),
+                                       rgbColor[2].intValue()));
     }
 
     /**
@@ -662,7 +664,24 @@ public class Axes extends ContentLayout {
     */
     public void setHiddenAxisColor(int scilabColor, java.lang.String UID) {
         GraphicController.getController().setProperty(
-                UID, GraphicObjectProperties.__GO_HIDDEN_AXIS_COLOR__, scilabColor);
+            UID, GraphicObjectProperties.__GO_HIDDEN_AXIS_COLOR__, scilabColor);
+    }
+
+    /**
+     * Used to check if the bounds are strictly positive
+     * to use Log Scale
+     *
+     * @param UID the axes UID
+     * @return boolean[3] (x, y, z), true if the bounds are positive false otherwise
+     */
+    private boolean[] checkBounds(String UID) {
+        Double[] bounds = (Double[])GraphicController.getController().getProperty(
+                              UID, GraphicObjectProperties.__GO_DATA_BOUNDS__);
+        boolean[] flag = new boolean[3];
+        flag[0] = (bounds[0] > 0. && bounds[1] > 0.);
+        flag[1] = (bounds[2] > 0. && bounds[3] > 0.);
+        flag[2] = (bounds[4] > 0. && bounds[5] > 0.);
+        return flag;
     }
 
     /**
@@ -680,38 +699,56 @@ public class Axes extends ContentLayout {
         final JCheckBox cLogFlagsY = new JCheckBox();
         final JCheckBox cLogFlagsZ = new JCheckBox();
         addLabel3CheckBox(panel, lLogFlags, MessagesGED.log_flags,
-                cLogFlags, cLogFlagsX, cLogFlagsY, cLogFlagsZ, LEFTMARGIN, COLUMN, ROW++);
+                          cLogFlags, cLogFlagsX, cLogFlagsY, cLogFlagsZ, LEFTMARGIN, COLUMN, ROW++);
         cLogFlagsX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                GraphicController.getController().setProperty(
+                boolean[] check = checkBounds(UID);
+                if (check[0]) {
+                    GraphicController.getController().setProperty(
                         UID, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__,
                         cLogFlagsX.isSelected());
+                } else {
+                    JOptionPane.showConfirmDialog(null, MessagesGED.warning_logscale, MessagesGED.warning, JOptionPane.DEFAULT_OPTION);
+                    cLogFlagsX.setSelected(false);
+                }
             }
         });
         cLogFlagsY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                GraphicController.getController().setProperty(
+                boolean[] check = checkBounds(UID);
+                if (check[1]) {
+                    GraphicController.getController().setProperty(
                         UID, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__,
                         cLogFlagsY.isSelected());
+                } else {
+                    JOptionPane.showConfirmDialog(null, MessagesGED.warning_logscale, MessagesGED.warning, JOptionPane.DEFAULT_OPTION);
+                    cLogFlagsX.setSelected(false);
+                }
             }
         });
         cLogFlagsZ.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                GraphicController.getController().setProperty(
+                boolean[] check = checkBounds(UID);
+                if (check[2]) {
+                    GraphicController.getController().setProperty(
                         UID, GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__,
                         cLogFlagsZ.isSelected());
+                } else {
+                    JOptionPane.showConfirmDialog(null, MessagesGED.warning_logscale, MessagesGED.warning, JOptionPane.DEFAULT_OPTION);
+                    cLogFlagsX.setSelected(false);
+                }
             }
         });
         // Get the current status of the property: Log Flags
         cLogFlagsX.setSelected((Boolean) GraphicController.getController()
-                              .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__));
+                               .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__));
         cLogFlagsY.setSelected((Boolean) GraphicController.getController()
-                              .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__));
+                               .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__));
         cLogFlagsZ.setSelected((Boolean) GraphicController.getController()
-                              .getProperty(UID, GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__));
+                               .getProperty(UID, GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__));
     }
 
     /**
@@ -732,7 +769,7 @@ public class Axes extends ContentLayout {
 
         //Components of the property: X Label
         addLabelTextField(panel, lXLabel, MessagesGED.x_label,
-                                 cXLabel, true, LEFTMARGIN, COLUMN, ROW++);
+                          cXLabel, true, LEFTMARGIN, COLUMN, ROW++);
         cXLabel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -748,7 +785,7 @@ public class Axes extends ContentLayout {
 
         //Components of the property: Y Label
         addLabelTextField(panel, lYLabel, MessagesGED.y_label,
-                                 cYLabel, true, LEFTMARGIN, COLUMN, ROW++);
+                          cYLabel, true, LEFTMARGIN, COLUMN, ROW++);
         cYLabel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -764,7 +801,7 @@ public class Axes extends ContentLayout {
 
         //Components of the property: Z Label
         addLabelTextField(panel, lZLabel, MessagesGED.z_label,
-                                 cZLabel, true, LEFTMARGIN, COLUMN, ROW++);
+                          cZLabel, true, LEFTMARGIN, COLUMN, ROW++);
         cZLabel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -780,23 +817,23 @@ public class Axes extends ContentLayout {
 
         // Get the current status of the property: X Label
         String labelID = (String) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                         .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
         String[] label = (String[]) GraphicController.getController()
-                    .getProperty(labelID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+                         .getProperty(labelID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
         cXLabel.setText(label[0]);
 
         // Get the current status of the property: Y Label
         labelID = (String) GraphicController.getController()
-                   .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                  .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
         label = (String[]) GraphicController.getController()
-                    .getProperty(labelID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+                .getProperty(labelID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
         cYLabel.setText(label[0]);
 
         // Get the current status of the property: Z Label
         labelID = (String) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                  .getProperty(UID, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
         label = (String[]) GraphicController.getController()
-                    .getProperty(labelID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+                .getProperty(labelID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
         cZLabel.setText(label[0]);
     }
 
@@ -807,25 +844,25 @@ public class Axes extends ContentLayout {
     private void updateLabel(int axis, String UID) {
         String[] text = new String[1];
         String axisLabel = null;
-        switch (axis){
+        switch (axis) {
             case 0:
                 axisLabel = (String) GraphicController.getController()
-                         .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                            .getProperty(UID, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
                 text[0] = cXLabel.getText();
                 break;
             case 1:
                 axisLabel = (String) GraphicController.getController()
-                         .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                            .getProperty(UID, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
                 text[0] = cYLabel.getText();
                 break;
             case 2:
                 axisLabel = (String) GraphicController.getController()
-                         .getProperty(UID, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                            .getProperty(UID, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
                 text[0] = cZLabel.getText();
                 break;
         }
         GraphicController.getController()
-                .setProperty(axisLabel, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
+        .setProperty(axisLabel, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
     }
 
     /**
@@ -853,7 +890,7 @@ public class Axes extends ContentLayout {
         cMarginsBottom = new JTextField();
 
         addInnerPanel(panel, pMargins, bMargins, lMargins,
-                cMargins, MessagesGED.margins, ROW);
+                      cMargins, MessagesGED.margins, ROW);
         bMargins.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -863,7 +900,7 @@ public class Axes extends ContentLayout {
         int rowAxesMargins = 0;
         //Margins - Left
         addLabelTextField(pMargins, lMarginsLeft, MessagesGED.left,
-                                 cMarginsLeft, true, LEFTMARGINIP, COLUMNIP, rowAxesMargins++);
+                          cMarginsLeft, true, LEFTMARGINIP, COLUMNIP, rowAxesMargins++);
         cMarginsLeft.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -878,7 +915,7 @@ public class Axes extends ContentLayout {
         });
         //Margins - Right
         addLabelTextField(pMargins, lMarginsRight, MessagesGED.right,
-                                 cMarginsRight, true, LEFTMARGINIP, COLUMNIP, rowAxesMargins++);
+                          cMarginsRight, true, LEFTMARGINIP, COLUMNIP, rowAxesMargins++);
         cMarginsRight.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -893,7 +930,7 @@ public class Axes extends ContentLayout {
         });
         //Margins - Top
         addLabelTextField(pMargins, lMarginsTop, MessagesGED.top,
-                                 cMarginsTop, true, LEFTMARGINIP, COLUMNIP, rowAxesMargins++);
+                          cMarginsTop, true, LEFTMARGINIP, COLUMNIP, rowAxesMargins++);
         cMarginsTop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -908,7 +945,7 @@ public class Axes extends ContentLayout {
         });
         //Margins - Bottom
         addLabelTextField(pMargins, lMarginsBottom, MessagesGED.bottom,
-                                 cMarginsBottom, true, LEFTMARGINIP, COLUMNIP, rowAxesMargins++);
+                          cMarginsBottom, true, LEFTMARGINIP, COLUMNIP, rowAxesMargins++);
         cMarginsBottom.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -923,7 +960,7 @@ public class Axes extends ContentLayout {
         });
         //Get the current status of the property: Margins
         Double[] currentMargins = (Double []) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_MARGINS__);
+                                  .getProperty(UID, GraphicObjectProperties.__GO_MARGINS__);
         cMarginsLeft.setText(currentMargins[0].toString());
         cMarginsRight.setText(currentMargins[1].toString());
         cMarginsTop.setText(currentMargins[2].toString());
@@ -936,7 +973,7 @@ public class Axes extends ContentLayout {
     */
     public void titleMargins() {
         cMargins.setText(" [" + cMarginsLeft.getText() + " , " + cMarginsRight.getText() + " , "
-                             + cMarginsTop.getText() + " , " + cMarginsBottom.getText() + "]");
+                         + cMarginsTop.getText() + " , " + cMarginsBottom.getText() + "]");
     }
 
     /**
@@ -949,7 +986,7 @@ public class Axes extends ContentLayout {
         value[2] = Double.parseDouble(cMarginsTop.getText());
         value[3] = Double.parseDouble(cMarginsBottom.getText());
         GraphicController.getController()
-                .setProperty(UID, GraphicObjectProperties.__GO_MARGINS__, value);
+        .setProperty(UID, GraphicObjectProperties.__GO_MARGINS__, value);
         titleMargins();
     }
 
@@ -1033,7 +1070,7 @@ public class Axes extends ContentLayout {
     */
     public void titleSubTicks() {
         cSubTicks.setText(" [" + cSubTicksX.getText() + " , "
-                               + cSubTicksY.getText() + "]");
+                          + cSubTicksY.getText() + "]");
     }
 
     /**
@@ -1042,14 +1079,14 @@ public class Axes extends ContentLayout {
     private void updateSubTicks(String UID) {
         try {
             GraphicController.getController().setProperty(
-                    UID,
-                    GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__,
-                    Integer.parseInt(cSubTicksX.getText()));
+                UID,
+                GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__,
+                Integer.parseInt(cSubTicksX.getText()));
 
             GraphicController.getController().setProperty(
-                    UID,
-                    GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__,
-                    Integer.parseInt(cSubTicksY.getText()));
+                UID,
+                GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__,
+                Integer.parseInt(cSubTicksY.getText()));
         } catch (NumberFormatException e) {
             getSubTicks(UID);
         }
@@ -1069,20 +1106,20 @@ public class Axes extends ContentLayout {
         final JComboBox cTightLimits = new JComboBox();
 
         addLabelComboBox(panel, lTightLimits, MessagesGED.tight_limits,
-                                cTightLimits, new String[] {MessagesGED.off , MessagesGED.on},
-                                LEFTMARGIN, COLUMN, ROW++);
+                         cTightLimits, new String[] {MessagesGED.off , MessagesGED.on},
+                         LEFTMARGIN, COLUMN, ROW++);
         cTightLimits.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 GraphicController.getController().setProperty(
-                        UID, GraphicObjectProperties.__GO_TIGHT_LIMITS__,
-                        cTightLimits.getSelectedIndex() == 0 ? false : true);
+                    UID, GraphicObjectProperties.__GO_TIGHT_LIMITS__,
+                    cTightLimits.getSelectedIndex() == 0 ? false : true);
             }
         });
         //Get the current status of the property: Tight Limits
         boolean enable = (Boolean) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_TIGHT_LIMITS__);
-        cTightLimits.setSelectedIndex(enable?1:0);
+                         .getProperty(UID, GraphicObjectProperties.__GO_TIGHT_LIMITS__);
+        cTightLimits.setSelectedIndex(enable ? 1 : 0);
     }
 
     /**
@@ -1098,7 +1135,7 @@ public class Axes extends ContentLayout {
         final JTextField cTitle = new JTextField();
 
         addLabelTextField(panel, lTitle, MessagesGED.title,
-                                 cTitle, true, LEFTMARGIN, COLUMN, ROW++);
+                          cTitle, true, LEFTMARGIN, COLUMN, ROW++);
         cTitle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -1113,9 +1150,9 @@ public class Axes extends ContentLayout {
         });
         // Get the current status of the property: Title
         String titleID = (String) GraphicController.getController()
-                                .getProperty(UID, GraphicObjectProperties.__GO_TITLE__);
+                         .getProperty(UID, GraphicObjectProperties.__GO_TITLE__);
         String[] title = (String[]) GraphicController.getController()
-                    .getProperty(titleID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
+                         .getProperty(titleID, GraphicObjectProperties.__GO_TEXT_STRINGS__);
         cTitle.setText(title[0]);
     }
 
@@ -1124,9 +1161,9 @@ public class Axes extends ContentLayout {
     */
     private void updateTitle(String UID, JTextField cTitle) {
         String titleID = (String) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_TITLE__);
+                         .getProperty(UID, GraphicObjectProperties.__GO_TITLE__);
         String[] text = new String[] {cTitle.getText()};
         GraphicController.getController()
-                .setProperty(titleID, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
+        .setProperty(titleID, GraphicObjectProperties.__GO_TEXT_STRINGS__, text);
     }
 }

@@ -78,6 +78,8 @@ public class MessagesGED {
     public static final String theta = Messages.gettext("Theta");
 
     public static final String ticks = Messages.gettext("Ticks");
+    public static final String warning = Messages.gettext("Warning");
+    public static final String warning_logscale = Messages.gettext("The data bounds from the axis must be strictly positive to be changed to logarithmic scale.");
 
     //ColorDialog
     public static final String choose_background_color = Messages.gettext("Choose Background Color");
