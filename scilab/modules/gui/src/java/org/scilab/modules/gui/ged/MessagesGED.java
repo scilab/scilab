@@ -32,6 +32,7 @@ public class MessagesGED {
     public static final String champ = Messages.gettext("Champ");
     public static final String datatip = Messages.gettext("Datatip");
     public static final String polyline = Messages.gettext("Polyline");
+    public static final String fec = Messages.gettext("Fec");
     public static final String figure = Messages.gettext("Figure");
     public static final String legend = Messages.gettext("Legend");
     public static final String segs = Messages.gettext("Segs");
@@ -119,6 +120,11 @@ public class MessagesGED {
     public static final String bar = Messages.gettext("bar");
     public static final String arrowed = Messages.gettext("arrowed");
     public static final String filled = Messages.gettext("filled");
+    public static final String min = Messages.gettext("Min");
+    public static final String max = Messages.gettext("Max");
+    public static final String color_range = Messages.gettext("Color Range");
+    public static final String outside_color = Messages.gettext("Outside Color");
+    public static final String z_bounds = Messages.gettext("Z Bounds");
 
     public static final String pixel_drawing_mode = Messages.gettext("Pixel Drawing Mode");
     public static final String rotation_style = Messages.gettext("Rotation Style");
