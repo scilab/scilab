@@ -615,6 +615,8 @@ Bug fixes
 
 * Bug #12800 fixed - Typo fix in Polynomials doc.
 
+* Bug #12807 fixed - Display of showprofile improved.
+
 * Bug #12808 fixed - Add missing </td> in doc generation (note, warning, ...).
 
 * Bug #12813 fixed - flipdim() function extended to any type of input data.
