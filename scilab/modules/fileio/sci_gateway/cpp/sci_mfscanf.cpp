@@ -29,6 +29,8 @@ extern "C"
 #include "do_xxscanf.h"
 #include "scanf_functions.h"
 #include "StringConvert.h"
+#include "mtell.h"
+#include "mseek.h"
 }
 
 types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -36,7 +38,6 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     int iFile                   = -1; //default file : last opened file
     int size                    = (int)in.size();
     int iNiter                  = 1;
-    int iLinesRead              = 0;
     int iErr                    = 0;
     wchar_t* wcsFormat          = NULL;
     int dimsArray[2]            = {1, 1};
@@ -47,7 +48,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     int ncol        = 0;
     int retval      = 0;
     int retval_s    = 0;
-    int rowcount    = -1;
+    int rowcount    = 0;
     rec_entry buf[MAXSCAN];
     entry *data;
     sfdir type[MAXSCAN], type_s[MAXSCAN];
@@ -108,19 +109,12 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    if (iNiter == -1)
-    {
-        iNiter = pFile->getCountLines();
-    }
-
     FILE* fDesc = pFile->getFiledesc();
     nrow = iNiter;
-    while ((iNiter > 0 && ++rowcount < iNiter))
+    while ((iNiter == -1) || (rowcount < iNiter))
     {
-        if ((iNiter >= 0) && (rowcount >= iNiter))
-        {
-            break;
-        }
+        // get current position in file
+        int iCurrentPos = mtell(iFile);
 
         // get data
         int err = do_xxscanf(L"mfscanf", fDesc, wcsFormat, &args, NULL, &retval, buf, type);
@@ -130,27 +124,26 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
         }
 
         err = Store_Scan(&nrow, &ncol, type_s, type, &retval, &retval_s, buf, &data, rowcount, args);
-        if (err < 0)
+        if (err == DO_XXPRINTF_MEM_LACK)
         {
-            switch (err)
-            {
-                case DO_XXPRINTF_MISMATCH:
-                    break;
-
-                case DO_XXPRINTF_MEM_LACK:
-                    Free_Scan(rowcount, ncol, type_s, &data);
-                    Scierror(999, _("%s: No more memory.\n"), "mfscanf");
-                    return types::Function::Error;
-                    break;
-            }
-
-            if (err == DO_XXPRINTF_MISMATCH)
-            {
-                break;
-            }
+            Free_Scan(rowcount, ncol, type_s, &data);
+            Scierror(999, _("%s: No more memory.\n"), "mfscanf");
+            return types::Function::Error;
+        }
+        else if (err == DO_XXPRINTF_MISMATCH)
+        {
+            // go back to the last position
+            mseek(iFile, iCurrentPos, SEEK_SET);
+            break;
         }
 
-        iLinesRead++;
+        rowcount++;
+
+        // EOF reached
+        if (retval == -1)
+        {
+            break;
+        }
     }
 
     unsigned int uiFormatUsed = 0;
@@ -161,8 +154,8 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
             case SF_C:
             case SF_S:
             {
-                types::String* ps = new types::String(iLinesRead, 1);
-                for (int j = 0 ; j < iLinesRead ; j++)
+                types::String* ps = new types::String(rowcount, 1);
+                for (int j = 0 ; j < rowcount ; j++)
                 {
                     ps->set(j, data[i + ncol * j].s);
                 }
@@ -179,8 +172,8 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
             case SF_LF:
             case SF_F:
             {
-                types::Double* p = new types::Double(iLinesRead, 1);
-                for (int j = 0; j < iLinesRead; j++)
+                types::Double* p = new types::Double(rowcount, 1);
+                for (int j = 0; j < rowcount; j++)
                 {
                     p->set(j, data[i + ncol * j].d);
                 }
@@ -195,7 +188,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     if (_iRetCount > 1)
     {
         types::Double* pDouble = new types::Double(2, dimsArray);
-        pDouble->set(0, retval);
+        pDouble->set(0, retval_s);
         out.push_back(pDouble);
 
         for (int i = 0; i < sizeOfVector; i++)
