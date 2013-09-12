@@ -47,6 +47,6 @@ function [lt,grad]=iirgroup(p,r,theta,omega,wt,td)
     //
     //CRITERE D'ERREUR EN LE RETARD DE GROUPE ET SON GRADIENT
     t=grp-td;t1=t^(2*p);t1=t1.*wt;lt=sum(t1);
-    t1=(t1./a)*2*p;
+    t1=(t1./t)*2*p;
     grad=[grrgrp*t1' grtgrp*t1'];
 endfunction
