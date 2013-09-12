@@ -192,7 +192,11 @@ static void TermPrintf(char *text)
 /*
 ** -*- MAIN -*-
 */
+#if defined(_WIN32) && !defined(WITHOUT_GUI)
+int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR szCmdLine, int iCmdShow)
+#else
 int main(int argc, char *argv[])
+#endif
 {
     int iRet = 0;
     ScilabEngineInfo* pSEI = InitScilabEngineInfo();
@@ -205,7 +209,24 @@ int main(int argc, char *argv[])
     setScilabMode(SCILAB_STD);
 #endif
 
+#if defined(_WIN32) && !defined(WITHOUT_GUI)
+    {
+        LPSTR my_argv[256];
+        int nArgs = 0;
+        LPWSTR *szArglist = CommandLineToArgvW(GetCommandLineW(), &nArgs);
+        if (szArglist)
+        {
+            for (int i = 0; i < nArgs; i++)
+            {
+                my_argv[i] = wide_string_to_UTF8(szArglist[i]);
+            }
+            LocalFree(szArglist);
+        }
+        get_option(nArgs, my_argv, pSEI);
+    }
+#else
     get_option(argc, argv, pSEI);
+#endif
 
     // if WITHOUT_GUI is defined
     // force Terminal IO -> Terminal IO + StartScilabEngine
