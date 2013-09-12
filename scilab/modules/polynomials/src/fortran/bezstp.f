@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       subroutine bezstp(p1,n1,p2,n2,a,na,u,nu,l,x,v,w,best,ipb,errr)
       double precision a(na,*),u(nu,*),x(na,*),v(nu,*),p1(*),p2(*)
       integer ipb(6)

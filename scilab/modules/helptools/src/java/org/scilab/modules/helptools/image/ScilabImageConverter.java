@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,18 +15,14 @@ package org.scilab.modules.helptools.image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.Map;
 
 import org.scilab.modules.commons.ScilabCommons;
-import org.scilab.modules.helptools.HTMLDocbookTagConverter;
+import org.scilab.modules.helptools.DocbookTagConverter;
 
 /**
  * Scilab code to PNG converter
@@ -34,11 +30,10 @@ import org.scilab.modules.helptools.HTMLDocbookTagConverter;
 public class ScilabImageConverter implements ExternalImageConverter {
 
     private static final byte[] BOM = { (byte) 0xEF, (byte) 0xBB, (byte) 0xBF };
-    private static ScilabImageConverter instance;
     private final StringBuilder buffer;
-    private final HTMLDocbookTagConverter conv;
+    private final DocbookTagConverter conv;
 
-    private ScilabImageConverter(HTMLDocbookTagConverter conv) {
+    public ScilabImageConverter(DocbookTagConverter conv) {
         buffer = new StringBuilder(8192);
         this.conv = conv;
     }
@@ -54,14 +49,14 @@ public class ScilabImageConverter implements ExternalImageConverter {
         return false;
     }
 
-    public static String getFileWithScilabCode() {
-        if (instance.buffer.length() != 0) {
+    public String getFileWithScilabCode() {
+        if (buffer.length() != 0) {
             try {
                 File f = File.createTempFile("help-", ".sce", new File(ScilabCommons.getTMPDIR()));
                 FileOutputStream fos = new FileOutputStream(f);
                 Writer out = new BufferedWriter(new OutputStreamWriter(fos, "UTF-8"));
                 fos.write(BOM);
-                out.write(instance.buffer.toString());
+                out.write(buffer.toString());
                 out.flush();
 
                 out.close();
@@ -70,37 +65,17 @@ public class ScilabImageConverter implements ExternalImageConverter {
                 return f.getAbsolutePath();
             } catch (Exception e) {
                 System.err.println("Cannot generate the file with Scilab code to execute:\n" + e);
-            } finally {
-                instance = null;
             }
         }
 
-        instance = null;
-
         return null;
-    }
-
-    /**
-     * Since this a singleton class...
-     * @return this
-     */
-    public static ScilabImageConverter getInstance(HTMLDocbookTagConverter conv) {
-        if (instance == null) {
-            instance = new ScilabImageConverter(conv);
-        }
-
-        return instance;
-    }
-
-    public static ScilabImageConverter getInstance() {
-        return instance;
     }
 
     /**
      * {@inheritDoc}
      */
     public String convertToImage(String currentFile, String code, Map<String, String> attributes, File imageFile, String imageName) {
-        return convertToPNG(currentFile, code, imageFile, imageName);
+        return convertToPNG(currentFile, code, attributes, imageFile, imageName);
     }
 
     /**
@@ -118,7 +93,7 @@ public class ScilabImageConverter implements ExternalImageConverter {
 
             in.close();
 
-            return convertToPNG(code.getName(), buffer.toString(), imageFile, imageName);
+            return convertToPNG(code.getName(), buffer.toString(), attributes, imageFile, imageName);
         } catch (Exception e) {
             System.err.println("Problem when exporting Scilab code to " + imageFile + "!\n" + e.toString());
         }
@@ -126,7 +101,7 @@ public class ScilabImageConverter implements ExternalImageConverter {
         return null;
     }
 
-    private final String convertToPNG(String currentFile, String code, File imageFile, String imageName) {
+    private final String convertToPNG(String currentFile, String code, Map<String, String> attributes, File imageFile, String imageName) {
         buffer.append("function _generate_image_from_doc\n");
         buffer.append("__olddrv__=driver();\n");
         buffer.append("disp(\"Generate image " + imageName + " from Scilab code from file " + new File(currentFile).getName() + "\");");
@@ -141,76 +116,6 @@ public class ScilabImageConverter implements ExternalImageConverter {
         buffer.append("_generate_image_from_doc();\n");
         buffer.append("clear _generate_image_from_doc;\n");
 
-        return getHTMLCodeToReturn(code, "<img src=\'" + conv.getBaseImagePath() + imageName + "\'/>");
-    }
-
-    public String getHTMLCodeToReturn(String code, String imageTag) {
-        if (conv.getGenerationType() == HTMLDocbookTagConverter.GenerationType.WEB) {
-            /* Prepare the code for the html inclusion */
-            code = convertCode(code);
-            /* Provide a tooltip */
-            return "<div rel='tooltip' title='" + code + "'>" + imageTag + "</div>";
-        } else {
-            /* No tooltip in the javahelp browser ...
-             * too limited html capabilities */
-            return imageTag;
-        }
-    }
-
-    private static final String convertCode(String code) {
-        if (code == null || code.length() == 0) {
-            return "";
-        }
-
-        StringBuffer buffer = new StringBuffer(2 * code.length());
-        int start = 0;
-        int end = code.length() - 1;
-        char c = code.charAt(0);
-
-        // first we trim
-        while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
-            if (start < end) {
-                c = code.charAt(++start);
-            } else {
-                break;
-            }
-        }
-        c = code.charAt(end);
-        while (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
-            if (end > 0) {
-                c = code.charAt(--end);
-            } else {
-                break;
-            }
-        }
-
-        // replace chars by their html entities equivalent
-        for (int j = start; j <= end; j++) {
-            c = code.charAt(j);
-            switch (c) {
-                case '&':
-                    buffer.append("&amp;");
-                    break;
-                case '<':
-                    buffer.append("&lt;");
-                    break;
-                case '>':
-                    buffer.append("&gt;");
-                    break;
-                case '\n':
-                    buffer.append("<br />");
-                    break;
-                case '\'':
-                    buffer.append("&#039;");
-                    break;
-                case '\"':
-                    buffer.append("&quot;");
-                    break;
-                default:
-                    buffer.append(c);
-            }
-        }
-
-        return buffer.toString();
+        return conv.generateImageCode(code, conv.getBaseImagePath() + imageName, attributes);
     }
 }

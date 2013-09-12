@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #include <stdlib.h>
@@ -482,6 +482,22 @@ int gw_dynamic_uiwidget(void)
                               &ptr_gw_uiwidget);
 }
 /*--------------------------------------------------------------------------*/
+/* external_objects_java module */
+#define EXTERNAL_OBJECTS_JAVA_MODULE_NAME "external_objects_java"
+static DynLibHandle hExternal_Objects_JavaLib = NULL;
+static PROC_GATEWAY ptr_gw_external_objects_java = NULL;
+static char* dynlibname_external_objects_java = NULL;
+static char* gatewayname_external_objects_java = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_external_objects_java(void)
+{
+    return gw_dynamic_generic(EXTERNAL_OBJECTS_JAVA_MODULE_NAME,
+                              &dynlibname_external_objects_java,
+                              &gatewayname_external_objects_java,
+                              &hExternal_Objects_JavaLib,
+                              &ptr_gw_external_objects_java);
+}
+/*--------------------------------------------------------------------------*/
 void freeAllDynamicGateways(void)
 {
     freeDynamicGateway(&dynlibname_special_functions,
@@ -614,6 +630,12 @@ void freeAllDynamicGateways(void)
                        &gatewayname_uiwidget,
                        &hUIWidgetLib,
                        &ptr_gw_uiwidget);
+
+    freeDynamicGateway(&dynlibname_external_objects_java,
+                       &gatewayname_external_objects_java,
+                       &hExternal_Objects_JavaLib,
+                       &ptr_gw_external_objects_java);
+
 }
 /*--------------------------------------------------------------------------*/
 

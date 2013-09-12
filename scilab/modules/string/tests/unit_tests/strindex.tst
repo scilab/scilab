@@ -123,8 +123,6 @@ if strindex('abcc'                                    ,'/^abc/'                 
 if strindex('aabc'                                    ,'/^abc$/'                               ,'r') <>  []  then pause,end
 if strindex('aabc'                                    ,'/abc$/'                                ,'r') <>  2   then pause,end
 if strindex('aabcd'                                   ,'/abc$/'                                ,'r') <>  []  then pause,end
-if strindex('abc'                                     ,'/^/'                               ,'r') <>  1   then pause,end
-if strindex('abc'                                     ,'/$/'                               ,'r') <>  4   then pause,end
 if strindex('abc'                                     ,'/a.c/'                                 ,'r') <>  1   then pause,end
 if strindex('axc'                                     ,'/a.c/'                                 ,'r') <>  1   then pause,end
 if strindex('axyzc'                                   ,'/a.*c/'                                ,'r') <>  1   then pause,end
@@ -191,7 +189,7 @@ if strindex('aabbabc'                                 ,'/a{1,}b{1,}c/'          
 if strindex('abcabc'                                  ,'/a.+?c/'                               ,'r') <>  1   then pause,end
 if strindex('cde'                                     ,'/[^ab]*/'                              ,'r') <>  1   then pause,end
 if strindex(''                                        ,'/abc/'                                 ,'r') <>  []  then pause,end
-if strindex(''                                        ,'/a*/'                                  ,'r') <>  1  then pause,end
+if strindex(''                                        ,'/a*/'                                  ,'r') <>  []  then pause,end
 if strindex('e'                                       ,'/a|b|c|d|e/'                           ,'r') <>  1   then pause,end
 if strindex('abcdefg'                                 ,'/abcd*efg/'                            ,'r') <>  1   then pause,end
 if strindex('xabyabbbz'                               ,'/ab*/'                                 ,'r') <>  2   then pause,end
@@ -245,8 +243,6 @@ if strindex('ABCC'                                    ,'/^abc$/i'               
 if strindex('ABCC'                                    ,'/^abc/i'                               ,'r') <>  1   then pause,end
 if strindex('AABC'                                    ,'/^abc$/i'                              ,'r') <>  []  then pause,end
 if strindex('AABC'                                    ,'/abc$/i'                               ,'r') <>  2   then pause,end
-if strindex('ABC'                                     ,'/^/i'                                  ,'r') <>  1   then pause,end
-if strindex('ABC'                                     ,'/$/i'                                  ,'r') <>  4   then pause,end
 if strindex('ABC'                                     ,'/a.c/i'                                ,'r') <>  1   then pause,end
 if strindex('AXC'                                     ,'/a.c/i'                                ,'r') <>  1   then pause,end
 if strindex('AXYZC'                                   ,'/a.*?c/i'                              ,'r') <>  1   then pause,end
@@ -278,7 +274,7 @@ if strindex('ABCABC'                                  ,'/a.*?c/i'               
 if strindex('ABCABC'                                  ,'/a.{0,5}?c/i'                          ,'r') <>  1   then pause,end
 if strindex('CDE'                                     ,'/[^ab]*/i'                             ,'r') <>  1   then pause,end
 if strindex(''                                        ,'/abc/i'                                ,'r') <>  []  then pause,end
-if strindex(''                                        ,'/a*/i'                                 ,'r') <>  1  then pause,end
+if strindex(''                                        ,'/a*/i'                                 ,'r') <>  []  then pause,end
 if strindex('E'                                       ,'/a|b|c|d|e/i'                          ,'r') <>  1   then pause,end
 if strindex('ABCDEFG'                                 ,'/abcd*efg/i'                           ,'r') <>  1   then pause,end
 if strindex('XABYABBBZ'                               ,'/ab*/i'                                ,'r') <>  2   then pause,end
@@ -529,7 +525,7 @@ if strindex('ab'                                      ,'/(^|a)b/'               
 if strindex('abcab'                                   ,'/(\w)?(abc)\1b/'                       ,'r') <>  []  then pause,end
 if strindex('a,b,c'                                   ,'/^(?:.,){2}c/'                         ,'r') <>  1   then pause,end
 if strindex('a,b,c'                                   ,'/^(?:[^,]*,){2}c/'                     ,'r') <>  1   then pause,end
-if strindex(''                                        ,'/(?i)/'                                ,'r') <>  1  then pause,end
+if strindex(''                                        ,'/(?i)/'                                ,'r') <>  []  then pause,end
 if strindex('a'+lf+'xb'+lf                            ,'/(?!\A)x/m'                            ,'r') <>  3   then pause,end
 if strindex('123'+lf+'abcabcabcabc'+lf                ,'/^.{9}abc.*\n/m'                       ,'r') <>  5   then pause,end
 if strindex('a'                                       ,'/^(a)?(?(1)a|b)+$/'                    ,'r') <>  []  then pause,end

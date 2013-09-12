@@ -2,12 +2,12 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="printf_conversion" xml:lang="ja">
@@ -19,7 +19,7 @@
         <title>説明</title>
         <para>
             <literal>mprintf</literal> ,
-            <literal>msprintf</literal> , <literal>fprintf</literal>における各変換仕様.
+            <literal>msprintf</literal> , <literal>mfprintf</literal>における各変換仕様.
             <literal>format</literal> パラメータは以下のような構文を有します:
         </para>
         <itemizedlist>
@@ -28,7 +28,7 @@
             </listitem>
             <listitem>
                 <para>
-                    0個以上の <literal>options</literal>で, 
+                    0個以上の <literal>options</literal>で,
                     変換仕様の意味を修正します.
                     以下のリストに<literal>option</literal>文字とその意味を示します:
                 </para>
@@ -40,7 +40,7 @@
                         <para>+ : (+または -)を指定する符号変換の結果を開始.</para>
                     </listitem>
                     <listitem>
-                        <para>'空白' : 
+                        <para>'空白' :
                             符号変換後の最初の文字が符号ではない場合に結果の
                             前に空白文字を付加します.
                             (空白) および +オプションが共に指定された場合,
@@ -59,12 +59,12 @@
                             <literal>e, E, f, g,</literal> および <literal>G</literal>変換の場合,
                             小数点以下の値がない場合でも結果には常に小数点が含まれます.
                             <literal>g</literal> および
-                            <literal>G</literal> 変換の場合, 
+                            <literal>G</literal> 変換の場合,
                             末尾の0は結果から除かれません.
                         </para>
                     </listitem>
                     <listitem>
-                        <para>0 : 
+                        <para>0 :
                             <literal>d</literal>,
                             <literal>i</literal>, <literal>o</literal>, <literal>u</literal>,
                             <literal>x</literal>, <literal>X</literal>, <literal>e</literal>,
@@ -186,7 +186,7 @@
                             ヌル文字列となります.
                             前に付加する文字をゼロとしてフィールド幅を指定すると,
                             フィールド幅までの値では前にゼロを付加するパディングが
-                            行われます. 
+                            行われます.
                         </para>
                     </listitem>
                     <listitem>
@@ -301,7 +301,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 mprintf('a string: %s\n', 'Scilab');
 mprintf('an integer: %d\n', 10);
 mprintf('an integer: %4d\n', 10);
@@ -328,7 +328,7 @@ mprintf('a character: %c\n', 'aaa');
                 <link linkend="mprintf">mprintf</link>
             </member>
             <member>
-                <link linkend="fprintf">fprintf</link>
+                <link linkend="mfprintf">mfprintf</link>
             </member>
             <member>
                 <link linkend="msprintf">msprintf</link>

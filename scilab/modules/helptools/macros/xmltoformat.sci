@@ -3,12 +3,13 @@
 // Copyright (C) 2008-2010 DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2009 DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
 // Copyright (C) 2010 - 2011 DIGITEO - Allan CORNET
+// Copyright (C) 2013 - Scilab Enterprises - Clement DAVID
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function generated_files = xmltoformat(output_format,dirs,titles,directory_language,default_language)
 
@@ -253,13 +254,8 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
         // ast_tree : "Modules" Tree
 
-        if directory_language_m(1) == "fr_FR" then
-            scilab_manual = "Aide Scilab"
-        elseif directory_language_m(1) == "pt_BR" then
-            scilab_manual = "Ajuda Scilab"
-        else
-            scilab_manual = "Scilab help"
-        end
+        _("Scilab help"); // add localized string
+        scilab_manual = dgettext(directory_language_m(1), "Scilab help");
 
         modules_tree = struct();
         modules_tree("level")      = 0; // It's a book
@@ -433,13 +429,27 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     // -- scilab internal toolbox
     // =========================================================================
 
+    // target format modification :
+    //  * update the format extension (eg. the created dir)
+    //  * handle the second pass build (container management or second transform)
     select output_format
     case "javaHelp" then
         output_format_ext = "jar";
+        second_pass_format = "jar-only";
     case "web"
         output_format_ext = "html";
+        second_pass_format = [];
+    case "ps"
+        output_format_ext = output_format;
+        output_format = "fo"; // ps file is generated on a second pass from fo files
+        second_pass_format = "ps";
+    case "pdf"
+        output_format_ext = output_format;
+        output_format = "fo"; // pdf file is generated on a second pass from fo files
+        second_pass_format = "pdf";
     else
         output_format_ext = output_format;
+        second_pass_format = [];
     end
 
     is_html = (output_format == "html" | output_format == "web");
@@ -511,11 +521,9 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         fileToExec = buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
         if fileToExec ~= [] then
             exec(fileToExec, -1);
-            if output_format == "javaHelp" then
-                // We don't create the jar when building the online help
-                // or the PDF
-                buildDocv2("jar-only",modules_tree("master_document"), my_wanted_language);
-            end
+        end
+        if ~isempty(second_pass_format) then
+            buildDocv2(second_pass_format,modules_tree("master_document"), my_wanted_language);
         end
 
         check_move(buildDoc_file);
@@ -590,7 +598,9 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             fileToExec = buildDocv2(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
             if fileToExec ~= [] then
                 exec(fileToExec, -1);
-                buildDocv2("jar-only",this_tree("master_document"),directory_language_c(k),dirs_c(k));
+            end
+            if ~isempty(second_pass_format) then
+                buildDocv2(second_pass_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
             end
 
             check_move(buildDoc_file);
@@ -689,7 +699,9 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             fileToExec = buildDocv2(output_format,this_tree("master_document"),directory_language(k),dirs(k));
             if fileToExec ~= [] then
                 exec(fileToExec, -1);
-                buildDocv2("jar-only",this_tree("master_document"),directory_language(k),dirs(k));
+            end
+            if ~isempty(second_pass_format) then
+                buildDocv2(second_pass_format,this_tree("master_document"),directory_language(k),dirs(k));
             end
 
             check_move(buildDoc_file);

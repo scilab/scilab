@@ -29,8 +29,8 @@
  Don't touch if you do not know what you are doing
 
 -->
-    <PRIMITIVE gatewayId="72" primitiveId="1" primitiveName="uiwidget" />
-    <PRIMITIVE gatewayId="72" primitiveId="2" primitiveName="uiget" />
-    <PRIMITIVE gatewayId="72" primitiveId="3" primitiveName="uiset" />
-    <PRIMITIVE gatewayId="72" primitiveId="4" primitiveName="createUIWidgetHandle" />
+    <PRIMITIVE gatewayId="73" primitiveId="1" primitiveName="uiwidget" />
+    <PRIMITIVE gatewayId="73" primitiveId="2" primitiveName="uiget" />
+    <PRIMITIVE gatewayId="73" primitiveId="3" primitiveName="uiset" />
+    <PRIMITIVE gatewayId="73" primitiveId="4" primitiveName="createUIWidgetHandle" />
 </GATEWAY>

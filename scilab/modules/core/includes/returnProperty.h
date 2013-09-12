@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*------------------------------------------------------------------------*/
@@ -93,14 +93,14 @@ int sciReturnRowHandleVector(void* _pvCtx, const long handles[], int nbValues ) 
 int sciReturnColHandleVector(void* _pvCtx, const long handles[], int nbValues ) ;
 
 /**
- * copy a matrix stored has a double array
+ * copy a matrix stored as a double array
  * into a Scilab matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occurred.
  */
 int sciReturnMatrix(void* _pvCtx, double values[], int nbRow, int nbCol ) ;
 
 /**
- * copy a matrix stored has a char * array
+ * copy a matrix stored as a char * array
  * into a Scilab string matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occurred.
  */
@@ -113,63 +113,63 @@ int sciReturnStringMatrix(void* _pvCtx, char * values[], int nbRow, int nbCol ) 
 int sciReturnUserData(void* _pvCtx, const int * userData, int userDataSize ) ;
 
 /**
- * copy a matrix stored has a double hypermatrix
+ * copy a matrix stored as a double hypermatrix
  * into a Scilab matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occurred.
  */
 int sciReturnHypermatOfDouble(void* _pvCtx, int dims[], int ndims, double values[]);
 
 /**
- * copy a matrix stored has a int8 hypermatrix
+ * copy a matrix stored as a int8 hypermatrix
  * into a Scilab matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occurred.
  */
 int sciReturnHypermatOfInteger8(void* _pvCtx, int dims[], int ndims, char values[]);
 
 /**
- * copy a matrix stored has a uint8 hypermatrix
+ * copy a matrix stored as a uint8 hypermatrix
  * into a Scilab matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occurred.
  */
 int sciReturnHypermatOfUnsignedInteger8(void* _pvCtx, int dims[], int ndims, unsigned char values[]);
 
 /**
- * copy a matrix stored has a int8 array
+ * copy a matrix stored as a int8 array
  * into a Scilab matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occurred.
  */
 int sciReturnMatrixOfInteger8(void* _pvCtx, char values[], int nbRow, int nbCol);
 
 /**
- * copy a matrix stored has a uint8 array
+ * copy a matrix stored as a uint8 array
  * into a Scilab matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occurred.
  */
 int sciReturnMatrixOfUnsignedInteger8(void* _pvCtx, unsigned char values[], int nbRow, int nbCol);
 
 /**
- * copy a matrix stored has a int16 array
+ * copy a matrix stored as a int16 array
  * into a Scilab matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occurred.
  */
 int sciReturnMatrixOfInteger16(void* _pvCtx, short values[], int nbRow, int nbCol);
 
 /**
- * copy a matrix stored has a uint16 array
+ * copy a matrix stored as a uint16 array
  * into a Scilab matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occurred.
  */
 int sciReturnMatrixOfUnsignedInteger16(void* _pvCtx, unsigned short values[], int nbRow, int nbCol);
 
 /**
- * copy a matrix stored has a int32 array
+ * copy a matrix stored as a int32 array
  * into a Scilab matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occurred.
  */
 int sciReturnMatrixOfInteger32(void* _pvCtx, int values[], int nbRow, int nbCol);
 
 /**
- * copy a matrix stored has a uint32 array
+ * copy a matrix stored as a uint32 array
  * into a Scilab matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occurred.
  */

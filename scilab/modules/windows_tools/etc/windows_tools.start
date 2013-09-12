@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [windows_toolslib, WSCI] = startModule()
 
@@ -23,6 +23,13 @@ function [windows_toolslib, WSCI] = startModule()
     consolebox('off');
   end
   
+  //detect WinXP/2oo3 and show warning message of obsolescence
+  verStr = winqueryreg("HKLM", "Software\Microsoft\Windows NT\CurrentVersion", "CurrentVersion");
+  verNum = evstr(verStr)
+  if verNum < 6 then //Windows XP
+    warning(_("Scilab 5.5.X family will be the latest one working under Windows XP."));
+  end
+
 endfunction
 
 [windows_toolslib, WSCI] = startModule();

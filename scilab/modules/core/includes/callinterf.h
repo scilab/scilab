@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -93,8 +93,8 @@
 /* 69 */                        #include "dynamic_gateways.h" /* preferences */
 /* 70 */                        #include "dynamic_gateways.h" /* graphic_objects */
 /* 71 */                        #include "dynamic_gateways.h" /* external_objects */
-/* 72 */                        #include "dynamic_gateways.h" /* uiwidget */
-
+/* 72 */                        #include "dynamic_gateways.h" /* external_objects_java */
+/* 73 */                        #include "dynamic_gateways.h" /* uiwidget */
 
 /** table of interfaces **/
 

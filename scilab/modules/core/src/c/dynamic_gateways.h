@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #ifndef __DYNAMIC_GATEWAYS_H__
@@ -190,6 +190,8 @@ int gw_dynamic_xml(void);
 int gw_dynamic_history_browser(void);
 
 int gw_dynamic_external_objects(void);
+
+int gw_dynamic_external_objects_java(void);
 
 int gw_dynamic_uiwidget(void);
 

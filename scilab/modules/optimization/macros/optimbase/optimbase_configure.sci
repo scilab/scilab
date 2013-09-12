@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //
 // optimbase_configure --
@@ -42,10 +42,18 @@ function this = optimbase_configure (this,key,value)
         optimbase_typereal ( value , "value" , 3 );
         [n,m] = size(value);
         if m<>1 then
-            errmsg = msprintf(gettext("%s: The x0 vector is expected to be a column matrix, but current shape is %d x %d"),"optimbase_configure",n,m);
-            error(errmsg);
+            if n==1 then // Allowing row vectors by transposing them into column vectors
+                value = value';
+                temp = m; // Switch the sizes in case we want to reuse them later in this function
+                m = n;
+                n = temp;
+            else
+                errmsg = msprintf(gettext("%s: The x0 vector is expected to be a column matrix, but current shape is %d x %d"),"optimbase_configure",n,m);
+                error(errmsg);
+            end
         end
         this.x0 = value;
+        this.numberofvariables = n; // Setting x0 also sets the size of the system
     case "-maxfunevals" then
         optimbase_typereal ( value , "value" , 3 );
         optimbase_checkscalar ( "optimbase_configure" , value , "value" , 3 )
@@ -215,4 +223,3 @@ function optimbase_checkoption ( funname , var , varname , ivar , expectedopt )
         error(errmsg);
     end
 endfunction
-

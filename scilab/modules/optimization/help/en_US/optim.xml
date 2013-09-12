@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="optim" xml:lang="en">
@@ -846,24 +846,34 @@
             <literal>mydata</literal> is used to store the number of function
             evaluations as well as the number of iterations.
         </para>
-        <programlisting role="example">function [f, g, ind] = cost(x, ind,xref)
+        <programlisting role="example">
+            function [f, g, ind] = cost(x, ind)
             global _MYDATA_
             if ( ind == 1 )
-            _MYDATA_.niter = _MYDATA_.niter + 1
+            _MYDATA_.niter = _MYDATA_.niter + 1;
+            else
+            _MYDATA_.nfevals = _MYDATA_.nfevals + 1;
             end
-            _MYDATA_.nfevals = _MYDATA_.nfevals + 1
-            f = 0.5 * norm(x - xref)^2;
-            g = x - xref;
-            endfunction
             xref = [1; 2; 3];
+            if ( ind == 2 | ind == 4 ) then
+            f = 0.5*norm(x-xref)^2;
+            else
+            f = 0;
+            end
+            if ( ind == 3 | ind == 4 ) then
+            g = x-xref;
+            else
+            g = zeros(3, 1);
+            end
+            endfunction
             x0 = [1; -1; 1];
             global _MYDATA_
-            _MYDATA_ = tlist ( ["T_MYDATA", "niter", "nfevals"])
-            _MYDATA_.niter = 0
-            _MYDATA_.nfevals = 0
-            [f, xopt] = optim(list(cost, xref), x0, imp = -1)
-            mprintf("Number of function evaluations:%d\n", _MYDATA_.nfevals)
-            mprintf("Number of iterations:%d\n", _MYDATA_.niter) 
+            _MYDATA_ = tlist ( ["MYDATA", "niter", "nfevals"]);
+            _MYDATA_.niter = 0;
+            _MYDATA_.nfevals = 0;
+            [f, xopt] = optim(cost, x0, imp=-1);
+            mprintf ( "Number of function evaluations: %d\n", _MYDATA_.nfevals );
+            mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
         </programlisting>
         <para>While the previous example perfectly works, there is a risk that the
             same variable <literal>_MYDATA_</literal> is used by some internal

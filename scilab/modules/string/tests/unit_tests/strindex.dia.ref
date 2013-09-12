@@ -30,8 +30,8 @@ if or(pos<>[8 11])|or(which<>[1 2]) then bugmes();quit;end
 [pos,which]=strindex('abc,cbd,aa,bxe',[',a','bb']);
 if or(pos<>[8])|or(which<>[1]) then bugmes();quit;end
 //===============================
-rand('u');str=strcat(string(round(8*rand(1,5000))));s= string(0:9);
-[pos,which]=strindex(str,s);
+rand('u');str=strcat(string(round(8*rand(1,5000))));s= string(0:9);     
+[pos,which]=strindex(str,s); 
 if part(str,pos)<>strcat(s(which)) then bugmes();quit;end
 //===============================
 ref = [4 10];
@@ -83,7 +83,7 @@ if (ref2 <> r2) then bugmes();quit;end;
 if (ref1 <> r1) then bugmes();quit;end;
 //===============================
 ierr = execstr("strindex(''2'' ,''/2(]*)?$\1/'' ,''dummy'');","errcatch");
-if ierr <> 999 then bugmes();quit;end
+if ierr <> 999 then bugmes();quit;end 
 //===============================
 lf = ascii(10);
 if strindex('abc','/abc/','r') <>  1   then bugmes();quit;end
@@ -120,8 +120,6 @@ if strindex('abcc'                                    ,'/^abc/'                 
 if strindex('aabc'                                    ,'/^abc$/'                               ,'r') <>  []  then bugmes();quit;end
 if strindex('aabc'                                    ,'/abc$/'                                ,'r') <>  2   then bugmes();quit;end
 if strindex('aabcd'                                   ,'/abc$/'                                ,'r') <>  []  then bugmes();quit;end
-if strindex('abc'                                     ,'/^/'                               ,'r') <>  1   then bugmes();quit;end
-if strindex('abc'                                     ,'/$/'                               ,'r') <>  4   then bugmes();quit;end
 if strindex('abc'                                     ,'/a.c/'                                 ,'r') <>  1   then bugmes();quit;end
 if strindex('axc'                                     ,'/a.c/'                                 ,'r') <>  1   then bugmes();quit;end
 if strindex('axyzc'                                   ,'/a.*c/'                                ,'r') <>  1   then bugmes();quit;end
@@ -188,7 +186,7 @@ if strindex('aabbabc'                                 ,'/a{1,}b{1,}c/'          
 if strindex('abcabc'                                  ,'/a.+?c/'                               ,'r') <>  1   then bugmes();quit;end
 if strindex('cde'                                     ,'/[^ab]*/'                              ,'r') <>  1   then bugmes();quit;end
 if strindex(''                                        ,'/abc/'                                 ,'r') <>  []  then bugmes();quit;end
-if strindex(''                                        ,'/a*/'                                  ,'r') <>  1  then bugmes();quit;end
+if strindex(''                                        ,'/a*/'                                  ,'r') <>  []  then bugmes();quit;end
 if strindex('e'                                       ,'/a|b|c|d|e/'                           ,'r') <>  1   then bugmes();quit;end
 if strindex('abcdefg'                                 ,'/abcd*efg/'                            ,'r') <>  1   then bugmes();quit;end
 if strindex('xabyabbbz'                               ,'/ab*/'                                 ,'r') <>  2   then bugmes();quit;end
@@ -242,8 +240,6 @@ if strindex('ABCC'                                    ,'/^abc$/i'               
 if strindex('ABCC'                                    ,'/^abc/i'                               ,'r') <>  1   then bugmes();quit;end
 if strindex('AABC'                                    ,'/^abc$/i'                              ,'r') <>  []  then bugmes();quit;end
 if strindex('AABC'                                    ,'/abc$/i'                               ,'r') <>  2   then bugmes();quit;end
-if strindex('ABC'                                     ,'/^/i'                                  ,'r') <>  1   then bugmes();quit;end
-if strindex('ABC'                                     ,'/$/i'                                  ,'r') <>  4   then bugmes();quit;end
 if strindex('ABC'                                     ,'/a.c/i'                                ,'r') <>  1   then bugmes();quit;end
 if strindex('AXC'                                     ,'/a.c/i'                                ,'r') <>  1   then bugmes();quit;end
 if strindex('AXYZC'                                   ,'/a.*?c/i'                              ,'r') <>  1   then bugmes();quit;end
@@ -275,7 +271,7 @@ if strindex('ABCABC'                                  ,'/a.*?c/i'               
 if strindex('ABCABC'                                  ,'/a.{0,5}?c/i'                          ,'r') <>  1   then bugmes();quit;end
 if strindex('CDE'                                     ,'/[^ab]*/i'                             ,'r') <>  1   then bugmes();quit;end
 if strindex(''                                        ,'/abc/i'                                ,'r') <>  []  then bugmes();quit;end
-if strindex(''                                        ,'/a*/i'                                 ,'r') <>  1  then bugmes();quit;end
+if strindex(''                                        ,'/a*/i'                                 ,'r') <>  []  then bugmes();quit;end
 if strindex('E'                                       ,'/a|b|c|d|e/i'                          ,'r') <>  1   then bugmes();quit;end
 if strindex('ABCDEFG'                                 ,'/abcd*efg/i'                           ,'r') <>  1   then bugmes();quit;end
 if strindex('XABYABBBZ'                               ,'/ab*/i'                                ,'r') <>  2   then bugmes();quit;end
@@ -526,7 +522,7 @@ if strindex('ab'                                      ,'/(^|a)b/'               
 if strindex('abcab'                                   ,'/(\w)?(abc)\1b/'                       ,'r') <>  []  then bugmes();quit;end
 if strindex('a,b,c'                                   ,'/^(?:.,){2}c/'                         ,'r') <>  1   then bugmes();quit;end
 if strindex('a,b,c'                                   ,'/^(?:[^,]*,){2}c/'                     ,'r') <>  1   then bugmes();quit;end
-if strindex(''                                        ,'/(?i)/'                                ,'r') <>  1  then bugmes();quit;end
+if strindex(''                                        ,'/(?i)/'                                ,'r') <>  []  then bugmes();quit;end
 if strindex('a'+lf+'xb'+lf                            ,'/(?!\A)x/m'                            ,'r') <>  3   then bugmes();quit;end
 if strindex('123'+lf+'abcabcabcabc'+lf                ,'/^.{9}abc.*\n/m'                       ,'r') <>  5   then bugmes();quit;end
 if strindex('a'                                       ,'/^(a)?(?(1)a|b)+$/'                    ,'r') <>  []  then bugmes();quit;end
@@ -544,7 +540,7 @@ if strindex('......abef'                              ,'/.*a(?!(b|cd)*e).*f/'   
 if strindex('fools'                                   ,'/(foo|fool|x.|money|parted)$/'         ,'r') <>  []  then bugmes();quit;end
 if strindex('fools'                                   ,'/(x.|foo|fool|x.|money|parted|y.)$/'   ,'r') <>  []  then bugmes();quit;end
 if strindex('fools'                                   ,'/(foo|fool|money|parted)$/'            ,'r') <>  []  then bugmes();quit;end
-//========================================================================================
+//======================================================================================== 
 // Chinese
 str = '世界您好';
 [r,w] = strindex(str,'/^世界/','r');
@@ -568,7 +564,7 @@ if w <> 1 then bugmes();quit;end
 [r,w] = strindex(str,'/界_您/','r');
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-//========================================================================================
+//======================================================================================== 
 // Russian
 str = 'привет мир';
 [r,w] = strindex(str,'/^привет/','r');
@@ -589,7 +585,7 @@ if w <> 1 then bugmes();quit;end
 [r,w] = strindex(str,'/вет_м/','r');
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-//========================================================================================
+//======================================================================================== 
 // Cyrilic
 str = 'АБВГДЄЖЅЗИІКЛМНОПҀРСТѸФХѠЦЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ';
 [r,w] = strindex(str,'/^АБВГДЄЖЅЗИІКЛМНОПҀР/','r');
@@ -610,7 +606,7 @@ if w <> 1 then bugmes();quit;end
 [r,w] = strindex(str,'/ИІКЛМНОПҀ_РСТѸФХѠЦЧШЩЪ/','r');
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-//========================================================================================
+//======================================================================================== 
 // Japanese
 str = '丑丞串乃之乎也云亘亙些亦亥亨亮仔伊伎伍伽佃佑伶侃侑俄侠俣俐侶倭俺倶倦倖偲僅傭儲允兎兜其冥冴冶凄凌凜凛凧凪凰凱函刹劉劫勁勃';
 [r,w] = strindex(str,'/^丑丞串乃之乎也云亘亙些亦/','r');
@@ -631,7 +627,7 @@ if w <> 1 then bugmes();quit;end
 [r,w] = strindex(str,'/亨亮仔伊_伎伍伽佃佑伶侃/','r');
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-//========================================================================================
+//======================================================================================== 
 // Thaï
 str = 'มกระดุกกระดิก';
 [r,w] = strindex(str,'/^มกระดุกกร/','r');
@@ -652,4 +648,4 @@ if w <> 1 then bugmes();quit;end
 [r,w] = strindex(str,'/ดุก_ก/','r');
 if r <> [] then bugmes();quit;end
 if w <> [] then bugmes();quit;end
-//========================================================================================
+//======================================================================================== 

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -126,8 +126,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -195,10 +193,6 @@ public final class ScilabVariables {
      * @param indexes
      *            an integer array with the indexes of the (sub)*-list which
      *            will contain the data
-     * @param data
-     *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -243,8 +237,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -289,8 +281,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -335,8 +325,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -381,8 +369,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -427,8 +413,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -473,8 +457,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -519,8 +501,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */
@@ -565,8 +545,6 @@ public final class ScilabVariables {
      *            will contain the data
      * @param data
      *            the data
-     * @param swaped
-     *            true if the matrix is stored row by row
      * @param handlerId
      *            the handler id
      */

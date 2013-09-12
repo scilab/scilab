@@ -11,7 +11,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
  */
@@ -4043,13 +4043,17 @@ static int intersci_push(void)
 {
     int i;
     intersci_list *loc;
-    intersci_state *new;
+    intersci_state *new = NULL;
 
-    new = MALLOC(Nbvars * sizeof(intersci_state));
-    if (new == 0)
+    if (Nbvars)
     {
-        return 0;
+        new = MALLOC(Nbvars * sizeof(intersci_state));
+        if (new == 0)
+        {
+            return 0;
+        }
     }
+
     loc = MALLOC(sizeof(intersci_list));
     if (loc == NULL)
     {
@@ -4087,8 +4091,15 @@ static void intersci_pop(void)
         C2F(intersci).lhsvar[i] = loc->state[i].lhsvar;
     }
     L_intersci = loc->next;
-    FREE(loc->state);
-    FREE(loc);
+    if (loc->state)
+    {
+        FREE(loc->state);
+    }
+
+    if (loc)
+    {
+        FREE(loc);
+    }
 }
 
 /*

@@ -7,7 +7,7 @@
 ##  This source file is licensed as described in the file COPYING, which
 ##  you should have received as part of this distribution.  The terms
 ##  are also available at
-##  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+##  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ##
 ##
 
@@ -69,7 +69,7 @@ generateHeader()
     echo " *  This source file is licensed as described in the file COPYING, which" >> $OutFile
     echo " *  you should have received as part of this distribution.  The terms" >> $OutFile
     echo " *  are also available at" >> $OutFile
-    echo " *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt" >> $OutFile
+    echo " *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt" >> $OutFile
     echo " *" >> $OutFile
     echo " */" >> $OutFile
 

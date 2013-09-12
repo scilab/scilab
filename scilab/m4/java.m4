@@ -749,14 +749,7 @@ AC_DEFUN([AC_JAVA_WITH_JDK], [
 
 AC_DEFUN([AC_JAVA_TOOLS], [
 
-
-    case "$host_os" in
-          *darwin*)
-          ac_java_jvm_bin_dir=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/bin/
-    ;;
-          *)
-              ac_java_jvm_bin_dir=$ac_java_jvm_dir/bin;;
-    esac
+    ac_java_jvm_bin_dir=$ac_java_jvm_dir/bin
 
     AC_JAVA_TOOLS_CHECK(JAVA, java, $ac_java_jvm_bin_dir)
 

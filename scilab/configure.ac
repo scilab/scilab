@@ -8,7 +8,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
 dnl Process this file with autoconf to produce a configure script.
@@ -66,6 +66,7 @@ AC_CONFIG_HEADERS([modules/core/includes/machine.h])
 # strip executable
 AM_PROG_INSTALL_STRIP
 AC_PROG_LN_S
+AM_PROG_AR
 
 AC_CUSTOM_LARGE_FILE
 
@@ -80,7 +81,7 @@ AC_LIB_RPATH
 # if the version is different
 AM_MAINTAINER_MODE
 
-AM_INIT_AUTOMAKE([-Wall foreign]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
+AM_INIT_AUTOMAKE([-Wall foreign serial-tests]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
 
 AC_CANONICAL_HOST
 
@@ -534,15 +535,11 @@ case "$CXX" in
             DEBUG_CXXFLAGS="-DNDEBUG"
         fi
         COMPILER_CXXFLAGS="-fno-stack-protector " # bug 3131
-        COMPILER_LDFLAGS="-lstdc++"
     ;;
 
-    clang-* | clang)
-        # clang linker expect an explict declaration
-        # until the http://libcxx.llvm.org/ release, we select the GNU one.
-        COMPILER_LDFLAGS="-lstdc++"
-    ;;
 esac
+
+AC_CHECK_STDCPP_STATIC()
 
 #### 64 bits detection
 IS_64_BITS_CPU=false
@@ -1740,6 +1737,8 @@ LT_PREREQ([2.2.7])
 AC_PROG_LIBTOOL([shared dlopen])
 AM_PROG_LIBTOOL
 
+# Eliminate -lstdc++ addition to postdeps for cross compiles.
+postdeps_CXX=`echo " $postdeps_CXX " | sed 's, -lstdc++ ,,g'`
 
 # Avoid to link all the dep from others libraries (*.la included by LIBADD)
 link_all_deplibs=no
@@ -1912,6 +1911,7 @@ modules/preferences/Makefile
 modules/xml/Makefile
 modules/external_objects/Makefile
 modules/uiwidget/Makefile
+modules/external_objects_java/Makefile
 modules/Makefile
 Makefile
 scilab.pc

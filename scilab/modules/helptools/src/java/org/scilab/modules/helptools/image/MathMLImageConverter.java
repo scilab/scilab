@@ -6,34 +6,31 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.helptools.image;
 
-import java.awt.Graphics2D;
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
-
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
-
 import net.sourceforge.jeuclid.MathMLParserSupport;
-import net.sourceforge.jeuclid.MutableLayoutContext;
-import net.sourceforge.jeuclid.layout.JEuclidView;
 import net.sourceforge.jeuclid.context.LayoutContextImpl;
 import net.sourceforge.jeuclid.context.Parameter;
+import net.sourceforge.jeuclid.layout.JEuclidView;
 
-import org.scilab.modules.helptools.HTMLDocbookTagConverter;
+import org.scilab.modules.helptools.DocbookTagConverter;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
 /**
  * A MathML to PNG converter
@@ -42,10 +39,9 @@ import org.scilab.modules.helptools.HTMLDocbookTagConverter;
 public class MathMLImageConverter implements ExternalImageConverter {
 
     private static final Graphics2D TEMPGRAPHIC = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB).createGraphics();
-    private static MathMLImageConverter instance;
-    private final HTMLDocbookTagConverter conv;
+    private final DocbookTagConverter conv;
 
-    private MathMLImageConverter(HTMLDocbookTagConverter conv) {
+    public MathMLImageConverter(DocbookTagConverter conv) {
         this.conv = conv;
     }
 
@@ -61,17 +57,6 @@ public class MathMLImageConverter implements ExternalImageConverter {
      */
     public boolean mustRegenerate() {
         return true;
-    }
-
-    /**
-     * Since it is a singleton class...
-     * @return this
-     */
-    public static ExternalImageConverter getInstance(HTMLDocbookTagConverter conv) {
-        if (instance == null) {
-            instance = new MathMLImageConverter(conv);
-        }
-        return instance;
     }
 
     /**
@@ -97,7 +82,7 @@ public class MathMLImageConverter implements ExternalImageConverter {
 
         Image img = convertMathML(doc, fs);
         if (img != null && ImageConverter.convertIconToPNG(img.icon, imageFile)) {
-            return ImageConverter.generateCode(img, conv.getBaseImagePath() + imageName, attributes);
+            return conv.generateImageCode(img, conv.getBaseImagePath() + imageName, attributes);
         }
 
         return null;
@@ -124,7 +109,7 @@ public class MathMLImageConverter implements ExternalImageConverter {
 
         Image img = convertMathML(doc, fs);
         if (img != null && ImageConverter.convertIconToPNG(img.icon, imageFile)) {
-            return ImageConverter.generateCode(img, conv.getBaseImagePath() + imageName, attributes);
+            return conv.generateImageCode(img, conv.getBaseImagePath() + imageName, attributes);
         }
 
         return null;

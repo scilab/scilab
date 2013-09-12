@@ -31,6 +31,9 @@ src/c/isnum.c \
 src/c/stringToComplex.c \
 src/c/complex_array.c
 
+STRING_CPP_SOURCES = \
+    src/cpp/sort_inter.cpp
+    
 STRING_FORTRAN_SOURCES =
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
@@ -72,6 +75,7 @@ sci_gateway/fortran/strops.f
 
 libscistring_la_CPPFLAGS = -I$(srcdir)/src/c \
 	-I$(srcdir)/includes/ \
+	-I$(srcdir)/src/cpp/ \
 	-I$(top_srcdir)/modules/functions/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
@@ -90,7 +94,7 @@ endif
 
 libscistring_la_LDFLAGS = $(PCRE_LIBS) $(AM_LDFLAGS)
 
-libscistring_algo_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES)
+libscistring_algo_la_SOURCES = $(STRING_C_SOURCES) $(STRING_CPP_SOURCES) $(STRING_FORTRAN_SOURCES)
 libscistring_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscistring_algo_la_CPPFLAGS = $(libscistring_la_CPPFLAGS)
 

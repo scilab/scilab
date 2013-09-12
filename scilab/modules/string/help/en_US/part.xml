@@ -2,18 +2,19 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
- * 
+ * Copyright (C) Samuel GOUGEON - 2013 : $ is now supported. More examples.
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:id="part" xml:lang="en">
     <refnamediv>
         <refname>part</refname>
-        <refpurpose>extraction of strings</refpurpose>
+        <refpurpose>string built from extracted characters</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -31,7 +32,9 @@
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>an integer row vector.</para>
+                    <para>
+                        an integer row vector. <literal>$</literal> is accepted and means length(strings_in)
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -54,33 +57,49 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// returns characters position 8 to 11
-part("How to use ""part"" ?",8:11)
+// Returns characters position 8 to 11
+part("How to use ""part"" ?", 8:11)
 
-// returns characters position 2 to 4 for each element
-// no characters replaced by ''
-c = part(['a','abc','abcd'],2:4)
+// Returns characters position 2 to 4 for each element
+// No characters replaced by ''
+c = part(['a', 'abc', 'abcd'], 2:4)
 
-// returns character position 1 for each element and add characters position
+// Returns character position 1 for each element and add characters position
 // 4 to 7 of each element
-c = part(['abcdefg','hijklmn','opqrstu'],[1,4:7]);
+c = part(['abcdefg', 'hijklmn', 'opqrstu'], [1, 4:7]);
 
-// returns character 4 for each element, add characters position 1 to 7 and
+// Returns character 4 for each element, add characters position 1 to 7 and
 // add character position 4 for each element
-c = part(['abcdefg','hijklmn','opqrstu'],[4,1:7,4]);
+c = part(['abcdefg', 'hijklmn', 'opqrstu'], [4, 1:7, 4]);
 
-// returns character position 1, add again character position 1 and
+// Returns character position 1, add again character position 1 and
 // character position 2
-c=part(['a','abc','abcd'],[1,1,2])
+c=part(['a', 'abc', 'abcd'], [1, 1, 2])
 
-// a a a
-part(['a','abc','abcd'],[1])
 
-// aa aa aa
-part(['a','abc','abcd'],[1,1])
+part(['a', 'abc', 'abcd'], [1])		// =>  ['a' 'a' 'a']
+part(['a', 'abc', 'abcd'], [1, 1])		// =>  ['aa' 'aa' 'aa']
+part(['a', 'abc', 'abcd'], [1, 1, 2])	// =>  ['aa' 'aab' 'aab']
 
-// aa aab aab
-part(['a','abc','abcd'],[1,1,2])
+// Repeating a character N times:
+N = 10; part('-', ones(1:N))  		// => '----------'
+
+// Repeating a pattern N times:
+N = 6; pat = '- '; 
+part(pat, ones(1:N).*.(1:length(pat))) // => '- - - - - - '
+
+// Using $ = implicit length of strings: 
+// 1)
+part(['a string' 'another longer one'], $-2:$ ) // => [ 'ing' 'one']
+
+// 2) Another implementation for strrev():
+part('Hello world', $:-1:1)		  // => 'dlrow olleH'
+
+// 3) With unranging $:
+part('Hello world', [ $ 4:5 ])	  // => 'dlo'
+
+// 4) Mixing scalar or unrangin $ with ranging ones is not possible:
+part("Hello", [ 1 $-1:$ $ ])      // =>  error
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -96,5 +115,17 @@ part(['a','abc','abcd'],[1,1,2])
                 <link linkend="length">length</link>
             </member>
         </simplelist>
+    </refsection>
+    
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    <literal>$</literal> standing for length(input_strings) is now accepted in indices of selected characters
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

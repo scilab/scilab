@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
        subroutine i_mput(fname)
 c
@@ -70,6 +70,8 @@ c       if(nlr2.eq.3) ik=3
           it1=it1+1
        elseif(ityp(ik:ik).eq.'s') then
           it1=it1+2
+      elseif(ityp(ik:ik).eq.'i') then
+          it1=it1+4
        elseif(ityp(ik:ik).eq.'l') then
           it1=it1+4
        else

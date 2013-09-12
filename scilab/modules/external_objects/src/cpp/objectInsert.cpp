@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -186,21 +186,21 @@ int ScilabGateway::objectInsert(char * fname, const int envId, void * pvApiCtx)
                 delete[] args;
                 throw;
             }
+        }
 
-            args[Rhs - 2] = idObjB;
+        args[Rhs - 2] = idObjB;
 
-            try
-            {
-                env.insert(idObjA, args, Rhs - 1);
-            }
-            catch (std::exception & e)
-            {
-                ScilabObjects::removeTemporaryVars(envIdA, tmpvarB);
-                ScilabObjects::removeTemporaryVars(envIdA, tmpvar);
-                delete[] tmpvar;
-                delete[] args;
-                throw;
-            }
+        try
+        {
+            env.insert(idObjA, args, Rhs - 1);
+        }
+        catch (std::exception & e)
+        {
+            ScilabObjects::removeTemporaryVars(envIdA, tmpvarB);
+            ScilabObjects::removeTemporaryVars(envIdA, tmpvar);
+            delete[] tmpvar;
+            delete[] args;
+            throw;
         }
 
         ScilabObjects::removeTemporaryVars(envIdA, tmpvar);

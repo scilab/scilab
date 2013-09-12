@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -483,7 +483,6 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                                     }
                                 }
 
-                                window.pack();
                                 window.setVisible(true);
                                 window.requestFocus();
                                 window.toFront();
@@ -501,7 +500,6 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                 });
             } else {
                 window.setIsRestoring(false);
-                window.pack();
                 window.setVisible(true);
             }
         }

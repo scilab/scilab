@@ -241,7 +241,7 @@
         <para>226 "Inequality comparison with empty matrix."</para>
         <para>227 "Missing index."</para>
         <para>228 "reference to the cleared global variable %s."</para>
-        <para>229 "Operands of / and \\ operations must not contain NaN of
+        <para>229 "Operands of / and \\ operations must not contain NaN or
             Inf."
         </para>
         <para>230 "semi def fails."</para>

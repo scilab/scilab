@@ -5,7 +5,8 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txtc     -------------------------------
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c     -------------------------------
 c
       subroutine intdsearch(id)
 *
@@ -71,7 +72,7 @@ c     TEXT
 c     get val
       il = iadr(lstk(top))
       if (istk(il) < 0) then
-        il = iadr(istk(il + 1));
+        il = iadr(istk(il + 1))
       endif
       if (istk(il) .ne. 1) then
         err = 2
@@ -115,7 +116,7 @@ c     get val
 c     get X
       il = iadr(lstk(top))
       if (istk(il) < 0) then
-        il = iadr(istk(il + 1));
+        il = iadr(istk(il + 1))
       endif
       if (istk(il) .ne. 1) then
         err = 1

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //=============================================================================
 function bOK = dlwSetEnvCommonVc11(MSVSDir, IsExpress, bWin64)
@@ -175,8 +175,8 @@ function newINCLUDE = getNewINCLUDEx64(INCLUDE, msvsPath, sdkPath, bIsExpress)
 
     newINCLUDE = newINCLUDE + ..
     sdkPath + "\include" + pathsep() + INCLUDE + ..
-    getenv("PROGRAMFILES") + "\Windows Kits\8.0\Include\um;" + ..
-    getenv("PROGRAMFILES") + "\Windows Kits\8.0\Include\shared;";
+    getenv("PROGRAMFILES(X86)") + "\Windows Kits\8.0\Include\um;" + ..
+    getenv("PROGRAMFILES(X86)") + "\Windows Kits\8.0\Include\shared;";
 
 endfunction
 //=============================================================================

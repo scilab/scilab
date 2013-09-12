@@ -34,7 +34,7 @@ olddir=pwd();
     // =========================================================================
     fd=mopen(fileName,'w');
     if (fileinfo(fileName)==[]) then bugmes();quit;end
-    mclose(fd);// ok 
+    mclose(fd);// ok
     // 4. copyfile (host,unix)
     // =========================================================================
     copyfile(fileName,fileWithExt);
@@ -48,24 +48,21 @@ olddir=pwd();
     mputl([specialName+'1';specialName+'2'],fileName+'_mputl');
     if (fileinfo(fileName+'_mputl')==[]) then bugmes();quit;end
     fd=mopen(fileName+"_"+specialName,'w');
-    mfprintf(fd,'%s %f',specialName+'3',%pi); 
+    mfprintf(fd,'%s %f',specialName+'3',%pi);
     filestuff=fileinfo(fileName+"_"+specialName);
     if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end
     mclose(fd);
-    // 6. Fortran style open/close 
+    // 6. Fortran style open/close
     // filename fixed, but string in fortran file still in UTF encoding
     // =========================================================================
     fd = mopen(fileName+'_open','w');
     if (fileinfo(fileName+'_open')==[]) then bugmes();quit;end
-    wMode = warning("query");
-    warning("off");
-    fprintf(fd,'%s %f',specialName+'3',%pi);
-    warning(wMode);
+    mfprintf(fd,'%s %f',specialName+'3',%pi);
     filestuff=fileinfo(fileName+'_open');
     if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end
     mclose(fd);
     fd = mopen(fileName+'_fprintf','wt');
-    mfprintf(fd,'%s %s',specialName+'3',string(%pi)); 
+    mfprintf(fd,'%s %s',specialName+'3',string(%pi));
     mclose(fd);
     filestuff=fileinfo(fileName+'_fprintf');
     if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end
@@ -130,7 +127,7 @@ olddir=pwd();
     // =========================================================================
     fd=mopen(fileName,'w');
     if (fileinfo(fileName)==[]) then bugmes();quit;end
-    mclose(fd);// ok 
+    mclose(fd);// ok
     // 4. copyfile (host,unix)
     // =========================================================================
     copyfile(fileName,fileWithExt);
@@ -144,11 +141,11 @@ olddir=pwd();
     mputl([specialName+'1';specialName+'2'],fileName+'_mputl');
     if (fileinfo(fileName+'_mputl')==[]) then bugmes();quit;end
     fd=mopen(fileName+"_"+specialName,'w');
-    mfprintf(fd,'%s %f',specialName+'3',%pi); 
+    mfprintf(fd,'%s %f',specialName+'3',%pi);
     filestuff=fileinfo(fileName+"_"+specialName);
     if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end
     mclose(fd);
-    // 6. Fortran style open/close 
+    // 6. Fortran style open/close
     // filename fixed, but string in fortran file still in UTF encoding
     // =========================================================================
     fd = mopen(fileName+'_open','w');
@@ -158,7 +155,7 @@ olddir=pwd();
     if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end
     mclose(fd);
     fd = mopen(fileName+'_fprintf','wt');
-    mfprintf(fd,'%s %s',specialName+'3',string(%pi)); 
+    mfprintf(fd,'%s %s',specialName+'3',string(%pi));
     mclose(fd);
     filestuff=fileinfo(fileName+'_fprintf');
     if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end

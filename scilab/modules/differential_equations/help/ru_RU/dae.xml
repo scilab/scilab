@@ -3,12 +3,12 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dae" xml:lang="ru">
@@ -20,8 +20,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis> 
-            y=dae(initial,t0,t,res) 
+        <synopsis>
+            y=dae(initial,t0,t,res)
             [y [,hd]]=dae(initial,t0,t [,rtol, [atol]],res [,jac] [,hd])
             [y,rd]=dae("root",initial,t0,t,res,ng,surface)
             [y ,rd [,hd]]=dae("root",initial,t0,t [,rtol, [atol]],res [,jac], ng, surface [,hd])
@@ -53,9 +53,9 @@
                 <listitem>
                     <para>Вещественный скаляр или вектор. Указывает моменты времени для
                         которых нужно найти решение. Заметьте, что вы можете получить
-                        решение в каждой точке шага ДАУ с помощью установки 
+                        решение в каждой точке шага ДАУ с помощью установки
                         <literal>
-                            <link linkend="daeoptions">%DAEOPTIONS</link>(2)=1 
+                            <link linkend="daeoptions">%DAEOPTIONS</link>(2)=1
                         </literal>
                         .
                     </para>
@@ -119,13 +119,13 @@
                                 <para>Эта форма внешней функции используется для передачи
                                     параметров в функцию. Она может иметь следующий вид:
                                 </para>
-                                <programlisting role="no-scilab-exec"> 
+                                <programlisting role="no-scilab-exec">
                                     list(res,p1,p2,...)
                                 </programlisting>
                                 <para>где последовательность вызова функции
                                     <literal>res</literal> теперь
                                 </para>
-                                <programlisting role="no-scilab-exec"> 
+                                <programlisting role="no-scilab-exec">
                                     r=res(t,y,ydot,p1,p2,...)
                                 </programlisting>
                                 <para>
@@ -252,14 +252,14 @@
                                 <para>Эта форма внешней функции используется для передачи
                                     параметров в функцию. Она может иметь следующий вид:
                                 </para>
-                                <programlisting role="no-scilab-exec">  
-                                    list(jac,p1,p2,...)               
+                                <programlisting role="no-scilab-exec">
+                                    list(jac,p1,p2,...)
                                 </programlisting>
                                 <para>где последовательность вызова функции
                                     <literal>jac</literal> теперь
                                 </para>
-                                <programlisting role="no-scilab-exec"> 
-                                    r=jac(t,x,xdot,p1,p2,...)      
+                                <programlisting role="no-scilab-exec">
+                                    r=jac(t,x,xdot,p1,p2,...)
                                 </programlisting>
                                 <para>
                                     Функция <literal>jac</literal> по-прежнему возвращает
@@ -281,7 +281,7 @@
                                         <para>Последовательность вызова Fortran должна быть</para>
                                         <para>
                                             <literal>&lt;j_name&gt;(t, x, xdot, r, cj, ires,
-                                                rpar, ipar) 
+                                                rpar, ipar)
                                             </literal>
                                         </para>
                                         <para>
@@ -341,13 +341,13 @@
                                 <para>Эта форма внешней функции используется для передачи
                                     параметров в функцию. Она может иметь следующий вид:
                                 </para>
-                                <programlisting role="no-scilab-exec">  
+                                <programlisting role="no-scilab-exec">
                                     list(surface,p1,p2,...)
                                 </programlisting>
                                 <para>где последовательность вызова функции
                                     <literal>surface</literal> теперь имеет вид:
                                 </para>
-                                <programlisting role="no-scilab-exec"> 
+                                <programlisting role="no-scilab-exec">
                                     r=surface(t,x,p1,p2,...)
                                 </programlisting>
                             </listitem>
@@ -365,7 +365,7 @@
                                         <para>Последовательность вызова Fortran должна быть</para>
                                         <para>
                                             <literal>&lt;j_name&gt;(t, x, xdot, r, cj, ires,
-                                                rpar, ipar) 
+                                                rpar, ipar)
                                             </literal>
                                         </para>
                                         <para>
@@ -427,7 +427,7 @@
                 <term>y</term>
                 <listitem>
                     <para>
-                        вещественная матрица. Если 
+                        вещественная матрица. Если
                         <literal>
                             <link linkend="daeoptions">%DAEOPTIONS</link>(2)=1
                         </literal>
@@ -448,7 +448,7 @@
             функциями <link linkend="dassl">dassl</link> и <link linkend="dasrt">dasrt</link>, разработанными для явного интегрирования
             дифференциальных уравнений.
         </para>
-        <programlisting role="no-scilab-exec"> 
+        <programlisting role="no-scilab-exec">
             g(t,x,xdot)=0
             x(t0)=x0  and   xdot(t0)=xdot0
         </programlisting>
@@ -490,9 +490,9 @@ endfunction
 x0=[1; 0; 0];
 xd0=[-0.04; 0.04; 0];
 t=[1.d-5:0.02:.4, 0.41:.1:4, 40, 400, 4000, 40000, 4d5, 4d6, 4d7, 4d8, 4d9, 4d10];
-            
+
 y=dae([x0,xd0],0,t,chemres);// возвращает запрошенные моменты времени наблюдения
-            
+
 %DAEOPTIONS=list([],1,[],[],[],0,0); // просит вернуть сетку точек dae
 y=dae([x0,xd0],0,4d10,chemres); // без якобиана
 y=dae([x0,xd0],0,4d10,chemres,chemjac); // с якобианом
@@ -525,7 +525,7 @@ cd TMPDIR;
 mputl(code, 't22.c')
 
 //-2- скомпилировать и загрузить его
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c','Makefile','t22loader.sce');
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',[],'t22loader.sce');
 exec('t22loader.sce')
 
 //-3- запустить
@@ -576,7 +576,7 @@ code=['#include <math.h>'
 previous_dir = pwd();
 cd TMPDIR;
 mputl(code, 't22.c')
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c','Makefile','t22loader.sce');
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',[],'t22loader.sce');
 exec('t22loader.sce')
 rtol=[1.d-6;1.d-6];
 atol=[1.d-6;1.d-4];

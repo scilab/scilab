@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -92,7 +92,7 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
     private static final ScilabTList DIAGRAM_OPTIONS = new ScilabTList(OPTS_FIELDS, Arrays.asList(new ScilabList(// 3D
     Arrays.asList(new ScilabBoolean(true), new ScilabDouble(33))), new ScilabDouble(new double[][] { { 8, 1 } }), // Background
     new ScilabDouble(new double[][] { { 1, 5 } }), // Link
-            new ScilabList(// ID
+    new ScilabList(// ID
     Arrays.asList(new ScilabDouble(new double[][] { { 5, 1 } }), new ScilabDouble(new double[][] { { 4, 1 } }))), new ScilabDouble(
     new double[][] { { 0.8, 0.8, 0.8 } }) // Cmap
                                                                                                  ));

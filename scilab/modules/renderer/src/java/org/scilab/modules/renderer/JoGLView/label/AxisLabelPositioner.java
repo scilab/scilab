@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.label;
@@ -59,7 +59,7 @@ public class AxisLabelPositioner extends LabelPositioner {
      * (respectively to the left) from its location in the array, modulo the array size.
      */
     private static final AnchorPosition[] allowedAnchorPositionsArray = {AnchorPosition.LEFT, AnchorPosition.DOWN,
-                                          AnchorPosition.RIGHT, AnchorPosition.UP
+                                                                         AnchorPosition.RIGHT, AnchorPosition.UP
                                                                         };
 
     /** The list of allowed anchor positions. */

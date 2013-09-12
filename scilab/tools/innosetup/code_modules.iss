@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 //------------------------------------------------------------------------------
 // Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -115,6 +115,7 @@ begin
         ModulesXmlFileLines[i] := '<module name="graph" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="javasci" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
+        ModulesXmlFileLines[i] := '<module name="external_objects_java" activate="yes"/>'; i := i + 1;
     end;
 
     ModulesXmlFileLines[i] := '<!-- Scinotes dependencies -->'; i := i + 1;
