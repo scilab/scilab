@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added error control
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: ajout du contrôle d'erreur
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,39 +14,39 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="intc">
     <refnamediv>
         <refname>intc</refname>
-        <refpurpose>Cauchy integral</refpurpose>
+        <refpurpose>intégrale de Cauchy</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[y  [,err]] = intc(a, b, f [,abserr [,relerr]])</synopsis>
+        <title>Séquence d'appel</title>
+        <synopsis>[y [,err]] = intc(a, b, f [,abserr [,relerr]])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>a, b</term>
                 <listitem>
-                    <para>two complex scalars</para>
+                    <para>scalaires complexes</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>"external" function</para>
+                    <para>fonction "externe"</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>abserr, rerr</term>
                 <listitem>
-                    <para>real scalars, absolute and relative errors.
-                        Default values: <literal>1.d-14</literal> and <literal>1d-8</literal>.
+                    <para>scalaires réels, erreurs absolue et relative recherchées.
+                        Valeurs par défaut: <literal>1.d-14</literal> et <literal>1d-8</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>err</term>
                 <listitem>
-                    <para>real number, estimated absolute error on the result.</para>
+                    <para>scalaire réel, erreur absolue estimée sur le résultat.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -54,16 +54,16 @@
     <refsection>
         <title>Description</title>
         <para>
-            If <literal>f</literal> is a complex-valued function, <literal>intc(a, b, f)</literal>
-            computes the integral from <literal>a</literal> to <literal>b</literal> of <literal>f(z)dz</literal> along the
-            straight line <literal>[a b]</literal> of the complex plane.
+            Si <literal>f</literal> est une fonction complexe, <literal>intc(a, b, f)</literal>
+            calcule l'intérgale de <literal>a</literal> à <literal>b</literal> de <literal>f(z)dz</literal> le long
+            du segment <literal>[a b]</literal> du plan complexe.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 function y = f(z)
-  y = z^(3 + %pi * %i);
+  y = z^(3 + %pi * %i)
 endfunction
 
 intc(1+%i, 4-%i, f)
@@ -83,11 +83,11 @@ intc(1+%i, 4-%i, f)
         </simplelist>
     </refsection>
     <refsection>
-        <title>History</title>
+        <title>Historique</title>
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark>Absolute and relative (input) and absolute (output) errors management added.</revremark>
+                <revremark>Ajout des erreurs absolue et relative (entrée) et absolue (sortie).</revremark>
             </revision>
         </revhistory>
     </refsection>
