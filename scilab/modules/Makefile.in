@@ -270,8 +270,8 @@ DIST_SUBDIRS = prebuildjava fileio mexlib functions parameters boolean \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms graph xcos \
 	scinotes parallel modules_manager ui_data history_browser \
-	preferences xml types external_objects external_objects_java \
-	scicos_blocks scicos mpi . javasci
+	preferences xml types external_objects uiwidget \
+	external_objects_java scicos_blocks scicos mpi . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -577,8 +577,9 @@ SUBDIRS = prebuildjava fileio mexlib functions parameters boolean \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms hdf5 graph \
 	xcos scinotes parallel modules_manager ui_data history_browser \
-	preferences xml types external_objects external_objects_java \
-	$(am__append_1) scicos $(am__append_2) . $(am__append_3)
+	preferences xml types external_objects uiwidget \
+	external_objects_java $(am__append_1) scicos $(am__append_2) . \
+	$(am__append_3)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -602,7 +603,8 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/preferences/libscipreferences.la \
-	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la 
+	$(top_builddir)/modules/uiwidget/libsciuiwidget.la \
+	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
@@ -669,7 +671,8 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la
+	$(top_builddir)/modules/parallel/libsciparallel.la \
+	$(top_builddir)/modules/uiwidget/libsciuiwidget.la
 
 
 # Core modules
