@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<!-- This document was created with Syntext Serna Free. -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mpi_technical" xml:lang="en">
+    <refnamediv>
+        <refname>MPI implementation</refname>
+        <refpurpose>Technical details about the implementation</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Sending and receiving data</title>
+        <para>
+            The main problem of a MPI implementation from a scripting language is due to their native characterics. Indeed, scripting language are, by nature, using dynamic variables of various <literal>types</literal> and sizes.
+        </para>
+        <para>
+            The implementation of MPI in Scilab is using an internal serialization and deserialization process to the MPI datatype MPI_INT. The send functions (MPI_Send, MPI_Isend, MPI_BCast, etc) will convert all the supported datatypes to MPI_INT while receiving functions (MPI_Recv, MPI_Irecv, etc) will <literal>restore</literal> the original variables.
+        </para>
+        <para>Like their memory representation in the 5 family, variables are serialized in the following way:</para>
+        <para>
+            Double, Boolean, String(?)
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <para>Type</para>
+                    </td>
+                    <td>
+                        <para>Number of rows</para>
+                    </td>
+                    <td>
+                        <para>Number of columns</para>
+                    </td>
+                    <td>
+                        <para>Complex (if relevant)</para>
+                    </td>
+                    <td>
+                        <para>Data</para>
+                    </td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>Integer
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <para>Type</para>
+                    </td>
+                    <td>
+                        <para>Number of rows</para>
+                    </td>
+                    <td>
+                        <para>Number of columns</para>
+                    </td>
+                    <td>
+                        <para>Precision</para>
+                    </td>
+                    <td>
+                        <para>Data</para>
+                    </td>
+                </tr>
+            </informaltable>
+            <para>
+            </para>
+            Sparse (double or boolean)
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <para>Type</para>
+                    </td>
+                    <td>
+                        <para>Number of rows</para>
+                    </td>
+                    <td>
+                        <para>Number of columns</para>
+                    </td>
+                    <td>
+                        <para>Complex</para>
+                    </td>
+                    <td>
+                        <para>Number of items</para>
+                    </td>
+                    <td>
+                        <para>Data</para>
+                    </td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>Other potential solutions have been considered but rejected for various reasons:
+            <simplelist type="inline">
+                <member>
+                    <literal>MPI based new datatype</literal> Needs to know <literal>a priori</literal> the size of the variable.
+                </member>
+                <member>
+                    <literal>One send for the metadata (size, type), one send for the data</literal> While decreasing the performances, the code would be strongly complexified.
+                </member>
+            </simplelist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Asynchronous exchanges</title>
+        <para>Because MPI_Irecv and MPI_Isend standard behavior are not really the common way to do in the Scilab language, MPI_Wait returns a value in the Scilab MPI binding.
+        </para>
+        <para>In order to store the list of requests and MPI variables expected by MPI_Irecv/MPI_Wait, static C structures containing at max 10 000 elements are used. They will be used to store the various MPI Request used for asynchronous exchanges and the reference to the expected variable from MPI_Irecv. The received value are returned by MPI_Wait.
+        </para>
+        <para>In the following example, the request named "42" will be stored in this datastructure. 
+            <programlisting role="example"><![CDATA[ 
+
+
+                MPI_Init();
+                rnk =    MPI_Comm_rank();
+                sizeNodes =    MPI_Comm_size();
+
+                SLV = rnk;
+                Master = ~ SLV;
+
+                assert_checkequal(MPI_Comm_size(), 2);
+
+                if Master
+                   for slaveId = 1:sizeNodes-1
+                     value = slaveId*2
+                     MPI_Isend(value, slaveId, 42);
+                   end
+                else
+                    rankSource=0;
+                    tag=0;
+                    MPI_Irecv(rankSource, tag, 42); // MPI_Irecv does not return any value
+                    value=MPI_Wait(42) // the value will be returned by MPI_Wait
+                    assert_checkequal(value,2);
+                end
+
+                MPI_Finalize();
+                exit()
+
+           ]]> </programlisting>
+        </para>
+    </refsection>
+    
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mpi">MPI overview</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -94,7 +94,8 @@
 /* 70 */                        #include "dynamic_gateways.h" /* graphic_objects */
 /* 71 */                        #include "dynamic_gateways.h" /* external_objects */
 /* 72 */                        #include "dynamic_gateways.h" /* external_objects_java */
-/* 73 */                        #include "dynamic_gateways.h" /* uiwidget */
+/* 73 */			            #include "dynamic_gateways.h" /* MPI */
+/* 74 */                        #include "dynamic_gateways.h" /* uiwidget */
 
 /** table of interfaces **/
 
