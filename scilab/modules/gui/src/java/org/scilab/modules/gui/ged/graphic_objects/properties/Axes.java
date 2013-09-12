@@ -724,7 +724,7 @@ public class Axes extends ContentLayout {
                         cLogFlagsY.isSelected());
                 } else {
                     JOptionPane.showConfirmDialog(null, MessagesGED.warning_logscale, MessagesGED.warning, JOptionPane.DEFAULT_OPTION);
-                    cLogFlagsX.setSelected(false);
+                    cLogFlagsY.setSelected(false);
                 }
             }
         });
@@ -738,7 +738,7 @@ public class Axes extends ContentLayout {
                         cLogFlagsZ.isSelected());
                 } else {
                     JOptionPane.showConfirmDialog(null, MessagesGED.warning_logscale, MessagesGED.warning, JOptionPane.DEFAULT_OPTION);
-                    cLogFlagsX.setSelected(false);
+                    cLogFlagsZ.setSelected(false);
                 }
             }
         });

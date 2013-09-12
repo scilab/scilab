@@ -107,6 +107,7 @@ public class ShowHide extends CommonCallBack {
      */
     public static void action(boolean hide) {
         axes(hide);
+        champ(hide);
         datatip(hide);
         figure(hide);
         imageplot(hide);
@@ -125,6 +126,14 @@ public class ShowHide extends CommonCallBack {
             org.scilab.modules.gui.ged.graphic_objects.axes.Label.getInstance().setVisibility(!hide);
             org.scilab.modules.gui.ged.graphic_objects.axes.Position.getInstance().setVisibility(!hide);
             org.scilab.modules.gui.ged.graphic_objects.axes.Style.getInstance().setVisibility(!hide);
+        } catch (NullPointerException e1) {
+        } catch (NoSuchMethodError e2) { }
+    }
+
+    public static void champ(boolean hide) {
+        try {
+            org.scilab.modules.gui.ged.graphic_objects.champ.DataProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.champ.Style.getInstance().setVisibility(!hide);
         } catch (NullPointerException e1) {
         } catch (NoSuchMethodError e2) { }
     }
@@ -215,6 +224,13 @@ public class ShowHide extends CommonCallBack {
                 if (A && B && C && D && E && F && G)
                     setStatus(false);
                 else if (!A && !B && !C && !D && !E && !F && !G)
+                    setStatus(true);
+            } else if("champ".equals(type)) {
+                boolean A = org.scilab.modules.gui.ged.graphic_objects.champ.DataProperties.getInstance().getStatus();
+                boolean B = org.scilab.modules.gui.ged.graphic_objects.champ.Style.getInstance().getStatus();
+                if (A && B)
+                    setStatus(false);
+                else if (!A && !B)
                     setStatus(true);
             } else if("datatip".equals(type)) {
                 boolean BP = org.scilab.modules.gui.ged.graphic_objects.datatip.BaseProperties.getInstance().getStatus();

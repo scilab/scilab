@@ -29,6 +29,7 @@ public class MessagesGED {
     public static final String show = Messages.gettext("Show");
     public static final String arc = Messages.gettext("Arc");
     public static final String axes = Messages.gettext("Axes");
+    public static final String champ = Messages.gettext("Champ");
     public static final String datatip = Messages.gettext("Datatip");
     public static final String polyline = Messages.gettext("Polyline");
     public static final String figure = Messages.gettext("Figure");
@@ -78,6 +79,7 @@ public class MessagesGED {
     public static final String theta = Messages.gettext("Theta");
 
     public static final String ticks = Messages.gettext("Ticks");
+
     public static final String warning = Messages.gettext("Warning");
     public static final String warning_logscale = Messages.gettext("The data bounds from the axis must be strictly positive to be changed to logarithmic scale.");
 
@@ -89,6 +91,7 @@ public class MessagesGED {
 
     //Style/Appearance - Labels
     public static final String arrow_size = Messages.gettext("Arrow Size");
+    public static final String colored = Messages.gettext("Colored");
     public static final String colors = Messages.gettext("Colors");
     public static final String background = Messages.gettext("Background");
     public static final String foreground = Messages.gettext("Foreground");
