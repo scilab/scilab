@@ -410,8 +410,75 @@ public class GEDPicker {
      */
     boolean getFec(String obj, Integer[] position) {
 
-        //TODO:
+        double[] triangles = (double[])ObjectData.getFecTriangles(obj);
+        double[] data = (double[])ObjectData.getFecData(obj);
+
+        double[] pos = { position[0] * 1.0, position[1] * 1.0, 0.0 };
+        double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axesUID, pos);
+        double[] c3d1 = AxesDrawer.compute3dViewCoordinates(axes, c2d);
+        c2d[2] += 1.0;
+
+        double[] c3d2 = AxesDrawer.compute3dViewCoordinates(axes, c2d);
+        Vector3d l0 = new Vector3d(c3d1);
+        Vector3d l1 = new Vector3d(c3d2);
+        Vector3d dir = l1.minus(l0);
+        int idx1, idx2, idx3;
+        Vector3d p1, p2, p3;
+
+        int tSize = triangles.length / 5;
+        for (int i = 0; i < tSize; i++) {
+            idx1 = (int)triangles[tSize + i];
+            idx2 = (int)triangles[2 * tSize + i];
+            idx3 = (int)triangles[3 * tSize + i];
+
+            p1 = new Vector3d(data[(idx1 - 1) * 3], data[(idx1 - 1) * 3 + 1], data[(idx1 - 1) * 3 + 2]);
+            p2 = new Vector3d(data[(idx2 - 1) * 3], data[(idx2 - 1) * 3 + 1], data[(idx2 - 1) * 3 + 2]);
+            p3 = new Vector3d(data[(idx3 - 1) * 3], data[(idx3 - 1) * 3 + 1], data[(idx3 - 1) * 3 + 2]);
+
+            if (testTri(p1, p2, p3, l0, dir)) {
+                return true;
+            }
+        }
         return false;
+    }
+    /**
+     * Möller–Trumbore intersection algorithm
+     * Test if a line intersect a triangle
+     *
+     * @param p1 The vertex 1 of the triangle
+     * @param p2 The vertex 2 of the triangle
+     * @param p3 The vertex 3 of the triangle
+     * @param l0 origin point
+     * @param direction The direction vector
+     * @return true if it intersect the triangle, false otherwise
+     */
+    private boolean testTri(Vector3d p1, Vector3d p2, Vector3d p3, Vector3d l0, Vector3d direction) {
+
+        Vector3d e1 = p2.minus(p1);
+        Vector3d e2 = p3.minus(p1);
+
+        Vector3d h = Vector3d.product(direction, e2);
+        double det = e1.scalar(h);
+
+        if (det > -0.00001 && det < 0.00001) {
+            return false;
+        }
+
+        double inv = 1.0 / det;
+        Vector3d s = l0.minus(p1);
+
+        double u = s.scalar(h) * inv;
+        if (u < 0.0 || u > 1.0) {
+            return false;
+        }
+
+        Vector3d q = Vector3d.product(s, e1);
+        double v = direction.scalar(q) * inv;
+        if (v < 0.0 || (u + v) > 1.0) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

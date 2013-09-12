@@ -40,6 +40,20 @@
 	(*jenv)->ReleaseDoubleArrayElements(jenv, $input, $1, 0);
 }
 
+%typemap(jni) int * "jobject"
+%typemap(jtype) int * "Object"
+%typemap(jstype) int * "Object"
+%typemap(javain) int * "$javainput"
+%typemap(javaout) int * { return $jnicall; }
+
+%typemap(in) int * {
+	$1 = (*jenv)->GetIntArrayElements(jenv, $input, NULL);
+}
+
+%typemap(argout) int * {
+	(*jenv)->ReleaseIntArrayElements(jenv, $input, $1, 0);
+}
+
 %typemap(out) double * CHAMPX {
 	$result = (*jenv)->NewDoubleArray(jenv, _getChampXSize(arg1));
 	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getChampXSize(arg1), $1);
@@ -149,8 +163,60 @@ int _getSegsSize(char * uid) {
 }
 %}
 
+%typemap(out) double * FEC {
+	$result = (*jenv)->NewDoubleArray(jenv, _getFecTrianglesSize(arg1));
+	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getFecTrianglesSize(arg1), $1);
+}
+
+%apply double * FEC { double * getFecTriangles(char * uid) }
+%{
+
+double * getFecTriangles(char * uid) {
+
+    double * triangles;
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector, (void**)&triangles);
+    return triangles;
+}
+
+int _getFecTrianglesSize(char * uid) {
+    
+    int indices;
+    int * pIndices = &indices;
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**)&pIndices);
+    return indices * 5;
+}
+
+%}
+
+%typemap(out) double * FECXY {
+	$result = (*jenv)->NewDoubleArray(jenv, _getFecDataSize(arg1));
+	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getFecDataSize(arg1), $1);
+}
+
+%apply double * FECXY { double * }
+%{
+
+double * getFecData(char * uid) {
+
+    double * data;
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_COORDINATES__, jni_double_vector, (void**)&data);
+    return data;
+}
+
+int _getFecDataSize(char * uid) {
+    
+    int size;
+    int * pSize = &size;
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_VERTICES__, jni_int, (void**)&pSize);
+    return size * 3;
+}
+
+%}
+
 
 double * getChampX(char * uid);
 double * getChampY(char * uid);
 double * getArrows(char * uid);
 double * getSegsData(char * uid);
+double * getFecTriangles(char * uid);
+double * getFecData(char * uid);
