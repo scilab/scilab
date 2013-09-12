@@ -155,7 +155,7 @@ AC_PROG_GREP
 
 AC_ARG_WITH(fink_prefix,
 AC_HELP_STRING([--with-fink-prefix],[Provide a fink prefix. Default: /sw/ ]))
-# Need MacosX Version to specify some path.                                  
+# Need MacosX Version to specify some path.
 case "$host_os" in
      *Darwin* | *darwin*)
      	      AC_GET_MACOSX_VERSION
@@ -539,8 +539,6 @@ case "$CXX" in
 
 esac
 
-AC_CHECK_STDCPP_STATIC()
-
 #### 64 bits detection
 IS_64_BITS_CPU=false
 case "$host" in
@@ -822,6 +820,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
         JAVA_HOME=$ac_java_jvm_dir
         JAVA_VERSION=$ac_java_jvm_version
 #     AC_JAVA_TOOLS
+
         AC_JAVA_JNI_INCLUDE
         JAVA_JNI_INCLUDE=$ac_java_jvm_jni_include_flags
 
@@ -1353,15 +1352,22 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 ## MPI
 #################
 
-# Not in Scilab 5.0
-#AC_ARG_WITH(mpi,
-#    [  --with-mpi               compile with MPI library])
-#
-#if test "$with_mpi" = yes; then
-#   AC_OPENMPI()
-#   # We will have to detect other implementation of OpenMPI
-#fi
-#AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
+# Disable by default the build of MPI:
+# * It is hard to package
+# * People are administrating cluster know about rebuilding packages
+# * They use their own MPI library
+AC_ARG_WITH(mpi,
+    AC_HELP_STRING([--with-mpi],[compile with MPI library]))
+
+MPI_ENABLE=no
+if test "$with_mpi" == yes; then
+   AC_OPENMPI()
+   # We will have to detect other implementation of OpenMPI
+   MPI_ENABLE=yes
+fi
+AC_SUBST(MPI_ENABLE)
+
+AM_CONDITIONAL(MPI, test "$with_mpi" == yes)
 
 #################
 ## OpenMP
@@ -1807,6 +1813,13 @@ AH_BOTTOM([
 # Define the standard extension of a dynamic library
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
 
+
+#########
+## Make sure that the libstdc++ and libgcc can be compiled as static
+#########
+
+AC_CHECK_STDCPP_STATIC()
+
 #################
 ## stop on warning
 #################
@@ -1872,6 +1885,7 @@ modules/graphic_objects/Makefile
 modules/renderer/Makefile
 modules/action_binding/Makefile
 modules/gui/Makefile
+modules/mpi/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
@@ -2095,6 +2109,17 @@ echo "  LAPACK LIBS ........... = $LAPACK_LIBS"
 echo "  LAPACK TYPE ........... = $LAPACK_TYPE"
 echo "  ARPACK LIBS ........... = $ARPACK_LIBS"
 echo ""
+
+
+if test "$with_mpi" == yes; then
+   echo "OpenMPI Configuration:"
+   echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
+   echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
+   echo "OpenMPI C++ Compiler ... = $OPENMPI_CXX"
+   echo "OpenMPI F77 Compiler ... = $MPIF77"
+else
+   echo "Not using MPI"
+fi
 
 echo ""
 if test $BUILD_LOCALIZATION_ENABLE != no; then

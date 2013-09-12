@@ -514,6 +514,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos-cli", "modules\scico
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos_blocks-cli", "modules\scicos_blocks\src\c\cli\scicos_blocks-cli.vcxproj", "{424A5578-BA28-435F-8313-8D85886A3539}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mpi", "modules\mpi\mpi.vcxproj", "{5E726409-247A-464A-A994-6E6A7A02A981}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1598,6 +1600,10 @@ Global
 		{424A5578-BA28-435F-8313-8D85886A3539}.Release|Win32.Build.0 = Release|Win32
 		{424A5578-BA28-435F-8313-8D85886A3539}.Release|x64.ActiveCfg = Release|x64
 		{424A5578-BA28-435F-8313-8D85886A3539}.Release|x64.Build.0 = Release|x64
+		{5E726409-247A-464A-A994-6E6A7A02A981}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5E726409-247A-464A-A994-6E6A7A02A981}.Debug|x64.ActiveCfg = Debug|x64
+		{5E726409-247A-464A-A994-6E6A7A02A981}.Release|Win32.ActiveCfg = Release|Win32
+		{5E726409-247A-464A-A994-6E6A7A02A981}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

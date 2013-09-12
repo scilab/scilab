@@ -99,6 +99,10 @@ endif
 
 SUBDIRS += scicos
 
+if MPI
+SUBDIRS += mpi
+endif
+
 SUBDIRS += .
 
 # javasci should be compile at the end because it needs libscilab.la
@@ -201,6 +205,9 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
 	$(top_builddir)/modules/parallel/libsciparallel.la
 
+if MPI
+ENGINE_LIBS += $(top_builddir)/modules/mpi/libscimpi.la
+endif
 
 # Core modules
 

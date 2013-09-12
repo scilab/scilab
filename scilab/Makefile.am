@@ -38,8 +38,8 @@ if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
 
-scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS)
-scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS)
+scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS) $(OPENMPI_LIBS)
+scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS) $(OPENMPI_LIBS)
 
 if USE_STATIC_SYSTEM_LIB
 scilab_bin_LDFLAGS += -static-libstdc++ -static-libgcc
@@ -78,6 +78,14 @@ scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.cpp
 
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
 scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
+
+if MPI
+CXX = $(OPENMPI_CXX)
+scilab_bin_SOURCES += $(top_srcdir)/modules/console/src/c/others/initMPI.c
+scilab_bin_CPPFLAGS += $(OPENMPI_CXXFLAGS)
+scilab_cli_bin_SOURCES += $(top_srcdir)/modules/console/src/c/others/initMPI.c
+scilab_cli_bin_CPPFLAGS += $(OPENMPI_CXXFLAGS)
+endif
 
 
 if NEED_JAVA

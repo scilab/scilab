@@ -30,6 +30,11 @@ extern "C" {
 #include "signal_mgmt.h"
 #include "cliDisplayManagement.h"
 
+#ifdef ENABLE_MPI
+#include "initMPI.h"
+#endif
+
+
 #ifdef __APPLE__
 #include "initMacOSXEnv.h"
 #endif
@@ -63,7 +68,6 @@ int F77_DUMMY_MAIN()
 
 int main(int argc, char **argv)
 {
-
     int i;
     int no_startup_flag = 0;
     int memory = MIN_STACKSIZE;
@@ -78,9 +82,14 @@ int main(int argc, char **argv)
     setFPUToDouble();
 #endif
 
+#ifdef ENABLE_MPI
+    initScilabMPI();
+#endif
+
     InitializeLaunchScilabSignal();
 
-    /* Management of the signals (seg fault, floating point exception, etc) */
+/* Management of the signals (seg fault, floating point exception, etc) */
+
     if (getenv("SCI_DISABLE_EXCEPTION_CATCHING") == NULL)
     {
         base_error_init();
@@ -177,7 +186,6 @@ int main(int argc, char **argv)
         }
     }
 
-
     if (!isatty(fileno(stdin)) && getScilabMode() != SCILAB_STD)
     {
         /*
@@ -207,7 +215,6 @@ int main(int argc, char **argv)
     }
 
     setCommandLineArgs(argv, argc);
-
 
 #ifndef WITH_GUI
     if (getScilabMode() != SCILAB_NWNI)

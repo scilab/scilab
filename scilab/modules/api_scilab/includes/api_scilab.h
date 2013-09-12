@@ -13,6 +13,7 @@
 #ifndef __VARIABLE_API__
 #define __VARIABLE_API__
 
+
 /*
 * 1 : First version
 * 2 : Shortcut functions added

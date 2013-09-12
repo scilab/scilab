@@ -47,6 +47,13 @@ int gw_dynamic_ui_data(void);
 int gw_dynamic_xcos(void);
 
 /**
+* mpi gateway
+* mpi is loaded dynamically at runtime
+* load gw_mpi in SCI/modules/mpi/sci_gateway/gw_mpi.c
+*/
+int gw_dynamic_mpi(void);
+
+/**
 * scinotes gateway
 * functions is loaded dynamically at runtime
 * load gw_functions in SCI/modules/scinotes/sci_gateway/gw_scinotes.c
@@ -162,6 +169,13 @@ int gw_dynamic_symbolic(void);
 int gw_dynamic_graphic_export(void);
 
 /**
+* mpi gateway
+* mpi is loaded dynamically at runtime
+* load gw_mpi in SCI/modules/mpi/sci_gateway/gw_mpi.c
+*/
+int gw_dynamic_mpi(void);
+
+/*
 * action_binding gateway
 * action_binding is loaded dynamically at runtime
 * load gw_action_binding in SCI/modules/action_binding/sci_gateway/gw_action_binding.c
