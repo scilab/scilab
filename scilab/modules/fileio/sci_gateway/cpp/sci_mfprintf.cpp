@@ -42,7 +42,6 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     BOOL isSTD                      = FALSE;
     BOOL isSTDErr                   = FALSE;
     int iFile                       = -1; //default file : last opened file
-    int iRet                        = 1;  // push not iRet
     unsigned int iNumberPercent     = 0;
     unsigned int iNumberCols        = 0;
     int nbrOfLines                  = 0;
@@ -219,11 +218,15 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
             }
         }
         scilabForcedWriteW(L"\n");
-        iRet = 0;
     }
     else
     {
-        iRet = mputl(iFile, wcsStringToWrite, nbrOfLines, (BOOL)iNewLine); // FALSE = don't add the "\n" at the end.
+        int iRet = mputl(iFile, wcsStringToWrite, nbrOfLines, (BOOL)iNewLine); // FALSE = don't add the "\n" at the end.
+        if (iRet)
+        {
+            Scierror(999, _("%s: Error while writing in file: disk full or deleted file.\n"), "mprintf");
+            return types::Function::Error;
+        }
     }
 
     for (int i = 0; i < nbrOfLines; i++)
@@ -234,7 +237,6 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     FREE(wcsStringToWrite);
     FREE(pArgs);
 
-    out.push_back(new Bool(!iRet));
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
