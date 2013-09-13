@@ -27,5 +27,5 @@ function [h]=buttmag(order,omegac,sample_vector)
 
     [n1,n2]=size(sample_vector);
     un=ones(n1,n2);
-    h=un./(un+(sample_vector/omegac)**(2*order));
+    h=un./(un+(sample_vector/omegac).^(2*order));
 endfunction

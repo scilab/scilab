@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -42,7 +42,7 @@
                 <listitem>
                     <para>
                         matriz de reais de tamanho (n1,n2). <literal>z(i,j)</literal>
-                        é o valor da superfície no ponto (theta(i),rho(j)). 
+                        é o valor da superfície no ponto (theta(i),rho(j)).
                     </para>
                 </listitem>
             </varlistentry>
@@ -120,7 +120,7 @@
                                         <listitem>
                                             <para>
                                                 como <literal>y=1</literal> mas produz escala de
-                                                isovisualização. 
+                                                isovisualização.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -129,7 +129,7 @@
                                         <listitem>
                                             <para>
                                                 como <literal>y=2</literal> mas produz escala de
-                                                isovisualização. 
+                                                isovisualização.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -141,7 +141,7 @@
                                                 <literal>plot2d</literal> pode mudar as fronteiras do
                                                 esboço e os tiques dos eixos para se obter boas
                                                 graduações. Quando o botão de zoom é ativado, este modo
-                                                é usado. 
+                                                é usado.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -153,7 +153,7 @@
                                                 <literal>plot2d</literal> pode mudar as fronteiras do
                                                 esboço e os tiques dos eixos para se obter boas
                                                 graduações. Quando o botão de zoom é ativado, este modo
-                                                é usado. 
+                                                é usado.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -162,7 +162,7 @@
                                         <listitem>
                                             <para>
                                                 como <literal>y=5</literal> mas a escala do novo
-                                                esboço é misturada à escala corrente. 
+                                                esboço é misturada à escala corrente.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -188,7 +188,7 @@
                         <literal>strf</literal> é 1. <literal>leg</literal> possui a forma
                         <literal>"leg1@leg2@...."</literal> onde <literal>leg1</literal>,
                         <literal>leg2</literal>, etc. são respectivamente as legendas das
-                        primeira, segunda, etc. curvas. O padrão é " ". 
+                        primeira, segunda, etc. curvas. O padrão é " ".
                     </para>
                 </listitem>
             </varlistentry>
@@ -215,9 +215,9 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rho=1:0.1:4;theta=(0:0.02:1)*2*%pi;
-z=30+round(theta'*(1+rho^2));
+z=30+round(theta'*(1+rho.^2));
 f=gcf();
 f.color_map= hotcolormap(128);
 clf();graypolarplot(theta,rho,z)

@@ -30,25 +30,25 @@
         </para>
         <para>
         </para>
-        Avant de résoudre le problème, <emphasis>IDA</emphasis> lance une routine interne pour trouver des valeurs consistantes à 
+        Avant de résoudre le problème, <emphasis>IDA</emphasis> lance une routine interne pour trouver des valeurs consistantes à
         <emphasis>
             y<subscript>0</subscript>
         </emphasis>
-        et 
+        et
         <emphasis>
             yPrime<subscript>0</subscript>
         </emphasis>
         .
         <para>
-            Partant alors de ces 
+            Partant alors de ces
             <emphasis>
                 y<subscript>0</subscript>
             </emphasis>
-            et 
+            et
             <emphasis>
                 yPrime<subscript>0</subscript>
             </emphasis>
-            , <emphasis>IDA</emphasis> approxime 
+            , <emphasis>IDA</emphasis> approxime
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
@@ -61,11 +61,11 @@
                 \end{eqnarray}
             </latex>
             <para>
-                &#160; avec, comme dans <link linkend="CVode">CVode</link>, 
+                &#160; avec, comme dans <link linkend="CVode">CVode</link>,
                 <emphasis>
                     y<subscript>n</subscript>
                 </emphasis>
-                l'approximation de 
+                l'approximation de
                 <emphasis>
                     y(t<subscript>n</subscript>)
                 </emphasis>
@@ -111,11 +111,11 @@
             Un solveur direct dense est alors utilisé et on poursuit sur le prochain pas de temps.
         </para>
         <para>
-            <emphasis>IDA</emphasis> se sert des valeurs passées pour contrôler l'erreur locale 
+            <emphasis>IDA</emphasis> se sert des valeurs passées pour contrôler l'erreur locale
             <emphasis>
                 y<subscript>n(m)</subscript> - y<subscript>n(0)</subscript>
             </emphasis>
-            et recalcule 
+            et recalcule
             <emphasis>
                 h<subscript>n</subscript>
             </emphasis>
@@ -149,8 +149,8 @@ loadScicos();
 loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/DAE_Example.zcos");
 // Redéfinition de messagebox() pour éviter le popup
-function messagebox(msg, title)
- disp(title);
+function messagebox(msg, Title)
+ disp(Title);
  disp(msg);
 endfunction
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end

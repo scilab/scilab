@@ -30,21 +30,21 @@
         </para>
         <para>
         </para>
-        Before solving the problem, <emphasis>DDaskr</emphasis> runs an implemented routine to find consistent values for 
+        Before solving the problem, <emphasis>DDaskr</emphasis> runs an implemented routine to find consistent values for
         <emphasis>
             y<subscript>0</subscript>
         </emphasis>
-        and 
+        and
         <emphasis>
             yPrime<subscript>0</subscript>
         </emphasis>
         .
         <para>
-            Starting then with those 
+            Starting then with those
             <emphasis>
                 y<subscript>0</subscript>
             </emphasis>
-            and 
+            and
             <emphasis>
                 yPrime<subscript>0</subscript>
             </emphasis>
@@ -61,11 +61,11 @@
                 \end{eqnarray}
             </latex>
             <para>
-                &#160; with, like in <link linkend="CVode">CVode</link>, 
+                &#160; with, like in <link linkend="CVode">CVode</link>,
                 <emphasis>
                     y<subscript>n</subscript>
                 </emphasis>
-                the approximation of 
+                the approximation of
                 <emphasis>
                     y(t<subscript>n</subscript>)
                 </emphasis>
@@ -133,7 +133,7 @@
             <emphasis>
                 y<subscript>n(m)</subscript> - y<subscript>n(0)</subscript>
             </emphasis>
-            and recomputes 
+            and recomputes
             <emphasis>
                 h<subscript>n</subscript>
             </emphasis>
@@ -170,8 +170,8 @@ loadScicos();
 loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/DAE_Example.zcos");
 // Redefining messagebox() to avoid popup
-function messagebox(msg, title)
- disp(title);
+function messagebox(msg, Title)
+ disp(Title);
  disp(msg);
 endfunction
 scs_m.props.tol(6) = 101;

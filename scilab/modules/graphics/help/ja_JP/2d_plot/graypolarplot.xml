@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -212,7 +212,7 @@
     <refsection>
         <title>例</title>
         <scilab:image>rho=1:0.1:4;theta=(0:0.02:1)*2*%pi;
-            z=30+round(theta'*(1+rho^2));
+            z=30+round(theta'*(1+rho.^2));
             f=gcf();
             f.color_map= hotcolormap(128);
             graypolarplot(theta,rho,z)
@@ -220,9 +220,9 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rho=1:0.1:4;theta=(0:0.02:1)*2*%pi;
-z=30+round(theta'*(1+rho^2));
+z=30+round(theta'*(1+rho.^2));
 f=gcf();
 f.color_map= hotcolormap(128);
 clf();graypolarplot(theta,rho,z)
