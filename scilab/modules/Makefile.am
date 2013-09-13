@@ -89,9 +89,11 @@ history_browser \
 preferences \
 xml \
 types \
-external_objects \
-external_objects_java
+external_objects
 
+if GUI
+SUBDIRS += external_objects_java
+endif
 
 if XCOS
 SUBDIRS += scicos_blocks
@@ -136,7 +138,7 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/preferences/libscipreferences.la \
-	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la 
+	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
