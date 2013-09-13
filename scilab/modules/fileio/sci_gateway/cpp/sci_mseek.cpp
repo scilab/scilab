@@ -42,7 +42,7 @@ Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::ty
 {
     int iFile           = -1; //default file : last opened file
     int iRet            = 0;
-    int iWhere          = 0;
+    long long iWhere    = 0;
     int iFlag           = 0;
     wchar_t* wcsFlag    = NULL;
 
@@ -58,7 +58,7 @@ Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::ty
         return types::Function::Error;
     }
 
-    iWhere = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
+    iWhere = static_cast<long long>(in[0]->getAs<types::Double>()->get(0));
 
     if (in.size() == 2)
     {

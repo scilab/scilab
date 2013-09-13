@@ -23,10 +23,10 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-long int mtell(int fd)
+long long mtell(int fd)
 {
     File* pF        = FileManager::getFile(fd);
-    long int offset = -1;
+    long long offset = -1;
 
     if (pF == NULL)
     {
@@ -41,12 +41,12 @@ long int mtell(int fd)
 
 #ifdef _MSC_VER
 #if _WIN64
-    offset = (long)_ftelli64(fa) ;
+    offset = (long long)_ftelli64(fa);
 #else
-    offset = ftell(fa) ;
+    offset = (long long)ftell(fa);
 #endif
 #else
-    offset = ftell(fa) ;
+    offset = (long long)ftell(fa);
 #endif
 
     return offset;

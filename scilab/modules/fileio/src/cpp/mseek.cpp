@@ -26,7 +26,7 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/
 
-int mseek(int fd, int offset, int iflag)
+int mseek(int fd, long long offset, int iflag)
 {
 #if (defined(sun) && !defined(SYSV)) || defined(sgi)
     int irep;
@@ -51,7 +51,7 @@ int mseek(int fd, int offset, int iflag)
     }
 
 #if (defined(sun) && !defined(SYSV)) || defined(sgi)
-    irep = fseek(fa, (long) offset, iflag) ;
+    irep = fseek(fa, (long)offset, iflag) ;
     if (irep != 0 )
     {
         return 1;
@@ -63,12 +63,12 @@ int mseek(int fd, int offset, int iflag)
 #else
 #ifdef _MSC_VER
 #if _WIN64
-    if (_fseeki64(fa, (long) offset, iflag) == -1 )
+    if (_fseeki64(fa, offset, iflag) == -1 )
 #else
-    if (fseek(fa, (long) offset, iflag) == -1 )
+    if (fseek(fa, (long)offset, iflag) == -1 )
 #endif
 #else
-    if (fseek(fa, (long) offset, iflag) == -1)
+    if (fseek(fa, (long)offset, iflag) == -1)
 #endif
     {
         return errno; // global variable produced by fseek

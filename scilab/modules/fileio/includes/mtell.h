@@ -19,7 +19,7 @@
 * tell function
 */
 
-FILEIO_IMPEXP long int mtell(int fd);
+FILEIO_IMPEXP long long mtell(int fd);
 
 #endif /* __MTELL_H__ */
 /*--------------------------------------------------------------------------*/

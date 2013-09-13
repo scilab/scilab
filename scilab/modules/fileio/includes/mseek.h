@@ -19,7 +19,7 @@
 * seek function
 */
 
-FILEIO_IMPEXP int mseek(int fd, int offset, int flag);
+FILEIO_IMPEXP int mseek(int fd, long long offset, int flag);
 
 #endif /* __MSEEK_H__ */
 /*--------------------------------------------------------------------------*/

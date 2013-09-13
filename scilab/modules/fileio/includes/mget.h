@@ -23,11 +23,11 @@
 * or can be used to read in little or big endian
 * if read fails *ierr contains the number of properly read items
 */
-FILEIO_IMPEXP void C2F(mget) (int *fd, double *res, int *n, char *type, int *ierr);
+FILEIO_IMPEXP void C2F(mget) (int *fd, double *res, int *n, const char *type, int *ierr);
 
-FILEIO_IMPEXP void C2F(mgetnc)(int *fd, void * res, int *n1, char *type, int *ierr);
+FILEIO_IMPEXP void C2F(mgetnc)(int *fd, void * res, int *n1, const char *type, int *ierr);
 
-FILEIO_IMPEXP void mget2(FILE *fa, int swap, double *res, int n, char *type, int *ierr);
+FILEIO_IMPEXP void mget2(FILE *fa, int swap, double *res, int n, const char *type, int *ierr);
 
 #endif /* __MGET_H__ */
 /*--------------------------------------------------------------------------*/

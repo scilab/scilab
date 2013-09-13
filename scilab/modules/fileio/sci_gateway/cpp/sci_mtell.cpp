@@ -59,7 +59,7 @@ types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
     }
 
-    long int offset = mtell(iFile);
+    long long offset = mtell(iFile);
     if (offset < 0)
     {
         Scierror(999, _("%s: Error while opening, reading or writing.\n"), "mtell");
@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, ty
     }
 
     pOut = new types::Double(dims, dimsArray);
-    pOut->set(0, offset);
+    pOut->set(0, (double)offset);
 
     out.push_back(pOut);
     return Function::OK;

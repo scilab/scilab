@@ -96,7 +96,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
     {
         wchar_t* Line = (wchar_t*)MALLOC(LINE_MAX * iLineSizeMult * sizeof(wchar_t));
         int nbLines = 0;
-        int iPos = 0;
+        long long iPos = 0;
         if (nbLinesIn < 0)
         {
             strLines = (wchar_t **)MALLOC(sizeof(wchar_t *));
