@@ -279,6 +279,8 @@ Bug fixes
 
 * Bug #7781 fixed - The second parameter of iqr function had not effect.
 
+* Bug #7782 fixed - Tell the user how to use lcm and gcd on real arrays: convert them into degree 1 polynomials.
+
 * Bug #7824 fixed - The properties of title function did not support an indexed color.
 
 * Bug #7826 fixed - chart tagged as obsolete.
