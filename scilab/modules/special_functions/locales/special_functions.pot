@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-25 15:36+0100\n"
+"Revision-Date: 2013-09-13 12:32+0100\n"
 
 # File: sci_gateway/c/sci_besselh.c, line: 74
 # File: sci_gateway/c/sci_besselh.c, line: 103
@@ -40,7 +40,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_beta.c, line: 66
 # File: sci_gateway/c/sci_beta.c, line: 88
-# File: sci_gateway/c/sci_legendre.c, line: 144
+# File: sci_gateway/c/sci_legendre.c, line: 181
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
@@ -80,39 +80,43 @@ msgid "%s: Wrong type for argument %d: A matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_legendre.c, line: 91
+# File: sci_gateway/c/sci_legendre.c, line: 95
+# File: sci_gateway/c/sci_legendre.c, line: 135
 #, c-format
-msgid "%s: Wrong type for first input argument.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Integer or vector of integers "
+"expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_legendre.c, line: 118
+# File: sci_gateway/c/sci_legendre.c, line: 108
+# File: sci_gateway/c/sci_legendre.c, line: 148
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
+msgid "%s: Wrong type for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_legendre.c, line: 129
+# File: sci_gateway/c/sci_legendre.c, line: 159
 #, c-format
 msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_legendre.c, line: 161
+# File: sci_gateway/c/sci_legendre.c, line: 198
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) "
+"%s: Wrong value for input argument #%d: Matrix with elements in [%d,%d] "
 "expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_legendre.c, line: 225
+# File: sci_gateway/c/sci_legendre.c, line: 290
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_legendre.c, line: 229
+# File: sci_gateway/c/sci_legendre.c, line: 294
 #, c-format
 msgid "%s: error number %d\n"
 msgstr ""

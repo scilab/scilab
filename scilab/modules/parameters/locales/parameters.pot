@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-25 15:36+0100\n"
+"Revision-Date: 2013-09-13 12:32+0100\n"
 
 # File: src/c/parameters.c, line: 144
 # File: src/c/parameters.c, line: 571
@@ -151,6 +151,129 @@ msgstr ""
 msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
 msgstr ""
 
+# File: demos/parameters.dem.gateway.sce, line: 9
+msgid "Parameters"
+msgstr ""
+
+#
+# File: demos/parameters.dem.gateway.sce, line: 11
+msgid "plist handling"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 13
+msgid ""
+"This demo shows examples of plist utilizations: creation, insertion, "
+"removal, ..."
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 15
+#, c-format
+msgid ""
+"\n"
+"Create a plist '%s' containing two fields 'min' = [0 0 0] and 'max' = [1 1 "
+"1].\n"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 23
+#, c-format
+msgid ""
+"\n"
+"Check fields: \n"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 28
+#, c-format
+msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 34
+#, c-format
+msgid "Check values: \n"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 39
+#, c-format
+msgid ""
+"\n"
+"Remove the parameter 'min' from %s.\n"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 40
+#, c-format
+msgid ""
+"\n"
+"Before remove_param: \n"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 46
+#, c-format
+msgid ""
+"\n"
+"After remove_param: \n"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 49
+#, c-format
+msgid ""
+"\n"
+"Check removal: \n"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 53
+#, c-format
+msgid ""
+"\n"
+"Check type: \n"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 56
+msgid "Now, show that parameters operators only apply to the plist type"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 61
+#, c-format
+msgid ""
+"\n"
+"Add a parameter to a non plist 'A'.\n"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 62
+#, c-format
+msgid ""
+"\n"
+"Before add_param: \n"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 72
+#, c-format
+msgid ""
+"\n"
+"After add_param: \n"
+msgstr ""
+
+#
+# File: demos/params_demo.sce, line: 74
+#, c-format
+msgid ""
+"\n"
+"Error = %f. If error <> 0, then the error has been caught.\n"
+msgstr ""
+
+#
 # File: macros/add_param.sci, line: 20
 # File: macros/get_param.sci, line: 51
 # File: macros/is_param.sci, line: 20
