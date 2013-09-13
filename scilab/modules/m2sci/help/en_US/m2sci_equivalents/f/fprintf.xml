@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="c"><![CDATA[
 fprintf
 ]]></programlisting>
                 </td>
