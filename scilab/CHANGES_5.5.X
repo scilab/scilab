@@ -183,6 +183,9 @@ Xcos
 
 * Bug #12868 fixed - There were several problems with PULSE_SC block.
 
+* Bug #12873 fixed - Scicos_flat produced an unexpected error after a diagram
+                     load.
+
 * Bug #12874 fixed - CSCOPE marks sizes were too small.
 
 * Bug #12877 fixed - Incorrect output port dimensions and types in GENSIN_f, GENSQR_f, STEP_FUNCTION and STEP blocks fixed.
