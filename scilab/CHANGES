@@ -327,7 +327,9 @@ In 6.0.0:
 
 * Bug #2517 fixed  - "position" property format was not accepted by figure() despite what was said in help
 
-* Bug #6314 fixed  - The identical code of %p_m_r() and  %r_m_p() was not factorized
+* Bug #6314 fixed  - The identical code of %p_m_r() and %r_m_p() was not factorized
+
+* Bug #7378 fixed  - quart used with only NaNs did not return NaN
 
 * Bug #7646 fixed  - Extractions A'(1,2) and A.'(1,2) from a transposed matrix were not possible
 
