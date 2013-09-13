@@ -85,7 +85,7 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
 
     types::File* pFile = FileManager::getFile(iFile);
     // file opened with fortran open function
-    if (pFile->getFileType() == 1)
+    if (pFile == NULL || pFile->getFileType() == 1)
     {
         Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mget", iFile);
         return types::Function::Error;
