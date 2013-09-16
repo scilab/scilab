@@ -22,14 +22,6 @@
 function [x,y,typ]=STEP_FUNCTION(job,arg1,arg2)
     x=[];y=[],typ=[]
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         // look for the internal edge trigger block
         for i=1:length(arg1.model.rpar.objs) do
@@ -175,17 +167,11 @@ function [x,y,typ]=STEP_FUNCTION(job,arg1,arg2)
         model.sim = "csuper";
         model.out = 1;
         model.out2=1;
-        model.outtype=1;
+        model.outtyp=1;
 
         model.rpar = scs_m_1;
 
-        gr_i=[  "thick=xget(''thickness'')"
-        "pat=xget(''pattern'')"
-        "fnt=xget(''font'')"
-        "xpoly(orig(1)+[0.071;0.413;0.413;0.773]*sz(1),orig(2)+[0.195;0.195;0.635;0.635]*sz(2),'"lines"')";
-        "xset(''thickness'',thick)"
-        "xset(''pattern'',pat)"
-        "xset(''font'',fnt(1),fnt(2))"]
+        gr_i=[]
         x=standard_define([2 2],model,[],gr_i)
     end
 endfunction
