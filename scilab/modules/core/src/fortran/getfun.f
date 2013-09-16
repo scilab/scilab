@@ -1,20 +1,20 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       subroutine getfun(lunit,nlines,caller)
 c
-c ======================================================================     
+c ======================================================================
 c     get a user defined function
-c ======================================================================    
-c     
+c ======================================================================
+c
       include 'stack.h'
-c     
+c
       character *(*) caller
       integer lrecl,id(nsiz),retu(6),icount
       integer slash,dot,blank,equal,lparen,rparen
@@ -27,7 +27,7 @@ c
 
       external getfastcode
       integer  getfastcode
-c     
+c
       data slash/48/,dot/51/,blank/40/,equal/50/,lparen/41/,rparen/42/
       data comma/52/,semi/43/,less/59/,great/60/,left/54/,right/55/
       data name/1/,cmt/2/,eol/99/,lrecl/4096/
@@ -39,12 +39,12 @@ c     ennd/14,23,13/
 c
       lmax=iadr(lstk(bot)-1)
       isopened=.false.
-c     
+c
       if(top-rhs+lhs+1.ge.bot) then
          call error(18)
          return
       endif
-c     
+c
       job=0
       call icopy(6,lpt,1,slpt,1)
       ssym=sym
@@ -56,12 +56,12 @@ c
       first=1
       l = lpt(1)
       if(lunit.eq.0) goto 30
-c     
+c
 c     get macro deff from file (getf)
 c     ------------------------
 c     acquisition d'une ligne du fichier
       call getfiletype(lunit,ltype,info)
-      if(info.ne.0) goto 90 
+      if(info.ne.0) goto 90
       icount=0
 
  11   buf=' '
@@ -91,7 +91,7 @@ c     strip blanks at the beginning of the line
       if(buf(m:m).eq.' ') goto 16
 c
       if(buf(m:m+10).eq.'endfunction'.and.m+11.gt.n) then
-         if(first.eq.0) then  
+         if(first.eq.0) then
             istk(l)=blank
             istk(l+1)=eol
             l=l+2
@@ -101,23 +101,23 @@ c
       if(buf(m:m+8).eq.'function ') then
          if(first.eq.1) then
             j=m+7
-            goto 25            
+            goto 25
          else
             if( ltype.eq.1) then
                call myback(lunit)
             else
-               call mseek(lunit,-nr,'cur',ierr)
+               call mseek(lunit,dble(-nr),'cur',ierr)
             endif
             nlines=max(0,nlines-1)
             goto 61
          endif
       endif
-c     
+c
 c     boucle de conversion des caracteres de la ligne
       j=m-1
  17   j=j+1
       if(j.gt.n) goto 27
-c     
+c
 *     modif Bruno : appel a getfastcode au lieu de la boucle
       k = getfastcode(buf(j:j))
       if (k .eq. eol) go to 11
@@ -157,7 +157,7 @@ c     comments mark (//)
 c     it is not a continuation line
       if(first.eq.1) goto 24
       istk(l) = k
-c     
+c
       l = l + 1
       if(l.gt.lmax) then
          ierr=5
@@ -186,7 +186,7 @@ c     first line
         goto 90
       endif
       goto 17
-c     
+c
 c     line conversion finished
  27   if(first.eq.1) goto 40
 
@@ -213,15 +213,15 @@ C     .  lines into account
       icount=0
 c
       goto 11
-      
-c     
+
+c
 c     get macro deff from stk
 c     -----------------------
  30   if(rhs.ne.2) then
          call error(39)
          return
       endif
-c     
+c
       ilt=iadr(lstk(top))
       if(istk(ilt).ne.10) then
          err=2
@@ -248,7 +248,7 @@ c
          l=l+1
  31   continue
       goto 40
-c     
+c
  33   mn=istk(ilt+1)*istk(ilt+2)
       ili=ilt+4+mn
       ilt=ilt+4
@@ -281,7 +281,7 @@ c     . add a final empty line for backward compatiblity
       endif
 
       goto 61
-c     
+c
 c     analyse de la ligne de declaration
  40   continue
       if(ddt.ge.2) call basout(io,wte,buf(1:n))
@@ -295,10 +295,10 @@ c     analyse de la ligne de declaration
       lpt(3) = lpt(1)
       lpt(2) = lpt(1)
       lct(1) = 0
-cMAJ  
+cMAJ
       fin=0
       call fortrangetch
-c     
+c
       if(top+2.ge.bot) then
          call error(18)
          return
@@ -312,13 +312,13 @@ c
          ierr=5
          goto 90
       endif
-c     
+c
       call getsym
       mlhs=0
       if(sym.eq.name) then
 c     a=func(..) ou func(..)
          if(char1.eq.equal) then
-c     a=func(..) 
+c     a=func(..)
             mlhs=mlhs+1
             l=l+nsiz
             if(l.gt.lmax) then
@@ -346,7 +346,7 @@ c     [..]=func()
             ierr=4
             goto  90
          endif
-c     
+c
          call getsym
          if(sym.ne.equal) then
             ierr=4
@@ -364,7 +364,7 @@ c
       endif
       istk(il+1)=mlhs
       call putid(id,syn(1))
-c     
+c
       mrhs=0
       il=l
       l=l+1
@@ -399,10 +399,10 @@ c
      $     sym.ne.comma.and.sym.ne.cmt) then
          ierr=4
          goto  90
-      endif 
+      endif
  46   continue
       istk(il)=mrhs
-c     
+c
       il=l
       l=l+1
 
@@ -414,7 +414,7 @@ c     caller = 'getf' add an empty line for backward compatiblity
 
       first=0
       goto 11
-c     
+c
 c     fin
  60   if(first.eq.1) then
          job=-1
@@ -442,7 +442,7 @@ c
       fin=job
       return
 
-c     
+c
  90   continue
 c gestion des erreurs
 c
@@ -468,7 +468,7 @@ c     invalid syntax
       return
  95   call error(28)
       return
-c     
- 
+c
+
       end
 

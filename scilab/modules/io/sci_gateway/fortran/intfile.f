@@ -1,16 +1,16 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       subroutine intfile
 c     interface for builtin file
 
       INCLUDE 'stack.h'
-c     
+c
       integer status,access,form,recl,old,new,scratc,unknow
       integer sequen,direct,forma1,unform
       integer clo,rew,bak,ope,mode(2)
@@ -18,16 +18,15 @@ c
       logical getscalar
 
       integer iadr,sadr
-c     
+c
       data old/857368/,new/2100759/,scratc/1707037/,unknow/1316638/
       data sequen/1707548/,direct/1774093/,forma1/1775631/
       data unform/988958/
       data clo/12/,ope/24/,rew/27/,bak/11/,last/21/
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-c     
-
+c
       tops=top
       top0=top-rhs+1
 c
@@ -79,7 +78,7 @@ c     .  count opened files
  05         continue
             return
          endif
-         
+
 c     .  allocate lhs variables
 c
 c     .  vector of units
@@ -229,7 +228,7 @@ c     action
          err=1
          call error(55)
          return
-      endif      
+      endif
       if(istk(il+1)*istk(il+2).ne.1) then
          err=1
          call error(36)
@@ -240,7 +239,7 @@ c     action
 c
 
       if(itype.eq.ope) then
-c     
+c
 c     open
          if(rhs.gt.6) then
             call error(39)
@@ -321,7 +320,7 @@ c     path
                istk(il+2)=0
                istk(il+3)=0
                l=sadr(il+4)
-               lstk(top+1)=l+1 
+               lstk(top+1)=l+1
 
                top=top+1
                il=iadr(lstk(top))
@@ -409,7 +408,7 @@ c     rewind
             call getfiletype(lunit,ltype,info)
             if(info.eq.0) then
                if(ltype.eq.2) then
-                  call mseek(lunit,0,'set'//char(0),err)
+                  call mseek(lunit,0.0,'set'//char(0),err)
                else
                   rewind(lunit)
                endif
@@ -448,7 +447,7 @@ c     backspace
                endif
             endif
          endif
-c     
+c
          istk(il)=0
       elseif(itype.eq.last) then
 c     last
@@ -472,7 +471,7 @@ c     last
             call getfiletype(lunit,ltype,info)
             if(info.eq.0) then
                if(ltype.eq.2) then
-                  call mseek(lunit,0,'end'//char(0),err)
+                  call mseek(lunit,0.0,'end'//char(0),err)
                else
  154              read(lunit,'(a)',err=156,end=155)
                   go to 154

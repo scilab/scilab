@@ -18,7 +18,7 @@
 /**
 * seek function
 */
-FILEIO_IMPEXP void C2F(mseek) (int *fd, int *offset, char *flag, int *err);
+FILEIO_IMPEXP void C2F(mseek) (int *fd, double *offset, const char *flag, int *err);
 
 #endif /* __MSEEK_H__ */
 /*--------------------------------------------------------------------------*/

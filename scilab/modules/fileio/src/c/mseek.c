@@ -29,7 +29,7 @@ char *strerror (int errcode);
 #define SEEK_END 2
 #endif
 /*--------------------------------------------------------------------------*/
-void C2F(mseek) (int *fd, int *offset, char *flag, int *err)
+void C2F(mseek) (int *fd, double *offset, const char *flag, int *err)
 {
     int iflag;
 #if (defined(sun) && !defined(SYSV)) || defined(sgi)
@@ -84,7 +84,7 @@ void C2F(mseek) (int *fd, int *offset, char *flag, int *err)
 #else
 #ifdef _MSC_VER
 #if _WIN64
-    if (_fseeki64(fa, (long) *offset, iflag) == -1 )
+    if (_fseeki64(fa, (long long) *offset, iflag) == -1 )
 #else
     if (fseek(fa, (long) *offset, iflag) == -1 )
 #endif

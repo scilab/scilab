@@ -35,7 +35,7 @@ extern int ripole(char *inputfile, char *outputfile, int debug, int verbose);
 /*------------------------------------------------------------------*/
 /*Prototype*/
 static double NumFromRk2(long rk);
-static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nsheets, int *cur_pos, int *err);
+static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nsheets, double *cur_pos, int *err);
 static void getSST(int *fd, short Len, int BIFF, int *ns, char ***sst, int *err);
 static void getBOF(int *fd , int* Data, int *err);
 static void getString(int *fd, short *count, short *Len, int flag, char **str, int *err);
@@ -84,8 +84,8 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
     *chainesind = (int *) NULL;
     *err = 0;
 
-    *cur_pos = *cur_pos;
-    C2F(mseek) (fd, cur_pos, "set", err);
+    pos = (double)(*cur_pos);
+    C2F(mseek) (fd, &pos, "set", err);
     if (*err > 0)
     {
         goto ErrL;
@@ -114,11 +114,10 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
     {
         goto ErrL;
     }
-    *cur_pos = (int)pos;
 
     while (1)
     {
-        C2F(mseek) (fd, cur_pos, "set", err);
+        C2F(mseek) (fd, &pos, "set", err);
         if (*err > 0)
         {
             goto ErrL;
@@ -140,6 +139,7 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                 *N = hauteur;
                 *M = longueur;
                 *data = valeur;
+                *cur_pos = (int)pos;
                 *cur_pos = *cur_pos + 4 + Len;
                 return;
             case 638: /*RK*/
@@ -364,8 +364,11 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
 
                 break;
         }
-        *cur_pos = *cur_pos + 4 + Len;
+
+        pos = pos + 4 + Len;
     }
+
+    *cur_pos = (int)pos;
     return;
 ErrL:
     {
@@ -406,22 +409,19 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
      */
     /*---------------D�claration Des Variables*--------------------*/
     int k, one = 1;
-    int cur_pos, init_pos;
-    double pos;
+    double cur_pos, init_pos;
     unsigned short Opcode, Len;
     /*BOF data*/
     int BOFData[7]; /*[BIFF  Version DataType Identifier Year HistoryFlags LowestXlsVersion]*/
     *nsheets = 0;
     *err = 0;
     /*---------------D�claration Des Variables*--------------------*/
-    cur_pos = 0;
 
     /*  if (get_oleheader(fd)) {
       *err=1;
       return;
       }*/
-    C2F(mtell) (fd, &pos, err);
-    cur_pos = (int)pos;
+    C2F(mtell) (fd, &cur_pos, err);
     init_pos = cur_pos;
 
     /* first record should be a BOF */
@@ -442,12 +442,11 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
         return;
     }
 
-    C2F(mtell) (fd, &pos, err);
+    C2F(mtell) (fd, &cur_pos, err);
     if (*err > 0)
     {
         goto Err2;
     }
-    cur_pos = (int)pos;
 
     /* loops on records till an EOF is found */
     while (1)
@@ -936,12 +935,14 @@ static void getString(int *fd, short *PosInRecord, short *RecordLen, int flag, c
     l1 = 4 * rt;
     if (richString)
     {
-        C2F(mseek) (fd, &l1, "cur", err);
+        double dl1 = (double)l1;
+        C2F(mseek) (fd, &dl1, "cur", err);
         *PosInRecord += (short)l1;
     }
     if (extendedString)
     {
-        C2F(mseek) (fd, &sz, "cur", err);
+        double dsz = (double)sz;
+        C2F(mseek) (fd, &dsz, "cur", err);
         *PosInRecord += (short)sz;
     }
 
@@ -973,13 +974,13 @@ ErrL:
     }
 }
 
-static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nsheets, int *cur_pos, int *err)
+static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nsheets, double *cur_pos, int *err)
 {
     /* the global workbook contains a sequence of boudsheets this procedure reads all
     * the sequence and returns a vector o sheetnames, a vector of absolute sheet positions*/
     int abspos; /* Absolute stream position of BoF*/
     char visibility, sheettype; /*Visiblity , Sheet type*/
-    int pos;
+    double pos;
     unsigned short Opcode;
     unsigned short Len;
     int one = 1;
