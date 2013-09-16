@@ -293,7 +293,14 @@ public class ContouredObject extends ContentLayout {
                            LEFTMARGIN, COLUMN, ROW);
 
         // Get the current status of the property: Mark Background Color
-        Integer scilabMarkBackground = DatatipManagerMode.getInstance().getMarkColor();
+        Integer scilabMarkBackground = -1;
+        String type[] = packClass.split("\\.");
+        if ("datatip".equals(type[0])) {
+            scilabMarkBackground = DatatipManagerMode.getInstance().getMarkColor();
+        } else {
+            scilabMarkBackground = (Integer) GraphicController.getController()
+                    .getProperty(UID, GraphicObjectProperties.__GO_MARK_BACKGROUND__);
+        }
         Double[] rgbMarkBackground = ColorMapHandler.getRGBcolor(parentFigure, scilabMarkBackground);
         Color markBackgroundCOLOR = new Color(rgbMarkBackground[0].intValue(),
                                               rgbMarkBackground[1].intValue(),
@@ -329,8 +336,20 @@ public class ContouredObject extends ContentLayout {
                            LEFTMARGIN, COLUMN, ROW);
 
         // Get the current status of the property: Mark Foreground Color
-        Integer scilabMarkForeground = (Integer) GraphicController.getController()
+        Integer scilabMarkForeground = -1;
+        String type[] = packClass.split("\\.");
+        if ("polyline".equals(type[0]) || "surface".equals(type[0])) {
+            if ((Boolean) GraphicController.getController()
+                    .getProperty(UID, GraphicObjectProperties.__GO_MARK_MODE__)) {
+                scilabMarkForeground = EditorManager.getFromUid(parentFigure).getOriColor();
+            } else {
+                scilabMarkForeground = (Integer) GraphicController.getController()
                         .getProperty(UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
+            }
+        } else {
+            scilabMarkForeground = (Integer) GraphicController.getController()
+                    .getProperty(UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
+        }
         Double[] rgbMarkForeground = ColorMapHandler.getRGBcolor(parentFigure, scilabMarkForeground);
         Color markForegroundCOLOR = new Color(rgbMarkForeground[0].intValue(),
                                               rgbMarkForeground[1].intValue(),

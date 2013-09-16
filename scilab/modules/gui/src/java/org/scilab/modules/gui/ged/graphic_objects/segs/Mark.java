@@ -106,12 +106,8 @@ public class Mark extends SimpleSection {
     * @param scilabColor index of the color map.
     */
     public void setMarkForeground(int scilabColor, String UID) {
-        if (contouredObject.getMarkMode().getSelectedIndex() == 1) {
-            EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
-    	} else {
-            GraphicController.getController().setProperty(
-                    UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__, scilabColor);
-    	}
+        GraphicController.getController().setProperty(
+                UID,GraphicObjectProperties.__GO_MARK_FOREGROUND__, scilabColor);
         //update color of graphics in MarkStyle ComboBox
         markStyleRenderer.setMarkForeground(chooserMarkForeground.getColor());
     }
