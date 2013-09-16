@@ -38,6 +38,7 @@ public class MessagesGED {
     public static final String segs = Messages.gettext("Segs");
     public static final String surface = Messages.gettext("Surface");
     public static final String plot3d = Messages.gettext("Plot3D");
+    public static final String rectangle = Messages.gettext("Rectangle");
     public static final String fac3d = Messages.gettext("Fac3D");
     public static final String grayplot = Messages.gettext("Grayplot");
     public static final String matplot = Messages.gettext("Matplot");

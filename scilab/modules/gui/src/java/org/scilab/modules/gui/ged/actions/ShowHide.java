@@ -114,6 +114,7 @@ public class ShowHide extends CommonCallBack {
         imageplot(hide);
         legend(hide);
         polyline(hide);
+        rectangle(hide);
         segs(hide);
         surface(hide);
     }
@@ -193,6 +194,15 @@ public class ShowHide extends CommonCallBack {
             org.scilab.modules.gui.ged.graphic_objects.polyline.Mark.getInstance().setVisibility(!hide);
             org.scilab.modules.gui.ged.graphic_objects.polyline.Shift.getInstance().setVisibility(!hide);
             org.scilab.modules.gui.ged.graphic_objects.polyline.Style.getInstance().setVisibility(!hide);
+        } catch (NullPointerException e1) {
+        } catch (NoSuchMethodError e2) { }
+    }
+
+    public static void rectangle(boolean hide) {
+        try {
+            org.scilab.modules.gui.ged.graphic_objects.rectangle.DataProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.rectangle.Mark.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.rectangle.Style.getInstance().setVisibility(!hide);
         } catch (NullPointerException e1) {
         } catch (NoSuchMethodError e2) { }
     }
@@ -292,6 +302,14 @@ public class ShowHide extends CommonCallBack {
                 if (BP && DP && MK && SH && ST)
                     setStatus(false);
                 else if (!BP && !DP && !MK && !SH && !ST)
+                    setStatus(true);
+            } else if("rectangle".equals(type)) {
+                boolean DP = org.scilab.modules.gui.ged.graphic_objects.rectangle.DataProperties.getInstance().getStatus();
+                boolean MK = org.scilab.modules.gui.ged.graphic_objects.rectangle.Mark.getInstance().getStatus();
+                boolean ST = org.scilab.modules.gui.ged.graphic_objects.rectangle.Style.getInstance().getStatus();
+                if (DP && MK && ST)
+                    setStatus(false);
+                else if (!DP && !MK && !ST)
                     setStatus(true);
             } else if("segs".equals(type)) {
                 boolean DP = org.scilab.modules.gui.ged.graphic_objects.surface.DataProperties.getInstance().getStatus();
