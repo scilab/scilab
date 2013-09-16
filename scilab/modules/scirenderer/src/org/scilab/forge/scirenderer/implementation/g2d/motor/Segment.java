@@ -25,17 +25,15 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.tranformations.Vector4d;
 
 /**
- * Segment object (for info, when modify rendering check for PolyLine too).
- *
  * @author Calixte DENIZET
  */
 public class Segment extends ConvexObject implements Comparable<Segment> {
 
     private Integer hash;
-    protected G2DStroke stroke;
+    protected Stroke stroke;
     protected List<ConvexObject> segmentOn;
 
-    public Segment(Vector3d[] vertices, Color[] colors, G2DStroke stroke) throws InvalidPolygonException {
+    public Segment(Vector3d[] vertices, Color[] colors, Stroke stroke) throws InvalidPolygonException {
         super(vertices, colors);
         if (vertices.length != 2) {
             throw new InvalidPolygonException("Invalid segment: must have 2 vertices.");
@@ -47,7 +45,7 @@ public class Segment extends ConvexObject implements Comparable<Segment> {
         this(vertices, colors, null);
     }
 
-    public void setStroke(G2DStroke stroke) {
+    public void setStroke(Stroke stroke) {
         this.stroke = stroke;
     }
 
@@ -148,17 +146,22 @@ public class Segment extends ConvexObject implements Comparable<Segment> {
         double c = (vv[3] + vertices[1].scalar(np)) / v0.scalar(np);
         Vector3d p = Vector3d.getBarycenter(vertices[0], vertices[1], c, 1 - c);
         Color color = getColorsBarycenter(colors[0], colors[1], c, 1 - c);
-        Segment s;
+        Vector3d[] vs = null;
+        Color[] cs = null;
+
+        if (a) {
+            vs = new Vector3d[] {vertices[0], p};
+            cs = new Color[] {colors[0], color};
+        }
+
+        if (b) {
+            vs = new Vector3d[] {p, vertices[1]};
+            cs = new Color[] {color, colors[1]};
+        }
 
         try {
-            if (a) {
-                s = new Segment(new Vector3d[] {vertices[0], p}, new Color[] {colors[0], color}, this.stroke);
-            } else {
-                s = new Segment(new Vector3d[] {p, vertices[1]}, new Color[] {color, colors[1]}, this.stroke);
-            }
-
             List<ConvexObject> list = new ArrayList<ConvexObject>(1);
-            list.add(s);
+            list.add(new Segment(vs, cs, this.stroke));
 
             return list;
         } catch (InvalidPolygonException e) { }
