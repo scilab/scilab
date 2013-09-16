@@ -24,13 +24,13 @@ import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 public class G2DStroke extends BasicStroke {
 
     private static final int[] array = new int[16];
-    private static final Stroke BASIC = new G2DStroke(1, null, 0);
+    private static final G2DStroke BASIC = new G2DStroke(1, null, 0);
 
     public G2DStroke(float lineWidth, float[] dash, float phase) {
         super(lineWidth, CAP_BUTT, JOIN_MITER, 10.0f, dash, phase);
     }
 
-    public static Stroke getStroke(Appearance appearance, double dashPhase) {
+    public static G2DStroke getStroke(Appearance appearance, double dashPhase) {
         Appearance usedAppearance;
         if (appearance == null) {
             usedAppearance = new Appearance();
