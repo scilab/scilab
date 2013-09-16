@@ -56,6 +56,11 @@ extern "C"
 #ifdef _MSC_VER
 #include "InitializeWindows_tools.h"
 #include "TerminateWindows_tools.h"
+#include "WndThread.h"
+#include "console.h"
+#include "InnosetupMutex.h"
+#include "MutexClosingScilab.h"
+
 #else
 #include "signal_mgmt.h"
 #include "initConsoleMode.h"
@@ -180,11 +185,34 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     {
         /* Initialize console: lines... */
         InitializeConsole();
+
+#ifdef _MSC_VER
+        //get current console window and hide it
+        CreateScilabHiddenWndThread();
+        CreateScilabConsole(0);
+        //create a thread for innosetup to allow reinstall during scilab running
+        createInnosetupMutex();
+#endif
     }
     else
     {
 #ifndef _MSC_VER
         initConsoleMode(RAW);
+#else
+        if (getScilabMode() != SCILAB_NWNI)
+        {
+            CreateScilabHiddenWndThread();
+        }
+
+        if ( (getScilabMode() == SCILAB_NWNI) || (getScilabMode() == SCILAB_NW) )
+        {
+            SaveConsoleColors();
+            if (getScilabMode() == SCILAB_NW)
+            {
+                RenameConsole();
+                UpdateConsoleColors();
+            }
+        }
 #endif
     }
 
@@ -262,6 +290,14 @@ int ExecExternalCommand(ScilabEngineInfo* _pSEI)
 
 void StopScilabEngine(ScilabEngineInfo* _pSEI)
 {
+#ifdef _MSC_VER
+    /* bug 3672 */
+    /* Create a Mutex (closing scilab)
+     * used by files association
+     */
+    createMutexClosingScilab();
+#endif
+
     clearScilabPreferences();
 
     //execute scilab.quit
@@ -317,7 +353,12 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
 #endif
     }
 
-
+#ifdef _MSC_VER
+    /* close mutex (closing scilab)
+     * used by files association
+     */
+    terminateMutexClosingScilab();
+#endif
 }
 
 static Parser::ControlStatus processCommand(ScilabEngineInfo* _pSEI)
