@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -72,6 +72,110 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>
+                        an <link linkend="external" role="" version="">external</link> i.e. a function or a character string or a list with
+                        calling sequence: <literal>yp=f(t,yc,yd,flag)</literal>
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>a list</term>
+                            <listitem>
+                                <para>This form of external is used to pass parameters to the
+                                    function. It must be as follows:
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[
+list(f, p1, p2,...)
+ ]]></programlisting>
+                                <para>where the calling sequence of the function
+                                    <literal>f</literal> is now
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[
+yp = f(t, yc, yd, flag, p1, p2,...)
+ ]]></programlisting>
+                                <para>
+                                    <literal>f</literal> still returns the function value
+                                    as a function of <literal>(t, yc, yd, flag, p1, p2,...)</literal>, and
+                                    <literal>p1, p2,...</literal> are function parameters.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>a character string</term>
+                            <listitem>
+                                <para>
+                                    it must refer to the name of a C or fortran routine,
+                                    assuming that &lt;<literal>f_name</literal>&gt; is the given name.
+                                </para>
+                                <itemizedlist>
+                                    <listitem>
+                                        <para>
+                                            The Fortran calling sequence must be
+                                        </para>
+                                        <para>
+                                            <literal>&lt;f_name&gt;(iflag, nc, nd, t, y, ydp)</literal>
+                                        </para>
+                                        <para>
+                                            <literal>double precision t, y(*), ydp(*)
+                                            </literal>
+                                        </para>
+                                        <para>
+                                            <literal>integer iflag, nc, nd</literal>
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para>The C calling sequence must be</para>
+                                        <para>
+                                            <literal>void &lt;f_name&gt; (int *iflag, int *nc,
+                                                int *nd, double *t, double *y, double *ydp)
+                                            </literal>
+                                        </para>
+                                    </listitem>
+                                </itemizedlist>
+                                <para>In both Fortran and C cases, the input arguments are:</para>
+                                <itemizedlist>
+                                    <listitem>
+                                        <para>
+                                            <literal>iflag</literal> = <literal>0</literal> or <literal>1</literal>
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para>
+                                            <literal>nc</literal> = number of continuous states <literal>yc</literal>
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para>
+                                            <literal>nd</literal> = number of discrete states <literal>yd</literal>
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para>
+                                            <literal>t</literal> = time
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para>
+                                            <literal>y</literal> = <literal>[yc; yd; param]</literal>.
+                                            param may be used to get extra arguments which have been given in
+                                            the odedc call <literal>(y = odedc([y0c; y0d], nd, stdel, t0, t, list('fexcd', param)))</literal>
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para>
+                                            As output <literal>ydp</literal>, the routine must compute
+                                            <literal>ydp[0:nc-1]) = d/dt ( yc(t) )</literal> for <literal>iflag=0</literal> and
+                                            <literal>ydp[0:nd-1] = yd(t+)</literal> for <literal>iflag=1</literal>.
+                                        </para>
+                                    </listitem>
+                                </itemizedlist>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -82,12 +186,12 @@
             state <literal>yd_k</literal> is embedded into a piecewise constant
             <literal>yd(t)</literal> time function as follows:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
-yd(t) = yd_k for t in 
+        <programlisting role="no-scilab-exec"><![CDATA[
+yd(t) = yd_k for t in
 [t_k=delay+k*h,t_(k+1)=delay+(k+1)*h] (with delay=h*delta).
  ]]></programlisting>
         <para>The simulated equations are now:</para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 dyc/dt = f(t,yc(t),yd(t),0),  for t in [t_k,t_(k+1)]
 yc(t0) = y0c
  ]]></programlisting>
@@ -95,14 +199,14 @@ yc(t0) = y0c
             and at instants <literal>t_k</literal> the discrete variable
             <literal>yd</literal> is updated by:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 yd(t_k+) = f(yc(t_k-),yd(t_k-),1)
  ]]></programlisting>
         <para>
             Note that, using the definition of <literal>yd(t)</literal> the last
             equation gives
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc is time-continuous: yc(t_k-)=yc(tk))
  ]]></programlisting>
         <para>
@@ -124,10 +228,10 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc is time-continuous: yc(t_k-)=yc(tk))
         </para>
         <para>
             <literal>y</literal> is the vector
-            <literal>y=[y(t(1)),y(t(2)),...]</literal>.     
+            <literal>y=[y(t(1)),y(t(2)),...]</literal>.
         </para>
         <para>
-            This function can be called with the same optional parameters as the <literal>ode</literal> 
+            This function can be called with the same optional parameters as the <literal>ode</literal>
             function (provided <literal>nd</literal> and <literal>stdel</literal> are given in
             the calling sequence as second and third parameters). In particular
             integration flags, tolerances can be set. Optional parameters can be set
@@ -142,7 +246,7 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc is time-continuous: yc(t_k-)=yc(tk))
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Linear system with switching input
 deff('xdu=phis(t,x,u,flag)','if flag==0 then xdu=A*x+B*u; else xdu=1-u;end');
 x0=[1;1];
@@ -180,7 +284,7 @@ norm(xu-odedc([x0;u0],nu,stdel,0,t,'phis'),1)
             plot2d2('onn',t',u',[nx+1:nx+nu],'000');
             //Fortran external (see fydot2.f):
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 
 //Sampled feedback
 //
