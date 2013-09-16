@@ -490,6 +490,8 @@ Bug Fixes
 
 * Bug #12163 fixed - unzoom did not work with a single input argument.
 
+* Bug #12212 fixed - Export of a polyline in 2-D broke it into several segments.
+
 * Bug #12326 fixed - There was no way to set LaTeX font size in preview.
 
 * Bug #12349 fixed - In SciNotes, when the view was splitted, removing a char made the other view jump.

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Scilab Enterprises - Calixte Denizet
+ * Copyright (C) 2012-2013 - Scilab Enterprises - Calixte Denizet
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -250,6 +250,10 @@ public class Motor3D {
         Scene.addToRoot(is2DView(), sprite);
     }
 
+    private void add(PolyLine p) {
+        Scene.addToRoot(is2DView(), p);
+    }
+
     /**
      * Get arrays from Buffer
      * @param vertices a buffer containing vertices
@@ -283,7 +287,7 @@ public class Motor3D {
             }
             colorsArray = getMultiColors(buffer);
         } else {
-            colorsArray = new Color[vertices.limit()];
+            colorsArray = new Color[vertices.limit() / G2DElementsBuffer.ELEMENT_SIZE];
             Arrays.fill(colorsArray, defaultColor);
         }
 
@@ -351,34 +355,48 @@ public class Motor3D {
 
         switch (drawingMode) {
             case SEGMENTS_STRIP :
-                for (int i = 0; i < verticesArray.length - 1; i++) {
-                    v = new Vector3d[] {verticesArray[i], verticesArray[i + 1]};
-                    c = new Color[] {colorsArray[i], colorsArray[i + 1]};
-                    try {
-                        add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength)));
-                        cumLength += Segment.getLength(v);
-                    } catch (InvalidPolygonException e) {
-                        cumLength = 0;
+                if (is2DView()) {
+                    List<PolyLine> list = PolyLine.getPolyLines(verticesArray, colorsArray, G2DStroke.getStroke(appearance, 0), false);
+                    for (PolyLine p : list) {
+                        add(p);
+                    }
+                } else {
+                    for (int i = 0; i < verticesArray.length - 1; i++) {
+                        v = new Vector3d[] {verticesArray[i], verticesArray[i + 1]};
+                        c = new Color[] {colorsArray[i], colorsArray[i + 1]};
+                        try {
+                            add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength)));
+                            cumLength += Segment.getLength(v);
+                        } catch (InvalidPolygonException e) {
+                            cumLength = 0;
+                        }
                     }
                 }
                 break;
             case SEGMENTS_LOOP :
-                for (int i = 0; i < verticesArray.length - 1; i++) {
-                    v = new Vector3d[] {verticesArray[i], verticesArray[i + 1]};
-                    c = new Color[] {colorsArray[i], colorsArray[i + 1]};
+                if (is2DView()) {
+                    List<PolyLine> list = PolyLine.getPolyLines(verticesArray, colorsArray, G2DStroke.getStroke(appearance, 0), true);
+                    for (PolyLine p : list) {
+                        add(p);
+                    }
+                } else {
+                    for (int i = 0; i < verticesArray.length - 1; i++) {
+                        v = new Vector3d[] {verticesArray[i], verticesArray[i + 1]};
+                        c = new Color[] {colorsArray[i], colorsArray[i + 1]};
+                        try {
+                            add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength)));
+                            cumLength += Segment.getLength(v);
+                        } catch (InvalidPolygonException e) {
+                            cumLength = 0;
+                        }
+                    }
+                    int n = verticesArray.length - 1;
+                    v = new Vector3d[] {verticesArray[n], verticesArray[0]};
+                    c = new Color[] {colorsArray[n], colorsArray[0]};
                     try {
                         add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength)));
-                        cumLength += Segment.getLength(v);
-                    } catch (InvalidPolygonException e) {
-                        cumLength = 0;
-                    }
+                    } catch (InvalidPolygonException e) { }
                 }
-                int n = verticesArray.length - 1;
-                v = new Vector3d[] {verticesArray[n], verticesArray[0]};
-                c = new Color[] {colorsArray[n], colorsArray[0]};
-                try {
-                    add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength)));
-                } catch (InvalidPolygonException e) { }
                 break;
             case SEGMENTS :
             default :
