@@ -250,7 +250,7 @@ int sci_callblk(char *fname, unsigned long fname_len)
         FREE(Block.label);
     }
     FREE(Block.mode);
-    if (strlen(Block.uid) != 0)
+    if (Block.uid != NULL && strlen(Block.uid) != 0)
     {
         FREE(Block.uid);
     }

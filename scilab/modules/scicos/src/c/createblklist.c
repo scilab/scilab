@@ -510,13 +510,21 @@ int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int funtyp)
     {
         return 0;
     }
-    if ((str1[0] = MALLOC(sizeof(char) * (strlen(Blocks[0].uid) + 1))) == NULL )
+    if (Blocks[0].uid != NULL)
     {
-        FREE(str1);
-        return 0;
+        if ((str1[0] = MALLOC(sizeof(char) * (strlen(Blocks[0].uid) + 1))) == NULL )
+        {
+            FREE(str1);
+            return 0;
+        }
+        (str1[0])[strlen(Blocks[0].uid)] = '\0';
+        strncpy(str1[0], Blocks[0].uid, strlen(Blocks[0].uid));
     }
-    (str1[0])[strlen(Blocks[0].uid)] = '\0';
-    strncpy(str1[0], Blocks[0].uid, strlen(Blocks[0].uid));
+    else
+    {
+        str1[0] = MALLOC(sizeof(char));
+        (str1[0])[0] = '\0';
+    }
     str2sci(str1, 1, 1);
     FREE(str1[0]);
     FREE(str1);
