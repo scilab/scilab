@@ -328,7 +328,7 @@ assert_checkalmostequal(nn(1),2.5,0.001);
 y0=yy(1,1);y0d=yy(2,1);t0=nn(1);t=[3,4,5,6];
 %DAEOPTIONS=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
 [yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,"res1",ng,"gr1");
-assert_checkalmostequal(nn(1),2.53,0.001);
+assert_checkalmostequal(nn(1),2.500009,0.001);
 
 // Same problem, but using macro for the derivative evaluation function 'res1'
 deff("[delta,ires]=res1(t,y,ydot)","ires=0;delta=ydot-((2.*log(y)+8)./t-5).*y")
