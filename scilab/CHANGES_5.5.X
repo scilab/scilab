@@ -319,8 +319,6 @@ Bug Fixes
 
 * Bug #8098 fixed - cumsum could not be applied to rational matrices.
 
-* Bug #8099 fixed - cumsum did not always simplify the result.
-
 * Bug #8162 fixed - Area of stability of plzr was wrong for continuous systems (+unit test added).
 
 * Bug #8211 fixed - 'parameters' module demonstration finalized.

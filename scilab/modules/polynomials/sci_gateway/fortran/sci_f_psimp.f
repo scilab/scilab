@@ -143,16 +143,7 @@ c     determine max of the degrees
 c     preserve adress of the beginning of a and b coefficients
 
       lar=la
-      numx0 = stk(la)
-      numx1 = stk(la+1)
-      numx2 = stk(la+2)
-      numx3 = stk(la+3)
-
       lbr=lb
-      denx0 = stk(lb)
-      denx1 = stk(lb+1)
-      denx2 = stk(lb+2)
-      denx3 = stk(lb+3)
 c     allocate memory for intermediate results
       law=lw
       lbw=law+na+1
@@ -176,16 +167,6 @@ c     simplify
 c     .  copy overwrite initial polynomials with simplified ones
          call dcopy(nnum,stk(law),1,stk(la1),1)
          call dcopy(nden,stk(lbw),1,stk(lb1),1)
-
-         numx0 = stk(la1)
-         numx1 = stk(la1+1)
-         numx2 = stk(la1+2)
-         numx3 = stk(la1+3)
-
-         denx0 = stk(lb1)
-         denx1 = stk(lb1+1)
-         denx2 = stk(lb1+2)
-         denx3 = stk(lb1+3)
 
          la=la+na+1
          lb=lb+nb+1
