@@ -276,6 +276,7 @@ extern int C2F(dcopy)(int *, double *, int *, double *, int *);
 extern int C2F(dgefa)(double *A, int *lead_dim_A, int *n, int *ipivots, int *info);
 extern int C2F(dgesl)(double *A, int *lead_dim_A, int *n, int *ipivots, double *B, int *job);
 extern int C2F(msgs)();
+extern void C2F(clearscicosimport)();
 /*--------------------------------------------------------------------------*/
 void putevs(double *t, int *evtnb, int *ierr1);
 void Jdoit(double *told, double *xt, double *xtd, double *residual, int *job);
