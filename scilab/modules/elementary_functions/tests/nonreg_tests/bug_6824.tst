@@ -1,0 +1,128 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 6824 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=6824
+//
+// <-- Short Description -->
+// resize_matrix did not handle hypermatrices
+
+myMat = [
+0.6029980    4.2470508    3.2442814    3.7427533
+1.4276821    2.6285304    4.9615955    2.0520295
+4.3037573    4.9656049    0.2502099    3.0422632 ];
+refMat = [
+0.602998   4.2470508  3.2442814
+1.4276821  2.6285304  4.9615955
+4.3037573  4.9656049  0.2502099 ];
+
+// resize_matrix(m, x, y, 1) should yield the same result as resize_matrix(m, x, y)
+resMat = resize_matrix( myMat, [3 3 1]); // reduce the matrix size
+
+assert_checkequal(size(resMat), size(refMat));
+assert_checkequal(resMat, refMat);
+
+// resize_matrix(m, x, y, z) with m matrix should resize m to (x*y) and overlay (x*y) null matrices z times.
+// So here, with z = 2, one layer of zeros is added to m.
+refMat2 = refMat; refMat2(:, :, 2) = zeros(refMat);
+
+resMat = resize_matrix( myMat, [3 3 2]);
+
+assert_checkequal(size(resMat), size(refMat2));
+assert_checkequal(resMat, refMat2);
+
+// Resizing a hypermatrix into a matrix
+myMat2 = myMat; myMat2(:, :, 2) = myMat;
+resMat = resize_matrix( myMat2, 3, 3);
+
+assert_checkequal(size(resMat), size(refMat));
+assert_checkequal(resMat, refMat);
+
+// Resizing a hypermatrix into another smaller hypermatrix (smaller base matrix)
+refMat2 = refMat; refMat2(:, :, 2) = refMat;
+
+resMat = resize_matrix( myMat2, [3 3 2]);
+
+assert_checkequal(size(resMat), size(refMat2));
+assert_checkequal(resMat, refMat2);
+
+// Resizing a hypermatrix into another bigger hypermatrix (more layers)
+myMat2 = myMat; myMat2(:, :, 2) = myMat;
+refMat2 = refMat; refMat2(:, :, 2) = refMat; refMat2(:, :, 3) = zeros(refMat);
+
+resMat = resize_matrix( myMat2, [3 3 3]);
+
+assert_checkequal(size(resMat), size(refMat2));
+assert_checkequal(resMat, refMat2);
+
+// Resizing a hypermatrix into another smaller hypermatrix (fewer layers)
+myMat2 = myMat; myMat2(:, :, 2) = myMat; myMat2(:, :, 3) = myMat;
+refMat2 = refMat; refMat2(:, :, 2) = refMat;
+
+resMat = resize_matrix( myMat2, [3 3 2]);
+
+assert_checkequal(size(resMat), size(refMat2));
+assert_checkequal(resMat, refMat2);
+
+// With five input arguments
+refMat3 = string(refMat2);
+
+resMat = resize_matrix( myMat2, [3 3 2], "string");
+
+assert_checkequal(size(resMat), size(refMat3));
+assert_checkequal(resMat, refMat3);
+
+refMat3 = int16(refMat2);
+
+resMat = resize_matrix( myMat2, [3 3 2], "int16");
+
+assert_checkequal(size(resMat), size(refMat3));
+assert_checkequal(resMat, refMat3);
+
+refMat3 = (refMat2(:, :, :) <> 0);
+myMat2(3, 3, 1) = 1;
+
+resMat = resize_matrix( myMat2, [3 3 2], "boolean");
+
+assert_checkequal(size(resMat), size(refMat3));
+assert_checkequal(resMat, refMat3);
+
+// Original bug, augmented with a complex number
+m = [
+0.6912788    0.0143259    0.7876622
+0.7656859    0.8191490    0.1262083
+0.3572650    0.1304993    0.7883861
+0.7693400    0.9682004    0.3453042
+0.5477634    0.6561381    0.2659857
+0.0962289    0.2445539    0.9709819
+0.9561172    0.5283124    0.8875248
+0.2207409    0.8468926    0.2066753 ]*%i;
+refM = [
+0.6912788    0.0143259    0.7876622    0
+0.7656859    0.819149     0.1262083    0
+0.357265     0.1304993    0.7883861    0
+0.76934      0.9682004    0.3453042    0
+0.5477634    0.6561381    0.2659857    0
+0.0962289    0.2445539    0.9709819    0
+0.9561172    0.5283124    0.8875248    0
+0.2207409    0.8468926    0.2066753    0
+0            0            0            0
+0            0            0            0 ]*%i;
+
+m = resize_matrix(m, 10, 4);
+
+assert_checkequal(size(m), size(refM));
+assert_checkequal(m, refM);
+
+
+// Error checks
+refMsg = msprintf(_("%s: Wrong sizes requested, cannot convert list to matrix.\n"), "resize_matrix");
+assert_checkerror("resize_matrix(list(1), 3, 3);", refMsg);

@@ -108,3 +108,4 @@ SEP #109: New input argument for neldermead_search(), to control warnings.
 SEP #110: /* RESERVED */
 SEP #111: /* RESERVED */
 SEP #112: variance and variancef can now return the mean of the input in a new output argument.
+SEP #113: resize_matrix hypermatrices support.
