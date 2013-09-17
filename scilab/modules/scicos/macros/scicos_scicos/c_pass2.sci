@@ -197,7 +197,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
         warning(_("Diagram contains implicit blocks, compiling for implicit Solver."))
         %scicos_solver=100
     end
-    if %scicos_solver==100 then xc0=[xc0;xcd0],end
+    if or(%scicos_solver==[100, 101, 102]) then xc0=[xc0;xcd0],end
     state=scicos_state()
     state.x=xc0
     state.z=xd0
