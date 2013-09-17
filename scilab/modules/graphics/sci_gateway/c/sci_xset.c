@@ -43,8 +43,6 @@
 #include "sciprint.h"
 
 /*--------------------------------------------------------------------------*/
-int xsetg(char * str, char * str1, int lx0, int lx1);
-/*--------------------------------------------------------------------------*/
 int sci_xset(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
@@ -77,13 +75,12 @@ int sci_xset(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    // Retrieve a matrix of double at position 1.
+    // Retrieve a string at position 1.
     if (getAllocatedSingleString(pvApiCtx, piAddrl1, &l1))
     {
         Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
         return 1;
     }
-
 
     for (i = 0 ; i < NUMSETFONC ; i++)
     {
@@ -100,14 +97,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    /* Allan CORNET Avril 2004 */
-    /* Bloque la commande xset('window') sans numero de fenetre */
-    if (nbInputArgument(pvApiCtx) == 1 && (strcmp((l1), "window") == 0))
-    {
-        Scierror(999, _("%s : '%s' must be set\n"), fname, "window-number");
-        return 0;
-    }
-
+    // in case of "fpf" and "auto clear", the second argument must be a string
     if (nbInputArgument(pvApiCtx) == 2 && (!checkInputArgumentType(pvApiCtx, 2, sci_matrix)))
     {
         /* second argument is not a scalar it must be a string */
@@ -118,25 +108,40 @@ int sci_xset(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        // Retrieve a matrix of double at position 2.
+        // Retrieve a string at position 2.
         if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
         {
             Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
             return 1;
         }
 
-        xsetg(l1, l2, m1, m2);
+        if (strcmp(l1, "fpf") == 0)
+        {
+            strcpy(getFPF(), l2);
+        }
+        else if (strcmp(l1, "auto clear") == 0)
+        {
+            int bAutoClear = (int) FALSE;
+
+            if (strcmp(l2, "on") == 0)
+            {
+                bAutoClear = (int) TRUE;
+            }
+
+            setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTO_CLEAR__, &bAutoClear, jni_bool, 1);
+        }
+        else
+        {
+            Scierror(999, _("%s: Unrecognized input argument '%s'.\n"), "xset(arg,<string>)", l1);
+            return -1;
+        }
+
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
         return 0;
     }
 
-    if (nbInputArgument(pvApiCtx) == 1 && strcmp((l1), "default") == 0)
-    {
-        /* first treatment for xsetg : then we continue */
-        xsetg((l1), "void", m1, 4L);
-    }
-
+    // in other case than "fpf" and "auto clear", the secod to fifth argument must be a matrix of double
     for (i = 2 ; i <= nbInputArgument(pvApiCtx) ; i++)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddrlr);
@@ -157,19 +162,6 @@ int sci_xset(char *fname, unsigned long fname_len)
 
         x[i - 2] = (int)lr[0];
         xx[i - 2] = lr[0];
-    }
-
-    if (strcmp((l1), "wdim") == 0 || strcmp((l1), "wpdim") == 0)
-    {
-        /* Xwindows limits dimensions to 2^16 */
-        if ((x[0] > 65535) || (x[1] > 65535))
-        {
-            x[0] = Min(x[0], 65535);
-            x[1] = Min(x[1], 65535);
-            i = 106;
-            v = 0;
-            C2F(msgs)(&i, &v);
-        }
     }
 
     if (strcmp((l1), "clipping") == 0)
@@ -222,6 +214,12 @@ int sci_xset(char *fname, unsigned long fname_len)
     else if (strcmp((l1), "colormap") == 0)
     {
         char *pFigureUID = NULL;
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
+        }
+
         getOrCreateDefaultSubwin();
         pFigureUID = (char*)getCurrentFigure();
         setGraphicObjectProperty(pFigureUID, __GO_COLORMAP__, (lr), jni_double_vector, *xm * (*xn));
@@ -231,6 +229,12 @@ int sci_xset(char *fname, unsigned long fname_len)
         int markSize = (int) xx[0];
         int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
         char *subwinUID = (char*)getOrCreateDefaultSubwin();
+
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
+        }
 
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
@@ -255,11 +259,23 @@ int sci_xset(char *fname, unsigned long fname_len)
     else if (strcmp((l1), "font size") == 0)
     {
         double fontSize = xx[0];
-
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
+        }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_FONT_SIZE__, &fontSize, jni_double, 1);
     }
     else if (strcmp((l1), "default") == 0)
     {
+        if (nbInputArgument(pvApiCtx) != 1)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 1);
+            return 1;
+        }
+
+        getFPF()[0] = '\0';
+
         // default color map
         unsigned short defcolors[] =
         {
@@ -408,7 +424,11 @@ int sci_xset(char *fname, unsigned long fname_len)
     {
         /* special treatement for xset("hidden3d") */
         int hiddenColor = (int) x[0];
-
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
+        }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
     }
     else if (strcmp((l1), "font") == 0)
@@ -429,6 +449,13 @@ int sci_xset(char *fname, unsigned long fname_len)
         // Find if window already exists, if not create a new one
         int iID = x[0];
         char *pFigureUID = (char*)getFigureFromIndex(iID);
+
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
+        }
+
         if (pFigureUID == NULL)
         {
             pFigureUID = createNewFigureWithAxes();
@@ -440,22 +467,40 @@ int sci_xset(char *fname, unsigned long fname_len)
     else if ((strcmp((l1), "foreground") == 0) || (strcmp((l1), "color") == 0) || (strcmp((l1), "pattern") == 0))
     {
         int iColor = (int) x[0];
-
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
+        }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_COLOR__, &iColor, jni_int, 1);
     }
     else if (strcmp((l1), "background") == 0)
     {
         int iColor = (int) x[0];
-
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
+        }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_BACKGROUND__, &iColor, jni_int, 1);
     }
     else if (strcmp((l1), "thickness") == 0)
     {
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
+        }
         sciSetLineWidth((char*)getOrCreateDefaultSubwin(), x[0]);
     }
     else if (strcmp((l1), "line style") == 0)
     {
         int lineStyle = (int) x[0];
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
+        }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
     }
     else if (strcmp((l1), "mark") == 0)
@@ -468,17 +513,31 @@ int sci_xset(char *fname, unsigned long fname_len)
     else if (strcmp((l1), "colormap") == 0)
     {
         getOrCreateDefaultSubwin();
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
+        }
         setGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP__, (lr), jni_double_vector, xm[0] * xn[0]);
     }
     else if (strcmp((l1), "dashes") == 0)
     {
         int lineStyle = (int) x[0];
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
+        }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
     }
     else if (strcmp((l1), "wresize") == 0)
     {
         int iAutoResizeMode = x[0];
-
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
+        }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTORESIZE__, &iAutoResizeMode, jni_bool, 1);
     }
     else if (strcmp((l1), "wpos") == 0)
@@ -503,6 +562,17 @@ int sci_xset(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 3);
             return -1;
         }
+
+        /* Xwindows limits dimensions to 2^16 */
+        if ((x[0] > 65535) || (x[1] > 65535))
+        {
+            x[0] = Min(x[0], 65535);
+            x[1] = Min(x[1], 65535);
+            i = 106;
+            v = 0;
+            C2F(msgs)(&i, &v);
+        }
+
         getOrCreateDefaultSubwin();
 
         figureSize[0] = x[0];
@@ -512,39 +582,36 @@ int sci_xset(char *fname, unsigned long fname_len)
     else if (strcmp((l1), "pixmap") == 0)
     {
         int iPixmapMode = x[0];
-        getOrCreateDefaultSubwin();
-
-        setGraphicObjectProperty(getCurrentFigure(), __GO_PIXMAP__, &iPixmapMode, jni_bool, 1);
-    }
-    else if (strcmp((l1), "wshow") == 0)
-    {
-        if (getWarningMode())
+        if (nbInputArgument(pvApiCtx) != 2)
         {
-            sciprint(_("WARNING: %s\n"), _("xset(\"wshow\") is obsolete."));
-            sciprint(_("WARNING: %s\n"), _("It will be removed after Scilab 5.4.0."));
-            sciprint(_("WARNING: %s\n"), _("Please use drawlater/drawnow instead."));
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
         }
+        getOrCreateDefaultSubwin();
+        setGraphicObjectProperty(getCurrentFigure(), __GO_PIXMAP__, &iPixmapMode, jni_bool, 1);
     }
     else if (strcmp((l1), "viewport") == 0)
     {
         int viewport[4] = {x[0], x[1], 0, 0};
+        if (nbInputArgument(pvApiCtx) != 3)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 3);
+            return 1;
+        }
         getOrCreateDefaultSubwin();
         setGraphicObjectProperty(getCurrentFigure(), __GO_VIEWPORT__, viewport, jni_int_vector, 2);
-    }
-    else if (strcmp((l1), "wwpc") == 0)
-    {
-        if (getWarningMode())
-        {
-            sciprint(_("WARNING: %s\n"), _("xset(\"wwpc\") is obsolete."));
-            sciprint(_("WARNING: %s\n"), _("It will be removed after Scilab 5.4.0."));
-            sciprint(_("WARNING: %s\n"), _("Please use drawlater/drawnow instead."));
-        }
     }
     else if (strcmp((l1), "line mode") == 0)
     {
         char *pstSubwinUID = (char*)getOrCreateDefaultSubwin();
         int iZero = 0;
         int iOne = 1;
+        if (nbInputArgument(pvApiCtx) != 2)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
+            return 1;
+        }
+
         if (x[0] == 0)
         {
             setGraphicObjectProperty(pstSubwinUID, __GO_LINE_MODE__, &iZero, jni_bool, 1);
@@ -564,35 +631,6 @@ int sci_xset(char *fname, unsigned long fname_len)
     ReturnArguments(pvApiCtx);
     freeAllocatedSingleString(l1);
     freeAllocatedSingleString(l2);
-    return 0;
-}
-/*--------------------------------------------------------------------------*/
-int xsetg(char * str, char * str1, int lx0, int lx1)
-{
-    if (strcmp(str, "fpf") == 0)
-    {
-        strcpy(getFPF(), str1);
-    }
-    else if (strcmp(str, "auto clear") == 0)
-    {
-        int bAutoClear = (int) FALSE;
-
-        if (strcmp(str1, "on") == 0)
-        {
-            bAutoClear = (int) TRUE;
-        }
-
-        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_AUTO_CLEAR__, &bAutoClear, jni_bool, 1);
-    }
-    else if (strcmp(str, "default") == 0)
-    {
-        getFPF()[0] = '\0';
-    }
-    else
-    {
-        Scierror(999, _("%s: Unrecognized input argument '%s'.\n"), "xset(arg,<string>)", str);
-        return -1;
-    }
     return 0;
 }
 /*--------------------------------------------------------------------------*/
