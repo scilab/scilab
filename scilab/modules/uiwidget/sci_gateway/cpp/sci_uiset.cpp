@@ -105,8 +105,15 @@ int sci_uiset(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
-        if (!strcmp(str, "userdata") || !strcmp(str, "user_data"))
+        if (!stricmp(str, "userdata") || !stricmp(str, "user_data"))
         {
+            if (path)
+            {
+                uid = UIWidget::getUidFromPath(getScilabJavaVM(), path);
+                freeAllocatedSingleString(path);
+                path = 0;
+            }
+
             UserDataHandler::put(uid, i + 1);
         }
         else
