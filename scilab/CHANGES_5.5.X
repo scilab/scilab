@@ -252,6 +252,8 @@ Bug Fixes
 
 * Bug #5073 fixed - New parameter added in strtod function (decimal separator).
 
+* Bug #5205 fixed - permute was slow for large hypermatrices.
+
 * Bug #5207 fixed - grand can now return a hypermatrix.
 
 * Bug #5365 fixed - makecell help page was in the "compatibility functions" directory
