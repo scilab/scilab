@@ -29,15 +29,15 @@ function y = linspace(d1, d2, n)
     if rhs == 2 then
         n = 100;
     else
-        if type(n)<>1 | size(n,"*")<>1 then
+        if and(type(n)<>[1 8])  | size(n,"*")<>1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"),"linspace",3));
         end
 
-        if int(n) <> n then
-            warning(msprintf("%s: Using a non integer value for input argument #%d is deprecated and will produce an error in version 5.4.1.\n","linspace",3));
-            n = int(n);
+        if type(n) == 1 & int(n) <> n then
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer value expected.\n"),"linspace",3));
+        elseif type(n) == 8 then
+            n = double(n); // Convert for the operations to come
         end
-
     end
 
     if (n - 1) <= 0 then
@@ -49,4 +49,3 @@ function y = linspace(d1, d2, n)
         y(:,$) = d2;
     end
 endfunction
-
