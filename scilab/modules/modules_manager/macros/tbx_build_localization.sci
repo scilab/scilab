@@ -43,7 +43,7 @@ function tbx_build_localization(tbx_name, tbx_path)
     end
 
     //find list of .po files
-    poFiles = findfiles(localePath, "*.po");
+    poFiles = gsort(findfiles(localePath, "*.po"), "lr", "i");
 
     if getos() == "Windows" then
         cmd = SCI + filesep() + "tools/gettext/msgfmt";
