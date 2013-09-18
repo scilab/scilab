@@ -166,6 +166,31 @@ c
       ialg(8)=4
       ialg(9)=12
 c
+c---- initial printing
+      if(imp.gt.0) then
+         write (bufstr,900)
+         call basout(io_out, io, bufstr(1:lnblnk(bufstr)))
+         write (bufstr,901) n
+         call basout(io_out, io, bufstr(1:lnblnk(bufstr)))
+         write (bufstr,902) df0
+         call basout(io_out, io, bufstr(1:lnblnk(bufstr)))
+         write (bufstr,903) epsg
+         call basout(io_out, io, bufstr(1:lnblnk(bufstr)))
+         write (bufstr,904) itmax
+         call basout(io_out, io, bufstr(1:lnblnk(bufstr)))
+         write (bufstr,905) napmax
+         call basout(io_out, io, bufstr(1:lnblnk(bufstr)))
+         write (bufstr,906) imp
+         call basout(io_out, io, bufstr(1:lnblnk(bufstr)))
+      endif
+900   format (" gcdb: entry point")
+901   format (5x,"dimension of the problem (n):",i6)
+902   format (5x,"expected decrease for f (df0):",d9.2)
+903   format (5x,"relative precision on g (epsg):",d9.2)
+904   format (5x,"maximal number of iterations (itmax):",i6)
+905   format (5x,"maximal number of simulations (napmax):",i6)
+906   format (5x,"printing level (imp):",i4)
+c
 c     verification des entrees
       ii=min(n,napmax,itmax)
       if(ii.gt.0)go to 10
@@ -175,7 +200,7 @@ c     verification des entrees
         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
       endif
       
-123   format(' gcbd : retour avec indgc=',i8)
+123   format(' gcbd : return with indgc=',i8)
       return
 10    aa=min(zero,epsg,df0)
       do 11 i=1,n
@@ -205,7 +230,7 @@ c
       if(nfin.gt.nvect) then
          write(bufstr,1000) nfin,nvect
          call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
-1000  format (' gcbd:insuffisance memoire; nvect=',i5,'devrait etre:',
+1000  format (' gcbd:insufficient memory; nvect=',i5,'should be:',
      &  i5)
       indgc=-14
       return
@@ -217,7 +242,7 @@ c
       if(nfin.gt.nivect) then
          write(bufstr,2000)nfin,nivect
          call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
-2000  format (' gcbd:insuffisance memoire; nivect=',i5,'devrait etre:',
+2000  format (' gcbd:insufficient memory; nivect=',i5,'should be:',
      &  i5)
       indgc=-14
       return
