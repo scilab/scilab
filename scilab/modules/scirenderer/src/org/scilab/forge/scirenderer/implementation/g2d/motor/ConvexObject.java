@@ -27,7 +27,7 @@ import org.scilab.forge.scirenderer.tranformations.Vector4d;
  * Collision and relative positions of convexs object are relatively easy to determinate.
  * About the method isBehind, it could be interesting to use the algorithm of Chung-Wang.
  */
-public abstract class ConvexObject extends AbstractDrawable3DObject implements Clippable {
+public abstract class ConvexObject extends AbstractDrawable3DObject {
 
     private List<ConvexObject> areas;
 
@@ -49,7 +49,10 @@ public abstract class ConvexObject extends AbstractDrawable3DObject implements C
     public abstract List<ConvexObject> breakObject(ConvexObject o);
 
     /**
-     * {@inheritDoc}
+     * Abstract method
+     * Break this ConvexObject against a plane
+     * @param v plane definition
+     * @return a list of ConvexObject.
      */
     public abstract List<ConvexObject> breakObject(Vector4d v);
 
