@@ -48,7 +48,7 @@ function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
     opts = [];
     levels = [];
 
-    if ~exists("style", "local") == 1 then
+    if ~exists("style", "local") then
         if size(nz, "*") == 1 then
             style = 1:nz;
         else
@@ -56,7 +56,7 @@ function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
         end
     end
 
-    if exists("strf", "local") == 1 then
+    if exists("strf", "local") then
         yflag = part(strf, 2);
         if or(yflag == ["2" "4" "6" "8"]) then
             rect = [min(x), min(y), max(x), max(y)];
@@ -66,26 +66,26 @@ function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
         opts = [opts,"strf=strf"];
     end
 
-    if exists("leg", "local") == 1 then
+    if exists("leg", "local") then
         opts = [opts, "leg=leg"];
     end
     rectSpecified = %f;
-    if exists("rect","local") == 1 then
+    if exists("rect","local") then
         opts = [opts, "rect=rect"];
         rectSpecified = %t;
     end
-    if exists("nax","local") == 1 then
+    if exists("nax","local") then
         opts = [opts, "nax=nax"];
     end
-    if exists("logflag","local") == 1 then
+    if exists("logflag","local") then
         opts = [opts, "logflag=logflag"];
     end
-    if exists("frameflag","local") == 1 then
+    if exists("frameflag","local") then
         opts = [opts,"frameflag=frameflag"];
     else
         frameflag = [];
     end
-    if exists("axesflag","local") == 1 then
+    if exists("axesflag","local") then
         opts = [opts, "axesflag=axesflag"];
     end
     opts = strcat([opts, "style=style(c)"], ",");
