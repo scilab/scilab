@@ -6,12 +6,14 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+exec("SCI/modules/external_objects_java/tests/unit_tests/ecjclasspath.sce", -1);
+
 c = jcompile("TestDirectBuffer",["import java.nio.DoubleBuffer;";
-                                 "public class TestDirectBuffer {";
-                                 "public static void increment(DoubleBuffer x) {";
-                                 "for (int i = 0; i < x.capacity(); i++) x.put(i, x.get(i) + 1);";
-                                 "}";
-                                 "}"])
+"public class TestDirectBuffer {";
+"public static void increment(DoubleBuffer x) {";
+"for (int i = 0; i < x.capacity(); i++) x.put(i, x.get(i) + 1);";
+"}";
+"}"])
 a = 1:10000;
 b = a + 1; // only used to compare with the following...
 jinvoke_db(c, "increment", "a");
