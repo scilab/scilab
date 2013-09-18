@@ -332,19 +332,20 @@ src/c/periEmpty.c \
 src/c/scitokenize.c \
 src/c/get_ticks_utils.c
 
+GRAPHICS_CXX_SOURCES = \
+src/cpp/configgraphicvariable.cpp
+
 GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_grayplot.c \
 sci_gateway/c/sci_matplot1.c \
 sci_gateway/c/sci_xfpolys.c \
-sci_gateway/c/sci_xget.c \
 sci_gateway/c/sci_newaxes.c \
 sci_gateway/c/sci_xlfont.c \
 sci_gateway/c/sci_xgraduate.c \
 sci_gateway/c/sci_xgrid.c \
 sci_gateway/c/sci_xclick.c \
 sci_gateway/c/sci_geom3d.c \
-sci_gateway/c/sci_xset.c \
 sci_gateway/c/sci_unzoom.c \
 sci_gateway/c/sci_xsegs.c \
 sci_gateway/c/sci_glue.c \
@@ -396,6 +397,8 @@ sci_gateway/c/sci_Legend.c
 GATEWAY_CXX_SOURCES = \
 sci_gateway/cpp/graphics_gw.cpp \
 sci_gateway/cpp/sci_get.cpp \
+sci_gateway/cpp/sci_xget.cpp \
+sci_gateway/cpp/sci_xset.cpp \
 sci_gateway/cpp/sci_winsid.cpp
 
 

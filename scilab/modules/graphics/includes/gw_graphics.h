@@ -32,7 +32,7 @@ GRAPHICS_IMPEXP int sci_xtitle(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xstringb(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xstring(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xsetech(char *fname, void *pvApiCtx);
-GRAPHICS_IMPEXP int sci_xset(char *fname, void *pvApiCtx);
+//GRAPHICS_IMPEXP int sci_xset(char *fname, void *pvApiCtx); => c++
 GRAPHICS_IMPEXP int sci_xsegs(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xrects(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xrect(char *fname, void *pvApiCtx);
@@ -44,7 +44,7 @@ GRAPHICS_IMPEXP int sci_xgrid(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xgraduate(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xgetmouse(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xgetech(char *fname, void *pvApiCtx);
-GRAPHICS_IMPEXP int sci_xget(char *fname, void *pvApiCtx);
+//GRAPHICS_IMPEXP int sci_xget(char *fname, void *pvApiCtx); => c++
 GRAPHICS_IMPEXP int sci_xfpolys(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xfpoly(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_xfarcs(char *fname, void *pvApiCtx);

@@ -238,6 +238,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp\configgraphicvariable.cpp" />
     <ClCompile Include="src\c\Axes.c" />
     <ClCompile Include="src\c\axesScale.c" />
     <ClCompile Include="src\c\BasicAlgos.c" />
@@ -450,7 +451,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="sci_gateway\c\sci_xfarcs.c" />
     <ClCompile Include="sci_gateway\c\sci_xfpoly.c" />
     <ClCompile Include="sci_gateway\c\sci_xfpolys.c" />
-    <ClCompile Include="sci_gateway\c\sci_xget.c" />
     <ClCompile Include="sci_gateway\c\sci_xgetmouse.c" />
     <ClCompile Include="sci_gateway\c\sci_xgraduate.c" />
     <ClCompile Include="sci_gateway\c\sci_xgrid.c" />
@@ -461,7 +461,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="sci_gateway\c\sci_xrect.c" />
     <ClCompile Include="sci_gateway\c\sci_xrects.c" />
     <ClCompile Include="sci_gateway\c\sci_xsegs.c" />
-    <ClCompile Include="sci_gateway\c\sci_xset.c" />
     <ClCompile Include="sci_gateway\c\sci_xstring.c" />
     <ClCompile Include="sci_gateway\c\sci_xstringb.c" />
     <ClCompile Include="sci_gateway\c\sci_xtitle.c" />
@@ -611,6 +610,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="includes\BasicAlgos.h" />
     <ClInclude Include="includes\BuildObjects.h" />
     <ClInclude Include="includes\Champ.h" />
+    <ClInclude Include="src\cpp\configgraphicvariable.hxx" />
     <ClInclude Include="src\c\CheckScilabXgc.h" />
     <ClInclude Include="src\c\getHandleProperty\CheckTicksProperty.h" />
     <ClInclude Include="includes\CloneObjects.h" />

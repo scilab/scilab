@@ -476,7 +476,8 @@ am__objects_1 = libscigraphics_algo_la-GetCommandArg.lo \
 	libscigraphics_algo_la-periEmpty.lo \
 	libscigraphics_algo_la-scitokenize.lo \
 	libscigraphics_algo_la-get_ticks_utils.lo
-am_libscigraphics_algo_la_OBJECTS = $(am__objects_1)
+am__objects_2 = libscigraphics_algo_la-configgraphicvariable.lo
+am_libscigraphics_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscigraphics_algo_la_OBJECTS = $(am_libscigraphics_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -490,15 +491,15 @@ am_libscigraphics_disable_la_OBJECTS =  \
 libscigraphics_disable_la_OBJECTS =  \
 	$(am_libscigraphics_disable_la_OBJECTS)
 libscigraphics_la_DEPENDENCIES = libscigraphics-algo.la
-am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
+am__objects_3 = libscigraphics_la-sci_swap_handles.lo \
 	libscigraphics_la-sci_grayplot.lo \
 	libscigraphics_la-sci_matplot1.lo \
-	libscigraphics_la-sci_xfpolys.lo libscigraphics_la-sci_xget.lo \
+	libscigraphics_la-sci_xfpolys.lo \
 	libscigraphics_la-sci_newaxes.lo \
 	libscigraphics_la-sci_xlfont.lo \
 	libscigraphics_la-sci_xgraduate.lo \
 	libscigraphics_la-sci_xgrid.lo libscigraphics_la-sci_xclick.lo \
-	libscigraphics_la-sci_geom3d.lo libscigraphics_la-sci_xset.lo \
+	libscigraphics_la-sci_geom3d.lo \
 	libscigraphics_la-sci_unzoom.lo libscigraphics_la-sci_xsegs.lo \
 	libscigraphics_la-sci_glue.lo libscigraphics_la-sci_xarc.lo \
 	libscigraphics_la-sci_xpolys.lo \
@@ -537,9 +538,10 @@ am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
 	libscigraphics_la-sci_rotate_axes.lo \
 	libscigraphics_la-sci_is_handle_valid.lo \
 	libscigraphics_la-sci_Legend.lo
-am__objects_3 = libscigraphics_la-graphics_gw.lo \
-	libscigraphics_la-sci_get.lo libscigraphics_la-sci_winsid.lo
-am_libscigraphics_la_OBJECTS = $(am__objects_2) $(am__objects_3)
+am__objects_4 = libscigraphics_la-graphics_gw.lo \
+	libscigraphics_la-sci_get.lo libscigraphics_la-sci_xget.lo \
+	libscigraphics_la-sci_xset.lo libscigraphics_la-sci_winsid.lo
+am_libscigraphics_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscigraphics_la_OBJECTS = $(am_libscigraphics_la_OBJECTS)
 @GUI_TRUE@am_libscigraphics_la_rpath = -rpath $(pkglibdir)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -1216,19 +1218,20 @@ src/c/periEmpty.c \
 src/c/scitokenize.c \
 src/c/get_ticks_utils.c
 
+GRAPHICS_CXX_SOURCES = \
+src/cpp/configgraphicvariable.cpp
+
 GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_grayplot.c \
 sci_gateway/c/sci_matplot1.c \
 sci_gateway/c/sci_xfpolys.c \
-sci_gateway/c/sci_xget.c \
 sci_gateway/c/sci_newaxes.c \
 sci_gateway/c/sci_xlfont.c \
 sci_gateway/c/sci_xgraduate.c \
 sci_gateway/c/sci_xgrid.c \
 sci_gateway/c/sci_xclick.c \
 sci_gateway/c/sci_geom3d.c \
-sci_gateway/c/sci_xset.c \
 sci_gateway/c/sci_unzoom.c \
 sci_gateway/c/sci_xsegs.c \
 sci_gateway/c/sci_glue.c \
@@ -1280,6 +1283,8 @@ sci_gateway/c/sci_Legend.c
 GATEWAY_CXX_SOURCES = \
 sci_gateway/cpp/graphics_gw.cpp \
 sci_gateway/cpp/sci_get.cpp \
+sci_gateway/cpp/sci_xget.cpp \
+sci_gateway/cpp/sci_xset.cpp \
 sci_gateway/cpp/sci_winsid.cpp
 
 libscigraphics_la_CPPFLAGS = \
@@ -1551,7 +1556,7 @@ clean-pkglibLTLIBRARIES:
 	}
 
 libscigraphics-algo.la: $(libscigraphics_algo_la_OBJECTS) $(libscigraphics_algo_la_DEPENDENCIES) $(EXTRA_libscigraphics_algo_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(LINK) $(am_libscigraphics_algo_la_rpath) $(libscigraphics_algo_la_OBJECTS) $(libscigraphics_algo_la_LIBADD) $(LIBS)
+	$(AM_V_CXXLD)$(CXXLINK) $(am_libscigraphics_algo_la_rpath) $(libscigraphics_algo_la_OBJECTS) $(libscigraphics_algo_la_LIBADD) $(LIBS)
 
 libscigraphics-disable.la: $(libscigraphics_disable_la_OBJECTS) $(libscigraphics_disable_la_DEPENDENCIES) $(EXTRA_libscigraphics_disable_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscigraphics_disable_la_OBJECTS) $(libscigraphics_disable_la_LIBADD) $(LIBS)
@@ -1592,6 +1597,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-StringMatrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-TerminateGraphics.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-axesScale.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-configgraphicvariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-getPropertyAssignedValue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_alignment_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_anti_aliasing_property.Plo@am__quote@
@@ -4126,13 +4132,6 @@ libscigraphics_la-sci_xfpolys.lo: sci_gateway/c/sci_xfpolys.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xfpolys.lo `test -f 'sci_gateway/c/sci_xfpolys.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xfpolys.c
 
-libscigraphics_la-sci_xget.lo: sci_gateway/c/sci_xget.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xget.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xget.Tpo -c -o libscigraphics_la-sci_xget.lo `test -f 'sci_gateway/c/sci_xget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xget.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_la-sci_xget.Tpo $(DEPDIR)/libscigraphics_la-sci_xget.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_xget.c' object='libscigraphics_la-sci_xget.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xget.lo `test -f 'sci_gateway/c/sci_xget.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xget.c
-
 libscigraphics_la-sci_newaxes.lo: sci_gateway/c/sci_newaxes.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_newaxes.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_newaxes.Tpo -c -o libscigraphics_la-sci_newaxes.lo `test -f 'sci_gateway/c/sci_newaxes.c' || echo '$(srcdir)/'`sci_gateway/c/sci_newaxes.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_la-sci_newaxes.Tpo $(DEPDIR)/libscigraphics_la-sci_newaxes.Plo
@@ -4174,13 +4173,6 @@ libscigraphics_la-sci_geom3d.lo: sci_gateway/c/sci_geom3d.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_geom3d.c' object='libscigraphics_la-sci_geom3d.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_geom3d.lo `test -f 'sci_gateway/c/sci_geom3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_geom3d.c
-
-libscigraphics_la-sci_xset.lo: sci_gateway/c/sci_xset.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xset.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xset.Tpo -c -o libscigraphics_la-sci_xset.lo `test -f 'sci_gateway/c/sci_xset.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xset.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_la-sci_xset.Tpo $(DEPDIR)/libscigraphics_la-sci_xset.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_xset.c' object='libscigraphics_la-sci_xset.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xset.lo `test -f 'sci_gateway/c/sci_xset.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xset.c
 
 libscigraphics_la-sci_unzoom.lo: sci_gateway/c/sci_unzoom.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_unzoom.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_unzoom.Tpo -c -o libscigraphics_la-sci_unzoom.lo `test -f 'sci_gateway/c/sci_unzoom.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unzoom.c
@@ -4532,6 +4524,13 @@ libscigraphics_la-sci_Legend.lo: sci_gateway/c/sci_Legend.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
+libscigraphics_algo_la-configgraphicvariable.lo: src/cpp/configgraphicvariable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_algo_la-configgraphicvariable.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-configgraphicvariable.Tpo -c -o libscigraphics_algo_la-configgraphicvariable.lo `test -f 'src/cpp/configgraphicvariable.cpp' || echo '$(srcdir)/'`src/cpp/configgraphicvariable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-configgraphicvariable.Tpo $(DEPDIR)/libscigraphics_algo_la-configgraphicvariable.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/configgraphicvariable.cpp' object='libscigraphics_algo_la-configgraphicvariable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_algo_la-configgraphicvariable.lo `test -f 'src/cpp/configgraphicvariable.cpp' || echo '$(srcdir)/'`src/cpp/configgraphicvariable.cpp
+
 libscigraphics_disable_la-nographics_gw.lo: src/nographics/nographics_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_disable_la-nographics_gw.lo -MD -MP -MF $(DEPDIR)/libscigraphics_disable_la-nographics_gw.Tpo -c -o libscigraphics_disable_la-nographics_gw.lo `test -f 'src/nographics/nographics_gw.cpp' || echo '$(srcdir)/'`src/nographics/nographics_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_disable_la-nographics_gw.Tpo $(DEPDIR)/libscigraphics_disable_la-nographics_gw.Plo
@@ -4552,6 +4551,20 @@ libscigraphics_la-sci_get.lo: sci_gateway/cpp/sci_get.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_get.cpp' object='libscigraphics_la-sci_get.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-sci_get.lo `test -f 'sci_gateway/cpp/sci_get.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_get.cpp
+
+libscigraphics_la-sci_xget.lo: sci_gateway/cpp/sci_xget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-sci_xget.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xget.Tpo -c -o libscigraphics_la-sci_xget.lo `test -f 'sci_gateway/cpp/sci_xget.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xget.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_la-sci_xget.Tpo $(DEPDIR)/libscigraphics_la-sci_xget.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xget.cpp' object='libscigraphics_la-sci_xget.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-sci_xget.lo `test -f 'sci_gateway/cpp/sci_xget.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xget.cpp
+
+libscigraphics_la-sci_xset.lo: sci_gateway/cpp/sci_xset.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-sci_xset.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xset.Tpo -c -o libscigraphics_la-sci_xset.lo `test -f 'sci_gateway/cpp/sci_xset.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xset.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_la-sci_xset.Tpo $(DEPDIR)/libscigraphics_la-sci_xset.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xset.cpp' object='libscigraphics_la-sci_xset.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphics_la-sci_xset.lo `test -f 'sci_gateway/cpp/sci_xset.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xset.cpp
 
 libscigraphics_la-sci_winsid.lo: sci_gateway/cpp/sci_winsid.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphics_la-sci_winsid.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_winsid.Tpo -c -o libscigraphics_la-sci_winsid.lo `test -f 'sci_gateway/cpp/sci_winsid.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_winsid.cpp
