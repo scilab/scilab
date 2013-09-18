@@ -235,7 +235,7 @@ int sci_xset(char *fname, unsigned long fname_len)
 
         getOrCreateDefaultSubwin();
         pFigureUID = (char*)getCurrentFigure();
-        setGraphicObjectProperty(pFigureUID, __GO_COLORMAP__, (lr), jni_double_vector, *xm * (*xn));
+        setGraphicObjectProperty(pFigureUID , __GO_COLORMAP__, (lr), jni_double_vector, *xm * (*xn));
     }
     else if (strcmp((l1), "mark size") == 0)
     {
@@ -258,6 +258,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int markStyle = (int) xx[0];
         int markSize = (int) xx[1];
         int markSizeUnit = 1; /* force switch to tabulated mode : old syntax / 0 : point, 1 : tabulated */
+        int markMode = 1;
         char *subwinUID = NULL;
         if (nbInputArgument(pvApiCtx) != 3)
         {
@@ -267,6 +268,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         }
 
         subwinUID = (char*)getOrCreateDefaultSubwin();
+        setGraphicObjectProperty(subwinUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1); /* force switch to tabulated mode : old syntax */
         setGraphicObjectProperty(subwinUID, __GO_MARK_STYLE__, &markStyle, jni_int, 1);
         setGraphicObjectProperty(subwinUID, __GO_MARK_SIZE__, &markSize, jni_int, 1);
@@ -531,24 +533,6 @@ int sci_xset(char *fname, unsigned long fname_len)
             return 1;
         }
         setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_STYLE__, &lineStyle, jni_int, 1);
-    }
-    else if (strcmp((l1), "mark") == 0)
-    {
-        int markMode = 1;
-
-        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_MARK_MODE__, &markMode, jni_bool, 1);
-        setGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_MARK_STYLE__, x, jni_int, 1);
-    }
-    else if (strcmp((l1), "colormap") == 0)
-    {
-        getOrCreateDefaultSubwin();
-        if (nbInputArgument(pvApiCtx) != 2)
-        {
-            freeAllocatedSingleString(l1);
-            Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
-            return 1;
-        }
-        setGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP__, (lr), jni_double_vector, xm[0] * xn[0]);
     }
     else if (strcmp((l1), "dashes") == 0)
     {
