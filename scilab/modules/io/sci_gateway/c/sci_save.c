@@ -105,19 +105,12 @@ int sci_save(char *fname, unsigned long fname_len)
                 {
                     //try to get variable by name
                     sciErr = getVarAddressFromName(pvApiCtx, pstVarI, &piAddrI2);
-                    if (sciErr.iErr)
+                    if (sciErr.iErr || piAddrI2 == NULL)
                     {
                         // Try old save because here the input variable can be of type "string" but not a variable name
                         // Ex: a=""; save(filename, a);
                         iOldSave = TRUE;
                         bWarning = FALSE;
-                        iErrorRhs = i;
-                        break;
-                    }
-
-                    if (piAddrI2 == 0)
-                    {
-                        iOldSave = TRUE;
                         break;
                     }
                 }
@@ -142,28 +135,17 @@ int sci_save(char *fname, unsigned long fname_len)
         //call "overload" to prepare data to export_to_hdf5 function.
         C2F(overload) (&lw, "save", (unsigned long)strlen("save"));
     }
-
-    //old save
-
-    if (iOldSave)
+    else
     {
-        if (bWarning)
+        //show warning only for variable save, not for environment
+        if (bWarning && getWarningMode() && Rhs > 1)
         {
-            //show warning only for variable save, not for environment
-            if (getWarningMode() && Rhs > 1)
-            {
-                sciprint(_("%s: Scilab 6 will not support the file format used.\n"), _("Warning"));
-                sciprint(_("%s: Please quote the variable declaration. Example, save('myData.sod',a) becomes save('myData.sod','a').\n"), _("Warning"));
-                sciprint(_("%s: See help('save') for the rational.\n"), _("Warning"));
-            }
+            sciprint(_("%s: Scilab 6 will not support the file format used.\n"), _("Warning"));
+            sciprint(_("%s: Please quote the variable declaration. Example, save('myData.sod',a) becomes save('myData.sod','a').\n"), _("Warning"));
+            sciprint(_("%s: See help('save') for the rational.\n"), _("Warning"));
+        }
 
-            C2F(intsave)();
-        }
-        else
-        {
-            Scierror(248, _("Wrong value for argument #%d: Valid variable name expected.\n"), iErrorRhs);
-            return 0;
-        }
+        C2F(intsave)();
     }
 
     return 0;
