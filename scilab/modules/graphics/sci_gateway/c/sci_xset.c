@@ -93,6 +93,7 @@ int sci_xset(char *fname, unsigned long fname_len)
 
     if (!keyFound)
     {
+        freeAllocatedSingleString(l1);
         Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, (l1));
         return 0;
     }
@@ -104,6 +105,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
         if (sciErr.iErr)
         {
+            freeAllocatedSingleString(l1);
             printError(&sciErr, 0);
             return 1;
         }
@@ -111,6 +113,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         // Retrieve a string at position 2.
         if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
         {
+            freeAllocatedSingleString(l1);
             Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
             return 1;
         }
@@ -132,12 +135,16 @@ int sci_xset(char *fname, unsigned long fname_len)
         }
         else
         {
+            freeAllocatedSingleString(l1);
+            freeAllocatedSingleString(l2);
             Scierror(999, _("%s: Unrecognized input argument '%s'.\n"), "xset(arg,<string>)", l1);
             return -1;
         }
 
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
+        freeAllocatedSingleString(l1);
+        freeAllocatedSingleString(l2);
         return 0;
     }
 
@@ -147,6 +154,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddrlr);
         if (sciErr.iErr)
         {
+            freeAllocatedSingleString(l1);
             printError(&sciErr, 0);
             return 1;
         }
@@ -155,6 +163,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         sciErr = getMatrixOfDouble(pvApiCtx, piAddrlr, &xm[i - 2], &xn[i - 2], &lr);
         if (sciErr.iErr)
         {
+            freeAllocatedSingleString(l1);
             printError(&sciErr, 0);
             Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, i);
             return 1;
@@ -169,6 +178,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int clipState = 2;
         if (nbInputArgument(pvApiCtx) != 5 && nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 5);
             return 1;
         }
@@ -190,6 +200,7 @@ int sci_xset(char *fname, unsigned long fname_len)
             sciErr = getMatrixOfDouble(pvApiCtx, piAddrlr, &iRows, &iCols, &lr);
             if (sciErr.iErr)
             {
+                freeAllocatedSingleString(l1);
                 printError(&sciErr, 0);
                 Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
                 return 1;
@@ -198,6 +209,7 @@ int sci_xset(char *fname, unsigned long fname_len)
 
             if (iRows * iCols != 4)
             {
+                freeAllocatedSingleString(l1);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A %d-element vector expected.\n"), fname, 2, 4);
                 return 1;
             }
@@ -216,6 +228,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         char *pFigureUID = NULL;
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -232,6 +245,7 @@ int sci_xset(char *fname, unsigned long fname_len)
 
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -247,6 +261,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         char *subwinUID = NULL;
         if (nbInputArgument(pvApiCtx) != 3)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
             return -1;
         }
@@ -261,6 +276,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         double fontSize = xx[0];
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -329,6 +345,7 @@ int sci_xset(char *fname, unsigned long fname_len)
 
         if (nbInputArgument(pvApiCtx) != 1)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 1);
             return 1;
         }
@@ -339,6 +356,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         pdblColorMap = (double*)malloc(m * 3 * sizeof(double));
         if (pdblColorMap == NULL)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
@@ -352,6 +370,7 @@ int sci_xset(char *fname, unsigned long fname_len)
             AssignOutputVariable(pvApiCtx, 1) = 0;
             ReturnArguments(pvApiCtx);
             free(pdblColorMap);
+            freeAllocatedSingleString(l1);
             return 0;
         }
 
@@ -429,6 +448,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int hiddenColor = (int) x[0];
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -440,6 +460,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         double fontSize = xx[1];
         if (nbInputArgument(pvApiCtx) != 3)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
             return -1;
         }
@@ -455,6 +476,7 @@ int sci_xset(char *fname, unsigned long fname_len)
 
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -472,6 +494,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int iColor = (int) x[0];
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -482,6 +505,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int iColor = (int) x[0];
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -491,6 +515,7 @@ int sci_xset(char *fname, unsigned long fname_len)
     {
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -501,6 +526,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int lineStyle = (int) x[0];
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -518,6 +544,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         getOrCreateDefaultSubwin();
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -528,6 +555,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int lineStyle = (int) x[0];
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -538,6 +566,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int iAutoResizeMode = x[0];
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -548,6 +577,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int figurePosition[2];
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return -1;
         }
@@ -562,6 +592,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int figureSize[2];
         if (nbInputArgument(pvApiCtx) != 2 && nbInputArgument(pvApiCtx) != 3)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 3);
             return -1;
         }
@@ -587,6 +618,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int iPixmapMode = x[0];
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -598,6 +630,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int viewport[4] = {x[0], x[1], 0, 0};
         if (nbInputArgument(pvApiCtx) != 3)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 3);
             return 1;
         }
@@ -611,6 +644,7 @@ int sci_xset(char *fname, unsigned long fname_len)
         int iOne = 1;
         if (nbInputArgument(pvApiCtx) != 2)
         {
+            freeAllocatedSingleString(l1);
             Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname, 2);
             return 1;
         }
@@ -626,6 +660,7 @@ int sci_xset(char *fname, unsigned long fname_len)
     }
     else
     {
+        freeAllocatedSingleString(l1);
         Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, (l1));
         return 0;
     }
@@ -633,7 +668,6 @@ int sci_xset(char *fname, unsigned long fname_len)
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
     freeAllocatedSingleString(l1);
-    freeAllocatedSingleString(l2);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
