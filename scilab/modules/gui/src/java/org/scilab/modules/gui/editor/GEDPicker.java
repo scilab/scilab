@@ -342,7 +342,81 @@ public class GEDPicker {
     */
     boolean getArc(String obj, Integer[] position) {
 
+        double[] upperLeft = (double[])ObjectData.getArcUpperLeftPoint(obj);
+        double[] data = (double[])ObjectData.getArcData(obj);
+        double[] pos = { position[0] * 1.0, position[1] * 1.0, 0.0 };
+        double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axesUID, pos);
+        pos[0] += delta;
+        pos[1] += delta;
+        double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axesUID, pos);
+        Boolean fill_mode = (Boolean)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_FILL_MODE__);
+
+        //Calculates the selection delta based on ellipse & axes size
+        double dt = Math.sqrt(Math.pow(c2d[0] - c2d2[0], 2.0) + Math.pow(c2d[1] - c2d2[1], 2.0)) / Math.sqrt((data[0] * data[0] / 4.) / 2. + (data[1] * data[1] / 4.) / 2.);
+
+        double[] c3d1 = AxesDrawer.compute3dViewCoordinates(axes, c2d);
+        c2d[2] += 1.0;
+        double[] c3d2 = AxesDrawer.compute3dViewCoordinates(axes, c2d);
+
+        //Calculates the intersection of the click ray with the ellipse plane
+        Vector3d v0 = new Vector3d(c3d1);
+        Vector3d v1 = new Vector3d(c3d2);
+        Vector3d dir = v1.minus(v0);
+
+        if (dir.getZ() == 0) {
+            return false;
+        }
+
+        double u = upperLeft[2] - (v0.getZ() / dir.getZ());
+        Vector3d point = v0.plus(dir.times(u));
+
+        double xr = data[1] / 2.;
+        double yr = data[0] / 2.;
+
+        Vector3d center =  new Vector3d(upperLeft[0] + xr , upperLeft[1] - yr , upperLeft[2]);
+
+        //checks if the point lies within the ellipse
+        double x = point.getX() - center.getX();
+        double y = point.getY() - center.getY();
+        double v = (x * x) / (xr * xr) + (y * y) / (yr * yr);
+
+        if (v > 1.0 + dt) {
+            return false;
+        }
+
+        double angle0 = getAngle360(data[2]);
+        double angle1 = getAngle360(data[3]) + angle0;
+
+        /**
+         * Checks if the point is closer to the drawn arc
+         * and inside de given angles. If fill_mode = false
+         * it it accept 1-dt < value < 1+dt, if fill_mode = true
+         * it accept value < 1+dt;
+         */
+
+        v0 = new Vector3d(1.0, 0.0, 0.0);
+        v1 = point.minus(center);
+        double angle = Math.acos(v0.scalar(v1) / (v0.getNorm() * v1.getNorm()));
+        angle += v1.getY() < 0.0 ? Math.PI : 0.0;
+
+        if (!(angle0 == angle1) && !(angle >= angle0 && angle <= angle1)) {
+            return false;
+        }
+
+        if (fill_mode) {
+            return true;
+        } else if (v > 1.0 - dt) {
+            return true;
+        }
+
         return false;
+    }
+
+    double getAngle360(double a) {
+        while (a > 2 * Math.PI) {
+            a -= 2 * Math.PI;
+        }
+        return a;
     }
 
     /**

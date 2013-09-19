@@ -296,6 +296,35 @@ int _getFecDataSize(char * uid) {
 
 
 
+
+double * getArcUpperLeftPoint(char * uid) {
+
+    double * upperLeftPoint;
+    getGraphicObjectProperty(uid, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void**)&upperLeftPoint);
+    return upperLeftPoint;
+}
+
+
+
+
+double * getArcData(char * uid) {
+
+    double * data = (double *)MALLOC(sizeof(double)*4);
+	double value;
+	double * temp = &value;
+    getGraphicObjectProperty(uid, __GO_HEIGHT__, jni_double, (void**)&temp);
+	data[0] = value;
+    getGraphicObjectProperty(uid, __GO_WIDTH__, jni_double, (void**)&temp);
+	data[1] = value;
+    getGraphicObjectProperty(uid, __GO_START_ANGLE__, jni_double, (void**)&temp);
+	data[2] = value;
+    getGraphicObjectProperty(uid, __GO_END_ANGLE__, jni_double, (void**)&temp);
+	data[3] = value;
+    return data;
+}
+
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -424,8 +453,52 @@ SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_ObjectDataJN
   }
   result = (double *)getFecData(arg1);
   {
-    jresult = (*jenv)->NewDoubleArray(jenv, _getFecDataSize(arg1));
-    (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, _getFecDataSize(arg1), result);
+    jresult = (*jenv)->NewDoubleArray(jenv, 4);
+    (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, 4, result);
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_ObjectDataJNI_getArcUpperLeftPoint(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobject jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  double *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (double *)getArcUpperLeftPoint(arg1);
+  {
+    jresult = (*jenv)->NewDoubleArray(jenv, 4);
+    (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, 4, result);
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  return jresult;
+}
+
+
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_ObjectDataJNI_getArcData(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jobject jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  double *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  result = (double *)getArcData(arg1);
+  {
+    jresult = (*jenv)->NewDoubleArray(jenv, 4);
+    (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, 4, result);
   }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;

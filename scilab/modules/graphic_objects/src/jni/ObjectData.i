@@ -213,6 +213,49 @@ int _getFecDataSize(char * uid) {
 
 %}
 
+%typemap(out) double * ARC_ULP {
+	$result = (*jenv)->NewDoubleArray(jenv, 3);
+	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, 3, $1);
+}
+
+%apply double * ARC_ULP { double * }
+%{
+
+double * getArcUpperLeftPoint(char * uid) {
+
+    double * upperLeftPoint;
+    getGraphicObjectProperty(uid, __GO_UPPER_LEFT_POINT__, jni_double_vector, (void**)&upperLeftPoint);
+    return upperLeftPoint;
+}
+
+%}
+
+%typemap(out) double * ARC_DATA {
+	$result = (*jenv)->NewDoubleArray(jenv, 4);
+	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, 4, $1);
+}
+
+%apply double * ARC_DATA { double * }
+%{
+
+double * getArcData(char * uid) {
+
+    double * data = (double *)MALLOC(sizeof(double)*4);
+	double value;
+	double * temp = &value;
+    getGraphicObjectProperty(uid, __GO_HEIGHT__, jni_double, (void**)&temp);
+	data[0] = value;
+    getGraphicObjectProperty(uid, __GO_WIDTH__, jni_double, (void**)&temp);
+	data[1] = value;
+    getGraphicObjectProperty(uid, __GO_START_ANGLE__, jni_double, (void**)&temp);
+	data[2] = value;
+    getGraphicObjectProperty(uid, __GO_END_ANGLE__, jni_double, (void**)&temp);
+	data[3] = value;
+    return data;
+}
+
+%}
+
 
 double * getChampX(char * uid);
 double * getChampY(char * uid);
@@ -220,3 +263,5 @@ double * getArrows(char * uid);
 double * getSegsData(char * uid);
 double * getFecTriangles(char * uid);
 double * getFecData(char * uid);
+double * getArcUpperLeftPoint(char * uid);
+double * getArcData(char * uid);
