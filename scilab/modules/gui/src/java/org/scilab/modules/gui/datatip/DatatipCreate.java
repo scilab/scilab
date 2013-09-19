@@ -83,7 +83,7 @@ public class DatatipCreate {
 
                 DatatipCommon.Segment seg3d = DatatipCommon.getSegment3dView(coordDoubleXY[0], coordDoubleXY[1], polylineUid);
 
-                Double[] pos = DatatipCommon.Interpolate3dView(coordDoubleXY[0], coordDoubleXY[1], seg3d, polylineUid);
+                Double[] pos = DatatipCommon.Interpolate3dViewProgCoord(coordDoubleXY[0], coordDoubleXY[1], seg3d, polylineUid);
                 double[] position = new double[] {pos[0], pos[1], pos[2]};
 
                 String newDatatip = datatipProperties(position, polylineUid);

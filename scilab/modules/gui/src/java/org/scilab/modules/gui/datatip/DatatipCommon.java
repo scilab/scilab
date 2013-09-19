@@ -213,7 +213,6 @@ public class DatatipCommon {
     public static Double[] Interpolate3dView(double x, double y, Segment seg, String polyline) {
 
         double[][] polylineData = getPolylineDataMatrix (polyline);
-
         Double[][] polylineDataBackup = backupPolylineData(polylineData);
 
         String axesUid = (String)GraphicController.getController().getProperty(polyline, __GO_PARENT_AXES__);
@@ -221,16 +220,29 @@ public class DatatipCommon {
         polylineData = geom3dCoords;
 
         double[] coefProj = OrthogonalProjection.orthogonalProj(polylineData, new double[] {x, y});
-
         int ind = (int) coefProj[0];
         double coef = coefProj[1];
 
-        Double[] datatipNewPos = new Double[3];
+        Double[] datatipNewPos = datatipInterpolatedPosition (ind, coef, polylineDataBackup);
+        return datatipNewPos;
 
-        datatipNewPos[0] = polylineDataBackup[ind][0] + ((polylineDataBackup[ind + 1][0] - polylineDataBackup[ind][0]) * coef);
-        datatipNewPos[1] = polylineDataBackup[ind][1] + ((polylineDataBackup[ind + 1][1] - polylineDataBackup[ind][1]) * coef);
-        datatipNewPos[2] = polylineDataBackup[ind][2] + ((polylineDataBackup[ind + 1][2] - polylineDataBackup[ind][2]) * coef);
+    }
 
+    /*
+     * Return the interpolated position (x, y, z)
+     * that the segment (x, y) belongs in the polyline
+     * to create de datatip by program
+     */
+    public static Double[] Interpolate3dViewProgCoord(double x, double y, Segment seg, String polyline) {
+
+        double[][] polylineData = getPolylineDataMatrix (polyline);
+        Double[][] polylineDataBackup = backupPolylineData(polylineData);
+
+        double[] coefProj = OrthogonalProjection.orthogonalProj(polylineData, new double[] {x, y});
+        int ind = (int) coefProj[0];
+        double coef = coefProj[1];
+
+        Double[] datatipNewPos = datatipInterpolatedPosition (ind, coef, polylineDataBackup);
         return datatipNewPos;
 
     }
@@ -326,5 +338,16 @@ public class DatatipCommon {
         }
 
         return geom3d;
+    }
+
+    private static Double[] datatipInterpolatedPosition (int index, double coefficient, Double[][] polylineData) {
+
+        Double[] datatipNewPos = new Double[3];
+
+        datatipNewPos[0] = polylineData[index][0] + ((polylineData[index + 1][0] - polylineData[index][0]) * coefficient);
+        datatipNewPos[1] = polylineData[index][1] + ((polylineData[index + 1][1] - polylineData[index][1]) * coefficient);
+        datatipNewPos[2] = polylineData[index][2] + ((polylineData[index + 1][2] - polylineData[index][2]) * coefficient);
+
+        return datatipNewPos;
     }
 }

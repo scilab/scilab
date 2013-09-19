@@ -86,9 +86,13 @@ int sci_datatipcreate(char *fname, unsigned long fname_len)
                     {
                         datatip_handler = DatatipCreate::createDatatipProgramCoord(getScilabJavaVM(), (char*)polylineUID, pdblReal, 2);
                     }
+                    else if (nbRow * nbCol == 3)
+                    {
+                        datatip_handler = DatatipCreate::createDatatipProgramCoord(getScilabJavaVM(), (char*)polylineUID, pdblReal, 3);
+                    }
                     else
                     {
-                        Scierror(999, _("%s: Wrong size for input argument #%d: matrix 1x2 expected.\n"), fname, 2);
+                        Scierror(999, _("%s: Wrong size for input argument #%d: array of %d or %d elements expected.\n"), fname, 2, 2, 3);
                         return FALSE;
                     }
                 }
