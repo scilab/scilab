@@ -13,12 +13,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#ifndef _MSC_VER
-#include <stdint.h>
-#else
-#define int32_t int
-#define uint32_t unsigned int
-#endif
 #include "mgeti.h"
 #include "sciprint.h"
 #include "filesmanagement.h"
@@ -30,7 +24,7 @@
 * read n items of type type
 * if read fails *ierr contains the number of properly read items
 ****************************************************************/
-void C2F(mgeti)(int* _pF, int* _pVal, int* _iSize, char* _iOpt, int* _iErr)
+void C2F(mgeti)(int* _pF, long long* _pVal, int* _iSize, char* _iOpt, int* _iErr)
 {
     int iType = 0;
     int iUnsigned = 0;
@@ -42,7 +36,7 @@ void C2F(mgeti)(int* _pF, int* _pVal, int* _iSize, char* _iOpt, int* _iErr)
     FILE *fa = NULL;
 
     unsigned char *RES_uc   = (unsigned char *)_pVal;
-    uint32_t *RES_ul        = (uint32_t *)_pVal;
+    unsigned int *RES_ui    = (unsigned int*)_pVal;
     unsigned short *RES_us  = (unsigned short *)_pVal;
 
     fa = GetFileOpenedInScilab(*_pF);
@@ -120,10 +114,25 @@ void C2F(mgeti)(int* _pF, int* _pVal, int* _iSize, char* _iOpt, int* _iErr)
 
     switch (iType)
     {
-        case TYPE_LONG :
+        case TYPE_LONG_LONG :
             for (i = 0 ; i < *_iSize ; i++)
             {
-                uint32_t val;
+                unsigned long long val;
+                val = readLongLong(fa, iEndian);
+                if (feof(fa))
+                {
+                    iCount = i;
+                    break;
+                }
+
+                //be careful, only because scilab 5 does not manage int64
+                *RES_ui++ = (unsigned int)val;
+            }
+            break;
+        case TYPE_INT :
+            for (i = 0 ; i < *_iSize ; i++)
+            {
+                unsigned int val;
                 val = readInt(fa, iEndian);
                 if (feof(fa))
                 {
@@ -131,7 +140,7 @@ void C2F(mgeti)(int* _pF, int* _pVal, int* _iSize, char* _iOpt, int* _iErr)
                     break;
                 }
 
-                *RES_ul++ = val;
+                *RES_ui++ = val;
             }
             break;
         case TYPE_SHORT :

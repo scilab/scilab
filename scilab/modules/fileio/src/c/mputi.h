@@ -27,7 +27,7 @@
  * @param char type[]
  * @param ierr
  */
-FILEIO_IMPEXP void C2F(mputi) (int *fd, int *res, int *n, char type[], int *ierr);
+FILEIO_IMPEXP void C2F(mputi) (int *fd, long long *res, int *n, char type[], int *ierr);
 
 #endif /* __MPUTI_H__ */
 
