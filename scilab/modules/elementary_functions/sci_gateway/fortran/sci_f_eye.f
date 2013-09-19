@@ -12,7 +12,7 @@ c
       integer id(nsiz)
       logical  getmat
 
-      integer tops
+      integer tops, u1, v1
       double precision s
       integer iadr,sadr, mattyp1, areadr1, aimadr1
 c
@@ -56,20 +56,27 @@ c     eye(matrice)
 c     eye(m,n)
          call getdimfromvar(top,2,n)
          if(err.gt.0.or.err1.gt.0) return
+         il=iadr(lstk(top))
+         if(istk(il).eq.1.or.istk(il).eq.-1) then
+            if (.not.getmat('eye', tops, top, 
+     +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #2 
+            if(u1.eq.-1.or.v1.eq.-1) then !detect ':' or eye
+               call error(21)
+               return
+            endif
+         endif
+         
          top=top-1
          call getdimfromvar(top,1,m)
          if(err.gt.0.or.err1.gt.0) return
-         if (.not.getmat('eye', tops, top-rhs+2, 
+         il=iadr(lstk(top))
+         if(istk(il).eq.1.or.istk(il).eq.-1) then
+            if (.not.getmat('eye', tops, top, 
      +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #1 
-         if(u1.ne.u1.and.v1.ne.v1) then !detect nan because isanan does not work here
-            call error(21) !To avoid eye(:,5)
-            return
-         endif
-         if (.not.getmat('eye', tops, top-rhs+3, 
-     +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #2
-         if(u1.ne.u1.and.v1.ne.v1) then !detect nan because isanan does not work here
-            call error(21) !To avoid eye(5,:)
-            return
+            if(u1.eq.-1.or.v1.eq.-1) then !detect ':' or eye
+               call error(21)
+               return
+            endif
          endif
       endif
 c
