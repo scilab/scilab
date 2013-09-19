@@ -197,7 +197,7 @@ public class AxesDrawer {
         addProjection(axes.getIdentifier(), currentProjection);
 
         /* 2d view projection, to do: optimize computation */
-        if (axes.getRotationAngles()[0] != 0 || axes.getRotationAngles()[1] != DEFAULT_THETA) {
+        if ((axes.getRotationAngles()[0] != 0 || axes.getRotationAngles()[1] != DEFAULT_THETA)) {
             Transformation transformation2dView = computeBoxTransformation(axes, canvasDimension, true);
             currentProjection = zoneProjection.rightTimes(transformation2dView);
             currentProjection = currentProjection.rightTimes(dataTransformation);
@@ -373,8 +373,6 @@ public class AxesDrawer {
      * @throws DegenerateMatrixException if data bounds are not corrects.
      */
     private Transformation computeDataTransformation(Axes axes) throws DegenerateMatrixException {
-        Double[] bounds = axes.getDisplayedBounds();
-
         // Reverse data if needed.
         Transformation transformation = TransformationFactory.getScaleTransformation(
                                             axes.getAxes()[0].getReverse() ? 1 : -1,
@@ -382,22 +380,29 @@ public class AxesDrawer {
                                             axes.getAxes()[2].getReverse() ? 1 : -1
                                         );
 
-        // Scale data.
-        Transformation scaleTransformation = TransformationFactory.getScaleTransformation(
-                2.0 / (bounds[1] - bounds[0]),
-                2.0 / (bounds[3] - bounds[2]),
-                2.0 / (bounds[5] - bounds[4])
-                                             );
-        transformation = transformation.rightTimes(scaleTransformation);
+        if (axes.getZoomEnabled()) {
+            Double[] bounds = axes.getCorrectedBounds();
+
+            // Scale data.
+            Transformation scaleTransformation = TransformationFactory.getScaleTransformation(
+                    2.0 / (bounds[1] - bounds[0]),
+                    2.0 / (bounds[3] - bounds[2]),
+                    2.0 / (bounds[5] - bounds[4])
+                                                 );
+            transformation = transformation.rightTimes(scaleTransformation);
 
 
-        // Translate data.
-        Transformation translateTransformation = TransformationFactory.getTranslateTransformation(
-                    -(bounds[0] + bounds[1]) / 2.0,
-                    -(bounds[2] + bounds[3]) / 2.0,
-                    -(bounds[4] + bounds[5]) / 2.0
-                );
-        transformation = transformation.rightTimes(translateTransformation);
+            // Translate data.
+            Transformation translateTransformation = TransformationFactory.getTranslateTransformation(
+                        -(bounds[0] + bounds[1]) / 2.0,
+                        -(bounds[2] + bounds[3]) / 2.0,
+                        -(bounds[4] + bounds[5]) / 2.0
+                    );
+            transformation = transformation.rightTimes(translateTransformation);
+
+            return transformation;
+        }
+
         return transformation;
     }
 
@@ -415,7 +420,6 @@ public class AxesDrawer {
      */
     private Transformation computeBoxTransformation(Axes axes, Dimension canvasDimension, boolean use2dView) throws DegenerateMatrixException {
         Double[] bounds = axes.getDisplayedBounds();
-
         double theta;
 
         double tmpX;
@@ -487,7 +491,7 @@ public class AxesDrawer {
      * @param axes the given {@see Axes}.
      */
     private void computeReversedBounds(Axes axes) {
-        Double[] currentBounds = axes.getDisplayedBounds();
+        Double[] currentBounds = axes.getCorrectedBounds();
 
         /* Reverse */
         if (axes.getAxes()[0].getReverse()) {
@@ -739,27 +743,37 @@ public class AxesDrawer {
      * @returns the 2d view coordinates (3-element array).
      */
     public static double[] compute2dViewCoordinates(Axes axes, double[] coordinates) {
+        // used in geom3d
+
         DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
         AxesDrawer axesDrawer;
         Transformation projection;
         Transformation projection2d;
-
-        Vector3d point = new Vector3d(coordinates);
+        double[] coords = coordinates;
 
         if (currentVisitor != null) {
             Integer[] size = currentVisitor.getFigure().getAxesSize();
             Dimension canvasDimension = new Dimension(size[0], size[1]);
+            double[][] factors = axes.getScaleTranslateFactors();
 
             axesDrawer = currentVisitor.getAxesDrawer();
+            coords[0] = coords[0] * factors[0][0] + factors[1][0];
+            coords[1] = coords[1] * factors[0][1] + factors[1][1];
+            coords[2] = coords[2] * factors[0][2] + factors[1][2];
 
             projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, false);
             projection2d = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, true);
-
+            Vector3d point = new Vector3d(coords);
             point = projection.project(point);
             point = projection2d.unproject(point);
+
+            coords = point.getData();
+            coords[0] = (coords[0] - factors[1][0]) / factors[0][0];
+            coords[1] = (coords[1] - factors[1][1]) / factors[0][1];
+            coords[2] = (coords[2] - factors[1][2]) / factors[0][2];
         }
 
-        return new double[] {point.getX(), point.getY(), point.getZ()};
+        return coords;
     }
 
     /**
@@ -771,6 +785,8 @@ public class AxesDrawer {
      * @returns the pixel coordinates (2-element array: x, y).
      */
     public static double[] computePixelFrom2dViewCoordinates(Axes axes, double[] coordinates) {
+        // used by xchange
+
         DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
         AxesDrawer axesDrawer;
         double[] coords2dView = new double[] {0.0, 0.0, 0.0};
@@ -778,22 +794,26 @@ public class AxesDrawer {
         if (currentVisitor != null) {
             Integer[] size = currentVisitor.getFigure().getAxesSize();
             double height = (double) size[1];
+            double[][] factors = axes.getScaleTranslateFactors();
 
             axesDrawer = currentVisitor.getAxesDrawer();
+            coords2dView[0] = coordinates[0] * factors[0][0] + factors[1][0];
+            coords2dView[1] = coordinates[1] * factors[0][1] + factors[1][1];
+            coords2dView[2] = coordinates[2] * factors[0][2] + factors[1][2];
 
             Transformation projection2d = axesDrawer.getProjection2dView(axes.getIdentifier());
-
             if (projection2d == null) {
                 updateAxesTransformation(axes);
                 projection2d = axesDrawer.getProjection2dView(axes.getIdentifier());
             }
 
-            Vector3d point = new Vector3d(coordinates);
+            Vector3d point = new Vector3d(coords2dView);
             point = projection2d.project(point);
 
             /* Convert the window coordinates to pixel coordinates, only y changes due to the differing y-axis convention */
             coords2dView[0] = point.getX();
             coords2dView[1] = height - point.getY();
+            coords2dView[2] = 0;
         }
 
         return coords2dView;
@@ -876,6 +896,8 @@ public class AxesDrawer {
      * @return coordinates the 2d view coordinates (3-element array: x, y, z).
      */
     public static double[] compute2dViewFromPixelCoordinates(Axes axes, double[] coordinates) {
+        // used by xgetmouse and by xchange
+
         DrawerVisitor currentVisitor;
         AxesDrawer axesDrawer;
 
@@ -886,6 +908,7 @@ public class AxesDrawer {
         if (currentVisitor != null) {
             Integer[] size = currentVisitor.getFigure().getAxesSize();
             double height = (double) size[1];
+            double[][] factors = axes.getScaleTranslateFactors();
 
             axesDrawer = currentVisitor.getAxesDrawer();
 
@@ -900,6 +923,10 @@ public class AxesDrawer {
 
             point = projection2d.unproject(point);
             coords2dView = point.getData();
+
+            coords2dView[0] = (coords2dView[0] - factors[1][0]) / factors[0][0];
+            coords2dView[1] = (coords2dView[1] - factors[1][1]) / factors[0][1];
+            coords2dView[2] = (coords2dView[2] - factors[1][2]) / factors[0][2];
         }
 
         return coords2dView;
@@ -1008,7 +1035,7 @@ public class AxesDrawer {
                  * against the Axes box planes.
                  */
                 numPlanes = 6;
-                Double[] bounds = parentAxes.getDisplayedBounds();
+                Double[] bounds = parentAxes.getCorrectedBounds();
 
                 for (int i = 0; i < numPlanes; i++) {
                     clipBounds[i] = bounds[i];
@@ -1031,6 +1058,7 @@ public class AxesDrawer {
                 clipBounds[2] = clipBox[1] - clipBox[3];
                 clipBounds[3] = clipBox[1];
 
+                double[][] factors = parentAxes.getScaleTranslateFactors();
                 Double[] bounds = parentAxes.getMaximalDisplayedBounds();
 
                 /*
@@ -1066,6 +1094,11 @@ public class AxesDrawer {
                     }
                 }
 
+                clipBounds[0] = clipBounds[0] * factors[0][0] + factors[1][0];
+                clipBounds[1] = clipBounds[1] * factors[0][0] + factors[1][0];
+                clipBounds[2] = clipBounds[2] * factors[0][1] + factors[1][1];
+                clipBounds[3] = clipBounds[3] * factors[0][1] + factors[1][1];
+
                 offsets[0] = CLIPPING_EPSILON * (clipBounds[1] - clipBounds[0]);
                 offsets[1] = CLIPPING_EPSILON * (clipBounds[3] - clipBounds[2]);
             }
@@ -1084,6 +1117,7 @@ public class AxesDrawer {
             }
 
             Transformation currentTransformation = drawingTools.getTransformationManager().getTransformation();
+
             for (int i = 0 ; i < numPlanes; i++) {
                 ClippingPlane plane = drawingTools.getClippingManager().getClippingPlane(i);
                 plane.setTransformation(currentTransformation);

@@ -1895,6 +1895,48 @@ public class Axes extends GraphicObject {
     }
 
     /**
+     * Get the scale and translate factors corresponding to the displayed bounds
+     * @return the factors as a multidimensional array 2x3
+     */
+    public double[][] getScaleTranslateFactors() {
+        // For an axe scale and translate factors are
+        // such that scale*min+translate=-1 and scale*max+translate=+1
+        // With these factors, double data will be in interval [-1;1]
+
+        Double[] bounds = getMaximalDisplayedBounds();
+        double[][] f = new double[2][];
+
+        // scale factors
+        f[0] = new double[] {2 / (bounds[1] - bounds[0]),
+                             2 / (bounds[3] - bounds[2]),
+                             2 / (bounds[5] - bounds[4])
+                            };
+
+        // translate factors
+        f[1] = new double[] { -(bounds[1] + bounds[0]) / (bounds[1] - bounds[0]), -(bounds[3] + bounds[2]) / (bounds[3] - bounds[2]), -(bounds[5] + bounds[4]) / (bounds[5] - bounds[4])};
+
+        return f;
+    }
+
+    public Double[] getCorrectedBounds() {
+        if (getZoomEnabled()) {
+            Double[] b = getZoomBox();
+            double[][] factors = getScaleTranslateFactors();
+
+            b[0] = b[0] * factors[0][0] + factors[1][0];
+            b[1] = b[1] * factors[0][0] + factors[1][0];
+            b[2] = b[2] * factors[0][1] + factors[1][1];
+            b[3] = b[3] * factors[0][1] + factors[1][1];
+            b[4] = b[4] * factors[0][2] + factors[1][2];
+            b[5] = b[5] * factors[0][2] + factors[1][2];
+
+            return b;
+        } else {
+            return new Double[] { -1., 1., -1., 1., -1., 1.};
+        }
+    }
+
+    /**
      * Current displayed bounds getter.
      * @return the current visible bounds of this axes.
      */

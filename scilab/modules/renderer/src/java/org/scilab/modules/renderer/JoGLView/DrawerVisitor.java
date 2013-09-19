@@ -439,8 +439,16 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     drawingTools.draw(geometry, appearance);
                 } else {
                     TransformationStack modelViewStack = drawingTools.getTransformationManager().getModelViewStack();
+                    double[][] factors = currentAxes.getScaleTranslateFactors();
                     Double[] scale = matplot.getScale();
                     Double[] translate = matplot.getTranslate();
+
+                    scale[0] *= factors[0][0];
+                    scale[1] *= factors[0][1];
+
+                    translate[0] = translate[0] * factors[0][0] + factors[1][0];
+                    translate[1] = translate[1] * factors[0][1] + factors[1][1];
+
                     Transformation t = TransformationFactory.getTranslateTransformation(translate[0], translate[1], 0);
                     Transformation t2 = TransformationFactory.getScaleTransformation(scale[0], scale[1], 1);
                     modelViewStack.pushRightMultiply(t);

@@ -86,10 +86,15 @@ public class TextManager {
 
         Transformation projection = drawingTools.getTransformationManager().getCanvasProjection();
 
-        Vector3d textPosition = new Vector3d(text.getPosition());
-
         String parentAxesId = text.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
+        double[][] factors = parentAxes.getScaleTranslateFactors();
+        Double[] pos = text.getPosition();
+        pos[0] = pos[0] * factors[0][0] + factors[1][0];
+        pos[1] = pos[1] * factors[0][1] + factors[1][1];
+        pos[2] = pos[2] * factors[0][2] + factors[1][2];
+
+        Vector3d textPosition = new Vector3d(pos);
 
         /* Compute the text box vectors and the text box to texture dimension ratios */
         Vector3d[] textBoxVectors =  computeTextBoxVectors(projection, text, texture.getDataProvider().getTextureSize(), parentAxes);
@@ -142,8 +147,14 @@ public class TextManager {
 
         Vector3d[] textBoxVectors = new Vector3d[2];
 
+        double[][] factors = parentAxes.getScaleTranslateFactors();
+        Double[] pos = text.getPosition();
+        pos[0] = pos[0] * factors[0][0] + factors[1][0];
+        pos[1] = pos[1] * factors[0][1] + factors[1][1];
+        pos[2] = pos[2] * factors[0][2] + factors[1][2];
+
         /* The text position vector before logarithmic scaling */
-        Vector3d unscaledTextPosition = new Vector3d(text.getPosition());
+        Vector3d unscaledTextPosition = new Vector3d(pos);
 
         boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
 
@@ -272,15 +283,19 @@ public class TextManager {
     protected Vector3d[] computeTextPosition(Transformation projection, Text text, Vector3d[] textBoxVectors, Dimension spriteDim) throws DegenerateMatrixException {
         Vector3d[] cornerPositions = new Vector3d[2];
 
-        Vector3d textPosition = new Vector3d(text.getPosition());
-
         String parentAxesId = text.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
+        double[][] factors = parentAxes.getScaleTranslateFactors();
+        Double[] pos = text.getPosition();
+        pos[0] = pos[0] * factors[0][0] + factors[1][0];
+        pos[1] = pos[1] * factors[0][1] + factors[1][1];
+        pos[2] = pos[2] * factors[0][2] + factors[1][2];
+
+        Vector3d textPosition = new Vector3d(pos);
 
         /* Apply logarithmic scaling */
         boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
         textPosition = ScaleUtils.applyLogScale(textPosition, logFlags);
-
 
         textPosition = projection.project(textPosition);
 
@@ -619,6 +634,20 @@ public class TextManager {
 
             Vector3d[] corners = currentVisitor.getTextManager().computeCorners(currentProj, projCorners, parentAxes);
             Double[] coordinates = currentVisitor.getTextManager().cornersToCoordinateArray(corners);
+
+            double[][] factors = parentAxes.getScaleTranslateFactors();
+            coordinates[0] = (coordinates[0] - factors[1][0]) / factors[0][0];
+            coordinates[1] = (coordinates[1] - factors[1][1]) / factors[0][1];
+            coordinates[2] = (coordinates[2] - factors[1][2]) / factors[0][2];
+            coordinates[3] = (coordinates[3] - factors[1][0]) / factors[0][0];
+            coordinates[4] = (coordinates[4] - factors[1][1]) / factors[0][1];
+            coordinates[5] = (coordinates[5] - factors[1][2]) / factors[0][2];
+            coordinates[6] = (coordinates[6] - factors[1][0]) / factors[0][0];
+            coordinates[7] = (coordinates[7] - factors[1][1]) / factors[0][1];
+            coordinates[8] = (coordinates[8] - factors[1][2]) / factors[0][2];
+            coordinates[9] = (coordinates[9] - factors[1][0]) / factors[0][0];
+            coordinates[10] = (coordinates[10] - factors[1][1]) / factors[0][1];
+            coordinates[11] = (coordinates[11] - factors[1][2]) / factors[0][2];
 
             /* Set the computed coordinates */
             text.setCorners(coordinates);

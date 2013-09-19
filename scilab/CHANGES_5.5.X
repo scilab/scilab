@@ -203,6 +203,8 @@ Scilab Bug Fixes
 
 * Bug #4731 fixed - lqr failed when the time domain of an input was a number.
 
+* Bug #4743 fixed - Invalid graphics with too big or too small values.
+
 * Bug #5073 fixed - New parameter added in strtod function (decimal separator).
 
 * Bug #5205 fixed - permute was slow for large hypermatrices.
