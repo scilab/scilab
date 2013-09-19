@@ -138,6 +138,7 @@ int gw_dynamic_interpolation(void)
 {
     return 0;
 }
+
 /*--------------------------------------------------------------------------*/
 /* xcos module */
 #define XCOS_MODULE_NAME "xcos"
@@ -198,6 +199,25 @@ int gw_dynamic_preferences(void)
 {
     return 0;
 }
+
+/*--------------------------------------------------------------------------*/
+/* MPI module */
+#define MPI_MODULE_NAME "mpi"
+static DynLibHandle hMpiLib = NULL;
+static PROC_GATEWAY ptr_gw_mpi = NULL;
+static char* dynlibname_mpi = NULL;
+static char* gatewayname_mpi = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_mpi(void)
+{
+    return 0;
+    //    return gw_dynamic_generic(MPI_MODULE_NAME,
+    //                              &dynlibname_mpi,
+    //                              &gatewayname_mpi,
+    //                              &hMpiLib,
+    //                              &ptr_gw_mpi);
+}
+
 /*--------------------------------------------------------------------------*/
 /* xml module */
 #define XML_MODULE_NAME "xml"
@@ -256,16 +276,11 @@ static char* gatewayname_external_objects_java = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_external_objects_java(void)
 {
-    return gw_dynamic_generic(EXTERNAL_OBJECTS_JAVA_MODULE_NAME,
-                              &dynlibname_external_objects_java,
-                              &gatewayname_external_objects_java,
-                              &hExternal_Objects_JavaLib,
-                              &ptr_gw_external_objects_java);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 void freeAllDynamicGateways(void)
 {
-
 }
 /*--------------------------------------------------------------------------*/
 

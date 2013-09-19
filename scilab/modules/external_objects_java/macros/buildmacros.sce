@@ -8,9 +8,9 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-if (isdef("genlib") == %f) then
-    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
-end
+//if (isdef("genlib") == %f) then
+//    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
+//end
 
-genlib("external_objectslib","SCI/modules/external_objects_java/macros",%f,%t);
+//genlib("external_objectslib","SCI/modules/external_objects_java/macros",%f,%t);
 

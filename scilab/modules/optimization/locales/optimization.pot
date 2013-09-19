@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-25 15:36+0100\n"
+"Revision-Date: 2013-09-13 12:32+0100\n"
 
 # File: sci_gateway/c/sci_qld.c, line: 86
 # File: sci_gateway/c/sci_qld.c, line: 112
@@ -123,26 +123,26 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_qp_solve.c, line: 289
-# File: sci_gateway/c/sci_qp_solve.c, line: 313
-# File: sci_gateway/c/sci_qp_solve.c, line: 321
+# File: sci_gateway/c/sci_qp_solve.c, line: 314
+# File: sci_gateway/c/sci_qp_solve.c, line: 323
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 357
+# File: sci_gateway/c/sci_qp_solve.c, line: 360
 #, c-format
 msgid "%s: The minimization problem has no solution.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 361
+# File: sci_gateway/c/sci_qp_solve.c, line: 364
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 374
+# File: sci_gateway/c/sci_qp_solve.c, line: 377
 #, c-format
 msgid ""
 "\n"
@@ -152,7 +152,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 381
+# File: sci_gateway/c/sci_qp_solve.c, line: 384
 #, c-format
 msgid ""
 "\n"
@@ -1602,7 +1602,7 @@ msgstr ""
 
 #
 # File: macros/neldermead/fminsearch.sci, line: 312
-# File: macros/optimbase/optimbase_configure.sci, line: 163
+# File: macros/optimbase/optimbase_configure.sci, line: 171
 #, c-format
 msgid ""
 "%s: Expected function or list for variable %s at input #%d, but got %s "
@@ -1611,7 +1611,7 @@ msgstr ""
 
 #
 # File: macros/neldermead/fminsearch.sci, line: 318
-# File: macros/optimbase/optimbase_configure.sci, line: 169
+# File: macros/optimbase/optimbase_configure.sci, line: 177
 #, c-format
 msgid ""
 "%s: Expected function for variable %s(1) at input #%d, but got %s instead."
@@ -1620,7 +1620,7 @@ msgstr ""
 #
 # File: macros/neldermead/fminsearch.sci, line: 326
 # File: macros/neldermead/neldermead_configure.sci, line: 236
-# File: macros/optimbase/optimbase_configure.sci, line: 128
+# File: macros/optimbase/optimbase_configure.sci, line: 136
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 255
 #, c-format
 msgid ""
@@ -1652,7 +1652,7 @@ msgstr ""
 
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 243
-# File: macros/optimbase/optimbase_configure.sci, line: 135
+# File: macros/optimbase/optimbase_configure.sci, line: 143
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 262
 #, c-format
 msgid ""
@@ -1662,7 +1662,7 @@ msgstr ""
 
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 250
-# File: macros/optimbase/optimbase_configure.sci, line: 142
+# File: macros/optimbase/optimbase_configure.sci, line: 150
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 269
 #, c-format
 msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
@@ -1670,7 +1670,7 @@ msgstr ""
 
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 257
-# File: macros/optimbase/optimbase_configure.sci, line: 149
+# File: macros/optimbase/optimbase_configure.sci, line: 157
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 276
 #, c-format
 msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
@@ -1684,7 +1684,7 @@ msgstr ""
 
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 273
-# File: macros/optimbase/optimbase_configure.sci, line: 179
+# File: macros/optimbase/optimbase_configure.sci, line: 187
 #, c-format
 msgid ""
 "%s: Expected that all entries of input argument %s at input #%d are in the "
@@ -1693,7 +1693,7 @@ msgstr ""
 
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 282
-# File: macros/optimbase/optimbase_configure.sci, line: 188
+# File: macros/optimbase/optimbase_configure.sci, line: 196
 #, c-format
 msgid ""
 "%s: Expected that all entries of input argument %s at input #%d are greater "
@@ -1702,7 +1702,7 @@ msgstr ""
 
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 291
-# File: macros/optimbase/optimbase_configure.sci, line: 197
+# File: macros/optimbase/optimbase_configure.sci, line: 205
 #, c-format
 msgid ""
 "%s: Expected floating point integer for input argument %s at input #%d, but "
@@ -1711,7 +1711,7 @@ msgstr ""
 
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 299
-# File: macros/optimbase/optimbase_configure.sci, line: 205
+# File: macros/optimbase/optimbase_configure.sci, line: 213
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 339
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 346
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 351
@@ -1729,7 +1729,7 @@ msgstr ""
 
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 308
-# File: macros/optimbase/optimbase_configure.sci, line: 214
+# File: macros/optimbase/optimbase_configure.sci, line: 222
 #, c-format
 msgid ""
 "%s: Expected value [%s] for input argument %s at input #%d, but got %s "
@@ -1847,7 +1847,7 @@ msgstr ""
 #
 # File: macros/neldermead/nmplot_configure.sci, line: 26
 # File: macros/optimbase/optimbase_cget.sci, line: 67
-# File: macros/optimbase/optimbase_configure.sci, line: 121
+# File: macros/optimbase/optimbase_configure.sci, line: 129
 # File: macros/optimbase/optimbase_get.sci, line: 55
 # File: macros/optimbase/optimbase_histget.sci, line: 35
 # File: macros/optimbase/optimbase_histset.sci, line: 36
@@ -1945,13 +1945,13 @@ msgid "%s: Cannot evaluate cost function with %s: %s"
 msgstr ""
 
 #
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 129
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 133
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
 msgstr ""
 
 #
-# File: macros/optimbase/optimbase_checkcostfun.sci, line: 133
+# File: macros/optimbase/optimbase_checkcostfun.sci, line: 138
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
 msgstr ""
@@ -1963,7 +1963,7 @@ msgid "%s: Initial guess is not feasible."
 msgstr ""
 
 #
-# File: macros/optimbase/optimbase_configure.sci, line: 45
+# File: macros/optimbase/optimbase_configure.sci, line: 51
 #, c-format
 msgid ""
 "%s: The x0 vector is expected to be a column matrix, but current shape is %d "
@@ -1971,7 +1971,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/optimbase/optimbase_configure.sci, line: 156
+# File: macros/optimbase/optimbase_configure.sci, line: 164
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 283
 #, c-format
 msgid "%s: Unknown value %s for %s option"

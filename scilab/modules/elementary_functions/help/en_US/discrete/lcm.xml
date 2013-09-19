@@ -56,10 +56,14 @@
         <para>
             <code>p.*fact = pp*ones(p)</code>.
         </para>
+        <para>
+            The least common multiple of an array <literal>p</literal> of real numbers can be obtained by
+            converting it to a polynomial before calling <literal>lcm</literal>, through <code>p = inv_coeff(p, 0)</code>.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //polynomial case
 s=poly(0,'s');
 p=[s,s*(s+1)^2,s^2*(s+2)];

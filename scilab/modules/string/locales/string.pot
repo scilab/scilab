@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-25 15:36+0100\n"
+"Revision-Date: 2013-09-13 12:32+0100\n"
 
 # File: sci_gateway/c/sci_ascii.c, line: 250
 msgid "WARNING : \n"
@@ -104,6 +104,7 @@ msgstr ""
 # File: sci_gateway/c/sci_strcat.c, line: 263
 # File: sci_gateway/c/sci_strcat.c, line: 280
 # File: sci_gateway/c/sci_strchr.c, line: 116
+# File: sci_gateway/c/sci_strindex.c, line: 301
 # File: sci_gateway/c/sci_string.c, line: 61
 # File: sci_gateway/c/sci_strncpy.c, line: 64
 # File: sci_gateway/c/sci_strncpy.c, line: 113
@@ -142,7 +143,7 @@ msgstr ""
 # File: sci_gateway/c/sci_convstr.c, line: 70
 # File: sci_gateway/c/sci_isalphanum.c, line: 44
 # File: sci_gateway/c/sci_isdigit.c, line: 43
-# File: sci_gateway/c/sci_strindex.c, line: 147
+# File: sci_gateway/c/sci_strindex.c, line: 144
 # File: sci_gateway/c/sci_strsubst.c, line: 113
 # File: sci_gateway/c/sci_strsubst.c, line: 190
 # File: sci_gateway/c/sci_strsubst.c, line: 228
@@ -158,7 +159,7 @@ msgstr ""
 # File: sci_gateway/c/sci_length.c, line: 132
 # File: sci_gateway/c/sci_strchr.c, line: 152
 # File: sci_gateway/c/sci_strcmp.c, line: 66
-# File: sci_gateway/c/sci_strindex.c, line: 318
+# File: sci_gateway/c/sci_strindex.c, line: 391
 # File: sci_gateway/c/sci_strsubst.c, line: 99
 # File: sci_gateway/c/sci_strsubst.c, line: 175
 # File: sci_gateway/c/sci_strsubst.c, line: 213
@@ -375,7 +376,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_strcat.c, line: 306
-# File: sci_gateway/c/sci_strindex.c, line: 96
+# File: sci_gateway/c/sci_strindex.c, line: 93
 # File: sci_gateway/c/sci_strsubst.c, line: 145
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -435,14 +436,14 @@ msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_strindex.c, line: 68
-# File: sci_gateway/c/sci_strindex.c, line: 77
+# File: sci_gateway/c/sci_strindex.c, line: 65
+# File: sci_gateway/c/sci_strindex.c, line: 74
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Character expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_strindex.c, line: 117
+# File: sci_gateway/c/sci_strindex.c, line: 114
 # File: sci_gateway/c/sci_stripblanks.c, line: 75
 # File: sci_gateway/c/sci_stripblanks.c, line: 87
 # File: sci_gateway/c/sci_strsubst.c, line: 444
@@ -455,7 +456,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_strindex.c, line: 157
+# File: sci_gateway/c/sci_strindex.c, line: 154
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid string expected (UTF-8 "
@@ -463,8 +464,8 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_strindex.c, line: 168
-# File: sci_gateway/c/sci_strindex.c, line: 322
+# File: sci_gateway/c/sci_strindex.c, line: 165
+# File: sci_gateway/c/sci_strindex.c, line: 395
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Row vector of strings or column "
@@ -472,7 +473,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_strindex.c, line: 257
+# File: sci_gateway/c/sci_strindex.c, line: 330
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
 msgstr ""
@@ -648,9 +649,21 @@ msgstr ""
 msgid "%s: Unknown error.\n"
 msgstr ""
 
+# File: macros/%ip_part.sci, line: 18
+#, c-format
+msgid "%s: Wrong value for input argument #%d: $ expected.\n"
+msgstr ""
+
+#
 # File: macros/%mc_string.sci, line: 18
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a function expected.\n"
+msgstr ""
+
+#
+# File: macros/%p_part.sci, line: 18
+#, c-format
+msgid "%s: $ is the only implicit variable supported in selected indices"
 msgstr ""
 
 #

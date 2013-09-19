@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -43,7 +43,7 @@
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>実数スカラー. 許容誤差: 
+                    <para>実数スカラー. 許容誤差:
                         x と解の相対誤差がtol以下となったとアルゴリズムが推定した時点で
                         終了します.
                         (<literal>tol=1.d-10</literal> がデフォルト値です).
@@ -113,7 +113,7 @@
             修正パウエル混合法により求めます.
             ヤコビアンを指定することができます.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 0 = fct(x) w.r.t x.
  ]]></programlisting>
         <para>
@@ -124,7 +124,7 @@
         <para>
             <literal>fct</literal>に関する最も簡単な呼び出し手順は以下のようになります:
         </para>
-        <programlisting role=""><![CDATA[  
+        <programlisting role=""><![CDATA[
 [v]=fct(x).
  ]]></programlisting>
         <para>
@@ -132,13 +132,13 @@
             CまたはFortranルーチンを指します.
             Fortranの呼び出し手順は以下のようにします
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 fct(n,x,v,iflag)
 integer n,iflag
 double precision x(n),v(n)
  ]]></programlisting>
         <para>そしてCの呼び出し手順は以下のようにします</para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 fct(int *n, double x[],double v[],int *iflag)
  ]]></programlisting>
         <para>
@@ -152,7 +152,7 @@ fct(int *n, double x[],double v[],int *iflag)
         <para>
             <literal>jac</literal>に関する最も簡単な呼び出し手順は以下のようになります:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 [v]=jac(x).
  ]]></programlisting>
         <para>
@@ -165,7 +165,7 @@ fct(int *n, double x[],double v[],int *iflag)
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // fsolve に関する簡単な例
 a=[1,7;2,8];b=[10;11];
 
@@ -188,10 +188,10 @@ a*xres+b
             fsolveに良い初期値を与える必要があります.
         </para>
         <para> 以下に fsolve が失敗する例を示します:</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // fsolve に関する別の例
 function F=feuler(x,r)
-  F=x-r-dt*(x^2-x^3);
+  F=x-r-dt*(x.^2-x.^3);
 endfunction
 function J=dFdx(x)  // Fの微分を定義
    J=1-dt*(2*x-3*x^2);

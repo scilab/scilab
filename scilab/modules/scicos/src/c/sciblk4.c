@@ -658,7 +658,7 @@ void sciblk4(scicos_block *Blocks, int flag)
 static int sci2var(void *x, void *y, int typ_var)
 {
     /************************************
-     * variables and constants définition
+     * variables and constants definition
      ************************************/
     /* counter and address variable declaration */
     int err, i, j;

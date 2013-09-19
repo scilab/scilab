@@ -104,19 +104,12 @@ int sci_save(char *fname, void *pvApiCtx)
                 {
                     //try to get variable by name
                     sciErr = getVarAddressFromName(pvApiCtx, pstVarI, &piAddrI2);
-                    if (sciErr.iErr)
+                    if (sciErr.iErr || piAddrI2 == NULL)
                     {
                         // Try old save because here the input variable can be of type "string" but not a variable name
                         // Ex: a=""; save(filename, a);
                         iOldSave = TRUE;
                         bWarning = FALSE;
-                        iErrorRhs = i;
-                        break;
-                    }
-
-                    if (piAddrI2 == 0)
-                    {
-                        iOldSave = TRUE;
                         break;
                     }
                 }
@@ -142,7 +135,6 @@ int sci_save(char *fname, void *pvApiCtx)
         OverLoad(0);
     }
 
-
     //old save ( not available in scilab 6
 
 //    if (iOldSave)
@@ -165,6 +157,7 @@ int sci_save(char *fname, void *pvApiCtx)
 //            return 0;
 //        }
 //    }
+
 
     return 0;
 }

@@ -34,7 +34,7 @@
  ** Watch out the positions are crutial !!!
  ** @TODO : Make this less crappy...
  **/
-#define INTERFACES_MAX 72
+#define INTERFACES_MAX 73
 static OpTab Interfaces[INTERFACES_MAX] =
 {
     /* 01  */ {gw_user}, /* free position may be used */
@@ -109,6 +109,7 @@ static OpTab Interfaces[INTERFACES_MAX] =
     /* 70  */ {NULL}, //gw_dynamic_graphic_objects
     /* 71  */ {NULL} // gw_dynamic_external_objects
     /* 72  */ {gw_dynamic_external_objects_java}
+    /* 73  */ {gw_dynamic_mpi}
 };
 /*--------------------------------------------------------------------------*/
 /**

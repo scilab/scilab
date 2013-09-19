@@ -85,6 +85,9 @@
     <ClCompile Include="jni\setdefaultlanguage_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\sci_addlocalizationdomain.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\includes\charEncoding.h">

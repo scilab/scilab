@@ -25,8 +25,7 @@ if IS_MACOSX
 LOCALIZATION_C_SOURCES += src/c/getLocaleInfo_Apple.c
 endif
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
-	sci_gateway/c/sci_dgettext.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/localization_gw.cpp \

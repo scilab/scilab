@@ -29,7 +29,7 @@ extern "C" {
 
 #define _(String)  gettext(String)/** for console message*/
 #define _W(String)  to_wide_string(gettext(String))/** for console message*/
-
+#define _d(Domain, String)  dgettext(Domain, String)
 #define _t(String1,String2,n) ngettext (String1,String2,n)
 
 #else
@@ -37,6 +37,8 @@ extern "C" {
 
 #define _(String) ((const char *) (String))
 #define gettext(String) ((const char *) (String))
+#define dgettext(Domain, String) ((const char *) (String))
+#define _d(Domain, String)  ((const char *) (String))
 #define _t(String1,String2,n) ngettext (String1,String2,n)
 #define ngettext(String1, String2, n) ((n) == 1 ? (const char *) (String1) : (const char *) (String2))
 

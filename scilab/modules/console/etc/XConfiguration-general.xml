@@ -240,7 +240,7 @@
                     <!-- Help -->
                     <action key="F1" description="_(Xcos Help)" name="xcos-help" />
                     <action key="OSSCKEY H" description="_(Block Help)" name="xcos-help-block" />
-                    <action key="" description="_(Xcos Demos)" name="xcos-demo" />
+                    <action key="" description="_(Xcos Demonstrations)" name="xcos-demo" />
                     <action key="" description="_(About Xcos)" name="xcos-about" />
                 </action-folder>
                 <!--action-folder name="Variable Browser" xconf-uid="browsevar">

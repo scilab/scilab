@@ -12,6 +12,7 @@
 // =============================================================================
 load("SCI/modules/windows_tools/macros/lib");
 
-if (getscilabmode() == 'STD') then
+// =============================================================================
+  if (getscilabmode() == 'STD' & find(sciargs() == "-keepconsole") == []) then
     consolebox('off');
 end

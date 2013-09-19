@@ -25,4 +25,8 @@ public class Messages {
         return MessagesJNI.gettext(key);
     }
 
+    public static String dgettext(String domain, String key) {
+        return MessagesJNI.dgettext(domain, key);
+    }
+
 }

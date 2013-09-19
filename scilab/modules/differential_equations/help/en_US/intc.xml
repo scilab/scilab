@@ -2,11 +2,12 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * 
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added error control
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -17,7 +18,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[y]=intc(a,b,f)</synopsis>
+        <synopsis>[y  [,err]] = intc(a, b, f [,abserr [,relerr]])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,7 +26,7 @@
             <varlistentry>
                 <term>a, b</term>
                 <listitem>
-                    <para>two complex numbers</para>
+                    <para>two complex scalars</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -34,27 +35,42 @@
                     <para>"external" function</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>abserr, rerr</term>
+                <listitem>
+                    <para>real scalars, absolute and relative errors.
+                        Default values: <literal>1.d-14</literal> and <literal>1d-8</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>real number, estimated absolute error on the result.</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
         <para>
-            If <literal>f</literal> is  a complex-valued function, <literal> intc(a,b,f) </literal>
-            computes the integral from <literal>a</literal> to <literal>b</literal> of <literal>f(z)dz</literal> along the  
-            straight line <literal>a b</literal> of the complex plane.
+            If <literal>f</literal> is a complex-valued function, <literal>intc(a, b, f)</literal>
+            computes the integral from <literal>a</literal> to <literal>b</literal> of <literal>f(z)dz</literal> along the
+            straight line <literal>[a b]</literal> of the complex plane.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-function y=f(z)
-  y = z^(3 + %pi * %i)
+        <programlisting role="example"><![CDATA[
+function y = f(z)
+  y = z^(3 + %pi * %i);
 endfunction
 
 intc(1+%i, 4-%i, f)
+
+[r, err] = intc(1+%i, 4-%i, f, 1d-10, 1d-6)
  ]]></programlisting>
     </refsection>
-    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
@@ -65,5 +81,14 @@ intc(1+%i, 4-%i, f)
                 <link linkend="intl">intl</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Absolute and relative (input) and absolute (output) errors management added.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

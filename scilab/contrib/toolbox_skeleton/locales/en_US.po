@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: sci_gateway\c\sci_cerror.c:17
+msgid "%s: I'm waiting only one argument.\n"
+msgstr ""
+
+#: sci_gateway\c\sci_cerror.c:22
+#: macros\scilab_error.sci:17
+msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
+msgstr ""
+
+#: macros\scilab_error.sci:13
+msgid "%s: I''m waiting for only one argument.\n"
+msgstr ""
+
+msgid "Rectangle"
+msgstr ""
+
+msgid "My Title"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Color"
+msgstr ""
+
+msgid "Outline"
+msgstr ""

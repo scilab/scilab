@@ -86,9 +86,13 @@ public final class ExternalAction extends DefaultAction {
         final BasicBlock block;
         final ActionListener callback;
         try {
+            /*
+             * Export the whole diagram, to update all the sub-diagrams on demand.
+             */
+            handler.writeDiagram(graph.getRootDiagram());
 
             /*
-             * First export the selected block
+             * Then export the selected block
              */
             Object cell = graph.getSelectionCell();
             if (cell instanceof BasicBlock) {
@@ -97,11 +101,6 @@ public final class ExternalAction extends DefaultAction {
             } else {
                 block = null;
             }
-
-            /*
-             * Export the whole diagram
-             */
-            handler.writeDiagram(graph.getRootDiagram());
 
             /*
              * Import the updated block

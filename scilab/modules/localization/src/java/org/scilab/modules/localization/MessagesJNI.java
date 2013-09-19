@@ -45,4 +45,5 @@ public class MessagesJNI {
     }
 
     public final static native String gettext(String jarg1);
+    public final static native String dgettext(String jarg1, String jarg2);
 }

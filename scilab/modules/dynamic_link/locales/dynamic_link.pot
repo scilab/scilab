@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-25 15:36+0100\n"
+"Revision-Date: 2013-09-13 12:32+0100\n"
 
 # File: sci_gateway/c/sci_addinter.c, line: 46
 # File: sci_gateway/c/sci_addinter.c, line: 58
@@ -356,13 +356,13 @@ msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
 
 #
-# File: macros/detectmsvc64tools.sci, line: 60
+# File: macros/detectmsvc64tools.sci, line: 68
 msgid ""
 "Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
 msgstr ""
 
 #
-# File: macros/detectmsvc64tools.sci, line: 70
+# File: macros/detectmsvc64tools.sci, line: 78
 msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
 msgstr ""
 

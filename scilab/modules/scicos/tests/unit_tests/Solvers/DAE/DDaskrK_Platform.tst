@@ -20,7 +20,6 @@ prot = funcprot();
 funcprot(0);
 function messagebox(msg, msg_title)
 endfunction
-Info = scicos_simulate(scs_m, list());
 
 for i=1:2  // 'max step size' = 10^-i, precision
 
@@ -29,12 +28,12 @@ for i=1:2  // 'max step size' = 10^-i, precision
 
     // Modify solver + run DDaskr + save results
     scs_m.props.tol(6) = 102;     // Solver
-    scicos_simulate(scs_m, Info, Context); // DDaskr
+    scicos_simulate(scs_m, Context); // DDaskr
     ddaskrval = res.values;       // Results
 
     // Modify solver + run IDA + save results
     scs_m.props.tol(6) = 100;     // Solver
-    scicos_simulate(scs_m, Info, Context); // IDA
+    scicos_simulate(scs_m, Context); // IDA
     idaval = res.values;          // Results
 
     // Compare results

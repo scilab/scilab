@@ -5,6 +5,8 @@
 /* ==================================================================== */
 #include "api_scilab.h"
 #include "BOOL.h"
+#include <localization.h>
+
 /* ==================================================================== */
 int sci_foo(char *fname, unsigned long fname_len)
 {
@@ -44,7 +46,7 @@ int sci_foo(char *fname, unsigned long fname_len)
     /* Check that the first input argument is a real matrix (and not complex) */
     if ( !isDoubleType(pvApiCtx, piAddressVarOne) ||  isVarComplex(pvApiCtx, piAddressVarOne) )
     {
-        Scierror(999, "%s: Wrong type for input argument #%d: A real matrix expected.\n", fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), fname, 1);
         return 0;
     }
 
@@ -68,7 +70,7 @@ int sci_foo(char *fname, unsigned long fname_len)
 
     if ( !isBooleanType(pvApiCtx, piAddressVarTwo) )
     {
-        Scierror(999, "%s: Wrong type for input argument #%d: A boolean matrix expected.\n", fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A boolean matrix expected.\n"), fname, 2);
         return 0;
     }
 
@@ -84,7 +86,7 @@ int sci_foo(char *fname, unsigned long fname_len)
 
     if ((m1 != m2) | - (n1 != n2))
     {
-        Scierror(999, "%s: Wrong size for input arguments: Same size expected.\n", fname, 1);
+        Scierror(999, _("%s: Wrong size for input arguments: Same size expected.\n"), fname, 1);
         return 0;
     }
 

@@ -56,7 +56,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="c"><![CDATA[ 
 // A simple TerminateScilab example
 if ( TerminateScilab(NULL) == FALSE ) {
  fprintf(stderr,"Error while calling TerminateScilab\n");

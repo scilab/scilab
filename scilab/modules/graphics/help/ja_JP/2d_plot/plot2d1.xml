@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -57,7 +57,7 @@
                                             <para>means "one". If there are many curves, they all
                                                 have the same x-values: <literal>x</literal> is a column
                                                 vector of size nl and <literal>y</literal> is a matrix of size
-                                                (nl,nc). For example : 
+                                                (nl,nc). For example :
                                                 <literal>x=[0:0.1:2*%pi]';plot2d1("onn",x,[sin(x) cos(x)])</literal>.
                                             </para>
                                         </listitem>
@@ -141,7 +141,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // multiple plot without giving x
 x=[0:0.1:2*%pi]';
 plot2d1("enn",1,[sin(x) sin(2*x) sin(3*x)])
@@ -150,7 +150,7 @@ clf()
 plot2d1("onn",x,[sin(x) sin(2*x) sin(3*x)])
 // logarithmic plot
 x=[0.1:0.1:3]'; clf()
-plot2d1("oll",x,[exp(x) exp(x^2) exp(x^3)])
+plot2d1("oll",x,[exp(x) exp(x.^2) exp(x.^3)])
  ]]></programlisting>
     </refsection>
     <refsection>

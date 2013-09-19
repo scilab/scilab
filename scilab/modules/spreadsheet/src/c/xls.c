@@ -414,7 +414,6 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     *nsheets = 0;
     *err = 0;
     /*---------------D�claration Des Variables*--------------------*/
-    cur_pos = 0;
 
     /*  if (get_oleheader(fd)) {
       *err=1;

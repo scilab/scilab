@@ -506,6 +506,7 @@ function status = test_single(_module, _testPath, _testName)
     reopened      = %F;
     jvm           = %T;
     graphic       = %F;
+    mpi           = %F;
     execMode      = "";
     platform      = "all";
     language      = "any";
@@ -620,6 +621,19 @@ function status = test_single(_module, _testPath, _testName)
         jvm = %F;
         execMode = "NWNI";
     end
+
+  MPITestPos=grep(sciFile, "<-- MPI TEST")
+  if ~isempty(MPITestPos) then
+    mpi_node=msscanf(sciFile(MPITestPos), "// <-- MPI TEST %d -->")
+    if mpi_node == [] then
+       // No node found ? No worries, default to 2
+       mpi_node = 2
+    end
+     mpi = %t;
+     execMode = "NWNI";
+     reference = "skip";
+   end
+  clear MPITestPos
 
     if ~isempty(grep(sciFile, "<-- XCOS TEST -->")) then
         if _module.wanted_mode == "NWNI" then
@@ -753,6 +767,13 @@ function status = test_single(_module, _testPath, _testName)
         end
     end
 
+  if mpi == %t then
+     prefix_bin="mpirun -c " + string(mpi_node) + "  -bynode"
+  else
+     prefix_bin=""
+  end
+
+
     //language
     if language == "any" then
         language_arg = "";
@@ -775,7 +796,7 @@ function status = test_single(_module, _testPath, _testName)
         if (isdir(_module.moduleName) & isfile(loader_path))
             test_cmd = "( " + language_arg + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
         else
-            test_cmd = "( " + language_arg + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
+            test_cmd = "( " + language_arg + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
         end
     end
 

@@ -29,7 +29,6 @@ function [x,k]=unique(x,orient)
         if argn(1) == 2 then
             [x,k] = gsort(x,"lr","d");
             keq = find(and(x(2:$,:) == x(1:$-1,:),"c"))
-            if keq<>[] then keq = keq+1;end
             x(keq,:) = [];
             k(keq,:) = [];
             k = k($:-1:1,:);
@@ -42,7 +41,6 @@ function [x,k]=unique(x,orient)
         if argn(1) == 2 then
             [x,k] = gsort(x,"lc","d");
             keq = find(and(x(:,2:$) == x(:,1:$-1),"r"))
-            if keq<>[] then keq = keq+1;end
             x(:,keq) = [];
             k(:,keq) = [];
             k = k(:,$:-1:1);

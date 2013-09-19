@@ -24,88 +24,86 @@
 #include "machine.h"
 #include "import.h"
 #include "scicos.h"
+#include "scicos_internal.h"
 #include "cvstr.h"
 /*--------------------------------------------------------------------------*/
-extern struct
-{
-    int kfun;
-} C2F(curblk);
-
 ScicosImport scicos_imp =
 {
-    (double *)  NULL,      /* 1  - x      **  */
-    (int *) NULL,      /* 2  - nx         */
-    (int *) NULL,      /* 3  - xptr   **  */
-    (int *) NULL,      /* 4  - zcptr  **  */
-    (double *)  NULL,      /* 5  - z      **  */
-    (int *) NULL,      /* 6  - nz         */
-    (int *) NULL,      /* 7  - zptr   **  */
-    (int *) NULL,      /* 8  - noz        */
-    (void **)   NULL,      /* 9  - oz         */
-    (int *) NULL,      /* 10 - ozsz       */
-    (int *) NULL,      /* 11 - oztyp      */
-    (int *) NULL,      /* 12 - ozptr      */
-    (double *)  NULL,      /* 13 - g          */
-    (int *) NULL,      /* 14 - ng         */
-    (int *) NULL,      /* 15 - mod        */
-    (int *) NULL,      /* 16 - nmod       */
-    (int *) NULL,      /* 17 - modptr **  */
-    (int *) NULL,      /* 18 - iz         */
-    (int *) NULL,      /* 19 - izptr      */
-    (int *) NULL,      /* 20 - inpptr **  */
-    (int *) NULL,      /* 21 - inplnk **  */
-    (int *) NULL,      /* 22 - outptr **  */
-    (int *) NULL,      /* 23 - outlnk **  */
-    (double *)  NULL,      /* 24 - rpar   **  */
-    (int *) NULL,      /* 25 - rpptr  **  */
-    (int *) NULL,      /* 26 - ipar   **  */
-    (int *) NULL,      /* 27 - ipptr  **  */
-    (void **)   NULL,      /* 28 - opar       */
-    (int *) NULL,      /* 29 - oparsz     */
-    (int *) NULL,      /* 30 - opartyp    */
-    (int *) NULL,      /* 31 - opptr      */
-    (int *) NULL,      /* 32 - nblk       */
-    (void **)   NULL,      /* 33 - outtbptr   */
-    (int *) NULL,      /* 34 - outtbsz    */
-    (int *) NULL,      /* 35 - outtbtyp   */
-    (int *) NULL,      /* 36 - nlnk       */
-    (int *) NULL,      /* 37 - subs   **  */
-    (int *) NULL,      /* 38 - nsubs      */
-    (double *)  NULL,      /* 39 - tevts  **  */
-    (int *) NULL,      /* 40 - evtspt **  */
-    (int *) NULL,      /* 41 - nevts      */
-    (int *) NULL,      /* 42 - pointi **  */
-    (int *) NULL,      /* 43 - iord   **  */
-    (int *) NULL,      /* 44 - niord      */
-    (int *) NULL,      /* 45 - oord   **  */
-    (int *) NULL,      /* 46 - noord      */
-    (int *) NULL,      /* 47 - zord   **  */
-    (int *) NULL,      /* 48 - nzord      */
-    (int *) NULL,      /* 49 - funptr     */
-    (int *) NULL,      /* 50 - funtyp **  */
-    (int *) NULL,      /* 51 - ztyp   **  */
-    (int *) NULL,      /* 52 - cord   **  */
-    (int *) NULL,      /* 53 - ncord      */
-    (int *) NULL,      /* 54 - ordclk **  */
-    (int *) NULL,      /* 55 - nordclk ** */
-    (int *) NULL,      /* 56 - clkptr **  */
-    (int *) NULL,      /* 57 - ordptr **  */
-    (int *) NULL,      /* 58 - nordptr    */
-    (int *) NULL,      /* 59 - critev **  */
-    (int *) NULL,      /* 60 - iwa        */
-    (int *) NULL,      /* 61 - mask       */
-    (scicos_block *) NULL, /* 62 - blocks     */
-    (double *)  NULL,      /* 63 - t0         */
-    (double *)  NULL,      /* 64 - tf         */
-    (double *)  NULL,      /* 65 - Atol       */
-    (double *)  NULL,      /* 66 - rtol       */
-    (double *)  NULL,      /* 67 - ttol       */
-    (double *)  NULL,      /* 68 - deltat     */
-    (double *)  NULL,      /* 69 - hmax       */
-    (outtb_el *) NULL,     /* 70 - outtb_elem */
-    (int *) NULL,      /* 71 - nelem      */
-    (int *) NULL,      /* 72 - xprop      */
-    (double *)  NULL,      /* 73 - xd         */
+    (double *)  NULL,      /* x      **  */
+    (int *) NULL,      /* nx         */
+    (int *) NULL,      /* xptr   **  */
+    (int *) NULL,      /* zcptr  **  */
+    (double *)  NULL,      /* z      **  */
+    (int *) NULL,      /* nz         */
+    (int *) NULL,      /* zptr   **  */
+    (int *) NULL,      /* noz        */
+    (void **)   NULL,      /* oz         */
+    (int *) NULL,      /* ozsz       */
+    (int *) NULL,      /* oztyp      */
+    (int *) NULL,      /* ozptr      */
+    (double *)  NULL,      /* g          */
+    (int *) NULL,      /* ng         */
+    (int *) NULL,      /* mod        */
+    (int *) NULL,      /* nmod       */
+    (int *) NULL,      /* modptr **  */
+    (int *) NULL,      /* iz         */
+    (int *) NULL,      /* izptr      */
+    (int *) NULL,      /* uid        */
+    (int *) NULL,      /* uidptr     */
+    (int *) NULL,      /* inpptr **  */
+    (int *) NULL,      /* inplnk **  */
+    (int *) NULL,      /* outptr **  */
+    (int *) NULL,      /* outlnk **  */
+    (double *)  NULL,      /* rpar   **  */
+    (int *) NULL,      /* rpptr  **  */
+    (int *) NULL,      /* ipar   **  */
+    (int *) NULL,      /* ipptr  **  */
+    (void **)   NULL,      /* opar       */
+    (int *) NULL,      /* oparsz     */
+    (int *) NULL,      /* opartyp    */
+    (int *) NULL,      /* opptr      */
+    (int *) NULL,      /* nblk       */
+    (void **)   NULL,      /* outtbptr   */
+    (int *) NULL,      /* outtbsz    */
+    (int *) NULL,      /* outtbtyp   */
+    (int *) NULL,      /* nlnk       */
+    (int *) NULL,      /* subs   **  */
+    (int *) NULL,      /* nsubs      */
+    (double *)  NULL,      /* tevts  **  */
+    (int *) NULL,      /* evtspt **  */
+    (int *) NULL,      /* nevts      */
+    (int *) NULL,      /* pointi **  */
+    (int *) NULL,      /* iord   **  */
+    (int *) NULL,      /* niord      */
+    (int *) NULL,      /* oord   **  */
+    (int *) NULL,      /* noord      */
+    (int *) NULL,      /* zord   **  */
+    (int *) NULL,      /* nzord      */
+    (int *) NULL,      /* funptr     */
+    (int *) NULL,      /* funtyp **  */
+    (int *) NULL,      /* ztyp   **  */
+    (int *) NULL,      /* cord   **  */
+    (int *) NULL,      /* ncord      */
+    (int *) NULL,      /* ordclk **  */
+    (int *) NULL,      /* nordclk ** */
+    (int *) NULL,      /* clkptr **  */
+    (int *) NULL,      /* ordptr **  */
+    (int *) NULL,      /* nordptr    */
+    (int *) NULL,      /* critev **  */
+    (int *) NULL,      /* iwa        */
+    (int *) NULL,      /* mask       */
+    (scicos_block *) NULL, /* blocks     */
+    (double *)  NULL,      /* t0         */
+    (double *)  NULL,      /* tf         */
+    (double *)  NULL,      /* Atol       */
+    (double *)  NULL,      /* rtol       */
+    (double *)  NULL,      /* ttol       */
+    (double *)  NULL,      /* deltat     */
+    (double *)  NULL,      /* hmax       */
+    (outtb_el *) NULL,     /* outtb_elem */
+    (int *) NULL,      /* nelem      */
+    (int *) NULL,      /* xprop      */
+    (double *)  NULL,      /* xd         */
 };
 
 /*--------------------------------------------------------------------------*/
@@ -117,25 +115,25 @@ ScicosImport* getscicosimportptr(void)
     return &scicos_imp;
 }
 /*--------------------------------------------------------------------------*/
-void C2F(makescicosimport)(double *x, int *nx,
-                           int *xptr, int *zcptr,
-                           double *z, int *nz, int *zptr,
-                           int *noz, void **oz, int *ozsz, int *oztyp, int *ozptr,
-                           double *g, int *ng,
-                           int *mod, int *nmod, int *modptr,
-                           int *iz, int *izptr, int *inpptr, int *inplnk,
-                           int *outptr, int *outlnk, void **outtbptr, int *outtbsz, int *outtbtyp,
-                           outtb_el *outtb_elem, int *nelem,
-                           int *nlnk, double *rpar, int *rpptr, int *ipar, int *ipptr,
-                           void **opar, int *oparsz, int *opartyp, int *opptr,
-                           int *nblk, int *subs, int *nsubs,
-                           double *tevts, int *evtspt, int *nevts, int *pointi,
-                           int *iord, int *niord, int *oord, int *noord, int *zord, int *nzord,
-                           int *funptr, int *funtyp, int *ztyp,
-                           int *cord, int *ncord, int *ordclk, int *nordclk, int *clkptr,
-                           int *ordptr, int *nordptr, int *critev,  int *iwa, scicos_block *blocks,
-                           double *t0, double *tf, double *Atol, double *rtol, double *ttol, double *deltat, double *hmax,
-                           int *xprop, double *xd)
+void makescicosimport(double *x, int *nx,
+                      int *xptr, int *zcptr,
+                      double *z, int *nz, int *zptr,
+                      int *noz, void **oz, int *ozsz, int *oztyp, int *ozptr,
+                      double *g, int *ng,
+                      int *mod, int *nmod, int *modptr,
+                      int *iz, int *izptr, int *uid, int *uidptr, int *inpptr, int *inplnk,
+                      int *outptr, int *outlnk, void **outtbptr, int *outtbsz, int *outtbtyp,
+                      outtb_el *outtb_elem, int *nelem,
+                      int *nlnk, double *rpar, int *rpptr, int *ipar, int *ipptr,
+                      void **opar, int *oparsz, int *opartyp, int *opptr,
+                      int *nblk, int *subs, int *nsubs,
+                      double *tevts, int *evtspt, int *nevts, int *pointi,
+                      int *iord, int *niord, int *oord, int *noord, int *zord, int *nzord,
+                      int *funptr, int *funtyp, int *ztyp,
+                      int *cord, int *ncord, int *ordclk, int *nordclk, int *clkptr,
+                      int *ordptr, int *nordptr, int *critev,  int *iwa, scicos_block *blocks,
+                      double *t0, double *tf, double *Atol, double *rtol, double *ttol, double *deltat, double *hmax,
+                      int *xprop, double *xd)
 {
     scicos_imp.x = x;
     scicos_imp.nx = nx;
@@ -158,6 +156,8 @@ void C2F(makescicosimport)(double *x, int *nx,
     scicos_imp.modptr = modptr;
     scicos_imp.iz = iz;
     scicos_imp.izptr = izptr;
+    scicos_imp.uid = uid;
+    scicos_imp.uidptr = uidptr;
 
     scicos_imp.inpptr = inpptr;
     scicos_imp.inplnk = inplnk;
@@ -247,6 +247,8 @@ void C2F(clearscicosimport)()
     scicos_imp.modptr = (int *) NULL;
     scicos_imp.iz = (int *) NULL;
     scicos_imp.izptr = (int *) NULL;
+    scicos_imp.uid = (int *) NULL;
+    scicos_imp.uidptr = (int *) NULL;
 
     scicos_imp.inpptr = (int *) NULL;
     scicos_imp.inplnk = (int *) NULL;
@@ -325,7 +327,7 @@ int getscicosvarsfromimport(char *what, void **v, int *nv, int *mv)
 /*int *mv; size 1 of the imported data */
 {
     /*variable declaration*/
-    int nx, nmod, nblk, nlnk, nsubs, nevts, ng;
+    int nx, nz, noz, nmod, nblk, nlnk, nsubs, nevts, ng;
     int niord, noord, ncord, nordptr, nzord, nelem;
 
     /*test if scicosim is running*/
@@ -337,6 +339,10 @@ int getscicosvarsfromimport(char *what, void **v, int *nv, int *mv)
 
     /* retrieve length of x register */
     nx = (int) scicos_imp.nx[0];
+    /* retrieve length of z register */
+    nz = (int) scicos_imp.nz[0];
+    /* retrieve length of oz register */
+    noz = (int) scicos_imp.noz[0];
     /* retrieve number of block */
     nmod = (int) scicos_imp.nmod[0];
     /* retrieve number of block */
@@ -481,6 +487,20 @@ int getscicosvarsfromimport(char *what, void **v, int *nv, int *mv)
         *nv = nblk + 1;
         *mv = 1;
         *v  = (int *) (scicos_imp.izptr);
+    }
+    else if (strcmp(what, "uid") == 0)
+    {
+        /* uid */
+        *nv = (int)(scicos_imp.uidptr[nblk] - scicos_imp.uidptr[0]);
+        *mv = 1;
+        *v  = (int *) (scicos_imp.uid);
+    }
+    else if (strcmp(what, "uidptr") == 0)
+    {
+        /* uidptr */
+        *nv = nblk + 1;
+        *mv = 1;
+        *v  = (int *) (scicos_imp.uidptr);
     }
     else if (strcmp(what, "inpptr") == 0)
     {
@@ -751,14 +771,14 @@ int getscicosvarsfromimport(char *what, void **v, int *nv, int *mv)
     else if (strcmp(what, "critev") == 0)
     {
         /* */
-        *nv = (int)(scicos_imp.clkptr[nblk] - 1); /* !! à faire vérifier !! */
+        *nv = (int)(scicos_imp.clkptr[nblk] - 1); /* !! a faire verifier !! */
         *mv = 1;
         *v  = (int *) (scicos_imp.critev);
     }
     else if (strcmp(what, "iwa") == 0)
     {
         /* */
-        *nv = nevts; /* !! à faire vérifier !! */
+        *nv = nevts; /* !! a faire verifier !! */
         *mv = 1;
         *v  = (int *) (scicos_imp.iwa);
     }
@@ -987,7 +1007,7 @@ void C2F(getouttb)(int *nsize, int *nvec, double *outtc)
     outtb_el *outtb_elem;       /*to store ptr of outtb_elem structure */
 
     /*auxiliary variable*/
-    int j, lnk, pos;
+    int j, sz, lnk, pos;
 
     /*get outtbptr from import struct.*/
     outtbptr = scicos_imp.outtbptr;
@@ -1024,6 +1044,7 @@ void C2F(getouttb)(int *nsize, int *nvec, double *outtc)
         /*complex data type*/
         else if (outtbtyp == SCSCOMPLEX_N)
         {
+            sz = outtbsz[2 * lnk] + outtbsz[(2 * lnk) + 1];
             outtbdptr = (SCSCOMPLEX_COP *)outtbptr[lnk];
             outtc[j] =  (double)outtbdptr[pos];
             /*outtc[j+1] =  (double)outtbdptr[pos+sz];*/

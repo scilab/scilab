@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+exec("SCI/modules/external_objects_java/tests/unit_tests/ecjclasspath.sce", -1);
+
 jautoUnwrap(%t)
 assert_checktrue(jautoUnwrap());
 jautoUnwrap(%f);

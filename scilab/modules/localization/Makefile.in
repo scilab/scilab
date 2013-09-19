@@ -133,11 +133,11 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -203,8 +203,7 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscilocalization_la_DEPENDENCIES = libscilocalization-algo.la
-am__objects_4 = libscilocalization_la-gw_localization.lo \
-	libscilocalization_la-sci_dgettext.lo
+am__objects_4 = libscilocalization_la-gw_localization.lo
 am__objects_5 = libscilocalization_la-localization_gw.lo \
 	libscilocalization_la-sci_gettext.lo \
 	libscilocalization_la-sci_setdefaultlanguage.lo \
@@ -427,6 +426,7 @@ MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
+MPI_ENABLE = @MPI_ENABLE@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
 MSGFMT_015 = @MSGFMT_015@
@@ -440,6 +440,11 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMPI_CC = @OPENMPI_CC@
+OPENMPI_CFLAGS = @OPENMPI_CFLAGS@
+OPENMPI_CXX = @OPENMPI_CXX@
+OPENMPI_CXXFLAGS = @OPENMPI_CXXFLAGS@
+OPENMPI_LIBS = @OPENMPI_LIBS@
 OPENMP_CFLAGS = @OPENMP_CFLAGS@
 OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
 OPENMP_ENABLE = @OPENMP_ENABLE@
@@ -487,6 +492,7 @@ STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
+SWIG_SCILAB = @SWIG_SCILAB@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
 TK_INC_PATH = @TK_INC_PATH@
@@ -573,9 +579,7 @@ LOCALIZATION_C_SOURCES = src/c/InitializeLocalization.c \
 	src/c/setgetlanguage.c src/c/getLcidString.c \
 	src/c/charEncoding.c src/c/setdefaultlanguage.c \
 	$(am__append_1) $(am__append_2)
-GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
-	sci_gateway/c/sci_dgettext.c
-
+GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/localization_gw.cpp \
 	sci_gateway/cpp/sci_gettext.cpp \
@@ -822,7 +826,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_algo_la-setgetlanguage.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-gw_localization.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-localization_gw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-sci_dgettext.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-sci_getdefaultlanguage.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-sci_getlanguage.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-sci_gettext.Plo@am__quote@
@@ -919,13 +922,6 @@ libscilocalization_la-gw_localization.lo: sci_gateway/c/gw_localization.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_localization.c' object='libscilocalization_la-gw_localization.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_la_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-gw_localization.lo `test -f 'sci_gateway/c/gw_localization.c' || echo '$(srcdir)/'`sci_gateway/c/gw_localization.c
-
-libscilocalization_la-sci_dgettext.lo: sci_gateway/c/sci_dgettext.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_la_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-sci_dgettext.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-sci_dgettext.Tpo -c -o libscilocalization_la-sci_dgettext.lo `test -f 'sci_gateway/c/sci_dgettext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dgettext.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscilocalization_la-sci_dgettext.Tpo $(DEPDIR)/libscilocalization_la-sci_dgettext.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_dgettext.c' object='libscilocalization_la-sci_dgettext.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_la_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-sci_dgettext.lo `test -f 'sci_gateway/c/sci_dgettext.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dgettext.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -1346,8 +1342,17 @@ check-code:
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 @SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
-@SWIG_TRUE@			echo "Swig process of $$file ..."; \
+@SWIG_TRUE@			echo "Swig process of $$file (Java) ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@		done; \
+@SWIG_TRUE@	fi
+
+@SWIG_TRUE@swig-scilab: $(SWIG_SCILAB_WRAPPERS)
+@SWIG_TRUE@	@SWIG_OUTDIR=src/swig/; \
+@SWIG_TRUE@	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
+@SWIG_TRUE@		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
+@SWIG_TRUE@			echo "Swig process of $$file (Scilab) ..."; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 

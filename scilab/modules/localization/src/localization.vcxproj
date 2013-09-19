@@ -231,6 +231,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <None Include="..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\sci_gateway\c\sci_addlocalizationdomain.c" />
     <ClCompile Include="c\charEncoding.c" />
     <ClCompile Include="c\DllmainLocalization.c" />
     <ClCompile Include="c\getLcidString.c" />

@@ -95,21 +95,24 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@XCOS_TRUE@am__append_1 = scicos_blocks
+@GUI_TRUE@am__append_1 = external_objects_java
+@XCOS_TRUE@am__append_2 = scicos_blocks
+@MPI_TRUE@am__append_3 = mpi
 
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
-@JAVASCI_TRUE@am__append_2 = javasci
+@JAVASCI_TRUE@am__append_4 = javasci
+@MPI_TRUE@am__append_5 = $(top_builddir)/modules/mpi/libscimpi.la
 
 # Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
-@GUI_TRUE@am__append_3 = $(top_builddir)/modules/jvm/libscijvm.la $(GUI_LIBS)
-@GUI_FALSE@am__append_4 = $(NO_GUI_LIBS)
+@GUI_TRUE@am__append_6 = $(top_builddir)/modules/jvm/libscijvm.la $(GUI_LIBS)
+@GUI_FALSE@am__append_7 = $(NO_GUI_LIBS)
 
 # This should never be used in production. It forces the explicit link
 # between libscilab and some "on-the-fly" loaded libraries.
 # It has been added to make sure that the full link is correctly done
 # and all symbols resolved.
-@FORCE_LINK_TRUE@am__append_5 = $(ENGINE_LIBS_DYNAMIC_LOAD)
+@FORCE_LINK_TRUE@am__append_8 = $(ENGINE_LIBS_DYNAMIC_LOAD)
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/config/mkinstalldirs
@@ -126,11 +129,11 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -177,8 +180,8 @@ libscilab_cli_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(AM_CFLAGS) $(CFLAGS) $(libscilab_cli_la_LDFLAGS) $(LDFLAGS) \
 	-o $@
-libscilab_la_DEPENDENCIES = $(am__append_3) $(am__append_4) \
-	$(am__append_5) $(top_builddir)/modules/libscilab-cli.la
+libscilab_la_DEPENDENCIES = $(am__append_6) $(am__append_7) \
+	$(am__append_8) $(top_builddir)/modules/libscilab-cli.la
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -271,7 +274,7 @@ DIST_SUBDIRS = prebuildjava threads operations output_stream arnoldi \
 	genetic_algorithms simulated_annealing matio atoms graph xcos \
 	system_env ast symbol parse scinotes parallel modules_manager \
 	ui_data history_browser preferences xml types external_objects \
-	external_objects_java scicos_blocks scicos . javasci
+	external_objects_java scicos_blocks scicos mpi . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -423,6 +426,7 @@ MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
+MPI_ENABLE = @MPI_ENABLE@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
 MSGFMT_015 = @MSGFMT_015@
@@ -436,6 +440,11 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMPI_CC = @OPENMPI_CC@
+OPENMPI_CFLAGS = @OPENMPI_CFLAGS@
+OPENMPI_CXX = @OPENMPI_CXX@
+OPENMPI_CXXFLAGS = @OPENMPI_CXXFLAGS@
+OPENMPI_LIBS = @OPENMPI_LIBS@
 OPENMP_CFLAGS = @OPENMP_CFLAGS@
 OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
 OPENMP_ENABLE = @OPENMP_ENABLE@
@@ -483,6 +492,7 @@ STRIP = @STRIP@
 SWIG_BIN = @SWIG_BIN@
 SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
+SWIG_SCILAB = @SWIG_SCILAB@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
 TK_INC_PATH = @TK_INC_PATH@
@@ -580,8 +590,8 @@ SUBDIRS = prebuildjava threads operations output_stream arnoldi \
 	genetic_algorithms simulated_annealing parameters matio atoms \
 	hdf5 graph xcos system_env ast symbol parse scinotes parallel \
 	modules_manager ui_data history_browser preferences xml types \
-	external_objects external_objects_java $(am__append_1) scicos \
-	. $(am__append_2)
+	external_objects $(am__append_1) $(am__append_2) scicos \
+	$(am__append_3) . $(am__append_4)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -605,7 +615,7 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/preferences/libscipreferences.la \
-	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la 
+	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
@@ -660,8 +670,8 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
-	$(top_builddir)/modules/preferences/libscipreferences-cli.la
-
+	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
+	$(am__append_5)
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
@@ -685,8 +695,8 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 # Core modules
 
 # Core modules
-libscilab_la_LIBADD = $(am__append_3) $(am__append_4) $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(am__append_5) \
+libscilab_la_LIBADD = $(am__append_6) $(am__append_7) $(OTHER_LIBS) \
+	$(EXTERNAL_LIBS) $(am__append_8) \
 	$(top_builddir)/modules/libscilab-cli.la
 
 ################## libscilab-cli  ##################

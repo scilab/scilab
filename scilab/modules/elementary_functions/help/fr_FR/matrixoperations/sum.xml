@@ -131,6 +131,46 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para>
+            L'argument <literal>outtype</literal> gère la façon dont le produit est réalisé :
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>Pour les matrices de doubles, de polynômes, de fractions rationnelles, 
+                    l'évaluation est toujours effetuée sur des nombres à virgule flottante.
+                    Les options <literal>"double"</literal> ou <literal>"native"</literal> sont équivalentes 
+                    (par défaut, <literal>outtype = "double"</literal>).
+                </para>
+            </listitem>
+            <listitem>
+                <para>Pour les tableaux d'entiers,</para>
+                <para>
+                    si <literal>outtype="native"</literal>, le calcul est effectué sur des nombres entiers
+                    (modulo 2^b, où b est le nombre de bits utilisés).
+                </para>
+                <para>
+                    si <literal>outtype="double"</literal>, le calcul est effectué sur 
+                    des nombres à virgule flottante.
+                </para>
+                <para>
+                    La valeur par défaut est <literal>outtype="native"</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>Pour les tableaux de booléens,</para>
+                <para>
+                    si <literal>outtype="native"</literal>, le calcul est effectué sur des booléens 
+                    (* est remplacée par &amp;),
+                </para>
+                <para>
+                    si <literal>outtype="double"</literal>, le calcul est effectué sur des nombres 
+                    à virgule flottante (%t est remplacé par 1 et %f par 0).
+                </para>
+                <para>
+                    La valeur par défaut est <literal>outtype="double"</literal>
+                </para>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection>
         <title>Remarque</title>

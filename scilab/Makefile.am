@@ -38,8 +38,8 @@ if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
 
-scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS)
-scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS)
+scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS) $(OPENMPI_LIBS)
+scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS) $(OPENMPI_LIBS)
 
 if USE_STATIC_SYSTEM_LIB
 scilab_bin_LDFLAGS += -static-libstdc++ -static-libgcc
@@ -114,6 +114,14 @@ scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
 
 # See the comment about scilab_bin_LDADD (relative to BLAS_LIBS & LAPACK_LIBS)
 scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
+
+if MPI
+CXX = $(OPENMPI_CXX)
+scilab_bin_SOURCES += $(top_srcdir)/modules/console/src/c/others/initMPI.c
+scilab_bin_CPPFLAGS += $(OPENMPI_CXXFLAGS)
+scilab_cli_bin_SOURCES += $(top_srcdir)/modules/console/src/c/others/initMPI.c
+scilab_cli_bin_CPPFLAGS += $(OPENMPI_CXXFLAGS)
+endif
 
 
 if NEED_JAVA
@@ -318,8 +326,8 @@ if CODE_COVERAGE
 	fi; \
 	touch $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h; \
 	$(LCOV) --directory $(top_builddir) --capture --ignore-errors source --output-file $(top_builddir)/coverage/scilab-code-coverage.info; \
-	echo -e "genhtml_hi_limit = 85\ngenhtml_med_limit = 70" > $(top_builddir)/coverage/lcovrc; \
-	$(GENHTML) -o $(top_builddir)/coverage/results/ --config-file $(top_builddir)/coverage/lcovrc --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
+	if test ! -f ~/.lcovrc; then echo -e "genhtml_hi_limit = 85\ngenhtml_med_limit = 70" > ~/.lcovrc; fi; \
+	$(GENHTML) -o $(top_builddir)/coverage/results/ --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
 	rm -f $(top_builddir)/coverage/lcovrc; \
 	echo "To open the result: firefox  $(top_builddir)/coverage/results/index.html"; \
 	rm -f $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h

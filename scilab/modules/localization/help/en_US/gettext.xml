@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -24,13 +24,19 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>msg=gettext(myString)
-            msg=_(myString)
+        <synopsis>msg=gettext([myDomain,] myString)
+            msg=_([myDomain,] myString)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
+            <varlistentry>
+                <term>myDomain</term>
+                <listitem>
+                    <para>a string, the name of the messages domain</para>
+                </listitem>
+            </varlistentry>
             <varlistentry>
                 <term>myString</term>
                 <listitem>
@@ -45,22 +51,41 @@
             <literal>gettext(myString)</literal> gets the translation of a string <literal>myString</literal> to the current locale in the current domain.
         </para>
         <para>
+            <literal>gettext(myDomain, myString)</literal> gets the translation of a string <literal>myString</literal> to the <literal>myDomain</literal> domain.
+        </para>
+        <para>
             <code>_(myString)</code> is an alias of <code>gettext(myString)</code>.
+        </para>
+        <para>
+            <code>_(myDomain, myString)</code> is an alias of <code>gettext(myDomain, myString)</code>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
+setlanguage("fr_FR");
 gettext("Startup execution:")
 _("Startup execution:")
+addlocalizationdomain("tbx", "SCI/modules/localization/tests/unit_tests/locale")
+gettext("tbx", "%s: something not in Scilab.\n")
+_("tbx", "%s: something not in Scilab.\n")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="dgettext">dgettext</link>
+                <link linkend="addlocalizationdomain">addlocalizationdomain</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>Domain management added.</revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

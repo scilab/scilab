@@ -33,9 +33,6 @@
     <ClCompile Include="sci_setlanguage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_dgettext.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_localization_gw.h">

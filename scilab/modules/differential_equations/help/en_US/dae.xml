@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier : added "roots2" (daskr)
  * Copyright (C) 2008 - INRIA
  * ...
  *
@@ -18,10 +19,12 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis> y=dae(initial,t0,t,res)
-            [y [,hd]]=dae(initial,t0,t [,rtol, [atol]],res [,jac] [,hd])
-            [y,rd]=dae("root",initial,t0,t,res,ng,surface)
-            [y ,rd [,hd]]=dae("root",initial,t0,t [,rtol, [atol]],res [,jac], ng, surface [,hd])
+        <synopsis> y = dae(initial, t0, t, res)
+            [y [,hd]] = dae(initial, t0, t [,rtol, [atol]], res [,jac] [,hd])
+            [y, rd] = dae("root", initial, t0, t, res, ng, surface)
+            [y, rd [,hd]] = dae("root", initial, t0, t [,rtol, [atol]], res [,jac], ng, surface [,hd])
+            [y, rd] = dae("root2", initial, t0, t, res, ng, surface)
+            [y, rd [,hd]] = dae("root2", initial, t0, t [,rtol, [atol]], res [,jac], ng, surface [, psol, pjac] [, hd])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -398,6 +401,22 @@ r=surface(t,x,p1,p2,...)
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>pjac</term>
+                <listitem>
+                    <para>
+                        external (function, list or string). See <link linkend="daskr">daskr</link>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>psol</term>
+                <listitem>
+                    <para>
+                        external (function, list or string). See <link linkend="daskr">daskr</link>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>hd</term>
                 <listitem>
                     <para>a real vector, as an output it stores the
@@ -428,12 +447,17 @@ r=surface(t,x,p1,p2,...)
         <title>Description</title>
         <para>
             The <literal>dae</literal> function is a gateway built above the
-            <link linkend="dassl">dassl</link> and <link linkend="dasrt">dasrt</link>
-            function designed for implicit differential equations integration.
+            <link linkend="dassl">dassl</link>, <link linkend="dasrt">dasrt</link>
+            and <link linkend="daskr">daskr</link>
+            functions designed for implicit differential equations integration.
+        </para>
+        <para>
+            Option <literal>"root"</literal> calls the <link linkend="dasrt">dasrt</link> routine,
+            and <literal>"root2"</literal> calls <link linkend="dasrt">daskr</link>.
         </para>
         <programlisting role="no-scilab-exec"><![CDATA[
-g(t,x,xdot)=0
-x(t0)=x0  and   xdot(t0)=xdot0
+g(t, x, xdot) = 0
+x(t0) = x0 and xdot(t0) = xdot0
  ]]></programlisting>
         <para>
             If <literal>xdot0</literal> is not given in the <emphasis>initial</emphasis>
@@ -447,57 +471,64 @@ x(t0)=x0  and   xdot(t0)=xdot0
             <link linkend="daeoptions">%DAEOPTIONS</link>(7) must be set to 1.
         </para>
         <para>Detailed examples using Scilab and C coded externals are given in
-            <literal>modules/differential_equations/tests/unit_tests/dassldasrt.tst</literal>
+            <literal>modules/differential_equations/tests/unit_tests/dassldasrt.tst</literal> and
+            <literal>modules/differential_equations/tests/unit_tests/daskr.tst</literal>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            Example #1: dassl (no root finding)
+        </para>
         <programlisting role="example"><![CDATA[
-//Example with Scilab code
-function [r,ires]=chemres(t,y,yd)
+// Example with Scilab code
+--------------------------------------------------
+function [r, ires] = chemres(t, y, yd)
     r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
     r(2) =  0.04*y(1) - 1d4*y(2)*y(3) - 3d7*y(2)*y(2) - yd(2);
     r(3) =       y(1) +     y(2)      + y(3)-1;
     ires =  0;
 endfunction
 
-function pd=chemjac(x,y,yd,cj)
-    pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
-         0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
-         1       , 1                      , 1       ]
+function pd = chemjac(x, y, yd, cj)
+    pd = [-0.04-cj , 1d4*y(3)               , 1d4*y(2);
+           0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
+           1       , 1                      , 1       ]
 endfunction
 
-x0=[1; 0; 0];
-xd0=[-0.04; 0.04; 0];
-t=[1.d-5:0.02:.4, 0.41:.1:4, 40, 400, 4000, 40000, 4d5, 4d6, 4d7, 4d8, 4d9, 4d10];
+x0 = [1; 0; 0];
+xd0 = [-0.04; 0.04; 0];
+t = [1.d-5:0.02:.4, 0.41:.1:4, 40, 400, 4000, 40000, 4d5, 4d6, 4d7, 4d8, 4d9, 4d10];
 
-y=dae([x0,xd0],0,t,chemres);// returns requested observation time points
+y = dae([x0, xd0], 0, t, chemres); // Returns requested observation time points
 
-%DAEOPTIONS=list([],1,[],[],[],0,0); // ask  dae mesh points to be returned
-y=dae([x0,xd0],0,4d10,chemres); // without jacobian
-y=dae([x0,xd0],0,4d10,chemres,chemjac); // with jacobian
+%DAEOPTIONS = list([], 1, [], [], [], 0, 0); // Ask  dae mesh points to be returned
+y = dae([x0, xd0], 0, 4d10, chemres); // Without jacobian
+y = dae([x0, xd0], 0, 4d10, chemres, chemjac); // With jacobian
  ]]></programlisting>
+        <para>
+            Example #2: dasrt ("root")
+        </para>
         <programlisting role="example"><![CDATA[
-
-//example with C code (C compiler needed)
+// Example with C code (C compiler needed)
 --------------------------------------------------
-bOK=haveacompiler();
-if bOK<>%t
-    [btn] = messagebox(["You need a C compiler for this example.";"Execution of this example is canceled."], "Software problem", 'info');
+bOK = haveacompiler();
+if bOK <> %t
+    [btn] = messagebox(["You need a C compiler for this example."; "Execution of this example is canceled."], "Software problem", 'info');
     return
 end
 
-//-1- create the C codes in TMPDIR - Vanderpol equation, implicit form
-code=['#include <math.h>'
-      'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
+//-1- Create the C codes in TMPDIR - Vanderpol equation, implicit form
+code = ['#include <math.h>'
+      'void res22(double *t, double *y, double *yd, double *res, int *ires, double *rpar, int *ipar)'
       '{res[0] = yd[0] - y[1];'
       ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
       ' '
-      'void jac22(double *t,double *y,double *yd,double *pd,double *cj,double *rpar,int *ipar)'
-      '{pd[0]=*cj - 0.0;'
-      ' pd[1]=    - (-200.0*y[0]*y[1] - 1.0);'
-      ' pd[2]=    - 1.0;'
-      ' pd[3]=*cj - (100.0*(1.0 - y[0]*y[0]));}'
+      'void jac22(double *t, double *y, double *yd, double *pd, double *cj, double *rpar, int *ipar)'
+      '{pd[0] = *cj - 0.0;'
+      ' pd[1] =     - (-200.0*y[0]*y[1] - 1.0);'
+      ' pd[2] =     - 1.0;'
+      ' pd[3] = *cj - (100.0*(1.0 - y[0]*y[0]));}'
       ' '
       'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
       '{ groot[0] = y[0];}']
@@ -505,75 +536,172 @@ previous_dir = pwd();
 cd TMPDIR;
 mputl(code, 't22.c')
 
-//-2- compile and load them
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',[],'t22loader.sce');
+//-2- Compile and load them
+ilib_for_link(['res22' 'jac22' 'gr22'], 't22.c', [], 'c', [], 't22loader.sce');
 exec('t22loader.sce')
 
-//-3- run
-rtol=[1.d-6;1.d-6];
-atol=[1.d-6;1.d-4];
-t0=0;y0=[2;0];
-y0d=[0;-2];
-t=[20:20:200];
-ng=1;
+//-3- Run
+rtol = [1.d-6; 1.d-6];
+atol = [1.d-6; 1.d-4];
+t0 = 0; t = [20:20:200];
+y0 = [2; 0]; y0d = [0; -2];
+ng = 1;
 
-//simple simulation
-t=0:0.003:300;
-yy=dae([y0,y0d],t0,t,atol,rtol,'res22','jac22');
-clf();plot(yy(1,:),yy(2,:))
-//find first point where yy(1)=0
-[yy,nn,hotd]=dae("root",[y0,y0d],t0,300,atol,rtol,'res22','jac22',ng,'gr22');
-plot(yy(1,1),yy(2,1),'r+')
-xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+// Simple simulation
+t = 0:0.003:300;
+yy = dae([y0, y0d], t0, t, atol, rtol, 'res22', 'jac22');
+clf(); plot(yy(1, :), yy(2, :))
+// Find first point where yy(1) = 0
+[yy, nn, hotd] = dae("root", [y0, y0d], t0, 300, atol, rtol, 'res22', 'jac22', ng, 'gr22');
+plot(yy(1, 1), yy(2, 1), 'r+')
+xstring(yy(1, 1)+0.1, yy(2, 1), string(nn(1)));
 
-//hot restart for next point
-t01=nn(1);
-[pp,qq]=size(yy);
-y01=yy(2:3,qq);
-y0d1=yy(3:4,qq);
-[yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
-plot(yy(1,1),yy(2,1),'r+')
-xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+// Hot restart for next point
+t01 = nn(1);
+[pp, qq] = size(yy);
+y01 = yy(2:3, qq); y0d1 = yy(3:4, qq);
+[yy, nn, hotd] = dae("root", [y01, y0d1], t01, 300, atol, rtol, 'res22', 'jac22', ng, 'gr22', hotd);
+plot(yy(1, 1), yy(2, 1), 'r+')
+xstring(yy(1, 1)+0.1, yy(2, 1), string(nn(1)));
 cd(previous_dir);
  ]]></programlisting>
         <scilab:image><![CDATA[
-code=['#include <math.h>'
-      'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
+code = ['#include <math.h>'
+      'void res22(double *t, double *y, double *yd, double *res, int *ires, double *rpar, int *ipar)'
       '{res[0] = yd[0] - y[1];'
       ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
       ' '
-      'void jac22(double *t,double *y,double *yd,double *pd,double *cj,double *rpar,int *ipar)'
-      '{pd[0]=*cj - 0.0;'
-      ' pd[1]=    - (-200.0*y[0]*y[1] - 1.0);'
-      ' pd[2]=    - 1.0;'
-      ' pd[3]=*cj - (100.0*(1.0 - y[0]*y[0]));}'
+      'void jac22(double *t, double *y, double *yd, double *pd, double *cj, double *rpar, int *ipar)'
+      '{pd[0] = *cj - 0.0;'
+      ' pd[1] =     - (-200.0*y[0]*y[1] - 1.0);'
+      ' pd[2] =     - 1.0;'
+      ' pd[3] = *cj - (100.0*(1.0 - y[0]*y[0]));}'
       ' '
       'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
       '{ groot[0] = y[0];}']
 previous_dir = pwd();
 cd TMPDIR;
 mputl(code, 't22.c')
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',[],'t22loader.sce');
+ilib_for_link(['res22' 'jac22' 'gr22'], 't22.c', [], 'c', [], 't22loader.sce');
 exec('t22loader.sce')
-rtol=[1.d-6;1.d-6];
-atol=[1.d-6;1.d-4];
-t0=0;y0=[2;0];
-y0d=[0;-2];
-t=[20:20:200];
-ng=1;
-t=0:0.003:300;
-yy=dae([y0,y0d],t0,t,atol,rtol,'res22','jac22');
-clf();plot(yy(1,:),yy(2,:))
-[yy,nn,hotd]=dae("root",[y0,y0d],t0,300,atol,rtol,'res22','jac22',ng,'gr22');
-plot(yy(1,1),yy(2,1),'r+')
-xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
-t01=nn(1);
-[pp,qq]=size(yy);
-y01=yy(2:3,qq);
-y0d1=yy(3:4,qq);
-[yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
-plot(yy(1,1),yy(2,1),'r+')
-xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)));
+rtol = [1.d-6; 1.d-6];
+atol = [1.d-6; 1.d-4];
+t0 = 0; t = [20:20:200];
+y0 = [2; 0]; y0d = [0; -2];
+ng = 1;
+t = 0:0.003:300;
+yy = dae([y0, y0d], t0, t, atol, rtol, 'res22', 'jac22');
+clf(); plot(yy(1, :), yy(2, :))
+[yy, nn, hotd] = dae("root", [y0, y0d], t0, 300, atol, rtol, 'res22', 'jac22', ng, 'gr22');
+plot(yy(1, 1), yy(2, 1), 'r+')
+xstring(yy(1, 1)+0.1, yy(2, 1), string(nn(1)));
+t01 = nn(1);
+[pp, qq] = size(yy);
+y01 = yy(2:3, qq);
+y0d1 = yy(3:4, qq);
+[yy, nn, hotd] = dae("root", [y01, y0d1], t01, 300, atol, rtol, 'res22', 'jac22', ng, 'gr22', hotd);
+plot(yy(1, 1), yy(2, 1), 'r+')
+xstring(yy(1, 1)+0.1, yy(2, 1), string(nn(1)));
+cd(previous_dir);
+ ]]></scilab:image>
+        <para>
+            Example #3: daskr ("root2"), using default 'psol' and 'pjac' routines
+        </para>
+        <programlisting role="example"><![CDATA[
+// Example with C code (C compiler needed)
+--------------------------------------------------
+bOK = haveacompiler();
+if bOK <> %t
+    [btn] = messagebox(["You need a C compiler for this example."; "Execution of this example is canceled."], "Software problem", 'info');
+    return
+end
+
+//-1- Create the C codes in TMPDIR - Vanderpol equation, implicit form
+code = ['#include <math.h>'
+      'void res22(double *t, double *y, double *yd, double *res, int *ires, double *rpar, int *ipar)'
+      '{res[0] = yd[0] - y[1];'
+      ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
+      ' '
+      'void jac22(double *t, double *y, double *yd, double *pd, double *cj, double *rpar, int *ipar)'
+      '{pd[0] = *cj - 0.0;'
+      ' pd[1] =     - (-200.0*y[0]*y[1] - 1.0);'
+      ' pd[2] =     - 1.0;'
+      ' pd[3] = *cj - (100.0*(1.0 - y[0]*y[0]));}'
+      ' '
+      'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
+      '{ groot[0] = y[0];}']
+previous_dir = pwd();
+cd TMPDIR;
+mputl(code, 't22.c')
+
+//-2- Compile and load them
+ilib_for_link(['res22' 'jac22' 'gr22'], 't22.c', [], 'c', [], 't22loader.sce');
+exec('t22loader.sce')
+
+//-3- Run
+rtol = [1.d-6; 1.d-6];
+atol = [1.d-6; 1.d-4];
+t0 = 0; t = [20:20:200];
+y0 = [2; 0]; y0d = [0; -2];
+ng = 1;
+
+// Simple simulation
+t = 0:0.003:300;
+yy = dae([y0, y0d], t0, t, atol, rtol, 'res22', 'jac22');
+clf(); plot(yy(1, :), yy(2, :))
+// Find first point where yy(1) = 0
+%DAEOPTIONS = list([] , 0, [], [], [], 0, [], 1, [], 0, 1, [], [], 1);
+[yy, nn, hotd] = dae("root2", [y0, y0d], t0, 300, atol, rtol, 'res22', 'jac22', ng, 'gr22', 'psol1', 'pjac1');
+plot(yy(1, 1), yy(2, 1), 'r+')
+xstring(yy(1, 1)+0.1, yy(2, 1), string(nn(1)));
+
+// Hot restart for next point
+t01 = nn(1);
+[pp, qq] = size(yy);
+y01 = yy(2:3, qq); y0d1 = yy(3:4, qq);
+[yy, nn, hotd] = dae("root2", [y01, y0d1], t01, 300, atol, rtol, 'res22', 'jac22', ng, 'gr22', 'psol1', 'pjac1', hotd);
+plot(yy(1, 1), yy(2, 1), 'r+')
+xstring(yy(1, 1)+0.1, yy(2, 1), string(nn(1)));
+cd(previous_dir);
+ ]]></programlisting>
+        <scilab:image><![CDATA[
+code = ['#include <math.h>'
+      'void res22(double *t, double *y, double *yd, double *res, int *ires, double *rpar, int *ipar)'
+      '{res[0] = yd[0] - y[1];'
+      ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
+      ' '
+      'void jac22(double *t, double *y, double *yd, double *pd, double *cj, double *rpar, int *ipar)'
+      '{pd[0] = *cj - 0.0;'
+      ' pd[1] =     - (-200.0*y[0]*y[1] - 1.0);'
+      ' pd[2] =     - 1.0;'
+      ' pd[3] = *cj - (100.0*(1.0 - y[0]*y[0]));}'
+      ' '
+      'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
+      '{ groot[0] = y[0];}']
+previous_dir = pwd();
+cd TMPDIR;
+mputl(code, 't22.c')
+ilib_for_link(['res22' 'jac22' 'gr22'], 't22.c', [], 'c', [], 't22loader.sce');
+exec('t22loader.sce')
+rtol = [1.d-6; 1.d-6];
+atol = [1.d-6; 1.d-4];
+t0 = 0; t = [20:20:200];
+y0 = [2; 0]; y0d = [0; -2];
+ng = 1;
+t = 0:0.003:300;
+yy = dae([y0, y0d], t0, t, atol, rtol, 'res22', 'jac22');
+clf(); plot(yy(1, :), yy(2, :))
+%DAEOPTIONS = list([], 0, [], [], [], 0, [], 1, [], 0, 1, [], [], 1);
+[yy, nn, hotd] = dae("root2", [y0, y0d], t0, 300, atol, rtol, 'res22', 'jac22', ng, 'gr22', 'psol1', 'pjac1');
+plot(yy(1, 1), yy(2, 1), 'r+')
+xstring(yy(1, 1)+0.1, yy(2, 1), string(nn(1)));
+t01 = nn(1);
+[pp, qq] = size(yy);
+y01 = yy(2:3, qq);
+y0d1 = yy(3:4, qq);
+[yy, nn, hotd] = dae("root2", [y01, y0d1], t01, 300, atol, rtol, 'res22', 'jac22', ng, 'gr22', 'psol1', 'pjac1', hotd);
+plot(yy(1, 1), yy(2, 1), 'r+')
+xstring(yy(1, 1)+0.1, yy(2, 1), string(nn(1)));
 cd(previous_dir);
  ]]></scilab:image>
     </refsection>
@@ -588,6 +716,9 @@ cd(previous_dir);
             </member>
             <member>
                 <link linkend="dassl">dassl</link>
+            </member>
+            <member>
+                <link linkend="dasrt">dasrt</link>
             </member>
             <member>
                 <link linkend="daskr">daskr</link>

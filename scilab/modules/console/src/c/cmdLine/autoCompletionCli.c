@@ -474,6 +474,8 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
 
                     CopyLineAtPrompt(wk_buf, buflinetmp, cursor, cursor_max);
                 }
+
+                freeArrayOfString(completionDictionary, 1);
             }
             else
             {

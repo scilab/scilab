@@ -16,6 +16,7 @@ assert_checkequal(status, 1);
 exec("TMPDIR/toolbox_skeleton/builder.sce");
 Building macros...
 -- Creation of [toolbox_skeletonlib] (Macros) --
+genlib: Processing file: scilab_error.sci
 genlib: Processing file: scilab_sum.sci
 genlib: Regenerate names and lib
 Building sources...
@@ -51,6 +52,7 @@ Building gateway...
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
    ilib_gen_Make: Copy libskeleton_c.c to TMPDIR
+   ilib_gen_Make: Copy sci_cerror.c to TMPDIR
    ilib_gen_Make: Copy sci_csub.c to TMPDIR
    ilib_gen_Make: Copy sci_csum.c to TMPDIR
    ilib_gen_Make: Copy sci_foo.c to TMPDIR
@@ -70,6 +72,9 @@ Building gateway...
    Generate a cleaner file
 Generating loader_gateway.sce...
 Generating cleaner_gateway.sce...
+Generating localization
+-- Building for "en_US" --
+-- Building for "fr_FR" --
 Building help...
 
 Building the master document:
@@ -95,7 +100,7 @@ Generating loader.sce...
 Generating unloader.sce...
 Generating cleaner.sce...
 exec("TMPDIR/toolbox_skeleton/loader.sce");
-Start Toolbox skeleton
+Start Toolbox Skeleton
 	Load macros
 	Load gateways
 	Load help

@@ -15,6 +15,7 @@
 #ifndef _MSC_VER
 #include <errno.h>
 #include <stdio.h> /* fileno */
+#define __USE_FORTIFY_LEVEL 0 /* Avoid dependency on GLIBC_2.15 __fdelt_chk */
 #include <sys/select.h> /* fd_set */
 #include "core_math.h" /* Max */
 #include "sciprint.h"

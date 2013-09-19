@@ -7,40 +7,50 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function a=%r_prod(a,d,typ)
+function a = %r_prod(varargin)
     //prod of a rational matrix
-    if argn(2)==1 then
-        d="*"
-    elseif argn(2)==2 then
-        if argn(2)==2& or(d==["native","double"]) then
-            d="*"
-        end
-    end
-    if size(d,"*")<>1 then
-        if type(d)==10 then
-            error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",2))
+    // If we call prod with 3 argumetns, the thrid argumetn is optional for rational matrices.
+    a = varargin(1)
+    dims = size(a);
+
+    nargs = size(varargin);
+    select nargs
+    case 1
+        d = "*";
+    case 2
+        if or(varargin(2) == ["native", "double"]) then
+            d = "*";
         else
-            error(msprintf(_("%s: Wrong size for input argument #%d: A scalar expected.\n"),"prod",2))
+            d = varargin(2);
         end
+    case 3
+        d = varargin(2);
+    else
+        error(msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"),"prod", 1, 3));
     end
-    dims=size(a);
 
-    if type(d)==10 then
-        d=find(d==["m","*","r","c"])
-        if d==[] then
+    // Check second argument : d
+    select type(d)
+    case 1
+        if size(d,'*') <> 1 then
+            error(msprintf(_("%s: Wrong size for input argument #%d: A scalar expected.\n"),"prod", 2))
+        end
+        if int(d) <> d | d < 0 then
+            error(msprintf(_("%s: Wrong value for input argument #%d: Integer >= %d expected.\n"),"prod", 2, 1))
+        end
+    case 10 
+        if size(d,'*') <> 1 then
+            error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",2))
+        end
+        if and(d<>["r","c","*","m"]) then
             error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "prod",2,"""*"",""r"",""c"",""m"",1:"+string(size(dims,"*"))))
+            "prod",2,"""*"",""r"",""c"",""m"""))
         end
-        d=d-2
-    end
-
-    if d==-1 then //'m'
-        d=find(dims>1,1)
-        if d==[] then d=0,end
-    end
-    if d<0 then
-        error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-        "prod",2,"""*"",""r"",""c"",""m"",1:"+string(ndims(a))))
+        
+        pos = [1,2,0,find(dims>1,1)];
+        d=pos(find(d==["r","c","*","m"]))
+    else
+        error(msprintf(_("%s: Wrong type for input argument #%d: A string or scalar expected.\n"),"prod",2))
     end
 
     if d==0 then //'*'

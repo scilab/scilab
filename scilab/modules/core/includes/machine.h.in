@@ -23,6 +23,9 @@
 /* CURL version */
 #undef CURL_VERSION
 
+/* Have MPI features */
+#undef ENABLE_MPI
+
 /* Define to 1 if translation of program messages to the user's native
    language is requested. */
 #undef ENABLE_NLS

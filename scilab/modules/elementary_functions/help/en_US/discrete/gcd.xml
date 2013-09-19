@@ -47,10 +47,14 @@
             <literal>U</literal> is a square integer matrix having
             determinant <literal>+1</literal> or <literal>-1</literal>.
         </para>
+        <para>
+            The greatest common divisor of an array <literal>p</literal> of real numbersof real numbers can be obtained by
+            converting it to a polynomial before calling <literal>gcd</literal>, through <code>p = inv_coeff(p, 0)</code>.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //polynomial case
 s=poly(0,'s');
 p=[s,s*(s+1)^2,2*s^2+s^3];

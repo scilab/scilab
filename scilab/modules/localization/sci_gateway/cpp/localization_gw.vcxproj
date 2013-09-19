@@ -174,7 +174,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\c\sci_dgettext.c" />
     <ClCompile Include="localization_gw.cpp" />
     <ClCompile Include="sci_getdefaultlanguage.cpp" />
     <ClCompile Include="sci_getlanguage.cpp" />

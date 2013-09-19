@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier : added daskr options
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -22,12 +23,12 @@
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
-        <para>If it exists in the dae function calling context the variable
-            <literal>%DAEOPTIONS</literal> the dae function use it to sets
-            options.
+        <para>
+            Sets a variable <literal>%DAEOPTIONS</literal> that is used in function <literal>dae</literal>
+            to set solver options.
         </para>
-        <para>This daeoptions function interactively displays a command which
-            should be executed to set various options of the <link linkend="dae">dae</link> solver.
+        <para>This daeoptions function interactively displays a window which
+            sets various options of the <link linkend="dae">dae</link> solver.
         </para>
         <para>
             <caution>
@@ -41,15 +42,24 @@
         <para>
             The variable <literal>%DAEOPTIONS</literal> is a <link linkend="list">list</link> with the following elements:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[  
+        <programlisting role="no-scilab-exec"><![CDATA[
 list(tstop,imode,band,maxstep,stepin,nonneg,isest)
  ]]></programlisting>
         <para>The default value is:</para>
-        <programlisting role="no-scilab-exec"><![CDATA[  
+        <programlisting role="no-scilab-exec"><![CDATA[
 list([],0,[],[],[],0,0)
  ]]></programlisting>
         <para>The meaning of the elements is described below.</para>
         <variablelist>
+            <varlistentry>
+                <term>solver</term>
+                <listitem>
+                    <para>
+                        if it is 0, <literal>dae</literal> will use the dassl/dasrt solver,
+                        and if it is 1, <literal>dae</literal> will use daskr.
+                    </para>
+                </listitem>
+            </varlistentry>
             <varlistentry>
                 <term>tstop</term>
                 <listitem>
@@ -63,8 +73,8 @@ list([],0,[],[],[],0,0)
                 <term>imode</term>
                 <listitem>
                     <para>
-                        if it is 0 <literal>dae</literal> returns only the user specified time point
-                        values, and if it is 1 <literal>dae</literal> returns its intermediate computed
+                        if it is 0, <literal>dae</literal> returns only the user specified time point
+                        values, and if it is 1, <literal>dae</literal> returns its intermediate computed
                         values.
                     </para>
                 </listitem>
@@ -116,8 +126,91 @@ list([],0,[],[],[],0,0)
                 <term>isest</term>
                 <listitem>
                     <para>a scalar, must be set to 0 if the given initial condition is
-                        compatible: <literal>g(t0,x0,xdot0)=0</literal>, and set to 1 if
-                        <literal>xdot0</literal> is just an estimation.
+                        compatible: <literal>g(t0,x0,xdot0)=0</literal>. If
+                        <literal>xdot0</literal> is just an estimation, then set to
+                        1 if you are using dassl, or set to
+                        <literal>[+-1, ..., +-1]</literal>, with:
+                        <literal>1</literal> if y(i) is a differential variable and
+                        <literal>-1</literal> if y(i) is an algebraic variable
+                        (if its derivatives do not appear explicitly in the function g(t, y, ydot)).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>method</term>
+                <listitem>
+                    <para>
+                        a scalar, direct / Krylov method. Set to <literal>1</literal> and provide a routine
+                        <literal>psol</literal> in <literal>dae()</literal>
+                        if you want the solver to use Krylov iterations, else (daskr's direct method) set to
+                        <literal>0</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Kry_params</term>
+                <listitem>
+                    <para>
+                        a vector, treat as dummy argument if you have set method=0. Otherwise, set to <literal>[]</literal>
+                        or to <literal>[maxl kmp nrmax epli]</literal>, where:
+                        - <literal>maxl </literal> = maximum number of iterations in the GMRes algorithm (default min(5, neq)),
+                        - <literal>kmp  </literal> = number of vectors on which orthogonalization is done in the GMRes algorithm (default maxl),
+                        - <literal>nrmax</literal> = maximum number of restarts of the GMRes algorithm per nonlinear iteration (default 5),
+                        - <literal>epli </literal> = convergence test constant in GMRes algorithm (default 0.05).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>init</term>
+                <listitem>
+                    <para>
+                        a scalar, treat as dummy argument if you have set isest=0. Set to 1 if the solver should stop right after
+                        computation of the initial conditions, else set to 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>precond</term>
+                <listitem>
+                    <para>
+                        a scalar, preconditioner computation and LU-factorization routine for <literal>psol</literal>.
+                        Treat as dummy argument if method=0. Set to 1 and provide a <literal>pjac</literal>
+                        routine in <literal>dae</literal> if the external <literal>psol</literal>
+                        should use a specific routine, else set to 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>control</term>
+                <listitem>
+                    <para>
+                        a vector, treat as dummy argument if you have set isest=0if you wish to control errors locally on all the variables then set to [].
+                        Otherwise, set to [+-1, ..., +-1], 1 if <literal>y(i)</literal> is a differential variable and
+                        -1 if <literal>y(i)</literal> is an algebraic variable
+                        (if its derivatives do not appear explicitly in the function <literal>g(t, y, ydot)</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>heuristic</term>
+                <listitem>
+                    <para>
+                        a vector, heuristic parameters. Treat as dummy argument if isest=0.
+                        Otherwise, set to [] or to <literal>[mxnit mxnj mxnh lsoff stptol epinit]</literal>, where:
+                        - <literal>mxnit</literal>  = maximum number of Newton iterations per Jacobian or preconditioner evaluation (default 5 if info(8)=0, 15 otherwise),
+                        - <literal>mxnj</literal>   = maximum number of Jacobian or preconditioner evaluations (default 6 if info(8)=0, 2 otherwise),
+                        - <literal>mxnh</literal>   = maximum number of values of the artificial stepsize parameter h to be tried if info(7) ≠ [] (default 5),
+                        - <literal>lsoff</literal>  = flag to turn off the linesearch algorithm (lsoff = 0 means linesearch is on, lsoff = 1 means it is turned off) (default 0),
+                        - <literal>stptol</literal> = minimum scaled step in linesearch algorithm (default (unit roundoff)^(2/3)),
+                        - <literal>epinit</literal> = swing factor in the Newton iteration convergence test (default 0.01).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>verbosity</term>
+                <listitem>
+                    <para>
+                        a scalar, verbosity. Set to 1 for minimal extra printing, 2 for full printing, else set to 0.
                     </para>
                 </listitem>
             </varlistentry>

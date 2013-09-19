@@ -83,8 +83,18 @@ swig: $(SWIG_WRAPPERS)
 	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
 	if test -n "$(SWIG_WRAPPERS)"; then \
 		for file in $(SWIG_WRAPPERS) ; do \
-			echo "Swig process of $$file ..."; \
+			echo "Swig process of $$file (Java) ..."; \
 			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+		done; \
+	fi
+
+## build Swig C => Scilab wrappers
+swig-scilab: $(SWIG_SCILAB_WRAPPERS)
+	@SWIG_OUTDIR=src/swig/; \
+	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
+		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
+			echo "Swig process of $$file (Scilab) ..."; \
+			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
 		done; \
 	fi
 

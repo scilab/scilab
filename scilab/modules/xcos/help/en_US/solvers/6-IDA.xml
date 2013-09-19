@@ -30,25 +30,25 @@
         </para>
         <para>
         </para>
-        Before solving the problem, <emphasis>IDA</emphasis> runs an internal routine to find consistent values for 
+        Before solving the problem, <emphasis>IDA</emphasis> runs an internal routine to find consistent values for
         <emphasis>
             y<subscript>0</subscript>
         </emphasis>
-        and 
+        and
         <emphasis>
             yPrime<subscript>0</subscript>
         </emphasis>
         .
         <para>
-            Starting then with those 
+            Starting then with those
             <emphasis>
                 y<subscript>0</subscript>
             </emphasis>
-            and 
+            and
             <emphasis>
                 yPrime<subscript>0</subscript>
             </emphasis>
-            , <emphasis>IDA</emphasis> approximates 
+            , <emphasis>IDA</emphasis> approximates
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
@@ -61,11 +61,11 @@
                 \end{eqnarray}
             </latex>
             <para>
-                &#160; with, like in <link linkend="CVode">CVode</link>, 
+                &#160; with, like in <link linkend="CVode">CVode</link>,
                 <emphasis>
                     y<subscript>n</subscript>
                 </emphasis>
-                the approximation of 
+                the approximation of
                 <emphasis>
                     y(t<subscript>n</subscript>)
                 </emphasis>
@@ -111,11 +111,11 @@
             An implemented direct dense solver is used and we go on to the next step.
         </para>
         <para>
-            <emphasis>IDA</emphasis> uses the history array to control the local error 
+            <emphasis>IDA</emphasis> uses the history array to control the local error
             <emphasis>
                 y<subscript>n(m)</subscript> - y<subscript>n(0)</subscript>
             </emphasis>
-            and recomputes 
+            and recomputes
             <emphasis>
                 h<subscript>n</subscript>
             </emphasis>
@@ -149,8 +149,8 @@ loadScicos();
 loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/DAE_Example.zcos");
 // Redefining messagebox() to avoid popup
-function messagebox(msg, title)
- disp(title);
+function messagebox(msg, Title)
+ disp(Title);
  disp(msg);
 endfunction
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end

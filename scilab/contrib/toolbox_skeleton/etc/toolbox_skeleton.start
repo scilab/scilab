@@ -5,9 +5,10 @@
 
 function toolbox_skeletonlib = startModule()
    
-  toolbox_name = "Toolbox skeleton"
+    TOOLBOX_NAME  = "toolbox_skeleton";
+    TOOLBOX_TITLE = "Toolbox Skeleton";
 
-  mprintf("Start " + toolbox_name + "\n");
+  mprintf("Start " + TOOLBOX_TITLE + "\n");
 
   if isdef("toolbox_skeletonlib") then
     warning("Toolbox skeleton library is already loaded");
@@ -32,13 +33,16 @@ function toolbox_skeletonlib = startModule()
   exec(pathconvert(root_tlbx+"/sci_gateway/loader_gateway.sce",%f));
   ilib_verbose(verboseMode);
 
+// load localization
+    addlocalizationdomain(TOOLBOX_NAME, root_tlbx + "/locales");
+
 // Load and add help chapter
 // =============================================================================
   if or(getscilabmode() == ["NW";"STD"]) then
     mprintf("\tLoad help\n");
     path_addchapter = pathconvert(root_tlbx+"/jar");
     if ( isdir(path_addchapter) <> [] ) then
-      add_help_chapter(toolbox_name, path_addchapter, %F);
+      add_help_chapter(TOOLBOX_NAME, path_addchapter, %F);
     end
   end
 
@@ -47,13 +51,13 @@ function toolbox_skeletonlib = startModule()
   if or(getscilabmode() == ["NW";"STD"]) then
     mprintf("\tLoad demos\n");
     pathdemos = pathconvert(root_tlbx+"/demos/toolbox_skeleton.dem.gateway.sce", %F, %T);
-    add_demo(toolbox_name, pathdemos);
+    add_demo(TOOLBOX_TITLE, pathdemos);
   end
 
 // Load Preferences GUI
 // =============================================================================
   if getscilabmode() == "STD" then
-    addModulePreferences(toolbox_name, root_tlbx, etc_tlbx + "toolbox_skeleton_preferences.xml");
+    addModulePreferences(TOOLBOX_TITLE, root_tlbx, etc_tlbx + "toolbox_skeleton_preferences.xml");
   end
 
 endfunction

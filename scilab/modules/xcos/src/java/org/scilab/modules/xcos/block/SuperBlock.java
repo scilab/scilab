@@ -90,7 +90,6 @@ public final class SuperBlock extends BasicBlock {
     private static final String MASKED_INTERFUNCTION_NAME = "DSUPER";
 
     private SuperBlockDiagram child;
-    private boolean hasAValidRpar = false;
 
     /**
      * Constructor
@@ -151,7 +150,7 @@ public final class SuperBlock extends BasicBlock {
 
     @Override
     public ScilabType getRealParameters() {
-        if (hasAValidRpar || child == null) {
+        if (child == null) {
             return super.getRealParameters();
         }
 
@@ -163,14 +162,6 @@ public final class SuperBlock extends BasicBlock {
         hasAValidRpar = true;
 
         return super.getRealParameters();
-    }
-
-    /**
-     * Invalide the rpar, a new child diagram encoding will be performed on
-     * demand.
-     */
-    public void invalidateRpar() {
-        hasAValidRpar = false;
     }
 
     /**

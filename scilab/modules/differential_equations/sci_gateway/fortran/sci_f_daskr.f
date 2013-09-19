@@ -282,7 +282,8 @@ c     --   subvariable consistent(info) --
       il10e7=iadr(l10+istk(il10+1+7)-1)
       m10e7 =istk(il10e7+2)*istk(il10e7+2)
       l10e7 = sadr(il10e7+4)
-      if(m10e7.eq.0) then
+      if(m10e7.eq.0.or.(m10e7.eq.1.and.stk(l10e7).eq.0)) then
+c        info is then [] or [0]
          info(11)=0
       else
 c        info then looks like list(..., [+-1 +-1 ... +-1 +-1],...)
@@ -860,4 +861,3 @@ c     Remise en place de la pile
  1150 call unsfdcopy(lw-lw0,stk(lw0),1,stk(l0),1)
       return
       end
-

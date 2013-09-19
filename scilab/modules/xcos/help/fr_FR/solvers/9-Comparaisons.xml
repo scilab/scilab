@@ -726,8 +726,8 @@ loadScicos();
 loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/demos/ModelicaBlocks/Hydraulics.zcos");
 // Redefining messagebox() to avoid popup
-function messagebox(msg, title)
- disp(title);
+function messagebox(msg, Title)
+ disp(Title);
  disp(msg);
 endfunction
 scs_m.props.tol(6) = 100;

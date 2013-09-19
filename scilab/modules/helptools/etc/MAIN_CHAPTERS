@@ -61,6 +61,7 @@ history_browser
 helptools
 parallel
 modules_manager
+mpi
 localization
 action_binding
 api_scilab

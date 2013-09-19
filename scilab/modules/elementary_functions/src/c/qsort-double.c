@@ -109,6 +109,7 @@ void ColSortdouble(double *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + n * j), (char *) (ind + n * j), flag, n,
                  sizeof(double), sizeof(int),
+                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCdouble : compareDdouble,
                  swapcodedouble, swapcodeind);
     }
@@ -134,6 +135,7 @@ void RowSortdouble(double *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + i), (char *) (ind + i), flag, p,
                  n * sizeof(double), n * sizeof(int),
+                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCdouble : compareDdouble,
                  swapcodedouble, swapcodeind);
     }
@@ -151,6 +153,7 @@ void GlobalSortdouble(double *a, int *ind, int flag, int n, int p, char dir)
         }
     sciqsort((char *) (a), (char *) (ind), flag, n * p,
              sizeof(double), sizeof(int),
+             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? compareCdouble : compareDdouble,
              swapcodedouble, swapcodeind);
 }
@@ -175,11 +178,11 @@ static  int LexiRowcompareCdouble(double *i, double *j)
 
     for ( jc = 0 ; jc < lexicolsdouble ; jc++)
     {
-        if (*i > *j || (double *)C2F(isanan)((double *)i) == 1)
+        if (*i > *j || (double *)C2F(isanan)((double *)i) == (double *) 1)
         {
             return (1);
         }
-        if (*i < *j || (double *)C2F(isanan)((double *)j) == 1)
+        if (*i < *j || (double *)C2F(isanan)((double *)j) == (double *) 1)
         {
             return (-1);
         }
@@ -195,11 +198,11 @@ static  int LexiRowcompareDdouble(double *i, double*j)
 
     for ( jc = 0 ; jc < lexicolsdouble ; jc++)
     {
-        if (*i < *j || (double *)C2F(isanan)((double *)j) == 1)
+        if (*i < *j || (double *)C2F(isanan)((double *)j) == (double *) 1)
         {
             return (1);
         }
-        if (*i > *j || (double *)C2F(isanan)((double *)i) == 1)
+        if (*i > *j || (double *)C2F(isanan)((double *)i) == (double *) 1)
         {
             return (-1);
         }
@@ -243,6 +246,7 @@ void LexiRowdouble(double *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, n,
              sizeof(double), sizeof(int),
+             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiRowcompareCdouble : LexiRowcompareDdouble,
              LexiRowswapcodedouble, swapcodeind);
 }
@@ -257,11 +261,11 @@ static  int LexiColcompareCdouble(double *i, double *j)
     int ic;
     for ( ic = 0 ; ic < lexirowsdouble ; ic++)
     {
-        if (*i > *j || (double *)C2F(isanan)((double *)i) == 1)
+        if (*i > *j || (double *)C2F(isanan)((double *)i) == (double *) 1)
         {
             return (1);
         }
-        if (*i < *j || (double *)C2F(isanan)((double *)j) == 1)
+        if (*i < *j || (double *)C2F(isanan)((double *)j) == (double *) 1)
         {
             return (-1);
         }
@@ -276,11 +280,11 @@ static  int LexiColcompareDdouble(double *i, double *j)
     int ic;
     for ( ic = 0 ; ic < lexirowsdouble ; ic++)
     {
-        if (*i < *j || (double *)C2F(isanan)((double *)j) == 1)
+        if (*i < *j || (double *)C2F(isanan)((double *)j) == (double *) 1)
         {
             return (1);
         }
-        if (*i > *j || (double *)C2F(isanan)((double *)i) == 1)
+        if (*i > *j || (double *)C2F(isanan)((double *)i) ==  (double *) 1)
         {
             return (-1);
         }
@@ -323,6 +327,7 @@ void LexiColdouble(double *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, p,
              n * sizeof(double), sizeof(int),
+             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiColcompareCdouble : LexiColcompareDdouble,
              LexiColswapcodedouble,
              swapcodeind);

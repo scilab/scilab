@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -115,13 +115,13 @@
         <programlisting role="exemple"><![CDATA[
     //Black diagram
     s=poly(0,'s');
-    sl=syslin('c',5*(1+s)/(.1*s^4+s^3+15*s^2+3*s+1))
+    sl=syslin('c',5*(1+s)/(.1*s.^4+s.^3+15*s.^2+3*s+1))
     clf();black(sl,0.01,10);
     ]]></programlisting>
         <para>
             <scilab:image localized="true">
                 s=poly(0,'s');
-                sl=syslin('c',5*(1+s)/(.1*s^4+s^3+15*s^2+3*s+1))
+                sl=syslin('c',5*(1+s)/(.1*s.^4+s.^3+15*s.^2+3*s+1))
                 black(sl,0.01,10);
             </scilab:image>
         </para>
@@ -131,7 +131,7 @@
     Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
     //two degree of freedom PID
     tau=0.2;xsi=1.2;
-    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau.^2*s.^2));
     clf();
     black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
     //move the caption in the lower rigth corner
@@ -145,7 +145,7 @@
                 s=poly(0,'s');
                 Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
                 tau=0.2;xsi=1.2;
-                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau.^2*s.^2));
                 black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
                 ax=gca();Leg=ax.children(1);
                 Leg.legend_location="in_lower_right";

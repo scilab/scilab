@@ -6,7 +6,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-function [h2]=cheb1mag(n,omegac,epsilon,sample)
+function [h2]=cheb1mag(n,omegac,epsilon,sampleFreq)
     //<h2>=cheb1mag(n,omegac,epsilon,sample)
     //Square magnitude response of a type 1 Chebyshev filter
     //omegac=passband edge
@@ -22,9 +22,9 @@ function [h2]=cheb1mag(n,omegac,epsilon,sample)
     //!
 
 
-    [n1,n2]=size(sample);
+    [n1,n2]=size(sampleFreq);
     un=ones(n1,n2);
     Tn=chepol(n,"x");  //n-th Chebyshev polynomial
-    fr=freq(Tn,1,sample/omegac);   //fr=Tn(sample/omegac)
+    fr=freq(Tn,1,sampleFreq/omegac);   //fr=Tn(sample/omegac)
     h2=un./(un+epsilon*epsilon*fr.*fr)   //magnitude
 endfunction

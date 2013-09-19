@@ -6,16 +6,15 @@ Summary: Skeleton of a valid atoms package
 
 Version: 1.3
 
-Author: Allan CORNET <allan.cornet@scilab.org>
+Author: Scilab Enterprises
 
-Maintainer: Allan CORNET <allan.cornet@scilab.org>
- Pierre MARECHAL <pierre.marechal@scilab.org>
+Maintainer: Scilab Enterprises
 
 Category: biology - Robotic_2
  CatB - SScat2
  biology - modelisation_III
 
-Entity: Digiteo
+Entity: Scilab Enterprises
 
 WebSite: http://www.scilab.org
 
@@ -25,7 +24,7 @@ ScilabVersion: >= 5.4
 
 Depends: 
 
-Date: 2009-03-26
+Date: 2013-07-18
 
 Description: files to the new Docbook based format.
  
