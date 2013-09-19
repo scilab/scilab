@@ -47,6 +47,7 @@ final class Scene {
     private List<Scene> onfront;
     private ConvexObject object;
     private boolean drawn;
+    private boolean is2d;
 
     private Scene(final ConvexObject object) {
         this.object = object;
@@ -57,8 +58,8 @@ final class Scene {
     }
 
     private static final List<ConvexObject> breakOnClippingPlane(ConvexObject o) {
-        List<ConvexObject> list = new ArrayList<ConvexObject>();
-        List<ConvexObject> tmp = new ArrayList<ConvexObject>();
+        List<ConvexObject> list = new ArrayList<ConvexObject>(8);
+        List<ConvexObject> tmp = new ArrayList<ConvexObject>(8);
         list.add(o);
         if (clippingPlanes != null) {
             for (ClippingPlane clip : clippingPlanes) {
@@ -68,6 +69,9 @@ final class Scene {
                         List<ConvexObject> l = co.breakObject(clip.getEquation());
                         if (l != null) {
                             tmp.addAll(l);
+                        } else {
+                            list.clear();
+                            return list;
                         }
                     }
                     list.clear();
@@ -82,9 +86,13 @@ final class Scene {
     }
 
     static final void addToRoot(final boolean is2D, final ConvexObject co) {
-        List<ConvexObject> broken = breakOnClippingPlane(co);
-        for (ConvexObject object : broken) {
-            add(is2D, object);
+        try {
+            List<ConvexObject> broken = breakOnClippingPlane(co);
+            for (ConvexObject object : broken) {
+                add(is2D, object);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -92,6 +100,7 @@ final class Scene {
         synchronized (faces) {
             Scene st = new Scene(object);
             if (is2D) {
+                st.is2d = true;
                 faces2d.add(st);
             } else {
                 Set<Scene> toRemove = new HashSet<Scene>();

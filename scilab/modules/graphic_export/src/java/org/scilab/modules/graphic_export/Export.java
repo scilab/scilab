@@ -18,6 +18,7 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Path2D;
 import java.awt.geom.PathIterator;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
@@ -737,6 +738,7 @@ public class Export {
                         gen.writeln("/ReEncode { /MyEncoding exch def exch findfont dup length dict begin {def} forall /Encoding MyEncoding def currentdict end definefont } def");
                         gen.writeln("/Helvetica /HelveticaLatin1 ISOLatin1Encoding ReEncode");
                         gen.writeln("/Times /TimesLatin1 ISOLatin1Encoding ReEncode");
+                        gen.writeln("/DP {/Points exch def N Points 0 get Points 1 get M 2 2 Points length 1 sub {/i exch def Points i get Points i 1 add get L}for} def");
                     }
 
                     @Override
@@ -803,6 +805,33 @@ public class Export {
 
                                 return PathIterator.WIND_NON_ZERO;
                             }
+                        } else if (s instanceof Path2D) {
+                            StringBuilder buffer = new StringBuilder();
+                            double[] coords = new double[2];
+                            PathIterator it = ((Path2D) s).getPathIterator(new AffineTransform());
+                            if (!it.isDone()) {
+                                int type = it.currentSegment(coords);
+                                if (type == PathIterator.SEG_MOVETO) {
+                                    buffer.append("[").append(gen.formatDouble(coords[0])).append(" ").append(gen.formatDouble(coords[1]));
+                                    it.next();
+                                } else {
+                                    return super.processShape(s);
+                                }
+                            } else {
+                                return super.processShape(s);
+                            }
+
+                            for (; !it.isDone(); it.next()) {
+                                int type = it.currentSegment(coords);
+                                if (type == PathIterator.SEG_LINETO) {
+                                    buffer.append(" ").append(gen.formatDouble(coords[0])).append(" ").append(gen.formatDouble(coords[1]));
+                                } else {
+                                    return super.processShape(s);
+                                }
+                            }
+                            buffer.append("] DP");
+                            gen.writeln(buffer.toString());
+                            return PathIterator.WIND_NON_ZERO;
                         }
 
                         return super.processShape(s);
@@ -869,6 +898,7 @@ public class Export {
                         gen.writeln("/ReEncode { /MyEncoding exch def exch findfont dup length dict begin {def} forall /Encoding MyEncoding def currentdict end definefont } def");
                         gen.writeln("/Helvetica /HelveticaLatin1 ISOLatin1Encoding ReEncode");
                         gen.writeln("/Times /TimesLatin1 ISOLatin1Encoding ReEncode");
+                        gen.writeln("/DP {/Points exch def Points 0 get Points 1 get M 2 2 Points length 1 sub {/i exch def Points i get Points i 1 add get L}for} def");
                     }
 
                     @Override
@@ -935,6 +965,33 @@ public class Export {
 
                                 return PathIterator.WIND_NON_ZERO;
                             }
+                        } else if (s instanceof Path2D) {
+                            StringBuilder buffer = new StringBuilder();
+                            double[] coords = new double[2];
+                            PathIterator it = ((Path2D) s).getPathIterator(new AffineTransform());
+                            if (!it.isDone()) {
+                                int type = it.currentSegment(coords);
+                                if (type == PathIterator.SEG_MOVETO) {
+                                    buffer.append("[").append(gen.formatDouble(coords[0])).append(" ").append(gen.formatDouble(coords[1]));
+                                    it.next();
+                                } else {
+                                    return super.processShape(s);
+                                }
+                            } else {
+                                return super.processShape(s);
+                            }
+
+                            for (; !it.isDone(); it.next()) {
+                                int type = it.currentSegment(coords);
+                                if (type == PathIterator.SEG_LINETO) {
+                                    buffer.append(" ").append(gen.formatDouble(coords[0])).append(" ").append(gen.formatDouble(coords[1]));
+                                } else {
+                                    return super.processShape(s);
+                                }
+                            }
+                            buffer.append("] DP");
+                            gen.writeln(buffer.toString());
+                            return PathIterator.WIND_NON_ZERO;
                         }
 
                         return super.processShape(s);
