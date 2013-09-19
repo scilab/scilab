@@ -78,7 +78,7 @@ select mod
       for slv=1:siz-1			// collect in any order
 //	MPI_Recv(lsum,MPI_ANY_SOURCE,TAG,MPI_COMM_WORLD);
 		MPI_Recv(lsum,TAG);
-	    Sum += lsum;			// and accumulate
+	    Sum = Sum + lsum;			// and accumulate
       end				// order: slv or MPI_ANY_SOURCE
     end
   case 'r',		Sum=0;		// reduction master = rank 0 @ WORLD
