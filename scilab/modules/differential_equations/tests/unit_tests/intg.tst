@@ -10,6 +10,7 @@
 
 // Run with test_run('differential_equations','intg',['no_check_error_output'])
 
+ilib_verbose(0);
 // Function written in the Scilab language
 function y = f(x), y = x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)), endfunction
 exact = -2.5432596188;
@@ -33,7 +34,7 @@ F=['      double precision function ffun(x)'
 mputl(F, fullfile(TMPDIR, 'ffun.f'));
 
 // compile the function
-l = ilib_for_link('ffun', fullfile(TMPDIR, 'ffun.f'), [], 'f');
+l = ilib_for_link('ffun', 'ffun.f', [], 'f');
 
 // add the function to the working environment
 link(l, 'ffun', 'f');
@@ -55,7 +56,7 @@ C=['#include <math.h>'
 mputl(C, fullfile(TMPDIR, 'cfun.c'));
 
 // compile the function
-l = ilib_for_link('cfun', fullfile(TMPDIR, 'cfun.c'), [], 'c');
+l = ilib_for_link('cfun', 'cfun.c', [], 'c');
 
 // add the function to the working environment
 link(l, 'cfun', 'c');

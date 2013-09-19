@@ -9,6 +9,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 // =============================================================================
 
+//<-- ENGLISH IMPOSED -->
+
 //C-----------------------------------------------------------------------
 //C First problem.
 //C The initial value problem is..
