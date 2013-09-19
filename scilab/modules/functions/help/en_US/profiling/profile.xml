@@ -2,12 +2,13 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
+ * Copyright (C) 2013 - Samuel GOUGEON : Specify unit of CPU time. Presentation of results c improved
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="profile">
@@ -31,7 +32,25 @@
             <varlistentry>
                 <term>c</term>
                 <listitem>
-                    <para>a nx3 matrix containig the execution profiles</para>
+                    <para>a nx3 matrix containing the execution profiles
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <literal>c(i,1)</literal> : number of times the line #i of the function has been run
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>c(i,2)</literal> : cumulated CPU time [in seconds] spent to run the line #i
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>c(i,3)</literal> : Measurement of the interpreter effort to execute once the line #i [arbitrary unit]
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -44,7 +63,7 @@
         </para>
         <para>
             For such function, When such a function is executed the systems counts
-            how many time each line is executed and how may cpu time is spend for
+            how many time each line is executed and how may cpu time is spend [in s]for
             each line execution. These data are stored within the function data
             structure.  The profile function allows to extract these data and
             return them in the two first columns of <literal>c</literal>. The <literal>c</literal> third

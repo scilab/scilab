@@ -1300,7 +1300,13 @@ L200:
     /*     profile */
     ++*istk(1 + lc);
     t = clock();
-    *istk(2 + lc) = *istk(2 + lc) + t - tref;
+    // clock() value on Windows is 1000 times less than on other OS
+    // profiling result unit of ms
+#ifdef _MSC_VER
+    *istk(2 + lc) = *istk(2 + lc) + (t - tref)*1000;
+#else
+    *istk(2 + lc) = *istk(2 + lc) + (t - tref);
+#endif
     tref = t;
     lc += 3;
     goto L10;
