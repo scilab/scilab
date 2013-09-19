@@ -29,10 +29,14 @@
         <para>
             <literal>p*U = [0 ... 0 pgcd]</literal>
         </para>
+        <para>
+            Le PGCD d'une matrice <literal>p</literal> de réels peut s'obtenir en la convertissant en polynôme
+            avant d'appeler <literal>gcd</literal>, grâce à la commande <literal>p = inv_coeff(p, 0)</literal>.
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //cas des polynômes
 s=poly(0,'s');
 p=[s,s*(s+1)^2,2*s^2+s^3];

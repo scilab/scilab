@@ -6,14 +6,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*------------------------------------------------------------------------*/
 #ifndef __QSORT_H__
 #define __QSORT_H__
 
-void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp) (), int (*swapcode) (), int (*swapcodeind) ());
+void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int flag2, int (*cmp) (), int (*swapcode) (), int (*swapcodeind) ());
 int swapcodeint(char * parmi, char * parmj, int n, int incr);
 
 #define swapcodeind swapcodeint

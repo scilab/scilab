@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-06-25 16:31+0100\n"
+"Revision-Date: 2013-09-13 12:32+0100\n"
 
 # File: sci_gateway/c/sci_buildouttb.c, line: 95
 #, c-format
@@ -628,28 +628,28 @@ msgid "%s: error %d. A type of a scilab object has changed.\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 509
+# File: src/c/scicos.c, line: 535
 msgid "type 1 function not allowed for scilab blocks\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 514
+# File: src/c/scicos.c, line: 540
 msgid "type 2 function not allowed for scilab blocks\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 537
-# File: src/c/scicos.c, line: 3883
+# File: src/c/scicos.c, line: 563
+# File: src/c/scicos.c, line: 3953
 msgid "Undefined Function type\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 557
+# File: src/c/scicos.c, line: 583
 msgid "Function not found\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 931
+# File: src/c/scicos.c, line: 959
 #, c-format
 msgid ""
 "\n"
@@ -658,7 +658,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 940
+# File: src/c/scicos.c, line: 968
 #, c-format
 msgid ""
 "\n"
@@ -667,7 +667,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 948
+# File: src/c/scicos.c, line: 976
 #, c-format
 msgid ""
 "\n"
@@ -676,19 +676,19 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1768
+# File: src/c/scicos.c, line: 1800
 #, c-format
 msgid "****SUNDIALS.Cvode from: %f to %f hot= %d  \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1834
+# File: src/c/scicos.c, line: 1866
 #, c-format
 msgid "****SUNDIALS.Cvode reached: %f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1843
+# File: src/c/scicos.c, line: 1875
 #, c-format
 msgid ""
 "****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
@@ -696,59 +696,60 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 1886
-# File: src/c/scicos.c, line: 3224
+# File: src/c/scicos.c, line: 1918
+# File: src/c/scicos.c, line: 3294
 #, c-format
 msgid "root found at t=: %f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2008
-# File: src/c/scicos.c, line: 3390
+# File: src/c/scicos.c, line: 2040
+# File: src/c/scicos.c, line: 3460
 #, c-format
 msgid "Event: %d activated at t=%f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2013
+# File: src/c/scicos.c, line: 2045
 #, c-format
 msgid "mode of block %d=%d, "
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2016
+# File: src/c/scicos.c, line: 2048
 msgid "**mod**\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 2022
+# File: src/c/scicos.c, line: 2054
+# File: src/c/scicos.c, line: 3466
 msgid "End of activation\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3013
+# File: src/c/scicos.c, line: 3095
 msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3017
+# File: src/c/scicos.c, line: 3099
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3112
+# File: src/c/scicos.c, line: 3182
 #, c-format
 msgid "****daskr from: %f to %f hot= %d  \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3165
+# File: src/c/scicos.c, line: 3235
 #, c-format
 msgid "****SUNDIALS.Ida reached: %f\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3174
+# File: src/c/scicos.c, line: 3244
 #, c-format
 msgid ""
 "**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and "
@@ -756,47 +757,42 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3396
-msgid "End of activation"
-msgstr ""
-
-#
-# File: src/c/scicos.c, line: 3497
+# File: src/c/scicos.c, line: 3567
 #, c-format
 msgid "block %d is called "
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3498
+# File: src/c/scicos.c, line: 3568
 #, c-format
 msgid "with flag %d "
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3499
+# File: src/c/scicos.c, line: 3569
 #, c-format
 msgid "at time %f \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3505
+# File: src/c/scicos.c, line: 3575
 msgid "Entering the block \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3921
+# File: src/c/scicos.c, line: 3991
 #, c-format
 msgid "Leaving block %d \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 3975
+# File: src/c/scicos.c, line: 4045
 msgid "Error in the Debug block \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4005
-# File: src/c/scicos.c, line: 4078
+# File: src/c/scicos.c, line: 4075
+# File: src/c/scicos.c, line: 4147
 #, c-format
 msgid ""
 "\n"
@@ -804,8 +800,8 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4040
-# File: src/c/scicos.c, line: 4112
+# File: src/c/scicos.c, line: 4110
+# File: src/c/scicos.c, line: 4172
 #, c-format
 msgid ""
 "\n"
@@ -813,7 +809,8 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4229
+# File: src/c/scicos.c, line: 4281
+# File: src/c/scicos.c, line: 4360
 #, c-format
 msgid ""
 "\n"
@@ -821,7 +818,52 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4273
+# File: src/c/scicos.c, line: 4326
+#, c-format
+msgid ""
+"\n"
+"Warning: The residual function #%d returns a NaN"
+msgstr ""
+
+#
+# File: src/c/scicos.c, line: 4367
+msgid ""
+"\n"
+"Error: Problem in the evaluation of a root function"
+msgstr ""
+
+#
+# File: src/c/scicos.c, line: 4412
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner evaluation function returns a NaN at index #%d."
+msgstr ""
+
+#
+# File: src/c/scicos.c, line: 4422
+msgid ""
+"\n"
+"Error: The preconditioner evaluation function failed."
+msgstr ""
+
+#
+# File: src/c/scicos.c, line: 4433
+msgid ""
+"\n"
+"Error: Failed to factor the preconditioner."
+msgstr ""
+
+#
+# File: src/c/scicos.c, line: 4456
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner application function returns a NaN at index #%d."
+msgstr ""
+
+#
+# File: src/c/scicos.c, line: 4495
 #, c-format
 msgid ""
 "\n"
@@ -829,41 +871,41 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4274
+# File: src/c/scicos.c, line: 4496
 msgid ""
 "\n"
 "         (already programmed) event. There may be an error in"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 4275
+# File: src/c/scicos.c, line: 4497
 msgid ""
 "\n"
 "         your model. Please check your model\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6233
+# File: src/c/scicos.c, line: 6457
 msgid ""
 "\n"
 " error in Jacobian"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6334
-# File: src/c/scicos.c, line: 6460
+# File: src/c/scicos.c, line: 6558
+# File: src/c/scicos.c, line: 6684
 #, c-format
 msgid "Error: Cannot find file '%s'.\n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6492
+# File: src/c/scicos.c, line: 6716
 #, c-format
 msgid "Error: cannot write to  '%s'  \n"
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6645
+# File: src/c/scicos.c, line: 6869
 #, c-format
 msgid ""
 "\n"
@@ -871,7 +913,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6781
+# File: src/c/scicos.c, line: 7005
 #, c-format
 msgid ""
 "\n"
@@ -879,7 +921,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/scicos.c, line: 6782
+# File: src/c/scicos.c, line: 7006
 msgid ""
 "\n"
 " The residual function returns NAN/Inf. \n"
@@ -902,7 +944,7 @@ msgstr ""
 
 #
 # File: macros/scicos_auto/lincos.sci, line: 107
-# File: macros/scicos_auto/scicos_simulate.sci, line: 241
+# File: macros/scicos_auto/scicos_simulate.sci, line: 243
 # File: macros/scicos_auto/steadycos.sci, line: 94
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
@@ -960,32 +1002,32 @@ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 109
+# File: macros/scicos_auto/scicos_simulate.sci, line: 110
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 115
+# File: macros/scicos_auto/scicos_simulate.sci, line: 116
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 119
-# File: macros/scicos_auto/scicos_simulate.sci, line: 123
+# File: macros/scicos_auto/scicos_simulate.sci, line: 120
+# File: macros/scicos_auto/scicos_simulate.sci, line: 124
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 127
+# File: macros/scicos_auto/scicos_simulate.sci, line: 128
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 131
+# File: macros/scicos_auto/scicos_simulate.sci, line: 132
 # File: macros/scicos_utils/block_parameter_error.sci, line: 24
 # File: macros/scicos_utils/block_parameter_error.sci, line: 27
 #, c-format
@@ -993,12 +1035,12 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 194
+# File: macros/scicos_auto/scicos_simulate.sci, line: 196
 msgid "Can't convert old diagram (problem in version)"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 235
+# File: macros/scicos_auto/scicos_simulate.sci, line: 237
 #, c-format
 msgid ""
 "Warning the variable %s does not match any context variable name\n"
@@ -1006,42 +1048,42 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 262
+# File: macros/scicos_auto/scicos_simulate.sci, line: 264
 #, c-format
 msgid "%s: Error during block parameters update.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 271
+# File: macros/scicos_auto/scicos_simulate.sci, line: 273
 msgid ""
 "Diagram has been compiled for implicit solver\n"
 "switching to implicit solver.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 276
+# File: macros/scicos_auto/scicos_simulate.sci, line: 278
 msgid ""
 "Diagram has been compiled for explicit solver\n"
 "switching to explicit solver.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 300
+# File: macros/scicos_auto/scicos_simulate.sci, line: 305
 msgid "Simulation parameters not set:"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 305
-msgid "Initialisation problem:"
+# File: macros/scicos_auto/scicos_simulate.sci, line: 310
+msgid "Initialization problem:"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 322
+# File: macros/scicos_auto/scicos_simulate.sci, line: 335
 msgid "Simulation problem: "
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 353
+# File: macros/scicos_auto/scicos_simulate.sci, line: 368
 msgid "End problem: "
 msgstr ""
 
@@ -1415,7 +1457,7 @@ msgid "Block is ignored because of undefined input(s)."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/do_compile_superblock42.sci, line: 1361
+# File: macros/scicos_scicos/do_compile_superblock42.sci, line: 1331
 msgid "Superblock should not contains any Scilab function block."
 msgstr ""
 

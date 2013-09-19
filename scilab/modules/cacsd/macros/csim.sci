@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 function [y,x]=csim(u,dt,sl,x0,tol)
@@ -54,7 +54,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     //
     [a,b,c,d]=sl(2:5);
     if degree(d)>0 then
-        error(msprintf(gettext("%s: Wrong type for argument %d: a proper system expected\n"),"csim",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A proper system expected\n"),"csim",1));
     end
     [ma,mb]=size(b);
     //
@@ -63,17 +63,17 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     //
     select type(u)
     case 10 then //input given by its type (step or impuls)
-        if mb<>1 then 
-          error(msprintf(gettext("Wrong type for argument %d: SIMO expected.\n"),"csim",1));
+        if mb<>1 then
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: A SIMO expected.\n"),"csim",1));
         end;
         if part(u,1)=="i" then
             //impulse response
             imp=1;
-            dt(dt==0)=%eps^2; 
+            dt(dt==0)=%eps^2;
         elseif part(u,1)=="s" then
             step=1
             if norm(d,1)<>0 then
-              dt(dt==0)=%eps^2; 
+                dt(dt==0)=%eps^2;
             end;
         else
             error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"csim",1,"""step"",""impuls"""))

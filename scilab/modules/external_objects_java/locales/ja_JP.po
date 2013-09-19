@@ -1,0 +1,168 @@
+# Japanese translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"PO-Revision-Date: 2012-08-24 14:18+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <ja@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 16335)\n"
+
+msgid "Exception thrown in file"
+msgstr "ファイルで例外発生"
+
+msgid "at line"
+msgstr "行"
+
+#, c-format
+msgid "Invalid environment: identifier %d is invalid"
+msgstr "無効な環境: ID %d は無効です"
+
+msgid "Invalid environment"
+msgstr "無効な環境"
+
+msgid "Cannot allocate memory"
+msgstr "メモリを確保できません"
+
+msgid "Invalid variable: cannot retrieve the data"
+msgstr "無効な変数: データを取得できません"
+
+msgid "Invalid variable: cannot create data"
+msgstr "無効な変数: データを作成できません"
+
+msgid "External Class expected"
+msgstr "外部クラスを指定してください"
+
+msgid "Incompatible External Objects"
+msgstr "互換性がない外部オブジェクト"
+
+msgid "External object expected"
+msgstr "外部オブジェクトを指定してください"
+
+msgid "Unable to wrap. Unmanaged datatype ?"
+msgstr "ラップできません. アンマネージドなデータ型ですか?"
+
+msgid "Invalid String"
+msgstr "無効な文字列"
+
+msgid "A single string expected"
+msgstr "文字列を指定してください"
+
+msgid "A single String expected"
+msgstr "文字列を指定してください"
+
+#, c-format
+msgid "Wrong type for argument #%d: A string expected."
+msgstr "引数 #%d の型が間違っています:  文字列を指定してください"
+
+#, c-format
+msgid "Cannot open the given file %s."
+msgstr "指定したファイル %s をオープンできません."
+
+#, c-format
+msgid "Wrong number of arguments : more than %d expected."
+msgstr "引数の数が間違っています:  %d より大きな数を指定してください"
+
+#, c-format
+msgid "A strictly positive integer is expected at position %d."
+msgstr "正の整数を位置 %d に指定してください."
+
+msgid "Invalid name"
+msgstr "名前が無効です"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A String expected."
+msgstr "引数 #%d の型が間違っています:  文字列を指定してください"
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr "引数 #%d の次元が間違っています: 行または列を指定してください."
+
+msgid "The argument must be 'rc' or 'cr'."
+msgstr "引数には 'rc' または 'cc' を指定してください."
+
+#, c-format
+msgid "Invalid dimensions for input argument #%d: A single string expected."
+msgstr "入力引数 #%d の次元が間違っています: 文字列を指定してください."
+
+msgid "Invalid dimensions: arguments #2 and #3 must have the same."
+msgstr "次元が間違っています: 引数 #2 および #3 は同じ次元としてください."
+
+msgid "Invalid variable: cannot create the data"
+msgstr "変数が無効です: データを作成できません"
+
+#, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr "入力引数 #%d の型が間違っています: 外部オブジェクトを指定してください."
+
+msgid "Incompatible External Object"
+msgstr "外部オブジェクトの互換性がありません"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A string expected."
+msgstr "入力引数 #%d の型が間違っています: 文字列を指定してください."
+
+#, c-format
+msgid "Wrong type for input argument #%d: A boolean expected."
+msgstr "入力引数 #%d の型が間違っています: 論理値を指定してください."
+
+#, c-format
+msgid "Wrong type for input argument #%d: A single boolean expected."
+msgstr "入力引数 #%d の型が間違っています: 論理値を指定してください."
+
+#, c-format
+msgid "Wrong type for input argument #%d: An External Object expected."
+msgstr "入力引数 #%d の型が間違っています:外部オブジェクトを指定してください."
+
+msgid "Cannot create the identifier"
+msgstr "IDを作成できません"
+
+msgid "The class name cannot end with a dot."
+msgstr "クラス名の末尾をドットとすることはできません."
+
+msgid "The class name cannot start with a dot."
+msgstr "クラス名の先頭をドットとすることはできません"
+
+msgid "A variable with this name is already existing"
+msgstr "この名前の変数は既に存在します"
+
+msgid "Bad number of output arguments"
+msgstr "出力引数の数が間違っています"
+
+msgid "Wrong number of arguments : more than 2 arguments expected"
+msgstr "引数の数が間違っています: 2個より多い引数を指定してください"
+
+msgid "Cannot invoke on null object"
+msgstr "ヌルオブジェクトを呼び出すことはできません"
+
+#, c-format
+msgid "Wrong type for input argument #%d: A List expected."
+msgstr "入力引数 #%d の型が間違っています: リストを指定してください"
+
+#, c-format
+msgid "Wrong type for input argument #%d: An Integer32 expected."
+msgstr "入力引数 #%d の型が間違っています: integer32を指定してください"
+
+msgid "Cannot invoke on null object."
+msgstr "ヌルオブジェクトを呼び出すことはできません"
+
+msgid "Wrong number of arguments : more than 1 argument expected"
+msgstr "引数の数が間違っています: 複数の引数を指定してください"
+
+msgid "Wrong number of arguments : more than 1 argument expected."
+msgstr "引数の数が間違っています: 複数の引数を指定してください."
+
+#, c-format
+msgid "Cannot wrap argument %d."
+msgstr "引数 %d をラップできません."
+
+msgid "Can only wrap as a reference to a named variable"
+msgstr "名前付きの変数へのリファレンスとしてラップすることのみ可能です"

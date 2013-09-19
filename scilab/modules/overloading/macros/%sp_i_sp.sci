@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function a=%sp_i_sp(i,j,b,a)
 
@@ -30,7 +30,7 @@ function a=%sp_i_sp(i,j,b,a)
             a = matrix(b,m,n)
         else
             // print an error
-            error(msprintf(_("%s: Sparse insertion case not treated.\n"),"%sp_i_sp"));
+            error(msprintf(_("%s: Sparse insertion case is not implemented.\n"),"%sp_i_sp"));
         end
     end
 endfunction

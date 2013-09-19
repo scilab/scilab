@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 // INTLINMEQ.F - Gateway function for solving Sylvester and Lyapunov matrix
@@ -224,20 +224,20 @@ int sci_linmeq(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, IP);
+        Scierror(202, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, IP);
         return 1;
     }
 
     if (Mt != 1 || Nt != 1)
     {
-        Scierror(999, _("%s: TASK must be a scalar.\n"), fname);
+        Scierror(999, _("%s: %s must be a scalar.\n"), fname, "TASK");
         return 1;
     }
 
     TASK = *ilTASK;
     if (TASK < 1 || TASK > 3)
     {
-        Scierror(999, _("%s: TASK has 1, 2 or 3 the only admissible values.\n"), fname);
+        Scierror(999, _("%s: Wrong value for %s: %d, %d or %d expected.\n"), fname, "TRANS", 1, 2, 3);
         return 1;
     }
 
@@ -270,14 +270,14 @@ int sci_linmeq(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, IP);
+            Scierror(202, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, IP);
             return 1;
         }
 
 
         if (Mt != 1 || Nt != 1)
         {
-            Scierror(999, _("%s: TRANS must be a scalar.\n"), fname);
+            Scierror(999, _("%s: %s must be a scalar.\n"), fname, "TRANS");
             return 1;
         }
 
@@ -286,12 +286,12 @@ int sci_linmeq(char *fname, unsigned long fname_len)
 
     if (TASK == 1 && (TRANS < 0 || TRANS > 3))
     {
-        Scierror(999, _("%s: TRANS has 0, 1, 2 or 3 the only admissible values.\n"), fname);
+        Scierror(999, _("%s: Wrong value for %s: %d, %d, %d or %d expected.\n"), fname, "TRANS", 0, 1, 2, 3);
         return 1;
     }
     else if (TASK != 1 && (TRANS < 0 || TRANS > 1))
     {
-        Scierror(999, _("%s: TRANS has 0 or 1 the only admissible values.\n"), fname);
+        Scierror(999, _("%s: Wrong value for %s: %d, or %d expected.\n"), fname, "TRANS", 0, 1);
         return 1;
     }
 
@@ -313,13 +313,13 @@ int sci_linmeq(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, IP + 1);
+                Scierror(202, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, IP + 1);
                 return 1;
             }
 
             if (Mt != 1 || Nt != 1)
             {
-                Scierror(999, _("%s: SCHUR must be a scalar.\n"), fname);
+                Scierror(999, _("%s: %s must be a scalar.\n"), fname, "SCHUR");
                 return 1;
             }
 
@@ -327,7 +327,7 @@ int sci_linmeq(char *fname, unsigned long fname_len)
 
             if (NSCHUR < 1 || NSCHUR > 2)
             {
-                Scierror(999, _("%s: SCHUR has 1 or 2 the only admissible values.\n"), fname);
+                Scierror(999, _("%s: Wrong value for %s: %d or %d expected.\n"), fname, "SCHUR", 1, 2);
                 return 1;
             }
         }
@@ -1217,17 +1217,17 @@ int sci_linmeq(char *fname, unsigned long fname_len)
 
     if (INFO != 0 && PERTRB == FALSE)
     {
-        Scierror(999, _("%s: Warning: the right hand sides were scaled by %lf to avoid overflow."), fname, TEMP);
+        Scierror(999, _("%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"), fname, TEMP);
         return 1;
     }
     else if (SCALE != ONE)
     {
-        sciprint(_("%s: Warning: the right hand sides were scaled by %lf to avoid overflow."), fname, TEMP);
+        sciprint(_("%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"), fname, TEMP);
     }
 
     if (PERTRB)
     {
-        sciprint(_("%s: Warning: the equation is (almost) singular. Perturbed values have been used."), fname);
+        sciprint(_("%s: Warning: the equation is (almost) singular. Perturbed values have been used.\n"), fname);
     }
 
     return 0;

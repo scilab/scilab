@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,6 +30,7 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.graphic_objects.DataLoader;
 
 public class SwingScilabCanvasImpl {
 
@@ -40,6 +41,15 @@ public class SwingScilabCanvasImpl {
     static boolean testCanvasAtStartup = false;
 
     static {
+        try {
+            GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities(GLProfile.getDefault()));
+            tmpCanvas.getContext().makeCurrent();
+            GL gl = tmpCanvas.getGL();
+            DataLoader.setABGRExt(gl.isExtensionAvailable("GL_EXT_abgr") ? 1 : 0);
+            tmpCanvas.getContext().release();
+            tmpCanvas = null;
+        } catch (Exception e) { }
+
         if (testCanvasAtStartup && OS.get() != OS.MAC) {
             long lastTime = Calendar.getInstance().getTimeInMillis();
 

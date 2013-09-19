@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
@@ -50,7 +50,7 @@ public abstract class AbstractDrawable3DObject {
      */
     public AbstractDrawable3DObject(Vector3d[] vertices, Color[] colors) throws InvalidPolygonException {
         if (vertices == null || vertices.length == 0) {
-            throw new InvalidPolygonException("Invalid 3D Object: no vertices was givenl");
+            throw new InvalidPolygonException("Invalid 3D Object: no vertices was given");
         }
         this.vertices = vertices;
         this.colors = colors;

@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [x0,kerA]=linsolve(A,b,x0)
     %tol=1.D-10;
@@ -21,7 +21,7 @@ function [x0,kerA]=linsolve(A,b,x0)
         W=W(:,1:na-rk);last=W(na,:);
         [W2,rk1]=colcomp(last);
         if rk1==0 then
-            warning(gettext("Conflicting linear constraints!"));
+            warning(gettext("Conflicting linear constraints."));
             x0=[];kerA=[];return;
         end
         W=W*W2;

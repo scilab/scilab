@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-24 14:43+0000\n"
+"PO-Revision-Date: 2013-07-28 15:19+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16753)\n"
 "Language: ja\n"
 
 #, c-format
@@ -94,8 +94,8 @@ msgid "%s: Wrong type for input argument #%d: A double matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: double の行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrogn size for input argument #%d: five row vector expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています:  5行のベクトルを指定してください.\n"
+msgid "%s: Wrong size for input argument #%d: Five row vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 5行のベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
@@ -415,8 +415,8 @@ msgstr "ランク選択が無効です."
 msgid "Invalid selection."
 msgstr "選択部が無効です."
 
-msgid "Cannot get the current errors stack"
-msgstr "現在のエラースタックを取得できません"
+msgid "Cannot get the current stack of errors."
+msgstr "エラー時のスタックを取得できませんでした."
 
 msgid "HDF5 description"
 msgstr "HDF5の説明"
@@ -663,7 +663,7 @@ msgid "Cannot create the soft link: %s."
 msgstr "ソフトリンクを作成できませんでした: %s."
 
 #, c-format
-msgid "Cannot create a hard link to an external object: %s."
+msgid "Cannot create a hard link to the external object: %s."
 msgstr "外部オブジェクトへのハードリンクを作成できませんでした: %s."
 
 #, c-format

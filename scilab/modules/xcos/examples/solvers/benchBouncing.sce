@@ -7,20 +7,18 @@
 loadScicos();
 loadXcosLibs();
 importXcosDiagram("SCI/modules/xcos/demos/ModelicaBlocks/BouncingBall_Modelica.zcos");
-scs_m.objs(3).graphics.exprs.paramv(1) = 0.15; // Gravity
-scs_m.objs(3).graphics.exprs.paramv(2) = 0.99; // Floor stickiness
-Info = scicos_simulate(scs_m, "nw");
-tf = 2000; // Final time
-tolerances = scs_m.props.tol;
-tolerances(1) = 10^-6; // abstol
-tolerances(2) = 10^-6; // reltol
-[%tcur, %cpr, alreadyran, needstart, needcompile, %state0] = Info(:);
-
 // Redefining messagebox() to avoid popup
 function messagebox(msg, title)
     disp(title);
     disp(msg);
 endfunction
+
+scs_m.objs(3).graphics.exprs.paramv(1) = 0.15; // Gravity
+scs_m.objs(3).graphics.exprs.paramv(2) = 0.99; // Floor stickiness
+Info = scicos_simulate(scs_m, "nw");
+tf = 2000; // Final time
+tolerances = scs_m.props.tol;
+[%tcur, %cpr, alreadyran, needstart, needcompile, %state0] = Info(:);
 
 solverName = ["IDA" "DDaskr - Newton" "DDaskr - GMRes"];
 
@@ -44,4 +42,3 @@ for solver = 0:2
 
 end
 disp("--------------------------------");
-

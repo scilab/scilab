@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16753)\n"
 "Language: ru\n"
 
 #, c-format
@@ -490,9 +490,6 @@ msgstr ""
 "**** SUNDIALS.Ida: слишком много работы за время=%g (фиксированный диапазон, "
 "смените RTOL и ATOL)\n"
 
-msgid "End of activation"
-msgstr "Конец активации"
-
 #, c-format
 msgid "block %d is called "
 msgstr "вызван блок %d "
@@ -538,6 +535,39 @@ msgid ""
 msgstr ""
 "\n"
 "Предупреждение: Функция пересечения нуля №%d возвращает NaN"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The residual function #%d returns a NaN"
+msgstr ""
+
+msgid ""
+"\n"
+"Error: Problem in the evaluation of a root function"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner evaluation function returns a NaN at index #%d."
+msgstr ""
+
+msgid ""
+"\n"
+"Error: The preconditioner evaluation function failed."
+msgstr ""
+
+msgid ""
+"\n"
+"Error: Failed to factor the preconditioner."
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner application function returns a NaN at index #%d."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -602,10 +632,6 @@ msgstr ""
 " Функция вычета возвращает NAN/Inf. \n"
 " Пожалуйста, проверьте модель: возможно, некоторые\n"
 " функции вызваны с некорректными параметрами."
-
-#, c-format
-msgid "Slider t=%10.3f, flag=%d \n"
-msgstr "Ползунок t=%10.3f, флаг=%d \n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -703,8 +729,8 @@ msgstr ""
 msgid "Simulation parameters not set:"
 msgstr "Не установлены параметры моделирования:"
 
-msgid "Initialisation problem:"
-msgstr "Проблема инициализации:"
+msgid "Initialization problem:"
+msgstr ""
 
 msgid "Simulation problem: "
 msgstr "Проблема моделирования: "
@@ -778,8 +804,7 @@ msgstr ""
 msgid ""
 "No continuous-time state. Thresholds are ignored; this \n"
 "may be OK if you don't generate external events with them.\n"
-"If you want to reactivate the thresholds, the you need\n"
-"\n"
+"If you want to reactivate the thresholds, then you need\n"
 "to include a block with continuous-time state in your diagram.\n"
 "   You can for example include DUMMY CLSS block (linear palette)."
 msgstr ""
@@ -953,7 +978,7 @@ msgstr "Проблема вычисления: значение не обнов�
 msgid "Evaluation problem: Unknown block"
 msgstr "Проблема выполнения: Неизвестный блок"
 
-msgid "Can not loaded dynamic library: "
+msgid "Cannot load dynamic library: "
 msgstr ""
 
 msgid "Can't include "

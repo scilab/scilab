@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -34,7 +34,7 @@ jmp_buf jmp_env;
  ** Watch out the positions are crutial !!!
  ** @TODO : Make this less crappy...
  **/
-#define INTERFACES_MAX 71
+#define INTERFACES_MAX 73
 static OpTab Interfaces[INTERFACES_MAX] =
 {
     /* 01  */ {gw_user}, /* free position may be used */
@@ -107,7 +107,9 @@ static OpTab Interfaces[INTERFACES_MAX] =
     /* 68  */ {gw_dynamic_xml},
     /* 69  */ {gw_dynamic_preferences},
     /* 70  */ {gw_dynamic_graphic_objects},
-    /* 71  */ {gw_dynamic_external_objects}
+    /* 71  */ {gw_dynamic_external_objects},
+    /* 72  */ {gw_dynamic_external_objects_java},
+    /* 73  */ {gw_dynamic_mpi}
 };
 /*--------------------------------------------------------------------------*/
 /**

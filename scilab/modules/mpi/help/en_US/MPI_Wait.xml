@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
+ * 
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Wait" xml:lang="en">
+    <refnamediv>
+        <refname>MPI_Wait</refname>
+        <refpurpose>Waits for an MPI request to complete </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>res = MPI_Wait(request)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>request</term>
+                <listitem>
+                    <para>The MPI request.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>The variable sent by MPI_Isend and matching the MPI Request declared by MPI_Irecv</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>TODO.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+
+
+                MPI_Init();
+                rnk =    MPI_Comm_rank();
+                sizeNodes =    MPI_Comm_size();
+
+                SLV = rnk;
+                Master = ~ SLV;
+
+                assert_checkequal(MPI_Comm_size(), 2);
+
+                if Master
+                   for slaveId = 1:sizeNodes-1
+                     value = slaveId*2
+                     MPI_Isend(value, slaveId, 42);
+                   end
+                else
+                    rankSource=0;
+                    tag=0;
+                    MPI_Irecv(rankSource, tag, 42); // MPI_Irecv does not return any value
+                    value=MPI_Wait(42) // the value will be returned by MPI_Wait
+                    assert_checkequal(value,2);
+                end
+
+                MPI_Finalize();
+                exit()
+
+           ]]> </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="MPI_Irecv">MPI_Irecv</link>
+            </member>
+            <member>
+                <link linkend="MPI_Isend">MPI_Isend</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

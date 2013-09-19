@@ -8,7 +8,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
 dnl Process this file with autoconf to produce a configure script.
@@ -66,6 +66,7 @@ AC_CONFIG_HEADERS([modules/core/includes/machine.h])
 # strip executable
 AM_PROG_INSTALL_STRIP
 AC_PROG_LN_S
+AM_PROG_AR
 
 AC_CUSTOM_LARGE_FILE
 
@@ -80,7 +81,7 @@ AC_LIB_RPATH
 # if the version is different
 AM_MAINTAINER_MODE
 
-AM_INIT_AUTOMAKE([-Wall foreign]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
+AM_INIT_AUTOMAKE([-Wall foreign serial-tests]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
 
 AC_CANONICAL_HOST
 
@@ -134,11 +135,15 @@ AC_ARG_ENABLE(compilation-tests,
 AC_ARG_WITH(gui,
     AC_HELP_STRING([--without-gui],[Disable the Scilab Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
 
-AC_ARG_ENABLE(build-swig,
-    AC_HELP_STRING([--enable-build-swig],[Regenerate Java => C wrappers produces by Swig (A Java Development Kit (JDK) is mandatory for this option)]))
+AC_ARG_WITH(build-swig,
+    AC_HELP_STRING([--enable-build-swig=path],[Regenerate Java => C and Scilab => C wrappers produces by Swig]),
+    [with_build_swig=$withval],
+	[with_build_swig=no]
+	)
+
 
 AC_ARG_ENABLE(build-giws,
-    AC_HELP_STRING([--enable-build-giws],[Regenerate C/C++ => Java wrappers produces by Giws (A Java Development Kit (JDK) is mandatory for this option)]))
+    AC_HELP_STRING([--enable-build-giws],[Regenerate C/C++ => Java wrappers produces by Giws]))
 
 
 ################################################
@@ -154,7 +159,7 @@ AC_PROG_GREP
 
 AC_ARG_WITH(fink_prefix,
 AC_HELP_STRING([--with-fink-prefix],[Provide a fink prefix. Default: /sw/ ]))
-# Need MacosX Version to specify some path.                                  
+# Need MacosX Version to specify some path.
 case "$host_os" in
      *Darwin* | *darwin*)
      	      AC_GET_MACOSX_VERSION
@@ -534,14 +539,8 @@ case "$CXX" in
             DEBUG_CXXFLAGS="-DNDEBUG"
         fi
         COMPILER_CXXFLAGS="-fno-stack-protector " # bug 3131
-        COMPILER_LDFLAGS="-lstdc++"
     ;;
 
-    clang-* | clang)
-        # clang linker expect an explict declaration
-        # until the http://libcxx.llvm.org/ release, we select the GNU one.
-        COMPILER_LDFLAGS="-lstdc++"
-    ;;
 esac
 
 #### 64 bits detection
@@ -825,6 +824,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
         JAVA_HOME=$ac_java_jvm_dir
         JAVA_VERSION=$ac_java_jvm_version
 #     AC_JAVA_TOOLS
+
         AC_JAVA_JNI_INCLUDE
         JAVA_JNI_INCLUDE=$ac_java_jvm_jni_include_flags
 
@@ -860,7 +860,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                    JGRAPHX=$PACKAGE_JAR_FILE
                    AC_SUBST(JGRAPHX)
 
-                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.8.0.0],[mxGraph.VERSION],[],[])
+                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[2.0.0.1],[mxGraph.VERSION],[],[])
 
                 fi
 
@@ -885,7 +885,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.3],[Utilities.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.4],[Utilities.VERSION])
 
                 # Swing look&feel implementations
                 AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
@@ -1107,11 +1107,13 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
     fi
     AC_SUBST(JAVAC_DEBUG)
 
-    if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
+    if test "$with_build_swig" != no -a "$with_build_swig" != ""; then
         SWIG_PROG()
         SWIG_ENABLE_JAVA()
+        SWIG_ENABLE_SCILAB()
         AC_SUBST(SWIG_BIN)
         AC_SUBST(SWIG_JAVA)
+        AC_SUBST(SWIG_SCILAB)
 
     fi
 
@@ -1134,7 +1136,7 @@ AC_SUBST(JAVA_ENABLE)
 AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
-AM_CONDITIONAL(SWIG, test "$enable_build_swig" != no -a "$enable_build_swig" != "")
+AM_CONDITIONAL(SWIG, test "$with_build_swig" != no -a "$with_build_swig" != "")
 AM_CONDITIONAL(GIWS, test "$enable_build_giws" != no  -a "$enable_build_giws" != "")
 
 ##############################################################
@@ -1356,15 +1358,22 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 ## MPI
 #################
 
-# Not in Scilab 5.0
-#AC_ARG_WITH(mpi,
-#    [  --with-mpi               compile with MPI library])
-#
-#if test "$with_mpi" = yes; then
-#   AC_OPENMPI()
-#   # We will have to detect other implementation of OpenMPI
-#fi
-#AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
+# Disable by default the build of MPI:
+# * It is hard to package
+# * People are administrating cluster know about rebuilding packages
+# * They use their own MPI library
+AC_ARG_WITH(mpi,
+    AC_HELP_STRING([--with-mpi],[compile with MPI library]))
+
+MPI_ENABLE=no
+if test "$with_mpi" == yes; then
+   AC_OPENMPI()
+   # We will have to detect other implementation of OpenMPI
+   MPI_ENABLE=yes
+fi
+AC_SUBST(MPI_ENABLE)
+
+AM_CONDITIONAL(MPI, test "$with_mpi" == yes)
 
 #################
 ## OpenMP
@@ -1740,6 +1749,8 @@ LT_PREREQ([2.2.7])
 AC_PROG_LIBTOOL([shared dlopen])
 AM_PROG_LIBTOOL
 
+# Eliminate -lstdc++ addition to postdeps for cross compiles.
+postdeps_CXX=`echo " $postdeps_CXX " | sed 's, -lstdc++ ,,g'`
 
 # Avoid to link all the dep from others libraries (*.la included by LIBADD)
 link_all_deplibs=no
@@ -1808,6 +1819,13 @@ AH_BOTTOM([
 # Define the standard extension of a dynamic library
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
 
+
+#########
+## Make sure that the libstdc++ and libgcc can be compiled as static
+#########
+
+AC_CHECK_STDCPP_STATIC()
+
 #################
 ## stop on warning
 #################
@@ -1873,6 +1891,7 @@ modules/graphic_objects/Makefile
 modules/renderer/Makefile
 modules/action_binding/Makefile
 modules/gui/Makefile
+modules/mpi/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
@@ -1911,6 +1930,7 @@ modules/history_browser/Makefile
 modules/preferences/Makefile
 modules/xml/Makefile
 modules/external_objects/Makefile
+modules/external_objects_java/Makefile
 modules/Makefile
 Makefile
 scilab.pc
@@ -2095,6 +2115,17 @@ echo "  LAPACK LIBS ........... = $LAPACK_LIBS"
 echo "  LAPACK TYPE ........... = $LAPACK_TYPE"
 echo "  ARPACK LIBS ........... = $ARPACK_LIBS"
 echo ""
+
+
+if test "$with_mpi" == yes; then
+   echo "OpenMPI Configuration:"
+   echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
+   echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
+   echo "OpenMPI C++ Compiler ... = $OPENMPI_CXX"
+   echo "OpenMPI F77 Compiler ... = $MPIF77"
+else
+   echo "Not using MPI"
+fi
 
 echo ""
 if test $BUILD_LOCALIZATION_ENABLE != no; then

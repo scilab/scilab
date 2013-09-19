@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-18 03:18+0000\n"
+"PO-Revision-Date: 2013-07-28 15:18+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16753)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -357,16 +357,9 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています:  2番目の要素には mlist を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Label: A string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています:  文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Icon: A string expected.\n"
-msgstr "%s: 入力引数 #%d: Icon の型が間違っています:  文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: callback: A string expected.\n"
-msgstr "%s: 入力引数 #%d: callback  の型が間違っています:  文字列を指定してください.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: A string expected.\n"
+msgstr "%1$s: 入力引数 #%3$d の要素 %2$d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Error in the tree parsing.\n"
@@ -962,6 +955,12 @@ msgstr "デスクトップテキストフォント"
 msgid "Custom:"
 msgstr "カスタム："
 
+msgid "LaTeX preview"
+msgstr "LaTeXプレビュー"
+
+msgid "LaTeX font size:"
+msgstr "LaTeXフォントの大きさ:"
+
 msgid "Web"
 msgstr "Web"
 
@@ -1193,7 +1192,6 @@ msgstr "バックグランド・コンソール..."
 msgid "No print service found."
 msgstr "印刷サービスが見つかりません."
 
-#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1202,7 +1200,6 @@ msgstr ""
 "警告: 設定ファイルの制限のため, Scilab は uicontrolとグラフィックスが利用できないモードに変更されました.詳細な情報については %s "
 "と入力ください."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "いくつかのケースでは, %s は問題を修正します"
 
@@ -1388,7 +1385,6 @@ msgstr "保存して実行"
 msgid "Empty tab"
 msgstr "空のタブ"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1396,11 +1392,9 @@ msgstr ""
 "uuid %s のタブは回復できません.\n"
 "前のメッセージを指定し,ファイル %s を付けてバグを報告してください."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "%s を閉じても良ろしいですか?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "%s と %s を閉じても宜しいですか?"
 
@@ -1455,7 +1449,6 @@ msgstr "PNG画像ファイル"
 msgid "All RTF (Rich Text Format) files"
 msgstr "RTF (Rich Text Format)ファイル"
 
-#, c-format
 msgid "All %s files"
 msgstr "全ての %s ファイル"
 
@@ -1759,20 +1752,21 @@ msgid ""
 msgstr "%s に指定された回答は間違っています: %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: ツリーを指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: uitreeを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: ツリーを指定してください.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgstr "%1$s: 入力引数 #%3$d の要素 %2$d の型が間違っています: uitree を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはツリーを指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: String or uitree expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはuitreeを指定してください.\n"
 
 #, c-format
 msgid "%s: Invalid position '%s'.\n"
@@ -1793,10 +1787,6 @@ msgstr "%s: 一致するノードがありません。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: ツリーまたは文字列を指定してください.\n"
 
 #, c-format
 msgid ""

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -184,12 +184,14 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                         nav.update((ScilabDocument) getDocument());
                     }
                 }
-                ((ScilabCaret) getCaret()).setMustAdjustVisibility(true);
+                setMustAdjustVisibility(true);
             }
 
             public void focusLost(FocusEvent e) {
                 ((ScilabDocument) getDocument()).setFocused(false);
-                ((ScilabCaret) getCaret()).setMustAdjustVisibility(false);
+                if (e.getOppositeComponent() == getOtherPaneInSplit()) {
+                    setMustAdjustVisibility(false);
+                }
             }
         });
 
@@ -248,7 +250,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                             int start = e.getStart();
                             int end = start + e.getLength();
                             String exp = ((ScilabDocument) getDocument()).getText(start, e.getLength());
-                            int height = edComponent.getScrollPane().getHeight() + edComponent.getScrollPane().getVerticalScrollBar().getValue();
+                            int height = getScrollPane().getHeight() + getScrollPane().getVerticalScrollBar().getValue();
                             ScilabLaTeXViewer.displayExpression(ScilabEditorPane.this, height, exp, start, end);
                         } catch (BadLocationException ex) { }
                     } else {
@@ -788,6 +790,14 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
     }
 
+    public void setMustAdjustVisibility(boolean mustAdjustVisibility) {
+        ((ScilabCaret) getCaret()).setMustAdjustVisibility(mustAdjustVisibility);
+    }
+
+    public boolean getMustAdjustVisibility() {
+        return ((ScilabCaret) getCaret()).getMustAdjustVisibility();
+    }
+
     /**
      * Scroll the pane to have the line containing pos on the top of the pane
      * @param pos the position in the document
@@ -809,7 +819,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                     if (setCaret) {
                         setCaretPosition(pos);
                     }
-                    JScrollBar scrollbar = edComponent.getScrollPane().getVerticalScrollBar();
+                    JScrollBar scrollbar = getScrollPane().getVerticalScrollBar();
                     Rectangle rect = modelToView(pos);
                     if (centered) {
                         int value = scrollbar.getValue();
@@ -1432,11 +1442,20 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         return rightTextPane;
     }
 
+    public ScilabEditorPane getCurrent() {
+        if (focused == rightTextPane) {
+            return rightTextPane;
+        }
+
+        return this;
+    }
+
+
     /**
      * @return the scrollPane associated with this EditorPane
      */
-    public JScrollPane getScrollPane() {
-        return edComponent.getScrollPane();
+    public ScilabScrollPane getScrollPane() {
+        return (ScilabScrollPane) SwingUtilities.getAncestorOfClass(ScilabScrollPane.class, this);
     }
 
     /**
@@ -1616,7 +1635,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                     } catch (BadLocationException e) { }
                 }
 
-                ((ScilabScrollPane) edComponent.getScrollPane()).putMarks(marks);
+                getScrollPane().putMarks(marks);
 
                 if (centered && positions.size() != 0) {
                     scrollTextToPos(positions.get(0)[0], false, true);
@@ -1634,7 +1653,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             highlighter.removeHighlight(obj);
         }
         highlightedWords.clear();
-        ((ScilabScrollPane) edComponent.getScrollPane()).removeMarks();
+        getScrollPane().removeMarks();
     }
 
     /**
@@ -1664,7 +1683,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         doc.addDocumentListener(xln);
         doc.addDocumentListener(doc);
 
-        edComponent.getScrollPane().setRowHeaderView(xln);
+        getScrollPane().setRowHeaderView(xln);
         doc.setEditorPane(this);
 
         if (editor != null) {

@@ -129,9 +129,6 @@
     <ClCompile Include="jni\Messages_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_gateway\c\sci_dgettext.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\sci_gateway\c\sci_getdefaultlanguage.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -154,6 +151,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="jni\setdefaultlanguage_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\sci_addlocalizationdomain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

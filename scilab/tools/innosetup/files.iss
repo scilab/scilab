@@ -6,7 +6,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;-------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -51,6 +51,7 @@
 #include BinariesSourcePath + "\modules\renderer\renderer.iss"
 #include BinariesSourcePath + "\modules\graphic_export\graphic_export.iss"
 #include BinariesSourcePath + "\modules\external_objects\external_objects.iss"
+#include BinariesSourcePath + "\modules\external_objects_java\external_objects_java.iss"
 #include BinariesSourcePath + "\modules\sound\sound.iss"
 #include BinariesSourcePath + "\modules\tclsci\tclsci.iss"
 #include BinariesSourcePath + "\modules\arnoldi\arnoldi.iss"

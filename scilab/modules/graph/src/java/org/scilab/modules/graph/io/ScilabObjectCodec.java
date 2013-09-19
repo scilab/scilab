@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -138,32 +138,6 @@ public abstract class ScilabObjectCodec extends mxObjectCodec {
 
         ScilabObjectCodec scilabListCodec = new ScilabListCodec(new ScilabList(), new String[] { "scilabClass" }, null, null);
         mxCodecRegistry.register(scilabListCodec);
-    }
-
-    /**
-     * Shortcut {@link mxObjectCodec#getMethod} for performance
-     */
-    @Override
-    protected Method getMethod(Object obj, String methodname, Class[] params) {
-        Class<?> type = obj.getClass();
-        Method method = null;
-
-        try {
-            method = type.getMethod(methodname, params);
-        } catch (SecurityException e) {
-        } catch (NoSuchMethodException e) {
-        }
-
-        return method;
-    }
-
-    /**
-     * Shortcut {@link mxObjectCodec#getField} for performance
-     */
-    @Override
-    protected Field getField(Object obj, String fieldname) {
-        // all data is accessed through the methods, not directly
-        return null;
     }
 
     /**

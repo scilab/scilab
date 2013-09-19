@@ -1,0 +1,115 @@
+# Localization of the module external_objects_java
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2013-09-13 16:10+0100\n"
+
+# File: sci_gateway/cpp/sci_jconvMatrixMethod.cpp, line: 35
+#, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_jconvMatrixMethod.cpp, line: 35
+# File: sci_gateway/cpp/sci_jconvMatrixMethod.cpp, line: 36
+# File: sci_gateway/cpp/sci_jconvMatrixMethod.cpp, line: 37
+msgid "Warning"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_jconvMatrixMethod.cpp, line: 36
+#, c-format
+msgid "%s: Please see documentation for more details.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_jconvMatrixMethod.cpp, line: 37
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaEnvironment.cpp, line: 245
+msgid "Invalid operation"
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaEnvironment.cpp, line: 278
+# File: src/cpp/ScilabJavaEnvironment.cpp, line: 296
+msgid "Invalid field name"
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaEnvironment.cpp, line: 288
+#, c-format
+msgid "Cannot set the field: %s"
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaEnvironment.hxx, line: 358
+msgid "Invalid operator: '"
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaEnvironment.hxx, line: 372
+msgid "Invalid operator: .*"
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaEnvironment.hxx, line: 374
+msgid "Invalid operator: ./"
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaEnvironment.hxx, line: 376
+msgid "Invalid operator: .\\"
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaEnvironment.hxx, line: 378
+msgid "Invalid operator: .*."
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaEnvironment.hxx, line: 380
+msgid "Invalid operator: ./."
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaEnvironment.hxx, line: 382
+msgid "Invalid operator: .\\."
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaEnvironment.hxx, line: 392
+msgid "Invalid operator: .^"
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaEnvironment.hxx, line: 396
+msgid "Invalid operator: .'"
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaException.hxx, line: 72
+msgid "Exception thrown in file"
+msgstr ""
+
+#
+# File: src/cpp/ScilabJavaException.hxx, line: 72
+msgid "at line"
+msgstr ""

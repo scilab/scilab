@@ -15,7 +15,10 @@ k=poly(0,'k');
 
 //Test with a polynomial
 P1=s*(s+7)*(s+11);
-assert_checkequal(routh_t(P1),[1 77; 18 0; 77 0; 0 0]);
+assert_checkequal(routh_t(P1), [1 77; 18 0; 77 0; 0 0]);
+[r, num] = routh_t(P1);
+assert_checkequal(r, [1 77; 18 0; 77 0; 0 0]);
+assert_checkequal(num, 0);
 
 //Test with a transfert function
 h=1/P1;
@@ -30,11 +33,17 @@ assert_checkequal(routh_t(h,k,%f),[1 77; 18 k; 1386-k 0; 1386*k-k*k 0]);
 
 // One of the coefficients in the polynomial equals zero
 P2=2*s^2-24;
-assert_checkequal(routh_t(P2),[2 -24; 4 0; -24 0]);
+assert_checkequal(routh_t(P2), [2 -24; 4 0; -24 0]);
+[r, num] = routh_t(P2);
+assert_checkequal(r, [2 -24; 4 0; -24 0]);
+assert_checkequal(num, 1);
 
 // A row full of zeros
 P3=s^4-6*s^3+10*s^2-6*s+9;
 assert_checkequal(routh_t(P3),[1 10 9; -6 -6 0; 9 9 0; 18 0 0; 9 0 0]);
+[r, num] = routh_t(P3);
+assert_checkequal(r,[1 10 9; -6 -6 0; 9 9 0; 18 0 0; 9 0 0]);
+assert_checkequal(num, 2);
 
 //Error messages
 assert_checkfalse(execstr("routh_t(P,%t)","errcatch")==0);

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
+ * 
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Bcast" xml:lang="en">
+    <refnamediv>
+        <refname>MPI_Bcast</refname>
+        <refpurpose>Broadcasts a message from the process with rank root to all other processes of the group.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>res = MPI_Bcast(value,rootID)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>value</term>
+                <listitem>
+                    <para>The value to be sent to all nodes.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rootID</term>
+                <listitem>
+                    <para>The source of the message</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>The broadcasted value</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Send a variable to all nodes. The value should be retrieved by the node with the function <link linkend="MPI_Recv">MPI_Recv</link>.
+        </para>
+        <para>On the internal technical side, two broadcasts are used transparently. The first one sends the size of the data, the second the data themself.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            MPI_Init();
+            rnk =    MPI_Comm_rank();
+            sizeNodes =    MPI_Comm_size();
+            
+            SLV = rnk;                // handy shortcuts, master is rank 0
+            Master = ~ SLV;            // slaves are all other
+            a=-1
+            if Master
+            // Declare a
+            a=42
+            end
+            b=MPI_Bcast(a, 0);
+            assert_checkequal(b,42);
+            MPI_Finalize();
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="MPI_Recv">MPI_Recv</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

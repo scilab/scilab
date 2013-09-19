@@ -41,13 +41,13 @@ function [x,y,typ]=CUMSUM(job,arg1,arg2)
             label=lab
             if (typ==1) then
                 if (decomptyp==0) then
-                    junction_name="cumsum_m";
+                    function_name="cumsum_m";
                     out=[-1 -2]
                 elseif (decomptyp==1) then
-                    junction_name="cumsum_r";
+                    function_name="cumsum_r";
                     out=[-1 1];
                 elseif (decomptyp==2) then
-                    junction_name="cumsum_c";
+                    function_name="cumsum_c";
                     out=[1 -2];
                 else message("decomposition type is not supported");ok=%f;
                 end
@@ -55,11 +55,11 @@ function [x,y,typ]=CUMSUM(job,arg1,arg2)
                 ot=1;
             elseif (typ==2) then
                 if (decomptyp==0) then
-                    junction_name="cumsumz_m";
+                    function_name="cumsumz_m";
                 elseif (decomptyp==1) then
-                    junction_name="cumsumz_r";
+                    function_name="cumsumz_r";
                 elseif (decomptyp==2) then
-                    junction_name="cumsumz_c";
+                    function_name="cumsumz_c";
                 else message("decomposition type is not supported");ok=%f;
                 end
                 it=2;
@@ -73,7 +73,7 @@ function [x,y,typ]=CUMSUM(job,arg1,arg2)
                 [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
             end
             if ok then
-                model.sim=list(junction_name,funtyp);
+                model.sim=list(function_name,funtyp);
                 arg1.model=model
                 graphics.exprs=label
                 arg1.graphics=graphics
@@ -83,9 +83,9 @@ function [x,y,typ]=CUMSUM(job,arg1,arg2)
         end
     case "define" then
         model=scicos_model()
-        junction_name="cumsum_m";
+        function_name="cumsum_m";
         funtyp=4;
-        model.sim=list(junction_name,funtyp)
+        model.sim=list(function_name,funtyp)
 
         model.in=-1
         model.in2=-2

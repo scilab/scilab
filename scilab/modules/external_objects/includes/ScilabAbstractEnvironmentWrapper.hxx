@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -117,11 +117,11 @@ public:
     virtual int wrap(char ** x, int xSize, int xSizeCol, const bool isRef) const = 0;
 
 
-    virtual int wrap(float * x, const bool isRef) const = 0;
+    virtual int wrapFloat(double * x, const bool isRef) const = 0;
 
-    virtual int wrap(float * x, int xSize, const bool isRef) const = 0;
+    virtual int wrapFloat(double * x, int xSize, const bool isRef) const = 0;
 
-    virtual int wrap(float * x, int xSize, int xSizeCol, const bool isRef) const = 0;
+    virtual int wrapFloat(double * x, int xSize, int xSizeCol, const bool isRef) const = 0;
 
 
     virtual int wrapBool(int * x, const bool isRef) const = 0;

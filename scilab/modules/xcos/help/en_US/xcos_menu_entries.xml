@@ -345,7 +345,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Edit:Region to superblock</emphasis>
+                    <emphasis role="bold">Edit:Selection to superblock</emphasis>
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata fileref="../../../xcos/images/icons/16x16/actions/object-group.png"/>
@@ -936,7 +936,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Help:Xcos Demos</emphasis>
+                    <emphasis role="bold">Help:Xcos Demonstrations</emphasis>
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata fileref="../../../gui/images/icons/16x16/categories/applications-system.png"/>

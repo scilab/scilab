@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,6 +14,7 @@
 #include "stack-c.h"
 #include "api_scilab.h"
 #include "localization.h"
+#include "Scierror.h"
 #include "sciprint.h"
 #include "warningmode.h"
 /*--------------------------------------------------------------------------*/
@@ -27,6 +28,8 @@ int sci_save(char *fname, unsigned long fname_len)
 
     int* piAddr1    = NULL;
     int iType1      = 0;
+    BOOL bWarning   = TRUE;
+    int iErrorRhs = 0;
 
     CheckRhs(1, 100000);
     CheckLhs(0, 1);
@@ -102,17 +105,12 @@ int sci_save(char *fname, unsigned long fname_len)
                 {
                     //try to get variable by name
                     sciErr = getVarAddressFromName(pvApiCtx, pstVarI, &piAddrI2);
-                    if (sciErr.iErr)
+                    if (sciErr.iErr || piAddrI2 == NULL)
                     {
                         // Try old save because here the input variable can be of type "string" but not a variable name
                         // Ex: a=""; save(filename, a);
                         iOldSave = TRUE;
-                        break;
-                    }
-
-                    if (piAddrI2 == 0)
-                    {
-                        iOldSave = TRUE;
+                        bWarning = FALSE;
                         break;
                     }
                 }
@@ -137,18 +135,16 @@ int sci_save(char *fname, unsigned long fname_len)
         //call "overload" to prepare data to export_to_hdf5 function.
         C2F(overload) (&lw, "save", (unsigned long)strlen("save"));
     }
-
-    //old save
-
-    if (iOldSave)
+    else
     {
-        //show warning only for variable save, not for environment.
-        if (getWarningMode() && Rhs > 1)
+        //show warning only for variable save, not for environment
+        if (bWarning && getWarningMode() && Rhs > 1)
         {
             sciprint(_("%s: Scilab 6 will not support the file format used.\n"), _("Warning"));
             sciprint(_("%s: Please quote the variable declaration. Example, save('myData.sod',a) becomes save('myData.sod','a').\n"), _("Warning"));
             sciprint(_("%s: See help('save') for the rational.\n"), _("Warning"));
         }
+
         C2F(intsave)();
     }
 

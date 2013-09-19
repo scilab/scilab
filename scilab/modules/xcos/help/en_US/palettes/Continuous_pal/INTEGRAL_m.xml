@@ -312,7 +312,7 @@
                 and the lower limit to -1.
             </para>
             <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/INTEGRAL_m_1_Example.zcos">
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_1_Example.zcos">
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata align="center" fileref="../../../../examples/continuous_pal/INTEGRAL_m_1_Example.zcos" valign="middle"/>
@@ -329,7 +329,7 @@ xcos_simulate(scs_m, 4);
         <refsection id="Example_INTEGRAL_m_2">
             <title>Example 2</title>
             <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.zcos">
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.zcos">
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata align="center" fileref="../../../../examples/continuous_pal/INTEGRAL_m_2_Example.zcos" valign="middle"/>

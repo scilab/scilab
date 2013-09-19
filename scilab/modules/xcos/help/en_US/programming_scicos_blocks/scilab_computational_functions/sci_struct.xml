@@ -482,6 +482,11 @@
                     <emphasis role="bold">block.label :</emphasis> a string given the label of the block. This is a read only data.
                 </para>
             </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">block.uid :</emphasis> a string given the uid of the block. This is a read only data.
+                </para>
+            </listitem>
         </itemizedlist>
         <para>
             

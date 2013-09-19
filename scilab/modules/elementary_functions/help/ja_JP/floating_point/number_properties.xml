@@ -34,9 +34,9 @@
             の数値的特徴を取得する際に使用することができます.
             <literal>F</literal> の数値は以下のように作成されます:
         </para>
-        <programlisting role=""><![CDATA[ 
-sign * m * b^e
- ]]></programlisting>
+        <para>
+            <code>sign * m * b^e</code>
+        </para>
         <para>
             <literal>e</literal>は指数, <literal>m</literal> は仮数です:
         </para>

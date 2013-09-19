@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="getrelativefilename">
@@ -46,7 +46,7 @@
         <title>Description</title>
         <para>
             Given absolute directories <varname>abs_dir</varname> and absolute filenames <varname>abs_file</varname>,  <function>getrelativefilename</function> returns relative file names <varname>rel_file</varname>. That is, if the input arguments are some string matrices (m x n), for indexes (i, j), <function>getrelativefilename</function> returns <literal>rel_file(i,j)</literal> associated with <literal>abs_dir(i,j)</literal> and <literal>abs_file(i,j)</literal>.
-This implies that <varname>abs_dir</varname> and <varname>abs_file</varname> must have the same dimensions.
+            This implies that <varname>abs_dir</varname> and <varname>abs_file</varname> must have the same dimensions.
         </para>
         <para>
             For example, if the current directory is

@@ -81,6 +81,7 @@ typedef struct
     void **work;
     int nmode;
     int *mode;
+    char *uid;
 } scicos_block;
 
 /** define scicos flag number */
@@ -142,11 +143,11 @@ typedef enum
 #define SCSINT_COP int
 #define SCSINT8_COP char
 #define SCSINT16_COP short
-#define SCSINT32_COP long
+#define SCSINT32_COP int
 #define SCSUINT_COP unsigned int
 #define SCSUINT8_COP unsigned char
 #define SCSUINT16_COP unsigned short
-#define SCSUINT32_COP unsigned long
+#define SCSUINT32_COP unsigned int
 #define SCSUNKNOW_COP double
 
 /* scicos_block macros definition :

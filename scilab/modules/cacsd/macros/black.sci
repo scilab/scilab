@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 function black(varargin)
@@ -127,11 +127,11 @@ function black(varargin)
     kk=1;p0=[phi(:,kk) d(:,kk)];ks=1;Dst=0;
     dx=max(%eps,xmx-xmn);
     dy=max(%eps,ymx-ymn);
-    dx2=dx^2;dy2=dy^2
+    dx2=dx.^2;dy2=dy.^2
 
     while kk<n
         kk=kk+1
-        Dst=Dst+min(sqrt(((phi(:,kk-1)-phi(:,kk))^2)/dx2+((d(:,kk-1)-d(:,kk))^2)/dy2))
+        Dst=Dst+min(sqrt(((phi(:,kk-1)-phi(:,kk)).^2)/dx2+((d(:,kk-1)-d(:,kk)).^2)/dy2))
         if Dst>0.2 then
             if min(abs(frq(:,ks(prod(size(ks))))-frq(:,kk))./frq(:,kk))>0.2 then
                 ks=[ks kk]

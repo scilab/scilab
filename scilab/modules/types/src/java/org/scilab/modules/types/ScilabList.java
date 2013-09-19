@@ -7,7 +7,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -70,6 +70,22 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
     public ScilabList(String varName) {
         super();
         this.varName = varName;
+    }
+
+    /**
+     * @param varName the variable name
+     * @param size the initial list size
+     */
+    public ScilabList(String varName, int size) {
+        super(size);
+        this.varName = varName;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public boolean isReference() {
+        return false;
     }
 
     /**
@@ -182,8 +198,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
     public String toString() {
         StringBuffer result = new StringBuffer();
         if (isEmpty()) {
-            result.append("list()");
-            return result.toString();
+            return "list()";
         }
 
         result.append("list(");

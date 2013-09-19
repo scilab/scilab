@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -50,7 +50,7 @@ int sci_removedir(char *fname, unsigned long l)
             {
                 if (getWarningMode())
                 {
-                    sciprint(_("%s: Warning: Directory '%s' doesn't exists.\n"), fname, expandedpath);
+                    sciprint(_("%s: Warning: Directory '%s' does not exist.\n"), fname, expandedpath);
                 }
             }
 

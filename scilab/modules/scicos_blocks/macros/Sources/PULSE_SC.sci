@@ -62,7 +62,9 @@ function [x,y,typ]=PULSE_SC(job,arg1,arg2)
                     break
                 end
             else
-                message(lasterror())
+                if (lasterror() <> []) then
+                    messagebox(lasterror())
+                end
                 ok=%f
             end
         end

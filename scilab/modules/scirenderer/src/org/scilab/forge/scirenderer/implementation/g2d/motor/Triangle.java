@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
@@ -193,6 +193,10 @@ public class Triangle extends ConvexObject {
             Path2D contour = getProjectedContour();
             Area area = new Area(contour);
             // Trick to paint the triangle and its outline
+            // TODO: the newly created Area contains in fact two areas
+            // it should be better to have one area where its border
+            // is the external outline of the contour...
+            // (it would reduce eps/ps/pdf/svg file size)
             area.add(new Area(stroke.createStrokedShape(contour)));
             g2d.setStroke(EMPTYSTROKE);
             g2d.setColor(colors[0]);

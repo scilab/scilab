@@ -7,7 +7,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function y = asind(x)
     //Inverse sine, result in degrees.
@@ -17,7 +17,7 @@ function y = asind(x)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"asind", 1));
     end
 
-    if ~isreal(x)
+    if  type(x) <> 1 | ~isreal(x) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"asind",1));
     end
     if min(x)<-1|max(x)>1 then

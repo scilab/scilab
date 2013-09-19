@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-17 21:24+0000\n"
+"PO-Revision-Date: 2013-06-26 22:03+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16753)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -108,8 +108,8 @@ msgstr "Použití třetího argumentu gsort je zastaralé."
 msgid "WARNING: %s\n"
 msgstr "VAROVÁNÍ: %s\n"
 
-msgid "It will be more strict in Scilab 6."
-msgstr "Bude přísnější ve Scilab 6."
+msgid "It will no more be available in Scilab 6."
+msgstr ""
 
 msgid "Please use 'd' or 'i' instead."
 msgstr "Prosím namísto používejte 'd' nebo 'i'."
@@ -265,6 +265,17 @@ msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána čtvercová matice.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, sparse or full "
+"matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real sparse or full matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Matrix is not diagonalisable.\n"
 msgstr "%s: Matice není diagonizovatelná.\n"
 
@@ -368,6 +379,32 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Matice není diagonalizovatelná.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real, complex, boolean or "
+"polynomial matrix expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána reálná, komplexní, "
+"booleovská nebo polynomická matice.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size 1x3 or 3xN "
+"expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána matice o velikosti "
+"1x3 nebo 3xN.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, sparse or full "
+"matrix or hypermatrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d nebo %d.\n"
 
@@ -464,17 +501,18 @@ msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr "%s: Špatný typ argumentu #%d: Očekáváno reálné číslo.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument(s) %d: real arguments expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Real scalar or matrix expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu(ů) %d: očekávány reálné argumenty.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument(s) %d: n must be a scalar.\n"
-msgstr "%s: Špatný typ vstupního argumentu(ů) %d: n musí být skalár.\n"
+msgid ""
+"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: If x is negative, n must be an odd integer\n"
-msgstr "%s: Pokud je x záporné, n musí být liché celé číslo\n"
+msgid "%s: If x is negative, then n must contain odd integers only.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"

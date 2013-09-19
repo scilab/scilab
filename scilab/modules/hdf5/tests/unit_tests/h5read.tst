@@ -31,7 +31,7 @@ msgerr = msprintf(gettext("%s: %s\n"), "h5read", gettext("Invalid selection."));
 assert_checkerror("h5read(a,""/x"", [7 9], [10 12])",msgerr,999);
 msgerr = msprintf(gettext("%s: %s\n"), "h5read", msprintf(gettext("Invalid name: %s."), "/y"));
 assert_checkerror("h5read(a,""/y"")",msgerr,999);
-assert_checkequal(h5read(a, "/x",[2 3],[3 3],[3 2]),int8([13 15 17;43 45 47;73 75 77]));
+assert_checkequal(h5read(a, "/x",[2 3],[3 3],[3 2]),int8([13 43 73;15 45 75;17 47 77]));
 msgerr = msprintf(gettext("%s: %s\n"), "h5read", gettext("Invalid selection."));
 assert_checkerror("h5read(a,""/x"",[2 3],[3 3],[3 5])",msgerr,999);
 h5close(a);

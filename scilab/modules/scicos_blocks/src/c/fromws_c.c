@@ -388,7 +388,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
                     C2F(mgetnc) (&fd, ptr_s, (j = nPoints * mY * nY, &j), fmts, &ierr); /* read short data */
                     break;
                 case 4 :   /* int32 */
-                    if ((ptr->work = (void *) scicos_malloc(nPoints * mY * nY * sizeof(long))) == NULL)
+                    if ((ptr->work = (void *) scicos_malloc(nPoints * mY * nY * sizeof(SCSINT32_COP))) == NULL)
                     {
                         set_block_error(-16);
                         scicos_free(ptr);
@@ -424,7 +424,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
                     C2F(mgetnc) (&fd, ptr_us, (j = nPoints * mY * nY, &j), fmtus, &ierr); /* read short data */
                     break;
                 case 14 :  /* uint32 */
-                    if ((ptr->work = (void *) scicos_malloc(nPoints * mY * nY * sizeof(unsigned long))) == NULL)
+                    if ((ptr->work = (void *) scicos_malloc(nPoints * mY * nY * sizeof(SCSUINT32_COP))) == NULL)
                     {
                         set_block_error(-16);
                         scicos_free(ptr);
@@ -902,7 +902,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
                         case 4:
                             /* ---------------------int32 long--------------------- */
                             y_l = Getint32OutPortPtrs(block, 1);
-                            ptr_l = (long*) ptr->work;
+                            ptr_l = (SCSINT32_COP *) ptr->work;
                             if (inow > nPoints)
                             {
                                 if (OutEnd == 0)
@@ -986,7 +986,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
                         case 14:
                             /* ---------------------uint32 ulong--------------------- */
                             y_ul = Getuint32OutPortPtrs(block, 1);
-                            ptr_ul = (unsigned long*) ptr->work;
+                            ptr_ul = (SCSUINT32_COP *) ptr->work;
                             if (inow > nPoints)
                             {
                                 if (OutEnd == 0)
@@ -1212,7 +1212,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
                         case 4:
                             /* ---------------------int32 long--------------------- */
                             y_l = Getint32OutPortPtrs(block, 1);
-                            ptr_l = (long*) ptr->work;
+                            ptr_l = (SCSINT32_COP *) ptr->work;
                             /*y_l[j]=ptr_l[inow+(j)*nPoints];*/
                             if (inow > nPoints)
                             {
@@ -1242,7 +1242,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
                                 t2 = ptr->workt[inow + 1];
                                 y1 = (double)ptr_l[inow + j * nPoints];
                                 y2 = (double)ptr_l[inow + 1 + j * nPoints];
-                                y_l[j] = (long)((y2 - y1) * (t - t1) / (t2 - t1) + y1);
+                                y_l[j] = (SCSINT32_COP)((y2 - y1) * (t - t1) / (t2 - t1) + y1);
                             }
                             break;
                         case 11: /*--------------------- uint8 uchar---------------------*/
@@ -1319,7 +1319,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
                         case 14:
                             /* ---------------------uint32 ulong--------------------- */
                             y_ul = Getuint32OutPortPtrs(block, 1);
-                            ptr_ul = (unsigned long*) ptr->work;
+                            ptr_ul = (SCSUINT32_COP *) ptr->work;
                             /* y_ul[j]=ptr_ul[inow+(j)*nPoints]; */
                             if (inow > nPoints)
                             {
@@ -1349,7 +1349,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
                                 t2 = ptr->workt[inow + 1];
                                 y1 = (double)ptr_ul[inow + j * nPoints];
                                 y2 = (double)ptr_ul[inow + 1 + j * nPoints];
-                                y_ul[j] = (unsigned long)((y2 - y1) * (t - t1) / (t2 - t1) + y1);
+                                y_ul[j] = (SCSUINT32_COP)((y2 - y1) * (t - t1) / (t2 - t1) + y1);
                             }
                             break;
                     }

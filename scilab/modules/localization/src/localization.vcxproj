@@ -27,21 +27,25 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -242,6 +246,7 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
     <None Include="..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\sci_gateway\c\sci_addlocalizationdomain.c" />
     <ClCompile Include="c\charEncoding.c" />
     <ClCompile Include="c\DllmainLocalization.c" />
     <ClCompile Include="c\getLcidString.c" />
@@ -253,7 +258,6 @@ lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /O
     <ClCompile Include="c\setdefaultlanguage.c" />
     <ClCompile Include="jni\LocaleToLCID_wrap.c" />
     <ClCompile Include="jni\Messages_wrap.c" />
-    <ClCompile Include="..\sci_gateway\c\sci_dgettext.c" />
     <ClCompile Include="..\sci_gateway\c\sci_getdefaultlanguage.c" />
     <ClCompile Include="..\sci_gateway\c\sci_getlanguage.c" />
     <ClCompile Include="..\sci_gateway\c\sci_gettext.c" />

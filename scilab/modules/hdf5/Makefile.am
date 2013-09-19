@@ -5,7 +5,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 if GUI
 if XCOS
@@ -42,7 +42,8 @@ HDF5_CXX_SOURCES = src/cpp/H5Attribute.cpp \
 		   src/cpp/H5ReferenceData.cpp \
 		   src/cpp/H5CompoundData.cpp \
 		   src/cpp/H5ArrayData.cpp \
-		   src/cpp/H5VlenData.cpp
+		   src/cpp/H5VlenData.cpp \
+		   src/cpp/H5Options.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 

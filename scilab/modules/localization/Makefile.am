@@ -5,7 +5,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 LOCALIZATION_C_SOURCES = \
@@ -27,11 +27,12 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
-sci_gateway/c/sci_dgettext.c \
 sci_gateway/c/sci_setlanguage.c \
 sci_gateway/c/sci_getdefaultlanguage.c \
 sci_gateway/c/sci_getlanguage.c \
-sci_gateway/c/sci_setdefaultlanguage.c
+sci_gateway/c/sci_setdefaultlanguage.c \
+sci_gateway/c/sci_addlocalizationdomain.c
+
 
 libscilocalization_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
@@ -40,6 +41,7 @@ libscilocalization_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/fileio/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/localization/includes \
 				$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscilocalization.la

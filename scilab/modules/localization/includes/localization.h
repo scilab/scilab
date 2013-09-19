@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /**
@@ -28,6 +28,7 @@ extern "C" {
 
 
 #define _(String)  gettext(String)/** for console message*/
+#define _d(Domain, String)  dgettext(Domain, String)
 #define _t(String1,String2,n) ngettext (String1,String2,n)
 
 #else
@@ -35,6 +36,8 @@ extern "C" {
 
 #define _(String) ((const char *) (String))
 #define gettext(String) ((const char *) (String))
+#define dgettext(Domain, String) ((const char *) (String))
+#define _d(Domain, String)  ((const char *) (String))
 #define _t(String1,String2,n) ngettext (String1,String2,n)
 #define ngettext(String1, String2, n) ((n) == 1 ? (const char *) (String1) : (const char *) (String2))
 

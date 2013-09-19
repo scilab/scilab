@@ -35,7 +35,7 @@ function [x,y,typ]=CBLOCK(job,arg1,arg2)
         model=arg1.model;graphics=arg1.graphics;
         label=graphics.exprs;
         while %t do
-            [ok,junction_name,impli,i,o,ci,co,xx,ng,z,rpar,ipar,auto0,depu,dept,lab]=..
+            [ok,function_name,impli,i,o,ci,co,xx,ng,z,rpar,ipar,auto0,depu,dept,lab]=..
             scicos_getvalue("Set C-Block2 block parameters",..
             ["simulation function";
             "is block implicit? (y,n)";
@@ -56,7 +56,7 @@ function [x,y,typ]=CBLOCK(job,arg1,arg2)
             "str",1,"str",1),label(1))
             if ~ok then break,end
             label(1)=lab
-            funam=stripblanks(junction_name)
+            funam=stripblanks(function_name)
             xx=xx(:);z=z(:);rpar=rpar(:);ipar=int(ipar(:));
             nx=size(xx,1);nz=size(z,1);
             i=int(i(:));

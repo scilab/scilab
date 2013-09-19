@@ -6,7 +6,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine daskri(fname)
 c ====================================================================
@@ -114,7 +114,7 @@ c     --------------------------------
       endif
       if(.not.getrvect(fname,topk,top-rhs+5,m5,n5,lrtol))return
       m5 = m5*n5
-      if(m5.ne.m4) then
+      if(m5.ne.m4.or.(m5.ne.1.and.m5.ne.neq)) then
          call error(60)
          return
       endif
@@ -282,7 +282,8 @@ c     --   subvariable consistent(info) --
       il10e7=iadr(l10+istk(il10+1+7)-1)
       m10e7 =istk(il10e7+2)*istk(il10e7+2)
       l10e7 = sadr(il10e7+4)
-      if(m10e7.eq.0) then
+      if(m10e7.eq.0.or.(m10e7.eq.1.and.stk(l10e7).eq.0)) then
+c        info is then [] or [0]
          info(11)=0
       else
 c        info then looks like list(..., [+-1 +-1 ... +-1 +-1],...)
@@ -860,4 +861,3 @@ c     Remise en place de la pile
  1150 call unsfdcopy(lw-lw0,stk(lw0),1,stk(l0),1)
       return
       end
-

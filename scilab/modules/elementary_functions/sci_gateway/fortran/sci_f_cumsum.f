@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txtc     -------------------------------
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txtc     -------------------------------
 c
       subroutine intcumsum(id)
 c     WARNING : argument of this interface may be passed by reference
@@ -41,6 +41,11 @@ c
          call funnam(ids(1,pt+1),'cumsum',il0)
          fun=-1
          return
+      endif
+
+      if(rhs.eq.3) then
+        top=tops-1
+        rhs=rhs-1
       endif
 
 c     standard matrix case

@@ -26,19 +26,19 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>getvariablesonstack()</literal> returns in <literal>s</literal> variable names on scilab stack. 
+            <literal>s = getvariablesonstack()</literal> returns in <literal>s</literal> the variable names on Scilab stack.
         </para>
         <para>
-            <literal>getvariablesonstack('local')</literal> returns local variables on scilab stack. 
+            <literal>getvariablesonstack('local')</literal> returns the local variables on Scilab stack.
         </para>
         <para>
-            <literal>getvariablesonstack('global')</literal> returns global variables on scilab stack. 
+            <literal>getvariablesonstack('global')</literal> returns the global variables on Scilab stack.
         </para>
         <para>Variables are sorted by alphabetical order.</para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 getvariablesonstack()
 getvariablesonstack('local')
 getvariablesonstack('global')

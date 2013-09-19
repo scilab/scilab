@@ -15,7 +15,7 @@ if haveacompiler() then
     "      return"; "       end"];
 
     mprintf("\n");
-    mprintf(gettext("Fortran subroutine to call in scilab.\n"));
+    mprintf(gettext("Calling a Fortran subroutine from Scilab.\n"));
 
     disp(foof);
 
@@ -27,7 +27,7 @@ if haveacompiler() then
         mputl(foof,"foof.f");
 
         mprintf("\n");
-        mprintf(gettext("Call ilib_for_link to build fortran subroutine.\n"));
+        mprintf(gettext("Calling ilib_for_link to build a Fortran subroutine.\n"));
 
         ilib_for_link(["foof"],"foof.f",[],"f");
         exec loader.sce ;
@@ -39,7 +39,7 @@ if haveacompiler() then
     Y = 7;
 
     mprintf("\n");
-    mprintf(gettext("Call Fortran subroutine. Z = X+Y"));
+    mprintf(gettext("Calling Fortran subroutine. Z = X+Y"));
     mprintf("\n");
     mprintf(gettext("with X = %d"), X);
     mprintf("\n");
@@ -48,7 +48,7 @@ if haveacompiler() then
     mprintf("Z = call(''foof'', X, 1, ''d'', Y, 2, ''d'', ''out'', [1,1], 3, ''d'');");
     mprintf("\n");
     Z = call("foof", X, 1, "d", Y, 2, "d", "out", [1,1], 3, "d");
-    mprintf(gettext("result Z = %d"), Z);
+    mprintf(gettext("Result Z = %d"), Z);
     mprintf("\n");
 
 end

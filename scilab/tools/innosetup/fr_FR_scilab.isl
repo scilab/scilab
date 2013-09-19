@@ -6,7 +6,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;-------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -115,7 +115,6 @@ fr_FR.NextButtonClickwpReadyMsg3 = Impossible de télécharger les fichiers d'aide
 ;
 fr_FR.DescriptionHelpScilabCHM = Aide Scilab
 fr_FR.ScilabCHM = modules\helptools\chm\scilab_fr_FR_help.chm
-;
 ;
 ;-------------------------------------------------------------------------------
 ;

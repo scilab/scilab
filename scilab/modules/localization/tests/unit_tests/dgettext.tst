@@ -13,10 +13,10 @@
 if execstr('dgettext()','errcatch')==0 then pause,end
 
 // one input argument
-str1="plop"; if execstr('dgettext(str1)','errcatch')==0 then pause,end
+str1="plop"; if execstr('dgettext(str1)','errcatch')<>0 then pause,end
 
 // three input argument
-str1="plop"; str2="plip"; str3="plup"; if execstr('gettext(str1, str2, str3)','errcatch')==0 then pause,end
+str1="plop"; str2="plip"; str3="plup"; if execstr('dgettext(str1, str2, str3)','errcatch')==0 then pause,end
 
 // Try to translate from en_US to en_US to domain/string which doesn't exist
 lang="en_US"; setlanguage(lang); domain="fake_domain"; msg="Localization does not exist"; if dgettext(domain,msg) <> msg then pause, end

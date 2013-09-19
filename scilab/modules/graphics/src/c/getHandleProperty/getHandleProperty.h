@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -188,5 +188,7 @@ int get_material_shininess_property(void* _pvCtx, char* pobjUID);
 int get_light_type_property(void* _pvCtx, char* pobjUID);
 int get_light_direction_property(void* _pvCtx, char* pobjUID);
 int get_light_position_property(void* _pvCtx, char* pobjUID);
+int get_image_type_property(void* _pvCtx, char* pobjUID);
+int get_video_mode_property(void* _pvCtx, char* pobjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

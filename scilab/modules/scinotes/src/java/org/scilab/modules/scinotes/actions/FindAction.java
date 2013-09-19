@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -126,6 +126,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
     private JPanel panelScope;
     private SwingScilabTextBox statusBar;
     private JRadioButton radioAll;
+    private JRadioButton radioFromCaret;
     private JRadioButton radioBackward;
     private JRadioButton radioForward;
     private JRadioButton radioSelection;
@@ -308,6 +309,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
         radioBackward = new JRadioButton();
         panelScope = new JPanel();
         radioAll = new JRadioButton();
+        radioFromCaret = new JRadioButton();
         radioSelection = new JRadioButton();
         panelOptions = new JPanel();
         checkCase = new JCheckBox();
@@ -352,7 +354,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
         buttonGroup1.add(radioBackward);
         radioBackward.setText(SciNotesMessages.BACKWARD);
 
-        panelDirection.setLayout(new GridLayout(2, 1, GAP, GAP));
+        panelDirection.setLayout(new GridLayout(3, 1, GAP, GAP));
         panelDirection.add(radioForward);
         panelDirection.add(radioBackward);
 
@@ -362,11 +364,15 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
         buttonGroup2.add(radioAll);
         radioAll.setText(SciNotesMessages.SELECT_ALL);
 
+        buttonGroup2.add(radioFromCaret);
+        radioFromCaret.setText(SciNotesMessages.SELECT_FROM_CARET);
+
         buttonGroup2.add(radioSelection);
         radioSelection.setText(SciNotesMessages.SELECTED_LINES);
 
-        panelScope.setLayout(new GridLayout(2, 1, GAP, GAP));
+        panelScope.setLayout(new GridLayout(3, 1, GAP, GAP));
         panelScope.add(radioAll);
+        panelScope.add(radioFromCaret);
         panelScope.add(radioSelection);
 
         JPanel panelDirectionScope = new JPanel();
@@ -510,6 +516,15 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
             }
         });
 
+        radioFromCaret.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removeAllHighlights();
+                previousRegexp = "";
+                updateFindReplaceButtonStatus();
+            }
+        });
+
         radioBackward.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -583,6 +598,17 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
                     end = endSelectedLines;
                     try {
                         text = doc.getText(startSelectedLines, endSelectedLines - startSelectedLines);
+                    } catch (BadLocationException ex) { }
+                } else if (radioFromCaret.isSelected()) {
+                    if (radioForward.isSelected()) {
+                        start = currentCaretPos;
+                        end = doc.getLength();
+                    } else {
+                        start = 0;
+                        end = currentCaretPos;
+                    }
+                    try {
+                        text = doc.getText(start, end - start);
                     } catch (BadLocationException ex) { }
                 } else {
                     text = doc.getText();

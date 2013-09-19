@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.
  * The terms are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr_FR" xml:id="CVode">
     <refnamediv>
@@ -110,7 +110,7 @@
             Quelque soit le choix et à chaque pas, injecter cette intégration dans <emphasis>(1)</emphasis> donne le système non-linéaire:
         </para>
         <para>
-            <latex>
+            <latex scilab:localized="true">
                 G(y_n)\equiv y_n-h_n\beta_{n,0}f(t_n,y_n)-a_n=0, \hspace{2 mm} où \hspace{2 mm} a_n\equiv \sum_{i>0} (\alpha_{n,i} y_{n-i} + h_n\beta_{n,i}\dot{y}_{n-i})
             </latex>
         </para>
@@ -136,7 +136,7 @@
                     <latex>
                         y_{n(m+1)} = h_n &#x3B2;_{n,0} f(t_n,y_{n(m)}) + a_n
                     </latex>
-                    <latex>
+                    <latex scilab:localized="true">
                         où \hspace{2 mm} a_n\equiv \sum_{i>0} (\alpha_{n,i} y_{n-i} + h_n\beta_{n,i}\dot{y}_{n-i})
                     </latex>
                 </para>
@@ -145,7 +145,7 @@
             <listitem>
                 <emphasis role="bold">Newton :</emphasis> ici, nous utilisons un solveur direct dense sur le système linéaire :
                 <para>
-                    <latex>
+                    <latex scilab:localized="true">
                         M[y_{n(m+1)}-y_{n(m)}]=-G(y_{n(m)}), \hspace{4 mm} M \approx I-\gamma J, \hspace{2 mm} J=\frac{\partial f}{\partial y}, \hspace{2 mm} et \hspace{2 mm} \gamma = h_n\beta_{n,0}
                     </latex>
                 </para>
@@ -180,7 +180,7 @@
     <refsection>
         <title>Exemples</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/ODE_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/ODE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.zcos" valign="middle"/>

@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16753)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -415,15 +415,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Label: A string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Icon: A string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: callback: A string expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: A string expected.\n"
 msgstr ""
 
 #, c-format
@@ -889,6 +882,12 @@ msgstr ""
 msgid "Custom:"
 msgstr ""
 
+msgid "LaTeX preview"
+msgstr ""
+
+msgid "LaTeX font size:"
+msgstr ""
+
 msgid "Web"
 msgstr ""
 
@@ -1163,7 +1162,6 @@ msgstr "Plano de fundo do Console..."
 msgid "No print service found."
 msgstr ""
 
-#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1173,7 +1171,6 @@ msgstr ""
 "modo onde mixar uicontrols e gráficos não está disponível. Digite %s para "
 "mais informações."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "Em alguns casos, %s resolve o caso"
 
@@ -1352,7 +1349,6 @@ msgstr "Salvar e executar"
 msgid "Empty tab"
 msgstr "Aba vazia"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1360,11 +1356,9 @@ msgstr ""
 "A aba com uuid %s não pode ser restaurada.\n"
 "Por favor, relate o erro com a mensagem anterior e anexe o arquivo %s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Tem certeza de que deseja fechar %s?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Tem certeza de que deseja fechar %s e %s?"
 
@@ -1419,7 +1413,6 @@ msgstr "Todas as imagens PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Todos os arquivos RTF"
 
-#, c-format
 msgid "All %s files"
 msgstr "Todos os arquivos %s"
 
@@ -1681,9 +1674,8 @@ msgstr ""
 " está incorreta: %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma árvore.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -1692,15 +1684,13 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma árvore.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgid "%s: Wrong type for input argument #%d: String or uitree expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto ou "
-"uma árvore.\n"
 
 #, c-format
 msgid "%s: Invalid position '%s'.\n"
@@ -1723,12 +1713,6 @@ msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d:  esperava-se um valor "
 "booleano.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto ou "
-"uma árvore.\n"
 
 #, c-format
 msgid ""

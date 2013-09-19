@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -251,7 +251,7 @@ protected :
      * @param[in] the facet color (3 or 4-element array).
      * @param[in] the number of components taken by a color element (3 or 4).
      */
-    static void writeFacetColorToBuffer(float* buffer, int bufferOffset, float* color, int elementsSize);
+    static void writeFacetColorToBuffer(float* buffer, int bufferOffset, float* color, int elementsSize, bool hasTransparency = false);
 
     /**
      * Returns the index of a facet's first vertex (its lower-left corner).

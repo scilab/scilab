@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
@@ -35,5 +35,7 @@
     <PRIMITIVE gatewayId="50" primitiveId="4" primitiveName="gettext" />
     <PRIMITIVE gatewayId="50" primitiveId="4" primitiveName="_" />
     <PRIMITIVE gatewayId="50" primitiveId="5" primitiveName="dgettext" />
+    <PRIMITIVE gatewayId="50" primitiveId="5" primitiveName="_d" />
     <PRIMITIVE gatewayId="50" primitiveId="6" primitiveName="setdefaultlanguage" />
+    <PRIMITIVE gatewayId="50" primitiveId="7" primitiveName="addlocalizationdomain" />
 </GATEWAY>

@@ -39,6 +39,7 @@ Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\c\sci_csum.c; DestDir: {app}\con
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\c\sci_csub.c; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\c; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\c\sci_multiplybypi.c; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\c; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\c\sci_foo.c; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\c; Components: {#COMPN_TOOLBOX_SKELETON}
+Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\c\sci_cerror.c; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\c; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\cpp\sci_cpp_find.cxx; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\cpp; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\cpp\builder_gateway_cpp.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\cpp; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\fortran\builder_gateway_fortran.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\sci_gateway\fortran; Components: {#COMPN_TOOLBOX_SKELETON}
@@ -52,6 +53,8 @@ Source: contrib\{#TOOLBOX_SKELETON}\src\c\multiplybypi.c; DestDir: {app}\contrib
 Source: contrib\{#TOOLBOX_SKELETON}\src\fortran\builder_fortran.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src\fortran; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\src\fortran\fsum.f; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src\fortran; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\tests\*.*; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\tests; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON}
+Source: contrib\{#TOOLBOX_SKELETON}\locales\*.*; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\locales; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON}
+
 ;--------------------------------------------------------------------------------------------------------------
 #define XCOS_TOOLBOX_SKELETON "xcos_toolbox_skeleton"
 Source: contrib\{#XCOS_TOOLBOX_SKELETON}\DESCRIPTION; DestDir: {app}\contrib\{#XCOS_TOOLBOX_SKELETON}; Flags: recursesubdirs; Components: {#COMPN_TOOLBOX_SKELETON} and {#COMPN_XCOS}

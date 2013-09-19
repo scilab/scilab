@@ -31,10 +31,10 @@ SCICOS_BLOCKS_IMPEXP void summation_i32n(scicos_block *block, int flag)
     {
         int j = 0, k = 0;
         int nu = 0, mu = 0, nin = 0;
-        long *y = NULL;
+        SCSINT32_COP *y = NULL;
         int *ipar = NULL;
         double *rpar = NULL;
-        long *u = NULL;
+        SCSINT32_COP *u = NULL;
 
         y = Getint32OutPortPtrs(block, 1);
         nu = GetInPortRows(block, 1);

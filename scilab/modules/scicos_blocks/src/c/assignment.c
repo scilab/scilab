@@ -82,28 +82,28 @@ SCICOS_BLOCKS_IMPEXP void assignment(scicos_block *block, int flag)
         {
             if ((typ == SCSREAL_N) | (typ == SCSCOMPLEX_N))
             {
-                double *ind1;
+                SCSREAL_COP *ind1;
                 ind1 = GetRealInPortPtrs(block, 2 + (int) * out0);
                 *tempind1 = 1;
                 *(tempind1 + 1) = Max(Min((int)(*ind1), my - (1 - (int)(*indxb))) - (int)(*indxb), 0);
             }
             else if ((typ == SCSINT8_N) | (typ == SCSUINT8_N))
             {
-                char  *ind1;
+                SCSINT8_COP  *ind1;
                 ind1 = Getint8InPortPtrs(block, 2 + (int) * out0);
                 *tempind1 = 1;
                 *(tempind1 + 1) = Max(Min((int)(*ind1), my - (1 - (int)(*indxb))) - (int)(*indxb), 0);
             }
             else if ((typ == SCSINT16_N) | (typ == SCSUINT16_N))
             {
-                short *ind1;
+                SCSINT16_COP *ind1;
                 ind1 = Getint16InPortPtrs(block, 2 + (int) * out0);
                 *tempind1 = 1;
                 *(tempind1 + 1) = Max(Min((int)(*ind1), my - (1 - (int)(*indxb))) - (int)(*indxb), 0);
             }
             else if ((typ == SCSINT32_N) | (typ == SCSUINT32_N))
             {
-                long *ind1;
+                SCSINT32_COP *ind1;
                 ind1 = Getint32InPortPtrs(block, 2 + (int) * out0);
                 *tempind1 = 1;
                 *(tempind1 + 1) = Max(Min((int)(*ind1), my - (1 - (int)(*indxb))) - (int)(*indxb), 0);
@@ -136,28 +136,28 @@ SCICOS_BLOCKS_IMPEXP void assignment(scicos_block *block, int flag)
             {
                 if ((typ == SCSREAL_N) | (typ == SCSCOMPLEX_N))
                 {
-                    double *ind2;
+                    SCSREAL_COP *ind2;
                     ind2 = GetRealInPortPtrs(block, 3 + (int) * out0);
                     *tempind2 = 1;
                     *(tempind2 + 1) = Max(Min((int)(*ind2), ny - (1 - (int)(*indxb))) - (int)(*indxb), 0);
                 }
                 else if ((typ == SCSINT8_N) | (typ == SCSUINT8_N))
                 {
-                    char  *ind2;
+                    SCSINT8_COP *ind2;
                     ind2 = Getint8InPortPtrs(block, 3 + (int) * out0);
                     *tempind2 = 1;
                     *(tempind2 + 1) = Max(Min((int)(*ind2), ny - (1 - (int)(*indxb))) - (int)(*indxb), 0);
                 }
                 else if ((typ == SCSINT16_N) | (typ == SCSUINT16_N))
                 {
-                    short *ind2;
+                    SCSINT16_COP *ind2;
                     ind2 = Getint16InPortPtrs(block, 3 + (int) * out0);
                     *tempind2 = 1;
                     *(tempind2 + 1) = Max(Min((int)(*ind2), ny - (1 - (int)(*indxb))) - (int)(*indxb), 0);
                 }
                 else if ((typ == SCSINT32_N) | (typ == SCSUINT32_N))
                 {
-                    long *ind2;
+                    SCSINT32_COP *ind2;
                     ind2 = Getint32InPortPtrs(block, 3 + (int) * out0);
                     *tempind2 = 1;
                     *(tempind2 + 1) = Max(Min((int)(*ind2), ny - (1 - (int)(*indxb))) - (int)(*indxb), 0);
@@ -167,28 +167,28 @@ SCICOS_BLOCKS_IMPEXP void assignment(scicos_block *block, int flag)
             {
                 if ((typ == SCSREAL_N) | (typ == SCSCOMPLEX_N))
                 {
-                    double *ind2;
+                    SCSREAL_COP *ind2;
                     ind2 = GetRealInPortPtrs(block, 2 + (int) * out0);
                     *tempind2 = 1;
                     *(tempind2 + 1) = Max(Min((int)(*ind2), ny - (1 - (int)(*indxb))) - (int)(*indxb), 0);
                 }
                 else if ((typ == SCSINT8_N) | (typ == SCSUINT8_N))
                 {
-                    char  *ind2;
+                    SCSINT8_COP *ind2;
                     ind2 = Getint8InPortPtrs(block, 2 + (int) * out0);
                     *tempind2 = 1;
                     *(tempind2 + 1) = Max(Min((int)(*ind2), ny - (1 - (int)(*indxb))) - (int)(*indxb), 0);
                 }
                 else if ((typ == SCSINT16_N) | (typ == SCSUINT16_N))
                 {
-                    short *ind2;
+                    SCSINT16_COP *ind2;
                     ind2 = Getint16InPortPtrs(block, 2 + (int) * out0);
                     *tempind2 = 1;
                     *(tempind2 + 1) = Max(Min((int)(*ind2), ny - (1 - (int)(*indxb))) - (int)(*indxb), 0);
                 }
                 else if ((typ == SCSINT32_N) | (typ == SCSUINT32_N))
                 {
-                    long *ind2;
+                    SCSINT32_COP *ind2;
                     ind2 = Getint32InPortPtrs(block, 2 + (int) * out0);
                     *tempind2 = 1;
                     *(tempind2 + 1) = Max(Min((int)(*ind2), ny - (1 - (int)(*indxb))) - (int)(*indxb), 0);

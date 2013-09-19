@@ -6,6 +6,8 @@
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "csum.h"
+#include <localization.h>
+
 /* ==================================================================== */
 int sci_csum(char *fname)
 {
@@ -43,25 +45,25 @@ int sci_csum(char *fname)
     /* check input type */
     if ( !isDoubleType(pvApiCtx, piAddressVarOne) )
     {
-        Scierror(999, "%s: Wrong type for input argument #%d: A scalar expected.\n", fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 1);
         return 0;
     }
 
     if ( !isDoubleType(pvApiCtx, piAddressVarTwo) )
     {
-        Scierror(999, "%s: Wrong type for input argument #%d: A scalar expected.\n", fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 2);
         return 0;
     }
 
     if ( getScalarDouble(pvApiCtx, piAddressVarOne, &dVarOne) )
     {
-        Scierror(999, "%s: Wrong size for input argument #%d: A scalar expected.\n", fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
         return 0;
     }
 
     if ( getScalarDouble(pvApiCtx, piAddressVarTwo, &dVarTwo) )
     {
-        Scierror(999, "%s: Wrong size for input argument #%d: A scalar expected.\n", fname, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
         return 0;
     }
 

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [phi,db]=phasemag(z,mod)
     //
@@ -22,6 +22,10 @@ function [phi,db]=phasemag(z,mod)
     //compute first phase value in  (-pi, pi]
     phi1=atan(imag(z(:,1)),real(z(:,1)))
     //compute phase increments in (-pi, pi]
+    ind = find(z==0);
+    if ind <> [] then
+        z(ind) = 1; // To avoid division by 0 (0 and 1 have the same phase)
+    end
     z2=z(:,2:$)./z(:,1:$-1)
     dphi=atan(imag(z2),real(z2))
     phi=cumsum([phi1 dphi],2)
@@ -31,10 +35,7 @@ function [phi,db]=phasemag(z,mod)
     end
     phi=phi*180/%pi //transform in degree
 
-    if typeof(z) == "hypermat" & typeof(phi) <> "hypermat" then
-        phi_temp=phi;
-        phi = mlist(["hm","dims","entries"]);
-        phi("dims") = [size(phi_temp,1) size(phi_temp,2)];
-        phi("entries") = matrix(phi_temp,size(phi_temp,1)*size(phi_temp,2),1);
+    if typeof(z) == "hypermat" then
+        phi = matrix(phi, size(z));
     end
 endfunction

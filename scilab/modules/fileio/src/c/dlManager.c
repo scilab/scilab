@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -424,7 +424,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
 
         if (res != CURLE_OK)
         {
-            Scierror(999, _("Failed to set write data [%s]\n"), errorBuffer);
+            Scierror(999, _("Failed to set write function [%s]\n"), errorBuffer);
             return NULL;
         }
 

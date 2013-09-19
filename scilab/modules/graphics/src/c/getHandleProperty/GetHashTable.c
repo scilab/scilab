@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -46,7 +46,7 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES 170
+#define NB_PROPERTIES 171
 
 /**
  * list of all property names and associated functions in scilab
@@ -223,7 +223,8 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
     {"material_shininess", get_material_shininess_property},
     {"light_type", get_light_type_property},
     {"light_direction", get_light_direction_property},
-    {"light_position", get_light_position_property}
+    {"light_position", get_light_position_property},
+    {"image_type", get_image_type_property}
 };
 
 /*--------------------------------------------------------------------------*/

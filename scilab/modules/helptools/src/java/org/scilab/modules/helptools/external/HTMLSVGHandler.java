@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -31,9 +31,6 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
     private static final String SVG = "svg";
     private static final String BASENAME = "_SVG_";
 
-    private static HTMLSVGHandler instance;
-
-    private int compt = 1;
     private StringBuilder buffer = new StringBuilder(8192);
     private String baseDir;
     private String outputDir;
@@ -44,28 +41,9 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
      * Constructor
      * @param baseDir the base directory where to put the generated images
      */
-    private HTMLSVGHandler(String outputDir, String baseDir) {
+    public HTMLSVGHandler(String outputDir, String baseDir) {
         this.outputDir = outputDir + File.separator + baseDir;
         this.baseDir = baseDir + "/";
-    }
-
-    public static HTMLSVGHandler getInstance(String outputDir, String baseDir) {
-        if (instance == null) {
-            instance = new HTMLSVGHandler(outputDir, baseDir);
-        }
-
-        return instance;
-    }
-    public static HTMLSVGHandler getInstance() {
-        return instance;
-    }
-
-    public static void clean() {
-        instance = null;
-    }
-
-    public void resetCompt() {
-        compt = 1;
     }
 
     /**
@@ -118,7 +96,7 @@ public class HTMLSVGHandler extends ExternalXMLHandler {
                 baseImagePath = ((HTMLDocbookTagConverter) getConverter()).getBaseImagePath();
             }
 
-            String ret = ImageConverter.getImageByCode(getConverter().getCurrentFileName(), buffer.toString(), attributes, "image/svg", f, baseDir + f.getName(), baseImagePath, line, language, isLocalized);
+            String ret = getConverter().getImageConverter().getImageByCode(getConverter().getCurrentFileName(), buffer.toString(), attributes, "image/svg", f, baseDir + f.getName(), baseImagePath, line, language, isLocalized);
             buffer.setLength(0);
 
             return ret;

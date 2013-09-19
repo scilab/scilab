@@ -5,36 +5,42 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //=============================================================================
 function bOK = dlwConfigureVcx64()
-    bOK = %F;
-    msvc = findmsvccompiler();
+  bOK = %F;
+  msvc = findmsvccompiler();
 
-    select msvc,
-        // Microsoft Visual 2010 Studio Professional
-    case  "msvc100pro" then
-        bOK = dlwSetEnvVc10(msvc, %t);
+  select msvc,
+     // Microsoft Visual 2012 Studio Professional
+     case  'msvc110pro' then
+     bOK = dlwSetEnvVc11(msvc, %t);
 
-        // Microsoft Visual 2010 Express
-    case  "msvc100express" then
-        bOK = dlwSetEnvVc10(msvc, %t);
+     // Microsoft Visual 2012 Express
+     case  'msvc110express' then
+     bOK = dlwSetEnvVc11(msvc, %t);
+     
+     // Microsoft Visual 2010 Studio Professional
+     case  'msvc100pro' then
+     bOK = dlwSetEnvVc10(msvc, %t);
 
-        // Microsoft Visual 2008 Studio Professional
-    case  "msvc90pro" then
-        bOK = dlwSetEnvVc90(msvc, %t);
+     // Microsoft Visual 2010 Express
+     case  'msvc100express' then
+     bOK = dlwSetEnvVc10(msvc, %t);
 
-        // Microsoft Visual 2008 Studio Standard
-    case  "msvc90std" then
-        bOK = dlwSetEnvVc90(msvc, %t);
+     // Microsoft Visual 2008 Studio Professional
+     case  'msvc90pro' then
+     bOK = dlwSetEnvVc90(msvc, %t);
 
-        // Microsoft Visual 2008 Express
-    case  "msvc90express" then
-        bOK = dlwSetEnvVc90(msvc, %t);
-    else
-    end
+     // Microsoft Visual 2008 Studio Standard
+     case  'msvc90std' then
+     bOK = dlwSetEnvVc90(msvc, %t);
+
+    // Microsoft Visual 2008 Express
+    case  'msvc90express' then
+    bOK = dlwSetEnvVc90(msvc, %t);
+  else
+  end  
 endfunction
 //=============================================================================
-
-

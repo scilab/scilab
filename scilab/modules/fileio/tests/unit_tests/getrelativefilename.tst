@@ -54,7 +54,7 @@ assert_checkequal(getrelativefilename([__dir12,__dir12], [__file12,__file12]), [
 errmsg1 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "getrelativefilename", 2);
 assert_checkerror("getrelativefilename()", errmsg1);
 
-errmsg2 = msprintf(_("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "getrelativefilename", 1);
+errmsg2 = msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "getrelativefilename", 1);
 assert_checkerror("getrelativefilename([],[])", errmsg2);
 
 errmsg3 = msprintf(_("%s: Incompatible input arguments #%d and #%d: Same size expected.\n"), "getrelativefilename", 1, 2);

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-06-25 16:31+0100\n"
+"Revision-Date: 2013-09-13 12:32+0100\n"
 
 # File: sci_gateway/c/sci_cdfbet.c, line: 45
 msgid "X,Y,A and B"
@@ -268,7 +268,8 @@ msgstr ""
 # File: sci_gateway/c/sci_cdfpoi.c, line: 71
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A matrix of integer value expected.\n"
+"%s: Wrong value for input argument #%d: A matrix of integer values "
+"expected.\n"
 msgstr ""
 
 #
@@ -374,6 +375,7 @@ msgstr ""
 # File: macros/center.sci, line: 35
 # File: macros/cmoment.sci, line: 37
 # File: macros/cmoment.sci, line: 55
+# File: macros/correl.sci, line: 26
 # File: macros/geomean.sci, line: 31
 # File: macros/geomean.sci, line: 37
 # File: macros/harmean.sci, line: 33
@@ -407,16 +409,8 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/correl.sci, line: 26
-# File: macros/covar.sci, line: 28
-# File: macros/perctl.sci, line: 31
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-
-#
-# File: macros/correl.sci, line: 31
-# File: macros/correl.sci, line: 32
+# File: macros/correl.sci, line: 33
+# File: macros/correl.sci, line: 37
 # File: macros/covar.sci, line: 32
 # File: macros/covar.sci, line: 33
 #, c-format
@@ -424,7 +418,13 @@ msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
 msgstr ""
 
 #
-# File: macros/correl.sci, line: 37
+# File: macros/correl.sci, line: 52
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected"
+msgstr ""
+
+#
+# File: macros/correl.sci, line: 64
 # File: macros/covar.sci, line: 37
 #, c-format
 msgid ""
@@ -433,7 +433,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/correl.sci, line: 38
+# File: macros/correl.sci, line: 67
 # File: macros/covar.sci, line: 38
 #, c-format
 msgid ""
@@ -485,6 +485,13 @@ msgstr ""
 # File: macros/cov.sci, line: 184
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
+msgstr ""
+
+#
+# File: macros/covar.sci, line: 28
+# File: macros/perctl.sci, line: 31
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #

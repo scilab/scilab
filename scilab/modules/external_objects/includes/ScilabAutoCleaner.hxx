@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,11 +23,6 @@
 #include "ScilabObjects.hxx"
 #include "dynlib_external_objects_scilab.h"
 
-extern "C" {
-#include "api_scilab.h"
-#include "stack-c.h"
-}
-
 namespace org_modules_external_objects
 {
 
@@ -41,6 +36,7 @@ public:
     static void goDown();
     static void registerVariable(const int envId, const int varId);
     static void unregisterVariable(const int envId, const int varId);
+    static void unregisterVariable(const int envId, const int * varId, const int length);
 
 private:
     static _MapIds getAllObjectsAtCurrentLevel(void * pvApiCtx);

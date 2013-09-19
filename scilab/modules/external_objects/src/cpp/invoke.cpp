@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,6 +24,8 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
     int idObj = 0;
     int * ret = 0;
     char * methName = 0;
+    int nbArgs = Rhs - 2;
+    std::vector<int> torem;
 
     if (Rhs < 2)
     {
@@ -86,6 +88,11 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
             delete[] tmpvar;
             throw;
         }
+
+        if (args[i] == VOID_OBJECT)
+        {
+            nbArgs = 0;
+        }
     }
 
     try
@@ -102,14 +109,13 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
 
     try
     {
-        ret = env.invoke(idObj, methName, args, Rhs - 2);
+        ret = env.invoke(idObj, methName, args, nbArgs);
     }
     catch (std::exception & e)
     {
         delete[] args;
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
         delete[] tmpvar;
-        env.removeobject(idObj);
         freeAllocatedSingleString(methName);
         throw;
     }
@@ -133,6 +139,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
 
     if (helper.getAutoUnwrap())
     {
+        torem.reserve(*ret);
         for (int i = 1; i <= *ret; i++)
         {
             if (!ScilabObjects::unwrap(ret[i], Rhs + i, envId, pvApiCtx))
@@ -143,20 +150,26 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
                 }
                 catch (ScilabAbstractEnvironmentException & e)
                 {
-                    for (int j = 1; j <= *ret; j++)
+                    if (!torem.empty())
                     {
-                        env.removeobject(ret[j]);
+                        env.removeobject(&(torem[0]), torem.size());
                     }
+                    env.removeobject(ret + 1, *ret);
                     delete[] ret;
                     throw;
                 }
             }
             else
             {
-                env.removeobject(ret[i]);
+                torem.push_back(ret[i]);
             }
 
             LhsVar(i) = Rhs + i;
+        }
+
+        if (!torem.empty())
+        {
+            env.removeobject(&(torem[0]), torem.size());
         }
     }
     else
@@ -169,10 +182,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
             }
             catch (ScilabAbstractEnvironmentException & e)
             {
-                for (int j = 1; j <= *ret; j++)
-                {
-                    env.removeobject(ret[j]);
-                }
+                env.removeobject(ret + 1, *ret);
                 delete[] ret;
                 throw;
             }

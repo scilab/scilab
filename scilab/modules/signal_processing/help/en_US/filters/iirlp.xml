@@ -12,6 +12,12 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>Lp criterion</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>x</term>
                 <listitem>
                     <para>1X2 vector of the module and argument of the poles and the zeros of the filters</para>
@@ -21,7 +27,7 @@
                 <term>flag</term>
                 <listitem>
                     <para>
-                        string : <literal>'a'</literal>  for amplitude, 'gd' for group delay; default case for amplitude and group delay.
+                        string : <literal>'a'</literal> for amplitude, 'gd' for group delay; default case for amplitude and group delay.
                     </para>
                 </listitem>
             </varlistentry>

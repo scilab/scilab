@@ -31,10 +31,10 @@ SCICOS_BLOCKS_IMPEXP void summation_ui32n(scicos_block *block, int flag)
     {
         int j = 0, k = 0;
         int nu = 0, mu = 0, nin = 0;
-        unsigned long *y = NULL;
+        SCSUINT32_COP *y = NULL;
         int *ipar = NULL;
         double *rpar = NULL;
-        unsigned long *u = NULL;
+        SCSUINT32_COP *u = NULL;
 
         y = Getuint32OutPortPtrs(block, 1);
         nu = GetInPortRows(block, 1);

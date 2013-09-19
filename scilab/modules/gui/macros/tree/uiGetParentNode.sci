@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function parentNode = uiGetParentNode(tree, node)
 
@@ -37,7 +37,7 @@ function parentNode = uiGetParentNode(tree, node)
             isPosition = %T;
 
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree or String expected.\n"), "uiGetParentNode",2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: String or uitree expected.\n"), "uiGetParentNode",2));
             return;
         end
     end

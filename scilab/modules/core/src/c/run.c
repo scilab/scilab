@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------
@@ -1112,7 +1112,7 @@ L105:
         int kmac;
         for (kmac = 0; kmac < C2F(dbg).nmacs; kmac++) /* loop on table of functions containing breakpoints */
         {
-            /* does the name of the current funtion fit the registered name*/
+            /* does the name of the current function fit the registered name*/
             if (C2F(eqid)(&(C2F(vstk).idstk[kfin * nsiz]), &(C2F(dbg).macnms[kmac * nsiz])))  /* yes */
             {
                 /* test if there is a registered breakpoint at the current line*/
@@ -1309,7 +1309,7 @@ L210:
     /*     character string vector */
     if (C2F(errgst).err1 <= 0)
     {
-        n = *istk(1 + lc) * *istk(2 + lc);
+        n = *istk(1 + lc) **istk(2 + lc);
         nc = *istk(lc + 4 + n) - 1;
         ++Top;
         il = Lstk[Top] + Lstk[Top] - 1;

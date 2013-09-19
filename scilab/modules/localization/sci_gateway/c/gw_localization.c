@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -22,8 +22,9 @@ static gw_generic_table Tab[] =
     {sci_getlanguage, "getlanguage"},
     {sci_getdefaultlanguage, "getdefaultlanguage"},
     {sci_gettext, "gettext"},
-    {sci_dgettext, "dgettext"},
-    {sci_setdefaultlanguage, "setdefaultlanguage"}
+    {sci_gettext, "dgettext"},
+    {sci_setdefaultlanguage, "setdefaultlanguage"},
+    {sci_addlocalizationdomain, "addlocalizationdomain"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_localization(void)

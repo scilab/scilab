@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,6 +14,7 @@
 #define __XMLELEMENT_HXX__
 
 #include <string>
+#include "dynlib_xml_scilab.h"
 #include "XMLRemovable.hxx"
 
 #include "xml.h"
@@ -33,7 +34,7 @@ class XMLAttr;
  * Class to wrap a xmlNode
  * @see http://xmlsoft.org/html/libxml-tree.html#xmlNode
  */
-class XMLElement: public XMLObject, public XMLRemovable
+class XML_SCILAB_IMPEXP XMLElement: public XMLObject, public XMLRemovable
 {
     xmlNode *node;
     const XMLDocument & doc;

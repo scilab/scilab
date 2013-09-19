@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -188,5 +188,7 @@ int set_material_shininess_property(void* _pvCtx, char* pobj, void* _pvData, int
 int set_light_type_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_light_direction_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_light_position_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_image_type_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_video_mode_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */

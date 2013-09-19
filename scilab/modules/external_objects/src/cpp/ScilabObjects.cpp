@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -32,7 +32,6 @@ void ScilabObjects::initialization(ScilabAbstractEnvironment & env, void * pvApi
     if (!isInit)
     {
         isInit = true;
-        //createNamedEnvironmentObject(EXTERNAL_VOID, "evoid", 0, 0, pvApiCtx);
     }
 }
 
@@ -186,12 +185,7 @@ void ScilabObjects::removeTemporaryVars(const int envId, int * tmpvar)
     if (tmpvar && *tmpvar)
     {
         ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
-
-        for (int i = 1; i <= *tmpvar; i++)
-        {
-            env.removeobject(tmpvar[i]);
-        }
-
+        env.removeobject(tmpvar + 1, *tmpvar);
         *tmpvar = 0;
     }
 }
@@ -265,6 +259,7 @@ bool ScilabObjects::unwrap(int idObj, int pos, const int envId, void * pvApiCtx)
 {
     if (idObj == 0)
     {
+        // id == 0 <==> null object plugged on empty matrix
         if (createEmptyMatrix(pvApiCtx, pos))
         {
             throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot create data"));
@@ -277,7 +272,6 @@ bool ScilabObjects::unwrap(int idObj, int pos, const int envId, void * pvApiCtx)
     const ScilabAbstractEnvironmentWrapper & wrapper = env.getWrapper();
 
     type = env.isunwrappable(idObj);
-
     switch (type)
     {
         case Nothing:
@@ -287,6 +281,7 @@ bool ScilabObjects::unwrap(int idObj, int pos, const int envId, void * pvApiCtx)
             {
                 throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot create data"));
             }
+            break;
         case SingleDouble:
             wrapper.unwrapdouble(idObj, ScilabDoubleStackAllocator(pvApiCtx, pos));
             break;
@@ -638,22 +633,29 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
             int type = getMListType(addr, pvApiCtx);
             int eId = getEnvironmentId(addr, pvApiCtx);
 
-            if (eId != envId)
+            if (type == EXTERNAL_INVALID)
             {
                 removeTemporaryVars(envId, tmpvars);
-                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Incompatible External Objects"));
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("External object expected"));
+            }
+
+            err = getMatrixOfInteger32InList(pvApiCtx, addr, EXTERNAL_OBJ_ID_POSITION, &row, &col, &id);
+            if (err.iErr)
+            {
+                removeTemporaryVars(envId, tmpvars);
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+            }
+
+            if (eId != envId && id != 0)
+            {
+                removeTemporaryVars(envId, tmpvars);
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Incompatible External object"));
             }
 
             if (isClass)
             {
                 if (type == EXTERNAL_CLASS)
                 {
-                    err = getMatrixOfInteger32InList(pvApiCtx, addr, EXTERNAL_OBJ_ID_POSITION, &row, &col, &id);
-                    if (err.iErr)
-                    {
-                        removeTemporaryVars(envId, tmpvars);
-                        throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
-                    }
                     return *id;
                 }
                 else
@@ -665,22 +667,11 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
 
             if (type == EXTERNAL_OBJECT || type == EXTERNAL_CLASS)
             {
-                err = getMatrixOfInteger32InList(pvApiCtx, addr, EXTERNAL_OBJ_ID_POSITION, &row, &col, &id);
-                if (err.iErr)
-                {
-                    removeTemporaryVars(envId, tmpvars);
-                    throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
-                }
                 return *id;
             }
             else if (type == EXTERNAL_VOID)
             {
                 return -1;
-            }
-            else
-            {
-                removeTemporaryVars(envId, tmpvars);
-                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("External object expected"));
             }
 
             break;
@@ -688,7 +679,7 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
         default :
         {
             removeTemporaryVars(envId, tmpvars);
-            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Unable to wrap. Unmanaged datatype ?"));
+            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Unable to wrap. Unmanaged datatype (%d) ?"), typ);
         }
     }
 }
@@ -701,59 +692,40 @@ int ScilabObjects::getMListType(int * mlist, void * pvApiCtx)
     int rows, cols;
     int type;
 
-    SciErr err = getVarType(pvApiCtx, mlist, &type);
-    if (err.iErr || type != sci_mlist)
+    // OK it's crappy... but it works and it is performant...
+
+    if (mlist[0] == 0)
+    {
+        return EXTERNAL_VOID;
+    }
+
+    if (mlist[0] != sci_mlist || mlist[1] != 3)
     {
         return EXTERNAL_INVALID;
     }
 
-    err = getMatrixOfStringInList(pvApiCtx, mlist, 1, &rows, &cols, NULL, NULL);
-    if (err.iErr || rows != 1 || cols != 3)
+    if (mlist[6] != sci_strings || mlist[7] != 1 || mlist[8] != 3)
     {
+        // first field is not a matrix 1x3 of strings
         return EXTERNAL_INVALID;
     }
 
-    err = getMatrixOfStringInList(pvApiCtx, mlist, 1, &rows, &cols, lengths, NULL);
-    if (err.iErr)
+    if (mlist[11] - 1 == strlen("_EClass") && mlist[14] == 36 && mlist[15] == -14 && mlist[16] == -12 && mlist[17] == 21 && mlist[18] == 10 && mlist[19] == 28 && mlist[20] == 28)
     {
-        return EXTERNAL_INVALID;
+        return EXTERNAL_CLASS;
     }
 
-    for (int i = 0; i < 3; i++)
+    if (mlist[11] - 1 == strlen("_EObj") && mlist[14] == 36 && mlist[15] == -14 && mlist[16] == -24 && mlist[17] == 11 && mlist[18] == 19)
     {
-        mlist_type[i] = new char[lengths[i] + 1];
+        return EXTERNAL_OBJECT;
     }
 
-    err = getMatrixOfStringInList(pvApiCtx, mlist, 1, &rows, &cols, lengths, mlist_type);
-    mtype = mlist_type[0];
-    for (int i = 1; i < 3; i++)
+    if (mlist[11] - 1 == strlen("_EVoid") && mlist[14] == 36 && mlist[15] == -14 && mlist[16] == -31 && mlist[17] == 24 && mlist[18] == 18 && mlist[19] == 13)
     {
-        delete[] mlist_type[i];
+        return EXTERNAL_VOID;
     }
 
-    type = EXTERNAL_INVALID;
-
-    if (err.iErr)
-    {
-        return EXTERNAL_INVALID;
-    }
-
-    if (!std::strcmp("_EObj", mtype))
-    {
-        type = EXTERNAL_OBJECT;
-    }
-    else if (!std::strcmp("_EClass", mtype))
-    {
-        type = EXTERNAL_CLASS;
-    }
-    else if (!std::strcmp("_EVoid", mtype))
-    {
-        type = EXTERNAL_VOID;
-    }
-
-    delete[] mtype;
-
-    return type;
+    return EXTERNAL_INVALID;
 }
 
 bool ScilabObjects::isValidExternal(int * mlist, void * pvApiCtx)

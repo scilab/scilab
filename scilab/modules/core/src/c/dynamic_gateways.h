@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #ifndef __DYNAMIC_GATEWAYS_H__
@@ -45,6 +45,13 @@ int gw_dynamic_ui_data(void);
 * load gw_xcos in SCI/modules/xcos/sci_gateway/gw_xcos.c
 */
 int gw_dynamic_xcos(void);
+
+/**
+* mpi gateway
+* mpi is loaded dynamically at runtime
+* load gw_mpi in SCI/modules/mpi/sci_gateway/gw_mpi.c
+*/
+int gw_dynamic_mpi(void);
 
 /**
 * scinotes gateway
@@ -162,6 +169,13 @@ int gw_dynamic_symbolic(void);
 int gw_dynamic_graphic_export(void);
 
 /**
+* mpi gateway
+* mpi is loaded dynamically at runtime
+* load gw_mpi in SCI/modules/mpi/sci_gateway/gw_mpi.c
+*/
+int gw_dynamic_mpi(void);
+
+/*
 * action_binding gateway
 * action_binding is loaded dynamically at runtime
 * load gw_action_binding in SCI/modules/action_binding/sci_gateway/gw_action_binding.c
@@ -190,6 +204,8 @@ int gw_dynamic_xml(void);
 int gw_dynamic_history_browser(void);
 
 int gw_dynamic_external_objects(void);
+
+int gw_dynamic_external_objects_java(void);
 
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/

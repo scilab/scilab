@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 function [p, fact] = lcm(p)
@@ -21,8 +21,6 @@ function [p, fact] = lcm(p)
     if type(p)==8 then
         if argn(1)==2 then [p, fact] = %i_lcm(p), else p = %i_lcm(p), end
         return
-    elseif ~isreal(p) then
-        error(msprintf(_("%s: Wrong type for argument #%d: Real Polynomial expected.\n"), "lcm", 1));
     end
 
     [m, n] = size(p),

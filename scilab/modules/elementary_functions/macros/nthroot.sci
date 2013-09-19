@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function y = nthroot(x,n)
 
@@ -17,13 +17,17 @@ function y = nthroot(x,n)
     end
 
     // If x or n are not real
-    if ((typeof(x) <> "constant" | ~isreal(x)) | (typeof(n) <> "constant" | ~isreal(n))) then
-        error(msprintf(gettext("%s: Wrong type for input argument(s) #%d: Real arguments expected.\n"),"nthroot", 2));
+    if typeof(x) <> "constant" | ~isreal(x)  then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real scalar or matrix expected.\n"),"nthroot", 1));
+    end
+
+    if typeof(n) <> "constant" | ~isreal(n) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real scalar or matrix expected.\n"),"nthroot", 2));
     end
 
     // If n is a vector which size is different from x's
     if (size(n,"*")>1 & size(n,"*")<>size(x,"*")) then
-        error(msprintf(gettext("%s: Wrong size for input argument(s) #%d: vectors should have same size.\n"),"nthroot", 2));
+        error(msprintf(gettext("%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"),"nthroot", 1, 2));
     end
 
     reste = modulo(n,2);
@@ -50,7 +54,7 @@ function y = nthroot(x,n)
     elseif (isnan(n) & or(x >= 0)) then
         y(find(x>=0)) = %nan;
     elseif (or (or(x(:)<0) & (or(n~=fix(n)) | reste==0 | reste==%f))) then
-        error(msprintf(gettext("%s: If x is negative, then n must be odd integers\n"),"nthroot"));
+        error(msprintf(gettext("%s: If x is negative, then n must contain odd integers only.\n"),"nthroot"));
         // If n ~=0 and n ~= %nan
     elseif (or(n~=0) & ~isnan(n)) then
         // If x = 0 and n is negative and n i~= %nan

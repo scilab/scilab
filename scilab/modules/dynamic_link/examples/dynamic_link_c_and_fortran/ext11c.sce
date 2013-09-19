@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Demo file for ext11c example
 
@@ -26,7 +26,7 @@ ilib_for_link(link_name,files,libs,flag);
 exec loader.sce;
 
 // test new function through the ode function
-// Passing a parameter to argument funtion of ode
+// Passing a parameter to argument function of ode
 
 param=[0.04,10000,3d+7];
 y=ode([1;0;0],0,[0.4,4],"ext11c")
