@@ -184,8 +184,7 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 @BUILD_HELP_TRUE@@GUI_TRUE@am_libscihelptools_algo_la_rpath =
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_DEPENDENCIES =  \
-@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools-algo.la \
-@BUILD_HELP_TRUE@@GUI_TRUE@	$(top_builddir)/modules/commons/libscicommons.la
+@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools-algo.la
 am__libscihelptools_la_SOURCES_DIST = sci_gateway/nogui/nogui.c \
 	sci_gateway/c/gw_helptools.c \
 	sci_gateway/cpp/sci_buildDocv2.cpp
@@ -566,9 +565,7 @@ top_srcdir = @top_srcdir@
 @BUILD_HELP_TRUE@@GUI_TRUE@GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 @BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/BuildDocObjectv2.giws.xml
 
-@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_LIBADD = libscihelptools-algo.la \
-@BUILD_HELP_TRUE@@GUI_TRUE@	$(top_builddir)/modules/commons/libscicommons.la
-
+@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_LIBADD = libscihelptools-algo.la
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_algo_la_SOURCES = $(HELPTOOLS_SOURCES)
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
 @BUILD_HELP_TRUE@@GUI_TRUE@noinst_LTLIBRARIES = libscihelptools-algo.la

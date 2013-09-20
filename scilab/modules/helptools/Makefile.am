@@ -18,8 +18,7 @@ GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_buildDocv2.cpp
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 	src/jni/BuildDocObjectv2.giws.xml
 
-libscihelptools_la_LIBADD = libscihelptools-algo.la \
-	$(top_builddir)/modules/commons/libscicommons.la
+libscihelptools_la_LIBADD = libscihelptools-algo.la
 libscihelptools_algo_la_SOURCES =  $(HELPTOOLS_SOURCES)
 libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
 noinst_LTLIBRARIES = libscihelptools-algo.la
