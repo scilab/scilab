@@ -11,22 +11,22 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipSetInterp">
     <refnamediv>
         <refname>datatipSetInterp</refname>
-        <refpurpose>Set the interpolation mode for tip location. </refpurpose>
+        <refpurpose>Set the interpolation mode for datatip. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            datatipSetInterp(curve_handle,interp_mode)
+            datatipSetInterp(datatip_handle,interp_mode)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>curve_handle</term>
+                <term>datatip_handle</term>
                 <listitem>
                     <para>
-                        A handle on a polyline. 
+                        A handle of the tip. 
                     </para>
                 </listitem>
             </varlistentry>
@@ -38,7 +38,7 @@
                     <para>
                         A boolean, if false the tips can only be located at the
                         mesh points, if true interpolation is made between mesh
-                        points. The default value is false.
+                        points. The default value is true.
                     </para>
                 </listitem>
             </varlistentry>
@@ -59,9 +59,8 @@
     plot(x,y);
     e=gce();p=e.children(1);//get the handle on the polyline
     p.mark_mode="on";p.mark_style=2;p.mark_size=5;
-    datatipCreate(p,[0.8,0.512]);
-    datatipSetInterp(p,%t);
-    datatipCreate(p,[0.8,0.512]);
+    t=datatipCreate(p,[0.8,0.512]);
+    datatipSetInterp(t,%f);//now move the datatip
     ]]></programlisting>
         <scilab:image>
             x=linspace(0,1,8)';
@@ -69,9 +68,8 @@
             plot(x,y);
             e=gce();p=e.children(1);//get the handle on the polyline
             p.mark_mode="on";p.mark_style=2;p.mark_size=5;
-            datatipCreate(p,[0.8,0.512]);
-            datatipSetInterp(p,%t);
-            datatipCreate(p,[0.8,0.512]);
+            t=datatipCreate(p,[0.8,0.512]);
+            datatipSetInterp(t,%f);//now move the datatip
         </scilab:image>
     </refsection>
     <refsection role="see also">

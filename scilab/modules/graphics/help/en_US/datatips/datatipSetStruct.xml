@@ -11,7 +11,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipSetStruct">
     <refnamediv>
         <refname>datatipSetStruct</refname>
-        <refpurpose>Stores the datatips data structure in the polyline entity. </refpurpose>
+        <refpurpose>
+            Stores the datatips data structure in the polyline entity. <emphasis role="bold">Obsolete function. </emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -54,6 +56,17 @@
             <literal>datatipSetStruct</literal> stores the datatips data structure in the polyline
             entity. This is a subsidiary functions which is not to be called directly.
         </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>
+                    Function tagged obsolete. Will be removed in 5.5.0.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

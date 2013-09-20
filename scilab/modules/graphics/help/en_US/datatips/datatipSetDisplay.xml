@@ -16,8 +16,8 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            datatipSetDisplay(curve_handle,fun)
-            datatipSetDisplay(curve_handle)
+            datatipSetDisplay(tip_handle,"fun")
+            datatipSetDisplay(tip_handle)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -34,17 +34,13 @@
         </variablelist>
         <variablelist>
             <varlistentry>
-                <term>fun</term>
+                <term>"fun"</term>
                 <listitem>
                     <para>
-                        A variable that contains a function (type==11 or
-                        type==13). This function calling sequence must be
-                        <literal>str=fun(curve, pt, index)</literal> where
-                        <literal>curve</literal> is the handle of the polyline
-                        associated with the datatip, <literal>pt</literal> is the
-                        vector of datatip coordinates and <literal>index</literal>
-                        is the mesh point index of the datatip point or the index
-                        of the previous mesh point if interpolation is allowed.
+                        A character string that contains a function name. 
+                        This function calling sequence must be
+                        <literal>str=fun(pt)</literal> where
+                        <literal>pt</literal> is the vector of datatip coordinates.
                     </para>
                     <para>
                         This function must return a string or a vector of strings
@@ -64,38 +60,36 @@
         <title>Examples</title><programlisting role="example"><![CDATA[
     x=linspace(-1,1,1000);
     clf()
-    plot(x,sinc(20*x),x,1-x^2);
+    plot(x,sinc(20*x),x,1-x.^2);
     e=gce();e=e.children;
     d21=datatipCreate(e(2),600);
-    d22=datatipCreate(e(2),200);
     d1=datatipCreate(e(1),700);
 
-    function str=mydisplay(curve,pt,index)
+    function str=mydisplay(pt)
        str=msprintf('sinc(%-0.2g)=%-0.2g', 20*pt(1),pt(2))
     endfunction
-    datatipSetDisplay(e(2),mydisplay) 
+    datatipSetDisplay(d21,"mydisplay") 
     ]]></programlisting>
         <scilab:image>
             x=linspace(-1,1,1000);
             clf()
-            plot(x,sinc(20*x),x,1-x^2);
+            plot(x,sinc(20*x),x,1-x.^2);
             e=gce();e=e.children;
             d21=datatipCreate(e(2),600);
-            d22=datatipCreate(e(2),200);
             d1=datatipCreate(e(1),700);
             
-            function str=mydisplay(curve,pt,index)
+            function str=mydisplay(pt)
             str=msprintf('sinc(%-0.2g)=%-0.2g', 20*pt(1),pt(2))
             endfunction
-            datatipSetDisplay(e(2),mydisplay) 
+            datatipSetDisplay(d21,"mydisplay") 
         </scilab:image>
         The display function can also be used to place tip text in different locations:
         <programlisting role="example"><![CDATA[
-    function str=infodisplay(curve,pt,index)
+    function str=infodisplay(pt)
        xinfo(msprintf('x=%0.2g,\t 1-x^2=%0.2g', pt(1),pt(2)))
        str=''
     endfunction
-    datatipSetDisplay(e(1),infodisplay) //tip text displayed in the info bar
+    datatipSetDisplay(d1,"infodisplay") //tip text displayed in the info bar
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
