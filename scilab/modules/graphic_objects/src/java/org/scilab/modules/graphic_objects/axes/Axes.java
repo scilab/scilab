@@ -1912,8 +1912,7 @@ public class Axes extends GraphicObject {
      */
     public Double[] getMaximalDisplayedBounds() {
         Double[] bounds = getDataBounds();
-
-        boolean eq = bounds[0].equals(bounds[1]);
+        boolean eq = bounds[0].doubleValue() == bounds[1].doubleValue();
         if (getXAxisLogFlag()) {
             bounds[0] = Math.log10(bounds[0]);
             bounds[1] = Math.log10(bounds[1]);
@@ -1932,7 +1931,7 @@ public class Axes extends GraphicObject {
             }
         }
 
-        eq = bounds[2].equals(bounds[3]);
+        eq = bounds[2].doubleValue() == bounds[3].doubleValue();
         if (getYAxisLogFlag()) {
             bounds[2] = Math.log10(bounds[2]);
             bounds[3] = Math.log10(bounds[3]);
@@ -1950,7 +1949,7 @@ public class Axes extends GraphicObject {
             }
         }
 
-        eq = bounds[4].equals(bounds[5]);
+        eq = bounds[4].doubleValue() == bounds[5].doubleValue();
         if (getZAxisLogFlag()) {
             bounds[4] = Math.log10(bounds[4]);
             bounds[5] = Math.log10(bounds[5]);

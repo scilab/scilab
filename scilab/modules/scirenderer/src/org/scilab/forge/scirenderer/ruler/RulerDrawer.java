@@ -209,6 +209,7 @@ public class RulerDrawer {
             windowSubTicksDelta = normalizedProjectedTicksDirection.times(rulerModel.getSubTicksLength());
             windowTicksDelta = normalizedProjectedTicksDirection.times(rulerModel.getTicksLength());
 
+
             DecimalFormat format;
             if (rulerModel.isAutoTicks()) {
                 format = computeAutoGraduation();
@@ -457,8 +458,9 @@ public class RulerDrawer {
          */
         private boolean collide(List<PositionedSprite> spritesList, double margin) {
             for (int i = 0; i < spritesList.size(); i++) {
+                Rectangle2D bounds = spritesList.get(i).getWindowBounds();
                 for (int j = i + 1; j < spritesList.size(); j++) {
-                    if (collide(spritesList.get(i).getWindowBounds(), spritesList.get(j).getWindowBounds(), margin)) {
+                    if (collide(bounds, spritesList.get(j).getWindowBounds(), margin)) {
                         return true;
                     }
                 }
@@ -475,8 +477,9 @@ public class RulerDrawer {
          */
         private boolean collide(List<PositionedSprite> spritesList, List<PositionedSprite> newSpritesList, double margin) {
             for (PositionedSprite sprite1 : newSpritesList) {
+                Rectangle2D bounds = sprite1.getWindowBounds();
                 for (PositionedSprite sprite2 : spritesList) {
-                    if (collide(sprite1.getWindowBounds(), sprite2.getWindowBounds(), margin)) {
+                    if (collide(bounds, sprite2.getWindowBounds(), margin)) {
                         return true;
                     }
                 }

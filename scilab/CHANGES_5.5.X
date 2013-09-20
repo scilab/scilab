@@ -600,6 +600,8 @@ Bug Fixes
 
 * Bug #12589 fixed - Call sequence for spzeros & spones were missing in the French help pages.
 
+* Bug #12592 fixed - Scilab hung with plot(-0).
+
 * Bug #12593 fixed - A wrong error message was returned when running genlib with an error in the sci file.
 
 * Bug #12600 fixed - mput did not manage unsigned integer.
