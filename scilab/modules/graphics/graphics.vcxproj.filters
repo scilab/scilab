@@ -1173,6 +1173,8 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_light_delete.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_image_type_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
