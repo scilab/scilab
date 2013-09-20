@@ -1,15 +1,15 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Fabrice Leray
-* Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
-*
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-*
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Fabrice Leray
+ * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ */
 
 /*------------------------------------------------------------------------*/
 /* file: sci_plot2d.c                                                     */
@@ -62,6 +62,7 @@ int sci_plot2d(char* fname, unsigned long fname_len)
     int* nax = NULL;
     BOOL flagNax = FALSE;
     char strfl[4];
+    BOOL freeStrf = FALSE;
 
     static rhs_opts opts[] =
     {
@@ -98,7 +99,7 @@ int sci_plot2d(char* fname, unsigned long fname_len)
         iskip = 1;
     }
 
-    if (FirstOpt() == 2 + iskip)       				/** plot2d([loglags,] y, <opt_args>); **/
+    if (FirstOpt() == 2 + iskip)                                /** plot2d([loglags,] y, <opt_args>); **/
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1 + iskip, &piAddrl2);
         if (sciErr.iErr)
@@ -349,6 +350,19 @@ int sci_plot2d(char* fname, unsigned long fname_len)
         GetLogflags(pvApiCtx, fname, 8, opts, &logFlags);
     }
 
+    freeStrf = !isDefStrf(strf);
+
+    // Check strf [0-1][0-8][0-5]
+    if (!isDefStrf(strf) && (strlen(strf) != 3 || strf[0] < '0' || strf[0] > '1' || strf[1] < '0' || strf[1] > '8' || strf[2] < '0' || strf[2] > '5'))
+    {
+        Scierror(999, _("%s: Wrong value for strf option: %s.\n"), fname, strf);
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        return -1;
+    }
+
     if (isDefStrf(strf))
     {
         strcpy(strfl, DEFSTRFN);
@@ -378,11 +392,11 @@ int sci_plot2d(char* fname, unsigned long fname_len)
     }
 
     /* Make a test on log. mode : available or not depending on the bounds set by Rect arg. or xmin/xmax :
-    Rect case :
-    - if the min bound is strictly posivite, we can use log. mode
-    - if not, send error message
-    x/y min/max case:
-    - we find the first strictly positive min bound in Plo2dn.c ?? */
+       Rect case :
+       - if the min bound is strictly posivite, we can use log. mode
+       - if not, send error message
+       x/y min/max case:
+       - we find the first strictly positive min bound in Plo2dn.c ?? */
 
     switch (strf[1])
     {
@@ -396,18 +410,30 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             /* based on Rect arg */
             if (rect[0] > rect[2] || rect[1] > rect[3])
             {
+                if (freeStrf)
+                {
+                    freeAllocatedSingleString(strf);
+                }
                 Scierror(999, _("%s: Impossible status min > max in x or y rect data.\n"), fname);
                 return -1;
             }
 
             if (rect[0] <= 0. && logFlags[1] == 'l') /* xmin */
             {
+                if (freeStrf)
+                {
+                    freeAllocatedSingleString(strf);
+                }
                 Scierror(999, _("%s: Bounds on x axis must be strictly positive to use logarithmic mode.\n"), fname);
                 return -1;
             }
 
             if (rect[1] <= 0. && logFlags[2] == 'l') /* ymin */
             {
+                if (freeStrf)
+                {
+                    freeAllocatedSingleString(strf);
+                }
                 Scierror(999, _("%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"), fname);
                 return -1;
             }
@@ -446,6 +472,10 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             {
                 if (logFlags[1] == 'l' && sciFindStPosMin((l1), size_x) <= 0.0)
                 {
+                    if (freeStrf)
+                    {
+                        freeAllocatedSingleString(strf);
+                    }
                     Scierror(999, _("%s: At least one x data must be strictly positive to compute the bounds and use logarithmic mode.\n"), fname);
                     return -1;
                 }
@@ -457,6 +487,10 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             {
                 if (logFlags[2] == 'l' && sciFindStPosMin((l2), size_y) <= 0.0)
                 {
+                    if (freeStrf)
+                    {
+                        freeAllocatedSingleString(strf);
+                    }
                     Scierror(999, _("%s: At least one y data must be strictly positive to compute the bounds and use logarithmic mode\n"), fname);
                     return -1;
                 }
@@ -472,6 +506,11 @@ int sci_plot2d(char* fname, unsigned long fname_len)
 
     // Allocated by sciGetStyle (get_style_arg function in GetCommandArg.c)
     FREE(style);
+
+    if (freeStrf)
+    {
+        freeAllocatedSingleString(strf);
+    }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
