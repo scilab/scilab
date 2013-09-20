@@ -7,7 +7,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
 # The order DOES matter !!!
@@ -91,11 +91,19 @@ xml \
 types \
 external_objects
 
+if GUI
+SUBDIRS += external_objects_java
+endif
+
 if XCOS
 SUBDIRS += scicos_blocks
 endif
 
 SUBDIRS += scicos
+
+if MPI
+SUBDIRS += mpi
+endif
 
 SUBDIRS += .
 
@@ -129,7 +137,8 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
 	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/preferences/libscipreferences.la
+	$(top_builddir)/modules/preferences/libscipreferences.la \
+	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
@@ -198,6 +207,9 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
 	$(top_builddir)/modules/parallel/libsciparallel.la
 
+if MPI
+ENGINE_LIBS += $(top_builddir)/modules/mpi/libscimpi.la
+endif
 
 # Core modules
 

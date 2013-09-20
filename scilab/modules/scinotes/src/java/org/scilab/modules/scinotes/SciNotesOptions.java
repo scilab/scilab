@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -62,7 +62,7 @@ public class SciNotesOptions {
         private Preferences() { }
 
         @XConfAttribute(tag = "scinotes-preferences", attributes = {"restart-reopen", "add-line-termination", "number-of-recently-open", "encoding", "eol", "scinotes", "cmd", "external-cmd"})
-        private void set(boolean restartOpen, boolean addLineTermination, int numberOfRecentlyOpen, String encoding, String eol, boolean useScinotes, boolean externalCmd, String cmd) {
+        private void set(boolean restartOpen, boolean addLineTermination, int numberOfRecentlyOpen, String encoding, String eol, boolean useScinotes, String cmd, boolean externalCmd) {
             this.restartOpen = restartOpen;
             this.addLineTermination = addLineTermination;
             this.numberOfRecentlyOpen = numberOfRecentlyOpen > 0 ? numberOfRecentlyOpen : 1;

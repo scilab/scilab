@@ -6,7 +6,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       subroutine vecimpl
 c     
@@ -134,6 +134,7 @@ c
       e1r=2.0d0*max(abs(e1),abs(e2))*dlamch('p')
       n = 0
       l=l1
+c     This code is wrongly optimized by gfortran 4.8.1
  52   if (st*(stk(l)-e2).gt.0.0d+0) then
          if (abs(stk(l)-e2).lt.e1r) n=n+1
          go to 53

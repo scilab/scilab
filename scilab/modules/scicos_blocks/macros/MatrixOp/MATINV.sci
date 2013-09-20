@@ -41,11 +41,11 @@ function [x,y,typ]=MATINV(job,arg1,arg2)
             ["Datatype(1=real double  2=Complex)"],list("vec",1),label)
             if ~ok then break,end
             if (typ==1) then
-                junction_name="mat_inv";
+                function_name="mat_inv";
                 ot=1;
                 it=1;
             elseif (typ==2) then
-                junction_name="matz_inv";
+                function_name="matz_inv";
                 ot=2;
                 it=2;
             else message("Datatype is not supported");ok=%f;
@@ -56,7 +56,7 @@ function [x,y,typ]=MATINV(job,arg1,arg2)
             if ok then
                 label=exprs;
                 [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
-                model.sim=list(junction_name,funtyp);
+                model.sim=list(function_name,funtyp);
                 graphics.exprs=label;
                 arg1.graphics=graphics;arg1.model=model;
                 x=arg1
@@ -65,9 +65,9 @@ function [x,y,typ]=MATINV(job,arg1,arg2)
         end
     case "define" then
         model=scicos_model()
-        junction_name="mat_inv";
+        function_name="mat_inv";
         funtyp=4;
-        model.sim=list(junction_name,funtyp)
+        model.sim=list(function_name,funtyp)
 
         model.in=-1
         model.in2=-1

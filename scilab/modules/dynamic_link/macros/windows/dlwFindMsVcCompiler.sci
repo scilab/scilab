@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //=============================================================================
 function MSCompiler = dlwFindMsVcCompiler()
@@ -13,18 +13,30 @@ function MSCompiler = dlwFindMsVcCompiler()
 
     // We use always last version of MS compiler
 
-    if dlwIsVc10Pro() & dlwIsVc10Express() then
-        MSCompiler = "msvc100express";     // Microsoft Visual 2010 Express with SDK extension
+
+  if dlwIsVc11Express() then
+    MSCompiler = 'msvc110express';     // Microsoft Visual 2012 Express
+    return;
+  end
+
+  if dlwIsVc11Pro() then
+    MSCompiler = 'msvc110pro';       // Microsoft Visual 2012 Professional (or more)
+    return;
+  end
+
+
+  if dlwIsVc10Pro() & dlwIsVc10Express() then
+    MSCompiler = 'msvc100express';     // Microsoft Visual 2010 Express with SDK extension
+    return;
+  end
+
+    if dlwIsVc10Express() then
+        MSCompiler = "msvc100express";     // Microsoft Visual 2010 Express
         return;
     end
 
     if dlwIsVc10Pro() then
         MSCompiler = "msvc100pro";       // Microsoft Visual 2010 Professional (or more)
-        return;
-    end
-
-    if dlwIsVc10Express() then
-        MSCompiler = "msvc100express";     // Microsoft Visual 2010 Express
         return;
     end
 

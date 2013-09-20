@@ -6,7 +6,7 @@ dnl This file must be used under the terms of the CeCILL.
 dnl This source file is licensed as described in the file COPYING, which
 dnl you should have received as part of this distribution.  The terms
 dnl are also available at    
-dnl http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+dnl http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 dnl
 dnl PCRE detection
 dnl

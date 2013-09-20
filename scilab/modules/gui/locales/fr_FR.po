@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-24 13:12+0000\n"
+"PO-Revision-Date: 2013-07-30 07:17+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16753)\n"
 "Language: fr\n"
 
 #, c-format
@@ -417,16 +417,11 @@ msgstr ""
 "une mlist.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Label: A string expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: A string expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Icon: A string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: callback: A string expected.\n"
-msgstr ""
+"%s : Type erroné de l'élément %d de l'argument n°%d : Une chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Error in the tree parsing.\n"
@@ -891,6 +886,12 @@ msgstr "Police de caractères du bureau"
 msgid "Custom:"
 msgstr "Personnalisé :"
 
+msgid "LaTeX preview"
+msgstr "Aperçu LaTeX"
+
+msgid "LaTeX font size:"
+msgstr "Taille de police LaTeX"
+
 msgid "Web"
 msgstr "Internet"
 
@@ -1163,7 +1164,6 @@ msgstr "Arrière-plan de la console..."
 msgid "No print service found."
 msgstr "Aucun service d'impression trouvé."
 
-#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1173,7 +1173,6 @@ msgstr ""
 "sous un mode dans lequel mixer des uicontrols et des graphiques n''est pas "
 "possible. Taper %s pour plus d''informations."
 
-#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "Dans certains cas, %s corrige le problème."
 
@@ -1352,7 +1351,6 @@ msgstr "Enregistrer et exécuter"
 msgid "Empty tab"
 msgstr "Onglet vide"
 
-#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1361,11 +1359,9 @@ msgstr ""
 "Veuillez signaler un bug avec le message précédent et en joignant le fichier "
 "%s."
 
-#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Êtes-vous sûr de vouloir fermer %s ?"
 
-#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Êtes-vous sûr de vouloir fermer %s et %s ?"
 
@@ -1420,7 +1416,6 @@ msgstr "Tous les fichiers PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Tous les fichiers RTF (Rich Text Format)"
 
-#, c-format
 msgid "All %s files"
 msgstr "Tous les fichiers %s"
 
@@ -1682,8 +1677,8 @@ msgstr ""
 " est erronée : %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un arbre attendu.\n"
+msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un uitree attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -1691,15 +1686,17 @@ msgstr ""
 "%s : Nombre erroné d'argument(s) d'\"entrée : Au moins %d attendus.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
-"%s : Type erroné des arguments d'entrée du n°%d : Un arbre attendu.\n"
+"%s : Type erroné de l'élément %d de l'argument d'entrée n°%d : Un uitree "
+"attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgid "%s: Wrong type for input argument #%d: String or uitree expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n° %d: Une chaîne de caractères ou "
-"un arbre attendu.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
+"un uitree attendu.\n"
 
 #, c-format
 msgid "%s: Invalid position '%s'.\n"
@@ -1720,12 +1717,6 @@ msgstr "%s : Pas de nœud correspondant.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un arbre ou une chaîne de "
-"caractères attendu.\n"
 
 #, c-format
 msgid ""

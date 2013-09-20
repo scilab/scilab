@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Samuel GOUGEON
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_ismember" xml:lang="en">
+    <refnamediv>
+        <refname>ismember (Matlab function)</refname>
+        <refpurpose>Data sets membership comparison</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Matlab/Scilab equivalent</title>
+        <informaltable border="1" width="100%">
+            <tr>
+                <td align="center">
+                    <emphasis role="bold">Matlab</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis role="bold">Scilab</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <programlisting role="example"><![CDATA[
+// a)
+AinB = ismember(A, B)
+
+// b)
+[AinB, loc] = ismember(A, B)
+// c)
+[rAinB, loc] = ismember(A, B, 'rows')
+]]></programlisting>
+                </td>
+                <td>
+                    <programlisting role="example"><![CDATA[
+// a)
+mA = members(A, B);
+AinB = bool2s(mA~=0)
+// b)
+[mA, loc] = members(A, B)
+// c)
+[rmA, loc] = members(A, B, "rows");
+rAinB = bool2s(rmA~=0)
+]]></programlisting>
+                </td>
+            </tr>
+        </informaltable>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            In addition, Scilab provides the number of occurrences, can provide the locations of last occurrences instead of the first ones, can process A and B column-wise, and can ignore the order of elements in each row/column to be detected (detection of permutations).
+        </para>
+    </refsection>
+</refentry>

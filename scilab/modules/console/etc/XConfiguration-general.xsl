@@ -156,7 +156,14 @@
                         <xsl:value-of select="layout[@id=$id]/@image"/>
                     </xsl:attribute>
                 </Image>
-                
+                <Panel gridx="1" gridy="5">
+                    <VSpace height="10"/>
+                </Panel>
+                <Checkbox gridx="1" gridy="6" weightx="0" text="_(Save layout on exiting)" checked="{@save-desktop}" selected-value="true" unselected-value="false" listener="ActionListener">
+                    <actionPerformed choose="save-desktop">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                </Checkbox>
             </Grid>
         </Title>
     </xsl:template>

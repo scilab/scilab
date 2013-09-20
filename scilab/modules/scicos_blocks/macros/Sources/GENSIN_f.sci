@@ -23,14 +23,6 @@
 function [x,y,typ]=GENSIN_f(job,arg1,arg2)
     x=[];y=[];typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        x=[];y=[];typ=[];
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
         graphics=arg1.graphics;exprs=graphics.exprs
@@ -50,6 +42,11 @@ function [x,y,typ]=GENSIN_f(job,arg1,arg2)
             if ok then
                 [model,graphics,ok]=check_io(model,graphics,[],1,[],[])
                 model.rpar=[M;F;P]
+                //next two lines to fix invalid properties in scilab version
+                //prior 5.5.0
+                model.out2=1;
+                model.outtyp=1;
+
                 graphics.exprs=exprs;
                 x.graphics=graphics;x.model=model
                 break
@@ -61,13 +58,13 @@ function [x,y,typ]=GENSIN_f(job,arg1,arg2)
         model.sim="gensin"
         model.in=[]
         model.out=1
+        model.out2=1
+        model.outtyp=1
         model.rpar=[1;1;0]
         model.blocktype="c"
         model.dep_ut=[%f %t]
-
         exprs=[string(rpar(1));string(rpar(2));string(rpar(3))]
-        gr_i=["txt=[''sinusoid'';''generator''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([3 2],model,exprs,gr_i)
     end
 endfunction

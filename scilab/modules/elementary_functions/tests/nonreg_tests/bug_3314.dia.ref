@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- ENGLISH IMPOSED -->
 // <-- CLI SHELL MODE -->
 // <-- Non-regression test for bug 3314 -->
 //
@@ -13,10 +12,9 @@
 //
 // <-- Short Description -->
 // linspace(0,1,(1-0.9)*22050) crashes. (Scilab 4.1.2 on linux Ubuntu 8.04)
-ierr = execstr('linspace(0,1,(1-0.9)*22050);','errcatch');
-WARNING: linspace: Using a non integer value for input argument #3 is deprecated and will produce an error in version 5.4.1.
-if ierr <> 0 then bugmes();quit;end
+// Test updated for Scilab 5.5.0: using non-integer values for third input argument now returns an error.
+ierr = execstr("linspace(0,1,(1-0.9)*22050);","errcatch");
+if ierr == 0 then bugmes();quit;end
 a = (1-0.9)*22050;
-ierr = execstr('linspace(0,1,a);','errcatch');
-WARNING: linspace: Using a non integer value for input argument #3 is deprecated and will produce an error in version 5.4.1.
-if ierr <> 0 then bugmes();quit;end
+ierr = execstr("linspace(0,1,a);","errcatch");
+if ierr == 0 then bugmes();quit;end

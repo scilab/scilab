@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,6 +19,8 @@ import java.util.UUID;
 import javax.swing.JTextArea;
 
 import org.scilab.modules.commons.ScilabCommonsUtils;
+import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
 import org.scilab.modules.gui.ScilabTermination;
 import org.scilab.modules.gui.bridge.CallScilabBridge;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
@@ -27,8 +29,12 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
+import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.localization.Messages;
@@ -43,6 +49,7 @@ public class ConsoleTab {
     private static final String SEE_DEFAULT_PATHS = "See SCI/etc/classpath.xml for default paths.";
     private static final String NOCONSOLE = Messages.gettext("No available console !\nPlease use STD mode.");
     private static final String EMPTYTAB = Messages.gettext("Empty tab");
+    private static final String MAINTOOLBARXMLFILE = ScilabConstants.SCI + "/modules/gui/etc/main_toolbar.xml";
 
     /**
      * Create a console tab
@@ -71,7 +78,7 @@ public class ConsoleTab {
 
                 @Override
                 public void updateDependencies(List<SwingScilabTab> list,
-                ListIterator<SwingScilabTab> it) {
+                                               ListIterator<SwingScilabTab> it) {
                 }
             });
 
@@ -114,7 +121,7 @@ public class ConsoleTab {
 
                 @Override
                 public void updateDependencies(List<SwingScilabTab> list,
-                ListIterator<SwingScilabTab> it) {
+                                               ListIterator<SwingScilabTab> it) {
                 }
             });
 
@@ -132,11 +139,22 @@ public class ConsoleTab {
         ScilabConsole.getConsole().setMaxOutputSize(ConfigManager.getMaxOutputSize());
         consoleTab.addMember(ScilabConsole.getConsole());
         ((SwingScilabTab) consoleTab.getAsSimpleTab()).setAssociatedXMLIDForHelp("console");
-        WindowsConfigurationManager.restorationFinished((SwingScilabTab) consoleTab.getAsSimpleTab());
 
         MenuBar menuBar = ScilabMenuBar.createMenuBar();
         ((SwingScilabTab) consoleTab.getAsSimpleTab()).setMenuBar(menuBar);
         ScilabConsole.getConsole().addMenuBar(menuBar);
+
+        ToolBar toolBar = ToolBarBuilder.buildToolBar(MAINTOOLBARXMLFILE);
+        TextBox infoBar = ScilabTextBox.createTextBox();
+
+        toolBar.setVisible(true); // Enabled in scilab.start
+
+        ((SwingScilabTab) consoleTab.getAsSimpleTab()).setToolBar(toolBar);
+        ((SwingScilabTab) consoleTab.getAsSimpleTab()).setInfoBar(infoBar);
+
+        ScilabConsole.getConsole().addMenuBar(consoleTab.getMenuBar());
+        ScilabConsole.getConsole().addToolBar(toolBar);
+        ScilabConsole.getConsole().addInfoBar(infoBar);
 
         return consoleTab;
     }

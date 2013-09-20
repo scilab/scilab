@@ -2,12 +2,12 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isdef" xml:lang="en">
@@ -25,7 +25,9 @@
             <varlistentry>
                 <term>ve</term>
                 <listitem>
-                    <para>a matrix with the same size as <varname>name</varname> with boolean values</para>
+                    <para>
+                        a matrix with the same size as <varname>name</varname> with boolean values
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -37,8 +39,11 @@
             <varlistentry>
                 <term>where</term>
                 <listitem>
-                    <para>an optional character string with default value
-                        <literal>'all'</literal>
+                    <para>
+                        character string, can be <literal>'l'</literal> (for <literal>"local"</literal>),
+                        <literal>'n'</literal> (for <literal>"nolocal"</literal>) or
+                        <literal>'a'</literal> (for <literal>"all"</literal>). Default value is
+                        <literal>'a'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -56,36 +61,39 @@
             result which depends on the environment!
         </para>
         <para>
-            <literal>isdef(name,'local')</literal> returns <literal>%T</literal>
+            <literal>isdef(name, 'l')</literal> returns <literal>%T</literal>
             if the variable named <literal>name</literal> exists in the local
             environment of the current function and <literal>%F</literal>
             otherwise.
         </para>
         <para>
-            <literal>isdef(name,'nolocal')</literal> returns
+            <literal>isdef(name, 'n')</literal> returns
             <literal>%T</literal> if the variable named <literal>name</literal> exists
             in the full calling environment (including the global level) of the
             current function and <literal>%F</literal> otherwise.
         </para>
+        <para>
+            Note: only the first letter of option <literal>where</literal> is taken into account.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-A=1; B=2; C=3; D=4;
+        <programlisting role="example"><![CDATA[
+A = 1; B = 2; C = 3; D = 4;
 isdef(['A', 'B'; 'C', 'D'])
 clear A, B, C, D;
 isdef(['A', 'B'; 'C', 'D'])
 
 function level1()
   function level2()
-    disp(isdef(["a", "b"],"all"));
-    disp(isdef(["a", "b"],"local"));
-    disp(isdef(["a", "b"],"nolocal"));
+    disp(isdef(["a", "b"], "all"));
+    disp(isdef(["a", "b"], "local"));
+    disp(isdef(["a", "b"], "nolocal"));
   endfunction
   level2()
 endfunction
 function go()
-  a=1;
+  a = 1;
   level1()
 endfunction
 go()

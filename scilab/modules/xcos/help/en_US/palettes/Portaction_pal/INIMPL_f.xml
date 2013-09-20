@@ -203,7 +203,7 @@
             resistor and the other for the ground. These inputs are connected to the external environment of the bloc via two INIMPL_f blocks numbered 1
             and 2. The Super block output is connected via a <link linkend="OUTIMPL_f">OUTIMPL_f</link> block.
         </para>
-        <para><link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/en_US/INIMPL_f_en_US.zcos">
+        <para><link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/INIMPL_f_en_US.zcos">
                 Open this example in Xcos
             </link>
         </para>

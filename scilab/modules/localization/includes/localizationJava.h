@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /**
@@ -28,11 +28,13 @@
  * However, for an unknown reason, gettext() is not working. Only
  * dgettext is */
 #define scigettext(String1) dgettext(NAMELOCALIZATIONDOMAIN,String1)
+#define scidgettext(String1, String2) dgettext(String1, String2)
 
 #else
 /* Restore the normal behaviour ... all the string will be in english */
 
 #define scigettext(String) ((const char *) (String))
+#define scidgettext(String1, String2) ((const char *) (String2))
 
 #endif
 

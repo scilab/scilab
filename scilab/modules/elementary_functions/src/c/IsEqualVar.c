@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -38,7 +38,7 @@ static void initStackParameters(void)
 /**intisequalvar
 * Gateway for isequalbitwise and isequal builtins
 * @param char * fname: the Scilab code of the function name
-* @param int * job: if *job==0 the floating point numbers are compared bitwize ,
+* @param int * job: if *job==0 the floating point numbers are compared bitwise ,
 *      if *job==1 the comparison is made numerically,
 *      so NaN elements are not equal
 *      elements of with differents data types are raised to the upper types before comparison (to be done)
@@ -60,7 +60,7 @@ int C2F(intisequalvar)(char * fname, int *job, long int fl)
     /*DEBUG_OVERLOADING("entering intisequal Top=%d, Rhs=%d, Rstk[pt]=%d\n",Top,Rhs,Rstk[Pt]);*/
 
 
-    SetDoubleCompMode(*job); /* floating point numbers are compared bitwize */
+    SetDoubleCompMode(*job); /* floating point numbers are compared bitwise */
     if (Rstk[Pt] == 914 || Rstk[Pt] == 915) /* coming back after evaluation of overloading function */
     {
         /*DEBUG_OVERLOADING("intisequal called back by the parser Top=%d, Rhs=%d, Pt=%d\n",Top,Rhs,Pt);*/
@@ -1174,7 +1174,7 @@ int IsEqualDoubleArrayBinary(int n, double *d1, double *d2)
 * compare if two double precision arrays of size n, are identical.
 * If the arrays conatins NaN the meaning depends on the value of the global flag IEEE_comp
 *  - if DoubleCompMode==1, double numbers are compared using "==", so Nan != NaN.
-*  - if DoubleCompMode==0, double numbers are compared bitwize.
+*  - if DoubleCompMode==0, double numbers are compared bitwise.
 * @param int n: array size
 * @param double *d1: pointer on the beginning of the first array
 * @param double *d2: pointer on the beginning of the second array

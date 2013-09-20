@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Internal function
 
@@ -56,8 +56,8 @@ function atomsDownload(url_in,file_out,md5sum)
     // Check input parameters value
     // =========================================================================
 
-    if regexp(url_in,"/^(http|ftp|file):\/\//","o") <> 1 then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: String that start with ''http://'',''ftp://'' or ''file://'' expected.\n"),"atomsDownload",1));
+    if regexp(url_in,"/^(https?|ftp|file):\/\//","o") <> 1 then
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: String that start with ''http(s)?://'',''ftp://'' or ''file://'' expected.\n"),"atomsDownload",1));
     end
 
     if (rhs>2) & (length(md5sum)<>32) then
@@ -107,7 +107,7 @@ function atomsDownload(url_in,file_out,md5sum)
     // Build the command
     // =========================================================================
 
-    if regexp(url_in, "/^(http|ftp):\/\//", "o") == 1 then
+    if regexp(url_in, "/^(https?|ftp):\/\//", "o") == 1 then
         proxy_host_arg = "";
         proxy_user_arg = "";
         timeout_arg  = "";

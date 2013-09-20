@@ -45,12 +45,12 @@ function model=scicos_model(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15,v
     if exists("nzcross","local")==0 then nzcross=0,end
     if exists("nmode","local")==0 then nmode=0,end
     if exists("equations","local")==0 then equations=list(),end
+    if exists("uid","local")==0 then uid="",end
 
     model=mlist(["model","sim","in","in2","intyp","out","out2","outtyp",...
     "evtin","evtout","state","dstate","odstate","rpar","ipar","opar",...
     "blocktype","firing","dep_ut","label","nzcross",..
-    "nmode","equations"],..
+    "nmode","equations","uid"],..
     sim,in,in2,intyp,out,out2,outtyp,evtin,evtout,state,dstate,odstate,..
-    rpar,ipar,opar,blocktype,firing,dep_ut,label,nzcross,nmode,equations)
+    rpar,ipar,opar,blocktype,firing,dep_ut,label,nzcross,nmode,equations,uid)
 endfunction
-

@@ -10,7 +10,7 @@
             their associated error number. Some of these error messages are used by
             Scilab itself for parser errors or specific builtin errors. Some others
             are of a more general use and can be used in Scilab functions. The starred
-            one are those for which the syntax <literal>error(n,pos)</literal> is
+            ones are those for which the syntax <literal>error(n,pos)</literal> is
             handled.
         </para>
         <para>1 "Incorrect assignment."</para>
@@ -237,7 +237,7 @@
         <para>226 "Inequality comparison with empty matrix."</para>
         <para>227 "Missing index."</para>
         <para>228 "reference to the cleared global variable %s."</para>
-        <para>229 "Operands of / and \\ operations must not contain NaN of
+        <para>229 "Operands of / and \\ operations must not contain NaN or
             Inf."
         </para>
         <para>230 "semi def fails."</para>

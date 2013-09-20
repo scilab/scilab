@@ -54,7 +54,7 @@
 *                         outptr inplnk  outlnk  rpar    rpptr   ipar    ipptr
 *                         opar   opptr   clkptr  ordptr  execlk  ordclk  cord
 *                         oord   zord    critev  nb      ztyp    nblk    ndcblk
-*                         subscr funtyp  iord    labels  modptr  !
+*                         subscr funtyp  iord    labels  modptr  uids !
 *        - 2  : sim.funs   : list of strings and/or scilab function
 *        - 3  : sim.xptr   : column vector of real
 *        - 4  : sim.zptr   : column vector of real
@@ -87,6 +87,7 @@
 *        - 31 : sim.iord   : column vector of real
 *        - 32 : sim.labels : column vector of strings
 *        - 33 : sim.modptr : column vector of real
+*        - 34 : sim.uids : column vector of strings
 *
 * rhs 5 str   : string flag : 'start','run','finish','linear'
 * rhs 6 tol   : real vector of size (7,1) minimum (4,1)
@@ -336,6 +337,10 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     static int m_modptr = 0, n_modptr = 0;  /*sim.modptr*/
     static int *il_sim_modptr = NULL;
     static int *l_sim_modptr = NULL;
+    static int m_uid = 0, n_uid = 0;        /*sim.uids*/
+    static int *il_sim_uid = NULL;
+    static int *il_sim_uidptr = NULL;
+    static int *l_sim_uid = NULL;
 
     static int m5 = 0, n5 = 0;              /*str*/
     static int *il_str = NULL;
@@ -1646,6 +1651,13 @@ int sci_scicosim(char *fname, unsigned long fname_len)
         }
     }
 
+    /*34 : sim.uids */
+    il_sim_uid = (int *) (listentry(il_sim, 34));
+    m_uid = il_sim_uid[1];
+    n_uid = il_sim_uid[2];
+    il_sim_uidptr = &il_sim_uid[4];  /*get address-1 of first pointer in uids*/
+    l_sim_uid = (int *) (il_sim_uid + m_uid + 5); /*get address of first string in uids*/
+
     /*************
     * str (rhs 5)
     *************/
@@ -2464,7 +2476,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     C2F(scicos)(l_state_x, l_sim_xptr, l_state_z,
                 l_state_iz, l_sim_zptr, l_sim_modptr,
                 oz, ozsz, oztyp, l_sim_ozptr,
-                l_sim_lab, il_sim_labptr, l_tcur,
+                l_sim_lab, il_sim_labptr, l_sim_uid, il_sim_uidptr, l_tcur,
                 l_tf, l_state_tevts, l_state_evtspt,
                 &m1e5, l_pointi, outtbptr,
                 outtbsz, outtbtyp,

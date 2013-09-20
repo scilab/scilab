@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16753)\n"
 "Language: uk\n"
 
 #, c-format
@@ -408,14 +408,10 @@ msgstr "ПОПЕРЕДЖЕННЯ: %s\n"
 
 #, c-format
 msgid ""
-"be aware that you have may lost synchronization\n"
-"    between the virtual gen %d and the others !\n"
-"    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
+"be aware that you may have lost synchronization\n"
+"    between the virtual generator %d and the others.\n"
+"    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."
 msgstr ""
-"зважайте на те, що може бути втрачено синхронізацію\n"
-"    між віртуальним %d та іншими!\n"
-"    Скористайтеся grand(\"setall\", s1, s2, s3, s4), якщо хочете її "
-"відновити."
 
 msgid ""
 "\n"
@@ -507,8 +503,8 @@ msgstr "Імітація випадкової величини з геометр
 msgid "Simulation of a hyper geometric random variable"
 msgstr "Імітація випадкової величини з гіпергеометричним розподілом"
 
-msgid "Simulation of a poisson random variable"
-msgstr "Імітація випадкової величини з розподілом Пуассона"
+msgid "Simulation of a Poisson random variable"
+msgstr ""
 
 msgid "Random"
 msgstr "Випадкові величини"

@@ -56,7 +56,7 @@ int sci_callblk(char *fname, unsigned long fname_len)
     int l_tmp = 0;
 
     /* length of the scilab list scicos struct */
-    int nblklst = 40;
+    int nblklst = 41;
 
     /* variable for callf */
     scicos_flag flag = 0;
@@ -172,6 +172,10 @@ int sci_callblk(char *fname, unsigned long fname_len)
             FREE(Block.label);
         }
         FREE(Block.mode);
+        if (strlen(Block.uid) != 0)
+        {
+            FREE(Block.uid);
+        }
         return 0;
     }
 
@@ -179,7 +183,7 @@ int sci_callblk(char *fname, unsigned long fname_len)
     il2 = (int *) GetData(2);
     m2  = il2[1];
     n2  = il2[2];
-    if ((il2[0] != 1) || (m2*n2 != 1))
+    if ((il2[0] != 1) || (m2 * n2 != 1))
     {
         Scierror(888, _("%s : Second argument must be scalar.\n"), fname);
         return 0;
@@ -191,7 +195,7 @@ int sci_callblk(char *fname, unsigned long fname_len)
     m3  = il3[1];
     n3  = il3[2];
 
-    if ((il3[0] != 1) || (m3*n3 != 1))
+    if ((il3[0] != 1) || (m3 * n3 != 1))
     {
         Scierror(888, _("%s : Third argument must be scalar.\n"), fname);
         return 0;
@@ -246,6 +250,10 @@ int sci_callblk(char *fname, unsigned long fname_len)
         FREE(Block.label);
     }
     FREE(Block.mode);
+    if (Block.uid != NULL && strlen(Block.uid) != 0)
+    {
+        FREE(Block.uid);
+    }
 
     Top = TopSave;
 

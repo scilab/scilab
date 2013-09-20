@@ -236,7 +236,7 @@
     <refsection id="Example_TIME_DELAY">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/TIME_DELAY_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/TIME_DELAY_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/continuous_pal/TIME_DELAY_Example.zcos" valign="middle"/>

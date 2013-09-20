@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-13 13:44+0000\n"
-"Last-Translator: yurchor <Unknown>\n"
+"PO-Revision-Date: 2013-06-26 05:29+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16753)\n"
 "Language: uk\n"
 
 #, c-format
@@ -485,9 +485,6 @@ msgstr ""
 "**** SUNDIALS.Ida: занадто багато роботи за час=%g (фіксований діапазон, "
 "змініть RTOL і ATOL)\n"
 
-msgid "End of activation"
-msgstr "Завершення активації"
-
 #, c-format
 msgid "block %d is called "
 msgstr "блок %d викликано "
@@ -533,6 +530,39 @@ msgid ""
 msgstr ""
 "\n"
 "Попередження: функцією змінного знаку №%d повернуто NaN"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The residual function #%d returns a NaN"
+msgstr ""
+
+msgid ""
+"\n"
+"Error: Problem in the evaluation of a root function"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner evaluation function returns a NaN at index #%d."
+msgstr ""
+
+msgid ""
+"\n"
+"Error: The preconditioner evaluation function failed."
+msgstr ""
+
+msgid ""
+"\n"
+"Error: Failed to factor the preconditioner."
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner application function returns a NaN at index #%d."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -597,10 +627,6 @@ msgstr ""
 " Остаточною функцією повернуто NAN/Inf. \n"
 " Будь ласка, перевірте вашу модель:\n"
 " ймовірно, деякі з функцій було викликано з некоректними параметрами."
-
-#, c-format
-msgid "Slider t=%10.3f, flag=%d \n"
-msgstr "Повзунок t=%10.3f, прапорець=%d \n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -710,8 +736,8 @@ msgstr ""
 msgid "Simulation parameters not set:"
 msgstr "Не встановлено параметри імітації:"
 
-msgid "Initialisation problem:"
-msgstr "Проблема ініціалізації:"
+msgid "Initialization problem:"
+msgstr ""
 
 msgid "Simulation problem: "
 msgstr "Проблема імітації: "
@@ -788,16 +814,15 @@ msgstr "Проблеми з розмірністю або типом порту.
 msgid ""
 "No continuous-time state. Thresholds are ignored; this \n"
 "may be OK if you don't generate external events with them.\n"
-"If you want to reactivate the thresholds, the you need\n"
-"\n"
+"If you want to reactivate the thresholds, then you need\n"
 "to include a block with continuous-time state in your diagram.\n"
 "   You can for example include DUMMY CLSS block (linear palette)."
 msgstr ""
-"Режим обробки часу не є неперервним. Порогові обмеження ігноруються.\n"
-"Цим можна не перейматися, якщо ви не створюєте програмно\n"
-"зовнішніх подій для таких обмежень.\n"
-"Якщо вам потрібно задіяти порогові обмеження,\n"
-"вам слід включити до діаграми блок з неперервною обробкою за часом.\n"
+"Режим обробки часу не є неперервним. Порогові обмеження ігноруються.\\n\n"
+"Цим можна не перейматися, якщо ви не створюєте програмно\\n\n"
+"зовнішніх подій для таких обмежень.\\n\n"
+"Якщо вам потрібно задіяти порогові обмеження,\\n\n"
+"вам слід включити до діаграми блок з неперервною обробкою за часом.\\n\n"
 "   Наприклад, ви можете включити блок DUMMY CLSS (набір лінійних блоків)."
 
 msgid "Diagram contains implicit blocks, compiling for implicit Solver."
@@ -974,7 +999,7 @@ msgstr "Проблема обчислення: значення не оновл�
 msgid "Evaluation problem: Unknown block"
 msgstr "Проблема з обчисленнями: невідомий блок"
 
-msgid "Can not loaded dynamic library: "
+msgid "Cannot load dynamic library: "
 msgstr "Не вдалося завантажити динамічну бібліотеку: "
 
 msgid "Can't include "

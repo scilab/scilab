@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -20,12 +20,6 @@
 #include "ScilabEnvironments.hxx"
 #include "OptionsHelper.hxx"
 #include "dynlib_external_objects_scilab.h"
-
-extern "C" {
-#include "api_scilab.h"
-#include "stack-c.h"
-#include "localization.h"
-}
 
 namespace org_modules_external_objects
 {
@@ -80,6 +74,7 @@ public:
     {
         if (row == 0 || col == 0)
         {
+            // Empty matrix is plugged on null object
             return 0;
         }
         else if (row == 1 && col == 1)
@@ -98,6 +93,7 @@ public:
     {
         if (row == 0 || col == 0)
         {
+            // Empty matrix is plugged on null object
             return 0;
         }
         else if (row == 1 && col == 1)
@@ -112,10 +108,30 @@ public:
         return wrapper.wrapBool(data, row, col, isRef);
     }
 
+    inline static int wrapFloat(const int row, const int col, double * data, const ScilabAbstractEnvironmentWrapper & wrapper, const bool isRef)
+    {
+        if (row == 0 || col == 0)
+        {
+            // Empty matrix is plugged on null object
+            return 0;
+        }
+        else if (row == 1 && col == 1)
+        {
+            return wrapper.wrapFloat(data, isRef);
+        }
+        else if (row == 1)
+        {
+            return wrapper.wrapFloat(data, col, isRef);
+        }
+
+        return wrapper.wrapFloat(data, row, col, isRef);
+    }
+
     inline static int wrap(const int row, const int col, double * real, double * imag, const ScilabAbstractEnvironmentWrapper & wrapper, const bool isRef)
     {
         if (row == 0 || col == 0)
         {
+            // Empty matrix is plugged on null object
             return 0;
         }
         else if (row == 1 && col == 1)

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.texture;
@@ -21,6 +21,18 @@ import org.scilab.forge.scirenderer.data.AbstractDataProvider;
  * @author Calixte DENIZET
  */
 public abstract class AbstractTextureDataProvider extends AbstractDataProvider<Texture> implements TextureDataProvider {
+
+    protected ImageType imageType;
+
+    @Override
+    public ImageType getImageType() {
+        return imageType;
+    }
+
+    @Override
+    public boolean isRowMajorOrder() {
+        return true;
+    }
 
     @Override
     public BufferedImage getImage() {

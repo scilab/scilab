@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.
  * The terms are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="IDA">
     <refnamediv>
@@ -30,25 +30,25 @@
         </para>
         <para>
         </para>
-        Before solving the problem, <emphasis>IDA</emphasis> runs an internal routine to find consistent values for 
+        Before solving the problem, <emphasis>IDA</emphasis> runs an internal routine to find consistent values for
         <emphasis>
             y<subscript>0</subscript>
         </emphasis>
-        and 
+        and
         <emphasis>
             yPrime<subscript>0</subscript>
         </emphasis>
         .
         <para>
-            Starting then with those 
+            Starting then with those
             <emphasis>
                 y<subscript>0</subscript>
             </emphasis>
-            and 
+            and
             <emphasis>
                 yPrime<subscript>0</subscript>
             </emphasis>
-            , <emphasis>IDA</emphasis> approximates 
+            , <emphasis>IDA</emphasis> approximates
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
@@ -61,11 +61,11 @@
                 \end{eqnarray}
             </latex>
             <para>
-                &#160; with, like in <link linkend="CVode">CVode</link>, 
+                &#160; with, like in <link linkend="CVode">CVode</link>,
                 <emphasis>
                     y<subscript>n</subscript>
                 </emphasis>
-                the approximation of 
+                the approximation of
                 <emphasis>
                     y(t<subscript>n</subscript>)
                 </emphasis>
@@ -111,11 +111,11 @@
             An implemented direct dense solver is used and we go on to the next step.
         </para>
         <para>
-            <emphasis>IDA</emphasis> uses the history array to control the local error 
+            <emphasis>IDA</emphasis> uses the history array to control the local error
             <emphasis>
                 y<subscript>n(m)</subscript> - y<subscript>n(0)</subscript>
             </emphasis>
-            and recomputes 
+            and recomputes
             <emphasis>
                 h<subscript>n</subscript>
             </emphasis>
@@ -137,7 +137,7 @@
             The 'Modelica Generic' block returns its continuous states, we can evaluate them with <emphasis>IDA</emphasis> by running the example:
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/DAE_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/DAE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../examples/solvers/DAE_Example.zcos" valign="middle"/>
@@ -149,8 +149,8 @@ loadScicos();
 loadXcosLibs();
 importXcosDiagram(SCI + "/modules/xcos/examples/solvers/DAE_Example.zcos");
 // Redefining messagebox() to avoid popup
-function messagebox(msg, title)
- disp(title);
+function messagebox(msg, Title)
+ disp(Title);
  disp(msg);
 endfunction
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end

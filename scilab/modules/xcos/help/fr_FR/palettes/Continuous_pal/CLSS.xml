@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CLSS" xml:lang="fr">
@@ -93,7 +93,7 @@
             <latex>
                 \begin{matrix}
                 \dot{x} = A \cdot x + B \cdot u \\ 
-                \dot{y} = C \cdot x + D \cdot u
+                y = C \cdot x + D \cdot u
                 \end{matrix}
             </latex>
         </para>
@@ -321,7 +321,7 @@ u_0(t)
         </para>
         <para>Pour obtenir la sortie Vc(t) on utilise le bloc CLSS de la palette Systèmes à temps continu.</para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/CLSS_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/CLSS_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/continuous_pal/CLSS_Example.zcos" valign="middle"/>

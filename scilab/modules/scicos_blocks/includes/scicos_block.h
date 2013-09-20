@@ -70,6 +70,7 @@ typedef struct
     void **work;
     int nmode;
     int *mode;
+    char *uid;
 } scicos_block;
 
 

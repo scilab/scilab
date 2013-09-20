@@ -2,12 +2,13 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * 
+ * Copyright (C) 2013 - Samuel GOUGEON : restriction to decimal numbers removed. Examples added for booleans, integer-encoded numbers, text, polynomials, rationals
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="flipdim" xml:lang="en">
@@ -17,15 +18,17 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>y=flipdim(x,dim)</synopsis>
+        <synopsis>y = flipdim(x, dim)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>x, y</term>
+                
                 <listitem>
-                    <para>a scalar, a vector or an array of real or complex numbers.</para>
+                    <para>scalars, vectors, matrices, or hypermatrices of any type, of same sizes</para>
+                    
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -34,18 +37,12 @@
                     <para>a positive integer</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>y</term>
-                <listitem>
-                    <para>a scalar, a vector or an array of reals</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
         <para>
-            Given <literal>x</literal>, a scalar/vector/array of real or complex numbers and
+            Given <literal>x</literal>, a scalar/vector/matrix/hypermatrix of any type and
             <literal>dim</literal> a positive integer, this function flips the x
             components along the dimension number <literal>dim</literal> of
             <literal>x</literal> (<literal>x</literal> and <literal>y</literal> have
@@ -54,26 +51,58 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// example 1: flip x components along the first dimension
-x=[1 2 3 4; 5 6 7 8];
-dim=1;
-y=flipdim(x,dim)
+        <programlisting role="example"><![CDATA[
+// Example 1: flip x components along the first dimension
+x = [1 2 3 4; 5 6 7 8]
+dim = 1
+y = flipdim(x, dim)
 
-// example 2: flip x components along the second dimension
-dim=2;
-y=flipdim(x,dim)
+// Example 2: flip x components along the second dimension
+dim = 2
+y = flipdim(x, dim)
 
-// example 3: flip x components along the third dimension
-x=matrix(1:48,[3 2,4,2]);
-dim=3;
-y=flipdim(x,dim)
+// Example 3: flip x components along the third dimension
+x = matrix(1:24, [3 2 4])
+dim = 3
+y = flipdim(x, dim)
 
 // Example 4: the first example with complex
-x=[1+%i 2*%i 3 4; 5 6-%i 7 8*%pi*%i];
-dim=1;
-y=flipdim(x,dim)
+x = [1+%i 2*%i 3 4; 5 6-%i 7 8*%pi*%i]
+dim = 1
+y = flipdim(x, dim)
+
+// Integer-encoded numbers:
+x = int16(grand(4, 3, 2, "uin", -9, 9))
+y = flipdim(x, 1)
+
+// Booleans:
+x = (grand(3, 4, "uin", -9, 9) > 0)
+y = flipdim(x, 2)
+
+// Texts:
+x = matrix(strsplit("a":"x", 1:23), 4, 6);
+x = x+x
+flipdim(x, 2)
+
+// Polynomials:
+x = inv_coeff(grand(3, 9, "uin", 0, 3), 2)
+flipdim(x, 1)
+
+// Rationals:
+n = inv_coeff(grand(3, 9, "uin", 0, 3), 2);
+d = inv_coeff(grand(3, 9, "uin", 0, 3), 2);
+r = n./d
+flipdim(r, 2)
 
  ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Extension from decimals to any type: booleans, integer-encoded numbers, texts, polynomials and rationals.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

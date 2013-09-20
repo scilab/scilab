@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -92,6 +92,8 @@ public:
 
     static int invoke(char * fname, const int envId, void * pvApiCtx);
 
+    static int invoke_asref(char * fname, const int envId, void * pvApiCtx);
+
     static int invoke(char * fname, const int envId, ScilabAbstractInvoker & invoker, void * pvApiCtx);
 
     static int invoke_lu(char * fname, const int envId, void * pvApiCtx);
@@ -114,7 +116,7 @@ public:
 
     static int wrapAsRef(char * fname, const int envId, void * pvApiCtx);
 
-    //static int wrapInFloat(char * fname, const int envId, void * pvApiCtx);
+    static int wrapInFloat(char * fname, const int envId, void * pvApiCtx);
 };
 }
 

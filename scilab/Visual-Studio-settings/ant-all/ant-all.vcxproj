@@ -31,24 +31,28 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -74,6 +78,7 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant
 cd $(SolutionDir)modules\javasci &amp;&amp; call ant 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant
+cd $(SolutionDir)modules\external_objects_java &amp;&amp; call ant
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
@@ -81,7 +86,7 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call 
 cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp; call ant 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp; call ant
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp; call ant
-
+cd $(SolutionDir)modules\external_objects_java &amp;&amp; call ant clean &amp;&amp; call ant
 
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
@@ -90,6 +95,7 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean
 cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean
+cd $(SolutionDir)modules\external_objects_java &amp;&amp; call ant clean
 
 
 
@@ -105,6 +111,7 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant
 cd $(SolutionDir)modules\javasci &amp;&amp; call ant 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant
+cd $(SolutionDir)modules\external_objects_java &amp;&amp; call ant
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
@@ -112,7 +119,7 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call 
 cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp; call ant 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp; call ant
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp; call ant
-
+cd $(SolutionDir)modules\external_objects_java &amp;&amp; call ant clean &amp;&amp; call ant
 
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
@@ -121,6 +128,7 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean
 cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean
+cd $(SolutionDir)modules\external_objects_java &amp;&amp; call ant clean
 
 
 
@@ -136,6 +144,7 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant
 cd $(SolutionDir)modules\javasci &amp;&amp; call ant 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant
+cd $(SolutionDir)modules\external_objects_java &amp;&amp; call ant
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
@@ -143,7 +152,7 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call 
 cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp; call ant 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp; call ant
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp; call ant
-
+cd $(SolutionDir)modules\external_objects_java &amp;&amp; call ant clean &amp;&amp; call ant
 
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
@@ -152,6 +161,7 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean
 cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean
+cd $(SolutionDir)modules\external_objects_java &amp;&amp; call ant clean
 
 
 
@@ -167,6 +177,7 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant
 cd $(SolutionDir)modules\javasci &amp;&amp; call ant 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant
+cd $(SolutionDir)modules\external_objects_java &amp;&amp; call ant
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
@@ -174,7 +185,7 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call 
 cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp; call ant 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp; call ant
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp; call ant
-
+cd $(SolutionDir)modules\external_objects_java &amp;&amp; call ant clean &amp;&amp; call ant
 
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
@@ -183,6 +194,7 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean
 cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean 
 cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean
 cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean
+cd $(SolutionDir)modules\external_objects_java &amp;&amp; call ant clean
 
 
 

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16753)\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -115,20 +115,16 @@ msgid "%s: Too many subscripts.\n"
 msgstr "%s: Příliš mnoho dolních indexů.\n"
 
 #, c-format
-msgid "%s: Operand not a boolean hypermat.\n"
-msgstr "%s: Operand není booleovská hypermatice.\n"
-
-#, c-format
-msgid "%s: incompatible operand dimensions.\n"
-msgstr "%s: Nekompatibilní rozměry operandu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
-msgstr "%s: Špatný typ vstupních argumentů: očekávána hypermatice.\n"
+msgid "%s: Operand is not a boolean hypermatrix.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Incompatible operand dimensions.\n"
 msgstr "%s: Nekompatibilní  rozměry operandu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
+msgstr "%s: Špatný typ vstupních argumentů: očekávána hypermatice.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
@@ -198,6 +194,10 @@ msgstr "%s: Špatná velikost vstupních argumentů.\n"
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr "%s: Špatná velikost vstupních argumentů.\n"
 
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+
 msgid ""
 "  Warning: Syntax vector ^ scalar is obsolete it will be removed in scilab-"
 "6.\n"
@@ -209,10 +209,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d and #%d: integer values expected.\n"
+"%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
 msgstr ""
-"%s: ŠPatný typ vstupních argumentů #%d a #%d: Očekávány celočíselné "
-"hodnoty.\n"
 
 #, c-format
 msgid "%s: Not yet implemented.\n"
@@ -223,12 +221,12 @@ msgid "%s: A null assignment can have only one non-colon index.\n"
 msgstr "%s? Prázdné přidělení může mít index pouze bez dvojtečky.\n"
 
 #, c-format
-msgid "%s: unable to diagonalize!"
-msgstr "%s: nelze diagonalizovat!"
+msgid "%s: Unable to diagonalize.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Sparse insertion case not treated.\n"
-msgstr "%s: Případ řídkého vložení není ošetřen!\n"
+msgid "%s: Sparse insertion case is not implemented.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
@@ -273,6 +271,11 @@ msgid ""
 msgstr ""
 "%s: Neplatné přidělení: pro vložení ve volání použijte např. "
 "x(i,j).entries=y.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible sizes for properties '%s' and '%s': Same sizes expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

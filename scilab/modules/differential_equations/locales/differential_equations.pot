@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-25 15:36+0100\n"
+"Revision-Date: 2013-09-13 12:32+0100\n"
 
 # File: demos/bike/macros/velo1.sci, line: 26
 msgid "bike simulation, stable trajectory"
@@ -97,12 +97,8 @@ msgid "chemical process (implicit)"
 msgstr ""
 
 #
-# File: demos/ode/ode_lorentz/ode_lorentz.dem.sce, line: 37
-msgid "Lorentz differential equation"
-msgstr ""
-
-#
-# File: demos/ode/ode_lorentz/ode_lorentz.dem.sce, line: 51
+# File: demos/ode/ode_lorenz/ode_lorenz.dem.sce, line: 37
+# File: demos/ode/ode_lorenz/ode_lorenz.dem.sce, line: 51
 msgid "Lorenz differential equation"
 msgstr ""
 

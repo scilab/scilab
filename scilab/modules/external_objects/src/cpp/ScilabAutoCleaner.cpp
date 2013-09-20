@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -54,6 +54,11 @@ void ScilabAutoCleaner::registerVariable(const int envId, const int varId)
 
 void ScilabAutoCleaner::unregisterVariable(const int envId, const int varId)
 {
+    unregisterVariable(envId, &varId, 1);
+}
+
+void ScilabAutoCleaner::unregisterVariable(const int envId, const int * varId, const int length)
+{
     const int level = C2F(recu).macr;
     const int ssize = stack.size() - 1;
 
@@ -63,7 +68,10 @@ void ScilabAutoCleaner::unregisterVariable(const int envId, const int varId)
         _MapIds::iterator it = map.find(envId);
         if (it != map.end())
         {
-            it->second.erase(varId);
+            for (int i = 0; i < length; i++)
+            {
+                it->second.erase(varId[i]);
+            }
         }
     }
 }
@@ -160,6 +168,16 @@ void ScilabAutoCleaner::removeUnusedObjects(const _MapIds & current, const _MapI
                     env.writeLog("removeUnusedObjects", "autoremove id=%d.", *itu);
                     env.autoremoveobject(*itu);
                 }
+            }
+        }
+        else
+        {
+            ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(itm->first);
+
+            for (std::set<int>::const_iterator itu = itm->second.begin(); itu != itm->second.end(); itu++)
+            {
+                env.writeLog("removeUnusedObjects", "autoremove id=%d.", *itu);
+                env.autoremoveobject(*itu);
             }
         }
     }

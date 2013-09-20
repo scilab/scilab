@@ -41,13 +41,13 @@ function [x,y,typ]=MATSUM(job,arg1,arg2)
             label=lab
             if (typ==1) then
                 if (decomptyp==0) then
-                    junction_name="mat_sum";
+                    function_name="mat_sum";
                     out=[1 1];
                 elseif (decomptyp==2) then
-                    junction_name="mat_suml";
+                    function_name="mat_suml";
                     out=[-1 1];
                 elseif (decomptyp==1) then
-                    junction_name="mat_sumc";
+                    function_name="mat_sumc";
                     out=[1 -2];
                 else message("decomposition type is not supported");ok=%f;
                 end
@@ -55,13 +55,13 @@ function [x,y,typ]=MATSUM(job,arg1,arg2)
                 ot=1;
             elseif (typ==2) then
                 if (decomptyp==0) then
-                    junction_name="matz_sum";
+                    function_name="matz_sum";
                     out=[1 1];
                 elseif (decomptyp==2) then
-                    junction_name="matz_suml";
+                    function_name="matz_suml";
                     out=[-1 1];
                 elseif (decomptyp==1) then
-                    junction_name="matz_sumc";
+                    function_name="matz_sumc";
                     out=[1 -2];
                 else message("decomposition type is not supported");ok=%f;
                 end
@@ -75,7 +75,7 @@ function [x,y,typ]=MATSUM(job,arg1,arg2)
                 [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
             end
             if ok then
-                model.sim=list(junction_name,funtyp);
+                model.sim=list(function_name,funtyp);
                 arg1.model=model
                 graphics.exprs=label
                 arg1.graphics=graphics
@@ -85,9 +85,9 @@ function [x,y,typ]=MATSUM(job,arg1,arg2)
         end
     case "define" then
         model=scicos_model()
-        junction_name="mat_sum";
+        function_name="mat_sum";
         funtyp=4;
-        model.sim=list(junction_name,funtyp)
+        model.sim=list(function_name,funtyp)
 
         model.in=-1
         model.in2=-2

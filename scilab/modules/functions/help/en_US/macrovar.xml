@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="macrovar">
@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>vars=macrovar(function)</synopsis>
+        <synopsis>vars = macrovar(function)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -26,7 +26,7 @@
                 <term>vars</term>
                 <listitem>
                     <para>
-                        list  <literal>list(in,out,nolocal,called,locals)</literal>
+                        list,  <literal>list(in, out, nolocal, called, locals)</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -42,29 +42,31 @@
         <title>Description</title>
         <para>
             Returns in a list the set of variables used by a function.
-            <literal>vars</literal> is a list made of five column vectors of character strings
+            <literal>vars</literal> is a list made of five column vectors of character strings:
         </para>
-        <para>
-            <literal>in</literal> input variables (<literal>vars(1)</literal>)
-        </para>
-        <para>
-            <literal>out</literal> output variables (<literal>vars(2)</literal>)
-        </para>
-        <para>
-            <literal>nolocal</literal>referenced variables which are not defined inside the function and which are not functions (<literal>vars(3)</literal>)
-        </para>
-        <para>
-            <literal>called</literal> names of functions called (<literal>vars(4)</literal>)
-        </para>
-        <para>
-            <literal>locals</literal> local variables (<literal>vars(5)</literal>)
-        </para>
+        <simplelist type="inline">
+            <member>
+                <literal>in</literal>: input variables (<literal>vars(1)</literal>)
+            </member>
+            <member>
+                <literal>out</literal>: output variables (<literal>vars(2)</literal>)
+            </member>
+            <member>
+                <literal>nolocal</literal>: referenced variables which are not defined inside the function and which are not functions (<literal>vars(3)</literal>)
+            </member>
+            <member>
+                <literal>called</literal>: names of functions called (<literal>vars(4)</literal>)
+            </member>
+            <member>
+                <literal>locals</literal>: local variables (<literal>vars(5)</literal>)
+            </member>
+        </simplelist>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-deff('y=f(x1,x2)','loc=1;y=a*x1+x2-loc')
-vars=macrovar(f)
+        <programlisting role="example"><![CDATA[
+deff('y = f(x1, x2)', 'loc = 1; y = a*x1+x2-loc');
+vars = macrovar(f)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

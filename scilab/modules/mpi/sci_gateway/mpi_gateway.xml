@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+<GATEWAY name="sylvestre">
+    <!-- =================== -->
+    <!--
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
+ ===================
+ Don't touch if you do not know what you are doing
+-->
+    <!-- =================== -->
+    <PRIMITIVE gatewayId="73" primitiveId="1" primitiveName="MPI_Init"/>
+    <PRIMITIVE gatewayId="73" primitiveId="2" primitiveName="MPI_Finalize"/>
+    <PRIMITIVE gatewayId="73" primitiveId="3" primitiveName="MPI_Comm_size"/>
+    <PRIMITIVE gatewayId="73" primitiveId="4" primitiveName="MPI_Comm_rank"/>
+    <PRIMITIVE gatewayId="73" primitiveId="5" primitiveName="MPI_Recv"/>
+    <PRIMITIVE gatewayId="73" primitiveId="6" primitiveName="MPI_Send"/>
+    <PRIMITIVE gatewayId="73" primitiveId="7" primitiveName="MPI_Get_processor_name"/>
+    <PRIMITIVE gatewayId="73" primitiveId="8" primitiveName="MPI_Bcast"/>
+    <PRIMITIVE gatewayId="73" primitiveId="9" primitiveName="MPI_Irecv"/>
+    <PRIMITIVE gatewayId="73" primitiveId="10" primitiveName="MPI_Isend"/>
+    <PRIMITIVE gatewayId="73" primitiveId="11" primitiveName="MPI_Wait"/>
+</GATEWAY>

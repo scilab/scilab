@@ -214,7 +214,7 @@
         <para>
             In the following example the Super block encloses two discontinuities. The OUT_f block is the non linear output signal.
         </para>
-        <para><link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/en_US/OUT_f_en_US.zcos">
+        <para><link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/OUT_f_en_US.zcos">
                 Open this example in Xcos
             </link>
         </para>

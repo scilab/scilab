@@ -6,7 +6,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
 #### Target ######
@@ -74,7 +74,8 @@ GRAPHIC_OBJECTS_CXX_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/CurrentObject.cpp \
 								src/cpp/CurrentSubwin.cpp \
 								src/cpp/createObjectData.cpp \
-								src/cpp/pickSurface.cpp
+								src/cpp/pickSurface.cpp \
+								src/cpp/Texture.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 
@@ -124,9 +125,12 @@ INCLUDE_FLAGS = $(libscigraphic_objects_la_CPPFLAGS)
 SWIG_WRAPPERS = src/jni/DataLoader.i \
 				src/jni/ScilabNativeView.i \
 				src/jni/PolylineData.i \
-                src/jni/SurfaceData.i
+				src/jni/SurfaceData.i \
+				src/jni/graphic_objects.i \
+				src/jni/ObjectData.i
+
 if SWIG
-  BUILT_SOURCES += swig
+BUILT_SOURCES+=swig
 endif
 
 libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la

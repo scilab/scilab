@@ -6,20 +6,22 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.helptools.external;
 
+import java.io.File;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
-
 import org.scilab.modules.helptools.DocbookTagConverter;
 
 public abstract class ExternalXMLHandler {
 
     private DocbookTagConverter converter;
+    protected int compt = 1;
 
     public abstract StringBuilder startExternalXML(String localName, Attributes attributes, Locator locator);
 
@@ -27,12 +29,16 @@ public abstract class ExternalXMLHandler {
 
     public abstract String getURI();
 
-    public DocbookTagConverter getConverter() {
+    public final DocbookTagConverter getConverter() {
         return converter;
     }
 
-    public void setConverter(DocbookTagConverter converter) {
+    public final void setConverter(DocbookTagConverter converter) {
         this.converter = converter;
+    }
+
+    public final void resetCompt() {
+        compt = 1;
     }
 
     public String getScilabURI() {

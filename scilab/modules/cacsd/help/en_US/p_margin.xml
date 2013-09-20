@@ -2,12 +2,12 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge STEER
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="p_margin">
@@ -80,11 +80,11 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //continuous case
 h=syslin('c',-1+%s,3+2*%s+%s^2)
-[p,fr]=p_margin(h)  
-[p,fr]=p_margin(h+0.7)  
+[p,fr]=p_margin(h)
+[p,fr]=p_margin(h+0.7)
 show_margins(h+0.7,'nyquist')
 
 //discrete case
@@ -97,7 +97,7 @@ show_margins(h,'nyquist')
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="g_margin">p_margin</link>
+                <link linkend="g_margin">g_margin</link>
             </member>
             <member>
                 <link linkend="show_margins">show_margins</link>

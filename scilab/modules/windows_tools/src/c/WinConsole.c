@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -30,6 +30,7 @@ void HideScilex(void)
     if (hScilex)
     {
         ShowWindow(hScilex, SW_HIDE);
+        SetConsoleState(0);
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -41,6 +42,7 @@ void ShowScilex(void)
     if (hScilex)
     {
         ShowWindow(hScilex, SW_SHOWNOACTIVATE);
+        SetConsoleState(1);
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -54,14 +56,12 @@ void SwitchConsole(void)
         case 0:
         {
             ShowScilex();
-            SetConsoleState(1);
         }
         break;
         /* La fenetre etait apparente , on la cache */
         case 1:
         {
             HideScilex();
-            SetConsoleState(0);
         }
         break;
     }

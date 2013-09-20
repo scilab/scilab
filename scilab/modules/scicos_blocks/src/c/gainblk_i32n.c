@@ -29,9 +29,9 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i32n(scicos_block *block, int flag)
     if ((flag == 1) | (flag == 6))
     {
         int i = 0, j = 0, l = 0, ji = 0, jl = 0, il = 0;
-        long *u = NULL, *y = NULL;
+        SCSINT32_COP *u = NULL, *y = NULL;
         int mu = 0, ny = 0, my = 0, mo = 0, no = 0;
-        long *opar = NULL;
+        SCSINT32_COP *opar = NULL;
         double k = 0., D = 0., C = 0., t = 0.;
 
         mo = GetOparSize(block, 1, 1);
@@ -61,7 +61,7 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i32n(scicos_block *block, int flag)
                         (t) = -(-((k / 2)) + fabs(t - (double)((int)((t) / ((k / 2)))) * ((k / 2))));
                     }
                 }
-                y[i] = (long)t;
+                y[i] = (SCSINT32_COP)t;
             }
         }
         else
@@ -92,7 +92,7 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i32n(scicos_block *block, int flag)
                             (t) = -(-((k / 2)) + fabs(t - (double)((int)((t) / ((k / 2)))) * ((k / 2))));
                         }
                     }
-                    y[jl] = (long)t;
+                    y[jl] = (SCSINT32_COP)t;
                 }
             }
         }

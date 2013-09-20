@@ -10,8 +10,8 @@ function builder_gw_c()
     WITHOUT_AUTO_PUTLHSVAR = %t;
 
     tbx_build_gateway("skeleton_c", ..
-    ["c_sum","sci_csum";"c_sub","sci_csub";"c_multiplybypi","sci_multiplybypi";"foo","sci_foo"], ..
-    ["sci_csum.c","sci_csub.c","sci_multiplybypi.c","sci_foo.c"], ..
+    ["c_sum","sci_csum";"c_sub","sci_csub";"c_multiplybypi","sci_multiplybypi";"foo","sci_foo";"c_error","sci_cerror"], ..
+    ["sci_csum.c","sci_csub.c","sci_multiplybypi.c","sci_foo.c","sci_cerror.c"], ..
     get_absolute_file_path("builder_gateway_c.sce"), ..
     ["../../src/c/libcsum"], ..
     "", ..

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.texture;
@@ -24,13 +24,25 @@ public class DrawnTextureDataProvider extends AbstractDataProvider<Texture> impl
 
     /** Texture drawer */
     private TextureDrawer textureDrawer;
+    protected ImageType imageType;
 
     /** Current image */
     BufferedImageTextureDrawingTools image;
 
     public DrawnTextureDataProvider(TextureDrawer textureDrawer) {
         this.textureDrawer = textureDrawer;
+        imageType = ImageType.RGBA;
         //reDraw();
+    }
+
+    @Override
+    public ImageType getImageType() {
+        return imageType;
+    }
+
+    @Override
+    public boolean isRowMajorOrder() {
+        return true;
     }
 
     /** Reload the texture and recall the texture drawing tools. */
@@ -77,16 +89,16 @@ public class DrawnTextureDataProvider extends AbstractDataProvider<Texture> impl
             ByteBuffer buffer = getData();
             return buffer;
             /*
-            ByteBuffer tempBuffer = ByteBuffer.allocate(4 * width * height);
-            byte[] data = new byte[4 * height];
-            for (int j = y; j < y + height; j++) {
-                buffer.position(4 * (x + j * getTextureSize().width));
-                buffer.get(data);
-                tempBuffer.put(data);
-            }
-            tempBuffer.rewind();
-            buffer.rewind();
-            return tempBuffer;
+              ByteBuffer tempBuffer = ByteBuffer.allocate(4 * width * height);
+              byte[] data = new byte[4 * height];
+              for (int j = y; j < y + height; j++) {
+              buffer.position(4 * (x + j * getTextureSize().width));
+              buffer.get(data);
+              tempBuffer.put(data);
+              }
+              tempBuffer.rewind();
+              buffer.rewind();
+              return tempBuffer;
             */
         } else {
             return null;

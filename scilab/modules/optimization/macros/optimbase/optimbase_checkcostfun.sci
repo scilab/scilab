@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 //
@@ -126,12 +126,16 @@ endfunction
 //
 function this = optimbase_checkshape ( this , varname , value , index , expectednrows , expectedncols )
     if ( size(value,1) <> expectednrows ) then
-        errmsg = msprintf ( gettext ( "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d." ) , "optimbase_checkcostfun" , varname , index , size(value,1) , expectednrows )
-        error ( errmsg );
+        if ( size(value,1) == expectedncols & size(value,2) == 1) then
+            // Allow column vector returns, just transpose them to get row vectors.
+            value = value';
+        else
+            errmsg = msprintf ( gettext ( "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d." ) , "optimbase_checkcostfun" , varname , index , size(value,1) , expectednrows )
+            error ( errmsg );
+        end
     end
     if ( size(value,2) <> expectedncols ) then
         errmsg = msprintf ( gettext ( "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d." ) , "optimbase_checkcostfun" , varname , index , size(value,2) , expectedncols )
         error ( errmsg );
     end
 endfunction
-

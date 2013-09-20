@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-17 20:16+0000\n"
-"Last-Translator: jojolebestof <Unknown>\n"
+"PO-Revision-Date: 2013-07-26 14:32+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16753)\n"
 "Language: fr\n"
 
 #, c-format
@@ -487,9 +487,6 @@ msgstr ""
 "**** SUNDIALS.Ida : trop de travail à l'instant=%g (zone ferme, changer RTOL "
 "et ATOL)\n"
 
-msgid "End of activation"
-msgstr "Fin d'activation"
-
 #, c-format
 msgid "block %d is called "
 msgstr "le bloc %d est appelé "
@@ -518,7 +515,7 @@ msgid ""
 "Warning: The computing function #%d returns a NaN/Inf"
 msgstr ""
 "\n"
-"Attention : La fonction de calcul n°%d renvoie NaN/Inf"
+"Attention : La fonction de calcul n°%d retourne NaN/Inf"
 
 #, c-format
 msgid ""
@@ -526,7 +523,7 @@ msgid ""
 "Warning: The zero_crossing function #%d returns a NaN/Inf"
 msgstr ""
 "\n"
-"Attention : La fonction passant par zéro n°%d retourne un NaN/Inf"
+"Attention : La fonction passant par zéro n°%d retourne NaN/Inf"
 
 #, c-format
 msgid ""
@@ -535,6 +532,53 @@ msgid ""
 msgstr ""
 "\n"
 "Attention : La fonction passant par zéro n°%d retourne un NaN"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The residual function #%d returns a NaN"
+msgstr ""
+"\n"
+"Attention : La fonction résiduelle n°%d retourne un NaN"
+
+msgid ""
+"\n"
+"Error: Problem in the evaluation of a root function"
+msgstr ""
+"\n"
+"Erreur : Problème à l'évalutation d'une fonction de traversée de surfaces"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner evaluation function returns a NaN at index #%d."
+msgstr ""
+"\n"
+"Attention : La fonction d'évaluation du préconditionneur retourne Nan à "
+"l'index n°%d."
+
+msgid ""
+"\n"
+"Error: The preconditioner evaluation function failed."
+msgstr ""
+"\n"
+"Erreur : La fonction d'évaluation du préconditionneur a échoué."
+
+msgid ""
+"\n"
+"Error: Failed to factor the preconditioner."
+msgstr ""
+"\n"
+"Erreur : Echec de factorisation du préconditionneur."
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The preconditioner application function returns a NaN at index #%d."
+msgstr ""
+"\n"
+"Attention : La fonction d'application du préconditionneur retourne NaN à "
+"l'index n°%d."
 
 #, c-format
 msgid ""
@@ -580,7 +624,7 @@ msgid ""
 "Warning: The initialization system #%d returns a NaN/Inf"
 msgstr ""
 "\n"
-"Attention : Le système d'initialisation n°%d renvoie un NaN/Inf"
+"Attention : Le système d'initialisation n°%d retourne NaN/Inf"
 
 #, c-format
 msgid ""
@@ -588,7 +632,7 @@ msgid ""
 "Warning: The residual function #%d returns a NaN/Inf"
 msgstr ""
 "\n"
-"Attention : La fonction résidu n°%d retourne un NaN/Inf"
+"Attention : La fonction résidu n°%d retourne NaN/Inf"
 
 msgid ""
 "\n"
@@ -597,14 +641,10 @@ msgid ""
 " some functions might be called with illegal inputs."
 msgstr ""
 "\n"
-" La fonction résiduelle renvoie NaN/Inf. \n"
+" La fonction résiduelle retourne NaN/Inf. \n"
 " Veuillez vérifier votre modèle :\n"
 " quelques fonctions pourraient être appelées avec des valeurs d'entrée "
 "illégales."
-
-#, c-format
-msgid "Slider t=%10.3f, flag=%d \n"
-msgstr "Curseur t=%10.3f, drapeau=%d \n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -712,7 +752,7 @@ msgstr ""
 msgid "Simulation parameters not set:"
 msgstr "Les paramètres de simulation ne sont pas configurés :"
 
-msgid "Initialisation problem:"
+msgid "Initialization problem:"
 msgstr "Problème d'initialisation :"
 
 msgid "Simulation problem: "
@@ -727,6 +767,7 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 msgid "Your model contains states defined in standard Scicos blocks.\n"
 msgstr ""
+"Votre modèle contient des états définis dans des blocs standard Scicos.\n"
 
 #, c-format
 msgid "Initialisation problem in %s "
@@ -737,7 +778,7 @@ msgid "Initialisation problem in the %s method"
 msgstr "Problème d'initialisation dans la méthode %s"
 
 msgid "Initialisation problem in the finish phase"
-msgstr ""
+msgstr "Problème d'initialisation en phase finale"
 
 msgid "Problem with the block generated from modelica blocks."
 msgstr "Problème avec le bloc généré à partir des blocs Modelica"
@@ -790,11 +831,15 @@ msgstr "Problème avec la taille ou le type de port."
 msgid ""
 "No continuous-time state. Thresholds are ignored; this \n"
 "may be OK if you don't generate external events with them.\n"
-"If you want to reactivate the thresholds, the you need\n"
-"\n"
+"If you want to reactivate the thresholds, then you need\n"
 "to include a block with continuous-time state in your diagram.\n"
 "   You can for example include DUMMY CLSS block (linear palette)."
 msgstr ""
+"Pas d'état en temps continu. Les seuils sont ignorés; cela \n"
+"peut être correct si vous ne générez pas d'événements externes avec eux.\n"
+"Si vous souhaitez réactivez les seuils, alors vous devez\n"
+"ajouter un bloc avec état continu dans votre diagramme.\n"
+"   Vous pouvez par exemple ajouter un bloc DUMMY CLSS (palette Linéaire)."
 
 msgid "Diagram contains implicit blocks, compiling for implicit Solver."
 msgstr ""
@@ -824,7 +869,7 @@ msgstr ""
 "Il n'y a pas assez d'informations pour trouver la taille des ports.\n"
 
 msgid "I cannot find a link with undetermined size.\n"
-msgstr ""
+msgstr "Impossible de trouver un lien avec une taille indéterminée.\n"
 
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
@@ -910,11 +955,11 @@ msgstr "Les blocs Modelica sont réduit à un bloc avec:"
 
 #, c-format
 msgid "Number of differential states: %d"
-msgstr ""
+msgstr "Nombre d'états différentiels : %d"
 
 #, c-format
 msgid "Number of algebraic states: %d"
-msgstr ""
+msgstr "Nombre d'états algébriques : %d"
 
 #, c-format
 msgid "Number of discrete time states  : %d"
@@ -922,35 +967,35 @@ msgstr "Nombre d'état de temps discret  : %d"
 
 #, c-format
 msgid "Number of zero-crossing surfaces: %d"
-msgstr ""
+msgstr "Nombre de surfaces de traversées de zéros : %d"
 
 #, c-format
 msgid "Number of modes  : %d"
-msgstr ""
+msgstr "Nombre de modes : %d"
 
 #, c-format
 msgid "Number of inputs : %d"
-msgstr ""
+msgstr "Nombre d'entrées : %d"
 
 #, c-format
 msgid "Number of outputs: %d"
-msgstr ""
+msgstr "Nombre de sorties : %d"
 
 #, c-format
 msgid "Input/output dependency:[%s]"
-msgstr ""
+msgstr "Dépendance entrée/sortie : [%s]"
 
 #, c-format
 msgid "Analytical Jacobian: enabled  (%%Jacobian=%s)"
-msgstr ""
+msgstr "Jacobien analytique : activé (%%Jacobian=%s)"
 
 #, c-format
 msgid "Parameter embedding mode: enabled (%%Modelica_ParEmb=%s)"
-msgstr ""
+msgstr "Mode paramètre embarqué : activé (%%Modelica_ParEmb=%s)"
 
 #, c-format
 msgid "Generated files path: %s"
-msgstr ""
+msgstr "Chemin des fichiers générés : %s"
 
 msgid "Hyper Matrix is not supported"
 msgstr "Les hypermatrices ne sont pas prises en charge"
@@ -962,10 +1007,10 @@ msgid "Complex Matrix is not supported"
 msgstr "Les matrices complexes ne sont pas prises en charge"
 
 msgid "Block is ignored because of undefined input(s)."
-msgstr ""
+msgstr "Le bloc est ignoré car ses entrées n'ont pas été définies."
 
 msgid "Superblock should not contains any Scilab function block."
-msgstr ""
+msgstr "Le superbloc ne doit pas contenir de blocs de fonction Scilab."
 
 msgid "Evaluation problem: value not updated from context."
 msgstr ""
@@ -974,17 +1019,17 @@ msgstr ""
 msgid "Evaluation problem: Unknown block"
 msgstr "Problème d'évaluation : Bloc inconnu"
 
-msgid "Can not loaded dynamic library: "
-msgstr ""
+msgid "Cannot load dynamic library: "
+msgstr "Impossible de charger la bibliothèque dynamique : "
 
 msgid "Can't include "
-msgstr ""
+msgstr "Impossible d'inclure "
 
 msgid "This file does not exist"
 msgstr "Ce fichier n'éxiste pas"
 
 msgid "-------Modelica compiler error (with the translator):-------"
-msgstr ""
+msgstr "-------Erreur du compilateur Modelica (avec le traducteur) :-------"
 
 msgid "Please read the error message in the Scilab window"
 msgstr "Veuillez lire le message d'erreur dans la fenêtre Scilab"
@@ -996,10 +1041,10 @@ msgid "Sorry file name not defined in "
 msgstr "Le nom de fichier n'est pas défini dans "
 
 msgid "I/O blocks must be only used in a Super Block"
-msgstr ""
+msgstr "Les blocs E/S doivent être utilisés uniquement dans un superbloc"
 
 msgid "This Super block input port is not connected."
-msgstr ""
+msgstr "Le port d'entrée de ce superbloc n'est pas connecté."
 
 #, c-format
 msgid "%s: Empty diagram"
@@ -1037,7 +1082,7 @@ msgid "-------Modelica translator error message:-----"
 msgstr "-------Message d'erreur du traducteur Modelica :-----"
 
 msgid "-------XML to Modelica error:-------"
-msgstr ""
+msgstr "------- Erreur XML vers Modelica : -------"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

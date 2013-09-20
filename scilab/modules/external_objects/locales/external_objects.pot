@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-07-25 15:36+0100\n"
+"Revision-Date: 2013-09-13 12:32+0100\n"
 
 # File: includes/ScilabAbstractEnvironmentException.hxx, line: 108
 msgid "Exception thrown in file"
@@ -68,52 +68,51 @@ msgid "Invalid environment: identifier %d is invalid"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 47
+# File: src/cpp/ScilabObjects.cpp, line: 46
 msgid "Invalid environment"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 71
+# File: src/cpp/ScilabObjects.cpp, line: 70
 #, c-format
 msgid "Invalid variable name: %s"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 74
-# File: src/cpp/ScilabObjects.cpp, line: 80
-# File: src/cpp/ScilabObjects.cpp, line: 86
-# File: src/cpp/ScilabObjects.cpp, line: 92
-# File: src/cpp/ScilabObjects.cpp, line: 128
-# File: src/cpp/ScilabObjects.cpp, line: 134
-# File: src/cpp/ScilabObjects.cpp, line: 140
-# File: src/cpp/ScilabObjects.cpp, line: 146
+# File: src/cpp/ScilabObjects.cpp, line: 73
+# File: src/cpp/ScilabObjects.cpp, line: 79
+# File: src/cpp/ScilabObjects.cpp, line: 85
+# File: src/cpp/ScilabObjects.cpp, line: 91
+# File: src/cpp/ScilabObjects.cpp, line: 127
+# File: src/cpp/ScilabObjects.cpp, line: 133
+# File: src/cpp/ScilabObjects.cpp, line: 139
+# File: src/cpp/ScilabObjects.cpp, line: 145
 msgid "Cannot allocate memory"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 207
-# File: src/cpp/ScilabObjects.cpp, line: 215
-# File: src/cpp/ScilabObjects.cpp, line: 228
-# File: src/cpp/ScilabObjects.cpp, line: 242
-# File: src/cpp/ScilabObjects.cpp, line: 251
-# File: src/cpp/ScilabObjects.cpp, line: 423
-# File: src/cpp/ScilabObjects.cpp, line: 438
-# File: src/cpp/ScilabObjects.cpp, line: 454
-# File: src/cpp/ScilabObjects.cpp, line: 476
-# File: src/cpp/ScilabObjects.cpp, line: 487
-# File: src/cpp/ScilabObjects.cpp, line: 506
-# File: src/cpp/ScilabObjects.cpp, line: 516
-# File: src/cpp/ScilabObjects.cpp, line: 527
-# File: src/cpp/ScilabObjects.cpp, line: 538
-# File: src/cpp/ScilabObjects.cpp, line: 549
-# File: src/cpp/ScilabObjects.cpp, line: 560
-# File: src/cpp/ScilabObjects.cpp, line: 571
-# File: src/cpp/ScilabObjects.cpp, line: 584
-# File: src/cpp/ScilabObjects.cpp, line: 595
-# File: src/cpp/ScilabObjects.cpp, line: 610
-# File: src/cpp/ScilabObjects.cpp, line: 627
-# File: src/cpp/ScilabObjects.cpp, line: 655
-# File: src/cpp/ScilabObjects.cpp, line: 672
+# File: src/cpp/ScilabObjects.cpp, line: 201
+# File: src/cpp/ScilabObjects.cpp, line: 209
+# File: src/cpp/ScilabObjects.cpp, line: 222
+# File: src/cpp/ScilabObjects.cpp, line: 236
+# File: src/cpp/ScilabObjects.cpp, line: 245
+# File: src/cpp/ScilabObjects.cpp, line: 418
+# File: src/cpp/ScilabObjects.cpp, line: 433
+# File: src/cpp/ScilabObjects.cpp, line: 449
+# File: src/cpp/ScilabObjects.cpp, line: 471
+# File: src/cpp/ScilabObjects.cpp, line: 482
+# File: src/cpp/ScilabObjects.cpp, line: 501
+# File: src/cpp/ScilabObjects.cpp, line: 511
+# File: src/cpp/ScilabObjects.cpp, line: 522
+# File: src/cpp/ScilabObjects.cpp, line: 533
+# File: src/cpp/ScilabObjects.cpp, line: 544
+# File: src/cpp/ScilabObjects.cpp, line: 555
+# File: src/cpp/ScilabObjects.cpp, line: 566
+# File: src/cpp/ScilabObjects.cpp, line: 579
+# File: src/cpp/ScilabObjects.cpp, line: 590
+# File: src/cpp/ScilabObjects.cpp, line: 605
+# File: src/cpp/ScilabObjects.cpp, line: 622
+# File: src/cpp/ScilabObjects.cpp, line: 646
 # File: src/cpp/addNamedVariable.cpp, line: 41
 # File: src/cpp/addToClasspath.cpp, line: 46
 # File: src/cpp/addToClasspath.cpp, line: 56
@@ -122,18 +121,18 @@ msgstr ""
 # File: src/cpp/cast.cpp, line: 48
 # File: src/cpp/cast.cpp, line: 61
 # File: src/cpp/classExtract.cpp, line: 35
-# File: src/cpp/compile.cpp, line: 42
-# File: src/cpp/compile.cpp, line: 49
-# File: src/cpp/compile.cpp, line: 62
-# File: src/cpp/compile.cpp, line: 74
+# File: src/cpp/compile.cpp, line: 50
+# File: src/cpp/compile.cpp, line: 57
+# File: src/cpp/compile.cpp, line: 70
+# File: src/cpp/compile.cpp, line: 82
 # File: src/cpp/convMatrixMethod.cpp, line: 46
 # File: src/cpp/deff.cpp, line: 53
 # File: src/cpp/deff.cpp, line: 64
 # File: src/cpp/deff.cpp, line: 86
 # File: src/cpp/display.cpp, line: 37
 # File: src/cpp/display.cpp, line: 54
-# File: src/cpp/doubleExclam_invoke.cpp, line: 66
-# File: src/cpp/doubleExclam_invoke.cpp, line: 87
+# File: src/cpp/doubleExclam_invoke.cpp, line: 68
+# File: src/cpp/doubleExclam_invoke.cpp, line: 89
 # File: src/cpp/evalString.cpp, line: 39
 # File: src/cpp/evalString.cpp, line: 50
 # File: src/cpp/evalString.cpp, line: 60
@@ -155,23 +154,25 @@ msgstr ""
 # File: src/cpp/import.cpp, line: 74
 # File: src/cpp/import.cpp, line: 86
 # File: src/cpp/import.cpp, line: 98
-# File: src/cpp/invoke.cpp, line: 43
-# File: src/cpp/invoke.cpp, line: 75
-# File: src/cpp/invoke_lu.cpp, line: 39
-# File: src/cpp/invoke_lu.cpp, line: 45
-# File: src/cpp/invoke_lu.cpp, line: 56
-# File: src/cpp/invoke_lu.cpp, line: 63
-# File: src/cpp/invoke_lu.cpp, line: 69
-# File: src/cpp/invoke_lu.cpp, line: 83
-# File: src/cpp/invoke_lu.cpp, line: 94
-# File: src/cpp/invoke_lu.cpp, line: 108
-# File: src/cpp/invoke_lu.cpp, line: 114
-# File: src/cpp/invoke_lu.cpp, line: 129
-# File: src/cpp/invoke_lu.cpp, line: 140
-# File: src/cpp/invoke_lu.cpp, line: 164
-# File: src/cpp/invoker.cpp, line: 47
-# File: src/cpp/newInstance.cpp, line: 49
-# File: src/cpp/newInstance.cpp, line: 92
+# File: src/cpp/invoke.cpp, line: 45
+# File: src/cpp/invoke.cpp, line: 77
+# File: src/cpp/invoke_asref.cpp, line: 44
+# File: src/cpp/invoke_asref.cpp, line: 78
+# File: src/cpp/invoke_lu.cpp, line: 41
+# File: src/cpp/invoke_lu.cpp, line: 47
+# File: src/cpp/invoke_lu.cpp, line: 58
+# File: src/cpp/invoke_lu.cpp, line: 65
+# File: src/cpp/invoke_lu.cpp, line: 71
+# File: src/cpp/invoke_lu.cpp, line: 85
+# File: src/cpp/invoke_lu.cpp, line: 96
+# File: src/cpp/invoke_lu.cpp, line: 110
+# File: src/cpp/invoke_lu.cpp, line: 116
+# File: src/cpp/invoke_lu.cpp, line: 131
+# File: src/cpp/invoke_lu.cpp, line: 142
+# File: src/cpp/invoke_lu.cpp, line: 167
+# File: src/cpp/invoker.cpp, line: 48
+# File: src/cpp/newInstance.cpp, line: 50
+# File: src/cpp/newInstance.cpp, line: 93
 # File: src/cpp/objectExtract.cpp, line: 33
 # File: src/cpp/objectExtract.cpp, line: 59
 # File: src/cpp/objectExtract.cpp, line: 89
@@ -197,50 +198,52 @@ msgstr ""
 # File: src/cpp/wrapAsRef.cpp, line: 49
 # File: src/cpp/wrapAsRef.cpp, line: 63
 # File: src/cpp/wrapAsRef.cpp, line: 72
+# File: src/cpp/wrapInFloat.cpp, line: 46
+# File: src/cpp/wrapInFloat.cpp, line: 63
 msgid "Invalid variable: cannot retrieve the data"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 270
-# File: src/cpp/ScilabObjects.cpp, line: 288
+# File: src/cpp/ScilabObjects.cpp, line: 265
+# File: src/cpp/ScilabObjects.cpp, line: 282
 msgid "Invalid variable: cannot create data"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 460
-# File: src/cpp/ScilabObjects.cpp, line: 662
+# File: src/cpp/ScilabObjects.cpp, line: 455
+# File: src/cpp/ScilabObjects.cpp, line: 664
 msgid "External Class expected"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 644
-# File: src/cpp/cast.cpp, line: 55
-msgid "Incompatible External Objects"
-msgstr ""
-
-#
-# File: src/cpp/ScilabObjects.cpp, line: 683
+# File: src/cpp/ScilabObjects.cpp, line: 639
 msgid "External object expected"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 691
-msgid "Unable to wrap. Unmanaged datatype ?"
+# File: src/cpp/ScilabObjects.cpp, line: 652
+msgid "Incompatible External object"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 795
-# File: src/cpp/ScilabObjects.cpp, line: 810
+# File: src/cpp/ScilabObjects.cpp, line: 682
+#, c-format
+msgid "Unable to wrap. Unmanaged datatype (%d) ?"
+msgstr ""
+
+#
+# File: src/cpp/ScilabObjects.cpp, line: 767
+# File: src/cpp/ScilabObjects.cpp, line: 782
 msgid "Invalid String"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 800
+# File: src/cpp/ScilabObjects.cpp, line: 772
 msgid "A single string expected"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 805
+# File: src/cpp/ScilabObjects.cpp, line: 777
 msgid "A single String expected"
 msgstr ""
 
@@ -270,12 +273,17 @@ msgid "A strictly positive integer is expected at position %d."
 msgstr ""
 
 #
+# File: src/cpp/cast.cpp, line: 55
+msgid "Incompatible External Objects"
+msgstr ""
+
+#
 # File: src/cpp/classExtract.cpp, line: 144
 msgid "Invalid name"
 msgstr ""
 
 #
-# File: src/cpp/compile.cpp, line: 55
+# File: src/cpp/compile.cpp, line: 63
 # File: src/cpp/deff.cpp, line: 58
 # File: src/cpp/import.cpp, line: 69
 # File: src/cpp/import.cpp, line: 92
@@ -286,7 +294,7 @@ msgid "Wrong type for input argument #%d: A String expected."
 msgstr ""
 
 #
-# File: src/cpp/compile.cpp, line: 68
+# File: src/cpp/compile.cpp, line: 76
 # File: src/cpp/evalString.cpp, line: 55
 #, c-format
 msgid "Invalid dimension for argument #%d: A row or a column expected."
@@ -384,37 +392,39 @@ msgid "Bad number of output arguments"
 msgstr ""
 
 #
-# File: src/cpp/invoke.cpp, line: 30
+# File: src/cpp/invoke.cpp, line: 32
+# File: src/cpp/invoke_asref.cpp, line: 31
 msgid "Wrong number of arguments : more than 2 arguments expected"
 msgstr ""
 
 #
-# File: src/cpp/invoke.cpp, line: 62
+# File: src/cpp/invoke.cpp, line: 64
+# File: src/cpp/invoke_asref.cpp, line: 63
 msgid "Cannot invoke on null object"
 msgstr ""
 
 #
-# File: src/cpp/invoke_lu.cpp, line: 50
+# File: src/cpp/invoke_lu.cpp, line: 52
 #, c-format
 msgid "Wrong type for input argument #%d: A List expected."
 msgstr ""
 
 #
-# File: src/cpp/invoke_lu.cpp, line: 74
-# File: src/cpp/invoke_lu.cpp, line: 88
-# File: src/cpp/invoke_lu.cpp, line: 119
-# File: src/cpp/invoke_lu.cpp, line: 134
+# File: src/cpp/invoke_lu.cpp, line: 76
+# File: src/cpp/invoke_lu.cpp, line: 90
+# File: src/cpp/invoke_lu.cpp, line: 121
+# File: src/cpp/invoke_lu.cpp, line: 136
 #, c-format
 msgid "Wrong type for input argument #%d: An Integer32 expected."
 msgstr ""
 
 #
-# File: src/cpp/invoke_lu.cpp, line: 148
+# File: src/cpp/invoke_lu.cpp, line: 150
 msgid "Cannot invoke on null object."
 msgstr ""
 
 #
-# File: src/cpp/newInstance.cpp, line: 36
+# File: src/cpp/newInstance.cpp, line: 37
 # File: src/cpp/unwrap.cpp, line: 27
 # File: src/cpp/unwrapremove.cpp, line: 27
 msgid "Wrong number of arguments : more than 1 argument expected"
@@ -423,6 +433,7 @@ msgstr ""
 #
 # File: src/cpp/wrap.cpp, line: 27
 # File: src/cpp/wrapAsRef.cpp, line: 28
+# File: src/cpp/wrapInFloat.cpp, line: 29
 msgid "Wrong number of arguments : more than 1 argument expected."
 msgstr ""
 
@@ -436,4 +447,15 @@ msgstr ""
 #
 # File: src/cpp/wrapAsRef.cpp, line: 56
 msgid "Can only wrap as a reference to a named variable"
+msgstr ""
+
+#
+# File: src/cpp/wrapInFloat.cpp, line: 52
+msgid "Invalid variable: cannot retrieve the data type"
+msgstr ""
+
+#
+# File: src/cpp/wrapInFloat.cpp, line: 57
+#, c-format
+msgid "%s: Wrong argument type at position %i: Double expected\n"
 msgstr ""

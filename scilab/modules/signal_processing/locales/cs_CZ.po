@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-08-02 20:13+0000\n"
+"PO-Revision-Date: 2013-07-06 21:26+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 16753)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -98,16 +98,16 @@ msgid "Signal derivative estimate"
 msgstr "Odhad derivace signálu"
 
 msgid "Choose filter type and parameters"
-msgstr ""
+msgstr "Zvolte typ filtru a parametry"
 
 msgid "Discrete IIR filter "
-msgstr ""
+msgstr "Diskrétní filtr IIR "
 
 msgid "Discrete IIR filter : low pass  fr < 0.2"
-msgstr ""
+msgstr "Diskrétní filtr IIR : dolní propust fr < 0.2"
 
 msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
-msgstr ""
+msgstr "Diskrétní filtr IIR pásmovápropust 0.15 < fr < 0.25"
 
 msgid "Minimax FIR filter"
 msgstr "Minimax filtr s KIO"
@@ -119,10 +119,10 @@ msgid "length 33"
 msgstr "délka 33"
 
 msgid "Remez Triangular filter"
-msgstr ""
+msgstr "Remezův trojúhelníkový filtr"
 
 msgid "magnitude error"
-msgstr ""
+msgstr "chyba magnitudy"
 
 msgid "Signal Processing"
 msgstr "Zpracování Signálů"
@@ -164,16 +164,16 @@ msgid "Arma, Spectral power estimation"
 msgstr "Arma, Odhad spektrálního zářivého toku"
 
 msgid "Data spectrum"
-msgstr ""
+msgstr "Datové spektrum"
 
 msgid "magnitude"
-msgstr ""
+msgstr "magnituda"
 
 msgid "Spectral estimation"
-msgstr ""
+msgstr "Spektrální odhad"
 
 msgid "spectral power"
-msgstr ""
+msgstr "síla spektra"
 
 msgid "estimates xf"
 msgstr "odhady xf"

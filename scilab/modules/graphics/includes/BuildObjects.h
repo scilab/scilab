@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -98,6 +98,8 @@ GRAPHICS_IMPEXP char *ConstructRectangle(char * pparentsubwinUID, double x, doub
 GRAPHICS_IMPEXP char *ConstructSurface(char * pparentsubwinUID, sciTypeOf3D typeof3d, double *pvecx, double *pvecy, double *pvecz, double *zcol, int izcol, int dimzx, int dimzy, int *flag, double *ebox, int flagcolor, int *isfac, int *m1, int *n1, int *m2, int *n2, int *m3, int *n3, int *m3n, int *n3n); /* BUILD */
 
 GRAPHICS_IMPEXP char *ConstructGrayplot(char * pparentsubwinUID, double *vx, double *vy, double *vz, int nx, int ny, int type);  /* BUILD */
+
+GRAPHICS_IMPEXP char *ConstructImplot(char * pparentsubwinUID, double * rect, unsigned char *vz, int nx, int ny, int plottype);  /* BUILD */
 
 GRAPHICS_IMPEXP char *ConstructAxis(char * pparentsubwinUID, char dir, char tics, double *vx, int nx, double *vy, int ny, char *str[], int subint, char *format, int fontsize, int textcolor, int ticscolor, char logscale, int seg, int nb_tics_labels);    /* BUILD */
 

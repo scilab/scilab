@@ -1,5 +1,6 @@
 // ===========================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier : added "root2" (daskr)
 // Copyright (C) 2008 - INRIA - Sabinere Gauzere
 //
 //  This file is distributed under the same license as the Scilab package.
@@ -17,34 +18,34 @@ ilib_verbose(0);
 t=1:10;t0=0;y0=[1;0];y0d=[-10;0];
 info=list([],0,[],[],[],0,0);
 //    Calling Scilab functions
-deff('[r,ires]=dres1(t,y,ydot)','r=[ydot(1)+10*y(1);y(2)+y(1)-1];ires=0')
-deff('pd=djac1(t,y,ydot,cj)','pd=[cj+10,0;1,1]')
+deff("[r,ires]=dres1(t,y,ydot)","r=[ydot(1)+10*y(1);y(2)+y(1)-1];ires=0")
+deff("pd=djac1(t,y,ydot,cj)","pd=[cj+10,0;1,1]")
 //   scilab function, without jacobian
 yy0=dae([y0,y0d],t0,t,dres1);
 //   scilab functions, with jacobian
 yy1=dae([y0,y0d],t0,t,dres1,djac1);
 // fortran routine, without jacobian
-yy2=dae([y0,y0d],t0,t,'dres1');   //=yy0
+yy2=dae([y0,y0d],t0,t,"dres1");   //=yy0
 if norm(yy2-yy0,1)>1E-5 then bugmes();quit;end
 // fortran routines, with jacobian
-yy3=dae([y0,y0d],t0,t,'dres1','djac1');  //=yy1
+yy3=dae([y0,y0d],t0,t,"dres1","djac1");  //=yy1
 if norm(yy3-yy1,1)>1E-5 then bugmes();quit;end
-yy3bis=dae([y0,y0d],t0,t,'dres1',djac1);
+yy3bis=dae([y0,y0d],t0,t,"dres1",djac1);
 // call fortran dres1 and scilab's djac1
-yy3ter=dae([y0,y0d],t0,t,dres1,'djac1');
+yy3ter=dae([y0,y0d],t0,t,dres1,"djac1");
 //
 // with specific atol and rtol parameters
 atol=1.d-6;rtol=0;
 yy4=dae([y0,y0d],t0,t,rtol,atol,dres1);
-yy5=dae([y0,y0d],t0,t,rtol,atol,'dres1'); //=yy4
+yy5=dae([y0,y0d],t0,t,rtol,atol,"dres1"); //=yy4
 if norm(yy5-yy4,1)>1E-9 then bugmes();quit;end
 yy6=dae([y0,y0d],t0,t,rtol,atol,dres1,djac1);
-yy7=dae([y0,y0d],t0,t,rtol,atol,'dres1','djac1'); //==yy6
+yy7=dae([y0,y0d],t0,t,rtol,atol,"dres1","djac1"); //==yy6
 if norm(yy7-yy6,1)>1E-12 then bugmes();quit;end
 //
 //   Testing E xdot - A x=0
 //   x(0)=x0;   xdot(0)=xd0
-rand('seed',0);
+rand("seed",0);
 nx=5;
 E=rand(nx,1)*rand(1,nx);
 A=rand(nx,nx);
@@ -54,7 +55,7 @@ pp=Si*E;
 [q,m]=fullrf(pp);
 x0=q(:,1);
 x0d=pinv(E)*A*x0;
-deff('[r,ires]=g(t,x,xdot)','r=E*xdot-A*x;ires=0');
+deff("[r,ires]=g(t,x,xdot)","r=E*xdot-A*x;ires=0");
 t=[1,2,3];t0=0;
 %DAEOPTIONS=list([],0,[],[],[],0,0);
 x=dae([x0,x0d],t0,t,g);
@@ -67,10 +68,10 @@ t=1.5409711;
 ww=dae([x0,x0d],t0,t,g);
 ww=[t;ww];
 if abs(ww(5)-1)>0.001 then bugmes();quit;end
-deff('[rt]=surface(t,y,yd)','rt=y(4)-1');
+deff("[rt]=surface(t,y,yd)","rt=y(4)-1");
 nbsurf=1;
 [yyy,nnn]=dae("root",[x0,x0d],t0,t,g,nbsurf,surface);
-deff('pd=j(t,y,ydot,cj)','pd=cj*E-A');
+deff("pd=j(t,y,ydot,cj)","pd=cj*E-A");
 x=dae([x0,x0d],t0,t,g,j);
 x=[t;x];
 x2=x(2:nx+1,1);
@@ -91,8 +92,8 @@ delta=0*y0;
 y0d=zeros(y0);y0d(1)=-2;y0d(2)=1;y0d(6)=1;
 t0=0;t=[0.01,0.1,1,10,100];
 rtol=0;atol=1.d-6;
-y=dae([y0,y0d],t0,t,rtol,atol,'dres2');
-//                 Root finder
+y=dae([y0,y0d],t0,t,rtol,atol,"dres2");
+//                 Root finder (dasrt)
 //
 //-----------------------------------------------------------------------
 // First problem.
@@ -106,16 +107,16 @@ y=dae([y0,y0d],t0,t,rtol,atol,'dres2');
 y0=1;t=2:6;t0=1;y0d=3;
 %DAEOPTIONS=list([],0,[],[],[],0,0);
 atol=1.d-6;rtol=0;ng=2;
-[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,'res1',ng,'gr1');
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,"res1",ng,"gr1");
 if abs(nn(1)-2.47)>0.001 then bugmes();quit;end
 y0=yy(1,2);y0d=yy(2,2);t0=nn(1);t=[3,4,5,6];
-[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,'res1',ng,'gr1');
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,"res1",ng,"gr1");
 if abs(nn(1)-2.5)>0.001 then bugmes();quit;end
 y0=yy(1,1);y0d=yy(2,1);t0=nn(1);t=[3,4,5,6];
-[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,'res1',ng,'gr1');
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,"res1",ng,"gr1");
 if abs(nn(1)-2.53)>0.001 then bugmes();quit;end
-deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2*log(y)+8)/t-5)*y')
-deff('[rts]=gr1(t,y,yd)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
+deff("[delta,ires]=res1(t,y,ydot)","ires=0;delta=ydot-((2*log(y)+8)/t-5)*y")
+deff("[rts]=gr1(t,y,yd)","rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]")
 y0=1;t=2:6;t0=1;y0d=3;
 %DAEOPTIONS=list([],0,[],[],[],0,0);
 atol=1.d-6;rtol=0;ng=2;
@@ -141,76 +142,76 @@ if abs(nn(1)-2.53)>0.001 then bugmes();quit;end
 rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
 t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
 %DAEOPTIONS=list([],0,[],[],[],0,0);
-[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,'res2','jac2',ng,'gr2');
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,"res2","jac2",ng,"gr2");
 if abs(nn(1)-81.163512)>0.001 then bugmes();quit;end
-deff('[delta,ires]=res2(t,y,ydot)',...
-'ires=0;y1=y(1),y2=y(2),delta=[ydot-[y2;100*(1-y1*y1)*y2-y1]]')
-[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res2,'jac2',ng,'gr2');
-deff('J=jac2(t,y,ydot,c)','y1=y(1);y2=y(2);J=[c,-1;200*y1*y2+1,c-100*(1-y1*y1)]')
-[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,'gr2');
-deff('s=gr2(t,y,yd)','s=y(1)')
+deff("[delta,ires]=res2(t,y,ydot)",...
+"ires=0;y1=y(1),y2=y(2),delta=[ydot-[y2;100*(1-y1*y1)*y2-y1]]")
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res2,"jac2",ng,"gr2");
+deff("J=jac2(t,y,ydot,c)","y1=y(1);y2=y(2);J=[c,-1;200*y1*y2+1,c-100*(1-y1*y1)]")
+[yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,"gr2");
+deff("s=gr2(t,y,yd)","s=y(1)")
 [yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,gr2);
 //           Hot Restart
-[yy,nn,hotd]=dae("root",[y0,y0d],t0,t,rtol,atol,'res2','jac2',ng,'gr2');
+[yy,nn,hotd]=dae("root",[y0,y0d],t0,t,rtol,atol,"res2","jac2",ng,"gr2");
 t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(1:2,qq);y0d1=yy(2:3,qq);
 %DAEOPTIONS=list([],0,[],[],[],0,0);
-[yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,rtol,atol,'res2','jac2',ng,'gr2',hotd);
+[yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,rtol,atol,"res2","jac2",ng,"gr2",hotd);
 if abs(nn(1)-162.57763)>0.004 then bugmes();quit;end
 //same with C code
 ilib_verbose(0);
 cd TMPDIR;
 mkdir("dae_test1");
 cd("dae_test1");
-code=['#include <math.h>'
-      'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
-      '{res[0] = yd[0] - y[1];'
-      ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
-      ' '
-      'void jac22(double *t,double *y,double *yd,double *pd,double *cj,double *rpar,int *ipar)'
-      '{pd[0]=*cj - 0.0;'
-      ' pd[1]=    - (-200.0*y[0]*y[1] - 1.0);'
-      ' pd[2]=    - 1.0;'
-      ' pd[3]=*cj - (100.0*(1.0 - y[0]*y[0]));}'
-      ' '
-      'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
-      '{ groot[0] = y[0];}'];
-mputl(code,'t22.c') ;
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c','','c');
-exec('loader.sce');
+code=["#include <math.h>"
+"void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)"
+"{res[0] = yd[0] - y[1];"
+" res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}"
+" "
+"void jac22(double *t,double *y,double *yd,double *pd,double *cj,double *rpar,int *ipar)"
+"{pd[0]=*cj - 0.0;"
+" pd[1]=    - (-200.0*y[0]*y[1] - 1.0);"
+" pd[2]=    - 1.0;"
+" pd[3]=*cj - (100.0*(1.0 - y[0]*y[0]));}"
+" "
+"void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)"
+"{ groot[0] = y[0];}"];
+mputl(code,"t22.c") ;
+ilib_for_link(["res22" "jac22" "gr22"],"t22.c","","c");
+exec("loader.sce");
 rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
 t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
 %DAEOPTIONS =list([],0,[],[],[],0,0);
- //hot restart
+//hot restart
 t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
-[yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,atol,rtol,'res22','jac22',ng,'gr22',hotd);
+[yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,atol,rtol,"res22","jac22",ng,"gr22",hotd);
 dassrt encountered trouble
 rtol=[1.d-6;1.d-6];
 atol=[1.d-6;1.d-4];
 t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
 %DAEOPTIONS =list([],0,[],[],[],0,0);
- [yy,nn]=dae("root",[y0,y0d],t0,t,atol,rtol,'res22','jac22',ng,'gr22');
+[yy,nn]=dae("root",[y0,y0d],t0,t,atol,rtol,"res22","jac22",ng,"gr22");
 //hot restart
-[yy,nn,hotd]=dae("root",[y0,y0d],t0,t,atol,rtol,'res22','jac22',ng,'gr22');
+[yy,nn,hotd]=dae("root",[y0,y0d],t0,t,atol,rtol,"res22","jac22",ng,"gr22");
 t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
-[yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,atol,rtol,'res22','jac22',ng,'gr22',hotd);
+[yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,atol,rtol,"res22","jac22",ng,"gr22",hotd);
 //banded systems
 A=[-17,6,3,0,0,0,0,0,0,0;
-   8,-12,9,4,0,0,0,0,0,0;
-   0,7,-17,3,8,0,0,0,0,0;
-   0,0,3,-13,2,2,0,0,0,0;
-   0,0,0,4,-18,6,4,0,0,0;
-   0,0,0,0,7,-13,7,0,0,0;
-   0,0,0,0,0,7,-16,7,9,0;
-   0,0,0,0,0,0,5,-17,8,1;
-   0,0,0,0,0,0,0,4,-14,8;
-   0,0,0,0,0,0,0,0,10,-10];
+8,-12,9,4,0,0,0,0,0,0;
+0,7,-17,3,8,0,0,0,0,0;
+0,0,3,-13,2,2,0,0,0,0;
+0,0,0,4,-18,6,4,0,0,0;
+0,0,0,0,7,-13,7,0,0,0;
+0,0,0,0,0,7,-16,7,9,0;
+0,0,0,0,0,0,5,-17,8,1;
+0,0,0,0,0,0,0,4,-14,8;
+0,0,0,0,0,0,0,0,10,-10];
 n=size(A,1);
 //Full jacobian case for reference
 function [r,ires]=res(t,y,yd)
-  r=yd-A*y; ires=0
+    r=yd-A*y; ires=0
 endfunction
 function pd=jac(x,y,yd,cj)
-  pd=A+cj*eye()
+    pd=A+cj*eye()
 endfunction
 y0=ones(n,1);yd0=0*y0;
 y=dae([y0,yd0],0,0:0.1:10,res,jac);
@@ -225,78 +226,237 @@ norm(y1-yb1);
 cd TMPDIR;
 mkdir("dae_test2");
 cd("dae_test2");
-ccode=['#include <math.h>'
-       'void myres(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
-       '{'
-       '  *ires =0;'
-       '  res[0]=yd[0]+17.0*y[0]- 6.0*y[1]- 3.0*y[2];'
-       '  res[1]=yd[1]-8.0*y[0]+12.0*y[1]- 9.0*y[2]- 4.0*y[3];'
-       '  res[2]=yd[2]          -7.0*y[1]+17.0*y[2]- 3.0*y[3]- 8.0*y[4];'
-       '  res[3]=yd[3]                    -3.0*y[2]+13.0*y[3]- 2.0*y[4]- 2.0*y[5];'
-       '  res[4]=yd[4]                              -4.0*y[3]+18.0*y[4]- 6.0*y[5]- 4.0*y[6];'
-       '  res[5]=yd[5]                                        -7.0*y[4]+13.0*y[5]- 7.0*y[6]- 0.0*y[7];'
-       '  res[6]=yd[6]                                                  -7.0*y[5]+16.0*y[6]- 7.0*y[7]- 9.0*y[8];'
-       '  res[7]=yd[7]                                                            -5.0*y[6]+17.0*y[7]- 8.0*y[8]- 1.0*y[9];'
-       '  res[8]=yd[8]                                                                      -4.0*y[7]+14.0*y[8]- 8.0*y[9];'
-       '  res[9]=yd[9]                                                                               -10.0*y[8]+10.0*y[9];'
-       '}'
-       'void myjac(double *t,double *y,double *yd,double *res,double *cj,double *rpar,int *ipar)'
-       '{'
-       '  res[0]=0.0;'
-       '  res[1]=0.0;'
-       '  res[2]=0.0;'
-       '  res[3]=-17.0+*cj;'
-       '  res[4]=8.0;'
-       '  res[5]=0.0;'
-       '  res[6]=0.0;'
-       '  res[7]=6.0;'
-       '  res[8]=-12.0+*cj;'
-       '  res[9]=7.0;'
-       '  res[10]=0.0;'
-       '  res[11]=3.0;'
-       '  res[12]=9.0;'
-       '  res[13]=-17.0+*cj;'
-       '  res[14]=3.0;'
-       '  res[15]=0.0;'
-       '  res[16]=4.0;'
-       '  res[17]=3.0;'
-       '  res[18]=-13.0+*cj;'
-       '  res[19]=4.0;'
-       '  res[20]=0.0;'
-       '  res[21]=8.0;'
-       '  res[22]=2.0;'
-       '  res[23]=-18.0+*cj;'
-       '  res[24]=7.0;'
-       '  res[25]=0.0;'
-       '  res[26]=2.0;'
-       '  res[27]=6.0;'
-       '  res[28]=-13.0+*cj;'
-       '  res[29]=7.0;'
-       '  res[30]=0.0;'
-       '  res[31]=4.0;'
-       '  res[32]=7.0;'
-       '  res[33]=-16.0+*cj;'
-       '  res[34]=5.0;'
-       '  res[35]=0.0;'
-       '  res[36]=0.0;'
-       '  res[37]=7.0;'
-       '  res[38]=-17.0+*cj;'
-       '  res[39]=4.0;'
-       '  res[40]=0.0;'
-       '  res[41]=9.0;'
-       '  res[42]=8.0;'
-       '  res[43]=-14.0+*cj;'
-       '  res[44]=10.0;'
-       '  res[45]=0.0;'
-       '  res[46]=1.0;'
-       '  res[47]=8.0;'
-       '  res[48]=-10.0+*cj;'
-       '  res[49]=0.0;'
-       '}'];
-mputl(ccode,'band.c'); //create the C file of myjac
-ilib_for_link(['myres','myjac'],'band.c','','c');//compile
-exec('loader.sce');
+ccode=["#include <math.h>"
+"void myres(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)"
+"{"
+"  *ires =0;"
+"  res[0]=yd[0]+17.0*y[0]- 6.0*y[1]- 3.0*y[2];"
+"  res[1]=yd[1]-8.0*y[0]+12.0*y[1]- 9.0*y[2]- 4.0*y[3];"
+"  res[2]=yd[2]          -7.0*y[1]+17.0*y[2]- 3.0*y[3]- 8.0*y[4];"
+"  res[3]=yd[3]                    -3.0*y[2]+13.0*y[3]- 2.0*y[4]- 2.0*y[5];"
+"  res[4]=yd[4]                              -4.0*y[3]+18.0*y[4]- 6.0*y[5]- 4.0*y[6];"
+"  res[5]=yd[5]                                        -7.0*y[4]+13.0*y[5]- 7.0*y[6]- 0.0*y[7];"
+"  res[6]=yd[6]                                                  -7.0*y[5]+16.0*y[6]- 7.0*y[7]- 9.0*y[8];"
+"  res[7]=yd[7]                                                            -5.0*y[6]+17.0*y[7]- 8.0*y[8]- 1.0*y[9];"
+"  res[8]=yd[8]                                                                      -4.0*y[7]+14.0*y[8]- 8.0*y[9];"
+"  res[9]=yd[9]                                                                               -10.0*y[8]+10.0*y[9];"
+"}"
+"void myjac(double *t,double *y,double *yd,double *res,double *cj,double *rpar,int *ipar)"
+"{"
+"  res[0]=0.0;"
+"  res[1]=0.0;"
+"  res[2]=0.0;"
+"  res[3]=-17.0+*cj;"
+"  res[4]=8.0;"
+"  res[5]=0.0;"
+"  res[6]=0.0;"
+"  res[7]=6.0;"
+"  res[8]=-12.0+*cj;"
+"  res[9]=7.0;"
+"  res[10]=0.0;"
+"  res[11]=3.0;"
+"  res[12]=9.0;"
+"  res[13]=-17.0+*cj;"
+"  res[14]=3.0;"
+"  res[15]=0.0;"
+"  res[16]=4.0;"
+"  res[17]=3.0;"
+"  res[18]=-13.0+*cj;"
+"  res[19]=4.0;"
+"  res[20]=0.0;"
+"  res[21]=8.0;"
+"  res[22]=2.0;"
+"  res[23]=-18.0+*cj;"
+"  res[24]=7.0;"
+"  res[25]=0.0;"
+"  res[26]=2.0;"
+"  res[27]=6.0;"
+"  res[28]=-13.0+*cj;"
+"  res[29]=7.0;"
+"  res[30]=0.0;"
+"  res[31]=4.0;"
+"  res[32]=7.0;"
+"  res[33]=-16.0+*cj;"
+"  res[34]=5.0;"
+"  res[35]=0.0;"
+"  res[36]=0.0;"
+"  res[37]=7.0;"
+"  res[38]=-17.0+*cj;"
+"  res[39]=4.0;"
+"  res[40]=0.0;"
+"  res[41]=9.0;"
+"  res[42]=8.0;"
+"  res[43]=-14.0+*cj;"
+"  res[44]=10.0;"
+"  res[45]=0.0;"
+"  res[46]=1.0;"
+"  res[47]=8.0;"
+"  res[48]=-10.0+*cj;"
+"  res[49]=0.0;"
+"}"];
+mputl(ccode,"band.c"); //create the C file of myjac
+ilib_for_link(["myres","myjac"],"band.c","","c");//compile
+exec("loader.sce");
 y0=ones(n,1);yd0=0*y0;
-yb=dae([y0,yd0],0,0:0.1:10,'myres','myjac');
+yb=dae([y0,yd0],0,0:0.1:10,"myres","myjac");
 a = norm(y-yb);
 if (a > %eps * 1e5) then bugmes();quit;end
+//                 Root finder (daskr)
+//
+y0=1;t=2:6;t0=1;y0d=3;
+%DAEOPTIONS=list([],0,[],[],[],0,[],1,[],0,1,[],[],1);
+atol=1.d-6;rtol=0;ng=2;
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,"res1",ng,"gr1","psol1","pjac1");
+assert_checkalmostequal(nn(1),2.47,0.001);
+y0=yy(1,2);y0d=yy(2,2);t0=nn(1);t=[3,4,5,6];
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,"res1",ng,"gr1","psol1","pjac1");
+assert_checkalmostequal(nn(1),2.5,0.001);
+y0=yy(1,1);y0d=yy(2,1);t0=nn(1);t=[3,4,5,6];
+%DAEOPTIONS=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,"res1",ng,"gr1");
+assert_checkalmostequal(nn(1),2.500009,0.001);
+// Same problem, but using macro for the derivative evaluation function 'res1'
+deff("[delta,ires]=res1(t,y,ydot)","ires=0;delta=ydot-((2.*log(y)+8)./t-5).*y")
+Warning : redefining function: res1                    . Use funcprot(0) to avoid this message
+
+deff("[rts]=gr1(t,y,yd)","rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]")
+y0=1;t=2:6;t0=1;y0d=3;
+atol=1.d-6;rtol=0;ng=2;
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res1,ng,gr1);
+assert_checkalmostequal(nn(1),2.47,0.001);
+y0=yy(1,2);y0d=yy(2,2);t0=nn(1);t=[3,4,5,6];
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res1,ng,gr1);
+assert_checkalmostequal(nn(1),2.5,0.001);
+y0=yy(1,1);y0d=yy(2,1);t0=nn(1);t=[3,4,5,6];
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res1,ng,gr1);
+assert_checkalmostequal(nn(1),2.53,0.001);
+// Same problem, but using macros for the preconditioner evaluation and application functions 'pjac' and 'psol'
+// pjac uses the macro res1 defined above.
+function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
+    ires = 0;
+    SQuround = 1.490D-08;
+    tx = t;
+    nrow = 0;
+    e = zeros(1, neq);
+    wp = zeros(neq*neq, 1);
+    iwp = zeros(neq*neq, 2);
+    for i=1:neq
+        del = max(SQuround*max(abs(y(i)), abs(h*ydot(i))), 1/rewt(i))
+        if h*ydot(i) < 0 then del = -del; end
+        ysave = y(i);
+        ypsave = ydot(i);
+        y(i) = y(i) + del;
+        ydot(i) = ydot(i) + cj*del;
+        [e ires] = res1(tx, y, ydot);
+        if ires < 0 then
+            ires = -1;
+            return;
+        end
+        delinv = 1/del;
+        for j=1:neq
+            wp(nrow+j) = delinv*(e(j)-savr(j));
+            if isnan(wp(nrow+j)) then
+                ires = -1;
+                return;
+            end
+            iwp(nrow+j, 1) = i;
+            iwp(nrow+j, 2) = j;
+        end
+        nrow = nrow + neq;
+        y(i) = ysave;
+        ydot(i) = ypsave;
+    end
+endfunction
+function [r, ier] = psol(wp, iwp, b)
+    ier = 0;
+    //Compute the LU factorization of R.
+    sp = sparse(iwp, wp);
+    [h, rk] = lufact(sp);
+    //Solve the system LU*X = b
+    r = lusolve(h, b);
+    ludel(h);
+endfunction
+y0=1;t=2:6;t0=1;y0d=3;
+%DAEOPTIONS=list([],0,[],[],[],0,[],1,[],0,1,[],[],1);
+atol=1.d-6;rtol=0;ng=2;
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res1,ng,"gr1",psol,pjac);
+assert_checkalmostequal(nn(1),2.47,0.001);
+y0=yy(1,2);y0d=yy(2,2);t0=nn(1);t=[3,4,5,6];
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res1,ng,"gr1",psol,pjac);
+assert_checkalmostequal(nn(1),2.5,0.001);
+y0=yy(1,1);y0d=yy(2,1);t0=nn(1);t=[3,4,5,6];
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res1,ng,"gr1",psol,pjac);
+assert_checkalmostequal(nn(1),2.53,0.001);
+//C
+//C-----------------------------------------------------------------------
+//C Second problem (Van Der Pol oscillator).
+//C The initial value problem is..
+//C   DY1/DT = Y2,  DY2/DT = 100*(1 - Y1**2)*Y2 - Y1,
+//C   Y1(0) = 2,  Y2(0) = 0,  0 .LE. T .LE. 200
+//C   Y1PRIME(0) = 0, Y2PRIME(0) = -2
+//C The root function is  G = Y1.
+//C An analytic solution is not known, but the zeros of Y1 are known
+//C to 15 figures for purposes of checking the accuracy.
+//C-----------------------------------------------------------------------
+%DAEOPTIONS=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
+rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
+t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,"res2","jac2",ng,"gr2");
+assert_checkalmostequal(nn(1),81.163512,0.001);
+deff("[delta,ires]=res2(t,y,ydot)",...
+"ires=0;y1=y(1),y2=y(2),delta=[ydot-[y2;100*(1-y1*y1)*y2-y1]]")
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res2,"jac2",ng,"gr2");
+deff("J=jac2(t,y,ydot,c)","y1=y(1);y2=y(2);J=[c,-1;200*y1*y2+1,c-100*(1-y1*y1)]")
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,"gr2");
+deff("s=gr2(t,y,yd)","s=y(1)")
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,gr2);
+// Same problem, with psol and pjac example routines
+%DAEOPTIONS=list([],0,[],[],[],0,[],1,[],0,1,[],[],1);
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,"gr2","psol1","pjac1");
+assert_checkalmostequal(nn(1),81.163512,0.009);
+deff("s=gr2(t,y,yd)","s=y(1)")
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,gr2,"psol1","pjac1");
+assert_checkalmostequal(nn(1),81.163512,0.009);
+// Same problem, with psol and pjac macros
+// Redefine pjac to use res2
+function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
+    ires = 0;
+    SQuround = 1.490D-08;
+    tx = t;
+    nrow = 0;
+    e = zeros(1, neq);
+    wp = zeros(neq*neq, 1);
+    iwp = zeros(neq*neq, 2);
+    for i=1:neq
+        del = max(SQuround*max(abs(y(i)), abs(h*ydot(i))), 1/rewt(i))
+        if h*ydot(i) < 0 then del = -del; end
+        ysave = y(i);
+        ypsave = ydot(i);
+        y(i) = y(i) + del;
+        ydot(i) = ydot(i) + cj*del;
+        [e ires]=res2(tx, y, ydot);
+        if ires < 0 then return; end
+        delinv = 1/del;
+        for j=1:neq
+            wp(nrow+j) = delinv*(e(j)-savr(j));
+            iwp(nrow+j,1) = i;
+            iwp(nrow+j,2) = j;
+        end
+        nrow = nrow + neq;
+        y(i) = ysave;
+        ydot(i) = ypsave;
+    end
+endfunction
+Warning : redefining function: pjac                    . Use funcprot(0) to avoid this message
+
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,"gr2",psol,pjac);
+assert_checkalmostequal(nn(1),81.163512,0.003);
+deff("s=gr2(t,y,yd)","s=y(1)")
+[yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,gr2,psol,pjac);
+assert_checkalmostequal(nn(1),81.163512,0.003);
+%DAEOPTIONS=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
+//           Hot Restart
+[yy,nn,hotd]=dae("root2",[y0,y0d],t0,t,rtol,atol,"res2","jac2",ng,"gr2");
+t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
+[yy,nn,hotd]=dae("root2",[y01,y0d1],t01,t,rtol,atol,"res2","jac2",ng,"gr2",hotd);
+assert_checkalmostequal(nn(1),162.57763,0.004);

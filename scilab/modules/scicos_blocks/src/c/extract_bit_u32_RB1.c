@@ -27,7 +27,7 @@
 SCICOS_BLOCKS_IMPEXP void extract_bit_u32_RB1(scicos_block *block, int flag)
 {
     int i = 0, maxim = 0, numb = 0;
-    unsigned long *y = NULL, *u = NULL, ref = 0, n = 0;
+    SCSUINT32_COP *y = NULL, *u = NULL, ref = 0, n = 0;
     int *ipar = NULL;
     y = Getuint32OutPortPtrs(block, 1);
     u = Getuint32InPortPtrs(block, 1);
@@ -37,7 +37,7 @@ SCICOS_BLOCKS_IMPEXP void extract_bit_u32_RB1(scicos_block *block, int flag)
     numb = *(ipar + 1) - *ipar + 1;
     for (i = 0; i < numb; i++)
     {
-        n = (unsigned long)pow(2, *ipar + i);
+        n = (SCSUINT32_COP)pow(2, *ipar + i);
         ref = ref + n;
     }
     *y = (*u) & (ref);

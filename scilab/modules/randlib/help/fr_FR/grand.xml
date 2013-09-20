@@ -8,8 +8,8 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="fr" xml:id="grand">
@@ -129,7 +129,7 @@
         <para>
             produisent une matrice de taille <literal>m</literal>-par-<literal>n</literal> de nombres aléatoires.
             
-            Toutes ces séquences peuvent être étendues pour créer une hypermatrice à plus de 2 dimensions, les 
+            Toutes ces séquences peuvent être étendues pour créer une hypermatrice à plus de 2 dimensions, les
             tailles (m, n, o,...) étant spécifiées avant le mot ".." indiquant le type de distribution statistique
             souhaitée :
         </para>
@@ -147,7 +147,7 @@
             ]]></programlisting>
         </para>
         <para>
-            où <literal>X</literal> de taille <literal>m</literal>-par-<literal>n</literal>... est une matrice 
+            où <literal>X</literal> de taille <literal>m</literal>-par-<literal>n</literal>... est une matrice
             ou une hypermatrice dont seul le format est exploité et sert de modèle.
         </para>
         <para>
@@ -351,7 +351,7 @@
                 <term>markov</term>
                 <listitem>
                     <para>
-                        <literal>Y = grand(n, "markov", P, x0)</literal> génère <literal>n</literal> états successifs d'une chaîne 
+                        <literal>Y = grand(n, "markov", P, x0)</literal> génère <literal>n</literal> états successifs d'une chaîne
                         Markov décrite par la matrice de transition <literal>P</literal>. L'état initial est donné par
                         <literal>x0</literal>. Si <literal>x0</literal> est une matrice de taille
                         <literal>m = size(x0, "*")</literal>
@@ -771,9 +771,9 @@
             associés à différentes lois de distribution et dessinons les histogrammes
             associés.
         </para>
-        <programlisting role="example"><![CDATA[ 
-// Renvoit une matrice de taille 400-par-800 de doubles aléatoires, 
-// avec une distribution normale de moyenne 0 et d'écart-type 1. 
+        <programlisting role="example"><![CDATA[
+// Renvoie une matrice de taille 400-par-800 de doubles aléatoires,
+// avec une distribution normale de moyenne 0 et d'écart-type 1.
 R = grand(400, 800, "nor", 0, 1);
 scf();
 histplot(10, R);
@@ -784,8 +784,8 @@ xtitle("Nombres aléatoires (loi normale) par grand", "X", "Fréquence");
             histplot(10, R);
             xtitle("Nombres aléatoires (loi normale) par grand", "X", "Fréquence");
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
-// Renvoit une matrice de taille 400-par-800 de doubles aléatoires, 
+        <programlisting role="example"><![CDATA[
+// Renvoie une matrice de taille 400-par-800 de doubles aléatoires,
 // uniformes dans [0, 1).
 R = grand(400, 800, "def");
 scf();
@@ -797,8 +797,8 @@ xtitle("Nombres aléatoires uniformes par grand", "X", "Fréquence");
             histplot(10, R);
             xtitle("Nombres aléatoires uniformes par grand", "X", "Fréquence");
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
-// Renvoit une matrice de taille 400-par-800 de doubles aléatoires, 
+        <programlisting role="example"><![CDATA[
+// Renvoie une matrice de taille 400-par-800 de doubles aléatoires,
 // avec une distribution de Poisson de moyenne 5.
 R = grand(400, 800, "poi", 5);
 scf();
@@ -815,7 +815,7 @@ xtitle("Nombres aléatoires (loi de Poisson) par grand", "X", "Fréquence");
             suivant la loi exponentielle et comparons ensuite la distribution empirique
             et la fonction de distribution théorique.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 lambda = 1.6;
 N = 100000;
 X = grand(1, N, "exp", lambda);
@@ -844,7 +844,7 @@ xtitle("Loi exponentielle par grand", "X", "Fréquence");
             Dans l'exemple suivant, nous générons des nombres aléatoires selon la distribution
             gamma et comparons la distribution empirique et la loi de distribution théorique.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 N = 10000;
 A = 10;
 B = 4;
@@ -862,7 +862,7 @@ xtitle("Fonction de distribution cumulée de nombres aléatoires selon la loi Ga
             N = 10000;
             A = 10;
             B = 4;
-            R = grand(1, N, "gam", A, B); 
+            R = grand(1, N, "gam", A, B);
             XS = gsort(R, "g", "i")';
             PS = (1:N)'/N;
             P = cdfgam("PQ", XS, A*ones(XS), B*ones(XS));
@@ -874,14 +874,14 @@ xtitle("Fonction de distribution cumulée de nombres aléatoires selon la loi Ga
         <para>
             Dans l'exemple suivant, nous générons 10 entiers aléatoires dans l'intervalle [1, 365].
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 grand(10, 1, "uin", 1, 365)
  ]]></programlisting>
         <para>
             Dans l'exemple suivant, nous générons 12 permutations de l'ensemble [1,2,...,7].
             Les 12 permutations sont stockées colonne par colonne.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 grand(12, "prm", (1:7)')
  ]]></programlisting>
         <para>
@@ -889,7 +889,7 @@ grand(12, "prm", (1:7)')
             de nombre aléatoires provenant de la distribution "normale" et affiche les histogrammes associés.
             Le graphes montrent les première et dernière couches de la matrice.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Retounrne une hypermatrice 400-par-800-par-10 de nombre aléatoires,
 // avec la distribution normale, une moyenne de 0 et un écart-type de 1.
 // Affichage de la première et dernière couches.

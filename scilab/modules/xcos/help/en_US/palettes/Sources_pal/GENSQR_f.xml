@@ -199,13 +199,13 @@ v(k)=\begin{cases}-M\\+M\end{cases}\ \ \mbox{,switch on activation}
     </refsection>
     <refsection id="Example_GENSQR_f">
         <title>Example</title>
-        <para>This is a typical use of this block in context. This example should also alert the user about a specific behavior when linked to the same event its sink. <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.zcos">
+        <para>This is a typical use of this block in context. This example should also alert the user about a specific behavior when linked to the same event its sink. <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.zcos">
                 Open this exemple into Xcos
             </link>
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/sources_pal/en_US/GENSQR_f_diagram_en_US.zcos" align="center" valign="middle"/>

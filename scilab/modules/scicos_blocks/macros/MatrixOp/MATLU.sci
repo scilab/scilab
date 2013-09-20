@@ -40,11 +40,11 @@ function [x,y,typ]=MATLU(job,arg1,arg2)
             scicos_getvalue("Set MATLU block parameters",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
             if ~ok then break,end
             if (typ==1) then
-                junction_name="mat_lu";
+                function_name="mat_lu";
                 ot=[1 1];
                 it=1;
             elseif (typ==2) then
-                junction_name="matz_lu";
+                function_name="matz_lu";
                 ot=[2 2];
                 it=2;
             else message("Datatype is not supported");ok=%f;
@@ -54,7 +54,7 @@ function [x,y,typ]=MATLU(job,arg1,arg2)
             end
             if ok then
                 funtyp=4;
-                model.sim=list(junction_name,funtyp)
+                model.sim=list(function_name,funtyp)
                 graphics.exprs=lab;
                 x.graphics=graphics;x.model=model
                 break
@@ -62,9 +62,9 @@ function [x,y,typ]=MATLU(job,arg1,arg2)
         end
     case "define" then
         model=scicos_model()
-        junction_name="mat_lu";
+        function_name="mat_lu";
         funtyp=4;
-        model.sim=list(junction_name,funtyp)
+        model.sim=list(function_name,funtyp)
 
         model.in=-1
         model.in2=-1

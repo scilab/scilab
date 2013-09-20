@@ -7,7 +7,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
 ## Process this file with automake to produce Makefile.in (which will be changed by the ./configure)
@@ -38,8 +38,22 @@ if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
 
-scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS)
-scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS)
+scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS) $(OPENMPI_LIBS)
+scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS) $(OPENMPI_LIBS)
+
+if USE_STATIC_SYSTEM_LIB
+scilab_bin_LDFLAGS += -static-libstdc++ -static-libgcc
+# -static-libgfortran
+scilab_cli_bin_LDFLAGS += -static-libstdc++ -static-libgcc
+#-static-libgfortran
+else
+# Clang (for example) needs an explicit reference to the lib
+scilab_bin_LDFLAGS += -lstdc++
+# -static-libgfortran
+scilab_cli_bin_LDFLAGS += -lstdc++
+#-static-libgfortran
+endif
+
 
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
@@ -55,15 +69,23 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
 
-scilab_bin_SOURCES		= $(top_srcdir)/modules/console/src/c/others/mainscic.c
+scilab_bin_SOURCES		= $(top_srcdir)/modules/console/src/c/others/mainscic.cpp
 
 scilab_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
-scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.c
+scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/console/src/c/others/mainscic.cpp
 
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
 scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
+
+if MPI
+CXX = $(OPENMPI_CXX)
+scilab_bin_SOURCES += $(top_srcdir)/modules/console/src/c/others/initMPI.c
+scilab_bin_CPPFLAGS += $(OPENMPI_CXXFLAGS)
+scilab_cli_bin_SOURCES += $(top_srcdir)/modules/console/src/c/others/initMPI.c
+scilab_cli_bin_CPPFLAGS += $(OPENMPI_CXXFLAGS)
+endif
 
 
 if NEED_JAVA
@@ -75,17 +97,6 @@ endif
 if IS_SOLARIS
 # The binary itself needs this dep
 	scilab_bin_LDADD += $(BLAS_LIBS)
-endif
-
-if ENABLE_STATIC
-scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group $(AM_LDFLAGS)
-scilab_static_bin_CFLAGS  = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a` $(AM_CFLAGS)
-
-#-static
-bin_PROGRAMS	   		+= scilab-static-bin
-scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
-
-scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 endif
 
 LANG_DOMAIN=scilab
@@ -101,9 +112,9 @@ if COMPILATION_TESTS
 TARGETS_ALL+=check-java
 endif
 
-# check is performed with scilab
+# check is performed with scilab, so use the serial-tests on purpose
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
-TESTS = $(top_srcdir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
+TESTS = $(top_builddir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
 
 all-local: $(TARGETS_ALL)
 
@@ -144,7 +155,7 @@ $(top_builddir)/Version.incl
 valgrinddir=$(pkgdatadir)/tools/profiling
 valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
-macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep
+macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-dep check-libstdcpp-dep
 	-@( cd $(top_builddir) ; \
 	echo "$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
 	$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
@@ -157,6 +168,18 @@ if !IS_MACOSX
 	if test $$? == 0; then \
 		echo "Found dependency from scilab-cli-bin to libjvm found"; exit 2;\
 	fi
+endif
+
+
+check-libstdcpp-dep:
+if USE_STATIC_SYSTEM_LIB
+# Check that scilab-cli does not have a dependency on libstdc++ (should be static)
+	@ldd .libs/scilab-bin .libs/scilab-cli-bin modules/.libs/libscilab*0 |grep libstdc++ > /dev/null; \
+	if test $$? == 0; then \
+		echo "Found dependency from scilab-cli-bin to libstdc++ found"; exit 2;\
+	fi
+else
+	echo "libstdc++ presence test skipped"
 endif
 
 # Build the public Javadoc (javasci v2 and Java/Scilab types)
@@ -266,8 +289,8 @@ if CODE_COVERAGE
 	fi; \
 	touch $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h; \
 	$(LCOV) --directory $(top_builddir) --capture --ignore-errors source --output-file $(top_builddir)/coverage/scilab-code-coverage.info; \
-	echo -e "genhtml_hi_limit = 85\ngenhtml_med_limit = 70" > $(top_builddir)/coverage/lcovrc; \
-	$(GENHTML) -o $(top_builddir)/coverage/results/ --config-file $(top_builddir)/coverage/lcovrc --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
+	if test ! -f ~/.lcovrc; then echo -e "genhtml_hi_limit = 85\ngenhtml_med_limit = 70" > ~/.lcovrc; fi; \
+	$(GENHTML) -o $(top_builddir)/coverage/results/ --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
 	rm -f $(top_builddir)/coverage/lcovrc; \
 	echo "To open the result: firefox  $(top_builddir)/coverage/results/index.html"; \
 	rm -f $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h

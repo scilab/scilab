@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function clf(varargin)
 
@@ -63,9 +63,14 @@ function clf(varargin)
         curFig.immediate_drawing = "off";
 
         delete(curFig.children);
-
+        
         // drawnow
         curFig.immediate_drawing = immediateMode;
+    end
+
+    if curFig.event_handler == "datatipEventhandler" then
+        curFig.event_handler_enable="off";
+        curFig.info_message="";
     end
 
     // reset figures to default values if needed

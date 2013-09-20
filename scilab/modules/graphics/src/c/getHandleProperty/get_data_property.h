@@ -8,16 +8,18 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #ifndef _GET_DATA_PROPERTY_H_
 #define _GET_DATA_PROPERTY_H_
 
+int getmatplotdata (void * _pvCtx, char *pobjUID);
+
 /* the grayplot data is now given as a tlist (like for surface and champ objects) */
 
-int getgrayplotdata (char *);
+int getgrayplotdata (char *pobjUID);
 
 /* the champ data is now given as a tlist (like for surface objects) */
 int getchampdata(char *pobjUID);

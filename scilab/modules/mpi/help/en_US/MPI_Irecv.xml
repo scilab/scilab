@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
+ * 
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Irecv" xml:lang="en">
+    <refnamediv>
+        <refname>MPI_Irecv</refname>
+        <refpurpose>Nonblocking receive of data from a node</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>MPI_Irecv(rank,tag)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>rank</term>
+                <listitem>
+                    <para>The rank. TODO</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tag</term>
+                <listitem>
+                    <para>The tag. TODO</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Receive a variable from a specified node in a nonblock (asynchronous) way. The value is usually sent by the function <link linkend="MPI_Isend">MPI_Isend</link>.
+        </para>
+        <para>
+            Note that, due to its asynchronous nature, MPI_Irecv does not return any value. The value sent by the source node will be returned by <link linkend="MPI_Wait">MPI_Wait</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Technical implementation</title>
+        <para>
+            For more information on the implementation of Scilab/MPI, please see <link linkend="mpi_technical">Technical details about the implementation</link>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+
+
+                MPI_Init();
+                rnk =    MPI_Comm_rank();
+                sizeNodes =    MPI_Comm_size();
+
+                SLV = rnk;
+                Master = ~ SLV;
+
+                assert_checkequal(MPI_Comm_size(), 2);
+
+                if Master
+                   for slaveId = 1:sizeNodes-1
+                     value = slaveId*2
+                     MPI_Isend(value, slaveId, 42);
+                   end
+                else
+                    rankSource=0;
+                    tag=0;
+                    MPI_Irecv(rankSource, tag, 42); // MPI_Irecv does not return any value
+                    value=MPI_Wait(42) // the value will be returned by MPI_Wait
+                    assert_checkequal(value,2);
+                end
+
+                MPI_Finalize();
+                exit()
+
+           ]]> </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="MPI_Isend">MPI_Isend</link>
+            </member>
+            <member>
+                <link linkend="MPI_Wait">MPI_Wait</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

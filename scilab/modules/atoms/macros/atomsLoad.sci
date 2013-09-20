@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // End user function
 
@@ -329,11 +329,10 @@ function result = atomsLoad(packages)
         loader_file = pathconvert(this_package_path) + "loader.sce";
 
         if fileinfo(loader_file)==[] then
+            msg = _("%s: The file ''%s'' from (%s - %s) doesn''t exist or is not read accessible.\n")
+            mprintf(msg, "atomsLoad", loader_file, this_package_name, this_package_version);
             if ATOMSAUTOLOAD then
-                mprintf(gettext("%s: The file ''%s'' doesn''t exist or is not read accessible.\n"),"atomsLoad",loader_file);
                 return;
-            else
-                error(msprintf(gettext("%s: The file ''%s'' doesn''t exist or is not read accessible.\n"),"atomsLoad",loader_file));
             end
         end
 

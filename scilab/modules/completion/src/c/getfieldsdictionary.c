@@ -1,12 +1,13 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010-2011 - Calixte DENIZET
+* Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 #include <string.h> /* strcmp */
@@ -42,9 +43,14 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
     int last = 0;
     char **pstData = NULL;
     char **fields = NULL;
+    char **_fields = NULL;
     char *var = NULL;
     char *lineBeforePoint = NULL;
     int pos = (int)(strlen(lineBeforeCaret) - strlen(pattern) - 1);
+    char ** fieldPath = NULL;
+    int fieldPathLen = 0;
+    int fieldCompt = 0;
+    int fieldsSize = 0;
 
     if (!isInitialized)
     {
@@ -64,115 +70,61 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
     }
     memcpy(lineBeforePoint, lineBeforeCaret, pos);
     lineBeforePoint[pos] = '\0';
-    var = getPartLevel(lineBeforePoint);
-    FREE(lineBeforePoint);
-    lineBeforePoint = NULL;
-
-    sciErr = getNamedVarType(pvApiCtx, var, &piType);
-    if (sciErr.iErr && piType != sci_mlist && piType != sci_tlist && piType != sci_handles)
+    fieldPath = getFieldPath(lineBeforePoint, &fieldPathLen);
+    if (fieldPathLen == 0)
     {
-        FREE(var);
-        var = NULL;
         return NULL;
     }
 
-    if (piType == sci_mlist || piType == sci_tlist)
+    FREE(lineBeforePoint);
+    lineBeforePoint = NULL;
+
+    sciErr = getNamedVarType(pvApiCtx, fieldPath[0], &piType);
+    if (sciErr.iErr && piType != sci_mlist && piType != sci_tlist && piType != sci_handles)
     {
-        getVarAddressFromName(pvApiCtx, var, &piAddr);
-        FREE(var);
-        var = NULL;
+        freeArrayOfString(fieldPath, fieldPathLen);
+        return NULL;
+    }
+
+    if (piType == sci_mlist || piType == sci_tlist || piType == sci_handles)
+    {
+        getVarAddressFromName(pvApiCtx, fieldPath[0], &piAddr);
         if (sciErr.iErr)
         {
+            freeArrayOfString(fieldPath, fieldPathLen);
             return NULL;
         }
 
-        sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 1, &rows, &cols, NULL, NULL);
-        if (sciErr.iErr)
-        {
-            return NULL;
-        }
-
-        rc = rows * cols;
-        if (rc == 1)
+        fields = (char**)getFields(piAddr, fieldPath, fieldPathLen, &fieldsSize);
+        freeArrayOfString(fieldPath, fieldPathLen);
+        if (!fields)
         {
             return NULL;
         }
 
-        piLen = (int*)MALLOC(sizeof(int) * rc);
-        sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 1, &rows, &cols, piLen, NULL);
-        if (sciErr.iErr)
-        {
-            FREE(piLen);
-            return NULL;
-        }
+        _fields = (char**)MALLOC(sizeof(char *) * (fieldsSize + 1));
+        last = 0;
 
-        pstData = (char**)MALLOC(sizeof(char*) * (rc + 1));
-        pstData[rc] = NULL;
-        for (i = 0 ; i < rc ; i++)
+        for (i = 0; i < fieldsSize ; i++)
         {
-            pstData[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));
-        }
-
-        sciErr = getMatrixOfStringInList(pvApiCtx, piAddr, 1, &rows, &cols, piLen, pstData);
-        if (sciErr.iErr)
-        {
-            FREE(piLen);
-            piLen = NULL;
-            freeArrayOfString(pstData, rc);
-            return NULL;
-        }
-        FREE(piLen);
-
-        fields = (char**)getFieldsForType(pstData[0], piAddr);
-        if (fields)
-        {
-            freeArrayOfString(pstData, rc);
-            pstData = fields;
-            for (rc = 0; fields[rc]; rc++)
+            if (strstr(fields[i], pattern) == fields[i])
             {
-                ;
-            }
-        }
-
-        // We remove all the entries which don't begin with fieldpart
-        // and the first entry (and the second if it is a struct)
-        if (!strcmp(pstData[0], "st"))
-        {
-            FREE(pstData[0]);
-            pstData[0] = NULL;
-            FREE(pstData[1]);
-            pstData[1] = NULL;
-            if (rc == 2)
-            {
-                FREE(pstData);
-                return NULL;
-            }
-            i = 2;
-        }
-        else
-        {
-            FREE(pstData[0]);
-            pstData[0] = NULL;
-            i = 1;
-        }
-
-        for (; i < rc ; i++)
-        {
-            if (strstr(pstData[i], pattern) != pstData[i])
-            {
-                FREE(pstData[i]);
-                pstData[i] = NULL;
+                _fields[last++] = fields[i];
             }
             else
             {
-                pstData[last] = pstData[i];
-                pstData[i] = NULL;
-                last++;
+                FREE(fields[i]);
+                fields[i] = NULL;
             }
         }
 
+        FREE(fields);
+
         *size = last;
-        qsort(pstData, *size, sizeof(char*), cmpNames);
+        qsort(_fields, *size, sizeof(char*), cmpNames);
+        _fields[last] = NULL; // don't forget, it SWIG is using first NULL item to guess array size
+
+        return _fields;
     }
     else
     {

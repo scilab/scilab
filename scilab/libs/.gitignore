@@ -16,3 +16,4 @@ Eigen
 *.lib
 Eigen
 curl
+openmpi

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,13 +29,13 @@ public class BasicLinkCodec extends XcosObjectCodec {
 
     public static void register() {
         BasicLinkCodec explicitlinkCodec = new BasicLinkCodec(
-            new ExplicitLink(), null, null, null);
+            new ExplicitLink(), null, REFS, null);
         mxCodecRegistry.register(explicitlinkCodec);
         BasicLinkCodec implicitlinkCodec = new BasicLinkCodec(
-            new ImplicitLink(), null, null, null);
+            new ImplicitLink(), null, REFS, null);
         mxCodecRegistry.register(implicitlinkCodec);
         BasicLinkCodec commandControllinkCodec = new BasicLinkCodec(
-            new CommandControlLink(), null, null, null);
+            new CommandControlLink(), null, REFS, null);
         mxCodecRegistry.register(commandControllinkCodec);
     }
 

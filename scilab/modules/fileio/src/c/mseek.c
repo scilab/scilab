@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -29,7 +29,7 @@ char *strerror (int errcode);
 #define SEEK_END 2
 #endif
 /*--------------------------------------------------------------------------*/
-void C2F(mseek) (int *fd, int *offset, char *flag, int *err)
+void C2F(mseek) (int *fd, double *offset, const char *flag, int *err)
 {
     int iflag;
 #if (defined(sun) && !defined(SYSV)) || defined(sgi)
@@ -84,7 +84,7 @@ void C2F(mseek) (int *fd, int *offset, char *flag, int *err)
 #else
 #ifdef _MSC_VER
 #if _WIN64
-    if (_fseeki64(fa, (long) *offset, iflag) == -1 )
+    if (_fseeki64(fa, (long long) *offset, iflag) == -1 )
 #else
     if (fseek(fa, (long) *offset, iflag) == -1 )
 #endif

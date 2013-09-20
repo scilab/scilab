@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -46,7 +46,7 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES 170
+#define NB_PROPERTIES 171
 
 /**
  * list of all property names and associated functions in scilab
@@ -223,7 +223,8 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
     {"tip_interp_mode", get_tip_interp_mode_property},
     {"tip_box_mode", get_tip_box_mode_property},
     {"tip_label_mode", get_tip_label_mode_property},
-    {"tip_disp_function", get_tip_disp_function_property}
+    {"tip_disp_function", get_tip_disp_function_property},
+    {"image_type", get_image_type_property}
 };
 
 /*--------------------------------------------------------------------------*/

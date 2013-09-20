@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,9 +23,9 @@ LOCALIZATION_IMPEXP int sci_setlanguage(char *fname, unsigned long fname_len);
 LOCALIZATION_IMPEXP int sci_getlanguage(char *fname, unsigned long fname_len);
 LOCALIZATION_IMPEXP int sci_getdefaultlanguage(char *fname, unsigned long fname_len);
 LOCALIZATION_IMPEXP int sci_gettext(char *fname, unsigned long fname_len);
-LOCALIZATION_IMPEXP int sci_dgettext(char *fname, unsigned long fname_len);
-LOCALIZATION_IMPEXP int sci_dgettextchar(char *fname, unsigned long fname_len);
 LOCALIZATION_IMPEXP int sci_setdefaultlanguage(char *fname, unsigned long fname_len);
+LOCALIZATION_IMPEXP int sci_addlocalizationdomain(char *fname, unsigned long fname_len);
+
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_LOCALIZATION__ */
 /*--------------------------------------------------------------------------*/
