@@ -103,7 +103,10 @@ public class DragZoomRotateInteraction extends FigureInteraction {
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            pressedButtons--;
+            if (pressedButtons > 0) {
+                pressedButtons--;
+            }
+
             if (pressedButtons == 0) {
                 getDrawerVisitor().getComponent().removeMouseMotionListener(mouseMotionListener);
                 currentAxes = null;

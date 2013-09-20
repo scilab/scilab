@@ -728,4 +728,7 @@ Bug Fixes
 
 * Bug #12916 fixed - power help page improved.
 
+* Bug #12919 fixed - Rotation on plots was disabled after using menus.
+
 * Bug #12927 fixed - ones function could not take integer type input.
+
