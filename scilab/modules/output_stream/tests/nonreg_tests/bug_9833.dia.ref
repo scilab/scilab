@@ -18,7 +18,6 @@ BUG_NAME = "bug_9833";
 test_path = get_absolute_file_path(BUG_NAME + ".tst");
 currentpath = pwd();
 cd TMPDIR;
-cd ../;
 OS_TMP_DIR = pwd();
 mkdir(OS_TMP_DIR, BUG_NAME);
 TEST_DIR = OS_TMP_DIR + filesep() + BUG_NAME;
