@@ -23,7 +23,7 @@ nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",quadratic);
 nm = neldermead_configure(nm,"-x0",x0);
 nm = neldermead_configure(nm,"-outputcommand",neldermead_defaultoutput);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
 assert_checkalmostequal ( xopt , [0;0], [], 1e-6 );

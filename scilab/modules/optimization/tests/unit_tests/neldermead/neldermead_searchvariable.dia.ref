@@ -80,7 +80,7 @@ nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-storehistory",%t);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 Function Evaluation #1, index=1, x= [-1.2 1]
 Function Evaluation #2, index=2, x= [-1.2 1]
 Function Evaluation #3, index=2, x= [-1.2 1]

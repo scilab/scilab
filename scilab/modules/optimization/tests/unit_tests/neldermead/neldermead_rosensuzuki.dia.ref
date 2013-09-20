@@ -117,6 +117,8 @@ nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 nm = neldermead_search(nm);
 nm = neldermead_restart(nm);
+optimbase_terminate: Exiting: Maximum number of function evaluations has been exceeded
+          - increase MaxFunEvals option.
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
 assert_checkalmostequal ( xopt , [0.0 1.0 2.0 -1.0]', 1e-1, 1e-1 );
@@ -338,7 +340,7 @@ nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0 -10.0 -10.0]);
 nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0 10.0 10.0]);
 nm = neldermead_configure(nm,"-simplex0method","randbounds");
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 Function Evaluation #1, index=1, x= [0 0 0 0]
 Function Evaluation #2, index=2, x= [0 0 0 0]
 Function Evaluation #3, index=5, x= [0 0 0 0]

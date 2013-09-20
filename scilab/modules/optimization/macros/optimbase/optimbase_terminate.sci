@@ -45,6 +45,11 @@ function [ this , terminate , status ] = optimbase_terminate (this , ...
         if ( this.iterations >= this.maxiter ) then
             terminate = %t;
             status = "maxiter";
+            if warning("query") =="on" then
+                msg = "%s: Exiting: Maximum number of iterations has been exceeded\n" + ...
+                "         - increase MaxIter option.\n";
+                mprintf(gettext(msg) , "optimbase_terminate" )
+            end
         end
     end
     //
@@ -57,6 +62,11 @@ function [ this , terminate , status ] = optimbase_terminate (this , ...
         if ( this.funevals >= this.maxfunevals ) then
             terminate = %t;
             status = "maxfuneval";
+            if warning("query") =="on" then
+                msg = "%s: Exiting: Maximum number of function evaluations has been exceeded\n" + ...
+                "          - increase MaxFunEvals option.\n"
+                mprintf(gettext(msg) , "optimbase_terminate" )
+            end
         end
     end
     //
@@ -117,4 +127,3 @@ function [ this , terminate , status ] = optimbase_terminate (this , ...
         string(terminate) , status ));
     end
 endfunction
-

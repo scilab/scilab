@@ -84,7 +84,7 @@ nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-storehistory",%t);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 status = neldermead_get(nm,"-status");
 assert_checkequal ( status , "maxiter" );
 nm = neldermead_destroy(nm);

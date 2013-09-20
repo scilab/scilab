@@ -23,6 +23,8 @@ function demo_nelder_rosen()
     nm = neldermead_configure(nm, "-numberofvariables", 2);
     nm = neldermead_configure(nm, "-function", rosenbrock);
     nm = neldermead_configure(nm, "-x0", x0);
+    nm = neldermead_configure(nm, "-maxiter", 300);
+    nm = neldermead_configure(nm, "-maxfunevals", 300);
 
     mprintf(_("Searching (please wait) ...\n"));
     nm = neldermead_search(nm);

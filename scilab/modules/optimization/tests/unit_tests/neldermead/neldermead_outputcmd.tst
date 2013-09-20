@@ -65,7 +65,7 @@ nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 iter = neldermead_get(nm,"-iterations");
 assert_checkequal ( iter , 10 );
 // We are here, that means that the output command has been correctly
@@ -87,7 +87,7 @@ nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_configure(nm,"-method","fixed");
 nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 iter = neldermead_get(nm,"-iterations");
 assert_checkequal ( iter , 10 );
 // We are here, that means that the output command has been correctly
@@ -111,7 +111,7 @@ nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0]);
 nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0]);
 nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 iter = neldermead_get(nm,"-iterations");
 assert_checkequal ( iter , 10 );
 // We are here, that means that the output command has been correctly
@@ -170,7 +170,7 @@ nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-outputcommand",list(myoutputcmd2,myobj));
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 iter = neldermead_get(nm,"-iterations");
 assert_checkequal ( iter , 10 );
 assert_checkequal ( _OUTPUCMDFLAG_ , 12 );
