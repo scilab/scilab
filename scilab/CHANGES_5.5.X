@@ -82,6 +82,8 @@ Scilab Bug Fixes
 
 * Bug #9697 fixed - Printed information for optim "qn" and "gc" with bounds and imp=1 fixed.
 
+* Bug #9701 fixed - optim with "qn" option was failing for large problems.
+
 * Bug #10175 fixed - Clearer example added for sp2adj to adj2sp conversion (and backwards conversion).
 
 * Bug #10234 fixed - reglin function moved from CACSD to Statistics module.
