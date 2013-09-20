@@ -46,40 +46,14 @@ libsciast_la_CPPFLAGS = \
 libsciast_la_includedir=$(pkgincludedir)
 libsciast_la_include_HEADERS =
 
-####################
-## Automated test ##
-####################
-check_INCLUDES = \
-    -I$(top_srcdir)/modules/symbol/includes \
-	-Iincludes/ \
-	-Isrc/cpp
 
-check_LDADD	= \
-    $(top_builddir)/modules/symbol/libsciSymbol.la \
-	$(top_builddir)/modules/ast/libsciast.la \
-	$(top_builddir)/modules/types/libsciTypes.la
+#### Target ######
+modulename=ast
 
-check_PROGRAMS = \
-    testConstExp \
-	testVarExp \
-											testControlExp
+####io : init scripts ####
+libsciast_la_etcdir = $(mydatadir)/etc
+libsciast_la_etc_DATA = etc/ast.quit etc/ast.start
 
-TESTS = \
-    testConstExp \
-	testVarExp \
-	testControlExp
-
-testConstExp_SOURCES 	= src/cpp/testConstExp.cpp
-testConstExp_CXXFLAGS 	= $(check_INCLUDES)
-testConstExp_LDADD	= $(check_LDADD)
-
-testVarExp_SOURCES 	= src/cpp/testVarExp.cpp
-testVarExp_CXXFLAGS 	= $(check_INCLUDES)
-testVarExp_LDADD	= $(check_LDADD)
-
-testControlExp_SOURCES 	= src/cpp/testControlExp.cpp
-testControlExp_CXXFLAGS = $(check_INCLUDES)
-testControlExp_LDADD	= $(check_LDADD)
 
 include $(top_srcdir)/Makefile.incl.am
 
