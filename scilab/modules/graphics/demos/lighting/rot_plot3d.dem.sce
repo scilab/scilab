@@ -7,23 +7,21 @@
 function demo_rot_light()
 
     my_handle = scf(100001);
-    clf(my_handle,"reset");
-    demo_viewCode("rot_light.dem.sce");
+    clf(my_handle, "reset");
+    demo_viewCode("rot_plot3d.dem.sce");
 
     // DEMO START
-    my_plot_desc          = "Rotating light";
+    my_plot_desc = "Rotating light";
     my_handle.figure_name = my_plot_desc;
 
     plot3d;
     l=light();
     s=gce();
+    a=gca();
 
-    for i=0:2000
+    for i=1:360
         sleep(5);
-        x = 2*cos(i*%pi/180);
-        y = 2*sin(i*%pi/180);
-        z = 2;
-        l.position = [x y z];
+        a.rotation_angles = [70 i];
     end
     // DEMO END
 endfunction

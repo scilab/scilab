@@ -8,6 +8,7 @@ demopath = get_absolute_file_path("lighting.dem.gateway.sce");
 subdemolist = [                                   ..
 "Simple light"      , "simple_light.dem.sce"    ; ..
 "Rotating light"    , "rot_light.dem.sce"       ; ..
+"Rotating plot3d"    , "rot_plot3d.dem.sce"       ; ..
 "Colored light"     , "color_light.dem.sce"     ; ..
 "Directional light" , "dir_light.dem.sce"       ];
 
