@@ -15,7 +15,12 @@
 //-----------------------------------------------------------------------------
 // Check the report against wrong port numbering on super block
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/error_sb_port_numbering.zcos"));
-scicos_simulate(scs_m, "nw");
+try
+    scicos_simulate(scs_m, "nw");
+scicos_flat: Input ports are not numbered properly. 
+c_pass1: flat failed 
+catch
+end
 //-----------------------------------------------------------------------------
 // on do_eval (context evaluation)
 //-----------------------------------------------------------------------------
@@ -24,5 +29,5 @@ assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/error_b
 scicos_simulate(scs_m, "nw");
  
 !Evaluation problem: value not updated from context.  !
-!                                                     !
-!Initial condition x0 should be inside the limits     !
+!                                                                      !
+!Initial condition x0 should be inside the limits                      !

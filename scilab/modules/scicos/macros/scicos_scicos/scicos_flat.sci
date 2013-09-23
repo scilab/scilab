@@ -22,7 +22,7 @@
 // See the file ../license.txt
 //
 
-function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok]=scicos_flat(scs_m,ksup,MaxBlock)
+function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]=scicos_flat(scs_m,ksup,MaxBlock)
     //This function takes a hierarchical Scicos diagram and computes the
     //"flat" equivalent, removing "non computational" blocs like splits.
     //S. Steer, R. Nikoukhah 2003. Copyright INRIA
@@ -89,6 +89,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok]=scicos_flat(scs_m,k
     cor=list();for k=1:n, cor(k)=0;end
 
     ok=%t;
+    IN=[];OUT=[];EIN=[];EOUT=[];
     Links=[] //to memorize links position in the data structure
     mod_blk_exist=%f;
     //-------------- Analyse blocks --------------
@@ -172,12 +173,16 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok]=scicos_flat(scs_m,k
                 end
                 if or(o.gui==["IN_f","INIMPL_f"]) then
                     pind=Pind(1)
+                    IN=[IN o.model.ipar]
                 elseif or(o.gui==["OUT_f","OUTIMPL_f"]) then
                     pind=Pind(2)
+                    OUT=[OUT o.model.ipar]
                 elseif or(o.gui==["CLKIN_f","CLKINV_f"]) then
                     pind=Pind(3)
+                    EIN=[EIN o.model.ipar]
                 elseif or(o.gui==["CLKOUT_f","CLKOUTV_f"]) then
                     pind=Pind(4)
+                    EOUT=[EOUT o.model.ipar]
                 end
                 //connect the link to the fictitious bloc replacing the superblock
                 if scs_m.objs(connected).from(1)==k then
@@ -259,11 +264,46 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok]=scicos_flat(scs_m,k
 
 
                 //Analyze the superblock contents
-                [cors,corinvs,lt,cur_fictitious,scop_mat,ok]=scicos_flat(o.model.rpar,cur_fictitious,MaxBlock)
+                [cors,corinvs,lt,cur_fictitious,scop_mat,ok, localIN, localOUT, localEIN, localEOUT]=scicos_flat(o.model.rpar,cur_fictitious,MaxBlock)
                 if ~ok then
                     disp(mprintf("%s: Invalid super block at %d", "scicos_flat", k));
                     return
                 end
+
+                // check if the ports has the right order
+                localIN=-gsort(-localIN);
+                if or(localIN<>[1:size(localIN,"*")]) then
+                    ok=%f;
+                    msg=gettext("Input ports are not numbered properly.")
+                    hilite_path(path,msg,%t)
+                    disp(mprintf("%s: Input ports are not numbered properly.", "scicos_flat"))
+                    return
+                end
+                localOUT=-gsort(-localOUT);
+                if or(localOUT<>[1:size(localOUT,"*")]) then
+                    ok=%f;
+                    msg=gettext("Output ports are not numbered properly.")
+                    hilite_path(path,msg,%t)
+                    disp(mprintf("%s: Output ports are not numbered properly.", "scicos_flat"))
+                    return
+                end
+                localEIN=-gsort(-localEIN);
+                if or(localEIN<>[1:size(localEIN,"*")]) then
+                    ok=%f;
+                    msg=gettext("Event input ports are not numbered properly.")
+                    hilite_path(path,msg,%t)
+                    disp(mprintf("%s: Event input ports are not numbered properly.", "scicos_flat"))
+                    return
+                end
+                localEOUT=-gsort(-localEOUT);
+                if or(localEOUT<>[1:size(localEOUT,"*")]) then
+                    ok=%f;
+                    msg=gettext("Event output ports are not numbered properly.")
+                    hilite_path(path,msg,%t)
+                    disp(mprintf("%s: Event output ports are not numbered properly.", "scicos_flat"))
+                    return
+                end
+
                 //shifting the scop_mat for regular blocks. Fady 08/11/2007
                 if scop_mat<>[] then
                     v_mat=find(eval(scop_mat(:,1))<MaxBlock)
