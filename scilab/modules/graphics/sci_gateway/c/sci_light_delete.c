@@ -23,40 +23,26 @@ int sci_light_delete(char *fname, unsigned long fname_len)
     SciErr sciErr;
     int* piAddr	= NULL;
     int nbRow, nbCol;
-    char * light;
-    long long* pLightHandle = NULL;
+    long long lightHandle = 0;
     BOOL result;
-
 
     CheckInputArgument(pvApiCtx, 1, 1);
 
-    if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
     {
-        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-        if (sciErr.iErr)
-        {
-            return 0;
-        }
-        getMatrixOfHandle(pvApiCtx, piAddr, &nbRow, &nbCol, &pLightHandle);
-        if (pLightHandle == NULL) return FALSE;
-
-        if (nbRow * nbCol != 1)
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
-            return FALSE;
-        }
-
-        result = deleteLight(*pLightHandle);
-        if (result == FALSE)
-        {
-            return FALSE;
-        }
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        return 0;
     }
-    else
+
+    if (getScalarHandle(pvApiCtx, piAddr, &lightHandle))
     {
         Scierror(999, _("%s: Wrong type for argument %d: A graphic handle expected.\n"), fname, 1);
-        return FALSE;
+        return 0;
     }
 
-    return TRUE;
+    deleteLight(lightHandle);
+
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 }

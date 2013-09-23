@@ -18,7 +18,9 @@
 #include "graphicObjectProperties.h"
 #include "HandleManagement.h"
 #include "CurrentSubwin.h"
-
+#include "Scierror.h"
+#include "localization.h"
+#include "BuildObjects.h"
 
 BOOL isValidType(int type)
 {
@@ -30,31 +32,50 @@ BOOL isValidColor(double * color)
     if (color != NULL)
     {
         return (color[0] >= 0.0 && color[0] <= 1.0) &&
-            (color[1] >= 0.0 && color[1] <= 1.0) &&
-            (color[2] >= 0.0 && color[2] <= 1.0);
+               (color[1] >= 0.0 && color[1] <= 1.0) &&
+               (color[2] >= 0.0 && color[2] <= 1.0);
     }
     return FALSE;
 }
 
-BOOL createLight(long long axes_handle, int type, BOOL visible, double * position, double * direction, double * ambient_color, double * diffuse_color, double * specular_color, long long * pLightHandle)
+BOOL createLight(char* fname, long long axes_handle, int type, BOOL visible, double * position, double * direction, double * ambient_color, double * diffuse_color, double * specular_color, long long * pLightHandle)
 {
     const char * axes;
     char * light;
     int * piType = &type;
+    int hType = 0;
+    int * pihType = &hType;
     int * piVisible = &visible;
 
-    if (pLightHandle == NULL) return FALSE;
+    if (pLightHandle == NULL)
+    {
+        return FALSE;
+    }
 
     axes = getObjectFromHandle(axes_handle);
     if (axes == NULL)
     {
-        axes = getCurrentSubWin();
-        if (axes == NULL) return FALSE;
+        axes = getOrCreateDefaultSubwin();
+        if (axes == NULL)
+        {
+            Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
+            return FALSE;
+        }
+    }
+
+    //check handle type
+    getGraphicObjectProperty(axes, __GO_TYPE__, jni_int, (void **)&pihType);
+    if (hType != __GO_AXES__)
+    {
+        Scierror(999, _("The parent has to be a SUBWIN\n"));
+        return FALSE;
     }
 
     light = createGraphicObject(__GO_LIGHT__);
-
-    if (light == NULL) return FALSE;
+    if (light == NULL)
+    {
+        return FALSE;
+    }
 
     setGraphicObjectProperty(light, __GO_VISIBLE__, piVisible, jni_bool, 1);
 
@@ -87,10 +108,14 @@ BOOL createLight(long long axes_handle, int type, BOOL visible, double * positio
     {
         setGraphicObjectProperty(light, __GO_SPECULARCOLOR__, specular_color, jni_double_vector, 3);
     }
-    
+
+    //return handle
     *pLightHandle = getHandle(light);
 
+    //set light as child of axes
     setGraphicObjectRelationship(axes, light);
+
+    //release memory
     releaseGraphicObjectProperty(__GO_PARENT__, light, jni_string, 1);
 
     return TRUE;
@@ -104,11 +129,17 @@ BOOL deleteLight(long long light_handle)
     const char * uid = NULL;
 
     uid = getObjectFromHandle(light_handle);
-    if (uid == NULL) return FALSE;
+    if (uid == NULL)
+    {
+        return FALSE;
+    }
 
     getGraphicObjectProperty(uid, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (iType != __GO_LIGHT__) return FALSE;
+    if (iType != __GO_LIGHT__)
+    {
+        return FALSE;
+    }
 
     deleteGraphicObject((char*)uid);
 
