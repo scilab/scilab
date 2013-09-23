@@ -734,3 +734,4 @@ Bug Fixes
 
 * Bug #12927 fixed - ones function could not take integer type input.
 
+* Bug #12931 fixed - ATOMS redefined "message" keyword.
