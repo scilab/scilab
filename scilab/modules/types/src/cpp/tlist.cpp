@@ -166,13 +166,22 @@ bool TList::set(const int _iIndex, InternalType* _pIT)
         m_iSize = getSize();
     }
 
-    InternalType* pOld = (*m_plData)[_iIndex];
-    if (pOld && pOld->isDeletable())
+    // replace an existing element
+    if (m_plData->size() > _iIndex)
     {
-        delete pOld;
+        InternalType* pOld = (*m_plData)[_iIndex];
+        if (pOld && pOld->isDeletable())
+        {
+            delete pOld;
+        }
+
+        (*m_plData)[_iIndex] = _pIT->clone();
+    }
+    else // insert a new element
+    {
+        m_plData->push_back(_pIT->clone());
     }
 
-    (*m_plData)[_iIndex] = _pIT->clone();
     (*m_plData)[_iIndex]->IncreaseRef();
     return true;
 }
