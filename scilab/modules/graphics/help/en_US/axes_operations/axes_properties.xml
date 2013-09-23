@@ -552,8 +552,8 @@
                                 <para>
                                     If this property value is equal to <literal>"on"</literal>, a call
                                     to a high level graphic will re-ininitialize the current axes and
-                                    erase all its children before preforming the drawing. If the value
-                                    is <literal>"off"</literal> the drawings will be added to current axes
+                                    erase all its children before preforming the drawing (log_flags will be reset).
+                                    If the value is <literal>"off"</literal> the drawings will be added to current axes
                                     according to <literal>"auto_scale"</literal> property.
                                 </para>
                             </listitem>

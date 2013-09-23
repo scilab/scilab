@@ -121,6 +121,11 @@ static void initSubWinBounds(char * pSubWinUID)
     double* dataBounds = NULL;
     double* realDataBounds = NULL;
     char* axesModelUID = (char*)getAxesModel();
+    int linLogFlag = 0;
+
+    setGraphicObjectProperty(pSubWinUID, __GO_X_AXIS_LOG_FLAG__, &linLogFlag, jni_bool, 1);
+    setGraphicObjectProperty(pSubWinUID, __GO_Y_AXIS_LOG_FLAG__, &linLogFlag, jni_bool, 1);
+    setGraphicObjectProperty(pSubWinUID, __GO_Z_AXIS_LOG_FLAG__, &linLogFlag, jni_bool, 1);
 
     getGraphicObjectProperty(axesModelUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
     setGraphicObjectProperty(pSubWinUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
