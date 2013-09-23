@@ -43,6 +43,11 @@ int get_sub_tics_property(void* _pvCtx, char* pobjUID)
     /* modified jb Silvy 01/2006 */
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    if (piType == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
+        return -1;
+    }
 
     /*
      * Type test required as the Axis object stores subticks as a single int
@@ -67,7 +72,6 @@ int get_sub_tics_property(void* _pvCtx, char* pobjUID)
         int* piView = &iView;
 
         getGraphicObjectProperty(pobjUID, __GO_X_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
-
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
@@ -77,12 +81,29 @@ int get_sub_tics_property(void* _pvCtx, char* pobjUID)
         sub_ticks[0] = iSubTicks;
 
         getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
+        if (piSubTicks == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
+            return -1;
+        }
+
         sub_ticks[1] = iSubTicks;
 
         getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
+        if (piSubTicks == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
+            return -1;
+        }
+
         sub_ticks[2] = iSubTicks;
 
         getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void**)&piView);
+        if (piView == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
+            return -1;
+        }
 
         if (iView == 1)
         {

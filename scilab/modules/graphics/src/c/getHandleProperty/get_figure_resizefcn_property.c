@@ -30,7 +30,7 @@ int get_figure_resizefcn_property(void* _pvCtx, char* pobjUID)
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
-    if (iType != __GO_FIGURE__)
+    if (piType == NULL || iType != __GO_FIGURE__)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "resizefcn");
         return -1;

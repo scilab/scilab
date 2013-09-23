@@ -347,6 +347,11 @@ int get_data_property(void* _pvCtx, char* pobjUID)
     int *piType = &type;
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    if (piType == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
+        return -1;
+    }
 
     switch (type)
     {

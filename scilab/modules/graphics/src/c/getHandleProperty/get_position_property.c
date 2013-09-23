@@ -39,6 +39,11 @@ int get_position_property(void* _pvCtx, char* pobjUID)
     double* position = NULL;
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **) &piType);
+    if (piType == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
+        return -1;
+    }
 
     /* Special figure case */
     if (iType == __GO_FIGURE__)

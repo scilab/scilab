@@ -44,6 +44,11 @@ int get_data_bounds_property(void* _pvCtx, char* pobjUID)
     }
 
     getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void **)&piView);
+    if (piView == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
+        return -1;
+    }
 
     /**DJ.Abdemouche 2003**/
     if (iView == 1)

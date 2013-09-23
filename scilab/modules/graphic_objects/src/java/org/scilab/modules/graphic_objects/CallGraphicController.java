@@ -117,18 +117,24 @@ public final class CallGraphicController {
     }
 
     public static double[] getGraphicObjectPropertyAsDoubleVector(String id, int propertyName) {
-        Double[] tmp = (Double[]) getGraphicObjectProperty(id, propertyName);
+	Object ret = getGraphicObjectProperty(id, propertyName);
+	double[] result = null;
 
-        if (tmp == null) {
+        if (ret == null) {
             return null;
         }
 
-        double[] result = new double[tmp.length];
-
-        for (int i = 0; i < result.length; i++) {
-            result[i] = tmp[i];
-        }
-
+	if (ret instanceof Double[]) {
+	    Double[] tmp = (Double[]) ret;
+	    result = new double[tmp.length];
+	    
+	    for (int i = 0; i < result.length; i++) {
+		result[i] = tmp[i];
+	    }
+	} else if (ret instanceof Double) {
+	    result = new double[] { (Double) ret};
+	}
+	    
         return result;
     }
 
@@ -137,18 +143,24 @@ public final class CallGraphicController {
     }
 
     public static int[] getGraphicObjectPropertyAsIntegerVector(String id, int propertyName) {
-        Integer[] tmp = (Integer[]) getGraphicObjectProperty(id, propertyName);
+	Object ret = getGraphicObjectProperty(id, propertyName);
+	int[] result = null;
 
-        if (tmp == null) {
+        if (ret == null) {
             return null;
         }
 
-        int[] result = new int[tmp.length];
-
-        for (int i = 0; i < result.length; i++) {
-            result[i] = tmp[i];
-        }
-
+	if (ret instanceof Integer[]) {
+	    Integer[] tmp = (Integer[]) ret;
+	    result = new int[tmp.length];
+	    
+	    for (int i = 0; i < result.length; i++) {
+		result[i] = tmp[i];
+	    }
+	} else if (ret instanceof Integer) {
+	    result = new int[] { (Integer) ret};
+	}
+	    
         return result;
     }
 
@@ -163,17 +175,22 @@ public final class CallGraphicController {
     }
 
     public static int[] getGraphicObjectPropertyAsBooleanVector(String id, int propertyName) {
-        Boolean[] tmp = (Boolean[]) getGraphicObjectProperty(id, propertyName);
+	Object ret = getGraphicObjectProperty(id, propertyName);
+	int[] result = null;
 
-        if (tmp == null) {
+        if (ret == null) {
             return null;
         }
 
-        int[] result = new int[tmp.length];
-
-        for (int i = 0; i < result.length; i++) {
-            result[i] = tmp[i] ? 1 : 0;
-        }
+	if (ret instanceof Boolean[]) {
+	    Boolean[] tmp = (Boolean[]) getGraphicObjectProperty(id, propertyName);
+	    result = new int[tmp.length];
+	    for (int i = 0; i < result.length; i++) {
+		result[i] = tmp[i] ? 1 : 0;
+	    }
+	} else if (ret instanceof Boolean) {
+	    result = new int[] { ((Boolean) ret) ? 1 : 0};
+	}
 
         return result;
     }
