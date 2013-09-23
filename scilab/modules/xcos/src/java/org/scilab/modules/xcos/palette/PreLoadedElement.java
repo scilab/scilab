@@ -15,12 +15,19 @@ package org.scilab.modules.xcos.palette;
 import static java.util.Arrays.asList;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.io.scicos.AbstractElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
@@ -30,6 +37,8 @@ import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.palette.model.VariablePath;
+
+import com.mxgraph.view.mxStylesheet;
 
 /**
  * Decode a palette into a {@link PreLoaded} palette.
@@ -207,7 +216,7 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
     }
 
     /**
-     * Not implemented yet, always return null.
+     * Encode the Preload as a palette
      *
      * @param from
      *            the source
@@ -218,9 +227,61 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
      *      org.scilab.modules.types.ScilabType)
      */
     @Override
-    @Deprecated
     public ScilabType encode(PreLoaded from, ScilabType element) {
-        return null;
+        data = (ScilabTList) element;
+
+        int field = 0;
+
+        if (data == null) {
+            data = allocateElement();
+        }
+
+        field++;
+        data.set(field, new ScilabString(from.getName()));
+
+        final List<PaletteBlock> blocks = from.getBlock();
+        final String[][] blockNames = new String[blocks.size()][1];
+        final String[][] icons = new String[blocks.size()][1];
+        final String[][] styles = new String[blocks.size()][1];
+
+        final Map<String, Map<String, Object>> styleMap = Xcos.getInstance().getStyleSheet().getStyles();
+        for (int i = 0; i < blocks.size(); i++) {
+            final PaletteBlock current = blocks.get(i);
+            blockNames[i][0] = current.getName();
+            icons[i][0] = current.getIcon().getEvaluatedPath();
+            final StringBuilder str = new StringBuilder();
+            final Map<String, Object> m = styleMap.get(current.getName());
+            if (m != null) {
+                for (Entry<String, Object> e : m.entrySet()) {
+                    str.append(e.getKey()).append('=').append(e.getValue()).append(';');
+                }
+            }
+            styles[i][0] = str.toString();
+        }
+
+        field++;
+        data.set(field, new ScilabString(blockNames));
+
+        field++;
+        data.set(field, new ScilabString(icons));
+
+        field++;
+        data.set(field, new ScilabString(styles));
+
+        return data;
     }
 
+    /**
+     * Allocate a new element
+     *
+     * @return the new element
+     */
+    private ScilabTList allocateElement() {
+        ScilabTList data = new ScilabTList(DATA_FIELD_NAMES.toArray(new String[DATA_FIELD_NAMES.size()]));
+        data.add(new ScilabString()); // name
+        data.add(new ScilabString()); // blockNames
+        data.add(new ScilabString()); // icons
+        data.add(new ScilabString()); // style
+        return data;
+    }
 }

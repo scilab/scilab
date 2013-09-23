@@ -37,4 +37,5 @@
     <PRIMITIVE gatewayId="64" primitiveId="14" primitiveName="xcosUpdateBlock"/>
     <PRIMITIVE gatewayId="64" primitiveId="15" primitiveName="loadXcos"/>
     <PRIMITIVE gatewayId="64" primitiveId="16" primitiveName="xcosSimulationStarted"/>
+    <PRIMITIVE gatewayId="64" primitiveId="17" primitiveName="xcosPalGet"/>
 </GATEWAY>

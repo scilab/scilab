@@ -19,25 +19,35 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.SwingUtilities;
+import javax.swing.tree.TreeNode;
 
+import org.apache.xmlgraphics.image.loader.impl.PreloaderBMP;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabTList;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.model.Category;
+import org.scilab.modules.xcos.palette.model.Custom;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
@@ -251,6 +261,80 @@ public final class Palette {
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
     public static void loadPal(final String name) throws JavasciException {
         loadPal(name, null);
+    }
+
+    /**
+     * Push a block list into Scilab.
+     *
+     * The block list is pushed into a "pal" variable, a pseudo palette.
+     *
+     * @param path the path used to export the palette tree
+     * @throws JavasciException on pushing error
+     * @throws InterruptedException on wait error
+     * @throws InvocationTargetException on palette creation
+     */
+    @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
+    public static void get(final String[] path) throws JavasciException, InvocationTargetException, InterruptedException {
+        SwingUtilities.invokeAndWait(new Runnable() {
+            @Override
+            public void run() {
+                PaletteNode root = getPathNode(path, false);
+
+                /*
+                 * Create a pseudo palette
+                 */
+                final PreLoaded pal;
+                if (root instanceof PreLoaded) {
+                    pal = (PreLoaded) root;
+                } else if (root instanceof Category) {
+                    LinkedList<Category> stash = new LinkedList<Category>();
+                    stash.add((Category) root);
+
+                    pal = new PreLoaded();
+                    pal.setName(root.getName());
+                    pal.getBlock().addAll(list(stash, pal));
+                } else {
+                    pal = null;
+                }
+
+
+                /*
+                 * Encode the pseudo-palette into a ScilabType
+                 */
+                final ScilabType element;
+                if (pal != null) {
+                    final PreLoadedElement encoder = new PreLoadedElement();
+                    element = encoder.encode(pal, null);
+                } else {
+                    element = new ScilabDouble();
+                }
+
+                try {
+                    Scilab.putInCurrentScilabSession("pal", element);
+                } catch (JavasciException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        });
+    }
+
+    private static List<PaletteBlock> list(Deque<Category> stash, PreLoaded pal) {
+        final ArrayList<PaletteBlock> blocks = new ArrayList<PaletteBlock>();
+        while (!stash.isEmpty()) {
+            final Category c = stash.pop();
+            for (PaletteNode n : c.getNode()) {
+                if (n instanceof Category) {
+                    stash.add((Category) n);
+                } else if (n instanceof PreLoaded) {
+                    final PreLoaded p = (PreLoaded) n;
+                    blocks.addAll(p.getBlock());
+                }
+
+            }
+
+        }
+        return blocks;
     }
 
     /**
