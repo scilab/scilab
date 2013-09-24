@@ -785,6 +785,9 @@
     <add as="CBLOCK" extend="blockWithLabel">
         <add as="displayedLabel" value="C block 2:&lt;BR&gt;%1$s"/>
     </add>
+    <add as="CBLOCK4" extend="blockWithLabel">
+        <add as="displayedLabel" value="C block 4:&lt;BR&gt;%1$s"/>
+    </add>
     <add as="generic_block3" extend="blockWithLabel">
         <add as="displayedLabel" value="native block:&lt;BR&gt;%1$s"/>
     </add>

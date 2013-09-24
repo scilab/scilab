@@ -380,14 +380,22 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         SCILAB(5.0),
         /** Debug blocks */
         DEBUG(99),
+        /** dynamic {@link #TYPE_1} Fortran blocks (fortran_block.sci) */
+        DYNAMIC_FORTRAN_1(1001.0),
+        /** dynamic {@link #TYPE_1} C blocks (c_block.sci) */
+        DYNAMIC_C_1(2001.0),
+        /** Explicit dynamic {@link #TYPE_4} blocks (CBLOCK.sci) */
+        DYNAMIC_EXPLICIT_4(2004.0),
+        /** Implicit {@link #TYPE_1} Fortran blocks (DIFF_f.sci) */
+        OLDBLOCKS(10001.0),
+        /** Implicit {@link #C_OR_FORTRAN} blocks */
+        IMPLICIT_C_OR_FORTRAN(10004.0),
+        /** Implicit dynamic {@link #TYPE_4} blocks (CBLOCK.sci) */
+        DYNAMIC_IMPLICIT_4(12004.0),
         /** Modelica {@link #C_OR_FORTRAN} blocks */
         MODELICA(30004.0),
         /** Magic types */
-        UNKNOWN(5.0),
-        /** Implicit {@link #TYPE_1} blocks */
-        OLDBLOCKS(10001.0),
-        /** Implicit {@link #C_OR_FORTRAN} blocks */
-        IMPLICIT_C_OR_FORTRAN(10004.0);
+        UNKNOWN(5.0);
 
         private double value;
 

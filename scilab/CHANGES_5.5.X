@@ -152,6 +152,8 @@ Xcos
 
 * xcosAddToolsMenu added to let the user perform some actions on the graph.
 
+* CBLOCK4 block added to the "User-Defined Functions"
+
 * Bug #7350 fixed - The I/O ports numbering of a superblock was not updated
                     when a new port was dropped.
 
@@ -219,6 +221,8 @@ Xcos
 * Bug #12874 fixed - CSCOPE marks sizes were too small.
 
 * Bug #12877 fixed - Incorrect output port dimensions and types in GENSIN_f, GENSQR_f, STEP_FUNCTION and STEP blocks fixed.
+
+* Bug #12924 fixed - Blocks type 2004 was not handled as a valid block type.
 
 
 Toolbox Skeleton
