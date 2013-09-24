@@ -403,6 +403,8 @@ Bug Fixes
 
 * Bug #9109 fixed - nfreq tagged as obsolete.
 
+* Bug #9158 fixed - zeros() called with a big number returns an empty matrix.
+
 * Bug #9208 fixed - Added three optional output arguments to optim(),
                     to retrieve #iterations, #evaluations and a termination indicator.
 
