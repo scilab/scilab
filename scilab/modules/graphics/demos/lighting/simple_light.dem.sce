@@ -16,7 +16,7 @@ function demo_simple_light()
     my_handle.figure_name = my_plot_desc;
 
     my_handle.figure_name = my_plot_desc;
-    plot3d;l=light_create();s=gce();
+    plot3d;l=light();s=gce();
 
     l.ambient_color = [1 1 1];
     s.diffuse_color = [0 0 0.8];
@@ -28,7 +28,7 @@ function demo_simple_light()
     s.ambient_color = [0 0 0.35];
 
     // DEMO END
-	
+
 endfunction
 
 

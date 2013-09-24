@@ -25,8 +25,8 @@
         </para>
         <para>
             A light is represented mainly by its colors: ambient, diffuse and specular. It can
-            be created using <link linkend="light_create">light_create</link> function,
-            and deleted using <link linkend="light_delete">light_delete</link> function.
+            be created using <link linkend="light">light</link> function,
+            and deleted using <link linkend="delete">delete</link> function.
         </para>
         <para>
             The surface material properties is represented also by its colors
@@ -54,14 +54,14 @@
                 Specular color defines the specular highlight color.
             </para>
         </listitem>
-
+        
         <para>
             Following one can compare the surface with and without lighting:
         </para>
         <para>
             <scilab:image>
                 plot3d();
-                light = light_create();
+                light = light();
             </scilab:image>
         </para>
         <para>
@@ -69,7 +69,7 @@
                 plot3d();
             </scilab:image>
         </para>
-
+        
     </refsection>
     <refsection>
         <title>Lighting properties list</title>
@@ -199,7 +199,7 @@ s=gce();
 s.color_flag=0;
 s.thickness=0;
 s.hiddencolor = -1;
-light = light_create();
+light = light();
 //change diffuse color to orange
 s.diffuse_color = [1, 0.6, 0];
 s.color_material="off";
@@ -212,7 +212,7 @@ s.ambient_color = [1, 0.6, 0];
         <programlisting role="example"><![CDATA[
 plot3d();
 s=gce();
-light = light_create();
+light = light();
 s.color_flag=0;
 s.thickness=0;
 light.light_type = "directional";
@@ -229,10 +229,10 @@ light.specular_color = [0.5 0.3 0.7];
                 <link linkend="light">light</link>
             </member>
             <member>
-                <link linkend="light_create">light_create</link>
+                <link linkend="light_properties">light properties</link>
             </member>
             <member>
-                <link linkend="light_delete">light_delete</link>
+                <link linkend="delete">delete</link>
             </member>
         </simplelist>
     </refsection>

@@ -16,7 +16,7 @@ function demo_color_light()
     my_handle.figure_name = my_plot_desc;
 
     my_handle.figure_name = my_plot_desc;
-    plot3d;l=light_create();s=gce();
+    plot3d;l=light();s=gce();
 
     s.color_material = "off";
     s.color_flag = 0;

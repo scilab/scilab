@@ -15,7 +15,7 @@ function demo_dir_light()
     my_handle.figure_name = my_plot_desc;
 
     my_handle.figure_name = my_plot_desc;
-    plot3d;l=light_create();s=gce();
+    plot3d;l=light();s=gce();
 
     l.light_type = "directional";
     l.light_direction = [1 0 1];

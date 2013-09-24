@@ -120,28 +120,3 @@ BOOL createLight(char* fname, long long axes_handle, int type, BOOL visible, dou
 
     return TRUE;
 }
-
-
-BOOL deleteLight(long long light_handle)
-{
-    int iType;
-    int *piType = &iType;
-    const char * uid = NULL;
-
-    uid = getObjectFromHandle(light_handle);
-    if (uid == NULL)
-    {
-        return FALSE;
-    }
-
-    getGraphicObjectProperty(uid, __GO_TYPE__, jni_int, (void **)&piType);
-
-    if (iType != __GO_LIGHT__)
-    {
-        return FALSE;
-    }
-
-    deleteGraphicObject((char*)uid);
-
-    return TRUE;
-}

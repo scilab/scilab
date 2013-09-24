@@ -20,7 +20,7 @@
 
 
 
-int sci_light_create(char *fname, unsigned long fname_len)
+int sci_light(char *fname, unsigned long fname_len)
 {
     int type = -1;
     BOOL visible = 1;
@@ -67,16 +67,21 @@ int sci_light_create(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if (isHandleType(pvApiCtx, piAddr) == FALSE || isScalar(pvApiCtx, piAddr) == FALSE)
+        if (isHandleType(pvApiCtx, piAddr))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A graphic handle expected.\n"), fname, 1);
-            return 0;
-        }
-
-        if (getScalarHandle(pvApiCtx, piAddr, &axesHandle))
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A graphic handle expected.\n"), fname, 1);
-            return 0;
+            if (isScalar(pvApiCtx, piAddr))
+            {
+                if (getScalarHandle(pvApiCtx, piAddr, &axesHandle))
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A graphic handle expected.\n"), fname, 1);
+                    return 0;
+                }
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A graphic handle expected.\n"), fname, 1);
+                return 0;
+            }
         }
 
         if (getOptionals(pvApiCtx, fname, opts) == 0)

@@ -11,5 +11,3 @@
  */
 
 BOOL createLight(char* fname, long long axes_handle, int type, BOOL visible, double * position, double * direction, double * ambient_color, double * diffuse_color, double * specular_color, long long * pLightHandle);
-
-BOOL deleteLight(long long light_handle);

@@ -411,8 +411,8 @@ sci_gateway/c/sci_rubberbox.c \
 sci_gateway/c/sci_rotate_axes.c \
 sci_gateway/c/sci_is_handle_valid.c \
 sci_gateway/c/sci_Legend.c \
-sci_gateway/c/sci_light_create.c \
-sci_gateway/c/sci_light_delete.c
+sci_gateway/c/sci_light.c
+
 
 libscigraphics_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \

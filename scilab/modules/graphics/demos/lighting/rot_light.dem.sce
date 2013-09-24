@@ -16,7 +16,7 @@ function demo_rot_light()
     my_handle.figure_name = my_plot_desc;
 
     my_handle.figure_name = my_plot_desc;
-    plot3d;l=light_create();s=gce();
+    plot3d;l=light();s=gce();
 
     for i=0:10000
         sleep(5);

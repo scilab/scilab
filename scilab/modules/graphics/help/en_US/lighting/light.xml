@@ -13,127 +13,51 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" scilab:needs-examples="no" xml:id="light">
     <refnamediv>
         <refname>light</refname>
-        <refpurpose>Light overview</refpurpose>
+        <refpurpose>creates a light object in the given axes</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>light()
+            light(&lt;LightProperty&gt;)
+            light(axes_handle, &lt;LightProperty&gt;)
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
-        <title>Description</title>
-        <para>
-            The light object contains the properties to change lighting appearance.
-            Lights aren't visible in the axes but they affect the surface appearance.
-        </para>
-        <para>
-            Lights can be created using <link linkend="light_create">light_create</link> function,
-            and deleted using <link linkend="light_delete">light_delete</link> function.
-        </para>
-        <scilab:image>
-            plot3d();
-            l = light_create();
-            s = gce();
-            s.diffuse_color = [0 0 0.8];
-            s.ambient_color = [0 0 1];
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>Light properties list</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>visible: </term>
+                <term>axes_handle</term>
+                <listitem>
+                    <para>The handle of the axes, if ommited is used the current axes.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;LightProperty&gt;</term>
                 <listitem>
                     <para>
-                        This field defines if the light is enabled <literal>"on"</literal>
-                        or disabled <literal>"off"</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>light_type: </term>
-                <listitem>
-                    <para>This field defines the type of light used. There are two
-                        types available:<literal>"directional"</literal> and <literal>"point"</literal>.
-                        Directional lights are positioned infinitely far from the surface
-                        thus emitting parallel rays.
-                        Point lights are defined as a point in space thus emitting rays in all
-                        directions.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>light_direction: </term>
-                <listitem>
-                    <para>This field defines the ray direction for directional light.
-                        The direction can be chaged using a 3 element vector <literal>"[x, y, z]"</literal>
-                        representing a vector starting from the origin.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>light_position: </term>
-                <listitem>
-                    <para>This field defines the light position for point light.
-                        The position can be changed using a 3 element vector <literal>"[x, y, z]"</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ambient_color: </term>
-                <listitem>
-                    <para>This field defines the ambient color of the light.
-                        The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
-                        with each element in the range [0, 1].
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>diffuse_color: </term>
-                <listitem>
-                    <para>This field defines the diffuse color of the light.
-                        The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
-                        with each element in the range [0, 1].
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>specular_color: </term>
-                <listitem>
-                    <para>This field defines the specular color of the light.
-                        The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
-                        with each element in the range [0, 1].
+                        Optional argument specifying the light properties (see <link linkend="light">light</link>).
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>light</literal> function, creates a light object in the specified axes
+            and sets the properties specified with &lt;LightProperty&gt; optional arguments.
+        </para>
+    </refsection>
+    <refsection>
         <title>Examples</title>
-
+        <scilab:image>
+            plot3d();
+            l = light(visible="on", type="point", position=[0 0 1]);
+        </scilab:image>
         <programlisting role="example"><![CDATA[
-        // point light
-        plot3d;l=light_create();s=gce();
-        for i=0:1000
-            sleep(5);
-            x = 2*cos(i*%pi/180);
-            y = 2*sin(i*%pi/180);
-            z = 2;
-            l.light_position = [x y z];
-        end
-
-        // change light to directional mode
-        l.light_type = "directional";
-        l.light_direction = [1 0 1];
-        l.ambient_color = [0.1 0.1 0.1];
-        s.diffuse_color = [0.4 0.4 0.4];
-        s.color_material = "off";
-        s.color_flag = 0;
-        s.thickness = 0;
-        s.hiddencolor = -1;
-        s.specular_color = [0.6 0.6 0.6];
-        sleep(5000);
-
-        l2 = light_create(ambient_color=[0 0 0], diffuse_color = [0.8 0.8 1], type="point", position=[0 3 4]);
-        sleep(5000);
-        light_delete(l);
-        l2.specular_color = [1 0.6 0];
-        ]]></programlisting>
+plot3d();
+l = light(visible="on", type="point", position=[0 0 1]);
+         ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -142,10 +66,10 @@
                 <link linkend="lighting">lighting</link>
             </member>
             <member>
-                <link linkend="light_create">light_create</link>
+                <link linkend="light_properties">light properties</link>
             </member>
             <member>
-                <link linkend="light_delete">light_delete</link>
+                <link linkend="delete">delete</link>
             </member>
         </simplelist>
     </refsection>

@@ -777,7 +777,7 @@ function %_sodload(%__filename__, varargin)
         fields = fieldnames(lightProperties);
         fields(1) = [];
 
-        h = light_create();
+        h = light();
         fields(fields=="children") = [];
 
         for i = 1:size(fields, "*")
