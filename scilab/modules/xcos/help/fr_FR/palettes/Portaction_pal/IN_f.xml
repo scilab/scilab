@@ -129,6 +129,34 @@
                 <para> Un entier définissant le numéro de port.</para>
                 <para> Propriétés : Type 'vec' de taille 1.</para>
             </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Output port size</emphasis>
+                </para>
+                <para> Un vecteur de deux entiers qui définit les
+                dimensions attendues du signal ([#lignes #colones]).
+                Par défaut la valeur de ce champ est [-1 -2] ce qui
+                signifie que les dimensions du signal sont héritées du
+                niveau supérieur. Il peut être nécéssaire d'imposer
+                les valeurs effectives des dimensions pour la
+                compilation séparée du super bloc (Génération de code,
+                ...). </para>
+                <para> Properties : Type 'vec' of size -1.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Output port type</emphasis>
+                </para>
+                <para> Un entier qui spécifie le type de signal attendu sur ce port.
+                 Par défaut la valeur de ce champ est -1 ce qui
+                signifie que le type du signal est hérité du
+                niveau supérieur. Il peut être nécéssaire d'imposer
+                une valeur effective du type pour la
+                compilation séparée du super bloc (Génération de code,
+                ...). 
+                ).</para>
+                <para> Properties : Type 'vec' of size 1.</para>
+            </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Defaultproperties_IN_f">

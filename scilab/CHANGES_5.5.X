@@ -224,6 +224,8 @@ Xcos
 
 * Bug #12924 fixed - Blocks type 2004 was not handled as a valid block type.
 
+* Bug #12934 fixed - Separate compilation of a super block might fail due to under determined signal sizes.
+
 
 Toolbox Skeleton
 =================

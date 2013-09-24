@@ -143,6 +143,33 @@
                 <para> An integer defining the port number.</para>
                 <para> Properties : Type 'vec' of size 1.</para>
             </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Output port size</emphasis>
+                </para>
+                <para> An vector of two integers defining the expected
+                signal dimensions ([#rows #columns]).  By default this
+                field is set to [-1 -2] which means that the
+                dimensions are inherited from the upper level. It
+                should be useful to assign fixed values for separate
+                compilation of the super block (Code Generation
+                ). </para>
+                <para> Properties : Type 'vec' of size -1.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Output port type</emphasis>
+                </para>
+                <para> An  integer defining the expected signal type.
+                By default this
+                field is set to 1 which means that the type
+                is inherited from the upper level. It
+                should be useful to assign a fix value for separate
+                compilation of the super block (Code Generation
+                ).</para>
+                <para> Properties : Type 'vec' of size 1.</para>
+            </listitem>
+
         </itemizedlist>
     </refsection>
     <refsection id="Defaultproperties_IN_f">
