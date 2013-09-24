@@ -12,7 +12,6 @@
 
 package org.scilab.modules.renderer.JoGLView.axes;
 
-import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.clipping.ClippingPlane;

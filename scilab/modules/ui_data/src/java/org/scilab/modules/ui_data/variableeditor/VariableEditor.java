@@ -13,7 +13,6 @@
 package org.scilab.modules.ui_data.variableeditor;
 
 import org.scilab.modules.gui.window.SimpleWindow;
-import org.scilab.modules.gui.window.Window;
 
 /**
  * Variable editor Interface

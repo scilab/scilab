@@ -15,15 +15,11 @@ package org.scilab.modules.xcos.palette;
 import static java.util.Arrays.asList;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
-import org.scilab.modules.graph.utils.StyleMap;
-import org.scilab.modules.types.ScilabList;
-import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
@@ -37,8 +33,6 @@ import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.palette.model.VariablePath;
-
-import com.mxgraph.view.mxStylesheet;
 
 /**
  * Decode a palette into a {@link PreLoaded} palette.

@@ -12,8 +12,6 @@
 
 package org.scilab.modules.ui_data.variablebrowser.rowfilter;
 
-import java.util.HashSet;
-
 import javax.swing.RowFilter;
 
 import org.scilab.modules.ui_data.BrowseVar;

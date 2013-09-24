@@ -12,9 +12,6 @@
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
 
 import java.awt.BasicStroke;
-import java.awt.Stroke;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 

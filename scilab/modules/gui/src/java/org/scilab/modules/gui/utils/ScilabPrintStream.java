@@ -17,7 +17,6 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import org.scilab.modules.gui.bridge.CallScilabBridge;
-import org.scilab.modules.gui.console.ScilabConsole;
 
 /**
  * @author Calixte DENIZET

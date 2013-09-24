@@ -14,7 +14,6 @@ package org.scilab.modules.history_manager;
 
 import org.w3c.dom.Document;
 
-import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.commons.xml.XConfigurationEvent;
 import org.scilab.modules.commons.xml.XConfigurationListener;

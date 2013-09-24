@@ -14,7 +14,6 @@ package org.scilab.forge.scirenderer.implementation.g2d;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
-import org.scilab.forge.scirenderer.clipping.ClippingManager;
 import org.scilab.forge.scirenderer.lightning.LightManager;
 import org.scilab.forge.scirenderer.renderer.Renderer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
@@ -28,7 +27,6 @@ import org.scilab.forge.scirenderer.tranformations.TransformationManagerListener
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
 import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvas;
-import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvasFactory;
 import org.scilab.forge.scirenderer.implementation.g2d.clipping.G2DClippingManager;
 import org.scilab.forge.scirenderer.implementation.g2d.motor.Motor3D;
 

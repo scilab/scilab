@@ -12,8 +12,6 @@
 
 package org.scilab.modules.helptools.external;
 
-import java.io.File;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
 import org.scilab.modules.helptools.DocbookTagConverter;

@@ -12,11 +12,6 @@
 
 package org.scilab.modules.ui_data.variableeditor.renderers;
 
-import java.awt.Color;
-import java.awt.Component;
-
-import javax.swing.JTable;
-
 /**
  * CellRenderer for sparse type
  * @author Calixte DENIZET

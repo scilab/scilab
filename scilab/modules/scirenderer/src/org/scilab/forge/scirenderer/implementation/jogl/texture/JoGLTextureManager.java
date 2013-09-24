@@ -12,10 +12,8 @@
 package org.scilab.forge.scirenderer.implementation.jogl.texture;
 
 import com.jogamp.opengl.util.texture.TextureIO;
-import com.jogamp.opengl.util.awt.TextureRenderer;
 import com.jogamp.opengl.util.texture.TextureCoords;
 
-import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
@@ -29,18 +27,14 @@ import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationManager;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
-import javax.media.opengl.GLContext;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GL2;
 import javax.media.opengl.GL2ES1;
 import javax.media.opengl.GL2GL3;
 import javax.media.opengl.GLProfile;
-import java.awt.AlphaComposite;
 import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.Collection;
 import java.util.HashSet;

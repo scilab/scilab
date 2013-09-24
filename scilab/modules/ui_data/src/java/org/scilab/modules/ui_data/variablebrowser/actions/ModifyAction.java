@@ -14,21 +14,10 @@
 package org.scilab.modules.ui_data.variablebrowser.actions;
 
 import org.scilab.modules.ui_data.variablebrowser.SwingScilabVariableBrowser;
-import java.lang.reflect.InvocationTargetException;
-import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
-import javax.swing.KeyStroke;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JTable;
 
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.BrowseVar;
-
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
-
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;

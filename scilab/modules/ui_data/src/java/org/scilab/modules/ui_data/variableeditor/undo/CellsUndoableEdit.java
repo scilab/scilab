@@ -12,8 +12,6 @@
 
 package org.scilab.modules.ui_data.variableeditor.undo;
 
-import java.util.Map;
-import java.util.HashMap;
 import java.util.Vector;
 
 import javax.swing.undo.AbstractUndoableEdit;

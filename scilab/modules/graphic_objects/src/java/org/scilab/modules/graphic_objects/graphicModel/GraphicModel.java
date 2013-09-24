@@ -12,7 +12,6 @@
 
 package org.scilab.modules.graphic_objects.graphicModel;
 
-import java.rmi.server.UID;
 import java.util.HashMap;
 import java.util.Map;
 

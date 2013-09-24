@@ -13,8 +13,6 @@
 package org.scilab.modules.ui_data.filebrowser;
 
 import java.io.File;
-import java.io.FileFilter;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
