@@ -47,7 +47,7 @@ BDF methods with direct and preconditioned Krylov linear solvers, based on ODEPA
   See bug #9447
  - A user can now plot variables from the variable browser (this functionality was 
   already available in editvar).
-  
+
 * Added lighting effect for plot of surfaces. Lighting can be enabled
   creating light objects or disabled by deleting them. The following function
   was introduced:
@@ -114,7 +114,7 @@ Obsolete & Removed Functions
 
 * chart tagged as obsolete. Will be removed in Scilab 5.5.1.
   Please use nicholschart instead.
-  
+
 * mvvacov tagged as obsolete. Will be removed in Scilab 6.0.0.
   Please use cov instead.
 
@@ -181,15 +181,15 @@ Scilab Bug Fixes
 * paramfplot2d: When theta input argument was a column vector, an error occurred.
 
 * Bug #2267 fixed - Wrong error message when ticks locations and labels did not have the 
-					same sizes.
+                    same sizes.
 
 * Bug #2416 fixed - Particular case (string([]) returns []) has been added in string help 
-					page.
+                    page.
 
 * Bug #3511 fixed - strindex did not return all occurrences in regexp mode.
 
 * Bug #3928 fixed - An error was returned when a matrix was flipped along the third 
-					dimension.
+                    dimension.
 
 * Bug #4042 fixed - squeeze returned a hypermatrix instead of a matrix when at least one
                     dimension was equal to 1.
@@ -197,7 +197,7 @@ Scilab Bug Fixes
 * Bug #4085 fixed - num2cell help page added.
 
 * Bug #4229 fixed - delip did not return an error if one element of its first input 
-					argument was negative.
+                    argument was negative.
 
 * Bug #4383 fixed - csim with "step" and "impuls" now works with direct feedthrough.
 
@@ -227,7 +227,7 @@ Scilab Bug Fixes
 * Bug #6168 fixed - zpbutt, zpch1, zpch2 and zpell help pages were unclear.
 
 * Bug #6390 fixed - The "external" argument of odecd was not well documented and 
-					not tested.
+                    not tested.
 
 * Bug #6427 fixed - full([%T %F]) returned an error message.
 
@@ -242,7 +242,7 @@ Scilab Bug Fixes
 * Bug #6840 fixed - New line_style added.
 
 * Bug #6988 fixed - Error messages in modules/data_structures/src/c/hmops.c were not 
-					standard.
+                    standard.
 
 * Bug #7026 fixed - There was no unit test for plot2d.
 
@@ -251,7 +251,7 @@ Scilab Bug Fixes
 * Bug #7204 fixed - geomean applied to a hypermatrix gave wrong results.
 
 * Bug #7206 fixed - If the second input argument of meanf function was a hypermatrix, 
-					this function returned an error.
+                    this function returned an error.
 
 * Bug #7296 fixed - %nan, %inf and -%inf enabled for the cdf* functions.
 
@@ -260,10 +260,10 @@ Scilab Bug Fixes
 * Bug #7486 fixed - LAPACK versions of DGELSY and ZGELSY now used.
 
 * Bug #7596 fixed - A same error happening in different places now displays the same 
-					error message.
+                    error message.
 
 * Bug #7648 fixed - CDF functions now display a warning for non integer 
-					"degrees of freedom" argument.
+                    "degrees of freedom" argument.
 
 * Bug #7655 fixed - An example added in type help page, for type(X)=11 and type(X)=13.
 
@@ -272,7 +272,7 @@ Scilab Bug Fixes
 * Bug #7781 fixed - The second parameter of iqr function had not effect.
 
 * Bug #7782 fixed - lcm and gcd help pages improved to tell the user how to use both 
-					functions.
+                    functions.
 
 * Bug #7824 fixed - title function properties did not support an indexed color.
 
@@ -293,51 +293,51 @@ Scilab Bug Fixes
 * Bug #8098 fixed - cumsum could not be applied to rational matrices.
 
 * Bug #8162 fixed - Area of stability of plzr was wrong for continuous systems 
-					(+unit test added).
+                    (+unit test added).
 
 * Bug #8211 fixed - 'parameters' module demonstration finalized.
 
 * Bug #8234 fixed - strtod did not return an empty matrix when the input argument was an 
-					empty matrix.
+                    empty matrix.
 
 * Bug #8264 fixed - Matlab to Scilab dictionary help page updated for atan2.
 
 * Bug #8319 fixed - dbphi(hypermat) and phasemag(hypermat) returned a matrix instead of 
-					a hypermatrix.
+                    a hypermatrix.
 
 * Bug #8373 fixed - clear can now handle a matrix of strings argument.
 
 * Bug #8415 fixed - optim_moga, optim_nsga, optim_nsga2 can now take list as input 
-					arguments, as explained in their help page.
+                    arguments, as explained in their help page.
 
 * Bug #8462 fixed - bvodeS could make Scilab unstable.
 
 * Bug #8470 fixed - bvode displayed some output in terminal window and not in 
-					Scilab console.
+                    Scilab console.
 
 * Bug #8479 fixed - The latest Saxon version was not supported.
 
 * Bug #8511 fixed - sprand now uses grand instead of rand and grand functions. Internal 
-					state of the random generator is no more changed.
+                    state of the random generator is no more changed.
 
 * Bug #8561 fixed - ddassl, ddasrt, ddaskr: abs and rel tolerance sizes are now checked.
 
 * Bug #8597 fixed - grand/clcg4 could display uncontrolled messages as warning.
 
 * Bug #8607 fixed - Some error messages in modules/overloading/macros were not standard 
-					and not localized.
+                    and not localized.
 
 * Bug #8614 fixed - Unit test for barhomogenize added.
 
 * Bug #8636 fixed - roots help page updated (default algorithm value was wrong).
 
 * Bug #8667 fixed - Handling of %nan in functions min, max, median was not properly 
-					documented.
+                    documented.
 
 * Bug #8680 fixed - "end" output argument of regexp function has been changed.
 
 * Bug #8687 fixed - typeof function failed on uint8, depending on the format 
-					(+ unit test added).
+                    (+ unit test added).
 
 * Bug #8695 fixed - optim_ga used old (initial) values instead of newly-computed ones.
 
@@ -345,7 +345,7 @@ Scilab Bug Fixes
                     than 80 times in a loop.
 
 * Bug #8779 fixed - gsort did not preserve the order of equal elements, in 
-					lexicographic sort.
+                    lexicographic sort.
 
 * Bug #8820 fixed - Squeeze did not return a matrix when the number of dimensions
                     of the result was less or equal to 2.
@@ -391,7 +391,7 @@ Scilab Bug Fixes
                     Column vectors now allowed by transposing them.
 
 * Bug #9538 fixed - optimbase_checkshape only allowed row vectors as output arguments of 
-					cost function. Column vectors are now allowed by transposing them.
+                    cost function. Column vectors are now allowed by transposing them.
 
 * Bug #9577 fixed - Setting neldermead_configure("-numberofvariables") is now optional,
                     setting neldermead_configure("-x0") initializes -numberofvariables 
@@ -400,27 +400,29 @@ Scilab Bug Fixes
 * Bug #9601 fixed - Cylinder demonstration fixed.
 
 * Bug #9688 fixed - optim() could crash when "imp" option was < 0. It is now set to 0 in 
-					that case.
+                    that case.
 
 * Bug #9690 fixed - The "imp" option for optim could crash Scilab and was not consistent 
-					with the help page.
+                    with the help page.
 
 * Bug #9691 fixed - "imp" option in optim help page was poorly documented.
 
 * Bug #9694 fixed - Example in optim help page fixed to display correct counters.
 
 * Bug #9702 fixed - Contrary to what optim help page stated, the "gc" algorithm does use
-					the "epsx" parameter.
+                    the "epsx" parameter.
 
 * Bug #9780 fixed - gmres solver did not run with complex systems.
 
 * Bug #9821 fixed - getrelativefilename did not manage matrix of strings.
 
 * Bug #9851 fixed - Error message occurred because of a cut-off frequency of 0.25Hz 
-					with irr.
+                   with irr.
+
+* Bug #9859 fixed - It was not possible to draw arrows in 3-D using xarrows.
 
 * Bug #10146 fixed - In SciNotes, 'help on keyword' moved from bottom to top in the popup 
-					menu.
+                    menu.
 
 * Bug #10180 fixed - det was not defined for sparse matrices.
 
@@ -434,13 +436,13 @@ Scilab Bug Fixes
 * Bug #10254 fixed - Slight improvements in ones help page.
 
 * Bug #10269 fixed - qp_solve can now take up to 5 output arguments. The last one is an 
-					error flag, if it is present, then the function will issue a warning
-					instead of an error.
+                    error flag, if it is present, then the function will issue a warning
+                    instead of an error.
 
 * Bug #10276 fixed - qp_solve segfaulted with large matrices.
 
 * Bug #10287 fixed - Error message added for complex expression as input argument of 
-					integrate function.
+                    integrate function.
 
 * Bug #10305 fixed - Comparison of lists with empty items returned an error message.
 
@@ -449,7 +451,7 @@ Scilab Bug Fixes
 * Bug #10818 fixed - hom, %e, %t, %f, %z and %s help pages added.
 
 * Bug #10823 fixed - fullpath returned different results under Windows and Linux for 
-					non-existent file.
+                    non-existent file.
 
 * Bug #10862 fixed - Add a without Internet connection installation
                      global configuration in the installer.
@@ -481,17 +483,17 @@ Scilab Bug Fixes
 * Bug #11869 fixed - "Environment" was not localized in preferences.
 
 * Bug #11885 fixed - Each rand has been changed to grand in genetic algorithms and 
-					simulated annealing functions.
+                    simulated annealing functions.
 
 * Bug #11891 fixed - Fisher ratio could be inaccurate for one-way ANOVA.
 
 * Bug #11997 fixed - In case of invalid variable name, save function now returns an error 
-					instead of a compatibility warning.
+                    instead of a compatibility warning.
 
 * Bug #12034 fixed - max function did not manage empty matrices.
 
 * Bug #12045 fixed - repmat returned wrong results if the values of an input matrix were 
-					not double.
+                    not double.
 
 * Bug #12070 fixed - Removing a module can now be done in an on-line mode even if
                      it has been installed in an off-line mode.
@@ -516,10 +518,10 @@ Scilab Bug Fixes
 * Bug #12326 fixed - There was no way to set LaTeX font size in preview.
 
 * Bug #12349 fixed - In SciNotes, when the view was splitted, removing a char made the 
-					other view jump.
+                    other view jump.
 
 * Bug #12376 fixed - Exec & edit buttons in the help pages examples were sometimes 
-					misplaced.
+                    misplaced.
 
 * Bug #12413 fixed - ATOMS packages could not be removed if ATOMS had never been on-line.
 
@@ -528,13 +530,13 @@ Scilab Bug Fixes
 * Bug #12426 fixed - By using addErrorMessage, a random string error could be displayed.
 
 * Bug #12433 fixed - show_pixmap function was removed from Scilab but still used in some 
-					functions.
+                    functions.
 
 * Bug #12443 fixed - The behavior of mopen in text file mode has been documented
                      under Windows.
 
 * Bug #12463 fixed - Wrong specification for rect=[x,y,w,h] argument in xstringb 
-					 French help page.
+                     French help page.
 
 * Bug #12470 fixed - Variable browser was not refreshed after loading an environment.
 
@@ -546,7 +548,7 @@ Scilab Bug Fixes
                     wrong behavior.
 
 * Bug #12506 fixed - In SciNotes, a miscolorization could occurred when returned values 
-					list was broken.
+                    list was broken.
 
 * Bug #12508 fixed - Wrong error message in rand function fixed.
 
@@ -557,7 +559,7 @@ Scilab Bug Fixes
 * Bug #12527 fixed - Scilab user functions were not listed in the variable browser.
 
 * Bug #12547 fixed - In SciNotes, lines were wrongly numbered with splitted function 
-					declarations.
+                    declarations.
 
 * Bug #12548 fixed - Duplicated code in xmltoformat removed.
 
@@ -568,19 +570,19 @@ Scilab Bug Fixes
 * Bug #12556 fixed - A fatal error occurred when calling set with wrong instructions.
 
 * Bug #12557 fixed - Valid function names were not specified in function and functions 
-					help pages.
+                    help pages.
 
 * Bug #12564 fixed - Compile and run javasci help page was not clear about needed packages.
 
 * Bug #12581 fixed - isfield could not support mlist or tlist.
 
 * Bug #12589 fixed - Call sequence for spzeros & spones were missing in French 
-					help pages.
+                    help pages.
 
 * Bug #12592 fixed - Scilab hung with plot(-0).
 
 * Bug #12593 fixed - A wrong error message was returned when running genlib with an 
-					error in the sci file.
+                    error in the sci file.
 
 * Bug #12600 fixed - mput did not manage unsigned integer.
 
@@ -594,7 +596,7 @@ Scilab Bug Fixes
                      a bad LineSpec argument.
 
 * Bug #12624 fixed - In case of errors in Scilab macros, "make check-TESTS" did not fail 
-					 as expected.
+                     as expected.
 
 * Bug #12627 fixed - At restoration, a window could be out of the screen.
 
@@ -602,13 +604,13 @@ Scilab Bug Fixes
                      input (overwriting the Scilab one).
 
 * Bug #12631 fixed - A "see also" link has been added from progressionbar to waitbar 
-					and vice versa.
+                    and vice versa.
 
 * Bug #12634 fixed - ATOMS modules could not be installed from an archive file
                      already existing in SCI/contrib/archives in offline mode.
 
 * Bug #12637 fixed - In some help pages, some signal processing functions were not in 
-					the correct section.
+                    the correct section.
 
 * Bug #12639 fixed - justify([], position) returned an error instead of [].
 
@@ -626,25 +628,25 @@ Scilab Bug Fixes
 * Bug #12686 fixed - Error returned by diff fixed.
 
 * Bug #12702 fixed - When no extra parameters were needed in the cost function, 
-					NDcost did not work.
+                    NDcost did not work.
 
 * Bug #12703 fixed - In SciNotes, common shortcuts 'SHIFT DELETE', 'SHIFT INSERT' 
-					(and others) added.
+                    (and others) added.
 
 * Bug #12705 fixed - members function added. It allows to find the number of occurrences 
-					and linear indexes for common values between two matrices of the 
-					same type.
+                    and linear indexes for common values between two matrices of the 
+                    same type.
 
 * Bug #12706 fixed - A wrong size of a matrix as input argument of cross function was 
-					not detected.
+                    not detected.
 
 * Bug #12708 fixed - Incorrect display in SciNotes preferences fixed (onmouseover styles).
 
 * Bug #12712 fixed - In SciNotes, autosaving can now use %date to append the current 
-					date to the backup filename.
+                    date to the backup filename.
 
 * Bug #12715 fixed - Variable cross in pspect and cspect has been renamed because of 
-					conflicts with cross function.
+                    conflicts with cross function.
 
 * Bug #12736 fixed - In SciNotes, the Completion window appeared only in first tab.
 
@@ -661,10 +663,10 @@ Scilab Bug Fixes
 * Bug #12774 fixed - Various typos fixed.
 
 * Bug #12775 fixed - Some related functions were not listed in "See also" section of 
-					routh_t help page.
+                    routh_t help page.
 
 * Bug #12778 fixed - Insertion of an empty matrix in an integer matrix led to a 
-					wrong result.
+                    wrong result.
 
 * Bug #12779 fixed - savewave had a miscoding in the internal function write_wavedat.
 
@@ -673,7 +675,7 @@ Scilab Bug Fixes
 * Bug #12790 fixed - Links to ZCOS files in documentation were broken.
 
 * Bug #12791 fixed - More information is now given in case of failure during the ATOMS 
-					 autoload step.
+                     autoload step.
 
 * Bug #12794 fixed - calfrq.sci code did not follow Scilab standard.
 
@@ -706,7 +708,7 @@ Scilab Bug Fixes
 * Bug #12829 fixed - New optional output argument added for routh_t function.
 
 * Bug #12830 fixed - In SciNotes, it was not possible to execute a replace action 
-					from the caret position.
+                    from the caret position.
 
 * Bug #12831 fixed - In SciNotes toolbar, there was no button to open code navigator.
 
@@ -739,7 +741,7 @@ Scilab Bug Fixes
 * Bug #12911 fixed - Matlab to Scilab dictionary help page updated for eig.
 
 * Bug #12913 fixed - linspace returned an error if the third argument was an integer type 
-					variable.
+                    variable.
 
 * Bug #12916 fixed - power help page improved.
 
@@ -796,14 +798,14 @@ Xcos Bug Fixes
                      passing a previous Info simulation status.
 
 * Bug #12664 fixed - Inverted pendulum French localization in the Xcos demonstrations was 
-					inaccurate.
+                    inaccurate.
 
 * Bug #12667 fixed - 'Recent Files' menu was not localized.
 
 * Bug #12731 fixed - Code generation produced erroneous block.
 
 * Bug #12732 fixed - Improper Copyright comments in the files were generated by the code 
-					generation tool.
+                    generation tool.
 
 * Bug #12796 fixed - There was some mismatches between implicit
                      and explicit ports of superblocks.
@@ -821,9 +823,9 @@ Xcos Bug Fixes
 * Bug #12874 fixed - CSCOPE marks sizes were too small.
 
 * Bug #12877 fixed - Incorrect output port dimensions and types in GENSIN_f, GENSQR_f, 
-					STEP_FUNCTION and STEP blocks fixed.
+                    STEP_FUNCTION and STEP blocks fixed.
 
 * Bug #12924 fixed - Blocks type 2004 was not handled as a valid block type.
 
 * Bug #12934 fixed - Separate compilation of a super block could fail due to under 
-					determined signal sizes.
+                    determined signal sizes.
