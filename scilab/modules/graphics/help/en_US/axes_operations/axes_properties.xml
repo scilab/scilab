@@ -604,9 +604,9 @@
                                     This field contains the default <literal>line_style</literal>
                                     property value for Segs, Arcs, Rectangle and Polyline objects.
                                     <literal>line_style</literal> selects the type of line to be used to
-                                    draw lines . Its value should be an integer in [1 8]. 1
+                                    draw lines . Its value should be an integer in [1 10]. 1
                                     stand for solid, the other values stand for a selection of dashes
-                                    (dash, dash dot, longdash dot, bigdash dot, bigdash longdash, dot, double dot).
+                                    (dash, dash dot, longdash dot, bigdash dot, bigdash longdash, dot, double dot, longblank dot, bigblank dot).
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -976,6 +976,10 @@ a.y_ticks = tlist(["ticks", "locations", "labels"], (-2:0.5:2)', ["0";"1";"2";"3
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID). Using value 0 will produce an error in Scilab 5.4.1.</revremark>
+            </revision>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>line_style values 9 and 10 can be used to have respectively longblank dot and bigblank dot styles.</revremark>
             </revision>
         </revhistory>
     </refsection>

@@ -284,6 +284,8 @@ Bug Fixes
 
 * Bug #6752 fixed - unit test scilab.tst has been split in different tests.
 
+* Bug #6840 fixed - Add new line_style.
+
 * Bug #6988 fixed - Error messages in modules/data_structures/src/c/hmops.c were not standard.
 
 * Bug #7026 fixed - There was no unit test for plot2d.
