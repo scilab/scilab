@@ -1956,13 +1956,18 @@ public class Axes extends GraphicObject {
         Double[] bounds = getDataBounds();
         boolean eq = bounds[0].doubleValue() == bounds[1].doubleValue();
         if (getXAxisLogFlag()) {
-            bounds[0] = Math.log10(bounds[0]);
-            bounds[1] = Math.log10(bounds[1]);
-        }
-        if (eq) {
+            if (eq) {
+                bounds[0] = Math.log10(bounds[0]) - 1;
+                bounds[1] = bounds[0] + 2;
+            } else {
+                bounds[0] = Math.log10(bounds[0]);
+                bounds[1] = Math.log10(bounds[1]);
+            }
+        } else if (eq) {
             // Avoid to have same bounds.
-            bounds[0]--;
-            bounds[1]++;
+            double inc = getIncrement(bounds[0]);
+            bounds[0] -= inc;
+            bounds[1] += inc;
         }
 
         if (getXAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
@@ -1975,12 +1980,17 @@ public class Axes extends GraphicObject {
 
         eq = bounds[2].doubleValue() == bounds[3].doubleValue();
         if (getYAxisLogFlag()) {
-            bounds[2] = Math.log10(bounds[2]);
-            bounds[3] = Math.log10(bounds[3]);
-        }
-        if (eq) {
-            bounds[2]--;
-            bounds[3]++;
+            if (eq) {
+                bounds[2] = Math.log10(bounds[2]) - 1;
+                bounds[3] = bounds[2] + 2;
+            } else {
+                bounds[2] = Math.log10(bounds[2]);
+                bounds[3] = Math.log10(bounds[3]);
+            }
+        } else if (eq) {
+            double inc = getIncrement(bounds[2]);
+            bounds[2] -= inc;
+            bounds[3] += inc;
         }
 
         if (getYAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
@@ -1993,12 +2003,17 @@ public class Axes extends GraphicObject {
 
         eq = bounds[4].doubleValue() == bounds[5].doubleValue();
         if (getZAxisLogFlag()) {
-            bounds[4] = Math.log10(bounds[4]);
-            bounds[5] = Math.log10(bounds[5]);
-        }
-        if (eq) {
-            bounds[4]--;
-            bounds[5]++;
+            if (eq) {
+                bounds[4] = Math.log10(bounds[4]) - 1;
+                bounds[5] = bounds[4] + 2;
+            } else {
+                bounds[4] = Math.log10(bounds[4]);
+                bounds[5] = Math.log10(bounds[5]);
+            }
+        } else if (eq) {
+            double inc = getIncrement(bounds[4]);
+            bounds[4] -= inc;
+            bounds[5] += inc;
         }
 
         if (getZAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
@@ -2016,6 +2031,12 @@ public class Axes extends GraphicObject {
         }
 
         return bounds;
+    }
+
+    private final double getIncrement(final double x) {
+        final int exponent = (int) (((Double.doubleToLongBits(x) & 0x7FF0000000000000L) >> 52) - 1023);
+
+        return Math.pow(2, Math.max(0, exponent - 52));
     }
 
     /**

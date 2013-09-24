@@ -4,6 +4,8 @@
 Scilab Bug Fixes
 ================
 
+* Bug #2067 fixed - Scilab crashed when plot was called with a large numerical value.
+
 * Bug #4401 fixed - isnum did not recognize all constants or some complex numbers.
 
 * Bug #5016 fixed - condestsp could return different results when repeated calls were performed.
