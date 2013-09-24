@@ -841,6 +841,11 @@ static char const* getFigure(scicos_block * block)
             setPolylinesBounds(block, i, 0);
         }
     }
+    else
+    {
+        // set configured parameters
+        setFigureSettings(pFigureUID, block);
+    }
 
     if (sco->scope.cachedFigureUID == NULL)
     {

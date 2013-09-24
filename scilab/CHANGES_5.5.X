@@ -156,6 +156,8 @@ Xcos
 * Bug #11518 fixed - CLR block-text was displayed out of the bounding box
                      when zooming.
 
+* Bug #11776 fixed - CMSCOPE did not take into account label&Id parameter.
+
 * Bug #12359 fixed - Xcos files have been converted to ZCOS to gain some space.
 
 * Bug #12384 fixed - Using a Modelica part linked with an explicit link to
