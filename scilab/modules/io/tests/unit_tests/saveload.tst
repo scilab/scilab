@@ -5,6 +5,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
+// <-- TEST WITH GRAPHIC -->
+//
 
 funcprot(0);
 
@@ -191,4 +194,31 @@ clear toto;
 load(TMPDIR + "/savemacro.sod");
 assert_checkequal(toto(3*5, 9*3), ref);
 assert_checkequal(type(toto), 11);
+
+
+//create plot3d with light
+plot3d();
+l = light();
+f = gcf();
+l.position = [-1, -2, 1];
+
+//save image in a file
+xs2png(f, TMPDIR + "/saveplot.png");
+//compute md5 of saved image
+md5_1 = getmd5(TMPDIR + "/saveplot.png");
+//save figure handle in sod format
+save(TMPDIR + "/saveplot.sod", "f");
+
+//clear env
+close();
+clear f l;
+
+load(TMPDIR + "/saveplot.sod");
+l = f.children(1).children(1);
+assert_checkequal(l.position, [-1, -2, 1]);
+xs2png(f, TMPDIR + "/saveplot2.png");
+md5_2 = getmd5(TMPDIR + "/saveplot2.png");
+assert_checkequal(md5_1, md5_2);
+
+
 

@@ -10,6 +10,16 @@
 
 function %_sodload(%__filename__, varargin)
 
+    function v = getScilabFileVersion(%__filename__)
+        verStr = h5readattr(%__filename__, "/", "SCILAB_scilab_version")
+        [a,b,c,d] = regexp(verStr, "/scilab-.*(\d)\.(\d)\.(\d)/");
+        if size(d, "*") == 3 then
+            v = evstr(d(1)) * 100 + evstr(d(2)) * 10 + evstr(d(3));
+        else
+            error("unable to find file version: %s", __filename__);
+        end
+    endfunction
+
     function [varValues] = %__convertVariable__(varValues, varNames)
         for i = 1:size(varValues)
             if typeof(varValues(i)) == "ScilabMatrixHandle" then
@@ -602,7 +612,7 @@ function %_sodload(%__filename__, varargin)
         fields(fields=="data") = [];
 
         h = gce();
-
+        
         if matplotProperties.clip_state=="on" then
             set(h, "clip_box", matplotProperties.clip_box)
         end
@@ -877,6 +887,7 @@ function %_sodload(%__filename__, varargin)
 
     if isfile(%__filename__) & is_hdf5_file(%__filename__) then
         %__loadFunction__ = import_from_hdf5;
+        fileVersion = getScilabFileVersion(%__filename__);
     else
         %__loadFunction__ = %_load;
     end
