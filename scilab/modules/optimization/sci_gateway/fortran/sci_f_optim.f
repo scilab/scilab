@@ -1023,30 +1023,28 @@ c     commentaires finaux
       endif
 
  360  continue
-      if(imp.ne.0) then
-         if(indopt.eq.1) then
-            call writebufscioptim(buf,epsg)
-            call msgs(12,0)
-         elseif(indopt.eq.2) then
-            call writebufscioptim(buf,epsg)
-            call msgs(13,0)
-         elseif(indopt.eq.3)  then
-            call msgs(14,0)
-         elseif(indopt.eq.4)  then
-            call msgs(15,0)
-         elseif(indopt.eq.5)  then
-            call msgs(16,0)
-         elseif(indopt.eq.6)  then
-            call msgs(17,0)
-         elseif(indopt.eq.7)  then
-            call msgs(18,0)
-         elseif(indopt.eq.8)  then
-            call msgs(19,0)
-         elseif(indopt.eq.9)  then
-            call msgs(20,0)
-         elseif(indopt.ge.10)  then
-            call msgs(21,0)
-         endif
+      if(indopt.eq.1) then
+         call writebufscioptim(buf,epsg)
+         call msgs(12,0)
+      elseif(indopt.eq.2) then
+         call writebufscioptim(buf,epsg)
+         call msgs(13,0)
+      elseif(indopt.eq.3)  then
+         call msgs(14,0)
+      elseif(indopt.eq.4)  then
+         call msgs(15,0)
+      elseif(indopt.eq.5)  then
+         call msgs(16,0)
+      elseif(indopt.eq.6)  then
+         call msgs(17,0)
+      elseif(indopt.eq.7)  then
+         call msgs(18,0)
+      elseif(indopt.eq.8)  then
+         call msgs(19,0)
+      elseif(indopt.eq.9)  then
+         call msgs(20,0)
+      elseif(indopt.ge.10)  then
+         call msgs(21,0)
       endif
       return
       end

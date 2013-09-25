@@ -59,6 +59,8 @@ chdir(cur_dir);
 valtd=100;
 // Test with default solver and default settings.
 [f,x,g]=optim('rosenc',x0,'td',valtd);
+Norm of projected gradient lower than   0.0000000D+00.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 // Test with all solvers
 solverlist=["gc" "qn" "nd"];
@@ -66,6 +68,12 @@ for solver=solverlist
   [f,x,g]=optim('rosenc',x0,solver,'td',valtd);
   if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 end
+Optim stops: maximum number of calls to f is reached.
+
+Norm of projected gradient lower than   0.0000000D+00.
+
+End of optimization.
+
 // Test all verbose levels with all possible solvers
 verboselevels=[0];
 for verbose=verboselevels
@@ -74,3 +82,9 @@ for verbose=verboselevels
     if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
   end
 end
+Optim stops: maximum number of calls to f is reached.
+
+Norm of projected gradient lower than   0.0000000D+00.
+
+End of optimization.
+

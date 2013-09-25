@@ -272,7 +272,7 @@
                 <term>"imp=iflag"</term>
                 <listitem>
                     <para>named argument used to set the trace mode (default
-                        <literal>imp=0</literal>, which prints no messages). If <varname>imp</varname>
+                        <literal>imp=0</literal>, which only prints termination status). If <varname>imp</varname>
                         is greater or equal to 1, more information are printed, depending on the
                         algorithm chosen. More precisely:
                     </para>

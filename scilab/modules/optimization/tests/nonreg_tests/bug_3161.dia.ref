@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 // <-- Non-regression test for bug 3161 -->
 //
 // <-- Bugzilla URL -->
@@ -26,5 +27,7 @@ p0=[3;5;10];
 p = [];
 err = [];
 [p,err]=datafit(G,Z,p0);
+Optim stops: maximum number of calls to f is reached.
+
 if p == [] then bugmes();quit;end;
 if err == [] then bugmes();quit;end;

@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 // <-- Non-regression test for bug 4638 -->
 //
 // <-- Bugzilla URL -->
@@ -242,10 +243,9 @@ function [y, dy, ind] = optim_test(x,ind)
   Ainv = inv(A);
 endfunction
 [f_opt, x_opt] = optim(optim_test,ones(10,1));
-hellofromoptim_test
-
-hellofromoptim_test
-
-hellofromoptim_test
+hello from optim_test
+hello from optim_test
+hello from optim_test
+Norm of projected gradient lower than   0.0000000D+00.
 
 // =============================================================================

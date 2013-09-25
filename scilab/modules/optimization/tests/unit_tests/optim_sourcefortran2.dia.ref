@@ -91,70 +91,130 @@ xopt = .1*bs;
 // Solve the problem
 //
 [f, x, g] = optim('rosenf', x0, 'in');
+Norm of projected gradient lower than   0.0000000D+00.
+
 if abs(f - 1 + norm(x - xopt) ) > Leps then bugmes();quit;end
 [f, x, g] = optim('rosenf', x0, 'gc', 'in');
+Optim stops: maximum number of calls to f is reached.
+
 if abs(f - 1 + norm(x - xopt) ) > Leps then bugmes();quit;end
 //
 [f, x, g] = optim('rosenf', x0, 'nd', 'in');
+Optim stops: maximum number of calls to f is reached.
+
 if abs(f - 1 + norm(x - xopt) ) > Leps then bugmes();quit;end
 [f, x, g] = optim('rosenf', x0, 'qn', 1, 'in');
+Norm of projected gradient lower than   0.0000000D+00.
+
 if abs(f - 1 + norm(x - xopt) ) > Leps then bugmes();quit;end
 [f, x, g] = optim('rosenf', x0, 'gc', 1, 50, 'in');
+Optim stops: maximum number of calls to f is reached.
+
 if abs(f - 1 + norm(x - xopt) ) > Leps then bugmes();quit;end
 //
 [f, x ,g] = optim('rosenf', x0, 'nd', 1,50, 'in');
+Optimization stops because too small variations for x.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x1, g] =optim('rosenf', x0,  'ar', 100, 6, 'in');
+Optim stops: maximum number of iterations is reached.
+
 [f, x, g, to] = optim('rosenf', x0,  'ar', 100, 3, 'in');
+Optim stops: maximum number of iterations is reached.
+
 [f, x, g, to] = optim('rosenf', x , to, 'ar', 100, 3, 'in');
+Optim stops: maximum number of iterations is reached.
+
 if norm(x-x1)/norm(x-xopt) > 0.1 then  bugmes();quit;end
 [f, x1, g] = optim('rosenf', 'b', bi, bs, x0, 'ar', 100, 6, 'in');
+Optim stops: maximum number of iterations is reached.
+
 [f, x, g, to] = optim('rosenf', 'b', bi, bs, x0, 'ar', 100, 3, 'in');
+Optim stops: maximum number of iterations is reached.
+
 [f, x, g]   =optim('rosenf', 'b', bi, bs, x, to, 'ar', 100, 3, 'in');
+Optim stops: too small variations in gradient direction.
+
 if norm(x-x1)/norm(x-xopt) > 0.1 then  bugmes();quit;end
 //
 // Test all possible stop criteria settings
 //
 [f, x, g] = optim('rosenf', x0, 'ar', 'in');
+Norm of projected gradient lower than   0.0000000D+00.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g] = optim('rosenf', x0, 'ar', 100, 'in');
+Norm of projected gradient lower than   0.0000000D+00.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g] = optim('rosenf', x0, 'ar', 100, 100, 'in');
+Norm of projected gradient lower than   0.0000000D+00.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g] = optim('rosenf', x0, 'ar', 100, 100, %eps, 'in');
+Norm of projected gradient lower than   0.0000000D+00.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g] = optim('rosenf', x0, 'ar', 100, 100, %eps, %eps, 'in');
+Norm of projected gradient lower than   0.0000000D+00.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g] = optim('rosenf', x0, 'ar', 100, 100, 10.*%eps, %eps, epsx, 'in');
+Norm of projected gradient lower than   0.0000000D+00.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g] = optim('rosenf', x0, 'gc', 'ar', 100, 100, %eps, %eps, epsx, 'in');
+Optim stops: maximum number of calls to f is reached.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 //
 [f, x, g] = optim('rosenf', 'b', bi, bs, x0, 'in');
+Optim stops: maximum number of calls to f is reached.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g] = optim('rosenf', 'b', bi, bs, x0, 'gc', 'in');
+at last iteration f decreases by less than   0.2220446D-15.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x] = optim('rosenf', 'b', bi, bs, x0, 'ar', 100, 100, 1.d-8, 'in');
+Norm of projected gradient lower than   0.1000000D-07.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g] = optim('rosenf', ..
 'b', bi, bs, x0, 'gc', 'ar', 100, 100, %eps, %eps, epsx, 'in');
+at last iteration f decreases by less than   0.2220446D-15.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g, to, td] = optim('rosenf', x0, 'in', 'sd');
+Norm of projected gradient lower than   0.0000000D+00.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g, ti] = optim('rosenf', x0, 'gc', 'in', 'si');
+Optim stops: maximum number of calls to f is reached.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g, to, ti, td] = optim('rosenf', x0, to, 'in', 'si', 'sd');
+Norm of projected gradient lower than   0.0000000D+00.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g, td] = optim('rosenf', ..
 'b', bi, bs, x0, 'gc', 'ar', 100, 100, %eps, %eps, epsx, 'in', 'sd');
+at last iteration f decreases by less than   0.2220446D-15.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g, ti] = optim('rosenf', x0, 'gc', 'ar', 100, 100, %eps, 'in', 'si');
+Optim stops: maximum number of calls to f is reached.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f, x, g, ti, td] = optim('rosenf', ..
 x0, 'gc', 'ar', 100, 100, %eps, 'in', 'si', 'sd');
+Optim stops: maximum number of calls to f is reached.
+
 if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 [f,  x,  g,  ti,  td] = optim('rosenf', ..
 x0, 'gc', 'ar', 100, 100, %eps, 'in', 'ti', ti, 'td', td, 'si', 'sd');
+Optim stops: maximum number of calls to f is reached.
+
 if abs(f - 1 + norm(x - xopt) ) > Leps then bugmes();quit;end
 // Clean-up
 ulink();

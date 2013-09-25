@@ -29,10 +29,16 @@ function [f, g, ind] = costfunction(x, ind, a, b, c, d)
 endfunction
 costf = list ( costfunction , a , b , c, d );
 [fopt, xopt, w, g, iters, evals, err] = optim ( costf , x0 );
+Norm of projected gradient lower than   0.0000000D+00.
+
 assert_checkequal([iters evals err], [10 11 1]);
 [fopt, xopt, w, g, iters, evals, err] = optim ( costf , x0 , "ar",nap=5 );
+Optim stops: maximum number of calls to f is reached.
+
 assert_checkequal([iters evals err], [4 5 4]);
 [fopt, xopt, w, g, iters, evals, err] = optim ( costf , x0 , "ar",nap=100,iter=5 );
+Optim stops: maximum number of iterations is reached.
+
 assert_checkequal([iters evals err], [6 7 5]);
 // Example 2
 x0 = [-1.2 1.0];
@@ -44,8 +50,14 @@ function [f, g, ind] = rosenbrockCost2(x, ind)
     g = derivative ( rosenbrock , x.' , order = 4 );
 endfunction
 [fopt, xopt, w, g, iters, evals, err] = optim ( rosenbrockCost2 , x0 );
+End of optimization.
+
 assert_checkequal([iters evals err], [37 50 9]);
 [fopt, xopt, w, g, iters, evals, err] = optim ( rosenbrockCost2 , x0 , "ar",nap=10 );
+Optim stops: maximum number of calls to f is reached.
+
 assert_checkequal([iters evals err], [8 10 4]);
 [fopt, xopt, w, g, iters, evals, err] = optim ( rosenbrockCost2 , x0 , "ar",nap=100,iter=10 );
+Optim stops: maximum number of iterations is reached.
+
 assert_checkequal([iters evals err], [11 14 5]);
