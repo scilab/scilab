@@ -48,10 +48,6 @@
             <parameter name="propertyName" type="int"/>
             <parameter name="value" type="String[]"/>
         </method>
-        <method name="getGraphicObjectPropertyAsDouble" returnType="double" modifier="static">
-            <parameter name="id" type="String"/>
-            <parameter name="propertyName" type="int"/>
-        </method>
         <method name="setGraphicObjectProperty" returnType="boolean" modifier="static">
             <parameter name="id" type="String"/>
             <parameter name="propertyName" type="int"/>
@@ -66,10 +62,6 @@
             <parameter name="propertyName" type="int"/>
             <parameter name="value" type="double[]"/>
         </method>
-        <method name="getGraphicObjectPropertyAsInteger" returnType="int" modifier="static">
-            <parameter name="id" type="String"/>
-            <parameter name="propertyName" type="int"/>
-        </method>
         <method name="setGraphicObjectProperty" returnType="boolean" modifier="static">
             <parameter name="id" type="String"/>
             <parameter name="propertyName" type="int"/>
@@ -83,10 +75,6 @@
             <parameter name="id" type="String"/>
             <parameter name="propertyName" type="int"/>
             <parameter name="value" type="int[]"/>
-        </method>
-        <method name="getGraphicObjectPropertyAsBoolean" returnType="int" modifier="static">
-            <parameter name="id" type="String"/>
-            <parameter name="propertyName" type="int"/>
         </method>
         <method name="setGraphicObjectProperty" returnType="boolean" modifier="static">
             <parameter name="id" type="String"/>

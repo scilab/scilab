@@ -20,7 +20,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
 
 import org.scilab.modules.helptools.HTMLDocbookTagConverter;
-import org.scilab.modules.helptools.image.ImageConverter;
 
 /**
  * Handle the included SVG code

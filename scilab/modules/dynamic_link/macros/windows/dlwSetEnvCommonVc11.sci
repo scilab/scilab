@@ -93,9 +93,8 @@ function newLIB = getNewLIBx64(LIB, msvsPath, sdkPath, bIsExpress)
     end
 
     newLIB = newLIB + ..
-    sdkPath + "\lib\x64" + pathsep() + LIB;// + ..
-    //getenv("PROGRAMFILES(X86)") + "\Windows Kits\8.0\Lib\win8\um\x64\;";
-
+    sdkPath + "\lib\x64" + pathsep() + LIB + pathsep() + ..
+    getenv("PROGRAMFILES(X86)") + "\Windows Kits\8.0\Lib\win8\um\x64\;";
 endfunction
 //=============================================================================
 function newLIB = getNewLIBx86(LIB, msvsPath, sdkPath, bIsExpress)
@@ -106,9 +105,8 @@ function newLIB = getNewLIBx86(LIB, msvsPath, sdkPath, bIsExpress)
     newLIB = newLIB + ..
     msvsPath + filesep() + "VC\LIB" + pathsep() + ..
     sdkPath + filesep() + "lib" + pathsep() + ..
-    LIB;// + ..
-    //getenv("PROGRAMFILES") + "\Windows Kits\8.0\Lib\win8\um\x86\;";
-
+    LIB + pathsep() + ..
+    getenv("PROGRAMFILES") + "\Windows Kits\8.0\Lib\win8\um\x86\;";
 endfunction
 //=============================================================================
 function newPATH = getNewPATHx64(PATH, msvsPath, sdkPath, bIsExpress)

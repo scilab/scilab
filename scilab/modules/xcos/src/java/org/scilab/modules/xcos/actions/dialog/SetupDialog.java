@@ -1,12 +1,13 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2013 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
@@ -19,10 +20,14 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.beans.PropertyVetoException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.logging.Logger;
 
 import javax.swing.DefaultListCellRenderer;
@@ -35,8 +40,6 @@ import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
 
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.actions.SetupAction;
@@ -59,6 +62,120 @@ public class SetupDialog extends JDialog {
     private static final DecimalFormatSymbols FORMAT_SYMBOL = DecimalFormatSymbols.getInstance();
     private static final DecimalFormat CURRENT_FORMAT = new DecimalFormat("0.0####E00", FORMAT_SYMBOL);
     private static final BigDecimal MAX_DOUBLE = BigDecimal.valueOf(Double.MAX_VALUE);
+
+    /**
+     * Modifiers used to disable some parameters for a specific solver
+     */
+    private static enum SolverModifiers {
+        ABSOLUTE_TOLERANCE,
+        RELATIVE_TOLERANCE,
+        TOLERANCE_ON_TIME,
+        MAX_INTEGRATION_TIME,
+        MAX_STEP_SIZE
+    }
+
+    /**
+     * Describe a solver, its compilation value, name and tooltip.
+     *
+     * Also contains a field with enable modifier set.
+     */
+    private static class SolverDescriptor implements Comparable<SolverDescriptor> {
+        private final int number;
+        private final String name;
+        private final String tooltip;
+        private final EnumSet<SolverModifiers> modifiers;
+
+        public SolverDescriptor(int number, String name, String tooltip, EnumSet<SolverModifiers> modifiers) {
+            super();
+            this.number = number;
+            this.name = name;
+            this.tooltip = tooltip;
+            this.modifiers = modifiers;
+        }
+
+        public SolverDescriptor(double number) {
+            super();
+            this.number = (int) number;
+            this.name = null;
+            this.tooltip = null;
+            this.modifiers = null;
+        }
+
+        public int getNumber() {
+            return number;
+        }
+
+        public String getTooltip() {
+            return tooltip;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+
+        public void applyModifiers(
+            JFormattedTextField integrator,
+            JFormattedTextField integratorRel,
+            JFormattedTextField toleranceOnTime,
+            JFormattedTextField maxIntegrationTime,
+            JFormattedTextField maxStepSize) {
+            integrator.setEnabled(modifiers.contains(SolverModifiers.ABSOLUTE_TOLERANCE));
+            integratorRel.setEnabled(modifiers.contains(SolverModifiers.RELATIVE_TOLERANCE));
+            toleranceOnTime.setEnabled(modifiers.contains(SolverModifiers.TOLERANCE_ON_TIME));
+            maxIntegrationTime.setEnabled(modifiers.contains(SolverModifiers.MAX_INTEGRATION_TIME));
+            maxStepSize.setEnabled(modifiers.contains(SolverModifiers.MAX_STEP_SIZE));
+        }
+
+        @Override
+        public int compareTo(SolverDescriptor o) {
+            // inline Integer.compare(number, o.number) to be java 1.6 compatible
+            return (number < o.number) ? -1 : ((number == o.number) ? 0 : 1);
+        }
+    }
+
+    private static final SolverDescriptor[] AVAILABLE_SOLVERS = new SolverDescriptor[] {
+        new SolverDescriptor(0, "LSodar",
+                             "Method: dynamic, Nonlinear solver= dynamic",
+                             EnumSet.allOf(SetupDialog.SolverModifiers.class)),
+
+        new SolverDescriptor(1, "Sundials/CVODE - BDF - NEWTON",
+                             "Method: BDF, Nonlinear solver= NEWTON",
+                             EnumSet.allOf(SetupDialog.SolverModifiers.class)),
+
+        new SolverDescriptor(2, "Sundials/CVODE - BDF - FUNCTIONAL",
+                             "Method: BDF, Nonlinear solver= FUNCTIONAL",
+                             EnumSet.allOf(SetupDialog.SolverModifiers.class)),
+
+        new SolverDescriptor(3, "Sundials/CVODE - ADAMS - NEWTON",
+                             "Method: ADAMS, Nonlinear solver= NEWTON",
+                             EnumSet.allOf(SetupDialog.SolverModifiers.class)),
+
+        new SolverDescriptor(4, "Sundials/CVODE - ADAMS - FUNCTIONAL",
+                             "Method: ADAMS, Nonlinear solver= FUNCTIONAL",
+                             EnumSet.allOf(SetupDialog.SolverModifiers.class)),
+
+        new SolverDescriptor(5, "DOPRI5 - Dormand-Prince 4(5)",
+                             "Method: Fixed step",
+                             EnumSet.of(SetupDialog.SolverModifiers.MAX_STEP_SIZE)),
+
+        new SolverDescriptor(6, "RK45 - Runge-Kutta 4(5)",
+                             "Method: Fixed step",
+                             EnumSet.of(SetupDialog.SolverModifiers.MAX_STEP_SIZE)),
+
+        new SolverDescriptor(7, "Implicit RK45 - Runge-Kutta 4(5)",
+                             "Method: Fixed step, Nonlinear solver= FIXED-POINT",
+                             EnumSet.of(SetupDialog.SolverModifiers.MAX_STEP_SIZE,
+                                        SetupDialog.SolverModifiers.RELATIVE_TOLERANCE)),
+
+        new SolverDescriptor(100, "Sundials/IDA",
+                             "Method: BDF, Nonlinear solver= NEWTON",
+                             EnumSet.allOf(SetupDialog.SolverModifiers.class)),
+
+        new SolverDescriptor(101, "DDaskr",
+                             "Method: BDF, Nonlinear solver= NEWTON",
+                             EnumSet.allOf(SetupDialog.SolverModifiers.class))
+    };
 
     /**
      * Validate the user entry and format it.
@@ -95,6 +212,9 @@ public class SetupDialog extends JDialog {
         CURRENT_FORMAT.setDecimalFormatSymbols(FORMAT_SYMBOL);
         CURRENT_FORMAT.setParseIntegerOnly(false);
         CURRENT_FORMAT.setParseBigDecimal(true);
+
+        // assert that the array is sorted
+        Arrays.sort(AVAILABLE_SOLVERS);
     }
 
     private final ScicosParameters parameters;
@@ -174,38 +294,34 @@ public class SetupDialog extends JDialog {
         maxIntegrationTime.setValue(new BigDecimal(parameters.getMaxIntegrationTimeInterval()));
 
         JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
-        final String[] solvers = new String[] { "LSodar", "Sundials/CVODE - BDF - NEWTON", "Sundials/CVODE - BDF - FUNCTIONAL",
-                                                "Sundials/CVODE - ADAMS - NEWTON", "Sundials/CVODE - ADAMS - FUNCTIONAL", "DOPRI5 - Dormand-Prince 4(5)",
-                                                "RK45 - Runge-Kutta 4(5)", "Implicit RK45 - Runge-Kutta 4(5)", "Sundials/IDA", "DDaskr - Newton", "DDaskr - GMRes"
-                                              };
-        final String[] solversTooltips = new String[] { "Method: dynamic, Nonlinear solver= dynamic", "Method: BDF, Nonlinear solver= NEWTON",
-                "Method: BDF, Nonlinear solver= FUNCTIONAL", "Method: ADAMS, Nonlinear solver= NEWTON", "Method: ADAMS, Nonlinear solver= FUNCTIONAL",
-                "Method: Fixed step", "Method: Fixed step", "Method: Fixed step, Nonlinear solver= FIXED-POINT", "Method: BDF, Nonlinear solver= NEWTON",
-                "Method: BDF, Nonlinear solver= NEWTON", "Method: BDF - Nonlinear solver = GMRES"
-                                                      };
 
-        solver = new JComboBox(solvers);
+
+        solver = new JComboBox(AVAILABLE_SOLVERS);
         double solverValue = parameters.getSolver();
-        if (solverValue >= 0.0 && solverValue <= solvers.length - 2) {
-            solver.setSelectedIndex((int) solverValue);
-        } else {
-            // IDA = 8+92 = 100, DDaskr-Newton = 9+92 = 101, DDaskr-GMRes = 102
-            // Here, we turn IDA and DDaskr solver numbers back into indexes (8, 9 and 10)
-            solver.setSelectedIndex((int) solverValue - 92);
-        }
+        final int currentIndex = Arrays.binarySearch(AVAILABLE_SOLVERS, new SolverDescriptor(solverValue));
+        final SolverDescriptor current = AVAILABLE_SOLVERS[currentIndex];
+        solver.setSelectedIndex(currentIndex);
 
         final class ComboboxToolTipRenderer extends DefaultListCellRenderer {
             @Override
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 JComponent comp = (JComponent) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-                if (-1 < index && null != value && null != solversTooltips) {
-                    list.setToolTipText(solversTooltips[index]);
+                if (-1 < index && null != value) {
+                    list.setToolTipText(AVAILABLE_SOLVERS[index].getTooltip());
                 }
                 return comp;
             }
         }
         solver.setRenderer(new ComboboxToolTipRenderer());
+
+        solver.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                SolverDescriptor current = (SolverDescriptor) e.getItem();
+                current.applyModifiers(integrator, integratorRel, toleranceOnTime, maxIntegrationTime, maxStepSize);
+            }
+        });
 
         JLabel maxStepSizeLabel = new JLabel(XcosMessages.MAXIMUN_STEP_SIZE);
         maxStepSize = new JFormattedTextField(CURRENT_FORMAT);
@@ -307,6 +423,9 @@ public class SetupDialog extends JDialog {
         add(defaultButton, gbc);
 
         installActionListeners(cancelButton, okButton, defaultButton, setContextButton);
+
+        // at the end, update the enable status of some components
+        current.applyModifiers(integrator, integratorRel, toleranceOnTime, maxIntegrationTime, maxStepSize);
     }
 
     // CSON: JavaNCSS
@@ -354,11 +473,7 @@ public class SetupDialog extends JDialog {
                      * handler
                      */
                     int solverSelectedIndex = solver.getSelectedIndex();
-                    if (solverSelectedIndex >= 0.0 && solverSelectedIndex <= solver.getModel().getSize() - 4) {
-                        parameters.setSolver(solverSelectedIndex);
-                    } else {
-                        parameters.setSolver(solverSelectedIndex + 92); // IDA = 8+92 = 100, DDaskr-Newton = 9+92 = 101, DDaskr-GMRes = 102
-                    }
+                    parameters.setSolver(AVAILABLE_SOLVERS[solverSelectedIndex].getNumber());
 
                     parameters.setFinalIntegrationTime(((BigDecimal) integration.getValue()).doubleValue());
                     parameters.setRealTimeScaling(((BigDecimal) rts.getValue()).doubleValue());

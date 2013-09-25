@@ -13,6 +13,7 @@ c
        integer topk,rhsk,fd
        logical checkrhs,checklhs,getsmat,checkval,getscalar
        character*4 ityp
+       INTEGER*8 val
 
        include 'stack.h'
 c
@@ -73,7 +74,7 @@ c       if(nlr2.eq.3) ik=3
       elseif(ityp(ik:ik).eq.'i') then
           it1=it1+4
        elseif(ityp(ik:ik).eq.'l') then
-          it1=it1+4
+          it1=it1+8
        else
           buf='Incorrect integer type: '//ityp
           call error(9991)

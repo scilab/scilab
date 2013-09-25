@@ -82,7 +82,7 @@ SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag)
                 }
             }
 
-            AfficheBlock_setValue(block->label, pstValue, iRowsIn, iColsIn);
+            AfficheBlock_setValue(block->uid, pstValue, iRowsIn, iColsIn);
 
             break;
 
@@ -104,7 +104,7 @@ SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag)
                 }
             }
 
-            if (AfficheBlock_setValue(block->label, pstValue, iRowsIn, iColsIn) == 0)
+            if (AfficheBlock_setValue(block->uid, pstValue, iRowsIn, iColsIn) == 0)
             {
                 // storing the allocated area on the block work field.
                 block->work[0] = pstValue;

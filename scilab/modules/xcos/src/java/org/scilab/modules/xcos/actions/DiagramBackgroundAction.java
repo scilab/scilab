@@ -25,8 +25,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.swing.mxGraphComponent;
-
 /**
  * Diagram background color changing
  */

@@ -48,9 +48,21 @@ int get_log_flags_property(void* _pvCtx, char* pobjUID)
     logFlags[0] = iLogFlag;
 
     getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
+    if (piLogFlag == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "log_flag");
+        return -1;
+    }
+
     logFlags[1] = iLogFlag;
 
     getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
+    if (piLogFlag == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "log_flag");
+        return -1;
+    }
+
     logFlags[2] = iLogFlag;
 
     for (i = 0; i < 3; i++)

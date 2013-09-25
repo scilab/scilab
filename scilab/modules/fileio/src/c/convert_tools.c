@@ -34,6 +34,13 @@ int swap_int(int _val)
     return res;
 }
 /*--------------------------------------------------------------------------*/
+long long swap_long_long(long long _val)
+{
+    long long res = 0;
+    swap_generic((char*)&_val, (char*)&res, sizeof(long long));
+    return res;
+}
+/*--------------------------------------------------------------------------*/
 char swap_char(char _val)
 {
     return _val;
@@ -49,6 +56,18 @@ void writeInt(int _val, FILE* _pF, int _iEndian)
     }
 
     fwrite(&newVal, sizeof(unsigned char), sizeof(int), _pF);
+}
+/*--------------------------------------------------------------------------*/
+void writeLongLong(long long _val, FILE* _pF, int _iEndian)
+{
+    //reverse _val bytes and write
+    long long newVal = _val;
+    if (_iEndian == BIG_ENDIAN)
+    {
+        newVal = swap_long_long(_val);
+    }
+
+    fwrite(&newVal, sizeof(unsigned char), sizeof(long long), _pF);
 }
 /*--------------------------------------------------------------------------*/
 void writeShort(short _val, FILE* _pF, int _iEndian)
@@ -83,6 +102,20 @@ int readInt(FILE* _pF, int _iEndian)
     }
 }
 /*--------------------------------------------------------------------------*/
+long long readLongLong(FILE* _pF, int _iEndian)
+{
+    long long val = 0;
+    fread(&val, sizeof(long long), 1, _pF);
+    if (_iEndian == BIG_ENDIAN)
+    {
+        return swap_long_long(val);
+    }
+    else
+    {
+        return val;
+    }
+}
+/*--------------------------------------------------------------------------*/
 short readShort(FILE* _pF, int _iEndian)
 {
     short val = 0;
@@ -106,9 +139,14 @@ char readChar(FILE* _pF, int _iEndian)
 /*--------------------------------------------------------------------------*/
 int checkType(char _type)
 {
-    if (_type == 'l' || _type == 'i')
+    if (_type == 'l')
     {
-        return TYPE_LONG;
+        return TYPE_LONG_LONG;
+    }
+
+    if (_type == 'i')
+    {
+        return TYPE_INT;
     }
 
     if (_type == 's')

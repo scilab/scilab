@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
+// Copyright (C) 2013 - Samuel GOUGEON : processing rewritten, fixing http://bugzilla.scilab.org/5205
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -38,60 +39,37 @@ function y = permute(x, dims)
         return
     end
 
-    // xsize vector contains the size of x
-    xsize = size(x)
-    // ysize vector contains the new size of x after the permutation
-    ind1 = find(dims<=ndims(x))
-    ind2 = find(dims>ndims(x))
-    ysize(ind1) = xsize(dims(ind1))
-    ysize(ind2) = 1
-    dims = dims(ind1)
-
-    // Delete the last dimensions of ysize which are equal to 1, ex : [2,3,1,4,1,1,1] -> [2,3,1,4]
-    i = prod(size(ysize))
-    while i>2 & ysize(i)==1 & i>max(ind1)
-        ysize(i) = []
-        i = i-1
+    // ---------------- PROCESSING --------------------
+    // Existing indices
+    s = size(x)
+    p = size(x, "*")
+    n = 1
+    for i = 1:length(s)
+        t = "x%d = ones(1,p/(prod(s(1:%d)))) .*. ((1:s(%d)) .*. ones(1,n)) ;"+..
+        " n = prod(s(1:%d))\n"
+        t = msprintf(t, i, i, i, i)
+        execstr(t)
     end
+    xlist = strcat(msprintf("x%d\n",(1:length(s))'),",")
+    cstr = "sub2ind(s,"+ xlist +")"
+    execstr("LI = "+cstr)
 
-    // index vector contains all indices of x
-    index = zeros(1, prod(xsize)*length(xsize)); // Preallocate index
-    m = 1; // Iterator on index
-    for k=1:size(xsize,"*")
-        for j=1:size(x,"*")/prod(xsize(1:k))
-            for l=1:xsize(k)
-                temp = ones(1, prod(xsize(1:k-1)))*l;
-                index(1, m:m+size(temp,"*")-1) = temp;
-                m = m+size(temp, "*"); // Pad m with the size of the vector we just computed
-            end
-        end
-    end
-    index = matrix(index, size(x, "*"), size(xsize, "*"))
+    // New indices
+    s = s(dims)
+    cstr = "sub2ind(s,"+ strcat(msprintf("x%d\n", dims(:)), ",")+")"
+    execstr("LI2 = "+cstr)
 
-    // prodxsize is a vector, its ith component contains the prod of the first to the (ith-1) entries of xsize, its first component is always equal to one
-    prodxsize = ones(size(xsize, "*"), 1)
-    for i=2:size(xsize,"*")
-        prodxsize(i) = prod(xsize(1:i-1))
-    end
-    prodysize = ones(size(xsize, "*"), 1)
-    for i=2:size(ysize,"*")
-        prodysize(i) = prod(ysize(1:i-1))
-    end
+    // Clearing intermediate memory used
+    execstr("clear "+strsubst(xlist, ",", " "))
 
-    // newindex contains the indices of x dimensions permutation
-    for j=1:size(index,1)
-        indexj = index(j, :)
-        newindexj = ones(1:prod(size(ysize)))
-        newindexj(ind1) = indexj(dims)
-        indexj(2:$) = indexj(2:$)-1
-        newindexj(2:$) = newindexj(2:$)-1
-        if typeof(x) == "ce" then // Case x is a cell array
-            y(newindexj*prodysize).entries = x(indexj*prodxsize).entries
-        else
-            y(newindexj*prodysize) = x(indexj*prodxsize)
-        end
+    // Permutation
+    if typeof(x) == "ce"
+        y = x
+        y.dims = int32(s)
+        y(LI2).entries = x(LI).entries
+    else
+        y(LI2) = x(LI)
+        y = matrix(y, s)
     end
-
-    y = matrix(y, ysize)
 
 endfunction

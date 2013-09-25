@@ -163,11 +163,11 @@ function [snd]=read_sndhdr(fid)
         error("Not a .au sound file.")
     end
 
-    snd("offset")=mget(1,"ulb",fid)
-    snd("databytes")=mget(1,"ulb",fid)
-    snd("format")=mget(1,"ulb",fid)
-    snd("rate")=mget(1,"ulb",fid)
-    snd("chans")=mget(1,"ulb",fid)
+    snd("offset")=mget(1,"uib",fid)
+    snd("databytes")=mget(1,"uib",fid)
+    snd("format")=mget(1,"uib",fid)
+    snd("rate")=mget(1,"uib",fid)
+    snd("chans")=mget(1,"uib",fid)
 
     // Directly determine how long info string is:
     info_len = snd("offset")-24;

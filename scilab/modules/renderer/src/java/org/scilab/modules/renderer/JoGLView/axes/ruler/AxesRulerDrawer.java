@@ -38,7 +38,6 @@ import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
-import java.awt.Color;
 import java.nio.FloatBuffer;
 import java.text.DecimalFormat;
 import java.util.Arrays;

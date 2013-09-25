@@ -13,8 +13,6 @@ package org.scilab.forge.scirenderer.implementation.g2d;
 
 import java.awt.Graphics2D;
 
-import org.scilab.forge.scirenderer.Canvas;
-
 /**
  * @author Pierre Lando
  */

@@ -50,8 +50,7 @@ int get_children_property(void* _pvCtx, char* pobjUID)
     int *piChildrenCount = &iChildrenCount;
 
     getGraphicObjectProperty(pobjUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildrenCount);
-
-    if (piChildrenCount[0] == 0)
+    if (piChildrenCount == NULL || piChildrenCount[0] == 0)
     {
         // No Child
         return sciReturnEmptyMatrix(_pvCtx);

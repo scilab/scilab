@@ -14,7 +14,6 @@ package org.scilab.modules.gui.messagebox;
 
 import org.scilab.modules.gui.bridge.messagebox.SwingScilabMessageBox;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 
 /**
  * Bridge dedicated to Scilab Message Boxes

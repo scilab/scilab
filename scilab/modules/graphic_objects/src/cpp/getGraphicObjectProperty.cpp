@@ -94,7 +94,17 @@ void getGraphicObjectProperty(char const* _pstID, int _iName, _ReturnType_ _retu
             }
             case jni_double:
             {
-                ((double *)*_pvData)[0] = (double)CallGraphicController::getGraphicObjectPropertyAsDouble(getScilabJavaVM(), _pstID, _iName);
+		double * ret = CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _iName);
+		if (ret == NULL)
+		{
+		    *_pvData = NULL;
+		}
+		else
+		{
+		    ((double *)*_pvData)[0] = *ret;
+		    delete[] ret;
+		}
+
                 return;
             }
             case jni_double_vector:
@@ -104,7 +114,17 @@ void getGraphicObjectProperty(char const* _pstID, int _iName, _ReturnType_ _retu
             }
             case jni_bool:
             {
-                ((int *)*_pvData)[0] = (int)CallGraphicController::getGraphicObjectPropertyAsBoolean(getScilabJavaVM(), _pstID, _iName);
+		int * ret = CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _iName);
+		if (ret == NULL)
+		{
+		    *_pvData = NULL;
+		}
+		else
+		{
+		    ((int *)*_pvData)[0] = *ret;
+		    delete[] ret;
+		}
+
                 return;
             }
             case jni_bool_vector:
@@ -114,7 +134,17 @@ void getGraphicObjectProperty(char const* _pstID, int _iName, _ReturnType_ _retu
             }
             case jni_int:
             {
-                ((int *)*_pvData)[0] = CallGraphicController::getGraphicObjectPropertyAsInteger(getScilabJavaVM(), _pstID, _iName);
+		int * ret = CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _iName);
+		if (ret == NULL)
+		{
+		    *_pvData = NULL;
+		}
+		else
+		{
+		    ((int *)*_pvData)[0] = *ret;
+		    delete[] ret;
+		}
+
                 return;
             }
             case jni_int_vector:

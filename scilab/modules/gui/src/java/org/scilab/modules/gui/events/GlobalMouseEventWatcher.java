@@ -17,7 +17,6 @@ import java.awt.AWTEvent;
 import java.awt.event.AWTEventListener;
 import java.awt.event.MouseEvent;
 
-import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.gui.utils.SciTranslator;
 
 /**

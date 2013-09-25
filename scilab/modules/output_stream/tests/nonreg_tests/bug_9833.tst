@@ -23,7 +23,6 @@ test_path = get_absolute_file_path(BUG_NAME + ".tst");
 currentpath = pwd();
 
 cd TMPDIR;
-cd ../;
 OS_TMP_DIR = pwd();
 
 

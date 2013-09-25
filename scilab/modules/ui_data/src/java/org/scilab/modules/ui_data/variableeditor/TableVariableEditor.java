@@ -38,14 +38,11 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableCellEditor;
 
-import org.scilab.modules.gui.textbox.SimpleTextBox;
-import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.rowheader.HeaderRenderer;
 import org.scilab.modules.ui_data.rowheader.RowHeader;

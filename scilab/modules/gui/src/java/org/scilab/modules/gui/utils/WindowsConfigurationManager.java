@@ -12,7 +12,6 @@
 
 package org.scilab.modules.gui.utils;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -41,8 +40,6 @@ import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.state.LayoutNode;
 import org.flexdock.perspective.persist.xml.LayoutNodeSerializer;
 import org.flexdock.perspective.persist.xml.PersistenceConstants;
-import org.flexdock.util.SwingUtility;
-import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
@@ -55,8 +52,6 @@ import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;

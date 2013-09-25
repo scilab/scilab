@@ -14,7 +14,6 @@ package org.scilab.modules.xcos.palette.view;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.io.FileInputStream;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;

@@ -30,6 +30,10 @@ c
             call error(89)
             return
          endif
+         if (stk(sadr(il+4)).ge.2.0**31) then !depends on the stack (32 bits...)
+            call error(17)
+            return
+         endif
          n=max(int(stk(sadr(il+4))),0)
       elseif(istk(il).eq.8) then
          if(istk(il+1)*istk(il+2).ne.1) then

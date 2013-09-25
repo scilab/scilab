@@ -20,7 +20,6 @@ import java.beans.PropertyChangeListener;
 import org.flexdock.docking.props.DockablePropertySet;
 import org.flexdock.docking.props.PropertyChangeListenerFactory;
 import org.scilab.modules.commons.OS;
-import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menubar.MenuBar;

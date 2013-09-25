@@ -13,13 +13,9 @@ package org.scilab.modules.gui.bridge.uidisplaytree;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Dimension;
 
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
-
-import java.util.StringTokenizer;
 
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.uidisplaytree.SimpleUiDisplayTree;
@@ -32,9 +28,7 @@ import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.tree.ScilabTree;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
-import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.tree.ScilabDisplayTree;
 
 /**

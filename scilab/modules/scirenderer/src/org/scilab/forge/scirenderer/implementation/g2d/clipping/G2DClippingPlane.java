@@ -16,7 +16,6 @@ import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.Vector4d;
 import org.scilab.forge.scirenderer.implementation.g2d.G2DDrawingTools;
-import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
 /**
  * @author Pierre Lando

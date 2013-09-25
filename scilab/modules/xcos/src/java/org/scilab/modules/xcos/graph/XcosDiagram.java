@@ -124,10 +124,10 @@ public class XcosDiagram extends ScilabGraph {
 
     private static final String MODIFIED = "modified";
     private static final String CELLS = "cells";
-    protected static final String IN = "in";
-    protected static final String OUT = "out";
-    protected static final String EIN = "ein";
-    protected static final String EOUT = "eout";
+    public static final String IN = "in";
+    public static final String OUT = "out";
+    public static final String EIN = "ein";
+    public static final String EOUT = "eout";
 
     /**
      * Prefix used to tag text node.
@@ -256,7 +256,7 @@ public class XcosDiagram extends ScilabGraph {
      *            the block list
      * @return the sorted block list (same instance)
      */
-    private List <? extends BasicBlock > iparSort(final List <? extends BasicBlock > blocks) {
+    public List <? extends BasicBlock > iparSort(final List <? extends BasicBlock > blocks) {
         Collections.sort(blocks, new Comparator<BasicBlock>() {
             @Override
             public int compare(BasicBlock o1, BasicBlock o2) {

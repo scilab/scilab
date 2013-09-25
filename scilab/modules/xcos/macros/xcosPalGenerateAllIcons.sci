@@ -26,25 +26,16 @@ function blocks = xcosPalGenerateAllIcons(path)
     end
 
     // 3. check the argument validity
-    queryStr = strcat("node[@name=''"+path+"'']", "/")
-    doc=xmlRead("SCI/modules/xcos/etc/palettes.xml");
-    q=xmlXPath(doc.root, queryStr + "//block");
+    xcosPalGet(path); // will push a 'pal' mlist
 
-    if (length(q) <= 0) then
+    if size(pal.blockNames, "*") <= 0 then
         error(sprintf(gettext("%s: Wrong value for input argument #%d: No block found.\n"), "xcosPalGenerateAllIcons" ,1));
     end
 
     blocks = [];
-    for i=1:length(q)
-        name = q(i).attributes.name;
-        xmlPath = q(i).children(1).attributes;
-
-        // define the icon path
-        iconPath = "";
-        if isdef(xmlPath.variable) then
-            iconPath = evstr(xmlPath.variable);
-        end
-        iconPath = iconPath + xmlPath.path;
+    for i=1:size(pal.blockNames, "*")
+        name = pal.blockNames(i);
+        iconPath = pal.icons(i);
 
         // load the block
         execstr("blk="+name+"(''define'');");
@@ -59,6 +50,4 @@ function blocks = xcosPalGenerateAllIcons(path)
 
         blocks($+1) = name;
     end
-
-    xmlDelete(doc);
 endfunction
