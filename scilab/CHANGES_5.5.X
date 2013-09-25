@@ -447,6 +447,8 @@ Bug Fixes
 
 * Bug #9694 fixed - Example in optim help page fixed to display correct counters.
 
+* Bug #9702 fixed - Contrarily to what optim's help page read, the "gc" algorithm does use the "epsx" parameter.
+
 * Bug #9780 fixed - gmres solver did not run with complex systems.
 
 * Bug #9821 fixed - getrelativefilename did not manage matrix of strings.
