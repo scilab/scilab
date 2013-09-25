@@ -64,6 +64,8 @@ import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
+import org.scilab.modules.renderer.JoGLView.util.LightingUtils;
+
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -580,12 +582,15 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (fac3d.getSurfaceMode()) {
                     DefaultGeometry geometry = new DefaultGeometry();
                     geometry.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
+                    geometry.setNormals(dataManager.getNormalBuffer(fac3d.getIdentifier()));
                     geometry.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
 
                     geometry.setPolygonOffsetMode(true);
 
                     /* Front-facing triangles */
                     Appearance appearance = new Appearance();
+                    appearance.setMaterial(LightingUtils.getMaterial(fac3d.getMaterial()));
+                    LightingUtils.setupLights(drawingTools.getLightManager(), currentAxes);
 
                     if (fac3d.getColorMode() != 0) {
                         geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
@@ -623,6 +628,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     }
 
                     drawingTools.draw(geometry, appearance);
+                    LightingUtils.setLightingEnable(drawingTools.getLightManager(), false);
                 }
 
                 if (fac3d.getMarkMode()) {
@@ -663,6 +669,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     geometry.setPolygonOffsetMode(true);
 
                     geometry.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
+                    geometry.setNormals(dataManager.getNormalBuffer(plot3d.getIdentifier()));
                     geometry.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
                     /* Back-facing triangles */
                     if (plot3d.getHiddenColor() > 0) {
@@ -674,6 +681,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                     /* Front-facing triangles */
                     Appearance appearance = new Appearance();
+                    appearance.setMaterial(LightingUtils.getMaterial(plot3d.getMaterial()));
+                    LightingUtils.setupLights(drawingTools.getLightManager(), currentAxes);
 
                     if (plot3d.getColorFlag() == 1) {
                         geometry.setColors(dataManager.getColorBuffer(plot3d.getIdentifier()));
@@ -699,8 +708,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         appearance.setLineColor(ColorFactory.createColor(colorMap, plot3d.getLineColor()));
                         appearance.setLineWidth(plot3d.getLineThickness().floatValue());
                     }
-
                     drawingTools.draw(geometry, appearance);
+                    LightingUtils.setLightingEnable(drawingTools.getLightManager(), false);
                 }
 
                 if (plot3d.getMarkMode()) {

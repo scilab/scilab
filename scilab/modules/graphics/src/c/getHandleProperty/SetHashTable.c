@@ -52,7 +52,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 158
+#define NB_PROPERTIES 165
 
 /**
 * list of all property names and associated functions in scilab
@@ -217,6 +217,13 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
     {"resizefcn", set_figure_resizefcn_property},
     {"tooltipstring", SetUicontrolTooltipString},
     {"closerequestfcn", set_figure_closerequestfcn_property},
+    {"ambient_color", set_ambient_color_property},
+    {"diffuse_color", set_diffuse_color_property},
+    {"specular_color", set_specular_color_property},
+    {"use_color_material", set_use_color_material_property},
+    {"material_shininess", set_material_shininess_property},
+    {"light_type", set_light_type_property},
+    {"direction", set_direction_property},
     {"image_type", set_image_type_property}
 };
 

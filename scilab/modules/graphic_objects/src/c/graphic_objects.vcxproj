@@ -251,6 +251,7 @@
     <ClCompile Include="..\cpp\HandleManagement.cpp" />
     <ClCompile Include="..\cpp\MatPlotDecomposer.cpp" />
     <ClCompile Include="..\cpp\NgonGridMatplotDataDecomposer.cpp" />
+    <ClCompile Include="..\cpp\NormalGenerator.cpp" />
     <ClCompile Include="..\cpp\ScilabView.cpp" />
     <ClCompile Include="..\cpp\Texture.cpp" />
     <ClCompile Include="..\cpp\Triangulator.cpp" />
@@ -312,6 +313,7 @@
     <ClInclude Include="..\..\includes\NgonGridGrayplotDataDecomposer.hxx" />
     <ClInclude Include="..\..\includes\NgonGridMatplotData.hxx" />
     <ClInclude Include="..\..\includes\NgonPolylineData.hxx" />
+    <ClInclude Include="..\..\includes\NormalGenerator.hxx" />
     <ClInclude Include="..\..\includes\Plot3DDecomposer.hxx" />
     <ClInclude Include="..\..\includes\PolylineDecomposer.hxx" />
     <ClInclude Include="..\..\includes\TriangleMeshData.hxx" />

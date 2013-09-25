@@ -322,5 +322,12 @@
 #define __GO_PROGRESSIONBAR__ 300
 #define __GO_UI_MESSAGE__ 301
 #define __GO_UI_MESSAGE_SIZE__ 302
+#define __GO_AMBIENTCOLOR__ 303
+#define __GO_DIFFUSECOLOR__ 304
+#define __GO_SPECULARCOLOR__ 305
+#define __GO_COLOR_MATERIAL__ 306
+#define __GO_MATERIAL_SHININESS__ 307
+#define __GO_LIGHT__ 308
+#define __GO_LIGHT_TYPE__ 309
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

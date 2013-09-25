@@ -323,5 +323,12 @@ public class GraphicObjectProperties {
     public static final int __GO_PROGRESSIONBAR__ = 300;
     public static final int __GO_UI_MESSAGE__ = 301;
     public static final int __GO_UI_MESSAGE_SIZE__ = 302;
+    public static final int __GO_AMBIENTCOLOR__ = 303;
+    public static final int __GO_DIFFUSECOLOR__ = 304;
+    public static final int __GO_SPECULARCOLOR__ = 305;
+    public static final int __GO_COLOR_MATERIAL__ = 306;
+    public static final int __GO_MATERIAL_SHININESS__ = 307;
+    public static final int __GO_LIGHT__ = 308;
+    public static final int __GO_LIGHT_TYPE__ = 309;
 
 }
