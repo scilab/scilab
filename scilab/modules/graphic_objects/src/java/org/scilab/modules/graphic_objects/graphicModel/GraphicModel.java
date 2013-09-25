@@ -52,6 +52,7 @@ import org.scilab.modules.graphic_objects.uicontrol.uitext.UiText;
 import org.scilab.modules.graphic_objects.uimenu.Uimenu;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 
 /**
  * GraphicModel class
@@ -314,6 +315,9 @@ public final class GraphicModel {
                 break;
             case UNKNOWNOBJECT:
                 createdObject = null;
+                break;
+            case DATATIP:
+                createdObject = new Datatip();
                 break;
             default:
                 createdObject = null;

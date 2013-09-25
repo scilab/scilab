@@ -134,10 +134,10 @@ msgid "Boolean"
 msgstr "Boleano"
 
 msgid "Sparse"
-msgstr ""
+msgstr "Esparso"
 
 msgid "Sparse boolean"
-msgstr ""
+msgstr "Boleano esparso"
 
 msgid "Integer"
 msgstr "Número Inteiro"
@@ -161,10 +161,10 @@ msgid "List"
 msgstr "Lista"
 
 msgid "Tlist"
-msgstr ""
+msgstr "Lista T"
 
 msgid "Mlist"
-msgstr ""
+msgstr "Lista M"
 
 msgid "Pointer"
 msgstr "Ponteiro"
@@ -173,7 +173,7 @@ msgid "Intrinsic function"
 msgstr "Função intrínseca"
 
 msgid "Matlab sparse"
-msgstr ""
+msgstr "Matlab sparse"
 
 msgid "Implicit polynomial"
 msgstr "Polinômio implícito"

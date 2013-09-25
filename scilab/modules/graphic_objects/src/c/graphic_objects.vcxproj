@@ -264,6 +264,8 @@
     <ClCompile Include="..\cpp\dataModel.cpp" />
     <ClCompile Include="..\cpp\DecompositionUtils.cpp" />
     <ClCompile Include="..\cpp\deleteGraphicObject.cpp" />
+    <ClCompile Include="..\jni\ObjectData_wrap.c" />
+    <ClCompile Include="..\jni\PolylineData_wrap.c" />
     <ClCompile Include="..\jni\GraphicObjectBuilder.cpp" />
     <ClCompile Include="..\jni\ScilabNativeView_wrap.c" />
     <ClCompile Include="DllmainGraphic_objects.c" />
@@ -282,6 +284,9 @@
     <ClCompile Include="..\cpp\TriangleMeshData.cpp" />
     <ClCompile Include="..\cpp\TriangleMeshFecData.cpp" />
     <ClCompile Include="..\cpp\TriangleMeshFecDataDecomposer.cpp" />
+    <ClCompile Include="..\jni\SurfaceData_wrap.c" />
+    <ClCompile Include="..\cpp\createObjectData.cpp" />
+    <ClCompile Include="..\cpp\pickSurface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\Fac3DColorComputer.hxx" />
@@ -321,6 +326,9 @@
     <ClInclude Include="..\jni\GraphicObjectBuilder.hxx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\jni\ObjectData.i" />
+    <None Include="..\jni\PolylineData.i" />
+    <None Include="..\jni\SurfaceData.i" />
     <None Include="..\jni\ScilabNativeView.i" />
     <None Include="core_import.def" />
     <None Include="..\jni\DataLoader.i" />

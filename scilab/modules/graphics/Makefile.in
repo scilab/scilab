@@ -446,6 +446,8 @@ am__objects_1 = libscigraphics_algo_la-GetCommandArg.lo \
 	libscigraphics_algo_la-get_figure_resizefcn_property.lo \
 	libscigraphics_algo_la-set_figure_closerequestfcn_property.lo \
 	libscigraphics_algo_la-get_figure_closerequestfcn_property.lo \
+	libscigraphics_algo_la-get_datatip_property.lo \
+	libscigraphics_algo_la-set_datatip_property.lo \
 	libscigraphics_algo_la-set_image_type_property.lo \
 	libscigraphics_algo_la-DefaultCommandArg.lo \
 	libscigraphics_algo_la-Axes.lo \
@@ -1181,6 +1183,8 @@ src/c/getHandleProperty/set_figure_resizefcn_property.c \
 src/c/getHandleProperty/get_figure_resizefcn_property.c \
 src/c/getHandleProperty/set_figure_closerequestfcn_property.c \
 src/c/getHandleProperty/get_figure_closerequestfcn_property.c \
+src/c/getHandleProperty/get_datatip_property.c \
+src/c/getHandleProperty/set_datatip_property.c \
 src/c/getHandleProperty/set_image_type_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
@@ -1619,6 +1623,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_data_bounds_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_data_mapping_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_data_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_datatip_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_default_axes_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_default_figure_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-get_diffuse_color_property.Plo@am__quote@
@@ -1771,6 +1776,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_data_bounds_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_data_mapping_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_data_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_datatip_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_default_values_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_diffuse_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_algo_la-set_direction_property.Plo@am__quote@
@@ -3880,6 +3886,20 @@ libscigraphics_algo_la-get_figure_closerequestfcn_property.lo: src/c/getHandlePr
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_figure_closerequestfcn_property.c' object='libscigraphics_algo_la-get_figure_closerequestfcn_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_figure_closerequestfcn_property.lo `test -f 'src/c/getHandleProperty/get_figure_closerequestfcn_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_figure_closerequestfcn_property.c
+
+libscigraphics_algo_la-get_datatip_property.lo: src/c/getHandleProperty/get_datatip_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-get_datatip_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-get_datatip_property.Tpo -c -o libscigraphics_algo_la-get_datatip_property.lo `test -f 'src/c/getHandleProperty/get_datatip_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_datatip_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-get_datatip_property.Tpo $(DEPDIR)/libscigraphics_algo_la-get_datatip_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_datatip_property.c' object='libscigraphics_algo_la-get_datatip_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-get_datatip_property.lo `test -f 'src/c/getHandleProperty/get_datatip_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_datatip_property.c
+
+libscigraphics_algo_la-set_datatip_property.lo: src/c/getHandleProperty/set_datatip_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_datatip_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_datatip_property.Tpo -c -o libscigraphics_algo_la-set_datatip_property.lo `test -f 'src/c/getHandleProperty/set_datatip_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_datatip_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphics_algo_la-set_datatip_property.Tpo $(DEPDIR)/libscigraphics_algo_la-set_datatip_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_datatip_property.c' object='libscigraphics_algo_la-set_datatip_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphics_algo_la-set_datatip_property.lo `test -f 'src/c/getHandleProperty/set_datatip_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_datatip_property.c
 
 libscigraphics_algo_la-set_image_type_property.lo: src/c/getHandleProperty/set_image_type_property.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphics_algo_la-set_image_type_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_algo_la-set_image_type_property.Tpo -c -o libscigraphics_algo_la-set_image_type_property.lo `test -f 'src/c/getHandleProperty/set_image_type_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_image_type_property.c

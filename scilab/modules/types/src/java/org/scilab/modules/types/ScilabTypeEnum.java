@@ -34,13 +34,11 @@ public enum ScilabTypeEnum {
 
     public static ScilabTypeEnum swigToEnum(int swigValue) {
         ScilabTypeEnum[] swigValues = ScilabTypeEnum.class.getEnumConstants();
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
             return swigValues[swigValue];
-        }
         for (ScilabTypeEnum swigEnum : swigValues)
-            if (swigEnum.swigValue == swigValue) {
+            if (swigEnum.swigValue == swigValue)
                 return swigEnum;
-            }
         throw new IllegalArgumentException("No enum " + ScilabTypeEnum.class + " with value " + swigValue);
     }
 

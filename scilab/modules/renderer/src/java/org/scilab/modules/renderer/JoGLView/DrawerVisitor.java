@@ -22,6 +22,7 @@ import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
 import org.scilab.forge.scirenderer.texture.Texture;
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.TransformationStack;
@@ -52,6 +53,7 @@ import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.vectfield.Arrow;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.renderer.JoGLView.arrowDrawing.ArrowDrawer;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.contouredObject.ContouredObjectDrawer;
@@ -64,8 +66,8 @@ import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 import org.scilab.modules.renderer.utils.textRendering.FontManager;
+import org.scilab.modules.renderer.JoGLView.datatip.DatatipTextDrawer;
 import org.scilab.modules.renderer.JoGLView.util.LightingUtils;
-
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -134,6 +136,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final AxisDrawer axisDrawer;
     private final ArrowDrawer arrowDrawer;
     private final FecDrawer fecDrawer;
+    private final DatatipTextDrawer datatipTextDrawer;
 
     private DrawingTools drawingTools;
     private Texture colorMapTexture;
@@ -170,6 +173,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.legendDrawer = new LegendDrawer(this);
         this.fecDrawer = new FecDrawer(this);
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
+        this.datatipTextDrawer = new DatatipTextDrawer(canvas.getTextureManager());
 
         /*
          * Forces font loading from the main thread. This is done because
@@ -243,6 +247,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     public ColorMap getColorMap() {
         return colorMap;
+    }
+
+    public DatatipTextDrawer getDatatipTextDrawer() {
+        return datatipTextDrawer;
     }
 
     /**
@@ -548,6 +556,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     invalidate(polyline, e);
                 }
                 axesDrawer.disableClipping(polyline.getClipProperty());
+                askAcceptVisitor(polyline.getChildren());
             }
         }
     }
@@ -749,6 +758,27 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     @Override
+    public void visit(Datatip datatip) {
+        if (datatip.isValid() && datatip.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, datatip.getClipProperty());
+            try {
+                if (datatip.getMarkMode()) {
+                    /* TODO: appearance can be not-null */
+                    Texture texture = markManager.getMarkSprite(datatip, colorMap, null);
+                    Vector3d markPos = datatipTextDrawer.calculateAnchorPoint(datatip);
+                    drawingTools.draw(texture, AnchorPosition.CENTER, markPos);
+                }
+                if (datatip.getTipLabelMode()) {
+                    datatipTextDrawer.draw(drawingTools, colorMap, datatip);
+                }
+            } catch (SciRendererException e) {
+                invalidate((Text)datatip, e);
+            }
+            axesDrawer.disableClipping(datatip.getClipProperty());
+        }
+    }
+
+    @Override
     public void visit(Arrow arrow) {
         // TODO
         System.out.println("How can I draw an arrow ?");
@@ -865,6 +895,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     axesDrawer.disposeAll();
                     fecDrawer.updateAll();
                     colorMapTextureDataProvider.update();
+                    datatipTextDrawer.disposeAll();
                     textureManager.disposeAll();
                 } else {
                     labelManager.update(id, property);
@@ -874,6 +905,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     axesDrawer.update(id, property);
                     legendDrawer.update(id, property);
                     fecDrawer.update(id, property);
+                    datatipTextDrawer.update(id, property);
                 }
 
                 if (GraphicObjectProperties.__GO_ANTIALIASING__ == property) {

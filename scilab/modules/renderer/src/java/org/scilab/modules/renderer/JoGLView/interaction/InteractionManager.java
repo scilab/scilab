@@ -113,4 +113,8 @@ public class InteractionManager implements RubberBoxListener {
         dragZoomRotateInteraction.setEnable(true);
         rubberBox = null;
     }
+
+    public void setTranslationEnable(boolean b) {
+        dragZoomRotateInteraction.setTranslationEnable(b);
+    }
 }

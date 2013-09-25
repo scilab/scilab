@@ -69,7 +69,8 @@
     e=gce();e=e.children;
     d1=datatipCreate(e(1),500);
     d2=datatipCreate(e(2),60);
-    datatipSetOrientation(d2,"lower left")
+    datatipSetOrientation(d1,"lower left");
+    datatipSetOrientation(d2,"lower right");
     ]]></programlisting>
         <scilab:image>
             x=linspace(-20,20,1000);
@@ -77,7 +78,8 @@
             e=gce();e=e.children;
             d1=datatipCreate(e(1),500);
             d2=datatipCreate(e(2),60);
-            datatipSetOrientation(d2,"lower left")
+            datatipSetOrientation(d1,"lower left");
+            datatipSetOrientation(d2,"lower right");
         </scilab:image>
     </refsection>
     <refsection role="see also">

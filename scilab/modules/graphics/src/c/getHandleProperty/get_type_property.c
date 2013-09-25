@@ -80,6 +80,8 @@ static char *getTypeNameFromInt(int _iType)
             return "ShowHiddenHandles";
         case __GO_WAITBAR__ :
             return "Waitbar";
+        case __GO_DATATIP__:
+            return "Datatip";
         case __GO_LIGHT__ :
             return "Light";
         default :

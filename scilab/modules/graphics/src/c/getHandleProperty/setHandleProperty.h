@@ -49,6 +49,7 @@
 #include "SetConsoleShowHiddenHandles.h"
 #include "SetUicontrolTooltipString.h"
 
+
 int set_color_map_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_old_style_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_figure_style_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
@@ -180,6 +181,14 @@ int set_color_range_property(void* _pvCtx, char* pobj, void* _pvData, int valueT
 int set_grid_position_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_anti_aliasing_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_tag_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_tip_data_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_tip_orientation_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_tip_3component_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_tip_auto_orientation_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_tip_interp_mode_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_tip_box_mode_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_tip_label_mode_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_tip_disp_function_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_ambient_color_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_diffuse_color_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_specular_color_property(void* _pvCtx, char* pobj, void* _pvData, int valueType, int nbRow, int nbCol);

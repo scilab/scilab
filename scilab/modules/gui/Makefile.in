@@ -20,7 +20,7 @@
 # Copyright (C) INRIA   - 2007 - Vincent COUVERT
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# Copyright (C) DIGITEO - 2010 - ClÃ©ment DAVID
+# Copyright (C) DIGITEO - 2010 - Clément DAVID
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -254,7 +254,16 @@ am__objects_2 = libscigui_algo_la-InitUIMenu.lo \
 	libscigui_algo_la-Juigetfile.lo \
 	libscigui_algo_la-CallJuigetfile.lo \
 	libscigui_algo_la-displaytree.lo \
-	libscigui_algo_la-ScilabDisplayTree.lo
+	libscigui_algo_la-ScilabDisplayTree.lo \
+	libscigui_algo_la-EditorManager.lo \
+	libscigui_algo_la-StartGED.lo \
+	libscigui_algo_la-StartPlotBrowser.lo \
+	libscigui_algo_la-DatatipManager.lo \
+	libscigui_algo_la-DatatipCreate.lo \
+	libscigui_algo_la-DatatipDelete.lo \
+	libscigui_algo_la-DatatipDrag.lo \
+	libscigui_algo_la-DatatipSetStyle.lo \
+	libscigui_algo_la-DatatipOrientation.lo
 am_libscigui_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscigui_algo_la_OBJECTS = $(am_libscigui_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -290,8 +299,18 @@ am__objects_5 = libscigui_la-sci_printsetupbox.lo \
 	libscigui_la-sci_uigetdir.lo libscigui_la-sci_uigetfile.lo \
 	libscigui_la-sci_displaytree.lo libscigui_la-sci_uiputfile.lo \
 	libscigui_la-sci_about.lo libscigui_la-sci_raise_window.lo \
-	libscigui_la-sci_usecanvas.lo \
-	libscigui_la-sci_fire_closing_finished.lo
+	libscigui_la-sci_usecanvas.lo libscigui_la-sci_useeditor.lo \
+	libscigui_la-sci_fire_closing_finished.lo \
+	libscigui_la-sci_openged.lo libscigui_la-sci_datatipcreate.lo \
+	libscigui_la-sci_datatipremove.lo \
+	libscigui_la-sci_plotbrowser.lo \
+	libscigui_la-sci_datatip_manager_mode.lo \
+	libscigui_la-sci_datatip_toggle.lo \
+	libscigui_la-sci_datatipmove.lo \
+	libscigui_la-sci_datatip_set_style.lo \
+	libscigui_la-sci_datatip_set_display.lo \
+	libscigui_la-sci_datatip_set_interp.lo \
+	libscigui_la-sci_datatip_set_orient.lo
 am_libscigui_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
 @GUI_TRUE@am_libscigui_la_rpath = -rpath $(pkglibdir)
@@ -762,7 +781,16 @@ src/jni/LookAndFeelManager.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
-src/jni/ScilabDisplayTree.cpp
+src/jni/ScilabDisplayTree.cpp \
+src/jni/EditorManager.cpp \
+src/jni/StartGED.cpp \
+src/jni/StartPlotBrowser.cpp \
+src/jni/DatatipManager.cpp \
+src/jni/DatatipCreate.cpp \
+src/jni/DatatipDelete.cpp \
+src/jni/DatatipDrag.cpp \
+src/jni/DatatipSetStyle.cpp \
+src/jni/DatatipOrientation.cpp
 
 GIWS_WRAPPERS = \
 src/jni/SwingView.giws.xml \
@@ -772,7 +800,11 @@ src/jni/Jxgetmouse.giws.xml \
 src/jni/LookAndFeelManager.giws.xml \
 src/jni/UIElementMapper.giws.xml \
 src/jni/Juigetfile.giws.xml \
-src/jni/ScilabDisplayTree.giws.xml
+src/jni/ScilabDisplayTree.giws.xml \
+src/jni/EditorManager.giws.xml \
+src/jni/Datatip.giws.xml \
+src/jni/StartGED.giws.xml \
+src/jni/StartPlotBrowser.giws.xml
 
 SWIG_WRAPPERS = src/jni/ScilabTermination.i 
 BUILT_SOURCES = $(am__append_1) $(am__append_2)
@@ -815,7 +847,19 @@ sci_gateway/cpp/sci_uiputfile.cpp \
 sci_gateway/cpp/sci_about.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp \
-sci_gateway/cpp/sci_fire_closing_finished.cpp
+sci_gateway/cpp/sci_useeditor.cpp \
+sci_gateway/cpp/sci_fire_closing_finished.cpp \
+sci_gateway/cpp/sci_openged.cpp \
+sci_gateway/cpp/sci_datatipcreate.cpp \
+sci_gateway/cpp/sci_datatipremove.cpp \
+sci_gateway/cpp/sci_plotbrowser.cpp \
+sci_gateway/cpp/sci_datatip_manager_mode.cpp \
+sci_gateway/cpp/sci_datatip_toggle.cpp \
+sci_gateway/cpp/sci_datatipmove.cpp \
+sci_gateway/cpp/sci_datatip_set_style.cpp \
+sci_gateway/cpp/sci_datatip_set_display.cpp \
+sci_gateway/cpp/sci_datatip_set_interp.cpp \
+sci_gateway/cpp/sci_datatip_set_orient.cpp
 
 libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
@@ -876,8 +920,8 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 # Generated with:
 #    $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png |sort -u
 libscigui_la_iconsdir = $(mydatadir)/
-nobase_libscigui_la_icons_DATA = images/icons/16x16/actions/document-new.png \
-images/icons/16x16/actions/code-navigator.png \
+nobase_libscigui_la_icons_DATA = images/icons/16x16/actions/color-fill.png \
+images/icons/16x16/actions/document-new.png \
 images/icons/16x16/actions/document-open.png \
 images/icons/16x16/actions/document-open-sci.png \
 images/icons/16x16/actions/document-print.png \
@@ -915,6 +959,7 @@ images/icons/16x16/actions/short.png \
 images/icons/16x16/actions/SizeColumnsToFit.png \
 images/icons/16x16/actions/system-search.png \
 images/icons/16x16/actions/transform-rotate.png \
+images/icons/16x16/actions/tree-collapse.png \
 images/icons/16x16/actions/variable-from-selection.png \
 images/icons/16x16/actions/variable-new.png \
 images/icons/16x16/actions/view-refresh.png \
@@ -957,12 +1002,9 @@ images/icons/16x16/status/folder-open.png \
 images/icons/16x16/status/line-found.png \
 images/icons/16x16/status/scilab-folder-open.png \
 images/icons/16x16/status/user-home-open.png \
-images/icons/256x256/apps/accessories-text-editor.png \
-images/icons/256x256/apps/puffin.png \
-images/icons/256x256/apps/rrze_table.png \
-images/icons/256x256/apps/system-search.png \
-images/icons/256x256/apps/utilities-system-monitor.png \
 images/icons/32x32/actions/edit-clear.png \
+images/icons/32x32/actions/tree-diagramm.png \
+images/icons/32x32/actions/tree-diagramm-delete.png \
 images/icons/32x32/apps/accessories-text-editor.png \
 images/icons/32x32/apps/graphic-window.png \
 images/icons/32x32/apps/rrze_table.png \
@@ -983,6 +1025,11 @@ images/icons/64x40/mimetypes/application-x-scilab-plot2d.png \
 images/icons/64x40/mimetypes/application-x-scilab-plot3d.png \
 images/icons/64x40/mimetypes/application-x-scilab-Sgrayplot.png \
 images/icons/64x40/mimetypes/application-x-scilab-surf.png \
+images/icons/256x256/apps/accessories-text-editor.png \
+images/icons/256x256/apps/puffin.png \
+images/icons/256x256/apps/rrze_table.png \
+images/icons/256x256/apps/system-search.png \
+images/icons/256x256/apps/utilities-system-monitor.png \
 images/icons/aboutscilab.png \
 images/icons/check-icon.png \
 images/icons/close-tab-on.png \
@@ -1182,6 +1229,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-ContextMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-CreateUIControl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-CreateUimenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-DatatipCreate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-DatatipDelete.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-DatatipDrag.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-DatatipManager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-DatatipOrientation.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-DatatipSetStyle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-EditorManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetConsoleShowHiddenHandles.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetScreenProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-GetUicontrolBackgroundColor.Plo@am__quote@
@@ -1239,6 +1293,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUimenuLabel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUiobjectEnable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SetUiobjectForegroundColor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-StartGED.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-StartPlotBrowser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-SwingView.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-Toolbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-UnitsConversion.Plo@am__quote@
@@ -1255,6 +1311,15 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-gw_gui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_about.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatip_manager_mode.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatip_set_display.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatip_set_interp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatip_set_orient.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatip_set_style.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatip_toggle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatipcreate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatipmove.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_datatipremove.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_delmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_displaytree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_exportUI.Plo@am__quote@
@@ -1265,6 +1330,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_helpbrowser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_messagebox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_mpopup.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_openged.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_plotbrowser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_printfigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_printsetupbox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_progressionbar.Plo@am__quote@
@@ -1284,6 +1351,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiwait.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_unsetmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_usecanvas.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_useeditor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_waitbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choice.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choose.Plo@am__quote@
@@ -2075,6 +2143,69 @@ libscigui_algo_la-ScilabDisplayTree.lo: src/jni/ScilabDisplayTree.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-ScilabDisplayTree.lo `test -f 'src/jni/ScilabDisplayTree.cpp' || echo '$(srcdir)/'`src/jni/ScilabDisplayTree.cpp
 
+libscigui_algo_la-EditorManager.lo: src/jni/EditorManager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-EditorManager.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-EditorManager.Tpo -c -o libscigui_algo_la-EditorManager.lo `test -f 'src/jni/EditorManager.cpp' || echo '$(srcdir)/'`src/jni/EditorManager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-EditorManager.Tpo $(DEPDIR)/libscigui_algo_la-EditorManager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/EditorManager.cpp' object='libscigui_algo_la-EditorManager.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-EditorManager.lo `test -f 'src/jni/EditorManager.cpp' || echo '$(srcdir)/'`src/jni/EditorManager.cpp
+
+libscigui_algo_la-StartGED.lo: src/jni/StartGED.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-StartGED.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-StartGED.Tpo -c -o libscigui_algo_la-StartGED.lo `test -f 'src/jni/StartGED.cpp' || echo '$(srcdir)/'`src/jni/StartGED.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-StartGED.Tpo $(DEPDIR)/libscigui_algo_la-StartGED.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/StartGED.cpp' object='libscigui_algo_la-StartGED.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-StartGED.lo `test -f 'src/jni/StartGED.cpp' || echo '$(srcdir)/'`src/jni/StartGED.cpp
+
+libscigui_algo_la-StartPlotBrowser.lo: src/jni/StartPlotBrowser.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-StartPlotBrowser.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-StartPlotBrowser.Tpo -c -o libscigui_algo_la-StartPlotBrowser.lo `test -f 'src/jni/StartPlotBrowser.cpp' || echo '$(srcdir)/'`src/jni/StartPlotBrowser.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-StartPlotBrowser.Tpo $(DEPDIR)/libscigui_algo_la-StartPlotBrowser.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/StartPlotBrowser.cpp' object='libscigui_algo_la-StartPlotBrowser.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-StartPlotBrowser.lo `test -f 'src/jni/StartPlotBrowser.cpp' || echo '$(srcdir)/'`src/jni/StartPlotBrowser.cpp
+
+libscigui_algo_la-DatatipManager.lo: src/jni/DatatipManager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-DatatipManager.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-DatatipManager.Tpo -c -o libscigui_algo_la-DatatipManager.lo `test -f 'src/jni/DatatipManager.cpp' || echo '$(srcdir)/'`src/jni/DatatipManager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-DatatipManager.Tpo $(DEPDIR)/libscigui_algo_la-DatatipManager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/DatatipManager.cpp' object='libscigui_algo_la-DatatipManager.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-DatatipManager.lo `test -f 'src/jni/DatatipManager.cpp' || echo '$(srcdir)/'`src/jni/DatatipManager.cpp
+
+libscigui_algo_la-DatatipCreate.lo: src/jni/DatatipCreate.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-DatatipCreate.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-DatatipCreate.Tpo -c -o libscigui_algo_la-DatatipCreate.lo `test -f 'src/jni/DatatipCreate.cpp' || echo '$(srcdir)/'`src/jni/DatatipCreate.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-DatatipCreate.Tpo $(DEPDIR)/libscigui_algo_la-DatatipCreate.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/DatatipCreate.cpp' object='libscigui_algo_la-DatatipCreate.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-DatatipCreate.lo `test -f 'src/jni/DatatipCreate.cpp' || echo '$(srcdir)/'`src/jni/DatatipCreate.cpp
+
+libscigui_algo_la-DatatipDelete.lo: src/jni/DatatipDelete.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-DatatipDelete.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-DatatipDelete.Tpo -c -o libscigui_algo_la-DatatipDelete.lo `test -f 'src/jni/DatatipDelete.cpp' || echo '$(srcdir)/'`src/jni/DatatipDelete.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-DatatipDelete.Tpo $(DEPDIR)/libscigui_algo_la-DatatipDelete.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/DatatipDelete.cpp' object='libscigui_algo_la-DatatipDelete.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-DatatipDelete.lo `test -f 'src/jni/DatatipDelete.cpp' || echo '$(srcdir)/'`src/jni/DatatipDelete.cpp
+
+libscigui_algo_la-DatatipDrag.lo: src/jni/DatatipDrag.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-DatatipDrag.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-DatatipDrag.Tpo -c -o libscigui_algo_la-DatatipDrag.lo `test -f 'src/jni/DatatipDrag.cpp' || echo '$(srcdir)/'`src/jni/DatatipDrag.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-DatatipDrag.Tpo $(DEPDIR)/libscigui_algo_la-DatatipDrag.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/DatatipDrag.cpp' object='libscigui_algo_la-DatatipDrag.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-DatatipDrag.lo `test -f 'src/jni/DatatipDrag.cpp' || echo '$(srcdir)/'`src/jni/DatatipDrag.cpp
+
+libscigui_algo_la-DatatipSetStyle.lo: src/jni/DatatipSetStyle.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-DatatipSetStyle.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-DatatipSetStyle.Tpo -c -o libscigui_algo_la-DatatipSetStyle.lo `test -f 'src/jni/DatatipSetStyle.cpp' || echo '$(srcdir)/'`src/jni/DatatipSetStyle.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-DatatipSetStyle.Tpo $(DEPDIR)/libscigui_algo_la-DatatipSetStyle.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/DatatipSetStyle.cpp' object='libscigui_algo_la-DatatipSetStyle.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-DatatipSetStyle.lo `test -f 'src/jni/DatatipSetStyle.cpp' || echo '$(srcdir)/'`src/jni/DatatipSetStyle.cpp
+
+libscigui_algo_la-DatatipOrientation.lo: src/jni/DatatipOrientation.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-DatatipOrientation.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-DatatipOrientation.Tpo -c -o libscigui_algo_la-DatatipOrientation.lo `test -f 'src/jni/DatatipOrientation.cpp' || echo '$(srcdir)/'`src/jni/DatatipOrientation.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_algo_la-DatatipOrientation.Tpo $(DEPDIR)/libscigui_algo_la-DatatipOrientation.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/DatatipOrientation.cpp' object='libscigui_algo_la-DatatipOrientation.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-DatatipOrientation.lo `test -f 'src/jni/DatatipOrientation.cpp' || echo '$(srcdir)/'`src/jni/DatatipOrientation.cpp
+
 libscigui_la-sci_printsetupbox.lo: sci_gateway/cpp/sci_printsetupbox.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_printsetupbox.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_printsetupbox.Tpo -c -o libscigui_la-sci_printsetupbox.lo `test -f 'sci_gateway/cpp/sci_printsetupbox.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_printsetupbox.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_printsetupbox.Tpo $(DEPDIR)/libscigui_la-sci_printsetupbox.Plo
@@ -2166,12 +2297,96 @@ libscigui_la-sci_usecanvas.lo: sci_gateway/cpp/sci_usecanvas.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_usecanvas.lo `test -f 'sci_gateway/cpp/sci_usecanvas.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_usecanvas.cpp
 
+libscigui_la-sci_useeditor.lo: sci_gateway/cpp/sci_useeditor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_useeditor.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_useeditor.Tpo -c -o libscigui_la-sci_useeditor.lo `test -f 'sci_gateway/cpp/sci_useeditor.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_useeditor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_useeditor.Tpo $(DEPDIR)/libscigui_la-sci_useeditor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_useeditor.cpp' object='libscigui_la-sci_useeditor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_useeditor.lo `test -f 'sci_gateway/cpp/sci_useeditor.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_useeditor.cpp
+
 libscigui_la-sci_fire_closing_finished.lo: sci_gateway/cpp/sci_fire_closing_finished.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_fire_closing_finished.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_fire_closing_finished.Tpo -c -o libscigui_la-sci_fire_closing_finished.lo `test -f 'sci_gateway/cpp/sci_fire_closing_finished.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fire_closing_finished.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_fire_closing_finished.Tpo $(DEPDIR)/libscigui_la-sci_fire_closing_finished.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_fire_closing_finished.cpp' object='libscigui_la-sci_fire_closing_finished.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_fire_closing_finished.lo `test -f 'sci_gateway/cpp/sci_fire_closing_finished.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fire_closing_finished.cpp
+
+libscigui_la-sci_openged.lo: sci_gateway/cpp/sci_openged.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_openged.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_openged.Tpo -c -o libscigui_la-sci_openged.lo `test -f 'sci_gateway/cpp/sci_openged.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_openged.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_openged.Tpo $(DEPDIR)/libscigui_la-sci_openged.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_openged.cpp' object='libscigui_la-sci_openged.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_openged.lo `test -f 'sci_gateway/cpp/sci_openged.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_openged.cpp
+
+libscigui_la-sci_datatipcreate.lo: sci_gateway/cpp/sci_datatipcreate.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_datatipcreate.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_datatipcreate.Tpo -c -o libscigui_la-sci_datatipcreate.lo `test -f 'sci_gateway/cpp/sci_datatipcreate.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatipcreate.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_datatipcreate.Tpo $(DEPDIR)/libscigui_la-sci_datatipcreate.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_datatipcreate.cpp' object='libscigui_la-sci_datatipcreate.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_datatipcreate.lo `test -f 'sci_gateway/cpp/sci_datatipcreate.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatipcreate.cpp
+
+libscigui_la-sci_datatipremove.lo: sci_gateway/cpp/sci_datatipremove.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_datatipremove.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_datatipremove.Tpo -c -o libscigui_la-sci_datatipremove.lo `test -f 'sci_gateway/cpp/sci_datatipremove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatipremove.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_datatipremove.Tpo $(DEPDIR)/libscigui_la-sci_datatipremove.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_datatipremove.cpp' object='libscigui_la-sci_datatipremove.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_datatipremove.lo `test -f 'sci_gateway/cpp/sci_datatipremove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatipremove.cpp
+
+libscigui_la-sci_plotbrowser.lo: sci_gateway/cpp/sci_plotbrowser.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_plotbrowser.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_plotbrowser.Tpo -c -o libscigui_la-sci_plotbrowser.lo `test -f 'sci_gateway/cpp/sci_plotbrowser.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_plotbrowser.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_plotbrowser.Tpo $(DEPDIR)/libscigui_la-sci_plotbrowser.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_plotbrowser.cpp' object='libscigui_la-sci_plotbrowser.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_plotbrowser.lo `test -f 'sci_gateway/cpp/sci_plotbrowser.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_plotbrowser.cpp
+
+libscigui_la-sci_datatip_manager_mode.lo: sci_gateway/cpp/sci_datatip_manager_mode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_datatip_manager_mode.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_datatip_manager_mode.Tpo -c -o libscigui_la-sci_datatip_manager_mode.lo `test -f 'sci_gateway/cpp/sci_datatip_manager_mode.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_manager_mode.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_datatip_manager_mode.Tpo $(DEPDIR)/libscigui_la-sci_datatip_manager_mode.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_datatip_manager_mode.cpp' object='libscigui_la-sci_datatip_manager_mode.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_datatip_manager_mode.lo `test -f 'sci_gateway/cpp/sci_datatip_manager_mode.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_manager_mode.cpp
+
+libscigui_la-sci_datatip_toggle.lo: sci_gateway/cpp/sci_datatip_toggle.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_datatip_toggle.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_datatip_toggle.Tpo -c -o libscigui_la-sci_datatip_toggle.lo `test -f 'sci_gateway/cpp/sci_datatip_toggle.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_toggle.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_datatip_toggle.Tpo $(DEPDIR)/libscigui_la-sci_datatip_toggle.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_datatip_toggle.cpp' object='libscigui_la-sci_datatip_toggle.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_datatip_toggle.lo `test -f 'sci_gateway/cpp/sci_datatip_toggle.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_toggle.cpp
+
+libscigui_la-sci_datatipmove.lo: sci_gateway/cpp/sci_datatipmove.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_datatipmove.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_datatipmove.Tpo -c -o libscigui_la-sci_datatipmove.lo `test -f 'sci_gateway/cpp/sci_datatipmove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatipmove.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_datatipmove.Tpo $(DEPDIR)/libscigui_la-sci_datatipmove.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_datatipmove.cpp' object='libscigui_la-sci_datatipmove.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_datatipmove.lo `test -f 'sci_gateway/cpp/sci_datatipmove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatipmove.cpp
+
+libscigui_la-sci_datatip_set_style.lo: sci_gateway/cpp/sci_datatip_set_style.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_datatip_set_style.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_datatip_set_style.Tpo -c -o libscigui_la-sci_datatip_set_style.lo `test -f 'sci_gateway/cpp/sci_datatip_set_style.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_set_style.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_datatip_set_style.Tpo $(DEPDIR)/libscigui_la-sci_datatip_set_style.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_datatip_set_style.cpp' object='libscigui_la-sci_datatip_set_style.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_datatip_set_style.lo `test -f 'sci_gateway/cpp/sci_datatip_set_style.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_set_style.cpp
+
+libscigui_la-sci_datatip_set_display.lo: sci_gateway/cpp/sci_datatip_set_display.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_datatip_set_display.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_datatip_set_display.Tpo -c -o libscigui_la-sci_datatip_set_display.lo `test -f 'sci_gateway/cpp/sci_datatip_set_display.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_set_display.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_datatip_set_display.Tpo $(DEPDIR)/libscigui_la-sci_datatip_set_display.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_datatip_set_display.cpp' object='libscigui_la-sci_datatip_set_display.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_datatip_set_display.lo `test -f 'sci_gateway/cpp/sci_datatip_set_display.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_set_display.cpp
+
+libscigui_la-sci_datatip_set_interp.lo: sci_gateway/cpp/sci_datatip_set_interp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_datatip_set_interp.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_datatip_set_interp.Tpo -c -o libscigui_la-sci_datatip_set_interp.lo `test -f 'sci_gateway/cpp/sci_datatip_set_interp.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_set_interp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_datatip_set_interp.Tpo $(DEPDIR)/libscigui_la-sci_datatip_set_interp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_datatip_set_interp.cpp' object='libscigui_la-sci_datatip_set_interp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_datatip_set_interp.lo `test -f 'sci_gateway/cpp/sci_datatip_set_interp.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_set_interp.cpp
+
+libscigui_la-sci_datatip_set_orient.lo: sci_gateway/cpp/sci_datatip_set_orient.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_datatip_set_orient.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_datatip_set_orient.Tpo -c -o libscigui_la-sci_datatip_set_orient.lo `test -f 'sci_gateway/cpp/sci_datatip_set_orient.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_set_orient.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigui_la-sci_datatip_set_orient.Tpo $(DEPDIR)/libscigui_la-sci_datatip_set_orient.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_datatip_set_orient.cpp' object='libscigui_la-sci_datatip_set_orient.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_datatip_set_orient.lo `test -f 'sci_gateway/cpp/sci_datatip_set_orient.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_set_orient.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

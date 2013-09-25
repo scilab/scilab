@@ -11,7 +11,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipRedraw">
     <refnamediv>
         <refname>datatipRedraw</refname>
-        <refpurpose>Redraw all datatips  after a 3D rotation to adjust their positions</refpurpose>
+        <refpurpose>
+            Redraw all datatips  after a 3D rotation to adjust their positions. <emphasis role="bold">Obsolete function. </emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -76,6 +78,17 @@
             ax.rotation_angles=[35 45];// first plot below
             datatipRedraw() //second plot below
         </scilab:image>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>
+                    Function tagged obsolete. Will be removed in 5.5.0.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

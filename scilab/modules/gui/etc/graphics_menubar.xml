@@ -218,11 +218,29 @@
         </submenu>
         <separator/>
         <submenu label="&amp;Start datatip manager" icon="datatips">
-            <callback instruction='datatipManagerMode([SCILAB_FIGURE_ID],"on");' type="0"/>
+            <callback instruction='datatipManagerMode(get_figure_handle([SCILAB_FIGURE_ID]), %t)' type="-2"/>
         </submenu>
         <submenu label="Stop datatip manager">
-            <callback instruction='datatipManagerMode([SCILAB_FIGURE_ID],"off");' type="0"/>
+            <callback instruction='datatipManagerMode(get_figure_handle([SCILAB_FIGURE_ID]), %f)' type="-2"/>
         </submenu>
+        
+        <submenu label="Start curve data modify" icon="data_modify">
+            <callback instruction='useeditor([SCILAB_FIGURE_ID], %t);' type="0"/>
+        </submenu>
+        <submenu label="Stop curve data modify">
+            <callback instruction='useeditor([SCILAB_FIGURE_ID], %f);' type="0"/>
+        </submenu>
+        
+        <submenu label="Plot Browser">
+            <callback instruction="plotbrowser([SCILAB_FIGURE_ID])" type="-2"/>
+        </submenu>
+        
+        <submenu label="Scilab Graphic Editor - GED">
+            <submenu label="&amp;Quick Editor">
+                <callback instruction="openged([SCILAB_FIGURE_ID])" type="-2"/>
+            </submenu>
+        </submenu>
+
     </menu>
     
     <!--

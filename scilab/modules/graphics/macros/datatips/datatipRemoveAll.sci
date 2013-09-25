@@ -38,14 +38,15 @@ function datatipRemoveAll(curve_handles)
     fig.immediate_drawing="off"
     for k=1:size(curve_handles,"*")
         ck=curve_handles(k);
-        ud=datatipGetStruct(ck)// the curve datatips data structure
-        if typeof(ud)=="datatips" then
-            if ud.tips <> []
-                delete(ud.tips);
+
+        num = 1;
+        for t=1:size(ck.children,"*")
+            tip = ck.children(num);
+            if tip.type == "Datatip" then
+                datatipRemove(tip);
+            else
+                num = num + 1;
             end
-            ud.tips=[]
-            ud.selected=0;
-            datatipSetStruct(ck,ud)
         end
     end
     fig.immediate_drawing=id

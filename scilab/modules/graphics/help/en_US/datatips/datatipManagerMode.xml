@@ -11,7 +11,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipManagerMode">
     <refnamediv>
         <refname>datatipManagerMode</refname>
-        <refpurpose>Set or toggles the data tips mode. </refpurpose>
+        <refpurpose>Set or toggles the datatips mode. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -41,8 +41,7 @@
         <title>Description</title>
         <para>
             When enabled, the data tips mode allow
-            to add and edit tips at selected points of polylines. The selection is
-            made by a right click on the selected point.
+            to add and edit tips at selected points of polylines.
         </para>
         <para>
             <literal>datatipManagerMode()</literal>, toggles the data tips mode
@@ -68,7 +67,7 @@
         <programlisting role="example"><![CDATA[
        t=linspace(0,10,200);
        plot(t,sin(t))
-       datatipManagerMode('on')
+       datatipManagerMode(gcf())
        //now click somewhere on the curve
     ]]></programlisting>
     </refsection>

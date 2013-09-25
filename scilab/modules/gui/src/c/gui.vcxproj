@@ -198,12 +198,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipmove.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_display.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_interp.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_orient.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_style.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_toggle.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_manager_mode.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_plotbrowser.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_useeditor.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_fire_closing_finished.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_openged.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipcreate.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipremove.cpp" />
     <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolTooltipString.cpp" />
     <ClCompile Include="..\cpp\SetConsoleShowHiddenHandles.cpp" />
+    <ClCompile Include="..\jni\DatatipCreate.cpp" />
+    <ClCompile Include="..\jni\DatatipSetStyle.cpp" />
+    <ClCompile Include="..\jni\DatatipDelete.cpp" />
+    <ClCompile Include="..\jni\DatatipDrag.cpp" />
+    <ClCompile Include="..\jni\DatatipManager.cpp" />
+    <ClCompile Include="..\jni\EditorManager.cpp" />
+    <ClCompile Include="..\jni\DatatipOrientation.cpp" />
+    <ClCompile Include="..\jni\StartGED.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolTooltipString.cpp" />
     <ClCompile Include="..\jni\ScilabTermination_wrap.c" />
+    <ClCompile Include="..\jni\StartPlotBrowser.cpp" />
     <ClCompile Include="..\jni\SwingView.cpp" />
     <ClCompile Include="addmenu.c" />
     <ClCompile Include="buildMainWindowTitle.c" />
@@ -451,6 +472,14 @@
     <ClInclude Include="..\..\includes\TerminateGui.h" />
     <ClInclude Include="..\..\includes\Toolbar.h" />
     <ClInclude Include="..\..\includes\Widget.h" />
+    <ClInclude Include="..\jni\DatatipCreate.hxx" />
+    <ClInclude Include="..\jni\DatatipSetStyle.hxx" />
+    <ClInclude Include="..\jni\DatatipDelete.hxx" />
+    <ClInclude Include="..\jni\DatatipDrag.hxx" />
+    <ClInclude Include="..\jni\DatatipManager.hxx" />
+    <ClInclude Include="..\jni\DatatipOrientation.hxx" />
+    <ClInclude Include="..\jni\EditorManager.hxx" />
+    <ClInclude Include="..\jni\StartGED.hxx" />
     <ClInclude Include="..\cpp\CallClipboard.hxx" />
     <ClInclude Include="..\cpp\CallColorChooser.hxx" />
     <ClInclude Include="..\cpp\CallFontChooser.hxx" />
@@ -517,6 +546,7 @@
     <ClInclude Include="..\jni\Jxgetmouse.hxx" />
     <ClInclude Include="..\jni\LookAndFeelManager.hxx" />
     <ClInclude Include="..\jni\ScilabDisplayTree.hxx" />
+    <ClInclude Include="..\jni\StartPlotBrowser.hxx" />
     <ClInclude Include="..\jni\SwingView.hxx" />
     <ClInclude Include="..\jni\UIElementMapper.hxx" />
     <ClInclude Include="buildMainWindowTitle.h" />
