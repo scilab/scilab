@@ -49,10 +49,9 @@ BDF methods with direct and preconditioned Krylov linear solvers, based on ODEPA
   editvar).
   
 * Added lighting effect for plot of surfaces. Lighting can be enabled
-  creating light objects or disabled deleting them. The following functions
-  were introduced:
-  - light_create - Creates a light object
-  - light_delete - Deletes the given light.
+  creating light objects or disabled deleting them. The following function
+  was introduced:
+  - light - Creates a light graphic object
 
 * Localization:
  - Multiple domains in localization managed.
