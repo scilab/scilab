@@ -62,12 +62,12 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
 #else
     char *rp = NULL;
     int lenPath = (int)strlen(_Path);
-
-    rp = realpath(_Path, _FullPath);
     int lenFullPath = 0;
-    lenFullPath = (int)strlen(_FullPath);
     int haveFileSep = ((lenPath > 1) && isDirSeparator(_Path[lenPath - 1]));
     int addFileSep = 0;
+
+    rp = realpath(_Path, _FullPath);
+    lenFullPath = (int)strlen(_FullPath);
 
     if (rp == NULL)
     {

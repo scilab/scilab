@@ -121,15 +121,15 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
     size_t iCharLen = 0;
     wchar_t *pwstr = _wide;
     char* pchar = NULL;
+    /* The value of MB_CUR_MAX is the maximum number of bytes
+    in a multibyte character for the current locale. */
+    int iMaxLen = (int)wcslen(_wide) * MB_CUR_MAX ;
 
     if (_wide == NULL)
     {
         return NULL;
     }
 
-    /* The value of MB_CUR_MAX is the maximum number of bytes
-       in a multibyte character for the current locale. */
-    int iMaxLen = (int)wcslen(_wide) * MB_CUR_MAX ;
     pchar = (char*) MALLOC(( iMaxLen + 1) * sizeof(char));
     if (pchar == NULL)
     {

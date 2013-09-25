@@ -50,8 +50,9 @@ char *createtempfilename(const char *prefix, BOOL bShortFormat)
     if (TmpDir)
     {
         char TempFileName[PATH_MAX];
+        int fd = 0;
         sprintf(TempFileName, "%s/%sXXXXXX", TmpDir, prefix);
-        int fd = mkstemp(TempFileName);
+        fd = mkstemp(TempFileName);
         if (fd != -1)
         {
             close(fd);
