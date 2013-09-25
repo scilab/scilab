@@ -18,7 +18,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,7 +26,6 @@ import javax.swing.border.TitledBorder;
 
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;

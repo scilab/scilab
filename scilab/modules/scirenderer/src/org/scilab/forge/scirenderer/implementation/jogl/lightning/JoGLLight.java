@@ -30,7 +30,9 @@ public class JoGLLight implements Light {
     private Color specularColor = new Color(0, 0, 0);
     private Vector3d position = new Vector3d(0, 0, 0);
     private Vector3d spotDirection = new Vector3d(0, 0, -1);
+    private Vector3d direction = new Vector3d(0, 0, 0);
     private float spotAngle = 180;
+    private boolean isDirectional = false;
 
     /**
      * Default constructor.
@@ -53,7 +55,13 @@ public class JoGLLight implements Light {
         gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_AMBIENT, ambientColor.getRGBComponents(null), 0);
         gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_DIFFUSE, diffuseColor.getRGBComponents(null), 0);
         gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_SPECULAR, specularColor.getRGBComponents(null), 0);
-        gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_POSITION, position.getDataAsFloatArray(4), 0);
+        if (isDirectional) {
+            gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_POSITION, direction.getDataAsFloatArray(4), 0);
+        } else {
+            float[] pos = position.getDataAsFloatArray(4);
+            pos[3] = 1.0f;
+            gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_POSITION, pos, 0);
+        }
         gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_SPOT_DIRECTION, spotDirection.getDataAsFloatArray(4), 0);
     }
 
@@ -117,8 +125,25 @@ public class JoGLLight implements Light {
     @Override
     public void setPosition(Vector3d position) {
         if (position != null) {
+            isDirectional = false;
             this.position = position;
-            gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_POSITION, position.getDataAsFloatArray(4), 0);
+            float[] pos = position.getDataAsFloatArray(4);
+            pos[3] = 1.0f;
+            gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_POSITION, pos, 0);
+        }
+    }
+
+    public Vector3d getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Vector3d direction) {
+        if (direction != null) {
+            isDirectional = true;
+            this.direction = direction;
+            float[] dir = direction.getDataAsFloatArray(4);
+            dir[3] = 0.0f;
+            gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_POSITION, dir, 0);
         }
     }
 

@@ -20,7 +20,6 @@ import javax.swing.JTextArea;
 
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
 import org.scilab.modules.gui.ScilabTermination;
 import org.scilab.modules.gui.bridge.CallScilabBridge;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;

@@ -12,8 +12,6 @@
 
 package org.scilab.modules.graph.io;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -22,7 +20,6 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabInteger;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
-import org.scilab.modules.types.ScilabType;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 

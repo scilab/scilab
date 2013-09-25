@@ -41,6 +41,11 @@ int get_title_property(void* _pvCtx, char* pobjUID)
     int *piType = &iType;
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    if (piType == NULL)
+    {
+        Scierror(999, _("Wrong value for '%s' property.\n"), "type");
+        return -1;
+    }
 
     if (iType != __GO_AXES__)
     {

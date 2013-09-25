@@ -34,6 +34,9 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
+import org.scilab.modules.graphic_objects.lighting.ColorTriplet;
+import org.scilab.modules.graphic_objects.lighting.Light;
+import org.scilab.modules.graphic_objects.lighting.Light.LightProperty;
 
 import java.util.ArrayList;
 
@@ -2302,9 +2305,6 @@ public class Axes extends GraphicObject {
         return UpdateStatus.NoChange;
     }
 
-    /**
-     * @return Type as String
-     */
     public Integer getType() {
         return GraphicObjectProperties.__GO_AXES__;
     }

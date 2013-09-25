@@ -297,8 +297,8 @@ public abstract class ContextUpdate extends BasicBlock {
          *            the parent
          * @return the port list mapped by port type
          */
-        public static Map<IOBlocks, List<mxICell>> getAllBlocks(SuperBlock parent) {
-            final EnumMap<IOBlocks, List<mxICell>> ret = new EnumMap<IOBlocks, List<mxICell>>(IOBlocks.class);
+        public static Map<IOBlocks, List<BasicBlock>> getAllBlocks(SuperBlock parent) {
+            final EnumMap<IOBlocks, List<BasicBlock>> ret = new EnumMap<IOBlocks, List<BasicBlock>>(IOBlocks.class);
 
             SuperBlockDiagram graph = parent.getChild();
             if (graph == null) {
@@ -308,7 +308,7 @@ public abstract class ContextUpdate extends BasicBlock {
 
             /* Allocation */
             for (IOBlocks b : IOBlocks.values()) {
-                ret.put(b, new ArrayList<mxICell>());
+                ret.put(b, new ArrayList<BasicBlock>());
             }
 
             /* Loop all over the children */

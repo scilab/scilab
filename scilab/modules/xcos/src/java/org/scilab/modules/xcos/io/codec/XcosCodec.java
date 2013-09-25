@@ -15,7 +15,6 @@ package org.scilab.modules.xcos.io.codec;
 import org.scilab.modules.graph.io.ScilabObjectCodec;
 import org.scilab.modules.types.ScilabList;
 import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;

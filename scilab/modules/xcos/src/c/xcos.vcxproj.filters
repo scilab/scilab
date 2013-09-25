@@ -71,6 +71,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalMove.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosPalGet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\jni\Xcos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

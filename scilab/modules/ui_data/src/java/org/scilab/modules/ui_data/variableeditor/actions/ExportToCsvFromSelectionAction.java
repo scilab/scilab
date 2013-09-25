@@ -19,10 +19,7 @@ import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
-import org.scilab.modules.ui_data.UI_data;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
-import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 
 /**

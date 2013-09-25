@@ -356,11 +356,11 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
         // Assume that the children are sorted after decode
         // blk.sortChildren();
         final Map<IOBlocks, List<mxICell>> ports = IOBlocks.getAllPorts(parent);
-        final Map<IOBlocks, List<mxICell>> blocks = IOBlocks.getAllBlocks(parent);
+        final Map<IOBlocks, List<BasicBlock>> blocks = IOBlocks.getAllBlocks(parent);
 
         for (final IOBlocks io : IOBlocks.values()) {
             final List<mxICell> port = ports.get(io);
-            final List<mxICell> block = blocks.get(io);
+            final List<BasicBlock> block = blocks.get(io);
 
             final int len = Math.min(port.size(), block.size());
             for (int i = 0; i < len; i++) {

@@ -14,6 +14,8 @@ package org.scilab.modules.graphic_objects.surface;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.graphic_objects.lighting.ColorTriplet;
+import org.scilab.modules.graphic_objects.lighting.Material;
 
 /**
  * Surface class
@@ -37,6 +39,9 @@ public abstract class Surface extends ClippableContouredObject {
     /** Back-facing facets color */
     private int hiddenColor;
 
+    /** material properties used for lighting */
+    private Material material;
+
     /** Constructor */
     public Surface() {
         super();
@@ -44,6 +49,7 @@ public abstract class Surface extends ClippableContouredObject {
         colorMode = 0;
         colorFlag = 0;
         hiddenColor = 0;
+        material = new Material();
     }
 
     /**
@@ -61,6 +67,16 @@ public abstract class Surface extends ClippableContouredObject {
                 return SurfaceProperty.COLORFLAG;
             case __GO_HIDDEN_COLOR__ :
                 return SurfaceProperty.HIDDENCOLOR;
+            case __GO_AMBIENTCOLOR__ :
+                return ColorTriplet.ColorTripletProperty.AMBIENTCOLOR;
+            case __GO_DIFFUSECOLOR__ :
+                return ColorTriplet.ColorTripletProperty.DIFFUSECOLOR;
+            case __GO_SPECULARCOLOR__ :
+                return ColorTriplet.ColorTripletProperty.SPECULARCOLOR;
+            case __GO_COLOR_MATERIAL__ :
+                return Material.MaterialProperty.COLOR_MATERIAL;
+            case __GO_MATERIAL_SHININESS__ :
+                return Material.MaterialProperty.SHININESS;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -72,17 +88,38 @@ public abstract class Surface extends ClippableContouredObject {
      * @return the property value
      */
     public Object getProperty(Object property) {
-        if (property == SurfaceProperty.SURFACEMODE) {
-            return getSurfaceMode();
-        } else if (property == SurfaceProperty.COLORMODE) {
-            return getColorMode();
-        } else if (property == SurfaceProperty.COLORFLAG) {
-            return getColorFlag();
-        } else if (property == SurfaceProperty.HIDDENCOLOR) {
-            return getHiddenColor();
-        } else {
-            return super.getProperty(property);
+        if (property instanceof SurfaceProperty) {
+            SurfaceProperty sp = (SurfaceProperty)property;
+            switch (sp) {
+                case SURFACEMODE:
+                    return getSurfaceMode();
+                case COLORMODE:
+                    return getColorMode();
+                case COLORFLAG:
+                    return getColorFlag();
+                case HIDDENCOLOR:
+                    return getHiddenColor();
+            }
+        } else if (property instanceof Material.MaterialProperty) {
+            Material.MaterialProperty mp = (Material.MaterialProperty)property;
+            switch (mp) {
+                case COLOR_MATERIAL:
+                    return getColorMaterialMode();
+                case SHININESS:
+                    return getMaterialShininess();
+            }
+        } else if (property instanceof ColorTriplet.ColorTripletProperty) {
+            ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
+            switch (cp) {
+                case AMBIENTCOLOR:
+                    return getMaterialAmbientColor();
+                case DIFFUSECOLOR:
+                    return getMaterialDiffuseColor();
+                case SPECULARCOLOR:
+                    return getMaterialSpecularColor();
+            }
         }
+        return super.getProperty(property);
     }
 
     /**
@@ -92,19 +129,43 @@ public abstract class Surface extends ClippableContouredObject {
      * @return true if the property has been set, false otherwise
      */
     public UpdateStatus setProperty(Object property, Object value) {
-
-        if (property == SurfaceProperty.SURFACEMODE) {
-            setSurfaceMode((Boolean) value);
-        } else if (property == SurfaceProperty.COLORMODE) {
-            setColorMode((Integer) value);
-        } else if (property == SurfaceProperty.COLORFLAG) {
-            setColorFlag((Integer) value);
-        } else if (property == SurfaceProperty.HIDDENCOLOR) {
-            setHiddenColor((Integer) value);
+        if (property instanceof SurfaceProperty) {
+            SurfaceProperty sp = (SurfaceProperty)property;
+            switch (sp) {
+                case SURFACEMODE:
+                    setSurfaceMode((Boolean) value);
+                    break;
+                case COLORMODE:
+                    setColorMode((Integer) value);
+                    break;
+                case COLORFLAG:
+                    setColorFlag((Integer) value);
+                    break;
+                case HIDDENCOLOR:
+                    setHiddenColor((Integer) value);
+                    break;
+            }
+        } else if (property instanceof Material.MaterialProperty) {
+            Material.MaterialProperty mp = (Material.MaterialProperty)property;
+            switch (mp) {
+                case COLOR_MATERIAL:
+                    return setColorMaterialMode((Boolean)value);
+                case SHININESS:
+                    return setMaterialShininess((Double)value);
+            }
+        } else if (property instanceof ColorTriplet.ColorTripletProperty) {
+            ColorTriplet.ColorTripletProperty cp = (ColorTriplet.ColorTripletProperty)property;
+            switch (cp) {
+                case AMBIENTCOLOR:
+                    return setMaterialAmbientColor((Double[])value);
+                case DIFFUSECOLOR:
+                    return setMaterialDiffuseColor((Double[])value);
+                case SPECULARCOLOR:
+                    return setMaterialSpecularColor((Double[])value);
+            }
         } else {
             return super.setProperty(property, value);
         }
-
         return UpdateStatus.Success;
     }
 
@@ -165,4 +226,91 @@ public abstract class Surface extends ClippableContouredObject {
         this.hiddenColor = hiddenColor;
     }
 
+    /**
+     * Sets the color-material mode, that is,
+     * use the surface color as diffuse color
+     * @param status if true enables color-material
+     */ 
+    public UpdateStatus setColorMaterialMode(Boolean status) {
+        return material.setColorMaterialMode(status);
+    }
+
+    /**
+     * @return if color-material is enabled.
+     */
+    public Boolean getColorMaterialMode() {
+        return material.getColorMaterialMode();
+    }
+
+    /**
+     * @return the ambient color of the material.
+     */
+    public Double[] getMaterialAmbientColor() {
+        return material.getAmbientColor();
+    }
+
+    /**
+     * @param the new ambient color of the material.
+     */
+    public UpdateStatus setMaterialAmbientColor(Double[] color) {
+        return material.setAmbientColor(color);
+    }
+
+    /**
+     * @return the diffuse color of the material.
+     */
+    public Double[] getMaterialDiffuseColor() {
+        return material.getDiffuseColor();
+    }
+
+    /**
+     * @param the new diffuse color of the material.
+     */
+    public UpdateStatus setMaterialDiffuseColor(Double[] color) {
+        return material.setDiffuseColor(color);
+    }
+
+    /**
+     * @return the specular color of the material.
+     */
+    public Double[] getMaterialSpecularColor() {
+        return material.getSpecularColor();
+    }
+
+    /**
+     * @param the new specular color of the material.
+     */
+    public UpdateStatus setMaterialSpecularColor(Double[] color) {
+        return material.setSpecularColor(color);
+    }
+
+    /**
+     * @return the shininess level of the material.
+     */
+    public Double getMaterialShininess() {
+        return material.getShininess();
+    }
+
+    /**
+     * @param the new shininess level of the material.
+     */
+    public UpdateStatus setMaterialShininess(Double s) {
+        return material.setShininess(s);
+    }
+
+    /**
+     * @return the material.
+     */
+    public Material getMaterial() {
+        return material;
+    }
+
+    /**
+     * @param the new material.
+     */
+    public void setMaterial(Material material) {
+        if (material != null) {
+            this.material = material;
+        }
+    }
 }

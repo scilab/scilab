@@ -225,7 +225,8 @@ am__objects_4 = libscigraphic_objects_la-createGraphicObject.lo \
 	libscigraphic_objects_la-CurrentSubwin.lo \
 	libscigraphic_objects_la-createObjectData.lo \
 	libscigraphic_objects_la-pickSurface.lo \
-	libscigraphic_objects_la-Texture.lo
+	libscigraphic_objects_la-Texture.lo \
+	libscigraphic_objects_la-NormalGenerator.lo
 am_libscigraphic_objects_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libscigraphic_objects_la_OBJECTS =  \
@@ -722,7 +723,8 @@ GRAPHIC_OBJECTS_CXX_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/CurrentSubwin.cpp \
 								src/cpp/createObjectData.cpp \
 								src/cpp/pickSurface.cpp \
-								src/cpp/Texture.cpp
+								src/cpp/Texture.cpp \
+								src/cpp/NormalGenerator.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -877,6 +879,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonGridMatplotData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonGridMatplotDataDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonPolylineData.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NormalGenerator.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-ObjectData_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-Plot3DDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-PolylineData_wrap.Plo@am__quote@
@@ -1261,6 +1264,13 @@ libscigraphic_objects_la-Texture.lo: src/cpp/Texture.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/Texture.cpp' object='libscigraphic_objects_la-Texture.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-Texture.lo `test -f 'src/cpp/Texture.cpp' || echo '$(srcdir)/'`src/cpp/Texture.cpp
+
+libscigraphic_objects_la-NormalGenerator.lo: src/cpp/NormalGenerator.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-NormalGenerator.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-NormalGenerator.Tpo -c -o libscigraphic_objects_la-NormalGenerator.lo `test -f 'src/cpp/NormalGenerator.cpp' || echo '$(srcdir)/'`src/cpp/NormalGenerator.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscigraphic_objects_la-NormalGenerator.Tpo $(DEPDIR)/libscigraphic_objects_la-NormalGenerator.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/NormalGenerator.cpp' object='libscigraphic_objects_la-NormalGenerator.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-NormalGenerator.lo `test -f 'src/cpp/NormalGenerator.cpp' || echo '$(srcdir)/'`src/cpp/NormalGenerator.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

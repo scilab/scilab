@@ -48,6 +48,12 @@ int get_segs_color_property(void* _pvCtx, char* pobjUID)
 
     /* convert from int array to double one. */
     getGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, jni_int, (void**)&piNbSegs);
+    if (piNbSegs == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "segs_color");
+        return -1;
+    }
+
     status = sciReturnRowIntVector(_pvCtx, segsColors, iNbSegs);
     return status;
 }

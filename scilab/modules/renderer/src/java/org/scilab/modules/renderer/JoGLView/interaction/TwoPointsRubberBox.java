@@ -11,9 +11,6 @@
 
 package org.scilab.modules.renderer.JoGLView.interaction;
 
-import java.awt.Point;
-
-import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 /**

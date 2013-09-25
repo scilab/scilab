@@ -14,7 +14,6 @@ package org.scilab.modules.renderer.JoGLView.util;
 import com.jogamp.opengl.util.GLBuffers;
 
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 

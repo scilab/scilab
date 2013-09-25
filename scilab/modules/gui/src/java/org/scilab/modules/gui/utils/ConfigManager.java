@@ -14,31 +14,13 @@ package org.scilab.modules.gui.utils;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.io.File;
-import java.io.IOException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
-import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
-import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 /**
  * Management of the Console configuration file

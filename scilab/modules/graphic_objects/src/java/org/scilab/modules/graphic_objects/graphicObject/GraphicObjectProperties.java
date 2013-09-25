@@ -332,5 +332,12 @@ public class GraphicObjectProperties {
     public static final int __GO_DATATIP_DISPLAY_FNC__ = 309;
     public static final int __GO_DATATIP_BOX_MODE__ = 310;
     public static final int __GO_DATATIP_LABEL_MODE__ = 311;
+    public static final int __GO_AMBIENTCOLOR__ = 312;
+    public static final int __GO_DIFFUSECOLOR__ = 313;
+    public static final int __GO_SPECULARCOLOR__ = 314;
+    public static final int __GO_COLOR_MATERIAL__ = 315;
+    public static final int __GO_MATERIAL_SHININESS__ = 316;
+    public static final int __GO_LIGHT__ = 317;
+    public static final int __GO_LIGHT_TYPE__ = 318;
 
 }

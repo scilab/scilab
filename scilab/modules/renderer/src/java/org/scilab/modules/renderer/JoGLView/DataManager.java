@@ -145,6 +145,7 @@ public class DataManager {
 
 
     private final Map<String, ElementsBuffer> vertexBufferMap = new HashMap<String, ElementsBuffer>();
+    private final Map<String, ElementsBuffer> normalBufferMap = new HashMap<String, ElementsBuffer>();
     private final Map<String, ElementsBuffer> colorBufferMap = new ConcurrentHashMap<String, ElementsBuffer>();
     private final Map<String, ElementsBuffer> texturesCoordinatesBufferMap = new HashMap<String, ElementsBuffer>();
     private final Map<String, IndicesBuffer> indexBufferMap = new HashMap<String, IndicesBuffer>();
@@ -174,6 +175,23 @@ public class DataManager {
             fillVertexBuffer(vertexBuffer, id);
             vertexBufferMap.put(id, vertexBuffer);
             return vertexBuffer;
+        }
+    }
+
+    /**
+     * Return the normal buffer of the given object.
+     * @param id the given object Id.
+     * @return the vertex buffer of the given object.
+     * @throws ObjectRemovedException if the object is now longer present.
+     */
+    public ElementsBuffer getNormalBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+        if (normalBufferMap.containsKey(id)) {
+            return normalBufferMap.get(id);
+        } else {
+            ElementsBuffer normalBuffer = canvas.getBuffersManager().createElementsBuffer();
+            fillNormalBuffer(normalBuffer, id);
+            normalBufferMap.put(id, normalBuffer);
+            return normalBuffer;
         }
     }
 
@@ -309,6 +327,11 @@ public class DataManager {
             updateVertexBuffer(vertexBuffer, id, coordinateMask);
         }
 
+        ElementsBuffer normalBuffer = normalBufferMap.get(id);
+        if (normalBuffer != null) {
+            fillNormalBuffer(normalBuffer, id);
+        }
+
         /*
          * To update the index and wire index buffers, on the contrary to updateVertexBuffer, we must perform a complete fill.
          * That is because IndicesBuffer's getData method returns a read-only buffer, which cannot be written to, as is
@@ -339,6 +362,11 @@ public class DataManager {
         if (vertexBufferMap.containsKey(id)) {
             canvas.getBuffersManager().dispose(vertexBufferMap.get(id));
             vertexBufferMap.remove(id);
+        }
+
+        if (normalBufferMap.containsKey(id)) {
+            canvas.getBuffersManager().dispose(normalBufferMap.get(id));
+            normalBufferMap.remove(id);
         }
 
         if (colorBufferMap.containsKey(id)) {
@@ -421,6 +449,13 @@ public class DataManager {
         FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
         MainDataLoader.fillVertices(id, data, 4, coordinateMask, DEFAULT_SCALE, DEFAULT_TRANSLATE, logMask);
         vertexBuffer.setData(data, 4);
+    }
+
+    private void fillNormalBuffer(ElementsBuffer normalBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
+        int length = MainDataLoader.getDataSize(id);
+        FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
+        MainDataLoader.fillNormals(id, getVertexBuffer(id).getData(), data, 4);
+        normalBuffer.setData(data, 4);
     }
 
     private void updateVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) throws ObjectRemovedException {

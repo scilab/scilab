@@ -52,7 +52,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 166
+#define NB_PROPERTIES 173
 
 /**
 * list of all property names and associated functions in scilab
@@ -225,6 +225,13 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
     {"tip_box_mode", set_tip_box_mode_property},
     {"tip_label_mode", set_tip_label_mode_property},
     {"tip_disp_function", set_tip_disp_function_property},
+    {"ambient_color", set_ambient_color_property},
+    {"diffuse_color", set_diffuse_color_property},
+    {"specular_color", set_specular_color_property},
+    {"use_color_material", set_use_color_material_property},
+    {"material_shininess", set_material_shininess_property},
+    {"light_type", set_light_type_property},
+    {"direction", set_direction_property},
     {"image_type", set_image_type_property}
 };
 

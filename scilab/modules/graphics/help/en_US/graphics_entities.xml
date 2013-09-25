@@ -275,6 +275,20 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>Light: </term>
+                <listitem>
+                    <para>
+                        Lights in scilab aproximates real world lighting where the appearence of
+                        a surface is given by interactions between light rays and the material properties of the
+                        surface. Because simulate real world lighting is complex
+                        and computationaly expesive, one uses a simplified model.
+                    </para>
+                    <para>
+                        See <link linkend="light_properties">light entity properties</link> for details.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

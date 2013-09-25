@@ -36,7 +36,6 @@ import javax.media.opengl.GLException;
 import javax.media.opengl.GLPbuffer;
 import javax.media.opengl.GLProfile;
 import javax.swing.SwingUtilities;
-import jogamp.opengl.GLContextImpl;
 
 /**
  * JoGL implementation of a Canvas.

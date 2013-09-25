@@ -29,10 +29,9 @@ int get_figure_closerequestfcn_property(void* _pvCtx, char* pobjUID)
     int *piType = &iType;
 
     getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
-
-    if (iType != __GO_FIGURE__)
+    if (piType == NULL || iType != __GO_FIGURE__)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "closerequestfcn");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
         return -1;
     }
 

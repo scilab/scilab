@@ -75,7 +75,8 @@ GRAPHIC_OBJECTS_CXX_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/CurrentSubwin.cpp \
 								src/cpp/createObjectData.cpp \
 								src/cpp/pickSurface.cpp \
-								src/cpp/Texture.cpp
+								src/cpp/Texture.cpp \
+								src/cpp/NormalGenerator.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 

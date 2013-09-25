@@ -14,8 +14,8 @@ function x=bytecode(f)
     if type(f)==8 then //bytecode to function
         u=mopen(TMPDIR+"/%fun.bin","wb");
         name_x=[673720353 673720360 673720360 673720360 673720360 673720360]
-        mput(int32([name_x  13]),"l",u)
-        mput(f,"l",u)
+        mput(int32([name_x  13]),"i",u)
+        mput(f,"i",u)
         mclose(u)
         load(TMPDIR+"/%fun.bin")
     elseif type(f)==13 then //function to bytecode

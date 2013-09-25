@@ -23,6 +23,7 @@
 #include "Plot3DDecomposer.hxx"
 #include "PolylineDecomposer.hxx"
 #include "TriangleMeshFecDataDecomposer.hxx"
+#include "NormalGenerator.hxx"
 
 extern "C"
 {
@@ -143,6 +144,49 @@ void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, i
             break;
         case __GO_POLYLINE__ :
             PolylineDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
+            break;
+    }
+}
+
+
+void fillNormals(char* id, float* position, float* buffer, int bufferLength, int elementsSize)
+{
+
+    int iType = 0;
+    int *piType = &iType;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_int, (void**) &piType);
+
+    switch (iType)
+    {
+        case __GO_FAC3D__ :
+            {
+                int numVerticesPerGon = 0;
+                int* piNumVerticesPerGon = &numVerticesPerGon;
+                getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**) &piNumVerticesPerGon);
+                CalculatePolygonNormalFlat(position, buffer, bufferLength, elementsSize, numVerticesPerGon);
+            }
+            break;
+        case __GO_FEC__ :
+            break;
+        case __GO_GRAYPLOT__ :
+            break;
+        case __GO_MATPLOT__ :
+            break;
+        case __GO_PLOT3D__ :
+        {
+            //CalculateGridNormalFlat(position, buffer, bufferLength, elementsSize);
+            int numX = 0;
+            int* piNumX = &numX;
+            int numY = 0;
+            int* piNumY = &numY;
+
+            getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);
+            getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piNumY);
+            CalculateGridNormalSmooth(position, buffer, bufferLength, elementsSize, numX, numY);
+        }
+            break;
+        case __GO_POLYLINE__ :
             break;
     }
 }

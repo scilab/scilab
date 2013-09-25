@@ -111,7 +111,7 @@ int sci_dec2base(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if ((iBaseUsed < 2) && (iBaseUsed > 36))
+    if (iBaseUsed < 2 || iBaseUsed > 36)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d."), fname, 2, 2, 36);
         return 0;
