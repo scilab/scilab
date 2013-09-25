@@ -446,6 +446,8 @@ Bug Fixes
 
 * Bug #9601 fixed - Cylinder demonstration fixed.
 
+* Bug #9688 fixed - optim() could crash when "imp" option was < 0. It is now set to 0 in that case.
+
 * Bug #9690 fixed - The "imp" option for optim could crash Scilab and was not consistent with the help page.
 
 * Bug #9691 fixed - "imp" option in optim help page was poorly documented.
