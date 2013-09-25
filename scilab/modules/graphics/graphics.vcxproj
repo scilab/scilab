@@ -243,7 +243,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_closed_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_color_flag_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_color_map_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_color_material_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_color_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_color_range_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_colored_property.c" />
@@ -257,6 +256,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_default_axes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_default_figure_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_diffuse_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_direction_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_enable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_figure_closerequestfcn_property.c" />
@@ -292,8 +292,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_size_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_legend_location_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_light_direction_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_light_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_light_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_line_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_line_style_property.c" />
@@ -327,18 +325,18 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_text_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_thickness_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_use_color_material_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_ambient_color_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_color_material_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_diffuse_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_direction_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_resizefcn_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_light_direction_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_light_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_light_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_material_shininess_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_specular_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_image_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_tag_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_use_color_material_property.c" />
     <ClCompile Include="src\c\get_ticks_utils.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_direction_property.c" />

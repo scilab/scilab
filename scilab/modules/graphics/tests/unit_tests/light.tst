@@ -45,8 +45,8 @@ assert_checkequal(l.parent.type, "Axes");
 assert_checkequal(l.children, []);
 assert_checkequal(l.visible, "off");
 assert_checkequal(l.light_type, "directional");
-assert_checktrue(l.light_position - [5 4 3] < 1d-7);
-assert_checktrue(l.light_direction - [2 1 0] < 1d-7);
+assert_checktrue(l.position - [5 4 3] < 1d-7);
+assert_checktrue(l.direction - [2 1 0] < 1d-7);
 assert_checktrue(l.ambient_color - [0.3 0.3 0.3] < 1d-7);
 assert_checktrue(l.diffuse_color - [0.2 0.2 0.2] < 1d-7);
 assert_checktrue(l.specular_color - [0.1 0.1 0.1] < 1d-7);
@@ -70,13 +70,13 @@ ierr = execstr("l.specular_color = ''asd''", "errcatch");
 assert_checkequal(lasterror(), errmsg);
 
 
-errmsg=msprintf(_("Wrong type for ''%s'' property: Real matrix expected.\n"), "light_position");
-ierr = execstr("l.light_position = ''asd''", "errcatch");
+errmsg=msprintf(_("Wrong type for ''%s'' property: Real matrix expected.\n"), "position");
+ierr = execstr("l.position = ''asd''", "errcatch");
 assert_checkequal(lasterror(), errmsg);
 
 
-errmsg=msprintf(_("Wrong type for ''%s'' property: Real matrix expected.\n"), "light_direction");
-ierr = execstr("l.light_direction = ''asd''", "errcatch");
+errmsg=msprintf(_("Wrong type for ''%s'' property: Real matrix expected.\n"), "direction");
+ierr = execstr("l.direction = ''asd''", "errcatch");
 assert_checkequal(lasterror(), errmsg);
 
 errmsg=msprintf(_("Wrong type for ''%s'' property: String expected.\n"),  "light_type");
@@ -97,12 +97,12 @@ errmsg=msprintf(_("Wrong size for ''%s'' property: %d elements expected.\n"), "s
 ierr = execstr("l.specular_color = [1 1]", "errcatch");
 assert_checkequal(lasterror(), errmsg);
 
-errmsg=msprintf(_("Wrong size for ''%s'' property: %d elements expected.\n"), "light_position", 3);
-ierr = execstr("l.light_position = [1 1]", "errcatch");
+errmsg=msprintf(_("Wrong size for ''%s'' property: %d elements expected.\n"), "position", 3);
+ierr = execstr("l.position = [1 1]", "errcatch");
 assert_checkequal(lasterror(), errmsg);
 
-errmsg=msprintf(_("Wrong size for ''%s'' property: %d elements expected.\n"), "light_direction", 3);
-ierr = execstr("l.light_direction = [1 1]", "errcatch");
+errmsg=msprintf(_("Wrong size for ''%s'' property: %d elements expected.\n"), "direction", 3);
+ierr = execstr("l.direction = [1 1]", "errcatch");
 assert_checkequal(lasterror(), errmsg);
 
 // check parameter bounds

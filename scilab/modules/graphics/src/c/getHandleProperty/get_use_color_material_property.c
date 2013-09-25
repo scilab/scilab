@@ -9,9 +9,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+
 
 #include "getHandleProperty.h"
+#include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -20,20 +21,27 @@
 #include "graphicObjectProperties.h"
 
 /**
- * Gets the direction of the light.
+ * Returns if the diffuse color is used (on/off).
  */
-int get_light_direction_property(void* _pvCtx, char* pobjUID)
+int get_use_color_material_property(void* _pvCtx, char* pobjUID)
 {
-    double* direction = NULL;
+    int iColorMaterial = 0;
+    int *piColorMaterial = &iColorMaterial;
 
-    getGraphicObjectProperty(pobjUID, __GO_LIGHT_DIRECTION__, jni_double_vector, (void **)&direction);
+    getGraphicObjectProperty(pobjUID, __GO_COLOR_MATERIAL__, jni_bool, (void **)&piColorMaterial);
 
-    if (direction == NULL)
+    if (piColorMaterial == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "light_direction");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "use_color_material");
         return -1;
     }
 
-    return sciReturnMatrix(_pvCtx, direction, 1, 3);
-
+    if (iColorMaterial)
+    {
+        return sciReturnString(_pvCtx, "on");
+    }
+    else
+    {
+        return sciReturnString(_pvCtx, "off");
+    }
 }

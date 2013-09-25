@@ -14,14 +14,13 @@ function demo_dir_light()
     my_plot_desc          = "Directional light";
     my_handle.figure_name = my_plot_desc;
 
-    my_handle.figure_name = my_plot_desc;
     plot3d;l=light();s=gce();
 
     l.light_type = "directional";
-    l.light_direction = [1 0 1];
+    l.direction = [1 0 1];
     l.ambient_color = [0.1 0.1 0.1];
     s.diffuse_color = [0.5 0.4 0.4];
-    s.color_material = "off";
+    s.use_color_material = "off";
     s.color_flag = 0;
     s.thickness = 0;
     s.hiddencolor = -1;

@@ -86,12 +86,12 @@ BOOL createLight(char* fname, long long axes_handle, int type, BOOL visible, dou
 
     if (position)
     {
-        setGraphicObjectProperty(light, __GO_LIGHT_POSITION__, position, jni_double_vector, 3);
+        setGraphicObjectProperty(light, __GO_POSITION__, position, jni_double_vector, 3);
     }
 
     if (direction)
     {
-        setGraphicObjectProperty(light, __GO_LIGHT_DIRECTION__, direction, jni_double_vector, 3);
+        setGraphicObjectProperty(light, __GO_DIRECTION__, direction, jni_double_vector, 3);
     }
 
     if (isValidColor(ambient_color))

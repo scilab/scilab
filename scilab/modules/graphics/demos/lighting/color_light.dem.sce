@@ -15,10 +15,9 @@ function demo_color_light()
     my_plot_desc          = "Color light";
     my_handle.figure_name = my_plot_desc;
 
-    my_handle.figure_name = my_plot_desc;
     plot3d;l=light();s=gce();
 
-    s.color_material = "off";
+    s.use_color_material = "off";
     s.color_flag = 0;
     s.thickness = 0;
     s.hiddencolor = -1;

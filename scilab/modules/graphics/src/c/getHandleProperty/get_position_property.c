@@ -5,6 +5,7 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ * Copyright (C) 2013 - Pedro SOUZA
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -79,6 +80,21 @@ int get_position_property(void* _pvCtx, char* pobjUID)
         }
 
         return sciReturnRowVector(_pvCtx, position, 2);
+    }
+
+    if (iType == __GO_LIGHT__)
+    {
+        double* position = NULL;
+
+        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **)&position);
+
+        if (position == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
+            return -1;
+        }
+
+        return sciReturnRowVector(_pvCtx, position, 3);
     }
 
     /* Generic case : position is a 4 row vector */

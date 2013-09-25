@@ -15,15 +15,14 @@ function demo_rot_light()
     my_plot_desc          = "Rotating light";
     my_handle.figure_name = my_plot_desc;
 
-    my_handle.figure_name = my_plot_desc;
     plot3d;l=light();s=gce();
 
-    for i=0:10000
+    for i=0:2000
         sleep(5);
         x = 2*cos(i*%pi/180);
         y = 2*sin(i*%pi/180);
         z = 2;
-        l.light_position = [x y z];
+        l.position = [x y z];
     end
 
     // DEMO END

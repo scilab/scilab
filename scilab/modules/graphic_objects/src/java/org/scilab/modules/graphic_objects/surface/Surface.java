@@ -73,7 +73,7 @@ public abstract class Surface extends ClippableContouredObject {
                 return ColorTriplet.ColorTripletProperty.DIFFUSECOLOR;
             case __GO_SPECULARCOLOR__ :
                 return ColorTriplet.ColorTripletProperty.SPECULARCOLOR;
-            case __GO_COLORMATERIAL__ :
+            case __GO_COLOR_MATERIAL__ :
                 return Material.MaterialProperty.COLOR_MATERIAL;
             case __GO_MATERIAL_SHININESS__ :
                 return Material.MaterialProperty.SHININESS;

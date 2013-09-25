@@ -15,12 +15,11 @@ function demo_simple_light()
     my_plot_desc          = "Simple light";
     my_handle.figure_name = my_plot_desc;
 
-    my_handle.figure_name = my_plot_desc;
     plot3d;l=light();s=gce();
 
     l.ambient_color = [1 1 1];
     s.diffuse_color = [0 0 0.8];
-    s.color_material = "off";
+    s.use_color_material = "off";
     s.color_flag = 0;
     s.thickness = 0;
     s.hiddencolor = -1;

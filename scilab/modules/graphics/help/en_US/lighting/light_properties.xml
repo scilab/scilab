@@ -31,6 +31,7 @@
             s = gce();
             s.diffuse_color = [0 0 0.8];
             s.ambient_color = [0 0 1];
+            s.use_color_material = "off";
         </scilab:image>
     </refsection>
     <refsection>
@@ -58,7 +59,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>light_direction: </term>
+                <term>direction: </term>
                 <listitem>
                     <para>This field defines the ray direction for directional light.
                         The direction can be chaged using a 3 element vector <literal>"[x, y, z]"</literal>
@@ -67,7 +68,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>light_position: </term>
+                <term>position: </term>
                 <listitem>
                     <para>This field defines the light position for point light.
                         The position can be changed using a 3 element vector <literal>"[x, y, z]"</literal>.
@@ -105,7 +106,6 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        
         <programlisting role="example"><![CDATA[
         // point light
         plot3d;l=light();s=gce();
@@ -114,15 +114,15 @@
             x = 2*cos(i*%pi/180);
             y = 2*sin(i*%pi/180);
             z = 2;
-            l.light_position = [x y z];
+            l.position = [x y z];
         end
 
         // change light to directional mode
         l.light_type = "directional";
-        l.light_direction = [1 0 1];
+        l.direction = [1 0 1];
         l.ambient_color = [0.1 0.1 0.1];
         s.diffuse_color = [0.4 0.4 0.4];
-        s.color_material = "off";
+        s.use_color_material = "off";
         s.color_flag = 0;
         s.thickness = 0;
         s.hiddencolor = -1;

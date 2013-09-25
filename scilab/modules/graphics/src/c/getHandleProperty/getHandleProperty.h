@@ -183,11 +183,10 @@ int get_UID(void* _pvCtx, char *pobjUID);
 int get_ambient_color_property(void* _pvCtx, char* pobjUID);
 int get_diffuse_color_property(void* _pvCtx, char* pobjUID);
 int get_specular_color_property(void* _pvCtx, char* pobjUID);
-int get_color_material_property(void* _pvCtx, char* pobjUID);
+int get_use_color_material_property(void* _pvCtx, char* pobjUID);
 int get_material_shininess_property(void* _pvCtx, char* pobjUID);
 int get_light_type_property(void* _pvCtx, char* pobjUID);
-int get_light_direction_property(void* _pvCtx, char* pobjUID);
-int get_light_position_property(void* _pvCtx, char* pobjUID);
+int get_direction_property(void* _pvCtx, char* pobjUID);
 int get_image_type_property(void* _pvCtx, char* pobjUID);
 int get_video_mode_property(void* _pvCtx, char* pobjUID);
 

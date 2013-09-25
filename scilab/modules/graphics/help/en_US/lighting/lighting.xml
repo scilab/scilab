@@ -54,14 +54,13 @@
                 Specular color defines the specular highlight color.
             </para>
         </listitem>
-        
         <para>
             Following one can compare the surface with and without lighting:
         </para>
         <para>
             <scilab:image>
                 plot3d();
-                light = light();
+                l = light();
             </scilab:image>
         </para>
         <para>
@@ -69,7 +68,6 @@
                 plot3d();
             </scilab:image>
         </para>
-        
     </refsection>
     <refsection>
         <title>Lighting properties list</title>
@@ -97,7 +95,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>light_direction: </term>
+                <term>direction: </term>
                 <listitem>
                     <para>This field defines the ray direction for directional light.
                         The direction can be chaged using a 3 element vector <literal>"[x, y, z]"</literal> 
@@ -106,7 +104,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>light_position: </term>
+                <term>position: </term>
                 <listitem>
                     <para>This field defines the light position for point light.
                         The position can be changed using a 3 element vector <literal>"[x, y, z]"</literal>.
@@ -144,7 +142,7 @@
         <para>Surface properties </para>
         <variablelist>
             <varlistentry>
-                <term>color_material: </term>
+                <term>use_color_material: </term>
                 <listitem>
                     <para>This field is use to enable the use of the surface color as diffuse color.
                         Its default value is <literal>"on"</literal>.
@@ -173,7 +171,7 @@
                     <para>This field defines the diffuse color of the surface.
                         The color is defined by a 3 element vector <literal>"[red, green, blue]"</literal>
                         with each element in the range [0, 1]. Notice that this field is
-                        only used when color_material is disabled.
+                        only used when use_color_material is disabled.
                     </para>
                 </listitem>
             </varlistentry>
@@ -199,10 +197,10 @@ s=gce();
 s.color_flag=0;
 s.thickness=0;
 s.hiddencolor = -1;
-light = light();
+light();
 //change diffuse color to orange
 s.diffuse_color = [1, 0.6, 0];
-s.color_material="off";
+s.use_color_material="off";
 //black spots turn dark orange
 s.ambient_color = [1, 0.6, 0];
          ]]></programlisting>
@@ -212,14 +210,14 @@ s.ambient_color = [1, 0.6, 0];
         <programlisting role="example"><![CDATA[
 plot3d();
 s=gce();
-light = light();
+l = light();
 s.color_flag=0;
 s.thickness=0;
-light.light_type = "directional";
-light.light_direction = [0 0 1];
-light.diffuse_color = [1 0.9 0.9];
-light.ambient_color = [0.5 0.4 0.4];
-light.specular_color = [0.5 0.3 0.7];
+l.light_type = "directional";
+l.direction = [0 0 1];
+l.diffuse_color = [1 0.9 0.9];
+l.ambient_color = [0.5 0.4 0.4];
+l.specular_color = [0.5 0.3 0.7];
          ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -230,6 +228,9 @@ light.specular_color = [0.5 0.3 0.7];
             </member>
             <member>
                 <link linkend="light_properties">light properties</link>
+            </member>
+            <member>
+                <link linkend="surface_properties">surface properties</link>
             </member>
             <member>
                 <link linkend="delete">delete</link>

@@ -10,37 +10,32 @@
  *
  */
 
+
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "SetPropertyStatus.h"
 #include "Scierror.h"
 #include "localization.h"
-
+#include "SetPropertyStatus.h"
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /**
- * Sets the position of the light.
+ * Enables/Disables the use of the diffuse color.
  */
-int set_light_position_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_use_color_material_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    BOOL status = FALSE;
+    BOOL status;
+    int b =  (int)FALSE;
 
-    if (valueType != sci_matrix)
+    b = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "use_color_material");
+    if (b == NOT_A_BOOLEAN_VALUE)
     {
-        Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "light_position");
         return SET_PROPERTY_ERROR;
     }
 
-    if (nbRow * nbCol != 3)
-    {
-        Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "light_position", 3);
-        return SET_PROPERTY_ERROR;
-    }
-
-    status = setGraphicObjectProperty(pobjUID, __GO_LIGHT_POSITION__, _pvData, jni_double_vector, 3);
+    status = setGraphicObjectProperty(pobjUID, __GO_COLOR_MATERIAL__, &b, jni_bool, 1);
 
     if (status == TRUE)
     {
@@ -48,7 +43,7 @@ int set_light_position_property(void* _pvCtx, char* pobjUID, void* _pvData, int 
     }
     else
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "light_position");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "use_color_material");
         return SET_PROPERTY_ERROR;
     }
 }

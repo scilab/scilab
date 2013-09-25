@@ -152,9 +152,9 @@ public class Light extends GraphicObject {
                 return ColorTriplet.ColorTripletProperty.SPECULARCOLOR;
             case __GO_LIGHT_TYPE__ :
                 return LightProperty.TYPE;
-            case __GO_LIGHT_POSITION__ :
+            case __GO_POSITION__ :
                 return LightProperty.POSITION;
-            case __GO_LIGHT_DIRECTION__ :
+            case __GO_DIRECTION__ :
                 return LightProperty.DIRECTION;
             default :
                 return super.getPropertyFromName(propertyName);
