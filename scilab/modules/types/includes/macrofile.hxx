@@ -42,11 +42,9 @@ public :
     Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
     bool                    parse(void);
 
-    Macro*                  getMacro(void)
-    {
-        parse();
-        return m_pMacro;
-    }
+    Macro*                  getMacro(void);
+
+    void                    setFirstLine(int _iLine);
 
     /* return type as string ( double, int, cell, list, ... )*/
     virtual wstring         getTypeStr()

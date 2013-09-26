@@ -49,15 +49,15 @@ types::Function::ReturnValue sci_where(types::typed_list &in, int _iRetCount, ty
     types::String* pStrNames = new types::String(lWhereAmI.size() - 1, 1);
 
     it = lWhereAmI.begin();
-    pStrNames->set(0, it->second.c_str());
+    pDblLines->set(0, (double)it->first);
     it++;
     for (int i = 0; it != lWhereAmI.end(); it++, i++)
     {
-        pDblLines->set(i, (double)(it->first));
-        pStrNames->set(i + 1, it->second.c_str());
+        pDblLines->set(i + 1, (double)(it->first));
+        pStrNames->set(i, it->second.c_str());
     }
 
-    pDblLines->set(lWhereAmI.size() - 1, (double)(lWhereAmI.back().first));
+    pStrNames->set(lWhereAmI.size() - 1, lWhereAmI.front().second.c_str());
 
     out.push_back(pDblLines);
     out.push_back(pStrNames);

@@ -1814,6 +1814,7 @@ public :
         //types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
         types::Macro *pMacro = new types::Macro(e.name_get().name_get(), *pVarList, *pRetList,
                                                 static_cast<SeqExp&>(*exp), L"script");
+        pMacro->setFirstLine(e.location_get().first_line);
         symbol::Context::getInstance()->AddMacro(pMacro);
     }
     /** \} */

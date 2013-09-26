@@ -39,6 +39,8 @@ void *Runner::launch(void *args)
     }
     catch (ScilabException se)
     {
+        // remove the last call from where in case pause/abort
+        ConfigVariable::where_end();
         scilabErrorW(se.GetErrorMessage().c_str());
     }
 

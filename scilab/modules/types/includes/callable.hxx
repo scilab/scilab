@@ -36,7 +36,10 @@ public :
         Error
     };
 
-    Callable(): InternalType() {}
+    Callable(): InternalType()
+    {
+        m_iFirstLine = 0;
+    }
     virtual             ~Callable() {}
 
     bool                isCallable()
@@ -87,9 +90,20 @@ public :
         return -1;
     }
 
+    virtual int        getFirstLine(void)
+    {
+        return m_iFirstLine;
+    }
+
+    virtual void       setFirstLine(int _iFirstLine)
+    {
+        m_iFirstLine = _iFirstLine;
+    }
+
 protected :
     std::wstring           m_wstName;
     std::wstring           m_wstModule;
+    int                    m_iFirstLine;
 };
 }
 

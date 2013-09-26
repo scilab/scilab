@@ -964,18 +964,43 @@ int ConfigVariable::getFuncprot()
 */
 
 std::list< std::pair<int, std::wstring> > ConfigVariable::m_Where;
-
+std::list<int> ConfigVariable::m_FirstMacroLine;
 void ConfigVariable::where_begin(int _iLineNum, std::wstring _wstName)
 {
-    m_Where.push_back(std::pair<int, std::wstring>(_iLineNum, _wstName));
+    m_Where.push_front(std::pair<int, std::wstring>(_iLineNum, _wstName));
 }
+
 void ConfigVariable::where_end()
 {
-    m_Where.pop_back();
+    if (m_Where.empty() == false)
+    {
+        m_Where.pop_front();
+    }
 }
+
 std::list< std::pair<int, std::wstring> >& ConfigVariable::getWhere()
 {
     return m_Where;
+}
+
+void ConfigVariable::macroFirstLine_begin(int _iLine)
+{
+    m_FirstMacroLine.push_back(_iLine);
+}
+
+void ConfigVariable::macroFirstLine_end()
+{
+    m_FirstMacroLine.pop_back();
+}
+
+int ConfigVariable::getMacroFirstLines()
+{
+    if (m_FirstMacroLine.empty())
+    {
+        return 1;
+    }
+
+    return m_FirstMacroLine.back();
 }
 
 /*

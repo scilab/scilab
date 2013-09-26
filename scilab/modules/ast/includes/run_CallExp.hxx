@@ -121,7 +121,7 @@ void visitprivate(const CallExp &e)
             //update verbose";" flag
             ConfigVariable::setVerbose(e.is_verbose());
             // add line and function name in where
-            ConfigVariable::where_begin((int)e.location_get().first_line, pCall->getName());
+            ConfigVariable::where_begin(((int)e.location_get().first_line - ConfigVariable::getMacroFirstLines()) + 1, pCall->getName());
             //call function
             types::Function::ReturnValue Ret = pCall->call(in, opt, iRetCount, out, this);
             // remove the last call from where

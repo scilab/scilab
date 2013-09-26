@@ -86,6 +86,8 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
     //open a new scope
     pContext->scope_begin();
+    //store the line number where is stored this macro in file.
+    ConfigVariable::macroFirstLine_begin(getFirstLine());
 
     //add optional paramter in current scope
     optional_list::const_iterator it;
@@ -149,6 +151,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         Scierror(58, _("Wrong number of input arguments."));
         sciprint("%s", pst);
         pContext->scope_end();
+        ConfigVariable::macroFirstLine_end();
         return Callable::Error;
     }
     else
@@ -263,6 +266,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         ConfigVariable::setPromptMode(oldVal);
         //close the current scope
         pContext->scope_end();
+        ConfigVariable::macroFirstLine_end();
         for (size_t j = 0; j < out.size(); ++j)
         {
             out[j]->DecreaseRef();
@@ -275,6 +279,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         ConfigVariable::setPromptMode(oldVal);
         //close the current scope
         pContext->scope_end();
+        ConfigVariable::macroFirstLine_end();
         for (size_t j = 0; j < out.size(); ++j)
         {
             out[j]->DecreaseRef();
@@ -284,6 +289,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
     //close the current scope
     pContext->scope_end();
+    ConfigVariable::macroFirstLine_end();
 
     for (size_t j = 0; j < out.size(); ++j)
     {
