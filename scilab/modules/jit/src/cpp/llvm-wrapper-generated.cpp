@@ -75,8 +75,6 @@ Module* makeLLVMModuleContents(Module *mod)
                                   /*Params=*/FuncTy_13_args,
                                   /*isVarArg=*/false);
 
-    PointerType* PointerTy_14 = PointerType::get(IntegerType::get(mod->getContext(), 32), 0);
-
     StructType *StructTy_class_types__Double = mod->getTypeByName("class.types::Double");
     if (!StructTy_class_types__Double)
     {
@@ -95,16 +93,16 @@ Module* makeLLVMModuleContents(Module *mod)
         StructTy_class_types__GenericType = StructType::create(mod->getContext(), "class.types::GenericType");
     }
     std::vector<Type*>StructTy_class_types__GenericType_fields;
-    ArrayType* ArrayTy_17 = ArrayType::get(IntegerType::get(mod->getContext(), 8), 36);
+    ArrayType* ArrayTy_16 = ArrayType::get(IntegerType::get(mod->getContext(), 8), 36);
+
+    StructTy_class_types__GenericType_fields.push_back(ArrayTy_16);
+    StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    ArrayType* ArrayTy_17 = ArrayType::get(IntegerType::get(mod->getContext(), 32), 50);
 
     StructTy_class_types__GenericType_fields.push_back(ArrayTy_17);
-    StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
-    StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
-    StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
-    StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
-    ArrayType* ArrayTy_18 = ArrayType::get(IntegerType::get(mod->getContext(), 32), 50);
-
-    StructTy_class_types__GenericType_fields.push_back(ArrayTy_18);
     StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
     if (StructTy_class_types__GenericType->isOpaque())
     {
@@ -113,10 +111,10 @@ Module* makeLLVMModuleContents(Module *mod)
 
     StructTy_class_types__ArrayOf_fields.push_back(StructTy_class_types__GenericType);
     StructTy_class_types__ArrayOf_fields.push_back(IntegerType::get(mod->getContext(), 8));
-    PointerType* PointerTy_19 = PointerType::get(Type::getDoubleTy(mod->getContext()), 0);
+    PointerType* PointerTy_18 = PointerType::get(Type::getDoubleTy(mod->getContext()), 0);
 
-    StructTy_class_types__ArrayOf_fields.push_back(PointerTy_19);
-    StructTy_class_types__ArrayOf_fields.push_back(PointerTy_19);
+    StructTy_class_types__ArrayOf_fields.push_back(PointerTy_18);
+    StructTy_class_types__ArrayOf_fields.push_back(PointerTy_18);
     if (StructTy_class_types__ArrayOf->isOpaque())
     {
         StructTy_class_types__ArrayOf->setBody(StructTy_class_types__ArrayOf_fields, /*isPacked=*/false);
@@ -130,22 +128,24 @@ Module* makeLLVMModuleContents(Module *mod)
         StructTy_class_types__Double->setBody(StructTy_class_types__Double_fields, /*isPacked=*/false);
     }
 
-    PointerType* PointerTy_16 = PointerType::get(StructTy_class_types__Double, 0);
+    PointerType* PointerTy_15 = PointerType::get(StructTy_class_types__Double, 0);
 
-    PointerType* PointerTy_15 = PointerType::get(PointerTy_16, 0);
+    PointerType* PointerTy_14 = PointerType::get(PointerTy_15, 0);
+
+    PointerType* PointerTy_19 = PointerType::get(IntegerType::get(mod->getContext(), 32), 0);
 
     std::vector<Type*>FuncTy_21_args;
     FunctionType* FuncTy_21 = FunctionType::get(
-                                  /*Result=*/PointerTy_16,
+                                  /*Result=*/PointerTy_15,
                                   /*Params=*/FuncTy_21_args,
                                   /*isVarArg=*/false);
 
     PointerType* PointerTy_20 = PointerType::get(FuncTy_21, 0);
 
     std::vector<Type*>FuncTy_23_args;
-    FuncTy_23_args.push_back(PointerTy_16);
-    FuncTy_23_args.push_back(PointerTy_16);
     FuncTy_23_args.push_back(PointerTy_15);
+    FuncTy_23_args.push_back(PointerTy_15);
+    FuncTy_23_args.push_back(PointerTy_14);
     FunctionType* FuncTy_23 = FunctionType::get(
                                   /*Result=*/IntegerType::get(mod->getContext(), 32),
                                   /*Params=*/FuncTy_23_args,
@@ -205,17 +205,17 @@ Module* makeLLVMModuleContents(Module *mod)
     AttrListPtr func___cxa_atexit_PAL;
     func___cxa_atexit->setAttributes(func___cxa_atexit_PAL);
 
-    Function* func_main = mod->getFunction("main");
-    if (!func_main)
+    Function* func__Z3foov = mod->getFunction("_Z3foov");
+    if (!func__Z3foov)
     {
-        func_main = Function::Create(
-                        /*Type=*/FuncTy_13,
-                        /*Linkage=*/GlobalValue::ExternalLinkage,
-                        /*Name=*/"main", mod);
-        func_main->setCallingConv(CallingConv::C);
+        func__Z3foov = Function::Create(
+                           /*Type=*/FuncTy_13,
+                           /*Linkage=*/GlobalValue::ExternalLinkage,
+                           /*Name=*/"_Z3foov", mod);
+        func__Z3foov->setCallingConv(CallingConv::C);
     }
-    AttrListPtr func_main_PAL;
-    func_main->setAttributes(func_main_PAL);
+    AttrListPtr func__Z3foov_PAL;
+    func__Z3foov->setAttributes(func__Z3foov_PAL);
 
     Function* func__ZN5types6Double5EmptyEv = mod->getFunction("_ZN5types6Double5EmptyEv");
     if (!func__ZN5types6Double5EmptyEv)
@@ -329,62 +329,59 @@ Module* makeLLVMModuleContents(Module *mod)
 
     }
 
-    // Function: main (func_main)
+    // Function: _Z3foov (func__Z3foov)
     {
 
-        BasicBlock* label_36 = BasicBlock::Create(mod->getContext(), "", func_main, 0);
+        BasicBlock* label_36 = BasicBlock::Create(mod->getContext(), "", func__Z3foov, 0);
 
         // Block  (label_36)
-        AllocaInst* ptr_37 = new AllocaInst(IntegerType::get(mod->getContext(), 32), "", label_36);
-        ptr_37->setAlignment(4);
-        AllocaInst* ptr_pdbl1 = new AllocaInst(PointerTy_16, "pdbl1", label_36);
+        AllocaInst* ptr_pdbl1 = new AllocaInst(PointerTy_15, "pdbl1", label_36);
         ptr_pdbl1->setAlignment(8);
         AllocaInst* ptr_res = new AllocaInst(IntegerType::get(mod->getContext(), 32), "res", label_36);
         ptr_res->setAlignment(4);
-        StoreInst* void_38 = new StoreInst(const_int32_30, ptr_37, false, label_36);
-        CallInst* ptr_39 = CallInst::Create(func__ZN5types6Double5EmptyEv, "", label_36);
-        ptr_39->setCallingConv(CallingConv::C);
-        ptr_39->setTailCall(false);
-        AttrListPtr ptr_39_PAL;
-        ptr_39->setAttributes(ptr_39_PAL);
+        CallInst* ptr_37 = CallInst::Create(func__ZN5types6Double5EmptyEv, "", label_36);
+        ptr_37->setCallingConv(CallingConv::C);
+        ptr_37->setTailCall(false);
+        AttrListPtr ptr_37_PAL;
+        ptr_37->setAttributes(ptr_37_PAL);
 
-        StoreInst* void_40 = new StoreInst(ptr_39, ptr_pdbl1, false, label_36);
-        void_40->setAlignment(8);
-        LoadInst* ptr_41 = new LoadInst(ptr_pdbl1, "", false, label_36);
-        ptr_41->setAlignment(8);
-        LoadInst* ptr_42 = new LoadInst(ptr_pdbl1, "", false, label_36);
-        ptr_42->setAlignment(8);
-        std::vector<Value*> int32_43_params;
-        int32_43_params.push_back(ptr_41);
-        int32_43_params.push_back(ptr_42);
-        int32_43_params.push_back(ptr_pdbl1);
-        CallInst* int32_43 = CallInst::Create(func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_, int32_43_params, "", label_36);
-        int32_43->setCallingConv(CallingConv::C);
-        int32_43->setTailCall(false);
-        AttrListPtr int32_43_PAL;
-        int32_43->setAttributes(int32_43_PAL);
+        StoreInst* void_38 = new StoreInst(ptr_37, ptr_pdbl1, false, label_36);
+        void_38->setAlignment(8);
+        LoadInst* ptr_39 = new LoadInst(ptr_pdbl1, "", false, label_36);
+        ptr_39->setAlignment(8);
+        LoadInst* ptr_40 = new LoadInst(ptr_pdbl1, "", false, label_36);
+        ptr_40->setAlignment(8);
+        std::vector<Value*> int32_41_params;
+        int32_41_params.push_back(ptr_39);
+        int32_41_params.push_back(ptr_40);
+        int32_41_params.push_back(ptr_pdbl1);
+        CallInst* int32_41 = CallInst::Create(func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_, int32_41_params, "", label_36);
+        int32_41->setCallingConv(CallingConv::C);
+        int32_41->setTailCall(false);
+        AttrListPtr int32_41_PAL;
+        int32_41->setAttributes(int32_41_PAL);
 
-        StoreInst* void_44 = new StoreInst(int32_43, ptr_res, false, label_36);
-        void_44->setAlignment(4);
-        LoadInst* int32_45 = new LoadInst(ptr_res, "", false, label_36);
-        int32_45->setAlignment(4);
-        ReturnInst::Create(mod->getContext(), int32_45, label_36);
+        StoreInst* void_42 = new StoreInst(int32_41, ptr_res, false, label_36);
+        void_42->setAlignment(4);
+        LoadInst* int32_43 = new LoadInst(ptr_res, "", false, label_36);
+        int32_43->setAlignment(4);
+        ReturnInst::Create(mod->getContext(), int32_43, label_36);
 
     }
 
     // Function: _GLOBAL__I_a (func__GLOBAL__I_a)
     {
 
-        BasicBlock* label_47 = BasicBlock::Create(mod->getContext(), "", func__GLOBAL__I_a, 0);
+        BasicBlock* label_45 = BasicBlock::Create(mod->getContext(), "", func__GLOBAL__I_a, 0);
 
-        // Block  (label_47)
-        CallInst* void_48 = CallInst::Create(func___cxx_global_var_init, "", label_47);
-        void_48->setCallingConv(CallingConv::C);
-        void_48->setTailCall(false);
-        AttrListPtr void_48_PAL;
-        void_48->setAttributes(void_48_PAL);
+        // Block  (label_45)
+        CallInst* void_46 = CallInst::Create(func___cxx_global_var_init, "", label_45);
+        void_46->setCallingConv(CallingConv::C);
+        void_46->setTailCall(false);
+        AttrListPtr void_46_PAL;
+        void_46->setAttributes(void_46_PAL);
 
-        ReturnInst::Create(mod->getContext(), label_47);
+        ReturnInst::Create(mod->getContext(), label_45);
 
     }
 

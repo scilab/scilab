@@ -12,10 +12,6 @@
 
 pkglib_LTLIBRARIES 	= libscijit.la
 
-BUILT_SOURCES = src/cpp/llvm-wrapper-generated.cpp
-src/cpp/llvm-wrapper-generated.cpp: src/cpp/llvm-wrapper.cpp
-	clang++ -emit-llvm  -I$(top_srcdir)/modules/types/includes/ -I$(top_srcdir)/modules/operations/includes/ -I$(top_srcdir)/modules/core/includes/  -I$(top_srcdir)/modules/ast/includes/ -I$(top_srcdir)/modules/localization/includes/ $(EIGEN_CPPFLAGS) -c src/cpp/llvm-wrapper.cpp -o - |  llc -march=cpp -cppgen=contents -o src/cpp/llvm-wrapper-generated.cpp
-
 JIT_CPP_SOURCES = \
 	src/cpp/jitter.cpp
 
@@ -71,6 +67,12 @@ testVarExp_LDADD	= $(check_LDADD)
 testControlExp_SOURCES 	= src/cpp/testControlExp.cpp
 testControlExp_CXXFLAGS = $(check_INCLUDES)
 testControlExp_LDADD	= $(check_LDADD)
+
+# This target transforms a basic code to llvm + clang code for the JIT
+BUILT_SOURCES = src/cpp/llvm-wrapper-generated.cpp
+src/cpp/llvm-wrapper-generated.cpp: src/cpp/llvm-wrapper.cpp
+	clang++ -emit-llvm  -I$(top_srcdir)/modules/types/includes/ -I$(top_srcdir)/modules/operations/includes/ -I$(top_srcdir)/modules/core/includes/  -I$(top_srcdir)/modules/ast/includes/ -I$(top_srcdir)/modules/localization/includes/ $(EIGEN_CPPFLAGS) -c src/cpp/llvm-wrapper.cpp -o - | llc -march=cpp -cppgen=contents -o src/cpp/llvm-wrapper-generated.cpp
+
 
 include $(top_srcdir)/Makefile.incl.am
 
