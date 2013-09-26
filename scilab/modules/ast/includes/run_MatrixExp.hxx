@@ -27,8 +27,6 @@ void visitprivate(const MatrixExp &e)
         std::list<Exp *>::const_iterator col;
         InternalType *poResult = NULL;
         list<InternalType*> rowList;
-        int iRows = 0;
-        int iCols = 0;
 
         if (e.lines_get().size() == 0)
         {
@@ -42,9 +40,6 @@ void visitprivate(const MatrixExp &e)
             InternalType* poRow = NULL;
             for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; col++)
             {
-                int iCurCol = 0;
-                //poResult = [poResult, col]
-
                 (*col)->accept(*this);
 
                 InternalType *pIT = result_get();
