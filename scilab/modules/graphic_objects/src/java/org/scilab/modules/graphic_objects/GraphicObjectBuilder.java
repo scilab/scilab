@@ -142,7 +142,7 @@ public final class GraphicObjectBuilder {
 
     public static int cloneGraphicContext(String sourceIdentifier, String destIdentifier) {
         GraphicController controller = GraphicController.getController();
-        Integer lineMode = 0;
+        Boolean lineMode = false;
         Integer foreground = 0;
         Integer lineStyle = 0;
         Integer background = 0;
@@ -158,7 +158,7 @@ public final class GraphicObjectBuilder {
          * and do not call releaseGraphicObjectProperty on purpose.
          */
 
-        lineMode = (Integer) controller.getProperty(sourceIdentifier, GraphicObjectProperties.__GO_LINE_MODE__);
+        lineMode = (Boolean) controller.getProperty(sourceIdentifier, GraphicObjectProperties.__GO_LINE_MODE__);
         foreground = (Integer) controller.getProperty(sourceIdentifier, GraphicObjectProperties.__GO_LINE_COLOR__);
         lineThickness = (Double) controller.getProperty(sourceIdentifier, GraphicObjectProperties.__GO_LINE_THICKNESS__);
         lineStyle = (Integer) controller.getProperty(sourceIdentifier, GraphicObjectProperties.__GO_LINE_STYLE__);
@@ -175,7 +175,7 @@ public final class GraphicObjectBuilder {
 
         markSizeUnit = (Integer) controller.getProperty(sourceIdentifier, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__);
 
-        controller.setProperty(destIdentifier, GraphicObjectProperties.__GO_LINE_MODE__, lineMode == 1);
+        controller.setProperty(destIdentifier, GraphicObjectProperties.__GO_LINE_MODE__, lineMode);
         controller.setProperty(destIdentifier, GraphicObjectProperties.__GO_LINE_COLOR__, foreground);
         controller.setProperty(destIdentifier, GraphicObjectProperties.__GO_LINE_THICKNESS__, lineThickness);
         controller.setProperty(destIdentifier, GraphicObjectProperties.__GO_LINE_STYLE__, lineStyle);
