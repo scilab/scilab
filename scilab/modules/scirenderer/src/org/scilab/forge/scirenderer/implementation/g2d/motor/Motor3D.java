@@ -577,8 +577,16 @@ public class Motor3D {
             return colors;
         }
 
-        Vector3f[] vertexArray = LightHelper.getIndexedVector3f(vertices, index, G2DElementsBuffer.ELEMENT_SIZE);
-        Vector3f[] normalArray = LightHelper.getIndexedVector3f(normals, index, G2DElementsBuffer.ELEMENT_SIZE);
+        float[] vertexTransf = lightManager.getVertexTransform();
+        float[] normalTransf = lightManager.getNormalTransform();
+        //for transformed vertices camera is at origin.
+        Vector3f camera = new Vector3f(0.f, 0.f ,0.f);
+        Vector3f[] vertexArray = LightHelper.getIndexedVector3f(vertices, index, G2DElementsBuffer.ELEMENT_SIZE, vertexTransf);
+        Vector3f[] normalArray = LightHelper.getIndexedVector3f(normals, index, G2DElementsBuffer.ELEMENT_SIZE, normalTransf);
+
+        for (int i = 0; i < normalArray.length; ++i) {
+            normalArray[i] = normalArray[i].getNormalized();
+        }
 
 
         Color[] outColors = new Color[colors.length];
@@ -588,7 +596,7 @@ public class Motor3D {
 
             if (l == null || !l.isEnable()) continue;
 
-            outColors = LightHelper.applyLight(l, mat, vertexArray, normalArray, colors, outColors, !first);
+            outColors = LightHelper.applyLight(l, mat, camera, vertexArray, normalArray, colors, outColors, vertexTransf, !first);
             first = false;
         }
         return outColors;

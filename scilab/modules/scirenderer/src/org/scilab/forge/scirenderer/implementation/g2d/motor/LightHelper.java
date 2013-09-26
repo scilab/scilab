@@ -54,9 +54,10 @@ public class LightHelper {
      * @param buffer the float buffer.
      * @param index the indices  buffer.
      * @param stride the stride between elements.
+     * @param transf matrix to transform the vector, if null no transformation is applied.
      * @return an array of Vector3f from the given float buffer.
      */
-    public static Vector3f[] getIndexedVector3f(FloatBuffer buffer, IntBuffer index, int stride) {
+    public static Vector3f[] getIndexedVector3f(FloatBuffer buffer, IntBuffer index, int stride, float[] transf) {
         if (buffer == null || index == null) return null;
         if (stride < 3) return null;
 
@@ -79,10 +80,31 @@ public class LightHelper {
         }
 
         Vector3f[] ret = new Vector3f[idx.length];
-        for (int i = 0; i < idx.length; ++i) {
-            ret[i] = new Vector3f(floats[stride * idx[i]], floats[stride * idx[i] + 1], floats[stride * idx[i] + 2]);
+        float x, y, z;
+        if (transf != null && transf.length == 16) {
+            for (int i = 0; i < idx.length; ++i) {
+                ret[i] = transform(floats[stride * idx[i]], floats[stride * idx[i] + 1], floats[stride * idx[i] + 2], transf);
+            }
+        } else {
+            for (int i = 0; i < idx.length; ++i) {
+                ret[i] = new Vector3f(floats[stride * idx[i]], floats[stride * idx[i] + 1], floats[stride * idx[i] + 2]);
+            }
         }
         return ret;
+    }
+    
+    static Vector3f transform(float x, float y, float z, float[] transf) {
+        float xx = transf[0] * x + transf[4] * y + transf[8] * z + transf[12];
+        float yy = transf[1] * x + transf[5] * y + transf[9] * z + transf[13];
+        float zz = transf[2] * x + transf[6] * y + transf[10] * z + transf[14];
+        return new Vector3f(xx, yy, zz);
+    }
+
+    static Vector3f transformDirection(float x, float y, float z, float[] transf) {
+        float xx = transf[0] * x + transf[4] * y + transf[8] * z;
+        float yy = transf[1] * x + transf[5] * y + transf[9] * z;
+        float zz = transf[2] * x + transf[6] * y + transf[10] * z;
+        return new Vector3f(xx, yy, zz);
     }
 
     /**
@@ -189,19 +211,27 @@ public class LightHelper {
     public static Color[] applySpecular(Vector3f camera, Vector3f light, float shininess, boolean directional, Vector3f[] vertices, Vector3f[] normals, Color specular, Color[] output, boolean additive) {
 
         for (int i = 0; i < output.length; ++i) {
-            Vector3f R;
 
             Vector3f view = camera.minus(vertices[i]).getNormalized();
+            Vector3f half;
+            float ndotl;
             if (directional) {
-                R = reflect(light.negate(), normals[i]);
+                half = view.plus(light);
+                ndotl = normals[i].scalar(light);
             } else {
                 Vector3f ray = light.minus(vertices[i]).getNormalized();
-                R = reflect(ray.negate(), normals[i]);
+                half = view.plus(ray);
+                ndotl = normals[i].scalar(ray);
             }
-            R = R.getNormalized();
-            float s = R.scalar(view);
-            s = clamp(s);
-            s = (float)Math.pow((double)s, (double)shininess);
+            half = half.getNormalized();
+
+            float s = 0.0f;
+            if (ndotl > 0.0f) {
+                s = normals[i].scalar(half);
+                s = clamp(s);
+                s = (float)Math.pow((double)s, (double)shininess);
+            }
+
             if (additive) {
                 output[i] = getColorSum(getColorProduct(specular, s), output[i]);
             } else {
@@ -215,21 +245,19 @@ public class LightHelper {
      * Apply a per-vertex lighting to the given colors
      * @param light the light.
      * @param mat the material properties.
+     * @param camera the camera position.
      * @param vertices the surface vertices.
      * @param normals the surface normals.
      * @param colors the surface per-vertex colors.
      * @param output the output color vector.
+     * @param transf the light transformation matrix. If null no transformation is applyed.
      * @param additive if true the calculated color is added to the output.
      * @return the resulting color vector.
      */
-    public static Color[] applyLight(G2DLight light, Material mat, Vector3f[] vertices, Vector3f[] normals, Color[] colors, Color[] output, boolean additive) {
+    public static Color[] applyLight(G2DLight light, Material mat, Vector3f camera, Vector3f[] vertices, Vector3f[] normals, Color[] colors, Color[] output, float[] transf, boolean additive) {
         Color ambient = getColorProduct(mat.getAmbientColor(), light.getAmbientColor());
         Color diffuse = getColorProduct(mat.getDiffuseColor(), light.getDiffuseColor());
         Color specular = getColorProduct(mat.getSpecularColor(), light.getSpecularColor());
-
-        for (int i = 0; i < normals.length; ++i) {
-            normals[i] = normals[i].getNormalized();
-        }
 
         Color[] finalColor;
         if (mat.isColorMaterialEnable()) {
@@ -245,7 +273,16 @@ public class LightHelper {
             v = light.getDirection().getDataAsFloatArray();
         }
 
-        Vector3f vec = new Vector3f(v[0], v[1], v[2]);
+        Vector3f vec;
+        if (transf != null && transf.length == 16) {
+            if (light.isPoint()) {
+                vec = transform(v[0], v[1], v[2], transf);
+            } else {
+                vec = transformDirection(v[0], v[1], v[2], transf).getNormalized();
+            }
+        } else {
+            vec = new Vector3f(v[0], v[1], v[2]);
+        }
 
         if (mat.isColorMaterialEnable()) {
             finalColor = applyDiffuse(vec, !light.isPoint(), vertices, normals, colors, light.getDiffuseColor(), finalColor, true);
@@ -253,7 +290,7 @@ public class LightHelper {
             finalColor = applyDiffuse(vec, !light.isPoint(), vertices, normals, diffuse, finalColor, true);
         }
 
-        //finalColor = applySpecular(???, vec, mat.getShininess(), !light.isPoint(), vertices, normals, specular, finalColor, true);
+        finalColor = applySpecular(camera, vec, mat.getShininess(), !light.isPoint(), vertices, normals, specular, finalColor, true);
 
         return finalColor;
     }
