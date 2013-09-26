@@ -16,7 +16,7 @@ JIT_CPP_SOURCES = \
 	src/cpp/jitter.cpp
 
 GATEWAY_CPP_SOURCES =   \
-sci_gateway/cpp/sci_runASTwithVMKit.cpp
+sci_gateway/cpp/sci_runVMKit.cpp
 
 libscijit_la_CPPFLAGS = \
 	-Iincludes \
