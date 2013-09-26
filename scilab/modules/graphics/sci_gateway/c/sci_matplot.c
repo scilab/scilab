@@ -98,7 +98,7 @@ int sci_matplot(char *fname, unsigned long fname_len)
             sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, (double **)&l1);
             if (sciErr.iErr)
             {
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
                 printError(&sciErr, 0);
                 return 1;
             }
@@ -116,7 +116,7 @@ int sci_matplot(char *fname, unsigned long fname_len)
             sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr1, &precision);
             if (sciErr.iErr)
             {
-                Scierror(999, _("%s: Cannot get the integer precision for argument %d.\n"), fname, 1);
+                Scierror(999, _("%s: Cannot get the integer type for argument #%d.\n"), fname, 1);
                 printError(&sciErr, 0);
                 return 1;
             }
@@ -127,7 +127,7 @@ int sci_matplot(char *fname, unsigned long fname_len)
                     sciErr = getMatrixOfInteger8(pvApiCtx, piAddr1, &m1, &n1, (char **)(&l1));
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), fname, 1);
+                        Scierror(202, _("%s: Cannot get the data for argument #%d.\n"), fname, 1);
                         printError(&sciErr, 0);
                         return 1;
                     }
@@ -137,7 +137,7 @@ int sci_matplot(char *fname, unsigned long fname_len)
                     sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, piAddr1, &m1, &n1, (unsigned char **)(&l1));
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), fname, 1);
+                        Scierror(202, _("%s: Cannot get the data for argument #%d.\n"), fname, 1);
                         printError(&sciErr, 0);
                         return 1;
                     }
@@ -147,7 +147,7 @@ int sci_matplot(char *fname, unsigned long fname_len)
                     sciErr = getMatrixOfInteger16(pvApiCtx, piAddr1, &m1, &n1, (short **)(&l1));
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), fname, 1);
+                        Scierror(202, _("%s: Cannot get the data for argument #%d.\n"), fname, 1);
                         printError(&sciErr, 0);
                         return 1;
                     }
@@ -157,7 +157,7 @@ int sci_matplot(char *fname, unsigned long fname_len)
                     sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, piAddr1, &m1, &n1, (unsigned short **)(&l1));
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), fname, 1);
+                        Scierror(202, _("%s: Cannot get the data for argument #%d.\n"), fname, 1);
                         printError(&sciErr, 0);
                         return 1;
                     }
@@ -167,7 +167,7 @@ int sci_matplot(char *fname, unsigned long fname_len)
                     sciErr = getMatrixOfInteger32(pvApiCtx, piAddr1, &m1, &n1, (int **)(&l1));
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), fname, 1);
+                        Scierror(202, _("%s: Cannot get the data for argument #%d.\n"), fname, 1);
                         printError(&sciErr, 0);
                         return 1;
                     }
@@ -177,14 +177,14 @@ int sci_matplot(char *fname, unsigned long fname_len)
                     sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, piAddr1, &m1, &n1, (unsigned int **)(&l1));
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the data for argument %d.\n"), fname, 1);
+                        Scierror(202, _("%s: Cannot get the data for argument #%d.\n"), fname, 1);
                         printError(&sciErr, 0);
                         return 1;
                     }
                     plottype = buildMatplotType(MATPLOT_UInt, MATPLOT_FORTRAN, MATPLOT_RGBA);
                     break;
                 default :
-                    Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), fname, 1);
+                    Scierror(202, _("%s: Wrong type for input argument #%d: A real or integer expected.\n"), fname, 1);
                     return 1;
             }
             break;
@@ -198,7 +198,7 @@ int sci_matplot(char *fname, unsigned long fname_len)
                 sciErr = getHypermatType(pvApiCtx, piAddr1, &htype);
                 if (sciErr.iErr)
                 {
-                    Scierror(202, _("%s: Cannot get the hypermatrix data type for argument %d.\n"), fname, 1);
+                    Scierror(202, _("%s: Cannot get the hypermatrix data type for argument #%d.\n"), fname, 1);
                     return 1;
                 }
 
@@ -207,13 +207,13 @@ int sci_matplot(char *fname, unsigned long fname_len)
                     sciErr = getHypermatOfIntegerPrecision(pvApiCtx, piAddr1, &precision);
                     if (sciErr.iErr)
                     {
-                        Scierror(202, _("%s: Cannot get the hypermatrix data type for argument %d.\n"), fname, 1);
+                        Scierror(202, _("%s: Cannot get the hypermatrix data type for argument #%d.\n"), fname, 1);
                         return 1;
                     }
 
                     if (precision != SCI_UINT8 && precision != SCI_INT8)
                     {
-                        Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), fname, 1);
+                        Scierror(202, _("%s: Wrong type for input argument #%d: A real or integer expected.\n"), fname, 1);
                         return 1;
                     }
 
@@ -228,7 +228,7 @@ int sci_matplot(char *fname, unsigned long fname_len)
 
                     if (sciErr.iErr || ndims != 3 || (dims[2] != 1 && dims[2] != 3 && dims[2] != 4))
                     {
-                        Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), fname, 1);
+                        Scierror(202, _("%s: Wrong type for input argument #%d: A real or integer expected.\n"), fname, 1);
                         return 1;
                     }
 
@@ -273,7 +273,7 @@ int sci_matplot(char *fname, unsigned long fname_len)
                     sciErr = getHypermatOfDouble(pvApiCtx, piAddr1, &dims, &ndims, (double **)&l1);
                     if (sciErr.iErr || ndims != 3 || (dims[2] != 1 && dims[2] != 3 && dims[2] != 4))
                     {
-                        Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), fname, 1);
+                        Scierror(202, _("%s: Wrong type for input argument #%d: A real or integer expected.\n"), fname, 1);
                         return 1;
                     }
 
@@ -294,13 +294,13 @@ int sci_matplot(char *fname, unsigned long fname_len)
                 }
                 else
                 {
-                    Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), "data", 1);
+                    Scierror(202, _("%s: Wrong type for input argument #%d: A real or integer expected.\n"), "data", 1);
                     return 1;
                 }
             }
             break;
         default :
-            Scierror(202, _("%s: Wrong type for argument %d: A real or integer expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for input argument #%d: A real or integer expected.\n"), fname, 1);
             return 1;
     }
 

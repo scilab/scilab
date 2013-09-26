@@ -50,11 +50,11 @@ function dir_created = atomsExtract(archive_in,dir_out)
     end
 
     if fileinfo(archive_in) == [] then
-        error(msprintf(gettext("%s: The file ""%s"" doesn''t exist or is not read accessible.\n"),"atomsExtract",archive_in));
+        error(msprintf(gettext("%s: The file ""%s"" does not exist or is not read accessible.\n"),"atomsExtract",archive_in));
     end
 
     if ~ isdir(dir_out) then
-        error(msprintf(gettext("%s: The directory ""%s"" doesn''t exist.\n"),"atomsExtract",dir_out));
+        error(msprintf(gettext("%s: The directory ""%s"" does not exist.\n"),"atomsExtract",dir_out));
     end
 
     // Operating system detection + Architecture detection
