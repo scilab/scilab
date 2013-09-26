@@ -6293,7 +6293,7 @@ if test -n "$with_vmkit_package"; then
    VMKIT_INCLUDE_DIR="/usr/include/vmkit/"
    VMKIT_BIN_DIR="/usr/bin/"
    VMKIT_CPPFLAGS="-I$LLVM_INCLUDE_DIR/ -I$VMKIT_INCLUDE_DIR/ -I$VMKIT_INCLUDE_DIR/MMTk/ -D_DEBUG -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -O3 -fomit-frame-pointer -fvisibility-inlines-hidden -fPIC -Woverloaded-virtual -Wcast-qual"
-   VMKIT_LDFLAGS="-L$LLVM_LIB_DIR/ -lLLVMBitReader -lLLVMipo -lLLVMVectorize -lLLVMInstrumentation -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMMCParser -lLLVMJIT -lLLVMRuntimeDyld -lLLVMExecutionEngine -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMMC -lLLVMObject -lLLVMCore -lLLVMSupport"
+   VMKIT_LDFLAGS="-L$LLVM_LIB_DIR/ -lLLVMBitReader -lLLVMipo -lLLVMVectorize -lLLVMInstrumentation -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMMCParser -lLLVMJIT -lLLVMRuntimeDyld -lLLVMExecutionEngine -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMMC -lLLVMObject -lLLVMCore -lLLVMSupport -lLLVMObjCARCOpts"
    VMKIT_LDADD="$VMKIT_BIN_DIR/../lib/libFinalMMTk.a $VMKIT_BIN_DIR/../lib/libJ3.a $VMKIT_BIN_DIR/../lib/libClasspath.a $VMKIT_BIN_DIR/../lib/libVmkit.a $VMKIT_BIN_DIR/../lib/libVmkitCompiler.a $VMKIT_BIN_DIR/../lib/libCommonThread.a"
 
 $as_echo "#define VMKIT_ENABLED /**/" >>confdefs.h
