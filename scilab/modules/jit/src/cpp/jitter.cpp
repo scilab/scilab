@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2013-2013 - LIP6 - Peter Senna Tschudin
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -37,7 +38,7 @@ void *Jitter::launch(void *args)
         me->getProgram()->accept(*(me->getVisitor()));
         ConfigVariable::clearLastError();
     }
-    catch(ScilabException se)
+    catch (ScilabException se)
     {
         scilabErrorW(se.GetErrorMessage().c_str());
     }
@@ -46,7 +47,7 @@ void *Jitter::launch(void *args)
 
     //change thread status
     ThreadId* pThread = ConfigVariable::getThread(currentThreadKey);
-    if(pThread->getStatus() != ThreadId::Aborted)
+    if (pThread->getStatus() != ThreadId::Aborted)
     {
         pThread->setStatus(ThreadId::Done);
         bdoUnlock = true;
@@ -57,7 +58,7 @@ void *Jitter::launch(void *args)
 
     delete me;
 
-    if(bdoUnlock)
+    if (bdoUnlock)
     {
         UnlockPrompt();
     }
@@ -104,12 +105,13 @@ void Jitter::execAndWait(ast::Exp* _theProgram, ast::JITVisitor *_visitor)
         LockPrompt();
 
         types::ThreadId* pExecThread = ConfigVariable::getThread(threadKey);
-        if(pExecThread == NULL)
-        {//call pthread_join to clean stack allocation
+        if (pExecThread == NULL)
+        {
+            //call pthread_join to clean stack allocation
             __WaitThreadDie(threadId);
         }
     }
-    catch(ScilabException se)
+    catch (ScilabException se)
     {
         throw se;
     }

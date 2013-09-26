@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2013-2013 - LIP6 - Peter Senna Tschudin
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -29,7 +30,7 @@ extern "C"
 class CORE_GW_IMPEXP Jitter
 {
 private :
-	Jitter(ast::Exp* _theProgram, ast::JITVisitor *_visitor)
+    Jitter(ast::Exp* _theProgram, ast::JITVisitor *_visitor)
     {
         m_theProgram = _theProgram;
         m_visitor = _visitor;
