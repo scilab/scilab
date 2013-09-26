@@ -21,6 +21,9 @@ int foo()
 {
     types::Double* pdbl1 = types::Double::Empty();
     int res = AddDoubleToDouble(pdbl1, pdbl1, &pdbl1);
+    symbol::Symbol * sym = 0;// = symbol::Symbol(L"a"); => This declaration makes llc fails
+
+    symbol::Context::getInstance()->put(*sym, *pdbl1);
 
     return res;
 }
