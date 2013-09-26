@@ -2431,10 +2431,6 @@ uninstall-am: uninstall-libscicore_la_etcDATA \
 	uninstall-libscicore_la_sci_gatewayDATA \
 	uninstall-libscicore_la_xmlDATA uninstall-pkglibLTLIBRARIES
 
-src/cpp/storeCommand.cpp \
-src/cpp/banner.cpp \
-src/cpp/with_module.cpp \
-src/cpp/runner.cpp
 	sci_gateway/cpp/sci_format.cpp \
 	sci_gateway/cpp/sci_sciargs.cpp \
 	sci_gateway/cpp/sci_ieee.cpp \

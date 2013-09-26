@@ -73,10 +73,7 @@ src/cpp/getvariablesname.cpp \
 src/cpp/getmacrosname.cpp \
 src/cpp/getfunctionsname.cpp \
 src/cpp/InitScilab.cpp
-src/cpp/storeCommand.cpp \
-src/cpp/banner.cpp \
-src/cpp/with_module.cpp \
-src/cpp/runner.cpp
+
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
