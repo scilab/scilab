@@ -623,7 +623,7 @@ function totalSize = getSingleHandleInfo(fd, totalSize)
             totalSize = seekDouble(fd, totalSize); // bar_width
         end
 
-        totalSize = seekMatrix(fd, totalSize); // datatips
+        //totalSize = seekMatrix(fd, totalSize); // datatips
 
         [totalSize, state] = readString(fd, totalSize); // clip_state
         if state == "on" then
