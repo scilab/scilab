@@ -320,7 +320,9 @@ am__objects_8 = libscicore_la-core_gw.lo \
 	libscicore_la-sci_sciargs.lo libscicore_la-sci_ieee.lo \
 	libscicore_la-sci_funcprot.lo libscicore_la-sci_mode.lo \
 	libscicore_la-sci_typename.lo libscicore_la-sci_where.lo \
-	libscicore_la-sci_getmemory.lo
+	libscicore_la-sci_getmemory.lo libscicore_la-sci_format.lo \
+	libscicore_la-sci_sciargs.lo libscicore_la-sci_ieee.lo \
+	libscicore_la-sci_funcprot.lo libscicore_la-sci_mode.lo
 am_libscicore_la_OBJECTS = $(am__objects_6) $(am__objects_7) \
 	$(am__objects_8)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -808,7 +810,12 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_mode.cpp \
 	sci_gateway/cpp/sci_typename.cpp \
 	sci_gateway/cpp/sci_where.cpp \
-	sci_gateway/cpp/sci_getmemory.cpp
+	sci_gateway/cpp/sci_getmemory.cpp \
+	sci_gateway/cpp/sci_format.cpp \
+	sci_gateway/cpp/sci_sciargs.cpp \
+	sci_gateway/cpp/sci_ieee.cpp \
+	sci_gateway/cpp/sci_funcprot.cpp \
+	sci_gateway/cpp/sci_mode.cpp
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
@@ -2431,12 +2438,6 @@ uninstall-am: uninstall-libscicore_la_etcDATA \
 	uninstall-libscicore_la_sci_gatewayDATA \
 	uninstall-libscicore_la_xmlDATA uninstall-pkglibLTLIBRARIES
 
-	sci_gateway/cpp/sci_format.cpp \
-	sci_gateway/cpp/sci_sciargs.cpp \
-	sci_gateway/cpp/sci_ieee.cpp \
-	sci_gateway/cpp/sci_funcprot.cpp \
-	sci_gateway/cpp/sci_mode.cpp \
-	sci_gateway/cpp/sci_runASTwithVMKit.cpp
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test
