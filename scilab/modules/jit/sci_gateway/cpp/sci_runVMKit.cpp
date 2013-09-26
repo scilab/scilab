@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Allan CORNET
+ * Copyright (C) 2013-2013 - LIP6 - Peter Senna Tschudin
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -32,7 +32,7 @@ using namespace types;
 
 Function::ReturnValue sci_runVMKit(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    Scierror(999, _("Comming soon...\n"));
+    Scierror(999, _("Coming soon...\n"));
 
     ASTrunVMKit = true;
 

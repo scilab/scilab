@@ -156,7 +156,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscijit_la_LIBADD =
 am__objects_1 = libscijit_la-jitter.lo
-am__objects_2 = libscijit_la-sci_runASTwithVMKit.lo
+am__objects_2 = libscijit_la-sci_runVMKit.lo
 am_libscijit_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscijit_la_OBJECTS = $(am_libscijit_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -504,7 +504,7 @@ JIT_CPP_SOURCES = \
 	src/cpp/jitter.cpp
 
 GATEWAY_CPP_SOURCES = \
-sci_gateway/cpp/sci_runASTwithVMKit.cpp
+sci_gateway/cpp/sci_runVMKit.cpp
 
 libscijit_la_CPPFLAGS = \
 	-Iincludes \
@@ -709,7 +709,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijit_la-jitter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijit_la-sci_runASTwithVMKit.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscijit_la-sci_runVMKit.Plo@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -739,12 +739,12 @@ libscijit_la-jitter.lo: src/cpp/jitter.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscijit_la-jitter.lo `test -f 'src/cpp/jitter.cpp' || echo '$(srcdir)/'`src/cpp/jitter.cpp
 
-libscijit_la-sci_runASTwithVMKit.lo: sci_gateway/cpp/sci_runASTwithVMKit.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscijit_la-sci_runASTwithVMKit.lo -MD -MP -MF $(DEPDIR)/libscijit_la-sci_runASTwithVMKit.Tpo -c -o libscijit_la-sci_runASTwithVMKit.lo `test -f 'sci_gateway/cpp/sci_runASTwithVMKit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_runASTwithVMKit.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijit_la-sci_runASTwithVMKit.Tpo $(DEPDIR)/libscijit_la-sci_runASTwithVMKit.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_runASTwithVMKit.cpp' object='libscijit_la-sci_runASTwithVMKit.lo' libtool=yes @AMDEPBACKSLASH@
+libscijit_la-sci_runVMKit.lo: sci_gateway/cpp/sci_runVMKit.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscijit_la-sci_runVMKit.lo -MD -MP -MF $(DEPDIR)/libscijit_la-sci_runVMKit.Tpo -c -o libscijit_la-sci_runVMKit.lo `test -f 'sci_gateway/cpp/sci_runVMKit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_runVMKit.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscijit_la-sci_runVMKit.Tpo $(DEPDIR)/libscijit_la-sci_runVMKit.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_runVMKit.cpp' object='libscijit_la-sci_runVMKit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscijit_la-sci_runASTwithVMKit.lo `test -f 'sci_gateway/cpp/sci_runASTwithVMKit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_runASTwithVMKit.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijit_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscijit_la-sci_runVMKit.lo `test -f 'sci_gateway/cpp/sci_runVMKit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_runVMKit.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
