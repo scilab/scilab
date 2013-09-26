@@ -832,7 +832,9 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/core/src/c/ \
 	-I$(top_srcdir)/modules/dynamic_link/includes/ \
-	$(EIGEN_CPPFLAGS) $(AM_CPPFLAGS) $(am__append_10)
+	$(EIGEN_CPPFLAGS) $(AM_CPPFLAGS) -Wno-overloaded-virtual \
+	-Wno-cast-qual $(am__append_10)
+# Disable the warnings (no really important and hide errors)
 
 # --no-undefined --relax
 

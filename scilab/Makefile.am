@@ -80,7 +80,10 @@ scilab_bin_CPPFLAGS = \
 -I$(top_srcdir)/modules/core/src/c/ \
 -I$(top_srcdir)/modules/dynamic_link/includes/ \
 $(EIGEN_CPPFLAGS) \
-$(AM_CPPFLAGS)
+$(AM_CPPFLAGS) \
+-Wno-overloaded-virtual \
+-Wno-cast-qual
+# Disable the warnings (no really important and hide errors)
 
 # --no-undefined --relax
 
