@@ -22,8 +22,25 @@ extern "C"
 #include "os_swprintf.h"
 }
 
+
+
 namespace types
 {
+
+static bool isCoordIndex(int _iIndex, int* _piCoord, int _iCoordCount)
+{
+    bool bFind = false;
+    for (int j = 0 ; j < _iCoordCount ; j++)
+    {
+        if (_piCoord[j] == _iIndex)
+        {
+            bFind = true;
+            break;
+        }
+    }
+    return bFind;
+}
+
 bool InternalType::isGenericType(void)
 {
     return true;
