@@ -990,7 +990,7 @@ uninstall-am: uninstall-libscijit_la_includeHEADERS \
 	uninstall-pkglibLTLIBRARIES
 
 src/cpp/llvm-wrapper-generated.cpp: src/cpp/llvm-wrapper.cpp
-	clang++ -emit-llvm  -I$(top_srcdir)/modules/types/includes/ -I$(top_srcdir)/modules/operations/includes/ -I$(top_srcdir)/modules/core/includes/  -I$(top_srcdir)/modules/ast/includes/ -I$(top_srcdir)/modules/localization/includes/ $(EIGEN_CPPFLAGS) -c src/cpp/llvm-wrapper.cpp -o - | llc -march=cpp -cppgen=contents -o src/cpp/llvm-wrapper-generated.cpp
+	clang++ -emit-llvm  -I$(top_srcdir)/modules/types/includes/ -I$(top_srcdir)/modules/operations/includes/ -I$(top_srcdir)/modules/core/includes/  -I$(top_srcdir)/modules/ast/includes/ -I$(top_srcdir)/modules/localization/includes/ $(EIGEN_CPPFLAGS) -c src/cpp/llvm-wrapper.cpp -o - | llc-3.3 -march=cpp -cppgen=contents -o src/cpp/llvm-wrapper-generated.cpp
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test
