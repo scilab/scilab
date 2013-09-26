@@ -40,6 +40,7 @@ import org.scilab.modules.gui.editor.action.ActionTextEdit;
 import org.scilab.modules.gui.editor.action.ActionPasteStyle;
 import org.scilab.modules.gui.editor.action.ActionHide;
 import org.scilab.modules.gui.ged.Inspector;
+import org.scilab.modules.gui.ged.StartGED;
 import org.scilab.modules.gui.ged.SwapObject;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
@@ -472,8 +473,10 @@ public class Editor {
         menu.add(labels);
         menu.add(legends);
         menu.add(editdata);
-        menu.addSeparator();
-        menu.add(ged);
+        if (StartGED.enableNewGed) {
+            menu.addSeparator();
+            menu.add(ged);
+        }
     }
 
 

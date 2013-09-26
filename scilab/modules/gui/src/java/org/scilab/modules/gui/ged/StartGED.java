@@ -22,11 +22,15 @@ import org.scilab.modules.gui.editor.EditorManager;
  */
 public class StartGED {
 
+    public static boolean enableNewGed = false;
+    
     /**
     * Initializes the lightGED.
     */
     public static void quickGED(String uid) {
-        Editor instanceEditor = EditorManager.getFromUid(uid);
-        instanceEditor.onClickGED();
+        if (enableNewGed) {
+            Editor instanceEditor = EditorManager.getFromUid(uid);
+            instanceEditor.onClickGED();
+        }
     }
 }

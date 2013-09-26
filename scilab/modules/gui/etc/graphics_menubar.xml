@@ -170,7 +170,7 @@
                 type="0"/>
         </submenu>
     </menu>
-    
+
     <menu label="&amp;Tools">
         <submenu label="Show/Hide &amp;Toolbar">
             <callback
@@ -194,7 +194,7 @@
             <callback instruction="set(get_figure_handle([SCILAB_FIGURE_ID]), 'info_message', 'Right click and drag to rotate.')" type="-2"/>
         </submenu>
     </menu>
-    
+
     <menu label="&amp;Edit">
         <submenu label="&amp;Select as current figure">
             <callback instruction='scf([SCILAB_FIGURE_ID]);' type="0"/>
@@ -223,26 +223,26 @@
         <submenu label="Stop datatip manager">
             <callback instruction='datatipManagerMode(get_figure_handle([SCILAB_FIGURE_ID]), %f)' type="-2"/>
         </submenu>
-        
+
         <submenu label="Start curve data modify" icon="data_modify">
             <callback instruction='useeditor([SCILAB_FIGURE_ID], %t);' type="0"/>
         </submenu>
         <submenu label="Stop curve data modify">
             <callback instruction='useeditor([SCILAB_FIGURE_ID], %f);' type="0"/>
         </submenu>
-        
+
+        <!--
         <submenu label="Plot Browser">
             <callback instruction="plotbrowser([SCILAB_FIGURE_ID])" type="-2"/>
         </submenu>
-        
         <submenu label="Scilab Graphic Editor - GED">
             <submenu label="&amp;Quick Editor">
                 <callback instruction="openged([SCILAB_FIGURE_ID])" type="-2"/>
             </submenu>
         </submenu>
-
+        -->
     </menu>
-    
+
     <!--
   <menu label="&amp;MVC">
     <submenu label="&amp;Log View (Trace all View notifications)">
@@ -259,7 +259,7 @@
     <separator/>
   </menu>
   -->
-    
+
     <menu label="&amp;?">
         <submenu label="&amp;Scilab Help" accelerator="F1" icon="help-browser">
             <callback instruction='help();' type="0"/>

@@ -12,6 +12,8 @@
 
 package org.scilab.modules.gui.plotbrowser;
 
+import org.scilab.modules.gui.ged.StartGED;
+
 /**
  * Manages the action of the buttons on the toolbar and menubar.
  *
@@ -23,6 +25,8 @@ public class StartPlotBrowser {
     * Initializes the Plot Browser.
     */
     public static void plotBrowser(String uid) {
-        PlotBrowser.getPlotBrowser(uid);
+        if (StartGED.enableNewGed) {
+            PlotBrowser.getPlotBrowser(uid);
+        }
     }
 }
