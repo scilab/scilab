@@ -74,6 +74,8 @@ extern "C"
     extern BOOL isItTheDisabledLib(void);
 }
 
+extern bool ASTrunVMKit;
+
 static void Add_i(void);
 static void Add_pi(void);
 static void Add_eps(void);
@@ -400,7 +402,7 @@ static Parser::ControlStatus processCommand(ScilabEngineInfo* _pSEI)
             {
                 //before calling YaspReader, try to call %onprompt function
                 callOnPrompt();
-                execAstTask(parser->getTree(), _pSEI->iTimed != 0, _pSEI->iAstTimed != 0, _pSEI->iExecVerbose != 0);
+                execAstTask(parser->getTree(), _pSEI->iTimed != 0, _pSEI->iAstTimed != 0, _pSEI->iExecVerbose != 0, ASTrunVMKit);
             }
 
             /*

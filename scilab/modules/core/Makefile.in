@@ -299,8 +299,8 @@ am__v_lt_1 =
 @MAINTAINER_MODE_TRUE@am_libscicore_algo_la_rpath =
 libscicore_la_DEPENDENCIES = libscicore-algo.la
 am__objects_6 = libscicore_la-gw_core.lo libscicore_la-gw_user.lo \
-	libscicore_la-gw_user2.lo libscicore_la-sci_type.lo \
-	libscicore_la-sci_getdebuginfo.lo libscicore_la-gw_user2.lo \
+	libscicore_la-sci_type.lo libscicore_la-sci_getdebuginfo.lo \
+	libscicore_la-gw_user2.lo \
 	libscicore_la-sci_getvariablesonstack.lo \
 	libscicore_la-sci_readgateway.lo libscicore_la-sci_comp.lo
 am__objects_7 = where.lo
@@ -767,7 +767,6 @@ CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_core.c \
 	sci_gateway/c/gw_user.c \
-	sci_gateway/c/gw_user2.c \
 	sci_gateway/c/sci_type.c \
 	sci_gateway/c/sci_getdebuginfo.c \
 	sci_gateway/c/gw_user2.c \
@@ -841,8 +840,9 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/modules/jvm/includes/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
 	-I$(top_srcdir)/modules/graphics/includes/ \
-	-I$(top_srcdir)/modules/system_env/includes/ $(EIGEN_CPPFLAGS) \
-	$(XML_FLAGS) $(AM_CPPFLAGS) $(am__append_3)
+	-I$(top_srcdir)/modules/system_env/includes/ \
+	-I$(top_srcdir)/modules/jit/includes/ $(EIGEN_CPPFLAGS) \
+	$(XML_FLAGS) $(AM_CPPFLAGS) $(VMKIT_CPPFLAGS) $(am__append_3)
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicore.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscicore-algo.la
@@ -1574,13 +1574,6 @@ libscicore_la-gw_user.lo: sci_gateway/c/gw_user.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_la-gw_user.lo `test -f 'sci_gateway/c/gw_user.c' || echo '$(srcdir)/'`sci_gateway/c/gw_user.c
 
-libscicore_la-gw_user2.lo: sci_gateway/c/gw_user2.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_la-gw_user2.lo -MD -MP -MF $(DEPDIR)/libscicore_la-gw_user2.Tpo -c -o libscicore_la-gw_user2.lo `test -f 'sci_gateway/c/gw_user2.c' || echo '$(srcdir)/'`sci_gateway/c/gw_user2.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicore_la-gw_user2.Tpo $(DEPDIR)/libscicore_la-gw_user2.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_user2.c' object='libscicore_la-gw_user2.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_la-gw_user2.lo `test -f 'sci_gateway/c/gw_user2.c' || echo '$(srcdir)/'`sci_gateway/c/gw_user2.c
-
 libscicore_la-sci_type.lo: sci_gateway/c/sci_type.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_type.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_type.Tpo -c -o libscicore_la-sci_type.lo `test -f 'sci_gateway/c/sci_type.c' || echo '$(srcdir)/'`sci_gateway/c/sci_type.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicore_la-sci_type.Tpo $(DEPDIR)/libscicore_la-sci_type.Plo
@@ -1594,6 +1587,13 @@ libscicore_la-sci_getdebuginfo.lo: sci_gateway/c/sci_getdebuginfo.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_getdebuginfo.c' object='libscicore_la-sci_getdebuginfo.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_getdebuginfo.lo `test -f 'sci_gateway/c/sci_getdebuginfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getdebuginfo.c
+
+libscicore_la-gw_user2.lo: sci_gateway/c/gw_user2.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_la-gw_user2.lo -MD -MP -MF $(DEPDIR)/libscicore_la-gw_user2.Tpo -c -o libscicore_la-gw_user2.lo `test -f 'sci_gateway/c/gw_user2.c' || echo '$(srcdir)/'`sci_gateway/c/gw_user2.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicore_la-gw_user2.Tpo $(DEPDIR)/libscicore_la-gw_user2.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_user2.c' object='libscicore_la-gw_user2.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscicore_la-gw_user2.lo `test -f 'sci_gateway/c/gw_user2.c' || echo '$(srcdir)/'`sci_gateway/c/gw_user2.c
 
 libscicore_la-sci_getvariablesonstack.lo: sci_gateway/c/sci_getvariablesonstack.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_getvariablesonstack.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getvariablesonstack.Tpo -c -o libscicore_la-sci_getvariablesonstack.lo `test -f 'sci_gateway/c/sci_getvariablesonstack.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getvariablesonstack.c

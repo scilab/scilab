@@ -134,7 +134,6 @@ endif
 GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_core.c \
 	sci_gateway/c/gw_user.c \
-	sci_gateway/c/gw_user2.c \
 	sci_gateway/c/sci_type.c \
 	sci_gateway/c/sci_getdebuginfo.c \
 	sci_gateway/c/gw_user2.c \
@@ -217,9 +216,11 @@ libscicore_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/gui/includes/ \
 -I$(top_srcdir)/modules/graphics/includes/ \
 -I$(top_srcdir)/modules/system_env/includes/ \
+-I$(top_srcdir)/modules/jit/includes/ \
 $(EIGEN_CPPFLAGS) \
 $(XML_FLAGS) \
-$(AM_CPPFLAGS)
+$(AM_CPPFLAGS) \
+$(VMKIT_CPPFLAGS)
 
 # Used by sci_getdebuginfo:
 if TCLTK

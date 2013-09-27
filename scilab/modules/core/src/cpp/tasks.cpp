@@ -199,11 +199,6 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose, bo
         Runner::execAndWait(tree, exec);
         //delete exec;
     }
-    else
-    {
-        Runner::execAndWait(tree, exec);
-        //delete exec;
-    }
 
     if (timed)
     {
