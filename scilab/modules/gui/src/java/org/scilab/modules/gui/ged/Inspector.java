@@ -29,6 +29,7 @@ import org.scilab.modules.gui.window.ScilabWindow;
 public class Inspector {
     private static Inspector instance;
     private static SwingInspector inspectorTab;
+    private static GEDView gedView;
 
     /**
     * Constructor.
@@ -40,6 +41,7 @@ public class Inspector {
         TextBox infobar = ScilabTextBox.createTextBox();
         inspectorTab = new SwingInspector(objectID);
         inspectorTab.addInfoBar(infobar);
+        gedView = new GEDView();
     }
 
     /**
@@ -106,6 +108,7 @@ public class Inspector {
     public static void closeInspector() {
         if (instance != null) {
             instance = null;
+            gedView.close();
         }
     }
 
@@ -114,6 +117,7 @@ public class Inspector {
      */
     public void close() {
         ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabTab) inspectorTab);
+        gedView.close();
     }
 
     /**
