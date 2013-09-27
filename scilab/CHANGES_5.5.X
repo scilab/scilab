@@ -6,6 +6,8 @@ Obsolete & Removed Functions
 
 * datatipContextMenu() and datatipEventhandler() removed (See bug #8646).
 
+* Second output argument of add_param removed (See SEP #132).
+
 
 Scilab Bug Fixes
 ================
