@@ -14,11 +14,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="profile">
     <refnamediv>
         <refname>profile</refname>
-        <refpurpose>extract execution profiles of a Scilab function</refpurpose>
+        <refpurpose>Returns the profiling data of a function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>c=profile(fun)</synopsis>
+        <synopsis>c = profile(fun)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -36,12 +36,12 @@
                         <itemizedlist>
                             <listitem>
                                 <para>
-                                    <literal>c(i,1)</literal> : number of times the line #i of the function has been run
+                                    <literal>c(i,1)</literal> : number of times the line #i of the function has been executed
                                 </para>
                             </listitem>
                             <listitem>
                                 <para>
-                                    <literal>c(i,2)</literal> : cumulated CPU time [in seconds] spent to run the line #i
+                                    <literal>c(i,2)</literal> : cumulated CPU time [in seconds] spent to execute the line #i
                                 </para>
                             </listitem>
                             <listitem>
@@ -58,23 +58,21 @@
     <refsection>
         <title>Description</title>
         <para>
-            To use <literal>profile</literal>, profiling instructions need to be added to the Scilab function
-            function by <link linkend="add_profiling">add_profiling</link>.
+            To use <literal>profile</literal> on a function, the profiling of this function must be first activated with <link linkend="add_profiling">add_profiling</link>.
         </para>
         <para>
-            For such function, When such a function is executed the systems counts
-            how many time each line is executed and how may cpu time is spend [in s]for
-            each line execution. These data are stored within the function data
-            structure.  The profile function allows to extract these data and
-            return them in the two first columns of <literal>c</literal>. The <literal>c</literal> third
-            column gives a measure of interpetor effort for one execution of
-            corresponding line. Ith line of <literal>c</literal> corresponds to Ith line of the
-            function (included first)
+            Then, when this function is executed, the system counts how many times each line is executed, and how many cpu time is spent for
+            each line execution [in seconds]. The <literal>profile</literal> function returns these data in the first two columns of the returned matrix.
+            The third column gives a measure of interpretor effort for one execution of the corresponding line.
         </para>
         <para>
-            Note that, due to the precision of the processor clock (typically one
-            micro second), some executed lines may appear with 0 cpu time even if
-            total cpu time really spend in their execution is large.
+            Note: the n-th line of <literal>c</literal> corresponds to n-th line of the
+            function (including the first line).
+        </para>
+        <para>
+            Due to the precision of the processor clock (typically one
+            micro second), some executed lines may appear with a cpu time of 0, even if
+            total cpu time really spent is larger.
         </para>
     </refsection>
     <refsection>
