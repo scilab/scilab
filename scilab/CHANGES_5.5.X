@@ -156,9 +156,11 @@ Obsolete & Removed Functions
 
 * chart tagged as obsolete. Will be removed in Scilab 5.5.1.
   Please use nicholschart instead.
-  
+
 * mvvacov tagged as obsolete. Will be removed in Scilab 6.0.0.
   Please use cov instead.
+
+* Second output argument of add_param tagged as obsolete. Will be removed in Scilab 5.5.1.
 
 * dft removed, please use fft instead.
 
@@ -749,7 +751,7 @@ Scilab Bug Fixes
 
 
 Xcos Bug Fixes
-==============
+===============
 
 * Bug #7350 fixed - The I/O ports numbering of a superblock was not updated
                     when a new port was dropped.
