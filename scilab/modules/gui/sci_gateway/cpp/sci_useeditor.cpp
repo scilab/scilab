@@ -43,7 +43,7 @@ int sci_useeditor(char *fname, unsigned long fname_len)
 
     if (VarType(1) != sci_matrix)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 1);
         return FALSE;
     }
 
@@ -51,7 +51,7 @@ int sci_useeditor(char *fname, unsigned long fname_len)
 
     if (m1 * n1 != 1)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname, m1 * n1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, m1 * n1);
         return FALSE;
     }
 

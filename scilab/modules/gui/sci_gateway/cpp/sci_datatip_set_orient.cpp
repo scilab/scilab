@@ -138,7 +138,7 @@ int sci_datatip_set_orient(char *fname, unsigned long fname_len)
                     else
                     {
 
-                        Scierror(999, _("%s: Wrong dimension for input argument #%d: Single dimension string expected.\n"), fname, 2);
+                        Scierror(999, _("%s: Wrong dimension for input argument #%d: A string expected.\n"), fname, 2);
                         return FALSE;
 
                     }
@@ -147,7 +147,7 @@ int sci_datatip_set_orient(char *fname, unsigned long fname_len)
                 else
                 {
 
-                    Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
                     return FALSE;
 
                 }
@@ -156,7 +156,7 @@ int sci_datatip_set_orient(char *fname, unsigned long fname_len)
             else
             {
 
-                Scierror(999, _("%s: Wrong type for input argument #%d: Datatip handler expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
                 return FALSE;
 
             }
@@ -165,7 +165,7 @@ int sci_datatip_set_orient(char *fname, unsigned long fname_len)
         else
         {
 
-            Scierror(999, _("%s: Wrong type for input argument #%d: Datatip handler expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
             return FALSE;
 
         }

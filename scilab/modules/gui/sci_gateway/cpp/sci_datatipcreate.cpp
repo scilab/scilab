@@ -92,25 +92,25 @@ int sci_datatipcreate(char *fname, unsigned long fname_len)
                     }
                     else
                     {
-                        Scierror(999, _("%s: Wrong size for input argument #%d: array of %d or %d elements expected.\n"), fname, 2, 2, 3);
+                        Scierror(999, _("%s: Wrong size for input argument #%d: 1-by-%d or %d-by-1 vector expected.\n"), fname, 2, 2, 3);
                         return FALSE;
                     }
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A integer or matrix of double expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"), fname, 2);
                     return FALSE;
                 }
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Polyline handler expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Polyline");
                 return FALSE;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Object handler expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Polyline");
             return FALSE;
         }
 

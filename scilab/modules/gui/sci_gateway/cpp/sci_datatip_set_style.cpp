@@ -63,37 +63,37 @@ int sci_datatip_set_style(char *fname, unsigned long fname_len)
 
                 switch (datatipSetStyleOption)
                 {
-                    case(1):
+                    case (1):
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 1, true, true);
                         LhsVar(1) = 0;
                         PutLhsVar();
                         return TRUE;
-                    case(2):
+                    case (2):
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 1, false, true);
                         LhsVar(1) = 0;
                         PutLhsVar();
                         return TRUE;
-                    case(3):
+                    case (3):
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 1, false, false);
                         LhsVar(1) = 0;
                         PutLhsVar();
                         return TRUE;
-                    case(4):
+                    case (4):
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 2, true, true);
                         LhsVar(1) = 0;
                         PutLhsVar();
                         return TRUE;
-                    case(5):
+                    case (5):
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 2, false, true);
                         LhsVar(1) = 0;
                         PutLhsVar();
                         return TRUE;
-                    case(6):
+                    case (6):
                         DatatipSetStyle::datatipSetStyle(getScilabJavaVM(), (char*)polylineUID, 2, false, false);
                         LhsVar(1) = 0;
                         PutLhsVar();
                         return TRUE;
-                    case(0):
+                    case (0):
                         //Do nothing.
                         LhsVar(1) = 0;
                         PutLhsVar();
@@ -134,7 +134,7 @@ int sci_datatip_set_style(char *fname, unsigned long fname_len)
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: integer expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 2);
                     return FALSE;
                 }
             }
@@ -183,7 +183,7 @@ int sci_datatip_set_style(char *fname, unsigned long fname_len)
                         }
                         else
                         {
-                            Scierror(999, _("%s: Wrong type for input argument #%d: boolean expected.\n"), fname, 3);
+                            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
                             return FALSE;
                         }
                     }
@@ -196,7 +196,7 @@ int sci_datatip_set_style(char *fname, unsigned long fname_len)
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: integer expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 2);
                     return FALSE;
                 }
 
@@ -263,14 +263,14 @@ int sci_datatip_set_style(char *fname, unsigned long fname_len)
                             }
                             else
                             {
-                                Scierror(999, _("%s: Wrong type for input argument #%d: boolean expected.\n"), fname, 4);
+                                Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 4);
                                 return FALSE;
                             }
 
                         }
                         else
                         {
-                            Scierror(999, _("%s: Wrong type for input argument #%d: boolean expected.\n"), fname, 3);
+                            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
                             return FALSE;
                         }
                     }
@@ -283,7 +283,7 @@ int sci_datatip_set_style(char *fname, unsigned long fname_len)
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: integer expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 2);
                     return FALSE;
                 }
 
@@ -299,7 +299,7 @@ int sci_datatip_set_style(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Polyline handler expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Polyline");
             return FALSE;
         }
 

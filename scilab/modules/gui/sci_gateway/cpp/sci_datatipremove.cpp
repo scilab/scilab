@@ -60,7 +60,7 @@ int sci_datatipremove(char *fname, unsigned long fname_len)
 
         if (nbRow * nbCol != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A handle expected.\n"), fname, 1);
             return FALSE;
         }
 
@@ -75,13 +75,13 @@ int sci_datatipremove(char *fname, unsigned long fname_len)
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A datatip handle expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
                 return FALSE;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A graphic handle expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A handle expected.\n"), fname, 1);
             return FALSE;
         }
 
@@ -93,7 +93,7 @@ int sci_datatipremove(char *fname, unsigned long fname_len)
 
         if (nbRow * nbCol != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A handle expected.\n"), fname, 1);
             return FALSE;
         }
 
@@ -133,26 +133,26 @@ int sci_datatipremove(char *fname, unsigned long fname_len)
                     else
                     {
 
-                        Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), fname, 2);
+                        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
                         return FALSE;
 
                     }
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 2);
                     return FALSE;
                 }
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A polyline handle expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Polyline");
                 return FALSE;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A graphic handle expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A handle expected.\n"), fname, 1);
             return FALSE;
         }
 

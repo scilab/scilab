@@ -300,7 +300,7 @@ public class Editor {
         cut = new JMenuItem(Messages.gettext("Cut"));
         cut.setToolTipText(Messages.gettext("Cut selected object"));
         paste = new JMenuItem(Messages.gettext("Paste"));
-        paste.setToolTipText(Messages.gettext("Paste copied object to this figure"));
+        paste.setToolTipText(Messages.gettext("Paste copied object on this figure"));
         delete = new JMenuItem(Messages.gettext("Delete"));
         delete.setToolTipText(Messages.gettext("Delete selected object"));
         clear = new JMenuItem(Messages.gettext("Clear"));
@@ -318,21 +318,21 @@ public class Editor {
         labelZ = new JMenuItem(Messages.gettext("Label Z"));
         labelZ.setToolTipText(Messages.gettext("Insert a label in Z axis"));
         insert = new JMenuItem(Messages.gettext("Insert"));
-        insert.setToolTipText(Messages.gettext("Insert a legend to the selected curve"));
+        insert.setToolTipText(Messages.gettext("Insert a legend into the selected curve"));
         remove = new JMenuItem(Messages.gettext("Remove"));
         remove.setToolTipText(Messages.gettext("Remove the legend from the selected curve"));
         ged = new JMenuItem(Messages.gettext("Open Quick Editor"));
         ged.setToolTipText(Messages.gettext("Initialize the graphics editor"));
         editdata = new JMenuItem(Messages.gettext("Edit curve data"));
-        editdata.setToolTipText(Messages.gettext("Enables curve data modify"));
+        editdata.setToolTipText(Messages.gettext("Enables curve data modification"));
         undo = new JMenuItem(Messages.gettext("Undo"));
         undo.setToolTipText(Messages.gettext("Undo last action"));
         redo = new JMenuItem(Messages.gettext("Redo"));
         redo.setToolTipText(Messages.gettext("Redo last undo action"));
-        copyStyle = new JMenuItem(Messages.gettext("Copy Style"));
+        copyStyle = new JMenuItem(Messages.gettext("Copy style"));
         copyStyle.setToolTipText(Messages.gettext("Copy the style of the axes"));
-        pasteStyle = new JMenuItem(Messages.gettext("Paste Style"));
-        pasteStyle.setToolTipText(Messages.gettext("Paste the style copied to this axes"));
+        pasteStyle = new JMenuItem(Messages.gettext("Paste style"));
+        pasteStyle.setToolTipText(Messages.gettext("Paste the copied style on this axes"));
 
         copy.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -769,7 +769,7 @@ public class Editor {
             Inspector.getInspector(DatatipManager.getFromUid(figureUid).getSelectedTip());
         } else {
             String[] objects = (new GEDPicker()).pick(figureUid, lastClick);
-            Inspector.getInspector(objects[objects.length-1]);
+            Inspector.getInspector(objects[objects.length - 1]);
         }
     }
 

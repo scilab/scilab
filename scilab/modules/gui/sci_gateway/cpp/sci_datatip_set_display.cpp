@@ -91,7 +91,7 @@ int sci_datatip_set_display(char *fname, unsigned long fname_len)
                     else
                     {
 
-                        Scierror(999, _("%s: Wrong size for input argument #%d: single dimension string expected.\n"), fname, 2);
+                        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
                         return FALSE;
 
                     }
@@ -99,7 +99,7 @@ int sci_datatip_set_display(char *fname, unsigned long fname_len)
                 else
                 {
 
-                    Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
                     return FALSE;
 
                 }
@@ -117,7 +117,7 @@ int sci_datatip_set_display(char *fname, unsigned long fname_len)
         else
         {
 
-            Scierror(999, _("%s: Wrong type for input argument #%d: Datatip handler expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
             return FALSE;
 
         }
@@ -126,7 +126,7 @@ int sci_datatip_set_display(char *fname, unsigned long fname_len)
     else
     {
 
-        Scierror(999, _("%s: Wrong type for input argument #%d: Datatip handler expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
         return FALSE;
 
     }

@@ -30,12 +30,12 @@ int sci_datatip_toggle(char *fname, unsigned long fname_len)
     const char* pstFigureUID = NULL;
     bool enabled = false;
     int nbRow = 0, nbCol = 0, stkAdr = 0;
-    
+
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 0, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
-    
-    if (Rhs == 0) 
+
+    if (Rhs == 0)
     {
         pstFigureUID = getCurrentFigure();
         if (pstFigureUID)
@@ -43,28 +43,34 @@ int sci_datatip_toggle(char *fname, unsigned long fname_len)
             enabled = DatatipManager::isEnabled(getScilabJavaVM(), pstFigureUID);
             DatatipManager::setEnabled(getScilabJavaVM(), pstFigureUID, (!enabled));
         }
-    } else if (Rhs == 1) {
+    }
+    else if (Rhs == 1)
+    {
         GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stkAdr);
-	if (nbRow * nbCol != 1)
+        if (nbRow * nbCol != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A Datatip handle expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
             return FALSE;
         }
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
-	{
-	    pstFigureUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
-	    enabled = DatatipManager::isEnabled(getScilabJavaVM(), pstFigureUID);
+        {
+            pstFigureUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
+            enabled = DatatipManager::isEnabled(getScilabJavaVM(), pstFigureUID);
             DatatipManager::setEnabled(getScilabJavaVM(), pstFigureUID, (!enabled));
-	    
-	} else {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Datatip handler expected.\n"), fname, 1);
+
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
             return FALSE;
-	}
-    } else {
+        }
+    }
+    else
+    {
         Scierror(999, _("%s: Wrong number for input argument: %d or %d expected.\n"), fname, 0, 1);
         return FALSE;
     }
-    
+
     LhsVar(1) = 0;
     PutLhsVar();
 

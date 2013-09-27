@@ -60,13 +60,13 @@ int sci_datatipmove(char *fname, unsigned long fname_len)
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Datatip handler expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
                 return FALSE;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Datatip handler expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
             return FALSE;
         }
     }

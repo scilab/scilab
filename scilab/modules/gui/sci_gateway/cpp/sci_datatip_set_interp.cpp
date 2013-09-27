@@ -76,7 +76,7 @@ int sci_datatip_set_interp(char *fname, unsigned long fname_len)
                 else
                 {
 
-                    Scierror(999, _("%s: Wrong type for input argument #%d: Boolean expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
                     return FALSE;
 
                 }
@@ -85,7 +85,7 @@ int sci_datatip_set_interp(char *fname, unsigned long fname_len)
             else
             {
 
-                Scierror(999, _("%s: Wrong type for input argument #%d: Datatip handler expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
                 return FALSE;
 
             }
@@ -94,7 +94,7 @@ int sci_datatip_set_interp(char *fname, unsigned long fname_len)
         else
         {
 
-            Scierror(999, _("%s: Wrong type for input argument #%d: Datatip handler expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 1, "Datatip");
             return FALSE;
 
         }
