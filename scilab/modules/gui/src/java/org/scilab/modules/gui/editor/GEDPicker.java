@@ -108,6 +108,9 @@ public class GEDPicker {
                 case GraphicObjectProperties.__GO_DATATIP__:
                     curObj = getDatatip(AllObjs[i], position);
                     break;
+                case GraphicObjectProperties.__GO_COMPOUND__:
+                    curObj = false;
+                    break;
             }
             if (curObj) {
                 ret.add(AllObjs[i]);
