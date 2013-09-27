@@ -68,12 +68,6 @@ BDF methods with direct and preconditioned Krylov linear solvers, based on ODEPA
 * License update: switch to the CeCILL 2.1.
 
 
-Syntax Changes
-===============
-
-* Vector ^ scalar syntax declared obsolete. See bug #11524
-
-
 Improvements
 =============
 
@@ -92,41 +86,6 @@ Improvements
 
 * New optional output argument for routh_t.
   See bug #12829.
-
-
-Obsolete & Removed Functions
-============================
-
-* Scilab 5.5.X family will be the latest family working under Windows XP/2003.
-
-* The third argument of poly function will be more strict.
-    Only the following strings are allowed: "roots", "coeff", "c", "r".
-
-* Option and direction arguments of gsort will be more strict in all cases.
-  Only the following strings are allowed: option: "r" "c" "g" "lr" "lc"
-                                              direction : "d" "i"
-
-* nfreq tagged as obsolete. Will be removed in Scilab 5.5.1.
-  Please use tabul instead.
-
-* IsAScalar tagged as obsolete. Will be removed in Scilab 5.5.1.
-  Please use isscalar instead.
-
-* chart tagged as obsolete. Will be removed in Scilab 5.5.1.
-  Please use nicholschart instead.
-
-* mvvacov tagged as obsolete. Will be removed in Scilab 6.0.0.
-  Please use cov instead.
-
-* dft removed, please use fft instead.
-
-* sscanf removed, please use msscanf instead.
-
-* fscanf removed, please use mfscanf for files opened with mopen or read for files opened 
-  with file instead.
-
-* fprintf removed, please use mfprintf for files opened with mopen or write for files 
-  opened with file instead.
 
 
 Differential Equations
@@ -173,6 +132,43 @@ Compilation
 ============
 
 * Minimal version of Flexdock (1.2.4) enforced.
+
+
+Obsolete & Removed Functions
+============================
+
+* Scilab 5.5.X family will be the latest family working under Windows XP/2003.
+
+* Vector ^ scalar syntax declared obsolete. See bug #11524
+
+* The third argument of poly function will be more strict.
+    Only the following strings are allowed: "roots", "coeff", "c", "r".
+
+* Option and direction arguments of gsort will be more strict in all cases.
+  Only the following strings are allowed: option: "r" "c" "g" "lr" "lc"
+                                              direction : "d" "i"
+
+* nfreq tagged as obsolete. Will be removed in Scilab 5.5.1.
+  Please use tabul instead.
+
+* IsAScalar tagged as obsolete. Will be removed in Scilab 5.5.1.
+  Please use isscalar instead.
+
+* chart tagged as obsolete. Will be removed in Scilab 5.5.1.
+  Please use nicholschart instead.
+  
+* mvvacov tagged as obsolete. Will be removed in Scilab 6.0.0.
+  Please use cov instead.
+
+* dft removed, please use fft instead.
+
+* sscanf removed, please use msscanf instead.
+
+* fscanf removed, please use mfscanf for files opened with mopen or read for files opened 
+  with file instead.
+
+* fprintf removed, please use mfprintf for files opened with mopen or write for files 
+  opened with file instead.
 
 
 Scilab Bug Fixes
@@ -308,7 +304,7 @@ Scilab Bug Fixes
 * Bug #8373 fixed - clear can now handle a matrix of strings argument.
 
 * Bug #8415 fixed - optim_moga, optim_nsga, optim_nsga2 can now take list as input 
-                    arguments, as explained in their help page.
+                    arguments, as explained in their help pages.
 
 * Bug #8462 fixed - bvodeS could make Scilab unstable.
 
@@ -331,7 +327,7 @@ Scilab Bug Fixes
 
 * Bug #8636 fixed - roots help page updated (default algorithm value was wrong).
 
-* Bug #8667 fixed - Handling of %nan in functions min, max, median was not properly 
+* Bug #8667 fixed - Handling of %nan in min, max, median functions was not properly 
                     documented.
 
 * Bug #8680 fixed - "end" output argument of regexp function has been changed.
@@ -347,7 +343,7 @@ Scilab Bug Fixes
 * Bug #8779 fixed - gsort did not preserve the order of equal elements, in 
                     lexicographic sort.
 
-* Bug #8820 fixed - Squeeze did not return a matrix when the number of dimensions
+* Bug #8820 fixed - squeeze did not return a matrix when the number of dimensions
                     of the result was less or equal to 2.
 
 * Bug #8824 fixed - taucs_chfact returned a segfault (not the case in nwni mode).
@@ -372,9 +368,9 @@ Scilab Bug Fixes
 
 * Bug #9109 fixed - nfreq tagged as obsolete.
 
-* Bug #9158 fixed - zeros() called with a big number returns an empty matrix.
+* Bug #9158 fixed - zeros called with a big number returns an empty matrix.
 
-* Bug #9208 fixed - Added three optional output arguments to optim(),
+* Bug #9208 fixed - Added three optional output arguments to optim,
                     to retrieve #iterations, #evaluations and a termination indicator.
 
 * Bug #9385 fixed - The type checking in trigonometric functions has been added.
@@ -399,7 +395,7 @@ Scilab Bug Fixes
 
 * Bug #9601 fixed - Cylinder demonstration fixed.
 
-* Bug #9688 fixed - optim() could crash when "imp" option was < 0. It is now set to 0 in 
+* Bug #9688 fixed - optim could crash when "imp" option was < 0. It is now set to 0 in 
                     that case.
 
 * Bug #9690 fixed - The "imp" option for optim could crash Scilab and was not consistent 
@@ -454,7 +450,7 @@ Scilab Bug Fixes
                     non-existent file.
 
 * Bug #10862 fixed - Add a without Internet connection installation
-                     global configuration in the installer.
+                    global configuration in the installer.
 
 * Bug #10866 fixed - det was not equivalent to detr for rational matrices.
 
@@ -536,7 +532,7 @@ Scilab Bug Fixes
                      under Windows.
 
 * Bug #12463 fixed - Wrong specification for rect=[x,y,w,h] argument in xstringb 
-                     French help page.
+                    French help page.
 
 * Bug #12470 fixed - Variable browser was not refreshed after loading an environment.
 
@@ -563,7 +559,7 @@ Scilab Bug Fixes
 
 * Bug #12548 fixed - Duplicated code in xmltoformat removed.
 
-* Bug #12550 fixed - Optimbase and optimsimplex help pages were not standard.
+* Bug #12550 fixed - optimbase and optimsimplex help pages were not standard.
 
 * Bug #12551 fixed - Stack problem with diary([],"pause") and diary([],"resume") fixed.
 
@@ -596,7 +592,7 @@ Scilab Bug Fixes
                      a bad LineSpec argument.
 
 * Bug #12624 fixed - In case of errors in Scilab macros, "make check-TESTS" did not fail 
-                     as expected.
+                    as expected.
 
 * Bug #12627 fixed - At restoration, a window could be out of the screen.
 
@@ -675,7 +671,7 @@ Scilab Bug Fixes
 * Bug #12790 fixed - Links to ZCOS files in documentation were broken.
 
 * Bug #12791 fixed - More information is now given in case of failure during the ATOMS 
-                     autoload step.
+                    autoload step.
 
 * Bug #12794 fixed - calfrq.sci code did not follow Scilab standard.
 
@@ -753,7 +749,8 @@ Scilab Bug Fixes
 
 
 Xcos Bug Fixes
-==========
+==============
+
 * Bug #7350 fixed - The I/O ports numbering of a superblock was not updated
                     when a new port was dropped.
 
@@ -827,5 +824,5 @@ Xcos Bug Fixes
 
 * Bug #12924 fixed - Blocks type 2004 was not handled as a valid block type.
 
-* Bug #12934 fixed - Separate compilation of a super block could fail due to under 
+* Bug #12934 fixed - Separate compilation of a superblock could fail due to under 
                     determined signal sizes.
