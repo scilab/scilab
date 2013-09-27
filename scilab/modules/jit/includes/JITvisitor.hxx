@@ -382,7 +382,14 @@ public:
             }
             case OpExp::times :
             {
-                pResult = Builder->CreateFMul(pITL, pITR, "OpExp::times");
+
+                llvm::Value * tmp = Builder->CreateAlloca(llvm::PointerType::getUnqual(TheModule->getTypeByName("class.types::Double")));
+
+                //printf("%p \n",TheModule->getFunction("_Z17AddDoubleToDoublePN5types6DoubleES1_PS1_"));
+
+                Builder->CreateCall3(TheModule->getFunction("_Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1_"), pITR, pITL, tmp);
+
+                pResult = Builder->CreateLoad(tmp);
                 break;
             }
             case OpExp::rdivide :
