@@ -44,6 +44,7 @@ public class MessagesGED {
     public static final String matplot = Messages.gettext("Matplot");
 
     //Base Properties - Labels
+    public static final String arc_drawing_method = Messages.gettext("Arc Drawing Method");
     public static final String auto_rotation = Messages.gettext("Auto Rotation");
     public static final String auto_position = Messages.gettext("Auto Position");
     public static final String auto_ticks = Messages.gettext("Auto Ticks");
@@ -168,6 +169,8 @@ public class MessagesGED {
     public static final String z_label = Messages.gettext("Z Label");
     public static final String scaled = Messages.gettext("Scaled");
     public static final String title = Messages.gettext("Title");
+    public static final String start_angle = Messages.gettext("Start Angle");
+    public static final String end_angle = Messages.gettext("End Angle");
 
     //Data - Tooltip
     public static final String figure_id_tooltip = Messages.gettext("Number of current figure.");

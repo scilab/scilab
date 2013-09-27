@@ -123,13 +123,9 @@ public class ShowHide extends CommonCallBack {
 
     public static void arc(boolean hide) {
         try {
-            org.scilab.modules.gui.ged.graphic_objects.axes.BaseProperties.getInstance().setVisibility(!hide);
-            org.scilab.modules.gui.ged.graphic_objects.axes.Box.getInstance().setVisibility(!hide);
-            org.scilab.modules.gui.ged.graphic_objects.axes.Camera.getInstance().setVisibility(!hide);
-            org.scilab.modules.gui.ged.graphic_objects.axes.Tick.getInstance().setVisibility(!hide);
-            org.scilab.modules.gui.ged.graphic_objects.axes.Label.getInstance().setVisibility(!hide);
-            org.scilab.modules.gui.ged.graphic_objects.axes.Position.getInstance().setVisibility(!hide);
-            org.scilab.modules.gui.ged.graphic_objects.axes.Style.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.arc.BaseProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.arc.DataProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.arc.Style.getInstance().setVisibility(!hide);
         } catch (NullPointerException e1) {
         } catch (NoSuchMethodError e2) { }
     }
@@ -268,6 +264,14 @@ public class ShowHide extends CommonCallBack {
                 if (A && B && C && D && E && F && G)
                     setStatus(false);
                 else if (!A && !B && !C && !D && !E && !F && !G)
+                    setStatus(true);
+            } else if("arc".equals(type)) {
+                boolean A = org.scilab.modules.gui.ged.graphic_objects.arc.BaseProperties.getInstance().getStatus();
+                boolean B = org.scilab.modules.gui.ged.graphic_objects.arc.DataProperties.getInstance().getStatus();
+                boolean C = org.scilab.modules.gui.ged.graphic_objects.arc.Style.getInstance().getStatus();
+                if (A && B && C)
+                    setStatus(false);
+                else if (!A && !B && !C)
                     setStatus(true);
             } else if("champ".equals(type)) {
                 boolean A = org.scilab.modules.gui.ged.graphic_objects.champ.DataProperties.getInstance().getStatus();

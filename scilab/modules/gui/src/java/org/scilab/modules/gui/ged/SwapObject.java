@@ -13,6 +13,7 @@ package org.scilab.modules.gui.ged;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.gui.ged.graphic_objects.arc.Arc;
 import org.scilab.modules.gui.ged.graphic_objects.axes.Axes;
 import org.scilab.modules.gui.ged.graphic_objects.champ.Champ;
 import org.scilab.modules.gui.ged.graphic_objects.datatip.Datatip;
@@ -71,6 +72,8 @@ public class SwapObject {
                 SwingInspector.setPanel(label, MessagesGED.label);
                 break;
             case GraphicObjectProperties.__GO_ARC__:
+                Arc arc = new Arc(objectID);
+                SwingInspector.setPanel(arc, MessagesGED.arc);
                 break;
             case GraphicObjectProperties.__GO_CHAMP__:
                 Champ champ = new Champ(objectID);
