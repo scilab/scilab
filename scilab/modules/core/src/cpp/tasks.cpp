@@ -179,7 +179,7 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose, bo
 
     if (execVerbose)
     {
-       exec = (ast::ExecVisitor*)new ast::StepVisitor();
+        exec = (ast::ExecVisitor*)new ast::StepVisitor();
     }
 
     if (!execVerbose && !ASTtimed)
@@ -187,13 +187,22 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose, bo
         exec = new ast::ExecVisitor();
     }
 
-    if(ASTrunVMKit)
+    if (ASTrunVMKit)
     {
         ast::JITVisitor *jitExec;
 
-    	jitExec = new ast::JITVisitor();
-    	Jitter::execAndWait(tree, jitExec);
-    } else {
+        jitExec = new ast::JITVisitor();
+        jitExec->genLLVMInitialize();
+
+        Jitter::execAndWait(tree, jitExec);
+
+        jitExec->genLLVMFinalize();
+        jitExec->compileAndExec();
+
+        delete jitExec;
+    }
+    else
+    {
         Runner::execAndWait(tree, exec);
         //delete exec;
     }

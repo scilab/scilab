@@ -12,6 +12,7 @@
  *
  */
 
+#include "types_comparison_lt_le_gt_ge.hxx"
 #include "double.hxx"
 #include "types_addition.hxx"
 #include "context.hxx"
@@ -21,12 +22,16 @@ for the JIT
 */
 int foo()
 {
-    types::Double* pdbl1 = types::Double::Empty();
-    int res = AddDoubleToDouble(pdbl1, pdbl1, &pdbl1);
+    types::Double* pdbl = types::Double::Empty();
+    types::Bool* pb = 0;
+    int res = AddDoubleToDouble(pdbl, pdbl, &pdbl);
     symbol::Symbol * sym = 0;// = symbol::Symbol(L"a"); => This declaration makes llc fails
 
-    symbol::Context::getInstance()->put(*sym, *pdbl1);
+    symbol::Context::getInstance()->put(*sym, *pdbl);
     symbol::Context::getInstance()->get(*sym);
+
+    DoubleLessDouble(pdbl, pdbl, 0);
+    pb->get(0);
 
     return res;
 }

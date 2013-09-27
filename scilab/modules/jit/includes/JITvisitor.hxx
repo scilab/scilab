@@ -116,7 +116,11 @@ private:
     llvm::FunctionPassManager* pm;
     llvm::Type* uintptrType;
     symbol::Context * scilabContext;
+    llvm::Function * TheFunction;
 
+    // utilisees par step, end ds la visit de ListExp
+    llvm::Value * _result2;
+    llvm::Value * _result3;
 
     void visit (const SeqExp  &e)
     {
@@ -219,9 +223,8 @@ public:
         //              llvm::Value* res = llvm::ConstantFP::get(llvm::getGlobalContext(), llvm::APFloat(e.getBigDouble()));
         llvm::Value* res = llvm::ConstantInt::get(uintptrType, (uintptr_t)e.getBigDouble());
         res = Builder->CreateIntToPtr(res, llvm::PointerType::getUnqual(TheModule->getTypeByName("class.types::Double")));
-        res->dump();
+
         result_set(res);
-        _result->dump();
     }
 
     void visitprivate(const FloatExp &e)
@@ -242,22 +245,10 @@ public:
         {
             //reset default values
             result_set(NULL);
-            llvm::FunctionType *FT = llvm::FunctionType::get(llvm::Type::getDoubleTy(*context), false);
-            llvm::Function *TheFunction = llvm::Function::Create(FT, llvm::Function::ExternalLinkage, "TheFunction", TheModule);
-            llvm::BasicBlock *BB = llvm::BasicBlock::Create(llvm::getGlobalContext(), "entry", TheFunction);
-            Builder->SetInsertPoint(BB);
 
             (*itExp)->accept(*this);
-
-            if (1 || result_get() != NULL)
-            {
-                Builder->CreateRet(result_get());
-                TheFunction->dump();
-                void* res = ee->getPointerToFunction(TheFunction);
-                jitptr_t myJit = (jitptr_t) res;
-                double result = myJit();
-                std::cout << "coucou result : " << result << std::endl;
-            }
+            std::cout << "coucou" << std::endl;
+            result_get()->dump();
         }
     }
 
@@ -379,8 +370,6 @@ public:
 
                 llvm::Value * tmp = Builder->CreateAlloca(llvm::PointerType::getUnqual(TheModule->getTypeByName("class.types::Double")));
 
-                //printf("%p \n",TheModule->getFunction("_Z17AddDoubleToDoublePN5types6DoubleES1_PS1_"));
-
                 Builder->CreateCall3(TheModule->getFunction("_Z17AddDoubleToDoublePN5types6DoubleES1_PS1_"), pITR, pITL, tmp);
 
                 pResult = Builder->CreateLoad(tmp);
@@ -476,15 +465,7 @@ public:
             //reset result
             result_set(NULL);
 
-            //mod->getFunction("_ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE");
-            llvm::Value * llvmScilabContext = llvm::ConstantInt::get(uintptrType, (uintptr_t)scilabContext);
-            llvmScilabContext = Builder->CreateIntToPtr(llvmScilabContext, llvm::PointerType::getUnqual(TheModule->getTypeByName("class.symbol::Context")));
-
-            llvm::Value * llvmSym = llvm::ConstantInt::get(uintptrType, (uintptr_t)&pVar->name_get());
-            llvmSym = Builder->CreateIntToPtr(llvmSym, llvm::PointerType::getUnqual(TheModule->getTypeByName("class.symbol::Symbol")));
-            llvmSym->dump();
-
-            Builder->CreateCall3(TheModule->getFunction("_ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE"), llvmScilabContext, llvmSym, pITR);
+            genLLVMPutSymbol(&pVar->name_get(), pITR);
 
             //symbol::Context::getInstance()->put(pVar->name_get(), *pIT);
             return;
@@ -504,8 +485,7 @@ public:
                 ostr << e.name_get().name_get() << L"  = " << L"(" << pI->getRef() << L")" << std::endl;
                 ostr << std::endl;
                 scilabWriteW(ostr.str().c_str());
-                //std::cout <<
-                //VariableToString(pI);
+                printScilabVar(pI);
             }
             else
             {
@@ -527,6 +507,63 @@ public:
             llvm::Value * result = Builder->CreateCall2(TheModule->getFunction("_ZNK6symbol7Context3getERKNS_6SymbolE"), llvmScilabContext, llvmSym);
             result_set(result);
         }
+    }
+
+    void visitprivate(const ForExp &e)
+    {
+        e.vardec_get().accept(*this);
+        symbol::Symbol& varName = e.vardec_get().name_get();
+
+        llvm::BasicBlock * BBTest = llvm::BasicBlock::Create(llvm::getGlobalContext(), "for_test", TheFunction);
+        llvm::BasicBlock * BBBody = llvm::BasicBlock::Create(llvm::getGlobalContext(), "for_body", TheFunction);
+        llvm::BasicBlock * BBAfter = llvm::BasicBlock::Create(llvm::getGlobalContext(), "for_after", TheFunction);
+
+        llvm::Value* cur = Builder->CreateAlloca(llvm::PointerType::getUnqual(TheModule->getTypeByName("class.types::Double")));
+        llvm::Value* tmp = Builder->CreateAlloca(llvm::PointerType::getUnqual(TheModule->getTypeByName("class.types::Bool")));
+        llvm::Value* zero = llvm::ConstantInt::get(llvm::Type::getInt32Ty(*context), 0);
+
+        llvm::Value* start = _result;
+        llvm::Value* step = _result2;
+        llvm::Value* end = _result3;
+
+        Builder->CreateStore(start, cur);
+        Builder->CreateBr(BBTest);
+
+        Builder->SetInsertPoint(BBTest);
+        Builder->CreateCall3(TheModule->getFunction("_Z16DoubleLessDoublePN5types6DoubleES1_PPNS_4BoolE"), end, Builder->CreateLoad(cur), tmp);
+        tmp = Builder->CreateLoad(tmp);
+        tmp = Builder->CreateCall2(TheModule->getFunction("_ZN5types7ArrayOfIiE3getEi"), tmp, zero);
+        Builder->CreateCondBr(tmp, BBAfter, BBBody);
+
+
+        Builder->SetInsertPoint(BBBody);
+        genLLVMPutSymbol(&varName, Builder->CreateLoad(cur));
+        e.body_get().accept(*this);
+        Builder->CreateCall3(TheModule->getFunction("_Z17AddDoubleToDoublePN5types6DoubleES1_PS1_"), Builder->CreateLoad(cur), step, cur);
+        Builder->CreateBr(BBTest);
+
+        Builder->SetInsertPoint(BBAfter);
+    }
+
+    void visitprivate(const ListExp &e)
+    {
+        e.start_get().accept(*this);
+        llvm::Value * start = result_get();
+
+        e.step_get().accept(*this);
+        llvm::Value * step = result_get();
+
+        e.end_get().accept(*this);
+        llvm::Value * end = result_get();
+
+        _result = start;
+        _result2 = step;
+        _result3 = end;
+    }
+
+    void visitprivate(const VarDec &e)
+    {
+        e.init_get().accept(*this);
     }
 
     void visit (const BoolExp &e)
@@ -597,7 +634,7 @@ public:
 
     void visit (const ForExp &e)
     {
-        //            visitprivate(e);
+        visitprivate(e);
     }
 
     void visit (const BreakExp &e)
@@ -647,7 +684,7 @@ public:
 
     void visit (const VarDec &e)
     {
-        //            visitprivate(e);
+        visitprivate(e);
     }
 
     void visit (const FunctionDec &e)
@@ -657,7 +694,7 @@ public:
 
     void visit(const ListExp &e)
     {
-        //            visitprivate(e);
+        visitprivate(e);
     }
     void visit (const MatrixExp &e)
     {
@@ -683,6 +720,65 @@ public:
     {
         //            visitprivate(e);
     }
+
+    void genLLVMInitialize()
+    {
+        llvm::FunctionType *FT = llvm::FunctionType::get(llvm::Type::getVoidTy(*context), false);
+        TheFunction = llvm::Function::Create(FT, llvm::Function::ExternalLinkage, "TheFunction", TheModule);
+        llvm::BasicBlock *BB = llvm::BasicBlock::Create(llvm::getGlobalContext(), "entry", TheFunction);
+        Builder->SetInsertPoint(BB);
+    }
+
+    void genLLVMFinalize()
+    {
+        Builder->CreateRetVoid();
+        TheFunction->dump();
+    }
+
+    void compileAndExec()
+    {
+        void* res = ee->getPointerToFunction(TheFunction);
+        jitptr_t myJit = (jitptr_t) res;
+        myJit();
+    }
+
+    void genLLVMPutSymbol(const symbol::Symbol * s, llvm::Value * v)
+    {
+        llvm::Value * llvmScilabContext = llvm::ConstantInt::get(uintptrType, (uintptr_t)scilabContext);
+        llvmScilabContext = Builder->CreateIntToPtr(llvmScilabContext, llvm::PointerType::getUnqual(TheModule->getTypeByName("class.symbol::Context")));
+
+        llvm::Value * llvmSym = llvm::ConstantInt::get(uintptrType, (uintptr_t)s);
+        llvmSym = Builder->CreateIntToPtr(llvmSym, llvm::PointerType::getUnqual(TheModule->getTypeByName("class.symbol::Symbol")));
+        //llvmSym->dump();
+
+        Builder->CreateCall3(TheModule->getFunction("_ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE"), llvmScilabContext, llvmSym, v);
+    }
+
+    static void printScilabVar(types::InternalType * pIT)
+    {
+        std::wostringstream ostr;
+
+        //to manage lines information
+        int iLines = ConfigVariable::getConsoleLines();
+
+        bool bFinish = false;
+        do
+        {
+            //block by block
+            bFinish = pIT->toString(ostr);
+            scilabWriteW(ostr.str().c_str());
+            if (bFinish == false && iLines != 0)
+            {
+                //show message on prompt
+                bFinish = linesmore() == 1;
+            }
+            ostr.str(L"");
+        }
+        while (bFinish == false);
+
+        pIT->clearPrintState();
+    }
+
 };
 }
 #endif // !AST_JITVISITOR_HXX
