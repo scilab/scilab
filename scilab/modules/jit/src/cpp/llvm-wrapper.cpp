@@ -1,4 +1,4 @@
-/*
+</*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2013-2013 - S/E - Sylvestre Ledru
  *  Copyright (C) 2013-2013 - S/E - Antoine ELIAS
@@ -34,6 +34,7 @@ int foo()
 
     /* Substract */
     res = DoubleLessDouble(pdbl, pdbl, 0);
+
     symbol::Symbol * sym = 0;// = symbol::Symbol(L"a"); => This declaration makes llc fails
 
     symbol::Context::getInstance()->put(*sym, *pdbl);
