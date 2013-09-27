@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-09-26 15:47+0100\n"
+"Revision-Date: 2013-09-27 17:14+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 137
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -287,10 +287,11 @@ msgstr ""
 # File: sci_gateway/c/sci_xarc.c, line: 187
 # File: sci_gateway/c/sci_xarcs.c, line: 66
 # File: sci_gateway/c/sci_xarcs.c, line: 103
-# File: sci_gateway/c/sci_xarrows.c, line: 59
-# File: sci_gateway/c/sci_xarrows.c, line: 75
-# File: sci_gateway/c/sci_xarrows.c, line: 108
-# File: sci_gateway/c/sci_xarrows.c, line: 136
+# File: sci_gateway/c/sci_xarrows.c, line: 63
+# File: sci_gateway/c/sci_xarrows.c, line: 79
+# File: sci_gateway/c/sci_xarrows.c, line: 112
+# File: sci_gateway/c/sci_xarrows.c, line: 133
+# File: sci_gateway/c/sci_xarrows.c, line: 177
 # File: sci_gateway/c/sci_xchange.c, line: 87
 # File: sci_gateway/c/sci_xchange.c, line: 103
 # File: sci_gateway/c/sci_xchange.c, line: 166
@@ -412,7 +413,7 @@ msgstr ""
 # File: sci_gateway/c/sci_param3d.c, line: 146
 # File: sci_gateway/c/sci_param3d1.c, line: 139
 # File: sci_gateway/c/sci_param3d1.c, line: 235
-# File: sci_gateway/c/sci_xarrows.c, line: 83
+# File: sci_gateway/c/sci_xarrows.c, line: 87
 # File: sci_gateway/c/sci_xchange.c, line: 110
 # File: sci_gateway/c/sci_xchange.c, line: 189
 # File: sci_gateway/c/sci_xfpoly.c, line: 89
@@ -480,7 +481,7 @@ msgstr ""
 # File: sci_gateway/c/sci_grayplot.c, line: 100
 # File: sci_gateway/c/sci_grayplot.c, line: 124
 # File: sci_gateway/c/sci_xarcs.c, line: 110
-# File: sci_gateway/c/sci_xarrows.c, line: 143
+# File: sci_gateway/c/sci_xarrows.c, line: 184
 # File: sci_gateway/c/sci_xfarcs.c, line: 96
 # File: sci_gateway/c/sci_xfpolys.c, line: 163
 # File: sci_gateway/c/sci_xpolys.c, line: 140
@@ -548,7 +549,7 @@ msgstr ""
 # File: sci_gateway/c/sci_drawaxis.c, line: 277
 # File: sci_gateway/c/sci_matplot1.c, line: 296
 # File: sci_gateway/c/sci_param3d1.c, line: 218
-# File: sci_gateway/c/sci_xarrows.c, line: 153
+# File: sci_gateway/c/sci_xarrows.c, line: 194
 # File: sci_gateway/c/sci_xrect.c, line: 82
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
@@ -568,7 +569,7 @@ msgstr ""
 # File: sci_gateway/c/sci_xarc.c, line: 148
 # File: sci_gateway/c/sci_xarc.c, line: 171
 # File: sci_gateway/c/sci_xarc.c, line: 194
-# File: sci_gateway/c/sci_xarrows.c, line: 115
+# File: sci_gateway/c/sci_xarrows.c, line: 139
 # File: sci_gateway/c/sci_xfpoly.c, line: 115
 # File: sci_gateway/c/sci_xget.c, line: 118
 # File: sci_gateway/c/sci_xgraduate.c, line: 61
@@ -1010,6 +1011,20 @@ msgstr ""
 # File: sci_gateway/c/sci_xarcs.c, line: 116
 #, c-format
 msgid "%s: Wrong size for arguments #%d and #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_xarrows.c, line: 150
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_xarrows.c, line: 158
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d-by-%d matrix or a scalar "
+"expected.\n"
 msgstr ""
 
 #
