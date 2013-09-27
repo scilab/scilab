@@ -213,7 +213,7 @@ void execScilabStartTask(void)
 }
 
 /*
-** Execute scilab.start
+** Execute scilab.quit
 **
 */
 void execScilabQuitTask(void)
