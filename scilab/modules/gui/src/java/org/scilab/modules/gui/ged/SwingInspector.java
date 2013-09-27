@@ -55,7 +55,7 @@ public class SwingInspector extends SwingScilabTab {
     * @param objectID Enters the identification of object.
     */
     public SwingInspector(String objectID) {
-        super(MessagesGED.quick_ged, INSPECTORUUID);
+        super(MessagesGED.property_list, INSPECTORUUID);
         instance = this;
 
         setAssociatedXMLIDForHelp("quickged");
@@ -143,6 +143,10 @@ public class SwingInspector extends SwingScilabTab {
         ShowHide.setStatus(false);
         //Insert panel
         pReceive.add(panel, "");
-        instance.setTitle(MessagesGED.property_list + ": " + title);
+        try {
+            instance.setName(MessagesGED.property_list + ": " + title);
+        } catch (NullPointerException e) {
+            instance.setTitle(MessagesGED.property_list + ": " + title);
+        }
     }
 }
