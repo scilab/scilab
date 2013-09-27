@@ -76,4 +76,4 @@ function demo_param()
 endfunction
 
 demo_param();
-clear demo_params;
+clear demo_param;
