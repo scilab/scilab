@@ -1,5 +1,5 @@
-                    Changes between version 5.4.X and 5.5.0
-                    =======================================
+                 Changes between version 5.4.1 and 5.5.0-beta-1
+                 ==============================================
 
 New Features
 =============
@@ -46,7 +46,7 @@ BDF methods with direct and preconditioned Krylov linear solvers, based on ODEPA
  - It is now possible to delete variables from the variable browser.
   See bug #9447
  - A user can now plot variables from the variable browser (this functionality was 
-  already available in editvar).
+  already available in the variable editor).
 
 * Added lighting effect for plot of surfaces. Lighting can be enabled
   creating light objects or disabled by deleting them. The following function
@@ -112,7 +112,7 @@ Xcos
 
 * Sundials updated to the "2.5.0" version, keeping our modifications.
 
-* JGraphX updated to the "2.1.0.7" version, updating our performance hooks.
+* JGraphX updated to the "2.1.0.7" version, updating our hooks performance.
 
 * API changed in the scicos_block4 interface: the uid value is not available
   inside the simulation function.
@@ -139,14 +139,15 @@ Obsolete & Removed Functions
 
 * Scilab 5.5.X family will be the latest family working under Windows XP/2003.
 
-* Vector ^ scalar syntax declared obsolete. See bug #11524
+* Vector ^ scalar syntax declared as obsolete. See bug #11524
 
 * The third argument of poly function will be more strict.
     Only the following strings are allowed: "roots", "coeff", "c", "r".
 
 * Option and direction arguments of gsort will be more strict in all cases.
-  Only the following strings are allowed: option: "r" "c" "g" "lr" "lc"
-                                              direction : "d" "i"
+  Only the following strings are allowed:
+  - option: "r" "c" "g" "lr" "lc"
+  - direction : "d" "i"
 
 * nfreq tagged as obsolete. Will be removed in Scilab 5.5.1.
   Please use tabul instead.
@@ -157,10 +158,10 @@ Obsolete & Removed Functions
 * chart tagged as obsolete. Will be removed in Scilab 5.5.1.
   Please use nicholschart instead.
 
+* Second output argument of add_param tagged as obsolete. Will be removed in Scilab 5.5.1.
+
 * mvvacov tagged as obsolete. Will be removed in Scilab 6.0.0.
   Please use cov instead.
-
-* Second output argument of add_param tagged as obsolete. Will be removed in Scilab 5.5.1.
 
 * dft removed, please use fft instead.
 
@@ -203,7 +204,7 @@ Scilab Bug Fixes
 
 * Bug #4731 fixed - lqr failed when the time domain of an input was a number.
 
-* Bug #4743 fixed - Invalid graphics with too big or too small values.
+* Bug #4743 fixed - Graphics with too big or too small values did not work.
 
 * Bug #5073 fixed - New parameter added in strtod function (decimal separator).
 
@@ -295,7 +296,7 @@ Scilab Bug Fixes
 * Bug #8162 fixed - Area of stability of plzr was wrong for continuous systems 
                     (+unit test added).
 
-* Bug #8211 fixed - 'parameters' module demonstration finalized.
+* Bug #8211 fixed - Parameters module demonstration finalized.
 
 * Bug #8234 fixed - strtod did not return an empty matrix when the input argument was an 
                     empty matrix.
@@ -380,11 +381,11 @@ Scilab Bug Fixes
 
 * Bug #9385 fixed - The type checking in trigonometric functions has been added.
 
-* Bug #9394 fixed - is_params recognized "plist" as an existing field.
+* Bug #9394 fixed - is_param recognized "plist" as an existing field.
 
-* Bug #9395 fixed - add_params did not check its input arguments.
+* Bug #9395 fixed - add_param did not check its input arguments.
 
-* Bug #9396 fixed - add_params accepted duplicate keys.
+* Bug #9396 fixed - add_param accepted duplicate keys.
 
 * Bug #9459 fixed - Default values of the optional plot3d arguments were not documented.
 
@@ -449,7 +450,7 @@ Scilab Bug Fixes
 
 * Bug #10596 fixed - exit(xxx) from Scilab failed.
 
-* Bug #10818 fixed - hom, %e, %t, %f, %z and %s help pages added.
+* Bug #10818 fixed - home, %e, %t, %f, %z and %s help pages added.
 
 * Bug #10823 fixed - fullpath returned different results under Windows and Linux for 
                     non-existent file.
@@ -459,7 +460,7 @@ Scilab Bug Fixes
 
 * Bug #10866 fixed - det was not equivalent to detr for rational matrices.
 
-* Bug #10906 fixed - Typo fixed cls2dls help page.
+* Bug #10906 fixed - Typo fixed in cls2dls help page.
 
 * Bug #10930 fixed - The comments in armax function were in French.
 
@@ -608,7 +609,7 @@ Scilab Bug Fixes
                     and vice versa.
 
 * Bug #12634 fixed - ATOMS modules could not be installed from an archive file
-                     already existing in SCI/contrib/archives in offline mode.
+                     already existing in SCI/contrib/archives in "offline" mode.
 
 * Bug #12637 fixed - In some help pages, some signal processing functions were not in 
                     the correct section.
