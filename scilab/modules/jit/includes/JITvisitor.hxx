@@ -495,30 +495,38 @@ public:
 
     void visitprivate (const SimpleVar &e)
     {
-        /*               InternalType * pI = symbol::Context::getInstance()->get(e.name_get());
-                result_set(pI);
-                if (pI != NULL)
-                {
-                    if (e.is_verbose() && pI->isCallable() == false && ConfigVariable::isPromptShow())
-                    {
-                        std::wostringstream ostr;
-                        ostr << e.name_get().name_get() << L"  = " << L"(" << pI->getRef() << L")" << std::endl;
-                        ostr << std::endl;
-                        scilabWriteW(ostr.str().c_str());
-                        VariableToString(pI);
-                    }
+        if (e.is_verbose())
+        {
+            InternalType * pI = symbol::Context::getInstance()->get(e.name_get());
+            if (pI != NULL && pI->isCallable() == false && ConfigVariable::isPromptShow())
+            {
+                std::wostringstream ostr;
+                ostr << e.name_get().name_get() << L"  = " << L"(" << pI->getRef() << L")" << std::endl;
+                ostr << std::endl;
+                scilabWriteW(ostr.str().c_str());
+                //std::cout <<
+                //VariableToString(pI);
+            }
             else
             {
-
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("Undefined variable: %ls\n"), e.name_get().name_get().c_str());
+                throw ScilabError(szError, 999, e.location_get());
+                //Err, SimpleVar doesn't exist in Scilab scopes.
             }
-                }
-                else
-                {
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("Undefined variable: %ls\n"), e.name_get().name_get().c_str());
-                    throw ScilabError(szError, 999, e.location_get());
-                    //Err, SimpleVar doesn't exist in Scilab scopes.
-            }*/
+        }
+        else // JIT
+        {
+            //mod->getFunction("_ZNK6symbol7Context3getERKNS_6SymbolE")
+            llvm::Value * llvmScilabContext = llvm::ConstantInt::get(uintptrType, (uintptr_t)scilabContext);
+            llvmScilabContext = Builder->CreateIntToPtr(llvmScilabContext, llvm::PointerType::getUnqual(TheModule->getTypeByName("class.symbol::Context")));
+
+            llvm::Value * llvmSym = llvm::ConstantInt::get(uintptrType, (uintptr_t)&e.name_get());
+            llvmSym = Builder->CreateIntToPtr(llvmSym, llvm::PointerType::getUnqual(TheModule->getTypeByName("class.symbol::Symbol")));
+
+            llvm::Value * result = Builder->CreateCall2(TheModule->getFunction("_ZNK6symbol7Context3getERKNS_6SymbolE"), llvmScilabContext, llvmSym);
+            result_set(result);
+        }
     }
 
     void visit (const BoolExp &e)

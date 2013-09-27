@@ -7,17 +7,897 @@ Module* makeLLVMModuleContents(Module *mod)
     mod->setModuleIdentifier("<stdin>");
 
     // Type Definitions
+    StructType *StructTy_class_std__ios_base__Init = mod->getTypeByName("class.std::ios_base::Init");
+    if (!StructTy_class_std__ios_base__Init)
+    {
+        StructTy_class_std__ios_base__Init = StructType::create(mod->getContext(), "class.std::ios_base::Init");
+    }
+    std::vector<Type*>StructTy_class_std__ios_base__Init_fields;
+    StructTy_class_std__ios_base__Init_fields.push_back(IntegerType::get(mod->getContext(), 8));
+    if (StructTy_class_std__ios_base__Init->isOpaque())
+    {
+        StructTy_class_std__ios_base__Init->setBody(StructTy_class_std__ios_base__Init_fields, /*isPacked=*/false);
+    }
+
+    PointerType* PointerTy_0 = PointerType::get(StructTy_class_std__ios_base__Init, 0);
+
+    PointerType* PointerTy_1 = PointerType::get(IntegerType::get(mod->getContext(), 8), 0);
+
+    std::vector<Type*>StructTy_3_fields;
+    StructTy_3_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    std::vector<Type*>FuncTy_5_args;
+    FunctionType* FuncTy_5 = FunctionType::get(
+                                 /*Result=*/Type::getVoidTy(mod->getContext()),
+                                 /*Params=*/FuncTy_5_args,
+                                 /*isVarArg=*/false);
+
+    PointerType* PointerTy_4 = PointerType::get(FuncTy_5, 0);
+
+    StructTy_3_fields.push_back(PointerTy_4);
+    StructType *StructTy_3 = StructType::get(mod->getContext(), StructTy_3_fields, /*isPacked=*/false);
+
+    ArrayType* ArrayTy_2 = ArrayType::get(StructTy_3, 1);
+
+    PointerType* PointerTy_6 = PointerType::get(ArrayTy_2, 0);
+
+    std::vector<Type*>FuncTy_8_args;
+    FuncTy_8_args.push_back(PointerTy_0);
+    FunctionType* FuncTy_8 = FunctionType::get(
+                                 /*Result=*/Type::getVoidTy(mod->getContext()),
+                                 /*Params=*/FuncTy_8_args,
+                                 /*isVarArg=*/false);
+
+    PointerType* PointerTy_7 = PointerType::get(FuncTy_8, 0);
+
+    std::vector<Type*>FuncTy_10_args;
+    FuncTy_10_args.push_back(PointerTy_1);
+    FunctionType* FuncTy_10 = FunctionType::get(
+                                  /*Result=*/Type::getVoidTy(mod->getContext()),
+                                  /*Params=*/FuncTy_10_args,
+                                  /*isVarArg=*/false);
+
+    PointerType* PointerTy_9 = PointerType::get(FuncTy_10, 0);
+
+    std::vector<Type*>FuncTy_12_args;
+    FuncTy_12_args.push_back(PointerTy_9);
+    FuncTy_12_args.push_back(PointerTy_1);
+    FuncTy_12_args.push_back(PointerTy_1);
+    FunctionType* FuncTy_12 = FunctionType::get(
+                                  /*Result=*/IntegerType::get(mod->getContext(), 32),
+                                  /*Params=*/FuncTy_12_args,
+                                  /*isVarArg=*/false);
+
+    PointerType* PointerTy_11 = PointerType::get(FuncTy_12, 0);
+
+    std::vector<Type*>FuncTy_13_args;
+    FunctionType* FuncTy_13 = FunctionType::get(
+                                  /*Result=*/IntegerType::get(mod->getContext(), 32),
+                                  /*Params=*/FuncTy_13_args,
+                                  /*isVarArg=*/false);
+
+    StructType *StructTy_class_types__Double = mod->getTypeByName("class.types::Double");
+    if (!StructTy_class_types__Double)
+    {
+        StructTy_class_types__Double = StructType::create(mod->getContext(), "class.types::Double");
+    }
+    std::vector<Type*>StructTy_class_types__Double_fields;
+    StructType *StructTy_class_types__ArrayOf = mod->getTypeByName("class.types::ArrayOf");
+    if (!StructTy_class_types__ArrayOf)
+    {
+        StructTy_class_types__ArrayOf = StructType::create(mod->getContext(), "class.types::ArrayOf");
+    }
+    std::vector<Type*>StructTy_class_types__ArrayOf_fields;
+    StructType *StructTy_class_types__GenericType = mod->getTypeByName("class.types::GenericType");
+    if (!StructTy_class_types__GenericType)
+    {
+        StructTy_class_types__GenericType = StructType::create(mod->getContext(), "class.types::GenericType");
+    }
+    std::vector<Type*>StructTy_class_types__GenericType_fields;
+    ArrayType* ArrayTy_16 = ArrayType::get(IntegerType::get(mod->getContext(), 8), 36);
+
+    StructTy_class_types__GenericType_fields.push_back(ArrayTy_16);
+    StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    ArrayType* ArrayTy_17 = ArrayType::get(IntegerType::get(mod->getContext(), 32), 50);
+
+    StructTy_class_types__GenericType_fields.push_back(ArrayTy_17);
+    StructTy_class_types__GenericType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    if (StructTy_class_types__GenericType->isOpaque())
+    {
+        StructTy_class_types__GenericType->setBody(StructTy_class_types__GenericType_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_types__ArrayOf_fields.push_back(StructTy_class_types__GenericType);
+    StructTy_class_types__ArrayOf_fields.push_back(IntegerType::get(mod->getContext(), 8));
+    PointerType* PointerTy_18 = PointerType::get(Type::getDoubleTy(mod->getContext()), 0);
+
+    StructTy_class_types__ArrayOf_fields.push_back(PointerTy_18);
+    StructTy_class_types__ArrayOf_fields.push_back(PointerTy_18);
+    if (StructTy_class_types__ArrayOf->isOpaque())
+    {
+        StructTy_class_types__ArrayOf->setBody(StructTy_class_types__ArrayOf_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_types__Double_fields.push_back(StructTy_class_types__ArrayOf);
+    StructTy_class_types__Double_fields.push_back(IntegerType::get(mod->getContext(), 8));
+    StructTy_class_types__Double_fields.push_back(IntegerType::get(mod->getContext(), 8));
+    if (StructTy_class_types__Double->isOpaque())
+    {
+        StructTy_class_types__Double->setBody(StructTy_class_types__Double_fields, /*isPacked=*/false);
+    }
+
+    PointerType* PointerTy_15 = PointerType::get(StructTy_class_types__Double, 0);
+
+    PointerType* PointerTy_14 = PointerType::get(PointerTy_15, 0);
+
+    PointerType* PointerTy_19 = PointerType::get(IntegerType::get(mod->getContext(), 32), 0);
+
+    StructType *StructTy_class_symbol__Symbol = mod->getTypeByName("class.symbol::Symbol");
+    if (!StructTy_class_symbol__Symbol)
+    {
+        StructTy_class_symbol__Symbol = StructType::create(mod->getContext(), "class.symbol::Symbol");
+    }
+    std::vector<Type*>StructTy_class_symbol__Symbol_fields;
+    StructType *StructTy_struct_std___Rb_tree_const_iterator = mod->getTypeByName("struct.std::_Rb_tree_const_iterator");
+    if (!StructTy_struct_std___Rb_tree_const_iterator)
+    {
+        StructTy_struct_std___Rb_tree_const_iterator = StructType::create(mod->getContext(), "struct.std::_Rb_tree_const_iterator");
+    }
+    std::vector<Type*>StructTy_struct_std___Rb_tree_const_iterator_fields;
+    StructType *StructTy_struct_std___Rb_tree_node_base = mod->getTypeByName("struct.std::_Rb_tree_node_base");
+    if (!StructTy_struct_std___Rb_tree_node_base)
+    {
+        StructTy_struct_std___Rb_tree_node_base = StructType::create(mod->getContext(), "struct.std::_Rb_tree_node_base");
+    }
+    std::vector<Type*>StructTy_struct_std___Rb_tree_node_base_fields;
+    StructTy_struct_std___Rb_tree_node_base_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    PointerType* PointerTy_22 = PointerType::get(StructTy_struct_std___Rb_tree_node_base, 0);
+
+    StructTy_struct_std___Rb_tree_node_base_fields.push_back(PointerTy_22);
+    StructTy_struct_std___Rb_tree_node_base_fields.push_back(PointerTy_22);
+    StructTy_struct_std___Rb_tree_node_base_fields.push_back(PointerTy_22);
+    if (StructTy_struct_std___Rb_tree_node_base->isOpaque())
+    {
+        StructTy_struct_std___Rb_tree_node_base->setBody(StructTy_struct_std___Rb_tree_node_base_fields, /*isPacked=*/false);
+    }
+
+
+    StructTy_struct_std___Rb_tree_const_iterator_fields.push_back(PointerTy_22);
+    if (StructTy_struct_std___Rb_tree_const_iterator->isOpaque())
+    {
+        StructTy_struct_std___Rb_tree_const_iterator->setBody(StructTy_struct_std___Rb_tree_const_iterator_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_symbol__Symbol_fields.push_back(StructTy_struct_std___Rb_tree_const_iterator);
+    if (StructTy_class_symbol__Symbol->isOpaque())
+    {
+        StructTy_class_symbol__Symbol->setBody(StructTy_class_symbol__Symbol_fields, /*isPacked=*/false);
+    }
+
+    PointerType* PointerTy_21 = PointerType::get(StructTy_class_symbol__Symbol, 0);
+
+    PointerType* PointerTy_20 = PointerType::get(PointerTy_21, 0);
+
+    std::vector<Type*>FuncTy_24_args;
+    FunctionType* FuncTy_24 = FunctionType::get(
+                                  /*Result=*/PointerTy_15,
+                                  /*Params=*/FuncTy_24_args,
+                                  /*isVarArg=*/false);
+
+    PointerType* PointerTy_23 = PointerType::get(FuncTy_24, 0);
+
+    std::vector<Type*>FuncTy_26_args;
+    FuncTy_26_args.push_back(PointerTy_15);
+    FuncTy_26_args.push_back(PointerTy_15);
+    FuncTy_26_args.push_back(PointerTy_14);
+    FunctionType* FuncTy_26 = FunctionType::get(
+                                  /*Result=*/IntegerType::get(mod->getContext(), 32),
+                                  /*Params=*/FuncTy_26_args,
+                                  /*isVarArg=*/false);
+
+    PointerType* PointerTy_25 = PointerType::get(FuncTy_26, 0);
+
+    StructType *StructTy_class_symbol__Context = mod->getTypeByName("class.symbol::Context");
+    if (!StructTy_class_symbol__Context)
+    {
+        StructTy_class_symbol__Context = StructType::create(mod->getContext(), "class.symbol::Context");
+    }
+    std::vector<Type*>StructTy_class_symbol__Context_fields;
+    StructType *StructTy_class_symbol__Stack = mod->getTypeByName("class.symbol::Stack");
+    if (!StructTy_class_symbol__Stack)
+    {
+        StructTy_class_symbol__Stack = StructType::create(mod->getContext(), "class.symbol::Stack");
+    }
+    std::vector<Type*>StructTy_class_symbol__Stack_fields;
+    StructType *StructTy_class_symbol__Table = mod->getTypeByName("class.symbol::Table");
+    if (!StructTy_class_symbol__Table)
+    {
+        StructTy_class_symbol__Table = StructType::create(mod->getContext(), "class.symbol::Table");
+    }
+    std::vector<Type*>StructTy_class_symbol__Table_fields;
+    std::vector<Type*>FuncTy_30_args;
+    FunctionType* FuncTy_30 = FunctionType::get(
+                                  /*Result=*/IntegerType::get(mod->getContext(), 32),
+                                  /*Params=*/FuncTy_30_args,
+                                  /*isVarArg=*/true);
+
+    PointerType* PointerTy_29 = PointerType::get(FuncTy_30, 0);
+
+    PointerType* PointerTy_28 = PointerType::get(PointerTy_29, 0);
+
+    StructTy_class_symbol__Table_fields.push_back(PointerTy_28);
+    StructType *StructTy_class_std__list = mod->getTypeByName("class.std::list");
+    if (!StructTy_class_std__list)
+    {
+        StructTy_class_std__list = StructType::create(mod->getContext(), "class.std::list");
+    }
+    std::vector<Type*>StructTy_class_std__list_fields;
+    StructType *StructTy_class_std___List_base = mod->getTypeByName("class.std::_List_base");
+    if (!StructTy_class_std___List_base)
+    {
+        StructTy_class_std___List_base = StructType::create(mod->getContext(), "class.std::_List_base");
+    }
+    std::vector<Type*>StructTy_class_std___List_base_fields;
+    StructType *StructTy_struct_std___List_base_symbol__Scope____std__allocator_symbol__Scope________List_impl = mod->getTypeByName("struct.std::_List_base<symbol::Scope *, std::allocator<symbol::Scope *> >::_List_impl");
+    if (!StructTy_struct_std___List_base_symbol__Scope____std__allocator_symbol__Scope________List_impl)
+    {
+        StructTy_struct_std___List_base_symbol__Scope____std__allocator_symbol__Scope________List_impl = StructType::create(mod->getContext(), "struct.std::_List_base<symbol::Scope *, std::allocator<symbol::Scope *> >::_List_impl");
+    }
+    std::vector<Type*>StructTy_struct_std___List_base_symbol__Scope____std__allocator_symbol__Scope________List_impl_fields;
+    StructType *StructTy_struct_std____detail___List_node_base = mod->getTypeByName("struct.std::__detail::_List_node_base");
+    if (!StructTy_struct_std____detail___List_node_base)
+    {
+        StructTy_struct_std____detail___List_node_base = StructType::create(mod->getContext(), "struct.std::__detail::_List_node_base");
+    }
+    std::vector<Type*>StructTy_struct_std____detail___List_node_base_fields;
+    PointerType* PointerTy_31 = PointerType::get(StructTy_struct_std____detail___List_node_base, 0);
+
+    StructTy_struct_std____detail___List_node_base_fields.push_back(PointerTy_31);
+    StructTy_struct_std____detail___List_node_base_fields.push_back(PointerTy_31);
+    if (StructTy_struct_std____detail___List_node_base->isOpaque())
+    {
+        StructTy_struct_std____detail___List_node_base->setBody(StructTy_struct_std____detail___List_node_base_fields, /*isPacked=*/false);
+    }
+
+    StructTy_struct_std___List_base_symbol__Scope____std__allocator_symbol__Scope________List_impl_fields.push_back(StructTy_struct_std____detail___List_node_base);
+    if (StructTy_struct_std___List_base_symbol__Scope____std__allocator_symbol__Scope________List_impl->isOpaque())
+    {
+        StructTy_struct_std___List_base_symbol__Scope____std__allocator_symbol__Scope________List_impl->setBody(StructTy_struct_std___List_base_symbol__Scope____std__allocator_symbol__Scope________List_impl_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_std___List_base_fields.push_back(StructTy_struct_std___List_base_symbol__Scope____std__allocator_symbol__Scope________List_impl);
+    if (StructTy_class_std___List_base->isOpaque())
+    {
+        StructTy_class_std___List_base->setBody(StructTy_class_std___List_base_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_std__list_fields.push_back(StructTy_class_std___List_base);
+    if (StructTy_class_std__list->isOpaque())
+    {
+        StructTy_class_std__list->setBody(StructTy_class_std__list_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_symbol__Table_fields.push_back(StructTy_class_std__list);
+    if (StructTy_class_symbol__Table->isOpaque())
+    {
+        StructTy_class_symbol__Table->setBody(StructTy_class_symbol__Table_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_symbol__Stack_fields.push_back(StructTy_class_symbol__Table);
+    if (StructTy_class_symbol__Stack->isOpaque())
+    {
+        StructTy_class_symbol__Stack->setBody(StructTy_class_symbol__Stack_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_symbol__Context_fields.push_back(StructTy_class_symbol__Stack);
+    StructType *StructTy_class_symbol__Heap = mod->getTypeByName("class.symbol::Heap");
+    if (!StructTy_class_symbol__Heap)
+    {
+        StructTy_class_symbol__Heap = StructType::create(mod->getContext(), "class.symbol::Heap");
+    }
+    std::vector<Type*>StructTy_class_symbol__Heap_fields;
+    StructType *StructTy_class_types__Bool = mod->getTypeByName("class.types::Bool");
+    if (!StructTy_class_types__Bool)
+    {
+        StructTy_class_types__Bool = StructType::create(mod->getContext(), "class.types::Bool");
+    }
+    std::vector<Type*>StructTy_class_types__Bool_fields;
+    StructType *StructTy_class_types__ArrayOf_0 = mod->getTypeByName("class.types::ArrayOf.0");
+    if (!StructTy_class_types__ArrayOf_0)
+    {
+        StructTy_class_types__ArrayOf_0 = StructType::create(mod->getContext(), "class.types::ArrayOf.0");
+    }
+    std::vector<Type*>StructTy_class_types__ArrayOf_0_fields;
+    StructTy_class_types__ArrayOf_0_fields.push_back(StructTy_class_types__GenericType);
+    StructTy_class_types__ArrayOf_0_fields.push_back(IntegerType::get(mod->getContext(), 8));
+    StructTy_class_types__ArrayOf_0_fields.push_back(PointerTy_19);
+    StructTy_class_types__ArrayOf_0_fields.push_back(PointerTy_19);
+    if (StructTy_class_types__ArrayOf_0->isOpaque())
+    {
+        StructTy_class_types__ArrayOf_0->setBody(StructTy_class_types__ArrayOf_0_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_types__Bool_fields.push_back(StructTy_class_types__ArrayOf_0);
+    if (StructTy_class_types__Bool->isOpaque())
+    {
+        StructTy_class_types__Bool->setBody(StructTy_class_types__Bool_fields, /*isPacked=*/false);
+    }
+
+    PointerType* PointerTy_32 = PointerType::get(StructTy_class_types__Bool, 0);
+
+    StructTy_class_symbol__Heap_fields.push_back(PointerTy_32);
+    StructType *StructTy_class_std__map = mod->getTypeByName("class.std::map");
+    if (!StructTy_class_std__map)
+    {
+        StructTy_class_std__map = StructType::create(mod->getContext(), "class.std::map");
+    }
+    std::vector<Type*>StructTy_class_std__map_fields;
+    StructType *StructTy_class_std___Rb_tree = mod->getTypeByName("class.std::_Rb_tree");
+    if (!StructTy_class_std___Rb_tree)
+    {
+        StructTy_class_std___Rb_tree = StructType::create(mod->getContext(), "class.std::_Rb_tree");
+    }
+    std::vector<Type*>StructTy_class_std___Rb_tree_fields;
+    StructType *StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl = mod->getTypeByName("struct.std::_Rb_tree<symbol::Symbol, std::pair<const symbol::Symbol, std::list<symbol::Scope *, std::allocator<symbol::Scope *> > *>, std::_Select1st<std::pair<const symbol::Symbol, std::list<symbol::Scope *, std::allocator<symbol::Scope *> > *> >, std::less<symbol::Symbol>, std::allocator<std::pair<const symbol::Symbol, std::list<symbol::Scope *, std::allocator<symbol::Scope *> > *> > >::_Rb_tree_impl");
+    if (!StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl)
+    {
+        StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl = StructType::create(mod->getContext(), "struct.std::_Rb_tree<symbol::Symbol, std::pair<const symbol::Symbol, std::list<symbol::Scope *, std::allocator<symbol::Scope *> > *>, std::_Select1st<std::pair<const symbol::Symbol, std::list<symbol::Scope *, std::allocator<symbol::Scope *> > *> >, std::less<symbol::Symbol>, std::allocator<std::pair<const symbol::Symbol, std::list<symbol::Scope *, std::allocator<symbol::Scope *> > *> > >::_Rb_tree_impl");
+    }
+    std::vector<Type*>StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl_fields;
+    StructType *StructTy_struct_std__less = mod->getTypeByName("struct.std::less");
+    if (!StructTy_struct_std__less)
+    {
+        StructTy_struct_std__less = StructType::create(mod->getContext(), "struct.std::less");
+    }
+    std::vector<Type*>StructTy_struct_std__less_fields;
+    StructTy_struct_std__less_fields.push_back(IntegerType::get(mod->getContext(), 8));
+    if (StructTy_struct_std__less->isOpaque())
+    {
+        StructTy_struct_std__less->setBody(StructTy_struct_std__less_fields, /*isPacked=*/false);
+    }
+
+    StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl_fields.push_back(StructTy_struct_std__less);
+    StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl_fields.push_back(StructTy_struct_std___Rb_tree_node_base);
+    StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl_fields.push_back(IntegerType::get(mod->getContext(), 64));
+    if (StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl->isOpaque())
+    {
+        StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl->setBody(StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_std___Rb_tree_fields.push_back(StructTy_struct_std___Rb_tree_symbol__Symbol__std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope__________std___Select1st_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope____________std__less_symbol__Symbol___std__allocator_std__pair_const_symbol__Symbol__std__list_symbol__Scope____std__allocator_symbol__Scope_______________Rb_tree_impl);
+    if (StructTy_class_std___Rb_tree->isOpaque())
+    {
+        StructTy_class_std___Rb_tree->setBody(StructTy_class_std___Rb_tree_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_std__map_fields.push_back(StructTy_class_std___Rb_tree);
+    if (StructTy_class_std__map->isOpaque())
+    {
+        StructTy_class_std__map->setBody(StructTy_class_std__map_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_symbol__Heap_fields.push_back(StructTy_class_std__map);
+    StructTy_class_symbol__Heap_fields.push_back(StructTy_class_std__list);
+    if (StructTy_class_symbol__Heap->isOpaque())
+    {
+        StructTy_class_symbol__Heap->setBody(StructTy_class_symbol__Heap_fields, /*isPacked=*/false);
+    }
+
+    StructTy_class_symbol__Context_fields.push_back(StructTy_class_symbol__Heap);
+    StructTy_class_symbol__Context_fields.push_back(StructTy_class_symbol__Stack);
+    if (StructTy_class_symbol__Context->isOpaque())
+    {
+        StructTy_class_symbol__Context->setBody(StructTy_class_symbol__Context_fields, /*isPacked=*/false);
+    }
+
+    PointerType* PointerTy_27 = PointerType::get(StructTy_class_symbol__Context, 0);
+
+    std::vector<Type*>FuncTy_34_args;
+    FunctionType* FuncTy_34 = FunctionType::get(
+                                  /*Result=*/PointerTy_27,
+                                  /*Params=*/FuncTy_34_args,
+                                  /*isVarArg=*/false);
+
+    PointerType* PointerTy_33 = PointerType::get(FuncTy_34, 0);
+
+    StructType *StructTy_class_types__InternalType = mod->getTypeByName("class.types::InternalType");
+    if (!StructTy_class_types__InternalType)
+    {
+        StructTy_class_types__InternalType = StructType::create(mod->getContext(), "class.types::InternalType");
+    }
+    std::vector<Type*>StructTy_class_types__InternalType_fields;
+    StructTy_class_types__InternalType_fields.push_back(PointerTy_28);
+    StructTy_class_types__InternalType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    StructTy_class_types__InternalType_fields.push_back(IntegerType::get(mod->getContext(), 8));
+    StructTy_class_types__InternalType_fields.push_back(IntegerType::get(mod->getContext(), 8));
+    StructTy_class_types__InternalType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    StructTy_class_types__InternalType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    StructTy_class_types__InternalType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    StructTy_class_types__InternalType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    StructTy_class_types__InternalType_fields.push_back(IntegerType::get(mod->getContext(), 32));
+    if (StructTy_class_types__InternalType->isOpaque())
+    {
+        StructTy_class_types__InternalType->setBody(StructTy_class_types__InternalType_fields, /*isPacked=*/false);
+    }
+
+    PointerType* PointerTy_35 = PointerType::get(StructTy_class_types__InternalType, 0);
+
+    std::vector<Type*>FuncTy_37_args;
+    FuncTy_37_args.push_back(PointerTy_27);
+    FuncTy_37_args.push_back(PointerTy_21);
+    FuncTy_37_args.push_back(PointerTy_35);
+    FunctionType* FuncTy_37 = FunctionType::get(
+                                  /*Result=*/IntegerType::get(mod->getContext(), 1),
+                                  /*Params=*/FuncTy_37_args,
+                                  /*isVarArg=*/false);
+
+    PointerType* PointerTy_36 = PointerType::get(FuncTy_37, 0);
+
+    std::vector<Type*>FuncTy_39_args;
+    FuncTy_39_args.push_back(PointerTy_27);
+    FuncTy_39_args.push_back(PointerTy_21);
+    FunctionType* FuncTy_39 = FunctionType::get(
+                                  /*Result=*/PointerTy_35,
+                                  /*Params=*/FuncTy_39_args,
+                                  /*isVarArg=*/false);
+
+    PointerType* PointerTy_38 = PointerType::get(FuncTy_39, 0);
+
 
     // Function Declarations
+
+    Function* func___cxx_global_var_init = mod->getFunction("__cxx_global_var_init");
+    if (!func___cxx_global_var_init)
+    {
+        func___cxx_global_var_init = Function::Create(
+                                         /*Type=*/FuncTy_5,
+                                         /*Linkage=*/GlobalValue::InternalLinkage,
+                                         /*Name=*/"__cxx_global_var_init", mod);
+        func___cxx_global_var_init->setCallingConv(CallingConv::C);
+        func___cxx_global_var_init->setSection(".text.startup");
+    }
+    AttributeSet func___cxx_global_var_init_PAL;
+    func___cxx_global_var_init->setAttributes(func___cxx_global_var_init_PAL);
+
+    Function* func__ZNSt8ios_base4InitC1Ev = mod->getFunction("_ZNSt8ios_base4InitC1Ev");
+    if (!func__ZNSt8ios_base4InitC1Ev)
+    {
+        func__ZNSt8ios_base4InitC1Ev = Function::Create(
+                                           /*Type=*/FuncTy_8,
+                                           /*Linkage=*/GlobalValue::ExternalLinkage,
+                                           /*Name=*/"_ZNSt8ios_base4InitC1Ev", mod); // (external, no body)
+        func__ZNSt8ios_base4InitC1Ev->setCallingConv(CallingConv::C);
+    }
+    AttributeSet func__ZNSt8ios_base4InitC1Ev_PAL;
+    {
+        SmallVector<AttributeSet, 4> Attrs;
+        AttributeSet PAS;
+        {
+            AttrBuilder B;
+            PAS = AttributeSet::get(mod->getContext(), ~0U, B);
+        }
+
+        Attrs.push_back(PAS);
+        func__ZNSt8ios_base4InitC1Ev_PAL = AttributeSet::get(mod->getContext(), Attrs);
+
+    }
+    func__ZNSt8ios_base4InitC1Ev->setAttributes(func__ZNSt8ios_base4InitC1Ev_PAL);
+
+    Function* func__ZNSt8ios_base4InitD1Ev = mod->getFunction("_ZNSt8ios_base4InitD1Ev");
+    if (!func__ZNSt8ios_base4InitD1Ev)
+    {
+        func__ZNSt8ios_base4InitD1Ev = Function::Create(
+                                           /*Type=*/FuncTy_8,
+                                           /*Linkage=*/GlobalValue::ExternalLinkage,
+                                           /*Name=*/"_ZNSt8ios_base4InitD1Ev", mod); // (external, no body)
+        func__ZNSt8ios_base4InitD1Ev->setCallingConv(CallingConv::C);
+    }
+    AttributeSet func__ZNSt8ios_base4InitD1Ev_PAL;
+    {
+        SmallVector<AttributeSet, 4> Attrs;
+        AttributeSet PAS;
+        {
+            AttrBuilder B;
+            PAS = AttributeSet::get(mod->getContext(), ~0U, B);
+        }
+
+        Attrs.push_back(PAS);
+        func__ZNSt8ios_base4InitD1Ev_PAL = AttributeSet::get(mod->getContext(), Attrs);
+
+    }
+    func__ZNSt8ios_base4InitD1Ev->setAttributes(func__ZNSt8ios_base4InitD1Ev_PAL);
+
+    Function* func___cxa_atexit = mod->getFunction("__cxa_atexit");
+    if (!func___cxa_atexit)
+    {
+        func___cxa_atexit = Function::Create(
+                                /*Type=*/FuncTy_12,
+                                /*Linkage=*/GlobalValue::ExternalLinkage,
+                                /*Name=*/"__cxa_atexit", mod); // (external, no body)
+        func___cxa_atexit->setCallingConv(CallingConv::C);
+    }
+    AttributeSet func___cxa_atexit_PAL;
+    {
+        SmallVector<AttributeSet, 4> Attrs;
+        AttributeSet PAS;
+        {
+            AttrBuilder B;
+            B.addAttribute(Attribute::NoUnwind);
+            PAS = AttributeSet::get(mod->getContext(), ~0U, B);
+        }
+
+        Attrs.push_back(PAS);
+        func___cxa_atexit_PAL = AttributeSet::get(mod->getContext(), Attrs);
+
+    }
+    func___cxa_atexit->setAttributes(func___cxa_atexit_PAL);
+
+    Function* func__Z3foov = mod->getFunction("_Z3foov");
+    if (!func__Z3foov)
+    {
+        func__Z3foov = Function::Create(
+                           /*Type=*/FuncTy_13,
+                           /*Linkage=*/GlobalValue::ExternalLinkage,
+                           /*Name=*/"_Z3foov", mod);
+        func__Z3foov->setCallingConv(CallingConv::C);
+    }
+    AttributeSet func__Z3foov_PAL;
+    {
+        SmallVector<AttributeSet, 4> Attrs;
+        AttributeSet PAS;
+        {
+            AttrBuilder B;
+            B.addAttribute(Attribute::UWTable);
+            PAS = AttributeSet::get(mod->getContext(), ~0U, B);
+        }
+
+        Attrs.push_back(PAS);
+        func__Z3foov_PAL = AttributeSet::get(mod->getContext(), Attrs);
+
+    }
+    func__Z3foov->setAttributes(func__Z3foov_PAL);
+
+    Function* func__ZN5types6Double5EmptyEv = mod->getFunction("_ZN5types6Double5EmptyEv");
+    if (!func__ZN5types6Double5EmptyEv)
+    {
+        func__ZN5types6Double5EmptyEv = Function::Create(
+                                            /*Type=*/FuncTy_24,
+                                            /*Linkage=*/GlobalValue::ExternalLinkage,
+                                            /*Name=*/"_ZN5types6Double5EmptyEv", mod); // (external, no body)
+        func__ZN5types6Double5EmptyEv->setCallingConv(CallingConv::C);
+    }
+    AttributeSet func__ZN5types6Double5EmptyEv_PAL;
+    {
+        SmallVector<AttributeSet, 4> Attrs;
+        AttributeSet PAS;
+        {
+            AttrBuilder B;
+            PAS = AttributeSet::get(mod->getContext(), ~0U, B);
+        }
+
+        Attrs.push_back(PAS);
+        func__ZN5types6Double5EmptyEv_PAL = AttributeSet::get(mod->getContext(), Attrs);
+
+    }
+    func__ZN5types6Double5EmptyEv->setAttributes(func__ZN5types6Double5EmptyEv_PAL);
+
+    Function* func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_ = mod->getFunction("_Z17AddDoubleToDoublePN5types6DoubleES1_PS1_");
+    if (!func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_)
+    {
+        func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_ = Function::Create(
+                    /*Type=*/FuncTy_26,
+                    /*Linkage=*/GlobalValue::ExternalLinkage,
+                    /*Name=*/"_Z17AddDoubleToDoublePN5types6DoubleES1_PS1_", mod); // (external, no body)
+        func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_->setCallingConv(CallingConv::C);
+    }
+    AttributeSet func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1__PAL;
+    {
+        SmallVector<AttributeSet, 4> Attrs;
+        AttributeSet PAS;
+        {
+            AttrBuilder B;
+            PAS = AttributeSet::get(mod->getContext(), ~0U, B);
+        }
+
+        Attrs.push_back(PAS);
+        func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1__PAL = AttributeSet::get(mod->getContext(), Attrs);
+
+    }
+    func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_->setAttributes(func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1__PAL);
+
+    Function* func__ZN6symbol7Context11getInstanceEv = mod->getFunction("_ZN6symbol7Context11getInstanceEv");
+    if (!func__ZN6symbol7Context11getInstanceEv)
+    {
+        func__ZN6symbol7Context11getInstanceEv = Function::Create(
+                    /*Type=*/FuncTy_34,
+                    /*Linkage=*/GlobalValue::ExternalLinkage,
+                    /*Name=*/"_ZN6symbol7Context11getInstanceEv", mod); // (external, no body)
+        func__ZN6symbol7Context11getInstanceEv->setCallingConv(CallingConv::C);
+    }
+    AttributeSet func__ZN6symbol7Context11getInstanceEv_PAL;
+    {
+        SmallVector<AttributeSet, 4> Attrs;
+        AttributeSet PAS;
+        {
+            AttrBuilder B;
+            PAS = AttributeSet::get(mod->getContext(), ~0U, B);
+        }
+
+        Attrs.push_back(PAS);
+        func__ZN6symbol7Context11getInstanceEv_PAL = AttributeSet::get(mod->getContext(), Attrs);
+
+    }
+    func__ZN6symbol7Context11getInstanceEv->setAttributes(func__ZN6symbol7Context11getInstanceEv_PAL);
+
+    Function* func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE = mod->getFunction("_ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE");
+    if (!func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE)
+    {
+        func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE = Function::Create(
+                    /*Type=*/FuncTy_37,
+                    /*Linkage=*/GlobalValue::ExternalLinkage,
+                    /*Name=*/"_ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE", mod); // (external, no body)
+        func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE->setCallingConv(CallingConv::C);
+    }
+    AttributeSet func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE_PAL;
+    {
+        SmallVector<AttributeSet, 4> Attrs;
+        AttributeSet PAS;
+        {
+            AttrBuilder B;
+            B.addAttribute(Attribute::ZExt);
+            PAS = AttributeSet::get(mod->getContext(), 0U, B);
+        }
+
+        Attrs.push_back(PAS);
+        {
+            AttrBuilder B;
+            PAS = AttributeSet::get(mod->getContext(), ~0U, B);
+        }
+
+        Attrs.push_back(PAS);
+        func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE_PAL = AttributeSet::get(mod->getContext(), Attrs);
+
+    }
+    func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE->setAttributes(func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE_PAL);
+
+    Function* func__ZNK6symbol7Context3getERKNS_6SymbolE = mod->getFunction("_ZNK6symbol7Context3getERKNS_6SymbolE");
+    if (!func__ZNK6symbol7Context3getERKNS_6SymbolE)
+    {
+        func__ZNK6symbol7Context3getERKNS_6SymbolE = Function::Create(
+                    /*Type=*/FuncTy_39,
+                    /*Linkage=*/GlobalValue::ExternalLinkage,
+                    /*Name=*/"_ZNK6symbol7Context3getERKNS_6SymbolE", mod); // (external, no body)
+        func__ZNK6symbol7Context3getERKNS_6SymbolE->setCallingConv(CallingConv::C);
+    }
+    AttributeSet func__ZNK6symbol7Context3getERKNS_6SymbolE_PAL;
+    {
+        SmallVector<AttributeSet, 4> Attrs;
+        AttributeSet PAS;
+        {
+            AttrBuilder B;
+            PAS = AttributeSet::get(mod->getContext(), ~0U, B);
+        }
+
+        Attrs.push_back(PAS);
+        func__ZNK6symbol7Context3getERKNS_6SymbolE_PAL = AttributeSet::get(mod->getContext(), Attrs);
+
+    }
+    func__ZNK6symbol7Context3getERKNS_6SymbolE->setAttributes(func__ZNK6symbol7Context3getERKNS_6SymbolE_PAL);
+
+    Function* func__GLOBAL__I_a = mod->getFunction("_GLOBAL__I_a");
+    if (!func__GLOBAL__I_a)
+    {
+        func__GLOBAL__I_a = Function::Create(
+                                /*Type=*/FuncTy_5,
+                                /*Linkage=*/GlobalValue::InternalLinkage,
+                                /*Name=*/"_GLOBAL__I_a", mod);
+        func__GLOBAL__I_a->setCallingConv(CallingConv::C);
+        func__GLOBAL__I_a->setSection(".text.startup");
+    }
+    AttributeSet func__GLOBAL__I_a_PAL;
+    func__GLOBAL__I_a->setAttributes(func__GLOBAL__I_a_PAL);
 
     // Global Variable Declarations
 
 
+    GlobalVariable* gvar_struct__ZStL8__ioinit = new GlobalVariable(/*Module=*/*mod,
+            /*Type=*/StructTy_class_std__ios_base__Init,
+            /*isConstant=*/false,
+            /*Linkage=*/GlobalValue::InternalLinkage,
+            /*Initializer=*/0, // has initializer, specified below
+            /*Name=*/"_ZStL8__ioinit");
+    gvar_struct__ZStL8__ioinit->setAlignment(1);
+
+    GlobalVariable* gvar_int8___dso_handle = new GlobalVariable(/*Module=*/*mod,
+            /*Type=*/IntegerType::get(mod->getContext(), 8),
+            /*isConstant=*/false,
+            /*Linkage=*/GlobalValue::ExternalLinkage,
+            /*Initializer=*/0,
+            /*Name=*/"__dso_handle");
+
+    GlobalVariable* gvar_array_llvm_global_ctors = new GlobalVariable(/*Module=*/*mod,
+            /*Type=*/ArrayTy_2,
+            /*isConstant=*/false,
+            /*Linkage=*/GlobalValue::AppendingLinkage,
+            /*Initializer=*/0, // has initializer, specified below
+            /*Name=*/"llvm.global_ctors");
+
     // Constant Definitions
+    ConstantAggregateZero* const_struct_40 = ConstantAggregateZero::get(StructTy_class_std__ios_base__Init);
+    std::vector<Constant*> const_array_41_elems;
+    std::vector<Constant*> const_struct_42_fields;
+    ConstantInt* const_int32_43 = ConstantInt::get(mod->getContext(), APInt(32, StringRef("65535"), 10));
+    const_struct_42_fields.push_back(const_int32_43);
+    const_struct_42_fields.push_back(func__GLOBAL__I_a);
+    Constant* const_struct_42 = ConstantStruct::get(StructTy_3, const_struct_42_fields);
+    const_array_41_elems.push_back(const_struct_42);
+    Constant* const_array_41 = ConstantArray::get(ArrayTy_2, const_array_41_elems);
+    Constant* const_ptr_44 = ConstantExpr::getCast(Instruction::BitCast, func__ZNSt8ios_base4InitD1Ev, PointerTy_9);
+    std::vector<Constant*> const_ptr_45_indices;
+    ConstantInt* const_int32_46 = ConstantInt::get(mod->getContext(), APInt(32, StringRef("0"), 10));
+    const_ptr_45_indices.push_back(const_int32_46);
+    const_ptr_45_indices.push_back(const_int32_46);
+    Constant* const_ptr_45 = ConstantExpr::getGetElementPtr(gvar_struct__ZStL8__ioinit, const_ptr_45_indices);
+    ConstantInt* const_int32_47 = ConstantInt::get(mod->getContext(), APInt(32, StringRef("1"), 10));
+    ConstantPointerNull* const_ptr_48 = ConstantPointerNull::get(PointerTy_21);
 
     // Global Variable Definitions
+    gvar_struct__ZStL8__ioinit->setInitializer(const_struct_40);
+    gvar_array_llvm_global_ctors->setInitializer(const_array_41);
 
     // Function Definitions
+
+    // Function: __cxx_global_var_init (func___cxx_global_var_init)
+    {
+
+        BasicBlock* label_49 = BasicBlock::Create(mod->getContext(), "", func___cxx_global_var_init, 0);
+
+        // Block  (label_49)
+        CallInst* void_50 = CallInst::Create(func__ZNSt8ios_base4InitC1Ev, gvar_struct__ZStL8__ioinit, "", label_49);
+        void_50->setCallingConv(CallingConv::C);
+        void_50->setTailCall(false);
+        AttributeSet void_50_PAL;
+        void_50->setAttributes(void_50_PAL);
+
+        std::vector<Value*> int32_51_params;
+        int32_51_params.push_back(const_ptr_44);
+        int32_51_params.push_back(const_ptr_45);
+        int32_51_params.push_back(gvar_int8___dso_handle);
+        CallInst* int32_51 = CallInst::Create(func___cxa_atexit, int32_51_params, "", label_49);
+        int32_51->setCallingConv(CallingConv::C);
+        int32_51->setTailCall(false);
+        AttributeSet int32_51_PAL;
+        {
+            SmallVector<AttributeSet, 4> Attrs;
+            AttributeSet PAS;
+            {
+                AttrBuilder B;
+                B.addAttribute(Attribute::NoUnwind);
+                PAS = AttributeSet::get(mod->getContext(), ~0U, B);
+            }
+
+            Attrs.push_back(PAS);
+            int32_51_PAL = AttributeSet::get(mod->getContext(), Attrs);
+
+        }
+        int32_51->setAttributes(int32_51_PAL);
+
+        ReturnInst::Create(mod->getContext(), label_49);
+
+    }
+
+    // Function: _Z3foov (func__Z3foov)
+    {
+
+        BasicBlock* label_53 = BasicBlock::Create(mod->getContext(), "", func__Z3foov, 0);
+
+        // Block  (label_53)
+        AllocaInst* ptr_pdbl1 = new AllocaInst(PointerTy_15, "pdbl1", label_53);
+        ptr_pdbl1->setAlignment(8);
+        AllocaInst* ptr_res = new AllocaInst(IntegerType::get(mod->getContext(), 32), "res", label_53);
+        ptr_res->setAlignment(4);
+        AllocaInst* ptr_sym = new AllocaInst(PointerTy_21, "sym", label_53);
+        ptr_sym->setAlignment(8);
+        CallInst* ptr_54 = CallInst::Create(func__ZN5types6Double5EmptyEv, "", label_53);
+        ptr_54->setCallingConv(CallingConv::C);
+        ptr_54->setTailCall(false);
+        AttributeSet ptr_54_PAL;
+        ptr_54->setAttributes(ptr_54_PAL);
+
+        StoreInst* void_55 = new StoreInst(ptr_54, ptr_pdbl1, false, label_53);
+        void_55->setAlignment(8);
+        LoadInst* ptr_56 = new LoadInst(ptr_pdbl1, "", false, label_53);
+        ptr_56->setAlignment(8);
+        LoadInst* ptr_57 = new LoadInst(ptr_pdbl1, "", false, label_53);
+        ptr_57->setAlignment(8);
+        std::vector<Value*> int32_58_params;
+        int32_58_params.push_back(ptr_56);
+        int32_58_params.push_back(ptr_57);
+        int32_58_params.push_back(ptr_pdbl1);
+        CallInst* int32_58 = CallInst::Create(func__Z17AddDoubleToDoublePN5types6DoubleES1_PS1_, int32_58_params, "", label_53);
+        int32_58->setCallingConv(CallingConv::C);
+        int32_58->setTailCall(false);
+        AttributeSet int32_58_PAL;
+        int32_58->setAttributes(int32_58_PAL);
+
+        StoreInst* void_59 = new StoreInst(int32_58, ptr_res, false, label_53);
+        void_59->setAlignment(4);
+        StoreInst* void_60 = new StoreInst(const_ptr_48, ptr_sym, false, label_53);
+        void_60->setAlignment(8);
+        CallInst* ptr_61 = CallInst::Create(func__ZN6symbol7Context11getInstanceEv, "", label_53);
+        ptr_61->setCallingConv(CallingConv::C);
+        ptr_61->setTailCall(false);
+        AttributeSet ptr_61_PAL;
+        ptr_61->setAttributes(ptr_61_PAL);
+
+        LoadInst* ptr_62 = new LoadInst(ptr_sym, "", false, label_53);
+        ptr_62->setAlignment(8);
+        LoadInst* ptr_63 = new LoadInst(ptr_pdbl1, "", false, label_53);
+        ptr_63->setAlignment(8);
+        CastInst* ptr_64 = new BitCastInst(ptr_63, PointerTy_35, "", label_53);
+        std::vector<Value*> int1_65_params;
+        int1_65_params.push_back(ptr_61);
+        int1_65_params.push_back(ptr_62);
+        int1_65_params.push_back(ptr_64);
+        CallInst* int1_65 = CallInst::Create(func__ZN6symbol7Context3putERKNS_6SymbolERN5types12InternalTypeE, int1_65_params, "", label_53);
+        int1_65->setCallingConv(CallingConv::C);
+        int1_65->setTailCall(false);
+        AttributeSet int1_65_PAL;
+        {
+            SmallVector<AttributeSet, 4> Attrs;
+            AttributeSet PAS;
+            {
+                AttrBuilder B;
+                B.addAttribute(Attribute::ZExt);
+                PAS = AttributeSet::get(mod->getContext(), 0U, B);
+            }
+
+            Attrs.push_back(PAS);
+            int1_65_PAL = AttributeSet::get(mod->getContext(), Attrs);
+
+        }
+        int1_65->setAttributes(int1_65_PAL);
+
+        CallInst* ptr_66 = CallInst::Create(func__ZN6symbol7Context11getInstanceEv, "", label_53);
+        ptr_66->setCallingConv(CallingConv::C);
+        ptr_66->setTailCall(false);
+        AttributeSet ptr_66_PAL;
+        ptr_66->setAttributes(ptr_66_PAL);
+
+        LoadInst* ptr_67 = new LoadInst(ptr_sym, "", false, label_53);
+        ptr_67->setAlignment(8);
+        std::vector<Value*> ptr_68_params;
+        ptr_68_params.push_back(ptr_66);
+        ptr_68_params.push_back(ptr_67);
+        CallInst* ptr_68 = CallInst::Create(func__ZNK6symbol7Context3getERKNS_6SymbolE, ptr_68_params, "", label_53);
+        ptr_68->setCallingConv(CallingConv::C);
+        ptr_68->setTailCall(false);
+        AttributeSet ptr_68_PAL;
+        ptr_68->setAttributes(ptr_68_PAL);
+
+        LoadInst* int32_69 = new LoadInst(ptr_res, "", false, label_53);
+        int32_69->setAlignment(4);
+        ReturnInst::Create(mod->getContext(), int32_69, label_53);
+
+    }
+
+    // Function: _GLOBAL__I_a (func__GLOBAL__I_a)
+    {
+
+        BasicBlock* label_71 = BasicBlock::Create(mod->getContext(), "", func__GLOBAL__I_a, 0);
+
+        // Block  (label_71)
+        CallInst* void_72 = CallInst::Create(func___cxx_global_var_init, "", label_71);
+        void_72->setCallingConv(CallingConv::C);
+        void_72->setTailCall(false);
+        AttributeSet void_72_PAL;
+        void_72->setAttributes(void_72_PAL);
+
+        ReturnInst::Create(mod->getContext(), label_71);
+
+    }
 
     return mod;
 
