@@ -16,7 +16,7 @@ function %_sodload(%__filename__, varargin)
         if size(d, "*") == 3 then
             v = evstr(d(1)) * 100 + evstr(d(2)) * 10 + evstr(d(3));
         else
-            error("unable to find file version: %s", __filename__);
+            error("unable to find file version: %s", %__filename__);
         end
     endfunction
 
@@ -612,7 +612,7 @@ function %_sodload(%__filename__, varargin)
         fields(fields=="data") = [];
 
         h = gce();
-        
+
         if matplotProperties.clip_state=="on" then
             set(h, "clip_box", matplotProperties.clip_box)
         end
@@ -811,7 +811,7 @@ function %_sodload(%__filename__, varargin)
             end
         end
     endfunction
-	
+
     //
     // LIGHT
     //
@@ -887,7 +887,7 @@ function %_sodload(%__filename__, varargin)
 
     if isfile(%__filename__) & is_hdf5_file(%__filename__) then
         %__loadFunction__ = import_from_hdf5;
-        fileVersion = getScilabFileVersion(%__filename__);
+        //fileVersion = getScilabFileVersion(%__filename__); // Not needed for the moment
     else
         %__loadFunction__ = %_load;
     end
