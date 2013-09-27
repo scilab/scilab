@@ -99,7 +99,7 @@ function demo_riemann()
     my_rotation_dir = [0 1];
     my_counter      = 0;
 
-    for k = 1:100000
+    for k = 1:100
 
         if quit_var == 1 then
             if isHandleExistAndValid("my_handle") then
