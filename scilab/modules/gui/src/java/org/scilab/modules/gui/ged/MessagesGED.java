@@ -44,6 +44,8 @@ public class MessagesGED {
     public static final String matplot = Messages.gettext("Matplot");
 
     //Base Properties - Labels
+    public static final String auto_rotation = Messages.gettext("Auto Rotation");
+    public static final String auto_position = Messages.gettext("Auto Position");
     public static final String auto_ticks = Messages.gettext("Auto Ticks");
     public static final String tick = Messages.gettext("Tick");
     public static final String lines = Messages.gettext("Lines");
@@ -223,6 +225,7 @@ public class MessagesGED {
 
     //Font - Labels
     public static final String font = Messages.gettext("Font");
+    public static final String font_angle = Messages.gettext("Font Angle");
     public static final String font_color = Messages.gettext("Font Color");
     public static final String font_size = Messages.gettext("Font Size");
     public static final String font_style = Messages.gettext("Font Style");

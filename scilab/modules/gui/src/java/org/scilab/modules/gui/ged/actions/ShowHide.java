@@ -106,17 +106,32 @@ public class ShowHide extends CommonCallBack {
      * @param hide Boolean.
      */
     public static void action(boolean hide) {
+        arc(hide);
         axes(hide);
         champ(hide);
         datatip(hide);
         fec(hide);
         figure(hide);
         imageplot(hide);
+        label(hide);
         legend(hide);
         polyline(hide);
         rectangle(hide);
         segs(hide);
         surface(hide);
+    }
+
+    public static void arc(boolean hide) {
+        try {
+            org.scilab.modules.gui.ged.graphic_objects.axes.BaseProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.axes.Box.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.axes.Camera.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.axes.Tick.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.axes.Label.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.axes.Position.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.axes.Style.getInstance().setVisibility(!hide);
+        } catch (NullPointerException e1) {
+        } catch (NoSuchMethodError e2) { }
     }
 
     public static void axes(boolean hide) {
@@ -172,6 +187,16 @@ public class ShowHide extends CommonCallBack {
         try {
             org.scilab.modules.gui.ged.graphic_objects.imageplot.BaseProperties.getInstance().setVisibility(!hide);
             org.scilab.modules.gui.ged.graphic_objects.imageplot.DataProperties.getInstance().setVisibility(!hide);
+        } catch (NullPointerException e1) {
+        } catch (NoSuchMethodError e2) { }
+    }
+
+    public static void label(boolean hide) {
+        try {
+            org.scilab.modules.gui.ged.graphic_objects.label.BaseProperties.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.label.Font.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.label.Position.getInstance().setVisibility(!hide);
+            org.scilab.modules.gui.ged.graphic_objects.label.Style.getInstance().setVisibility(!hide);
         } catch (NullPointerException e1) {
         } catch (NoSuchMethodError e2) { }
     }
@@ -282,6 +307,15 @@ public class ShowHide extends CommonCallBack {
                 if (BP && DP)
                     setStatus(false);
                 else if (!BP && !DP)
+                    setStatus(true);
+            } else if("label".equals(type)) {
+                boolean BP = org.scilab.modules.gui.ged.graphic_objects.label.BaseProperties.getInstance().getStatus();
+                boolean FT = org.scilab.modules.gui.ged.graphic_objects.label.Font.getInstance().getStatus();
+                boolean PO = org.scilab.modules.gui.ged.graphic_objects.label.Position.getInstance().getStatus();
+                boolean ST = org.scilab.modules.gui.ged.graphic_objects.label.Style.getInstance().getStatus();
+                if (BP && FT && PO && ST)
+                    setStatus(false);
+                else if (!BP && !FT && !PO && !ST)
                     setStatus(true);
             } else if("legend".equals(type)) {
                 boolean BP = org.scilab.modules.gui.ged.graphic_objects.legend.BaseProperties.getInstance().getStatus();

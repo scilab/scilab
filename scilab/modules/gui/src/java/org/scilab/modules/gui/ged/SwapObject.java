@@ -19,6 +19,7 @@ import org.scilab.modules.gui.ged.graphic_objects.datatip.Datatip;
 import org.scilab.modules.gui.ged.graphic_objects.fec.Fec;
 import org.scilab.modules.gui.ged.graphic_objects.figure.Figure;
 import org.scilab.modules.gui.ged.graphic_objects.imageplot.Imageplot;
+import org.scilab.modules.gui.ged.graphic_objects.label.Label;
 import org.scilab.modules.gui.ged.graphic_objects.legend.Legend;
 import org.scilab.modules.gui.ged.graphic_objects.polyline.Polyline;
 import org.scilab.modules.gui.ged.graphic_objects.rectangle.Rectangle;
@@ -31,12 +32,15 @@ import org.scilab.modules.gui.ged.graphic_objects.surface.Surface;
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
 public class SwapObject {
+    private static int lastType;
+
     /**
     * Manager which property window will open.
     * @param objectID Enters the identification of object.
     */
     public SwapObject(String objectID) {
         Integer type = (Integer) GraphicController.getController().getProperty(objectID, GraphicObjectProperties.__GO_TYPE__);
+        lastType = type;
         switch (type) {
             case GraphicObjectProperties.__GO_POLYLINE__:
                 Polyline polyline = new Polyline(objectID);
@@ -61,6 +65,10 @@ public class SwapObject {
             case GraphicObjectProperties.__GO_LEGEND__:
                 Legend legend = new Legend(objectID);
                 SwingInspector.setPanel(legend, MessagesGED.legend);
+                break;
+            case GraphicObjectProperties.__GO_LABEL__:
+                Label label = new Label(objectID);
+                SwingInspector.setPanel(label, MessagesGED.label);
                 break;
             case GraphicObjectProperties.__GO_ARC__:
                 break;
@@ -89,9 +97,19 @@ public class SwapObject {
                 SwingInspector.setPanel(axes, MessagesGED.axes);
                 break;
             default:
-                Figure figure = new Figure(objectID);
-                SwingInspector.setPanel(figure, MessagesGED.figure);
+                try {
+                    Figure figure = new Figure(objectID);
+                    SwingInspector.setPanel(figure, MessagesGED.figure);
+                } catch (NullPointerException e) { }
                 break;
         }
+    }
+
+    /**
+    * Get the last type of object.
+    * @return type
+    */
+    public static int getLastType() {
+        return lastType;
     }
 }
