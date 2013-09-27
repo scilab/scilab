@@ -225,7 +225,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
             }
 
             configureStream(&ostemp, iCurLen + 2, iPrecision, ' ');
-            ostemp << left << get(0, i);
+            ostemp << left << get(iPos);
         }
 
         if (iLastVal != 0)
