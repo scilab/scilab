@@ -188,12 +188,12 @@ int _getFecTrianglesSize(char * uid) {
 
 %}
 
-%typemap(out) double * FECXY {
+%typemap(out) double * FEC_XY {
 	$result = (*jenv)->NewDoubleArray(jenv, _getFecDataSize(arg1));
 	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getFecDataSize(arg1), $1);
 }
 
-%apply double * FECXY { double * }
+%apply double * FEC_XY { double * getFecData(char * uid) }
 %{
 
 double * getFecData(char * uid) {
@@ -213,12 +213,13 @@ int _getFecDataSize(char * uid) {
 
 %}
 
+
 %typemap(out) double * ARC_ULP {
 	$result = (*jenv)->NewDoubleArray(jenv, 3);
 	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, 3, $1);
 }
 
-%apply double * ARC_ULP { double * }
+%apply double * ARC_ULP { double * getArcUpperLeftPoint(char * uid) }
 %{
 
 double * getArcUpperLeftPoint(char * uid) {
@@ -235,7 +236,7 @@ double * getArcUpperLeftPoint(char * uid) {
 	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, 4, $1);
 }
 
-%apply double * ARC_DATA { double * }
+%apply double * ARC_DATA { double * getArcData(char * uid) }
 %{
 
 double * getArcData(char * uid) {
