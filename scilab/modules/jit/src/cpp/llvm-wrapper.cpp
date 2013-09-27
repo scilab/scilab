@@ -1,7 +1,8 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2013-2013 - S/E - Sylvestre Ledru
- *  Copyright (C) 2013-2013 - S/E - Antoine Elias
+ *  Copyright (C) 2013-2013 - S/E - Sylvestre ledru
+ *  Copyright (C) 2013-2013 - S/E - Antoine ELIAS
+ *  Copyright (C) 2013-2013 - S/E - Calixte DENIZET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -13,6 +14,7 @@
 
 #include "double.hxx"
 #include "types_addition.hxx"
+#include "context.hxx"
 
 /* This is a configuration file which will be transformed by llvm + clang
 for the JIT
@@ -24,6 +26,7 @@ int foo()
     symbol::Symbol * sym = 0;// = symbol::Symbol(L"a"); => This declaration makes llc fails
 
     symbol::Context::getInstance()->put(*sym, *pdbl1);
+    symbol::Context::getInstance()->get(*sym);
 
     return res;
 }
