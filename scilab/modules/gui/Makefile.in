@@ -806,7 +806,7 @@ src/jni/Datatip.giws.xml \
 src/jni/StartGED.giws.xml \
 src/jni/StartPlotBrowser.giws.xml
 
-SWIG_WRAPPERS = src/jni/ScilabTermination.i 
+SWIG_WRAPPERS = src/jni/ScilabTermination.i
 BUILT_SOURCES = $(am__append_1) $(am__append_2)
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/gw_gui.c \
@@ -1036,6 +1036,7 @@ images/icons/close-tab-on.png \
 images/icons/close-tab.png \
 images/icons/dock_help_active.png \
 images/icons/dock_help_default.png \
+images/icons/data_modify.png \
 images/icons/puff.png \
 images/icons/rotate.png \
 images/icons/scilab_close_active.png \

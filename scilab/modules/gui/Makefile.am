@@ -155,7 +155,7 @@ src/jni/Datatip.giws.xml \
 src/jni/StartGED.giws.xml \
 src/jni/StartPlotBrowser.giws.xml
 
-SWIG_WRAPPERS = src/jni/ScilabTermination.i 
+SWIG_WRAPPERS = src/jni/ScilabTermination.i
 
 BUILT_SOURCES=
 if GIWS
@@ -405,6 +405,7 @@ images/icons/close-tab-on.png \
 images/icons/close-tab.png \
 images/icons/dock_help_active.png \
 images/icons/dock_help_default.png \
+images/icons/data_modify.png \
 images/icons/puff.png \
 images/icons/rotate.png \
 images/icons/scilab_close_active.png \
