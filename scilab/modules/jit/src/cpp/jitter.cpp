@@ -56,7 +56,7 @@ void *Jitter::launch(void *args)
     //unregister thread
     ConfigVariable::deleteThread(currentThreadKey);
 
-    delete me;
+    //delete me;
 
     if (bdoUnlock)
     {

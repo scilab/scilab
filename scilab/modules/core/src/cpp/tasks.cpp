@@ -192,7 +192,15 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose, bo
         ast::JITVisitor *jitExec;
 
         jitExec = new ast::JITVisitor();
+
+        jitExec->genLLVMInitialize();
+
         Jitter::execAndWait(tree, jitExec);
+
+        jitExec->genLLVMFinalize();
+        jitExec->compileAndExec();
+
+        delete jitExec;
     }
     else
     {
