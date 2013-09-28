@@ -18,12 +18,15 @@ function demo_rot_light()
     l=light();
     s=gce();
 
-    for i=0:2000
-        sleep(5);
-        x = 2*cos(i*%pi/180);
-        y = 2*sin(i*%pi/180);
-        z = 2;
-        l.position = [x y z];
+    try
+        for i=0:2000
+            sleep(5);
+            x = 2*cos(i*%pi/180);
+            y = 2*sin(i*%pi/180);
+            z = 2;
+            l.position = [x y z];
+        end
+    catch
     end
     // DEMO END
 endfunction

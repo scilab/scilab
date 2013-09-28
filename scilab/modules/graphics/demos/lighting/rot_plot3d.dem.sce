@@ -19,9 +19,12 @@ function demo_rot_light()
     s=gce();
     a=gca();
 
-    for i=1:360
-        sleep(5);
-        a.rotation_angles = [70 i];
+    try
+        for i=1:360
+            sleep(5);
+            a.rotation_angles = [70 i];
+        end
+    catch
     end
     // DEMO END
 endfunction
