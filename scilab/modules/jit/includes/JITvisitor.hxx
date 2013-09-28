@@ -361,18 +361,16 @@ public:
         llvm::Value *pITR = result_get();
 
         llvm::Value *pResult = NULL;
+
+        llvm::Value * tmp = Builder->CreateAlloca(llvm::PointerType::getUnqual(TheModule->getTypeByName("class.types::Double")));
+
         switch (e.oper_get())
         {
             case OpExp::plus :
             {
-                //%5 = call i32 @_Z17AddDoubleToDoublePN5types6DoubleES1_PS1_(%"class.types::Double"* %3, %"class.types::Double"* %4, %"class.types::Double"** %pdbl1)
-                //                      pResult = Builder->CreateFAdd(pITL, pITR, "OpExp::plus");
-
-                llvm::Value * tmp = Builder->CreateAlloca(llvm::PointerType::getUnqual(TheModule->getTypeByName("class.types::Double")));
 
                 Builder->CreateCall3(TheModule->getFunction("_Z17AddDoubleToDoublePN5types6DoubleES1_PS1_"), pITR, pITL, tmp);
 
-                pResult = Builder->CreateLoad(tmp);
                 break;
             }
             case OpExp::minus :
@@ -383,13 +381,8 @@ public:
             case OpExp::times :
             {
 
-                llvm::Value * tmp = Builder->CreateAlloca(llvm::PointerType::getUnqual(TheModule->getTypeByName("class.types::Double")));
-
-                //printf("%p \n",TheModule->getFunction("_Z17AddDoubleToDoublePN5types6DoubleES1_PS1_"));
-
                 Builder->CreateCall3(TheModule->getFunction("_Z22MultiplyDoubleByDoublePN5types6DoubleES1_PS1_"), pITR, pITL, tmp);
 
-                pResult = Builder->CreateLoad(tmp);
                 break;
             }
             case OpExp::rdivide :
@@ -449,6 +442,7 @@ public:
                 break;
             }
         }
+        pResult = Builder->CreateLoad(tmp);
 
         if (pResult == NULL)
         {
