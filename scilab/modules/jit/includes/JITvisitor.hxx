@@ -375,7 +375,9 @@ public:
             }
             case OpExp::minus :
             {
-                pResult = Builder->CreateFSub(pITL, pITR, "OpExp::minus");
+
+                Builder->CreateCall3(TheModule->getFunction("_Z23SubstractDoubleToDoublePN5types6DoubleES1_PS1_"), pITR, pITL, tmp);
+
                 break;
             }
             case OpExp::times :
