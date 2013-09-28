@@ -46,7 +46,7 @@
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Header Files" Filter="fi;fd">
-		<File RelativePath="..\..\includes\callinter.h"/>
+		<File RelativePath="..\..\includes\callinter.h.f"/>
 		<File RelativePath="..\..\includes\stack.h"/></Filter>
 		<Filter Name="Library Dependencies">
 		<File RelativePath=".\boolean_f_Import.def"/>

@@ -79,7 +79,7 @@ c
 c     
       icall=5
 
-      include 'callinter.h'
+      include 'callinter.h.f'
 cxxx
 c     
  200  lhs=ids(1,pt)

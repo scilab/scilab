@@ -287,13 +287,13 @@ if CODE_COVERAGE
 	@if test ! -d $(top_builddir)/coverage/; then \
 		mkdir $(top_builddir)/coverage/; \
 	fi; \
-	touch $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h; \
+	touch $(top_srcdir)/modules/differential_equations/callinter.h.f $(top_srcdir)/modules/linear_algebra/callinter.h.f $(top_srcdir)/modules/scicos/callinter.h.f $(top_srcdir)/modules/scicos_blocks/callinter.h.f $(top_srcdir)/modules/optimization/callinter.h.f $(top_srcdir)/modules/signal_processing/callinter.h.f; \
 	$(LCOV) --directory $(top_builddir) --capture --ignore-errors source --output-file $(top_builddir)/coverage/scilab-code-coverage.info; \
 	if test ! -f ~/.lcovrc; then echo -e "genhtml_hi_limit = 85\ngenhtml_med_limit = 70" > ~/.lcovrc; fi; \
 	$(GENHTML) -o $(top_builddir)/coverage/results/ --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
 	rm -f $(top_builddir)/coverage/lcovrc; \
 	echo "To open the result: firefox  $(top_builddir)/coverage/results/index.html"; \
-	rm -f $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h
+	rm -f $(top_srcdir)/modules/differential_equations/callinter.h.f $(top_srcdir)/modules/linear_algebra/callinter.h.f $(top_srcdir)/modules/scicos/callinter.h.f $(top_srcdir)/modules/scicos_blocks/callinter.h.f $(top_srcdir)/modules/optimization/callinter.h.f $(top_srcdir)/modules/signal_processing/callinter.h.f
 #--frames is disable because of : http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=607206
 else
 	@echo "Cannot start the code coverage. Add --enable-code-coverage to the ./configure and 'make clean all'."

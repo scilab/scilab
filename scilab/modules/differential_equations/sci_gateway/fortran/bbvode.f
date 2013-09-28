@@ -81,7 +81,7 @@ c     Macro execution
 c     
       icall=5
 
-      include 'callinter.h'
+      include 'callinter.h.f'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
@@ -182,7 +182,7 @@ c     Macro execution
 c     
       icall=5
 
-      include 'callinter.h'
+      include 'callinter.h.f'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
@@ -281,7 +281,7 @@ c     Macro execution
 c     
       icall=5
 
-      include 'callinter.h'
+      include 'callinter.h.f'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
@@ -380,7 +380,7 @@ c     Macro execution
 c     
       icall=5
 
-      include 'callinter.h'
+      include 'callinter.h.f'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
@@ -476,7 +476,7 @@ c     Macro execution
 c     
       icall=5
 
-      include 'callinter.h'
+      include 'callinter.h.f'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1

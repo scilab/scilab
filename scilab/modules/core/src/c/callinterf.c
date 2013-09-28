@@ -50,7 +50,7 @@ static OpTab Interfaces[INTERFACES_MAX] =
     /* 11  */ {gw_dynamic_optimization},
     /* 12  */ {gw_differential_equations1},
     /* 13  */ {gw_core},
-    /* 14  */ {gw_user}, /* RESERVED (see callinter.h) */
+    /* 14  */ {gw_user}, /* RESERVED (see callinter.h.f) */
     /* 15  */ {gw_user}, /* free position may be used */
     /* 16  */ {gw_polynomials},
     /* 17  */ {gw_data_structures1},
@@ -60,7 +60,7 @@ static OpTab Interfaces[INTERFACES_MAX] =
     /* 21  */ {gw_string},
     /* 22  */ {gw_dynamic_symbolic},
     /* 23  */ {gw_boolean},
-    /* 24  */ {gw_user2}, /* RESERVED (see callinter.h) */
+    /* 24  */ {gw_user2}, /* RESERVED (see callinter.h.f) */
     /* 25  */ {gw_gui},
     /* 26  */ {gw_differential_equations2},
     /* 27  */ {gw_sparse},

@@ -402,7 +402,7 @@ cd ..
     <ClInclude Include="..\..\includes\BOOL.h" />
     <ClInclude Include="callDynamicGateway.h" />
     <ClInclude Include="..\..\includes\callFunctionFromGateway.h" />
-    <ClInclude Include="..\..\includes\callinter.h" />
+    <ClInclude Include="..\..\includes\callinter.h.f" />
     <ClInclude Include="..\..\includes\callinterf.h" />
     <ClInclude Include="..\..\includes\commandwords.h" />
     <ClInclude Include="..\..\includes\core_math.h" />

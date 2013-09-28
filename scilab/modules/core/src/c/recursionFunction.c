@@ -16,7 +16,7 @@
 /**
 * PLEASE DO NOT USE RECURSION CALL TO A FUNCTION.
 * ONLY FOR COMPATIBILITY
-* see also callinter.h (fortran part)
+* see also callinter.h.f (fortran part)
 */
 /*--------------------------------------------------------------------------*/
 #define Pt (C2F(recu).pt)
