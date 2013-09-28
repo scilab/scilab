@@ -77,9 +77,9 @@ void ScilabJavaEnvironment::finish()
     {
         ScilabEnvironments::unregisterScilabEnvironment(envId);
         envId = -1;
+        instance->Finalize();
         delete instance;
         instance = 0;
-        instance->Finalize();
         usable = false;
     }
 }
