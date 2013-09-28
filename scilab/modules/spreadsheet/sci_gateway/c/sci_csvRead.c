@@ -251,6 +251,11 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                 freeArrayOfString(toreplace, nbElementsToReplace * 2);
                 toreplace = NULL;
             }
+            if (decimal)
+            {
+                FREE(decimal);
+                decimal = NULL;
+            }
             return 0;
         }
     }
@@ -284,6 +289,11 @@ int sci_csvRead(char *fname, unsigned long fname_len)
             {
                 FREE(decimal);
                 decimal = NULL;
+            }
+            if (separator)
+            {
+                FREE(separator);
+                separator = NULL;
             }
             return 0;
         }
@@ -329,6 +339,11 @@ int sci_csvRead(char *fname, unsigned long fname_len)
         {
             FREE(decimal);
             decimal = NULL;
+        }
+        if (filename)
+        {
+            FREE(filename);
+            filename = NULL;
         }
         return 0;
     }
@@ -514,6 +529,7 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                         }
                         LhsVar(2) = Rhs + 2;
                     }
+                    FREE(result);
                     PutLhsVar();
                 }
             }
@@ -556,6 +572,11 @@ int sci_csvRead(char *fname, unsigned long fname_len)
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
     }
     releaseObjects(result, filename, conversion);
+    if (iRange)
+    {
+        FREE(iRange);
+        iRange = NULL;
+    }
 
     return 0;
 }
