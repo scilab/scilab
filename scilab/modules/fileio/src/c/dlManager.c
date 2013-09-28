@@ -111,7 +111,6 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
     size_t result;
 
     char *configPtr;
-    char *osName;
 
     char *host, *user, *password, *userpwd;
     long port;
@@ -124,13 +123,9 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
     configPtr = (char *)MALLOC(PATH_MAX * sizeof(char));
     strcpy(configPtr, getSCIHOME());
 
-    osName = (char *)MALLOC(50 * sizeof(char));
-    strcpy(osName, getOSFullName());
-    if (strcmp(osName, "Windows") == 0)
+    if (strcmp(getOSFullName(), "Windows") == 0)
     {
-        char *osVer = (char *)MALLOC(50 * sizeof(char));
-        strcpy(osVer, getOSRelease());
-        if (strstr(osVer, "x64") != NULL)
+        if (strstr(getOSRelease(), "x64") != NULL)
         {
             strcat(configPtr, "/.atoms/x64/config");
         }
@@ -148,18 +143,26 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
     wcfopen (pFile, configPtr , "rb" );
     if (pFile == NULL)
     {
-        //		Scierror(999,"Could not open scicurl_config file\n");
+        // No configuration file. Leave
+        FREE(configPtr);
         return 0;
     }
 
     fseek (pFile , 0 , SEEK_END);
     lSize = ftell(pFile);
+    if (lSize < 0)
+    {
+        FREE(configPtr);
+        Scierror(999, _("Could not read the configuration file '%s'.\n"), configPtr);
+        return 0;
+    }
     rewind (pFile);
 
     // allocate memory to contain the whole file
     buffer = (char*)MALLOC((lSize + 1) * sizeof(char));
     if (buffer == NULL)
     {
+        FREE(pFile);
         return 0;
     }
     buffer[lSize] = '\0';
@@ -218,6 +221,9 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
         {
             if (strcmp(value, "False") == 0)
             {
+                FREE(field);
+                FREE(value);
+                FREE(buffer);
                 return 0;
             }
             if (strcmp(value, "True") == 0)
