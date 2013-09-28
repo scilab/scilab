@@ -16,6 +16,7 @@
 #include "double.hxx"
 #include "types_addition.hxx"
 #include "types_multiplication.hxx"
+#include "types_substraction.hxx"
 #include "context.hxx"
 
 /* This is a configuration file which will be transformed by llvm + clang
@@ -31,6 +32,7 @@ int foo()
     types::Double* pdbl1 = types::Double::Empty();
     /* Multiplication */
     res = MultiplyDoubleByDouble(pdbl1, pdbl1, &pdbl1);
+    res = SubstractDoubleToDouble(pdbl1, pdbl1, &pdbl1);
 
     /* Substract */
     res = DoubleLessDouble(pdbl, pdbl, 0);
