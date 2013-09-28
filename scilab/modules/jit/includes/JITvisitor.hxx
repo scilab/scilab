@@ -247,7 +247,6 @@ public:
             result_set(NULL);
 
             (*itExp)->accept(*this);
-            std::cout << "coucou" << std::endl;
             result_get()->dump();
         }
     }
