@@ -327,7 +327,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
                 strcpy(filename, dest);
                 strcat(filename, "/");
                 strcat(filename, name);
-
+                FREE(name);
             }
             else
             {
@@ -341,6 +341,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         if (file == NULL)
         {
             Scierror(999, _("Failed opening '%s' for writing.\n"), filename);
+            FREE(filename);
             return NULL;
         }
 
@@ -348,6 +349,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         if (res != CURLE_OK)
         {
             Scierror(999, _("Failed to set URL [%s]\n"), errorBuffer);
+            FREE(filename);
             return NULL;
         }
 
@@ -373,9 +375,11 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
             res = curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
             if (res != CURLE_OK)
             {
+                FREE(userpass);
                 Scierror(999, "Failed to set httpauth type to ANY [%s]\n", errorBuffer);
                 return NULL;
             }
+
             res = curl_easy_setopt(curl, CURLOPT_USERPWD, userpass);
             if (res != CURLE_OK)
             {
@@ -401,7 +405,8 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
                     Scierror(999, _("Failed to set proxy host [%s]\n"), errorBuffer);
                     return NULL;
                 }
-                curl_easy_setopt(curl, CURLOPT_PROXYPORT, proxyPort);
+
+                res = curl_easy_setopt(curl, CURLOPT_PROXYPORT, proxyPort);
                 if (res != CURLE_OK)
                 {
                     Scierror(999, _("Failed to set proxy port [%s]\n"), errorBuffer);
@@ -437,13 +442,19 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         }
 
         // Follow redirects
-        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
+        res = curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
+        if (res != CURLE_OK)
+        {
+            Scierror(999, _("Failed to set 'Follow Location' [%s]\n"), errorBuffer);
+            return NULL;
+        }
 
         res = curl_easy_perform(curl);
 
         if (res != 0)
         {
             Scierror(999, _("Transfer did not complete successfully: %s\n"), errorBuffer);
+            FREE(file);
             return NULL;
         }
 
