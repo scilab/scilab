@@ -95,6 +95,7 @@ int sci_notify(char *fname, unsigned long fname_len)
     pStVarOne = (char **)MALLOC(sizeof(char *));
     if (pStVarOne == NULL)
     {
+        FREE(lenStVarOne);
         Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }
@@ -105,6 +106,9 @@ int sci_notify(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
     if (sciErr.iErr)
     {
+        FREE(lenStVarOne);
+        FREE(pStVarOne[0]);
+        FREE(pStVarOne);
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
@@ -121,9 +125,11 @@ int sci_notify(char *fname, unsigned long fname_len)
     }
 
     freeArrayOfString(pStVarOne, 1);
+    FREE(lenStVarOne);
 
     LhsVar(1) = 0;
     PutLhsVar();
+
     return 0;
 }
 
