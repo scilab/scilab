@@ -26,6 +26,7 @@ import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.localization.Messages;
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
 /**
  * Polyline data editor.
@@ -229,15 +230,41 @@ public class DataEditor {
 
             if (!picked.isSegment) {
 
-                double[] pos = {1.0 * lastClick[0], 1.0 * lastClick[1], 1.0};
+                double[] datax = (double[])PolylineData.getDataX(curPolyline);
+                double[] datay = (double[])PolylineData.getDataY(curPolyline);
+                double[] dataz = (double[])PolylineData.getDataZ(curPolyline);
+
+                //Current point
+                Vector3d planePoint = new Vector3d(datax[picked.point], datay[picked.point], dataz[picked.point]);
+                Vector3d planeNorm = new Vector3d(0.0, 0.0, 1.0);
+                //2d coords for current click
+                double[] pos = {1.0 * newClick[0], 1.0 * newClick[1], 1.0};
                 double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
-                double[] pos2 = {1.0 * newClick[0], 1.0 * newClick[1], 1.0};
-                double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos2);
+
+                Axes axesObj = AxesHandler.getAxesFromUid(axes);
+                //3d ray for the current click
+                double[] c3d1 = AxesDrawer.compute3dViewCoordinates(axesObj, c2d);
+                c2d[2] += 1.0;
+                double[] c3d2 = AxesDrawer.compute3dViewCoordinates(axesObj, c2d);
+
+                Vector3d v0 = new Vector3d(c3d1);
+                Vector3d v1 = new Vector3d(c3d2);
+                Vector3d dir = v1.minus(v0);
+                //if the dir is parallel to the plane there isn't intersection
+                if (dir.getZ() == 0) {
+                    return;
+                }
+                //General plane intersection
+                //double u = planePoint.minus(v0).scalar(planeNorm) /  dir.scalar(planeNorm);
+                double u = (planePoint.getZ() - v0.getZ()) / dir.getZ();
+                Vector3d pointNew = dir.times(u);
+                pointNew = pointNew.plus(v0);
+
                 boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__),
                                                     (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__),
                                                     (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__)
                                                    };
-                PolylineData.translatePoint(curPolyline, picked.point, c2d2[0] - c2d[0], c2d2[1] - c2d[1], 0.0, logFlags[0] ? 1 : 0, logFlags[1] ? 1 : 0, logFlags[2] ? 1 : 0);
+                PolylineData.translatePoint(curPolyline, picked.point, pointNew.getX() - planePoint.getX(), pointNew.getY() - planePoint.getY(), 0.0 , logFlags[0] ? 1 : 0, logFlags[1] ? 1 : 0, logFlags[2] ? 1 : 0);
 
             } else {
                 PolylineHandler.getInstance().dragPolyline(curPolyline, lastClick, newClick);

@@ -370,7 +370,7 @@ public class GEDPicker {
             return false;
         }
 
-        double u = upperLeft[2] - (v0.getZ() / dir.getZ());
+        double u = (upperLeft[2] - v0.getZ()) / dir.getZ();
         Vector3d point = v0.plus(dir.times(u));
 
         double xr = data[1] / 2.;
@@ -586,7 +586,7 @@ public class GEDPicker {
             return false;
         }
 
-        double u = upperLeft[2] - (v0.getZ() / c.getZ());
+        double u = (upperLeft[2] - v0.getZ()) / c.getZ();
         Vector3d point = v0.plus(c.times(u));
 
         if (point.getX() >= upperLeft[0] && point.getX() <= (upperLeft[0] + width)
