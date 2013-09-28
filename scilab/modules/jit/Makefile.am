@@ -74,7 +74,9 @@ testControlExp_LDADD	= $(check_LDADD)
 # This target transforms a basic code to llvm + clang code for the JIT
 BUILT_SOURCES = src/cpp/llvm-wrapper-generated.cpp
 src/cpp/llvm-wrapper-generated.cpp: src/cpp/llvm-wrapper.cpp
-	clang++ -emit-llvm  -I$(top_srcdir)/modules/types/includes/ -I$(top_srcdir)/modules/operations/includes/ -I$(top_srcdir)/modules/core/includes/  -I$(top_srcdir)/modules/ast/includes/ -I$(top_srcdir)/modules/localization/includes/ -I$(top_srcdir)/modules/symbol/includes/ -I$(top_srcdir)/modules/dynamic_link/includes/ $(EIGEN_CPPFLAGS) -c src/cpp/llvm-wrapper.cpp -o - |  llc-3.3 -march=cpp -cppgen=contents -o - | perl src/perl/demangle.pl > src/cpp/llvm-wrapper-generated.cpp || exit 1
+	clang++ -emit-llvm  -I$(top_srcdir)/modules/types/includes/ -I$(top_srcdir)/modules/operations/includes/ -I$(top_srcdir)/modules/core/includes/  -I$(top_srcdir)/modules/ast/includes/ -I$(top_srcdir)/modules/localization/includes/ -I$(top_srcdir)/modules/symbol/includes/ -I$(top_srcdir)/modules/dynamic_link/includes/ $(EIGEN_CPPFLAGS) -c src/cpp/llvm-wrapper.cpp -o src/cpp/llvm-wrapper.bc
+	llc-3.3 -march=cpp -cppgen=contents -o - | perl src/perl/demangle.pl > src/cpp/llvm-wrapper-generated.cpp
+	rm src/cpp/llvm-wrapper.bc
 
 include $(top_srcdir)/Makefile.incl.am
 
