@@ -7,9 +7,9 @@
 
 // Add ecj to classpath if needed
 if getos()<>"Windows" then
-    if isdir(SCI + "/thirdparty/") then
+    if isdir(SCI + "/thirdparty/") & isfile(SCI + "/thirdparty/ecj.jar") then
         javaclasspath(SCI + "/thirdparty/ecj.jar"); // Source version
-    elseif isdir(SCI + "/../../thirdparty/") then
+    elseif isdir(SCI + "/../../thirdparty/") & isfile(SCI + "/../../thirdparty/ecj.jar") then
         javaclasspath(SCI + "/../../thirdparty/ecj.jar"); // Binary version
     end
 end
