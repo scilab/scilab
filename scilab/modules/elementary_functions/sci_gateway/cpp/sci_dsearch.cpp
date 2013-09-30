@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_dsearch(types::typed_list &in, int _iRetCount, 
     // input data
     if (in[0]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "dsearch", 1);
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "dsearch", 1);
         return types::Function::Error;
     }
 
@@ -63,14 +63,14 @@ types::Function::ReturnValue sci_dsearch(types::typed_list &in, int _iRetCount, 
 
     if (pDblIn->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "dsearch", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "dsearch", 1);
         return types::Function::Error;
     }
 
     // what to look for in input data
     if (in[1]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real vector expected.\n"), "dsearch", 2);
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "dsearch", 2);
         return types::Function::Error;
     }
 
@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_dsearch(types::typed_list &in, int _iRetCount, 
 
     if ((pDblSearch->getCols() != 1 && pDblSearch->getRows() != 1) || pDblSearch->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real vector expected.\n"), "dsearch", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real vector expected.\n"), "dsearch", 2);
         return types::Function::Error;
     }
 
@@ -86,7 +86,7 @@ types::Function::ReturnValue sci_dsearch(types::typed_list &in, int _iRetCount, 
     {
         if (pDblSearch->get(i - 1) >= pDblSearch->get(i))
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d : A strictly increasing order expected.\n"), "dsearch", 2);
+            Scierror(999, _("%s: Wrong value for input argument #%d: A strictly increasing order expected.\n"), "dsearch", 2);
             return types::Function::Error;
         }
     }
@@ -96,7 +96,7 @@ types::Function::ReturnValue sci_dsearch(types::typed_list &in, int _iRetCount, 
     {
         if (in[2]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "dsearch", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "dsearch", 3);
             return types::Function::Error;
         }
 
@@ -112,7 +112,7 @@ types::Function::ReturnValue sci_dsearch(types::typed_list &in, int _iRetCount, 
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d : It must be 'c' or 'd'.\n"), "dsearch", 3);
+            Scierror(999, _("%s: Wrong value for input argument #%d: It must be 'c' or 'd'.\n"), "dsearch", 3);
             return types::Function::Error;
         }
     }
@@ -136,7 +136,7 @@ types::Function::ReturnValue sci_dsearch(types::typed_list &in, int _iRetCount, 
 
     if ((iRowsOcc * iColsOcc) < 1)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : A vector of length > %d expected.\n"), "dsearch", 2, iTypeSearch);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A vector of length > %d expected.\n"), "dsearch", 2, iTypeSearch);
         return types::Function::Error;
     }
 
