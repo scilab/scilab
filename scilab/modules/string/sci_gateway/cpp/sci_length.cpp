@@ -109,7 +109,7 @@ static Double* lengthStrings(String* _pS)
         return Double::Empty();
     }
 
-    Double* pD = new Double(_pS->getRows(), _pS->getCols());
+    Double* pD = new Double(_pS->getDims(), _pS->getDimsArray());
     double* pdblData = pD->getReal();
 
     for (int i = 0 ; i < _pS->getSize() ; i++)

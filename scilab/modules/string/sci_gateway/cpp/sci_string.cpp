@@ -203,35 +203,45 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
     {
         case GenericType::RealDouble :
         {
-            int iRows = in[0]->getAs<Double>()->getRows();
-            int iCols = in[0]->getAs<Double>()->getCols();
+            types::Double* pDbl = in[0]->getAs<Double>();
+            int iDims = pDbl->getDims();
+            int* piDimsArray = pDbl->getDimsArray();
+            double* pdblReal = pDbl->get();
 
             // Special case string([]) == []
-            if (iRows == 0 && iCols == 0)
+            if (pDbl->isEmpty())
             {
                 out.push_back(Double::Empty());
                 return Function::OK;
             }
-            else if (iRows == -1 && iCols == -1)
+            else if (piDimsArray[0] == -1 && piDimsArray[1] == -1)
             {
                 out.push_back(new String(L""));
                 return Function::OK;
             }
 
-
-            String *pstOutput = new String(iRows, iCols);
-            for (int i = 0; i < iRows * iCols; ++i)
+            String *pstOutput = new String(iDims, piDimsArray);
+            if (pDbl->isComplex())
             {
-                std::wostringstream ostr;
-                double dblReal = in[0]->getAs<Double>()->getReal()[i];
-                double dblImg  = 0.0;
-                if (in[0]->getAs<Double>()->isComplex() == true)
+                double* pdblImg = pDbl->getImg();
+                for (int i = 0; i < pDbl->getSize(); ++i)
                 {
-                    dblImg  = in[0]->getAs<Double>()->getImg()[i];
+                    std::wostringstream ostr;
+                    DoubleComplexMatrix2String(&ostr, pdblReal[i], pdblImg[i]);
+                    pstOutput->set(i, ostr.str().c_str());
                 }
-                DoubleComplexMatrix2String(&ostr, dblReal, dblImg);
-                pstOutput->set(i, ostr.str().c_str());
             }
+            else
+            {
+                double dblImg  = 0.0;
+                for (int i = 0; i < pDbl->getSize(); ++i)
+                {
+                    std::wostringstream ostr;
+                    DoubleComplexMatrix2String(&ostr, pdblReal[i], dblImg);
+                    pstOutput->set(i, ostr.str().c_str());
+                }
+            }
+
             out.push_back(pstOutput);
             break;
         }
