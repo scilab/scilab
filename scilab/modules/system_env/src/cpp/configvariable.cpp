@@ -991,3 +991,29 @@ std::list< std::pair<int, std::wstring> >& ConfigVariable::getWhere()
 /*
 ** \}
 */
+
+/*
+** JIT
+** \{
+*/
+
+bool ConfigVariable::m_bJIT = false;
+
+void ConfigVariable::enableJIT()
+{
+    m_bJIT = true;
+}
+
+void ConfigVariable::disableJIT()
+{
+    m_bJIT = false;
+}
+
+bool ConfigVariable::isJIT()
+{
+    return m_bJIT;
+}
+
+/*
+** \}
+*/

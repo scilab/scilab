@@ -52,11 +52,6 @@
 
 Timer _timer;
 
-// Defined at modules/core/src/cpp/scilab.cpp
-extern bool ASTrunVMKit;
-
-//#define DEBUG
-
 /*
 ** Parse
 **
@@ -159,7 +154,7 @@ void printAstTask(ast::Exp *tree, bool timed)
 **
 ** Execute the stored AST.
 */
-void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose, bool ASTrunVMKit)
+void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose, bool execJIT)
 {
     if (tree == NULL)
     {
@@ -187,7 +182,7 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose, bo
         exec = new ast::ExecVisitor();
     }
 
-    if (ASTrunVMKit)
+    if (execJIT)
     {
         ast::JITVisitor *jitExec;
 
@@ -253,7 +248,7 @@ void execScilabStartTask(void)
         return;
     }
 
-    execAstTask(parse.getTree(), false, false, false, ASTrunVMKit);
+    execAstTask(parse.getTree(), false, false, false, ConfigVariable::isJIT());
 }
 
 /*
@@ -275,7 +270,7 @@ void execScilabQuitTask(void)
         return;
     }
 
-    execAstTask(parse.getTree(), false, false, false, ASTrunVMKit);
+    execAstTask(parse.getTree(), false, false, false, ConfigVariable::isJIT());
 }
 
 

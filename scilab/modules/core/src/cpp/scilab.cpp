@@ -35,7 +35,7 @@ extern "C"
 #include "scilabWrite.hxx"
 
 #if defined(VMKIT_ENABLED)
-#include <vmkit_core.h>
+#include "vmkit.hxx"
 #endif
 
 #define INTERACTIVE     -1
@@ -83,8 +83,6 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
 
     bool execFile = false;
     bool parseFile = false;
-
-    bool ASTrunVMKit = false;
 
     for (i = 1; i < argc; ++i)
     {
@@ -152,10 +150,7 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
             if (argc >= i)
             {
                 _pSEI->pstLang = argv[i];
-/*                //before calling YaspReader, try to call %onprompt function
-                callOnPrompt();
-                execAstTask(parser->getTree(), timed, ASTtimed, execVerbose, ASTrunVMKit);
-*/            }
+            }
         }
         else if (!strcmp("-nw", argv[i]))
         {
@@ -271,7 +266,7 @@ int main(int argc, char *argv[])
     setScilabInputMethod(&getCmdLine);
     setScilabOutputMethod(&TermPrintf);
 
-#if defined(VMKIT_ENABLED)
+#ifdef VMKIT_ENABLED
     vmkit::CompiledFrames** frametables;
     vmkit::BumpPtrAllocator Allocator;
 
@@ -284,6 +279,7 @@ int main(int argc, char *argv[])
     return vm->getret();
 
 #else
+    #pragma message "VMKIT Disable"
     StartScilabEngine(pSEI);
     iRet = RunScilabEngine(pSEI);
     StopScilabEngine(pSEI);

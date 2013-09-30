@@ -351,6 +351,15 @@ public :
     static void where_end();
     static std::list< std::pair<int, std::wstring> >& getWhere();
 
+
+    //JIT
+private :
+    static bool m_bJIT;
+public :
+    static void enableJIT();
+    static void disableJIT();
+    static bool isJIT();
+
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

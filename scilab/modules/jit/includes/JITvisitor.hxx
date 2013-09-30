@@ -72,7 +72,7 @@ extern "C" {
 #include "llvm/ExecutionEngine/JIT.h"
 #include "llvm/PassManager.h"
 #include "llvm/IR/DataLayout.h"
-#include "vmkit_core.h"
+//#include "vmkit_core.h"
 
 #undef WHITE
 #undef Max

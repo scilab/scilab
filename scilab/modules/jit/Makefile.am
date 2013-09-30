@@ -16,7 +16,10 @@ JIT_CPP_SOURCES = \
 	src/cpp/jitter.cpp
 
 GATEWAY_CPP_SOURCES =   \
-sci_gateway/cpp/sci_runVMKit.cpp
+	sci_gateway/cpp/jit_gw.cpp \
+    sci_gateway/cpp/sci_enableJIT.cpp \
+    sci_gateway/cpp/sci_disableJIT.cpp \
+    sci_gateway/cpp/sci_isJIT.cpp
 
 libscijit_la_CPPFLAGS = \
 	-Iincludes \

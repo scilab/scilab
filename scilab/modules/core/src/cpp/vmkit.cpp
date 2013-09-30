@@ -10,7 +10,11 @@
  *
  */
 
-#if defined(VMKIT_ENABLED)
+#include "vmkit.hxx"
+
+#ifdef VMKIT_ENABLED
+
+
 namespace VMKitScilab
 {
 void ScilabThread::setArgs(ScilabEngineInfo* _pSEI)
@@ -23,7 +27,7 @@ void ScilabThread::setret(int ret)
     this->ret = ret;
 }
 
-int ScilabThread::getArgs()
+ScilabEngineInfo* ScilabThread::getArgs()
 {
     return pSEI;
 }
@@ -45,7 +49,9 @@ ScilabVM* ScilabThread::vm()
 
 void ScilabThread::execute()
 {
-    setret(StartScilabEngine(getargc(), getargv(), getiFileIndex(), getiLangIndex()));
+    StartScilabEngine(pSEI);
+    setret(RunScilabEngine(pSEI));
+    StopScilabEngine(pSEI);
 }
 
 void ScilabVM::mainStart(ScilabThread* thread)
@@ -63,7 +69,7 @@ void ScilabVM::mainStart(ScilabThread* thread)
 
 void ScilabVM::runApplication(ScilabEngineInfo* _pSEI)
 {
-    VMKitScilab::ScilabThread * mainThread = new VMKitScilab::ScilabThread(this);
+    ScilabThread * mainThread = new ScilabThread(this);
 
     mainThread->setArgs(_pSEI);
 

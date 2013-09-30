@@ -49,4 +49,5 @@
 #include "../../polynomials/includes/polynomials_gw.hxx"
 #include "../../data_structures/includes/data_structures_gw.hxx"
 #include "../../completion/includes/completion_gw.hxx"
+#include "../../jit/includes/jit_gw.hxx"
 #endif /* !__MODULE_DECLARATION_HXX__ */

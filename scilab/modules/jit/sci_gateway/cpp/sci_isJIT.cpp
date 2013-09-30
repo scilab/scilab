@@ -12,29 +12,26 @@
 #include "funcmanager.hxx"
 #include "context.hxx"
 #include "core_gw.hxx"
-#include "string.hxx"
+#include "bool.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
 #include "sci_mode.h"
-#include "Scierror.h"
+#include "sciprint.h"
 #include "localization.h"
 #include "sci_mode.h"
 #include "os_strdup.h"
 }
 
-// Defined at modules/core/src/cpp/scilab.cpp
-extern bool ASTrunVMKit;
-
 /*--------------------------------------------------------------------------*/
-
 using namespace types;
-
-Function::ReturnValue sci_runVMKit(types::typed_list &in, int _iRetCount, types::typed_list &out)
+/*--------------------------------------------------------------------------*/
+Function::ReturnValue sci_isJIT(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    Scierror(999, _("Coming soon...\n"));
-
-    ASTrunVMKit = true;
+    bool isJIT = ConfigVariable::isJIT();
+    
+    out.push_back(new Bool(isJIT ? 1 : 0));
 
     return Function::OK;
 }

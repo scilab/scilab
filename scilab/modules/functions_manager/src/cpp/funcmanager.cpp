@@ -30,6 +30,7 @@
 #include "module_declaration.hxx"
 #include "parser.hxx"
 #include "execvisitor.hxx"
+#include "machine.h"
 
 extern "C"
 {
@@ -337,6 +338,10 @@ bool FuncManager::CreateModuleList(void)
     }
 #ifdef _MSC_VER
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"windows_tools", &WindowsToolsModule::Load));
+#endif
+
+#ifdef VMKIT_ENABLED
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"jit", &JITModule::Load));
 #endif
     return true;
 }
