@@ -216,8 +216,7 @@ libscicore_la_CPPFLAGS = \
 $(VMKIT_CPPFLAGS) \
 $(EIGEN_CPPFLAGS) \
 $(XML_FLAGS) \
-$(AM_CPPFLAGS) \
-$(VMKIT_CPPFLAGS)
+$(AM_CPPFLAGS)
 
 # Used by sci_getdebuginfo:
 if TCLTK
@@ -233,7 +232,7 @@ noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
 endif
 
 
-libscicore_la_LDFLAGS = $(XML_LIBS) $(AM_LDFLAGS)
+libscicore_la_LDFLAGS = $(XML_LIBS) $(AM_LDFLAGS) $(VMKIT_LDFLAGS)
 #-Wl,--version-script,LibScilab_Import.def
 
 # For the code check (splint)

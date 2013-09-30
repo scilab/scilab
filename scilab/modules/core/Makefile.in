@@ -203,7 +203,7 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/csignal.c src/c/cs2st.c \
 	src/cpp/banner.cpp src/cpp/with_module.cpp src/cpp/runner.cpp \
 	src/cpp/tasks.cpp src/cpp/getvariablesname.cpp \
 	src/cpp/getmacrosname.cpp src/cpp/getfunctionsname.cpp \
-	src/cpp/InitScilab.cpp src/fortran/clunit.f \
+	src/cpp/InitScilab.cpp src/cpp/vmkit.cpp src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
 	src/fortran/isany.f src/fortran/setgetmode.f \
 	src/fortran/showstack.f src/fortran/setippty.f \
@@ -276,7 +276,7 @@ am__objects_3 = libscicore_algo_la-namstr.lo \
 	libscicore_algo_la-getvariablesname.lo \
 	libscicore_algo_la-getmacrosname.lo \
 	libscicore_algo_la-getfunctionsname.lo \
-	libscicore_algo_la-InitScilab.lo
+	libscicore_algo_la-InitScilab.lo libscicore_algo_la-vmkit.lo
 @USE_DYNAMIC_STACK_TRUE@am__objects_4 = relocstack.lo
 am__objects_5 = clunit.lo getlin.lo allowptr.lo isany.lo setgetmode.lo \
 	showstack.lo setippty.lo cmplxt.lo folhp.lo cvname.lo \
@@ -320,9 +320,7 @@ am__objects_8 = libscicore_la-core_gw.lo \
 	libscicore_la-sci_sciargs.lo libscicore_la-sci_ieee.lo \
 	libscicore_la-sci_funcprot.lo libscicore_la-sci_mode.lo \
 	libscicore_la-sci_typename.lo libscicore_la-sci_where.lo \
-	libscicore_la-sci_getmemory.lo libscicore_la-sci_format.lo \
-	libscicore_la-sci_sciargs.lo libscicore_la-sci_ieee.lo \
-	libscicore_la-sci_funcprot.lo libscicore_la-sci_mode.lo
+	libscicore_la-sci_getmemory.lo
 am_libscicore_la_OBJECTS = $(am__objects_6) $(am__objects_7) \
 	$(am__objects_8)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -744,7 +742,8 @@ src/cpp/tasks.cpp \
 src/cpp/getvariablesname.cpp \
 src/cpp/getmacrosname.cpp \
 src/cpp/getfunctionsname.cpp \
-src/cpp/InitScilab.cpp
+src/cpp/InitScilab.cpp \
+src/cpp/vmkit.cpp 
 
 CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/allowptr.f src/fortran/isany.f \
@@ -810,12 +809,7 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_mode.cpp \
 	sci_gateway/cpp/sci_typename.cpp \
 	sci_gateway/cpp/sci_where.cpp \
-	sci_gateway/cpp/sci_getmemory.cpp \
-	sci_gateway/cpp/sci_format.cpp \
-	sci_gateway/cpp/sci_sciargs.cpp \
-	sci_gateway/cpp/sci_ieee.cpp \
-	sci_gateway/cpp/sci_funcprot.cpp \
-	sci_gateway/cpp/sci_mode.cpp
+	sci_gateway/cpp/sci_getmemory.cpp  
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
@@ -848,12 +842,12 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
 	-I$(top_srcdir)/modules/graphics/includes/ \
 	-I$(top_srcdir)/modules/system_env/includes/ \
-	-I$(top_srcdir)/modules/jit/includes/ $(EIGEN_CPPFLAGS) \
-	$(XML_FLAGS) $(AM_CPPFLAGS) $(VMKIT_CPPFLAGS) $(am__append_3)
+	-I$(top_srcdir)/modules/jit/includes/ $(VMKIT_CPPFLAGS) \
+	$(EIGEN_CPPFLAGS) $(XML_FLAGS) $(AM_CPPFLAGS) $(am__append_3)
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicore.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscicore-algo.la
-libscicore_la_LDFLAGS = $(XML_LIBS) $(AM_LDFLAGS)
+libscicore_la_LDFLAGS = $(XML_LIBS) $(AM_LDFLAGS) $(VMKIT_LDFLAGS)
 #-Wl,--version-script,LibScilab_Import.def
 
 # For the code check (splint)
@@ -1147,6 +1141,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-texmacs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-transposeMatrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-version.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-vmkit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-with_module.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-xscion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-core_gw.Plo@am__quote@
@@ -1727,6 +1722,13 @@ libscicore_algo_la-InitScilab.lo: src/cpp/InitScilab.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/InitScilab.cpp' object='libscicore_algo_la-InitScilab.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_algo_la-InitScilab.lo `test -f 'src/cpp/InitScilab.cpp' || echo '$(srcdir)/'`src/cpp/InitScilab.cpp
+
+libscicore_algo_la-vmkit.lo: src/cpp/vmkit.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_algo_la-vmkit.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-vmkit.Tpo -c -o libscicore_algo_la-vmkit.lo `test -f 'src/cpp/vmkit.cpp' || echo '$(srcdir)/'`src/cpp/vmkit.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libscicore_algo_la-vmkit.Tpo $(DEPDIR)/libscicore_algo_la-vmkit.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/vmkit.cpp' object='libscicore_algo_la-vmkit.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_algo_la-vmkit.lo `test -f 'src/cpp/vmkit.cpp' || echo '$(srcdir)/'`src/cpp/vmkit.cpp
 
 libscicore_la-core_gw.lo: sci_gateway/cpp/core_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-core_gw.lo -MD -MP -MF $(DEPDIR)/libscicore_la-core_gw.Tpo -c -o libscicore_la-core_gw.lo `test -f 'sci_gateway/cpp/core_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/core_gw.cpp
