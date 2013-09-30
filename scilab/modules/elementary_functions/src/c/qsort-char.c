@@ -154,7 +154,6 @@ void ColSortchar(char *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + n * j), (char *) (ind + n * j), flag, n,
                  sizeof(char), sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCchar : compareDchar,
                  swapcodechar, swapcodeind);
     }
@@ -180,7 +179,6 @@ void RowSortchar(char *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + i), (char *) (ind + i), flag, p,
                  n * sizeof(char), n * sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCchar : compareDchar,
                  swapcodechar, swapcodeind);
     }
@@ -201,7 +199,6 @@ void GlobalSortchar(char *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, n * p,
              sizeof(char), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? compareCchar : compareDchar,
              swapcodechar, swapcodeind);
 }
@@ -227,7 +224,6 @@ void ColSortuchar(unsigned char *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + n * j), (char *) (ind + n * j), flag, n,
                  sizeof(char), sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCuchar : compareDuchar,
                  swapcodechar, swapcodeind);
     }
@@ -253,7 +249,6 @@ void RowSortuchar(unsigned char *a, int *ind, int flag, int n, int p, char dir)
     {
         sciqsort((char *) (a + i), (char *) (ind + i), flag, p,
                  n * sizeof(char), n * sizeof(int),
-                 (dir == 'i') ? 1 : 0,
                  (dir == 'i' ) ? compareCuchar : compareDuchar,
                  swapcodechar, swapcodeind);
     }
@@ -274,7 +269,6 @@ void GlobalSortuchar(unsigned char *a, int *ind, int flag, int n, int p, char di
     }
     sciqsort((char *) (a), (char *) (ind), flag, n * p,
              sizeof(char), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? compareCuchar : compareDuchar,
              swapcodechar, swapcodeind);
 }
@@ -400,7 +394,6 @@ void LexiRowchar(char *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, n,
              sizeof(char), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiRowcompareCchar : LexiRowcompareDchar,
              LexiRowswapcodechar, swapcodeind);
 }
@@ -419,7 +412,6 @@ void LexiRowuchar(unsigned char *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, n,
              sizeof(char), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiRowcompareCuchar : LexiRowcompareDuchar,
              LexiRowswapcodechar, swapcodeind);
 }
@@ -540,7 +532,6 @@ void LexiColchar(char *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, p,
              n * sizeof(char), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiColcompareCchar : LexiColcompareDchar,
              LexiColswapcodechar,
              swapcodeind);
@@ -559,7 +550,6 @@ void LexiColuchar(unsigned char *a, int *ind, int flag, int n, int p, char dir)
     }
     sciqsort((char *) (a), (char *) (ind), flag, p,
              n * sizeof(char), sizeof(int),
-             (dir == 'i') ? 1 : 0,
              (dir == 'i' ) ? LexiColcompareCuchar : LexiColcompareDuchar,
              LexiColswapcodechar,
              swapcodeind);

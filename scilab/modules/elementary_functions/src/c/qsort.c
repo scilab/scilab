@@ -14,7 +14,6 @@
 #include "qsort-double.h"
 #include "qsort-string.h"
 #include "core_math.h"
-#include "stdio.h"
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
@@ -62,7 +61,7 @@
 * Software---Practice and Experience, 23(11):1249-1265
 */
 /*--------------------------------------------------------------------------*/
-void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int flag2, int (*cmp)(), int (*swapcode)(), int (*lswapcodeind)())
+void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)(), int (*swapcode)(), int (*lswapcodeind)())
 {
     char *pa, *pb, *pc, *pd, *pl, *pm, *pn;
     char *taba, *tabb, *tabc, *tabd, *tabl, *tabm, *tabn;
@@ -78,33 +77,6 @@ loop:
             {
                 swapind(tabl, tabl - es1);
                 swap(pl, pl - es);
-            }
-        }
-
-        if (flag2) // manages the functions which have the form: LexiRowcompareDdouble ...
-        {
-            for (pm = a + es, tabm = tab + es1 ; pm < (char *)a + n * es; pm += es, tabm += es1)
-            {
-                if (cmp(pm - es, pm, tabm - es1, tabm, flag) == 0)
-                {
-                    if ((int *) (tabm - es1)[0] > (int *) tabm[0])
-                    {
-                        swapind(tabm, tabm - es1);
-                    }
-                }
-            }
-        }
-        else // manages the functions which have the form: LexiRowcompareCdouble ...
-        {
-            for (pm = a + (n - 1) * es, tabm = tab + (n - 1) * es1 ; pm > (char *)a; pm -= es, tabm -= es1)
-            {
-                if (cmp(pm - es, pm, tabm - es1, tabm, flag) == 0)
-                {
-                    if ((int *) (tabm - es1)[0] < (int *) tabm[0])
-                    {
-                        swapind(tabm, tabm - es1);
-                    }
-                }
             }
         }
 
@@ -137,8 +109,8 @@ loop:
     /* Partionning */
     if (cmp(pn, a, tabn, tab, flag))
     {
-        swapind(tab, tabm);
-        swap(a, pm);
+        swapind(tab, tabn);
+        swap(a, pn);
     }
 
     /* pointers on data array */
@@ -248,7 +220,7 @@ loop:
     if ((r = (int)(pb - pa)) > es )
         /* recall  sciqsort for the lower part */
     {
-        sciqsort(a, tab, flag, r / es, es, es1, flag2, cmp, swapcode, lswapcodeind);
+        sciqsort(a, tab, flag, r / es, es, es1, cmp, swapcode, lswapcodeind);
     }
     if ((r = (int)(pd - pc)) > es)
     {
