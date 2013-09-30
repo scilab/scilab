@@ -396,9 +396,8 @@ std::vector<std::string> ScilabJavaEnvironment::getCompletion(int id, char ** fi
     for (int i = 0; i < len; i++)
     {
         v.push_back(fields[i]);
-        delete fields[i];
     }
-    delete fields;
+    delete[] fields;
 
     return v;
 }
