@@ -218,7 +218,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     // check ipar arguments
 
     // ipar(1) : 0 => linear  1 => nonlinear
-    if(ipar[0] != 0 && ipar[0] != 1)
+    if (ipar[0] != 0 && ipar[0] != 1)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %s: %d or %d expected.\n"), "bvode", iPos + 1, 1, 0, 1);
         free(M);
@@ -226,7 +226,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     }
 
     // ipar(2)=0 then collpnt is set to max(max(m(j))+1, 5-max(m(j))).
-    if(ipar[1] == 0)
+    if (ipar[1] == 0)
     {
         ipar[1] = Max(maxM + 1, 5 - maxM);
     }
@@ -245,7 +245,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     }
 
     // 0 < ipar(4) <= M
-    if(ipar[3] < 0 || ipar[3] > sumM)
+    if (ipar[3] < 0 || ipar[3] > sumM)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %s: %d to sum of m (=%d) expected.\n"), "bvode", iPos + 1, 4, 0, sumM);
         free(M);
@@ -260,14 +260,14 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     for (int i = 0; i < sumM; i++)
     {
         int ib = sumM + 1 - i;
-        if(pDblZeta->get(ib-1) >= aright)
+        if (pDblZeta->get(ib - 1) >= aright)
         {
             nrec = i;
         }
     }
 
-    int nsizef = 4 + 3*sumM + (5+kdm) * (kdm+sumM) + (2*sumM-nrec) * 2*sumM;
-    if(ipar[4] < nmax * nsizef)
+    int nsizef = 4 + 3 * sumM + (5 + kdm) * (kdm + sumM) + (2 * sumM - nrec) * 2 * sumM;
+    if (ipar[4] < nmax * nsizef)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %d.\n"), "bvode", iPos + 1, 5);
         free(M);
@@ -276,7 +276,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
 
     // ipar(6)>=nmax*nsizei where nsizei= 3 + collpnt*N + M.
     int nsizei = 3 + kdm + sumM;
-    if(ipar[5] < nmax * nsizei)
+    if (ipar[5] < nmax * nsizei)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %d.\n"), "bvode", iPos + 1, 6);
         free(M);
@@ -284,7 +284,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     }
 
     // ipar(7) output control
-    if(ipar[6] < -1 || ipar[6] > 1)
+    if (ipar[6] < -1 || ipar[6] > 1)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %d: %d to %d expected.\n"), "bvode", iPos + 1, 7, -1, 1);
         free(M);
@@ -292,7 +292,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     }
 
     // ipar(8)
-    if(ipar[7] < 0 || ipar[7] > 2)
+    if (ipar[7] < 0 || ipar[7] > 2)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %d: %d to %d expected.\n"), "bvode", iPos + 1, 8, 0, 2);
         free(M);
@@ -300,7 +300,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     }
 
     // ipar(9)
-    if(ipar[8] < 0 || ipar[8] > 4)
+    if (ipar[8] < 0 || ipar[8] > 4)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %d: %d to %d expected.\n"), "bvode", iPos + 1, 9, 0, 4);
         free(M);
@@ -308,7 +308,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     }
 
     // ipar(10)
-    if(ipar[9] < 0 || ipar[9] > 2)
+    if (ipar[9] < 0 || ipar[9] > 2)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Wrong value for element %d: %d to %d expected.\n"), "bvode", iPos + 1, 9, 0, 2);
         free(M);
@@ -341,7 +341,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     //
     // 1 <= ltol(1) <= M
     double* pdblLtol = pDblLtol->get();
-    if(pdblLtol[0] < 1 || pdblLtol[0] > sumM)
+    if (pdblLtol[0] < 1 || pdblLtol[0] > sumM)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d : %d to sum of m (=%d) expected.\n"), "bvode", iPos + 1, 1, sumM);
         free(M);
@@ -351,7 +351,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     // ltol(1) < ltol(2) < ... < ltol(NTOL) <= M
     for (int i = 1; i < pDblLtol->getSize(); i++)
     {
-        if(pdblLtol[i-1] >= pdblLtol[i-1] || pdblLtol[i-1] > sumM)
+        if (pdblLtol[i - 1] >= pdblLtol[i] || pdblLtol[i - 1] > sumM)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d : Bad value for ltol(%d) : ltol(1) < ltol(2) < ... < ltol(NTOL) <= M (sum of m) expected.\n"), "bvode", iPos + 1, i);
             free(M);
