@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-20 07:55+0000\n"
+"PO-Revision-Date: 2013-09-21 05:39+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -298,6 +298,9 @@ msgstr "%s: ファイル生成なし。\n"
 # File: macros/xmltoformat.sci, line: 157
 msgid "Help chapter"
 msgstr "ヘルプ章"
+
+msgid "Scilab Help"
+msgstr ""
 
 #
 # File: macros/xmltoformat.sci, line: 383

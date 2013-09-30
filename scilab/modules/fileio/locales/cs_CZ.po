@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 21:06+0000\n"
+"PO-Revision-Date: 2013-09-24 19:19+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -98,6 +98,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
 "expected.\n"
 msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců nebo "
+"prázdná matice.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -177,7 +179,7 @@ msgstr "%s: Soubor %s není ve Scilabu otevřen.\n"
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
-msgstr ""
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same size expected.\n"
@@ -350,7 +352,7 @@ msgstr "%s: Vyskytla se chyba.\n"
 
 #, c-format
 msgid "%s: Warning: Directory '%s' does not exist.\n"
-msgstr ""
+msgstr "%s: Varování: Adresář '%s' neexistuje.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -414,7 +416,7 @@ msgstr "Nelze nastavit uživatele:heslo [%s]\n"
 
 #, c-format
 msgid "Failed to set write function [%s]\n"
-msgstr ""
+msgstr "Nelze nastavit funkci zápisu [%s]\n"
 
 #, c-format
 msgid "Failed to set write data [%s]\n"
@@ -578,52 +580,6 @@ msgstr ""
 "poškozený.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: Špatný počet vstupních argumentů.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A String expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván popisovač souboru.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáván platný popisovač "
-"souboru.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáváno jméno souboru.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A filename or file descriptor "
-"expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván popisovač souboru nebo "
-"jméno souboru.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: Špatný počet výstupních argumentů.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván popisovač souboru.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno nejméně %d.\n"
 
@@ -642,6 +598,10 @@ msgstr "%s: Možnosti ignorovány.\n"
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Špatný počet vstupních argumentů.\n"
 
 msgid "Impossible to create directory "
 msgstr "Nele vytvořit adresář "
@@ -664,15 +624,3 @@ msgstr "Neurčeno"
 
 msgid "The system cannot find the file specified."
 msgstr "Systém nemůže nalézt zadaný soubor."
-
-#, c-format
-msgid "%s: Incorrect format.\n"
-msgstr "%s: Nesprávný formát.\n"
-
-#, c-format
-msgid "%s: Invalid conversion.\n"
-msgstr "%s: Nesprávný převod.\n"
-
-#, c-format
-msgid "%s: end of input reached before final conversion.\n"
-msgstr "%s: bylo dosaženo konce vstupu před konečným převodem.\n"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -780,14 +780,10 @@ msgid ""
 "No continuous-time state. Thresholds are ignored; this \n"
 "may be OK if you don't generate external events with them.\n"
 "If you want to reactivate the thresholds, then you need\n"
+"\n"
 "to include a block with continuous-time state in your diagram.\n"
 "   You can for example include DUMMY CLSS block (linear palette)."
 msgstr ""
-"No continuous-time state. Thresholds are ignored; this \n"
-"may be OK if you don't generate external events with them.\n"
-"If you want to reactivate the thresholds, then you need\n"
-"to include a block with continuous-time state in your diagram.\n"
-"   You can for example include DUMMY CLSS block (linear palette)."
 
 msgid "Diagram contains implicit blocks, compiling for implicit Solver."
 msgstr "ダイアグラムには陰的ブロックが含まれています. 陰解法でコンパイル中."
@@ -944,6 +940,9 @@ msgstr "入力が未定義のため,ブロックは無視されます."
 msgid "Superblock should not contains any Scilab function block."
 msgstr "スーパーブロックにScilab関数ブロックを含めてはいけません."
 
+msgid "Generated block cannot be linked with Scilab."
+msgstr ""
+
 msgid "Evaluation problem: value not updated from context."
 msgstr "評価時の問題: 値をコンテキストから更新できません."
 
@@ -976,6 +975,18 @@ msgstr "I/Oブロックはスーパーブロックでのみ使用可能です"
 
 msgid "This Super block input port is not connected."
 msgstr "このスーパーブロックの入力ポートが接続されていません."
+
+msgid "Input ports are not numbered properly."
+msgstr ""
+
+msgid "Output ports are not numbered properly."
+msgstr ""
+
+msgid "Event input ports are not numbered properly."
+msgstr ""
+
+msgid "Event output ports are not numbered properly."
+msgstr ""
 
 #, c-format
 msgid "%s: Empty diagram"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -628,58 +628,6 @@ msgstr ""
 "errado ou estar corrompido.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: Quantidade incorreta de argumentos de entrada.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A String expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"texto.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"descritor de arquivo.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um "
-"descritor de arquivo válido.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um nome "
-"de arquivo.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A filename or file descriptor "
-"expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um nome de "
-"arquivo ou um descritor.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: Quantidade incorreta de argumentos de saída.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um descritor "
-"de arquivo.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumento(s) de entrada: esperava-se pelo menos "
@@ -705,6 +653,10 @@ msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr ""
 "%s: tipo incorreto para o argumento de entrada: esperava-se uma string.\n"
 
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada.\n"
+
 msgid "Impossible to create directory "
 msgstr "Impossível criar diretório "
 
@@ -727,15 +679,3 @@ msgstr ""
 
 msgid "The system cannot find the file specified."
 msgstr ""
-
-#, c-format
-msgid "%s: Incorrect format.\n"
-msgstr "%s: Formato incorreto.\n"
-
-#, c-format
-msgid "%s: Invalid conversion.\n"
-msgstr "%s: Conversão inválida.\n"
-
-#, c-format
-msgid "%s: end of input reached before final conversion.\n"
-msgstr "%s: atingiu-se o fim da entrada antes do final da conversão.\n"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: ru\n"
 
 #, c-format
@@ -101,18 +101,38 @@ msgid "%s: Inconsistent dimensions.\n"
 msgstr "%s: Несовместимые размеры.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: должно быть из множества "
 "{%s}.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr "%s: Неверное значение входного аргумента №%d: ожидалось %s или %s.\n"
 
 #, c-format
 msgid "%s: Inconsistent element-wise operation.\n"
@@ -205,10 +225,6 @@ msgstr "%s: Неверный размер входных аргументов.\n
 #, c-format
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr "%s: Неверные размеры аргументов.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr "%s: Неверное значение входного аргумента №%d: ожидалось %s или %s.\n"
 
 msgid ""
 "  Warning: Syntax vector ^ scalar is obsolete it will be removed in scilab-"

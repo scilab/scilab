@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-08-01 13:51+0000\n"
+"PO-Revision-Date: 2013-09-29 13:06+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: ru\n"
 
 #, c-format
@@ -369,6 +369,60 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid "%s: Wrong number for input argument: %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось %d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number for input argument: %d or %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: 1-by-%d or %d-by-1 vector expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался вектор 1 на %d или %d "
+"на 1.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался скаляр или вектор-"
+"столбец.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A handle expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался дескриптор.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался дескриптор.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался скаляр.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: At least 2 elements expected.\n"
 msgstr ""
@@ -409,6 +463,14 @@ msgstr "%s: Произошла ошибка: %s.\n"
 
 msgid "Impossible to get current look and feel"
 msgstr "Текущий внешний вид получить невозможно"
+
+#, c-format
+msgid ""
+"%s: A Java exception arised:\n"
+"%s"
+msgstr ""
+"%s: Возникло Java-исключение:\n"
+"%s"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -577,6 +639,21 @@ msgstr "&Включить управление подсказками данны
 msgid "Stop datatip manager"
 msgstr "В&ыключить управление подсказками данных"
 
+msgid "Start curve data modification"
+msgstr "Начать изменение данных кривой"
+
+msgid "Stop curve data modification"
+msgstr "Остановить изменение данных кривой"
+
+msgid "Plot Browser"
+msgstr ""
+
+msgid "Scilab Graphic Editor - GED"
+msgstr "Графический редактор Scilab - GED"
+
+msgid "&Quick Editor"
+msgstr "&Быстрый редактор"
+
 msgid "&MVC"
 msgstr ""
 
@@ -739,8 +816,14 @@ msgstr "Увеличить область"
 msgid "Original View"
 msgstr "Исходный масштаб"
 
-msgid "toggle datatip mode"
-msgstr "Включить/выключить управление подсказками данных"
+msgid "Toggle datatip mode"
+msgstr "Переключить режим ярлыка данных"
+
+msgid "Open the graphics editor"
+msgstr "Открыть редактор графики"
+
+msgid "Toggle curve data modification"
+msgstr "Переключить изменение данных кривой"
 
 msgid "Help Browser"
 msgstr "Справка"
@@ -1120,6 +1203,7 @@ msgstr "Цвет фона"
 msgid "No print service found."
 msgstr "Служба печати не найдена."
 
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1129,6 +1213,7 @@ msgstr ""
 "в котором невозможно смешивать графическое отображение с элементами "
 "управления (uicontrols). Для получения справки напечатайте %s."
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "В некоторых случаях %s решает проблему"
 
@@ -1292,6 +1377,713 @@ msgstr "Вперёд"
 msgid "Tree Overview"
 msgstr "Обзор информации"
 
+msgid ""
+"Left click on the curve creates a datatip and right click on the datatip "
+"removes it."
+msgstr ""
+"Щелчок левой кнопкой мыши на кривой создаёт ярлык данных, а щелчок правой "
+"кнопкой удаляет его."
+
+msgid "Insert"
+msgstr "Вставить"
+
+msgid "Insert a new point here"
+msgstr "Вставить здесь новую точку"
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "Remove this point"
+msgstr "Удалить эту точку"
+
+msgid "Exit"
+msgstr "Выйти"
+
+msgid "Leave data editor mode"
+msgstr "Выйти из режима редактора данных"
+
+msgid "Label"
+msgstr "Подпись"
+
+msgid "Legend"
+msgstr "Легенда"
+
+msgid "Copy selected object"
+msgstr "Скопировать выделенный объект"
+
+msgid "Cut selected object"
+msgstr "Вырезать выделенный объект"
+
+msgid "Paste copied object on this figure"
+msgstr "Вставить скопированный объект в это графическое окно"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Delete selected object"
+msgstr "Удалить выделенный объект"
+
+msgid "Clear"
+msgstr "Очистить"
+
+msgid "Clears the figure"
+msgstr "Очищает графическое окно"
+
+msgid "Hide"
+msgstr "Скрыть"
+
+msgid "Hide selected object"
+msgstr "Скрыть выделенный объект"
+
+msgid "Unhide all"
+msgstr "Показать всё"
+
+msgid "Unhide all objects"
+msgstr "Показать все объекты"
+
+msgid "Copy to Clipboard"
+msgstr "Скопировать в буфер обмена"
+
+msgid "Copy figure to system clipboard"
+msgstr "Скопировать графическое окно в буфер обмена системы"
+
+msgid "Label X"
+msgstr "Подпись X"
+
+msgid "Insert a label in X axis"
+msgstr "Вставить подпись оси X"
+
+msgid "Label Y"
+msgstr "Подпись Y"
+
+msgid "Insert a label in Y axis"
+msgstr "Вставить подпись оси Y"
+
+msgid "Label Z"
+msgstr "Подпись Z"
+
+msgid "Insert a label in Z axis"
+msgstr "Вставить подпись оси Z"
+
+msgid "Insert a legend into the selected curve"
+msgstr "Вставить легенду в выбранную кривую"
+
+msgid "Remove the legend from the selected curve"
+msgstr "Удалить легенду из выбранной кривой"
+
+msgid "Open Quick Editor"
+msgstr "Открыть быстрый редактор"
+
+msgid "Initialize the graphics editor"
+msgstr "Инициализировать редактор графики"
+
+msgid "Edit curve data"
+msgstr "Править данные кривой"
+
+msgid "Enables curve data modification"
+msgstr "Позволяет модификацию данных кривой"
+
+msgid "Undo"
+msgstr "Отмена"
+
+msgid "Undo last action"
+msgstr "Отменить последнее действие"
+
+msgid "Redo"
+msgstr "Повторить"
+
+msgid "Redo last undo action"
+msgstr "Отменить предыдущую отмену"
+
+msgid "Copy style"
+msgstr "Копировать стиль"
+
+msgid "Copy the style of the axes"
+msgstr "Копировать стиль осей"
+
+msgid "Paste style"
+msgstr "Вставить стиль"
+
+msgid "Paste the copied style on this axes"
+msgstr "Вставить скопированный стиль на эти оси"
+
+msgid "Enter the text"
+msgstr "Введите текст"
+
+msgid "Set label text"
+msgstr "Вставить текст подписи"
+
+msgid "Set legend text"
+msgstr "Вставить текст легенды"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Quick GED"
+msgstr "Быстрый редактор графики"
+
+msgid "Property List"
+msgstr "Список свойств"
+
+msgid "Show"
+msgstr "Показать"
+
+msgid "Arc"
+msgstr "Дуга"
+
+msgid "Axes"
+msgstr "Оси"
+
+msgid "Champ"
+msgstr ""
+
+msgid "Datatip"
+msgstr "Ярлык данных"
+
+msgid "Polyline"
+msgstr "Ломаная линия"
+
+msgid "Fec"
+msgstr ""
+
+msgid "Figure"
+msgstr "Рисунок"
+
+msgid "Segs"
+msgstr ""
+
+msgid "Surface"
+msgstr "Поверхность"
+
+msgid "Plot3D"
+msgstr "Трёхмерный рисунок"
+
+msgid "Rectangle"
+msgstr "Прямоугольник"
+
+msgid "Fac3D"
+msgstr ""
+
+msgid "Grayplot"
+msgstr ""
+
+msgid "Matplot"
+msgstr ""
+
+msgid "Auto Ticks"
+msgstr "Автоматическая установка рисок"
+
+msgid "Tick"
+msgstr "Риска"
+
+msgid "Lines"
+msgstr "Линии"
+
+msgid "Nurbs"
+msgstr ""
+
+msgid "Anti-alising"
+msgstr "Устранение искажений"
+
+msgid "Auto Clear"
+msgstr "Автоматическая очистка"
+
+msgid "Auto Orientation"
+msgstr "Автоматический поворот"
+
+msgid "Auto Scale"
+msgstr "Автоматическое масштабирование"
+
+msgid "Auto Resize"
+msgstr "Автоматическое изменение размера"
+
+msgid "Axes Visible"
+msgstr "Видимость осей"
+
+msgid "Axes Reverse"
+msgstr "Инверсия осей"
+
+msgid "Closed"
+msgstr "Закрыто"
+
+msgid "Cube Scaling"
+msgstr "Кубическое масштабирование"
+
+msgid "Fill Mode"
+msgstr "Режим заливки"
+
+msgid "Immediate Drawing"
+msgstr "Немедленное построение"
+
+msgid "Isometric View"
+msgstr "Изометрический вид"
+
+msgid "Label Mode"
+msgstr "Режим подписи"
+
+msgid "Line Mode"
+msgstr "Режим линии"
+
+msgid "Mark Mode"
+msgstr "Режим метки"
+
+msgid "Orientation"
+msgstr "Ориентация"
+
+msgid "Visible"
+msgstr "Видимый"
+
+msgid "Base Properties"
+msgstr "Основные свойства"
+
+msgid "On"
+msgstr "Вкл."
+
+msgid "Off"
+msgstr "Выкл."
+
+msgid "Pixmap"
+msgstr ""
+
+msgid "Tag"
+msgstr "Тег"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "Surface Mode"
+msgstr "Режим поверхности"
+
+msgid "Box"
+msgstr "Рамка"
+
+msgid "Hidden Axis Color"
+msgstr "Цвет скрытой оси"
+
+msgid "Camera"
+msgstr ""
+
+msgid "Alpha"
+msgstr "Альфа"
+
+msgid "Theta"
+msgstr "Тетта"
+
+msgid "Ticks"
+msgstr "Риски"
+
+msgid ""
+"The data bounds from the axis must be strictly positive to be changed to "
+"logarithmic scale."
+msgstr ""
+"Границы данных из оси должны быть строго положительными для того, чтобы их "
+"изменить в логарифмический масштаб."
+
+msgid "Choose Background Color"
+msgstr "Выбрать цвет фона"
+
+msgid "Choose Foreground Color"
+msgstr "Выбрать цвет переднего плана"
+
+msgid "Choose Font Color"
+msgstr "Выбрать цвет шрифта"
+
+msgid "Choose a Color"
+msgstr "Выбрать цвет"
+
+msgid "Arrow Size"
+msgstr "Размер стрелки"
+
+msgid "Colored"
+msgstr "Цветной"
+
+msgid "Background"
+msgstr "Фон"
+
+msgid "Foreground"
+msgstr "Передний план"
+
+msgid "Grid Position"
+msgstr "Положение сетки"
+
+msgid "X Grid Color"
+msgstr "Цвет сетки по X"
+
+msgid "Y Grid Color"
+msgstr "Цвет сетки по Y"
+
+msgid "Back Half"
+msgstr "Задняя половина"
+
+msgid "Hidden Axes"
+msgstr "Скрытые оси"
+
+msgid "Style/Appearance"
+msgstr "Стиль/Вид"
+
+msgid "Background Color"
+msgstr "Цвет фона"
+
+msgid "Foreground Color"
+msgstr "Цвет переднего плана"
+
+msgid "Line Style"
+msgstr "Стиль линии"
+
+msgid "solid"
+msgstr "сплошная"
+
+msgid "dash"
+msgstr "пунктирная"
+
+msgid "dash dot"
+msgstr "штрихпунктирная"
+
+msgid "longdash dot"
+msgstr ""
+
+msgid "bigdash dot"
+msgstr ""
+
+msgid "bigdash longdash"
+msgstr ""
+
+msgid "dot"
+msgstr "пунктирная"
+
+msgid "double dot"
+msgstr ""
+
+msgid "Polyline Style"
+msgstr "Стиль ломаной линии"
+
+msgid "interpolated"
+msgstr ""
+
+msgid "staircase"
+msgstr ""
+
+msgid "barplot"
+msgstr ""
+
+msgid "bar"
+msgstr ""
+
+msgid "arrowed"
+msgstr ""
+
+msgid "filled"
+msgstr ""
+
+msgid "Min"
+msgstr "Мин."
+
+msgid "Max"
+msgstr "Макс."
+
+msgid "Color Range"
+msgstr "Диапазон цветов"
+
+msgid "Outside Color"
+msgstr "Цвет с внешней стороны"
+
+msgid "Z Bounds"
+msgstr "Границы оси Z"
+
+msgid "Pixel Drawing Mode"
+msgstr "Режим рисования элементов изображения"
+
+msgid "Rotation Style"
+msgstr "Стиль поворота"
+
+msgid "unary"
+msgstr ""
+
+msgid "multiple"
+msgstr ""
+
+msgid "Arrow Size Factor"
+msgstr "Коэффициент размера стрелки"
+
+msgid "Bar Width"
+msgstr "Ширина столбца"
+
+msgid "Color Mode"
+msgstr "Режим цвета"
+
+msgid "Color Flag"
+msgstr ""
+
+msgid "Hidden Color"
+msgstr ""
+
+msgid "Thickness"
+msgstr "Толщина"
+
+msgid "Mark"
+msgstr "Маркировка"
+
+msgid "Mark Background"
+msgstr "Фон метки"
+
+msgid "Mark Foreground"
+msgstr "Передний план метки"
+
+msgid "Mark Size"
+msgstr "Размер метки"
+
+msgid "Mark Style"
+msgstr "Стиль метки"
+
+msgid "3 Components"
+msgstr "3 компонента"
+
+msgid "Data Properties"
+msgstr "Свойства данных"
+
+msgid "Data Mapping"
+msgstr ""
+
+msgid "Direct"
+msgstr ""
+
+msgid "Clip Box"
+msgstr ""
+
+msgid "Upper-left"
+msgstr ""
+
+msgid "Point"
+msgstr ""
+
+msgid "Clip State"
+msgstr ""
+
+msgid "clipgrf"
+msgstr ""
+
+msgid "Data"
+msgstr "Данные"
+
+msgid "Figure ID"
+msgstr "Идентификатор графического окна"
+
+msgid "Figure Name"
+msgstr "Название графического окна"
+
+msgid "Info Message"
+msgstr "Информационное сообщение"
+
+msgid "Units"
+msgstr "Единицы измерения"
+
+msgid "Upper Left Point"
+msgstr ""
+
+msgid "User Data"
+msgstr "Данные пользователя"
+
+msgid "X Label"
+msgstr "Подпись X"
+
+msgid "Y Label"
+msgstr "Подпись Y"
+
+msgid "Z Label"
+msgstr "Подпись Z"
+
+msgid "Scaled"
+msgstr "Масштабированный"
+
+msgid "Title"
+msgstr "Название"
+
+msgid "Number of current figure."
+msgstr "Номер текущего графического окна"
+
+msgid "Enter a figure name."
+msgstr "Введите имя графического окна"
+
+msgid "Refresh"
+msgstr "Обновить"
+
+msgid "Submit and close"
+msgstr ""
+
+msgid "Append"
+msgstr ""
+
+msgid "Data Editor"
+msgstr "Редактор данных"
+
+msgid "2D"
+msgstr ""
+
+msgid "3D"
+msgstr ""
+
+msgid "Control"
+msgstr "Управление"
+
+msgid "Axes Size"
+msgstr "Размер осей"
+
+msgid "CloseRequestFcn"
+msgstr ""
+
+msgid "ResizeFcn"
+msgstr ""
+
+msgid "Figure Position"
+msgstr "Положение графического окна"
+
+msgid "Figure Size"
+msgstr "Размер графического окна"
+
+msgid "Event Handler"
+msgstr "Дескриптор события"
+
+msgid "Function"
+msgstr "Функция"
+
+msgid "View"
+msgstr "Вид"
+
+msgid "Viewport"
+msgstr ""
+
+msgid "X Left"
+msgstr ""
+
+msgid "Y Up"
+msgstr ""
+
+msgid "Log Flags"
+msgstr ""
+
+msgid "Tight Limits"
+msgstr ""
+
+msgid "Enter a x position."
+msgstr ""
+
+msgid "Enter a y position."
+msgstr ""
+
+msgid "Enter a x size."
+msgstr ""
+
+msgid "Enter a y size."
+msgstr ""
+
+msgid "Axis Rulers"
+msgstr ""
+
+msgid "X Location"
+msgstr ""
+
+msgid "Y Location"
+msgstr ""
+
+msgid "Location"
+msgstr "Расположение"
+
+msgid "bottom"
+msgstr "снизу"
+
+msgid "middle"
+msgstr "по центру"
+
+msgid "origin"
+msgstr ""
+
+msgid "top"
+msgstr "сверху"
+
+msgid "left"
+msgstr ""
+
+msgid "right"
+msgstr "справа"
+
+msgid "Reverse"
+msgstr "В обратном направлении"
+
+msgid "Box Mode"
+msgstr ""
+
+msgid "Title Page"
+msgstr "Титульный лист"
+
+msgid "Axis Title"
+msgstr ""
+
+msgid "Font Color"
+msgstr "Цвет шрифта"
+
+msgid "Font Size"
+msgstr "Размер шрифта"
+
+msgid "Font Style"
+msgstr "Стиль шрифта"
+
+msgid "Fractional Font"
+msgstr ""
+
+msgid "Sub Ticks"
+msgstr "Дробные риски"
+
+msgid "Coordinates"
+msgstr "Координаты"
+
+msgid "X Coordinate"
+msgstr ""
+
+msgid "Y Coordinate"
+msgstr ""
+
+msgid "Position"
+msgstr "Положение"
+
+msgid "Axes Bounds"
+msgstr "Границы осей"
+
+msgid "Mark Size Unit"
+msgstr "Единица измерения размера меток"
+
+msgid "Shift"
+msgstr "Сдвиг"
+
+msgid "Up"
+msgstr ""
+
+msgid "Width"
+msgstr "Ширина"
+
+msgid "Height"
+msgstr "Высота"
+
+msgid "Margins"
+msgstr "Поля"
+
+msgid "Rotation Angles"
+msgstr "Углы поворота"
+
+msgid "Tabulated"
+msgstr ""
+
+msgid "X Shift"
+msgstr "Сдвиг по X"
+
+msgid "Y Shift"
+msgstr "Сдвиг по Y"
+
+msgid "Z Shift"
+msgstr "Сдвиг по Z"
+
 msgid "OK"
 msgstr "OK"
 
@@ -1304,9 +2096,13 @@ msgstr "Нет"
 msgid "Save and execute"
 msgstr "Сохранить и выполнить"
 
+msgid "Axis"
+msgstr "Ось"
+
 msgid "Empty tab"
 msgstr "Пустая вкладка"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1315,14 +2111,13 @@ msgstr ""
 "Пожалуйста, сообщите об ошибке с помощью предыдущего сообщения и прикрепив "
 "файл %s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Вы действительно хотите закрыть %s ?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Вы действительно хотите закрыть %s и %s ?"
-
-msgid "Exit"
-msgstr "Выйти"
 
 msgid "An error occurred: "
 msgstr "Произошла ошибка: "
@@ -1372,14 +2167,12 @@ msgstr "Все изображения PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Все файлы RTF (Rich Text Format)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Все файлы %s"
 
 msgid "About Scilab..."
 msgstr "О Scilab"
-
-msgid "Close"
-msgstr "Закрыть"
 
 msgid "Acknowledgements"
 msgstr "Благодарности"
@@ -1400,9 +2193,6 @@ msgstr "Ошибка. Был получен сигнал.\n"
 
 msgid "Control Plot3d"
 msgstr "Управление Plot3d"
-
-msgid "File"
-msgstr "Файл"
 
 msgid "GUI"
 msgstr "Графический интерфейс"
@@ -1565,10 +2355,6 @@ msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
 msgstr "%s: Неверные входные параметры: ожидалось %s, %s или %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
 msgid "%s: Wrong value for '%s' property: %d, %d or %d expected.\n"
 msgstr "%s: Неверное значение свойства «%s»: ожидалось %d, %d или %d.\n"
 
@@ -1594,10 +2380,6 @@ msgid ""
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидался дескриптор «Figure» или "
 "вещественное число.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
@@ -1631,7 +2413,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался uitree.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -1672,7 +2454,7 @@ msgid ""
 "%s: Wrong type for input argument #%d: must be 'label', 'icon' or "
 "'callback'.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №#%d: должно быть «label», «icon» или "
+"%s: Неверный тип входного аргумента №#%d: должно быть «label», «icon» или "
 "«callback».\n"
 
 #, c-format

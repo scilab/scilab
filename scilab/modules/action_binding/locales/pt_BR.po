@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-03-15 20:52+0000\n"
-"Last-Translator: Hriostat <Unknown>\n"
+"PO-Revision-Date: 2013-09-05 13:20+0000\n"
+"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: pt_BR\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Não foi possível ler argumento de entrada #%d.\n"
+msgstr "%s: Não foi possível ler o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -46,4 +46,4 @@ msgstr "Incapaz de se comunicar com o interpretador"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
-msgstr "O módulo '%s' do Scilab não está instalado.\n"
+msgstr "O módulo \"%s\" do Scilab não está instalado.\n"

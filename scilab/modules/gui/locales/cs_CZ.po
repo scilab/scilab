@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-20 21:10+0000\n"
+"PO-Revision-Date: 2013-09-24 19:20+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -367,6 +367,56 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid "%s: Wrong number for input argument: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
+
+#, c-format
+msgid "%s: Wrong number for input argument: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: 1-by-%d or %d-by-1 vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: At least 2 elements expected.\n"
 msgstr ""
@@ -391,7 +441,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong type for element %d of input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: Špatný typ prvku %d vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Error in the tree parsing.\n"
@@ -403,6 +453,12 @@ msgstr "%s: Vyskytla se chyba: %s.\n"
 
 msgid "Impossible to get current look and feel"
 msgstr "Nelze získat současný vzhled"
+
+#, c-format
+msgid ""
+"%s: A Java exception arised:\n"
+"%s"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -572,6 +628,21 @@ msgstr "&Spustit správce datových popisků"
 msgid "Stop datatip manager"
 msgstr "Zastavit správce datových popisků"
 
+msgid "Start curve data modification"
+msgstr ""
+
+msgid "Stop curve data modification"
+msgstr ""
+
+msgid "Plot Browser"
+msgstr ""
+
+msgid "Scilab Graphic Editor - GED"
+msgstr ""
+
+msgid "&Quick Editor"
+msgstr ""
+
 msgid "&MVC"
 msgstr "&MPŘ"
 
@@ -734,8 +805,14 @@ msgstr "Oblast Přiblížení"
 msgid "Original View"
 msgstr "Původní Pohled"
 
-msgid "toggle datatip mode"
-msgstr "přepnout režim datových popisků"
+msgid "Toggle datatip mode"
+msgstr ""
+
+msgid "Open the graphics editor"
+msgstr ""
+
+msgid "Toggle curve data modification"
+msgstr ""
 
 msgid "Help Browser"
 msgstr "Průzkumník nápovědy"
@@ -849,10 +926,10 @@ msgid "Custom:"
 msgstr "Vlastní:"
 
 msgid "LaTeX preview"
-msgstr ""
+msgstr "Náhled LaTeX"
 
 msgid "LaTeX font size:"
-msgstr ""
+msgstr "Velikost písma LateX:"
 
 msgid "Web"
 msgstr "Internet"
@@ -1112,6 +1189,7 @@ msgstr "Pozadí Konzole..."
 msgid "No print service found."
 msgstr "Žádna služba tisku nenalezena."
 
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
@@ -1121,6 +1199,7 @@ msgstr ""
 "míšení kontroly rozhraní a grafiky není dostupné. Zadejte %s pro více "
 "informací."
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr "V některých případech %s tento problém spraví"
 
@@ -1283,6 +1362,709 @@ msgstr "Další"
 msgid "Tree Overview"
 msgstr "Stromový Přehled"
 
+msgid ""
+"Left click on the curve creates a datatip and right click on the datatip "
+"removes it."
+msgstr ""
+
+msgid "Insert"
+msgstr ""
+
+msgid "Insert a new point here"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Remove this point"
+msgstr ""
+
+msgid "Exit"
+msgstr "Ukončit"
+
+msgid "Leave data editor mode"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Legend"
+msgstr ""
+
+msgid "Copy selected object"
+msgstr ""
+
+msgid "Cut selected object"
+msgstr ""
+
+msgid "Paste copied object on this figure"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Delete selected object"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Clears the figure"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Hide selected object"
+msgstr ""
+
+msgid "Unhide all"
+msgstr ""
+
+msgid "Unhide all objects"
+msgstr ""
+
+msgid "Copy to Clipboard"
+msgstr ""
+
+msgid "Copy figure to system clipboard"
+msgstr ""
+
+msgid "Label X"
+msgstr ""
+
+msgid "Insert a label in X axis"
+msgstr ""
+
+msgid "Label Y"
+msgstr ""
+
+msgid "Insert a label in Y axis"
+msgstr ""
+
+msgid "Label Z"
+msgstr ""
+
+msgid "Insert a label in Z axis"
+msgstr ""
+
+msgid "Insert a legend into the selected curve"
+msgstr ""
+
+msgid "Remove the legend from the selected curve"
+msgstr ""
+
+msgid "Open Quick Editor"
+msgstr ""
+
+msgid "Initialize the graphics editor"
+msgstr ""
+
+msgid "Edit curve data"
+msgstr ""
+
+msgid "Enables curve data modification"
+msgstr ""
+
+msgid "Undo"
+msgstr ""
+
+msgid "Undo last action"
+msgstr ""
+
+msgid "Redo"
+msgstr ""
+
+msgid "Redo last undo action"
+msgstr ""
+
+msgid "Copy style"
+msgstr ""
+
+msgid "Copy the style of the axes"
+msgstr ""
+
+msgid "Paste style"
+msgstr ""
+
+msgid "Paste the copied style on this axes"
+msgstr ""
+
+msgid "Enter the text"
+msgstr ""
+
+msgid "Set label text"
+msgstr ""
+
+msgid "Set legend text"
+msgstr ""
+
+msgid "Close"
+msgstr "Zavřít"
+
+msgid "File"
+msgstr "Soubor"
+
+msgid "Quick GED"
+msgstr ""
+
+msgid "Property List"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Arc"
+msgstr ""
+
+msgid "Axes"
+msgstr ""
+
+msgid "Champ"
+msgstr ""
+
+msgid "Datatip"
+msgstr ""
+
+msgid "Polyline"
+msgstr ""
+
+msgid "Fec"
+msgstr ""
+
+msgid "Figure"
+msgstr ""
+
+msgid "Segs"
+msgstr ""
+
+msgid "Surface"
+msgstr ""
+
+msgid "Plot3D"
+msgstr ""
+
+msgid "Rectangle"
+msgstr ""
+
+msgid "Fac3D"
+msgstr ""
+
+msgid "Grayplot"
+msgstr ""
+
+msgid "Matplot"
+msgstr ""
+
+msgid "Auto Ticks"
+msgstr ""
+
+msgid "Tick"
+msgstr ""
+
+msgid "Lines"
+msgstr ""
+
+msgid "Nurbs"
+msgstr ""
+
+msgid "Anti-alising"
+msgstr ""
+
+msgid "Auto Clear"
+msgstr ""
+
+msgid "Auto Orientation"
+msgstr ""
+
+msgid "Auto Scale"
+msgstr ""
+
+msgid "Auto Resize"
+msgstr ""
+
+msgid "Axes Visible"
+msgstr ""
+
+msgid "Axes Reverse"
+msgstr ""
+
+msgid "Closed"
+msgstr ""
+
+msgid "Cube Scaling"
+msgstr ""
+
+msgid "Fill Mode"
+msgstr ""
+
+msgid "Immediate Drawing"
+msgstr ""
+
+msgid "Isometric View"
+msgstr ""
+
+msgid "Label Mode"
+msgstr ""
+
+msgid "Line Mode"
+msgstr ""
+
+msgid "Mark Mode"
+msgstr ""
+
+msgid "Orientation"
+msgstr ""
+
+msgid "Visible"
+msgstr ""
+
+msgid "Base Properties"
+msgstr ""
+
+msgid "On"
+msgstr ""
+
+msgid "Off"
+msgstr ""
+
+msgid "Pixmap"
+msgstr ""
+
+msgid "Tag"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Surface Mode"
+msgstr ""
+
+msgid "Box"
+msgstr ""
+
+msgid "Hidden Axis Color"
+msgstr ""
+
+msgid "Camera"
+msgstr ""
+
+msgid "Alpha"
+msgstr ""
+
+msgid "Theta"
+msgstr ""
+
+msgid "Ticks"
+msgstr ""
+
+msgid ""
+"The data bounds from the axis must be strictly positive to be changed to "
+"logarithmic scale."
+msgstr ""
+
+msgid "Choose Background Color"
+msgstr ""
+
+msgid "Choose Foreground Color"
+msgstr ""
+
+msgid "Choose Font Color"
+msgstr ""
+
+msgid "Choose a Color"
+msgstr ""
+
+msgid "Arrow Size"
+msgstr ""
+
+msgid "Colored"
+msgstr ""
+
+msgid "Background"
+msgstr ""
+
+msgid "Foreground"
+msgstr ""
+
+msgid "Grid Position"
+msgstr ""
+
+msgid "X Grid Color"
+msgstr ""
+
+msgid "Y Grid Color"
+msgstr ""
+
+msgid "Back Half"
+msgstr ""
+
+msgid "Hidden Axes"
+msgstr ""
+
+msgid "Style/Appearance"
+msgstr ""
+
+msgid "Background Color"
+msgstr ""
+
+msgid "Foreground Color"
+msgstr ""
+
+msgid "Line Style"
+msgstr ""
+
+msgid "solid"
+msgstr ""
+
+msgid "dash"
+msgstr ""
+
+msgid "dash dot"
+msgstr ""
+
+msgid "longdash dot"
+msgstr ""
+
+msgid "bigdash dot"
+msgstr ""
+
+msgid "bigdash longdash"
+msgstr ""
+
+msgid "dot"
+msgstr ""
+
+msgid "double dot"
+msgstr ""
+
+msgid "Polyline Style"
+msgstr ""
+
+msgid "interpolated"
+msgstr ""
+
+msgid "staircase"
+msgstr ""
+
+msgid "barplot"
+msgstr ""
+
+msgid "bar"
+msgstr ""
+
+msgid "arrowed"
+msgstr ""
+
+msgid "filled"
+msgstr ""
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Color Range"
+msgstr ""
+
+msgid "Outside Color"
+msgstr ""
+
+msgid "Z Bounds"
+msgstr ""
+
+msgid "Pixel Drawing Mode"
+msgstr ""
+
+msgid "Rotation Style"
+msgstr ""
+
+msgid "unary"
+msgstr ""
+
+msgid "multiple"
+msgstr ""
+
+msgid "Arrow Size Factor"
+msgstr ""
+
+msgid "Bar Width"
+msgstr ""
+
+msgid "Color Mode"
+msgstr ""
+
+msgid "Color Flag"
+msgstr ""
+
+msgid "Hidden Color"
+msgstr ""
+
+msgid "Thickness"
+msgstr ""
+
+msgid "Mark"
+msgstr ""
+
+msgid "Mark Background"
+msgstr ""
+
+msgid "Mark Foreground"
+msgstr ""
+
+msgid "Mark Size"
+msgstr ""
+
+msgid "Mark Style"
+msgstr ""
+
+msgid "3 Components"
+msgstr ""
+
+msgid "Data Properties"
+msgstr ""
+
+msgid "Data Mapping"
+msgstr ""
+
+msgid "Direct"
+msgstr ""
+
+msgid "Clip Box"
+msgstr ""
+
+msgid "Upper-left"
+msgstr ""
+
+msgid "Point"
+msgstr ""
+
+msgid "Clip State"
+msgstr ""
+
+msgid "clipgrf"
+msgstr ""
+
+msgid "Data"
+msgstr ""
+
+msgid "Figure ID"
+msgstr ""
+
+msgid "Figure Name"
+msgstr ""
+
+msgid "Info Message"
+msgstr ""
+
+msgid "Units"
+msgstr ""
+
+msgid "Upper Left Point"
+msgstr ""
+
+msgid "User Data"
+msgstr ""
+
+msgid "X Label"
+msgstr ""
+
+msgid "Y Label"
+msgstr ""
+
+msgid "Z Label"
+msgstr ""
+
+msgid "Scaled"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Number of current figure."
+msgstr ""
+
+msgid "Enter a figure name."
+msgstr ""
+
+msgid "Refresh"
+msgstr ""
+
+msgid "Submit and close"
+msgstr ""
+
+msgid "Append"
+msgstr ""
+
+msgid "Data Editor"
+msgstr ""
+
+msgid "2D"
+msgstr ""
+
+msgid "3D"
+msgstr ""
+
+msgid "Control"
+msgstr ""
+
+msgid "Axes Size"
+msgstr ""
+
+msgid "CloseRequestFcn"
+msgstr ""
+
+msgid "ResizeFcn"
+msgstr ""
+
+msgid "Figure Position"
+msgstr ""
+
+msgid "Figure Size"
+msgstr ""
+
+msgid "Event Handler"
+msgstr ""
+
+msgid "Function"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "Viewport"
+msgstr ""
+
+msgid "X Left"
+msgstr ""
+
+msgid "Y Up"
+msgstr ""
+
+msgid "Log Flags"
+msgstr ""
+
+msgid "Tight Limits"
+msgstr ""
+
+msgid "Enter a x position."
+msgstr ""
+
+msgid "Enter a y position."
+msgstr ""
+
+msgid "Enter a x size."
+msgstr ""
+
+msgid "Enter a y size."
+msgstr ""
+
+msgid "Axis Rulers"
+msgstr ""
+
+msgid "X Location"
+msgstr ""
+
+msgid "Y Location"
+msgstr ""
+
+msgid "Location"
+msgstr ""
+
+msgid "bottom"
+msgstr ""
+
+msgid "middle"
+msgstr ""
+
+msgid "origin"
+msgstr ""
+
+msgid "top"
+msgstr ""
+
+msgid "left"
+msgstr ""
+
+msgid "right"
+msgstr ""
+
+msgid "Reverse"
+msgstr ""
+
+msgid "Box Mode"
+msgstr ""
+
+msgid "Title Page"
+msgstr ""
+
+msgid "Axis Title"
+msgstr ""
+
+msgid "Font Color"
+msgstr ""
+
+msgid "Font Size"
+msgstr ""
+
+msgid "Font Style"
+msgstr ""
+
+msgid "Fractional Font"
+msgstr ""
+
+msgid "Sub Ticks"
+msgstr ""
+
+msgid "Coordinates"
+msgstr ""
+
+msgid "X Coordinate"
+msgstr ""
+
+msgid "Y Coordinate"
+msgstr ""
+
+msgid "Position"
+msgstr ""
+
+msgid "Axes Bounds"
+msgstr ""
+
+msgid "Mark Size Unit"
+msgstr ""
+
+msgid "Shift"
+msgstr ""
+
+msgid "Up"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Margins"
+msgstr ""
+
+msgid "Rotation Angles"
+msgstr ""
+
+msgid "Tabulated"
+msgstr ""
+
+msgid "X Shift"
+msgstr ""
+
+msgid "Y Shift"
+msgstr ""
+
+msgid "Z Shift"
+msgstr ""
+
 msgid "OK"
 msgstr "OK"
 
@@ -1295,9 +2077,13 @@ msgstr "Ne"
 msgid "Save and execute"
 msgstr "Uložit a spustit"
 
+msgid "Axis"
+msgstr ""
+
 msgid "Empty tab"
 msgstr "Prázdná karta"
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
@@ -1305,14 +2091,13 @@ msgstr ""
 "Karta s uuid %s nemůže být obnovena.\n"
 "Tuto chybu, prosíme, nahlaste s předchozí zprávou a přiložte soubor %s."
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr "Jste si jisti,  že chcete %s zavřít?"
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
 msgstr "Jste si jisti,  že chcete %s a %s zavřít?"
-
-msgid "Exit"
-msgstr "Ukončit"
 
 msgid "An error occurred: "
 msgstr "Nastala chyba: "
@@ -1362,14 +2147,12 @@ msgstr "Všechny soubory obrázku PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Všechny soubory RTF (Bohatý Textový Formát)"
 
+#, c-format
 msgid "All %s files"
 msgstr "Všechny soubory %s"
 
 msgid "About Scilab..."
 msgstr "O Scilab..."
-
-msgid "Close"
-msgstr "Zavřít"
 
 msgid "Acknowledgements"
 msgstr "Poděkování"
@@ -1390,9 +2173,6 @@ msgstr "Chyba. Byl zachycen signál.\n"
 
 msgid "Control Plot3d"
 msgstr "Kontrola Plot3d"
-
-msgid "File"
-msgstr "Soubor"
 
 msgid "GUI"
 msgstr "GUI"
@@ -1555,10 +2335,6 @@ msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
 msgstr "%s: Špatné vstupní argumenty: Očekáváno %s. %s. nebo %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
-
-#, c-format
 msgid "%s: Wrong value for '%s' property: %d, %d or %d expected.\n"
 msgstr "%s: Špatná hodnota vlastnosti '%s': Očekáváno %d, %d nebo %d.\n"
 
@@ -1584,10 +2360,6 @@ msgid ""
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána obslužná rutina "
 "'Čísla' nebo reálné číslo.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
@@ -1622,6 +2394,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván strom grafického rozhraní.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -1631,10 +2404,14 @@ msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň 
 msgid ""
 "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
+"%s: Špatný typ prvku %d vstupního argumentu #%d: Očekáván strom grafického "
+"rozhraní.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or uitree expected.\n"
 msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván strom grafického rozhraní "
+"nebo řetězec.\n"
 
 #, c-format
 msgid "%s: Invalid position '%s'.\n"

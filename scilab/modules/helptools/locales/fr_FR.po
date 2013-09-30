@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-29 10:07+0000\n"
+"PO-Revision-Date: 2013-09-27 09:42+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: fr\n"
 
 #, c-format
@@ -254,6 +254,9 @@ msgstr "%s : Pas de fichier généré.\n"
 
 msgid "Help chapter"
 msgstr "Chapitre d'aide"
+
+msgid "Scilab Help"
+msgstr "Aide de Scilab"
 
 #, c-format
 msgid ""

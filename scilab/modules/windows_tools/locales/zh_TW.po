@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -83,6 +83,9 @@ msgstr "%s: 此資料型態的值無法查詢.\n"
 
 msgid "Scilab Console"
 msgstr "Scilab終端機"
+
+msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
+msgstr ""
 
 msgid "Error(s) : see help powershell"
 msgstr "錯誤: 參閱 powershell 說明"

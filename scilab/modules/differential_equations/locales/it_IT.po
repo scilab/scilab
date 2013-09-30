@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: it\n"
 
 msgid "bike simulation, stable trajectory"
@@ -65,9 +65,6 @@ msgstr "campo vettoriale 1D ODE"
 msgid "chemical process (implicit)"
 msgstr "processo chimico (implicito)"
 
-msgid "Lorentz differential equation"
-msgstr "equazione differenziale di Lorentz"
-
 msgid "Lorenz differential equation"
 msgstr "equazione differenziale di Lorenz"
 
@@ -110,6 +107,22 @@ msgstr ""
 #, c-format
 msgid "%s: Invalid option %s: real matrix expected.\n"
 msgstr "%s: L'opzione %s non è valida: era attesa una matrice reale.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: (%d,%d) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"

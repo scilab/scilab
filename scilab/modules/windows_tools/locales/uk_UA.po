@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-01-23 17:26+0000\n"
+"PO-Revision-Date: 2013-09-15 07:01+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: uk\n"
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
@@ -97,6 +97,11 @@ msgstr "%s: запит на значення такого типу неможл�
 
 msgid "Scilab Console"
 msgstr "Консоль Scilab"
+
+msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
+msgstr ""
+"Сімейство Scilab 5.5.X є останнім сімейством версій, які працюватимуть у "
+"Windows XP."
 
 msgid "Error(s) : see help powershell"
 msgstr "Помилки: див. help powershell"

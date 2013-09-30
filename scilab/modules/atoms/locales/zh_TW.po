@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: \n"
 
 #, c-format
@@ -217,8 +217,8 @@ msgid ""
 msgstr "%s: 目錄 '%s' 無法產生, 請檢査是否有寫入此目錄之權限.\n"
 
 #, c-format
-msgid "%s: The file '%s' doesn't exist or is not read accessible\n"
-msgstr "%s:  檔案 '%s' 不存在或無法讀取.\n"
+msgid "%s: The file '%s' does not exist or is not read accessible.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
@@ -294,8 +294,9 @@ msgid "\t - '%s - %s' is needed by '%s'\n"
 msgstr "\t - '%s - %s' 必須經由 '%s'\n"
 
 #, c-format
-msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
-msgstr "%s: 檔案 '%s' 不存在或是無讀取權限.\n"
+msgid ""
+"%s: The file '%s' from (%s - %s) does not exist or is not read accessible.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
@@ -664,9 +665,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
+"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
 "the %s field\n"
-msgstr "%s: 檔案 %s 格式不夠良好,  toolbox %s - %s 無法獲得 %s 域\n"
+msgstr ""
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
@@ -703,9 +704,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: String that start with "
-"'http://','ftp://' or 'file://' expected.\n"
-msgstr "%s: 第  %d 輸入參數數值錯誤: 應為 'http://','ftp://' 或 'file://' 起頭的字串.\n"
+"%s: Wrong value for input argument #%d: String that starts with "
+"'http(s)?://','ftp://' or 'file://' expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -769,8 +770,8 @@ msgid "\t - Local location : '%s'\n"
 msgstr "\t - 局部位置 : '%s'\n"
 
 #, c-format
-msgid "%s: The following file hasn't been copied:\n"
-msgstr "%s: 以下檔案未曾複製:\n"
+msgid "%s: The following file has not been copied:\n"
+msgstr ""
 
 #, c-format
 msgid "\t - source    : '%s'\n"
@@ -781,8 +782,8 @@ msgid "\t - destination : '%s'\n"
 msgstr "\t - 目的地: '%s'\n"
 
 #, c-format
-msgid "%s: The downloaded file doesn't check the MD5SUM:\n"
-msgstr "%s: 下載之檔案無法檢查 MD5SUM:\n"
+msgid "%s: The downloaded file does not match the MD5SUM:\n"
+msgstr ""
 
 #, c-format
 msgid "\t - file      : '%s'\n"
@@ -808,12 +809,12 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數數值錯誤:應為後綴為  .tar.gz, .tgz 或 .zip 的字串 .\n"
 
 #, c-format
-msgid "%s: The file %s doesn't exist or is not read accessible.\n"
-msgstr "%s:  檔案 %s 不存在或無法讀取.\n"
+msgid "%s: The file %s does not exist or is not read accessible.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: The directory %s doesn't exist.\n"
-msgstr "%s: 目錄 %s 不存在.\n"
+msgid "%s: The directory %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The extraction of the archive '%s' has failed.\n"
@@ -896,12 +897,12 @@ msgid "%s: Wrong value for input argument #%d: '%s' is not a valid URL.\n"
 msgstr "%s: 第 #%d 輸入參數數值錯誤: '%s' 不是正確的 URL.\n"
 
 #, c-format
-msgid "%s: the package '%s' doesn't exist.\n"
-msgstr "%s: 套件'%s' 不存在.\n"
+msgid "%s: the package '%s' does not exist.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: the package '%s' doesn't contain the field '%s'.\n"
-msgstr "%s: 套件'%s' 未含 '%s' 欄位.\n"
+msgid "%s: the package '%s' does not contain the field '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s (%s) isn't installed.\n"

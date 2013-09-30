@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: de\n"
 
 #, c-format
@@ -376,6 +376,56 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid "%s: Wrong number for input argument: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: falsche Anzahl für Eingangsargumente: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Falsche Anzahl an Eingansargumenten: %d zu %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number for input argument: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: 1-by-%d or %d-by-1 vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: At least 2 elements expected.\n"
 msgstr ""
@@ -409,6 +459,12 @@ msgstr "%s: Ein Fehler ist aufgetreten: %s.\n"
 
 msgid "Impossible to get current look and feel"
 msgstr "Es ist unmöglich das aktuelle Design zu erhalten."
+
+#, c-format
+msgid ""
+"%s: A Java exception arised:\n"
+"%s"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -574,6 +630,21 @@ msgstr ""
 msgid "Stop datatip manager"
 msgstr ""
 
+msgid "Start curve data modification"
+msgstr ""
+
+msgid "Stop curve data modification"
+msgstr ""
+
+msgid "Plot Browser"
+msgstr ""
+
+msgid "Scilab Graphic Editor - GED"
+msgstr ""
+
+msgid "&Quick Editor"
+msgstr ""
+
 msgid "&MVC"
 msgstr ""
 
@@ -736,7 +807,13 @@ msgstr "Vergrößerungsbereich"
 msgid "Original View"
 msgstr "Originale Ansicht"
 
-msgid "toggle datatip mode"
+msgid "Toggle datatip mode"
+msgstr ""
+
+msgid "Open the graphics editor"
+msgstr ""
+
+msgid "Toggle curve data modification"
 msgstr ""
 
 msgid "Help Browser"
@@ -1118,12 +1195,14 @@ msgstr "Hintergrund der Konsole..."
 msgid "No print service found."
 msgstr ""
 
+#, c-format
 msgid ""
 "WARNING: Due to your configuration limitations, Scilab switched in a mode "
 "where mixing uicontrols and graphics is not available. Type %s for more "
 "information."
 msgstr ""
 
+#, c-format
 msgid "In some cases, %s fixes the issue"
 msgstr ""
 
@@ -1281,6 +1360,709 @@ msgstr "Weiter"
 msgid "Tree Overview"
 msgstr "Baumübersicht"
 
+msgid ""
+"Left click on the curve creates a datatip and right click on the datatip "
+"removes it."
+msgstr ""
+
+msgid "Insert"
+msgstr ""
+
+msgid "Insert a new point here"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Remove this point"
+msgstr ""
+
+msgid "Exit"
+msgstr ""
+
+msgid "Leave data editor mode"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Legend"
+msgstr ""
+
+msgid "Copy selected object"
+msgstr ""
+
+msgid "Cut selected object"
+msgstr ""
+
+msgid "Paste copied object on this figure"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Delete selected object"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Clears the figure"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "Hide selected object"
+msgstr ""
+
+msgid "Unhide all"
+msgstr ""
+
+msgid "Unhide all objects"
+msgstr ""
+
+msgid "Copy to Clipboard"
+msgstr ""
+
+msgid "Copy figure to system clipboard"
+msgstr ""
+
+msgid "Label X"
+msgstr ""
+
+msgid "Insert a label in X axis"
+msgstr ""
+
+msgid "Label Y"
+msgstr ""
+
+msgid "Insert a label in Y axis"
+msgstr ""
+
+msgid "Label Z"
+msgstr ""
+
+msgid "Insert a label in Z axis"
+msgstr ""
+
+msgid "Insert a legend into the selected curve"
+msgstr ""
+
+msgid "Remove the legend from the selected curve"
+msgstr ""
+
+msgid "Open Quick Editor"
+msgstr ""
+
+msgid "Initialize the graphics editor"
+msgstr ""
+
+msgid "Edit curve data"
+msgstr ""
+
+msgid "Enables curve data modification"
+msgstr ""
+
+msgid "Undo"
+msgstr ""
+
+msgid "Undo last action"
+msgstr ""
+
+msgid "Redo"
+msgstr ""
+
+msgid "Redo last undo action"
+msgstr ""
+
+msgid "Copy style"
+msgstr ""
+
+msgid "Copy the style of the axes"
+msgstr ""
+
+msgid "Paste style"
+msgstr ""
+
+msgid "Paste the copied style on this axes"
+msgstr ""
+
+msgid "Enter the text"
+msgstr ""
+
+msgid "Set label text"
+msgstr ""
+
+msgid "Set legend text"
+msgstr ""
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "File"
+msgstr "Datei"
+
+msgid "Quick GED"
+msgstr ""
+
+msgid "Property List"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Arc"
+msgstr ""
+
+msgid "Axes"
+msgstr ""
+
+msgid "Champ"
+msgstr ""
+
+msgid "Datatip"
+msgstr ""
+
+msgid "Polyline"
+msgstr ""
+
+msgid "Fec"
+msgstr ""
+
+msgid "Figure"
+msgstr ""
+
+msgid "Segs"
+msgstr ""
+
+msgid "Surface"
+msgstr ""
+
+msgid "Plot3D"
+msgstr ""
+
+msgid "Rectangle"
+msgstr ""
+
+msgid "Fac3D"
+msgstr ""
+
+msgid "Grayplot"
+msgstr ""
+
+msgid "Matplot"
+msgstr ""
+
+msgid "Auto Ticks"
+msgstr ""
+
+msgid "Tick"
+msgstr ""
+
+msgid "Lines"
+msgstr ""
+
+msgid "Nurbs"
+msgstr ""
+
+msgid "Anti-alising"
+msgstr ""
+
+msgid "Auto Clear"
+msgstr ""
+
+msgid "Auto Orientation"
+msgstr ""
+
+msgid "Auto Scale"
+msgstr ""
+
+msgid "Auto Resize"
+msgstr ""
+
+msgid "Axes Visible"
+msgstr ""
+
+msgid "Axes Reverse"
+msgstr ""
+
+msgid "Closed"
+msgstr ""
+
+msgid "Cube Scaling"
+msgstr ""
+
+msgid "Fill Mode"
+msgstr ""
+
+msgid "Immediate Drawing"
+msgstr ""
+
+msgid "Isometric View"
+msgstr ""
+
+msgid "Label Mode"
+msgstr ""
+
+msgid "Line Mode"
+msgstr ""
+
+msgid "Mark Mode"
+msgstr ""
+
+msgid "Orientation"
+msgstr ""
+
+msgid "Visible"
+msgstr ""
+
+msgid "Base Properties"
+msgstr ""
+
+msgid "On"
+msgstr ""
+
+msgid "Off"
+msgstr ""
+
+msgid "Pixmap"
+msgstr ""
+
+msgid "Tag"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Surface Mode"
+msgstr ""
+
+msgid "Box"
+msgstr ""
+
+msgid "Hidden Axis Color"
+msgstr ""
+
+msgid "Camera"
+msgstr ""
+
+msgid "Alpha"
+msgstr ""
+
+msgid "Theta"
+msgstr ""
+
+msgid "Ticks"
+msgstr ""
+
+msgid ""
+"The data bounds from the axis must be strictly positive to be changed to "
+"logarithmic scale."
+msgstr ""
+
+msgid "Choose Background Color"
+msgstr ""
+
+msgid "Choose Foreground Color"
+msgstr ""
+
+msgid "Choose Font Color"
+msgstr ""
+
+msgid "Choose a Color"
+msgstr ""
+
+msgid "Arrow Size"
+msgstr ""
+
+msgid "Colored"
+msgstr ""
+
+msgid "Background"
+msgstr ""
+
+msgid "Foreground"
+msgstr ""
+
+msgid "Grid Position"
+msgstr ""
+
+msgid "X Grid Color"
+msgstr ""
+
+msgid "Y Grid Color"
+msgstr ""
+
+msgid "Back Half"
+msgstr ""
+
+msgid "Hidden Axes"
+msgstr ""
+
+msgid "Style/Appearance"
+msgstr ""
+
+msgid "Background Color"
+msgstr ""
+
+msgid "Foreground Color"
+msgstr ""
+
+msgid "Line Style"
+msgstr ""
+
+msgid "solid"
+msgstr ""
+
+msgid "dash"
+msgstr ""
+
+msgid "dash dot"
+msgstr ""
+
+msgid "longdash dot"
+msgstr ""
+
+msgid "bigdash dot"
+msgstr ""
+
+msgid "bigdash longdash"
+msgstr ""
+
+msgid "dot"
+msgstr ""
+
+msgid "double dot"
+msgstr ""
+
+msgid "Polyline Style"
+msgstr ""
+
+msgid "interpolated"
+msgstr ""
+
+msgid "staircase"
+msgstr ""
+
+msgid "barplot"
+msgstr ""
+
+msgid "bar"
+msgstr ""
+
+msgid "arrowed"
+msgstr ""
+
+msgid "filled"
+msgstr ""
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
+
+msgid "Color Range"
+msgstr ""
+
+msgid "Outside Color"
+msgstr ""
+
+msgid "Z Bounds"
+msgstr ""
+
+msgid "Pixel Drawing Mode"
+msgstr ""
+
+msgid "Rotation Style"
+msgstr ""
+
+msgid "unary"
+msgstr ""
+
+msgid "multiple"
+msgstr ""
+
+msgid "Arrow Size Factor"
+msgstr ""
+
+msgid "Bar Width"
+msgstr ""
+
+msgid "Color Mode"
+msgstr ""
+
+msgid "Color Flag"
+msgstr ""
+
+msgid "Hidden Color"
+msgstr ""
+
+msgid "Thickness"
+msgstr ""
+
+msgid "Mark"
+msgstr ""
+
+msgid "Mark Background"
+msgstr ""
+
+msgid "Mark Foreground"
+msgstr ""
+
+msgid "Mark Size"
+msgstr ""
+
+msgid "Mark Style"
+msgstr ""
+
+msgid "3 Components"
+msgstr ""
+
+msgid "Data Properties"
+msgstr ""
+
+msgid "Data Mapping"
+msgstr ""
+
+msgid "Direct"
+msgstr ""
+
+msgid "Clip Box"
+msgstr ""
+
+msgid "Upper-left"
+msgstr ""
+
+msgid "Point"
+msgstr ""
+
+msgid "Clip State"
+msgstr ""
+
+msgid "clipgrf"
+msgstr ""
+
+msgid "Data"
+msgstr ""
+
+msgid "Figure ID"
+msgstr ""
+
+msgid "Figure Name"
+msgstr ""
+
+msgid "Info Message"
+msgstr ""
+
+msgid "Units"
+msgstr ""
+
+msgid "Upper Left Point"
+msgstr ""
+
+msgid "User Data"
+msgstr ""
+
+msgid "X Label"
+msgstr ""
+
+msgid "Y Label"
+msgstr ""
+
+msgid "Z Label"
+msgstr ""
+
+msgid "Scaled"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Number of current figure."
+msgstr ""
+
+msgid "Enter a figure name."
+msgstr ""
+
+msgid "Refresh"
+msgstr ""
+
+msgid "Submit and close"
+msgstr ""
+
+msgid "Append"
+msgstr ""
+
+msgid "Data Editor"
+msgstr ""
+
+msgid "2D"
+msgstr ""
+
+msgid "3D"
+msgstr ""
+
+msgid "Control"
+msgstr ""
+
+msgid "Axes Size"
+msgstr ""
+
+msgid "CloseRequestFcn"
+msgstr ""
+
+msgid "ResizeFcn"
+msgstr ""
+
+msgid "Figure Position"
+msgstr ""
+
+msgid "Figure Size"
+msgstr ""
+
+msgid "Event Handler"
+msgstr ""
+
+msgid "Function"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "Viewport"
+msgstr ""
+
+msgid "X Left"
+msgstr ""
+
+msgid "Y Up"
+msgstr ""
+
+msgid "Log Flags"
+msgstr ""
+
+msgid "Tight Limits"
+msgstr ""
+
+msgid "Enter a x position."
+msgstr ""
+
+msgid "Enter a y position."
+msgstr ""
+
+msgid "Enter a x size."
+msgstr ""
+
+msgid "Enter a y size."
+msgstr ""
+
+msgid "Axis Rulers"
+msgstr ""
+
+msgid "X Location"
+msgstr ""
+
+msgid "Y Location"
+msgstr ""
+
+msgid "Location"
+msgstr ""
+
+msgid "bottom"
+msgstr ""
+
+msgid "middle"
+msgstr ""
+
+msgid "origin"
+msgstr ""
+
+msgid "top"
+msgstr ""
+
+msgid "left"
+msgstr ""
+
+msgid "right"
+msgstr ""
+
+msgid "Reverse"
+msgstr ""
+
+msgid "Box Mode"
+msgstr ""
+
+msgid "Title Page"
+msgstr ""
+
+msgid "Axis Title"
+msgstr ""
+
+msgid "Font Color"
+msgstr ""
+
+msgid "Font Size"
+msgstr ""
+
+msgid "Font Style"
+msgstr ""
+
+msgid "Fractional Font"
+msgstr ""
+
+msgid "Sub Ticks"
+msgstr ""
+
+msgid "Coordinates"
+msgstr ""
+
+msgid "X Coordinate"
+msgstr ""
+
+msgid "Y Coordinate"
+msgstr ""
+
+msgid "Position"
+msgstr ""
+
+msgid "Axes Bounds"
+msgstr ""
+
+msgid "Mark Size Unit"
+msgstr ""
+
+msgid "Shift"
+msgstr ""
+
+msgid "Up"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Margins"
+msgstr ""
+
+msgid "Rotation Angles"
+msgstr ""
+
+msgid "Tabulated"
+msgstr ""
+
+msgid "X Shift"
+msgstr ""
+
+msgid "Y Shift"
+msgstr ""
+
+msgid "Z Shift"
+msgstr ""
+
 msgid "OK"
 msgstr "OK"
 
@@ -1293,21 +2075,24 @@ msgstr "Nein"
 msgid "Save and execute"
 msgstr "Speichern und ausführen"
 
+msgid "Axis"
+msgstr ""
+
 msgid "Empty tab"
 msgstr ""
 
+#, c-format
 msgid ""
 "The tab with uuid %s cannot be restored.\n"
 "Please report a bug with the previous message and in attaching the file %s."
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s ?"
 msgstr ""
 
+#, c-format
 msgid "Are you sure you want to close %s and %s ?"
-msgstr ""
-
-msgid "Exit"
 msgstr ""
 
 msgid "An error occurred: "
@@ -1358,14 +2143,12 @@ msgstr ""
 msgid "All RTF (Rich Text Format) files"
 msgstr ""
 
+#, c-format
 msgid "All %s files"
 msgstr "Alle %s Dateien"
 
 msgid "About Scilab..."
 msgstr "Über Scilab..."
-
-msgid "Close"
-msgstr "Schließen"
 
 msgid "Acknowledgements"
 msgstr "Danksagungen"
@@ -1386,9 +2169,6 @@ msgstr "Fehler. Ein Signal wurde aufgehalten.\n"
 
 msgid "Control Plot3d"
 msgstr ""
-
-msgid "File"
-msgstr "Datei"
 
 msgid "GUI"
 msgstr "Grafische Oberfläche"
@@ -1551,10 +2331,6 @@ msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
 msgstr "%s: falsche Eingangsargumente: %s, %s oder %s erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Falsche Anzahl an Eingansargumenten: %d zu %d erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong value for '%s' property: %d, %d or %d expected.\n"
 msgstr "%s: falscher Wert für '%s' Eigenschaft: %d, %d oder %d erwartet.\n"
 
@@ -1580,10 +2356,6 @@ msgid ""
 msgstr ""
 "%s: Falsche Größe für Eingangsargument #%d: Eine 'Diagramm' Handhabung oder "
 "Realzahl erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: falsche Anzahl für Eingangsargumente: %d erwartet.\n"
 
 #, c-format
 msgid "%s: Type %s is not implemented.\n"

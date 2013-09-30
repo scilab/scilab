@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: de\n"
 
 #, c-format
@@ -355,14 +355,17 @@ msgstr "Bearbeiten"
 msgid "Block Parameters"
 msgstr "Block Parameter"
 
-msgid "Region to superblock"
-msgstr "Region zu Superblock"
+msgid "Selection to superblock"
+msgstr ""
 
 msgid "Superblock mask"
 msgstr "Superblock Maske"
 
 msgid "Create"
 msgstr "Erstellen"
+
+msgid "Rename"
+msgstr ""
 
 msgid "Remove"
 msgstr "Entfernen"
@@ -387,6 +390,9 @@ msgstr "Zu neuer Kategorie hinzufügen"
 
 msgid "Category"
 msgstr "Kategorie"
+
+msgid "Enter a name"
+msgstr ""
 
 msgid "Dump"
 msgstr "Speicherauszug"
@@ -493,8 +499,8 @@ msgstr "Xcos Hilfe"
 msgid "Block Help"
 msgstr "Block Hilfe"
 
-msgid "Xcos Demos"
-msgstr "Xcos Demos"
+msgid "Xcos Demonstrations"
+msgstr ""
 
 msgid "About Xcos"
 msgstr "Über Xcos"
@@ -889,7 +895,7 @@ msgstr ""
 msgid "Inverted pendulum"
 msgstr ""
 
-msgid "Lorentz butterfly"
+msgid "Lorenz butterfly"
 msgstr ""
 
 msgid "RLC Circuit"

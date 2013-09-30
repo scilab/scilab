@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-03-22 09:58+0000\n"
+"PO-Revision-Date: 2013-09-27 09:29+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 msgid "Exception thrown in file"
 msgstr "Une exception a été lancée dans le fichier"
@@ -49,14 +49,15 @@ msgstr "Variable invalide : Impossible de créer les données"
 msgid "External Class expected"
 msgstr "Une classe externe attendue"
 
-msgid "Incompatible External Objects"
-msgstr "Objets externes incompatibles"
-
 msgid "External object expected"
 msgstr "Un objet externe attendu"
 
-msgid "Unable to wrap. Unmanaged datatype ?"
-msgstr "Impossible d'interfacer. Type de données non pris en charge ?"
+msgid "Incompatible External object"
+msgstr "Objet externe incompatible"
+
+#, c-format
+msgid "Unable to wrap. Unmanaged datatype (%d) ?"
+msgstr "Impossible d'interfacer. Type de données non géré (%d) ?"
 
 msgid "Invalid String"
 msgstr "Chaîne de caractères invalide"
@@ -82,6 +83,9 @@ msgstr "Nombre erroné d'arguments : Plus de %d attendus."
 #, c-format
 msgid "A strictly positive integer is expected at position %d."
 msgstr "Un entier strictement positif est attendu à la position% d."
+
+msgid "Incompatible External Objects"
+msgstr "Objets externes incompatibles"
 
 msgid "Invalid name"
 msgstr "Nom invalide"
@@ -182,3 +186,10 @@ msgstr "Impossible d'interfacer l'argument n°%d."
 msgid "Can only wrap as a reference to a named variable"
 msgstr ""
 "Il est seulement possible de lier une référence à une variable nommée"
+
+msgid "Invalid variable: cannot retrieve the data type"
+msgstr "Variable invalide : Impossible de récupérer le type de données."
+
+#, c-format
+msgid "%s: Wrong argument type at position %i: Double expected\n"
+msgstr "%s : Type erroné d'argument à la position %i : Un double attendu.\n"

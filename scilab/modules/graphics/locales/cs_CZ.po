@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Grafický modul Scilabu je vypnut, režim -nogui nebo -nwni.\n"
@@ -203,6 +203,50 @@ msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána matice obslužné rutiny.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, c-format
+msgid "%s: Cannot get the data type.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot get the integer type for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot get the data for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot get the hypermatrix data type for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real or integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor %s nebo %s.\n"
@@ -333,10 +377,6 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
-
-#, c-format
 msgid "%s: Can not get type of input argument #%d.\n"
 msgstr "%s: Nelze získat typ vstupního argumentu #%d.\n"
 
@@ -352,22 +392,9 @@ msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván jeden řetězec.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of boolean expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice booleanů.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of handle expected\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána matice z obslužné rutiny.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A matrix of string expected.\n"
 msgstr ""
 "%s: Špatná velikostvstupního argumentu #%d: Očekávána matice řetězců.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván seznam.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or handle expected.\n"
@@ -429,6 +456,16 @@ msgid "%s: Wrong size for arguments #%d and #%d.\n"
 msgstr "%s: Špatná velikost argumentů #%d a #%d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d-by-%d matrix or a scalar "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
 msgstr ""
 "%s: Interpolované stínování funguje pouze pro polygony o velikosti %d nebo "
@@ -447,10 +484,6 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: A valid fontname expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván platný název písma.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-negative int expected.\n"
@@ -485,8 +518,8 @@ msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáváno %d, %d nebo %d.\n"
 
 #, c-format
-msgid "%s : '%s' must be set\n"
-msgstr "%s : '%s' musí být nastaveno\n"
+msgid "%s: Unrecognized input argument '%s'.\n"
+msgstr "%s: Nerozpoznaný vstupní argument '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -505,26 +538,6 @@ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 #, c-format
 msgid "Figure n%d"
 msgstr "Číslo n%d"
-
-#, c-format
-msgid "WARNING: %s\n"
-msgstr "VAROVÁNÍ: %s\n"
-
-msgid "xset(\"wshow\") is obsolete."
-msgstr "xset(\"wshow\") je zastaralé."
-
-msgid "It will be removed after Scilab 5.4.0."
-msgstr "Bude odstraněno po Scilab 5.4.0."
-
-msgid "Please use drawlater/drawnow instead."
-msgstr "Místo toho prosím použijte drawlater/drawnow."
-
-msgid "xset(\"wwpc\") is obsolete."
-msgstr "xset(\"wwpc\") je zastaralé."
-
-#, c-format
-msgid "%s: Unrecognized input argument '%s'.\n"
-msgstr "%s: Nerozpoznaný vstupní argument '%s'.\n"
 
 #, c-format
 msgid ""
@@ -753,6 +766,18 @@ msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr "Špatný hodnota vlastnosti '%s': Musí být v sadě {%s}.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: Real matrix expected.\n"
+msgstr "Špatný typ vlastnosti '%s': Očekávána reálná matice.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: %d elements expected.\n"
+msgstr "Špatná velikost vlastnosti '%s': Očekáváno %d prvků.\n"
+
+#, c-format
+msgid "Wrong values for '%s' property: values between [0, 1] expected.\n"
+msgstr ""
+
+#, c-format
 msgid "Wrong value for '%s' property: %s or %s expected.\n"
 msgstr "Špatný hodnota vlastnosti '%s': Očekáváno %s nebo %s.\n"
 
@@ -767,14 +792,6 @@ msgstr "Špatný typ vlastnosti '%s': Očekávána řetězcová matice.\n"
 #, c-format
 msgid "Wrong size for '%s' property: At most %d elements expected.\n"
 msgstr "Špatná velikost vlastnosti '%s': Očekáváno nejvíce %d prvků.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: Real matrix expected.\n"
-msgstr "Špatný typ vlastnosti '%s': Očekávána reálná matice.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: %d elements expected.\n"
-msgstr "Špatná velikost vlastnosti '%s': Očekáváno %d prvků.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Integer expected.\n"
@@ -868,25 +885,30 @@ msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr "Špatná velikost vlastnosti '%s': Musí být v sadě {%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Columns vectors expected.\n"
-msgstr "%s: Špatný typ argumentu #%d: Očekávány sloupcové vektory.\n"
-
-#, c-format
-msgid "%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"
-msgstr "%s: Špatná velikost argumentů #%d a #%d: Nekompatibilní délky.\n"
-
-#, c-format
-msgid "%s: Wrong size for arguments #%d: Incompatible length.\n"
-msgstr "%s: Špatná velikost argumentů #%d: Nekompatibilní délka.\n"
-
-#, c-format
-msgid "%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"
+msgid "%s: Wrong type for input argument #%d: Columns vectors expected.\n"
 msgstr ""
-"%s: Špatná velikost argumentů #%d, #%d a #%d: Nekompatibilní délka.\n"
 
 #, c-format
-msgid "%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"
-msgstr "%s: Špatná velikost argumentů #%d a #%d: Mělo by být >= %d.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Incompatible length.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d, #%d and #%d: Incompatible lengths.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Should be >= %d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -897,23 +919,35 @@ msgstr ""
 "velikosti %d.\n"
 
 #, c-format
-msgid "Can not change the %s of graphic object: its type is %s.\n"
-msgstr "Nelze změnit %s ve grafickém objektu: jeho typ je %s.\n"
+msgid "Cannot change the %s of graphic object: its type is %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value: Vector is not monotonous.\n"
 msgstr "%s: Špatná hodnota: Vektor není monotónní.\n"
 
-msgid "Wrong type for input argument: Tlist expected.\n"
-msgstr "Špatný typ vstupního argumentu: Očekáván Tlist.\n"
+msgid "Wrong type for input argument: A tlist expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong size for input argument: %d or %d expected.\n"
 msgstr "Špatná velikost vstupního argumentu: Očekáváno %d nebo %d.\n"
 
 #, c-format
-msgid "Incompatible type for property %s.\n"
-msgstr "Nekompatibilní typ vlastnosti %s.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: The number of rows must be a multiple "
+"of 3.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: The number of rows must be a multiple "
+"of 4.\n"
+msgstr ""
+
+#, c-format
+msgid "Incompatible type for property ''%s''.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be '%s'.\n"
@@ -936,6 +970,13 @@ msgstr ""
 "Špatný hodnota vlastnosti '%s': Musí být -1 nebo platný barevný index.\n"
 
 #, c-format
+msgid "Incompatible type for property %s.\n"
+msgstr "Nekompatibilní typ vlastnosti %s.\n"
+
+msgid "Invalid image type for this handle.\n"
+msgstr ""
+
+#, c-format
 msgid "You must first specify an %s for this object.\n"
 msgstr "Nejdříve musíte pro tento objekt určit %s.\n"
 
@@ -946,6 +987,14 @@ msgid ""
 msgstr ""
 "Počet sloupců vektoru barvy se musí shodovat s počtem bodů určující čáru "
 "(jenž musí být %d nebo %d).\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: 'directional' or 'point' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr "VAROVÁNÍ: %s\n"
 
 msgid "{0,1} values are equivalent for line_style property."
 msgstr "Hodnoty {0,1} odpovídají vlastnosti line_style"
@@ -1159,6 +1208,9 @@ msgstr "Datové popisky"
 
 msgid "LaTeX/MathML"
 msgstr "LaTeX/MathML"
+
+msgid "Lighting"
+msgstr ""
 
 msgid "Misc"
 msgstr "Různé"
@@ -1417,10 +1469,6 @@ msgid "%s: Wrong values for input argument #%d: '%s' expected.\n"
 msgstr "%s: Špatné hodnoty vstupního argumentu #%d: Očekáváno '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
@@ -1543,11 +1591,6 @@ msgstr "Režim mnoha datových popisků"
 msgid "Unique datatip mode"
 msgstr "Režim jedinečného datového popisku"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina '%s'.\n"
-
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: nalezeno prázdné kaskádové menu"
 
@@ -1568,6 +1611,11 @@ msgstr "vpravo nahoře"
 
 msgid "Select tip orientation"
 msgstr "Vyberte orientaci vrcholu"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina '%s'.\n"
 
 msgid "The selected file cannot be executed"
 msgstr "Vybraný soubor nelze spustit"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: it\n"
 
 #, c-format
@@ -1258,12 +1258,8 @@ msgid "%s: Initial guess is not feasible."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: The x0 vector is expected to be a column matrix, but current shape is %d "
-"x %d"
+msgid "%s: Wrong size for x0 argument: A vector expected."
 msgstr ""
-"%s: Il vettore x0 dovrebbe essere una matrice colonna, ma la forma attuale è "
-"%d x %d"
 
 #, c-format
 msgid "%s: Unknown value %s for %s option"

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: ca\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -222,6 +222,54 @@ msgstr ""
 "tractaments.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de caràcters.\n"
+
+#, c-format
+msgid "%s: Cannot get the data type.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot get the integer type for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot get the data for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot get the hypermatrix data type for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real or integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
+"real.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus invàlid: Ha de ser un vector %s o "
@@ -358,10 +406,6 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Can not get type of input argument #%d.\n"
 msgstr ""
 
@@ -376,19 +420,7 @@ msgstr ""
 "cadena de caràcters.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of boolean expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of handle expected\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A matrix of string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr ""
 
 #, c-format
@@ -450,6 +482,16 @@ msgid "%s: Wrong size for arguments #%d and #%d.\n"
 msgstr "%s:Els arguments d'entrada #%d i #%d tenen una mida incorrecta.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d-by-%d matrix or a scalar "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
 msgstr ""
 "%s: L'ombrejat interpolat només funciona per a polígons de mida %d o %d\n"
@@ -469,12 +511,6 @@ msgid "%s: Wrong value for input argument #%d: A valid fontname expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un nom de "
 "tipus de lletra vàlid.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
-"de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-negative int expected.\n"
@@ -514,8 +550,8 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser %d, %d o %d.\n"
 
 #, c-format
-msgid "%s : '%s' must be set\n"
-msgstr "%s : S'ha d'establir '%s'\n"
+msgid "%s: Unrecognized input argument '%s'.\n"
+msgstr "%s: L'argument d'entrada '%s' no és reconegut.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -534,26 +570,6 @@ msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
 #, c-format
 msgid "Figure n%d"
 msgstr ""
-
-#, c-format
-msgid "WARNING: %s\n"
-msgstr ""
-
-msgid "xset(\"wshow\") is obsolete."
-msgstr ""
-
-msgid "It will be removed after Scilab 5.4.0."
-msgstr ""
-
-msgid "Please use drawlater/drawnow instead."
-msgstr ""
-
-msgid "xset(\"wwpc\") is obsolete."
-msgstr ""
-
-#, c-format
-msgid "%s: Unrecognized input argument '%s'.\n"
-msgstr "%s: L'argument d'entrada '%s' no és reconegut.\n"
 
 #, c-format
 msgid ""
@@ -794,6 +810,20 @@ msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
 msgstr "La propietat '%s' té un valor incorrecte: Ha de ser entre {%s}.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: Real matrix expected.\n"
+msgstr ""
+"La propietat '%s' és d'un tipus incorrecte: Ha de ser una matriu de nombres "
+"reals.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: %d elements expected.\n"
+msgstr "La propietat '%s' té una mida incorrecta: Ha de tenir %d elements.\n"
+
+#, c-format
+msgid "Wrong values for '%s' property: values between [0, 1] expected.\n"
+msgstr ""
+
+#, c-format
 msgid "Wrong value for '%s' property: %s or %s expected.\n"
 msgstr "La propietat '%s' té un valor incorrecte: Ha de ser %s o %s.\n"
 
@@ -813,16 +843,6 @@ msgid "Wrong size for '%s' property: At most %d elements expected.\n"
 msgstr ""
 "La propietat '%s' té una mida incorrecta: Com a màxim, pot tenir %d "
 "elements.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: Real matrix expected.\n"
-msgstr ""
-"La propietat '%s' és d'un tipus incorrecte: Ha de ser una matriu de nombres "
-"reals.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: %d elements expected.\n"
-msgstr "La propietat '%s' té una mida incorrecta: Ha de tenir %d elements.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Integer expected.\n"
@@ -916,33 +936,30 @@ msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr "La propietat '%s' té una mida incorrecta: Ha de ser entre {%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Columns vectors expected.\n"
+msgid "%s: Wrong type for input argument #%d: Columns vectors expected.\n"
 msgstr ""
-"%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un vector columna.\n"
 
 #, c-format
-msgid "%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
 msgstr ""
-"%s: Els arguments #%d i #%d tenen una mida incorrecta: La seva longitud és "
-"incompatible.\n"
 
 #, c-format
-msgid "%s: Wrong size for arguments #%d: Incompatible length.\n"
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: Els arguments #%d tenen una mida incorrecta: La seva longitud és "
-"incompatible.\n"
 
 #, c-format
-msgid "%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"
+msgid "%s: Wrong size for input argument #%d: Incompatible length.\n"
 msgstr ""
-"%s: Els arguments #%d, #%d i #%d tenen una mida incorrecta: La seva longitud "
-"és incompatible.\n"
 
 #, c-format
-msgid "%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d, #%d and #%d: Incompatible lengths.\n"
 msgstr ""
-"%s: Els arguments #%d i #%d tenen una mida incorrecta: Haurien de ser >= "
-"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Should be >= %d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -953,23 +970,35 @@ msgstr ""
 "vector de mida %d.\n"
 
 #, c-format
-msgid "Can not change the %s of graphic object: its type is %s.\n"
-msgstr "No es pot canviar el %s de l'objecte gràfic: És de tipus %s.\n"
+msgid "Cannot change the %s of graphic object: its type is %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value: Vector is not monotonous.\n"
 msgstr "%s: El valor és incorrecte: El vector no és monòton.\n"
 
-msgid "Wrong type for input argument: Tlist expected.\n"
-msgstr "L'argument d'entrada és d'un tipus incorrecte: Ha de ser Tlist.\n"
+msgid "Wrong type for input argument: A tlist expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong size for input argument: %d or %d expected.\n"
 msgstr "L'argument d'entrada té una mida incorrecta: Ha de ser %d o %d.\n"
 
 #, c-format
-msgid "Incompatible type for property %s.\n"
-msgstr "La propietat %s és d'un tipus incompatible.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: The number of rows must be a multiple "
+"of 3.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: The number of rows must be a multiple "
+"of 4.\n"
+msgstr ""
+
+#, c-format
+msgid "Incompatible type for property ''%s''.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be '%s'.\n"
@@ -994,6 +1023,13 @@ msgstr ""
 "vàlid.\n"
 
 #, c-format
+msgid "Incompatible type for property %s.\n"
+msgstr "La propietat %s és d'un tipus incompatible.\n"
+
+msgid "Invalid image type for this handle.\n"
+msgstr ""
+
+#, c-format
 msgid "You must first specify an %s for this object.\n"
 msgstr "Primer heu d'especificar un %s per aquest objecte.\n"
 
@@ -1001,6 +1037,14 @@ msgstr "Primer heu d'especificar un %s per aquest objecte.\n"
 msgid ""
 "The number of column of the color vector must match the number of points "
 "defining the line (which must be %d or %d).\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for '%s' property: 'directional' or 'point' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "WARNING: %s\n"
 msgstr ""
 
 msgid "{0,1} values are equivalent for line_style property."
@@ -1216,6 +1260,9 @@ msgid "Datatips"
 msgstr ""
 
 msgid "LaTeX/MathML"
+msgstr ""
+
+msgid "Lighting"
 msgstr ""
 
 msgid "Misc"
@@ -1470,12 +1517,6 @@ msgid "%s: Wrong values for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
-"real.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
@@ -1597,10 +1638,6 @@ msgstr "Mode per múltiples datatips"
 msgid "Unique datatip mode"
 msgstr "Mode de datatip únic"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr ""
-
 msgid "createPopupItems: found an empty cascading menu."
 msgstr ""
 
@@ -1621,6 +1658,10 @@ msgstr "superior dreta"
 
 msgid "Select tip orientation"
 msgstr "Seleccioneu la orientació"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
+msgstr ""
 
 msgid "The selected file cannot be executed"
 msgstr "No es pot executar el fitxer seleccionat"

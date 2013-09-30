@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-07-20 14:26+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2013-09-29 19:33+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: fr\n"
 
 #, c-format
@@ -87,6 +87,132 @@ msgstr "%s : Valeur erronée du paramètre %s : Valeur %s\n"
 msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
 msgstr "%s : Dimension erronée du paramètre %s : %d attendu, %d obtenu\n"
 
+msgid "Parameters"
+msgstr "Paramètres"
+
+msgid "plist handling"
+msgstr "Gestion d'une plist"
+
+msgid ""
+"This demo shows examples of plist utilizations: creation, insertion, "
+"removal, ..."
+msgstr ""
+"Cette démonstration donne des exemples d'utilisation d'une plist : création, "
+"insertion, suppression..."
+
+#, c-format
+msgid ""
+"\n"
+"Create a plist '%s' containing two fields 'min' = [0 0 0] and 'max' = [1 1 "
+"1].\n"
+msgstr ""
+"\n"
+"Création d'une plist '%s' contenant deux champs 'min' = [0 0 0] et 'max' = "
+"[1 1 1].\n"
+
+#, c-format
+msgid ""
+"\n"
+"Check fields: \n"
+msgstr ""
+"\n"
+"Vérification des champs : \n"
+
+#, c-format
+msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
+msgstr "Configuration de 'min' = [0 0 0] et 'max' = [1 1 1] :\n"
+
+#, c-format
+msgid "Check values: \n"
+msgstr "Vérification des valeurs : \n"
+
+#, c-format
+msgid ""
+"\n"
+"Remove the parameter 'min' from %s.\n"
+msgstr ""
+"\n"
+"Suppression du paramètre 'min' de %s.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Before remove_param: \n"
+msgstr ""
+"\n"
+"Avant remove_param : \n"
+
+#, c-format
+msgid ""
+"\n"
+"After remove_param: \n"
+msgstr ""
+"\n"
+"Après remove_param : \n"
+
+#, c-format
+msgid ""
+"\n"
+"Check removal: \n"
+msgstr ""
+"\n"
+"Vérification de la suppression : \n"
+
+#, c-format
+msgid ""
+"\n"
+"Check type: \n"
+msgstr ""
+"\n"
+"Vérification du type : \n"
+
+msgid "Show that parameters operators only apply to the plist type"
+msgstr ""
+"Montre que les opérateurs sur les paramètres s'appliquent uniquement au type "
+"plist."
+
+#, c-format
+msgid ""
+"\n"
+"Add a parameter to 'A' when 'A' is not a plist.\n"
+msgstr ""
+"\n"
+"Ajout d'un paramètre à 'A' quand 'A' n'est pas une plist.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Before add_param: \n"
+msgstr ""
+"\n"
+"Avant add_param : \n"
+
+#, c-format
+msgid ""
+"\n"
+"After add_param: \n"
+msgstr ""
+"\n"
+"Après add_param : \n"
+
+#, c-format
+msgid ""
+"\n"
+"Error = %f. If error<>0, an error occurred.\n"
+msgstr ""
+"\n"
+"Erreur = %f. Si erreur <>0, alors une erreur s'est produite.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: key %s already defined.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : La clé %s a déjà été "
+"définie.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : %s attendu.\n"
@@ -105,6 +231,10 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: parameter doesn't exist"

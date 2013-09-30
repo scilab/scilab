@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: ca\n"
 
 #, c-format
@@ -455,12 +455,6 @@ msgstr ""
 "enter positiu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una matriu "
-"real.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %d, '%s', %d "
@@ -488,6 +482,54 @@ msgstr "%s: Log d'una matriu singular.\n"
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
 msgstr "%s: No es pot diagonalitzar.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: expected same type as first "
+"argument.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of integers, reals, complexes, "
+"booleans, polynomials or strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for argument #%d: Must not contain NaN.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Scalar string expected => option ignored.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown option %s => ignored.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Option %s only relevant for %s and %s modes => ignored.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: not enough memory to proceed\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of columns "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At most %d expected.\n"

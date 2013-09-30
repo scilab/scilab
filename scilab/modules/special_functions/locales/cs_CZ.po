@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -46,12 +46,14 @@ msgid "%s: Wrong type for argument %d: A matrix expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekávána matice.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument.\n"
-msgstr "%s: Chybný typ prvního vstupního argumentu.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Integer or vector of integers "
+"expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Chybný typ vstupního argumentu #%d.\n"
+msgid "%s: Wrong type for input argument #%d: Integer >= %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
@@ -59,11 +61,9 @@ msgstr "%s: Pouze jeden z arg1 a arg2 může být vektor.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) "
+"%s: Wrong value for input argument #%d: Matrix with elements in [%d,%d] "
 "expected.\n"
 msgstr ""
-"%s: Chybná hodnota vstupního argumentu #%d: Očekávána matice s prvky na "
-"pozici (%d,%d).\n"
 
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"

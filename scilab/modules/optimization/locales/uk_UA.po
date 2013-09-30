@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 05:24+0000\n"
+"PO-Revision-Date: 2013-09-04 13:59+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: uk\n"
 
 #, c-format
@@ -914,13 +914,13 @@ msgid "Problem definition"
 msgstr "Умова задачі"
 
 msgid "LMITOOL will generate a skeleton of the functions needed"
-msgstr ""
+msgstr "LMITOOL створить каркас потрібних функцій"
 
 msgid " (see User's Guide for details). For that, you need to specify:"
 msgstr " (докладніше у «Підручнику користувача»). Вам слід вказати:"
 
 msgid "1- Name of your problem which will be given to the solver function,"
-msgstr ""
+msgstr "1— назва задачі, яку буде передано функції-розв’язувачу,"
 
 msgid "2- Names of unknown matrices or list of unknown matrices,"
 msgstr "2- позначення для невідомих матриць або список невідомих матриць,"
@@ -937,25 +937,29 @@ msgstr ""
 "некоректні зміни."
 
 msgid "Function definitions: "
-msgstr ""
+msgstr "Визначення функцій: "
 
 msgid "Here is a skeleton of the functions you should edit."
-msgstr ""
+msgstr "Це каркас функцій, до якого ви маєте внести зміни."
 
 msgid "You can edit in this window or click on 'ok'."
 msgstr ""
+"Ви можете внести зміни за допомогою цього вікна або натиснути кнопку "
+"«Гаразд»."
 
 msgid "Save and edit the skeleton later through your favorite editor."
 msgstr ""
+"Зберегти каркас, щоб пізніше внести до нього зміни за допомогою вашого "
+"улюбленого текстового редактора."
 
 msgid "Name of the file where to save the solver function"
-msgstr ""
+msgstr "Назва файла, до якого слід зберегти функцію-розв’язувач"
 
 msgid "and the evaluation function"
-msgstr ""
+msgstr "та функція обчислення"
 
 msgid "(Will overwrite if a file with the same name already exists)."
-msgstr ""
+msgstr "(Якщо файл з такою назвою вже існує, його буде перезаписано)."
 
 msgid "functions saved in "
 msgstr "функції збережено до "
@@ -1302,11 +1306,8 @@ msgid "%s: Initial guess is not feasible."
 msgstr "%s: початкова точка не задовольняє умовам задачі."
 
 #, c-format
-msgid ""
-"%s: The x0 vector is expected to be a column matrix, but current shape is %d "
-"x %d"
+msgid "%s: Wrong size for x0 argument: A vector expected."
 msgstr ""
-"%s: вектор x0 мав бути матрицею-стовпчиком, але він має розмірність %d x %d"
 
 #, c-format
 msgid "%s: Unknown value %s for %s option"

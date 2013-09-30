@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-23 21:40+0000\n"
+"PO-Revision-Date: 2013-09-24 11:58+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -655,7 +655,7 @@ msgstr "Nápověda Xcos"
 msgid "Block Help"
 msgstr "Nápověda bloku"
 
-msgid "Xcos Demos"
+msgid "Xcos Demonstrations"
 msgstr "Ukázky Xcos"
 
 msgid "About Xcos"
@@ -705,6 +705,9 @@ msgstr "Zvolit rozložení"
 
 msgid "(Modify the layout requires to restart Scilab)"
 msgstr "(Změna rozvržení vyžaduje retart)"
+
+msgid "Save layout on exiting"
+msgstr "Při ukončení uložit rozvržení"
 
 msgid "Keys binding"
 msgstr "Přidělení kláves"
@@ -761,6 +764,10 @@ msgstr ""
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
 "[Pokračovat v zobrazení? n (ne) pro zastavení, jiné klávesy pro pokračování]"
+
+#, c-format
+msgid "MPI error: %s\n"
+msgstr "Chyba MPI: %s\n"
 
 #, c-format
 msgid ""

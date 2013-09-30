@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-24 13:07+0000\n"
+"PO-Revision-Date: 2013-09-16 09:13+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: fr\n"
 
 #, c-format
@@ -664,7 +664,7 @@ msgstr "Aide de Xcos"
 msgid "Block Help"
 msgstr "Aide du bloc"
 
-msgid "Xcos Demos"
+msgid "Xcos Demonstrations"
 msgstr "Démonstrations Xcos"
 
 msgid "About Xcos"
@@ -715,6 +715,9 @@ msgstr "Sélectionner un agencement"
 msgid "(Modify the layout requires to restart Scilab)"
 msgstr ""
 "(Modifier la disposition des fenêtres nécessite de redémarrer Scilab)"
+
+msgid "Save layout on exiting"
+msgstr "Enregistrer la disposition en quittant"
 
 msgid "Keys binding"
 msgstr "Combinaison de touches"
@@ -773,6 +776,10 @@ msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
 "[Continuer à afficher ? n (no) pour arrêter, toute autre touche pour "
 "continuer]"
+
+#, c-format
+msgid "MPI error: %s\n"
+msgstr "Erreur MPI : %s\n"
 
 #, c-format
 msgid ""

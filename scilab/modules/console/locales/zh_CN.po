@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16753)\n"
+"X-Generator: Launchpad (build 16774)\n"
 "Language: \n"
 
 #, c-format
@@ -654,8 +654,8 @@ msgstr "Xcos帮助"
 msgid "Block Help"
 msgstr ""
 
-msgid "Xcos Demos"
-msgstr "Xcos演示"
+msgid "Xcos Demonstrations"
+msgstr ""
 
 msgid "About Xcos"
 msgstr "关于Xcos"
@@ -704,6 +704,9 @@ msgstr "选择布局"
 
 msgid "(Modify the layout requires to restart Scilab)"
 msgstr "(修改布局需要重启Scilab)"
+
+msgid "Save layout on exiting"
+msgstr ""
 
 msgid "Keys binding"
 msgstr ""
@@ -758,6 +761,10 @@ msgstr "命令过长(超过%d个字符): 无法发送到Scilab\n"
 
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr "[继续显示？按n键停止，按任意其他键继续]"
+
+#, c-format
+msgid "MPI error: %s\n"
+msgstr ""
 
 #, c-format
 msgid ""
