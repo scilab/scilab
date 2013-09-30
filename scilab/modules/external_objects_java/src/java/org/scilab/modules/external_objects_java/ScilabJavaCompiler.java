@@ -231,7 +231,7 @@ public class ScilabJavaCompiler {
         @Override
         public JavaFileObject getJavaFileForOutput(Location location, String className, Kind kind, FileObject sibling) throws IOException {
             if (sibling instanceof SourceString) {
-                this.className = className;
+                this.className = className.replace('/', '.');
             }
 
             if (ScilabJavaObject.debug) {
