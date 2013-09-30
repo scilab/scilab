@@ -6,10 +6,10 @@ New Features
 
 * New special functions:
  - erfi - The imaginary error function.
- - dawson - Compute the Dawson (scaled imaginary error) function.
+ - dawson - Compute the Dawson function (scaled imaginary error).
 
 * New functions introduced:
- - getURL - Download an URL (HTTP, HTTPS, FTP...)
+ - getURL - Download a URL (HTTP, HTTPS, FTP...)
  - splitURL - Split a URL (HTTP, HTTPS, FTP...)
  - cov - Covariance matrix. Deprecates mvvacov. See bug #11896 fixed.
  - ismatrix - Check if a variable is a matrix. See bug #10456 fixed.
@@ -51,11 +51,11 @@ BDF methods with direct and preconditioned Krylov linear solvers, based on ODEPA
 * Added lighting effect for plot of surfaces. Lighting can be enabled
   creating light objects or disabled by deleting them. The following function
   was introduced:
-  - light - Creates a light graphic object
+  - light - Creates a light graphic object.
 
 * Localization:
  - Multiple domains in localization managed.
- - Function addlocalizationdomain added to manage a new domain.
+ - addlocalizationdomain function added for a new domain creation.
  - Optional parameter added to gettext to manage domains.
  - tbx_generate_pofile and tbx_build_localization added to create localization files for
    modules.
@@ -63,7 +63,7 @@ BDF methods with direct and preconditioned Krylov linear solvers, based on ODEPA
 * Windows Solution updated to Visual Studio 2012.
 
 * -keepconsole option added for Scilab Windows to facilitate debugging.
-  Calling Scilab with this optin will leave the console box window opened at startup.
+  Calling Scilab with this option will leave the console box window opened at startup.
 
 * License update: switch to the CeCILL 2.1.
 
@@ -269,7 +269,7 @@ Scilab Bug Fixes
 
 * Bug #7684 fixed - Introduction demonstration splitted into subsections.
 
-* Bug #7781 fixed - The second parameter of iqr function had not effect.
+* Bug #7781 fixed - The second parameter of iqr function had no effect.
 
 * Bug #7782 fixed - lcm and gcd help pages improved to tell the user how to use both 
                     functions.
@@ -331,7 +331,7 @@ Scilab Bug Fixes
 
 * Bug #8636 fixed - roots help page updated (default algorithm value was wrong).
 
-* Bug #8667 fixed - Handling of %nan in min, max, median functions was not properly 
+* Bug #8667 fixed - The handling of %nan in min, max, median functions was not properly 
                     documented.
 
 * Bug #8680 fixed - "end" output argument of regexp function has been changed.
@@ -372,7 +372,8 @@ Scilab Bug Fixes
 
 * Bug #9109 fixed - nfreq tagged as obsolete.
 
-* Bug #9158 fixed - zeros called with a big number returns an empty matrix.
+* Bug #9158 fixed - zeros called with a big number returned an empty matrix instead 
+                    of an error.
 
 * Bug #9208 fixed - Added three optional output arguments to optim,
                     to retrieve #iterations, #evaluations and a termination indicator.
@@ -544,7 +545,7 @@ Scilab Bug Fixes
 
 * Bug #12475 fixed - csvRead did not support double quoted fields.
 
-* Bug #12490 fixed - plot did not call clf in its help page example producing a
+* Bug #12490 fixed - plot did not call clf; in its help page example producing a 
                     wrong behavior.
 
 * Bug #12506 fixed - In SciNotes, a miscolorization could occurred when returned values 
