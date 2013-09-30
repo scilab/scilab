@@ -327,7 +327,10 @@ public final class LinkElement extends AbstractElement<BasicLink> {
          */
         for (BasicPort p : startPorts) {
             if (startKlass.isInstance(p)) {
-                start = p;
+                // only link the same port once, fallback should be provided by the caller method
+                if (p.getEdgeCount() == 0) {
+                    start = p;
+                }
                 break;
             }
         }
@@ -337,7 +340,10 @@ public final class LinkElement extends AbstractElement<BasicLink> {
          */
         for (BasicPort p : endPorts) {
             if (endKlass.isInstance(p)) {
-                end = p;
+                // only link the same port once, fallback should be provided by the caller method
+                if (p.getEdgeCount() == 0) {
+                    end = p;
+                }
                 break;
             }
         }

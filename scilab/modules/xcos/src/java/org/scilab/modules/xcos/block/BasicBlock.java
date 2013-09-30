@@ -660,7 +660,8 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         if (!hasAValidRpar && realParameters instanceof ScilabMList) {
             try {
                 final DiagramElement elem = new DiagramElement();
-                realParameters = elem.encode(elem.decode(realParameters, new XcosDiagram(false)), null);
+                final XcosDiagram d = elem.decode(realParameters, new XcosDiagram(false));
+                realParameters = elem.encode(d, null);
             } catch (ScicosFormatException e) {
                 // do nothing on error (no assignation)
             }
