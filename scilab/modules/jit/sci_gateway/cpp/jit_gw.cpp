@@ -21,5 +21,6 @@ int JITModule::Load()
 {
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"enableJIT", &sci_enableJIT, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"disableJIT", &sci_disableJIT, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"isJIT", &sci_isJIT, MODULE_NAME));
     return 1;
 }

@@ -10,18 +10,15 @@
  *
  */
 #include "funcmanager.hxx"
-#include "context.hxx"
-#include "core_gw.hxx"
+#include "jit_gw.hxx"
 #include "bool.hxx"
+#include "function.hxx"
 #include "configvariable.hxx"
 
 extern "C"
 {
-#include "sci_mode.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "sci_mode.h"
-#include "os_strdup.h"
 }
 
 /*--------------------------------------------------------------------------*/
