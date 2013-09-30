@@ -88,21 +88,24 @@ int sci_addlocalizationdomain(char *fname, unsigned long fname_len)
     expandedPath = expandPathVariable(pstPath);
     pstRet = bindtextdomain(pstDomain, expandedPath);
 
-    freeAllocatedSingleString(pstDomain);
     freeAllocatedSingleString(pstPath);
     FREE(expandedPath);
 
     if (pstRet == NULL)
     {
         Scierror(999, _("%s: Unable to add new domain %s.\n"), fname, pstDomain);
+	freeAllocatedSingleString(pstDomain);
         return 0;
     }
 
     if (createScalarBoolean(pvApiCtx, iRhs + 1, 1))
     {
         Scierror(999, _("%s: Unable to add new domain %s.\n"), fname, pstDomain);
+	freeAllocatedSingleString(pstDomain);
         return 0;
     }
+
+    freeAllocatedSingleString(pstDomain);
 
     AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
     ReturnArguments(pvApiCtx);

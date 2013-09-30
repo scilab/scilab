@@ -84,8 +84,8 @@ int sci_listvar_in_hdf5_v1(char *fname, unsigned long fname_len)
     if (iFile < 0)
     {
         FREE(pstFileName);
-        FREE(pstFile);
         Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstFile);
+        FREE(pstFile);
         return 1;
     }
     FREE(pstFileName);

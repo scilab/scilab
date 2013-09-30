@@ -198,8 +198,8 @@ int sci_xmlXPath(char *fname, unsigned long fname_len)
         break;
     }
     default:
-        delete xpath;
         Scierror(999, gettext("%s: XPath query returned a not handled type: %i\n"), fname, xpath->getResultType());
+        delete xpath;
         return 0;
     }
 

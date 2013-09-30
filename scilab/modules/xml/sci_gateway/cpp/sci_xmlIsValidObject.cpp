@@ -66,10 +66,10 @@ int sci_xmlIsValidObject(char *fname, unsigned long fname_len)
 
             if (err.iErr)
             {
-                delete[]exists;
-                freeAllocatedMatrixOfString(row, col, vars);
+                delete[] exists;
                 printError(&err, 0);
                 Scierror(999, _("%s: Can not read named argument %s.\n"), fname, const_cast < const char *>(vars[i]));
+                freeAllocatedMatrixOfString(row, col, vars);
 
                 return 0;
             }
