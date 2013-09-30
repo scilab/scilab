@@ -1,8 +1,22 @@
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2013-2013 - LIP6 - Peter Senna Tschudin
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 #include "MutatorThread.h"
 #include "vmkit/System.h"
 #include "vmkit/Locks.h"
 #include "vmkit/Thread.h"
 #include "vmkit/VirtualMachine.h"
+#include "InitScilab.h"
+
 
 namespace VMKitScilab
 {
@@ -11,16 +25,12 @@ class ScilabVM;
 class ScilabThread : public vmkit::MutatorThread
 {
 private:
-    int argc, iFileIndex, iLangIndex, ret;
-    char **argv;
+    ScilabEngineInfo* pSEI;
 
 public:
-    void setArgs(int argc, char** argv, int iFileIndex, int iLangIndex);
+    void setArgs(ScilabEngineInfo* _pSEI);
     void setret(int ret);
-    int getargc();
-    int getiFileIndex();
-    int getiLangIndex();
-    char **getargv();
+    ScilabEngineInfo* getArgs();
     int getret();
 
     ScilabThread (ScilabVM* vm);
@@ -63,7 +73,7 @@ public:
 
     virtual void runApplication(int argc, char** argv) {}
 
-    virtual void runApplication(int argc, char** argv, int iFileIndex, int iLangIndex);
+    virtual void runApplication(ScilabEngineInfo *_pSEI);
 
     virtual void nullPointerException() {}
     virtual void stackOverflowError() {}

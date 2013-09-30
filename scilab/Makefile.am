@@ -79,6 +79,7 @@ scilab_bin_CPPFLAGS = \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/core/src/c/ \
 -I$(top_srcdir)/modules/dynamic_link/includes/ \
+$(VMKIT_CPPFLAGS) \
 $(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS) \
 -Wno-overloaded-virtual \

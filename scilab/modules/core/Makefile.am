@@ -72,7 +72,9 @@ src/cpp/tasks.cpp \
 src/cpp/getvariablesname.cpp \
 src/cpp/getmacrosname.cpp \
 src/cpp/getfunctionsname.cpp \
-src/cpp/InitScilab.cpp
+src/cpp/InitScilab.cpp \
+src/cpp/vmkit.cpp 
+
 
 
 if USE_DYNAMIC_STACK
@@ -175,13 +177,8 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_mode.cpp \
 	sci_gateway/cpp/sci_typename.cpp \
 	sci_gateway/cpp/sci_where.cpp \
-	sci_gateway/cpp/sci_getmemory.cpp \
-	sci_gateway/cpp/sci_format.cpp \
-	sci_gateway/cpp/sci_sciargs.cpp \
-	sci_gateway/cpp/sci_ieee.cpp \
-	sci_gateway/cpp/sci_funcprot.cpp \
-	sci_gateway/cpp/sci_mode.cpp
-
+	sci_gateway/cpp/sci_getmemory.cpp  
+	
 libscicore_la_CPPFLAGS = \
 -I$(srcdir)/includes/ \
 -I$(srcdir)/src/c/ \
@@ -216,6 +213,7 @@ libscicore_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/graphics/includes/ \
 -I$(top_srcdir)/modules/system_env/includes/ \
 -I$(top_srcdir)/modules/jit/includes/ \
+$(VMKIT_CPPFLAGS) \
 $(EIGEN_CPPFLAGS) \
 $(XML_FLAGS) \
 $(AM_CPPFLAGS) \
