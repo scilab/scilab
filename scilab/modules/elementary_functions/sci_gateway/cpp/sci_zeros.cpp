@@ -44,6 +44,13 @@ Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, types::ty
         int iDims = pIn->getDims();
         int* piDims = pIn->getDimsArray();
 
+        // zeros(:)
+        if (pIn->getRows() == -1 && pIn->getCols() == -1)
+        {
+            Scierror(21, _("Invalid index.\n"));
+            return Function::Error;
+        }
+
         pOut = new Double(iDims, piDims);
     }
     else //size > 1

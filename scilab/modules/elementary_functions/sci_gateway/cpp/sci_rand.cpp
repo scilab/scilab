@@ -133,9 +133,11 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         {
             //rand(X) or rand(X, "")
             types::Double* pD = in[0]->getAs<types::Double>();
-            if (pD == NULL)
+
+            // rand(:)
+            if (pD->getRows() == -1 && pD->getCols() == -1)
             {
-                Scierror(999, _("%s: Wrong type for argument %d: Real or complex matrix expected.\n"), "rand" , 1);
+                Scierror(21, _("Invalid index.\n"));
                 return types::Function::Error;
             }
 
@@ -171,7 +173,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             {
                 if (in[i]->isDouble() == false || in[i]->getAs<types::Double>()->isScalar() == false)
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "rand" , i + 1);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "rand" , i + 1);
                     return types::Function::Error;
                 }
 

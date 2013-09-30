@@ -41,6 +41,13 @@ Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, types::typ
         int iDims = pIn->getDims();
         int* piDims = pIn->getDimsArray();
 
+        // ones(:)
+        if (pIn->getRows() == -1 && pIn->getCols() == -1)
+        {
+            Scierror(21, _("Invalid index.\n"));
+            return types::Function::Error;
+        }
+
         pOut = new Double(iDims, piDims);
     }
     else //size > 1
