@@ -39,7 +39,7 @@
                 <term>A</term>
                 <listitem>
                     <para>a real or complex vector or real or complex array
-                        (vector, matrix or N-D array.
+                        (vector, matrix or N-D array).
                     </para>
                 </listitem>
             </varlistentry>
@@ -221,8 +221,8 @@
                                 <literal>X=fft(A,-1,2)</literal> is equivalent to:
                             </para>
                             <programlisting role=""><![CDATA[ 
-for i1=1:size(A,1),
-  for i3=1:size(A,3),
+for i1=1:size(A,1)
+  for i3=1:size(A,3)
     X(i1,:,i3)=fft(A(i1,:,i3),-1);
   end
 end
@@ -231,7 +231,7 @@ end
                                 and <literal>X=fft(A,-1,[1 3])</literal> is equivalent to:
                             </para>
                             <programlisting role=""><![CDATA[ 
-for i2=1:size(A,2),
+for i2=1:size(A,2)
   X(:,i2,:)=fft(A(:,i2,:),-1);
 end
               ]]></programlisting>

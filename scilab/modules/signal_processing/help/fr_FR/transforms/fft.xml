@@ -39,7 +39,7 @@
                 <term>A</term>
                 <listitem>
                     <para>un tableau de nombres réels ou complexes (vecteur,
-                        matrice, ou tableau N-dimensionnel.
+                        matrice, ou tableau N-dimensionnel).
                     </para>
                 </listitem>
             </varlistentry>
@@ -241,12 +241,12 @@
                                 dimensions.
                             </para>
                             <para>
-                                Par exemple si, <literal>A</literal> est un tableau 3-D a
+                                Par exemple si, <literal>A</literal> est un tableau 3-D,
                                 <literal>X=fft(A,-1,2)</literal> est équivalent à:
                             </para>
                             <programlisting role=""><![CDATA[ 
-              for i1=1:size(A,1),
-              for i3=1:size(A,3),
+              for i1=1:size(A,1)
+              for i3=1:size(A,3)
               X(i1,:,i3)=fft(A(i1,:,i3),-1);
               end
               end
@@ -255,7 +255,7 @@
                                 et <literal>X=fft(A,-1,[1 3])</literal> est équivalent à:
                             </para>
                             <programlisting role=""><![CDATA[ 
-              for i2=1:size(A,2),
+              for i2=1:size(A,2)
               X(:,i2,:)=fft(A(:,i2,:),-1);
               end
               ]]></programlisting>
@@ -264,14 +264,14 @@
                         <listitem>
                             <para>
                                 <literal>X=fft(A,sign,dims,incr [,option])</literal>
-                                isest une syntaxe ancienne qui permet aussi de
+                                est une syntaxe ancienne qui permet aussi de
                                 calculer efficacement les transformées directes ou
                                 inverses de toutes les "tranches" de
                                 <literal>A</literal> La sélection des "tranches" se
                                 faisant par la donnée des dimensions et des incréments
                                 associés à chacune des dimensions. Avec cette syntaxe
                                 les dimensions effectives de <literal>A</literal> ne
-                                sont pas prise en compte.
+                                sont pas prises en compte.
                             </para>
                             <para>
                                 Par example si <literal>A</literal> est un tableau ayant
@@ -299,7 +299,7 @@
                 .Dans un tel cas le
                 résultat de la fft est réel et un algorithme spécifique
                 peut-être utilisé pour amélioer l'éfficacité et réduire le
-                cout mémoire.
+                coût mémoire.
                 <listitem>
                     <itemizedlist>
                         <listitem>
@@ -332,14 +332,14 @@
                         Remarque: la fonction <literal>fft</literal> sauve
                         automatiquement des paramêtres en mémoire
                         (<literal>wisdom</literal>) pour accélérer les calculs de
-                        fft suivants correspondants aux mêmes dimension et mêmes
+                        fft suivants correspondants aux mêmes dimensions et mêmes
                         options.
                     </para>
                     <para> 
                         Les fonctions <link
              linkend="get_fftw_wisdom">get_fftw_wisdom</link>, <link
              linkend="set_fftw_wisdom">set_fftw_wisdom</link>
-                        permettent de récupérer et recharger ces paramêtres pour
+                        permettent de récupérer et recharger ces paramètres pour
                         amélioer l'efficacité de calcul de fft lorsque l'on
                         alterne plusieurs types de fft.
                     </para>
