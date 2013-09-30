@@ -41,10 +41,10 @@ function datatip2
         s=msprintf("%.2g", t);
     endfunction
 
-    datatipSetDisplay(c,mydisp) // Change the default datatip label
     for k=[350 400 450 500 520  550 600]
         dt=datatipCreate(c,k);
     end
+    //datatipSetDisplay(c,mydisp) // Change the default datatip label
 
     demo_viewCode("datatip2.sce");
 
