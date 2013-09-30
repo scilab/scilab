@@ -67,82 +67,82 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        switch(iType)
+        switch (iType)
         {
-        case sci_boolean :
-           sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &pbValue);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return 0;
-            }
-            if (iRows * iCols != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
-                return 0;
-            }
-            pstFigureUID = getCurrentFigure();
-            enabled = (bool) pbValue[0];
-            break;
-        case sci_strings :
-            sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
-            if(sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return 0;
-            }
-            if (iRows * iCols != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
-                return 0;
-            }
-            sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, NULL);
-            if(sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return 0;
-            }
-            pstData = (char*) malloc(sizeof(char) * (iLen + 1));
-            sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, &pstData);
-            if(sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return 0;
-            }
-            if (strcmp("on", pstData) == 0 || strcmp("T", pstData) == 0 || strcmp("1", pstData) == 0)
-            {
+            case sci_boolean :
+                sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &pbValue);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 0;
+                }
+                if (iRows * iCols != 1)
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
+                    return 0;
+                }
                 pstFigureUID = getCurrentFigure();
-                enabled = true;
-            }
-            else if (strcmp("off", pstData) == 0 || strcmp("F", pstData) == 0 || strcmp("0", pstData) == 0)
-            {
-                pstFigureUID = getCurrentFigure();
-                enabled = false;
-            }
-            else
-            {
+                enabled = pbValue[0] == 0 ? false : true;
+                break;
+            case sci_strings :
+                sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 0;
+                }
+                if (iRows * iCols != 1)
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
+                    return 0;
+                }
+                sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, NULL);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 0;
+                }
+                pstData = (char*) malloc(sizeof(char) * (iLen + 1));
+                sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, &pstData);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 0;
+                }
+                if (strcmp("on", pstData) == 0 || strcmp("T", pstData) == 0 || strcmp("1", pstData) == 0)
+                {
+                    pstFigureUID = getCurrentFigure();
+                    enabled = true;
+                }
+                else if (strcmp("off", pstData) == 0 || strcmp("F", pstData) == 0 || strcmp("0", pstData) == 0)
+                {
+                    pstFigureUID = getCurrentFigure();
+                    enabled = false;
+                }
+                else
+                {
+                    free(pstData);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "on", "off");
+                    return 0;
+                }
                 free(pstData);
-                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "on", "off");
-                return 0;
-            }
-            free(pstData);
-            break;
-        case sci_handles :
-            GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &iRows, &iCols, &stkAdr);
-            if (iRows * iCols != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
+                break;
+            case sci_handles :
+                GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &iRows, &iCols, &stkAdr);
+                if (iRows * iCols != 1)
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
+                    return FALSE;
+                }
+                pstFigureUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
+                if (pstFigureUID)
+                {
+                    enabled = !(DatatipManager::isEnabled(getScilabJavaVM(), pstFigureUID));
+                }
+                break;
+            default :
+                Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 1);
                 return FALSE;
-            }
-            pstFigureUID = (char *)getObjectFromHandle((unsigned long) * (hstk(stkAdr)));
-            if (pstFigureUID)
-            {
-                enabled = !(DatatipManager::isEnabled(getScilabJavaVM(), pstFigureUID));
-            }
-            break;
-        default :
-            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 1);
-            return FALSE;
         }
     }
     else if (Rhs == 2)
@@ -169,69 +169,69 @@ int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
             return FALSE;
         }
 
-        switch(iType)
+        switch (iType)
         {
-        case sci_boolean :
-           sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &pbValue);
-            if (sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return FALSE;
-            }
-            if (iRows * iCols != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
-                return FALSE;
-            }
-            pstFigureUID = getCurrentFigure();
-            enabled = (bool) pbValue[0];
-            break;
-        case sci_strings :
-            sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
-            if(sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return 0;
-            }
-            if (iRows * iCols != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
-                return 0;
-            }
-            sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, NULL);
-            if(sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return 0;
-            }
-            pstData = (char*) malloc(sizeof(char) * (iLen + 1));
-            sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, &pstData);
-            if(sciErr.iErr)
-            {
-                printError(&sciErr, 0);
-                return 0;
-            }
-            if (strcmp("on", pstData) == 0 || strcmp("T", pstData) == 0 || strcmp("1", pstData) == 0)
-            {
+            case sci_boolean :
+                sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &pbValue);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return FALSE;
+                }
+                if (iRows * iCols != 1)
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
+                    return FALSE;
+                }
                 pstFigureUID = getCurrentFigure();
-                enabled = true;
-            }
-            else if (strcmp("off", pstData) == 0 || strcmp("F", pstData) == 0 || strcmp("0", pstData) == 0)
-            {
-                pstFigureUID = getCurrentFigure();
-                enabled = false;
-            }
-            else
-            {
+                enabled = pbValue[0] == 0 ? false : true;
+                break;
+            case sci_strings :
+                sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 0;
+                }
+                if (iRows * iCols != 1)
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 1);
+                    return 0;
+                }
+                sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, NULL);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 0;
+                }
+                pstData = (char*) malloc(sizeof(char) * (iLen + 1));
+                sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &iLen, &pstData);
+                if (sciErr.iErr)
+                {
+                    printError(&sciErr, 0);
+                    return 0;
+                }
+                if (strcmp("on", pstData) == 0 || strcmp("T", pstData) == 0 || strcmp("1", pstData) == 0)
+                {
+                    pstFigureUID = getCurrentFigure();
+                    enabled = true;
+                }
+                else if (strcmp("off", pstData) == 0 || strcmp("F", pstData) == 0 || strcmp("0", pstData) == 0)
+                {
+                    pstFigureUID = getCurrentFigure();
+                    enabled = false;
+                }
+                else
+                {
+                    free(pstData);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "on", "off");
+                    return 0;
+                }
                 free(pstData);
-                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "on", "off");
-                return 0;
-            }
-            free(pstData);
-            break;
-        default :
-            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
-            return FALSE;
+                break;
+            default :
+                Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 2);
+                return FALSE;
         }
     }
     else
