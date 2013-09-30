@@ -336,13 +336,15 @@ public abstract class SciConsole extends JPanel {
                 }
             }
 
-            int numberOfLines = Math.max(1, getNumberOfLines());
+            int numberOfLines = getNumberOfLines();
             int promptWidth = ((JPanel) this.getConfiguration().getPromptView()).getPreferredSize().width;
 
             int numberOfColumns = (outputViewWidth - promptWidth) / maxCharWidth - 1;
             /* -1 because of the margin between text prompt and command line text */
 
-            GuiManagement.setScilabLines(numberOfLines, numberOfColumns);
+            if (numberOfLines > 0 && numberOfColumns > 0) {
+                GuiManagement.setScilabLines(Math.max(1, numberOfLines), numberOfColumns);
+            }
         } else {
             GuiManagement.forceScilabLines(ConsoleOptions.getConsoleDisplay().nbLines, ConsoleOptions.getConsoleDisplay().nbColumns);
         }
@@ -445,7 +447,9 @@ public abstract class SciConsole extends JPanel {
                     for (int i = 0; i < totalNumberOfLines; i++) {
                         outputTxt = outputDoc.getText(0, outputDoc.getLength());
                         lastEOL = outputTxt.lastIndexOf(StringConstants.NEW_LINE);
-                        outputDoc.remove(lastEOL, outputDoc.getLength() - lastEOL);
+                        if (lastEOL != -1) {
+                            outputDoc.remove(lastEOL, outputDoc.getLength() - lastEOL);
+                        }
                     }
                 }
             } catch (BadLocationException e) {
