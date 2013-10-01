@@ -682,7 +682,7 @@ msgid "Outport size ([-1 -2] for inherit)"
 msgstr "Dimension de port de sortie ([-1 -2] pour hériter)"
 
 msgid "Outport Type (-1 for inherit)"
-msgstr "Taille du port de sortie (-1 pour hériter)"
+msgstr "Type du port de sortie (-1 pour hériter)"
 
 msgid "Port number must be a positive integer"
 msgstr "Le numéro du port doit être un nombre entier positif"
