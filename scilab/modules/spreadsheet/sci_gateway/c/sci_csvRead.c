@@ -529,7 +529,6 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                         }
                         LhsVar(2) = Rhs + 2;
                     }
-                    FREE(result);
                     PutLhsVar();
                 }
             }
