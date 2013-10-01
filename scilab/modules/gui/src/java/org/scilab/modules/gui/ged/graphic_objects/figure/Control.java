@@ -56,6 +56,7 @@ public class Control extends SimpleSection {
 
         //Components of the property: Axes Size
         figure.axesSize(sectionPanel, row++, column, leftmargin, objectID);
+        row++;
 
         //Components of the property: CloseRequestFcn.
         figure.closeRequestFcn(sectionPanel, row++, column, leftmargin, objectID);
@@ -65,9 +66,11 @@ public class Control extends SimpleSection {
 
         //Components of the property: Figure Position
         figure.figurePosition(sectionPanel, row++, column, leftmargin, objectID);
+        row++;
 
         //Components of the property: Figure Size.
         figure.figureSize(sectionPanel, row++, column, leftmargin, objectID);
+        row++;
 
         //Components of the property: ResizeFcn.
         figure.resizeFcn(sectionPanel, row++, column, leftmargin, objectID);
