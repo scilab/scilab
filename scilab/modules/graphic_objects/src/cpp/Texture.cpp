@@ -171,13 +171,17 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * R = (const unsigned char *)data;
                     const unsigned char * G = R + numElements;
                     const unsigned char * B = G + numElements;
-                    unsigned int * uidata = (unsigned int *) * dest;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
 
                     for (int i = 0; i < numElements; i++)
                     {
-                        uidata[i] = (R[i] << 24) | (G[i] << 16) | (B[i] << 8) | 0xFF;
+                        ucdata[k] = R[i];
+                        ucdata[k + 1] = G[i];
+                        ucdata[k + 2] = B[i];
+                        k += 3;
                     }
-                    *gltype = MATPLOT_GL_RGBA;
+                    *gltype = MATPLOT_GL_RGB;
                     break;
                 }
                 case MATPLOT_HM3_Double :
@@ -210,27 +214,35 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                 case MATPLOT_Int :
                 {
                     const unsigned int * ui = (const unsigned int *)data;
-                    unsigned int * uidata = (unsigned int *) * dest;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
 
                     for (int i = 0; i < numElements; i++)
                     {
-                        uidata[i] = (ui[i] << 8) | 0xFF;
+                        ucdata[k] = (ui[i] >> 16) & 0xFF;
+                        ucdata[k + 1] = (ui[i] >> 8) & 0xFF;
+                        ucdata[k + 2] = ui[i] & 0xFF;
+                        k += 3;
                     }
 
-                    *gltype = MATPLOT_GL_RGBA;
+                    *gltype = MATPLOT_GL_RGB;
                     break;
                 }
                 case MATPLOT_UInt :
                 {
                     const unsigned int * ui = (const unsigned int *)data;
-                    unsigned int * uidata = (unsigned int *) * dest;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
 
                     for (int i = 0; i < numElements; i++)
                     {
-                        uidata[i] = ui[i] | 0xFF;
+                        ucdata[k] = (ui[i] >> 24) & 0xFF;
+                        ucdata[k + 1] = (ui[i] >> 16) & 0xFF;
+                        ucdata[k + 2] = (ui[i] >> 8) & 0xFF;
+                        k += 3;
                     }
 
-                    *gltype = MATPLOT_GL_RGBA;
+                    *gltype = MATPLOT_GL_RGB;
                     break;
                 }
                 case MATPLOT_Short :
@@ -249,13 +261,17 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                 case MATPLOT_Double :
                 {
                     const double * d = (const double *)data;
-                    unsigned int * uidata = (unsigned int *) * dest;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
 
                     for (int i = 0; i < numElements; i++)
                     {
-                        uidata[i] = (((unsigned int)d[i]) << 8) | 0xFF;
+                        ucdata[k] = (((unsigned int)d[i]) >> 16) & 0xFF;
+                        ucdata[k + 1] = (((unsigned int)d[i]) >> 8) & 0xFF;
+                        ucdata[k + 2] = ((unsigned int)d[i]) & 0xFF;
+                        k += 3;
                     }
-                    *gltype = MATPLOT_GL_RGBA;
+                    *gltype = MATPLOT_GL_RGB;
                     break;
                 }
             }
@@ -271,13 +287,18 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * R = (const unsigned char *)data;
                     const unsigned char * G = R + numElements;
                     const unsigned char * B = G + numElements;
-                    unsigned int * uidata = (unsigned int *) * dest;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
 
                     for (int i = 0; i < numElements; i++)
                     {
-                        uidata[i] = (R[i] << 24) | (G[i] << 16) | (B[i] << 8) | 0xFF;
+                        ucdata[k] = R[i];
+                        ucdata[k + 1] = G[i];
+                        ucdata[k + 2] = B[i];
+                        ucdata[k + 3] = 0xFF;
+                        k += 4;
                     }
-                    *gltype = MATPLOT_GL_RGBA;
+                    *gltype = MATPLOT_GL_RGBA_BYTE;
                     break;
                 }
                 case MATPLOT_HM4_Char :
@@ -287,13 +308,18 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * G = R + numElements;
                     const unsigned char * B = G + numElements;
                     const unsigned char * A = B + numElements;
-                    unsigned int * uidata = (unsigned int *) * dest;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
 
                     for (int i = 0; i < numElements; i++)
                     {
-                        uidata[i] = (R[i] << 24) | (G[i] << 16) | (B[i] << 8) | A[i];
+                        ucdata[k] = R[i];
+                        ucdata[k + 1] = G[i];
+                        ucdata[k + 2] = B[i];
+                        ucdata[k + 3] = A[i];
+                        k += 4;
                     }
-                    *gltype = MATPLOT_GL_RGBA;
+                    *gltype = MATPLOT_GL_RGBA_BYTE;
                     break;
                 }
                 case MATPLOT_HM3_Double :
@@ -345,19 +371,35 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                 case MATPLOT_Int :
                 {
                     const unsigned int * ui = (const unsigned int *)data;
-                    unsigned int * uidata = (unsigned int *) * dest;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
 
                     for (int i = 0; i < numElements; i++)
                     {
-                        uidata[i] = (ui[i] << 8) | 0xFF;
+                        ucdata[k] = (ui[i] >> 16) & 0xFF;
+                        ucdata[k + 1] = (ui[i] >> 8) & 0xFF;
+                        ucdata[k + 2] = ui[i] & 0xFF;
+                        ucdata[k + 3] = 0xFF;
+                        k += 4;
                     }
-                    *gltype = MATPLOT_GL_RGBA;
+                    *gltype = MATPLOT_GL_RGBA_BYTE;
                     break;
                 }
                 case MATPLOT_UInt :
                 {
-                    memcpy(*dest, data, size);
-                    *gltype = MATPLOT_GL_RGBA;
+                    const unsigned int * ui = (const unsigned int *)data;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
+
+                    for (int i = 0; i < numElements; i++)
+                    {
+                        ucdata[k] = (ui[i] >> 24) & 0xFF;
+                        ucdata[k + 1] = (ui[i] >> 16) & 0xFF;
+                        ucdata[k + 2] = (ui[i] >> 8) & 0xFF;
+                        ucdata[k + 3] = ui[i] & 0xFF;
+                        k += 4;
+                    }
+                    *gltype = MATPLOT_GL_RGBA_BYTE;
                     break;
                 }
                 case MATPLOT_Short :
@@ -376,14 +418,18 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                 case MATPLOT_Double :
                 {
                     const double * d = (const double *)data;
-                    unsigned int * uidata = (unsigned int *) * dest;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
 
                     for (int i = 0; i < numElements; i++)
                     {
-                        uidata[i] = (unsigned int)d[i];
+                        ucdata[k] = (((unsigned int)d[i]) >> 24) & 0xFF;
+                        ucdata[k + 1] = (((unsigned int)d[i]) >> 16) & 0xFF;
+                        ucdata[k + 2] = (((unsigned int)d[i]) >> 8) & 0xFF;
+                        ucdata[k + 3] = ((unsigned int)d[i]) & 0xFF;
+                        unsigned int k = 0;
                     }
-                    *gltype = MATPLOT_GL_RGBA;
-                    break;
+                    *gltype = MATPLOT_GL_RGBA_BYTE;
                 }
             }
             break;
@@ -483,7 +529,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
         case MATPLOT_INDEX :
         {
             memcpy(*dest, data, size);
-            *gltype = MATPLOT_GL_RGBA;
+            *gltype = MATPLOT_GL_RGBA_BYTE;
             break;
         }
         case MATPLOT_RED :

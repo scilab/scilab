@@ -666,7 +666,7 @@ public class JoGLTextureManager implements TextureManager {
                     break;
                 case RGBA:
                     this.internalFormat = GL2.GL_RGBA;
-                    setPixelFormat(GL2.GL_RGBA);
+                    setPixelFormat(GL.GL_RGBA);
                     setPixelType(GL2.GL_UNSIGNED_INT_8_8_8_8);
                     this.alignment = 4;
                     break;

@@ -184,7 +184,10 @@ public :
         }
         else
         {
-            *rc = ((unsigned char)(color[0] * 255) << 24) | ((unsigned char)(color[1] * 255) << 16) | ((unsigned char)(color[2] * 255) << 8) | 0xFF;
+            returnedColor[0] = (unsigned char)(color[0] * 255);
+            returnedColor[1] = (unsigned char)(color[1] * 255);
+            returnedColor[2] = (unsigned char)(color[2] * 255);
+            returnedColor[3] = 0xFF;
         }
     }
 
