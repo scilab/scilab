@@ -39,6 +39,8 @@ import java.awt.geom.Rectangle2D;
 public class G2DTextureDrawingTools implements TextureDrawingTools {
 
     private Graphics2D g2d;
+    private int width;
+    private int height;
 
     /**
      * Default constructor.
@@ -58,7 +60,9 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
         G2DTextureManager.G2DTexture t = (G2DTextureManager.G2DTexture) texture;
         TextureDrawer drawer = t.getDrawer();
         Dimension d = drawer.getTextureSize();
-        accept(drawer, (int) d.getWidth(), (int) d.getHeight());
+        this.width = (int) d.getWidth();
+        this.height = (int) d.getHeight();
+        accept(drawer, this.width, this.height);
     }
 
     /**
@@ -196,5 +200,8 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
     }
 
     @Override
-    public void clear(Color color) { }
+    public void clear(Color color) {
+        g2d.setColor(color);
+        g2d.fillRect(0, 0, width, height);
+    }
 }
