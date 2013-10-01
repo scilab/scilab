@@ -192,7 +192,10 @@ public class DatatipTextDrawer extends TextManager {
     public static Vector3d calculateAnchorPoint(Datatip datatip) {
 
         Axes axes = (Axes) GraphicController.getController().getObjectFromId(datatip.getParentAxes());
+        double[][] factors = axes.getScaleTranslateFactors();
         boolean[] logFlags = new boolean[] {axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
-        return ScaleUtils.applyLogScale(new Vector3d(datatip.getTipData()), logFlags);
+        Vector3d v = ScaleUtils.applyLogScale(new Vector3d(datatip.getTipData()), logFlags);
+
+        return new Vector3d(v.getX() * factors[0][0] + factors[1][0], v.getY() * factors[0][1] + factors[1][1], v.getZ() * factors[0][2] + factors[1][2]);
     }
 }

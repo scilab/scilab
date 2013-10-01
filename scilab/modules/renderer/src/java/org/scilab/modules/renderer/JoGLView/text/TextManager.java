@@ -149,9 +149,6 @@ public class TextManager {
 
         double[][] factors = parentAxes.getScaleTranslateFactors();
         Double[] pos = text.getPosition();
-        pos[0] = pos[0] * factors[0][0] + factors[1][0];
-        pos[1] = pos[1] * factors[0][1] + factors[1][1];
-        pos[2] = pos[2] * factors[0][2] + factors[1][2];
 
         /* The text position vector before logarithmic scaling */
         Vector3d unscaledTextPosition = new Vector3d(pos);
@@ -160,6 +157,7 @@ public class TextManager {
 
         /* Apply logarithmic scaling and then project */
         Vector3d textPosition = ScaleUtils.applyLogScale(unscaledTextPosition, logFlags);
+        unscaledTextPosition = new Vector3d(unscaledTextPosition.getX() * factors[0][0] + factors[1][0], unscaledTextPosition.getY() * factors[0][1] + factors[1][1], unscaledTextPosition.getZ() * factors[0][2] + factors[1][2]);
         Vector3d projTextPosition = projection.project(textPosition);
 
         /* Compute the text label vectors in window coordinates */
@@ -247,7 +245,7 @@ public class TextManager {
      * @return the minimum ratios (2 elements: text box to current texture and text box to unscaled texture ratios).
      */
     protected double[] computeRatios(Transformation projection, Text text, Vector3d[] textBoxVectors, Dimension spriteDimension,
-                                   Dimension baseSpriteDimension) {
+                                     Dimension baseSpriteDimension) {
         /* 1st element: ratio for the current texture, 2nd element: ratio for the unscaled texture */
         double[] ratios = new double[] {1.0, 1.0};
 
@@ -287,15 +285,12 @@ public class TextManager {
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
         double[][] factors = parentAxes.getScaleTranslateFactors();
         Double[] pos = text.getPosition();
-        pos[0] = pos[0] * factors[0][0] + factors[1][0];
-        pos[1] = pos[1] * factors[0][1] + factors[1][1];
-        pos[2] = pos[2] * factors[0][2] + factors[1][2];
-
         Vector3d textPosition = new Vector3d(pos);
 
         /* Apply logarithmic scaling */
         boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
         textPosition = ScaleUtils.applyLogScale(textPosition, logFlags);
+        textPosition = new Vector3d(textPosition.getX() * factors[0][0] + factors[1][0], textPosition.getY() * factors[0][1] + factors[1][1], textPosition.getZ() * factors[0][2] + factors[1][2]);
 
         textPosition = projection.project(textPosition);
 
