@@ -470,15 +470,16 @@ public class EntityPicker {
      * @return The nearest surface intersected or null otherwise.
      */
     String pickSurface(String figure, Integer[] pos) {
-
         String uid = AxesHandler.clickedAxes(figure, pos);
         curAxes = (Axes)GraphicController.getController().getObjectFromId(uid);
-
+        double[][] factors = curAxes.getScaleTranslateFactors();
         double[] mat = DrawerVisitor.getVisitor(figure).getAxesDrawer().getProjection(uid).getMatrix();
-
 
         Vector3d v0 = AxesDrawer.unProject(curAxes, new Vector3d(1.0f * pos[0], 1.0f * pos[1], 0.0));
         Vector3d v1 = AxesDrawer.unProject(curAxes, new Vector3d(1.0f * pos[0], 1.0f * pos[1], 1.0));
+        v0 = new Vector3d((v0.getX() - factors[1][0]) / factors[0][0], (v0.getY() - factors[1][1]) / factors[0][1], (v0.getZ() - factors[1][2]) / factors[0][2]);
+        v1 = new Vector3d((v1.getX() - factors[1][0]) / factors[0][0], (v1.getY() - factors[1][1]) / factors[0][1], (v1.getZ() - factors[1][2]) / factors[0][2]);
+
         Vector3d Dir = v0.minus(v1).getNormalized();
 
 
