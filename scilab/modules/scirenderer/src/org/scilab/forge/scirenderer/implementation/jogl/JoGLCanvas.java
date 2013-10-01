@@ -251,18 +251,6 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
             e.printStackTrace();
         }
 
-        boolean needFlip;
-        try {
-            needFlip = !autoDrawable.isGLOriented();
-        } catch (GLException e) {
-            needFlip = false;
-        }
-
-        if (needFlip) {
-            // Need to flip image when Windows uses an OpenGL software renderer
-            ImageUtil.flipImageVertically(image[0]);
-        }
-
         return image[0];
     }
 
