@@ -15,18 +15,18 @@
 
 namespace org_modules_xml
 {
-    XMLList::XMLList():XMLObject()
-    {
-        scilabType = XMLLIST;
-    }
+XMLList::XMLList(): XMLObject(), size(0)
+{
+    scilabType = XMLLIST;
+}
 
-    const std::string XMLList::toString() const
-    {
-        std::ostringstream oss;
+const std::string XMLList::toString() const
+{
+    std::ostringstream oss;
 
-        oss << "XML List" << std::endl;
-        oss << "size: " << getSize();
+    oss << "XML List" << std::endl;
+    oss << "size: " << getSize();
 
-        return oss.str();
-    }
+    return oss.str();
+}
 }
