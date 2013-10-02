@@ -534,9 +534,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param uuid the win uuid
      */
     public static final void removeWin(String uuid) {
-        if (ScilabConstants.isGUI()) {
-            alreadyRestoredWindows.remove(uuid);
-        }
+        alreadyRestoredWindows.remove(uuid);
     }
 
     /**
