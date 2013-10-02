@@ -161,6 +161,7 @@ static int lengthStrings(int *piAddressVar)
     pStVarOne = (char**)MALLOC(sizeof(char*) * (m1 * n1));
     if (pStVarOne == NULL)
     {
+        FREE(lenStVarOne);
         Scierror(999, _("%s: No more memory.\n"), "length");
         return 0;
     }

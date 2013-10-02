@@ -152,10 +152,11 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
     lSize = ftell(pFile);
     if (lSize < 0)
     {
-        FREE(configPtr);
         Scierror(999, _("Could not read the configuration file '%s'.\n"), configPtr);
+        FREE(configPtr);
         return 0;
     }
+
     rewind (pFile);
 
     // allocate memory to contain the whole file
